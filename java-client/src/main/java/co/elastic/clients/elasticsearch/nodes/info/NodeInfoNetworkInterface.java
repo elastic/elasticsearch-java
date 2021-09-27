@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetworkInterface
+@JsonpDeserializable
 public final class NodeInfoNetworkInterface implements JsonpSerializable {
 	private final String address;
 
@@ -149,8 +151,8 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoNetworkInterface}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetworkInterface> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer);
+	public static final JsonpDeserializer<NodeInfoNetworkInterface> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer, Builder::build);
 
 	protected static void setupNodeInfoNetworkInterfaceDeserializer(
 			DelegatingDeserializer<NodeInfoNetworkInterface.Builder> op) {

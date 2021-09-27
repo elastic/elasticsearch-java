@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearch
+@JsonpDeserializable
 public final class NodeInfoSearch implements JsonpSerializable {
 	private final NodeInfoSearchRemote remote;
 
@@ -110,12 +112,12 @@ public final class NodeInfoSearch implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoSearch}
 	 */
-	public static final JsonpDeserializer<NodeInfoSearch> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSearch::setupNodeInfoSearchDeserializer);
+	public static final JsonpDeserializer<NodeInfoSearch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoSearch::setupNodeInfoSearchDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSearchDeserializer(DelegatingDeserializer<NodeInfoSearch.Builder> op) {
 
-		op.add(Builder::remote, NodeInfoSearchRemote.DESERIALIZER, "remote");
+		op.add(Builder::remote, NodeInfoSearchRemote._DESERIALIZER, "remote");
 
 	}
 

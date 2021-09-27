@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,9 +43,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Request
+@JsonpDeserializable
 public final class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	private final Map<String, Map<String, Actions>> value;
 
@@ -66,7 +68,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -106,7 +108,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	 */
 	public static class Builder implements ObjectBuilder<PutPrivilegesRequest> {
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		private Map<String, Map<String, Actions>> value;
 
@@ -118,7 +120,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -161,14 +163,14 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link PutPrivilegesRequest}
 	 */
-	public static final JsonpDeserializer<PutPrivilegesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutPrivilegesRequest::setupPutPrivilegesRequestDeserializer);
+	public static final JsonpDeserializer<PutPrivilegesRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutPrivilegesRequest::setupPutPrivilegesRequestDeserializer, Builder::build);
 
 	protected static void setupPutPrivilegesRequestDeserializer(
 			DelegatingDeserializer<PutPrivilegesRequest.Builder> op) {
 
 		op.add(Builder::value,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(Actions.DESERIALIZER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER)),
 				"value");
 
 	}
@@ -199,5 +201,5 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutPrivilegesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutPrivilegesResponse._DESERIALIZER);
 }

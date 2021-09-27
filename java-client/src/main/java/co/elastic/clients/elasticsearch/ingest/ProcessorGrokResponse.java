@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.processor_grok.Response
+@JsonpDeserializable
 public final class ProcessorGrokResponse implements JsonpSerializable {
 	private final Map<String, String> patterns;
 
@@ -122,8 +124,8 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ProcessorGrokResponse}
 	 */
-	public static final JsonpDeserializer<ProcessorGrokResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ProcessorGrokResponse::setupProcessorGrokResponseDeserializer);
+	public static final JsonpDeserializer<ProcessorGrokResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ProcessorGrokResponse::setupProcessorGrokResponseDeserializer, Builder::build);
 
 	protected static void setupProcessorGrokResponseDeserializer(
 			DelegatingDeserializer<ProcessorGrokResponse.Builder> op) {

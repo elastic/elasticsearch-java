@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
@@ -39,6 +40,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
+
 public final class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
 	private final InlineGet<TDocument> get;

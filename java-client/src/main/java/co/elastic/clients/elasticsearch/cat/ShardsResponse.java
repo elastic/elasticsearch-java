@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.shards.ShardsRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.shards.Response
+@JsonpDeserializable
 public final class ShardsResponse implements JsonpSerializable {
 	private final List<ShardsRecord> value;
 
@@ -143,12 +145,12 @@ public final class ShardsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardsResponse}
 	 */
-	public static final JsonpDeserializer<ShardsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardsResponse::setupShardsResponseDeserializer);
+	public static final JsonpDeserializer<ShardsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardsResponse::setupShardsResponseDeserializer, Builder::build);
 
 	protected static void setupShardsResponseDeserializer(DelegatingDeserializer<ShardsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(ShardsRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(ShardsRecord._DESERIALIZER), "value");
 
 	}
 

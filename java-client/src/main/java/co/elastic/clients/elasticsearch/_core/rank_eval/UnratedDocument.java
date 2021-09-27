@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.UnratedDocument
+@JsonpDeserializable
 public final class UnratedDocument implements JsonpSerializable {
 	private final String id;
 
@@ -126,8 +128,8 @@ public final class UnratedDocument implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UnratedDocument}
 	 */
-	public static final JsonpDeserializer<UnratedDocument> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UnratedDocument::setupUnratedDocumentDeserializer);
+	public static final JsonpDeserializer<UnratedDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			UnratedDocument::setupUnratedDocumentDeserializer, Builder::build);
 
 	protected static void setupUnratedDocumentDeserializer(DelegatingDeserializer<UnratedDocument.Builder> op) {
 

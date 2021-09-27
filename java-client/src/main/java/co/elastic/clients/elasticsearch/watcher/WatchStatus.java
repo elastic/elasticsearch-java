@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WatchStatus
+@JsonpDeserializable
 public final class WatchStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
 
@@ -52,7 +54,7 @@ public final class WatchStatus implements JsonpSerializable {
 
 	private final ActivationState state;
 
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final String executionState;
@@ -103,7 +105,7 @@ public final class WatchStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -152,7 +154,7 @@ public final class WatchStatus implements JsonpSerializable {
 		this.state.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 		if (this.executionState != null) {
 
@@ -179,7 +181,7 @@ public final class WatchStatus implements JsonpSerializable {
 
 		private ActivationState state;
 
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private String executionState;
@@ -251,7 +253,7 @@ public final class WatchStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -281,16 +283,16 @@ public final class WatchStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WatchStatus}
 	 */
-	public static final JsonpDeserializer<WatchStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatchStatus::setupWatchStatusDeserializer);
+	public static final JsonpDeserializer<WatchStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatchStatus::setupWatchStatusDeserializer, Builder::build);
 
 	protected static void setupWatchStatusDeserializer(DelegatingDeserializer<WatchStatus.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus.DESERIALIZER), "actions");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus._DESERIALIZER), "actions");
 		op.add(Builder::lastChecked, JsonpDeserializer.stringDeserializer(), "last_checked");
 		op.add(Builder::lastMetCondition, JsonpDeserializer.stringDeserializer(), "last_met_condition");
-		op.add(Builder::state, ActivationState.DESERIALIZER, "state");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::state, ActivationState._DESERIALIZER, "state");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::executionState, JsonpDeserializer.stringDeserializer(), "execution_state");
 
 	}

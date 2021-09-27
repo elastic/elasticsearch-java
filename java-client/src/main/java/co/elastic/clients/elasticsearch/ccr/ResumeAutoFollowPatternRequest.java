@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_auto_follow_pattern.Request
+
 public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
@@ -127,5 +129,5 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ResumeAutoFollowPatternResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ResumeAutoFollowPatternResponse._DESERIALIZER);
 }

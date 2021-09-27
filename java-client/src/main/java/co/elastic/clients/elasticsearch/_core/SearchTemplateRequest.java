@@ -25,17 +25,18 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -49,6 +50,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Request
+@JsonpDeserializable
 public final class SearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
@@ -60,7 +62,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	private final Boolean ccsMinimizeRoundtrips;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -75,7 +77,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	private final String routing;
 
 	@Nullable
-	private final JsonValue scroll;
+	private final String scroll;
 
 	@Nullable
 	private final SearchType searchType;
@@ -166,7 +168,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -220,7 +222,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public JsonValue scroll() {
+	public String scroll() {
 		return this.scroll;
 	}
 
@@ -368,7 +370,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -383,7 +385,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		private String routing;
 
 		@Nullable
-		private JsonValue scroll;
+		private String scroll;
 
 		@Nullable
 		private SearchType searchType;
@@ -471,8 +473,30 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -525,7 +549,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public Builder scroll(@Nullable JsonValue value) {
+		public Builder scroll(@Nullable String value) {
 			this.scroll = value;
 			return this;
 		}
@@ -636,15 +660,15 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link SearchTemplateRequest}
 	 */
-	public static final JsonpDeserializer<SearchTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchTemplateRequest::setupSearchTemplateRequestDeserializer);
+	public static final JsonpDeserializer<SearchTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchTemplateRequest::setupSearchTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupSearchTemplateRequestDeserializer(
 			DelegatingDeserializer<SearchTemplateRequest.Builder> op) {
 
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
@@ -699,7 +723,8 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreThrottled != null) {
 					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
@@ -714,7 +739,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 					params.put("routing", request.routing);
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll.toString());
+					params.put("scroll", request.scroll);
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());

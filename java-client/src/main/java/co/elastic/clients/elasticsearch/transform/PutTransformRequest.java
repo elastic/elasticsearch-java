@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.put_transform.Request
+@JsonpDeserializable
 public class PutTransformRequest extends PreviewTransformRequest {
 	private final String transformId;
 
@@ -140,8 +142,8 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	/**
 	 * Json deserializer for {@link PutTransformRequest}
 	 */
-	public static final JsonpDeserializer<PutTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer);
+	public static final JsonpDeserializer<PutTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPutTransformRequestDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
@@ -189,5 +191,5 @@ public class PutTransformRequest extends PreviewTransformRequest {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTransformResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutTransformResponse._DESERIALIZER);
 }

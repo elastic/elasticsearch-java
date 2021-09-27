@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyResult
+@JsonpDeserializable
 public final class PagerDutyResult implements JsonpSerializable {
 	private final PagerDutyActionEventResult sentEvent;
 
@@ -111,12 +113,12 @@ public final class PagerDutyResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PagerDutyResult}
 	 */
-	public static final JsonpDeserializer<PagerDutyResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PagerDutyResult::setupPagerDutyResultDeserializer);
+	public static final JsonpDeserializer<PagerDutyResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PagerDutyResult::setupPagerDutyResultDeserializer, Builder::build);
 
 	protected static void setupPagerDutyResultDeserializer(DelegatingDeserializer<PagerDutyResult.Builder> op) {
 
-		op.add(Builder::sentEvent, PagerDutyActionEventResult.DESERIALIZER, "sent_event");
+		op.add(Builder::sentEvent, PagerDutyActionEventResult._DESERIALIZER, "sent_event");
 
 	}
 

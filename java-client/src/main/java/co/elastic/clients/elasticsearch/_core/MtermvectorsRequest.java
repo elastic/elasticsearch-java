@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._core.mtermvectors.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +51,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Request
+@JsonpDeserializable
 public final class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String index;
@@ -82,7 +84,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	private final Boolean termStatistics;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
@@ -235,7 +237,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -338,7 +340,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		private Boolean termStatistics;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
@@ -491,7 +493,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -591,12 +593,12 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link MtermvectorsRequest}
 	 */
-	public static final JsonpDeserializer<MtermvectorsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer);
+	public static final JsonpDeserializer<MtermvectorsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer, Builder::build);
 
 	protected static void setupMtermvectorsRequestDeserializer(DelegatingDeserializer<MtermvectorsRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation.DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
 
 	}
@@ -669,12 +671,12 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 					params.put("term_statistics", String.valueOf(request.termStatistics));
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, MtermvectorsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, MtermvectorsResponse._DESERIALIZER);
 }

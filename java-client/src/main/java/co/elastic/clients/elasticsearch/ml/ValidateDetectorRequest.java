@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate_detector.Request
+@JsonpDeserializable
 public final class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
 	private final Detector value;
 
@@ -112,13 +114,13 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link ValidateDetectorRequest}
 	 */
-	public static final JsonpDeserializer<ValidateDetectorRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidateDetectorRequest::setupValidateDetectorRequestDeserializer);
+	public static final JsonpDeserializer<ValidateDetectorRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ValidateDetectorRequest::setupValidateDetectorRequestDeserializer, Builder::build);
 
 	protected static void setupValidateDetectorRequestDeserializer(
 			DelegatingDeserializer<ValidateDetectorRequest.Builder> op) {
 
-		op.add(Builder::value, Detector.DESERIALIZER, "value");
+		op.add(Builder::value, Detector._DESERIALIZER, "value");
 
 	}
 
@@ -144,5 +146,5 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateDetectorResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ValidateDetectorResponse._DESERIALIZER);
 }

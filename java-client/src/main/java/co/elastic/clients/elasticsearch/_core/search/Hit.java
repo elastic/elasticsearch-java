@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core.search;
 import co.elastic.clients.elasticsearch._core.explain.Explanation;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,9 +35,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,13 +52,14 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Hit
+
 public final class Hit<TDocument> implements JsonpSerializable {
 	private final String index;
 
 	private final String id;
 
 	@Nullable
-	private final Number score;
+	private final Double score;
 
 	@Nullable
 	private final String type;
@@ -95,16 +98,16 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	private final TDocument source;
 
 	@Nullable
-	private final Number seqNo;
+	private final Integer seqNo;
 
 	@Nullable
-	private final Number primaryTerm;
+	private final Long primaryTerm;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<String> sort;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -154,7 +157,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _score}
 	 */
 	@Nullable
-	public Number score() {
+	public Double score() {
 		return this.score;
 	}
 
@@ -258,7 +261,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Number seqNo() {
+	public Integer seqNo() {
 		return this.seqNo;
 	}
 
@@ -266,7 +269,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Number primaryTerm() {
+	public Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -274,7 +277,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -282,7 +285,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<String> sort() {
 		return this.sort;
 	}
 
@@ -306,7 +309,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		if (this.score != null) {
 
 			generator.writeKey("_score");
-			generator.write(this.score.doubleValue());
+			generator.write(this.score);
 
 		}
 		if (this.type != null) {
@@ -417,26 +420,26 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		if (this.seqNo != null) {
 
 			generator.writeKey("_seq_no");
-			generator.write(this.seqNo.doubleValue());
+			generator.write(this.seqNo);
 
 		}
 		if (this.primaryTerm != null) {
 
 			generator.writeKey("_primary_term");
-			generator.write(this.primaryTerm.doubleValue());
+			generator.write(this.primaryTerm);
 
 		}
 		if (this.version != null) {
 
 			generator.writeKey("_version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.sort != null) {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (String item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -457,7 +460,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		private String id;
 
 		@Nullable
-		private Number score;
+		private Double score;
 
 		@Nullable
 		private String type;
@@ -496,16 +499,16 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		private TDocument source;
 
 		@Nullable
-		private Number seqNo;
+		private Integer seqNo;
 
 		@Nullable
-		private Number primaryTerm;
+		private Long primaryTerm;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<String> sort;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -529,7 +532,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _score}
 		 */
-		public Builder<TDocument> score(@Nullable Number value) {
+		public Builder<TDocument> score(@Nullable Double value) {
 			this.score = value;
 			return this;
 		}
@@ -734,7 +737,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(@Nullable Number value) {
+		public Builder<TDocument> seqNo(@Nullable Integer value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -742,7 +745,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> primaryTerm(@Nullable Number value) {
+		public Builder<TDocument> primaryTerm(@Nullable Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -750,7 +753,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder<TDocument> version(@Nullable Number value) {
+		public Builder<TDocument> version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -758,7 +761,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder<TDocument> sort(@Nullable List<JsonValue> value) {
+		public Builder<TDocument> sort(@Nullable List<String> value) {
 			this.sort = value;
 			return this;
 		}
@@ -766,7 +769,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder<TDocument> sort(JsonValue... value) {
+		public Builder<TDocument> sort(String... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -774,7 +777,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder<TDocument> addSort(JsonValue value) {
+		public Builder<TDocument> addSort(String value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -819,26 +822,27 @@ public final class Hit<TDocument> implements JsonpSerializable {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::score, JsonpDeserializer.numberDeserializer(), "_score");
+		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::explanation, Explanation.DESERIALIZER, "_explanation");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "fields");
+		op.add(Builder::explanation, Explanation._DESERIALIZER, "_explanation");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::highlight, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "highlight");
-		op.add(Builder::innerHits, JsonpDeserializer.stringMapDeserializer(InnerHitsResult.DESERIALIZER), "inner_hits");
+		op.add(Builder::innerHits, JsonpDeserializer.stringMapDeserializer(InnerHitsResult._DESERIALIZER),
+				"inner_hits");
 		op.add(Builder::matchedQueries, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"matched_queries");
-		op.add(Builder::nested, NestedIdentity.DESERIALIZER, "_nested");
+		op.add(Builder::nested, NestedIdentity._DESERIALIZER, "_nested");
 		op.add(Builder::ignored, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_ignored");
 		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "_shard");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
-		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
+		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sort");
 
 	}
 

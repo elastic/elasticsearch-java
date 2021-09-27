@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.AggregateOutput
+@JsonpDeserializable
 public final class AggregateOutput implements JsonpSerializable {
 	@Nullable
 	private final Weights logisticRegression;
@@ -225,15 +227,15 @@ public final class AggregateOutput implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AggregateOutput}
 	 */
-	public static final JsonpDeserializer<AggregateOutput> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AggregateOutput::setupAggregateOutputDeserializer);
+	public static final JsonpDeserializer<AggregateOutput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AggregateOutput::setupAggregateOutputDeserializer, Builder::build);
 
 	protected static void setupAggregateOutputDeserializer(DelegatingDeserializer<AggregateOutput.Builder> op) {
 
-		op.add(Builder::logisticRegression, Weights.DESERIALIZER, "logistic_regression");
-		op.add(Builder::weightedSum, Weights.DESERIALIZER, "weighted_sum");
-		op.add(Builder::weightedMode, Weights.DESERIALIZER, "weighted_mode");
-		op.add(Builder::exponent, Weights.DESERIALIZER, "exponent");
+		op.add(Builder::logisticRegression, Weights._DESERIALIZER, "logistic_regression");
+		op.add(Builder::weightedSum, Weights._DESERIALIZER, "weighted_sum");
+		op.add(Builder::weightedMode, Weights._DESERIALIZER, "weighted_mode");
+		op.add(Builder::exponent, Weights._DESERIALIZER, "exponent");
 
 	}
 

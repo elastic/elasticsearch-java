@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -38,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchResponseBase
+
 public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -46,9 +47,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 	private final Boolean isRunning;
 
-	private final JsonValue expirationTimeInMillis;
+	private final String expirationTimeInMillis;
 
-	private final JsonValue startTimeInMillis;
+	private final String startTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -88,14 +89,14 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code expiration_time_in_millis}
 	 */
-	public JsonValue expirationTimeInMillis() {
+	public String expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public JsonValue startTimeInMillis() {
+	public String startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -139,9 +140,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 		private Boolean isRunning;
 
-		private JsonValue expirationTimeInMillis;
+		private String expirationTimeInMillis;
 
-		private JsonValue startTimeInMillis;
+		private String startTimeInMillis;
 
 		/**
 		 * API name: {@code id}
@@ -170,7 +171,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration_time_in_millis}
 		 */
-		public BuilderT expirationTimeInMillis(JsonValue value) {
+		public BuilderT expirationTimeInMillis(String value) {
 			this.expirationTimeInMillis = value;
 			return self();
 		}
@@ -178,7 +179,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public BuilderT startTimeInMillis(JsonValue value) {
+		public BuilderT startTimeInMillis(String value) {
 			this.startTimeInMillis = value;
 			return self();
 		}
@@ -194,9 +195,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(AbstractBuilder::expirationTimeInMillis, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(AbstractBuilder::expirationTimeInMillis, JsonpDeserializer.stringDeserializer(),
 				"expiration_time_in_millis");
-		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
+		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
 
 	}
 

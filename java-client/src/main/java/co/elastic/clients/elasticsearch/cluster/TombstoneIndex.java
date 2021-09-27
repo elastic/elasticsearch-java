@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.TombstoneIndex
+@JsonpDeserializable
 public final class TombstoneIndex implements JsonpSerializable {
 	private final String indexName;
 
@@ -126,8 +128,8 @@ public final class TombstoneIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TombstoneIndex}
 	 */
-	public static final JsonpDeserializer<TombstoneIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TombstoneIndex::setupTombstoneIndexDeserializer);
+	public static final JsonpDeserializer<TombstoneIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TombstoneIndex::setupTombstoneIndexDeserializer, Builder::build);
 
 	protected static void setupTombstoneIndexDeserializer(DelegatingDeserializer<TombstoneIndex.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.BulkIndexByScrollFailure
+@JsonpDeserializable
 public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	private final MainError cause;
 
@@ -45,7 +47,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	private final String index;
 
-	private final Number status;
+	private final Integer status;
 
 	private final String type;
 
@@ -85,7 +87,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	/**
 	 * API name: {@code status}
 	 */
-	public Number status() {
+	public Integer status() {
 		return this.status;
 	}
 
@@ -117,7 +119,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		generator.write(this.index);
 
 		generator.writeKey("status");
-		generator.write(this.status.doubleValue());
+		generator.write(this.status);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -136,7 +138,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 
 		private String index;
 
-		private Number status;
+		private Integer status;
 
 		private String type;
 
@@ -174,7 +176,7 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Number value) {
+		public Builder status(Integer value) {
 			this.status = value;
 			return this;
 		}
@@ -204,16 +206,16 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link BulkIndexByScrollFailure}
 	 */
-	public static final JsonpDeserializer<BulkIndexByScrollFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer);
+	public static final JsonpDeserializer<BulkIndexByScrollFailure> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer, Builder::build);
 
 	protected static void setupBulkIndexByScrollFailureDeserializer(
 			DelegatingDeserializer<BulkIndexByScrollFailure.Builder> op) {
 
-		op.add(Builder::cause, MainError.DESERIALIZER, "cause");
+		op.add(Builder::cause, MainError._DESERIALIZER, "cause");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::status, JsonpDeserializer.numberDeserializer(), "status");
+		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

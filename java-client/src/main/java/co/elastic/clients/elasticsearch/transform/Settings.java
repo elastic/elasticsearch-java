@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,20 +33,22 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Float;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
+@JsonpDeserializable
 public final class Settings implements JsonpSerializable {
 	@Nullable
 	private final Boolean datesAsEpochMillis;
 
 	@Nullable
-	private final Number docsPerSecond;
+	private final Float docsPerSecond;
 
 	@Nullable
-	private final Number maxPageSearchSize;
+	private final Integer maxPageSearchSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +81,7 @@ public final class Settings implements JsonpSerializable {
 	 * API name: {@code docs_per_second}
 	 */
 	@Nullable
-	public Number docsPerSecond() {
+	public Float docsPerSecond() {
 		return this.docsPerSecond;
 	}
 
@@ -90,7 +93,7 @@ public final class Settings implements JsonpSerializable {
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public Number maxPageSearchSize() {
+	public Integer maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
@@ -114,13 +117,13 @@ public final class Settings implements JsonpSerializable {
 		if (this.docsPerSecond != null) {
 
 			generator.writeKey("docs_per_second");
-			generator.write(this.docsPerSecond.doubleValue());
+			generator.write(this.docsPerSecond);
 
 		}
 		if (this.maxPageSearchSize != null) {
 
 			generator.writeKey("max_page_search_size");
-			generator.write(this.maxPageSearchSize.doubleValue());
+			generator.write(this.maxPageSearchSize);
 
 		}
 
@@ -136,10 +139,10 @@ public final class Settings implements JsonpSerializable {
 		private Boolean datesAsEpochMillis;
 
 		@Nullable
-		private Number docsPerSecond;
+		private Float docsPerSecond;
 
 		@Nullable
-		private Number maxPageSearchSize;
+		private Integer maxPageSearchSize;
 
 		/**
 		 * Defines if dates in the ouput should be written as ISO formatted string
@@ -161,7 +164,7 @@ public final class Settings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs_per_second}
 		 */
-		public Builder docsPerSecond(@Nullable Number value) {
+		public Builder docsPerSecond(@Nullable Float value) {
 			this.docsPerSecond = value;
 			return this;
 		}
@@ -173,7 +176,7 @@ public final class Settings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable Number value) {
+		public Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -195,14 +198,14 @@ public final class Settings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Settings}
 	 */
-	public static final JsonpDeserializer<Settings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Settings::setupSettingsDeserializer);
+	public static final JsonpDeserializer<Settings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Settings::setupSettingsDeserializer, Builder::build);
 
 	protected static void setupSettingsDeserializer(DelegatingDeserializer<Settings.Builder> op) {
 
 		op.add(Builder::datesAsEpochMillis, JsonpDeserializer.booleanDeserializer(), "dates_as_epoch_millis");
-		op.add(Builder::docsPerSecond, JsonpDeserializer.numberDeserializer(), "docs_per_second");
-		op.add(Builder::maxPageSearchSize, JsonpDeserializer.numberDeserializer(), "max_page_search_size");
+		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.TermsGrouping
+@JsonpDeserializable
 public final class TermsGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
@@ -130,8 +132,8 @@ public final class TermsGrouping implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TermsGrouping}
 	 */
-	public static final JsonpDeserializer<TermsGrouping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermsGrouping::setupTermsGroupingDeserializer);
+	public static final JsonpDeserializer<TermsGrouping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TermsGrouping::setupTermsGroupingDeserializer, Builder::build);
 
 	protected static void setupTermsGroupingDeserializer(DelegatingDeserializer<TermsGrouping.Builder> op) {
 

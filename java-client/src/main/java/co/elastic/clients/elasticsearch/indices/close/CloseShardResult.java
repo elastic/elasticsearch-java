@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices.close;
 
 import co.elastic.clients.elasticsearch._types.ShardFailure;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.CloseShardResult
+@JsonpDeserializable
 public final class CloseShardResult implements JsonpSerializable {
 	private final List<ShardFailure> failures;
 
@@ -145,12 +147,12 @@ public final class CloseShardResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CloseShardResult}
 	 */
-	public static final JsonpDeserializer<CloseShardResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloseShardResult::setupCloseShardResultDeserializer);
+	public static final JsonpDeserializer<CloseShardResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseShardResult::setupCloseShardResultDeserializer, Builder::build);
 
 	protected static void setupCloseShardResultDeserializer(DelegatingDeserializer<CloseShardResult.Builder> op) {
 
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 
 	}
 

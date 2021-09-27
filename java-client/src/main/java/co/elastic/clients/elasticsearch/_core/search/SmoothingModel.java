@@ -23,113 +23,153 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SmoothingModelContainer
-public interface SmoothingModel extends JsonpSerializable {
+@JsonpDeserializable
+public class SmoothingModel implements TaggedUnion<Object>, JsonpSerializable {
 
-	String LAPLACE = "laplace";
-	String LINEAR_INTERPOLATION = "linear_interpolation";
-	String STUPID_BACKOFF = "stupid_backoff";
+	public static final String LAPLACE = "laplace";
+	public static final String LINEAR_INTERPOLATION = "linear_interpolation";
+	public static final String STUPID_BACKOFF = "stupid_backoff";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public SmoothingModel(SmoothingModelVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private SmoothingModel(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code SmoothingModelContainer}.
+	 * Get the {@code laplace} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code laplace} kind.
 	 */
-	String _type();
+	public LaplaceSmoothingModel laplace() {
+		return TaggedUnionUtils.get(this, LAPLACE);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code laplace}
-		 */
-		public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code linear_interpolation} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code linear_interpolation}
+	 *             kind.
+	 */
+	public LinearInterpolationSmoothingModel linearInterpolation() {
+		return TaggedUnionUtils.get(this, LINEAR_INTERPOLATION);
+	}
+
+	/**
+	 * Get the {@code stupid_backoff} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code stupid_backoff} kind.
+	 */
+	public StupidBackoffSmoothingModel stupidBackoff() {
+		return TaggedUnionUtils.get(this, STUPID_BACKOFF);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code laplace}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
+			this._type = LAPLACE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<SmoothingModel> laplace(
-				Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
-			return this.laplace(fn.apply(new LaplaceSmoothingModel.Builder()).build());
+				Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> f) {
+			return this.laplace(f.apply(new LaplaceSmoothingModel.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code linear_interpolation}
-		 */
-		public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel v) {
+			this._type = LINEAR_INTERPOLATION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code linear_interpolation}
-		 */
 		public ObjectBuilder<SmoothingModel> linearInterpolation(
-				Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
-			return this.linearInterpolation(fn.apply(new LinearInterpolationSmoothingModel.Builder()).build());
+				Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> f) {
+			return this.linearInterpolation(f.apply(new LinearInterpolationSmoothingModel.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code stupid_backoff}
-		 */
-		public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel v) {
+			this._type = STUPID_BACKOFF;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code stupid_backoff}
-		 */
 		public ObjectBuilder<SmoothingModel> stupidBackoff(
-				Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
-			return this.stupidBackoff(fn.apply(new StupidBackoffSmoothingModel.Builder()).build());
+				Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> f) {
+			return this.stupidBackoff(f.apply(new StupidBackoffSmoothingModel.Builder()).build());
+		}
+
+		protected SmoothingModel build() {
+			return new SmoothingModel(this);
 		}
 
 	}
 
-	class $Helper {
-		private static SmoothingModel deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupSmoothingModelDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends SmoothingModel> builder = null;
-			String variant = null;
+		op.add(Builder::laplace, LaplaceSmoothingModel._DESERIALIZER, "laplace");
+		op.add(Builder::linearInterpolation, LinearInterpolationSmoothingModel._DESERIALIZER, "linear_interpolation");
+		op.add(Builder::stupidBackoff, StupidBackoffSmoothingModel._DESERIALIZER, "stupid_backoff");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case LAPLACE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = LaplaceSmoothingModel.$BUILDER_DESERIALIZER
-								.deserialize(new LaplaceSmoothingModel.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case LINEAR_INTERPOLATION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = LinearInterpolationSmoothingModel.$BUILDER_DESERIALIZER.deserialize(
-								new LinearInterpolationSmoothingModel.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case STUPID_BACKOFF : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = StupidBackoffSmoothingModel.$BUILDER_DESERIALIZER
-								.deserialize(new StupidBackoffSmoothingModel.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<SmoothingModel> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<SmoothingModel> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			SmoothingModel::setupSmoothingModelDeserializer, Builder::build);
 }

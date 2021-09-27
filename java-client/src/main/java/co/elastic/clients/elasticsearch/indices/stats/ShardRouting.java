@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRouting
+@JsonpDeserializable
 public final class ShardRouting implements JsonpSerializable {
 	private final String node;
 
@@ -180,15 +182,15 @@ public final class ShardRouting implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardRouting}
 	 */
-	public static final JsonpDeserializer<ShardRouting> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardRouting::setupShardRoutingDeserializer);
+	public static final JsonpDeserializer<ShardRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardRouting::setupShardRoutingDeserializer, Builder::build);
 
 	protected static void setupShardRoutingDeserializer(DelegatingDeserializer<ShardRouting.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
-		op.add(Builder::state, ShardRoutingState.DESERIALIZER, "state");
+		op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
 
 	}
 

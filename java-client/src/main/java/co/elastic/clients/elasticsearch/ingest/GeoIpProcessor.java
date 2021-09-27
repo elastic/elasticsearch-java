@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GeoIpProcessor
-public final class GeoIpProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String databaseFile;
 
 	private final String field;
@@ -64,6 +66,14 @@ public final class GeoIpProcessor extends ProcessorBase {
 		this.properties = Objects.requireNonNull(builder.properties, "properties");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "geoip";
 	}
 
 	/**
@@ -246,8 +256,8 @@ public final class GeoIpProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link GeoIpProcessor}
 	 */
-	public static final JsonpDeserializer<GeoIpProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoIpProcessor::setupGeoIpProcessorDeserializer);
+	public static final JsonpDeserializer<GeoIpProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoIpProcessor::setupGeoIpProcessorDeserializer, Builder::build);
 
 	protected static void setupGeoIpProcessorDeserializer(DelegatingDeserializer<GeoIpProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,18 +33,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ReadException
+@JsonpDeserializable
 public final class ReadException implements JsonpSerializable {
 	private final ErrorCause exception;
 
-	private final Number fromSeqNo;
+	private final Integer fromSeqNo;
 
-	private final Number retries;
+	private final Integer retries;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,14 +67,14 @@ public final class ReadException implements JsonpSerializable {
 	/**
 	 * API name: {@code from_seq_no}
 	 */
-	public Number fromSeqNo() {
+	public Integer fromSeqNo() {
 		return this.fromSeqNo;
 	}
 
 	/**
 	 * API name: {@code retries}
 	 */
-	public Number retries() {
+	public Integer retries() {
 		return this.retries;
 	}
 
@@ -91,10 +93,10 @@ public final class ReadException implements JsonpSerializable {
 		this.exception.serialize(generator, mapper);
 
 		generator.writeKey("from_seq_no");
-		generator.write(this.fromSeqNo.doubleValue());
+		generator.write(this.fromSeqNo);
 
 		generator.writeKey("retries");
-		generator.write(this.retries.doubleValue());
+		generator.write(this.retries);
 
 	}
 
@@ -106,9 +108,9 @@ public final class ReadException implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ReadException> {
 		private ErrorCause exception;
 
-		private Number fromSeqNo;
+		private Integer fromSeqNo;
 
-		private Number retries;
+		private Integer retries;
 
 		/**
 		 * API name: {@code exception}
@@ -128,7 +130,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * API name: {@code from_seq_no}
 		 */
-		public Builder fromSeqNo(Number value) {
+		public Builder fromSeqNo(Integer value) {
 			this.fromSeqNo = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class ReadException implements JsonpSerializable {
 		/**
 		 * API name: {@code retries}
 		 */
-		public Builder retries(Number value) {
+		public Builder retries(Integer value) {
 			this.retries = value;
 			return this;
 		}
@@ -158,14 +160,14 @@ public final class ReadException implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReadException}
 	 */
-	public static final JsonpDeserializer<ReadException> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReadException::setupReadExceptionDeserializer);
+	public static final JsonpDeserializer<ReadException> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReadException::setupReadExceptionDeserializer, Builder::build);
 
 	protected static void setupReadExceptionDeserializer(DelegatingDeserializer<ReadException.Builder> op) {
 
-		op.add(Builder::exception, ErrorCause.DESERIALIZER, "exception");
-		op.add(Builder::fromSeqNo, JsonpDeserializer.numberDeserializer(), "from_seq_no");
-		op.add(Builder::retries, JsonpDeserializer.numberDeserializer(), "retries");
+		op.add(Builder::exception, ErrorCause._DESERIALIZER, "exception");
+		op.add(Builder::fromSeqNo, JsonpDeserializer.integerDeserializer(), "from_seq_no");
+		op.add(Builder::retries, JsonpDeserializer.integerDeserializer(), "retries");
 
 	}
 

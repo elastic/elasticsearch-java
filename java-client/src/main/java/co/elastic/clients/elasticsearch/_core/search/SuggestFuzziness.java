@@ -24,26 +24,28 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestFuzziness
+@JsonpDeserializable
 public final class SuggestFuzziness implements JsonpSerializable {
-	private final JsonValue fuzziness;
+	private final String fuzziness;
 
-	private final Number minLength;
+	private final Integer minLength;
 
-	private final Number prefixLength;
+	private final Integer prefixLength;
 
 	private final Boolean transpositions;
 
@@ -64,21 +66,21 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	/**
 	 * API name: {@code fuzziness}
 	 */
-	public JsonValue fuzziness() {
+	public String fuzziness() {
 		return this.fuzziness;
 	}
 
 	/**
 	 * API name: {@code min_length}
 	 */
-	public Number minLength() {
+	public Integer minLength() {
 		return this.minLength;
 	}
 
 	/**
 	 * API name: {@code prefix_length}
 	 */
-	public Number prefixLength() {
+	public Integer prefixLength() {
 		return this.prefixLength;
 	}
 
@@ -111,10 +113,10 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		generator.write(this.fuzziness);
 
 		generator.writeKey("min_length");
-		generator.write(this.minLength.doubleValue());
+		generator.write(this.minLength);
 
 		generator.writeKey("prefix_length");
-		generator.write(this.prefixLength.doubleValue());
+		generator.write(this.prefixLength);
 
 		generator.writeKey("transpositions");
 		generator.write(this.transpositions);
@@ -130,11 +132,11 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	 * Builder for {@link SuggestFuzziness}.
 	 */
 	public static class Builder implements ObjectBuilder<SuggestFuzziness> {
-		private JsonValue fuzziness;
+		private String fuzziness;
 
-		private Number minLength;
+		private Integer minLength;
 
-		private Number prefixLength;
+		private Integer prefixLength;
 
 		private Boolean transpositions;
 
@@ -143,7 +145,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(JsonValue value) {
+		public Builder fuzziness(String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -151,7 +153,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code min_length}
 		 */
-		public Builder minLength(Number value) {
+		public Builder minLength(Integer value) {
 			this.minLength = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(Number value) {
+		public Builder prefixLength(Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -197,14 +199,14 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SuggestFuzziness}
 	 */
-	public static final JsonpDeserializer<SuggestFuzziness> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SuggestFuzziness::setupSuggestFuzzinessDeserializer);
+	public static final JsonpDeserializer<SuggestFuzziness> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SuggestFuzziness::setupSuggestFuzzinessDeserializer, Builder::build);
 
 	protected static void setupSuggestFuzzinessDeserializer(DelegatingDeserializer<SuggestFuzziness.Builder> op) {
 
-		op.add(Builder::fuzziness, JsonpDeserializer.jsonValueDeserializer(), "fuzziness");
-		op.add(Builder::minLength, JsonpDeserializer.numberDeserializer(), "min_length");
-		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
+		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");
+		op.add(Builder::minLength, JsonpDeserializer.integerDeserializer(), "min_length");
+		op.add(Builder::prefixLength, JsonpDeserializer.integerDeserializer(), "prefix_length");
 		op.add(Builder::transpositions, JsonpDeserializer.booleanDeserializer(), "transpositions");
 		op.add(Builder::unicodeAware, JsonpDeserializer.booleanDeserializer(), "unicode_aware");
 

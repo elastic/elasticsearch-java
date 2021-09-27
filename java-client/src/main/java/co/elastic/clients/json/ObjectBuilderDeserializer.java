@@ -20,8 +20,8 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
-
 import jakarta.json.stream.JsonParser;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -50,6 +50,14 @@ public class ObjectBuilderDeserializer<T> extends JsonpDeserializer<T> {
         ObjectDeserializer<B> op = new ObjectDeserializer<>(ctor);
         configurer.accept(op);
         return new ObjectBuilderDeserializer<>(op);
+    }
+
+    public static <T, B extends ObjectBuilder<T>> InstanceDeserializer<B, B> createForBuilder(
+        Consumer<DelegatingDeserializer<B>> configurer
+    ) {
+        ObjectDeserializer<B> op = new ObjectDeserializer<>(null);
+        configurer.accept(op);
+        return op;
     }
 
     public static <T, B extends ObjectBuilder<T>> JsonpDeserializer<T> createForValue(

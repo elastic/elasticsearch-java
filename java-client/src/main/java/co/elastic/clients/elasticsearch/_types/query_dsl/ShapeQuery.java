@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,7 +33,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.query_dsl.ShapeQuery
-public final class ShapeQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class ShapeQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public ShapeQuery(Builder builder) {
@@ -45,7 +46,7 @@ public final class ShapeQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "shape";
 	}
 
@@ -74,9 +75,11 @@ public final class ShapeQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<ShapeQuery.Builder, ShapeQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(ShapeQuery::setupShapeQueryDeserializer);
+	/**
+	 * Json deserializer for {@link ShapeQuery}
+	 */
+	public static final JsonpDeserializer<ShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShapeQuery::setupShapeQueryDeserializer, Builder::build);
 
 	protected static void setupShapeQueryDeserializer(DelegatingDeserializer<ShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

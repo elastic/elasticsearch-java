@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.create_api_key.RoleDescriptor;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -46,12 +47,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Request
+@JsonpDeserializable
 public final class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
-	private final JsonValue expiration;
+	private final String expiration;
 
 	@Nullable
 	private final String name;
@@ -83,7 +85,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -93,7 +95,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public JsonValue expiration() {
+	public String expiration() {
 		return this.expiration;
 	}
 
@@ -193,10 +195,10 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 */
 	public static class Builder implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
-		private JsonValue expiration;
+		private String expiration;
 
 		@Nullable
 		private String name;
@@ -215,7 +217,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -225,7 +227,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable JsonValue value) {
+		public Builder expiration(@Nullable String value) {
 			this.expiration = value;
 			return this;
 		}
@@ -323,16 +325,16 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link CreateApiKeyRequest}
 	 */
-	public static final JsonpDeserializer<CreateApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer);
+	public static final JsonpDeserializer<CreateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer, Builder::build);
 
 	protected static void setupCreateApiKeyRequestDeserializer(DelegatingDeserializer<CreateApiKeyRequest.Builder> op) {
 
-		op.add(Builder::expiration, JsonpDeserializer.jsonValueDeserializer(), "expiration");
+		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor.DESERIALIZER),
+		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 
 	}
 
@@ -362,5 +364,5 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateApiKeyResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, CreateApiKeyResponse._DESERIALIZER);
 }

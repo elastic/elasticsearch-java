@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetection
-public final class DataframeEvaluationOutlierDetection implements DataframeEvaluation, JsonpSerializable {
+@JsonpDeserializable
+public final class DataframeEvaluationOutlierDetection implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	private final String predictedProbabilityField;
@@ -61,7 +62,7 @@ public final class DataframeEvaluationOutlierDetection implements DataframeEvalu
 	 * {@link DataframeEvaluation} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "outlier_detection";
 	}
 
@@ -107,7 +108,6 @@ public final class DataframeEvaluationOutlierDetection implements DataframeEvalu
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -121,8 +121,6 @@ public final class DataframeEvaluationOutlierDetection implements DataframeEvalu
 			this.metrics.serialize(generator, mapper);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -197,10 +195,13 @@ public final class DataframeEvaluationOutlierDetection implements DataframeEvalu
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeEvaluationOutlierDetection.Builder, DataframeEvaluationOutlierDetection.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(
-					DataframeEvaluationOutlierDetection::setupDataframeEvaluationOutlierDetectionDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeEvaluationOutlierDetection}
+	 */
+	public static final JsonpDeserializer<DataframeEvaluationOutlierDetection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationOutlierDetection::setupDataframeEvaluationOutlierDetectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeEvaluationOutlierDetection.Builder> op) {
@@ -208,7 +209,7 @@ public final class DataframeEvaluationOutlierDetection implements DataframeEvalu
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedProbabilityField, JsonpDeserializer.stringDeserializer(),
 				"predicted_probability_field");
-		op.add(Builder::metrics, DataframeEvaluationOutlierDetectionMetrics.DESERIALIZER, "metrics");
+		op.add(Builder::metrics, DataframeEvaluationOutlierDetectionMetrics._DESERIALIZER, "metrics");
 
 	}
 

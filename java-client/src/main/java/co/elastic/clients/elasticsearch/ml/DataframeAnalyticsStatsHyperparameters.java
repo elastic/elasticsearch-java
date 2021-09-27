@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsHyperparameters
+@JsonpDeserializable
 public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable {
 	private final Hyperparameters hyperparameters;
 
-	private final Number iteration;
+	private final Integer iteration;
 
 	private final String timestamp;
 
@@ -73,7 +75,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	 * <p>
 	 * API name: {@code iteration}
 	 */
-	public Number iteration() {
+	public Integer iteration() {
 		return this.iteration;
 	}
 
@@ -113,7 +115,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		this.hyperparameters.serialize(generator, mapper);
 
 		generator.writeKey("iteration");
-		generator.write(this.iteration.doubleValue());
+		generator.write(this.iteration);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
@@ -134,7 +136,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsHyperparameters> {
 		private Hyperparameters hyperparameters;
 
-		private Number iteration;
+		private Integer iteration;
 
 		private String timestamp;
 
@@ -162,7 +164,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		 * <p>
 		 * API name: {@code iteration}
 		 */
-		public Builder iteration(Number value) {
+		public Builder iteration(Integer value) {
 			this.iteration = value;
 			return this;
 		}
@@ -222,18 +224,19 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsStatsHyperparameters}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsHyperparametersDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsHyperparameters.Builder> op) {
 
-		op.add(Builder::hyperparameters, Hyperparameters.DESERIALIZER, "hyperparameters");
-		op.add(Builder::iteration, JsonpDeserializer.numberDeserializer(), "iteration");
+		op.add(Builder::hyperparameters, Hyperparameters._DESERIALIZER, "hyperparameters");
+		op.add(Builder::iteration, JsonpDeserializer.integerDeserializer(), "iteration");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::timingStats, TimingStats.DESERIALIZER, "timing_stats");
-		op.add(Builder::validationLoss, ValidationLoss.DESERIALIZER, "validation_loss");
+		op.add(Builder::timingStats, TimingStats._DESERIALIZER, "timing_stats");
+		op.add(Builder::validationLoss, ValidationLoss._DESERIALIZER, "validation_loss");
 
 	}
 

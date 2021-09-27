@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RoleMapping
+@JsonpDeserializable
 public final class RoleMapping implements JsonpSerializable {
-	private final Number enabled;
+	private final Integer enabled;
 
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class RoleMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Number enabled() {
+	public Integer enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * API name: {@code size}
 	 */
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -76,10 +78,10 @@ public final class RoleMapping implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("enabled");
-		generator.write(this.enabled.doubleValue());
+		generator.write(this.enabled);
 
 		generator.writeKey("size");
-		generator.write(this.size.doubleValue());
+		generator.write(this.size);
 
 	}
 
@@ -89,14 +91,14 @@ public final class RoleMapping implements JsonpSerializable {
 	 * Builder for {@link RoleMapping}.
 	 */
 	public static class Builder implements ObjectBuilder<RoleMapping> {
-		private Number enabled;
+		private Integer enabled;
 
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Number value) {
+		public Builder enabled(Integer value) {
 			this.enabled = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Number value) {
+		public Builder size(Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -126,13 +128,13 @@ public final class RoleMapping implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RoleMapping}
 	 */
-	public static final JsonpDeserializer<RoleMapping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RoleMapping::setupRoleMappingDeserializer);
+	public static final JsonpDeserializer<RoleMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RoleMapping::setupRoleMappingDeserializer, Builder::build);
 
 	protected static void setupRoleMappingDeserializer(DelegatingDeserializer<RoleMapping.Builder> op) {
 
-		op.add(Builder::enabled, JsonpDeserializer.numberDeserializer(), "enabled");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::enabled, JsonpDeserializer.integerDeserializer(), "enabled");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

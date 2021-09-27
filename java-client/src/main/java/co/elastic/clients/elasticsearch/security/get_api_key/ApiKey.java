@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security.get_api_key;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,11 +42,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.ApiKey
+@JsonpDeserializable
 public final class ApiKey implements JsonpSerializable {
-	private final Number creation;
+	private final Long creation;
 
 	@Nullable
-	private final Number expiration;
+	private final Long expiration;
 
 	private final String id;
 
@@ -78,7 +80,7 @@ public final class ApiKey implements JsonpSerializable {
 	/**
 	 * API name: {@code creation}
 	 */
-	public Number creation() {
+	public Long creation() {
 		return this.creation;
 	}
 
@@ -86,7 +88,7 @@ public final class ApiKey implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public Number expiration() {
+	public Long expiration() {
 		return this.expiration;
 	}
 
@@ -145,12 +147,12 @@ public final class ApiKey implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("creation");
-		generator.write(this.creation.doubleValue());
+		generator.write(this.creation);
 
 		if (this.expiration != null) {
 
 			generator.writeKey("expiration");
-			generator.write(this.expiration.doubleValue());
+			generator.write(this.expiration);
 
 		}
 
@@ -190,10 +192,10 @@ public final class ApiKey implements JsonpSerializable {
 	 * Builder for {@link ApiKey}.
 	 */
 	public static class Builder implements ObjectBuilder<ApiKey> {
-		private Number creation;
+		private Long creation;
 
 		@Nullable
-		private Number expiration;
+		private Long expiration;
 
 		private String id;
 
@@ -211,7 +213,7 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code creation}
 		 */
-		public Builder creation(Number value) {
+		public Builder creation(Long value) {
 			this.creation = value;
 			return this;
 		}
@@ -219,7 +221,7 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable Number value) {
+		public Builder expiration(@Nullable Long value) {
 			this.expiration = value;
 			return this;
 		}
@@ -300,19 +302,19 @@ public final class ApiKey implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ApiKey}
 	 */
-	public static final JsonpDeserializer<ApiKey> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			ApiKey::setupApiKeyDeserializer);
+	public static final JsonpDeserializer<ApiKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ApiKey::setupApiKeyDeserializer, Builder::build);
 
 	protected static void setupApiKeyDeserializer(DelegatingDeserializer<ApiKey.Builder> op) {
 
-		op.add(Builder::creation, JsonpDeserializer.numberDeserializer(), "creation");
-		op.add(Builder::expiration, JsonpDeserializer.numberDeserializer(), "expiration");
+		op.add(Builder::creation, JsonpDeserializer.longDeserializer(), "creation");
+		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::invalidated, JsonpDeserializer.booleanDeserializer(), "invalidated");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::realm, JsonpDeserializer.stringDeserializer(), "realm");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 
 	}
 

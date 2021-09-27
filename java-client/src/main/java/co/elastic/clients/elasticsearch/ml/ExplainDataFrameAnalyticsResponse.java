@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Response
+@JsonpDeserializable
 public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataframeAnalyticsFieldSelection> fieldSelection;
 
@@ -195,16 +197,16 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link ExplainDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<ExplainDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ExplainDataFrameAnalyticsResponse::setupExplainDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<ExplainDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplainDataFrameAnalyticsResponse::setupExplainDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupExplainDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<ExplainDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::fieldSelection,
-				JsonpDeserializer.arrayDeserializer(DataframeAnalyticsFieldSelection.DESERIALIZER), "field_selection");
-		op.add(Builder::memoryEstimation, DataframeAnalyticsMemoryEstimation.DESERIALIZER, "memory_estimation");
+				JsonpDeserializer.arrayDeserializer(DataframeAnalyticsFieldSelection._DESERIALIZER), "field_selection");
+		op.add(Builder::memoryEstimation, DataframeAnalyticsMemoryEstimation._DESERIALIZER, "memory_estimation");
 
 	}
 

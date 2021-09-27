@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Request
+@JsonpDeserializable
 public final class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -256,8 +258,8 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link FlushJobRequest}
 	 */
-	public static final JsonpDeserializer<FlushJobRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FlushJobRequest::setupFlushJobRequestDeserializer);
+	public static final JsonpDeserializer<FlushJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FlushJobRequest::setupFlushJobRequestDeserializer, Builder::build);
 
 	protected static void setupFlushJobRequestDeserializer(DelegatingDeserializer<FlushJobRequest.Builder> op) {
 
@@ -310,5 +312,5 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FlushJobResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, FlushJobResponse._DESERIALIZER);
 }

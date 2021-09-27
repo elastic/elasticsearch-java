@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,15 +42,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Realm
+@JsonpDeserializable
 public final class Realm extends Base {
 	@Nullable
 	private final List<String> name;
 
 	@Nullable
-	private final List<Number> order;
+	private final List<Long> order;
 
 	@Nullable
-	private final List<Number> size;
+	private final List<Long> size;
 
 	@Nullable
 	private final List<RealmCache> cache;
@@ -94,7 +96,7 @@ public final class Realm extends Base {
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public List<Number> order() {
+	public List<Long> order() {
 		return this.order;
 	}
 
@@ -102,7 +104,7 @@ public final class Realm extends Base {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public List<Number> size() {
+	public List<Long> size() {
 		return this.size;
 	}
 
@@ -164,8 +166,8 @@ public final class Realm extends Base {
 
 			generator.writeKey("order");
 			generator.writeStartArray();
-			for (Number item0 : this.order) {
-				generator.write(item0.doubleValue());
+			for (Long item0 : this.order) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -175,8 +177,8 @@ public final class Realm extends Base {
 
 			generator.writeKey("size");
 			generator.writeStartArray();
-			for (Number item0 : this.size) {
-				generator.write(item0.doubleValue());
+			for (Long item0 : this.size) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -250,10 +252,10 @@ public final class Realm extends Base {
 		private List<String> name;
 
 		@Nullable
-		private List<Number> order;
+		private List<Long> order;
 
 		@Nullable
-		private List<Number> size;
+		private List<Long> size;
 
 		@Nullable
 		private List<RealmCache> cache;
@@ -300,7 +302,7 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable List<Number> value) {
+		public Builder order(@Nullable List<Long> value) {
 			this.order = value;
 			return this;
 		}
@@ -308,7 +310,7 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(Number... value) {
+		public Builder order(Long... value) {
 			this.order = Arrays.asList(value);
 			return this;
 		}
@@ -316,7 +318,7 @@ public final class Realm extends Base {
 		/**
 		 * Add a value to {@link #order(List)}, creating the list if needed.
 		 */
-		public Builder addOrder(Number value) {
+		public Builder addOrder(Long value) {
 			if (this.order == null) {
 				this.order = new ArrayList<>();
 			}
@@ -327,7 +329,7 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable List<Number> value) {
+		public Builder size(@Nullable List<Long> value) {
 			this.size = value;
 			return this;
 		}
@@ -335,7 +337,7 @@ public final class Realm extends Base {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Number... value) {
+		public Builder size(Long... value) {
 			this.size = Arrays.asList(value);
 			return this;
 		}
@@ -343,7 +345,7 @@ public final class Realm extends Base {
 		/**
 		 * Add a value to {@link #size(List)}, creating the list if needed.
 		 */
-		public Builder addSize(Number value) {
+		public Builder addSize(Long value) {
 			if (this.size == null) {
 				this.size = new ArrayList<>();
 			}
@@ -525,15 +527,15 @@ public final class Realm extends Base {
 	/**
 	 * Json deserializer for {@link Realm}
 	 */
-	public static final JsonpDeserializer<Realm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Realm::setupRealmDeserializer);
+	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Realm::setupRealmDeserializer, Builder::build);
 
 	protected static void setupRealmDeserializer(DelegatingDeserializer<Realm.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::name, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "name");
-		op.add(Builder::order, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "order");
-		op.add(Builder::size, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "size");
-		op.add(Builder::cache, JsonpDeserializer.arrayDeserializer(RealmCache.DESERIALIZER), "cache");
+		op.add(Builder::order, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.longDeserializer()), "order");
+		op.add(Builder::size, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.longDeserializer()), "size");
+		op.add(Builder::cache, JsonpDeserializer.arrayDeserializer(RealmCache._DESERIALIZER), "cache");
 		op.add(Builder::hasAuthorizationRealms,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"has_authorization_realms");

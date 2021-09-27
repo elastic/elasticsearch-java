@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SearchProfile
+@JsonpDeserializable
 public final class SearchProfile implements JsonpSerializable {
 	private final List<Collector> collector;
 
 	private final List<QueryProfile> query;
 
-	private final Number rewriteTime;
+	private final Long rewriteTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +76,7 @@ public final class SearchProfile implements JsonpSerializable {
 	/**
 	 * API name: {@code rewrite_time}
 	 */
-	public Number rewriteTime() {
+	public Long rewriteTime() {
 		return this.rewriteTime;
 	}
 
@@ -106,7 +108,7 @@ public final class SearchProfile implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("rewrite_time");
-		generator.write(this.rewriteTime.doubleValue());
+		generator.write(this.rewriteTime);
 
 	}
 
@@ -120,7 +122,7 @@ public final class SearchProfile implements JsonpSerializable {
 
 		private List<QueryProfile> query;
 
-		private Number rewriteTime;
+		private Long rewriteTime;
 
 		/**
 		 * API name: {@code collector}
@@ -207,7 +209,7 @@ public final class SearchProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code rewrite_time}
 		 */
-		public Builder rewriteTime(Number value) {
+		public Builder rewriteTime(Long value) {
 			this.rewriteTime = value;
 			return this;
 		}
@@ -229,14 +231,14 @@ public final class SearchProfile implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SearchProfile}
 	 */
-	public static final JsonpDeserializer<SearchProfile> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchProfile::setupSearchProfileDeserializer);
+	public static final JsonpDeserializer<SearchProfile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchProfile::setupSearchProfileDeserializer, Builder::build);
 
 	protected static void setupSearchProfileDeserializer(DelegatingDeserializer<SearchProfile.Builder> op) {
 
-		op.add(Builder::collector, JsonpDeserializer.arrayDeserializer(Collector.DESERIALIZER), "collector");
-		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(QueryProfile.DESERIALIZER), "query");
-		op.add(Builder::rewriteTime, JsonpDeserializer.numberDeserializer(), "rewrite_time");
+		op.add(Builder::collector, JsonpDeserializer.arrayDeserializer(Collector._DESERIALIZER), "collector");
+		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(QueryProfile._DESERIALIZER), "query");
+		op.add(Builder::rewriteTime, JsonpDeserializer.longDeserializer(), "rewrite_time");
 
 	}
 

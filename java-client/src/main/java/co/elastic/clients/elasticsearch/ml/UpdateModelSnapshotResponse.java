@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Response
+@JsonpDeserializable
 public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private final ModelSnapshot model;
 
@@ -111,13 +113,13 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link UpdateModelSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<UpdateModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseDeserializer);
+	public static final JsonpDeserializer<UpdateModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateModelSnapshotResponseDeserializer(
 			DelegatingDeserializer<UpdateModelSnapshotResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::model, ModelSnapshot.DESERIALIZER, "model");
+		op.add(Builder::model, ModelSnapshot._DESERIALIZER, "model");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -44,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.list.Response
+@JsonpDeserializable
 public class ListResponse implements JsonpSerializable {
 	@Nullable
 	private final List<ErrorCause> nodeFailures;
@@ -52,7 +54,10 @@ public class ListResponse implements JsonpSerializable {
 	private final Map<String, TaskExecutingNode> nodes;
 
 	@Nullable
-	private final JsonValue tasks;
+	private final JsonValue /*
+							 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey = false) |
+							 * Array<tasks._types.Info>)
+							 */ tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,7 +89,10 @@ public class ListResponse implements JsonpSerializable {
 	 * API name: {@code tasks}
 	 */
 	@Nullable
-	public JsonValue tasks() {
+	public JsonValue /*
+						 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey = false) |
+						 * Array<tasks._types.Info>)
+						 */ tasks() {
 		return this.tasks;
 	}
 
@@ -162,7 +170,10 @@ public class ListResponse implements JsonpSerializable {
 		private Map<String, TaskExecutingNode> nodes;
 
 		@Nullable
-		private JsonValue tasks;
+		private JsonValue /*
+							 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey = false) |
+							 * Array<tasks._types.Info>)
+							 */ tasks;
 
 		/**
 		 * API name: {@code node_failures}
@@ -241,7 +252,10 @@ public class ListResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code tasks}
 		 */
-		public BuilderT tasks(@Nullable JsonValue value) {
+		public BuilderT tasks(@Nullable JsonValue /*
+													 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey =
+													 * false) | Array<tasks._types.Info>)
+													 */ value) {
 			this.tasks = value;
 			return self();
 		}
@@ -255,15 +269,15 @@ public class ListResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ListResponse}
 	 */
-	public static final JsonpDeserializer<ListResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ListResponse::setupListResponseDeserializer);
+	public static final JsonpDeserializer<ListResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ListResponse::setupListResponseDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupListResponseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER),
+		op.add(AbstractBuilder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
 				"node_failures");
-		op.add(AbstractBuilder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode.DESERIALIZER),
+		op.add(AbstractBuilder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode._DESERIALIZER),
 				"nodes");
 		op.add(AbstractBuilder::tasks, JsonpDeserializer.jsonValueDeserializer(), "tasks");
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.BytesProcessor
-public final class BytesProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class BytesProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -54,6 +56,14 @@ public final class BytesProcessor extends ProcessorBase {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "bytes";
 	}
 
 	/**
@@ -163,8 +173,8 @@ public final class BytesProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link BytesProcessor}
 	 */
-	public static final JsonpDeserializer<BytesProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BytesProcessor::setupBytesProcessorDeserializer);
+	public static final JsonpDeserializer<BytesProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BytesProcessor::setupBytesProcessorDeserializer, Builder::build);
 
 	protected static void setupBytesProcessorDeserializer(DelegatingDeserializer<BytesProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

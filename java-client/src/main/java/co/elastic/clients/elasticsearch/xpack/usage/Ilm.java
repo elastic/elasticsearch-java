@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ilm
+@JsonpDeserializable
 public final class Ilm implements JsonpSerializable {
-	private final Number policyCount;
+	private final Integer policyCount;
 
 	private final List<IlmPolicyStatistics> policyStats;
 
@@ -57,7 +59,7 @@ public final class Ilm implements JsonpSerializable {
 	/**
 	 * API name: {@code policy_count}
 	 */
-	public Number policyCount() {
+	public Integer policyCount() {
 		return this.policyCount;
 	}
 
@@ -80,7 +82,7 @@ public final class Ilm implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("policy_count");
-		generator.write(this.policyCount.doubleValue());
+		generator.write(this.policyCount);
 
 		generator.writeKey("policy_stats");
 		generator.writeStartArray();
@@ -98,14 +100,14 @@ public final class Ilm implements JsonpSerializable {
 	 * Builder for {@link Ilm}.
 	 */
 	public static class Builder implements ObjectBuilder<Ilm> {
-		private Number policyCount;
+		private Integer policyCount;
 
 		private List<IlmPolicyStatistics> policyStats;
 
 		/**
 		 * API name: {@code policy_count}
 		 */
-		public Builder policyCount(Number value) {
+		public Builder policyCount(Integer value) {
 			this.policyCount = value;
 			return this;
 		}
@@ -168,13 +170,13 @@ public final class Ilm implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Ilm}
 	 */
-	public static final JsonpDeserializer<Ilm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Ilm::setupIlmDeserializer);
+	public static final JsonpDeserializer<Ilm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ilm::setupIlmDeserializer, Builder::build);
 
 	protected static void setupIlmDeserializer(DelegatingDeserializer<Ilm.Builder> op) {
 
-		op.add(Builder::policyCount, JsonpDeserializer.numberDeserializer(), "policy_count");
-		op.add(Builder::policyStats, JsonpDeserializer.arrayDeserializer(IlmPolicyStatistics.DESERIALIZER),
+		op.add(Builder::policyCount, JsonpDeserializer.integerDeserializer(), "policy_count");
+		op.add(Builder::policyStats, JsonpDeserializer.arrayDeserializer(IlmPolicyStatistics._DESERIALIZER),
 				"policy_stats");
 
 	}

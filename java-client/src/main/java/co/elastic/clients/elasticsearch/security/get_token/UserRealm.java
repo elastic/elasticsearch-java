@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security.get_token;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.UserRealm
+@JsonpDeserializable
 public final class UserRealm implements JsonpSerializable {
 	private final String name;
 
@@ -126,8 +128,8 @@ public final class UserRealm implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UserRealm}
 	 */
-	public static final JsonpDeserializer<UserRealm> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UserRealm::setupUserRealmDeserializer);
+	public static final JsonpDeserializer<UserRealm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			UserRealm::setupUserRealmDeserializer, Builder::build);
 
 	protected static void setupUserRealmDeserializer(DelegatingDeserializer<UserRealm.Builder> op) {
 

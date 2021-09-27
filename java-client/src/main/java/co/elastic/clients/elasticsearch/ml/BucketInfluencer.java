@@ -24,41 +24,43 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketInfluencer
+@JsonpDeserializable
 public final class BucketInfluencer implements JsonpSerializable {
-	private final Number bucketSpan;
+	private final Long bucketSpan;
 
-	private final Number influencerScore;
+	private final Double influencerScore;
 
 	private final String influencerFieldName;
 
 	private final String influencerFieldValue;
 
-	private final Number initialInfluencerScore;
+	private final Double initialInfluencerScore;
 
 	private final Boolean isInterim;
 
 	private final String jobId;
 
-	private final Number probability;
+	private final Double probability;
 
 	private final String resultType;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	@Nullable
 	private final String foo;
@@ -88,7 +90,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public Number bucketSpan() {
+	public Long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -100,7 +102,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code influencer_score}
 	 */
-	public Number influencerScore() {
+	public Double influencerScore() {
 		return this.influencerScore;
 	}
 
@@ -129,7 +131,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code initial_influencer_score}
 	 */
-	public Number initialInfluencerScore() {
+	public Double initialInfluencerScore() {
 		return this.initialInfluencerScore;
 	}
 
@@ -160,7 +162,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code probability}
 	 */
-	public Number probability() {
+	public Double probability() {
 		return this.probability;
 	}
 
@@ -178,7 +180,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
@@ -202,10 +204,10 @@ public final class BucketInfluencer implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan.doubleValue());
+		generator.write(this.bucketSpan);
 
 		generator.writeKey("influencer_score");
-		generator.write(this.influencerScore.doubleValue());
+		generator.write(this.influencerScore);
 
 		generator.writeKey("influencer_field_name");
 		generator.write(this.influencerFieldName);
@@ -214,7 +216,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		generator.write(this.influencerFieldValue);
 
 		generator.writeKey("initial_influencer_score");
-		generator.write(this.initialInfluencerScore.doubleValue());
+		generator.write(this.initialInfluencerScore);
 
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
@@ -223,7 +225,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		generator.write(this.jobId);
 
 		generator.writeKey("probability");
-		generator.write(this.probability.doubleValue());
+		generator.write(this.probability);
 
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
@@ -246,25 +248,25 @@ public final class BucketInfluencer implements JsonpSerializable {
 	 * Builder for {@link BucketInfluencer}.
 	 */
 	public static class Builder implements ObjectBuilder<BucketInfluencer> {
-		private Number bucketSpan;
+		private Long bucketSpan;
 
-		private Number influencerScore;
+		private Double influencerScore;
 
 		private String influencerFieldName;
 
 		private String influencerFieldValue;
 
-		private Number initialInfluencerScore;
+		private Double initialInfluencerScore;
 
 		private Boolean isInterim;
 
 		private String jobId;
 
-		private Number probability;
+		private Double probability;
 
 		private String resultType;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		@Nullable
 		private String foo;
@@ -275,7 +277,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(Number value) {
+		public Builder bucketSpan(Long value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -288,7 +290,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code influencer_score}
 		 */
-		public Builder influencerScore(Number value) {
+		public Builder influencerScore(Double value) {
 			this.influencerScore = value;
 			return this;
 		}
@@ -320,7 +322,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code initial_influencer_score}
 		 */
-		public Builder initialInfluencerScore(Number value) {
+		public Builder initialInfluencerScore(Double value) {
 			this.initialInfluencerScore = value;
 			return this;
 		}
@@ -354,7 +356,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Number value) {
+		public Builder probability(Double value) {
 			this.probability = value;
 			return this;
 		}
@@ -374,7 +376,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -404,21 +406,21 @@ public final class BucketInfluencer implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link BucketInfluencer}
 	 */
-	public static final JsonpDeserializer<BucketInfluencer> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BucketInfluencer::setupBucketInfluencerDeserializer);
+	public static final JsonpDeserializer<BucketInfluencer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BucketInfluencer::setupBucketInfluencerDeserializer, Builder::build);
 
 	protected static void setupBucketInfluencerDeserializer(DelegatingDeserializer<BucketInfluencer.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpDeserializer.numberDeserializer(), "bucket_span");
-		op.add(Builder::influencerScore, JsonpDeserializer.numberDeserializer(), "influencer_score");
+		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
+		op.add(Builder::influencerScore, JsonpDeserializer.doubleDeserializer(), "influencer_score");
 		op.add(Builder::influencerFieldName, JsonpDeserializer.stringDeserializer(), "influencer_field_name");
 		op.add(Builder::influencerFieldValue, JsonpDeserializer.stringDeserializer(), "influencer_field_value");
-		op.add(Builder::initialInfluencerScore, JsonpDeserializer.numberDeserializer(), "initial_influencer_score");
+		op.add(Builder::initialInfluencerScore, JsonpDeserializer.doubleDeserializer(), "initial_influencer_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 		op.add(Builder::foo, JsonpDeserializer.stringDeserializer(), "foo");
 
 	}

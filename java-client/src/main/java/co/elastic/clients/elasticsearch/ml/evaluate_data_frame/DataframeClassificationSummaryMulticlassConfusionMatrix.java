@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryMulticlassConfusionMatrix
+@JsonpDeserializable
 public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
 
-	private final Number otherActualClassCount;
+	private final Integer otherActualClassCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	/**
 	 * API name: {@code other_actual_class_count}
 	 */
-	public Number otherActualClassCount() {
+	public Integer otherActualClassCount() {
 		return this.otherActualClassCount;
 	}
 
@@ -88,7 +90,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		generator.writeEnd();
 
 		generator.writeKey("other_actual_class_count");
-		generator.write(this.otherActualClassCount.doubleValue());
+		generator.write(this.otherActualClassCount);
 
 	}
 
@@ -100,7 +102,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
 		private List<ConfusionMatrixItem> confusionMatrix;
 
-		private Number otherActualClassCount;
+		private Integer otherActualClassCount;
 
 		/**
 		 * API name: {@code confusion_matrix}
@@ -147,7 +149,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		/**
 		 * API name: {@code other_actual_class_count}
 		 */
-		public Builder otherActualClassCount(Number value) {
+		public Builder otherActualClassCount(Integer value) {
 			this.otherActualClassCount = value;
 			return this;
 		}
@@ -170,16 +172,17 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	 * Json deserializer for
 	 * {@link DataframeClassificationSummaryMulticlassConfusionMatrix}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummaryMulticlassConfusionMatrix::setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeClassificationSummaryMulticlassConfusionMatrix::setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix.Builder> op) {
 
-		op.add(Builder::confusionMatrix, JsonpDeserializer.arrayDeserializer(ConfusionMatrixItem.DESERIALIZER),
+		op.add(Builder::confusionMatrix, JsonpDeserializer.arrayDeserializer(ConfusionMatrixItem._DESERIALIZER),
 				"confusion_matrix");
-		op.add(Builder::otherActualClassCount, JsonpDeserializer.numberDeserializer(), "other_actual_class_count");
+		op.add(Builder::otherActualClassCount, JsonpDeserializer.integerDeserializer(), "other_actual_class_count");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
+@JsonpDeserializable
 public final class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
 	@Nullable
-	private final Number pivot;
+	private final Float pivot;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +54,7 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	 * API name: {@code pivot}
 	 */
 	@Nullable
-	public Number pivot() {
+	public Float pivot() {
 		return this.pivot;
 	}
 
@@ -70,7 +72,7 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 		if (this.pivot != null) {
 
 			generator.writeKey("pivot");
-			generator.write(this.pivot.doubleValue());
+			generator.write(this.pivot);
 
 		}
 
@@ -83,12 +85,12 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	 */
 	public static class Builder implements ObjectBuilder<RankFeatureFunctionSaturation> {
 		@Nullable
-		private Number pivot;
+		private Float pivot;
 
 		/**
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(@Nullable Number value) {
+		public Builder pivot(@Nullable Float value) {
 			this.pivot = value;
 			return this;
 		}
@@ -110,14 +112,14 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionSaturation}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSaturation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer);
+	public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer,
+			Builder::build);
 
 	protected static void setupRankFeatureFunctionSaturationDeserializer(
 			DelegatingDeserializer<RankFeatureFunctionSaturation.Builder> op) {
 
-		op.add(Builder::pivot, JsonpDeserializer.numberDeserializer(), "pivot");
+		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
 
 	}
 

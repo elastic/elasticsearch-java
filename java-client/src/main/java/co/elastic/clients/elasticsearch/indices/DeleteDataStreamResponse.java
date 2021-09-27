@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: indices.delete_data_stream.Response
+@JsonpDeserializable
 public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link DeleteDataStreamResponse}
 	 */
-	public static final JsonpDeserializer<DeleteDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteDataStreamResponse::setupDeleteDataStreamResponseDeserializer);
+	public static final JsonpDeserializer<DeleteDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteDataStreamResponse::setupDeleteDataStreamResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteDataStreamResponseDeserializer(
 			DelegatingDeserializer<DeleteDataStreamResponse.Builder> op) {

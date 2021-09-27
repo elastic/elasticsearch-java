@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Response
+@JsonpDeserializable
 public final class PromoteDataStreamResponse implements JsonpSerializable {
 	private final JsonData value;
 
@@ -99,13 +101,13 @@ public final class PromoteDataStreamResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PromoteDataStreamResponse}
 	 */
-	public static final JsonpDeserializer<PromoteDataStreamResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PromoteDataStreamResponse::setupPromoteDataStreamResponseDeserializer);
+	public static final JsonpDeserializer<PromoteDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PromoteDataStreamResponse::setupPromoteDataStreamResponseDeserializer, Builder::build);
 
 	protected static void setupPromoteDataStreamResponseDeserializer(
 			DelegatingDeserializer<PromoteDataStreamResponse.Builder> op) {
 
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

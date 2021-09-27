@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RangeAggregation
-public final class RangeAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class RangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -49,7 +51,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 	private final List<AggregationRange> ranges;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
 	private final Boolean keyed;
@@ -64,6 +66,14 @@ public final class RangeAggregation extends BucketAggregationBase {
 		this.script = builder.script;
 		this.keyed = builder.keyed;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "range";
 	}
 
 	/**
@@ -86,7 +96,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -148,7 +158,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 		private List<AggregationRange> ranges;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
 		private Boolean keyed;
@@ -205,7 +215,7 @@ public final class RangeAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -240,13 +250,13 @@ public final class RangeAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link RangeAggregation}
 	 */
-	public static final JsonpDeserializer<RangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RangeAggregation::setupRangeAggregationDeserializer);
+	public static final JsonpDeserializer<RangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RangeAggregation::setupRangeAggregationDeserializer, Builder::build);
 
 	protected static void setupRangeAggregationDeserializer(DelegatingDeserializer<RangeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange.DESERIALIZER), "ranges");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum DataframeState implements StringEnum {
 	Started("started"), Stopped("stopped"), Starting("starting"), Stopping("stopping"), Failed("failed");
 
@@ -39,6 +41,6 @@ public enum DataframeState implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DataframeState> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<DataframeState> _DESERIALIZER = new StringEnum.Deserializer<>(
 			DataframeState.values());
 }

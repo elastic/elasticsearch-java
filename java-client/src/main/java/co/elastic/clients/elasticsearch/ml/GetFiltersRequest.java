@@ -26,12 +26,13 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,15 +40,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
+
 public final class GetFiltersRequest extends RequestBase {
 	@Nullable
 	private final String filterId;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ public final class GetFiltersRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -85,7 +87,7 @@ public final class GetFiltersRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -99,10 +101,10 @@ public final class GetFiltersRequest extends RequestBase {
 		private String filterId;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * The ID of the filter to fetch
@@ -119,7 +121,7 @@ public final class GetFiltersRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -129,7 +131,7 @@ public final class GetFiltersRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -189,12 +191,12 @@ public final class GetFiltersRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetFiltersResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetFiltersResponse._DESERIALIZER);
 }

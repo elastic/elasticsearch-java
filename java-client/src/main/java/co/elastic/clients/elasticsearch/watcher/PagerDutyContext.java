@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyContext
+@JsonpDeserializable
 public final class PagerDutyContext implements JsonpSerializable {
 	private final String href;
 
@@ -149,14 +151,14 @@ public final class PagerDutyContext implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PagerDutyContext}
 	 */
-	public static final JsonpDeserializer<PagerDutyContext> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PagerDutyContext::setupPagerDutyContextDeserializer);
+	public static final JsonpDeserializer<PagerDutyContext> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PagerDutyContext::setupPagerDutyContextDeserializer, Builder::build);
 
 	protected static void setupPagerDutyContextDeserializer(DelegatingDeserializer<PagerDutyContext.Builder> op) {
 
 		op.add(Builder::href, JsonpDeserializer.stringDeserializer(), "href");
 		op.add(Builder::src, JsonpDeserializer.stringDeserializer(), "src");
-		op.add(Builder::type, PagerDutyContextType.DESERIALIZER, "type");
+		op.add(Builder::type, PagerDutyContextType._DESERIALIZER, "type");
 
 	}
 

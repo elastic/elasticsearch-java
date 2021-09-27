@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
+@JsonpDeserializable
 public final class RollupRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
@@ -152,12 +154,12 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link RollupRequest}
 	 */
-	public static final JsonpDeserializer<RollupRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupRequest::setupRollupRequestDeserializer);
+	public static final JsonpDeserializer<RollupRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RollupRequest::setupRollupRequestDeserializer, Builder::build);
 
 	protected static void setupRollupRequestDeserializer(DelegatingDeserializer<RollupRequest.Builder> op) {
 
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 
@@ -202,5 +204,5 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RollupResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, RollupResponse._DESERIALIZER);
 }

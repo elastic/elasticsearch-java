@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_token.AuthenticatedUser;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,17 +33,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Response
+@JsonpDeserializable
 public final class GetTokenResponse implements JsonpSerializable {
 	private final String accessToken;
 
-	private final Number expiresIn;
+	private final Long expiresIn;
 
 	@Nullable
 	private final String scope;
@@ -80,7 +82,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code expires_in}
 	 */
-	public Number expiresIn() {
+	public Long expiresIn() {
 		return this.expiresIn;
 	}
 
@@ -136,7 +138,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		generator.write(this.accessToken);
 
 		generator.writeKey("expires_in");
-		generator.write(this.expiresIn.doubleValue());
+		generator.write(this.expiresIn);
 
 		if (this.scope != null) {
 
@@ -171,7 +173,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<GetTokenResponse> {
 		private String accessToken;
 
-		private Number expiresIn;
+		private Long expiresIn;
 
 		@Nullable
 		private String scope;
@@ -196,7 +198,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code expires_in}
 		 */
-		public Builder expiresIn(Number value) {
+		public Builder expiresIn(Long value) {
 			this.expiresIn = value;
 			return this;
 		}
@@ -265,19 +267,19 @@ public final class GetTokenResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetTokenResponse}
 	 */
-	public static final JsonpDeserializer<GetTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTokenResponse::setupGetTokenResponseDeserializer);
+	public static final JsonpDeserializer<GetTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetTokenResponse::setupGetTokenResponseDeserializer, Builder::build);
 
 	protected static void setupGetTokenResponseDeserializer(DelegatingDeserializer<GetTokenResponse.Builder> op) {
 
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
-		op.add(Builder::expiresIn, JsonpDeserializer.numberDeserializer(), "expires_in");
+		op.add(Builder::expiresIn, JsonpDeserializer.longDeserializer(), "expires_in");
 		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
 		op.add(Builder::kerberosAuthenticationResponseToken, JsonpDeserializer.stringDeserializer(),
 				"kerberos_authentication_response_token");
-		op.add(Builder::authentication, AuthenticatedUser.DESERIALIZER, "authentication");
+		op.add(Builder::authentication, AuthenticatedUser._DESERIALIZER, "authentication");
 
 	}
 

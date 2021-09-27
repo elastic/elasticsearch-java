@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicense
+@JsonpDeserializable
 public final class NodeInfoXpackLicense implements JsonpSerializable {
 	private final NodeInfoXpackLicenseType selfGenerated;
 
@@ -111,13 +113,13 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpackLicense}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackLicense> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackLicense> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackLicenseDeserializer(
 			DelegatingDeserializer<NodeInfoXpackLicense.Builder> op) {
 
-		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType.DESERIALIZER, "self_generated");
+		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType._DESERIALIZER, "self_generated");
 
 	}
 

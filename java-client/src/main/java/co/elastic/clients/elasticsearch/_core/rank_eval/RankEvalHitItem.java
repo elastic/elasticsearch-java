@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHitItem
+@JsonpDeserializable
 public final class RankEvalHitItem implements JsonpSerializable {
 	private final RankEvalHit hit;
 
 	@Nullable
-	private final Number rating;
+	private final Double rating;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +65,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 	 * API name: {@code rating}
 	 */
 	@Nullable
-	public Number rating() {
+	public Double rating() {
 		return this.rating;
 	}
 
@@ -84,7 +86,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		if (this.rating != null) {
 
 			generator.writeKey("rating");
-			generator.write(this.rating.doubleValue());
+			generator.write(this.rating);
 
 		}
 
@@ -99,7 +101,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		private RankEvalHit hit;
 
 		@Nullable
-		private Number rating;
+		private Double rating;
 
 		/**
 		 * API name: {@code hit}
@@ -119,7 +121,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		/**
 		 * API name: {@code rating}
 		 */
-		public Builder rating(@Nullable Number value) {
+		public Builder rating(@Nullable Double value) {
 			this.rating = value;
 			return this;
 		}
@@ -141,13 +143,13 @@ public final class RankEvalHitItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RankEvalHitItem}
 	 */
-	public static final JsonpDeserializer<RankEvalHitItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalHitItem::setupRankEvalHitItemDeserializer);
+	public static final JsonpDeserializer<RankEvalHitItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankEvalHitItem::setupRankEvalHitItemDeserializer, Builder::build);
 
 	protected static void setupRankEvalHitItemDeserializer(DelegatingDeserializer<RankEvalHitItem.Builder> op) {
 
-		op.add(Builder::hit, RankEvalHit.DESERIALIZER, "hit");
-		op.add(Builder::rating, JsonpDeserializer.numberDeserializer(), "rating");
+		op.add(Builder::hit, RankEvalHit._DESERIALIZER, "hit");
+		op.add(Builder::rating, JsonpDeserializer.doubleDeserializer(), "rating");
 
 	}
 

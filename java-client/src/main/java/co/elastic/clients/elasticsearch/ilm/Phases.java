@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phases
+@JsonpDeserializable
 public final class Phases implements JsonpSerializable {
 	@Nullable
 	private final Phase cold;
@@ -225,15 +227,15 @@ public final class Phases implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Phases}
 	 */
-	public static final JsonpDeserializer<Phases> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Phases::setupPhasesDeserializer);
+	public static final JsonpDeserializer<Phases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Phases::setupPhasesDeserializer, Builder::build);
 
 	protected static void setupPhasesDeserializer(DelegatingDeserializer<Phases.Builder> op) {
 
-		op.add(Builder::cold, Phase.DESERIALIZER, "cold");
-		op.add(Builder::delete, Phase.DESERIALIZER, "delete");
-		op.add(Builder::hot, Phase.DESERIALIZER, "hot");
-		op.add(Builder::warm, Phase.DESERIALIZER, "warm");
+		op.add(Builder::cold, Phase._DESERIALIZER, "cold");
+		op.add(Builder::delete, Phase._DESERIALIZER, "delete");
+		op.add(Builder::hot, Phase._DESERIALIZER, "hot");
+		op.add(Builder::warm, Phase._DESERIALIZER, "warm");
 
 	}
 

@@ -23,141 +23,153 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisContainer
-public interface DataframeAnalysis extends JsonpSerializable {
+@JsonpDeserializable
+public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable {
 
-	String CLASSIFICATION = "classification";
-	String OUTLIER_DETECTION = "outlier_detection";
-	String REGRESSION = "regression";
+	public static final String CLASSIFICATION = "classification";
+	public static final String OUTLIER_DETECTION = "outlier_detection";
+	public static final String REGRESSION = "regression";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public DataframeAnalysis(DataframeAnalysisVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private DataframeAnalysis(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code DataframeAnalysisContainer}.
+	 * Get the {@code classification} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code classification} kind.
 	 */
-	String _type();
+	public DataframeAnalysisClassification classification() {
+		return TaggedUnionUtils.get(this, CLASSIFICATION);
+	}
 
-	class Builder {
-		/**
-		 * The configuration information necessary to perform classification.
-		 * <p>
-		 * API name: {@code classification}
-		 */
-		public ObjectBuilder<DataframeAnalysis> classification(DataframeAnalysisClassification value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code outlier_detection} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code outlier_detection}
+	 *             kind.
+	 */
+	public DataframeAnalysisOutlierDetection outlierDetection() {
+		return TaggedUnionUtils.get(this, OUTLIER_DETECTION);
+	}
+
+	/**
+	 * Get the {@code regression} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code regression} kind.
+	 */
+	public DataframeAnalysisRegression regression() {
+		return TaggedUnionUtils.get(this, REGRESSION);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * The configuration information necessary to perform classification.
-		 * <p>
-		 * API name: {@code classification}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<DataframeAnalysis> classification(DataframeAnalysisClassification v) {
+			this._type = CLASSIFICATION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<DataframeAnalysis> classification(
-				Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> fn) {
-			return this.classification(fn.apply(new DataframeAnalysisClassification.Builder()).build());
+				Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> f) {
+			return this.classification(f.apply(new DataframeAnalysisClassification.Builder()).build());
 		}
 
-		/**
-		 * The configuration information necessary to perform outlier detection. NOTE:
-		 * Advanced parameters are for fine-tuning classification analysis. They are set
-		 * automatically by hyperparameter optimization to give the minimum validation
-		 * error. It is highly recommended to use the default values unless you fully
-		 * understand the function of these parameters.
-		 * <p>
-		 * API name: {@code outlier_detection}
-		 */
-		public ObjectBuilder<DataframeAnalysis> outlierDetection(DataframeAnalysisOutlierDetection value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<DataframeAnalysis> outlierDetection(DataframeAnalysisOutlierDetection v) {
+			this._type = OUTLIER_DETECTION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * The configuration information necessary to perform outlier detection. NOTE:
-		 * Advanced parameters are for fine-tuning classification analysis. They are set
-		 * automatically by hyperparameter optimization to give the minimum validation
-		 * error. It is highly recommended to use the default values unless you fully
-		 * understand the function of these parameters.
-		 * <p>
-		 * API name: {@code outlier_detection}
-		 */
 		public ObjectBuilder<DataframeAnalysis> outlierDetection(
-				Function<DataframeAnalysisOutlierDetection.Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> fn) {
-			return this.outlierDetection(fn.apply(new DataframeAnalysisOutlierDetection.Builder()).build());
+				Function<DataframeAnalysisOutlierDetection.Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> f) {
+			return this.outlierDetection(f.apply(new DataframeAnalysisOutlierDetection.Builder()).build());
 		}
 
-		/**
-		 * The configuration information necessary to perform regression. NOTE: Advanced
-		 * parameters are for fine-tuning regression analysis. They are set
-		 * automatically by hyperparameter optimization to give the minimum validation
-		 * error. It is highly recommended to use the default values unless you fully
-		 * understand the function of these parameters.
-		 * <p>
-		 * API name: {@code regression}
-		 */
-		public ObjectBuilder<DataframeAnalysis> regression(DataframeAnalysisRegression value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<DataframeAnalysis> regression(DataframeAnalysisRegression v) {
+			this._type = REGRESSION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * The configuration information necessary to perform regression. NOTE: Advanced
-		 * parameters are for fine-tuning regression analysis. They are set
-		 * automatically by hyperparameter optimization to give the minimum validation
-		 * error. It is highly recommended to use the default values unless you fully
-		 * understand the function of these parameters.
-		 * <p>
-		 * API name: {@code regression}
-		 */
 		public ObjectBuilder<DataframeAnalysis> regression(
-				Function<DataframeAnalysisRegression.Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
-			return this.regression(fn.apply(new DataframeAnalysisRegression.Builder()).build());
+				Function<DataframeAnalysisRegression.Builder, ObjectBuilder<DataframeAnalysisRegression>> f) {
+			return this.regression(f.apply(new DataframeAnalysisRegression.Builder()).build());
+		}
+
+		protected DataframeAnalysis build() {
+			return new DataframeAnalysis(this);
 		}
 
 	}
 
-	class $Helper {
-		private static DataframeAnalysis deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupDataframeAnalysisDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends DataframeAnalysis> builder = null;
-			String variant = null;
+		op.add(Builder::classification, DataframeAnalysisClassification._DESERIALIZER, "classification");
+		op.add(Builder::outlierDetection, DataframeAnalysisOutlierDetection._DESERIALIZER, "outlier_detection");
+		op.add(Builder::regression, DataframeAnalysisRegression._DESERIALIZER, "regression");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case CLASSIFICATION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DataframeAnalysisClassification.$BUILDER_DESERIALIZER.deserialize(
-								new DataframeAnalysisClassification.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case OUTLIER_DETECTION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DataframeAnalysisOutlierDetection.$BUILDER_DESERIALIZER.deserialize(
-								new DataframeAnalysisOutlierDetection.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case REGRESSION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DataframeAnalysisRegression.$BUILDER_DESERIALIZER
-								.deserialize(new DataframeAnalysisRegression.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<DataframeAnalysis> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<DataframeAnalysis> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			DataframeAnalysis::setupDataframeAnalysisDeserializer, Builder::build);
 }

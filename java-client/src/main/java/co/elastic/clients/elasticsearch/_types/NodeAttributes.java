@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
+@JsonpDeserializable
 public final class NodeAttributes implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
@@ -297,8 +299,8 @@ public final class NodeAttributes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeAttributes}
 	 */
-	public static final JsonpDeserializer<NodeAttributes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeAttributes::setupNodeAttributesDeserializer);
+	public static final JsonpDeserializer<NodeAttributes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeAttributes::setupNodeAttributesDeserializer, Builder::build);
 
 	protected static void setupNodeAttributesDeserializer(DelegatingDeserializer<NodeAttributes.Builder> op) {
 
@@ -308,7 +310,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
 
 	}
 

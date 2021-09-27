@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.KeyValueProcessor
-public final class KeyValueProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class KeyValueProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final List<String> excludeKeys;
 
@@ -87,6 +89,14 @@ public final class KeyValueProcessor extends ProcessorBase {
 		this.trimValue = builder.trimValue;
 		this.valueSplit = Objects.requireNonNull(builder.valueSplit, "value_split");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "kv";
 	}
 
 	/**
@@ -434,8 +444,8 @@ public final class KeyValueProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link KeyValueProcessor}
 	 */
-	public static final JsonpDeserializer<KeyValueProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer);
+	public static final JsonpDeserializer<KeyValueProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, KeyValueProcessor::setupKeyValueProcessorDeserializer, Builder::build);
 
 	protected static void setupKeyValueProcessorDeserializer(DelegatingDeserializer<KeyValueProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

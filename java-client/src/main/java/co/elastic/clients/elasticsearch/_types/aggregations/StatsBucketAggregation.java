@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.StatsBucketAggregation
-public final class StatsBucketAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class StatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public StatsBucketAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "stats_bucket";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class StatsBucketAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link StatsBucketAggregation}
 	 */
-	public static final JsonpDeserializer<StatsBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsBucketAggregation::setupStatsBucketAggregationDeserializer);
+	public static final JsonpDeserializer<StatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StatsBucketAggregation::setupStatsBucketAggregationDeserializer, Builder::build);
 
 	protected static void setupStatsBucketAggregationDeserializer(
 			DelegatingDeserializer<StatsBucketAggregation.Builder> op) {

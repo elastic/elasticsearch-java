@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._core;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.ping.Response
+
 public final class PingResponse {
 	public PingResponse() {
 	}
@@ -38,9 +40,9 @@ public final class PingResponse {
 	/**
 	 * Singleton instance for {@link PingResponse}.
 	 */
-	public static final PingResponse INSTANCE = new PingResponse();
+	public static final PingResponse _INSTANCE = new PingResponse();
 
-	public static final JsonpDeserializer<PingResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(PingResponse.INSTANCE);
+	public static final JsonpDeserializer<PingResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(PingResponse._INSTANCE);
 
 }

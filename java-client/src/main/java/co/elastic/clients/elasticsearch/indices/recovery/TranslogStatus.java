@@ -24,33 +24,34 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
+@JsonpDeserializable
 public final class TranslogStatus implements JsonpSerializable {
-	private final JsonValue percent;
+	private final String percent;
 
-	private final Number recovered;
+	private final Long recovered;
 
-	private final Number total;
+	private final Long total;
 
-	private final Number totalOnStart;
+	private final Long totalOnStart;
 
 	@Nullable
 	private final String totalTime;
 
-	private final JsonValue totalTimeInMillis;
+	private final String totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,28 +69,28 @@ public final class TranslogStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code percent}
 	 */
-	public JsonValue percent() {
+	public String percent() {
 		return this.percent;
 	}
 
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Number recovered() {
+	public Long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code total_on_start}
 	 */
-	public Number totalOnStart() {
+	public Long totalOnStart() {
 		return this.totalOnStart;
 	}
 
@@ -104,7 +105,7 @@ public final class TranslogStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public JsonValue totalTimeInMillis() {
+	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -123,13 +124,13 @@ public final class TranslogStatus implements JsonpSerializable {
 		generator.write(this.percent);
 
 		generator.writeKey("recovered");
-		generator.write(this.recovered.doubleValue());
+		generator.write(this.recovered);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("total_on_start");
-		generator.write(this.totalOnStart.doubleValue());
+		generator.write(this.totalOnStart);
 
 		if (this.totalTime != null) {
 
@@ -149,23 +150,23 @@ public final class TranslogStatus implements JsonpSerializable {
 	 * Builder for {@link TranslogStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<TranslogStatus> {
-		private JsonValue percent;
+		private String percent;
 
-		private Number recovered;
+		private Long recovered;
 
-		private Number total;
+		private Long total;
 
-		private Number totalOnStart;
+		private Long totalOnStart;
 
 		@Nullable
 		private String totalTime;
 
-		private JsonValue totalTimeInMillis;
+		private String totalTimeInMillis;
 
 		/**
 		 * API name: {@code percent}
 		 */
-		public Builder percent(JsonValue value) {
+		public Builder percent(String value) {
 			this.percent = value;
 			return this;
 		}
@@ -173,7 +174,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Number value) {
+		public Builder recovered(Long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -181,7 +182,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -189,7 +190,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_on_start}
 		 */
-		public Builder totalOnStart(Number value) {
+		public Builder totalOnStart(Long value) {
 			this.totalOnStart = value;
 			return this;
 		}
@@ -205,7 +206,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(JsonValue value) {
+		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -227,17 +228,17 @@ public final class TranslogStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TranslogStatus}
 	 */
-	public static final JsonpDeserializer<TranslogStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TranslogStatus::setupTranslogStatusDeserializer);
+	public static final JsonpDeserializer<TranslogStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TranslogStatus::setupTranslogStatusDeserializer, Builder::build);
 
 	protected static void setupTranslogStatusDeserializer(DelegatingDeserializer<TranslogStatus.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
-		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::totalOnStart, JsonpDeserializer.numberDeserializer(), "total_on_start");
+		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
+		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::totalOnStart, JsonpDeserializer.longDeserializer(), "total_on_start");
 		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
 
 	}
 

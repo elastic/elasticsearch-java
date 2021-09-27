@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineSort
+@JsonpDeserializable
 public final class GeoLineSort implements JsonpSerializable {
 	private final String field;
 
@@ -103,8 +105,8 @@ public final class GeoLineSort implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoLineSort}
 	 */
-	public static final JsonpDeserializer<GeoLineSort> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoLineSort::setupGeoLineSortDeserializer);
+	public static final JsonpDeserializer<GeoLineSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoLineSort::setupGeoLineSortDeserializer, Builder::build);
 
 	protected static void setupGeoLineSortDeserializer(DelegatingDeserializer<GeoLineSort.Builder> op) {
 

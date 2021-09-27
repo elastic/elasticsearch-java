@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsDestination
+@JsonpDeserializable
 public final class DataframeAnalyticsDestination implements JsonpSerializable {
 	private final String index;
 
@@ -145,9 +147,9 @@ public final class DataframeAnalyticsDestination implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsDestination}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsDestination> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsDestination::setupDataframeAnalyticsDestinationDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsDestination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeAnalyticsDestination::setupDataframeAnalyticsDestinationDeserializer,
+			Builder::build);
 
 	protected static void setupDataframeAnalyticsDestinationDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsDestination.Builder> op) {

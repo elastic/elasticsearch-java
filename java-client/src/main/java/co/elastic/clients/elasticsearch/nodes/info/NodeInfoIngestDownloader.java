@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestDownloader
+@JsonpDeserializable
 public final class NodeInfoIngestDownloader implements JsonpSerializable {
 	private final String enabled;
 
@@ -103,8 +105,8 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoIngestDownloader}
 	 */
-	public static final JsonpDeserializer<NodeInfoIngestDownloader> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoIngestDownloader::setupNodeInfoIngestDownloaderDeserializer);
+	public static final JsonpDeserializer<NodeInfoIngestDownloader> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoIngestDownloader::setupNodeInfoIngestDownloaderDeserializer, Builder::build);
 
 	protected static void setupNodeInfoIngestDownloaderDeserializer(
 			DelegatingDeserializer<NodeInfoIngestDownloader.Builder> op) {

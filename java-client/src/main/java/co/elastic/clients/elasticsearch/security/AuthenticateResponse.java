@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.elasticsearch.security.authenticate.Token;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -45,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.authenticate.Response
+@JsonpDeserializable
 public final class AuthenticateResponse implements JsonpSerializable {
 	private final RealmInfo authenticationRealm;
 
@@ -401,22 +403,22 @@ public final class AuthenticateResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AuthenticateResponse}
 	 */
-	public static final JsonpDeserializer<AuthenticateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer);
+	public static final JsonpDeserializer<AuthenticateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AuthenticateResponse::setupAuthenticateResponseDeserializer, Builder::build);
 
 	protected static void setupAuthenticateResponseDeserializer(
 			DelegatingDeserializer<AuthenticateResponse.Builder> op) {
 
-		op.add(Builder::authenticationRealm, RealmInfo.DESERIALIZER, "authentication_realm");
+		op.add(Builder::authenticationRealm, RealmInfo._DESERIALIZER, "authentication_realm");
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
-		op.add(Builder::lookupRealm, RealmInfo.DESERIALIZER, "lookup_realm");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::lookupRealm, RealmInfo._DESERIALIZER, "lookup_realm");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::authenticationType, JsonpDeserializer.stringDeserializer(), "authentication_type");
-		op.add(Builder::token, Token.DESERIALIZER, "token");
+		op.add(Builder::token, Token._DESERIALIZER, "token");
 
 	}
 

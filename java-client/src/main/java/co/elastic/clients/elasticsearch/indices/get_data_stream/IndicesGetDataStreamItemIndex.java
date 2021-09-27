@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemIndex
+@JsonpDeserializable
 public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	private final String indexName;
 
@@ -126,9 +128,9 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesGetDataStreamItemIndex}
 	 */
-	public static final JsonpDeserializer<IndicesGetDataStreamItemIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					IndicesGetDataStreamItemIndex::setupIndicesGetDataStreamItemIndexDeserializer);
+	public static final JsonpDeserializer<IndicesGetDataStreamItemIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, IndicesGetDataStreamItemIndex::setupIndicesGetDataStreamItemIndexDeserializer,
+			Builder::build);
 
 	protected static void setupIndicesGetDataStreamItemIndexDeserializer(
 			DelegatingDeserializer<IndicesGetDataStreamItemIndex.Builder> op) {

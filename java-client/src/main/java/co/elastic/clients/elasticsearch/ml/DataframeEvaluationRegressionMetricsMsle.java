@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsMsle
+@JsonpDeserializable
 public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializable {
 	@Nullable
-	private final Number offset;
+	private final Double offset;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,7 +57,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public Number offset() {
+	public Double offset() {
 		return this.offset;
 	}
 
@@ -73,7 +75,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 		if (this.offset != null) {
 
 			generator.writeKey("offset");
-			generator.write(this.offset.doubleValue());
+			generator.write(this.offset);
 
 		}
 
@@ -86,7 +88,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 	 */
 	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetricsMsle> {
 		@Nullable
-		private Number offset;
+		private Double offset;
 
 		/**
 		 * Defines the transition point at which you switch from minimizing quadratic
@@ -94,7 +96,7 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 		 * <p>
 		 * API name: {@code offset}
 		 */
-		public Builder offset(@Nullable Number value) {
+		public Builder offset(@Nullable Double value) {
 			this.offset = value;
 			return this;
 		}
@@ -116,14 +118,15 @@ public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSeri
 	/**
 	 * Json deserializer for {@link DataframeEvaluationRegressionMetricsMsle}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsMsle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetricsMsle::setupDataframeEvaluationRegressionMetricsMsleDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsMsle> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationRegressionMetricsMsle::setupDataframeEvaluationRegressionMetricsMsleDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionMetricsMsleDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegressionMetricsMsle.Builder> op) {
 
-		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
+		op.add(Builder::offset, JsonpDeserializer.doubleDeserializer(), "offset");
 
 	}
 

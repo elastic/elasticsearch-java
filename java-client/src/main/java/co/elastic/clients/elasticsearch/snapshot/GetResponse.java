@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.get.SnapshotResponseItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Response
+@JsonpDeserializable
 public final class GetResponse implements JsonpSerializable {
 	@Nullable
 	private final List<SnapshotResponseItem> responses;
@@ -48,9 +50,9 @@ public final class GetResponse implements JsonpSerializable {
 	@Nullable
 	private final List<SnapshotInfo> snapshots;
 
-	private final Number total;
+	private final Integer total;
 
-	private final Number remaining;
+	private final Integer remaining;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -85,7 +87,7 @@ public final class GetResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Integer total() {
 		return this.total;
 	}
 
@@ -95,7 +97,7 @@ public final class GetResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code remaining}
 	 */
-	public Number remaining() {
+	public Integer remaining() {
 		return this.remaining;
 	}
 
@@ -134,10 +136,10 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("remaining");
-		generator.write(this.remaining.doubleValue());
+		generator.write(this.remaining);
 
 	}
 
@@ -153,9 +155,9 @@ public final class GetResponse implements JsonpSerializable {
 		@Nullable
 		private List<SnapshotInfo> snapshots;
 
-		private Number total;
+		private Integer total;
 
-		private Number remaining;
+		private Integer remaining;
 
 		/**
 		 * API name: {@code responses}
@@ -245,7 +247,7 @@ public final class GetResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Integer value) {
 			this.total = value;
 			return this;
 		}
@@ -256,7 +258,7 @@ public final class GetResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code remaining}
 		 */
-		public Builder remaining(Number value) {
+		public Builder remaining(Integer value) {
 			this.remaining = value;
 			return this;
 		}
@@ -278,15 +280,16 @@ public final class GetResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetResponse}
 	 */
-	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
+	public static final JsonpDeserializer<GetResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
-		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem.DESERIALIZER), "responses");
-		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo.DESERIALIZER), "snapshots");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::remaining, JsonpDeserializer.numberDeserializer(), "remaining");
+		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem._DESERIALIZER),
+				"responses");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");
+		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+		op.add(Builder::remaining, JsonpDeserializer.integerDeserializer(), "remaining");
 
 	}
 

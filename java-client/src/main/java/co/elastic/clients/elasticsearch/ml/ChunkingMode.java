@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ChunkingMode implements StringEnum {
 	Auto("auto"), Manual("manual"), Off("off");
 
@@ -39,6 +41,6 @@ public enum ChunkingMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ChunkingMode> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ChunkingMode> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ChunkingMode.values());
 }

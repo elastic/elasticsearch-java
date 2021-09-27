@@ -27,11 +27,11 @@ import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -44,6 +44,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.post_voting_config_exclusions.Request
+
 public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
 	private final List<String> nodeNames;
@@ -52,7 +53,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	private final List<String> nodeIds;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -95,7 +96,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -112,7 +113,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		private List<String> nodeIds;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * A comma-separated list of the names of the nodes to exclude from the voting
@@ -188,7 +189,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -233,7 +234,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 					params.put("node_ids", request.nodeIds.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 

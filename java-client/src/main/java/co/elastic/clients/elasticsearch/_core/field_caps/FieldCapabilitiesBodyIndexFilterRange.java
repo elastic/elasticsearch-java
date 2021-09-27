@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.field_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapabilitiesBodyIndexFilterRange
+@JsonpDeserializable
 public final class FieldCapabilitiesBodyIndexFilterRange implements JsonpSerializable {
 	private final FieldCapabilitiesBodyIndexFilterRangeTimestamp timestamp;
 
@@ -111,14 +113,15 @@ public final class FieldCapabilitiesBodyIndexFilterRange implements JsonpSeriali
 	/**
 	 * Json deserializer for {@link FieldCapabilitiesBodyIndexFilterRange}
 	 */
-	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterRange> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilterRange::setupFieldCapabilitiesBodyIndexFilterRangeDeserializer);
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterRange> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					FieldCapabilitiesBodyIndexFilterRange::setupFieldCapabilitiesBodyIndexFilterRangeDeserializer,
+					Builder::build);
 
 	protected static void setupFieldCapabilitiesBodyIndexFilterRangeDeserializer(
 			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilterRange.Builder> op) {
 
-		op.add(Builder::timestamp, FieldCapabilitiesBodyIndexFilterRangeTimestamp.DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, FieldCapabilitiesBodyIndexFilterRangeTimestamp._DESERIALIZER, "timestamp");
 
 	}
 

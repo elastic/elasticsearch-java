@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.MaxAggregation
-public final class MaxAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public MaxAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "max";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class MaxAggregation extends FormatMetricAggregationBase {
 	/**
 	 * Json deserializer for {@link MaxAggregation}
 	 */
-	public static final JsonpDeserializer<MaxAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MaxAggregation::setupMaxAggregationDeserializer);
+	public static final JsonpDeserializer<MaxAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MaxAggregation::setupMaxAggregationDeserializer, Builder::build);
 
 	protected static void setupMaxAggregationDeserializer(DelegatingDeserializer<MaxAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.elasticsearch.security.get_service_credentials.NodesCredentials;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,10 +43,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Response
+@JsonpDeserializable
 public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	private final String serviceAccount;
 
-	private final Number count;
+	private final Integer count;
 
 	private final Map<String, Map<String, JsonData>> tokens;
 
@@ -72,7 +74,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -107,7 +109,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		generator.write(this.serviceAccount);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("tokens");
 		generator.writeStartObject();
@@ -137,7 +139,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<GetServiceCredentialsResponse> {
 		private String serviceAccount;
 
-		private Number count;
+		private Integer count;
 
 		private Map<String, Map<String, JsonData>> tokens;
 
@@ -154,7 +156,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -214,19 +216,18 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetServiceCredentialsResponse}
 	 */
-	public static final JsonpDeserializer<GetServiceCredentialsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					GetServiceCredentialsResponse::setupGetServiceCredentialsResponseDeserializer);
+	public static final JsonpDeserializer<GetServiceCredentialsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetServiceCredentialsResponse::setupGetServiceCredentialsResponseDeserializer,
+			Builder::build);
 
 	protected static void setupGetServiceCredentialsResponseDeserializer(
 			DelegatingDeserializer<GetServiceCredentialsResponse.Builder> op) {
 
 		op.add(Builder::serviceAccount, JsonpDeserializer.stringDeserializer(), "service_account");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::tokens,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER)),
-				"tokens");
-		op.add(Builder::nodesCredentials, NodesCredentials.DESERIALIZER, "nodes_credentials");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::tokens, JsonpDeserializer
+				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)), "tokens");
+		op.add(Builder::nodesCredentials, NodesCredentials._DESERIALIZER, "nodes_credentials");
 
 	}
 

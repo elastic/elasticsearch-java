@@ -25,27 +25,29 @@ package co.elastic.clients.elasticsearch.nodes.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.NodeUsage
+@JsonpDeserializable
 public final class NodeUsage implements JsonpSerializable {
-	private final Map<String, Number> restActions;
+	private final Map<String, Integer> restActions;
 
-	private final JsonValue since;
+	private final String since;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	private final Map<String, JsonData> aggregations;
 
@@ -63,21 +65,21 @@ public final class NodeUsage implements JsonpSerializable {
 	/**
 	 * API name: {@code rest_actions}
 	 */
-	public Map<String, Number> restActions() {
+	public Map<String, Integer> restActions() {
 		return this.restActions;
 	}
 
 	/**
 	 * API name: {@code since}
 	 */
-	public JsonValue since() {
+	public String since() {
 		return this.since;
 	}
 
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
@@ -101,9 +103,9 @@ public final class NodeUsage implements JsonpSerializable {
 
 		generator.writeKey("rest_actions");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.restActions.entrySet()) {
+		for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
@@ -131,18 +133,18 @@ public final class NodeUsage implements JsonpSerializable {
 	 * Builder for {@link NodeUsage}.
 	 */
 	public static class Builder implements ObjectBuilder<NodeUsage> {
-		private Map<String, Number> restActions;
+		private Map<String, Integer> restActions;
 
-		private JsonValue since;
+		private String since;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		private Map<String, JsonData> aggregations;
 
 		/**
 		 * API name: {@code rest_actions}
 		 */
-		public Builder restActions(Map<String, Number> value) {
+		public Builder restActions(Map<String, Integer> value) {
 			this.restActions = value;
 			return this;
 		}
@@ -150,7 +152,7 @@ public final class NodeUsage implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #restActions(Map)}, creating the map if needed.
 		 */
-		public Builder putRestActions(String key, Number value) {
+		public Builder putRestActions(String key, Integer value) {
 			if (this.restActions == null) {
 				this.restActions = new HashMap<>();
 			}
@@ -161,7 +163,7 @@ public final class NodeUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code since}
 		 */
-		public Builder since(JsonValue value) {
+		public Builder since(String value) {
 			this.since = value;
 			return this;
 		}
@@ -169,7 +171,7 @@ public final class NodeUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -210,16 +212,16 @@ public final class NodeUsage implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeUsage}
 	 */
-	public static final JsonpDeserializer<NodeUsage> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeUsage::setupNodeUsageDeserializer);
+	public static final JsonpDeserializer<NodeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeUsage::setupNodeUsageDeserializer, Builder::build);
 
 	protected static void setupNodeUsageDeserializer(DelegatingDeserializer<NodeUsage.Builder> op) {
 
-		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"rest_actions");
-		op.add(Builder::since, JsonpDeserializer.jsonValueDeserializer(), "since");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "aggregations");
+		op.add(Builder::since, JsonpDeserializer.stringDeserializer(), "since");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "aggregations");
 
 	}
 

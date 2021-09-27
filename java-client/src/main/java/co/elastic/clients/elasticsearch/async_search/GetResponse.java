@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search.get.Response
+
 public final class GetResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;

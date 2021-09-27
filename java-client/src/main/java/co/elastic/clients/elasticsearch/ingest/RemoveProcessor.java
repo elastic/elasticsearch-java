@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RemoveProcessor
-public final class RemoveProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<String> field;
 
 	@Nullable
@@ -53,6 +55,14 @@ public final class RemoveProcessor extends ProcessorBase {
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "remove";
 	}
 
 	/**
@@ -161,8 +171,8 @@ public final class RemoveProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link RemoveProcessor}
 	 */
-	public static final JsonpDeserializer<RemoveProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RemoveProcessor::setupRemoveProcessorDeserializer);
+	public static final JsonpDeserializer<RemoveProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RemoveProcessor::setupRemoveProcessorDeserializer, Builder::build);
 
 	protected static void setupRemoveProcessorDeserializer(DelegatingDeserializer<RemoveProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

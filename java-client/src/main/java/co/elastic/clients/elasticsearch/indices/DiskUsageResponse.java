@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.disk_usage.Response
+@JsonpDeserializable
 public final class DiskUsageResponse implements JsonpSerializable {
 	private final JsonData value;
 
@@ -99,12 +101,12 @@ public final class DiskUsageResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DiskUsageResponse}
 	 */
-	public static final JsonpDeserializer<DiskUsageResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DiskUsageResponse::setupDiskUsageResponseDeserializer);
+	public static final JsonpDeserializer<DiskUsageResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DiskUsageResponse::setupDiskUsageResponseDeserializer, Builder::build);
 
 	protected static void setupDiskUsageResponseDeserializer(DelegatingDeserializer<DiskUsageResponse.Builder> op) {
 
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,12 +41,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardCommit
+@JsonpDeserializable
 public final class ShardCommit implements JsonpSerializable {
-	private final Number generation;
+	private final Integer generation;
 
 	private final String id;
 
-	private final Number numDocs;
+	private final Long numDocs;
 
 	private final Map<String, String> userData;
 
@@ -62,7 +65,7 @@ public final class ShardCommit implements JsonpSerializable {
 	/**
 	 * API name: {@code generation}
 	 */
-	public Number generation() {
+	public Integer generation() {
 		return this.generation;
 	}
 
@@ -76,7 +79,7 @@ public final class ShardCommit implements JsonpSerializable {
 	/**
 	 * API name: {@code num_docs}
 	 */
-	public Number numDocs() {
+	public Long numDocs() {
 		return this.numDocs;
 	}
 
@@ -99,13 +102,13 @@ public final class ShardCommit implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("generation");
-		generator.write(this.generation.doubleValue());
+		generator.write(this.generation);
 
 		generator.writeKey("id");
 		generator.write(this.id);
 
 		generator.writeKey("num_docs");
-		generator.write(this.numDocs.doubleValue());
+		generator.write(this.numDocs);
 
 		generator.writeKey("user_data");
 		generator.writeStartObject();
@@ -124,18 +127,18 @@ public final class ShardCommit implements JsonpSerializable {
 	 * Builder for {@link ShardCommit}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardCommit> {
-		private Number generation;
+		private Integer generation;
 
 		private String id;
 
-		private Number numDocs;
+		private Long numDocs;
 
 		private Map<String, String> userData;
 
 		/**
 		 * API name: {@code generation}
 		 */
-		public Builder generation(Number value) {
+		public Builder generation(Integer value) {
 			this.generation = value;
 			return this;
 		}
@@ -151,7 +154,7 @@ public final class ShardCommit implements JsonpSerializable {
 		/**
 		 * API name: {@code num_docs}
 		 */
-		public Builder numDocs(Number value) {
+		public Builder numDocs(Long value) {
 			this.numDocs = value;
 			return this;
 		}
@@ -192,14 +195,14 @@ public final class ShardCommit implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardCommit}
 	 */
-	public static final JsonpDeserializer<ShardCommit> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardCommit::setupShardCommitDeserializer);
+	public static final JsonpDeserializer<ShardCommit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardCommit::setupShardCommitDeserializer, Builder::build);
 
 	protected static void setupShardCommitDeserializer(DelegatingDeserializer<ShardCommit.Builder> op) {
 
-		op.add(Builder::generation, JsonpDeserializer.numberDeserializer(), "generation");
+		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::numDocs, JsonpDeserializer.numberDeserializer(), "num_docs");
+		op.add(Builder::numDocs, JsonpDeserializer.longDeserializer(), "num_docs");
 		op.add(Builder::userData, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"user_data");
 

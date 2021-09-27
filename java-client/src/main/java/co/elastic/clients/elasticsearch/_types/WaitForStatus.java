@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum WaitForStatus implements StringEnum {
 	Green("green"), Yellow("yellow"), Red("red");
 
@@ -39,6 +41,6 @@ public enum WaitForStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<WaitForStatus> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<WaitForStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
 			WaitForStatus.values());
 }

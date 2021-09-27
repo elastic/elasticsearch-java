@@ -24,33 +24,35 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.RepositorySettings
+@JsonpDeserializable
 public final class RepositorySettings implements JsonpSerializable {
 	@Nullable
 	private final String chunkSize;
 
 	@Nullable
-	private final String compress;
+	private final Boolean compress;
 
 	@Nullable
-	private final JsonValue concurrentStreams;
+	private final String concurrentStreams;
 
 	private final String location;
 
 	@Nullable
-	private final String readOnly;
+	private final Boolean readOnly;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +78,7 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * API name: {@code compress}
 	 */
 	@Nullable
-	public String compress() {
+	public Boolean compress() {
 		return this.compress;
 	}
 
@@ -84,7 +86,7 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * API name: {@code concurrent_streams}
 	 */
 	@Nullable
-	public JsonValue concurrentStreams() {
+	public String concurrentStreams() {
 		return this.concurrentStreams;
 	}
 
@@ -99,7 +101,7 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * API name: {@code read_only}
 	 */
 	@Nullable
-	public String readOnly() {
+	public Boolean readOnly() {
 		return this.readOnly;
 	}
 
@@ -155,15 +157,15 @@ public final class RepositorySettings implements JsonpSerializable {
 		private String chunkSize;
 
 		@Nullable
-		private String compress;
+		private Boolean compress;
 
 		@Nullable
-		private JsonValue concurrentStreams;
+		private String concurrentStreams;
 
 		private String location;
 
 		@Nullable
-		private String readOnly;
+		private Boolean readOnly;
 
 		/**
 		 * API name: {@code chunk_size}
@@ -176,7 +178,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code compress}
 		 */
-		public Builder compress(@Nullable String value) {
+		public Builder compress(@Nullable Boolean value) {
 			this.compress = value;
 			return this;
 		}
@@ -184,7 +186,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code concurrent_streams}
 		 */
-		public Builder concurrentStreams(@Nullable JsonValue value) {
+		public Builder concurrentStreams(@Nullable String value) {
 			this.concurrentStreams = value;
 			return this;
 		}
@@ -200,7 +202,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code read_only}
 		 */
-		public Builder readOnly(@Nullable String value) {
+		public Builder readOnly(@Nullable Boolean value) {
 			this.readOnly = value;
 			return this;
 		}
@@ -222,16 +224,16 @@ public final class RepositorySettings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RepositorySettings}
 	 */
-	public static final JsonpDeserializer<RepositorySettings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer);
+	public static final JsonpDeserializer<RepositorySettings> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer, Builder::build);
 
 	protected static void setupRepositorySettingsDeserializer(DelegatingDeserializer<RepositorySettings.Builder> op) {
 
 		op.add(Builder::chunkSize, JsonpDeserializer.stringDeserializer(), "chunk_size");
-		op.add(Builder::compress, JsonpDeserializer.stringDeserializer(), "compress");
-		op.add(Builder::concurrentStreams, JsonpDeserializer.jsonValueDeserializer(), "concurrent_streams");
+		op.add(Builder::compress, JsonpDeserializer.booleanDeserializer(), "compress");
+		op.add(Builder::concurrentStreams, JsonpDeserializer.stringDeserializer(), "concurrent_streams");
 		op.add(Builder::location, JsonpDeserializer.stringDeserializer(), "location");
-		op.add(Builder::readOnly, JsonpDeserializer.stringDeserializer(), "read_only", "readonly");
+		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only", "readonly");
 
 	}
 

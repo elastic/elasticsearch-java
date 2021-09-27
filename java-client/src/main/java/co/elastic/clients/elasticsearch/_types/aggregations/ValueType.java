@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ValueType implements StringEnum {
 	String("string"), Long("long"), Double("double"), Number("number"), Date("date"), DateNanos("date_nanos"), Ip(
 			"ip"), Numeric("numeric"), GeoPoint("geo_point"), Boolean("boolean");
@@ -40,6 +42,6 @@ public enum ValueType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ValueType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ValueType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ValueType.values());
 }

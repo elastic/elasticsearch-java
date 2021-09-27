@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthc
+@JsonpDeserializable
 public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	private final NodeInfoXpackSecurityAuthcRealms realms;
 
@@ -142,14 +144,14 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpackSecurityAuthc}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthc> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackSecurityAuthc::setupNodeInfoXpackSecurityAuthcDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthc> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, NodeInfoXpackSecurityAuthc::setupNodeInfoXpackSecurityAuthcDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackSecurityAuthcDeserializer(
 			DelegatingDeserializer<NodeInfoXpackSecurityAuthc.Builder> op) {
 
-		op.add(Builder::realms, NodeInfoXpackSecurityAuthcRealms.DESERIALIZER, "realms");
-		op.add(Builder::token, NodeInfoXpackSecurityAuthcToken.DESERIALIZER, "token");
+		op.add(Builder::realms, NodeInfoXpackSecurityAuthcRealms._DESERIALIZER, "realms");
+		op.add(Builder::token, NodeInfoXpackSecurityAuthcToken._DESERIALIZER, "token");
 
 	}
 

@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.experiments.inheritance.base;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -30,7 +30,7 @@ import java.util.Objects;
 /**
  * An abstract base class
  */
-public abstract class BaseClass implements ToJsonp {
+public abstract class BaseClass implements JsonpSerializable {
 
     private final String baseField;
 
@@ -43,7 +43,7 @@ public abstract class BaseClass implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         toJsonpInternal(generator, mapper);
         generator.writeEnd();

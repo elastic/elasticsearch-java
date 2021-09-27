@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -39,11 +39,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.start_transform.Request
+
 public final class StartTransformRequest extends RequestBase {
 	private final String transformId;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ public final class StartTransformRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -82,7 +83,7 @@ public final class StartTransformRequest extends RequestBase {
 		private String transformId;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * The id of the transform to start
@@ -99,7 +100,7 @@ public final class StartTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -153,9 +154,9 @@ public final class StartTransformRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StartTransformResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, StartTransformResponse._DESERIALIZER);
 }

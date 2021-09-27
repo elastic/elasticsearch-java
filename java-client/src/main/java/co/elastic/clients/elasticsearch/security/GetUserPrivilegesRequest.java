@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Request
+
 public final class GetUserPrivilegesRequest extends RequestBase {
 	@Nullable
 	private final String application;
@@ -153,5 +155,5 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetUserPrivilegesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetUserPrivilegesResponse._DESERIALIZER);
 }

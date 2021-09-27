@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.security.get_role.Role;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: security.get_role.Response
+@JsonpDeserializable
 public final class GetRoleResponse extends AdditionalProperties<String, Role> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,12 +77,12 @@ public final class GetRoleResponse extends AdditionalProperties<String, Role> {
 	/**
 	 * Json deserializer for {@link GetRoleResponse}
 	 */
-	public static final JsonpDeserializer<GetRoleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetRoleResponse::setupGetRoleResponseDeserializer);
+	public static final JsonpDeserializer<GetRoleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetRoleResponse::setupGetRoleResponseDeserializer, Builder::build);
 
 	protected static void setupGetRoleResponseDeserializer(DelegatingDeserializer<GetRoleResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Role.DESERIALIZER);
+				Role._DESERIALIZER);
 
 	}
 

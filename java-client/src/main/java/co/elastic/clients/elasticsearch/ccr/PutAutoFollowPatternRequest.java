@@ -28,15 +28,15 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +48,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
+@JsonpDeserializable
 public final class PutAutoFollowPatternRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
@@ -63,37 +64,37 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	private final List<String> leaderIndexExclusionPatterns;
 
 	@Nullable
-	private final Number maxOutstandingReadRequests;
+	private final Integer maxOutstandingReadRequests;
 
 	@Nullable
 	private final Map<String, JsonData> settings;
 
 	@Nullable
-	private final Number maxOutstandingWriteRequests;
+	private final Integer maxOutstandingWriteRequests;
 
 	@Nullable
-	private final JsonValue readPollTimeout;
+	private final String readPollTimeout;
 
 	@Nullable
-	private final Number maxReadRequestOperationCount;
+	private final Integer maxReadRequestOperationCount;
 
 	@Nullable
-	private final JsonValue maxReadRequestSize;
+	private final String maxReadRequestSize;
 
 	@Nullable
-	private final JsonValue maxRetryDelay;
+	private final String maxRetryDelay;
 
 	@Nullable
-	private final Number maxWriteBufferCount;
+	private final Integer maxWriteBufferCount;
 
 	@Nullable
-	private final JsonValue maxWriteBufferSize;
+	private final String maxWriteBufferSize;
 
 	@Nullable
-	private final Number maxWriteRequestOperationCount;
+	private final Integer maxWriteRequestOperationCount;
 
 	@Nullable
-	private final JsonValue maxWriteRequestSize;
+	private final String maxWriteRequestSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -179,7 +180,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_outstanding_read_requests}
 	 */
 	@Nullable
-	public Number maxOutstandingReadRequests() {
+	public Integer maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
@@ -200,7 +201,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_outstanding_write_requests}
 	 */
 	@Nullable
-	public Number maxOutstandingWriteRequests() {
+	public Integer maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
@@ -214,7 +215,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code read_poll_timeout}
 	 */
 	@Nullable
-	public JsonValue readPollTimeout() {
+	public String readPollTimeout() {
 		return this.readPollTimeout;
 	}
 
@@ -224,7 +225,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_read_request_operation_count}
 	 */
 	@Nullable
-	public Number maxReadRequestOperationCount() {
+	public Integer maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
@@ -235,7 +236,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_read_request_size}
 	 */
 	@Nullable
-	public JsonValue maxReadRequestSize() {
+	public String maxReadRequestSize() {
 		return this.maxReadRequestSize;
 	}
 
@@ -246,7 +247,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_retry_delay}
 	 */
 	@Nullable
-	public JsonValue maxRetryDelay() {
+	public String maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
@@ -258,7 +259,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_buffer_count}
 	 */
 	@Nullable
-	public Number maxWriteBufferCount() {
+	public Integer maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
@@ -270,7 +271,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_buffer_size}
 	 */
 	@Nullable
-	public JsonValue maxWriteBufferSize() {
+	public String maxWriteBufferSize() {
 		return this.maxWriteBufferSize;
 	}
 
@@ -281,7 +282,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_request_operation_count}
 	 */
 	@Nullable
-	public Number maxWriteRequestOperationCount() {
+	public Integer maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
@@ -292,7 +293,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	 * API name: {@code max_write_request_size}
 	 */
 	@Nullable
-	public JsonValue maxWriteRequestSize() {
+	public String maxWriteRequestSize() {
 		return this.maxWriteRequestSize;
 	}
 
@@ -341,7 +342,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		if (this.maxOutstandingReadRequests != null) {
 
 			generator.writeKey("max_outstanding_read_requests");
-			generator.write(this.maxOutstandingReadRequests.doubleValue());
+			generator.write(this.maxOutstandingReadRequests);
 
 		}
 		if (this.settings != null) {
@@ -359,7 +360,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		if (this.maxOutstandingWriteRequests != null) {
 
 			generator.writeKey("max_outstanding_write_requests");
-			generator.write(this.maxOutstandingWriteRequests.doubleValue());
+			generator.write(this.maxOutstandingWriteRequests);
 
 		}
 		if (this.readPollTimeout != null) {
@@ -371,7 +372,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		if (this.maxReadRequestOperationCount != null) {
 
 			generator.writeKey("max_read_request_operation_count");
-			generator.write(this.maxReadRequestOperationCount.doubleValue());
+			generator.write(this.maxReadRequestOperationCount);
 
 		}
 		if (this.maxReadRequestSize != null) {
@@ -389,7 +390,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		if (this.maxWriteBufferCount != null) {
 
 			generator.writeKey("max_write_buffer_count");
-			generator.write(this.maxWriteBufferCount.doubleValue());
+			generator.write(this.maxWriteBufferCount);
 
 		}
 		if (this.maxWriteBufferSize != null) {
@@ -401,7 +402,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		if (this.maxWriteRequestOperationCount != null) {
 
 			generator.writeKey("max_write_request_operation_count");
-			generator.write(this.maxWriteRequestOperationCount.doubleValue());
+			generator.write(this.maxWriteRequestOperationCount);
 
 		}
 		if (this.maxWriteRequestSize != null) {
@@ -433,37 +434,37 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		private List<String> leaderIndexExclusionPatterns;
 
 		@Nullable
-		private Number maxOutstandingReadRequests;
+		private Integer maxOutstandingReadRequests;
 
 		@Nullable
 		private Map<String, JsonData> settings;
 
 		@Nullable
-		private Number maxOutstandingWriteRequests;
+		private Integer maxOutstandingWriteRequests;
 
 		@Nullable
-		private JsonValue readPollTimeout;
+		private String readPollTimeout;
 
 		@Nullable
-		private Number maxReadRequestOperationCount;
+		private Integer maxReadRequestOperationCount;
 
 		@Nullable
-		private JsonValue maxReadRequestSize;
+		private String maxReadRequestSize;
 
 		@Nullable
-		private JsonValue maxRetryDelay;
+		private String maxRetryDelay;
 
 		@Nullable
-		private Number maxWriteBufferCount;
+		private Integer maxWriteBufferCount;
 
 		@Nullable
-		private JsonValue maxWriteBufferSize;
+		private String maxWriteBufferSize;
 
 		@Nullable
-		private Number maxWriteRequestOperationCount;
+		private Integer maxWriteRequestOperationCount;
 
 		@Nullable
-		private JsonValue maxWriteRequestSize;
+		private String maxWriteRequestSize;
 
 		/**
 		 * The name of the collection of auto-follow patterns.
@@ -575,7 +576,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(@Nullable Number value) {
+		public Builder maxOutstandingReadRequests(@Nullable Integer value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
@@ -607,7 +608,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_outstanding_write_requests}
 		 */
-		public Builder maxOutstandingWriteRequests(@Nullable Number value) {
+		public Builder maxOutstandingWriteRequests(@Nullable Integer value) {
 			this.maxOutstandingWriteRequests = value;
 			return this;
 		}
@@ -621,7 +622,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code read_poll_timeout}
 		 */
-		public Builder readPollTimeout(@Nullable JsonValue value) {
+		public Builder readPollTimeout(@Nullable String value) {
 			this.readPollTimeout = value;
 			return this;
 		}
@@ -631,7 +632,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_read_request_operation_count}
 		 */
-		public Builder maxReadRequestOperationCount(@Nullable Number value) {
+		public Builder maxReadRequestOperationCount(@Nullable Integer value) {
 			this.maxReadRequestOperationCount = value;
 			return this;
 		}
@@ -642,7 +643,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_read_request_size}
 		 */
-		public Builder maxReadRequestSize(@Nullable JsonValue value) {
+		public Builder maxReadRequestSize(@Nullable String value) {
 			this.maxReadRequestSize = value;
 			return this;
 		}
@@ -653,7 +654,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_retry_delay}
 		 */
-		public Builder maxRetryDelay(@Nullable JsonValue value) {
+		public Builder maxRetryDelay(@Nullable String value) {
 			this.maxRetryDelay = value;
 			return this;
 		}
@@ -665,7 +666,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_buffer_count}
 		 */
-		public Builder maxWriteBufferCount(@Nullable Number value) {
+		public Builder maxWriteBufferCount(@Nullable Integer value) {
 			this.maxWriteBufferCount = value;
 			return this;
 		}
@@ -677,7 +678,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_buffer_size}
 		 */
-		public Builder maxWriteBufferSize(@Nullable JsonValue value) {
+		public Builder maxWriteBufferSize(@Nullable String value) {
 			this.maxWriteBufferSize = value;
 			return this;
 		}
@@ -688,7 +689,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_request_operation_count}
 		 */
-		public Builder maxWriteRequestOperationCount(@Nullable Number value) {
+		public Builder maxWriteRequestOperationCount(@Nullable Integer value) {
 			this.maxWriteRequestOperationCount = value;
 			return this;
 		}
@@ -699,7 +700,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code max_write_request_size}
 		 */
-		public Builder maxWriteRequestSize(@Nullable JsonValue value) {
+		public Builder maxWriteRequestSize(@Nullable String value) {
 			this.maxWriteRequestSize = value;
 			return this;
 		}
@@ -721,8 +722,8 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	/**
 	 * Json deserializer for {@link PutAutoFollowPatternRequest}
 	 */
-	public static final JsonpDeserializer<PutAutoFollowPatternRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer);
+	public static final JsonpDeserializer<PutAutoFollowPatternRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutAutoFollowPatternRequest::setupPutAutoFollowPatternRequestDeserializer, Builder::build);
 
 	protected static void setupPutAutoFollowPatternRequestDeserializer(
 			DelegatingDeserializer<PutAutoFollowPatternRequest.Builder> op) {
@@ -734,21 +735,21 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		op.add(Builder::leaderIndexExclusionPatterns,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"leader_index_exclusion_patterns");
-		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_read_requests");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
-		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::maxOutstandingWriteRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_write_requests");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_poll_timeout");
-		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_read_request_operation_count");
-		op.add(Builder::maxReadRequestSize, JsonpDeserializer.jsonValueDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.jsonValueDeserializer(), "max_retry_delay");
-		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.numberDeserializer(), "max_write_buffer_count");
-		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.jsonValueDeserializer(), "max_write_buffer_size");
-		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
+		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.integerDeserializer(), "max_write_buffer_count");
+		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
+		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.integerDeserializer(),
 				"max_write_request_operation_count");
-		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.jsonValueDeserializer(), "max_write_request_size");
+		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
 
 	}
 
@@ -789,5 +790,5 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutAutoFollowPatternResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutAutoFollowPatternResponse._DESERIALIZER);
 }

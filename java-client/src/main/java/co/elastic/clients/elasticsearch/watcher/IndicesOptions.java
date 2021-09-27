@@ -23,26 +23,31 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndicesOptions
+@JsonpDeserializable
 public final class IndicesOptions implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -73,7 +78,7 @@ public final class IndicesOptions implements JsonpSerializable {
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -113,7 +118,11 @@ public final class IndicesOptions implements JsonpSerializable {
 		if (this.expandWildcards != null) {
 
 			generator.writeKey("expand_wildcards");
-			generator.write(this.expandWildcards);
+			generator.writeStartArray();
+			for (ExpandWildcardOptions item0 : this.expandWildcards) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
 		if (this.ignoreUnavailable != null) {
@@ -141,7 +150,7 @@ public final class IndicesOptions implements JsonpSerializable {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -160,8 +169,27 @@ public final class IndicesOptions implements JsonpSerializable {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -198,13 +226,14 @@ public final class IndicesOptions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesOptions}
 	 */
-	public static final JsonpDeserializer<IndicesOptions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesOptions::setupIndicesOptionsDeserializer);
+	public static final JsonpDeserializer<IndicesOptions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndicesOptions::setupIndicesOptionsDeserializer, Builder::build);
 
 	protected static void setupIndicesOptionsDeserializer(DelegatingDeserializer<IndicesOptions.Builder> op) {
 
 		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
-		op.add(Builder::expandWildcards, JsonpDeserializer.jsonValueDeserializer(), "expand_wildcards");
+		op.add(Builder::expandWildcards, JsonpDeserializer.arrayDeserializer(ExpandWildcardOptions._DESERIALIZER),
+				"expand_wildcards");
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
 

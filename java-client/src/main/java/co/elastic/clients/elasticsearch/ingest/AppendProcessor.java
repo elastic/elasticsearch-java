@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -40,7 +41,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
-public final class AppendProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final List<JsonData> value;
@@ -57,6 +59,14 @@ public final class AppendProcessor extends ProcessorBase {
 		this.value = Objects.requireNonNull(builder.value, "value");
 		this.allowDuplicates = builder.allowDuplicates;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "append";
 	}
 
 	/**
@@ -185,13 +195,13 @@ public final class AppendProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link AppendProcessor}
 	 */
-	public static final JsonpDeserializer<AppendProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AppendProcessor::setupAppendProcessorDeserializer);
+	public static final JsonpDeserializer<AppendProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AppendProcessor::setupAppendProcessorDeserializer, Builder::build);
 
 	protected static void setupAppendProcessorDeserializer(DelegatingDeserializer<AppendProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonData.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "value");
 		op.add(Builder::allowDuplicates, JsonpDeserializer.booleanDeserializer(), "allow_duplicates");
 
 	}

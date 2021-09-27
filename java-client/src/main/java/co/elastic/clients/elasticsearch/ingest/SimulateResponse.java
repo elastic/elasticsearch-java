@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Response
+@JsonpDeserializable
 public final class SimulateResponse implements JsonpSerializable {
 	private final List<PipelineSimulation> docs;
 
@@ -145,12 +147,12 @@ public final class SimulateResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SimulateResponse}
 	 */
-	public static final JsonpDeserializer<SimulateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateResponse::setupSimulateResponseDeserializer);
+	public static final JsonpDeserializer<SimulateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SimulateResponse::setupSimulateResponseDeserializer, Builder::build);
 
 	protected static void setupSimulateResponseDeserializer(DelegatingDeserializer<SimulateResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PipelineSimulation.DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER), "docs");
 
 	}
 

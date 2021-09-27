@@ -25,13 +25,13 @@ package co.elastic.clients.elasticsearch.security.grant_api_key;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -42,11 +42,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
+@JsonpDeserializable
 public final class ApiKey implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final JsonValue expiration;
+	private final String expiration;
 
 	@Nullable
 	private final List<Map<String, JsonData>> roleDescriptors;
@@ -72,7 +73,7 @@ public final class ApiKey implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public JsonValue expiration() {
+	public String expiration() {
 		return this.expiration;
 	}
 
@@ -133,7 +134,7 @@ public final class ApiKey implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private JsonValue expiration;
+		private String expiration;
 
 		@Nullable
 		private List<Map<String, JsonData>> roleDescriptors;
@@ -149,7 +150,7 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable JsonValue value) {
+		public Builder expiration(@Nullable String value) {
 			this.expiration = value;
 			return this;
 		}
@@ -198,15 +199,15 @@ public final class ApiKey implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ApiKey}
 	 */
-	public static final JsonpDeserializer<ApiKey> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			ApiKey::setupApiKeyDeserializer);
+	public static final JsonpDeserializer<ApiKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ApiKey::setupApiKeyDeserializer, Builder::build);
 
 	protected static void setupApiKeyDeserializer(DelegatingDeserializer<ApiKey.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::expiration, JsonpDeserializer.jsonValueDeserializer(), "expiration");
+		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
 		op.add(Builder::roleDescriptors,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER)),
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
 				"role_descriptors");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,12 +32,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.OperatingSystem
+@JsonpDeserializable
 public final class OperatingSystem implements JsonpSerializable {
 	private final Cpu cpu;
 
@@ -44,7 +46,7 @@ public final class OperatingSystem implements JsonpSerializable {
 
 	private final MemoryStats swap;
 
-	private final Number timestamp;
+	private final Long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,7 +83,7 @@ public final class OperatingSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -106,7 +108,7 @@ public final class OperatingSystem implements JsonpSerializable {
 		this.swap.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -122,7 +124,7 @@ public final class OperatingSystem implements JsonpSerializable {
 
 		private MemoryStats swap;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		/**
 		 * API name: {@code cpu}
@@ -172,7 +174,7 @@ public final class OperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -194,15 +196,15 @@ public final class OperatingSystem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link OperatingSystem}
 	 */
-	public static final JsonpDeserializer<OperatingSystem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OperatingSystem::setupOperatingSystemDeserializer);
+	public static final JsonpDeserializer<OperatingSystem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			OperatingSystem::setupOperatingSystemDeserializer, Builder::build);
 
 	protected static void setupOperatingSystemDeserializer(DelegatingDeserializer<OperatingSystem.Builder> op) {
 
-		op.add(Builder::cpu, Cpu.DESERIALIZER, "cpu");
-		op.add(Builder::mem, ExtendedMemoryStats.DESERIALIZER, "mem");
-		op.add(Builder::swap, MemoryStats.DESERIALIZER, "swap");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
+		op.add(Builder::mem, ExtendedMemoryStats._DESERIALIZER, "mem");
+		op.add(Builder::swap, MemoryStats._DESERIALIZER, "swap");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

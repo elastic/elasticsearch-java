@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeAllocationExplanation
+@JsonpDeserializable
 public final class NodeAllocationExplanation implements JsonpSerializable {
 	private final List<AllocationDecision> deciders;
 
@@ -59,7 +61,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 
 	private final String transportAddress;
 
-	private final Number weightRanking;
+	private final Integer weightRanking;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -129,7 +131,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 	/**
 	 * API name: {@code weight_ranking}
 	 */
-	public Number weightRanking() {
+	public Integer weightRanking() {
 		return this.weightRanking;
 	}
 
@@ -181,7 +183,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		generator.write(this.transportAddress);
 
 		generator.writeKey("weight_ranking");
-		generator.write(this.weightRanking.doubleValue());
+		generator.write(this.weightRanking);
 
 	}
 
@@ -206,7 +208,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 
 		private String transportAddress;
 
-		private Number weightRanking;
+		private Integer weightRanking;
 
 		/**
 		 * API name: {@code deciders}
@@ -318,7 +320,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		/**
 		 * API name: {@code weight_ranking}
 		 */
-		public Builder weightRanking(Number value) {
+		public Builder weightRanking(Integer value) {
 			this.weightRanking = value;
 			return this;
 		}
@@ -340,21 +342,21 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeAllocationExplanation}
 	 */
-	public static final JsonpDeserializer<NodeAllocationExplanation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeAllocationExplanation::setupNodeAllocationExplanationDeserializer);
+	public static final JsonpDeserializer<NodeAllocationExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeAllocationExplanation::setupNodeAllocationExplanationDeserializer, Builder::build);
 
 	protected static void setupNodeAllocationExplanationDeserializer(
 			DelegatingDeserializer<NodeAllocationExplanation.Builder> op) {
 
-		op.add(Builder::deciders, JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER), "deciders");
+		op.add(Builder::deciders, JsonpDeserializer.arrayDeserializer(AllocationDecision._DESERIALIZER), "deciders");
 		op.add(Builder::nodeAttributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"node_attributes");
-		op.add(Builder::nodeDecision, Decision.DESERIALIZER, "node_decision");
+		op.add(Builder::nodeDecision, Decision._DESERIALIZER, "node_decision");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
-		op.add(Builder::store, AllocationStore.DESERIALIZER, "store");
+		op.add(Builder::store, AllocationStore._DESERIALIZER, "store");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::weightRanking, JsonpDeserializer.numberDeserializer(), "weight_ranking");
+		op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");
 
 	}
 

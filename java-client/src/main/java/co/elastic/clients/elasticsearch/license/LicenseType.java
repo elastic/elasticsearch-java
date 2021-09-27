@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.license;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum LicenseType implements StringEnum {
 	Missing("missing"), Trial("trial"), Basic("basic"), Standard("standard"), Dev("dev"), Silver("silver"), Gold(
 			"gold"), Platinum("platinum"), Enterprise("enterprise");
@@ -40,6 +42,6 @@ public enum LicenseType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<LicenseType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<LicenseType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			LicenseType.values());
 }

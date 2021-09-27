@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum IndexingJobState implements StringEnum {
 	Started("started"), Indexing("indexing"), Stopping("stopping"), Stopped("stopped"), Aborting("aborting");
 
@@ -39,6 +41,6 @@ public enum IndexingJobState implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexingJobState> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<IndexingJobState> _DESERIALIZER = new StringEnum.Deserializer<>(
 			IndexingJobState.values());
 }

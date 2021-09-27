@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,6 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Request
+@JsonpDeserializable
 public final class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -54,13 +56,13 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	private final Boolean active;
 
 	@Nullable
-	private final Number ifPrimaryTerm;
+	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Number ifSequenceNumber;
+	private final Long ifSequenceNumber;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final Map<String, Action> actions;
@@ -128,7 +130,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Number ifPrimaryTerm() {
+	public Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -136,7 +138,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code if_sequence_number}
 	 */
 	@Nullable
-	public Number ifSequenceNumber() {
+	public Long ifSequenceNumber() {
 		return this.ifSequenceNumber;
 	}
 
@@ -146,7 +148,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -286,13 +288,13 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		private Boolean active;
 
 		@Nullable
-		private Number ifPrimaryTerm;
+		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Number ifSequenceNumber;
+		private Long ifSequenceNumber;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private Map<String, Action> actions;
@@ -341,7 +343,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder ifPrimaryTerm(@Nullable Number value) {
+		public Builder ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -349,7 +351,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code if_sequence_number}
 		 */
-		public Builder ifSequenceNumber(@Nullable Number value) {
+		public Builder ifSequenceNumber(@Nullable Long value) {
 			this.ifSequenceNumber = value;
 			return this;
 		}
@@ -359,7 +361,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -501,18 +503,18 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link PutWatchRequest}
 	 */
-	public static final JsonpDeserializer<PutWatchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutWatchRequest::setupPutWatchRequestDeserializer);
+	public static final JsonpDeserializer<PutWatchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutWatchRequest::setupPutWatchRequestDeserializer, Builder::build);
 
 	protected static void setupPutWatchRequestDeserializer(DelegatingDeserializer<PutWatchRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action.DESERIALIZER), "actions");
-		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
-		op.add(Builder::input, Input.DESERIALIZER, "input");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action._DESERIALIZER), "actions");
+		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
+		op.add(Builder::input, Input._DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
-		op.add(Builder::transform, Transform.DESERIALIZER, "transform");
-		op.add(Builder::trigger, Trigger.DESERIALIZER, "trigger");
+		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
+		op.add(Builder::trigger, Trigger._DESERIALIZER, "trigger");
 
 	}
 
@@ -556,15 +558,15 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 					params.put("active", String.valueOf(request.active));
 				}
 				if (request.ifPrimaryTerm != null) {
-					params.put("if_primary_term", request.ifPrimaryTerm.toString());
+					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
 				if (request.ifSequenceNumber != null) {
-					params.put("if_sequence_number", request.ifSequenceNumber.toString());
+					params.put("if_sequence_number", String.valueOf(request.ifSequenceNumber));
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutWatchResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutWatchResponse._DESERIALIZER);
 }

@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
-public final class GeoBoundingBoxQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final GeoExecution type;
 
@@ -61,7 +62,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "geo_bounding_box";
 	}
 
@@ -90,7 +91,6 @@ public final class GeoBoundingBoxQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
@@ -109,8 +109,6 @@ public final class GeoBoundingBoxQuery extends QueryBase implements Query {
 			generator.write(this.ignoreUnmapped);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -174,14 +172,16 @@ public final class GeoBoundingBoxQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<GeoBoundingBoxQuery.Builder, GeoBoundingBoxQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(GeoBoundingBoxQuery::setupGeoBoundingBoxQueryDeserializer);
+	/**
+	 * Json deserializer for {@link GeoBoundingBoxQuery}
+	 */
+	public static final JsonpDeserializer<GeoBoundingBoxQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoBoundingBoxQuery::setupGeoBoundingBoxQueryDeserializer, Builder::build);
 
 	protected static void setupGeoBoundingBoxQueryDeserializer(DelegatingDeserializer<GeoBoundingBoxQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::type, GeoExecution.DESERIALIZER, "type");
-		op.add(Builder::validationMethod, GeoValidationMethod.DESERIALIZER, "validation_method");
+		op.add(Builder::type, GeoExecution._DESERIALIZER, "type");
+		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 	}

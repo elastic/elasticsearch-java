@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Profile
+@JsonpDeserializable
 public final class Profile implements JsonpSerializable {
 	private final List<ShardProfile> shards;
 
@@ -144,12 +146,12 @@ public final class Profile implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Profile}
 	 */
-	public static final JsonpDeserializer<Profile> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Profile::setupProfileDeserializer);
+	public static final JsonpDeserializer<Profile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Profile::setupProfileDeserializer, Builder::build);
 
 	protected static void setupProfileDeserializer(DelegatingDeserializer<Profile.Builder> op) {
 
-		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardProfile.DESERIALIZER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardProfile._DESERIALIZER), "shards");
 
 	}
 

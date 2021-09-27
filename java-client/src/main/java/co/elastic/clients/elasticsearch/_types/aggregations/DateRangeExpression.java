@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,15 +33,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeExpression
+@JsonpDeserializable
 public final class DateRangeExpression implements JsonpSerializable {
 	@Nullable
-	private final JsonValue from;
+	private final JsonValue /* Union(_types.DateMath | _types.float) */ from;
 
 	@Nullable
 	private final String fromAsString;
@@ -52,10 +54,10 @@ public final class DateRangeExpression implements JsonpSerializable {
 	private final String key;
 
 	@Nullable
-	private final JsonValue to;
+	private final JsonValue /* Union(_types.DateMath | _types.float) */ to;
 
 	@Nullable
-	private final Number docCount;
+	private final Long docCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +76,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public JsonValue from() {
+	public JsonValue /* Union(_types.DateMath | _types.float) */ from() {
 		return this.from;
 	}
 
@@ -106,7 +108,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public JsonValue to() {
+	public JsonValue /* Union(_types.DateMath | _types.float) */ to() {
 		return this.to;
 	}
 
@@ -114,7 +116,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 * API name: {@code doc_count}
 	 */
 	@Nullable
-	public Number docCount() {
+	public Long docCount() {
 		return this.docCount;
 	}
 
@@ -162,7 +164,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		if (this.docCount != null) {
 
 			generator.writeKey("doc_count");
-			generator.write(this.docCount.doubleValue());
+			generator.write(this.docCount);
 
 		}
 
@@ -175,7 +177,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<DateRangeExpression> {
 		@Nullable
-		private JsonValue from;
+		private JsonValue /* Union(_types.DateMath | _types.float) */ from;
 
 		@Nullable
 		private String fromAsString;
@@ -187,15 +189,15 @@ public final class DateRangeExpression implements JsonpSerializable {
 		private String key;
 
 		@Nullable
-		private JsonValue to;
+		private JsonValue /* Union(_types.DateMath | _types.float) */ to;
 
 		@Nullable
-		private Number docCount;
+		private Long docCount;
 
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable JsonValue value) {
+		public Builder from(@Nullable JsonValue /* Union(_types.DateMath | _types.float) */ value) {
 			this.from = value;
 			return this;
 		}
@@ -227,7 +229,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code to}
 		 */
-		public Builder to(@Nullable JsonValue value) {
+		public Builder to(@Nullable JsonValue /* Union(_types.DateMath | _types.float) */ value) {
 			this.to = value;
 			return this;
 		}
@@ -235,7 +237,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(@Nullable Number value) {
+		public Builder docCount(@Nullable Long value) {
 			this.docCount = value;
 			return this;
 		}
@@ -257,8 +259,8 @@ public final class DateRangeExpression implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DateRangeExpression}
 	 */
-	public static final JsonpDeserializer<DateRangeExpression> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DateRangeExpression::setupDateRangeExpressionDeserializer);
+	public static final JsonpDeserializer<DateRangeExpression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DateRangeExpression::setupDateRangeExpressionDeserializer, Builder::build);
 
 	protected static void setupDateRangeExpressionDeserializer(DelegatingDeserializer<DateRangeExpression.Builder> op) {
 
@@ -267,7 +269,7 @@ public final class DateRangeExpression implements JsonpSerializable {
 		op.add(Builder::toAsString, JsonpDeserializer.stringDeserializer(), "to_as_string");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 		op.add(Builder::to, JsonpDeserializer.jsonValueDeserializer(), "to");
-		op.add(Builder::docCount, JsonpDeserializer.numberDeserializer(), "doc_count");
+		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 
 	}
 

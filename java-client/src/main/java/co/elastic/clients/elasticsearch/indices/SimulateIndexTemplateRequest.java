@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -44,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
+@JsonpDeserializable
 public final class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
@@ -330,8 +332,8 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 	/**
 	 * Json deserializer for {@link SimulateIndexTemplateRequest}
 	 */
-	public static final JsonpDeserializer<SimulateIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer);
+	public static final JsonpDeserializer<SimulateIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupSimulateIndexTemplateRequestDeserializer(
 			DelegatingDeserializer<SimulateIndexTemplateRequest.Builder> op) {
@@ -340,9 +342,9 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 				"index_patterns");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate.DESERIALIZER),
+		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate._DESERIALIZER),
 				"overlapping");
-		op.add(Builder::template, TemplateMapping.DESERIALIZER, "template");
+		op.add(Builder::template, TemplateMapping._DESERIALIZER, "template");
 
 	}
 
@@ -383,5 +385,5 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateIndexTemplateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, SimulateIndexTemplateResponse._DESERIALIZER);
 }

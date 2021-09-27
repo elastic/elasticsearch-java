@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicenseType
+@JsonpDeserializable
 public final class NodeInfoXpackLicenseType implements JsonpSerializable {
 	private final String type;
 
@@ -103,8 +105,8 @@ public final class NodeInfoXpackLicenseType implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpackLicenseType}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackLicenseType> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackLicenseType::setupNodeInfoXpackLicenseTypeDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackLicenseType> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackLicenseType::setupNodeInfoXpackLicenseTypeDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackLicenseTypeDeserializer(
 			DelegatingDeserializer<NodeInfoXpackLicenseType.Builder> op) {

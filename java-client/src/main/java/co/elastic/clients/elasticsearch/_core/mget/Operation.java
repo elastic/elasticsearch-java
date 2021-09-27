@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.mget;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,8 +43,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
+@JsonpDeserializable
 public final class Operation implements JsonpSerializable {
-	private final JsonValue id;
+	private final String id;
 
 	@Nullable
 	private final String index;
@@ -52,7 +54,9 @@ public final class Operation implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /*
+							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 */ source;
 
 	@Nullable
 	private final List<String> storedFields;
@@ -61,7 +65,7 @@ public final class Operation implements JsonpSerializable {
 	private final String type;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
@@ -84,7 +88,7 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * API name: {@code _id}
 	 */
-	public JsonValue id() {
+	public String id() {
 		return this.id;
 	}
 
@@ -108,7 +112,9 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /*
+						 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+						 */ source() {
 		return this.source;
 	}
 
@@ -132,7 +138,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -196,7 +202,7 @@ public final class Operation implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
@@ -213,7 +219,7 @@ public final class Operation implements JsonpSerializable {
 	 * Builder for {@link Operation}.
 	 */
 	public static class Builder implements ObjectBuilder<Operation> {
-		private JsonValue id;
+		private String id;
 
 		@Nullable
 		private String index;
@@ -222,7 +228,9 @@ public final class Operation implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /*
+							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 */ source;
 
 		@Nullable
 		private List<String> storedFields;
@@ -231,7 +239,7 @@ public final class Operation implements JsonpSerializable {
 		private String type;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
@@ -239,7 +247,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder id(JsonValue value) {
+		public Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -263,7 +271,10 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(
+				@Nullable JsonValue /*
+									 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+									 */ value) {
 			this.source = value;
 			return this;
 		}
@@ -306,7 +317,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -336,20 +347,20 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Operation}
 	 */
-	public static final JsonpDeserializer<Operation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Operation::setupOperationDeserializer);
+	public static final JsonpDeserializer<Operation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Operation::setupOperationDeserializer, Builder::build);
 
 	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.jsonValueDeserializer(), "_id");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::versionType, VersionType.DESERIALIZER, "version_type");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 

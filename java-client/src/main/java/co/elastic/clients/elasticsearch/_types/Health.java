@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum Health implements StringEnum {
 	/**
 	 * All shards are assigned.
@@ -53,5 +55,5 @@ public enum Health implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Health> DESERIALIZER = new StringEnum.Deserializer<>(Health.values());
+	public static final StringEnum.Deserializer<Health> _DESERIALIZER = new StringEnum.Deserializer<>(Health.values());
 }

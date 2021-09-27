@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,23 +32,24 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.ThreadCount
+@JsonpDeserializable
 public final class ThreadCount implements JsonpSerializable {
-	private final Number active;
+	private final Long active;
 
-	private final Number completed;
+	private final Long completed;
 
-	private final Number largest;
+	private final Long largest;
 
-	private final Number queue;
+	private final Long queue;
 
-	private final Number rejected;
+	private final Long rejected;
 
-	private final Number threads;
+	private final Long threads;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,42 +67,42 @@ public final class ThreadCount implements JsonpSerializable {
 	/**
 	 * API name: {@code active}
 	 */
-	public Number active() {
+	public Long active() {
 		return this.active;
 	}
 
 	/**
 	 * API name: {@code completed}
 	 */
-	public Number completed() {
+	public Long completed() {
 		return this.completed;
 	}
 
 	/**
 	 * API name: {@code largest}
 	 */
-	public Number largest() {
+	public Long largest() {
 		return this.largest;
 	}
 
 	/**
 	 * API name: {@code queue}
 	 */
-	public Number queue() {
+	public Long queue() {
 		return this.queue;
 	}
 
 	/**
 	 * API name: {@code rejected}
 	 */
-	public Number rejected() {
+	public Long rejected() {
 		return this.rejected;
 	}
 
 	/**
 	 * API name: {@code threads}
 	 */
-	public Number threads() {
+	public Long threads() {
 		return this.threads;
 	}
 
@@ -116,22 +118,22 @@ public final class ThreadCount implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active");
-		generator.write(this.active.doubleValue());
+		generator.write(this.active);
 
 		generator.writeKey("completed");
-		generator.write(this.completed.doubleValue());
+		generator.write(this.completed);
 
 		generator.writeKey("largest");
-		generator.write(this.largest.doubleValue());
+		generator.write(this.largest);
 
 		generator.writeKey("queue");
-		generator.write(this.queue.doubleValue());
+		generator.write(this.queue);
 
 		generator.writeKey("rejected");
-		generator.write(this.rejected.doubleValue());
+		generator.write(this.rejected);
 
 		generator.writeKey("threads");
-		generator.write(this.threads.doubleValue());
+		generator.write(this.threads);
 
 	}
 
@@ -141,22 +143,22 @@ public final class ThreadCount implements JsonpSerializable {
 	 * Builder for {@link ThreadCount}.
 	 */
 	public static class Builder implements ObjectBuilder<ThreadCount> {
-		private Number active;
+		private Long active;
 
-		private Number completed;
+		private Long completed;
 
-		private Number largest;
+		private Long largest;
 
-		private Number queue;
+		private Long queue;
 
-		private Number rejected;
+		private Long rejected;
 
-		private Number threads;
+		private Long threads;
 
 		/**
 		 * API name: {@code active}
 		 */
-		public Builder active(Number value) {
+		public Builder active(Long value) {
 			this.active = value;
 			return this;
 		}
@@ -164,7 +166,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code completed}
 		 */
-		public Builder completed(Number value) {
+		public Builder completed(Long value) {
 			this.completed = value;
 			return this;
 		}
@@ -172,7 +174,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code largest}
 		 */
-		public Builder largest(Number value) {
+		public Builder largest(Long value) {
 			this.largest = value;
 			return this;
 		}
@@ -180,7 +182,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code queue}
 		 */
-		public Builder queue(Number value) {
+		public Builder queue(Long value) {
 			this.queue = value;
 			return this;
 		}
@@ -188,7 +190,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code rejected}
 		 */
-		public Builder rejected(Number value) {
+		public Builder rejected(Long value) {
 			this.rejected = value;
 			return this;
 		}
@@ -196,7 +198,7 @@ public final class ThreadCount implements JsonpSerializable {
 		/**
 		 * API name: {@code threads}
 		 */
-		public Builder threads(Number value) {
+		public Builder threads(Long value) {
 			this.threads = value;
 			return this;
 		}
@@ -218,17 +220,17 @@ public final class ThreadCount implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ThreadCount}
 	 */
-	public static final JsonpDeserializer<ThreadCount> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ThreadCount::setupThreadCountDeserializer);
+	public static final JsonpDeserializer<ThreadCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ThreadCount::setupThreadCountDeserializer, Builder::build);
 
 	protected static void setupThreadCountDeserializer(DelegatingDeserializer<ThreadCount.Builder> op) {
 
-		op.add(Builder::active, JsonpDeserializer.numberDeserializer(), "active");
-		op.add(Builder::completed, JsonpDeserializer.numberDeserializer(), "completed");
-		op.add(Builder::largest, JsonpDeserializer.numberDeserializer(), "largest");
-		op.add(Builder::queue, JsonpDeserializer.numberDeserializer(), "queue");
-		op.add(Builder::rejected, JsonpDeserializer.numberDeserializer(), "rejected");
-		op.add(Builder::threads, JsonpDeserializer.numberDeserializer(), "threads");
+		op.add(Builder::active, JsonpDeserializer.longDeserializer(), "active");
+		op.add(Builder::completed, JsonpDeserializer.longDeserializer(), "completed");
+		op.add(Builder::largest, JsonpDeserializer.longDeserializer(), "largest");
+		op.add(Builder::queue, JsonpDeserializer.longDeserializer(), "queue");
+		op.add(Builder::rejected, JsonpDeserializer.longDeserializer(), "rejected");
+		op.add(Builder::threads, JsonpDeserializer.longDeserializer(), "threads");
 
 	}
 

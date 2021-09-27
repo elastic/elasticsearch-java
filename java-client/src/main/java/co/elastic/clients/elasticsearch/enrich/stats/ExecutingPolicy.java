@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.enrich.stats;
 
 import co.elastic.clients.elasticsearch.tasks.Info;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.ExecutingPolicy
+@JsonpDeserializable
 public final class ExecutingPolicy implements JsonpSerializable {
 	private final String name;
 
@@ -135,13 +137,13 @@ public final class ExecutingPolicy implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecutingPolicy}
 	 */
-	public static final JsonpDeserializer<ExecutingPolicy> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutingPolicy::setupExecutingPolicyDeserializer);
+	public static final JsonpDeserializer<ExecutingPolicy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExecutingPolicy::setupExecutingPolicyDeserializer, Builder::build);
 
 	protected static void setupExecutingPolicyDeserializer(DelegatingDeserializer<ExecutingPolicy.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::task, Info.DESERIALIZER, "task");
+		op.add(Builder::task, Info._DESERIALIZER, "task");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Base
+@JsonpDeserializable
 public class Base implements JsonpSerializable {
 	private final Boolean available;
 
@@ -136,8 +138,8 @@ public class Base implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Base}
 	 */
-	public static final JsonpDeserializer<Base> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Base::setupBaseDeserializer);
+	public static final JsonpDeserializer<Base> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Base::setupBaseDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {

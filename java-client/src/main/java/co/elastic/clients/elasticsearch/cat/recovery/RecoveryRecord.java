@@ -24,19 +24,20 @@
 package co.elastic.clients.elasticsearch.cat.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.RecoveryRecord
+@JsonpDeserializable
 public final class RecoveryRecord implements JsonpSerializable {
 	@Nullable
 	private final String index;
@@ -90,7 +91,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	private final String filesRecovered;
 
 	@Nullable
-	private final JsonValue filesPercent;
+	private final String filesPercent;
 
 	@Nullable
 	private final String filesTotal;
@@ -102,7 +103,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	private final String bytesRecovered;
 
 	@Nullable
-	private final JsonValue bytesPercent;
+	private final String bytesPercent;
 
 	@Nullable
 	private final String bytesTotal;
@@ -114,7 +115,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	private final String translogOpsRecovered;
 
 	@Nullable
-	private final JsonValue translogOpsPercent;
+	private final String translogOpsPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -325,7 +326,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code files_percent}
 	 */
 	@Nullable
-	public JsonValue filesPercent() {
+	public String filesPercent() {
 		return this.filesPercent;
 	}
 
@@ -365,7 +366,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code bytes_percent}
 	 */
 	@Nullable
-	public JsonValue bytesPercent() {
+	public String bytesPercent() {
 		return this.bytesPercent;
 	}
 
@@ -405,7 +406,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code translog_ops_percent}
 	 */
 	@Nullable
-	public JsonValue translogOpsPercent() {
+	public String translogOpsPercent() {
 		return this.translogOpsPercent;
 	}
 
@@ -637,7 +638,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		private String filesRecovered;
 
 		@Nullable
-		private JsonValue filesPercent;
+		private String filesPercent;
 
 		@Nullable
 		private String filesTotal;
@@ -649,7 +650,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		private String bytesRecovered;
 
 		@Nullable
-		private JsonValue bytesPercent;
+		private String bytesPercent;
 
 		@Nullable
 		private String bytesTotal;
@@ -661,7 +662,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		private String translogOpsRecovered;
 
 		@Nullable
-		private JsonValue translogOpsPercent;
+		private String translogOpsPercent;
 
 		/**
 		 * index name
@@ -838,7 +839,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code files_percent}
 		 */
-		public Builder filesPercent(@Nullable JsonValue value) {
+		public Builder filesPercent(@Nullable String value) {
 			this.filesPercent = value;
 			return this;
 		}
@@ -878,7 +879,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bytes_percent}
 		 */
-		public Builder bytesPercent(@Nullable JsonValue value) {
+		public Builder bytesPercent(@Nullable String value) {
 			this.bytesPercent = value;
 			return this;
 		}
@@ -918,7 +919,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code translog_ops_percent}
 		 */
-		public Builder translogOpsPercent(@Nullable JsonValue value) {
+		public Builder translogOpsPercent(@Nullable String value) {
 			this.translogOpsPercent = value;
 			return this;
 		}
@@ -940,8 +941,8 @@ public final class RecoveryRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryRecord}
 	 */
-	public static final JsonpDeserializer<RecoveryRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryRecord::setupRecoveryRecordDeserializer);
+	public static final JsonpDeserializer<RecoveryRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryRecord::setupRecoveryRecordDeserializer, Builder::build);
 
 	protected static void setupRecoveryRecordDeserializer(DelegatingDeserializer<RecoveryRecord.Builder> op) {
 
@@ -962,15 +963,15 @@ public final class RecoveryRecord implements JsonpSerializable {
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot", "snap");
 		op.add(Builder::files, JsonpDeserializer.stringDeserializer(), "files", "f");
 		op.add(Builder::filesRecovered, JsonpDeserializer.stringDeserializer(), "files_recovered", "fr");
-		op.add(Builder::filesPercent, JsonpDeserializer.jsonValueDeserializer(), "files_percent", "fp");
+		op.add(Builder::filesPercent, JsonpDeserializer.stringDeserializer(), "files_percent", "fp");
 		op.add(Builder::filesTotal, JsonpDeserializer.stringDeserializer(), "files_total", "tf");
 		op.add(Builder::bytes, JsonpDeserializer.stringDeserializer(), "bytes", "b");
 		op.add(Builder::bytesRecovered, JsonpDeserializer.stringDeserializer(), "bytes_recovered", "br");
-		op.add(Builder::bytesPercent, JsonpDeserializer.jsonValueDeserializer(), "bytes_percent", "bp");
+		op.add(Builder::bytesPercent, JsonpDeserializer.stringDeserializer(), "bytes_percent", "bp");
 		op.add(Builder::bytesTotal, JsonpDeserializer.stringDeserializer(), "bytes_total", "tb");
 		op.add(Builder::translogOps, JsonpDeserializer.stringDeserializer(), "translog_ops", "to");
 		op.add(Builder::translogOpsRecovered, JsonpDeserializer.stringDeserializer(), "translog_ops_recovered", "tor");
-		op.add(Builder::translogOpsPercent, JsonpDeserializer.jsonValueDeserializer(), "translog_ops_percent", "top");
+		op.add(Builder::translogOpsPercent, JsonpDeserializer.stringDeserializer(), "translog_ops_percent", "top");
 
 	}
 

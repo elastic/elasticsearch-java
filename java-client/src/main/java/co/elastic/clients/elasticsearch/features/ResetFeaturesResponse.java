@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features.reset_features.Response
+@JsonpDeserializable
 public final class ResetFeaturesResponse implements JsonpSerializable {
 	private final List<Feature> features;
 
@@ -144,13 +146,13 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ResetFeaturesResponse}
 	 */
-	public static final JsonpDeserializer<ResetFeaturesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResetFeaturesResponse::setupResetFeaturesResponseDeserializer);
+	public static final JsonpDeserializer<ResetFeaturesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResetFeaturesResponse::setupResetFeaturesResponseDeserializer, Builder::build);
 
 	protected static void setupResetFeaturesResponseDeserializer(
 			DelegatingDeserializer<ResetFeaturesResponse.Builder> op) {
 
-		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature.DESERIALIZER), "features");
+		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature._DESERIALIZER), "features");
 
 	}
 

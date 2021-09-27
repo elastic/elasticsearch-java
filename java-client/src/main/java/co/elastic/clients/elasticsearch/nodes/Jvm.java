@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Jvm
+@JsonpDeserializable
 public final class Jvm implements JsonpSerializable {
 	private final Map<String, NodeBufferPool> bufferPools;
 
@@ -52,11 +54,11 @@ public final class Jvm implements JsonpSerializable {
 
 	private final JvmThreads threads;
 
-	private final Number timestamp;
+	private final Long timestamp;
 
 	private final String uptime;
 
-	private final Number uptimeInMillis;
+	private final Long uptimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -111,7 +113,7 @@ public final class Jvm implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -125,7 +127,7 @@ public final class Jvm implements JsonpSerializable {
 	/**
 	 * API name: {@code uptime_in_millis}
 	 */
-	public Number uptimeInMillis() {
+	public Long uptimeInMillis() {
 		return this.uptimeInMillis;
 	}
 
@@ -162,13 +164,13 @@ public final class Jvm implements JsonpSerializable {
 		this.threads.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 		generator.writeKey("uptime");
 		generator.write(this.uptime);
 
 		generator.writeKey("uptime_in_millis");
-		generator.write(this.uptimeInMillis.doubleValue());
+		generator.write(this.uptimeInMillis);
 
 	}
 
@@ -188,11 +190,11 @@ public final class Jvm implements JsonpSerializable {
 
 		private JvmThreads threads;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		private String uptime;
 
-		private Number uptimeInMillis;
+		private Long uptimeInMillis;
 
 		/**
 		 * API name: {@code buffer_pools}
@@ -290,7 +292,7 @@ public final class Jvm implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -306,7 +308,7 @@ public final class Jvm implements JsonpSerializable {
 		/**
 		 * API name: {@code uptime_in_millis}
 		 */
-		public Builder uptimeInMillis(Number value) {
+		public Builder uptimeInMillis(Long value) {
 			this.uptimeInMillis = value;
 			return this;
 		}
@@ -328,20 +330,20 @@ public final class Jvm implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Jvm}
 	 */
-	public static final JsonpDeserializer<Jvm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Jvm::setupJvmDeserializer);
+	public static final JsonpDeserializer<Jvm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Jvm::setupJvmDeserializer, Builder::build);
 
 	protected static void setupJvmDeserializer(DelegatingDeserializer<Jvm.Builder> op) {
 
-		op.add(Builder::bufferPools, JsonpDeserializer.stringMapDeserializer(NodeBufferPool.DESERIALIZER),
+		op.add(Builder::bufferPools, JsonpDeserializer.stringMapDeserializer(NodeBufferPool._DESERIALIZER),
 				"buffer_pools");
-		op.add(Builder::classes, JvmClasses.DESERIALIZER, "classes");
-		op.add(Builder::gc, GarbageCollector.DESERIALIZER, "gc");
-		op.add(Builder::mem, MemoryStats.DESERIALIZER, "mem");
-		op.add(Builder::threads, JvmThreads.DESERIALIZER, "threads");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::classes, JvmClasses._DESERIALIZER, "classes");
+		op.add(Builder::gc, GarbageCollector._DESERIALIZER, "gc");
+		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");
+		op.add(Builder::threads, JvmThreads._DESERIALIZER, "threads");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime");
-		op.add(Builder::uptimeInMillis, JsonpDeserializer.numberDeserializer(), "uptime_in_millis");
+		op.add(Builder::uptimeInMillis, JsonpDeserializer.longDeserializer(), "uptime_in_millis");
 
 	}
 

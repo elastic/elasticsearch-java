@@ -25,24 +25,25 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.watcher.SearchInputRequestDefinition;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SearchTransform
-public final class SearchTransform implements Transform, JsonpSerializable {
+@JsonpDeserializable
+public final class SearchTransform implements TransformVariant, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
 
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -57,7 +58,7 @@ public final class SearchTransform implements Transform, JsonpSerializable {
 	 * {@link Transform} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "search";
 	}
 
@@ -71,7 +72,7 @@ public final class SearchTransform implements Transform, JsonpSerializable {
 	/**
 	 * API name: {@code timeout}
 	 */
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -85,15 +86,12 @@ public final class SearchTransform implements Transform, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("request");
 		this.request.serialize(generator, mapper);
 
 		generator.writeKey("timeout");
 		generator.write(this.timeout);
-
-		generator.writeEnd();
 
 	}
 
@@ -105,7 +103,7 @@ public final class SearchTransform implements Transform, JsonpSerializable {
 	public static class Builder implements ObjectBuilder<SearchTransform> {
 		private SearchInputRequestDefinition request;
 
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * API name: {@code request}
@@ -126,7 +124,7 @@ public final class SearchTransform implements Transform, JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(JsonValue value) {
+		public Builder timeout(String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -145,14 +143,16 @@ public final class SearchTransform implements Transform, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<SearchTransform.Builder, SearchTransform.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(SearchTransform::setupSearchTransformDeserializer);
+	/**
+	 * Json deserializer for {@link SearchTransform}
+	 */
+	public static final JsonpDeserializer<SearchTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchTransform::setupSearchTransformDeserializer, Builder::build);
 
 	protected static void setupSearchTransformDeserializer(DelegatingDeserializer<SearchTransform.Builder> op) {
 
-		op.add(Builder::request, SearchInputRequestDefinition.DESERIALIZER, "request");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::request, SearchInputRequestDefinition._DESERIALIZER, "request");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.clear_cache.Response
+@JsonpDeserializable
 public final class ClearCacheResponse implements JsonpSerializable {
 	private final JsonData value;
 
@@ -99,12 +101,12 @@ public final class ClearCacheResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClearCacheResponse}
 	 */
-	public static final JsonpDeserializer<ClearCacheResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer);
+	public static final JsonpDeserializer<ClearCacheResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer, Builder::build);
 
 	protected static void setupClearCacheResponseDeserializer(DelegatingDeserializer<ClearCacheResponse.Builder> op) {
 
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

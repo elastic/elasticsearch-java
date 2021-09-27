@@ -38,7 +38,7 @@ public class TermsQuery implements JsonpSerializable, Query.Variant {
     }
 
     @Override
-    public String _type() {
+    public String _variantType() {
         return "terms";
     }
 

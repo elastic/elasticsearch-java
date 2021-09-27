@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.experiments.containers;
 
-import co.elastic.clients.elasticsearch.experiments.containers.subpackage.VariantA;
+import co.elastic.clients.elasticsearch.experiments.containers.container_members.VariantA;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum BoundaryScanner implements StringEnum {
 	Chars("chars"), Sentence("sentence"), Word("word");
 
@@ -39,6 +41,6 @@ public enum BoundaryScanner implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<BoundaryScanner> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<BoundaryScanner> _DESERIALIZER = new StringEnum.Deserializer<>(
 			BoundaryScanner.values());
 }

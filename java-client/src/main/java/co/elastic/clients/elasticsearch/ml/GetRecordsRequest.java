@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,14 +46,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Request
+@JsonpDeserializable
 public final class GetRecordsRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final Boolean desc;
@@ -63,7 +66,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	private final Page page;
 
 	@Nullable
-	private final Number recordScore;
+	private final Double recordScore;
 
 	@Nullable
 	private final String sort;
@@ -106,7 +109,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -116,7 +119,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -148,7 +151,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code record_score}
 	 */
 	@Nullable
-	public Number recordScore() {
+	public Double recordScore() {
 		return this.recordScore;
 	}
 
@@ -208,7 +211,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		if (this.recordScore != null) {
 
 			generator.writeKey("record_score");
-			generator.write(this.recordScore.doubleValue());
+			generator.write(this.recordScore);
 
 		}
 		if (this.sort != null) {
@@ -241,10 +244,10 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		private String jobId;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private Boolean desc;
@@ -256,7 +259,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		private Page page;
 
 		@Nullable
-		private Number recordScore;
+		private Double recordScore;
 
 		@Nullable
 		private String sort;
@@ -282,7 +285,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -292,7 +295,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -331,7 +334,7 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code record_score}
 		 */
-		public Builder recordScore(@Nullable Number value) {
+		public Builder recordScore(@Nullable Double value) {
 			this.recordScore = value;
 			return this;
 		}
@@ -377,15 +380,15 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Json deserializer for {@link GetRecordsRequest}
 	 */
-	public static final JsonpDeserializer<GetRecordsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetRecordsRequest::setupGetRecordsRequestDeserializer);
+	public static final JsonpDeserializer<GetRecordsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRecordsRequest::setupGetRecordsRequestDeserializer, Builder::build);
 
 	protected static void setupGetRecordsRequestDeserializer(DelegatingDeserializer<GetRecordsRequest.Builder> op) {
 
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
-		op.add(Builder::page, Page.DESERIALIZER, "page");
-		op.add(Builder::recordScore, JsonpDeserializer.numberDeserializer(), "record_score");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
+		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
@@ -431,12 +434,12 @@ public final class GetRecordsRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetRecordsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetRecordsResponse._DESERIALIZER);
 }

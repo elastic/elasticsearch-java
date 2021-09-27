@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ShardsStatsStage implements StringEnum {
 	/**
 	 * Number of shards in the snapshot that were successfully stored in the
@@ -63,6 +65,6 @@ public enum ShardsStatsStage implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShardsStatsStage> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ShardsStatsStage> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ShardsStatsStage.values());
 }

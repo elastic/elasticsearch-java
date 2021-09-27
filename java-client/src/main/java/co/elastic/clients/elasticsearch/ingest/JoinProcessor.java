@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JoinProcessor
-public final class JoinProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final String separator;
@@ -52,6 +54,14 @@ public final class JoinProcessor extends ProcessorBase {
 		this.separator = Objects.requireNonNull(builder.separator, "separator");
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "join";
 	}
 
 	/**
@@ -154,8 +164,8 @@ public final class JoinProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link JoinProcessor}
 	 */
-	public static final JsonpDeserializer<JoinProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JoinProcessor::setupJoinProcessorDeserializer);
+	public static final JsonpDeserializer<JoinProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JoinProcessor::setupJoinProcessorDeserializer, Builder::build);
 
 	protected static void setupJoinProcessorDeserializer(DelegatingDeserializer<JoinProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

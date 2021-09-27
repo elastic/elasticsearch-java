@@ -24,22 +24,23 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoredScript
+@JsonpDeserializable
 public final class StoredScript implements JsonpSerializable {
 	@Nullable
-	private final JsonValue lang;
+	private final ScriptLanguage lang;
 
 	private final String source;
 
@@ -56,7 +57,7 @@ public final class StoredScript implements JsonpSerializable {
 	 * API name: {@code lang}
 	 */
 	@Nullable
-	public JsonValue lang() {
+	public ScriptLanguage lang() {
 		return this.lang;
 	}
 
@@ -81,8 +82,7 @@ public final class StoredScript implements JsonpSerializable {
 		if (this.lang != null) {
 
 			generator.writeKey("lang");
-			generator.write(this.lang);
-
+			this.lang.serialize(generator, mapper);
 		}
 
 		generator.writeKey("source");
@@ -97,14 +97,14 @@ public final class StoredScript implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<StoredScript> {
 		@Nullable
-		private JsonValue lang;
+		private ScriptLanguage lang;
 
 		private String source;
 
 		/**
 		 * API name: {@code lang}
 		 */
-		public Builder lang(@Nullable JsonValue value) {
+		public Builder lang(@Nullable ScriptLanguage value) {
 			this.lang = value;
 			return this;
 		}
@@ -134,12 +134,12 @@ public final class StoredScript implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StoredScript}
 	 */
-	public static final JsonpDeserializer<StoredScript> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StoredScript::setupStoredScriptDeserializer);
+	public static final JsonpDeserializer<StoredScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StoredScript::setupStoredScriptDeserializer, Builder::build);
 
 	protected static void setupStoredScriptDeserializer(DelegatingDeserializer<StoredScript.Builder> op) {
 
-		op.add(Builder::lang, JsonpDeserializer.jsonValueDeserializer(), "lang");
+		op.add(Builder::lang, ScriptLanguage._DESERIALIZER, "lang");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}

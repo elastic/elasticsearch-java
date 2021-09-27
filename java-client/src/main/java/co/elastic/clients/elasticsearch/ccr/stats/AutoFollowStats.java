@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr.stats;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,14 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.AutoFollowStats
+@JsonpDeserializable
 public final class AutoFollowStats implements JsonpSerializable {
 	private final List<AutoFollowedCluster> autoFollowedClusters;
 
-	private final Number numberOfFailedFollowIndices;
+	private final Long numberOfFailedFollowIndices;
 
-	private final Number numberOfFailedRemoteClusterStateRequests;
+	private final Long numberOfFailedRemoteClusterStateRequests;
 
-	private final Number numberOfSuccessfulFollowIndices;
+	private final Long numberOfSuccessfulFollowIndices;
 
 	private final List<ErrorCause> recentAutoFollowErrors;
 
@@ -78,21 +80,21 @@ public final class AutoFollowStats implements JsonpSerializable {
 	/**
 	 * API name: {@code number_of_failed_follow_indices}
 	 */
-	public Number numberOfFailedFollowIndices() {
+	public Long numberOfFailedFollowIndices() {
 		return this.numberOfFailedFollowIndices;
 	}
 
 	/**
 	 * API name: {@code number_of_failed_remote_cluster_state_requests}
 	 */
-	public Number numberOfFailedRemoteClusterStateRequests() {
+	public Long numberOfFailedRemoteClusterStateRequests() {
 		return this.numberOfFailedRemoteClusterStateRequests;
 	}
 
 	/**
 	 * API name: {@code number_of_successful_follow_indices}
 	 */
-	public Number numberOfSuccessfulFollowIndices() {
+	public Long numberOfSuccessfulFollowIndices() {
 		return this.numberOfSuccessfulFollowIndices;
 	}
 
@@ -123,13 +125,13 @@ public final class AutoFollowStats implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("number_of_failed_follow_indices");
-		generator.write(this.numberOfFailedFollowIndices.doubleValue());
+		generator.write(this.numberOfFailedFollowIndices);
 
 		generator.writeKey("number_of_failed_remote_cluster_state_requests");
-		generator.write(this.numberOfFailedRemoteClusterStateRequests.doubleValue());
+		generator.write(this.numberOfFailedRemoteClusterStateRequests);
 
 		generator.writeKey("number_of_successful_follow_indices");
-		generator.write(this.numberOfSuccessfulFollowIndices.doubleValue());
+		generator.write(this.numberOfSuccessfulFollowIndices);
 
 		generator.writeKey("recent_auto_follow_errors");
 		generator.writeStartArray();
@@ -149,11 +151,11 @@ public final class AutoFollowStats implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<AutoFollowStats> {
 		private List<AutoFollowedCluster> autoFollowedClusters;
 
-		private Number numberOfFailedFollowIndices;
+		private Long numberOfFailedFollowIndices;
 
-		private Number numberOfFailedRemoteClusterStateRequests;
+		private Long numberOfFailedRemoteClusterStateRequests;
 
-		private Number numberOfSuccessfulFollowIndices;
+		private Long numberOfSuccessfulFollowIndices;
 
 		private List<ErrorCause> recentAutoFollowErrors;
 
@@ -205,7 +207,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_failed_follow_indices}
 		 */
-		public Builder numberOfFailedFollowIndices(Number value) {
+		public Builder numberOfFailedFollowIndices(Long value) {
 			this.numberOfFailedFollowIndices = value;
 			return this;
 		}
@@ -213,7 +215,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_failed_remote_cluster_state_requests}
 		 */
-		public Builder numberOfFailedRemoteClusterStateRequests(Number value) {
+		public Builder numberOfFailedRemoteClusterStateRequests(Long value) {
 			this.numberOfFailedRemoteClusterStateRequests = value;
 			return this;
 		}
@@ -221,7 +223,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_successful_follow_indices}
 		 */
-		public Builder numberOfSuccessfulFollowIndices(Number value) {
+		public Builder numberOfSuccessfulFollowIndices(Long value) {
 			this.numberOfSuccessfulFollowIndices = value;
 			return this;
 		}
@@ -286,20 +288,20 @@ public final class AutoFollowStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoFollowStats}
 	 */
-	public static final JsonpDeserializer<AutoFollowStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoFollowStats::setupAutoFollowStatsDeserializer);
+	public static final JsonpDeserializer<AutoFollowStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AutoFollowStats::setupAutoFollowStatsDeserializer, Builder::build);
 
 	protected static void setupAutoFollowStatsDeserializer(DelegatingDeserializer<AutoFollowStats.Builder> op) {
 
-		op.add(Builder::autoFollowedClusters, JsonpDeserializer.arrayDeserializer(AutoFollowedCluster.DESERIALIZER),
+		op.add(Builder::autoFollowedClusters, JsonpDeserializer.arrayDeserializer(AutoFollowedCluster._DESERIALIZER),
 				"auto_followed_clusters");
-		op.add(Builder::numberOfFailedFollowIndices, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numberOfFailedFollowIndices, JsonpDeserializer.longDeserializer(),
 				"number_of_failed_follow_indices");
-		op.add(Builder::numberOfFailedRemoteClusterStateRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numberOfFailedRemoteClusterStateRequests, JsonpDeserializer.longDeserializer(),
 				"number_of_failed_remote_cluster_state_requests");
-		op.add(Builder::numberOfSuccessfulFollowIndices, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numberOfSuccessfulFollowIndices, JsonpDeserializer.longDeserializer(),
 				"number_of_successful_follow_indices");
-		op.add(Builder::recentAutoFollowErrors, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER),
+		op.add(Builder::recentAutoFollowErrors, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER),
 				"recent_auto_follow_errors");
 
 	}

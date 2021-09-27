@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.license.post;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Acknowledgement
+@JsonpDeserializable
 public final class Acknowledgement implements JsonpSerializable {
 	private final List<String> license;
 
@@ -153,8 +155,8 @@ public final class Acknowledgement implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Acknowledgement}
 	 */
-	public static final JsonpDeserializer<Acknowledgement> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Acknowledgement::setupAcknowledgementDeserializer);
+	public static final JsonpDeserializer<Acknowledgement> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Acknowledgement::setupAcknowledgementDeserializer, Builder::build);
 
 	protected static void setupAcknowledgementDeserializer(DelegatingDeserializer<Acknowledgement.Builder> op) {
 

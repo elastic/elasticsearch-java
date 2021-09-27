@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.TasksRecord
+@JsonpDeserializable
 public final class TasksRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -609,8 +611,8 @@ public final class TasksRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TasksRecord}
 	 */
-	public static final JsonpDeserializer<TasksRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TasksRecord::setupTasksRecordDeserializer);
+	public static final JsonpDeserializer<TasksRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TasksRecord::setupTasksRecordDeserializer, Builder::build);
 
 	protected static void setupTasksRecordDeserializer(DelegatingDeserializer<TasksRecord.Builder> op) {
 

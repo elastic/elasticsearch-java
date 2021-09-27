@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -46,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TypeMapping
+@JsonpDeserializable
 public final class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final AllField allField;
@@ -54,7 +56,7 @@ public final class TypeMapping implements JsonpSerializable {
 	private final Boolean dateDetection;
 
 	@Nullable
-	private final JsonValue dynamic;
+	private final JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
 
 	@Nullable
 	private final List<String> dynamicDateFormats;
@@ -75,7 +77,7 @@ public final class TypeMapping implements JsonpSerializable {
 	private final Boolean numericDetection;
 
 	@Nullable
-	private final Map<String, JsonValue> properties;
+	private final Map<String, Property> properties;
 
 	@Nullable
 	private final RoutingField routing;
@@ -130,7 +132,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue dynamic() {
+	public JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic() {
 		return this.dynamic;
 	}
 
@@ -186,7 +188,7 @@ public final class TypeMapping implements JsonpSerializable {
 	 * API name: {@code properties}
 	 */
 	@Nullable
-	public Map<String, JsonValue> properties() {
+	public Map<String, Property> properties() {
 		return this.properties;
 	}
 
@@ -313,9 +315,9 @@ public final class TypeMapping implements JsonpSerializable {
 
 			generator.writeKey("properties");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.properties.entrySet()) {
+			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -367,7 +369,7 @@ public final class TypeMapping implements JsonpSerializable {
 		private Boolean dateDetection;
 
 		@Nullable
-		private JsonValue dynamic;
+		private JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
 
 		@Nullable
 		private List<String> dynamicDateFormats;
@@ -388,7 +390,7 @@ public final class TypeMapping implements JsonpSerializable {
 		private Boolean numericDetection;
 
 		@Nullable
-		private Map<String, JsonValue> properties;
+		private Map<String, Property> properties;
 
 		@Nullable
 		private RoutingField routing;
@@ -428,7 +430,8 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic}
 		 */
-		public Builder dynamic(@Nullable JsonValue value) {
+		public Builder dynamic(
+				@Nullable JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ value) {
 			this.dynamic = value;
 			return this;
 		}
@@ -548,7 +551,7 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code properties}
 		 */
-		public Builder properties(@Nullable Map<String, JsonValue> value) {
+		public Builder properties(@Nullable Map<String, Property> value) {
 			this.properties = value;
 			return this;
 		}
@@ -556,12 +559,26 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
 		 */
-		public Builder putProperties(String key, JsonValue value) {
+		public Builder putProperties(String key, Property value) {
 			if (this.properties == null) {
 				this.properties = new HashMap<>();
 			}
 			this.properties.put(key, value);
 			return this;
+		}
+
+		/**
+		 * Set {@link #properties(Map)} to a singleton map.
+		 */
+		public Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
+		 */
+		public Builder putProperties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.putProperties(key, fn.apply(new Property.Builder()).build());
 		}
 
 		/**
@@ -659,28 +676,27 @@ public final class TypeMapping implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TypeMapping}
 	 */
-	public static final JsonpDeserializer<TypeMapping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TypeMapping::setupTypeMappingDeserializer);
+	public static final JsonpDeserializer<TypeMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TypeMapping::setupTypeMappingDeserializer, Builder::build);
 
 	protected static void setupTypeMappingDeserializer(DelegatingDeserializer<TypeMapping.Builder> op) {
 
-		op.add(Builder::allField, AllField.DESERIALIZER, "all_field");
+		op.add(Builder::allField, AllField._DESERIALIZER, "all_field");
 		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
 		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(DynamicTemplate.DESERIALIZER)), "dynamic_templates");
-		op.add(Builder::fieldNames, FieldNamesField.DESERIALIZER, "_field_names");
-		op.add(Builder::indexField, IndexField.DESERIALIZER, "index_field");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
+		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
+		op.add(Builder::indexField, IndexField._DESERIALIZER, "index_field");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
-		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"properties");
-		op.add(Builder::routing, RoutingField.DESERIALIZER, "_routing");
-		op.add(Builder::size, SizeField.DESERIALIZER, "_size");
-		op.add(Builder::source, SourceField.DESERIALIZER, "_source");
-		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER), "runtime");
+		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");
+		op.add(Builder::routing, RoutingField._DESERIALIZER, "_routing");
+		op.add(Builder::size, SizeField._DESERIALIZER, "_size");
+		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
+		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
 
 	}
 

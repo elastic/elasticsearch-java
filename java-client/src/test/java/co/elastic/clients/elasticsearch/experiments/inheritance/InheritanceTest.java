@@ -47,7 +47,7 @@ public class InheritanceTest extends Assert {
             .build();
 
         JsonGenerator generator = provider.createGenerator(baos);
-        fc.toJsonp(generator, new JsonbJsonpMapper());
+        fc.serialize(generator, new JsonbJsonpMapper());
 
         generator.close();
         String str = baos.toString();
@@ -63,7 +63,7 @@ public class InheritanceTest extends Assert {
             .build();
 
         generator = provider.createGenerator(baos);
-        cc.toJsonp(generator, new JsonbJsonpMapper());
+        cc.serialize(generator, new JsonbJsonpMapper());
 
         generator.close();
         str = baos.toString();

@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.ingest.PipelineConfig;
 import co.elastic.clients.elasticsearch.text_structure.find_structure.FieldStat;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +49,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Response
+@JsonpDeserializable
 public final class FindStructureResponse implements JsonpSerializable {
 	private final String charset;
 
@@ -62,7 +64,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 	private final String sampleStart;
 
-	private final Number numMessagesAnalyzed;
+	private final Integer numMessagesAnalyzed;
 
 	private final TypeMapping mappings;
 
@@ -74,7 +76,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 	private final Boolean needClientTimezone;
 
-	private final Number numLinesAnalyzed;
+	private final Integer numLinesAnalyzed;
 
 	@Nullable
 	private final List<String> columnNames;
@@ -180,7 +182,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code num_messages_analyzed}
 	 */
-	public Number numMessagesAnalyzed() {
+	public Integer numMessagesAnalyzed() {
 		return this.numMessagesAnalyzed;
 	}
 
@@ -217,7 +219,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code num_lines_analyzed}
 	 */
-	public Number numLinesAnalyzed() {
+	public Integer numLinesAnalyzed() {
 		return this.numLinesAnalyzed;
 	}
 
@@ -340,7 +342,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		generator.write(this.sampleStart);
 
 		generator.writeKey("num_messages_analyzed");
-		generator.write(this.numMessagesAnalyzed.doubleValue());
+		generator.write(this.numMessagesAnalyzed);
 
 		generator.writeKey("mappings");
 		this.mappings.serialize(generator, mapper);
@@ -362,7 +364,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		generator.write(this.needClientTimezone);
 
 		generator.writeKey("num_lines_analyzed");
-		generator.write(this.numLinesAnalyzed.doubleValue());
+		generator.write(this.numLinesAnalyzed);
 
 		if (this.columnNames != null) {
 
@@ -463,7 +465,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 		private String sampleStart;
 
-		private Number numMessagesAnalyzed;
+		private Integer numMessagesAnalyzed;
 
 		private TypeMapping mappings;
 
@@ -475,7 +477,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 		private Boolean needClientTimezone;
 
-		private Number numLinesAnalyzed;
+		private Integer numLinesAnalyzed;
 
 		@Nullable
 		private List<String> columnNames;
@@ -582,7 +584,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code num_messages_analyzed}
 		 */
-		public Builder numMessagesAnalyzed(Number value) {
+		public Builder numMessagesAnalyzed(Integer value) {
 			this.numMessagesAnalyzed = value;
 			return this;
 		}
@@ -629,7 +631,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code num_lines_analyzed}
 		 */
-		public Builder numLinesAnalyzed(Number value) {
+		public Builder numLinesAnalyzed(Integer value) {
 			this.numLinesAnalyzed = value;
 			return this;
 		}
@@ -816,8 +818,8 @@ public final class FindStructureResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FindStructureResponse}
 	 */
-	public static final JsonpDeserializer<FindStructureResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer);
+	public static final JsonpDeserializer<FindStructureResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer, Builder::build);
 
 	protected static void setupFindStructureResponseDeserializer(
 			DelegatingDeserializer<FindStructureResponse.Builder> op) {
@@ -826,14 +828,14 @@ public final class FindStructureResponse implements JsonpSerializable {
 		op.add(Builder::hasHeaderRow, JsonpDeserializer.booleanDeserializer(), "has_header_row");
 		op.add(Builder::hasByteOrderMarker, JsonpDeserializer.booleanDeserializer(), "has_byte_order_marker");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::fieldStats, JsonpDeserializer.stringMapDeserializer(FieldStat.DESERIALIZER), "field_stats");
+		op.add(Builder::fieldStats, JsonpDeserializer.stringMapDeserializer(FieldStat._DESERIALIZER), "field_stats");
 		op.add(Builder::sampleStart, JsonpDeserializer.stringDeserializer(), "sample_start");
-		op.add(Builder::numMessagesAnalyzed, JsonpDeserializer.numberDeserializer(), "num_messages_analyzed");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::numMessagesAnalyzed, JsonpDeserializer.integerDeserializer(), "num_messages_analyzed");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::quote, JsonpDeserializer.stringDeserializer(), "quote");
 		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");
 		op.add(Builder::needClientTimezone, JsonpDeserializer.booleanDeserializer(), "need_client_timezone");
-		op.add(Builder::numLinesAnalyzed, JsonpDeserializer.numberDeserializer(), "num_lines_analyzed");
+		op.add(Builder::numLinesAnalyzed, JsonpDeserializer.integerDeserializer(), "num_lines_analyzed");
 		op.add(Builder::columnNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"column_names");
 		op.add(Builder::explanation, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -847,7 +849,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "joda_timestamp_formats");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
 		op.add(Builder::shouldTrimFields, JsonpDeserializer.booleanDeserializer(), "should_trim_fields");
-		op.add(Builder::ingestPipeline, PipelineConfig.DESERIALIZER, "ingest_pipeline");
+		op.add(Builder::ingestPipeline, PipelineConfig._DESERIALIZER, "ingest_pipeline");
 
 	}
 

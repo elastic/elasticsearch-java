@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadDetails;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.Response
+@JsonpDeserializable
 public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	private final List<ReloadDetails> reloadDetails;
 
@@ -176,16 +178,16 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReloadSearchAnalyzersResponse}
 	 */
-	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer);
+	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer,
+			Builder::build);
 
 	protected static void setupReloadSearchAnalyzersResponseDeserializer(
 			DelegatingDeserializer<ReloadSearchAnalyzersResponse.Builder> op) {
 
-		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails.DESERIALIZER),
+		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails._DESERIALIZER),
 				"reload_details");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
 	}
 

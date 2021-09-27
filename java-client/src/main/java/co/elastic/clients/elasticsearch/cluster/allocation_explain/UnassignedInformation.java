@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,12 +33,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.UnassignedInformation
+@JsonpDeserializable
 public final class UnassignedInformation implements JsonpSerializable {
 	private final String at;
 
@@ -50,7 +52,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	private final String details;
 
 	@Nullable
-	private final Number failedAllocationAttempts;
+	private final Integer failedAllocationAttempts;
 
 	@Nullable
 	private final Boolean delayed;
@@ -106,7 +108,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * API name: {@code failed_allocation_attempts}
 	 */
 	@Nullable
-	public Number failedAllocationAttempts() {
+	public Integer failedAllocationAttempts() {
 		return this.failedAllocationAttempts;
 	}
 
@@ -158,7 +160,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		if (this.failedAllocationAttempts != null) {
 
 			generator.writeKey("failed_allocation_attempts");
-			generator.write(this.failedAllocationAttempts.doubleValue());
+			generator.write(this.failedAllocationAttempts);
 
 		}
 		if (this.delayed != null) {
@@ -193,7 +195,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		private String details;
 
 		@Nullable
-		private Number failedAllocationAttempts;
+		private Integer failedAllocationAttempts;
 
 		@Nullable
 		private Boolean delayed;
@@ -236,7 +238,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code failed_allocation_attempts}
 		 */
-		public Builder failedAllocationAttempts(@Nullable Number value) {
+		public Builder failedAllocationAttempts(@Nullable Integer value) {
 			this.failedAllocationAttempts = value;
 			return this;
 		}
@@ -274,17 +276,18 @@ public final class UnassignedInformation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UnassignedInformation}
 	 */
-	public static final JsonpDeserializer<UnassignedInformation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer);
+	public static final JsonpDeserializer<UnassignedInformation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer, Builder::build);
 
 	protected static void setupUnassignedInformationDeserializer(
 			DelegatingDeserializer<UnassignedInformation.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
 		op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");
-		op.add(Builder::reason, UnassignedInformationReason.DESERIALIZER, "reason");
+		op.add(Builder::reason, UnassignedInformationReason._DESERIALIZER, "reason");
 		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
-		op.add(Builder::failedAllocationAttempts, JsonpDeserializer.numberDeserializer(), "failed_allocation_attempts");
+		op.add(Builder::failedAllocationAttempts, JsonpDeserializer.integerDeserializer(),
+				"failed_allocation_attempts");
 		op.add(Builder::delayed, JsonpDeserializer.booleanDeserializer(), "delayed");
 		op.add(Builder::allocationStatus, JsonpDeserializer.stringDeserializer(), "allocation_status");
 

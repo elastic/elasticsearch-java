@@ -70,7 +70,7 @@ class JsonDataImpl implements JsonData {
         mapper = getMapper(mapper);
 
         JsonParser parser = getParser(mapper);
-        return mapper.getDeserializer(clazz).deserialize(parser, mapper);
+        return mapper.deserialize(parser, clazz);
     }
 
     @Override
@@ -108,7 +108,7 @@ class JsonDataImpl implements JsonData {
     private JsonParser getParser(JsonpMapper mapper) {
         // FIXME: inefficient roundtrip through a string. Should be replaced by an Event buffer structure.
         StringWriter sw = new StringWriter();
-        JsonGenerator generator = mapper.jsonpProvider().createGenerator(sw);
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(sw);
 
         if (value instanceof JsonValue) {
             generator.write((JsonValue) value);
@@ -117,6 +117,6 @@ class JsonDataImpl implements JsonData {
         }
         generator.close();
 
-        return mapper.jsonpProvider().createParser(new StringReader(sw.toString()));
+        return mapper.jsonProvider().createParser(new StringReader(sw.toString()));
     }
 }

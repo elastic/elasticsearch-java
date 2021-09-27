@@ -23,31 +23,36 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
+import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
+import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CategorizationAnalyzer
+@JsonpDeserializable
 public final class CategorizationAnalyzer implements JsonpSerializable {
 	@Nullable
-	private final List<JsonValue> charFilter;
+	private final List<CharFilter> charFilter;
 
 	@Nullable
-	private final List<JsonValue> filter;
+	private final List<TokenFilter> filter;
 
 	@Nullable
-	private final JsonValue tokenizer;
+	private final Tokenizer tokenizer;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +68,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	 * API name: {@code char_filter}
 	 */
 	@Nullable
-	public List<JsonValue> charFilter() {
+	public List<CharFilter> charFilter() {
 		return this.charFilter;
 	}
 
@@ -79,7 +84,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public List<JsonValue> filter() {
+	public List<TokenFilter> filter() {
 		return this.filter;
 	}
 
@@ -91,7 +96,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
-	public JsonValue tokenizer() {
+	public Tokenizer tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -110,8 +115,8 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.charFilter) {
-				generator.write(item0);
+			for (CharFilter item0 : this.charFilter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -121,8 +126,8 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 			generator.writeKey("filter");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.filter) {
-				generator.write(item0);
+			for (TokenFilter item0 : this.filter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -131,7 +136,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		if (this.tokenizer != null) {
 
 			generator.writeKey("tokenizer");
-			generator.write(this.tokenizer);
+			this.tokenizer.serialize(generator, mapper);
 
 		}
 
@@ -144,18 +149,18 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<CategorizationAnalyzer> {
 		@Nullable
-		private List<JsonValue> charFilter;
+		private List<CharFilter> charFilter;
 
 		@Nullable
-		private List<JsonValue> filter;
+		private List<TokenFilter> filter;
 
 		@Nullable
-		private JsonValue tokenizer;
+		private Tokenizer tokenizer;
 
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(@Nullable List<JsonValue> value) {
+		public Builder charFilter(@Nullable List<CharFilter> value) {
 			this.charFilter = value;
 			return this;
 		}
@@ -163,7 +168,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		/**
 		 * API name: {@code char_filter}
 		 */
-		public Builder charFilter(JsonValue... value) {
+		public Builder charFilter(CharFilter... value) {
 			this.charFilter = Arrays.asList(value);
 			return this;
 		}
@@ -171,12 +176,26 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
-		public Builder addCharFilter(JsonValue value) {
+		public Builder addCharFilter(CharFilter value) {
 			if (this.charFilter == null) {
 				this.charFilter = new ArrayList<>();
 			}
 			this.charFilter.add(value);
 			return this;
+		}
+
+		/**
+		 * Set {@link #charFilter(List)} to a singleton list.
+		 */
+		public Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return this.charFilter(fn.apply(new CharFilter.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 */
+		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
@@ -190,7 +209,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<JsonValue> value) {
+		public Builder filter(@Nullable List<TokenFilter> value) {
 			this.filter = value;
 			return this;
 		}
@@ -206,7 +225,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(JsonValue... value) {
+		public Builder filter(TokenFilter... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
@@ -214,11 +233,37 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
-		public Builder addFilter(JsonValue value) {
+		public Builder addFilter(TokenFilter value) {
 			if (this.filter == null) {
 				this.filter = new ArrayList<>();
 			}
 			this.filter.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #filter(List)} to a singleton list.
+		 */
+		public Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return this.filter(fn.apply(new TokenFilter.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 */
+		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
+		}
+
+		/**
+		 * One or more token filters. In addition to the built-in token filters, other
+		 * plugins can provide more token filters. If this property is not specified, no
+		 * token filters are applied prior to categorization.
+		 * <p>
+		 * API name: {@code tokenizer}
+		 */
+		public Builder tokenizer(@Nullable Tokenizer value) {
+			this.tokenizer = value;
 			return this;
 		}
 
@@ -229,9 +274,8 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(@Nullable JsonValue value) {
-			this.tokenizer = value;
-			return this;
+		public Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
 		}
 
 		/**
@@ -251,17 +295,15 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CategorizationAnalyzer}
 	 */
-	public static final JsonpDeserializer<CategorizationAnalyzer> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CategorizationAnalyzer::setupCategorizationAnalyzerDeserializer);
+	public static final JsonpDeserializer<CategorizationAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CategorizationAnalyzer::setupCategorizationAnalyzerDeserializer, Builder::build);
 
 	protected static void setupCategorizationAnalyzerDeserializer(
 			DelegatingDeserializer<CategorizationAnalyzer.Builder> op) {
 
-		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"char_filter");
-		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"filter");
-		op.add(Builder::tokenizer, JsonpDeserializer.jsonValueDeserializer(), "tokenizer");
+		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(CharFilter._DESERIALIZER), "char_filter");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(TokenFilter._DESERIALIZER), "filter");
+		op.add(Builder::tokenizer, Tokenizer._DESERIALIZER, "tokenizer");
 
 	}
 

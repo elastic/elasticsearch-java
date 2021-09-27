@@ -25,14 +25,17 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.DynamicTemplate;
 import co.elastic.clients.elasticsearch._types.mapping.FieldNamesField;
+import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.RoutingField;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.mapping.SourceField;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -55,6 +58,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_mapping.Request
+@JsonpDeserializable
 public final class PutMappingRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
@@ -62,7 +66,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -71,10 +75,10 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean writeIndexOnly;
@@ -83,7 +87,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	private final Boolean dateDetection;
 
 	@Nullable
-	private final JsonValue dynamic;
+	private final JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
 
 	@Nullable
 	private final List<String> dynamicDateFormats;
@@ -101,7 +105,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	private final Boolean numericDetection;
 
 	@Nullable
-	private final Map<String, JsonValue> properties;
+	private final Map<String, Property> properties;
 
 	@Nullable
 	private final RoutingField routing;
@@ -168,7 +172,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -197,7 +201,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -207,7 +211,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -238,7 +242,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue dynamic() {
+	public JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic() {
 		return this.dynamic;
 	}
 
@@ -307,7 +311,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code properties}
 	 */
 	@Nullable
-	public Map<String, JsonValue> properties() {
+	public Map<String, Property> properties() {
 		return this.properties;
 	}
 
@@ -420,9 +424,9 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 
 			generator.writeKey("properties");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.properties.entrySet()) {
+			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -467,7 +471,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -476,10 +480,10 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		private Boolean includeTypeName;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean writeIndexOnly;
@@ -488,7 +492,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		private Boolean dateDetection;
 
 		@Nullable
-		private JsonValue dynamic;
+		private JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
 
 		@Nullable
 		private List<String> dynamicDateFormats;
@@ -506,7 +510,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		private Boolean numericDetection;
 
 		@Nullable
-		private Map<String, JsonValue> properties;
+		private Map<String, Property> properties;
 
 		@Nullable
 		private RoutingField routing;
@@ -570,8 +574,30 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -599,7 +625,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -609,7 +635,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -640,7 +666,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code dynamic}
 		 */
-		public Builder dynamic(@Nullable JsonValue value) {
+		public Builder dynamic(
+				@Nullable JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ value) {
 			this.dynamic = value;
 			return this;
 		}
@@ -774,7 +801,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code properties}
 		 */
-		public Builder properties(@Nullable Map<String, JsonValue> value) {
+		public Builder properties(@Nullable Map<String, Property> value) {
 			this.properties = value;
 			return this;
 		}
@@ -782,12 +809,26 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
 		 */
-		public Builder putProperties(String key, JsonValue value) {
+		public Builder putProperties(String key, Property value) {
 			if (this.properties == null) {
 				this.properties = new HashMap<>();
 			}
 			this.properties.put(key, value);
 			return this;
+		}
+
+		/**
+		 * Set {@link #properties(Map)} to a singleton map.
+		 */
+		public Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
+		 */
+		public Builder putProperties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.putProperties(key, fn.apply(new Property.Builder()).build());
 		}
 
 		/**
@@ -880,8 +921,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Json deserializer for {@link PutMappingRequest}
 	 */
-	public static final JsonpDeserializer<PutMappingRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer);
+	public static final JsonpDeserializer<PutMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer, Builder::build);
 
 	protected static void setupPutMappingRequestDeserializer(DelegatingDeserializer<PutMappingRequest.Builder> op) {
 
@@ -890,15 +931,14 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(DynamicTemplate.DESERIALIZER)), "dynamic_templates");
-		op.add(Builder::fieldNames, FieldNamesField.DESERIALIZER, "_field_names");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
+		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
-		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"properties");
-		op.add(Builder::routing, RoutingField.DESERIALIZER, "_routing");
-		op.add(Builder::source, SourceField.DESERIALIZER, "_source");
-		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER), "runtime");
+		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");
+		op.add(Builder::routing, RoutingField._DESERIALIZER, "_routing");
+		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
+		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
 
 	}
 
@@ -941,7 +981,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -950,15 +991,15 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.writeIndexOnly != null) {
 					params.put("write_index_only", String.valueOf(request.writeIndexOnly));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutMappingResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutMappingResponse._DESERIALIZER);
 }

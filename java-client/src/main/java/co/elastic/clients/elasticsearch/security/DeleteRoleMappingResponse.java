@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_role_mapping.Response
+@JsonpDeserializable
 public final class DeleteRoleMappingResponse implements JsonpSerializable {
 	private final Boolean found;
 
@@ -103,8 +105,8 @@ public final class DeleteRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DeleteRoleMappingResponse}
 	 */
-	public static final JsonpDeserializer<DeleteRoleMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer);
+	public static final JsonpDeserializer<DeleteRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteRoleMappingResponseDeserializer(
 			DelegatingDeserializer<DeleteRoleMappingResponse.Builder> op) {

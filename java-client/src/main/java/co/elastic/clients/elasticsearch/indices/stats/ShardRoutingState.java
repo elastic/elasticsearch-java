@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ShardRoutingState implements StringEnum {
 	Unassigned("UNASSIGNED"), Initializing("INITIALIZING"), Started("STARTED"), Relocating("RELOCATING");
 
@@ -39,6 +41,6 @@ public enum ShardRoutingState implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShardRoutingState> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ShardRoutingState> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ShardRoutingState.values());
 }

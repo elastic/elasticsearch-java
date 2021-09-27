@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._core.SearchTemplateRequest;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestDefinition
+@JsonpDeserializable
 public final class SearchInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final SearchInputRequestBody body;
@@ -57,7 +59,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	private final SearchType searchType;
 
 	@Nullable
-	private final JsonValue template;
+	private final SearchTemplateRequest template;
 
 	@Nullable
 	private final Boolean restTotalHitsAsInt;
@@ -111,7 +113,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code template}
 	 */
 	@Nullable
-	public JsonValue template() {
+	public SearchTemplateRequest template() {
 		return this.template;
 	}
 
@@ -165,7 +167,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		if (this.template != null) {
 
 			generator.writeKey("template");
-			generator.write(this.template);
+			this.template.serialize(generator, mapper);
 
 		}
 		if (this.restTotalHitsAsInt != null) {
@@ -196,7 +198,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		private SearchType searchType;
 
 		@Nullable
-		private JsonValue template;
+		private SearchTemplateRequest template;
 
 		@Nullable
 		private Boolean restTotalHitsAsInt;
@@ -269,9 +271,16 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public Builder template(@Nullable JsonValue value) {
+		public Builder template(@Nullable SearchTemplateRequest value) {
 			this.template = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code template}
+		 */
+		public Builder template(Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
+			return this.template(fn.apply(new SearchTemplateRequest.Builder()).build());
 		}
 
 		/**
@@ -299,18 +308,18 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SearchInputRequestDefinition}
 	 */
-	public static final JsonpDeserializer<SearchInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchInputRequestDefinition::setupSearchInputRequestDefinitionDeserializer);
+	public static final JsonpDeserializer<SearchInputRequestDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SearchInputRequestDefinition::setupSearchInputRequestDefinitionDeserializer, Builder::build);
 
 	protected static void setupSearchInputRequestDefinitionDeserializer(
 			DelegatingDeserializer<SearchInputRequestDefinition.Builder> op) {
 
-		op.add(Builder::body, SearchInputRequestBody.DESERIALIZER, "body");
+		op.add(Builder::body, SearchInputRequestBody._DESERIALIZER, "body");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::indicesOptions, IndicesOptions.DESERIALIZER, "indices_options");
-		op.add(Builder::searchType, SearchType.DESERIALIZER, "search_type");
-		op.add(Builder::template, JsonpDeserializer.jsonValueDeserializer(), "template");
+		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::searchType, SearchType._DESERIALIZER, "search_type");
+		op.add(Builder::template, SearchTemplateRequest._DESERIALIZER, "template");
 		op.add(Builder::restTotalHitsAsInt, JsonpDeserializer.booleanDeserializer(), "rest_total_hits_as_int");
 
 	}

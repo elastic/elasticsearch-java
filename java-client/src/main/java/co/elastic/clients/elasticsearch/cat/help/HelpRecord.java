@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.help;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.help.HelpRecord
+@JsonpDeserializable
 public final class HelpRecord implements JsonpSerializable {
 	private final String endpoint;
 
@@ -103,8 +105,8 @@ public final class HelpRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HelpRecord}
 	 */
-	public static final JsonpDeserializer<HelpRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HelpRecord::setupHelpRecordDeserializer);
+	public static final JsonpDeserializer<HelpRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HelpRecord::setupHelpRecordDeserializer, Builder::build);
 
 	protected static void setupHelpRecordDeserializer(DelegatingDeserializer<HelpRecord.Builder> op) {
 

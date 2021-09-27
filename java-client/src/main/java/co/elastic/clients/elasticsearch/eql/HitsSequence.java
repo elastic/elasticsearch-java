@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsSequence
+
 public final class HitsSequence<TEvent> implements JsonpSerializable {
 	private final List<HitsEvent<TEvent>> events;
 
@@ -237,7 +239,7 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		op.add(Builder::events,
 				JsonpDeserializer.arrayDeserializer(HitsEvent.createHitsEventDeserializer(tEventDeserializer)),
 				"events");
-		op.add(Builder::joinKeys, JsonpDeserializer.arrayDeserializer(JsonData.DESERIALIZER), "join_keys");
+		op.add(Builder::joinKeys, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "join_keys");
 
 	}
 

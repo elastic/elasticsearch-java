@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDeciders
+@JsonpDeserializable
 public final class AutoscalingDeciders implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
 
@@ -263,16 +265,17 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoscalingDeciders}
 	 */
-	public static final JsonpDeserializer<AutoscalingDeciders> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoscalingDeciders::setupAutoscalingDecidersDeserializer);
+	public static final JsonpDeserializer<AutoscalingDeciders> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoscalingDeciders::setupAutoscalingDecidersDeserializer, Builder::build);
 
 	protected static void setupAutoscalingDecidersDeserializer(DelegatingDeserializer<AutoscalingDeciders.Builder> op) {
 
-		op.add(Builder::requiredCapacity, AutoscalingCapacity.DESERIALIZER, "required_capacity");
-		op.add(Builder::currentCapacity, AutoscalingCapacity.DESERIALIZER, "current_capacity");
-		op.add(Builder::currentNodes, JsonpDeserializer.arrayDeserializer(AutoscalingNode.DESERIALIZER),
+		op.add(Builder::requiredCapacity, AutoscalingCapacity._DESERIALIZER, "required_capacity");
+		op.add(Builder::currentCapacity, AutoscalingCapacity._DESERIALIZER, "current_capacity");
+		op.add(Builder::currentNodes, JsonpDeserializer.arrayDeserializer(AutoscalingNode._DESERIALIZER),
 				"current_nodes");
-		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(AutoscalingDecider.DESERIALIZER), "deciders");
+		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(AutoscalingDecider._DESERIALIZER),
+				"deciders");
 
 	}
 

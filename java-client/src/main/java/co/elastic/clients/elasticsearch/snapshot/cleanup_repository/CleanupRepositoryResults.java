@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot.cleanup_repository;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
+@JsonpDeserializable
 public final class CleanupRepositoryResults implements JsonpSerializable {
-	private final Number deletedBlobs;
+	private final Long deletedBlobs;
 
-	private final Number deletedBytes;
+	private final Long deletedBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	/**
 	 * API name: {@code deleted_blobs}
 	 */
-	public Number deletedBlobs() {
+	public Long deletedBlobs() {
 		return this.deletedBlobs;
 	}
 
 	/**
 	 * API name: {@code deleted_bytes}
 	 */
-	public Number deletedBytes() {
+	public Long deletedBytes() {
 		return this.deletedBytes;
 	}
 
@@ -76,10 +78,10 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("deleted_blobs");
-		generator.write(this.deletedBlobs.doubleValue());
+		generator.write(this.deletedBlobs);
 
 		generator.writeKey("deleted_bytes");
-		generator.write(this.deletedBytes.doubleValue());
+		generator.write(this.deletedBytes);
 
 	}
 
@@ -89,14 +91,14 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	 * Builder for {@link CleanupRepositoryResults}.
 	 */
 	public static class Builder implements ObjectBuilder<CleanupRepositoryResults> {
-		private Number deletedBlobs;
+		private Long deletedBlobs;
 
-		private Number deletedBytes;
+		private Long deletedBytes;
 
 		/**
 		 * API name: {@code deleted_blobs}
 		 */
-		public Builder deletedBlobs(Number value) {
+		public Builder deletedBlobs(Long value) {
 			this.deletedBlobs = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted_bytes}
 		 */
-		public Builder deletedBytes(Number value) {
+		public Builder deletedBytes(Long value) {
 			this.deletedBytes = value;
 			return this;
 		}
@@ -126,14 +128,14 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CleanupRepositoryResults}
 	 */
-	public static final JsonpDeserializer<CleanupRepositoryResults> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CleanupRepositoryResults::setupCleanupRepositoryResultsDeserializer);
+	public static final JsonpDeserializer<CleanupRepositoryResults> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CleanupRepositoryResults::setupCleanupRepositoryResultsDeserializer, Builder::build);
 
 	protected static void setupCleanupRepositoryResultsDeserializer(
 			DelegatingDeserializer<CleanupRepositoryResults.Builder> op) {
 
-		op.add(Builder::deletedBlobs, JsonpDeserializer.numberDeserializer(), "deleted_blobs");
-		op.add(Builder::deletedBytes, JsonpDeserializer.numberDeserializer(), "deleted_bytes");
+		op.add(Builder::deletedBlobs, JsonpDeserializer.longDeserializer(), "deleted_blobs");
+		op.add(Builder::deletedBytes, JsonpDeserializer.longDeserializer(), "deleted_bytes");
 
 	}
 

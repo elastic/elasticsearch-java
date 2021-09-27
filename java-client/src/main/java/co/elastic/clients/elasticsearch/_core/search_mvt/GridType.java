@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search_mvt;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum GridType implements StringEnum {
 	Grid("grid"), Point("point");
 
@@ -39,6 +41,6 @@ public enum GridType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GridType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<GridType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			GridType.values());
 }

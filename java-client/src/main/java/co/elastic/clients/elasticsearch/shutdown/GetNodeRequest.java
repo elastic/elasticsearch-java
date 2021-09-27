@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -41,6 +42,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Request
+
 public final class GetNodeRequest extends RequestBase {
 	private final List<String> nodeId;
 
@@ -155,5 +157,5 @@ public final class GetNodeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetNodeResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetNodeResponse._DESERIALIZER);
 }

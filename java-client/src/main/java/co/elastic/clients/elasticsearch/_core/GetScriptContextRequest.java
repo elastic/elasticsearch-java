@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: _global.get_script_context.Request
+
 public final class GetScriptContextRequest extends RequestBase {
 	public GetScriptContextRequest() {
 	}
@@ -42,10 +44,7 @@ public final class GetScriptContextRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link GetScriptContextRequest}.
 	 */
-	public static final GetScriptContextRequest INSTANCE = new GetScriptContextRequest();
-
-	public static final JsonpDeserializer<GetScriptContextRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetScriptContextRequest.INSTANCE);
+	public static final GetScriptContextRequest _INSTANCE = new GetScriptContextRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class GetScriptContextRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetScriptContextResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetScriptContextResponse._DESERIALIZER);
 }

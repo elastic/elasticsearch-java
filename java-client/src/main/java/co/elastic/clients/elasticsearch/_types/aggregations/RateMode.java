@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum RateMode implements StringEnum {
 	Sum("sum"), ValueCount("value_count");
 
@@ -39,6 +41,6 @@ public enum RateMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<RateMode> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<RateMode> _DESERIALIZER = new StringEnum.Deserializer<>(
 			RateMode.values());
 }

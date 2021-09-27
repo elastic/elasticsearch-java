@@ -24,25 +24,27 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Retention
+@JsonpDeserializable
 public final class Retention implements JsonpSerializable {
-	private final JsonValue expireAfter;
+	private final String expireAfter;
 
-	private final Number maxCount;
+	private final Integer maxCount;
 
-	private final Number minCount;
+	private final Integer minCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +62,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expire_after}
 	 */
-	public JsonValue expireAfter() {
+	public String expireAfter() {
 		return this.expireAfter;
 	}
 
@@ -71,7 +73,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_count}
 	 */
-	public Number maxCount() {
+	public Integer maxCount() {
 		return this.maxCount;
 	}
 
@@ -80,7 +82,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code min_count}
 	 */
-	public Number minCount() {
+	public Integer minCount() {
 		return this.minCount;
 	}
 
@@ -99,10 +101,10 @@ public final class Retention implements JsonpSerializable {
 		generator.write(this.expireAfter);
 
 		generator.writeKey("max_count");
-		generator.write(this.maxCount.doubleValue());
+		generator.write(this.maxCount);
 
 		generator.writeKey("min_count");
-		generator.write(this.minCount.doubleValue());
+		generator.write(this.minCount);
 
 	}
 
@@ -112,11 +114,11 @@ public final class Retention implements JsonpSerializable {
 	 * Builder for {@link Retention}.
 	 */
 	public static class Builder implements ObjectBuilder<Retention> {
-		private JsonValue expireAfter;
+		private String expireAfter;
 
-		private Number maxCount;
+		private Integer maxCount;
 
-		private Number minCount;
+		private Integer minCount;
 
 		/**
 		 * Time period after which a snapshot is considered expired and eligible for
@@ -124,7 +126,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
-		public Builder expireAfter(JsonValue value) {
+		public Builder expireAfter(String value) {
 			this.expireAfter = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_count}
 		 */
-		public Builder maxCount(Number value) {
+		public Builder maxCount(Integer value) {
 			this.maxCount = value;
 			return this;
 		}
@@ -146,7 +148,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code min_count}
 		 */
-		public Builder minCount(Number value) {
+		public Builder minCount(Integer value) {
 			this.minCount = value;
 			return this;
 		}
@@ -168,14 +170,14 @@ public final class Retention implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Retention}
 	 */
-	public static final JsonpDeserializer<Retention> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Retention::setupRetentionDeserializer);
+	public static final JsonpDeserializer<Retention> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Retention::setupRetentionDeserializer, Builder::build);
 
 	protected static void setupRetentionDeserializer(DelegatingDeserializer<Retention.Builder> op) {
 
-		op.add(Builder::expireAfter, JsonpDeserializer.jsonValueDeserializer(), "expire_after");
-		op.add(Builder::maxCount, JsonpDeserializer.numberDeserializer(), "max_count");
-		op.add(Builder::minCount, JsonpDeserializer.numberDeserializer(), "min_count");
+		op.add(Builder::expireAfter, JsonpDeserializer.stringDeserializer(), "expire_after");
+		op.add(Builder::maxCount, JsonpDeserializer.integerDeserializer(), "max_count");
+		op.add(Builder::minCount, JsonpDeserializer.integerDeserializer(), "min_count");
 
 	}
 

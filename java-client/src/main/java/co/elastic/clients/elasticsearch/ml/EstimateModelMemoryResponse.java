@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Response
+@JsonpDeserializable
 public final class EstimateModelMemoryResponse implements JsonpSerializable {
 	private final String modelMemoryEstimate;
 
@@ -103,8 +105,8 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link EstimateModelMemoryResponse}
 	 */
-	public static final JsonpDeserializer<EstimateModelMemoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EstimateModelMemoryResponse::setupEstimateModelMemoryResponseDeserializer);
+	public static final JsonpDeserializer<EstimateModelMemoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, EstimateModelMemoryResponse::setupEstimateModelMemoryResponseDeserializer, Builder::build);
 
 	protected static void setupEstimateModelMemoryResponseDeserializer(
 			DelegatingDeserializer<EstimateModelMemoryResponse.Builder> op) {

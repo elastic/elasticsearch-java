@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -47,6 +48,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
+
 public final class BulkRequest<TSource> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String type;
@@ -57,7 +59,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 
 	private final String interval;
 
-	private final List<JsonValue> value;
+	private final List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> value;
 
 	@Nullable
 	private final JsonpSerializer<TSource> tSourceSerializer;
@@ -115,7 +117,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public List<JsonValue> value() {
+	public List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> value() {
 		return this.value;
 	}
 
@@ -124,7 +126,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue item0 : this.value) {
+		for (JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */ item0 : this.value) {
 			generator.write(item0);
 
 		}
@@ -147,7 +149,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 
 		private String interval;
 
-		private List<JsonValue> value;
+		private List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> value;
 
 		@Nullable
 		private JsonpSerializer<TSource> tSourceSerializer;
@@ -195,7 +197,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder<TSource> value(List<JsonValue> value) {
+		public Builder<TSource> value(
+				List<JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */> value) {
 			this.value = value;
 			return this;
 		}
@@ -205,7 +208,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder<TSource> value(JsonValue... value) {
+		public Builder<TSource> value(
+				JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */... value) {
 			this.value = Arrays.asList(value);
 			return this;
 		}
@@ -213,7 +217,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		/**
 		 * Add a value to {@link #value(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addValue(JsonValue value) {
+		public Builder<TSource> addValue(
+				JsonValue /* Union(_global.bulk.OperationContainer | monitoring.bulk.TSource) */ value) {
 			if (this.value == null) {
 				this.value = new ArrayList<>();
 			}
@@ -307,5 +312,5 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 				params.put("interval", request.interval);
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, BulkResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, BulkResponse._DESERIALIZER);
 }

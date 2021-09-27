@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ValidationLoss
+@JsonpDeserializable
 public final class ValidationLoss implements JsonpSerializable {
 	private final List<String> foldValues;
 
@@ -166,8 +168,8 @@ public final class ValidationLoss implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ValidationLoss}
 	 */
-	public static final JsonpDeserializer<ValidationLoss> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidationLoss::setupValidationLossDeserializer);
+	public static final JsonpDeserializer<ValidationLoss> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ValidationLoss::setupValidationLossDeserializer, Builder::build);
 
 	protected static void setupValidationLossDeserializer(DelegatingDeserializer<ValidationLoss.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.AverageAggregation
-public final class AverageAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public AverageAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "avg";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class AverageAggregation extends FormatMetricAggregationBase {
 	/**
 	 * Json deserializer for {@link AverageAggregation}
 	 */
-	public static final JsonpDeserializer<AverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AverageAggregation::setupAverageAggregationDeserializer);
+	public static final JsonpDeserializer<AverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AverageAggregation::setupAverageAggregationDeserializer, Builder::build);
 
 	protected static void setupAverageAggregationDeserializer(DelegatingDeserializer<AverageAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);

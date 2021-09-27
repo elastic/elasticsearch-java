@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,13 +44,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsMetadata
+@JsonpDeserializable
 public final class InnerHitsMetadata implements JsonpSerializable {
-	private final JsonValue total;
+	private final JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
 
 	private final List<Hit<Map<String, JsonData>>> hits;
 
 	@Nullable
-	private final Number maxScore;
+	private final Double maxScore;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public JsonValue total() {
+	public JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total() {
 		return this.total;
 	}
 
@@ -79,7 +81,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	 * API name: {@code max_score}
 	 */
 	@Nullable
-	public Number maxScore() {
+	public Double maxScore() {
 		return this.maxScore;
 	}
 
@@ -108,7 +110,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		if (this.maxScore != null) {
 
 			generator.writeKey("max_score");
-			generator.write(this.maxScore.doubleValue());
+			generator.write(this.maxScore);
 
 		}
 
@@ -120,17 +122,17 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	 * Builder for {@link InnerHitsMetadata}.
 	 */
 	public static class Builder implements ObjectBuilder<InnerHitsMetadata> {
-		private JsonValue total;
+		private JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
 
 		private List<Hit<Map<String, JsonData>>> hits;
 
 		@Nullable
-		private Number maxScore;
+		private Double maxScore;
 
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(JsonValue value) {
+		public Builder total(JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ value) {
 			this.total = value;
 			return this;
 		}
@@ -181,7 +183,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		/**
 		 * API name: {@code max_score}
 		 */
-		public Builder maxScore(@Nullable Number value) {
+		public Builder maxScore(@Nullable Double value) {
 			this.maxScore = value;
 			return this;
 		}
@@ -203,17 +205,17 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InnerHitsMetadata}
 	 */
-	public static final JsonpDeserializer<InnerHitsMetadata> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InnerHitsMetadata::setupInnerHitsMetadataDeserializer);
+	public static final JsonpDeserializer<InnerHitsMetadata> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InnerHitsMetadata::setupInnerHitsMetadataDeserializer, Builder::build);
 
 	protected static void setupInnerHitsMetadataDeserializer(DelegatingDeserializer<InnerHitsMetadata.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
 		op.add(Builder::hits,
 				JsonpDeserializer.arrayDeserializer(
-						Hit.createHitDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER))),
+						Hit.createHitDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER))),
 				"hits");
-		op.add(Builder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
+		op.add(Builder::maxScore, JsonpDeserializer.doubleDeserializer(), "max_score");
 
 	}
 

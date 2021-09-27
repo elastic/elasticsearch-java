@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.create_service_token.Token;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Response
+@JsonpDeserializable
 public final class CreateServiceTokenResponse implements JsonpSerializable {
 	private final Boolean created;
 
@@ -135,14 +137,14 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CreateServiceTokenResponse}
 	 */
-	public static final JsonpDeserializer<CreateServiceTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseDeserializer);
+	public static final JsonpDeserializer<CreateServiceTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseDeserializer, Builder::build);
 
 	protected static void setupCreateServiceTokenResponseDeserializer(
 			DelegatingDeserializer<CreateServiceTokenResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
-		op.add(Builder::token, Token.DESERIALIZER, "token");
+		op.add(Builder::token, Token._DESERIALIZER, "token");
 
 	}
 

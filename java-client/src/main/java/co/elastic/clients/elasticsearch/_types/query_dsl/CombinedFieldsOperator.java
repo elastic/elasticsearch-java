@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum CombinedFieldsOperator implements StringEnum {
 	Or("or"), And("and");
 
@@ -39,6 +41,6 @@ public enum CombinedFieldsOperator implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<CombinedFieldsOperator> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<CombinedFieldsOperator> _DESERIALIZER = new StringEnum.Deserializer<>(
 			CombinedFieldsOperator.values());
 }

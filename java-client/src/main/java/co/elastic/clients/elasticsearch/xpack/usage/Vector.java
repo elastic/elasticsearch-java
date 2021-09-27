@@ -24,24 +24,26 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Vector
+@JsonpDeserializable
 public final class Vector extends Base {
-	private final Number denseVectorDimsAvgCount;
+	private final Integer denseVectorDimsAvgCount;
 
-	private final Number denseVectorFieldsCount;
+	private final Integer denseVectorFieldsCount;
 
 	@Nullable
-	private final Number sparseVectorFieldsCount;
+	private final Integer sparseVectorFieldsCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,14 +61,14 @@ public final class Vector extends Base {
 	/**
 	 * API name: {@code dense_vector_dims_avg_count}
 	 */
-	public Number denseVectorDimsAvgCount() {
+	public Integer denseVectorDimsAvgCount() {
 		return this.denseVectorDimsAvgCount;
 	}
 
 	/**
 	 * API name: {@code dense_vector_fields_count}
 	 */
-	public Number denseVectorFieldsCount() {
+	public Integer denseVectorFieldsCount() {
 		return this.denseVectorFieldsCount;
 	}
 
@@ -74,7 +76,7 @@ public final class Vector extends Base {
 	 * API name: {@code sparse_vector_fields_count}
 	 */
 	@Nullable
-	public Number sparseVectorFieldsCount() {
+	public Integer sparseVectorFieldsCount() {
 		return this.sparseVectorFieldsCount;
 	}
 
@@ -83,15 +85,15 @@ public final class Vector extends Base {
 		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("dense_vector_dims_avg_count");
-		generator.write(this.denseVectorDimsAvgCount.doubleValue());
+		generator.write(this.denseVectorDimsAvgCount);
 
 		generator.writeKey("dense_vector_fields_count");
-		generator.write(this.denseVectorFieldsCount.doubleValue());
+		generator.write(this.denseVectorFieldsCount);
 
 		if (this.sparseVectorFieldsCount != null) {
 
 			generator.writeKey("sparse_vector_fields_count");
-			generator.write(this.sparseVectorFieldsCount.doubleValue());
+			generator.write(this.sparseVectorFieldsCount);
 
 		}
 
@@ -103,17 +105,17 @@ public final class Vector extends Base {
 	 * Builder for {@link Vector}.
 	 */
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Vector> {
-		private Number denseVectorDimsAvgCount;
+		private Integer denseVectorDimsAvgCount;
 
-		private Number denseVectorFieldsCount;
+		private Integer denseVectorFieldsCount;
 
 		@Nullable
-		private Number sparseVectorFieldsCount;
+		private Integer sparseVectorFieldsCount;
 
 		/**
 		 * API name: {@code dense_vector_dims_avg_count}
 		 */
-		public Builder denseVectorDimsAvgCount(Number value) {
+		public Builder denseVectorDimsAvgCount(Integer value) {
 			this.denseVectorDimsAvgCount = value;
 			return this;
 		}
@@ -121,7 +123,7 @@ public final class Vector extends Base {
 		/**
 		 * API name: {@code dense_vector_fields_count}
 		 */
-		public Builder denseVectorFieldsCount(Number value) {
+		public Builder denseVectorFieldsCount(Integer value) {
 			this.denseVectorFieldsCount = value;
 			return this;
 		}
@@ -129,7 +131,7 @@ public final class Vector extends Base {
 		/**
 		 * API name: {@code sparse_vector_fields_count}
 		 */
-		public Builder sparseVectorFieldsCount(@Nullable Number value) {
+		public Builder sparseVectorFieldsCount(@Nullable Integer value) {
 			this.sparseVectorFieldsCount = value;
 			return this;
 		}
@@ -156,14 +158,15 @@ public final class Vector extends Base {
 	/**
 	 * Json deserializer for {@link Vector}
 	 */
-	public static final JsonpDeserializer<Vector> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Vector::setupVectorDeserializer);
+	public static final JsonpDeserializer<Vector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Vector::setupVectorDeserializer, Builder::build);
 
 	protected static void setupVectorDeserializer(DelegatingDeserializer<Vector.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::denseVectorDimsAvgCount, JsonpDeserializer.numberDeserializer(), "dense_vector_dims_avg_count");
-		op.add(Builder::denseVectorFieldsCount, JsonpDeserializer.numberDeserializer(), "dense_vector_fields_count");
-		op.add(Builder::sparseVectorFieldsCount, JsonpDeserializer.numberDeserializer(), "sparse_vector_fields_count");
+		op.add(Builder::denseVectorDimsAvgCount, JsonpDeserializer.integerDeserializer(),
+				"dense_vector_dims_avg_count");
+		op.add(Builder::denseVectorFieldsCount, JsonpDeserializer.integerDeserializer(), "dense_vector_fields_count");
+		op.add(Builder::sparseVectorFieldsCount, JsonpDeserializer.integerDeserializer(), "sparse_vector_fields_count");
 
 	}
 

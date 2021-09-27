@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,24 +33,25 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameter
+@JsonpDeserializable
 public final class Hyperparameter implements JsonpSerializable {
 	@Nullable
-	private final Number absoluteImportance;
+	private final Double absoluteImportance;
 
 	private final String name;
 
 	@Nullable
-	private final Number relativeImportance;
+	private final Double relativeImportance;
 
 	private final Boolean supplied;
 
-	private final Number value;
+	private final Double value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +73,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * API name: {@code absolute_importance}
 	 */
 	@Nullable
-	public Number absoluteImportance() {
+	public Double absoluteImportance() {
 		return this.absoluteImportance;
 	}
 
@@ -93,7 +95,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * API name: {@code relative_importance}
 	 */
 	@Nullable
-	public Number relativeImportance() {
+	public Double relativeImportance() {
 		return this.relativeImportance;
 	}
 
@@ -112,7 +114,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public Double value() {
 		return this.value;
 	}
 
@@ -130,7 +132,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		if (this.absoluteImportance != null) {
 
 			generator.writeKey("absolute_importance");
-			generator.write(this.absoluteImportance.doubleValue());
+			generator.write(this.absoluteImportance);
 
 		}
 
@@ -140,7 +142,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		if (this.relativeImportance != null) {
 
 			generator.writeKey("relative_importance");
-			generator.write(this.relativeImportance.doubleValue());
+			generator.write(this.relativeImportance);
 
 		}
 
@@ -148,7 +150,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		generator.write(this.supplied);
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -159,16 +161,16 @@ public final class Hyperparameter implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Hyperparameter> {
 		@Nullable
-		private Number absoluteImportance;
+		private Double absoluteImportance;
 
 		private String name;
 
 		@Nullable
-		private Number relativeImportance;
+		private Double relativeImportance;
 
 		private Boolean supplied;
 
-		private Number value;
+		private Double value;
 
 		/**
 		 * A positive number showing how much the parameter influences the variation of
@@ -177,7 +179,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code absolute_importance}
 		 */
-		public Builder absoluteImportance(@Nullable Number value) {
+		public Builder absoluteImportance(@Nullable Double value) {
 			this.absoluteImportance = value;
 			return this;
 		}
@@ -200,7 +202,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code relative_importance}
 		 */
-		public Builder relativeImportance(@Nullable Number value) {
+		public Builder relativeImportance(@Nullable Double value) {
 			this.relativeImportance = value;
 			return this;
 		}
@@ -221,7 +223,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(Double value) {
 			this.value = value;
 			return this;
 		}
@@ -243,16 +245,16 @@ public final class Hyperparameter implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Hyperparameter}
 	 */
-	public static final JsonpDeserializer<Hyperparameter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Hyperparameter::setupHyperparameterDeserializer);
+	public static final JsonpDeserializer<Hyperparameter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Hyperparameter::setupHyperparameterDeserializer, Builder::build);
 
 	protected static void setupHyperparameterDeserializer(DelegatingDeserializer<Hyperparameter.Builder> op) {
 
-		op.add(Builder::absoluteImportance, JsonpDeserializer.numberDeserializer(), "absolute_importance");
+		op.add(Builder::absoluteImportance, JsonpDeserializer.doubleDeserializer(), "absolute_importance");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::relativeImportance, JsonpDeserializer.numberDeserializer(), "relative_importance");
+		op.add(Builder::relativeImportance, JsonpDeserializer.doubleDeserializer(), "relative_importance");
 		op.add(Builder::supplied, JsonpDeserializer.booleanDeserializer(), "supplied");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 
 	}
 

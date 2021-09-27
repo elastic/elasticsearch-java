@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineMetadata
+@JsonpDeserializable
 public final class PipelineMetadata implements JsonpSerializable {
 	private final String type;
 
@@ -126,8 +128,8 @@ public final class PipelineMetadata implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PipelineMetadata}
 	 */
-	public static final JsonpDeserializer<PipelineMetadata> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineMetadata::setupPipelineMetadataDeserializer);
+	public static final JsonpDeserializer<PipelineMetadata> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PipelineMetadata::setupPipelineMetadataDeserializer, Builder::build);
 
 	protected static void setupPipelineMetadataDeserializer(DelegatingDeserializer<PipelineMetadata.Builder> op) {
 

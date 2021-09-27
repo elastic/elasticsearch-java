@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Rescore
+@JsonpDeserializable
 public final class Rescore implements JsonpSerializable {
 	private final RescoreQuery query;
 
 	@Nullable
-	private final Number windowSize;
+	private final Integer windowSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +65,7 @@ public final class Rescore implements JsonpSerializable {
 	 * API name: {@code window_size}
 	 */
 	@Nullable
-	public Number windowSize() {
+	public Integer windowSize() {
 		return this.windowSize;
 	}
 
@@ -84,7 +86,7 @@ public final class Rescore implements JsonpSerializable {
 		if (this.windowSize != null) {
 
 			generator.writeKey("window_size");
-			generator.write(this.windowSize.doubleValue());
+			generator.write(this.windowSize);
 
 		}
 
@@ -99,7 +101,7 @@ public final class Rescore implements JsonpSerializable {
 		private RescoreQuery query;
 
 		@Nullable
-		private Number windowSize;
+		private Integer windowSize;
 
 		/**
 		 * API name: {@code query}
@@ -119,7 +121,7 @@ public final class Rescore implements JsonpSerializable {
 		/**
 		 * API name: {@code window_size}
 		 */
-		public Builder windowSize(@Nullable Number value) {
+		public Builder windowSize(@Nullable Integer value) {
 			this.windowSize = value;
 			return this;
 		}
@@ -141,13 +143,13 @@ public final class Rescore implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Rescore}
 	 */
-	public static final JsonpDeserializer<Rescore> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Rescore::setupRescoreDeserializer);
+	public static final JsonpDeserializer<Rescore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Rescore::setupRescoreDeserializer, Builder::build);
 
 	protected static void setupRescoreDeserializer(DelegatingDeserializer<Rescore.Builder> op) {
 
-		op.add(Builder::query, RescoreQuery.DESERIALIZER, "query");
-		op.add(Builder::windowSize, JsonpDeserializer.numberDeserializer(), "window_size");
+		op.add(Builder::query, RescoreQuery._DESERIALIZER, "query");
+		op.add(Builder::windowSize, JsonpDeserializer.integerDeserializer(), "window_size");
 
 	}
 

@@ -24,16 +24,17 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,18 +44,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucket
+@JsonpDeserializable
 public final class OverallBucket implements JsonpSerializable {
-	private final Number bucketSpan;
+	private final Long bucketSpan;
 
 	private final Boolean isInterim;
 
 	private final List<OverallBucketJob> jobs;
 
-	private final Number overallScore;
+	private final Double overallScore;
 
 	private final String resultType;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public Number bucketSpan() {
+	public Long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -103,7 +105,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code overall_score}
 	 */
-	public Number overallScore() {
+	public Double overallScore() {
 		return this.overallScore;
 	}
 
@@ -121,7 +123,7 @@ public final class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
@@ -137,7 +139,7 @@ public final class OverallBucket implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan.doubleValue());
+		generator.write(this.bucketSpan);
 
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
@@ -151,7 +153,7 @@ public final class OverallBucket implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("overall_score");
-		generator.write(this.overallScore.doubleValue());
+		generator.write(this.overallScore);
 
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
@@ -167,17 +169,17 @@ public final class OverallBucket implements JsonpSerializable {
 	 * Builder for {@link OverallBucket}.
 	 */
 	public static class Builder implements ObjectBuilder<OverallBucket> {
-		private Number bucketSpan;
+		private Long bucketSpan;
 
 		private Boolean isInterim;
 
 		private List<OverallBucketJob> jobs;
 
-		private Number overallScore;
+		private Double overallScore;
 
 		private String resultType;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		/**
 		 * The length of the bucket in seconds. Matches the job with the longest
@@ -185,7 +187,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(Number value) {
+		public Builder bucketSpan(Long value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -251,7 +253,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(Number value) {
+		public Builder overallScore(Double value) {
 			this.overallScore = value;
 			return this;
 		}
@@ -271,7 +273,7 @@ public final class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -293,17 +295,17 @@ public final class OverallBucket implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link OverallBucket}
 	 */
-	public static final JsonpDeserializer<OverallBucket> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OverallBucket::setupOverallBucketDeserializer);
+	public static final JsonpDeserializer<OverallBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			OverallBucket::setupOverallBucketDeserializer, Builder::build);
 
 	protected static void setupOverallBucketDeserializer(DelegatingDeserializer<OverallBucket.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpDeserializer.numberDeserializer(), "bucket_span");
+		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
-		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(OverallBucketJob.DESERIALIZER), "jobs");
-		op.add(Builder::overallScore, JsonpDeserializer.numberDeserializer(), "overall_score");
+		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(OverallBucketJob._DESERIALIZER), "jobs");
+		op.add(Builder::overallScore, JsonpDeserializer.doubleDeserializer(), "overall_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

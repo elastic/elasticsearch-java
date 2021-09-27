@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,12 +32,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHit
+@JsonpDeserializable
 public final class RankEvalHit implements JsonpSerializable {
 	private final String id;
 
@@ -45,7 +47,7 @@ public final class RankEvalHit implements JsonpSerializable {
 	@Nullable
 	private final String type;
 
-	private final Number score;
+	private final Double score;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,7 +85,7 @@ public final class RankEvalHit implements JsonpSerializable {
 	/**
 	 * API name: {@code _score}
 	 */
-	public Number score() {
+	public Double score() {
 		return this.score;
 	}
 
@@ -112,7 +114,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		}
 
 		generator.writeKey("_score");
-		generator.write(this.score.doubleValue());
+		generator.write(this.score);
 
 	}
 
@@ -129,7 +131,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		@Nullable
 		private String type;
 
-		private Number score;
+		private Double score;
 
 		/**
 		 * API name: {@code _id}
@@ -158,7 +160,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		/**
 		 * API name: {@code _score}
 		 */
-		public Builder score(Number value) {
+		public Builder score(Double value) {
 			this.score = value;
 			return this;
 		}
@@ -180,15 +182,15 @@ public final class RankEvalHit implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RankEvalHit}
 	 */
-	public static final JsonpDeserializer<RankEvalHit> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalHit::setupRankEvalHitDeserializer);
+	public static final JsonpDeserializer<RankEvalHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankEvalHit::setupRankEvalHitDeserializer, Builder::build);
 
 	protected static void setupRankEvalHitDeserializer(DelegatingDeserializer<RankEvalHit.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::score, JsonpDeserializer.numberDeserializer(), "_score");
+		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
 
 	}
 

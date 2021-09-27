@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.LoggingResult
+@JsonpDeserializable
 public final class LoggingResult implements JsonpSerializable {
 	private final String loggedText;
 
@@ -103,8 +105,8 @@ public final class LoggingResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link LoggingResult}
 	 */
-	public static final JsonpDeserializer<LoggingResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, LoggingResult::setupLoggingResultDeserializer);
+	public static final JsonpDeserializer<LoggingResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LoggingResult::setupLoggingResultDeserializer, Builder::build);
 
 	protected static void setupLoggingResultDeserializer(DelegatingDeserializer<LoggingResult.Builder> op) {
 

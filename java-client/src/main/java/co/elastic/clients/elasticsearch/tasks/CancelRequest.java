@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.tasks;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -44,9 +44,10 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Request
+
 public final class CancelRequest extends RequestBase {
 	@Nullable
-	private final JsonValue taskId;
+	private final String taskId;
 
 	@Nullable
 	private final List<String> actions;
@@ -78,7 +79,7 @@ public final class CancelRequest extends RequestBase {
 	 * API name: {@code task_id}
 	 */
 	@Nullable
-	public JsonValue taskId() {
+	public String taskId() {
 		return this.taskId;
 	}
 
@@ -134,7 +135,7 @@ public final class CancelRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<CancelRequest> {
 		@Nullable
-		private JsonValue taskId;
+		private String taskId;
 
 		@Nullable
 		private List<String> actions;
@@ -153,7 +154,7 @@ public final class CancelRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(@Nullable JsonValue value) {
+		public Builder taskId(@Nullable String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -291,7 +292,7 @@ public final class CancelRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_tasks");
 					buf.append("/");
-					buf.append(request.taskId.toString());
+					buf.append(request.taskId);
 					buf.append("/_cancel");
 					return buf.toString();
 				}
@@ -316,5 +317,5 @@ public final class CancelRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, CancelResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, CancelResponse._DESERIALIZER);
 }

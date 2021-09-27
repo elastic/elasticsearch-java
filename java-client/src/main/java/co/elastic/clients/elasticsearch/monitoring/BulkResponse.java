@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.monitoring;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,12 +34,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Response
+@JsonpDeserializable
 public final class BulkResponse implements JsonpSerializable {
 	@Nullable
 	private final ErrorCause error;
@@ -47,7 +49,7 @@ public final class BulkResponse implements JsonpSerializable {
 
 	private final Boolean ignored;
 
-	private final Number took;
+	private final Long took;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +91,7 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -118,7 +120,7 @@ public final class BulkResponse implements JsonpSerializable {
 		generator.write(this.ignored);
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 	}
 
@@ -135,7 +137,7 @@ public final class BulkResponse implements JsonpSerializable {
 
 		private Boolean ignored;
 
-		private Number took;
+		private Long took;
 
 		/**
 		 * API name: {@code error}
@@ -175,7 +177,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Number value) {
+		public Builder took(Long value) {
 			this.took = value;
 			return this;
 		}
@@ -197,15 +199,15 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link BulkResponse}
 	 */
-	public static final JsonpDeserializer<BulkResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BulkResponse::setupBulkResponseDeserializer);
+	public static final JsonpDeserializer<BulkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BulkResponse::setupBulkResponseDeserializer, Builder::build);
 
 	protected static void setupBulkResponseDeserializer(DelegatingDeserializer<BulkResponse.Builder> op) {
 
-		op.add(Builder::error, ErrorCause.DESERIALIZER, "error");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
 		op.add(Builder::ignored, JsonpDeserializer.booleanDeserializer(), "ignored");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 
 	}
 

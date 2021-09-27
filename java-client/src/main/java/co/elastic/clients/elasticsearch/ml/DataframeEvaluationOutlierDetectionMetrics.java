@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetectionMetrics
+@JsonpDeserializable
 public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluationMetrics {
 	@Nullable
 	private final Map<String, JsonData> confusionMatrix;
@@ -132,14 +134,15 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 	/**
 	 * Json deserializer for {@link DataframeEvaluationOutlierDetectionMetrics}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationOutlierDetectionMetrics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationOutlierDetectionMetrics::setupDataframeEvaluationOutlierDetectionMetricsDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationOutlierDetectionMetrics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationOutlierDetectionMetrics::setupDataframeEvaluationOutlierDetectionMetricsDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationOutlierDetectionMetricsDeserializer(
 			DelegatingDeserializer<DataframeEvaluationOutlierDetectionMetrics.Builder> op) {
 		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsDeserializer(op);
-		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"confusion_matrix");
 
 	}

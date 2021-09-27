@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._core.termvectors.TermVector;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Response
+@JsonpDeserializable
 public final class TermvectorsResponse implements JsonpSerializable {
 	private final Boolean found;
 
@@ -53,12 +55,12 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	@Nullable
 	private final Map<String, TermVector> termVectors;
 
-	private final Number took;
+	private final Long took;
 
 	@Nullable
 	private final String type;
 
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -106,7 +108,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -121,7 +123,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -159,7 +161,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 		if (this.type != null) {
 
@@ -169,7 +171,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("_version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -188,12 +190,12 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		@Nullable
 		private Map<String, TermVector> termVectors;
 
-		private Number took;
+		private Long took;
 
 		@Nullable
 		private String type;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code found}
@@ -255,7 +257,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Number value) {
+		public Builder took(Long value) {
 			this.took = value;
 			return this;
 		}
@@ -271,7 +273,7 @@ public final class TermvectorsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -293,18 +295,18 @@ public final class TermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TermvectorsResponse}
 	 */
-	public static final JsonpDeserializer<TermvectorsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermvectorsResponse::setupTermvectorsResponseDeserializer);
+	public static final JsonpDeserializer<TermvectorsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TermvectorsResponse::setupTermvectorsResponseDeserializer, Builder::build);
 
 	protected static void setupTermvectorsResponseDeserializer(DelegatingDeserializer<TermvectorsResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::termVectors, JsonpDeserializer.stringMapDeserializer(TermVector.DESERIALIZER), "term_vectors");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::termVectors, JsonpDeserializer.stringMapDeserializer(TermVector._DESERIALIZER), "term_vectors");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}
 

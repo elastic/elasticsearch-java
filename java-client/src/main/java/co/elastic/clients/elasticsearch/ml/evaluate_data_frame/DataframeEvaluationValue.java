@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationValue
+@JsonpDeserializable
 public class DataframeEvaluationValue implements JsonpSerializable {
-	private final Number value;
+	private final Double value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	/**
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public Double value() {
 		return this.value;
 	}
 
@@ -66,7 +68,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -96,12 +98,12 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private Number value;
+		private Double value;
 
 		/**
 		 * API name: {@code value}
 		 */
-		public BuilderT value(Number value) {
+		public BuilderT value(Double value) {
 			this.value = value;
 			return self();
 		}
@@ -115,13 +117,13 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeEvaluationValue}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationValue> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeEvaluationValue::setupDataframeEvaluationValueDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationValue> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeEvaluationValue::setupDataframeEvaluationValueDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationValueDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(AbstractBuilder::value, JsonpDeserializer.doubleDeserializer(), "value");
 
 	}
 

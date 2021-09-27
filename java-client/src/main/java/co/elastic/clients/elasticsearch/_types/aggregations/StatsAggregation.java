@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.StatsAggregation
-public final class StatsAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public StatsAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "stats";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class StatsAggregation extends FormatMetricAggregationBase {
 	/**
 	 * Json deserializer for {@link StatsAggregation}
 	 */
-	public static final JsonpDeserializer<StatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsAggregation::setupStatsAggregationDeserializer);
+	public static final JsonpDeserializer<StatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsAggregation::setupStatsAggregationDeserializer, Builder::build);
 
 	protected static void setupStatsAggregationDeserializer(DelegatingDeserializer<StatsAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);

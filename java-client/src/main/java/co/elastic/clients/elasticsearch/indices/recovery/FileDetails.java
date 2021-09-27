@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,18 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.FileDetails
+@JsonpDeserializable
 public final class FileDetails implements JsonpSerializable {
-	private final Number length;
+	private final Long length;
 
 	private final String name;
 
-	private final Number recovered;
+	private final Long recovered;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -57,7 +59,7 @@ public final class FileDetails implements JsonpSerializable {
 	/**
 	 * API name: {@code length}
 	 */
-	public Number length() {
+	public Long length() {
 		return this.length;
 	}
 
@@ -71,7 +73,7 @@ public final class FileDetails implements JsonpSerializable {
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Number recovered() {
+	public Long recovered() {
 		return this.recovered;
 	}
 
@@ -87,13 +89,13 @@ public final class FileDetails implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("length");
-		generator.write(this.length.doubleValue());
+		generator.write(this.length);
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("recovered");
-		generator.write(this.recovered.doubleValue());
+		generator.write(this.recovered);
 
 	}
 
@@ -103,16 +105,16 @@ public final class FileDetails implements JsonpSerializable {
 	 * Builder for {@link FileDetails}.
 	 */
 	public static class Builder implements ObjectBuilder<FileDetails> {
-		private Number length;
+		private Long length;
 
 		private String name;
 
-		private Number recovered;
+		private Long recovered;
 
 		/**
 		 * API name: {@code length}
 		 */
-		public Builder length(Number value) {
+		public Builder length(Long value) {
 			this.length = value;
 			return this;
 		}
@@ -128,7 +130,7 @@ public final class FileDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Number value) {
+		public Builder recovered(Long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -150,14 +152,14 @@ public final class FileDetails implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FileDetails}
 	 */
-	public static final JsonpDeserializer<FileDetails> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FileDetails::setupFileDetailsDeserializer);
+	public static final JsonpDeserializer<FileDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FileDetails::setupFileDetailsDeserializer, Builder::build);
 
 	protected static void setupFileDetailsDeserializer(DelegatingDeserializer<FileDetails.Builder> op) {
 
-		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
+		op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
+		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
 
 	}
 

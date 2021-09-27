@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.Realm
-public final class Realm implements JsonpSerializable {
+@JsonpDeserializable
+public final class Realm implements FieldRuleVariant, JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -45,6 +47,14 @@ public final class Realm implements JsonpSerializable {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	/**
+	 * {@link FieldRule} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "realm";
 	}
 
 	/**
@@ -103,8 +113,8 @@ public final class Realm implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Realm}
 	 */
-	public static final JsonpDeserializer<Realm> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Realm::setupRealmDeserializer);
+	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Realm::setupRealmDeserializer, Builder::build);
 
 	protected static void setupRealmDeserializer(DelegatingDeserializer<Realm.Builder> op) {
 

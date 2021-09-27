@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core.mtermvectors;
 import co.elastic.clients.elasticsearch._core.termvectors.Filter;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Operation
+@JsonpDeserializable
 public final class Operation implements JsonpSerializable {
 	private final String id;
 
@@ -79,7 +81,7 @@ public final class Operation implements JsonpSerializable {
 	private final Boolean termStatistics;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
@@ -195,7 +197,7 @@ public final class Operation implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -289,7 +291,7 @@ public final class Operation implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
@@ -339,7 +341,7 @@ public final class Operation implements JsonpSerializable {
 		private Boolean termStatistics;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
@@ -461,7 +463,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -491,8 +493,8 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Operation}
 	 */
-	public static final JsonpDeserializer<Operation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Operation::setupOperationDeserializer);
+	public static final JsonpDeserializer<Operation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Operation::setupOperationDeserializer, Builder::build);
 
 	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
 
@@ -501,14 +503,14 @@ public final class Operation implements JsonpSerializable {
 		op.add(Builder::doc, JsonpDeserializer.jsonValueDeserializer(), "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::fieldStatistics, JsonpDeserializer.booleanDeserializer(), "field_statistics");
-		op.add(Builder::filter, Filter.DESERIALIZER, "filter");
+		op.add(Builder::filter, Filter._DESERIALIZER, "filter");
 		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
 		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::versionType, VersionType.DESERIALIZER, "version_type");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 

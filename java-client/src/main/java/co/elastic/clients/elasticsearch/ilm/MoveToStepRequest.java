@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ilm.move_to_step.StepKey;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.Request
+@JsonpDeserializable
 public final class MoveToStepRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
@@ -183,13 +185,13 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Json deserializer for {@link MoveToStepRequest}
 	 */
-	public static final JsonpDeserializer<MoveToStepRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer);
+	public static final JsonpDeserializer<MoveToStepRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MoveToStepRequest::setupMoveToStepRequestDeserializer, Builder::build);
 
 	protected static void setupMoveToStepRequestDeserializer(DelegatingDeserializer<MoveToStepRequest.Builder> op) {
 
-		op.add(Builder::currentStep, StepKey.DESERIALIZER, "current_step");
-		op.add(Builder::nextStep, StepKey.DESERIALIZER, "next_step");
+		op.add(Builder::currentStep, StepKey._DESERIALIZER, "current_step");
+		op.add(Builder::nextStep, StepKey._DESERIALIZER, "next_step");
 
 	}
 
@@ -230,5 +232,5 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, MoveToStepResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, MoveToStepResponse._DESERIALIZER);
 }

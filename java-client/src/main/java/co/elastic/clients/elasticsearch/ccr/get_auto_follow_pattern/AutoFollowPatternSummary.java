@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
+@JsonpDeserializable
 public final class AutoFollowPatternSummary implements JsonpSerializable {
 	private final Boolean active;
 
@@ -53,7 +55,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 	private final List<String> leaderIndexExclusionPatterns;
 
-	private final Number maxOutstandingReadRequests;
+	private final Integer maxOutstandingReadRequests;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -121,7 +123,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
-	public Number maxOutstandingReadRequests() {
+	public Integer maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
@@ -166,7 +168,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("max_outstanding_read_requests");
-		generator.write(this.maxOutstandingReadRequests.doubleValue());
+		generator.write(this.maxOutstandingReadRequests);
 
 	}
 
@@ -187,7 +189,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 		private List<String> leaderIndexExclusionPatterns;
 
-		private Number maxOutstandingReadRequests;
+		private Integer maxOutstandingReadRequests;
 
 		/**
 		 * API name: {@code active}
@@ -290,7 +292,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */
-		public Builder maxOutstandingReadRequests(Number value) {
+		public Builder maxOutstandingReadRequests(Integer value) {
 			this.maxOutstandingReadRequests = value;
 			return this;
 		}
@@ -312,8 +314,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoFollowPatternSummary}
 	 */
-	public static final JsonpDeserializer<AutoFollowPatternSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryDeserializer);
+	public static final JsonpDeserializer<AutoFollowPatternSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoFollowPatternSummary::setupAutoFollowPatternSummaryDeserializer, Builder::build);
 
 	protected static void setupAutoFollowPatternSummaryDeserializer(
 			DelegatingDeserializer<AutoFollowPatternSummary.Builder> op) {
@@ -326,7 +328,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		op.add(Builder::leaderIndexExclusionPatterns,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"leader_index_exclusion_patterns");
-		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.integerDeserializer(),
 				"max_outstanding_read_requests");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Watcher
+@JsonpDeserializable
 public final class Watcher extends Base {
 	private final WatcherActions execution;
 
@@ -168,14 +170,14 @@ public final class Watcher extends Base {
 	/**
 	 * Json deserializer for {@link Watcher}
 	 */
-	public static final JsonpDeserializer<Watcher> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Watcher::setupWatcherDeserializer);
+	public static final JsonpDeserializer<Watcher> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Watcher::setupWatcherDeserializer, Builder::build);
 
 	protected static void setupWatcherDeserializer(DelegatingDeserializer<Watcher.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::execution, WatcherActions.DESERIALIZER, "execution");
-		op.add(Builder::watch, WatcherWatch.DESERIALIZER, "watch");
-		op.add(Builder::count, Counter.DESERIALIZER, "count");
+		op.add(Builder::execution, WatcherActions._DESERIALIZER, "execution");
+		op.add(Builder::watch, WatcherWatch._DESERIALIZER, "watch");
+		op.add(Builder::count, Counter._DESERIALIZER, "count");
 
 	}
 

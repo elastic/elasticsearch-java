@@ -25,15 +25,15 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfig
+@JsonpDeserializable
 public final class TrainedModelConfig implements JsonpSerializable {
 	private final String modelId;
 
@@ -60,7 +61,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	private final String createdBy;
 
 	@Nullable
-	private final JsonValue createTime;
+	private final String createTime;
 
 	@Nullable
 	private final Map<String, String> defaultFieldMap;
@@ -69,10 +70,10 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	private final String description;
 
 	@Nullable
-	private final Number estimatedHeapMemoryUsageBytes;
+	private final Integer estimatedHeapMemoryUsageBytes;
 
 	@Nullable
-	private final Number estimatedOperations;
+	private final Integer estimatedOperations;
 
 	private final InferenceConfig inferenceConfig;
 
@@ -158,7 +159,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public JsonValue createTime() {
+	public String createTime() {
 		return this.createTime;
 	}
 
@@ -188,7 +189,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code estimated_heap_memory_usage_bytes}
 	 */
 	@Nullable
-	public Number estimatedHeapMemoryUsageBytes() {
+	public Integer estimatedHeapMemoryUsageBytes() {
 		return this.estimatedHeapMemoryUsageBytes;
 	}
 
@@ -198,7 +199,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code estimated_operations}
 	 */
 	@Nullable
-	public Number estimatedOperations() {
+	public Integer estimatedOperations() {
 		return this.estimatedOperations;
 	}
 
@@ -310,13 +311,13 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		if (this.estimatedHeapMemoryUsageBytes != null) {
 
 			generator.writeKey("estimated_heap_memory_usage_bytes");
-			generator.write(this.estimatedHeapMemoryUsageBytes.doubleValue());
+			generator.write(this.estimatedHeapMemoryUsageBytes);
 
 		}
 		if (this.estimatedOperations != null) {
 
 			generator.writeKey("estimated_operations");
-			generator.write(this.estimatedOperations.doubleValue());
+			generator.write(this.estimatedOperations);
 
 		}
 
@@ -361,7 +362,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		private String createdBy;
 
 		@Nullable
-		private JsonValue createTime;
+		private String createTime;
 
 		@Nullable
 		private Map<String, String> defaultFieldMap;
@@ -370,10 +371,10 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		private String description;
 
 		@Nullable
-		private Number estimatedHeapMemoryUsageBytes;
+		private Integer estimatedHeapMemoryUsageBytes;
 
 		@Nullable
-		private Number estimatedOperations;
+		private Integer estimatedOperations;
 
 		private InferenceConfig inferenceConfig;
 
@@ -461,7 +462,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable JsonValue value) {
+		public Builder createTime(@Nullable String value) {
 			this.createTime = value;
 			return this;
 		}
@@ -502,7 +503,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
-		public Builder estimatedHeapMemoryUsageBytes(@Nullable Number value) {
+		public Builder estimatedHeapMemoryUsageBytes(@Nullable Integer value) {
 			this.estimatedHeapMemoryUsageBytes = value;
 			return this;
 		}
@@ -512,7 +513,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code estimated_operations}
 		 */
-		public Builder estimatedOperations(@Nullable Number value) {
+		public Builder estimatedOperations(@Nullable Integer value) {
 			this.estimatedOperations = value;
 			return this;
 		}
@@ -608,8 +609,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelConfig}
 	 */
-	public static final JsonpDeserializer<TrainedModelConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer);
+	public static final JsonpDeserializer<TrainedModelConfig> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer, Builder::build);
 
 	protected static void setupTrainedModelConfigDeserializer(DelegatingDeserializer<TrainedModelConfig.Builder> op) {
 
@@ -618,17 +619,17 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
-		op.add(Builder::createTime, JsonpDeserializer.jsonValueDeserializer(), "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
 		op.add(Builder::defaultFieldMap,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "default_field_map");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.integerDeserializer(),
 				"estimated_heap_memory_usage_bytes");
-		op.add(Builder::estimatedOperations, JsonpDeserializer.numberDeserializer(), "estimated_operations");
-		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
-		op.add(Builder::input, TrainedModelConfigInput.DESERIALIZER, "input");
+		op.add(Builder::estimatedOperations, JsonpDeserializer.integerDeserializer(), "estimated_operations");
+		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(Builder::input, TrainedModelConfigInput._DESERIALIZER, "input");
 		op.add(Builder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
-		op.add(Builder::metadata, TrainedModelConfigMetadata.DESERIALIZER, "metadata");
+		op.add(Builder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
 
 	}
 

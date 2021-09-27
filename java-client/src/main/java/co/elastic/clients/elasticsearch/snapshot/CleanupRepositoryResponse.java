@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.cleanup_repository.CleanupRepositoryResults;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.cleanup_repository.Response
+@JsonpDeserializable
 public final class CleanupRepositoryResponse implements JsonpSerializable {
 	private final CleanupRepositoryResults results;
 
@@ -111,13 +113,13 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CleanupRepositoryResponse}
 	 */
-	public static final JsonpDeserializer<CleanupRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer);
+	public static final JsonpDeserializer<CleanupRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CleanupRepositoryResponse::setupCleanupRepositoryResponseDeserializer, Builder::build);
 
 	protected static void setupCleanupRepositoryResponseDeserializer(
 			DelegatingDeserializer<CleanupRepositoryResponse.Builder> op) {
 
-		op.add(Builder::results, CleanupRepositoryResults.DESERIALIZER, "results");
+		op.add(Builder::results, CleanupRepositoryResults._DESERIALIZER, "results");
 
 	}
 

@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -47,11 +48,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
+@JsonpDeserializable
 public final class PutUserRequest extends RequestBase implements JsonpSerializable {
 	private final String username;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final String email;
@@ -108,7 +110,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -244,7 +246,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		private String username;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private String email;
@@ -285,7 +287,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -393,14 +395,14 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link PutUserRequest}
 	 */
-	public static final JsonpDeserializer<PutUserRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutUserRequest::setupPutUserRequestDeserializer);
+	public static final JsonpDeserializer<PutUserRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutUserRequest::setupPutUserRequestDeserializer, Builder::build);
 
 	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
 
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
@@ -449,5 +451,5 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutUserResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutUserResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: security.get_user.Response
+@JsonpDeserializable
 public final class GetUserResponse extends AdditionalProperties<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,12 +76,12 @@ public final class GetUserResponse extends AdditionalProperties<String, User> {
 	/**
 	 * Json deserializer for {@link GetUserResponse}
 	 */
-	public static final JsonpDeserializer<GetUserResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetUserResponse::setupGetUserResponseDeserializer);
+	public static final JsonpDeserializer<GetUserResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetUserResponse::setupGetUserResponseDeserializer, Builder::build);
 
 	protected static void setupGetUserResponseDeserializer(DelegatingDeserializer<GetUserResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				User.DESERIALIZER);
+				User._DESERIALIZER);
 
 	}
 

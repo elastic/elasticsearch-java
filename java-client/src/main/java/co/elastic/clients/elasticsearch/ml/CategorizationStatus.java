@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum CategorizationStatus implements StringEnum {
 	Ok("ok"), Warn("warn");
 
@@ -39,6 +41,6 @@ public enum CategorizationStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<CategorizationStatus> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<CategorizationStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
 			CategorizationStatus.values());
 }

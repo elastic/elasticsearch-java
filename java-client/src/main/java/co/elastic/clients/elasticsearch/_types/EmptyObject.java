@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+@JsonpDeserializable
 public class EmptyObject implements JsonpSerializable {
 
 	public static final class Builder implements ObjectBuilder<EmptyObject> {
 		@Override
 		public EmptyObject build() {
-			return EmptyObject.INSTANCE;
+			return EmptyObject._INSTANCE;
 		}
 	}
 
@@ -42,18 +44,16 @@ public class EmptyObject implements JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
 		generator.writeStartObject();
 		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link EmptyObject}.
+	 * Singleton instance for empty class {@link EmptyObject}.
 	 */
-	public static final EmptyObject INSTANCE = new EmptyObject();
+	public static final EmptyObject _INSTANCE = new EmptyObject();
 
-	public static final JsonpDeserializer<EmptyObject> DESERIALIZER = JsonpDeserializer
-			.emptyObject(EmptyObject.INSTANCE);
+	public static final JsonpDeserializer<EmptyObject> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(EmptyObject._INSTANCE);
 
 }

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum UnassignedInformationReason implements StringEnum {
 	IndexCreated("INDEX_CREATED"), ClusterRecovered("CLUSTER_RECOVERED"), IndexReopened(
 			"INDEX_REOPENED"), DanglingIndexImported("DANGLING_INDEX_IMPORTED"), NewIndexRestored(
@@ -47,6 +49,6 @@ public enum UnassignedInformationReason implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<UnassignedInformationReason> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<UnassignedInformationReason> _DESERIALIZER = new StringEnum.Deserializer<>(
 			UnassignedInformationReason.values());
 }

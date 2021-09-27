@@ -24,44 +24,46 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoJvmMemory
+@JsonpDeserializable
 public final class NodeInfoJvmMemory implements JsonpSerializable {
 	@Nullable
-	private final JsonValue directMax;
+	private final String directMax;
 
-	private final Number directMaxInBytes;
-
-	@Nullable
-	private final JsonValue heapInit;
-
-	private final Number heapInitInBytes;
+	private final Long directMaxInBytes;
 
 	@Nullable
-	private final JsonValue heapMax;
+	private final String heapInit;
 
-	private final Number heapMaxInBytes;
-
-	@Nullable
-	private final JsonValue nonHeapInit;
-
-	private final Number nonHeapInitInBytes;
+	private final Long heapInitInBytes;
 
 	@Nullable
-	private final JsonValue nonHeapMax;
+	private final String heapMax;
 
-	private final Number nonHeapMaxInBytes;
+	private final Long heapMaxInBytes;
+
+	@Nullable
+	private final String nonHeapInit;
+
+	private final Long nonHeapInitInBytes;
+
+	@Nullable
+	private final String nonHeapMax;
+
+	private final Long nonHeapMaxInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,14 +86,14 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	 * API name: {@code direct_max}
 	 */
 	@Nullable
-	public JsonValue directMax() {
+	public String directMax() {
 		return this.directMax;
 	}
 
 	/**
 	 * API name: {@code direct_max_in_bytes}
 	 */
-	public Number directMaxInBytes() {
+	public Long directMaxInBytes() {
 		return this.directMaxInBytes;
 	}
 
@@ -99,14 +101,14 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	 * API name: {@code heap_init}
 	 */
 	@Nullable
-	public JsonValue heapInit() {
+	public String heapInit() {
 		return this.heapInit;
 	}
 
 	/**
 	 * API name: {@code heap_init_in_bytes}
 	 */
-	public Number heapInitInBytes() {
+	public Long heapInitInBytes() {
 		return this.heapInitInBytes;
 	}
 
@@ -114,14 +116,14 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	 * API name: {@code heap_max}
 	 */
 	@Nullable
-	public JsonValue heapMax() {
+	public String heapMax() {
 		return this.heapMax;
 	}
 
 	/**
 	 * API name: {@code heap_max_in_bytes}
 	 */
-	public Number heapMaxInBytes() {
+	public Long heapMaxInBytes() {
 		return this.heapMaxInBytes;
 	}
 
@@ -129,14 +131,14 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	 * API name: {@code non_heap_init}
 	 */
 	@Nullable
-	public JsonValue nonHeapInit() {
+	public String nonHeapInit() {
 		return this.nonHeapInit;
 	}
 
 	/**
 	 * API name: {@code non_heap_init_in_bytes}
 	 */
-	public Number nonHeapInitInBytes() {
+	public Long nonHeapInitInBytes() {
 		return this.nonHeapInitInBytes;
 	}
 
@@ -144,14 +146,14 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	 * API name: {@code non_heap_max}
 	 */
 	@Nullable
-	public JsonValue nonHeapMax() {
+	public String nonHeapMax() {
 		return this.nonHeapMax;
 	}
 
 	/**
 	 * API name: {@code non_heap_max_in_bytes}
 	 */
-	public Number nonHeapMaxInBytes() {
+	public Long nonHeapMaxInBytes() {
 		return this.nonHeapMaxInBytes;
 	}
 
@@ -174,7 +176,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		generator.writeKey("direct_max_in_bytes");
-		generator.write(this.directMaxInBytes.doubleValue());
+		generator.write(this.directMaxInBytes);
 
 		if (this.heapInit != null) {
 
@@ -184,7 +186,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		generator.writeKey("heap_init_in_bytes");
-		generator.write(this.heapInitInBytes.doubleValue());
+		generator.write(this.heapInitInBytes);
 
 		if (this.heapMax != null) {
 
@@ -194,7 +196,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		generator.writeKey("heap_max_in_bytes");
-		generator.write(this.heapMaxInBytes.doubleValue());
+		generator.write(this.heapMaxInBytes);
 
 		if (this.nonHeapInit != null) {
 
@@ -204,7 +206,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		generator.writeKey("non_heap_init_in_bytes");
-		generator.write(this.nonHeapInitInBytes.doubleValue());
+		generator.write(this.nonHeapInitInBytes);
 
 		if (this.nonHeapMax != null) {
 
@@ -214,7 +216,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 
 		generator.writeKey("non_heap_max_in_bytes");
-		generator.write(this.nonHeapMaxInBytes.doubleValue());
+		generator.write(this.nonHeapMaxInBytes);
 
 	}
 
@@ -225,34 +227,34 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<NodeInfoJvmMemory> {
 		@Nullable
-		private JsonValue directMax;
+		private String directMax;
 
-		private Number directMaxInBytes;
-
-		@Nullable
-		private JsonValue heapInit;
-
-		private Number heapInitInBytes;
+		private Long directMaxInBytes;
 
 		@Nullable
-		private JsonValue heapMax;
+		private String heapInit;
 
-		private Number heapMaxInBytes;
-
-		@Nullable
-		private JsonValue nonHeapInit;
-
-		private Number nonHeapInitInBytes;
+		private Long heapInitInBytes;
 
 		@Nullable
-		private JsonValue nonHeapMax;
+		private String heapMax;
 
-		private Number nonHeapMaxInBytes;
+		private Long heapMaxInBytes;
+
+		@Nullable
+		private String nonHeapInit;
+
+		private Long nonHeapInitInBytes;
+
+		@Nullable
+		private String nonHeapMax;
+
+		private Long nonHeapMaxInBytes;
 
 		/**
 		 * API name: {@code direct_max}
 		 */
-		public Builder directMax(@Nullable JsonValue value) {
+		public Builder directMax(@Nullable String value) {
 			this.directMax = value;
 			return this;
 		}
@@ -260,7 +262,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code direct_max_in_bytes}
 		 */
-		public Builder directMaxInBytes(Number value) {
+		public Builder directMaxInBytes(Long value) {
 			this.directMaxInBytes = value;
 			return this;
 		}
@@ -268,7 +270,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code heap_init}
 		 */
-		public Builder heapInit(@Nullable JsonValue value) {
+		public Builder heapInit(@Nullable String value) {
 			this.heapInit = value;
 			return this;
 		}
@@ -276,7 +278,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code heap_init_in_bytes}
 		 */
-		public Builder heapInitInBytes(Number value) {
+		public Builder heapInitInBytes(Long value) {
 			this.heapInitInBytes = value;
 			return this;
 		}
@@ -284,7 +286,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code heap_max}
 		 */
-		public Builder heapMax(@Nullable JsonValue value) {
+		public Builder heapMax(@Nullable String value) {
 			this.heapMax = value;
 			return this;
 		}
@@ -292,7 +294,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code heap_max_in_bytes}
 		 */
-		public Builder heapMaxInBytes(Number value) {
+		public Builder heapMaxInBytes(Long value) {
 			this.heapMaxInBytes = value;
 			return this;
 		}
@@ -300,7 +302,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code non_heap_init}
 		 */
-		public Builder nonHeapInit(@Nullable JsonValue value) {
+		public Builder nonHeapInit(@Nullable String value) {
 			this.nonHeapInit = value;
 			return this;
 		}
@@ -308,7 +310,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code non_heap_init_in_bytes}
 		 */
-		public Builder nonHeapInitInBytes(Number value) {
+		public Builder nonHeapInitInBytes(Long value) {
 			this.nonHeapInitInBytes = value;
 			return this;
 		}
@@ -316,7 +318,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code non_heap_max}
 		 */
-		public Builder nonHeapMax(@Nullable JsonValue value) {
+		public Builder nonHeapMax(@Nullable String value) {
 			this.nonHeapMax = value;
 			return this;
 		}
@@ -324,7 +326,7 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code non_heap_max_in_bytes}
 		 */
-		public Builder nonHeapMaxInBytes(Number value) {
+		public Builder nonHeapMaxInBytes(Long value) {
 			this.nonHeapMaxInBytes = value;
 			return this;
 		}
@@ -346,21 +348,21 @@ public final class NodeInfoJvmMemory implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoJvmMemory}
 	 */
-	public static final JsonpDeserializer<NodeInfoJvmMemory> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoJvmMemory::setupNodeInfoJvmMemoryDeserializer);
+	public static final JsonpDeserializer<NodeInfoJvmMemory> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoJvmMemory::setupNodeInfoJvmMemoryDeserializer, Builder::build);
 
 	protected static void setupNodeInfoJvmMemoryDeserializer(DelegatingDeserializer<NodeInfoJvmMemory.Builder> op) {
 
-		op.add(Builder::directMax, JsonpDeserializer.jsonValueDeserializer(), "direct_max");
-		op.add(Builder::directMaxInBytes, JsonpDeserializer.numberDeserializer(), "direct_max_in_bytes");
-		op.add(Builder::heapInit, JsonpDeserializer.jsonValueDeserializer(), "heap_init");
-		op.add(Builder::heapInitInBytes, JsonpDeserializer.numberDeserializer(), "heap_init_in_bytes");
-		op.add(Builder::heapMax, JsonpDeserializer.jsonValueDeserializer(), "heap_max");
-		op.add(Builder::heapMaxInBytes, JsonpDeserializer.numberDeserializer(), "heap_max_in_bytes");
-		op.add(Builder::nonHeapInit, JsonpDeserializer.jsonValueDeserializer(), "non_heap_init");
-		op.add(Builder::nonHeapInitInBytes, JsonpDeserializer.numberDeserializer(), "non_heap_init_in_bytes");
-		op.add(Builder::nonHeapMax, JsonpDeserializer.jsonValueDeserializer(), "non_heap_max");
-		op.add(Builder::nonHeapMaxInBytes, JsonpDeserializer.numberDeserializer(), "non_heap_max_in_bytes");
+		op.add(Builder::directMax, JsonpDeserializer.stringDeserializer(), "direct_max");
+		op.add(Builder::directMaxInBytes, JsonpDeserializer.longDeserializer(), "direct_max_in_bytes");
+		op.add(Builder::heapInit, JsonpDeserializer.stringDeserializer(), "heap_init");
+		op.add(Builder::heapInitInBytes, JsonpDeserializer.longDeserializer(), "heap_init_in_bytes");
+		op.add(Builder::heapMax, JsonpDeserializer.stringDeserializer(), "heap_max");
+		op.add(Builder::heapMaxInBytes, JsonpDeserializer.longDeserializer(), "heap_max_in_bytes");
+		op.add(Builder::nonHeapInit, JsonpDeserializer.stringDeserializer(), "non_heap_init");
+		op.add(Builder::nonHeapInitInBytes, JsonpDeserializer.longDeserializer(), "non_heap_init_in_bytes");
+		op.add(Builder::nonHeapMax, JsonpDeserializer.stringDeserializer(), "non_heap_max");
+		op.add(Builder::nonHeapMaxInBytes, JsonpDeserializer.longDeserializer(), "non_heap_max_in_bytes");
 
 	}
 

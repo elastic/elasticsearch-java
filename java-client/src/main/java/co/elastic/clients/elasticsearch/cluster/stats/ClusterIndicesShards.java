@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,24 +32,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShards
+@JsonpDeserializable
 public final class ClusterIndicesShards implements JsonpSerializable {
 	@Nullable
 	private final ClusterIndicesShardsIndex index;
 
 	@Nullable
-	private final Number primaries;
+	private final Double primaries;
 
 	@Nullable
-	private final Number replication;
+	private final Double replication;
 
 	@Nullable
-	private final Number total;
+	private final Double total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +79,7 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 	 * API name: {@code primaries}
 	 */
 	@Nullable
-	public Number primaries() {
+	public Double primaries() {
 		return this.primaries;
 	}
 
@@ -87,7 +89,7 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 	 * API name: {@code replication}
 	 */
 	@Nullable
-	public Number replication() {
+	public Double replication() {
 		return this.replication;
 	}
 
@@ -97,7 +99,7 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public Number total() {
+	public Double total() {
 		return this.total;
 	}
 
@@ -121,19 +123,19 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 		if (this.primaries != null) {
 
 			generator.writeKey("primaries");
-			generator.write(this.primaries.doubleValue());
+			generator.write(this.primaries);
 
 		}
 		if (this.replication != null) {
 
 			generator.writeKey("replication");
-			generator.write(this.replication.doubleValue());
+			generator.write(this.replication);
 
 		}
 		if (this.total != null) {
 
 			generator.writeKey("total");
-			generator.write(this.total.doubleValue());
+			generator.write(this.total);
 
 		}
 
@@ -149,13 +151,13 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 		private ClusterIndicesShardsIndex index;
 
 		@Nullable
-		private Number primaries;
+		private Double primaries;
 
 		@Nullable
-		private Number replication;
+		private Double replication;
 
 		@Nullable
-		private Number total;
+		private Double total;
 
 		/**
 		 * Contains statistics about shards assigned to selected nodes.
@@ -181,7 +183,7 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code primaries}
 		 */
-		public Builder primaries(@Nullable Number value) {
+		public Builder primaries(@Nullable Double value) {
 			this.primaries = value;
 			return this;
 		}
@@ -191,7 +193,7 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code replication}
 		 */
-		public Builder replication(@Nullable Number value) {
+		public Builder replication(@Nullable Double value) {
 			this.replication = value;
 			return this;
 		}
@@ -201,7 +203,7 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable Number value) {
+		public Builder total(@Nullable Double value) {
 			this.total = value;
 			return this;
 		}
@@ -223,16 +225,16 @@ public final class ClusterIndicesShards implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterIndicesShards}
 	 */
-	public static final JsonpDeserializer<ClusterIndicesShards> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsDeserializer);
+	public static final JsonpDeserializer<ClusterIndicesShards> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterIndicesShards::setupClusterIndicesShardsDeserializer, Builder::build);
 
 	protected static void setupClusterIndicesShardsDeserializer(
 			DelegatingDeserializer<ClusterIndicesShards.Builder> op) {
 
-		op.add(Builder::index, ClusterIndicesShardsIndex.DESERIALIZER, "index");
-		op.add(Builder::primaries, JsonpDeserializer.numberDeserializer(), "primaries");
-		op.add(Builder::replication, JsonpDeserializer.numberDeserializer(), "replication");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::index, ClusterIndicesShardsIndex._DESERIALIZER, "index");
+		op.add(Builder::primaries, JsonpDeserializer.doubleDeserializer(), "primaries");
+		op.add(Builder::replication, JsonpDeserializer.doubleDeserializer(), "replication");
+		op.add(Builder::total, JsonpDeserializer.doubleDeserializer(), "total");
 
 	}
 

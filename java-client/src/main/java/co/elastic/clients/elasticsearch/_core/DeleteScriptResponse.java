@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.delete_script.Response
+@JsonpDeserializable
 public final class DeleteScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class DeleteScriptResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link DeleteScriptResponse}
 	 */
-	public static final JsonpDeserializer<DeleteScriptResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteScriptResponse::setupDeleteScriptResponseDeserializer);
+	public static final JsonpDeserializer<DeleteScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteScriptResponse::setupDeleteScriptResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteScriptResponseDeserializer(
 			DelegatingDeserializer<DeleteScriptResponse.Builder> op) {

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterShardMetrics
+@JsonpDeserializable
 public final class ClusterShardMetrics implements JsonpSerializable {
-	private final Number avg;
+	private final Double avg;
 
-	private final Number max;
+	private final Double max;
 
-	private final Number min;
+	private final Double min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,21 +58,21 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	/**
 	 * API name: {@code avg}
 	 */
-	public Number avg() {
+	public Double avg() {
 		return this.avg;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Number max() {
+	public Double max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Number min() {
+	public Double min() {
 		return this.min;
 	}
 
@@ -86,13 +88,13 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("avg");
-		generator.write(this.avg.doubleValue());
+		generator.write(this.avg);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 	}
 
@@ -102,16 +104,16 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	 * Builder for {@link ClusterShardMetrics}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterShardMetrics> {
-		private Number avg;
+		private Double avg;
 
-		private Number max;
+		private Double max;
 
-		private Number min;
+		private Double min;
 
 		/**
 		 * API name: {@code avg}
 		 */
-		public Builder avg(Number value) {
+		public Builder avg(Double value) {
 			this.avg = value;
 			return this;
 		}
@@ -119,7 +121,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(Double value) {
 			this.max = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(Double value) {
 			this.min = value;
 			return this;
 		}
@@ -149,14 +151,14 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterShardMetrics}
 	 */
-	public static final JsonpDeserializer<ClusterShardMetrics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer);
+	public static final JsonpDeserializer<ClusterShardMetrics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer, Builder::build);
 
 	protected static void setupClusterShardMetricsDeserializer(DelegatingDeserializer<ClusterShardMetrics.Builder> op) {
 
-		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.doubleDeserializer(), "min");
 
 	}
 

@@ -28,13 +28,13 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -47,13 +47,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Request
+@JsonpDeserializable
 public final class MountRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -112,7 +113,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -225,7 +226,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		private String snapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -269,7 +270,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -375,14 +376,14 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link MountRequest}
 	 */
-	public static final JsonpDeserializer<MountRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MountRequest::setupMountRequestDeserializer);
+	public static final JsonpDeserializer<MountRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MountRequest::setupMountRequestDeserializer, Builder::build);
 
 	protected static void setupMountRequestDeserializer(DelegatingDeserializer<MountRequest.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::renamedIndex, JsonpDeserializer.stringDeserializer(), "renamed_index");
-		op.add(Builder::indexSettings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+		op.add(Builder::indexSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"index_settings");
 		op.add(Builder::ignoreIndexSettings,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ignore_index_settings");
@@ -431,7 +432,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
@@ -441,5 +442,5 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, MountResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, MountResponse._DESERIALIZER);
 }

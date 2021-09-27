@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._core.search.SortOrder;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,13 +34,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineAggregation
-public final class GeoLineAggregation implements JsonpSerializable {
+@JsonpDeserializable
+public final class GeoLineAggregation implements AggregationVariant, JsonpSerializable {
 	private final GeoLinePoint point;
 
 	private final GeoLineSort sort;
@@ -51,7 +53,7 @@ public final class GeoLineAggregation implements JsonpSerializable {
 	private final SortOrder sortOrder;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,6 +65,14 @@ public final class GeoLineAggregation implements JsonpSerializable {
 		this.sortOrder = builder.sortOrder;
 		this.size = builder.size;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "geo_line";
 	}
 
 	/**
@@ -99,7 +109,7 @@ public final class GeoLineAggregation implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -134,7 +144,7 @@ public final class GeoLineAggregation implements JsonpSerializable {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -157,7 +167,7 @@ public final class GeoLineAggregation implements JsonpSerializable {
 		private SortOrder sortOrder;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code point}
@@ -208,7 +218,7 @@ public final class GeoLineAggregation implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -230,16 +240,16 @@ public final class GeoLineAggregation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoLineAggregation}
 	 */
-	public static final JsonpDeserializer<GeoLineAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoLineAggregation::setupGeoLineAggregationDeserializer);
+	public static final JsonpDeserializer<GeoLineAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoLineAggregation::setupGeoLineAggregationDeserializer, Builder::build);
 
 	protected static void setupGeoLineAggregationDeserializer(DelegatingDeserializer<GeoLineAggregation.Builder> op) {
 
-		op.add(Builder::point, GeoLinePoint.DESERIALIZER, "point");
-		op.add(Builder::sort, GeoLineSort.DESERIALIZER, "sort");
+		op.add(Builder::point, GeoLinePoint._DESERIALIZER, "point");
+		op.add(Builder::sort, GeoLineSort._DESERIALIZER, "sort");
 		op.add(Builder::includeSort, JsonpDeserializer.booleanDeserializer(), "include_sort");
-		op.add(Builder::sortOrder, SortOrder.DESERIALIZER, "sort_order");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::sortOrder, SortOrder._DESERIALIZER, "sort_order");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

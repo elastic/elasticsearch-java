@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.elasticsearch._types.LifecycleOperationMode;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_status.Response
+@JsonpDeserializable
 public final class GetStatusResponse implements JsonpSerializable {
 	private final LifecycleOperationMode operationMode;
 
@@ -103,12 +105,12 @@ public final class GetStatusResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetStatusResponse}
 	 */
-	public static final JsonpDeserializer<GetStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer);
+	public static final JsonpDeserializer<GetStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer, Builder::build);
 
 	protected static void setupGetStatusResponseDeserializer(DelegatingDeserializer<GetStatusResponse.Builder> op) {
 
-		op.add(Builder::operationMode, LifecycleOperationMode.DESERIALIZER, "operation_mode");
+		op.add(Builder::operationMode, LifecycleOperationMode._DESERIALIZER, "operation_mode");
 
 	}
 

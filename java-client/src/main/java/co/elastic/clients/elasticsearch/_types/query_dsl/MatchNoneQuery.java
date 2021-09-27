@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,7 +33,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.query_dsl.MatchNoneQuery
-public final class MatchNoneQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class MatchNoneQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public MatchNoneQuery(Builder builder) {
@@ -45,7 +46,7 @@ public final class MatchNoneQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "match_none";
 	}
 
@@ -74,9 +75,11 @@ public final class MatchNoneQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<MatchNoneQuery.Builder, MatchNoneQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(MatchNoneQuery::setupMatchNoneQueryDeserializer);
+	/**
+	 * Json deserializer for {@link MatchNoneQuery}
+	 */
+	public static final JsonpDeserializer<MatchNoneQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MatchNoneQuery::setupMatchNoneQueryDeserializer, Builder::build);
 
 	protected static void setupMatchNoneQueryDeserializer(DelegatingDeserializer<MatchNoneQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

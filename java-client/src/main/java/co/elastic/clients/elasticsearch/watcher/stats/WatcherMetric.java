@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum WatcherMetric implements StringEnum {
 	All("_all"), QueuedWatches("queued_watches"), CurrentWatches("current_watches"), PendingWatches("pending_watches");
 
@@ -39,6 +41,6 @@ public enum WatcherMetric implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<WatcherMetric> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<WatcherMetric> _DESERIALIZER = new StringEnum.Deserializer<>(
 			WatcherMetric.values());
 }

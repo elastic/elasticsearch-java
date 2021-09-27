@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum AppliesTo implements StringEnum {
 	Actual("actual"), Typical("typical"), DiffFromTypical("diff_from_typical"), Time("time");
 
@@ -39,6 +41,6 @@ public enum AppliesTo implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<AppliesTo> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<AppliesTo> _DESERIALIZER = new StringEnum.Deserializer<>(
 			AppliesTo.values());
 }

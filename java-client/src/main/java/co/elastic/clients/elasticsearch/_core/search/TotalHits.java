@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TotalHits
+@JsonpDeserializable
 public final class TotalHits implements JsonpSerializable {
 	private final TotalHitsRelation relation;
 
-	private final Number value;
+	private final Long value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +62,7 @@ public final class TotalHits implements JsonpSerializable {
 	/**
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public Long value() {
 		return this.value;
 	}
 
@@ -79,7 +81,7 @@ public final class TotalHits implements JsonpSerializable {
 		this.relation.serialize(generator, mapper);
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -91,7 +93,7 @@ public final class TotalHits implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<TotalHits> {
 		private TotalHitsRelation relation;
 
-		private Number value;
+		private Long value;
 
 		/**
 		 * API name: {@code relation}
@@ -104,7 +106,7 @@ public final class TotalHits implements JsonpSerializable {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(Long value) {
 			this.value = value;
 			return this;
 		}
@@ -126,13 +128,13 @@ public final class TotalHits implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TotalHits}
 	 */
-	public static final JsonpDeserializer<TotalHits> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TotalHits::setupTotalHitsDeserializer);
+	public static final JsonpDeserializer<TotalHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TotalHits::setupTotalHitsDeserializer, Builder::build);
 
 	protected static void setupTotalHitsDeserializer(DelegatingDeserializer<TotalHits.Builder> op) {
 
-		op.add(Builder::relation, TotalHitsRelation.DESERIALIZER, "relation");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
+		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");
 
 	}
 

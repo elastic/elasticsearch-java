@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.thread_pool.ThreadPoolRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Response
+@JsonpDeserializable
 public final class ThreadPoolResponse implements JsonpSerializable {
 	private final List<ThreadPoolRecord> value;
 
@@ -143,12 +145,12 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ThreadPoolResponse}
 	 */
-	public static final JsonpDeserializer<ThreadPoolResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ThreadPoolResponse::setupThreadPoolResponseDeserializer);
+	public static final JsonpDeserializer<ThreadPoolResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ThreadPoolResponse::setupThreadPoolResponseDeserializer, Builder::build);
 
 	protected static void setupThreadPoolResponseDeserializer(DelegatingDeserializer<ThreadPoolResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(ThreadPoolRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(ThreadPoolRecord._DESERIALIZER), "value");
 
 	}
 

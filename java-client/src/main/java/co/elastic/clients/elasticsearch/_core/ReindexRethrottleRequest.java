@@ -26,12 +26,13 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,11 +40,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.Request
+
 public final class ReindexRethrottleRequest extends RequestBase {
 	private final String taskId;
 
 	@Nullable
-	private final Number requestsPerSecond;
+	private final Long requestsPerSecond;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +72,7 @@ public final class ReindexRethrottleRequest extends RequestBase {
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Number requestsPerSecond() {
+	public Long requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -83,7 +85,7 @@ public final class ReindexRethrottleRequest extends RequestBase {
 		private String taskId;
 
 		@Nullable
-		private Number requestsPerSecond;
+		private Long requestsPerSecond;
 
 		/**
 		 * The task id to rethrottle
@@ -101,7 +103,7 @@ public final class ReindexRethrottleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Number value) {
+		public Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -155,9 +157,9 @@ public final class ReindexRethrottleRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.requestsPerSecond != null) {
-					params.put("requests_per_second", request.requestsPerSecond.toString());
+					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ReindexRethrottleResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ReindexRethrottleResponse._DESERIALIZER);
 }

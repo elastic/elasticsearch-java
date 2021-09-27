@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,21 +32,23 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformProgress
+@JsonpDeserializable
 public final class TransformProgress implements JsonpSerializable {
-	private final Number docsIndexed;
+	private final Long docsIndexed;
 
-	private final Number docsProcessed;
+	private final Long docsProcessed;
 
-	private final Number docsRemaining;
+	private final Long docsRemaining;
 
-	private final Number percentComplete;
+	private final Double percentComplete;
 
-	private final Number totalDocs;
+	private final Long totalDocs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,35 +65,35 @@ public final class TransformProgress implements JsonpSerializable {
 	/**
 	 * API name: {@code docs_indexed}
 	 */
-	public Number docsIndexed() {
+	public Long docsIndexed() {
 		return this.docsIndexed;
 	}
 
 	/**
 	 * API name: {@code docs_processed}
 	 */
-	public Number docsProcessed() {
+	public Long docsProcessed() {
 		return this.docsProcessed;
 	}
 
 	/**
 	 * API name: {@code docs_remaining}
 	 */
-	public Number docsRemaining() {
+	public Long docsRemaining() {
 		return this.docsRemaining;
 	}
 
 	/**
 	 * API name: {@code percent_complete}
 	 */
-	public Number percentComplete() {
+	public Double percentComplete() {
 		return this.percentComplete;
 	}
 
 	/**
 	 * API name: {@code total_docs}
 	 */
-	public Number totalDocs() {
+	public Long totalDocs() {
 		return this.totalDocs;
 	}
 
@@ -106,19 +109,19 @@ public final class TransformProgress implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("docs_indexed");
-		generator.write(this.docsIndexed.doubleValue());
+		generator.write(this.docsIndexed);
 
 		generator.writeKey("docs_processed");
-		generator.write(this.docsProcessed.doubleValue());
+		generator.write(this.docsProcessed);
 
 		generator.writeKey("docs_remaining");
-		generator.write(this.docsRemaining.doubleValue());
+		generator.write(this.docsRemaining);
 
 		generator.writeKey("percent_complete");
-		generator.write(this.percentComplete.doubleValue());
+		generator.write(this.percentComplete);
 
 		generator.writeKey("total_docs");
-		generator.write(this.totalDocs.doubleValue());
+		generator.write(this.totalDocs);
 
 	}
 
@@ -128,20 +131,20 @@ public final class TransformProgress implements JsonpSerializable {
 	 * Builder for {@link TransformProgress}.
 	 */
 	public static class Builder implements ObjectBuilder<TransformProgress> {
-		private Number docsIndexed;
+		private Long docsIndexed;
 
-		private Number docsProcessed;
+		private Long docsProcessed;
 
-		private Number docsRemaining;
+		private Long docsRemaining;
 
-		private Number percentComplete;
+		private Double percentComplete;
 
-		private Number totalDocs;
+		private Long totalDocs;
 
 		/**
 		 * API name: {@code docs_indexed}
 		 */
-		public Builder docsIndexed(Number value) {
+		public Builder docsIndexed(Long value) {
 			this.docsIndexed = value;
 			return this;
 		}
@@ -149,7 +152,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code docs_processed}
 		 */
-		public Builder docsProcessed(Number value) {
+		public Builder docsProcessed(Long value) {
 			this.docsProcessed = value;
 			return this;
 		}
@@ -157,7 +160,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code docs_remaining}
 		 */
-		public Builder docsRemaining(Number value) {
+		public Builder docsRemaining(Long value) {
 			this.docsRemaining = value;
 			return this;
 		}
@@ -165,7 +168,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code percent_complete}
 		 */
-		public Builder percentComplete(Number value) {
+		public Builder percentComplete(Double value) {
 			this.percentComplete = value;
 			return this;
 		}
@@ -173,7 +176,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * API name: {@code total_docs}
 		 */
-		public Builder totalDocs(Number value) {
+		public Builder totalDocs(Long value) {
 			this.totalDocs = value;
 			return this;
 		}
@@ -195,16 +198,16 @@ public final class TransformProgress implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TransformProgress}
 	 */
-	public static final JsonpDeserializer<TransformProgress> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TransformProgress::setupTransformProgressDeserializer);
+	public static final JsonpDeserializer<TransformProgress> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TransformProgress::setupTransformProgressDeserializer, Builder::build);
 
 	protected static void setupTransformProgressDeserializer(DelegatingDeserializer<TransformProgress.Builder> op) {
 
-		op.add(Builder::docsIndexed, JsonpDeserializer.numberDeserializer(), "docs_indexed");
-		op.add(Builder::docsProcessed, JsonpDeserializer.numberDeserializer(), "docs_processed");
-		op.add(Builder::docsRemaining, JsonpDeserializer.numberDeserializer(), "docs_remaining");
-		op.add(Builder::percentComplete, JsonpDeserializer.numberDeserializer(), "percent_complete");
-		op.add(Builder::totalDocs, JsonpDeserializer.numberDeserializer(), "total_docs");
+		op.add(Builder::docsIndexed, JsonpDeserializer.longDeserializer(), "docs_indexed");
+		op.add(Builder::docsProcessed, JsonpDeserializer.longDeserializer(), "docs_processed");
+		op.add(Builder::docsRemaining, JsonpDeserializer.longDeserializer(), "docs_remaining");
+		op.add(Builder::percentComplete, JsonpDeserializer.doubleDeserializer(), "percent_complete");
+		op.add(Builder::totalDocs, JsonpDeserializer.longDeserializer(), "total_docs");
 
 	}
 

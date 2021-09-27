@@ -24,15 +24,15 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +41,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
-public final class PercolateQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class PercolateQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final JsonData document;
 
@@ -66,7 +67,7 @@ public final class PercolateQuery extends QueryBase implements Query {
 	private final String routing;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +90,7 @@ public final class PercolateQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "percolate";
 	}
 
@@ -160,12 +161,11 @@ public final class PercolateQuery extends QueryBase implements Query {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.document != null) {
@@ -222,11 +222,9 @@ public final class PercolateQuery extends QueryBase implements Query {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -260,7 +258,7 @@ public final class PercolateQuery extends QueryBase implements Query {
 		private String routing;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code document}
@@ -348,7 +346,7 @@ public final class PercolateQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -372,21 +370,23 @@ public final class PercolateQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<PercolateQuery.Builder, PercolateQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(PercolateQuery::setupPercolateQueryDeserializer);
+	/**
+	 * Json deserializer for {@link PercolateQuery}
+	 */
+	public static final JsonpDeserializer<PercolateQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PercolateQuery::setupPercolateQueryDeserializer, Builder::build);
 
 	protected static void setupPercolateQueryDeserializer(DelegatingDeserializer<PercolateQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::document, JsonData.DESERIALIZER, "document");
-		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonData.DESERIALIZER), "documents");
+		op.add(Builder::document, JsonData._DESERIALIZER, "document");
+		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "documents");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

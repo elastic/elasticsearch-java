@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,17 +33,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeProcessInfo
+@JsonpDeserializable
 public final class NodeProcessInfo implements JsonpSerializable {
-	private final Number id;
+	private final Long id;
 
 	private final Boolean mlockall;
 
-	private final Number refreshIntervalInMillis;
+	private final Long refreshIntervalInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +62,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public Number id() {
+	public Long id() {
 		return this.id;
 	}
 
@@ -78,7 +80,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public Number refreshIntervalInMillis() {
+	public Long refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -94,13 +96,13 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
-		generator.write(this.id.doubleValue());
+		generator.write(this.id);
 
 		generator.writeKey("mlockall");
 		generator.write(this.mlockall);
 
 		generator.writeKey("refresh_interval_in_millis");
-		generator.write(this.refreshIntervalInMillis.doubleValue());
+		generator.write(this.refreshIntervalInMillis);
 
 	}
 
@@ -110,18 +112,18 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * Builder for {@link NodeProcessInfo}.
 	 */
 	public static class Builder implements ObjectBuilder<NodeProcessInfo> {
-		private Number id;
+		private Long id;
 
 		private Boolean mlockall;
 
-		private Number refreshIntervalInMillis;
+		private Long refreshIntervalInMillis;
 
 		/**
 		 * Process identifier (PID)
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(Number value) {
+		public Builder id(Long value) {
 			this.id = value;
 			return this;
 		}
@@ -141,7 +143,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(Number value) {
+		public Builder refreshIntervalInMillis(Long value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
@@ -163,14 +165,14 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeProcessInfo}
 	 */
-	public static final JsonpDeserializer<NodeProcessInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeProcessInfo::setupNodeProcessInfoDeserializer);
+	public static final JsonpDeserializer<NodeProcessInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeProcessInfo::setupNodeProcessInfoDeserializer, Builder::build);
 
 	protected static void setupNodeProcessInfoDeserializer(DelegatingDeserializer<NodeProcessInfo.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");
-		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.numberDeserializer(), "refresh_interval_in_millis");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
 
 	}
 

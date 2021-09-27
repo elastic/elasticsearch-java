@@ -25,15 +25,16 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.indices.stats.ShardFileSizeInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,65 +43,66 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SegmentsStats
+@JsonpDeserializable
 public final class SegmentsStats implements JsonpSerializable {
-	private final Number count;
+	private final Integer count;
 
 	@Nullable
-	private final JsonValue docValuesMemory;
+	private final String docValuesMemory;
 
-	private final Number docValuesMemoryInBytes;
+	private final Integer docValuesMemoryInBytes;
 
 	private final Map<String, ShardFileSizeInfo> fileSizes;
 
 	@Nullable
-	private final JsonValue fixedBitSet;
+	private final String fixedBitSet;
 
-	private final Number fixedBitSetMemoryInBytes;
-
-	@Nullable
-	private final JsonValue indexWriterMemory;
+	private final Integer fixedBitSetMemoryInBytes;
 
 	@Nullable
-	private final Number indexWriterMaxMemoryInBytes;
-
-	private final Number indexWriterMemoryInBytes;
-
-	private final Number maxUnsafeAutoIdTimestamp;
+	private final String indexWriterMemory;
 
 	@Nullable
-	private final JsonValue memory;
+	private final Integer indexWriterMaxMemoryInBytes;
 
-	private final Number memoryInBytes;
+	private final Integer indexWriterMemoryInBytes;
 
-	@Nullable
-	private final JsonValue normsMemory;
-
-	private final Number normsMemoryInBytes;
+	private final Integer maxUnsafeAutoIdTimestamp;
 
 	@Nullable
-	private final JsonValue pointsMemory;
+	private final String memory;
 
-	private final Number pointsMemoryInBytes;
-
-	@Nullable
-	private final JsonValue storedMemory;
-
-	private final Number storedFieldsMemoryInBytes;
-
-	private final Number termsMemoryInBytes;
+	private final Integer memoryInBytes;
 
 	@Nullable
-	private final JsonValue termsMemory;
+	private final String normsMemory;
+
+	private final Integer normsMemoryInBytes;
 
 	@Nullable
-	private final JsonValue termVectoryMemory;
+	private final String pointsMemory;
 
-	private final Number termVectorsMemoryInBytes;
+	private final Integer pointsMemoryInBytes;
 
 	@Nullable
-	private final JsonValue versionMapMemory;
+	private final String storedMemory;
 
-	private final Number versionMapMemoryInBytes;
+	private final Integer storedFieldsMemoryInBytes;
+
+	private final Integer termsMemoryInBytes;
+
+	@Nullable
+	private final String termsMemory;
+
+	@Nullable
+	private final String termVectoryMemory;
+
+	private final Integer termVectorsMemoryInBytes;
+
+	@Nullable
+	private final String versionMapMemory;
+
+	private final Integer versionMapMemoryInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -143,7 +145,7 @@ public final class SegmentsStats implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -151,14 +153,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code doc_values_memory}
 	 */
 	@Nullable
-	public JsonValue docValuesMemory() {
+	public String docValuesMemory() {
 		return this.docValuesMemory;
 	}
 
 	/**
 	 * API name: {@code doc_values_memory_in_bytes}
 	 */
-	public Number docValuesMemoryInBytes() {
+	public Integer docValuesMemoryInBytes() {
 		return this.docValuesMemoryInBytes;
 	}
 
@@ -173,14 +175,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code fixed_bit_set}
 	 */
 	@Nullable
-	public JsonValue fixedBitSet() {
+	public String fixedBitSet() {
 		return this.fixedBitSet;
 	}
 
 	/**
 	 * API name: {@code fixed_bit_set_memory_in_bytes}
 	 */
-	public Number fixedBitSetMemoryInBytes() {
+	public Integer fixedBitSetMemoryInBytes() {
 		return this.fixedBitSetMemoryInBytes;
 	}
 
@@ -188,7 +190,7 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code index_writer_memory}
 	 */
 	@Nullable
-	public JsonValue indexWriterMemory() {
+	public String indexWriterMemory() {
 		return this.indexWriterMemory;
 	}
 
@@ -196,21 +198,21 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code index_writer_max_memory_in_bytes}
 	 */
 	@Nullable
-	public Number indexWriterMaxMemoryInBytes() {
+	public Integer indexWriterMaxMemoryInBytes() {
 		return this.indexWriterMaxMemoryInBytes;
 	}
 
 	/**
 	 * API name: {@code index_writer_memory_in_bytes}
 	 */
-	public Number indexWriterMemoryInBytes() {
+	public Integer indexWriterMemoryInBytes() {
 		return this.indexWriterMemoryInBytes;
 	}
 
 	/**
 	 * API name: {@code max_unsafe_auto_id_timestamp}
 	 */
-	public Number maxUnsafeAutoIdTimestamp() {
+	public Integer maxUnsafeAutoIdTimestamp() {
 		return this.maxUnsafeAutoIdTimestamp;
 	}
 
@@ -218,14 +220,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code memory}
 	 */
 	@Nullable
-	public JsonValue memory() {
+	public String memory() {
 		return this.memory;
 	}
 
 	/**
 	 * API name: {@code memory_in_bytes}
 	 */
-	public Number memoryInBytes() {
+	public Integer memoryInBytes() {
 		return this.memoryInBytes;
 	}
 
@@ -233,14 +235,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code norms_memory}
 	 */
 	@Nullable
-	public JsonValue normsMemory() {
+	public String normsMemory() {
 		return this.normsMemory;
 	}
 
 	/**
 	 * API name: {@code norms_memory_in_bytes}
 	 */
-	public Number normsMemoryInBytes() {
+	public Integer normsMemoryInBytes() {
 		return this.normsMemoryInBytes;
 	}
 
@@ -248,14 +250,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code points_memory}
 	 */
 	@Nullable
-	public JsonValue pointsMemory() {
+	public String pointsMemory() {
 		return this.pointsMemory;
 	}
 
 	/**
 	 * API name: {@code points_memory_in_bytes}
 	 */
-	public Number pointsMemoryInBytes() {
+	public Integer pointsMemoryInBytes() {
 		return this.pointsMemoryInBytes;
 	}
 
@@ -263,21 +265,21 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code stored_memory}
 	 */
 	@Nullable
-	public JsonValue storedMemory() {
+	public String storedMemory() {
 		return this.storedMemory;
 	}
 
 	/**
 	 * API name: {@code stored_fields_memory_in_bytes}
 	 */
-	public Number storedFieldsMemoryInBytes() {
+	public Integer storedFieldsMemoryInBytes() {
 		return this.storedFieldsMemoryInBytes;
 	}
 
 	/**
 	 * API name: {@code terms_memory_in_bytes}
 	 */
-	public Number termsMemoryInBytes() {
+	public Integer termsMemoryInBytes() {
 		return this.termsMemoryInBytes;
 	}
 
@@ -285,7 +287,7 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code terms_memory}
 	 */
 	@Nullable
-	public JsonValue termsMemory() {
+	public String termsMemory() {
 		return this.termsMemory;
 	}
 
@@ -293,14 +295,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code term_vectory_memory}
 	 */
 	@Nullable
-	public JsonValue termVectoryMemory() {
+	public String termVectoryMemory() {
 		return this.termVectoryMemory;
 	}
 
 	/**
 	 * API name: {@code term_vectors_memory_in_bytes}
 	 */
-	public Number termVectorsMemoryInBytes() {
+	public Integer termVectorsMemoryInBytes() {
 		return this.termVectorsMemoryInBytes;
 	}
 
@@ -308,14 +310,14 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * API name: {@code version_map_memory}
 	 */
 	@Nullable
-	public JsonValue versionMapMemory() {
+	public String versionMapMemory() {
 		return this.versionMapMemory;
 	}
 
 	/**
 	 * API name: {@code version_map_memory_in_bytes}
 	 */
-	public Number versionMapMemoryInBytes() {
+	public Integer versionMapMemoryInBytes() {
 		return this.versionMapMemoryInBytes;
 	}
 
@@ -331,7 +333,7 @@ public final class SegmentsStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		if (this.docValuesMemory != null) {
 
@@ -341,7 +343,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("doc_values_memory_in_bytes");
-		generator.write(this.docValuesMemoryInBytes.doubleValue());
+		generator.write(this.docValuesMemoryInBytes);
 
 		generator.writeKey("file_sizes");
 		generator.writeStartObject();
@@ -360,7 +362,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("fixed_bit_set_memory_in_bytes");
-		generator.write(this.fixedBitSetMemoryInBytes.doubleValue());
+		generator.write(this.fixedBitSetMemoryInBytes);
 
 		if (this.indexWriterMemory != null) {
 
@@ -371,15 +373,15 @@ public final class SegmentsStats implements JsonpSerializable {
 		if (this.indexWriterMaxMemoryInBytes != null) {
 
 			generator.writeKey("index_writer_max_memory_in_bytes");
-			generator.write(this.indexWriterMaxMemoryInBytes.doubleValue());
+			generator.write(this.indexWriterMaxMemoryInBytes);
 
 		}
 
 		generator.writeKey("index_writer_memory_in_bytes");
-		generator.write(this.indexWriterMemoryInBytes.doubleValue());
+		generator.write(this.indexWriterMemoryInBytes);
 
 		generator.writeKey("max_unsafe_auto_id_timestamp");
-		generator.write(this.maxUnsafeAutoIdTimestamp.doubleValue());
+		generator.write(this.maxUnsafeAutoIdTimestamp);
 
 		if (this.memory != null) {
 
@@ -389,7 +391,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("memory_in_bytes");
-		generator.write(this.memoryInBytes.doubleValue());
+		generator.write(this.memoryInBytes);
 
 		if (this.normsMemory != null) {
 
@@ -399,7 +401,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("norms_memory_in_bytes");
-		generator.write(this.normsMemoryInBytes.doubleValue());
+		generator.write(this.normsMemoryInBytes);
 
 		if (this.pointsMemory != null) {
 
@@ -409,7 +411,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("points_memory_in_bytes");
-		generator.write(this.pointsMemoryInBytes.doubleValue());
+		generator.write(this.pointsMemoryInBytes);
 
 		if (this.storedMemory != null) {
 
@@ -419,10 +421,10 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("stored_fields_memory_in_bytes");
-		generator.write(this.storedFieldsMemoryInBytes.doubleValue());
+		generator.write(this.storedFieldsMemoryInBytes);
 
 		generator.writeKey("terms_memory_in_bytes");
-		generator.write(this.termsMemoryInBytes.doubleValue());
+		generator.write(this.termsMemoryInBytes);
 
 		if (this.termsMemory != null) {
 
@@ -438,7 +440,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("term_vectors_memory_in_bytes");
-		generator.write(this.termVectorsMemoryInBytes.doubleValue());
+		generator.write(this.termVectorsMemoryInBytes);
 
 		if (this.versionMapMemory != null) {
 
@@ -448,7 +450,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("version_map_memory_in_bytes");
-		generator.write(this.versionMapMemoryInBytes.doubleValue());
+		generator.write(this.versionMapMemoryInBytes);
 
 	}
 
@@ -458,69 +460,69 @@ public final class SegmentsStats implements JsonpSerializable {
 	 * Builder for {@link SegmentsStats}.
 	 */
 	public static class Builder implements ObjectBuilder<SegmentsStats> {
-		private Number count;
+		private Integer count;
 
 		@Nullable
-		private JsonValue docValuesMemory;
+		private String docValuesMemory;
 
-		private Number docValuesMemoryInBytes;
+		private Integer docValuesMemoryInBytes;
 
 		private Map<String, ShardFileSizeInfo> fileSizes;
 
 		@Nullable
-		private JsonValue fixedBitSet;
+		private String fixedBitSet;
 
-		private Number fixedBitSetMemoryInBytes;
-
-		@Nullable
-		private JsonValue indexWriterMemory;
+		private Integer fixedBitSetMemoryInBytes;
 
 		@Nullable
-		private Number indexWriterMaxMemoryInBytes;
-
-		private Number indexWriterMemoryInBytes;
-
-		private Number maxUnsafeAutoIdTimestamp;
+		private String indexWriterMemory;
 
 		@Nullable
-		private JsonValue memory;
+		private Integer indexWriterMaxMemoryInBytes;
 
-		private Number memoryInBytes;
+		private Integer indexWriterMemoryInBytes;
 
-		@Nullable
-		private JsonValue normsMemory;
-
-		private Number normsMemoryInBytes;
+		private Integer maxUnsafeAutoIdTimestamp;
 
 		@Nullable
-		private JsonValue pointsMemory;
+		private String memory;
 
-		private Number pointsMemoryInBytes;
-
-		@Nullable
-		private JsonValue storedMemory;
-
-		private Number storedFieldsMemoryInBytes;
-
-		private Number termsMemoryInBytes;
+		private Integer memoryInBytes;
 
 		@Nullable
-		private JsonValue termsMemory;
+		private String normsMemory;
+
+		private Integer normsMemoryInBytes;
 
 		@Nullable
-		private JsonValue termVectoryMemory;
+		private String pointsMemory;
 
-		private Number termVectorsMemoryInBytes;
+		private Integer pointsMemoryInBytes;
 
 		@Nullable
-		private JsonValue versionMapMemory;
+		private String storedMemory;
 
-		private Number versionMapMemoryInBytes;
+		private Integer storedFieldsMemoryInBytes;
+
+		private Integer termsMemoryInBytes;
+
+		@Nullable
+		private String termsMemory;
+
+		@Nullable
+		private String termVectoryMemory;
+
+		private Integer termVectorsMemoryInBytes;
+
+		@Nullable
+		private String versionMapMemory;
+
+		private Integer versionMapMemoryInBytes;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -528,7 +530,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_values_memory}
 		 */
-		public Builder docValuesMemory(@Nullable JsonValue value) {
+		public Builder docValuesMemory(@Nullable String value) {
 			this.docValuesMemory = value;
 			return this;
 		}
@@ -536,7 +538,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_values_memory_in_bytes}
 		 */
-		public Builder docValuesMemoryInBytes(Number value) {
+		public Builder docValuesMemoryInBytes(Integer value) {
 			this.docValuesMemoryInBytes = value;
 			return this;
 		}
@@ -578,7 +580,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fixed_bit_set}
 		 */
-		public Builder fixedBitSet(@Nullable JsonValue value) {
+		public Builder fixedBitSet(@Nullable String value) {
 			this.fixedBitSet = value;
 			return this;
 		}
@@ -586,7 +588,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code fixed_bit_set_memory_in_bytes}
 		 */
-		public Builder fixedBitSetMemoryInBytes(Number value) {
+		public Builder fixedBitSetMemoryInBytes(Integer value) {
 			this.fixedBitSetMemoryInBytes = value;
 			return this;
 		}
@@ -594,7 +596,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_writer_memory}
 		 */
-		public Builder indexWriterMemory(@Nullable JsonValue value) {
+		public Builder indexWriterMemory(@Nullable String value) {
 			this.indexWriterMemory = value;
 			return this;
 		}
@@ -602,7 +604,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_writer_max_memory_in_bytes}
 		 */
-		public Builder indexWriterMaxMemoryInBytes(@Nullable Number value) {
+		public Builder indexWriterMaxMemoryInBytes(@Nullable Integer value) {
 			this.indexWriterMaxMemoryInBytes = value;
 			return this;
 		}
@@ -610,7 +612,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_writer_memory_in_bytes}
 		 */
-		public Builder indexWriterMemoryInBytes(Number value) {
+		public Builder indexWriterMemoryInBytes(Integer value) {
 			this.indexWriterMemoryInBytes = value;
 			return this;
 		}
@@ -618,7 +620,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code max_unsafe_auto_id_timestamp}
 		 */
-		public Builder maxUnsafeAutoIdTimestamp(Number value) {
+		public Builder maxUnsafeAutoIdTimestamp(Integer value) {
 			this.maxUnsafeAutoIdTimestamp = value;
 			return this;
 		}
@@ -626,7 +628,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory}
 		 */
-		public Builder memory(@Nullable JsonValue value) {
+		public Builder memory(@Nullable String value) {
 			this.memory = value;
 			return this;
 		}
@@ -634,7 +636,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_in_bytes}
 		 */
-		public Builder memoryInBytes(Number value) {
+		public Builder memoryInBytes(Integer value) {
 			this.memoryInBytes = value;
 			return this;
 		}
@@ -642,7 +644,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code norms_memory}
 		 */
-		public Builder normsMemory(@Nullable JsonValue value) {
+		public Builder normsMemory(@Nullable String value) {
 			this.normsMemory = value;
 			return this;
 		}
@@ -650,7 +652,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code norms_memory_in_bytes}
 		 */
-		public Builder normsMemoryInBytes(Number value) {
+		public Builder normsMemoryInBytes(Integer value) {
 			this.normsMemoryInBytes = value;
 			return this;
 		}
@@ -658,7 +660,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code points_memory}
 		 */
-		public Builder pointsMemory(@Nullable JsonValue value) {
+		public Builder pointsMemory(@Nullable String value) {
 			this.pointsMemory = value;
 			return this;
 		}
@@ -666,7 +668,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code points_memory_in_bytes}
 		 */
-		public Builder pointsMemoryInBytes(Number value) {
+		public Builder pointsMemoryInBytes(Integer value) {
 			this.pointsMemoryInBytes = value;
 			return this;
 		}
@@ -674,7 +676,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_memory}
 		 */
-		public Builder storedMemory(@Nullable JsonValue value) {
+		public Builder storedMemory(@Nullable String value) {
 			this.storedMemory = value;
 			return this;
 		}
@@ -682,7 +684,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code stored_fields_memory_in_bytes}
 		 */
-		public Builder storedFieldsMemoryInBytes(Number value) {
+		public Builder storedFieldsMemoryInBytes(Integer value) {
 			this.storedFieldsMemoryInBytes = value;
 			return this;
 		}
@@ -690,7 +692,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code terms_memory_in_bytes}
 		 */
-		public Builder termsMemoryInBytes(Number value) {
+		public Builder termsMemoryInBytes(Integer value) {
 			this.termsMemoryInBytes = value;
 			return this;
 		}
@@ -698,7 +700,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code terms_memory}
 		 */
-		public Builder termsMemory(@Nullable JsonValue value) {
+		public Builder termsMemory(@Nullable String value) {
 			this.termsMemory = value;
 			return this;
 		}
@@ -706,7 +708,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code term_vectory_memory}
 		 */
-		public Builder termVectoryMemory(@Nullable JsonValue value) {
+		public Builder termVectoryMemory(@Nullable String value) {
 			this.termVectoryMemory = value;
 			return this;
 		}
@@ -714,7 +716,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code term_vectors_memory_in_bytes}
 		 */
-		public Builder termVectorsMemoryInBytes(Number value) {
+		public Builder termVectorsMemoryInBytes(Integer value) {
 			this.termVectorsMemoryInBytes = value;
 			return this;
 		}
@@ -722,7 +724,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code version_map_memory}
 		 */
-		public Builder versionMapMemory(@Nullable JsonValue value) {
+		public Builder versionMapMemory(@Nullable String value) {
 			this.versionMapMemory = value;
 			return this;
 		}
@@ -730,7 +732,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code version_map_memory_in_bytes}
 		 */
-		public Builder versionMapMemoryInBytes(Number value) {
+		public Builder versionMapMemoryInBytes(Integer value) {
 			this.versionMapMemoryInBytes = value;
 			return this;
 		}
@@ -752,42 +754,43 @@ public final class SegmentsStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SegmentsStats}
 	 */
-	public static final JsonpDeserializer<SegmentsStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SegmentsStats::setupSegmentsStatsDeserializer);
+	public static final JsonpDeserializer<SegmentsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SegmentsStats::setupSegmentsStatsDeserializer, Builder::build);
 
 	protected static void setupSegmentsStatsDeserializer(DelegatingDeserializer<SegmentsStats.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::docValuesMemory, JsonpDeserializer.jsonValueDeserializer(), "doc_values_memory");
-		op.add(Builder::docValuesMemoryInBytes, JsonpDeserializer.numberDeserializer(), "doc_values_memory_in_bytes");
-		op.add(Builder::fileSizes, JsonpDeserializer.stringMapDeserializer(ShardFileSizeInfo.DESERIALIZER),
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::docValuesMemory, JsonpDeserializer.stringDeserializer(), "doc_values_memory");
+		op.add(Builder::docValuesMemoryInBytes, JsonpDeserializer.integerDeserializer(), "doc_values_memory_in_bytes");
+		op.add(Builder::fileSizes, JsonpDeserializer.stringMapDeserializer(ShardFileSizeInfo._DESERIALIZER),
 				"file_sizes");
-		op.add(Builder::fixedBitSet, JsonpDeserializer.jsonValueDeserializer(), "fixed_bit_set");
-		op.add(Builder::fixedBitSetMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::fixedBitSet, JsonpDeserializer.stringDeserializer(), "fixed_bit_set");
+		op.add(Builder::fixedBitSetMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"fixed_bit_set_memory_in_bytes");
-		op.add(Builder::indexWriterMemory, JsonpDeserializer.jsonValueDeserializer(), "index_writer_memory");
-		op.add(Builder::indexWriterMaxMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::indexWriterMemory, JsonpDeserializer.stringDeserializer(), "index_writer_memory");
+		op.add(Builder::indexWriterMaxMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"index_writer_max_memory_in_bytes");
-		op.add(Builder::indexWriterMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::indexWriterMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"index_writer_memory_in_bytes");
-		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.integerDeserializer(),
 				"max_unsafe_auto_id_timestamp");
-		op.add(Builder::memory, JsonpDeserializer.jsonValueDeserializer(), "memory");
-		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
-		op.add(Builder::normsMemory, JsonpDeserializer.jsonValueDeserializer(), "norms_memory");
-		op.add(Builder::normsMemoryInBytes, JsonpDeserializer.numberDeserializer(), "norms_memory_in_bytes");
-		op.add(Builder::pointsMemory, JsonpDeserializer.jsonValueDeserializer(), "points_memory");
-		op.add(Builder::pointsMemoryInBytes, JsonpDeserializer.numberDeserializer(), "points_memory_in_bytes");
-		op.add(Builder::storedMemory, JsonpDeserializer.jsonValueDeserializer(), "stored_memory");
-		op.add(Builder::storedFieldsMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::memory, JsonpDeserializer.stringDeserializer(), "memory");
+		op.add(Builder::memoryInBytes, JsonpDeserializer.integerDeserializer(), "memory_in_bytes");
+		op.add(Builder::normsMemory, JsonpDeserializer.stringDeserializer(), "norms_memory");
+		op.add(Builder::normsMemoryInBytes, JsonpDeserializer.integerDeserializer(), "norms_memory_in_bytes");
+		op.add(Builder::pointsMemory, JsonpDeserializer.stringDeserializer(), "points_memory");
+		op.add(Builder::pointsMemoryInBytes, JsonpDeserializer.integerDeserializer(), "points_memory_in_bytes");
+		op.add(Builder::storedMemory, JsonpDeserializer.stringDeserializer(), "stored_memory");
+		op.add(Builder::storedFieldsMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"stored_fields_memory_in_bytes");
-		op.add(Builder::termsMemoryInBytes, JsonpDeserializer.numberDeserializer(), "terms_memory_in_bytes");
-		op.add(Builder::termsMemory, JsonpDeserializer.jsonValueDeserializer(), "terms_memory");
-		op.add(Builder::termVectoryMemory, JsonpDeserializer.jsonValueDeserializer(), "term_vectory_memory");
-		op.add(Builder::termVectorsMemoryInBytes, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::termsMemoryInBytes, JsonpDeserializer.integerDeserializer(), "terms_memory_in_bytes");
+		op.add(Builder::termsMemory, JsonpDeserializer.stringDeserializer(), "terms_memory");
+		op.add(Builder::termVectoryMemory, JsonpDeserializer.stringDeserializer(), "term_vectory_memory");
+		op.add(Builder::termVectorsMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"term_vectors_memory_in_bytes");
-		op.add(Builder::versionMapMemory, JsonpDeserializer.jsonValueDeserializer(), "version_map_memory");
-		op.add(Builder::versionMapMemoryInBytes, JsonpDeserializer.numberDeserializer(), "version_map_memory_in_bytes");
+		op.add(Builder::versionMapMemory, JsonpDeserializer.stringDeserializer(), "version_map_memory");
+		op.add(Builder::versionMapMemoryInBytes, JsonpDeserializer.integerDeserializer(),
+				"version_map_memory_in_bytes");
 
 	}
 

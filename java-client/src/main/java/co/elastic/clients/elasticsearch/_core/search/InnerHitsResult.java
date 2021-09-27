@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsResult
+@JsonpDeserializable
 public final class InnerHitsResult implements JsonpSerializable {
 	private final InnerHitsMetadata hits;
 
@@ -110,12 +112,12 @@ public final class InnerHitsResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InnerHitsResult}
 	 */
-	public static final JsonpDeserializer<InnerHitsResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InnerHitsResult::setupInnerHitsResultDeserializer);
+	public static final JsonpDeserializer<InnerHitsResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InnerHitsResult::setupInnerHitsResultDeserializer, Builder::build);
 
 	protected static void setupInnerHitsResultDeserializer(DelegatingDeserializer<InnerHitsResult.Builder> op) {
 
-		op.add(Builder::hits, InnerHitsMetadata.DESERIALIZER, "hits");
+		op.add(Builder::hits, InnerHitsMetadata._DESERIALIZER, "hits");
 
 	}
 

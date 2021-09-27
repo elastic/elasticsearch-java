@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestBody
+@JsonpDeserializable
 public final class SearchInputRequestBody implements JsonpSerializable {
 	private final Query query;
 
@@ -111,13 +113,13 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SearchInputRequestBody}
 	 */
-	public static final JsonpDeserializer<SearchInputRequestBody> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer);
+	public static final JsonpDeserializer<SearchInputRequestBody> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer, Builder::build);
 
 	protected static void setupSearchInputRequestBodyDeserializer(
 			DelegatingDeserializer<SearchInputRequestBody.Builder> op) {
 
-		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot.restore;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.SnapshotRestore
+@JsonpDeserializable
 public final class SnapshotRestore implements JsonpSerializable {
 	private final List<String> indices;
 
@@ -185,15 +187,15 @@ public final class SnapshotRestore implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SnapshotRestore}
 	 */
-	public static final JsonpDeserializer<SnapshotRestore> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotRestore::setupSnapshotRestoreDeserializer);
+	public static final JsonpDeserializer<SnapshotRestore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SnapshotRestore::setupSnapshotRestoreDeserializer, Builder::build);
 
 	protected static void setupSnapshotRestoreDeserializer(DelegatingDeserializer<SnapshotRestore.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
 
 	}
 

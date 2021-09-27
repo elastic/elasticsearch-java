@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._core.scripts_painless_execute.PainlessC
 import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Request
+@JsonpDeserializable
 public final class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String context;
@@ -189,16 +191,16 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Json deserializer for {@link ScriptsPainlessExecuteRequest}
 	 */
-	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer);
+	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer,
+			Builder::build);
 
 	protected static void setupScriptsPainlessExecuteRequestDeserializer(
 			DelegatingDeserializer<ScriptsPainlessExecuteRequest.Builder> op) {
 
 		op.add(Builder::context, JsonpDeserializer.stringDeserializer(), "context");
-		op.add(Builder::contextSetup, PainlessContextSetup.DESERIALIZER, "context_setup");
-		op.add(Builder::script, InlineScript.DESERIALIZER, "script");
+		op.add(Builder::contextSetup, PainlessContextSetup._DESERIALIZER, "context_setup");
+		op.add(Builder::script, InlineScript._DESERIALIZER, "script");
 
 	}
 

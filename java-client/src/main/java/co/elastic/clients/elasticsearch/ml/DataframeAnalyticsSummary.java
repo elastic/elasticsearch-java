@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,13 +34,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSummary
+@JsonpDeserializable
 public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	private final String id;
 
@@ -56,16 +59,16 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue analyzedFields;
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	@Nullable
 	private final Boolean allowLazyStart;
 
 	@Nullable
-	private final Number createTime;
+	private final Long createTime;
 
 	@Nullable
 	private final String version;
@@ -136,7 +139,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -144,7 +147,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -160,7 +163,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public Number createTime() {
+	public Long createTime() {
 		return this.createTime;
 	}
 
@@ -210,7 +213,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.analyzedFields != null) {
@@ -228,7 +231,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		if (this.createTime != null) {
 
 			generator.writeKey("create_time");
-			generator.write(this.createTime.doubleValue());
+			generator.write(this.createTime);
 
 		}
 		if (this.version != null) {
@@ -261,16 +264,16 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue analyzedFields;
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		@Nullable
 		private Boolean allowLazyStart;
 
 		@Nullable
-		private Number createTime;
+		private Long createTime;
 
 		@Nullable
 		private String version;
@@ -348,7 +351,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -356,7 +359,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -372,7 +375,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable Number value) {
+		public Builder createTime(@Nullable Long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -402,22 +405,22 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsSummary}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeAnalyticsSummary::setupDataframeAnalyticsSummaryDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsSummary::setupDataframeAnalyticsSummaryDeserializer, Builder::build);
 
 	protected static void setupDataframeAnalyticsSummaryDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsSummary.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
-		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
+		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
-		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}

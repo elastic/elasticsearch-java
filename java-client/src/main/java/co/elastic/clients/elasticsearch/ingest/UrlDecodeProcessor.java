@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.UrlDecodeProcessor
-public final class UrlDecodeProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class UrlDecodeProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -54,6 +56,14 @@ public final class UrlDecodeProcessor extends ProcessorBase {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "urldecode";
 	}
 
 	/**
@@ -163,8 +173,8 @@ public final class UrlDecodeProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link UrlDecodeProcessor}
 	 */
-	public static final JsonpDeserializer<UrlDecodeProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer);
+	public static final JsonpDeserializer<UrlDecodeProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer, Builder::build);
 
 	protected static void setupUrlDecodeProcessorDeserializer(DelegatingDeserializer<UrlDecodeProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

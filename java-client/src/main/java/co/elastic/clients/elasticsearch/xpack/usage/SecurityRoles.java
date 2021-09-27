@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRoles
+@JsonpDeserializable
 public final class SecurityRoles implements JsonpSerializable {
 	private final SecurityRolesNative native_;
 
@@ -170,14 +172,14 @@ public final class SecurityRoles implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SecurityRoles}
 	 */
-	public static final JsonpDeserializer<SecurityRoles> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SecurityRoles::setupSecurityRolesDeserializer);
+	public static final JsonpDeserializer<SecurityRoles> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SecurityRoles::setupSecurityRolesDeserializer, Builder::build);
 
 	protected static void setupSecurityRolesDeserializer(DelegatingDeserializer<SecurityRoles.Builder> op) {
 
-		op.add(Builder::native_, SecurityRolesNative.DESERIALIZER, "native");
-		op.add(Builder::dls, SecurityRolesDls.DESERIALIZER, "dls");
-		op.add(Builder::file, SecurityRolesFile.DESERIALIZER, "file");
+		op.add(Builder::native_, SecurityRolesNative._DESERIALIZER, "native");
+		op.add(Builder::dls, SecurityRolesDls._DESERIALIZER, "dls");
+		op.add(Builder::file, SecurityRolesFile._DESERIALIZER, "file");
 
 	}
 

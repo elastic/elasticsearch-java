@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,13 +32,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RegexpQuery
-public final class RegexpQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class RegexpQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
@@ -48,7 +49,7 @@ public final class RegexpQuery extends QueryBase implements Query {
 	private final String flags;
 
 	@Nullable
-	private final Number maxDeterminizedStates;
+	private final Integer maxDeterminizedStates;
 
 	@Nullable
 	private final String rewrite;
@@ -73,7 +74,7 @@ public final class RegexpQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "regexp";
 	}
 
@@ -106,7 +107,7 @@ public final class RegexpQuery extends QueryBase implements Query {
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
-	public Number maxDeterminizedStates() {
+	public Integer maxDeterminizedStates() {
 		return this.maxDeterminizedStates;
 	}
 
@@ -126,8 +127,6 @@ public final class RegexpQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
@@ -146,7 +145,7 @@ public final class RegexpQuery extends QueryBase implements Query {
 		if (this.maxDeterminizedStates != null) {
 
 			generator.writeKey("max_determinized_states");
-			generator.write(this.maxDeterminizedStates.doubleValue());
+			generator.write(this.maxDeterminizedStates);
 
 		}
 		if (this.rewrite != null) {
@@ -160,9 +159,6 @@ public final class RegexpQuery extends QueryBase implements Query {
 		generator.write(this.value);
 
 		generator.writeEnd();
-
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -190,7 +186,7 @@ public final class RegexpQuery extends QueryBase implements Query {
 		private String flags;
 
 		@Nullable
-		private Number maxDeterminizedStates;
+		private Integer maxDeterminizedStates;
 
 		@Nullable
 		private String rewrite;
@@ -216,7 +212,7 @@ public final class RegexpQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code max_determinized_states}
 		 */
-		public Builder maxDeterminizedStates(@Nullable Number value) {
+		public Builder maxDeterminizedStates(@Nullable Integer value) {
 			this.maxDeterminizedStates = value;
 			return this;
 		}
@@ -256,15 +252,17 @@ public final class RegexpQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<RegexpQuery.Builder, RegexpQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(RegexpQuery::setupRegexpQueryDeserializer);
+	/**
+	 * Json deserializer for {@link RegexpQuery}
+	 */
+	public static final JsonpDeserializer<RegexpQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RegexpQuery::setupRegexpQueryDeserializer, Builder::build);
 
 	protected static void setupRegexpQueryDeserializer(DelegatingDeserializer<RegexpQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
-		op.add(Builder::maxDeterminizedStates, JsonpDeserializer.numberDeserializer(), "max_determinized_states");
+		op.add(Builder::maxDeterminizedStates, JsonpDeserializer.integerDeserializer(), "max_determinized_states");
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 

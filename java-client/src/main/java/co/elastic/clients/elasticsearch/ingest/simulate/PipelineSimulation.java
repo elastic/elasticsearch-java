@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.PipelineSimulation
+@JsonpDeserializable
 public final class PipelineSimulation implements JsonpSerializable {
 	@Nullable
 	private final DocumentSimulation doc;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation> processorResults;
+	private final List<PipelineSimulation> processorResults;
 
 	@Nullable
 	private final String tag;
@@ -81,7 +83,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 	 * API name: {@code processor_results}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation> processorResults() {
+	public List<PipelineSimulation> processorResults() {
 		return this.processorResults;
 	}
 
@@ -130,7 +132,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 
 			generator.writeKey("processor_results");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation item0 : this.processorResults) {
+			for (PipelineSimulation item0 : this.processorResults) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -167,7 +169,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 		private DocumentSimulation doc;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation> processorResults;
+		private List<PipelineSimulation> processorResults;
 
 		@Nullable
 		private String tag;
@@ -196,8 +198,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code processor_results}
 		 */
-		public Builder processorResults(
-				@Nullable List<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation> value) {
+		public Builder processorResults(@Nullable List<PipelineSimulation> value) {
 			this.processorResults = value;
 			return this;
 		}
@@ -205,7 +206,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code processor_results}
 		 */
-		public Builder processorResults(co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation... value) {
+		public Builder processorResults(PipelineSimulation... value) {
 			this.processorResults = Arrays.asList(value);
 			return this;
 		}
@@ -213,7 +214,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
 		 */
-		public Builder addProcessorResults(co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation value) {
+		public Builder addProcessorResults(PipelineSimulation value) {
 			if (this.processorResults == null) {
 				this.processorResults = new ArrayList<>();
 			}
@@ -224,19 +225,15 @@ public final class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * Set {@link #processorResults(List)} to a singleton list.
 		 */
-		public Builder processorResults(
-				Function<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation>> fn) {
-			return this.processorResults(fn
-					.apply(new co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation.Builder()).build());
+		public Builder processorResults(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
+			return this.processorResults(fn.apply(new PipelineSimulation.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
 		 */
-		public Builder addProcessorResults(
-				Function<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation>> fn) {
-			return this.addProcessorResults(fn
-					.apply(new co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation.Builder()).build());
+		public Builder addProcessorResults(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
+			return this.addProcessorResults(fn.apply(new PipelineSimulation.Builder()).build());
 		}
 
 		/**
@@ -280,19 +277,17 @@ public final class PipelineSimulation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PipelineSimulation}
 	 */
-	public static final JsonpDeserializer<PipelineSimulation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer);
+	public static final JsonpDeserializer<PipelineSimulation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer, Builder::build);
 
 	protected static void setupPipelineSimulationDeserializer(DelegatingDeserializer<PipelineSimulation.Builder> op) {
 
-		op.add(Builder::doc, DocumentSimulation.DESERIALIZER, "doc");
-		op.add(Builder::processorResults,
-				JsonpDeserializer.arrayDeserializer(
-						co.elastic.clients.elasticsearch.ingest.simulate.PipelineSimulation.DESERIALIZER),
+		op.add(Builder::doc, DocumentSimulation._DESERIALIZER, "doc");
+		op.add(Builder::processorResults, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER),
 				"processor_results");
 		op.add(Builder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 		op.add(Builder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
-		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
+		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
 
 	}
 

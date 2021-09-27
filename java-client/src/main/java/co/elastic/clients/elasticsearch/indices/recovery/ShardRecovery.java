@@ -24,24 +24,25 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.ShardRecovery
+@JsonpDeserializable
 public final class ShardRecovery implements JsonpSerializable {
-	private final Number id;
+	private final Long id;
 
 	private final RecoveryIndexStatus index;
 
@@ -57,19 +58,19 @@ public final class ShardRecovery implements JsonpSerializable {
 	@Nullable
 	private final String startTime;
 
-	private final JsonValue startTimeInMillis;
+	private final String startTimeInMillis;
 
 	@Nullable
 	private final String stopTime;
 
-	private final JsonValue stopTimeInMillis;
+	private final String stopTimeInMillis;
 
 	private final RecoveryOrigin target;
 
 	@Nullable
 	private final String totalTime;
 
-	private final JsonValue totalTimeInMillis;
+	private final String totalTimeInMillis;
 
 	private final TranslogStatus translog;
 
@@ -103,7 +104,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * API name: {@code id}
 	 */
-	public Number id() {
+	public Long id() {
 		return this.id;
 	}
 
@@ -154,7 +155,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public JsonValue startTimeInMillis() {
+	public String startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -169,7 +170,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * API name: {@code stop_time_in_millis}
 	 */
-	public JsonValue stopTimeInMillis() {
+	public String stopTimeInMillis() {
 		return this.stopTimeInMillis;
 	}
 
@@ -191,7 +192,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public JsonValue totalTimeInMillis() {
+	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -228,7 +229,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
-		generator.write(this.id.doubleValue());
+		generator.write(this.id);
 
 		generator.writeKey("index");
 		this.index.serialize(generator, mapper);
@@ -298,7 +299,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	 * Builder for {@link ShardRecovery}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardRecovery> {
-		private Number id;
+		private Long id;
 
 		private RecoveryIndexStatus index;
 
@@ -314,19 +315,19 @@ public final class ShardRecovery implements JsonpSerializable {
 		@Nullable
 		private String startTime;
 
-		private JsonValue startTimeInMillis;
+		private String startTimeInMillis;
 
 		@Nullable
 		private String stopTime;
 
-		private JsonValue stopTimeInMillis;
+		private String stopTimeInMillis;
 
 		private RecoveryOrigin target;
 
 		@Nullable
 		private String totalTime;
 
-		private JsonValue totalTimeInMillis;
+		private String totalTimeInMillis;
 
 		private TranslogStatus translog;
 
@@ -337,7 +338,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(Number value) {
+		public Builder id(Long value) {
 			this.id = value;
 			return this;
 		}
@@ -414,7 +415,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(JsonValue value) {
+		public Builder startTimeInMillis(String value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -430,7 +431,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code stop_time_in_millis}
 		 */
-		public Builder stopTimeInMillis(JsonValue value) {
+		public Builder stopTimeInMillis(String value) {
 			this.stopTimeInMillis = value;
 			return this;
 		}
@@ -461,7 +462,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(JsonValue value) {
+		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -521,27 +522,27 @@ public final class ShardRecovery implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardRecovery}
 	 */
-	public static final JsonpDeserializer<ShardRecovery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardRecovery::setupShardRecoveryDeserializer);
+	public static final JsonpDeserializer<ShardRecovery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardRecovery::setupShardRecoveryDeserializer, Builder::build);
 
 	protected static void setupShardRecoveryDeserializer(DelegatingDeserializer<ShardRecovery.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
-		op.add(Builder::index, RecoveryIndexStatus.DESERIALIZER, "index");
+		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
+		op.add(Builder::index, RecoveryIndexStatus._DESERIALIZER, "index");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
-		op.add(Builder::source, RecoveryOrigin.DESERIALIZER, "source");
+		op.add(Builder::source, RecoveryOrigin._DESERIALIZER, "source");
 		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage");
-		op.add(Builder::start, RecoveryStartStatus.DESERIALIZER, "start");
+		op.add(Builder::start, RecoveryStartStatus._DESERIALIZER, "start");
 		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
 		op.add(Builder::stopTime, JsonpDeserializer.stringDeserializer(), "stop_time");
-		op.add(Builder::stopTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "stop_time_in_millis");
-		op.add(Builder::target, RecoveryOrigin.DESERIALIZER, "target");
+		op.add(Builder::stopTimeInMillis, JsonpDeserializer.stringDeserializer(), "stop_time_in_millis");
+		op.add(Builder::target, RecoveryOrigin._DESERIALIZER, "target");
 		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "total_time_in_millis");
-		op.add(Builder::translog, TranslogStatus.DESERIALIZER, "translog");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
+		op.add(Builder::translog, TranslogStatus._DESERIALIZER, "translog");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::verifyIndex, VerifyIndex.DESERIALIZER, "verify_index");
+		op.add(Builder::verifyIndex, VerifyIndex._DESERIALIZER, "verify_index");
 
 	}
 

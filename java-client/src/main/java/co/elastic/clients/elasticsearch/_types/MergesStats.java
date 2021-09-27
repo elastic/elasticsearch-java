@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,50 +32,51 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.MergesStats
+@JsonpDeserializable
 public final class MergesStats implements JsonpSerializable {
-	private final Number current;
+	private final Long current;
 
-	private final Number currentDocs;
+	private final Long currentDocs;
 
 	@Nullable
 	private final String currentSize;
 
-	private final Number currentSizeInBytes;
+	private final Long currentSizeInBytes;
 
-	private final Number total;
+	private final Long total;
 
 	@Nullable
 	private final String totalAutoThrottle;
 
-	private final Number totalAutoThrottleInBytes;
+	private final Long totalAutoThrottleInBytes;
 
-	private final Number totalDocs;
+	private final Long totalDocs;
 
 	@Nullable
 	private final String totalSize;
 
-	private final Number totalSizeInBytes;
+	private final Long totalSizeInBytes;
 
 	@Nullable
 	private final String totalStoppedTime;
 
-	private final Number totalStoppedTimeInMillis;
+	private final Long totalStoppedTimeInMillis;
 
 	@Nullable
 	private final String totalThrottledTime;
 
-	private final Number totalThrottledTimeInMillis;
+	private final Long totalThrottledTimeInMillis;
 
 	@Nullable
 	private final String totalTime;
 
-	private final Number totalTimeInMillis;
+	private final Long totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -105,14 +107,14 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code current}
 	 */
-	public Number current() {
+	public Long current() {
 		return this.current;
 	}
 
 	/**
 	 * API name: {@code current_docs}
 	 */
-	public Number currentDocs() {
+	public Long currentDocs() {
 		return this.currentDocs;
 	}
 
@@ -127,14 +129,14 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code current_size_in_bytes}
 	 */
-	public Number currentSizeInBytes() {
+	public Long currentSizeInBytes() {
 		return this.currentSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
@@ -149,14 +151,14 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_auto_throttle_in_bytes}
 	 */
-	public Number totalAutoThrottleInBytes() {
+	public Long totalAutoThrottleInBytes() {
 		return this.totalAutoThrottleInBytes;
 	}
 
 	/**
 	 * API name: {@code total_docs}
 	 */
-	public Number totalDocs() {
+	public Long totalDocs() {
 		return this.totalDocs;
 	}
 
@@ -171,7 +173,7 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_size_in_bytes}
 	 */
-	public Number totalSizeInBytes() {
+	public Long totalSizeInBytes() {
 		return this.totalSizeInBytes;
 	}
 
@@ -186,7 +188,7 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_stopped_time_in_millis}
 	 */
-	public Number totalStoppedTimeInMillis() {
+	public Long totalStoppedTimeInMillis() {
 		return this.totalStoppedTimeInMillis;
 	}
 
@@ -201,7 +203,7 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_throttled_time_in_millis}
 	 */
-	public Number totalThrottledTimeInMillis() {
+	public Long totalThrottledTimeInMillis() {
 		return this.totalThrottledTimeInMillis;
 	}
 
@@ -216,7 +218,7 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public Number totalTimeInMillis() {
+	public Long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -232,10 +234,10 @@ public final class MergesStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current");
-		generator.write(this.current.doubleValue());
+		generator.write(this.current);
 
 		generator.writeKey("current_docs");
-		generator.write(this.currentDocs.doubleValue());
+		generator.write(this.currentDocs);
 
 		if (this.currentSize != null) {
 
@@ -245,10 +247,10 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("current_size_in_bytes");
-		generator.write(this.currentSizeInBytes.doubleValue());
+		generator.write(this.currentSizeInBytes);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		if (this.totalAutoThrottle != null) {
 
@@ -258,10 +260,10 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("total_auto_throttle_in_bytes");
-		generator.write(this.totalAutoThrottleInBytes.doubleValue());
+		generator.write(this.totalAutoThrottleInBytes);
 
 		generator.writeKey("total_docs");
-		generator.write(this.totalDocs.doubleValue());
+		generator.write(this.totalDocs);
 
 		if (this.totalSize != null) {
 
@@ -271,7 +273,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("total_size_in_bytes");
-		generator.write(this.totalSizeInBytes.doubleValue());
+		generator.write(this.totalSizeInBytes);
 
 		if (this.totalStoppedTime != null) {
 
@@ -281,7 +283,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("total_stopped_time_in_millis");
-		generator.write(this.totalStoppedTimeInMillis.doubleValue());
+		generator.write(this.totalStoppedTimeInMillis);
 
 		if (this.totalThrottledTime != null) {
 
@@ -291,7 +293,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("total_throttled_time_in_millis");
-		generator.write(this.totalThrottledTimeInMillis.doubleValue());
+		generator.write(this.totalThrottledTimeInMillis);
 
 		if (this.totalTime != null) {
 
@@ -301,7 +303,7 @@ public final class MergesStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("total_time_in_millis");
-		generator.write(this.totalTimeInMillis.doubleValue());
+		generator.write(this.totalTimeInMillis);
 
 	}
 
@@ -311,48 +313,48 @@ public final class MergesStats implements JsonpSerializable {
 	 * Builder for {@link MergesStats}.
 	 */
 	public static class Builder implements ObjectBuilder<MergesStats> {
-		private Number current;
+		private Long current;
 
-		private Number currentDocs;
+		private Long currentDocs;
 
 		@Nullable
 		private String currentSize;
 
-		private Number currentSizeInBytes;
+		private Long currentSizeInBytes;
 
-		private Number total;
+		private Long total;
 
 		@Nullable
 		private String totalAutoThrottle;
 
-		private Number totalAutoThrottleInBytes;
+		private Long totalAutoThrottleInBytes;
 
-		private Number totalDocs;
+		private Long totalDocs;
 
 		@Nullable
 		private String totalSize;
 
-		private Number totalSizeInBytes;
+		private Long totalSizeInBytes;
 
 		@Nullable
 		private String totalStoppedTime;
 
-		private Number totalStoppedTimeInMillis;
+		private Long totalStoppedTimeInMillis;
 
 		@Nullable
 		private String totalThrottledTime;
 
-		private Number totalThrottledTimeInMillis;
+		private Long totalThrottledTimeInMillis;
 
 		@Nullable
 		private String totalTime;
 
-		private Number totalTimeInMillis;
+		private Long totalTimeInMillis;
 
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Number value) {
+		public Builder current(Long value) {
 			this.current = value;
 			return this;
 		}
@@ -360,7 +362,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_docs}
 		 */
-		public Builder currentDocs(Number value) {
+		public Builder currentDocs(Long value) {
 			this.currentDocs = value;
 			return this;
 		}
@@ -376,7 +378,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_size_in_bytes}
 		 */
-		public Builder currentSizeInBytes(Number value) {
+		public Builder currentSizeInBytes(Long value) {
 			this.currentSizeInBytes = value;
 			return this;
 		}
@@ -384,7 +386,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -400,7 +402,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_auto_throttle_in_bytes}
 		 */
-		public Builder totalAutoThrottleInBytes(Number value) {
+		public Builder totalAutoThrottleInBytes(Long value) {
 			this.totalAutoThrottleInBytes = value;
 			return this;
 		}
@@ -408,7 +410,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_docs}
 		 */
-		public Builder totalDocs(Number value) {
+		public Builder totalDocs(Long value) {
 			this.totalDocs = value;
 			return this;
 		}
@@ -424,7 +426,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_size_in_bytes}
 		 */
-		public Builder totalSizeInBytes(Number value) {
+		public Builder totalSizeInBytes(Long value) {
 			this.totalSizeInBytes = value;
 			return this;
 		}
@@ -440,7 +442,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_stopped_time_in_millis}
 		 */
-		public Builder totalStoppedTimeInMillis(Number value) {
+		public Builder totalStoppedTimeInMillis(Long value) {
 			this.totalStoppedTimeInMillis = value;
 			return this;
 		}
@@ -456,7 +458,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_throttled_time_in_millis}
 		 */
-		public Builder totalThrottledTimeInMillis(Number value) {
+		public Builder totalThrottledTimeInMillis(Long value) {
 			this.totalThrottledTimeInMillis = value;
 			return this;
 		}
@@ -472,7 +474,7 @@ public final class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(Number value) {
+		public Builder totalTimeInMillis(Long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -494,30 +496,28 @@ public final class MergesStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MergesStats}
 	 */
-	public static final JsonpDeserializer<MergesStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MergesStats::setupMergesStatsDeserializer);
+	public static final JsonpDeserializer<MergesStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MergesStats::setupMergesStatsDeserializer, Builder::build);
 
 	protected static void setupMergesStatsDeserializer(DelegatingDeserializer<MergesStats.Builder> op) {
 
-		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
-		op.add(Builder::currentDocs, JsonpDeserializer.numberDeserializer(), "current_docs");
+		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
+		op.add(Builder::currentDocs, JsonpDeserializer.longDeserializer(), "current_docs");
 		op.add(Builder::currentSize, JsonpDeserializer.stringDeserializer(), "current_size");
-		op.add(Builder::currentSizeInBytes, JsonpDeserializer.numberDeserializer(), "current_size_in_bytes");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::currentSizeInBytes, JsonpDeserializer.longDeserializer(), "current_size_in_bytes");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::totalAutoThrottle, JsonpDeserializer.stringDeserializer(), "total_auto_throttle");
-		op.add(Builder::totalAutoThrottleInBytes, JsonpDeserializer.numberDeserializer(),
-				"total_auto_throttle_in_bytes");
-		op.add(Builder::totalDocs, JsonpDeserializer.numberDeserializer(), "total_docs");
+		op.add(Builder::totalAutoThrottleInBytes, JsonpDeserializer.longDeserializer(), "total_auto_throttle_in_bytes");
+		op.add(Builder::totalDocs, JsonpDeserializer.longDeserializer(), "total_docs");
 		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
-		op.add(Builder::totalSizeInBytes, JsonpDeserializer.numberDeserializer(), "total_size_in_bytes");
+		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
 		op.add(Builder::totalStoppedTime, JsonpDeserializer.stringDeserializer(), "total_stopped_time");
-		op.add(Builder::totalStoppedTimeInMillis, JsonpDeserializer.numberDeserializer(),
-				"total_stopped_time_in_millis");
+		op.add(Builder::totalStoppedTimeInMillis, JsonpDeserializer.longDeserializer(), "total_stopped_time_in_millis");
 		op.add(Builder::totalThrottledTime, JsonpDeserializer.stringDeserializer(), "total_throttled_time");
-		op.add(Builder::totalThrottledTimeInMillis, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::totalThrottledTimeInMillis, JsonpDeserializer.longDeserializer(),
 				"total_throttled_time_in_millis");
 		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}
 

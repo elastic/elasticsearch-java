@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStore
+@JsonpDeserializable
 public final class ShardStore implements JsonpSerializable {
 	private final ShardStoreAllocation allocation;
 
@@ -50,7 +52,7 @@ public final class ShardStore implements JsonpSerializable {
 
 	private final String id;
 
-	private final Number legacyVersion;
+	private final Long legacyVersion;
 
 	private final String name;
 
@@ -104,7 +106,7 @@ public final class ShardStore implements JsonpSerializable {
 	/**
 	 * API name: {@code legacy_version}
 	 */
-	public Number legacyVersion() {
+	public Long legacyVersion() {
 		return this.legacyVersion;
 	}
 
@@ -159,7 +161,7 @@ public final class ShardStore implements JsonpSerializable {
 		generator.write(this.id);
 
 		generator.writeKey("legacy_version");
-		generator.write(this.legacyVersion.doubleValue());
+		generator.write(this.legacyVersion);
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -186,7 +188,7 @@ public final class ShardStore implements JsonpSerializable {
 
 		private String id;
 
-		private Number legacyVersion;
+		private Long legacyVersion;
 
 		private String name;
 
@@ -240,7 +242,7 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * API name: {@code legacy_version}
 		 */
-		public Builder legacyVersion(Number value) {
+		public Builder legacyVersion(Long value) {
 			this.legacyVersion = value;
 			return this;
 		}
@@ -293,18 +295,18 @@ public final class ShardStore implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardStore}
 	 */
-	public static final JsonpDeserializer<ShardStore> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStore::setupShardStoreDeserializer);
+	public static final JsonpDeserializer<ShardStore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStore::setupShardStoreDeserializer, Builder::build);
 
 	protected static void setupShardStoreDeserializer(DelegatingDeserializer<ShardStore.Builder> op) {
 
-		op.add(Builder::allocation, ShardStoreAllocation.DESERIALIZER, "allocation");
+		op.add(Builder::allocation, ShardStoreAllocation._DESERIALIZER, "allocation");
 		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
-		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "attributes");
+		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "attributes");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::legacyVersion, JsonpDeserializer.numberDeserializer(), "legacy_version");
+		op.add(Builder::legacyVersion, JsonpDeserializer.longDeserializer(), "legacy_version");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::storeException, ShardStoreException.DESERIALIZER, "store_exception");
+		op.add(Builder::storeException, ShardStoreException._DESERIALIZER, "store_exception");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 
 	}

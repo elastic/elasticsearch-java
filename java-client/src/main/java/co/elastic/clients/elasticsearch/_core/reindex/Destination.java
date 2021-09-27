@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core.reindex;
 import co.elastic.clients.elasticsearch._types.OpType;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
+@JsonpDeserializable
 public final class Destination implements JsonpSerializable {
 	private final String index;
 
@@ -220,16 +222,16 @@ public final class Destination implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Destination}
 	 */
-	public static final JsonpDeserializer<Destination> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Destination::setupDestinationDeserializer);
+	public static final JsonpDeserializer<Destination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Destination::setupDestinationDeserializer, Builder::build);
 
 	protected static void setupDestinationDeserializer(DelegatingDeserializer<Destination.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::opType, OpType.DESERIALIZER, "op_type");
+		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::versionType, VersionType.DESERIALIZER, "version_type");
+		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}
 

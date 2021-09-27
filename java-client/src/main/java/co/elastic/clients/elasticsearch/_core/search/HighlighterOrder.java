@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum HighlighterOrder implements StringEnum {
 	Score("score");
 
@@ -39,6 +41,6 @@ public enum HighlighterOrder implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<HighlighterOrder> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<HighlighterOrder> _DESERIALIZER = new StringEnum.Deserializer<>(
 			HighlighterOrder.values());
 }

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -41,6 +42,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Request
+
 public final class AckWatchRequest extends RequestBase {
 	private final String watchId;
 
@@ -191,5 +193,5 @@ public final class AckWatchRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, AckWatchResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, AckWatchResponse._DESERIALIZER);
 }

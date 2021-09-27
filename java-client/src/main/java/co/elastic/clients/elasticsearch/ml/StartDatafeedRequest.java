@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,17 +42,18 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
+@JsonpDeserializable
 public final class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
-	private final JsonValue end;
+	private final String end;
 
 	@Nullable
-	private final JsonValue start;
+	private final String start;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +79,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public JsonValue end() {
+	public String end() {
 		return this.end;
 	}
 
@@ -86,7 +87,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public JsonValue start() {
+	public String start() {
 		return this.start;
 	}
 
@@ -94,7 +95,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -139,13 +140,13 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		private String datafeedId;
 
 		@Nullable
-		private JsonValue end;
+		private String end;
 
 		@Nullable
-		private JsonValue start;
+		private String start;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * The ID of the datafeed to start
@@ -160,7 +161,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable JsonValue value) {
+		public Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -168,7 +169,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable JsonValue value) {
+		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -176,7 +177,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -198,15 +199,15 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link StartDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<StartDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<StartDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupStartDatafeedRequestDeserializer(
 			DelegatingDeserializer<StartDatafeedRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpDeserializer.jsonValueDeserializer(), "end");
-		op.add(Builder::start, JsonpDeserializer.jsonValueDeserializer(), "start");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 
@@ -249,5 +250,5 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 				Map<String, String> params = new HashMap<>();
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StartDatafeedResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, StartDatafeedResponse._DESERIALIZER);
 }

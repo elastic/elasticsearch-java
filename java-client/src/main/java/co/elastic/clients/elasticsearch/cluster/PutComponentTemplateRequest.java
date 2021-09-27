@@ -32,16 +32,16 @@ import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -51,6 +51,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_component_template.Request
+@JsonpDeserializable
 public final class PutComponentTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
@@ -58,7 +59,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	private final Boolean create;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	private final IndexState template;
 
@@ -72,7 +73,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	private final IndexSettings settings;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final Map<String, JsonData> meta;
@@ -119,7 +120,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -158,7 +159,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -211,7 +212,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.meta != null) {
@@ -241,7 +242,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		private Boolean create;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		private IndexState template;
 
@@ -255,7 +256,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		private IndexSettings settings;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -286,7 +287,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -372,7 +373,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -413,18 +414,18 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	/**
 	 * Json deserializer for {@link PutComponentTemplateRequest}
 	 */
-	public static final JsonpDeserializer<PutComponentTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestDeserializer);
+	public static final JsonpDeserializer<PutComponentTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutComponentTemplateRequest::setupPutComponentTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupPutComponentTemplateRequestDeserializer(
 			DelegatingDeserializer<PutComponentTemplateRequest.Builder> op) {
 
-		op.add(Builder::template, IndexState.DESERIALIZER, "template");
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+		op.add(Builder::template, IndexState._DESERIALIZER, "template");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 
@@ -467,9 +468,9 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 					params.put("create", String.valueOf(request.create));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutComponentTemplateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutComponentTemplateResponse._DESERIALIZER);
 }

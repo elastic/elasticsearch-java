@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettings
+@JsonpDeserializable
 public final class NodeInfoSettings implements JsonpSerializable {
 	private final NodeInfoSettingsCluster cluster;
 
@@ -588,26 +590,26 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoSettings}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSettings::setupNodeInfoSettingsDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoSettings::setupNodeInfoSettingsDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSettingsDeserializer(DelegatingDeserializer<NodeInfoSettings.Builder> op) {
 
-		op.add(Builder::cluster, NodeInfoSettingsCluster.DESERIALIZER, "cluster");
-		op.add(Builder::node, NodeInfoSettingsNode.DESERIALIZER, "node");
-		op.add(Builder::path, NodeInfoPath.DESERIALIZER, "path");
-		op.add(Builder::repositories, NodeInfoRepositories.DESERIALIZER, "repositories");
-		op.add(Builder::discovery, NodeInfoDiscover.DESERIALIZER, "discovery");
-		op.add(Builder::action, NodeInfoAction.DESERIALIZER, "action");
-		op.add(Builder::client, NodeInfoClient.DESERIALIZER, "client");
-		op.add(Builder::http, NodeInfoSettingsHttp.DESERIALIZER, "http");
-		op.add(Builder::bootstrap, NodeInfoBootstrap.DESERIALIZER, "bootstrap");
-		op.add(Builder::transport, NodeInfoSettingsTransport.DESERIALIZER, "transport");
-		op.add(Builder::network, NodeInfoSettingsNetwork.DESERIALIZER, "network");
-		op.add(Builder::xpack, NodeInfoXpack.DESERIALIZER, "xpack");
-		op.add(Builder::script, NodeInfoScript.DESERIALIZER, "script");
-		op.add(Builder::search, NodeInfoSearch.DESERIALIZER, "search");
-		op.add(Builder::ingest, NodeInfoSettingsIngest.DESERIALIZER, "ingest");
+		op.add(Builder::cluster, NodeInfoSettingsCluster._DESERIALIZER, "cluster");
+		op.add(Builder::node, NodeInfoSettingsNode._DESERIALIZER, "node");
+		op.add(Builder::path, NodeInfoPath._DESERIALIZER, "path");
+		op.add(Builder::repositories, NodeInfoRepositories._DESERIALIZER, "repositories");
+		op.add(Builder::discovery, NodeInfoDiscover._DESERIALIZER, "discovery");
+		op.add(Builder::action, NodeInfoAction._DESERIALIZER, "action");
+		op.add(Builder::client, NodeInfoClient._DESERIALIZER, "client");
+		op.add(Builder::http, NodeInfoSettingsHttp._DESERIALIZER, "http");
+		op.add(Builder::bootstrap, NodeInfoBootstrap._DESERIALIZER, "bootstrap");
+		op.add(Builder::transport, NodeInfoSettingsTransport._DESERIALIZER, "transport");
+		op.add(Builder::network, NodeInfoSettingsNetwork._DESERIALIZER, "network");
+		op.add(Builder::xpack, NodeInfoXpack._DESERIALIZER, "xpack");
+		op.add(Builder::script, NodeInfoScript._DESERIALIZER, "script");
+		op.add(Builder::search, NodeInfoSearch._DESERIALIZER, "search");
+		op.add(Builder::ingest, NodeInfoSettingsIngest._DESERIALIZER, "ingest");
 
 	}
 

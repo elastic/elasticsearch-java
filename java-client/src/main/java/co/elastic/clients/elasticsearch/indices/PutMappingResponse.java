@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.IndicesResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: indices.put_mapping.Response
+@JsonpDeserializable
 public final class PutMappingResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class PutMappingResponse extends IndicesResponseBase {
 	/**
 	 * Json deserializer for {@link PutMappingResponse}
 	 */
-	public static final JsonpDeserializer<PutMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer);
+	public static final JsonpDeserializer<PutMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer, Builder::build);
 
 	protected static void setupPutMappingResponseDeserializer(DelegatingDeserializer<PutMappingResponse.Builder> op) {
 		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);

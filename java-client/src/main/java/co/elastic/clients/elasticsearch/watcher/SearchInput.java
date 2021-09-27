@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -41,14 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInput
-public final class SearchInput implements JsonpSerializable {
+@JsonpDeserializable
+public final class SearchInput implements InputVariant, JsonpSerializable {
 	@Nullable
 	private final List<String> extract;
 
 	private final SearchInputRequestDefinition request;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,6 +59,14 @@ public final class SearchInput implements JsonpSerializable {
 		this.request = Objects.requireNonNull(builder.request, "request");
 		this.timeout = builder.timeout;
 
+	}
+
+	/**
+	 * {@link Input} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "search";
 	}
 
 	/**
@@ -79,7 +88,7 @@ public final class SearchInput implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -130,7 +139,7 @@ public final class SearchInput implements JsonpSerializable {
 		private SearchInputRequestDefinition request;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * API name: {@code extract}
@@ -178,7 +187,7 @@ public final class SearchInput implements JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -200,15 +209,15 @@ public final class SearchInput implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SearchInput}
 	 */
-	public static final JsonpDeserializer<SearchInput> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchInput::setupSearchInputDeserializer);
+	public static final JsonpDeserializer<SearchInput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchInput::setupSearchInputDeserializer, Builder::build);
 
 	protected static void setupSearchInputDeserializer(DelegatingDeserializer<SearchInput.Builder> op) {
 
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");
-		op.add(Builder::request, SearchInputRequestDefinition.DESERIALIZER, "request");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::request, SearchInputRequestDefinition._DESERIALIZER, "request");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 

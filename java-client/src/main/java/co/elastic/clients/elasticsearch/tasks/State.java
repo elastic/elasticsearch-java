@@ -24,16 +24,16 @@
 package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks._types.State
+@JsonpDeserializable
 public final class State implements JsonpSerializable {
 	private final String action;
 
@@ -53,16 +54,16 @@ public final class State implements JsonpSerializable {
 
 	private final Map<String, List<String>> headers;
 
-	private final Number id;
+	private final Long id;
 
 	private final String node;
 
 	@Nullable
-	private final JsonValue parentTaskId;
+	private final String parentTaskId;
 
-	private final Number runningTimeInNanos;
+	private final Long runningTimeInNanos;
 
-	private final Number startTimeInMillis;
+	private final Long startTimeInMillis;
 
 	@Nullable
 	private final Status status;
@@ -119,7 +120,7 @@ public final class State implements JsonpSerializable {
 	/**
 	 * API name: {@code id}
 	 */
-	public Number id() {
+	public Long id() {
 		return this.id;
 	}
 
@@ -134,21 +135,21 @@ public final class State implements JsonpSerializable {
 	 * API name: {@code parent_task_id}
 	 */
 	@Nullable
-	public JsonValue parentTaskId() {
+	public String parentTaskId() {
 		return this.parentTaskId;
 	}
 
 	/**
 	 * API name: {@code running_time_in_nanos}
 	 */
-	public Number runningTimeInNanos() {
+	public Long runningTimeInNanos() {
 		return this.runningTimeInNanos;
 	}
 
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Number startTimeInMillis() {
+	public Long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -206,7 +207,7 @@ public final class State implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("id");
-		generator.write(this.id.doubleValue());
+		generator.write(this.id);
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -219,10 +220,10 @@ public final class State implements JsonpSerializable {
 		}
 
 		generator.writeKey("running_time_in_nanos");
-		generator.write(this.runningTimeInNanos.doubleValue());
+		generator.write(this.runningTimeInNanos);
 
 		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis.doubleValue());
+		generator.write(this.startTimeInMillis);
 
 		if (this.status != null) {
 
@@ -251,16 +252,16 @@ public final class State implements JsonpSerializable {
 
 		private Map<String, List<String>> headers;
 
-		private Number id;
+		private Long id;
 
 		private String node;
 
 		@Nullable
-		private JsonValue parentTaskId;
+		private String parentTaskId;
 
-		private Number runningTimeInNanos;
+		private Long runningTimeInNanos;
 
-		private Number startTimeInMillis;
+		private Long startTimeInMillis;
 
 		@Nullable
 		private Status status;
@@ -313,7 +314,7 @@ public final class State implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(Number value) {
+		public Builder id(Long value) {
 			this.id = value;
 			return this;
 		}
@@ -329,7 +330,7 @@ public final class State implements JsonpSerializable {
 		/**
 		 * API name: {@code parent_task_id}
 		 */
-		public Builder parentTaskId(@Nullable JsonValue value) {
+		public Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
 			return this;
 		}
@@ -337,7 +338,7 @@ public final class State implements JsonpSerializable {
 		/**
 		 * API name: {@code running_time_in_nanos}
 		 */
-		public Builder runningTimeInNanos(Number value) {
+		public Builder runningTimeInNanos(Long value) {
 			this.runningTimeInNanos = value;
 			return this;
 		}
@@ -345,7 +346,7 @@ public final class State implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Number value) {
+		public Builder startTimeInMillis(Long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -390,8 +391,8 @@ public final class State implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link State}
 	 */
-	public static final JsonpDeserializer<State> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			State::setupStateDeserializer);
+	public static final JsonpDeserializer<State> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			State::setupStateDeserializer, Builder::build);
 
 	protected static void setupStateDeserializer(DelegatingDeserializer<State.Builder> op) {
 
@@ -400,12 +401,12 @@ public final class State implements JsonpSerializable {
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
-		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::parentTaskId, JsonpDeserializer.jsonValueDeserializer(), "parent_task_id");
-		op.add(Builder::runningTimeInNanos, JsonpDeserializer.numberDeserializer(), "running_time_in_nanos");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
-		op.add(Builder::status, Status.DESERIALIZER, "status");
+		op.add(Builder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
+		op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::status, Status._DESERIALIZER, "status");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

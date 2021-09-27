@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceIngestProcessor
+@JsonpDeserializable
 public final class MlInferenceIngestProcessor implements JsonpSerializable {
 	private final MlInferenceIngestProcessorCount numDocsProcessed;
 
@@ -203,16 +205,16 @@ public final class MlInferenceIngestProcessor implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInferenceIngestProcessor}
 	 */
-	public static final JsonpDeserializer<MlInferenceIngestProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlInferenceIngestProcessor::setupMlInferenceIngestProcessorDeserializer);
+	public static final JsonpDeserializer<MlInferenceIngestProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MlInferenceIngestProcessor::setupMlInferenceIngestProcessorDeserializer, Builder::build);
 
 	protected static void setupMlInferenceIngestProcessorDeserializer(
 			DelegatingDeserializer<MlInferenceIngestProcessor.Builder> op) {
 
-		op.add(Builder::numDocsProcessed, MlInferenceIngestProcessorCount.DESERIALIZER, "num_docs_processed");
-		op.add(Builder::pipelines, MlCounter.DESERIALIZER, "pipelines");
-		op.add(Builder::numFailures, MlInferenceIngestProcessorCount.DESERIALIZER, "num_failures");
-		op.add(Builder::timeMs, MlInferenceIngestProcessorCount.DESERIALIZER, "time_ms");
+		op.add(Builder::numDocsProcessed, MlInferenceIngestProcessorCount._DESERIALIZER, "num_docs_processed");
+		op.add(Builder::pipelines, MlCounter._DESERIALIZER, "pipelines");
+		op.add(Builder::numFailures, MlInferenceIngestProcessorCount._DESERIALIZER, "num_failures");
+		op.add(Builder::timeMs, MlInferenceIngestProcessorCount._DESERIALIZER, "time_ms");
 
 	}
 

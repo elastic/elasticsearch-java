@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.elasticsearch.dangling_indices.list_dangling_indices.DanglingIndex;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.Response
+@JsonpDeserializable
 public final class ListDanglingIndicesResponse implements JsonpSerializable {
 	private final List<DanglingIndex> danglingIndices;
 
@@ -145,13 +147,13 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ListDanglingIndicesResponse}
 	 */
-	public static final JsonpDeserializer<ListDanglingIndicesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ListDanglingIndicesResponse::setupListDanglingIndicesResponseDeserializer);
+	public static final JsonpDeserializer<ListDanglingIndicesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ListDanglingIndicesResponse::setupListDanglingIndicesResponseDeserializer, Builder::build);
 
 	protected static void setupListDanglingIndicesResponseDeserializer(
 			DelegatingDeserializer<ListDanglingIndicesResponse.Builder> op) {
 
-		op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex.DESERIALIZER),
+		op.add(Builder::danglingIndices, JsonpDeserializer.arrayDeserializer(DanglingIndex._DESERIALIZER),
 				"dangling_indices");
 
 	}

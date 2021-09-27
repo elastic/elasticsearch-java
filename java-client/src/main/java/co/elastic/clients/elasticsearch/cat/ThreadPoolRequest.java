@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -42,12 +43,13 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
+
 public final class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> threadPoolPatterns;
 
 	@Nullable
-	private final JsonValue size;
+	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +75,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public JsonValue /* Union(_types.Size | internal.boolean) */ size() {
 		return this.size;
 	}
 
@@ -87,7 +89,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		private List<String> threadPoolPatterns;
 
 		@Nullable
-		private JsonValue size;
+		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
 		/**
 		 * A comma-separated list of regular-expressions to filter the thread pools in
@@ -126,7 +128,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -190,5 +192,5 @@ public final class ThreadPoolRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ThreadPoolResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ThreadPoolResponse._DESERIALIZER);
 }

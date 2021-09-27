@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.NodeShutdownStatus
+@JsonpDeserializable
 public final class NodeShutdownStatus implements JsonpSerializable {
 	private final String nodeId;
 
@@ -45,7 +46,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 
 	private final String reason;
 
-	private final JsonValue shutdownStartedmillis;
+	private final String shutdownStartedmillis;
 
 	private final ShutdownStatus status;
 
@@ -94,7 +95,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code shutdown_startedmillis}
 	 */
-	public JsonValue shutdownStartedmillis() {
+	public String shutdownStartedmillis() {
 		return this.shutdownStartedmillis;
 	}
 
@@ -175,7 +176,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 
 		private String reason;
 
-		private JsonValue shutdownStartedmillis;
+		private String shutdownStartedmillis;
 
 		private ShutdownStatus status;
 
@@ -212,7 +213,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code shutdown_startedmillis}
 		 */
-		public Builder shutdownStartedmillis(JsonValue value) {
+		public Builder shutdownStartedmillis(String value) {
 			this.shutdownStartedmillis = value;
 			return this;
 		}
@@ -287,19 +288,19 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeShutdownStatus}
 	 */
-	public static final JsonpDeserializer<NodeShutdownStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeShutdownStatus::setupNodeShutdownStatusDeserializer);
+	public static final JsonpDeserializer<NodeShutdownStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeShutdownStatus::setupNodeShutdownStatusDeserializer, Builder::build);
 
 	protected static void setupNodeShutdownStatusDeserializer(DelegatingDeserializer<NodeShutdownStatus.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
-		op.add(Builder::type, ShutdownType.DESERIALIZER, "type");
+		op.add(Builder::type, ShutdownType._DESERIALIZER, "type");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::shutdownStartedmillis, JsonpDeserializer.jsonValueDeserializer(), "shutdown_startedmillis");
-		op.add(Builder::status, ShutdownStatus.DESERIALIZER, "status");
-		op.add(Builder::shardMigration, ShardMigrationStatus.DESERIALIZER, "shard_migration");
-		op.add(Builder::persistentTasks, PersistentTaskStatus.DESERIALIZER, "persistent_tasks");
-		op.add(Builder::plugins, PluginsStatus.DESERIALIZER, "plugins");
+		op.add(Builder::shutdownStartedmillis, JsonpDeserializer.stringDeserializer(), "shutdown_startedmillis");
+		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
+		op.add(Builder::shardMigration, ShardMigrationStatus._DESERIALIZER, "shard_migration");
+		op.add(Builder::persistentTasks, PersistentTaskStatus._DESERIALIZER, "persistent_tasks");
+		op.add(Builder::plugins, PluginsStatus._DESERIALIZER, "plugins");
 
 	}
 

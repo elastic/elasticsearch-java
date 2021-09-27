@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_token.AccessTokenGrantType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Request
+@JsonpDeserializable
 public final class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AccessTokenGrantType grantType;
@@ -259,12 +261,12 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link GetTokenRequest}
 	 */
-	public static final JsonpDeserializer<GetTokenRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTokenRequest::setupGetTokenRequestDeserializer);
+	public static final JsonpDeserializer<GetTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetTokenRequest::setupGetTokenRequestDeserializer, Builder::build);
 
 	protected static void setupGetTokenRequestDeserializer(DelegatingDeserializer<GetTokenRequest.Builder> op) {
 
-		op.add(Builder::grantType, AccessTokenGrantType.DESERIALIZER, "grant_type");
+		op.add(Builder::grantType, AccessTokenGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::kerberosTicket, JsonpDeserializer.stringDeserializer(), "kerberos_ticket");
@@ -295,5 +297,5 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GetTokenResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetTokenResponse._DESERIALIZER);
 }

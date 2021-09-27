@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_filter.Request
+
 public final class DeleteFilterRequest extends RequestBase {
 	private final String filterId;
 
@@ -124,5 +126,5 @@ public final class DeleteFilterRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteFilterResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, DeleteFilterResponse._DESERIALIZER);
 }

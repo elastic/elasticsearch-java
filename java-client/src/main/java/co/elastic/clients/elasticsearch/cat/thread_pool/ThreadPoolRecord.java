@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.thread_pool;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.ThreadPoolRecord
+@JsonpDeserializable
 public final class ThreadPoolRecord implements JsonpSerializable {
 	@Nullable
 	private final String nodeName;
@@ -741,8 +743,8 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ThreadPoolRecord}
 	 */
-	public static final JsonpDeserializer<ThreadPoolRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ThreadPoolRecord::setupThreadPoolRecordDeserializer);
+	public static final JsonpDeserializer<ThreadPoolRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ThreadPoolRecord::setupThreadPoolRecordDeserializer, Builder::build);
 
 	protected static void setupThreadPoolRecordDeserializer(DelegatingDeserializer<ThreadPoolRecord.Builder> op) {
 

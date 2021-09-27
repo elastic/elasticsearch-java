@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -50,6 +51,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Request
+@JsonpDeserializable
 public final class ExplainRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -77,7 +79,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	private final String routing;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -214,7 +216,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
 		return this.source;
 	}
 
@@ -318,7 +320,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		private String routing;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -434,7 +436,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -574,12 +576,12 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link ExplainRequest}
 	 */
-	public static final JsonpDeserializer<ExplainRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExplainRequest::setupExplainRequestDeserializer);
+	public static final JsonpDeserializer<ExplainRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExplainRequest::setupExplainRequestDeserializer, Builder::build);
 
 	protected static void setupExplainRequestDeserializer(DelegatingDeserializer<ExplainRequest.Builder> op) {
 
-		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 
 	}
 

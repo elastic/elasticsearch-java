@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform.stop_transform.Request
+
 public final class StopTransformRequest extends RequestBase {
 	private final String transformId;
 
@@ -50,7 +51,7 @@ public final class StopTransformRequest extends RequestBase {
 	private final Boolean force;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean waitForCheckpoint;
@@ -108,7 +109,7 @@ public final class StopTransformRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -149,7 +150,7 @@ public final class StopTransformRequest extends RequestBase {
 		private Boolean force;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean waitForCheckpoint;
@@ -194,7 +195,7 @@ public final class StopTransformRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -276,7 +277,7 @@ public final class StopTransformRequest extends RequestBase {
 					params.put("force", String.valueOf(request.force));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForCheckpoint != null) {
 					params.put("wait_for_checkpoint", String.valueOf(request.waitForCheckpoint));
@@ -286,5 +287,5 @@ public final class StopTransformRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StopTransformResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, StopTransformResponse._DESERIALIZER);
 }

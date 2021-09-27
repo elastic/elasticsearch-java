@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ApplicationGlobalUserPrivileges
+@JsonpDeserializable
 public final class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 	private final ManageUserPrivileges manage;
 
@@ -110,14 +112,14 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 	/**
 	 * Json deserializer for {@link ApplicationGlobalUserPrivileges}
 	 */
-	public static final JsonpDeserializer<ApplicationGlobalUserPrivileges> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ApplicationGlobalUserPrivileges::setupApplicationGlobalUserPrivilegesDeserializer);
+	public static final JsonpDeserializer<ApplicationGlobalUserPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ApplicationGlobalUserPrivileges::setupApplicationGlobalUserPrivilegesDeserializer,
+					Builder::build);
 
 	protected static void setupApplicationGlobalUserPrivilegesDeserializer(
 			DelegatingDeserializer<ApplicationGlobalUserPrivileges.Builder> op) {
 
-		op.add(Builder::manage, ManageUserPrivileges.DESERIALIZER, "manage");
+		op.add(Builder::manage, ManageUserPrivileges._DESERIALIZER, "manage");
 
 	}
 

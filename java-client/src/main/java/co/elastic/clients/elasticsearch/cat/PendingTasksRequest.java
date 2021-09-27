@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: cat.pending_tasks.Request
+
 public final class PendingTasksRequest extends CatRequestBase {
 	public PendingTasksRequest() {
 	}
@@ -41,10 +43,7 @@ public final class PendingTasksRequest extends CatRequestBase {
 	/**
 	 * Singleton instance for {@link PendingTasksRequest}.
 	 */
-	public static final PendingTasksRequest INSTANCE = new PendingTasksRequest();
-
-	public static final JsonpDeserializer<PendingTasksRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(PendingTasksRequest.INSTANCE);
+	public static final PendingTasksRequest _INSTANCE = new PendingTasksRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,5 +67,5 @@ public final class PendingTasksRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, PendingTasksResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
 }

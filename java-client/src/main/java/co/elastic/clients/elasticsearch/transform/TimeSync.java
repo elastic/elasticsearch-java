@@ -24,23 +24,23 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
-public final class TimeSync implements Sync, JsonpSerializable {
+@JsonpDeserializable
+public final class TimeSync implements SyncVariant, JsonpSerializable {
 	@Nullable
-	private final JsonValue delay;
+	private final String delay;
 
 	private final String field;
 
@@ -57,7 +57,7 @@ public final class TimeSync implements Sync, JsonpSerializable {
 	 * {@link Sync} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "time";
 	}
 
@@ -67,7 +67,7 @@ public final class TimeSync implements Sync, JsonpSerializable {
 	 * API name: {@code delay}
 	 */
 	@Nullable
-	public JsonValue delay() {
+	public String delay() {
 		return this.delay;
 	}
 
@@ -90,7 +90,6 @@ public final class TimeSync implements Sync, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		if (this.delay != null) {
 
@@ -102,8 +101,6 @@ public final class TimeSync implements Sync, JsonpSerializable {
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -113,7 +110,7 @@ public final class TimeSync implements Sync, JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<TimeSync> {
 		@Nullable
-		private JsonValue delay;
+		private String delay;
 
 		private String field;
 
@@ -122,7 +119,7 @@ public final class TimeSync implements Sync, JsonpSerializable {
 		 * <p>
 		 * API name: {@code delay}
 		 */
-		public Builder delay(@Nullable JsonValue value) {
+		public Builder delay(@Nullable String value) {
 			this.delay = value;
 			return this;
 		}
@@ -151,13 +148,15 @@ public final class TimeSync implements Sync, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<TimeSync.Builder, TimeSync.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(TimeSync::setupTimeSyncDeserializer);
+	/**
+	 * Json deserializer for {@link TimeSync}
+	 */
+	public static final JsonpDeserializer<TimeSync> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TimeSync::setupTimeSyncDeserializer, Builder::build);
 
 	protected static void setupTimeSyncDeserializer(DelegatingDeserializer<TimeSync.Builder> op) {
 
-		op.add(Builder::delay, JsonpDeserializer.jsonValueDeserializer(), "delay");
+		op.add(Builder::delay, JsonpDeserializer.stringDeserializer(), "delay");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,7 +35,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixStatsAggregation
-public final class MatrixStatsAggregation extends MatrixAggregation {
+@JsonpDeserializable
+public final class MatrixStatsAggregation extends MatrixAggregation implements AggregationVariant {
 	@Nullable
 	private final MatrixStatsMode mode;
 
@@ -45,6 +47,14 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 
 		this.mode = builder.mode;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "matrix_stats";
 	}
 
 	/**
@@ -107,13 +117,13 @@ public final class MatrixStatsAggregation extends MatrixAggregation {
 	/**
 	 * Json deserializer for {@link MatrixStatsAggregation}
 	 */
-	public static final JsonpDeserializer<MatrixStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer);
+	public static final JsonpDeserializer<MatrixStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MatrixStatsAggregation::setupMatrixStatsAggregationDeserializer, Builder::build);
 
 	protected static void setupMatrixStatsAggregationDeserializer(
 			DelegatingDeserializer<MatrixStatsAggregation.Builder> op) {
 		MatrixAggregation.setupMatrixAggregationDeserializer(op);
-		op.add(Builder::mode, MatrixStatsMode.DESERIALIZER, "mode");
+		op.add(Builder::mode, MatrixStatsMode._DESERIALIZER, "mode");
 
 	}
 

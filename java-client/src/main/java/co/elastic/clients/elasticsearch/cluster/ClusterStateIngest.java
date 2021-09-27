@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateIngest
+@JsonpDeserializable
 public final class ClusterStateIngest implements JsonpSerializable {
 	private final List<ClusterStateIngestPipeline> pipeline;
 
@@ -146,12 +148,12 @@ public final class ClusterStateIngest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateIngest}
 	 */
-	public static final JsonpDeserializer<ClusterStateIngest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateIngest::setupClusterStateIngestDeserializer);
+	public static final JsonpDeserializer<ClusterStateIngest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateIngest::setupClusterStateIngestDeserializer, Builder::build);
 
 	protected static void setupClusterStateIngestDeserializer(DelegatingDeserializer<ClusterStateIngest.Builder> op) {
 
-		op.add(Builder::pipeline, JsonpDeserializer.arrayDeserializer(ClusterStateIngestPipeline.DESERIALIZER),
+		op.add(Builder::pipeline, JsonpDeserializer.arrayDeserializer(ClusterStateIngestPipeline._DESERIALIZER),
 				"pipeline");
 
 	}

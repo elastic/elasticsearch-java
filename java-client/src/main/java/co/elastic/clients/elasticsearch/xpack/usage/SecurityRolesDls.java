@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDls
+@JsonpDeserializable
 public final class SecurityRolesDls implements JsonpSerializable {
 	private final SecurityRolesDlsBitSetCache bitSetCache;
 
@@ -111,12 +113,12 @@ public final class SecurityRolesDls implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SecurityRolesDls}
 	 */
-	public static final JsonpDeserializer<SecurityRolesDls> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SecurityRolesDls::setupSecurityRolesDlsDeserializer);
+	public static final JsonpDeserializer<SecurityRolesDls> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SecurityRolesDls::setupSecurityRolesDlsDeserializer, Builder::build);
 
 	protected static void setupSecurityRolesDlsDeserializer(DelegatingDeserializer<SecurityRolesDls.Builder> op) {
 
-		op.add(Builder::bitSetCache, SecurityRolesDlsBitSetCache.DESERIALIZER, "bit_set_cache");
+		op.add(Builder::bitSetCache, SecurityRolesDlsBitSetCache._DESERIALIZER, "bit_set_cache");
 
 	}
 

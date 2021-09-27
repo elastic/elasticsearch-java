@@ -31,6 +31,7 @@ import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Input;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -48,6 +49,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Request
+@JsonpDeserializable
 public final class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
 	private final String modelId;
 
@@ -403,18 +405,18 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	/**
 	 * Json deserializer for {@link PutTrainedModelRequest}
 	 */
-	public static final JsonpDeserializer<PutTrainedModelRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer);
+	public static final JsonpDeserializer<PutTrainedModelRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer, Builder::build);
 
 	protected static void setupPutTrainedModelRequestDeserializer(
 			DelegatingDeserializer<PutTrainedModelRequest.Builder> op) {
 
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
-		op.add(Builder::definition, Definition.DESERIALIZER, "definition");
+		op.add(Builder::definition, Definition._DESERIALIZER, "definition");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
-		op.add(Builder::input, Input.DESERIALIZER, "input");
-		op.add(Builder::metadata, JsonData.DESERIALIZER, "metadata");
+		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(Builder::input, Input._DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}
@@ -456,5 +458,5 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutTrainedModelResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutTrainedModelResponse._DESERIALIZER);
 }

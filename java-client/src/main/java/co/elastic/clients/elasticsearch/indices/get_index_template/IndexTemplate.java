@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices.get_index_template;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplate
+@JsonpDeserializable
 public final class IndexTemplate implements JsonpSerializable {
 	private final List<String> indexPatterns;
 
@@ -53,10 +55,10 @@ public final class IndexTemplate implements JsonpSerializable {
 	private final IndexTemplateSummary template;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
-	private final Number priority;
+	private final Long priority;
 
 	@Nullable
 	private final Map<String, JsonData> meta;
@@ -107,7 +109,7 @@ public final class IndexTemplate implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -115,7 +117,7 @@ public final class IndexTemplate implements JsonpSerializable {
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public Number priority() {
+	public Long priority() {
 		return this.priority;
 	}
 
@@ -176,13 +178,13 @@ public final class IndexTemplate implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.priority != null) {
 
 			generator.writeKey("priority");
-			generator.write(this.priority.doubleValue());
+			generator.write(this.priority);
 
 		}
 		if (this.meta != null) {
@@ -231,10 +233,10 @@ public final class IndexTemplate implements JsonpSerializable {
 		private IndexTemplateSummary template;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
-		private Number priority;
+		private Long priority;
 
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -317,7 +319,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -325,7 +327,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code priority}
 		 */
-		public Builder priority(@Nullable Number value) {
+		public Builder priority(@Nullable Long value) {
 			this.priority = value;
 			return this;
 		}
@@ -393,8 +395,8 @@ public final class IndexTemplate implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexTemplate}
 	 */
-	public static final JsonpDeserializer<IndexTemplate> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexTemplate::setupIndexTemplateDeserializer);
+	public static final JsonpDeserializer<IndexTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexTemplate::setupIndexTemplateDeserializer, Builder::build);
 
 	protected static void setupIndexTemplateDeserializer(DelegatingDeserializer<IndexTemplate.Builder> op) {
 
@@ -402,12 +404,12 @@ public final class IndexTemplate implements JsonpSerializable {
 				"index_patterns");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::template, IndexTemplateSummary.DESERIALIZER, "template");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+		op.add(Builder::template, IndexTemplateSummary._DESERIALIZER, "template");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::priority, JsonpDeserializer.longDeserializer(), "priority");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
-		op.add(Builder::dataStream, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "data_stream");
+		op.add(Builder::dataStream, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "data_stream");
 
 	}
 

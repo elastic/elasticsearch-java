@@ -26,13 +26,14 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Request
+
 public final class GetTrainedModelsStatsRequest extends RequestBase {
 	@Nullable
 	private final String modelId;
@@ -48,10 +50,10 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -95,7 +97,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -105,7 +107,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -122,10 +124,10 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * The unique identifier of the trained model.
@@ -157,7 +159,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -167,7 +169,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -232,12 +234,12 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsStatsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsStatsResponse._DESERIALIZER);
 }

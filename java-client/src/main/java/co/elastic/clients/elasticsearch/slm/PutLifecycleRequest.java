@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -43,14 +43,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
+@JsonpDeserializable
 public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	private final String policyId;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Configuration config;
@@ -98,7 +99,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -109,7 +110,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -221,10 +222,10 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		private String policyId;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Configuration config;
@@ -257,7 +258,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -268,7 +269,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -363,15 +364,15 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
-	public static final JsonpDeserializer<PutLifecycleRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
+	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
 
 	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
 
-		op.add(Builder::config, Configuration.DESERIALIZER, "config");
+		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-		op.add(Builder::retention, Retention.DESERIALIZER, "retention");
+		op.add(Builder::retention, Retention._DESERIALIZER, "retention");
 		op.add(Builder::schedule, JsonpDeserializer.stringDeserializer(), "schedule");
 
 	}
@@ -413,12 +414,12 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

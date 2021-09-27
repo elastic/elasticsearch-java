@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.rank_eval.RankEvalMetricMeanReciprocalRank
+@JsonpDeserializable
 public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,9 +72,9 @@ public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRating
 	/**
 	 * Json deserializer for {@link RankEvalMetricMeanReciprocalRank}
 	 */
-	public static final JsonpDeserializer<RankEvalMetricMeanReciprocalRank> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					RankEvalMetricMeanReciprocalRank::setupRankEvalMetricMeanReciprocalRankDeserializer);
+	public static final JsonpDeserializer<RankEvalMetricMeanReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankEvalMetricMeanReciprocalRank::setupRankEvalMetricMeanReciprocalRankDeserializer,
+					Builder::build);
 
 	protected static void setupRankEvalMetricMeanReciprocalRankDeserializer(
 			DelegatingDeserializer<RankEvalMetricMeanReciprocalRank.Builder> op) {

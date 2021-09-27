@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: cluster.put_component_template.Response
+@JsonpDeserializable
 public final class PutComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class PutComponentTemplateResponse extends AcknowledgedResponseBase
 	/**
 	 * Json deserializer for {@link PutComponentTemplateResponse}
 	 */
-	public static final JsonpDeserializer<PutComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer);
+	public static final JsonpDeserializer<PutComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutComponentTemplateResponse::setupPutComponentTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupPutComponentTemplateResponseDeserializer(
 			DelegatingDeserializer<PutComponentTemplateResponse.Builder> op) {

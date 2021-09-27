@@ -24,27 +24,29 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingFunctionAggregation
-public final class MovingFunctionAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class MovingFunctionAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String script;
 
 	@Nullable
-	private final Number shift;
+	private final Integer shift;
 
 	@Nullable
-	private final Number window;
+	private final Integer window;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,6 +57,14 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 		this.shift = builder.shift;
 		this.window = builder.window;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "moving_fn";
 	}
 
 	/**
@@ -69,7 +79,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 	 * API name: {@code shift}
 	 */
 	@Nullable
-	public Number shift() {
+	public Integer shift() {
 		return this.shift;
 	}
 
@@ -77,7 +87,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Number window() {
+	public Integer window() {
 		return this.window;
 	}
 
@@ -93,13 +103,13 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 		if (this.shift != null) {
 
 			generator.writeKey("shift");
-			generator.write(this.shift.doubleValue());
+			generator.write(this.shift);
 
 		}
 		if (this.window != null) {
 
 			generator.writeKey("window");
-			generator.write(this.window.doubleValue());
+			generator.write(this.window);
 
 		}
 
@@ -117,10 +127,10 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 		private String script;
 
 		@Nullable
-		private Number shift;
+		private Integer shift;
 
 		@Nullable
-		private Number window;
+		private Integer window;
 
 		/**
 		 * API name: {@code script}
@@ -133,7 +143,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 		/**
 		 * API name: {@code shift}
 		 */
-		public Builder shift(@Nullable Number value) {
+		public Builder shift(@Nullable Integer value) {
 			this.shift = value;
 			return this;
 		}
@@ -141,7 +151,7 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Number value) {
+		public Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -168,15 +178,15 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link MovingFunctionAggregation}
 	 */
-	public static final JsonpDeserializer<MovingFunctionAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MovingFunctionAggregation::setupMovingFunctionAggregationDeserializer);
+	public static final JsonpDeserializer<MovingFunctionAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MovingFunctionAggregation::setupMovingFunctionAggregationDeserializer, Builder::build);
 
 	protected static void setupMovingFunctionAggregationDeserializer(
 			DelegatingDeserializer<MovingFunctionAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::script, JsonpDeserializer.stringDeserializer(), "script");
-		op.add(Builder::shift, JsonpDeserializer.numberDeserializer(), "shift");
-		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");
+		op.add(Builder::shift, JsonpDeserializer.integerDeserializer(), "shift");
+		op.add(Builder::window, JsonpDeserializer.integerDeserializer(), "window");
 
 	}
 

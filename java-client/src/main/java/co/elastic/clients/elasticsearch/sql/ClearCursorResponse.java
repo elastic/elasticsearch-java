@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Response
+@JsonpDeserializable
 public final class ClearCursorResponse implements JsonpSerializable {
 	private final Boolean succeeded;
 
@@ -103,8 +105,8 @@ public final class ClearCursorResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClearCursorResponse}
 	 */
-	public static final JsonpDeserializer<ClearCursorResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCursorResponse::setupClearCursorResponseDeserializer);
+	public static final JsonpDeserializer<ClearCursorResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCursorResponse::setupClearCursorResponseDeserializer, Builder::build);
 
 	protected static void setupClearCursorResponseDeserializer(DelegatingDeserializer<ClearCursorResponse.Builder> op) {
 

@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,16 +40,17 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.delete_dangling_index.Request
+
 public final class DeleteDanglingIndexRequest extends RequestBase {
 	private final String indexUuid;
 
 	private final Boolean acceptDataLoss;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -86,7 +87,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -96,7 +97,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -111,10 +112,10 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		private Boolean acceptDataLoss;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * The UUID of the dangling index
@@ -141,7 +142,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -151,7 +152,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -205,12 +206,12 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteDanglingIndexResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, DeleteDanglingIndexResponse._DESERIALIZER);
 }

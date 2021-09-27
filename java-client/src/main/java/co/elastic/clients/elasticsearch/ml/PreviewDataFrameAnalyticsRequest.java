@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics.DataframePreviewConfig;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
+@JsonpDeserializable
 public final class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -162,14 +164,14 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Json deserializer for {@link PreviewDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer);
+	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer,
+					Builder::build);
 
 	protected static void setupPreviewDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::config, DataframePreviewConfig.DESERIALIZER, "config");
+		op.add(Builder::config, DataframePreviewConfig._DESERIALIZER, "config");
 
 	}
 
@@ -220,5 +222,5 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PreviewDataFrameAnalyticsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PreviewDataFrameAnalyticsResponse._DESERIALIZER);
 }

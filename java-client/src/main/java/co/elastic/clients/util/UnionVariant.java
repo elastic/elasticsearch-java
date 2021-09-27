@@ -19,6 +19,13 @@
 
 package co.elastic.clients.util;
 
+/**
+ * An implementation of a variant type.
+ */
 public interface UnionVariant {
-    String _type();
+
+    /**
+     * Get the type of this object when used as a variant
+     */
+    String _variantType();
 }

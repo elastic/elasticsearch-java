@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Ensemble
+@JsonpDeserializable
 public final class Ensemble implements JsonpSerializable {
 	@Nullable
 	private final AggregateOutput aggregateOutput;
@@ -318,18 +320,18 @@ public final class Ensemble implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Ensemble}
 	 */
-	public static final JsonpDeserializer<Ensemble> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Ensemble::setupEnsembleDeserializer);
+	public static final JsonpDeserializer<Ensemble> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ensemble::setupEnsembleDeserializer, Builder::build);
 
 	protected static void setupEnsembleDeserializer(DelegatingDeserializer<Ensemble.Builder> op) {
 
-		op.add(Builder::aggregateOutput, AggregateOutput.DESERIALIZER, "aggregate_output");
+		op.add(Builder::aggregateOutput, AggregateOutput._DESERIALIZER, "aggregate_output");
 		op.add(Builder::classificationLabels,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "classification_labels");
 		op.add(Builder::featureNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_names");
 		op.add(Builder::targetType, JsonpDeserializer.stringDeserializer(), "target_type");
-		op.add(Builder::trainedModels, JsonpDeserializer.arrayDeserializer(TrainedModel.DESERIALIZER),
+		op.add(Builder::trainedModels, JsonpDeserializer.arrayDeserializer(TrainedModel._DESERIALIZER),
 				"trained_models");
 
 	}

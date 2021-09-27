@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,21 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypes
+@JsonpDeserializable
 public final class FieldTypes implements JsonpSerializable {
 	private final String name;
 
-	private final Number count;
+	private final Integer count;
 
-	private final Number indexCount;
+	private final Integer indexCount;
 
 	@Nullable
-	private final Number scriptCount;
+	private final Integer scriptCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,14 +70,14 @@ public final class FieldTypes implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Number indexCount() {
+	public Integer indexCount() {
 		return this.indexCount;
 	}
 
@@ -83,7 +85,7 @@ public final class FieldTypes implements JsonpSerializable {
 	 * API name: {@code script_count}
 	 */
 	@Nullable
-	public Number scriptCount() {
+	public Integer scriptCount() {
 		return this.scriptCount;
 	}
 
@@ -102,15 +104,15 @@ public final class FieldTypes implements JsonpSerializable {
 		generator.write(this.name);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("index_count");
-		generator.write(this.indexCount.doubleValue());
+		generator.write(this.indexCount);
 
 		if (this.scriptCount != null) {
 
 			generator.writeKey("script_count");
-			generator.write(this.scriptCount.doubleValue());
+			generator.write(this.scriptCount);
 
 		}
 
@@ -124,12 +126,12 @@ public final class FieldTypes implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<FieldTypes> {
 		private String name;
 
-		private Number count;
+		private Integer count;
 
-		private Number indexCount;
+		private Integer indexCount;
 
 		@Nullable
-		private Number scriptCount;
+		private Integer scriptCount;
 
 		/**
 		 * API name: {@code name}
@@ -142,7 +144,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -150,7 +152,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Number value) {
+		public Builder indexCount(Integer value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code script_count}
 		 */
-		public Builder scriptCount(@Nullable Number value) {
+		public Builder scriptCount(@Nullable Integer value) {
 			this.scriptCount = value;
 			return this;
 		}
@@ -180,15 +182,15 @@ public final class FieldTypes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldTypes}
 	 */
-	public static final JsonpDeserializer<FieldTypes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldTypes::setupFieldTypesDeserializer);
+	public static final JsonpDeserializer<FieldTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldTypes::setupFieldTypesDeserializer, Builder::build);
 
 	protected static void setupFieldTypesDeserializer(DelegatingDeserializer<FieldTypes.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
-		op.add(Builder::scriptCount, JsonpDeserializer.numberDeserializer(), "script_count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+		op.add(Builder::scriptCount, JsonpDeserializer.integerDeserializer(), "script_count");
 
 	}
 

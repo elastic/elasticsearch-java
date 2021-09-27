@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardStatistics
+@JsonpDeserializable
 public final class ShardStatistics implements JsonpSerializable {
 	private final Number failed;
 
@@ -250,15 +252,15 @@ public final class ShardStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardStatistics}
 	 */
-	public static final JsonpDeserializer<ShardStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStatistics::setupShardStatisticsDeserializer);
+	public static final JsonpDeserializer<ShardStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStatistics::setupShardStatisticsDeserializer, Builder::build);
 
 	protected static void setupShardStatisticsDeserializer(DelegatingDeserializer<ShardStatistics.Builder> op) {
 
 		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
 		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
 		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.UppercaseProcessor
-public final class UppercaseProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class UppercaseProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -54,6 +56,14 @@ public final class UppercaseProcessor extends ProcessorBase {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "uppercase";
 	}
 
 	/**
@@ -163,8 +173,8 @@ public final class UppercaseProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link UppercaseProcessor}
 	 */
-	public static final JsonpDeserializer<UppercaseProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UppercaseProcessor::setupUppercaseProcessorDeserializer);
+	public static final JsonpDeserializer<UppercaseProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UppercaseProcessor::setupUppercaseProcessorDeserializer, Builder::build);
 
 	protected static void setupUppercaseProcessorDeserializer(DelegatingDeserializer<UppercaseProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

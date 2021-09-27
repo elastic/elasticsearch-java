@@ -24,12 +24,12 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 
 import javax.annotation.Nullable;
 import jakarta.json.stream.JsonGenerator;
 
-public class Bar implements ToJsonp {
+public class Bar implements JsonpSerializable {
 
   private final String name;
 
@@ -43,7 +43,7 @@ public class Bar implements ToJsonp {
   }
 
   @Override
-  public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
+  public void serialize(JsonGenerator builder, JsonpMapper mapper) {
     builder.writeStartObject();
     if (this.name != null) builder.write("name", this.name);
     builder.writeEnd();

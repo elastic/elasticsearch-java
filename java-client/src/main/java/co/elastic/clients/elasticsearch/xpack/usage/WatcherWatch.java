@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatch
+@JsonpDeserializable
 public final class WatcherWatch implements JsonpSerializable {
 	private final Map<String, Counter> input;
 
@@ -288,15 +290,15 @@ public final class WatcherWatch implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WatcherWatch}
 	 */
-	public static final JsonpDeserializer<WatcherWatch> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherWatch::setupWatcherWatchDeserializer);
+	public static final JsonpDeserializer<WatcherWatch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatcherWatch::setupWatcherWatchDeserializer, Builder::build);
 
 	protected static void setupWatcherWatchDeserializer(DelegatingDeserializer<WatcherWatch.Builder> op) {
 
-		op.add(Builder::input, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "input");
-		op.add(Builder::condition, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "condition");
-		op.add(Builder::action, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "action");
-		op.add(Builder::trigger, WatcherWatchTrigger.DESERIALIZER, "trigger");
+		op.add(Builder::input, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "input");
+		op.add(Builder::condition, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "condition");
+		op.add(Builder::action, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "action");
+		op.add(Builder::trigger, WatcherWatchTrigger._DESERIALIZER, "trigger");
 
 	}
 

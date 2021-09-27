@@ -23,154 +23,194 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ConditionContainer
-public interface Condition extends JsonpSerializable {
+@JsonpDeserializable
+public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
-	String ALWAYS = "always";
-	String ARRAY_COMPARE = "array_compare";
-	String COMPARE = "compare";
-	String NEVER = "never";
-	String SCRIPT = "script";
+	public static final String ALWAYS = "always";
+	public static final String ARRAY_COMPARE = "array_compare";
+	public static final String COMPARE = "compare";
+	public static final String NEVER = "never";
+	public static final String SCRIPT = "script";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Condition(ConditionVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private Condition(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code ConditionContainer}.
+	 * Get the {@code always} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code always} kind.
 	 */
-	String _type();
+	public AlwaysCondition always() {
+		return TaggedUnionUtils.get(this, ALWAYS);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code always}
-		 */
-		public ObjectBuilder<Condition> always(AlwaysCondition value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code array_compare} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code array_compare} kind.
+	 */
+	public ArrayCompareCondition arrayCompare() {
+		return TaggedUnionUtils.get(this, ARRAY_COMPARE);
+	}
+
+	/**
+	 * Get the {@code compare} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code compare} kind.
+	 */
+	public CompareCondition compare() {
+		return TaggedUnionUtils.get(this, COMPARE);
+	}
+
+	/**
+	 * Get the {@code never} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code never} kind.
+	 */
+	public NeverCondition never() {
+		return TaggedUnionUtils.get(this, NEVER);
+	}
+
+	/**
+	 * Get the {@code script} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code script} kind.
+	 */
+	public ScriptCondition script() {
+		return TaggedUnionUtils.get(this, SCRIPT);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code always}
-		 */
-		public ObjectBuilder<Condition> always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> fn) {
-			return this.always(fn.apply(new AlwaysCondition.Builder()).build());
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<Condition> always(AlwaysCondition v) {
+			this._type = ALWAYS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code array_compare}
-		 */
-		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Condition> always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> f) {
+			return this.always(f.apply(new AlwaysCondition.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code array_compare}
-		 */
+		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition v) {
+			this._type = ARRAY_COMPARE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<Condition> arrayCompare(
-				Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
-			return this.arrayCompare(fn.apply(new ArrayCompareCondition.Builder()).build());
+				Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> f) {
+			return this.arrayCompare(f.apply(new ArrayCompareCondition.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code compare}
-		 */
-		public ObjectBuilder<Condition> compare(CompareCondition value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Condition> compare(CompareCondition v) {
+			this._type = COMPARE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code compare}
-		 */
-		public ObjectBuilder<Condition> compare(
-				Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> fn) {
-			return this.compare(fn.apply(new CompareCondition.Builder()).build());
+		public ObjectBuilder<Condition> compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> f) {
+			return this.compare(f.apply(new CompareCondition.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code never}
-		 */
-		public ObjectBuilder<Condition> never(NeverCondition value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Condition> never(NeverCondition v) {
+			this._type = NEVER;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code never}
-		 */
-		public ObjectBuilder<Condition> never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> fn) {
-			return this.never(fn.apply(new NeverCondition.Builder()).build());
+		public ObjectBuilder<Condition> never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> f) {
+			return this.never(f.apply(new NeverCondition.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code script}
-		 */
-		public ObjectBuilder<Condition> script(ScriptCondition value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Condition> script(ScriptCondition v) {
+			this._type = SCRIPT;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code script}
-		 */
-		public ObjectBuilder<Condition> script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> fn) {
-			return this.script(fn.apply(new ScriptCondition.Builder()).build());
+		public ObjectBuilder<Condition> script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> f) {
+			return this.script(f.apply(new ScriptCondition.Builder()).build());
+		}
+
+		protected Condition build() {
+			return new Condition(this);
 		}
 
 	}
 
-	class $Helper {
-		private static Condition deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupConditionDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends Condition> builder = null;
-			String variant = null;
+		op.add(Builder::always, AlwaysCondition._DESERIALIZER, "always");
+		op.add(Builder::arrayCompare, ArrayCompareCondition._DESERIALIZER, "array_compare");
+		op.add(Builder::compare, CompareCondition._DESERIALIZER, "compare");
+		op.add(Builder::never, NeverCondition._DESERIALIZER, "never");
+		op.add(Builder::script, ScriptCondition._DESERIALIZER, "script");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case ALWAYS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = AlwaysCondition.$BUILDER_DESERIALIZER.deserialize(new AlwaysCondition.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case ARRAY_COMPARE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ArrayCompareCondition.$BUILDER_DESERIALIZER
-								.deserialize(new ArrayCompareCondition.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case COMPARE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = CompareCondition.$BUILDER_DESERIALIZER.deserialize(new CompareCondition.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case NEVER : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = NeverCondition.$BUILDER_DESERIALIZER.deserialize(new NeverCondition.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SCRIPT : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ScriptCondition.$BUILDER_DESERIALIZER.deserialize(new ScriptCondition.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<Condition> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<Condition> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			Condition::setupConditionDeserializer, Builder::build);
 }

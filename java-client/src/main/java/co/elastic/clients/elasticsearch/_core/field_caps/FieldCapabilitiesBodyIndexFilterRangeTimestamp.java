@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.field_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,23 +32,24 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapabilitiesBodyIndexFilterRangeTimestamp
+@JsonpDeserializable
 public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements JsonpSerializable {
 	@Nullable
-	private final Number gte;
+	private final Integer gte;
 
 	@Nullable
-	private final Number gt;
+	private final Integer gt;
 
 	@Nullable
-	private final Number lte;
+	private final Integer lte;
 
 	@Nullable
-	private final Number lt;
+	private final Integer lt;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 	 * API name: {@code gte}
 	 */
 	@Nullable
-	public Number gte() {
+	public Integer gte() {
 		return this.gte;
 	}
 
@@ -72,7 +74,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 	 * API name: {@code gt}
 	 */
 	@Nullable
-	public Number gt() {
+	public Integer gt() {
 		return this.gt;
 	}
 
@@ -80,7 +82,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 	 * API name: {@code lte}
 	 */
 	@Nullable
-	public Number lte() {
+	public Integer lte() {
 		return this.lte;
 	}
 
@@ -88,7 +90,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 	 * API name: {@code lt}
 	 */
 	@Nullable
-	public Number lt() {
+	public Integer lt() {
 		return this.lt;
 	}
 
@@ -106,25 +108,25 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 		if (this.gte != null) {
 
 			generator.writeKey("gte");
-			generator.write(this.gte.doubleValue());
+			generator.write(this.gte);
 
 		}
 		if (this.gt != null) {
 
 			generator.writeKey("gt");
-			generator.write(this.gt.doubleValue());
+			generator.write(this.gt);
 
 		}
 		if (this.lte != null) {
 
 			generator.writeKey("lte");
-			generator.write(this.lte.doubleValue());
+			generator.write(this.lte);
 
 		}
 		if (this.lt != null) {
 
 			generator.writeKey("lt");
-			generator.write(this.lt.doubleValue());
+			generator.write(this.lt);
 
 		}
 
@@ -137,21 +139,21 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 	 */
 	public static class Builder implements ObjectBuilder<FieldCapabilitiesBodyIndexFilterRangeTimestamp> {
 		@Nullable
-		private Number gte;
+		private Integer gte;
 
 		@Nullable
-		private Number gt;
+		private Integer gt;
 
 		@Nullable
-		private Number lte;
+		private Integer lte;
 
 		@Nullable
-		private Number lt;
+		private Integer lt;
 
 		/**
 		 * API name: {@code gte}
 		 */
-		public Builder gte(@Nullable Number value) {
+		public Builder gte(@Nullable Integer value) {
 			this.gte = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 		/**
 		 * API name: {@code gt}
 		 */
-		public Builder gt(@Nullable Number value) {
+		public Builder gt(@Nullable Integer value) {
 			this.gt = value;
 			return this;
 		}
@@ -167,7 +169,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 		/**
 		 * API name: {@code lte}
 		 */
-		public Builder lte(@Nullable Number value) {
+		public Builder lte(@Nullable Integer value) {
 			this.lte = value;
 			return this;
 		}
@@ -175,7 +177,7 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 		/**
 		 * API name: {@code lt}
 		 */
-		public Builder lt(@Nullable Number value) {
+		public Builder lt(@Nullable Integer value) {
 			this.lt = value;
 			return this;
 		}
@@ -197,17 +199,18 @@ public final class FieldCapabilitiesBodyIndexFilterRangeTimestamp implements Jso
 	/**
 	 * Json deserializer for {@link FieldCapabilitiesBodyIndexFilterRangeTimestamp}
 	 */
-	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterRangeTimestamp> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilterRangeTimestamp::setupFieldCapabilitiesBodyIndexFilterRangeTimestampDeserializer);
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterRangeTimestamp> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					FieldCapabilitiesBodyIndexFilterRangeTimestamp::setupFieldCapabilitiesBodyIndexFilterRangeTimestampDeserializer,
+					Builder::build);
 
 	protected static void setupFieldCapabilitiesBodyIndexFilterRangeTimestampDeserializer(
 			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilterRangeTimestamp.Builder> op) {
 
-		op.add(Builder::gte, JsonpDeserializer.numberDeserializer(), "gte");
-		op.add(Builder::gt, JsonpDeserializer.numberDeserializer(), "gt");
-		op.add(Builder::lte, JsonpDeserializer.numberDeserializer(), "lte");
-		op.add(Builder::lt, JsonpDeserializer.numberDeserializer(), "lt");
+		op.add(Builder::gte, JsonpDeserializer.integerDeserializer(), "gte");
+		op.add(Builder::gt, JsonpDeserializer.integerDeserializer(), "gt");
+		op.add(Builder::lte, JsonpDeserializer.integerDeserializer(), "lte");
+		op.add(Builder::lt, JsonpDeserializer.integerDeserializer(), "lt");
 
 	}
 

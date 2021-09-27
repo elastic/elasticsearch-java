@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregation
+
 public abstract class AggregationBase implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> meta;
@@ -145,7 +147,7 @@ public abstract class AggregationBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAggregationBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "meta");
+		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
 		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}

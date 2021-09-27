@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Response
+@JsonpDeserializable
 public final class ClearCachedRealmsResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
@@ -192,15 +194,15 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClearCachedRealmsResponse}
 	 */
-	public static final JsonpDeserializer<ClearCachedRealmsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCachedRealmsResponse::setupClearCachedRealmsResponseDeserializer);
+	public static final JsonpDeserializer<ClearCachedRealmsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCachedRealmsResponse::setupClearCachedRealmsResponseDeserializer, Builder::build);
 
 	protected static void setupClearCachedRealmsResponseDeserializer(
 			DelegatingDeserializer<ClearCachedRealmsResponse.Builder> op) {
 
-		op.add(Builder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
+		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode._DESERIALIZER), "nodes");
 
 	}
 

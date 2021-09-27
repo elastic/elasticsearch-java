@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfWeek
+@JsonpDeserializable
 public final class TimeOfWeek implements JsonpSerializable {
 	private final List<String> at;
 
@@ -176,13 +178,13 @@ public final class TimeOfWeek implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TimeOfWeek}
 	 */
-	public static final JsonpDeserializer<TimeOfWeek> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TimeOfWeek::setupTimeOfWeekDeserializer);
+	public static final JsonpDeserializer<TimeOfWeek> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TimeOfWeek::setupTimeOfWeekDeserializer, Builder::build);
 
 	protected static void setupTimeOfWeekDeserializer(DelegatingDeserializer<TimeOfWeek.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
-		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(Day.DESERIALIZER), "on");
+		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(Day._DESERIALIZER), "on");
 
 	}
 

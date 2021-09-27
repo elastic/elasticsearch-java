@@ -28,13 +28,13 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -48,6 +48,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Request
+@JsonpDeserializable
 public final class ExploreRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
@@ -55,7 +56,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	private final String routing;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Hop connections;
@@ -109,7 +110,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -200,7 +201,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		private String routing;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Hop connections;
@@ -262,7 +263,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -370,15 +371,15 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link ExploreRequest}
 	 */
-	public static final JsonpDeserializer<ExploreRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExploreRequest::setupExploreRequestDeserializer);
+	public static final JsonpDeserializer<ExploreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExploreRequest::setupExploreRequestDeserializer, Builder::build);
 
 	protected static void setupExploreRequestDeserializer(DelegatingDeserializer<ExploreRequest.Builder> op) {
 
-		op.add(Builder::connections, Hop.DESERIALIZER, "connections");
-		op.add(Builder::controls, ExploreControls.DESERIALIZER, "controls");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition.DESERIALIZER), "vertices");
+		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
+		op.add(Builder::controls, ExploreControls._DESERIALIZER, "controls");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition._DESERIALIZER), "vertices");
 
 	}
 
@@ -422,9 +423,9 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ExploreResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ExploreResponse._DESERIALIZER);
 }

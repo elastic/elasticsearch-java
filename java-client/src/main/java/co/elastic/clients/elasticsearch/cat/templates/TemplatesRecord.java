@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.templates;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.TemplatesRecord
+@JsonpDeserializable
 public final class TemplatesRecord implements JsonpSerializable {
 	@Nullable
 	private final String name;
@@ -246,8 +248,8 @@ public final class TemplatesRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TemplatesRecord}
 	 */
-	public static final JsonpDeserializer<TemplatesRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TemplatesRecord::setupTemplatesRecordDeserializer);
+	public static final JsonpDeserializer<TemplatesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TemplatesRecord::setupTemplatesRecordDeserializer, Builder::build);
 
 	protected static void setupTemplatesRecordDeserializer(DelegatingDeserializer<TemplatesRecord.Builder> op) {
 

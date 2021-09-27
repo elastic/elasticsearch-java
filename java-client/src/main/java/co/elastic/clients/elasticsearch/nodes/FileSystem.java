@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.FileSystem
+@JsonpDeserializable
 public final class FileSystem implements JsonpSerializable {
 	private final List<DataPathStats> data;
 
-	private final Number timestamp;
+	private final Long timestamp;
 
 	private final FileSystemTotal total;
 
@@ -67,7 +69,7 @@ public final class FileSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -98,7 +100,7 @@ public final class FileSystem implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 		generator.writeKey("total");
 		this.total.serialize(generator, mapper);
@@ -113,7 +115,7 @@ public final class FileSystem implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<FileSystem> {
 		private List<DataPathStats> data;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		private FileSystemTotal total;
 
@@ -161,7 +163,7 @@ public final class FileSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -198,14 +200,14 @@ public final class FileSystem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FileSystem}
 	 */
-	public static final JsonpDeserializer<FileSystem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FileSystem::setupFileSystemDeserializer);
+	public static final JsonpDeserializer<FileSystem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FileSystem::setupFileSystemDeserializer, Builder::build);
 
 	protected static void setupFileSystemDeserializer(DelegatingDeserializer<FileSystem.Builder> op) {
 
-		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(DataPathStats.DESERIALIZER), "data");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
-		op.add(Builder::total, FileSystemTotal.DESERIALIZER, "total");
+		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(DataPathStats._DESERIALIZER), "data");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+		op.add(Builder::total, FileSystemTotal._DESERIALIZER, "total");
 
 	}
 

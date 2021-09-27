@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsDataCounts
+@JsonpDeserializable
 public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
-	private final Number skippedDocsCount;
+	private final Integer skippedDocsCount;
 
-	private final Number testDocsCount;
+	private final Integer testDocsCount;
 
-	private final Number trainingDocsCount;
+	private final Integer trainingDocsCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,7 +64,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code skipped_docs_count}
 	 */
-	public Number skippedDocsCount() {
+	public Integer skippedDocsCount() {
 		return this.skippedDocsCount;
 	}
 
@@ -72,7 +74,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code test_docs_count}
 	 */
-	public Number testDocsCount() {
+	public Integer testDocsCount() {
 		return this.testDocsCount;
 	}
 
@@ -81,7 +83,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code training_docs_count}
 	 */
-	public Number trainingDocsCount() {
+	public Integer trainingDocsCount() {
 		return this.trainingDocsCount;
 	}
 
@@ -97,13 +99,13 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("skipped_docs_count");
-		generator.write(this.skippedDocsCount.doubleValue());
+		generator.write(this.skippedDocsCount);
 
 		generator.writeKey("test_docs_count");
-		generator.write(this.testDocsCount.doubleValue());
+		generator.write(this.testDocsCount);
 
 		generator.writeKey("training_docs_count");
-		generator.write(this.trainingDocsCount.doubleValue());
+		generator.write(this.trainingDocsCount);
 
 	}
 
@@ -113,11 +115,11 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * Builder for {@link DataframeAnalyticsStatsDataCounts}.
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsDataCounts> {
-		private Number skippedDocsCount;
+		private Integer skippedDocsCount;
 
-		private Number testDocsCount;
+		private Integer testDocsCount;
 
-		private Number trainingDocsCount;
+		private Integer trainingDocsCount;
 
 		/**
 		 * The number of documents that are skipped during the analysis because they
@@ -128,7 +130,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code skipped_docs_count}
 		 */
-		public Builder skippedDocsCount(Number value) {
+		public Builder skippedDocsCount(Integer value) {
 			this.skippedDocsCount = value;
 			return this;
 		}
@@ -139,7 +141,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code test_docs_count}
 		 */
-		public Builder testDocsCount(Number value) {
+		public Builder testDocsCount(Integer value) {
 			this.testDocsCount = value;
 			return this;
 		}
@@ -149,7 +151,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code training_docs_count}
 		 */
-		public Builder trainingDocsCount(Number value) {
+		public Builder trainingDocsCount(Integer value) {
 			this.trainingDocsCount = value;
 			return this;
 		}
@@ -171,16 +173,16 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsStatsDataCounts}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsDataCountsDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
 
-		op.add(Builder::skippedDocsCount, JsonpDeserializer.numberDeserializer(), "skipped_docs_count");
-		op.add(Builder::testDocsCount, JsonpDeserializer.numberDeserializer(), "test_docs_count");
-		op.add(Builder::trainingDocsCount, JsonpDeserializer.numberDeserializer(), "training_docs_count");
+		op.add(Builder::skippedDocsCount, JsonpDeserializer.integerDeserializer(), "skipped_docs_count");
+		op.add(Builder::testDocsCount, JsonpDeserializer.integerDeserializer(), "test_docs_count");
+		op.add(Builder::trainingDocsCount, JsonpDeserializer.integerDeserializer(), "training_docs_count");
 
 	}
 

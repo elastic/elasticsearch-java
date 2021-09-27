@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.indices.recovery.RecoveryStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: indices.recovery.Response
+@JsonpDeserializable
 public final class RecoveryResponse extends AdditionalProperties<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,12 +77,12 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 	/**
 	 * Json deserializer for {@link RecoveryResponse}
 	 */
-	public static final JsonpDeserializer<RecoveryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseDeserializer);
+	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
 
 	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RecoveryStatus.DESERIALIZER);
+				RecoveryStatus._DESERIALIZER);
 
 	}
 

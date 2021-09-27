@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.StupidBackoffSmoothingModel
-public final class StupidBackoffSmoothingModel implements SmoothingModel, JsonpSerializable {
-	private final Number discount;
+@JsonpDeserializable
+public final class StupidBackoffSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+	private final Double discount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,14 +53,14 @@ public final class StupidBackoffSmoothingModel implements SmoothingModel, JsonpS
 	 * {@link SmoothingModel} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "stupid_backoff";
 	}
 
 	/**
 	 * API name: {@code discount}
 	 */
-	public Number discount() {
+	public Double discount() {
 		return this.discount;
 	}
 
@@ -73,12 +74,9 @@ public final class StupidBackoffSmoothingModel implements SmoothingModel, JsonpS
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("discount");
-		generator.write(this.discount.doubleValue());
-
-		generator.writeEnd();
+		generator.write(this.discount);
 
 	}
 
@@ -88,12 +86,12 @@ public final class StupidBackoffSmoothingModel implements SmoothingModel, JsonpS
 	 * Builder for {@link StupidBackoffSmoothingModel}.
 	 */
 	public static class Builder implements ObjectBuilder<StupidBackoffSmoothingModel> {
-		private Number discount;
+		private Double discount;
 
 		/**
 		 * API name: {@code discount}
 		 */
-		public Builder discount(Number value) {
+		public Builder discount(Double value) {
 			this.discount = value;
 			return this;
 		}
@@ -112,14 +110,16 @@ public final class StupidBackoffSmoothingModel implements SmoothingModel, JsonpS
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<StupidBackoffSmoothingModel.Builder, StupidBackoffSmoothingModel.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(StupidBackoffSmoothingModel::setupStupidBackoffSmoothingModelDeserializer);
+	/**
+	 * Json deserializer for {@link StupidBackoffSmoothingModel}
+	 */
+	public static final JsonpDeserializer<StupidBackoffSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, StupidBackoffSmoothingModel::setupStupidBackoffSmoothingModelDeserializer, Builder::build);
 
 	protected static void setupStupidBackoffSmoothingModelDeserializer(
 			DelegatingDeserializer<StupidBackoffSmoothingModel.Builder> op) {
 
-		op.add(Builder::discount, JsonpDeserializer.numberDeserializer(), "discount");
+		op.add(Builder::discount, JsonpDeserializer.doubleDeserializer(), "discount");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,12 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActivationStatus
+@JsonpDeserializable
 public final class ActivationStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
 
 	private final ActivationState state;
 
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +76,7 @@ public final class ActivationStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -102,7 +104,7 @@ public final class ActivationStatus implements JsonpSerializable {
 		this.state.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -116,7 +118,7 @@ public final class ActivationStatus implements JsonpSerializable {
 
 		private ActivationState state;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code actions}
@@ -169,7 +171,7 @@ public final class ActivationStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -191,14 +193,14 @@ public final class ActivationStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ActivationStatus}
 	 */
-	public static final JsonpDeserializer<ActivationStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ActivationStatus::setupActivationStatusDeserializer);
+	public static final JsonpDeserializer<ActivationStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ActivationStatus::setupActivationStatusDeserializer, Builder::build);
 
 	protected static void setupActivationStatusDeserializer(DelegatingDeserializer<ActivationStatus.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus.DESERIALIZER), "actions");
-		op.add(Builder::state, ActivationState.DESERIALIZER, "state");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus._DESERIALIZER), "actions");
+		op.add(Builder::state, ActivationState._DESERIALIZER, "state");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

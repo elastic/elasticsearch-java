@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,8 +43,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Response
+@JsonpDeserializable
 public final class InvalidateApiKeyResponse implements JsonpSerializable {
-	private final Number errorCount;
+	private final Integer errorCount;
 
 	@Nullable
 	private final List<ErrorCause> errorDetails;
@@ -67,7 +69,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code error_count}
 	 */
-	public Number errorCount() {
+	public Integer errorCount() {
 		return this.errorCount;
 	}
 
@@ -105,7 +107,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("error_count");
-		generator.write(this.errorCount.doubleValue());
+		generator.write(this.errorCount);
 
 		if (this.errorDetails != null) {
 
@@ -143,7 +145,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	 * Builder for {@link InvalidateApiKeyResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<InvalidateApiKeyResponse> {
-		private Number errorCount;
+		private Integer errorCount;
 
 		@Nullable
 		private List<ErrorCause> errorDetails;
@@ -155,7 +157,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code error_count}
 		 */
-		public Builder errorCount(Number value) {
+		public Builder errorCount(Integer value) {
 			this.errorCount = value;
 			return this;
 		}
@@ -274,14 +276,14 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InvalidateApiKeyResponse}
 	 */
-	public static final JsonpDeserializer<InvalidateApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseDeserializer);
+	public static final JsonpDeserializer<InvalidateApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InvalidateApiKeyResponse::setupInvalidateApiKeyResponseDeserializer, Builder::build);
 
 	protected static void setupInvalidateApiKeyResponseDeserializer(
 			DelegatingDeserializer<InvalidateApiKeyResponse.Builder> op) {
 
-		op.add(Builder::errorCount, JsonpDeserializer.numberDeserializer(), "error_count");
-		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "error_details");
+		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
+		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "error_details");
 		op.add(Builder::invalidatedApiKeys, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"invalidated_api_keys");
 		op.add(Builder::previouslyInvalidatedApiKeys,

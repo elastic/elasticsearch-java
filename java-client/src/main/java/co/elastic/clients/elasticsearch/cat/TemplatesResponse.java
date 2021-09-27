@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.templates.TemplatesRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.Response
+@JsonpDeserializable
 public final class TemplatesResponse implements JsonpSerializable {
 	private final List<TemplatesRecord> value;
 
@@ -143,12 +145,12 @@ public final class TemplatesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TemplatesResponse}
 	 */
-	public static final JsonpDeserializer<TemplatesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TemplatesResponse::setupTemplatesResponseDeserializer);
+	public static final JsonpDeserializer<TemplatesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TemplatesResponse::setupTemplatesResponseDeserializer, Builder::build);
 
 	protected static void setupTemplatesResponseDeserializer(DelegatingDeserializer<TemplatesResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplatesRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplatesRecord._DESERIALIZER), "value");
 
 	}
 

@@ -25,21 +25,22 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Action
+@JsonpDeserializable
 public final class Action implements JsonpSerializable {
 	@Nullable
 	private final ActionType actionType;
@@ -51,16 +52,16 @@ public final class Action implements JsonpSerializable {
 	private final String foreach;
 
 	@Nullable
-	private final Number maxIterations;
+	private final Integer maxIterations;
 
 	@Nullable
 	private final String name;
 
 	@Nullable
-	private final JsonValue throttlePeriod;
+	private final String throttlePeriod;
 
 	@Nullable
-	private final JsonValue throttlePeriodInMillis;
+	private final String throttlePeriodInMillis;
 
 	@Nullable
 	private final Transform transform;
@@ -120,7 +121,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code max_iterations}
 	 */
 	@Nullable
-	public Number maxIterations() {
+	public Integer maxIterations() {
 		return this.maxIterations;
 	}
 
@@ -136,7 +137,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period}
 	 */
 	@Nullable
-	public JsonValue throttlePeriod() {
+	public String throttlePeriod() {
 		return this.throttlePeriod;
 	}
 
@@ -144,7 +145,7 @@ public final class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period_in_millis}
 	 */
 	@Nullable
-	public JsonValue throttlePeriodInMillis() {
+	public String throttlePeriodInMillis() {
 		return this.throttlePeriodInMillis;
 	}
 
@@ -211,7 +212,7 @@ public final class Action implements JsonpSerializable {
 		if (this.maxIterations != null) {
 
 			generator.writeKey("max_iterations");
-			generator.write(this.maxIterations.doubleValue());
+			generator.write(this.maxIterations);
 
 		}
 		if (this.name != null) {
@@ -275,16 +276,16 @@ public final class Action implements JsonpSerializable {
 		private String foreach;
 
 		@Nullable
-		private Number maxIterations;
+		private Integer maxIterations;
 
 		@Nullable
 		private String name;
 
 		@Nullable
-		private JsonValue throttlePeriod;
+		private String throttlePeriod;
 
 		@Nullable
-		private JsonValue throttlePeriodInMillis;
+		private String throttlePeriodInMillis;
 
 		@Nullable
 		private Transform transform;
@@ -332,7 +333,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code max_iterations}
 		 */
-		public Builder maxIterations(@Nullable Number value) {
+		public Builder maxIterations(@Nullable Integer value) {
 			this.maxIterations = value;
 			return this;
 		}
@@ -348,7 +349,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public Builder throttlePeriod(@Nullable JsonValue value) {
+		public Builder throttlePeriod(@Nullable String value) {
 			this.throttlePeriod = value;
 			return this;
 		}
@@ -356,7 +357,7 @@ public final class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period_in_millis}
 		 */
-		public Builder throttlePeriodInMillis(@Nullable JsonValue value) {
+		public Builder throttlePeriodInMillis(@Nullable String value) {
 			this.throttlePeriodInMillis = value;
 			return this;
 		}
@@ -438,22 +439,22 @@ public final class Action implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Action}
 	 */
-	public static final JsonpDeserializer<Action> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Action::setupActionDeserializer);
+	public static final JsonpDeserializer<Action> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Action::setupActionDeserializer, Builder::build);
 
 	protected static void setupActionDeserializer(DelegatingDeserializer<Action.Builder> op) {
 
-		op.add(Builder::actionType, ActionType.DESERIALIZER, "action_type");
-		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
+		op.add(Builder::actionType, ActionType._DESERIALIZER, "action_type");
+		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
 		op.add(Builder::foreach, JsonpDeserializer.stringDeserializer(), "foreach");
-		op.add(Builder::maxIterations, JsonpDeserializer.numberDeserializer(), "max_iterations");
+		op.add(Builder::maxIterations, JsonpDeserializer.integerDeserializer(), "max_iterations");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::throttlePeriod, JsonpDeserializer.jsonValueDeserializer(), "throttle_period");
-		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.jsonValueDeserializer(), "throttle_period_in_millis");
-		op.add(Builder::transform, Transform.DESERIALIZER, "transform");
-		op.add(Builder::index, Index.DESERIALIZER, "index");
-		op.add(Builder::logging, Logging.DESERIALIZER, "logging");
-		op.add(Builder::webhook, ActionWebhook.DESERIALIZER, "webhook");
+		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
+		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.stringDeserializer(), "throttle_period_in_millis");
+		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
+		op.add(Builder::index, Index._DESERIALIZER, "index");
+		op.add(Builder::logging, Logging._DESERIALIZER, "logging");
+		op.add(Builder::webhook, ActionWebhook._DESERIALIZER, "webhook");
 
 	}
 

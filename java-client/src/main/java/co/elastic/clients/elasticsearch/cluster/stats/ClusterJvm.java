@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvm
+@JsonpDeserializable
 public final class ClusterJvm implements JsonpSerializable {
-	private final Number maxUptimeInMillis;
+	private final Long maxUptimeInMillis;
 
 	private final ClusterJvmMemory mem;
 
-	private final Number threads;
+	private final Long threads;
 
 	private final List<ClusterJvmVersion> versions;
 
@@ -63,7 +65,7 @@ public final class ClusterJvm implements JsonpSerializable {
 	/**
 	 * API name: {@code max_uptime_in_millis}
 	 */
-	public Number maxUptimeInMillis() {
+	public Long maxUptimeInMillis() {
 		return this.maxUptimeInMillis;
 	}
 
@@ -77,7 +79,7 @@ public final class ClusterJvm implements JsonpSerializable {
 	/**
 	 * API name: {@code threads}
 	 */
-	public Number threads() {
+	public Long threads() {
 		return this.threads;
 	}
 
@@ -100,13 +102,13 @@ public final class ClusterJvm implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("max_uptime_in_millis");
-		generator.write(this.maxUptimeInMillis.doubleValue());
+		generator.write(this.maxUptimeInMillis);
 
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("threads");
-		generator.write(this.threads.doubleValue());
+		generator.write(this.threads);
 
 		generator.writeKey("versions");
 		generator.writeStartArray();
@@ -124,18 +126,18 @@ public final class ClusterJvm implements JsonpSerializable {
 	 * Builder for {@link ClusterJvm}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterJvm> {
-		private Number maxUptimeInMillis;
+		private Long maxUptimeInMillis;
 
 		private ClusterJvmMemory mem;
 
-		private Number threads;
+		private Long threads;
 
 		private List<ClusterJvmVersion> versions;
 
 		/**
 		 * API name: {@code max_uptime_in_millis}
 		 */
-		public Builder maxUptimeInMillis(Number value) {
+		public Builder maxUptimeInMillis(Long value) {
 			this.maxUptimeInMillis = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		/**
 		 * API name: {@code threads}
 		 */
-		public Builder threads(Number value) {
+		public Builder threads(Long value) {
 			this.threads = value;
 			return this;
 		}
@@ -221,15 +223,15 @@ public final class ClusterJvm implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterJvm}
 	 */
-	public static final JsonpDeserializer<ClusterJvm> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterJvm::setupClusterJvmDeserializer);
+	public static final JsonpDeserializer<ClusterJvm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterJvm::setupClusterJvmDeserializer, Builder::build);
 
 	protected static void setupClusterJvmDeserializer(DelegatingDeserializer<ClusterJvm.Builder> op) {
 
-		op.add(Builder::maxUptimeInMillis, JsonpDeserializer.numberDeserializer(), "max_uptime_in_millis");
-		op.add(Builder::mem, ClusterJvmMemory.DESERIALIZER, "mem");
-		op.add(Builder::threads, JsonpDeserializer.numberDeserializer(), "threads");
-		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(ClusterJvmVersion.DESERIALIZER), "versions");
+		op.add(Builder::maxUptimeInMillis, JsonpDeserializer.longDeserializer(), "max_uptime_in_millis");
+		op.add(Builder::mem, ClusterJvmMemory._DESERIALIZER, "mem");
+		op.add(Builder::threads, JsonpDeserializer.longDeserializer(), "threads");
+		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(ClusterJvmVersion._DESERIALIZER), "versions");
 
 	}
 

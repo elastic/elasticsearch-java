@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._core.msearch_template.TemplateItem;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +51,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.Request
+@JsonpDeserializable
 public final class MsearchTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
@@ -58,7 +60,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	private final Boolean ccsMinimizeRoundtrips;
 
 	@Nullable
-	private final Number maxConcurrentSearches;
+	private final Long maxConcurrentSearches;
 
 	@Nullable
 	private final SearchType searchType;
@@ -113,7 +115,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
-	public Number maxConcurrentSearches() {
+	public Long maxConcurrentSearches() {
 		return this.maxConcurrentSearches;
 	}
 
@@ -184,7 +186,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private Number maxConcurrentSearches;
+		private Long maxConcurrentSearches;
 
 		@Nullable
 		private SearchType searchType;
@@ -245,7 +247,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
-		public Builder maxConcurrentSearches(@Nullable Number value) {
+		public Builder maxConcurrentSearches(@Nullable Long value) {
 			this.maxConcurrentSearches = value;
 			return this;
 		}
@@ -344,13 +346,13 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Json deserializer for {@link MsearchTemplateRequest}
 	 */
-	public static final JsonpDeserializer<MsearchTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MsearchTemplateRequest::setupMsearchTemplateRequestDeserializer);
+	public static final JsonpDeserializer<MsearchTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MsearchTemplateRequest::setupMsearchTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupMsearchTemplateRequestDeserializer(
 			DelegatingDeserializer<MsearchTemplateRequest.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplateItem.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplateItem._DESERIALIZER), "value");
 
 	}
 
@@ -400,7 +402,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				if (request.maxConcurrentSearches != null) {
-					params.put("max_concurrent_searches", request.maxConcurrentSearches.toString());
+					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());

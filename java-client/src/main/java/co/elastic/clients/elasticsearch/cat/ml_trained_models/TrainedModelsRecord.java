@@ -24,19 +24,20 @@
 package co.elastic.clients.elasticsearch.cat.ml_trained_models;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.TrainedModelsRecord
+@JsonpDeserializable
 public final class TrainedModelsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -45,7 +46,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	private final String createdBy;
 
 	@Nullable
-	private final JsonValue heapSize;
+	private final String heapSize;
 
 	@Nullable
 	private final String operations;
@@ -63,31 +64,31 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	private final String description;
 
 	@Nullable
-	private final String ingest_pipelines;
+	private final String ingestPipelines;
 
 	@Nullable
-	private final String ingest_count;
+	private final String ingestCount;
 
 	@Nullable
-	private final String ingest_time;
+	private final String ingestTime;
 
 	@Nullable
-	private final String ingest_current;
+	private final String ingestCurrent;
 
 	@Nullable
-	private final String ingest_failed;
+	private final String ingestFailed;
 
 	@Nullable
-	private final String dataFrame_id;
+	private final String dataFrameId;
 
 	@Nullable
-	private final String dataFrame_createTime;
+	private final String dataFrameCreateTime;
 
 	@Nullable
-	private final String dataFrame_sourceIndex;
+	private final String dataFrameSourceIndex;
 
 	@Nullable
-	private final String dataFrame_analysis;
+	private final String dataFrameAnalysis;
 
 	@Nullable
 	private final String type;
@@ -104,15 +105,15 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		this.createTime = builder.createTime;
 		this.version = builder.version;
 		this.description = builder.description;
-		this.ingest_pipelines = builder.ingest_pipelines;
-		this.ingest_count = builder.ingest_count;
-		this.ingest_time = builder.ingest_time;
-		this.ingest_current = builder.ingest_current;
-		this.ingest_failed = builder.ingest_failed;
-		this.dataFrame_id = builder.dataFrame_id;
-		this.dataFrame_createTime = builder.dataFrame_createTime;
-		this.dataFrame_sourceIndex = builder.dataFrame_sourceIndex;
-		this.dataFrame_analysis = builder.dataFrame_analysis;
+		this.ingestPipelines = builder.ingestPipelines;
+		this.ingestCount = builder.ingestCount;
+		this.ingestTime = builder.ingestTime;
+		this.ingestCurrent = builder.ingestCurrent;
+		this.ingestFailed = builder.ingestFailed;
+		this.dataFrameId = builder.dataFrameId;
+		this.dataFrameCreateTime = builder.dataFrameCreateTime;
+		this.dataFrameSourceIndex = builder.dataFrameSourceIndex;
+		this.dataFrameAnalysis = builder.dataFrameAnalysis;
 		this.type = builder.type;
 
 	}
@@ -143,7 +144,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code heap_size}
 	 */
 	@Nullable
-	public JsonValue heapSize() {
+	public String heapSize() {
 		return this.heapSize;
 	}
 
@@ -203,8 +204,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.pipelines}
 	 */
 	@Nullable
-	public String ingest_pipelines() {
-		return this.ingest_pipelines;
+	public String ingestPipelines() {
+		return this.ingestPipelines;
 	}
 
 	/**
@@ -213,8 +214,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.count}
 	 */
 	@Nullable
-	public String ingest_count() {
-		return this.ingest_count;
+	public String ingestCount() {
+		return this.ingestCount;
 	}
 
 	/**
@@ -223,8 +224,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.time}
 	 */
 	@Nullable
-	public String ingest_time() {
-		return this.ingest_time;
+	public String ingestTime() {
+		return this.ingestTime;
 	}
 
 	/**
@@ -233,8 +234,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.current}
 	 */
 	@Nullable
-	public String ingest_current() {
-		return this.ingest_current;
+	public String ingestCurrent() {
+		return this.ingestCurrent;
 	}
 
 	/**
@@ -243,8 +244,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code ingest.failed}
 	 */
 	@Nullable
-	public String ingest_failed() {
-		return this.ingest_failed;
+	public String ingestFailed() {
+		return this.ingestFailed;
 	}
 
 	/**
@@ -254,8 +255,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.id}
 	 */
 	@Nullable
-	public String dataFrame_id() {
-		return this.dataFrame_id;
+	public String dataFrameId() {
+		return this.dataFrameId;
 	}
 
 	/**
@@ -264,8 +265,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.create_time}
 	 */
 	@Nullable
-	public String dataFrame_createTime() {
-		return this.dataFrame_createTime;
+	public String dataFrameCreateTime() {
+		return this.dataFrameCreateTime;
 	}
 
 	/**
@@ -274,8 +275,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.source_index}
 	 */
 	@Nullable
-	public String dataFrame_sourceIndex() {
-		return this.dataFrame_sourceIndex;
+	public String dataFrameSourceIndex() {
+		return this.dataFrameSourceIndex;
 	}
 
 	/**
@@ -284,8 +285,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code data_frame.analysis}
 	 */
 	@Nullable
-	public String dataFrame_analysis() {
-		return this.dataFrame_analysis;
+	public String dataFrameAnalysis() {
+		return this.dataFrameAnalysis;
 	}
 
 	/**
@@ -355,58 +356,58 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 			generator.write(this.description);
 
 		}
-		if (this.ingest_pipelines != null) {
+		if (this.ingestPipelines != null) {
 
 			generator.writeKey("ingest.pipelines");
-			generator.write(this.ingest_pipelines);
+			generator.write(this.ingestPipelines);
 
 		}
-		if (this.ingest_count != null) {
+		if (this.ingestCount != null) {
 
 			generator.writeKey("ingest.count");
-			generator.write(this.ingest_count);
+			generator.write(this.ingestCount);
 
 		}
-		if (this.ingest_time != null) {
+		if (this.ingestTime != null) {
 
 			generator.writeKey("ingest.time");
-			generator.write(this.ingest_time);
+			generator.write(this.ingestTime);
 
 		}
-		if (this.ingest_current != null) {
+		if (this.ingestCurrent != null) {
 
 			generator.writeKey("ingest.current");
-			generator.write(this.ingest_current);
+			generator.write(this.ingestCurrent);
 
 		}
-		if (this.ingest_failed != null) {
+		if (this.ingestFailed != null) {
 
 			generator.writeKey("ingest.failed");
-			generator.write(this.ingest_failed);
+			generator.write(this.ingestFailed);
 
 		}
-		if (this.dataFrame_id != null) {
+		if (this.dataFrameId != null) {
 
 			generator.writeKey("data_frame.id");
-			generator.write(this.dataFrame_id);
+			generator.write(this.dataFrameId);
 
 		}
-		if (this.dataFrame_createTime != null) {
+		if (this.dataFrameCreateTime != null) {
 
 			generator.writeKey("data_frame.create_time");
-			generator.write(this.dataFrame_createTime);
+			generator.write(this.dataFrameCreateTime);
 
 		}
-		if (this.dataFrame_sourceIndex != null) {
+		if (this.dataFrameSourceIndex != null) {
 
 			generator.writeKey("data_frame.source_index");
-			generator.write(this.dataFrame_sourceIndex);
+			generator.write(this.dataFrameSourceIndex);
 
 		}
-		if (this.dataFrame_analysis != null) {
+		if (this.dataFrameAnalysis != null) {
 
 			generator.writeKey("data_frame.analysis");
-			generator.write(this.dataFrame_analysis);
+			generator.write(this.dataFrameAnalysis);
 
 		}
 		if (this.type != null) {
@@ -431,7 +432,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		private String createdBy;
 
 		@Nullable
-		private JsonValue heapSize;
+		private String heapSize;
 
 		@Nullable
 		private String operations;
@@ -449,31 +450,31 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		private String description;
 
 		@Nullable
-		private String ingest_pipelines;
+		private String ingestPipelines;
 
 		@Nullable
-		private String ingest_count;
+		private String ingestCount;
 
 		@Nullable
-		private String ingest_time;
+		private String ingestTime;
 
 		@Nullable
-		private String ingest_current;
+		private String ingestCurrent;
 
 		@Nullable
-		private String ingest_failed;
+		private String ingestFailed;
 
 		@Nullable
-		private String dataFrame_id;
+		private String dataFrameId;
 
 		@Nullable
-		private String dataFrame_createTime;
+		private String dataFrameCreateTime;
 
 		@Nullable
-		private String dataFrame_sourceIndex;
+		private String dataFrameSourceIndex;
 
 		@Nullable
-		private String dataFrame_analysis;
+		private String dataFrameAnalysis;
 
 		@Nullable
 		private String type;
@@ -503,7 +504,7 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code heap_size}
 		 */
-		public Builder heapSize(@Nullable JsonValue value) {
+		public Builder heapSize(@Nullable String value) {
 			this.heapSize = value;
 			return this;
 		}
@@ -563,8 +564,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.pipelines}
 		 */
-		public Builder ingest_pipelines(@Nullable String value) {
-			this.ingest_pipelines = value;
+		public Builder ingestPipelines(@Nullable String value) {
+			this.ingestPipelines = value;
 			return this;
 		}
 
@@ -573,8 +574,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.count}
 		 */
-		public Builder ingest_count(@Nullable String value) {
-			this.ingest_count = value;
+		public Builder ingestCount(@Nullable String value) {
+			this.ingestCount = value;
 			return this;
 		}
 
@@ -583,8 +584,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.time}
 		 */
-		public Builder ingest_time(@Nullable String value) {
-			this.ingest_time = value;
+		public Builder ingestTime(@Nullable String value) {
+			this.ingestTime = value;
 			return this;
 		}
 
@@ -593,8 +594,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.current}
 		 */
-		public Builder ingest_current(@Nullable String value) {
-			this.ingest_current = value;
+		public Builder ingestCurrent(@Nullable String value) {
+			this.ingestCurrent = value;
 			return this;
 		}
 
@@ -603,8 +604,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ingest.failed}
 		 */
-		public Builder ingest_failed(@Nullable String value) {
-			this.ingest_failed = value;
+		public Builder ingestFailed(@Nullable String value) {
+			this.ingestFailed = value;
 			return this;
 		}
 
@@ -614,8 +615,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.id}
 		 */
-		public Builder dataFrame_id(@Nullable String value) {
-			this.dataFrame_id = value;
+		public Builder dataFrameId(@Nullable String value) {
+			this.dataFrameId = value;
 			return this;
 		}
 
@@ -624,8 +625,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.create_time}
 		 */
-		public Builder dataFrame_createTime(@Nullable String value) {
-			this.dataFrame_createTime = value;
+		public Builder dataFrameCreateTime(@Nullable String value) {
+			this.dataFrameCreateTime = value;
 			return this;
 		}
 
@@ -634,8 +635,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.source_index}
 		 */
-		public Builder dataFrame_sourceIndex(@Nullable String value) {
-			this.dataFrame_sourceIndex = value;
+		public Builder dataFrameSourceIndex(@Nullable String value) {
+			this.dataFrameSourceIndex = value;
 			return this;
 		}
 
@@ -644,8 +645,8 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_frame.analysis}
 		 */
-		public Builder dataFrame_analysis(@Nullable String value) {
-			this.dataFrame_analysis = value;
+		public Builder dataFrameAnalysis(@Nullable String value) {
+			this.dataFrameAnalysis = value;
 			return this;
 		}
 
@@ -674,33 +675,33 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelsRecord}
 	 */
-	public static final JsonpDeserializer<TrainedModelsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelsRecord::setupTrainedModelsRecordDeserializer);
+	public static final JsonpDeserializer<TrainedModelsRecord> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelsRecord::setupTrainedModelsRecordDeserializer, Builder::build);
 
 	protected static void setupTrainedModelsRecordDeserializer(DelegatingDeserializer<TrainedModelsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by", "c", "createdBy");
-		op.add(Builder::heapSize, JsonpDeserializer.jsonValueDeserializer(), "heap_size", "hs", "modelHeapSize");
+		op.add(Builder::heapSize, JsonpDeserializer.stringDeserializer(), "heap_size", "hs", "modelHeapSize");
 		op.add(Builder::operations, JsonpDeserializer.stringDeserializer(), "operations", "o", "modelOperations");
 		op.add(Builder::license, JsonpDeserializer.stringDeserializer(), "license", "l");
 		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time", "ct");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
-		op.add(Builder::ingest_pipelines, JsonpDeserializer.stringDeserializer(), "ingest.pipelines", "ip",
+		op.add(Builder::ingestPipelines, JsonpDeserializer.stringDeserializer(), "ingest.pipelines", "ip",
 				"ingestPipelines");
-		op.add(Builder::ingest_count, JsonpDeserializer.stringDeserializer(), "ingest.count", "ic", "ingestCount");
-		op.add(Builder::ingest_time, JsonpDeserializer.stringDeserializer(), "ingest.time", "it", "ingestTime");
-		op.add(Builder::ingest_current, JsonpDeserializer.stringDeserializer(), "ingest.current", "icurr",
+		op.add(Builder::ingestCount, JsonpDeserializer.stringDeserializer(), "ingest.count", "ic", "ingestCount");
+		op.add(Builder::ingestTime, JsonpDeserializer.stringDeserializer(), "ingest.time", "it", "ingestTime");
+		op.add(Builder::ingestCurrent, JsonpDeserializer.stringDeserializer(), "ingest.current", "icurr",
 				"ingestCurrent");
-		op.add(Builder::ingest_failed, JsonpDeserializer.stringDeserializer(), "ingest.failed", "if", "ingestFailed");
-		op.add(Builder::dataFrame_id, JsonpDeserializer.stringDeserializer(), "data_frame.id", "dfid",
+		op.add(Builder::ingestFailed, JsonpDeserializer.stringDeserializer(), "ingest.failed", "if", "ingestFailed");
+		op.add(Builder::dataFrameId, JsonpDeserializer.stringDeserializer(), "data_frame.id", "dfid",
 				"dataFrameAnalytics");
-		op.add(Builder::dataFrame_createTime, JsonpDeserializer.stringDeserializer(), "data_frame.create_time", "dft",
+		op.add(Builder::dataFrameCreateTime, JsonpDeserializer.stringDeserializer(), "data_frame.create_time", "dft",
 				"dataFrameAnalyticsTime");
-		op.add(Builder::dataFrame_sourceIndex, JsonpDeserializer.stringDeserializer(), "data_frame.source_index",
-				"dfsi", "dataFrameAnalyticsSrcIndex");
-		op.add(Builder::dataFrame_analysis, JsonpDeserializer.stringDeserializer(), "data_frame.analysis", "dfa",
+		op.add(Builder::dataFrameSourceIndex, JsonpDeserializer.stringDeserializer(), "data_frame.source_index", "dfsi",
+				"dataFrameAnalyticsSrcIndex");
+		op.add(Builder::dataFrameAnalysis, JsonpDeserializer.stringDeserializer(), "data_frame.analysis", "dfa",
 				"dataFrameAnalyticsAnalysis");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

@@ -26,29 +26,30 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.elasticsearch._core.reindex.Destination;
 import co.elastic.clients.elasticsearch._core.reindex.Source;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Response
+@JsonpDeserializable
 public final class UpdateTransformResponse implements JsonpSerializable {
-	private final Number createTime;
+	private final Long createTime;
 
 	private final String description;
 
 	private final Destination dest;
 
-	private final JsonValue frequency;
+	private final String frequency;
 
 	private final String id;
 
@@ -83,7 +84,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code create_time}
 	 */
-	public Number createTime() {
+	public Long createTime() {
 		return this.createTime;
 	}
 
@@ -104,7 +105,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code frequency}
 	 */
-	public JsonValue frequency() {
+	public String frequency() {
 		return this.frequency;
 	}
 
@@ -163,7 +164,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("create_time");
-		generator.write(this.createTime.doubleValue());
+		generator.write(this.createTime);
 
 		generator.writeKey("description");
 		generator.write(this.description);
@@ -204,13 +205,13 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	 * Builder for {@link UpdateTransformResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<UpdateTransformResponse> {
-		private Number createTime;
+		private Long createTime;
 
 		private String description;
 
 		private Destination dest;
 
-		private JsonValue frequency;
+		private String frequency;
 
 		private String id;
 
@@ -228,7 +229,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(Number value) {
+		public Builder createTime(Long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -259,7 +260,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(JsonValue value) {
+		public Builder frequency(String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -357,21 +358,21 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UpdateTransformResponse}
 	 */
-	public static final JsonpDeserializer<UpdateTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer);
+	public static final JsonpDeserializer<UpdateTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateTransformResponse::setupUpdateTransformResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateTransformResponseDeserializer(
 			DelegatingDeserializer<UpdateTransformResponse.Builder> op) {
 
-		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::dest, Destination.DESERIALIZER, "dest");
-		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
+		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::pivot, Pivot.DESERIALIZER, "pivot");
-		op.add(Builder::settings, Settings.DESERIALIZER, "settings");
-		op.add(Builder::source, Source.DESERIALIZER, "source");
-		op.add(Builder::sync, Sync.DESERIALIZER, "sync");
+		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
+		op.add(Builder::settings, Settings._DESERIALIZER, "settings");
+		op.add(Builder::source, Source._DESERIALIZER, "source");
+		op.add(Builder::sync, Sync._DESERIALIZER, "sync");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}

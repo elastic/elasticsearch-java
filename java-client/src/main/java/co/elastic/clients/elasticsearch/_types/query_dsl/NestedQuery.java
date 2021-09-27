@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +39,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.NestedQuery
-public final class NestedQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class NestedQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -70,7 +71,7 @@ public final class NestedQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "nested";
 	}
 
@@ -113,7 +114,6 @@ public final class NestedQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
@@ -140,8 +140,6 @@ public final class NestedQuery extends QueryBase implements Query {
 			generator.writeKey("score_mode");
 			this.scoreMode.serialize(generator, mapper);
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -237,17 +235,19 @@ public final class NestedQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<NestedQuery.Builder, NestedQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(NestedQuery::setupNestedQueryDeserializer);
+	/**
+	 * Json deserializer for {@link NestedQuery}
+	 */
+	public static final JsonpDeserializer<NestedQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NestedQuery::setupNestedQueryDeserializer, Builder::build);
 
 	protected static void setupNestedQueryDeserializer(DelegatingDeserializer<NestedQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
-		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
+		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::scoreMode, NestedScoreMode.DESERIALIZER, "score_mode");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::scoreMode, NestedScoreMode._DESERIALIZER, "score_mode");
 
 	}
 

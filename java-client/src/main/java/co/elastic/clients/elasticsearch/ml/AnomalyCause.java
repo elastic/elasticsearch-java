@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +42,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnomalyCause
+@JsonpDeserializable
 public final class AnomalyCause implements JsonpSerializable {
-	private final List<Number> actual;
+	private final List<Double> actual;
 
 	private final String byFieldName;
 
@@ -66,9 +68,9 @@ public final class AnomalyCause implements JsonpSerializable {
 
 	private final String partitionFieldValue;
 
-	private final Number probability;
+	private final Double probability;
 
-	private final List<Number> typical;
+	private final List<Double> typical;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -95,7 +97,7 @@ public final class AnomalyCause implements JsonpSerializable {
 	/**
 	 * API name: {@code actual}
 	 */
-	public List<Number> actual() {
+	public List<Double> actual() {
 		return this.actual;
 	}
 
@@ -179,14 +181,14 @@ public final class AnomalyCause implements JsonpSerializable {
 	/**
 	 * API name: {@code probability}
 	 */
-	public Number probability() {
+	public Double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * API name: {@code typical}
 	 */
-	public List<Number> typical() {
+	public List<Double> typical() {
 		return this.typical;
 	}
 
@@ -203,8 +205,8 @@ public final class AnomalyCause implements JsonpSerializable {
 
 		generator.writeKey("actual");
 		generator.writeStartArray();
-		for (Number item0 : this.actual) {
-			generator.write(item0.doubleValue());
+		for (Double item0 : this.actual) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -248,12 +250,12 @@ public final class AnomalyCause implements JsonpSerializable {
 		generator.write(this.partitionFieldValue);
 
 		generator.writeKey("probability");
-		generator.write(this.probability.doubleValue());
+		generator.write(this.probability);
 
 		generator.writeKey("typical");
 		generator.writeStartArray();
-		for (Number item0 : this.typical) {
-			generator.write(item0.doubleValue());
+		for (Double item0 : this.typical) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -266,7 +268,7 @@ public final class AnomalyCause implements JsonpSerializable {
 	 * Builder for {@link AnomalyCause}.
 	 */
 	public static class Builder implements ObjectBuilder<AnomalyCause> {
-		private List<Number> actual;
+		private List<Double> actual;
 
 		private String byFieldName;
 
@@ -290,14 +292,14 @@ public final class AnomalyCause implements JsonpSerializable {
 
 		private String partitionFieldValue;
 
-		private Number probability;
+		private Double probability;
 
-		private List<Number> typical;
+		private List<Double> typical;
 
 		/**
 		 * API name: {@code actual}
 		 */
-		public Builder actual(List<Number> value) {
+		public Builder actual(List<Double> value) {
 			this.actual = value;
 			return this;
 		}
@@ -305,7 +307,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * API name: {@code actual}
 		 */
-		public Builder actual(Number... value) {
+		public Builder actual(Double... value) {
 			this.actual = Arrays.asList(value);
 			return this;
 		}
@@ -313,7 +315,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #actual(List)}, creating the list if needed.
 		 */
-		public Builder addActual(Number value) {
+		public Builder addActual(Double value) {
 			if (this.actual == null) {
 				this.actual = new ArrayList<>();
 			}
@@ -445,7 +447,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Number value) {
+		public Builder probability(Double value) {
 			this.probability = value;
 			return this;
 		}
@@ -453,7 +455,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * API name: {@code typical}
 		 */
-		public Builder typical(List<Number> value) {
+		public Builder typical(List<Double> value) {
 			this.typical = value;
 			return this;
 		}
@@ -461,7 +463,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * API name: {@code typical}
 		 */
-		public Builder typical(Number... value) {
+		public Builder typical(Double... value) {
 			this.typical = Arrays.asList(value);
 			return this;
 		}
@@ -469,7 +471,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #typical(List)}, creating the list if needed.
 		 */
-		public Builder addTypical(Number value) {
+		public Builder addTypical(Double value) {
 			if (this.typical == null) {
 				this.typical = new ArrayList<>();
 			}
@@ -494,25 +496,25 @@ public final class AnomalyCause implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AnomalyCause}
 	 */
-	public static final JsonpDeserializer<AnomalyCause> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnomalyCause::setupAnomalyCauseDeserializer);
+	public static final JsonpDeserializer<AnomalyCause> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnomalyCause::setupAnomalyCauseDeserializer, Builder::build);
 
 	protected static void setupAnomalyCauseDeserializer(DelegatingDeserializer<AnomalyCause.Builder> op) {
 
-		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "actual");
+		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
 		op.add(Builder::correlatedByFieldValue, JsonpDeserializer.stringDeserializer(), "correlated_by_field_value");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
-		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence.DESERIALIZER), "influencers");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence._DESERIALIZER), "influencers");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::overFieldValue, JsonpDeserializer.stringDeserializer(), "over_field_value");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
 		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
-		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
-		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
+		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"typical");
 
 	}

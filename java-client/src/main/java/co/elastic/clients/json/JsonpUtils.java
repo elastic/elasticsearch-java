@@ -19,12 +19,17 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 
 import javax.annotation.Nullable;
+import java.io.StringReader;
+import java.util.AbstractMap;
+import java.util.Map;
 
 public class JsonpUtils {
 
@@ -48,6 +53,11 @@ public class JsonpUtils {
         if (event != expected) {
             throw new UnexpectedJsonEventException(parser, event, expected);
         }
+    }
+
+    public static String expectKeyName(JsonParser parser, JsonParser.Event event) {
+        JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
+        return parser.getString();
     }
 
     /**
@@ -76,13 +86,57 @@ public class JsonpUtils {
         }
     }
 
+    /**
+     * Throws a {@link JsonParsingException} because some unknown property name was encountered
+     */
+    public static void unknownKey(JsonParser parser, String keyName) {
+        throw new JsonParsingException("Unknown property " + keyName , parser.getLocation());
+    }
+
+    public static String ensureSingleVariant(JsonParser parser, String variant1, String variant2) {
+        if (variant1 != null && variant2 != null) {
+            throw new JsonParsingException(
+                "Only one variant can be specified, found '" + variant1 + "' and '" + variant2 + "'",
+                parser.getLocation()
+            );
+        }
+        return variant2;
+    }
+
+    public static <T> T buildVariant(JsonParser parser, ObjectBuilder<T> builder) {
+        if (builder == null) {
+            throw new JsonParsingException("No variant found" , parser.getLocation());
+        }
+        return builder.build();
+    }
+
     public static <T> void serialize(T value, JsonGenerator generator, @Nullable JsonpSerializer<T> serializer, JsonpMapper mapper) {
         if (serializer != null) {
-            serializer.toJsonp(value, generator, mapper);
-        } else if (value instanceof ToJsonp) {
-            ((ToJsonp) value).toJsonp(generator, mapper);
+            serializer.serialize(value, generator, mapper);
+        } else if (value instanceof JsonpSerializable) {
+            ((JsonpSerializable) value).serialize(generator, mapper);
         } else {
             mapper.serialize(value, generator);
         }
+    }
+
+    /**
+     * Looks ahead a field value in the Json object from the upcoming object in a parser, which should be on the
+     * START_OBJECT event.
+     *
+     * Returns a pair containing that value and a parser that should be used to actually parse the object
+     * (the object has been consumed from the original one).
+     */
+    public static Map.Entry<String, JsonParser> lookAheadFieldValue(String name, JsonParser parser, JsonpMapper mapper) {
+        // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
+        // FIXME: resulting parser should return locations that are offset with the original parser's location
+        JsonObject object = parser.getObject();
+        String result = object.getString(name, null);
+        if (result == null) {
+            throw new JsonParsingException("Property '" + name + "' not found", parser.getLocation());
+        }
+        String strObject = object.toString();
+        JsonParser newParser = mapper.jsonProvider().createParser(new StringReader(strObject));
+        return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
     }
 }

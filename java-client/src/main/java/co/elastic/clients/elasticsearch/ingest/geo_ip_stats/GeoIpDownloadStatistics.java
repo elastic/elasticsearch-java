@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,21 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpDownloadStatistics
+@JsonpDeserializable
 public final class GeoIpDownloadStatistics implements JsonpSerializable {
-	private final Number successfulDownloads;
+	private final Integer successfulDownloads;
 
-	private final Number failedDownloads;
+	private final Integer failedDownloads;
 
-	private final Number totalDownloadTime;
+	private final Integer totalDownloadTime;
 
-	private final Number databaseCount;
+	private final Integer databaseCount;
 
-	private final Number skippedUpdates;
+	private final Integer skippedUpdates;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code successful_downloads}
 	 */
-	public Number successfulDownloads() {
+	public Integer successfulDownloads() {
 		return this.successfulDownloads;
 	}
 
@@ -73,7 +75,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failed_downloads}
 	 */
-	public Number failedDownloads() {
+	public Integer failedDownloads() {
 		return this.failedDownloads;
 	}
 
@@ -82,7 +84,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total_download_time}
 	 */
-	public Number totalDownloadTime() {
+	public Integer totalDownloadTime() {
 		return this.totalDownloadTime;
 	}
 
@@ -91,7 +93,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code database_count}
 	 */
-	public Number databaseCount() {
+	public Integer databaseCount() {
 		return this.databaseCount;
 	}
 
@@ -100,7 +102,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code skipped_updates}
 	 */
-	public Number skippedUpdates() {
+	public Integer skippedUpdates() {
 		return this.skippedUpdates;
 	}
 
@@ -116,19 +118,19 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("successful_downloads");
-		generator.write(this.successfulDownloads.doubleValue());
+		generator.write(this.successfulDownloads);
 
 		generator.writeKey("failed_downloads");
-		generator.write(this.failedDownloads.doubleValue());
+		generator.write(this.failedDownloads);
 
 		generator.writeKey("total_download_time");
-		generator.write(this.totalDownloadTime.doubleValue());
+		generator.write(this.totalDownloadTime);
 
 		generator.writeKey("database_count");
-		generator.write(this.databaseCount.doubleValue());
+		generator.write(this.databaseCount);
 
 		generator.writeKey("skipped_updates");
-		generator.write(this.skippedUpdates.doubleValue());
+		generator.write(this.skippedUpdates);
 
 	}
 
@@ -138,22 +140,22 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * Builder for {@link GeoIpDownloadStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<GeoIpDownloadStatistics> {
-		private Number successfulDownloads;
+		private Integer successfulDownloads;
 
-		private Number failedDownloads;
+		private Integer failedDownloads;
 
-		private Number totalDownloadTime;
+		private Integer totalDownloadTime;
 
-		private Number databaseCount;
+		private Integer databaseCount;
 
-		private Number skippedUpdates;
+		private Integer skippedUpdates;
 
 		/**
 		 * Total number of successful database downloads.
 		 * <p>
 		 * API name: {@code successful_downloads}
 		 */
-		public Builder successfulDownloads(Number value) {
+		public Builder successfulDownloads(Integer value) {
 			this.successfulDownloads = value;
 			return this;
 		}
@@ -163,7 +165,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code failed_downloads}
 		 */
-		public Builder failedDownloads(Number value) {
+		public Builder failedDownloads(Integer value) {
 			this.failedDownloads = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_download_time}
 		 */
-		public Builder totalDownloadTime(Number value) {
+		public Builder totalDownloadTime(Integer value) {
 			this.totalDownloadTime = value;
 			return this;
 		}
@@ -183,7 +185,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code database_count}
 		 */
-		public Builder databaseCount(Number value) {
+		public Builder databaseCount(Integer value) {
 			this.databaseCount = value;
 			return this;
 		}
@@ -193,7 +195,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code skipped_updates}
 		 */
-		public Builder skippedUpdates(Number value) {
+		public Builder skippedUpdates(Integer value) {
 			this.skippedUpdates = value;
 			return this;
 		}
@@ -215,17 +217,17 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoIpDownloadStatistics}
 	 */
-	public static final JsonpDeserializer<GeoIpDownloadStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoIpDownloadStatistics::setupGeoIpDownloadStatisticsDeserializer);
+	public static final JsonpDeserializer<GeoIpDownloadStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoIpDownloadStatistics::setupGeoIpDownloadStatisticsDeserializer, Builder::build);
 
 	protected static void setupGeoIpDownloadStatisticsDeserializer(
 			DelegatingDeserializer<GeoIpDownloadStatistics.Builder> op) {
 
-		op.add(Builder::successfulDownloads, JsonpDeserializer.numberDeserializer(), "successful_downloads");
-		op.add(Builder::failedDownloads, JsonpDeserializer.numberDeserializer(), "failed_downloads");
-		op.add(Builder::totalDownloadTime, JsonpDeserializer.numberDeserializer(), "total_download_time");
-		op.add(Builder::databaseCount, JsonpDeserializer.numberDeserializer(), "database_count");
-		op.add(Builder::skippedUpdates, JsonpDeserializer.numberDeserializer(), "skipped_updates");
+		op.add(Builder::successfulDownloads, JsonpDeserializer.integerDeserializer(), "successful_downloads");
+		op.add(Builder::failedDownloads, JsonpDeserializer.integerDeserializer(), "failed_downloads");
+		op.add(Builder::totalDownloadTime, JsonpDeserializer.integerDeserializer(), "total_download_time");
+		op.add(Builder::databaseCount, JsonpDeserializer.integerDeserializer(), "database_count");
+		op.add(Builder::skippedUpdates, JsonpDeserializer.integerDeserializer(), "skipped_updates");
 
 	}
 

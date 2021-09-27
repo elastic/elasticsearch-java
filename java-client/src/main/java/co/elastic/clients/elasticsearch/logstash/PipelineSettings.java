@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,89 +32,89 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineSettings
+@JsonpDeserializable
 public final class PipelineSettings implements JsonpSerializable {
-	private final Number pipeline_workers;
+	private final Integer pipelineWorkers;
 
-	private final Number pipeline_batch_size;
+	private final Integer pipelineBatchSize;
 
-	private final Number pipeline_batch_delay;
+	private final Integer pipelineBatchDelay;
 
-	private final String queue_type;
+	private final String queueType;
 
-	private final Number queue_maxBytes_number;
+	private final Integer queueMaxBytesNumber;
 
-	private final String queue_maxBytes_units;
+	private final String queueMaxBytesUnits;
 
-	private final Number queue_checkpoint_writes;
+	private final Integer queueCheckpointWrites;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PipelineSettings(Builder builder) {
 
-		this.pipeline_workers = Objects.requireNonNull(builder.pipeline_workers, "pipeline.workers");
-		this.pipeline_batch_size = Objects.requireNonNull(builder.pipeline_batch_size, "pipeline.batch.size");
-		this.pipeline_batch_delay = Objects.requireNonNull(builder.pipeline_batch_delay, "pipeline.batch.delay");
-		this.queue_type = Objects.requireNonNull(builder.queue_type, "queue.type");
-		this.queue_maxBytes_number = Objects.requireNonNull(builder.queue_maxBytes_number, "queue.max_bytes.number");
-		this.queue_maxBytes_units = Objects.requireNonNull(builder.queue_maxBytes_units, "queue.max_bytes.units");
-		this.queue_checkpoint_writes = Objects.requireNonNull(builder.queue_checkpoint_writes,
-				"queue.checkpoint.writes");
+		this.pipelineWorkers = Objects.requireNonNull(builder.pipelineWorkers, "pipeline.workers");
+		this.pipelineBatchSize = Objects.requireNonNull(builder.pipelineBatchSize, "pipeline.batch.size");
+		this.pipelineBatchDelay = Objects.requireNonNull(builder.pipelineBatchDelay, "pipeline.batch.delay");
+		this.queueType = Objects.requireNonNull(builder.queueType, "queue.type");
+		this.queueMaxBytesNumber = Objects.requireNonNull(builder.queueMaxBytesNumber, "queue.max_bytes.number");
+		this.queueMaxBytesUnits = Objects.requireNonNull(builder.queueMaxBytesUnits, "queue.max_bytes.units");
+		this.queueCheckpointWrites = Objects.requireNonNull(builder.queueCheckpointWrites, "queue.checkpoint.writes");
 
 	}
 
 	/**
 	 * API name: {@code pipeline.workers}
 	 */
-	public Number pipeline_workers() {
-		return this.pipeline_workers;
+	public Integer pipelineWorkers() {
+		return this.pipelineWorkers;
 	}
 
 	/**
 	 * API name: {@code pipeline.batch.size}
 	 */
-	public Number pipeline_batch_size() {
-		return this.pipeline_batch_size;
+	public Integer pipelineBatchSize() {
+		return this.pipelineBatchSize;
 	}
 
 	/**
 	 * API name: {@code pipeline.batch.delay}
 	 */
-	public Number pipeline_batch_delay() {
-		return this.pipeline_batch_delay;
+	public Integer pipelineBatchDelay() {
+		return this.pipelineBatchDelay;
 	}
 
 	/**
 	 * API name: {@code queue.type}
 	 */
-	public String queue_type() {
-		return this.queue_type;
+	public String queueType() {
+		return this.queueType;
 	}
 
 	/**
 	 * API name: {@code queue.max_bytes.number}
 	 */
-	public Number queue_maxBytes_number() {
-		return this.queue_maxBytes_number;
+	public Integer queueMaxBytesNumber() {
+		return this.queueMaxBytesNumber;
 	}
 
 	/**
 	 * API name: {@code queue.max_bytes.units}
 	 */
-	public String queue_maxBytes_units() {
-		return this.queue_maxBytes_units;
+	public String queueMaxBytesUnits() {
+		return this.queueMaxBytesUnits;
 	}
 
 	/**
 	 * API name: {@code queue.checkpoint.writes}
 	 */
-	public Number queue_checkpoint_writes() {
-		return this.queue_checkpoint_writes;
+	public Integer queueCheckpointWrites() {
+		return this.queueCheckpointWrites;
 	}
 
 	/**
@@ -128,25 +129,25 @@ public final class PipelineSettings implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("pipeline.workers");
-		generator.write(this.pipeline_workers.doubleValue());
+		generator.write(this.pipelineWorkers);
 
 		generator.writeKey("pipeline.batch.size");
-		generator.write(this.pipeline_batch_size.doubleValue());
+		generator.write(this.pipelineBatchSize);
 
 		generator.writeKey("pipeline.batch.delay");
-		generator.write(this.pipeline_batch_delay.doubleValue());
+		generator.write(this.pipelineBatchDelay);
 
 		generator.writeKey("queue.type");
-		generator.write(this.queue_type);
+		generator.write(this.queueType);
 
 		generator.writeKey("queue.max_bytes.number");
-		generator.write(this.queue_maxBytes_number.doubleValue());
+		generator.write(this.queueMaxBytesNumber);
 
 		generator.writeKey("queue.max_bytes.units");
-		generator.write(this.queue_maxBytes_units);
+		generator.write(this.queueMaxBytesUnits);
 
 		generator.writeKey("queue.checkpoint.writes");
-		generator.write(this.queue_checkpoint_writes.doubleValue());
+		generator.write(this.queueCheckpointWrites);
 
 	}
 
@@ -156,73 +157,73 @@ public final class PipelineSettings implements JsonpSerializable {
 	 * Builder for {@link PipelineSettings}.
 	 */
 	public static class Builder implements ObjectBuilder<PipelineSettings> {
-		private Number pipeline_workers;
+		private Integer pipelineWorkers;
 
-		private Number pipeline_batch_size;
+		private Integer pipelineBatchSize;
 
-		private Number pipeline_batch_delay;
+		private Integer pipelineBatchDelay;
 
-		private String queue_type;
+		private String queueType;
 
-		private Number queue_maxBytes_number;
+		private Integer queueMaxBytesNumber;
 
-		private String queue_maxBytes_units;
+		private String queueMaxBytesUnits;
 
-		private Number queue_checkpoint_writes;
+		private Integer queueCheckpointWrites;
 
 		/**
 		 * API name: {@code pipeline.workers}
 		 */
-		public Builder pipeline_workers(Number value) {
-			this.pipeline_workers = value;
+		public Builder pipelineWorkers(Integer value) {
+			this.pipelineWorkers = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code pipeline.batch.size}
 		 */
-		public Builder pipeline_batch_size(Number value) {
-			this.pipeline_batch_size = value;
+		public Builder pipelineBatchSize(Integer value) {
+			this.pipelineBatchSize = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code pipeline.batch.delay}
 		 */
-		public Builder pipeline_batch_delay(Number value) {
-			this.pipeline_batch_delay = value;
+		public Builder pipelineBatchDelay(Integer value) {
+			this.pipelineBatchDelay = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code queue.type}
 		 */
-		public Builder queue_type(String value) {
-			this.queue_type = value;
+		public Builder queueType(String value) {
+			this.queueType = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code queue.max_bytes.number}
 		 */
-		public Builder queue_maxBytes_number(Number value) {
-			this.queue_maxBytes_number = value;
+		public Builder queueMaxBytesNumber(Integer value) {
+			this.queueMaxBytesNumber = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code queue.max_bytes.units}
 		 */
-		public Builder queue_maxBytes_units(String value) {
-			this.queue_maxBytes_units = value;
+		public Builder queueMaxBytesUnits(String value) {
+			this.queueMaxBytesUnits = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code queue.checkpoint.writes}
 		 */
-		public Builder queue_checkpoint_writes(Number value) {
-			this.queue_checkpoint_writes = value;
+		public Builder queueCheckpointWrites(Integer value) {
+			this.queueCheckpointWrites = value;
 			return this;
 		}
 
@@ -243,18 +244,18 @@ public final class PipelineSettings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PipelineSettings}
 	 */
-	public static final JsonpDeserializer<PipelineSettings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineSettings::setupPipelineSettingsDeserializer);
+	public static final JsonpDeserializer<PipelineSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PipelineSettings::setupPipelineSettingsDeserializer, Builder::build);
 
 	protected static void setupPipelineSettingsDeserializer(DelegatingDeserializer<PipelineSettings.Builder> op) {
 
-		op.add(Builder::pipeline_workers, JsonpDeserializer.numberDeserializer(), "pipeline.workers");
-		op.add(Builder::pipeline_batch_size, JsonpDeserializer.numberDeserializer(), "pipeline.batch.size");
-		op.add(Builder::pipeline_batch_delay, JsonpDeserializer.numberDeserializer(), "pipeline.batch.delay");
-		op.add(Builder::queue_type, JsonpDeserializer.stringDeserializer(), "queue.type");
-		op.add(Builder::queue_maxBytes_number, JsonpDeserializer.numberDeserializer(), "queue.max_bytes.number");
-		op.add(Builder::queue_maxBytes_units, JsonpDeserializer.stringDeserializer(), "queue.max_bytes.units");
-		op.add(Builder::queue_checkpoint_writes, JsonpDeserializer.numberDeserializer(), "queue.checkpoint.writes");
+		op.add(Builder::pipelineWorkers, JsonpDeserializer.integerDeserializer(), "pipeline.workers");
+		op.add(Builder::pipelineBatchSize, JsonpDeserializer.integerDeserializer(), "pipeline.batch.size");
+		op.add(Builder::pipelineBatchDelay, JsonpDeserializer.integerDeserializer(), "pipeline.batch.delay");
+		op.add(Builder::queueType, JsonpDeserializer.stringDeserializer(), "queue.type");
+		op.add(Builder::queueMaxBytesNumber, JsonpDeserializer.integerDeserializer(), "queue.max_bytes.number");
+		op.add(Builder::queueMaxBytesUnits, JsonpDeserializer.stringDeserializer(), "queue.max_bytes.units");
+		op.add(Builder::queueCheckpointWrites, JsonpDeserializer.integerDeserializer(), "queue.checkpoint.writes");
 
 	}
 

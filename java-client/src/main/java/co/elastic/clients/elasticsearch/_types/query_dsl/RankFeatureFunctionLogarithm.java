@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
+@JsonpDeserializable
 public final class RankFeatureFunctionLogarithm extends RankFeatureFunction implements JsonpSerializable {
-	private final Number scalingFactor;
+	private final Float scalingFactor;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	/**
 	 * API name: {@code scaling_factor}
 	 */
-	public Number scalingFactor() {
+	public Float scalingFactor() {
 		return this.scalingFactor;
 	}
 
@@ -66,7 +68,7 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("scaling_factor");
-		generator.write(this.scalingFactor.doubleValue());
+		generator.write(this.scalingFactor);
 
 	}
 
@@ -76,12 +78,12 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	 * Builder for {@link RankFeatureFunctionLogarithm}.
 	 */
 	public static class Builder implements ObjectBuilder<RankFeatureFunctionLogarithm> {
-		private Number scalingFactor;
+		private Float scalingFactor;
 
 		/**
 		 * API name: {@code scaling_factor}
 		 */
-		public Builder scalingFactor(Number value) {
+		public Builder scalingFactor(Float value) {
 			this.scalingFactor = value;
 			return this;
 		}
@@ -103,13 +105,13 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionLogarithm}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionLogarithm> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankFeatureFunctionLogarithm::setupRankFeatureFunctionLogarithmDeserializer);
+	public static final JsonpDeserializer<RankFeatureFunctionLogarithm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RankFeatureFunctionLogarithm::setupRankFeatureFunctionLogarithmDeserializer, Builder::build);
 
 	protected static void setupRankFeatureFunctionLogarithmDeserializer(
 			DelegatingDeserializer<RankFeatureFunctionLogarithm.Builder> op) {
 
-		op.add(Builder::scalingFactor, JsonpDeserializer.numberDeserializer(), "scaling_factor");
+		op.add(Builder::scalingFactor, JsonpDeserializer.floatDeserializer(), "scaling_factor");
 
 	}
 

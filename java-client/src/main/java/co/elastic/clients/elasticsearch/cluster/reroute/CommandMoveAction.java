@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandMoveAction
+@JsonpDeserializable
 public final class CommandMoveAction implements JsonpSerializable {
 	private final String index;
 
-	private final Number shard;
+	private final Integer shard;
 
 	private final String fromNode;
 
@@ -67,7 +69,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
@@ -104,7 +106,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		generator.write(this.index);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		generator.writeKey("from_node");
 		generator.write(this.fromNode);
@@ -122,7 +124,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<CommandMoveAction> {
 		private String index;
 
-		private Number shard;
+		private Integer shard;
 
 		private String fromNode;
 
@@ -139,7 +141,7 @@ public final class CommandMoveAction implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -181,13 +183,13 @@ public final class CommandMoveAction implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CommandMoveAction}
 	 */
-	public static final JsonpDeserializer<CommandMoveAction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CommandMoveAction::setupCommandMoveActionDeserializer);
+	public static final JsonpDeserializer<CommandMoveAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CommandMoveAction::setupCommandMoveActionDeserializer, Builder::build);
 
 	protected static void setupCommandMoveActionDeserializer(DelegatingDeserializer<CommandMoveAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
 		op.add(Builder::toNode, JsonpDeserializer.stringDeserializer(), "to_node");
 

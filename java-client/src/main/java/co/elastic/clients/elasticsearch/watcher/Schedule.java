@@ -23,25 +23,26 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleContainer
-public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSerializable {
+@JsonpDeserializable
+public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSerializable {
 
 	public static final String CRON = "cron";
 	public static final String DAILY = "daily";
@@ -55,12 +56,36 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 * {@link Trigger} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "schedule";
 	}
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Schedule(ScheduleVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private Schedule(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -71,7 +96,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 *             if the current variant is not of the {@code cron} kind.
 	 */
 	public String cron() {
-		return _get(CRON);
+		return TaggedUnionUtils.get(this, CRON);
 	}
 
 	/**
@@ -81,7 +106,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 *             if the current variant is not of the {@code daily} kind.
 	 */
 	public DailySchedule daily() {
-		return _get(DAILY);
+		return TaggedUnionUtils.get(this, DAILY);
 	}
 
 	/**
@@ -91,7 +116,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 *             if the current variant is not of the {@code hourly} kind.
 	 */
 	public HourlySchedule hourly() {
-		return _get(HOURLY);
+		return TaggedUnionUtils.get(this, HOURLY);
 	}
 
 	/**
@@ -100,8 +125,8 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code interval} kind.
 	 */
-	public JsonValue interval() {
-		return _get(INTERVAL);
+	public String interval() {
+		return TaggedUnionUtils.get(this, INTERVAL);
 	}
 
 	/**
@@ -111,7 +136,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 *             if the current variant is not of the {@code monthly} kind.
 	 */
 	public List<TimeOfMonth> monthly() {
-		return _get(MONTHLY);
+		return TaggedUnionUtils.get(this, MONTHLY);
 	}
 
 	/**
@@ -121,7 +146,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 *             if the current variant is not of the {@code weekly} kind.
 	 */
 	public List<TimeOfWeek> weekly() {
-		return _get(WEEKLY);
+		return TaggedUnionUtils.get(this, WEEKLY);
 	}
 
 	/**
@@ -131,28 +156,30 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	 *             if the current variant is not of the {@code yearly} kind.
 	 */
 	public List<TimeOfYear> yearly() {
-		return _get(YEARLY);
+		return TaggedUnionUtils.get(this, YEARLY);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_type) {
 				case CRON :
-					generator.write(this.<String>_get(CRON));
+					generator.write(((String) this._value));
 
 					break;
 				case INTERVAL :
-					generator.write(this.<JsonValue>_get(INTERVAL));
+					generator.write(((String) this._value));
 
 					break;
 				case MONTHLY :
 					generator.writeStartArray();
-					for (TimeOfMonth item0 : this.<List<TimeOfMonth>>_get(MONTHLY)) {
+					for (TimeOfMonth item0 : ((List<TimeOfMonth>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -161,7 +188,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 					break;
 				case WEEKLY :
 					generator.writeStartArray();
-					for (TimeOfWeek item0 : this.<List<TimeOfWeek>>_get(WEEKLY)) {
+					for (TimeOfWeek item0 : ((List<TimeOfWeek>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -170,7 +197,7 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 					break;
 				case YEARLY :
 					generator.writeStartArray();
-					for (TimeOfYear item0 : this.<List<TimeOfYear>>_get(YEARLY)) {
+					for (TimeOfYear item0 : ((List<TimeOfYear>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -182,19 +209,20 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<Schedule> cron(String v) {
-			this.$variant = v;
-			this.$tag = CRON;
+			this._type = CRON;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<Schedule> daily(DailySchedule v) {
-			this.$variant = v;
-			this.$tag = DAILY;
+			this._type = DAILY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -203,8 +231,8 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 		}
 
 		public ObjectBuilder<Schedule> hourly(HourlySchedule v) {
-			this.$variant = v;
-			this.$tag = HOURLY;
+			this._type = HOURLY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -212,27 +240,27 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 			return this.hourly(f.apply(new HourlySchedule.Builder()).build());
 		}
 
-		public ObjectBuilder<Schedule> interval(JsonValue v) {
-			this.$variant = v;
-			this.$tag = INTERVAL;
+		public ObjectBuilder<Schedule> interval(String v) {
+			this._type = INTERVAL;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<Schedule> monthly(List<TimeOfMonth> v) {
-			this.$variant = v;
-			this.$tag = MONTHLY;
+			this._type = MONTHLY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<Schedule> weekly(List<TimeOfWeek> v) {
-			this.$variant = v;
-			this.$tag = WEEKLY;
+			this._type = WEEKLY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<Schedule> yearly(List<TimeOfYear> v) {
-			this.$variant = v;
-			this.$tag = YEARLY;
+			this._type = YEARLY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -243,20 +271,17 @@ public class Schedule extends TaggedUnion<Object> implements Trigger, JsonpSeria
 	}
 
 	protected static void setupScheduleDeserializer(DelegatingDeserializer<Builder> op) {
+
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
-		op.add(Builder::daily, DailySchedule.DESERIALIZER, "daily");
-		op.add(Builder::hourly, HourlySchedule.DESERIALIZER, "hourly");
-		op.add(Builder::interval, JsonpDeserializer.jsonValueDeserializer(), "interval");
-		op.add(Builder::monthly, JsonpDeserializer.arrayDeserializer(TimeOfMonth.DESERIALIZER), "monthly");
-		op.add(Builder::weekly, JsonpDeserializer.arrayDeserializer(TimeOfWeek.DESERIALIZER), "weekly");
-		op.add(Builder::yearly, JsonpDeserializer.arrayDeserializer(TimeOfYear.DESERIALIZER), "yearly");
+		op.add(Builder::daily, DailySchedule._DESERIALIZER, "daily");
+		op.add(Builder::hourly, HourlySchedule._DESERIALIZER, "hourly");
+		op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
+		op.add(Builder::monthly, JsonpDeserializer.arrayDeserializer(TimeOfMonth._DESERIALIZER), "monthly");
+		op.add(Builder::weekly, JsonpDeserializer.arrayDeserializer(TimeOfWeek._DESERIALIZER), "weekly");
+		op.add(Builder::yearly, JsonpDeserializer.arrayDeserializer(TimeOfYear._DESERIALIZER), "yearly");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final InstanceDeserializer<Builder, ObjectBuilder<Schedule>> $BUILDER_DESERIALIZER = JsonpDeserializer
-			.lazyInstance(Builder::new, Schedule::setupScheduleDeserializer, Builder::build);
+	public static final JsonpDeserializer<Schedule> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			Schedule::setupScheduleDeserializer, Builder::build);
 }

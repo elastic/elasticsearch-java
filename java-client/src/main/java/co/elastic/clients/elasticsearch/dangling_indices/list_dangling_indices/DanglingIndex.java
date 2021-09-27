@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.dangling_indices.list_dangling_indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -40,12 +40,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
+@JsonpDeserializable
 public final class DanglingIndex implements JsonpSerializable {
 	private final String indexName;
 
 	private final String indexUuid;
 
-	private final JsonValue creationDateMillis;
+	private final String creationDateMillis;
 
 	private final List<String> nodeIds;
 
@@ -77,7 +78,7 @@ public final class DanglingIndex implements JsonpSerializable {
 	/**
 	 * API name: {@code creation_date_millis}
 	 */
-	public JsonValue creationDateMillis() {
+	public String creationDateMillis() {
 		return this.creationDateMillis;
 	}
 
@@ -128,7 +129,7 @@ public final class DanglingIndex implements JsonpSerializable {
 
 		private String indexUuid;
 
-		private JsonValue creationDateMillis;
+		private String creationDateMillis;
 
 		private List<String> nodeIds;
 
@@ -151,7 +152,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code creation_date_millis}
 		 */
-		public Builder creationDateMillis(JsonValue value) {
+		public Builder creationDateMillis(String value) {
 			this.creationDateMillis = value;
 			return this;
 		}
@@ -200,14 +201,14 @@ public final class DanglingIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DanglingIndex}
 	 */
-	public static final JsonpDeserializer<DanglingIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DanglingIndex::setupDanglingIndexDeserializer);
+	public static final JsonpDeserializer<DanglingIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DanglingIndex::setupDanglingIndexDeserializer, Builder::build);
 
 	protected static void setupDanglingIndexDeserializer(DelegatingDeserializer<DanglingIndex.Builder> op) {
 
 		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
 		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
-		op.add(Builder::creationDateMillis, JsonpDeserializer.jsonValueDeserializer(), "creation_date_millis");
+		op.add(Builder::creationDateMillis, JsonpDeserializer.stringDeserializer(), "creation_date_millis");
 		op.add(Builder::nodeIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"node_ids");
 

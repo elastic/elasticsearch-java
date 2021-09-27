@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Response
+@JsonpDeserializable
 public final class GetTrainedModelsResponse implements JsonpSerializable {
-	private final Number count;
+	private final Integer count;
 
 	private final List<TrainedModelConfig> trainedModelConfigs;
 
@@ -57,7 +59,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -83,7 +85,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("trained_model_configs");
 		generator.writeStartArray();
@@ -101,14 +103,14 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	 * Builder for {@link GetTrainedModelsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetTrainedModelsResponse> {
-		private Number count;
+		private Integer count;
 
 		private List<TrainedModelConfig> trainedModelConfigs;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -180,14 +182,14 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetTrainedModelsResponse}
 	 */
-	public static final JsonpDeserializer<GetTrainedModelsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTrainedModelsResponse::setupGetTrainedModelsResponseDeserializer);
+	public static final JsonpDeserializer<GetTrainedModelsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetTrainedModelsResponse::setupGetTrainedModelsResponseDeserializer, Builder::build);
 
 	protected static void setupGetTrainedModelsResponseDeserializer(
 			DelegatingDeserializer<GetTrainedModelsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::trainedModelConfigs, JsonpDeserializer.arrayDeserializer(TrainedModelConfig.DESERIALIZER),
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::trainedModelConfigs, JsonpDeserializer.arrayDeserializer(TrainedModelConfig._DESERIALIZER),
 				"trained_model_configs");
 
 	}

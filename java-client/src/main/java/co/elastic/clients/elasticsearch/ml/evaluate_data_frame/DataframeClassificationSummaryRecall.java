@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryRecall
+@JsonpDeserializable
 public final class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Number avgRecall;
+	private final Double avgRecall;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 	/**
 	 * API name: {@code avg_recall}
 	 */
-	public Number avgRecall() {
+	public Double avgRecall() {
 		return this.avgRecall;
 	}
 
@@ -88,7 +90,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 		generator.writeEnd();
 
 		generator.writeKey("avg_recall");
-		generator.write(this.avgRecall.doubleValue());
+		generator.write(this.avgRecall);
 
 	}
 
@@ -100,7 +102,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryRecall> {
 		private List<DataframeEvaluationClass> classes;
 
-		private Number avgRecall;
+		private Double avgRecall;
 
 		/**
 		 * API name: {@code classes}
@@ -147,7 +149,7 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 		/**
 		 * API name: {@code avg_recall}
 		 */
-		public Builder avgRecall(Number value) {
+		public Builder avgRecall(Double value) {
 			this.avgRecall = value;
 			return this;
 		}
@@ -169,15 +171,17 @@ public final class DataframeClassificationSummaryRecall implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link DataframeClassificationSummaryRecall}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummaryRecall> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummaryRecall::setupDataframeClassificationSummaryRecallDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummaryRecall> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeClassificationSummaryRecall::setupDataframeClassificationSummaryRecallDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryRecallDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummaryRecall.Builder> op) {
 
-		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass.DESERIALIZER), "classes");
-		op.add(Builder::avgRecall, JsonpDeserializer.numberDeserializer(), "avg_recall");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass._DESERIALIZER),
+				"classes");
+		op.add(Builder::avgRecall, JsonpDeserializer.doubleDeserializer(), "avg_recall");
 
 	}
 

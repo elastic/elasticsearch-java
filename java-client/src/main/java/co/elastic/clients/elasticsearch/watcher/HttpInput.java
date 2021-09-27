@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,9 +41,10 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInput
-public final class HttpInput implements JsonpSerializable {
+@JsonpDeserializable
+public final class HttpInput implements InputVariant, JsonpSerializable {
 	@Nullable
-	private final co.elastic.clients.elasticsearch.watcher.HttpInput http;
+	private final HttpInput http;
 
 	@Nullable
 	private final List<String> extract;
@@ -65,10 +67,18 @@ public final class HttpInput implements JsonpSerializable {
 	}
 
 	/**
+	 * {@link Input} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "http";
+	}
+
+	/**
 	 * API name: {@code http}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch.watcher.HttpInput http() {
+	public HttpInput http() {
 		return this.http;
 	}
 
@@ -145,7 +155,7 @@ public final class HttpInput implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<HttpInput> {
 		@Nullable
-		private co.elastic.clients.elasticsearch.watcher.HttpInput http;
+		private HttpInput http;
 
 		@Nullable
 		private List<String> extract;
@@ -159,7 +169,7 @@ public final class HttpInput implements JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public Builder http(@Nullable co.elastic.clients.elasticsearch.watcher.HttpInput value) {
+		public Builder http(@Nullable HttpInput value) {
 			this.http = value;
 			return this;
 		}
@@ -167,9 +177,8 @@ public final class HttpInput implements JsonpSerializable {
 		/**
 		 * API name: {@code http}
 		 */
-		public Builder http(
-				Function<co.elastic.clients.elasticsearch.watcher.HttpInput.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.watcher.HttpInput>> fn) {
-			return this.http(fn.apply(new co.elastic.clients.elasticsearch.watcher.HttpInput.Builder()).build());
+		public Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
+			return this.http(fn.apply(new HttpInput.Builder()).build());
 		}
 
 		/**
@@ -240,16 +249,16 @@ public final class HttpInput implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HttpInput}
 	 */
-	public static final JsonpDeserializer<HttpInput> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInput::setupHttpInputDeserializer);
+	public static final JsonpDeserializer<HttpInput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HttpInput::setupHttpInputDeserializer, Builder::build);
 
 	protected static void setupHttpInputDeserializer(DelegatingDeserializer<HttpInput.Builder> op) {
 
-		op.add(Builder::http, co.elastic.clients.elasticsearch.watcher.HttpInput.DESERIALIZER, "http");
+		op.add(Builder::http, HttpInput._DESERIALIZER, "http");
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");
-		op.add(Builder::request, HttpInputRequestDefinition.DESERIALIZER, "request");
-		op.add(Builder::responseContentType, ResponseContentType.DESERIALIZER, "response_content_type");
+		op.add(Builder::request, HttpInputRequestDefinition._DESERIALIZER, "request");
+		op.add(Builder::responseContentType, ResponseContentType._DESERIALIZER, "response_content_type");
 
 	}
 

@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate.Request
+@JsonpDeserializable
 public final class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String jobId;
@@ -62,7 +64,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	private final ModelPlotConfig modelPlot;
 
 	@Nullable
-	private final Number modelSnapshotRetentionDays;
+	private final Long modelSnapshotRetentionDays;
 
 	@Nullable
 	private final String resultsIndexName;
@@ -134,7 +136,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code model_snapshot_retention_days}
 	 */
 	@Nullable
-	public Number modelSnapshotRetentionDays() {
+	public Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -196,7 +198,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		if (this.modelSnapshotRetentionDays != null) {
 
 			generator.writeKey("model_snapshot_retention_days");
-			generator.write(this.modelSnapshotRetentionDays.doubleValue());
+			generator.write(this.modelSnapshotRetentionDays);
 
 		}
 		if (this.resultsIndexName != null) {
@@ -233,7 +235,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		private ModelPlotConfig modelPlot;
 
 		@Nullable
-		private Number modelSnapshotRetentionDays;
+		private Long modelSnapshotRetentionDays;
 
 		@Nullable
 		private String resultsIndexName;
@@ -317,7 +319,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Number value) {
+		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -347,18 +349,18 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link ValidateRequest}
 	 */
-	public static final JsonpDeserializer<ValidateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidateRequest::setupValidateRequestDeserializer);
+	public static final JsonpDeserializer<ValidateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ValidateRequest::setupValidateRequestDeserializer, Builder::build);
 
 	protected static void setupValidateRequestDeserializer(DelegatingDeserializer<ValidateRequest.Builder> op) {
 
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::analysisConfig, AnalysisConfig.DESERIALIZER, "analysis_config");
-		op.add(Builder::analysisLimits, AnalysisLimits.DESERIALIZER, "analysis_limits");
-		op.add(Builder::dataDescription, DataDescription.DESERIALIZER, "data_description");
+		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
+		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
+		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelPlot, ModelPlotConfig.DESERIALIZER, "model_plot");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::modelPlot, ModelPlotConfig._DESERIALIZER, "model_plot");
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
 		op.add(Builder::resultsIndexName, JsonpDeserializer.stringDeserializer(), "results_index_name");
 
@@ -386,5 +388,5 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ValidateResponse._DESERIALIZER);
 }

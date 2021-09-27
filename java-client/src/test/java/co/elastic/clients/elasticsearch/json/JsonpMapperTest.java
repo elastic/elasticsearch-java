@@ -88,7 +88,7 @@ public class JsonpMapperTest extends Assert {
         something.setChildren(Collections.singletonList(other));
 
         StringWriter strw = new StringWriter();
-        JsonGenerator generator = mapper.jsonpProvider().createGenerator(strw);
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(strw);
 
         mapper.serialize(something, generator);
 
@@ -99,8 +99,8 @@ public class JsonpMapperTest extends Assert {
 
     private void testDeserialize(JsonpMapper mapper, String json) {
 
-        JsonParser parser = mapper.jsonpProvider().createParser(new StringReader(json));
-        SomeClass parsed = mapper.getDeserializer(SomeClass.class).deserialize(parser, mapper);
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        SomeClass parsed = mapper.deserialize(parser, SomeClass.class);
 
         assertEquals(1, parsed.getIntValue());
         assertEquals(2.1, parsed.getDoubleValue(), 0.0);

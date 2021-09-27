@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,12 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardsSegment
+@JsonpDeserializable
 public final class ShardsSegment implements JsonpSerializable {
-	private final Number numCommittedSegments;
+	private final Integer numCommittedSegments;
 
 	private final ShardSegmentRouting routing;
 
-	private final Number numSearchSegments;
+	private final Integer numSearchSegments;
 
 	private final Map<String, Segment> segments;
 
@@ -63,7 +65,7 @@ public final class ShardsSegment implements JsonpSerializable {
 	/**
 	 * API name: {@code num_committed_segments}
 	 */
-	public Number numCommittedSegments() {
+	public Integer numCommittedSegments() {
 		return this.numCommittedSegments;
 	}
 
@@ -77,7 +79,7 @@ public final class ShardsSegment implements JsonpSerializable {
 	/**
 	 * API name: {@code num_search_segments}
 	 */
-	public Number numSearchSegments() {
+	public Integer numSearchSegments() {
 		return this.numSearchSegments;
 	}
 
@@ -100,13 +102,13 @@ public final class ShardsSegment implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("num_committed_segments");
-		generator.write(this.numCommittedSegments.doubleValue());
+		generator.write(this.numCommittedSegments);
 
 		generator.writeKey("routing");
 		this.routing.serialize(generator, mapper);
 
 		generator.writeKey("num_search_segments");
-		generator.write(this.numSearchSegments.doubleValue());
+		generator.write(this.numSearchSegments);
 
 		generator.writeKey("segments");
 		generator.writeStartObject();
@@ -125,18 +127,18 @@ public final class ShardsSegment implements JsonpSerializable {
 	 * Builder for {@link ShardsSegment}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardsSegment> {
-		private Number numCommittedSegments;
+		private Integer numCommittedSegments;
 
 		private ShardSegmentRouting routing;
 
-		private Number numSearchSegments;
+		private Integer numSearchSegments;
 
 		private Map<String, Segment> segments;
 
 		/**
 		 * API name: {@code num_committed_segments}
 		 */
-		public Builder numCommittedSegments(Number value) {
+		public Builder numCommittedSegments(Integer value) {
 			this.numCommittedSegments = value;
 			return this;
 		}
@@ -159,7 +161,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		/**
 		 * API name: {@code num_search_segments}
 		 */
-		public Builder numSearchSegments(Number value) {
+		public Builder numSearchSegments(Integer value) {
 			this.numSearchSegments = value;
 			return this;
 		}
@@ -214,15 +216,15 @@ public final class ShardsSegment implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardsSegment}
 	 */
-	public static final JsonpDeserializer<ShardsSegment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardsSegment::setupShardsSegmentDeserializer);
+	public static final JsonpDeserializer<ShardsSegment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardsSegment::setupShardsSegmentDeserializer, Builder::build);
 
 	protected static void setupShardsSegmentDeserializer(DelegatingDeserializer<ShardsSegment.Builder> op) {
 
-		op.add(Builder::numCommittedSegments, JsonpDeserializer.numberDeserializer(), "num_committed_segments");
-		op.add(Builder::routing, ShardSegmentRouting.DESERIALIZER, "routing");
-		op.add(Builder::numSearchSegments, JsonpDeserializer.numberDeserializer(), "num_search_segments");
-		op.add(Builder::segments, JsonpDeserializer.stringMapDeserializer(Segment.DESERIALIZER), "segments");
+		op.add(Builder::numCommittedSegments, JsonpDeserializer.integerDeserializer(), "num_committed_segments");
+		op.add(Builder::routing, ShardSegmentRouting._DESERIALIZER, "routing");
+		op.add(Builder::numSearchSegments, JsonpDeserializer.integerDeserializer(), "num_search_segments");
+		op.add(Builder::segments, JsonpDeserializer.stringMapDeserializer(Segment._DESERIALIZER), "segments");
 
 	}
 

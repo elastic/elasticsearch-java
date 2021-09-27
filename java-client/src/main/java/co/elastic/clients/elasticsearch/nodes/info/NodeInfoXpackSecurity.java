@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurity
+@JsonpDeserializable
 public final class NodeInfoXpackSecurity implements JsonpSerializable {
 	private final NodeInfoXpackSecuritySsl http;
 
@@ -203,16 +205,16 @@ public final class NodeInfoXpackSecurity implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpackSecurity}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackSecurity> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackSecurity::setupNodeInfoXpackSecurityDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackSecurity> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackSecurity::setupNodeInfoXpackSecurityDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackSecurityDeserializer(
 			DelegatingDeserializer<NodeInfoXpackSecurity.Builder> op) {
 
-		op.add(Builder::http, NodeInfoXpackSecuritySsl.DESERIALIZER, "http");
+		op.add(Builder::http, NodeInfoXpackSecuritySsl._DESERIALIZER, "http");
 		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
-		op.add(Builder::transport, NodeInfoXpackSecuritySsl.DESERIALIZER, "transport");
-		op.add(Builder::authc, NodeInfoXpackSecurityAuthc.DESERIALIZER, "authc");
+		op.add(Builder::transport, NodeInfoXpackSecuritySsl._DESERIALIZER, "transport");
+		op.add(Builder::authc, NodeInfoXpackSecurityAuthc._DESERIALIZER, "authc");
 
 	}
 

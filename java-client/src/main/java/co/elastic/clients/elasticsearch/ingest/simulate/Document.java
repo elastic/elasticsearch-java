@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Document
+@JsonpDeserializable
 public final class Document implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -163,14 +165,14 @@ public final class Document implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Document}
 	 */
-	public static final JsonpDeserializer<Document> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Document::setupDocumentDeserializer);
+	public static final JsonpDeserializer<Document> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Document::setupDocumentDeserializer, Builder::build);
 
 	protected static void setupDocumentDeserializer(DelegatingDeserializer<Document.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::source, JsonData.DESERIALIZER, "_source");
+		op.add(Builder::source, JsonData._DESERIALIZER, "_source");
 
 	}
 

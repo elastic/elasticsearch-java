@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,8 +37,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.DailySchedule
-public final class DailySchedule implements JsonpSerializable {
-	private final JsonValue at;
+@JsonpDeserializable
+public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
+	private final JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -48,9 +50,17 @@ public final class DailySchedule implements JsonpSerializable {
 	}
 
 	/**
+	 * {@link Schedule} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "daily";
+	}
+
+	/**
 	 * API name: {@code at}
 	 */
-	public JsonValue at() {
+	public JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at() {
 		return this.at;
 	}
 
@@ -76,12 +86,12 @@ public final class DailySchedule implements JsonpSerializable {
 	 * Builder for {@link DailySchedule}.
 	 */
 	public static class Builder implements ObjectBuilder<DailySchedule> {
-		private JsonValue at;
+		private JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at;
 
 		/**
 		 * API name: {@code at}
 		 */
-		public Builder at(JsonValue value) {
+		public Builder at(JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ value) {
 			this.at = value;
 			return this;
 		}
@@ -103,8 +113,8 @@ public final class DailySchedule implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DailySchedule}
 	 */
-	public static final JsonpDeserializer<DailySchedule> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DailySchedule::setupDailyScheduleDeserializer);
+	public static final JsonpDeserializer<DailySchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DailySchedule::setupDailyScheduleDeserializer, Builder::build);
 
 	protected static void setupDailyScheduleDeserializer(DelegatingDeserializer<DailySchedule.Builder> op) {
 

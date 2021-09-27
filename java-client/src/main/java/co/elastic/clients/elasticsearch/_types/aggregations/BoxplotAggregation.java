@@ -24,20 +24,22 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BoxplotAggregation
-public final class BoxplotAggregation extends MetricAggregationBase {
+@JsonpDeserializable
+public final class BoxplotAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number compression;
+	private final Double compression;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -49,10 +51,18 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "boxplot";
+	}
+
+	/**
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Number compression() {
+	public Double compression() {
 		return this.compression;
 	}
 
@@ -62,7 +72,7 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 		if (this.compression != null) {
 
 			generator.writeKey("compression");
-			generator.write(this.compression.doubleValue());
+			generator.write(this.compression);
 
 		}
 
@@ -77,12 +87,12 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 			implements
 				ObjectBuilder<BoxplotAggregation> {
 		@Nullable
-		private Number compression;
+		private Double compression;
 
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Number value) {
+		public Builder compression(@Nullable Double value) {
 			this.compression = value;
 			return this;
 		}
@@ -109,12 +119,12 @@ public final class BoxplotAggregation extends MetricAggregationBase {
 	/**
 	 * Json deserializer for {@link BoxplotAggregation}
 	 */
-	public static final JsonpDeserializer<BoxplotAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer);
+	public static final JsonpDeserializer<BoxplotAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BoxplotAggregation::setupBoxplotAggregationDeserializer, Builder::build);
 
 	protected static void setupBoxplotAggregationDeserializer(DelegatingDeserializer<BoxplotAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
-		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
+		op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
 
 	}
 

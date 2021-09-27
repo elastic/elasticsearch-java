@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum GeoDistanceType implements StringEnum {
 	Arc("arc"), Plane("plane");
 
@@ -39,6 +41,6 @@ public enum GeoDistanceType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoDistanceType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<GeoDistanceType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			GeoDistanceType.values());
 }

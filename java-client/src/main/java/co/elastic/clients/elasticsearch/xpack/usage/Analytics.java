@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Analytics
+@JsonpDeserializable
 public final class Analytics extends Base {
 	private final AnalyticsStatistics stats;
 
@@ -108,12 +110,12 @@ public final class Analytics extends Base {
 	/**
 	 * Json deserializer for {@link Analytics}
 	 */
-	public static final JsonpDeserializer<Analytics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Analytics::setupAnalyticsDeserializer);
+	public static final JsonpDeserializer<Analytics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Analytics::setupAnalyticsDeserializer, Builder::build);
 
 	protected static void setupAnalyticsDeserializer(DelegatingDeserializer<Analytics.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::stats, AnalyticsStatistics.DESERIALIZER, "stats");
+		op.add(Builder::stats, AnalyticsStatistics._DESERIALIZER, "stats");
 
 	}
 

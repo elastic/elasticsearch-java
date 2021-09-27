@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermsAggregation
-public final class MultiTermsAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class MultiTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final List<MultiTermLookup> terms;
 
 	// ---------------------------------------------------------------------------------------------
@@ -48,6 +50,14 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 
 		this.terms = Objects.requireNonNull(builder.terms, "terms");
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "multi_terms";
 	}
 
 	/**
@@ -144,13 +154,13 @@ public final class MultiTermsAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link MultiTermsAggregation}
 	 */
-	public static final JsonpDeserializer<MultiTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer);
+	public static final JsonpDeserializer<MultiTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MultiTermsAggregation::setupMultiTermsAggregationDeserializer, Builder::build);
 
 	protected static void setupMultiTermsAggregationDeserializer(
 			DelegatingDeserializer<MultiTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup.DESERIALIZER), "terms");
+		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(MultiTermLookup._DESERIALIZER), "terms");
 
 	}
 

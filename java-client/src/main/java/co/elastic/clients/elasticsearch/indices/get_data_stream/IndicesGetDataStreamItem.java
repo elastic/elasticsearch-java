@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices.get_data_stream;
 import co.elastic.clients.elasticsearch.indices.DataStreamHealthStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItem
+@JsonpDeserializable
 public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	private final String name;
 
@@ -53,7 +55,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 
 	private final List<IndicesGetDataStreamItemIndex> indices;
 
-	private final Number generation;
+	private final Integer generation;
 
 	private final String template;
 
@@ -111,7 +113,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * API name: {@code generation}
 	 */
-	public Number generation() {
+	public Integer generation() {
 		return this.generation;
 	}
 
@@ -186,7 +188,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("generation");
-		generator.write(this.generation.doubleValue());
+		generator.write(this.generation);
 
 		generator.writeKey("template");
 		generator.write(this.template);
@@ -236,7 +238,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 
 		private List<IndicesGetDataStreamItemIndex> indices;
 
-		private Number generation;
+		private Integer generation;
 
 		private String template;
 
@@ -323,7 +325,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * API name: {@code generation}
 		 */
-		public Builder generation(Number value) {
+		public Builder generation(Integer value) {
 			this.generation = value;
 			return this;
 		}
@@ -404,23 +406,23 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesGetDataStreamItem}
 	 */
-	public static final JsonpDeserializer<IndicesGetDataStreamItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesGetDataStreamItem::setupIndicesGetDataStreamItemDeserializer);
+	public static final JsonpDeserializer<IndicesGetDataStreamItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesGetDataStreamItem::setupIndicesGetDataStreamItemDeserializer, Builder::build);
 
 	protected static void setupIndicesGetDataStreamItemDeserializer(
 			DelegatingDeserializer<IndicesGetDataStreamItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::timestampField, IndicesGetDataStreamItemTimestampField.DESERIALIZER, "timestamp_field");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesGetDataStreamItemIndex.DESERIALIZER),
+		op.add(Builder::timestampField, IndicesGetDataStreamItemTimestampField._DESERIALIZER, "timestamp_field");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesGetDataStreamItemIndex._DESERIALIZER),
 				"indices");
-		op.add(Builder::generation, JsonpDeserializer.numberDeserializer(), "generation");
+		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
 		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
-		op.add(Builder::status, DataStreamHealthStatus.DESERIALIZER, "status");
+		op.add(Builder::status, DataStreamHealthStatus._DESERIALIZER, "status");
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 

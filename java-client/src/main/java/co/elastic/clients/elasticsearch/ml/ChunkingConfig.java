@@ -24,23 +24,25 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ChunkingConfig
+@JsonpDeserializable
 public final class ChunkingConfig implements JsonpSerializable {
 	private final ChunkingMode mode;
 
 	@Nullable
-	private final JsonValue timeSpan;
+	private final String timeSpan;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +73,7 @@ public final class ChunkingConfig implements JsonpSerializable {
 	 * API name: {@code time_span}
 	 */
 	@Nullable
-	public JsonValue timeSpan() {
+	public String timeSpan() {
 		return this.timeSpan;
 	}
 
@@ -106,7 +108,7 @@ public final class ChunkingConfig implements JsonpSerializable {
 		private ChunkingMode mode;
 
 		@Nullable
-		private JsonValue timeSpan;
+		private String timeSpan;
 
 		/**
 		 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
@@ -128,7 +130,7 @@ public final class ChunkingConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code time_span}
 		 */
-		public Builder timeSpan(@Nullable JsonValue value) {
+		public Builder timeSpan(@Nullable String value) {
 			this.timeSpan = value;
 			return this;
 		}
@@ -150,13 +152,13 @@ public final class ChunkingConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ChunkingConfig}
 	 */
-	public static final JsonpDeserializer<ChunkingConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ChunkingConfig::setupChunkingConfigDeserializer);
+	public static final JsonpDeserializer<ChunkingConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ChunkingConfig::setupChunkingConfigDeserializer, Builder::build);
 
 	protected static void setupChunkingConfigDeserializer(DelegatingDeserializer<ChunkingConfig.Builder> op) {
 
-		op.add(Builder::mode, ChunkingMode.DESERIALIZER, "mode");
-		op.add(Builder::timeSpan, JsonpDeserializer.jsonValueDeserializer(), "time_span");
+		op.add(Builder::mode, ChunkingMode._DESERIALIZER, "mode");
+		op.add(Builder::timeSpan, JsonpDeserializer.stringDeserializer(), "time_span");
 
 	}
 

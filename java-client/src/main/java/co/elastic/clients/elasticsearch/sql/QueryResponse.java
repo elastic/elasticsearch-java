@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.elasticsearch.sql.query.Column;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Response
+@JsonpDeserializable
 public final class QueryResponse implements JsonpSerializable {
 	@Nullable
 	private final List<Column> columns;
@@ -235,15 +237,15 @@ public final class QueryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link QueryResponse}
 	 */
-	public static final JsonpDeserializer<QueryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryResponse::setupQueryResponseDeserializer);
+	public static final JsonpDeserializer<QueryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			QueryResponse::setupQueryResponseDeserializer, Builder::build);
 
 	protected static void setupQueryResponseDeserializer(DelegatingDeserializer<QueryResponse.Builder> op) {
 
-		op.add(Builder::columns, JsonpDeserializer.arrayDeserializer(Column.DESERIALIZER), "columns");
+		op.add(Builder::columns, JsonpDeserializer.arrayDeserializer(Column._DESERIALIZER), "columns");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::rows,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonData.DESERIALIZER)),
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER)),
 				"rows");
 
 	}

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum SearchType implements StringEnum {
 	/**
 	 * Documents are scored using local term and document frequencies for the shard.
@@ -48,6 +50,6 @@ public enum SearchType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SearchType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<SearchType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			SearchType.values());
 }

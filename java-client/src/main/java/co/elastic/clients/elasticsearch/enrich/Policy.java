@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Policy
+@JsonpDeserializable
 public final class Policy implements JsonpSerializable {
 	private final List<String> enrichFields;
 
@@ -259,8 +261,8 @@ public final class Policy implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Policy}
 	 */
-	public static final JsonpDeserializer<Policy> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Policy::setupPolicyDeserializer);
+	public static final JsonpDeserializer<Policy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Policy::setupPolicyDeserializer, Builder::build);
 
 	protected static void setupPolicyDeserializer(DelegatingDeserializer<Policy.Builder> op) {
 

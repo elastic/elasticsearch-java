@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Request
+
 public final class GetAutoscalingPolicyRequest extends RequestBase {
 	private final String name;
 
@@ -124,5 +126,5 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetAutoscalingPolicyResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetAutoscalingPolicyResponse._DESERIALIZER);
 }

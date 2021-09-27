@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: ccr.unfollow.Response
+@JsonpDeserializable
 public final class UnfollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class UnfollowResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link UnfollowResponse}
 	 */
-	public static final JsonpDeserializer<UnfollowResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UnfollowResponse::setupUnfollowResponseDeserializer);
+	public static final JsonpDeserializer<UnfollowResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			UnfollowResponse::setupUnfollowResponseDeserializer, Builder::build);
 
 	protected static void setupUnfollowResponseDeserializer(DelegatingDeserializer<UnfollowResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

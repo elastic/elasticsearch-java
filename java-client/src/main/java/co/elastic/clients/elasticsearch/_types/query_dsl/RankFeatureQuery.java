@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureQuery
-public final class RankFeatureQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
@@ -69,7 +70,7 @@ public final class RankFeatureQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "rank_feature";
 	}
 
@@ -113,7 +114,6 @@ public final class RankFeatureQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 
@@ -144,8 +144,6 @@ public final class RankFeatureQuery extends QueryBase implements Query {
 			this.sigmoid.serialize(generator, mapper);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -260,17 +258,19 @@ public final class RankFeatureQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<RankFeatureQuery.Builder, RankFeatureQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(RankFeatureQuery::setupRankFeatureQueryDeserializer);
+	/**
+	 * Json deserializer for {@link RankFeatureQuery}
+	 */
+	public static final JsonpDeserializer<RankFeatureQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankFeatureQuery::setupRankFeatureQueryDeserializer, Builder::build);
 
 	protected static void setupRankFeatureQueryDeserializer(DelegatingDeserializer<RankFeatureQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::saturation, RankFeatureFunctionSaturation.DESERIALIZER, "saturation");
-		op.add(Builder::log, RankFeatureFunctionLogarithm.DESERIALIZER, "log");
-		op.add(Builder::linear, RankFeatureFunctionLinear.DESERIALIZER, "linear");
-		op.add(Builder::sigmoid, RankFeatureFunctionSigmoid.DESERIALIZER, "sigmoid");
+		op.add(Builder::saturation, RankFeatureFunctionSaturation._DESERIALIZER, "saturation");
+		op.add(Builder::log, RankFeatureFunctionLogarithm._DESERIALIZER, "log");
+		op.add(Builder::linear, RankFeatureFunctionLinear._DESERIALIZER, "linear");
+		op.add(Builder::sigmoid, RankFeatureFunctionSigmoid._DESERIALIZER, "sigmoid");
 
 	}
 

@@ -24,25 +24,26 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisClassification
-public final class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysis {
+@JsonpDeserializable
+public final class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
 	private final String classAssignmentObjective;
 
 	@Nullable
-	private final Number numTopClasses;
+	private final Integer numTopClasses;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,7 +59,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 	 * {@link DataframeAnalysis} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "classification";
 	}
 
@@ -82,12 +83,11 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
-	public Number numTopClasses() {
+	public Integer numTopClasses() {
 		return this.numTopClasses;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.classAssignmentObjective != null) {
@@ -99,11 +99,9 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 		if (this.numTopClasses != null) {
 
 			generator.writeKey("num_top_classes");
-			generator.write(this.numTopClasses.doubleValue());
+			generator.write(this.numTopClasses);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -119,7 +117,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 		private String classAssignmentObjective;
 
 		@Nullable
-		private Number numTopClasses;
+		private Integer numTopClasses;
 
 		/**
 		 * API name: {@code class_assignment_objective}
@@ -140,7 +138,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
-		public Builder numTopClasses(@Nullable Number value) {
+		public Builder numTopClasses(@Nullable Integer value) {
 			this.numTopClasses = value;
 			return this;
 		}
@@ -164,15 +162,18 @@ public final class DataframeAnalysisClassification extends DataframeAnalysisBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisClassification.Builder, DataframeAnalysisClassification.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeAnalysisClassification}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisClassification> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisClassificationDeserializer(
 			DelegatingDeserializer<DataframeAnalysisClassification.Builder> op) {
 		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::classAssignmentObjective, JsonpDeserializer.stringDeserializer(), "class_assignment_objective");
-		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
+		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");
 
 	}
 

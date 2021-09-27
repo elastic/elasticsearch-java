@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum Result implements StringEnum {
 	Error("Error"), Created("created"), Updated("updated"), Deleted("deleted"), NotFound("not_found"), NoOp("noop");
 
@@ -39,5 +41,5 @@ public enum Result implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Result> DESERIALIZER = new StringEnum.Deserializer<>(Result.values());
+	public static final StringEnum.Deserializer<Result> _DESERIALIZER = new StringEnum.Deserializer<>(Result.values());
 }

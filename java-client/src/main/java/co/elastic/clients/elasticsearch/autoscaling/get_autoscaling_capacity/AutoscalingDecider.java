@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingDecider
+@JsonpDeserializable
 public final class AutoscalingDecider implements JsonpSerializable {
 	private final AutoscalingCapacity requiredCapacity;
 
@@ -171,14 +173,14 @@ public final class AutoscalingDecider implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoscalingDecider}
 	 */
-	public static final JsonpDeserializer<AutoscalingDecider> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoscalingDecider::setupAutoscalingDeciderDeserializer);
+	public static final JsonpDeserializer<AutoscalingDecider> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoscalingDecider::setupAutoscalingDeciderDeserializer, Builder::build);
 
 	protected static void setupAutoscalingDeciderDeserializer(DelegatingDeserializer<AutoscalingDecider.Builder> op) {
 
-		op.add(Builder::requiredCapacity, AutoscalingCapacity.DESERIALIZER, "required_capacity");
+		op.add(Builder::requiredCapacity, AutoscalingCapacity._DESERIALIZER, "required_capacity");
 		op.add(Builder::reasonSummary, JsonpDeserializer.stringDeserializer(), "reason_summary");
-		op.add(Builder::reasonDetails, JsonData.DESERIALIZER, "reason_details");
+		op.add(Builder::reasonDetails, JsonData._DESERIALIZER, "reason_details");
 
 	}
 

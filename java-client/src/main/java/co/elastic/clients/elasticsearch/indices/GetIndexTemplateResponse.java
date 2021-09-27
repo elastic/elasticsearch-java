@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplateItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Response
+@JsonpDeserializable
 public final class GetIndexTemplateResponse implements JsonpSerializable {
 	private final List<IndexTemplateItem> indexTemplates;
 
@@ -145,13 +147,13 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetIndexTemplateResponse}
 	 */
-	public static final JsonpDeserializer<GetIndexTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer);
+	public static final JsonpDeserializer<GetIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupGetIndexTemplateResponseDeserializer(
 			DelegatingDeserializer<GetIndexTemplateResponse.Builder> op) {
 
-		op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem.DESERIALIZER),
+		op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem._DESERIALIZER),
 				"index_templates");
 
 	}

@@ -24,16 +24,17 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,59 +44,60 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysis
+
 public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	@Nullable
-	private final Number alpha;
+	private final Double alpha;
 
 	private final String dependentVariable;
 
 	@Nullable
-	private final Number downsampleFactor;
+	private final Double downsampleFactor;
 
 	@Nullable
 	private final Boolean earlyStoppingEnabled;
 
 	@Nullable
-	private final Number eta;
+	private final Double eta;
 
 	@Nullable
-	private final Number etaGrowthRatePerTree;
+	private final Double etaGrowthRatePerTree;
 
 	@Nullable
-	private final Number featureBagFraction;
+	private final Double featureBagFraction;
 
 	@Nullable
 	private final List<DataframeAnalysisFeatureProcessor> featureProcessors;
 
 	@Nullable
-	private final Number gamma;
+	private final Double gamma;
 
 	@Nullable
-	private final Number lambda;
+	private final Double lambda;
 
 	@Nullable
-	private final Number maxOptimizationRoundsPerHyperparameter;
+	private final Integer maxOptimizationRoundsPerHyperparameter;
 
 	@Nullable
-	private final Number maxTrees;
+	private final Integer maxTrees;
 
 	@Nullable
-	private final Number numTopFeatureImportanceValues;
+	private final Integer numTopFeatureImportanceValues;
 
 	@Nullable
 	private final String predictionFieldName;
 
 	@Nullable
-	private final Number randomizeSeed;
+	private final Double randomizeSeed;
 
 	@Nullable
-	private final Number softTreeDepthLimit;
+	private final Integer softTreeDepthLimit;
 
 	@Nullable
-	private final Number softTreeDepthTolerance;
+	private final Double softTreeDepthTolerance;
 
 	@Nullable
-	private final JsonValue trainingPercent;
+	private final String trainingPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -133,7 +135,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code alpha}
 	 */
 	@Nullable
-	public Number alpha() {
+	public Double alpha() {
 		return this.alpha;
 	}
 
@@ -167,7 +169,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code downsample_factor}
 	 */
 	@Nullable
-	public Number downsampleFactor() {
+	public Double downsampleFactor() {
 		return this.downsampleFactor;
 	}
 
@@ -194,7 +196,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code eta}
 	 */
 	@Nullable
-	public Number eta() {
+	public Double eta() {
 		return this.eta;
 	}
 
@@ -208,7 +210,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code eta_growth_rate_per_tree}
 	 */
 	@Nullable
-	public Number etaGrowthRatePerTree() {
+	public Double etaGrowthRatePerTree() {
 		return this.etaGrowthRatePerTree;
 	}
 
@@ -220,7 +222,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code feature_bag_fraction}
 	 */
 	@Nullable
-	public Number featureBagFraction() {
+	public Double featureBagFraction() {
 		return this.featureBagFraction;
 	}
 
@@ -253,7 +255,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code gamma}
 	 */
 	@Nullable
-	public Number gamma() {
+	public Double gamma() {
 		return this.gamma;
 	}
 
@@ -271,7 +273,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code lambda}
 	 */
 	@Nullable
-	public Number lambda() {
+	public Double lambda() {
 		return this.lambda;
 	}
 
@@ -286,7 +288,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code max_optimization_rounds_per_hyperparameter}
 	 */
 	@Nullable
-	public Number maxOptimizationRoundsPerHyperparameter() {
+	public Integer maxOptimizationRoundsPerHyperparameter() {
 		return this.maxOptimizationRoundsPerHyperparameter;
 	}
 
@@ -298,7 +300,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code max_trees}
 	 */
 	@Nullable
-	public Number maxTrees() {
+	public Integer maxTrees() {
 		return this.maxTrees;
 	}
 
@@ -310,7 +312,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Number numTopFeatureImportanceValues() {
+	public Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
@@ -335,7 +337,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code randomize_seed}
 	 */
 	@Nullable
-	public Number randomizeSeed() {
+	public Double randomizeSeed() {
 		return this.randomizeSeed;
 	}
 
@@ -351,7 +353,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code soft_tree_depth_limit}
 	 */
 	@Nullable
-	public Number softTreeDepthLimit() {
+	public Integer softTreeDepthLimit() {
 		return this.softTreeDepthLimit;
 	}
 
@@ -364,7 +366,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code soft_tree_depth_tolerance}
 	 */
 	@Nullable
-	public Number softTreeDepthTolerance() {
+	public Double softTreeDepthTolerance() {
 		return this.softTreeDepthTolerance;
 	}
 
@@ -377,7 +379,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	 * API name: {@code training_percent}
 	 */
 	@Nullable
-	public JsonValue trainingPercent() {
+	public String trainingPercent() {
 		return this.trainingPercent;
 	}
 
@@ -395,7 +397,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		if (this.alpha != null) {
 
 			generator.writeKey("alpha");
-			generator.write(this.alpha.doubleValue());
+			generator.write(this.alpha);
 
 		}
 
@@ -405,7 +407,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		if (this.downsampleFactor != null) {
 
 			generator.writeKey("downsample_factor");
-			generator.write(this.downsampleFactor.doubleValue());
+			generator.write(this.downsampleFactor);
 
 		}
 		if (this.earlyStoppingEnabled != null) {
@@ -417,19 +419,19 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		if (this.eta != null) {
 
 			generator.writeKey("eta");
-			generator.write(this.eta.doubleValue());
+			generator.write(this.eta);
 
 		}
 		if (this.etaGrowthRatePerTree != null) {
 
 			generator.writeKey("eta_growth_rate_per_tree");
-			generator.write(this.etaGrowthRatePerTree.doubleValue());
+			generator.write(this.etaGrowthRatePerTree);
 
 		}
 		if (this.featureBagFraction != null) {
 
 			generator.writeKey("feature_bag_fraction");
-			generator.write(this.featureBagFraction.doubleValue());
+			generator.write(this.featureBagFraction);
 
 		}
 		if (this.featureProcessors != null) {
@@ -446,31 +448,31 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		if (this.gamma != null) {
 
 			generator.writeKey("gamma");
-			generator.write(this.gamma.doubleValue());
+			generator.write(this.gamma);
 
 		}
 		if (this.lambda != null) {
 
 			generator.writeKey("lambda");
-			generator.write(this.lambda.doubleValue());
+			generator.write(this.lambda);
 
 		}
 		if (this.maxOptimizationRoundsPerHyperparameter != null) {
 
 			generator.writeKey("max_optimization_rounds_per_hyperparameter");
-			generator.write(this.maxOptimizationRoundsPerHyperparameter.doubleValue());
+			generator.write(this.maxOptimizationRoundsPerHyperparameter);
 
 		}
 		if (this.maxTrees != null) {
 
 			generator.writeKey("max_trees");
-			generator.write(this.maxTrees.doubleValue());
+			generator.write(this.maxTrees);
 
 		}
 		if (this.numTopFeatureImportanceValues != null) {
 
 			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues.doubleValue());
+			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 		if (this.predictionFieldName != null) {
@@ -482,19 +484,19 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		if (this.randomizeSeed != null) {
 
 			generator.writeKey("randomize_seed");
-			generator.write(this.randomizeSeed.doubleValue());
+			generator.write(this.randomizeSeed);
 
 		}
 		if (this.softTreeDepthLimit != null) {
 
 			generator.writeKey("soft_tree_depth_limit");
-			generator.write(this.softTreeDepthLimit.doubleValue());
+			generator.write(this.softTreeDepthLimit);
 
 		}
 		if (this.softTreeDepthTolerance != null) {
 
 			generator.writeKey("soft_tree_depth_tolerance");
-			generator.write(this.softTreeDepthTolerance.doubleValue());
+			generator.write(this.softTreeDepthTolerance);
 
 		}
 		if (this.trainingPercent != null) {
@@ -508,57 +510,57 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private Number alpha;
+		private Double alpha;
 
 		private String dependentVariable;
 
 		@Nullable
-		private Number downsampleFactor;
+		private Double downsampleFactor;
 
 		@Nullable
 		private Boolean earlyStoppingEnabled;
 
 		@Nullable
-		private Number eta;
+		private Double eta;
 
 		@Nullable
-		private Number etaGrowthRatePerTree;
+		private Double etaGrowthRatePerTree;
 
 		@Nullable
-		private Number featureBagFraction;
+		private Double featureBagFraction;
 
 		@Nullable
 		private List<DataframeAnalysisFeatureProcessor> featureProcessors;
 
 		@Nullable
-		private Number gamma;
+		private Double gamma;
 
 		@Nullable
-		private Number lambda;
+		private Double lambda;
 
 		@Nullable
-		private Number maxOptimizationRoundsPerHyperparameter;
+		private Integer maxOptimizationRoundsPerHyperparameter;
 
 		@Nullable
-		private Number maxTrees;
+		private Integer maxTrees;
 
 		@Nullable
-		private Number numTopFeatureImportanceValues;
+		private Integer numTopFeatureImportanceValues;
 
 		@Nullable
 		private String predictionFieldName;
 
 		@Nullable
-		private Number randomizeSeed;
+		private Double randomizeSeed;
 
 		@Nullable
-		private Number softTreeDepthLimit;
+		private Integer softTreeDepthLimit;
 
 		@Nullable
-		private Number softTreeDepthTolerance;
+		private Double softTreeDepthTolerance;
 
 		@Nullable
-		private JsonValue trainingPercent;
+		private String trainingPercent;
 
 		/**
 		 * Advanced configuration option. Machine learning uses loss guided tree
@@ -570,7 +572,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code alpha}
 		 */
-		public BuilderT alpha(@Nullable Number value) {
+		public BuilderT alpha(@Nullable Double value) {
 			this.alpha = value;
 			return self();
 		}
@@ -605,7 +607,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code downsample_factor}
 		 */
-		public BuilderT downsampleFactor(@Nullable Number value) {
+		public BuilderT downsampleFactor(@Nullable Double value) {
 			this.downsampleFactor = value;
 			return self();
 		}
@@ -632,7 +634,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code eta}
 		 */
-		public BuilderT eta(@Nullable Number value) {
+		public BuilderT eta(@Nullable Double value) {
 			this.eta = value;
 			return self();
 		}
@@ -646,7 +648,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code eta_growth_rate_per_tree}
 		 */
-		public BuilderT etaGrowthRatePerTree(@Nullable Number value) {
+		public BuilderT etaGrowthRatePerTree(@Nullable Double value) {
 			this.etaGrowthRatePerTree = value;
 			return self();
 		}
@@ -658,7 +660,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code feature_bag_fraction}
 		 */
-		public BuilderT featureBagFraction(@Nullable Number value) {
+		public BuilderT featureBagFraction(@Nullable Double value) {
 			this.featureBagFraction = value;
 			return self();
 		}
@@ -736,7 +738,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code gamma}
 		 */
-		public BuilderT gamma(@Nullable Number value) {
+		public BuilderT gamma(@Nullable Double value) {
 			this.gamma = value;
 			return self();
 		}
@@ -754,7 +756,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code lambda}
 		 */
-		public BuilderT lambda(@Nullable Number value) {
+		public BuilderT lambda(@Nullable Double value) {
 			this.lambda = value;
 			return self();
 		}
@@ -769,7 +771,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_optimization_rounds_per_hyperparameter}
 		 */
-		public BuilderT maxOptimizationRoundsPerHyperparameter(@Nullable Number value) {
+		public BuilderT maxOptimizationRoundsPerHyperparameter(@Nullable Integer value) {
 			this.maxOptimizationRoundsPerHyperparameter = value;
 			return self();
 		}
@@ -781,7 +783,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_trees}
 		 */
-		public BuilderT maxTrees(@Nullable Number value) {
+		public BuilderT maxTrees(@Nullable Integer value) {
 			this.maxTrees = value;
 			return self();
 		}
@@ -793,7 +795,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public BuilderT numTopFeatureImportanceValues(@Nullable Number value) {
+		public BuilderT numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return self();
 		}
@@ -818,7 +820,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code randomize_seed}
 		 */
-		public BuilderT randomizeSeed(@Nullable Number value) {
+		public BuilderT randomizeSeed(@Nullable Double value) {
 			this.randomizeSeed = value;
 			return self();
 		}
@@ -834,7 +836,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code soft_tree_depth_limit}
 		 */
-		public BuilderT softTreeDepthLimit(@Nullable Number value) {
+		public BuilderT softTreeDepthLimit(@Nullable Integer value) {
 			this.softTreeDepthLimit = value;
 			return self();
 		}
@@ -847,7 +849,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code soft_tree_depth_tolerance}
 		 */
-		public BuilderT softTreeDepthTolerance(@Nullable Number value) {
+		public BuilderT softTreeDepthTolerance(@Nullable Double value) {
 			this.softTreeDepthTolerance = value;
 			return self();
 		}
@@ -860,7 +862,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code training_percent}
 		 */
-		public BuilderT trainingPercent(@Nullable JsonValue value) {
+		public BuilderT trainingPercent(@Nullable String value) {
 			this.trainingPercent = value;
 			return self();
 		}
@@ -873,31 +875,31 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeAnalysisBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::alpha, JsonpDeserializer.numberDeserializer(), "alpha");
+		op.add(AbstractBuilder::alpha, JsonpDeserializer.doubleDeserializer(), "alpha");
 		op.add(AbstractBuilder::dependentVariable, JsonpDeserializer.stringDeserializer(), "dependent_variable");
-		op.add(AbstractBuilder::downsampleFactor, JsonpDeserializer.numberDeserializer(), "downsample_factor");
+		op.add(AbstractBuilder::downsampleFactor, JsonpDeserializer.doubleDeserializer(), "downsample_factor");
 		op.add(AbstractBuilder::earlyStoppingEnabled, JsonpDeserializer.booleanDeserializer(),
 				"early_stopping_enabled");
-		op.add(AbstractBuilder::eta, JsonpDeserializer.numberDeserializer(), "eta");
-		op.add(AbstractBuilder::etaGrowthRatePerTree, JsonpDeserializer.numberDeserializer(),
+		op.add(AbstractBuilder::eta, JsonpDeserializer.doubleDeserializer(), "eta");
+		op.add(AbstractBuilder::etaGrowthRatePerTree, JsonpDeserializer.doubleDeserializer(),
 				"eta_growth_rate_per_tree");
-		op.add(AbstractBuilder::featureBagFraction, JsonpDeserializer.numberDeserializer(), "feature_bag_fraction");
+		op.add(AbstractBuilder::featureBagFraction, JsonpDeserializer.doubleDeserializer(), "feature_bag_fraction");
 		op.add(AbstractBuilder::featureProcessors,
-				JsonpDeserializer.arrayDeserializer(DataframeAnalysisFeatureProcessor.DESERIALIZER),
+				JsonpDeserializer.arrayDeserializer(DataframeAnalysisFeatureProcessor._DESERIALIZER),
 				"feature_processors");
-		op.add(AbstractBuilder::gamma, JsonpDeserializer.numberDeserializer(), "gamma");
-		op.add(AbstractBuilder::lambda, JsonpDeserializer.numberDeserializer(), "lambda");
-		op.add(AbstractBuilder::maxOptimizationRoundsPerHyperparameter, JsonpDeserializer.numberDeserializer(),
+		op.add(AbstractBuilder::gamma, JsonpDeserializer.doubleDeserializer(), "gamma");
+		op.add(AbstractBuilder::lambda, JsonpDeserializer.doubleDeserializer(), "lambda");
+		op.add(AbstractBuilder::maxOptimizationRoundsPerHyperparameter, JsonpDeserializer.integerDeserializer(),
 				"max_optimization_rounds_per_hyperparameter");
-		op.add(AbstractBuilder::maxTrees, JsonpDeserializer.numberDeserializer(), "max_trees", "maximum_number_trees");
-		op.add(AbstractBuilder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
+		op.add(AbstractBuilder::maxTrees, JsonpDeserializer.integerDeserializer(), "max_trees", "maximum_number_trees");
+		op.add(AbstractBuilder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
 				"num_top_feature_importance_values");
 		op.add(AbstractBuilder::predictionFieldName, JsonpDeserializer.stringDeserializer(), "prediction_field_name");
-		op.add(AbstractBuilder::randomizeSeed, JsonpDeserializer.numberDeserializer(), "randomize_seed");
-		op.add(AbstractBuilder::softTreeDepthLimit, JsonpDeserializer.numberDeserializer(), "soft_tree_depth_limit");
-		op.add(AbstractBuilder::softTreeDepthTolerance, JsonpDeserializer.numberDeserializer(),
+		op.add(AbstractBuilder::randomizeSeed, JsonpDeserializer.doubleDeserializer(), "randomize_seed");
+		op.add(AbstractBuilder::softTreeDepthLimit, JsonpDeserializer.integerDeserializer(), "soft_tree_depth_limit");
+		op.add(AbstractBuilder::softTreeDepthTolerance, JsonpDeserializer.doubleDeserializer(),
 				"soft_tree_depth_tolerance");
-		op.add(AbstractBuilder::trainingPercent, JsonpDeserializer.jsonValueDeserializer(), "training_percent");
+		op.add(AbstractBuilder::trainingPercent, JsonpDeserializer.stringDeserializer(), "training_percent");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NestedAggregation
-public final class NestedAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String path;
 
@@ -46,6 +48,14 @@ public final class NestedAggregation extends BucketAggregationBase {
 
 		this.path = builder.path;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "nested";
 	}
 
 	/**
@@ -109,8 +119,8 @@ public final class NestedAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link NestedAggregation}
 	 */
-	public static final JsonpDeserializer<NestedAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NestedAggregation::setupNestedAggregationDeserializer);
+	public static final JsonpDeserializer<NestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NestedAggregation::setupNestedAggregationDeserializer, Builder::build);
 
 	protected static void setupNestedAggregationDeserializer(DelegatingDeserializer<NestedAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);

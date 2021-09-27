@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingResources
+@JsonpDeserializable
 public final class AutoscalingResources implements JsonpSerializable {
-	private final Number storage;
+	private final Integer storage;
 
-	private final Number memory;
+	private final Integer memory;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class AutoscalingResources implements JsonpSerializable {
 	/**
 	 * API name: {@code storage}
 	 */
-	public Number storage() {
+	public Integer storage() {
 		return this.storage;
 	}
 
 	/**
 	 * API name: {@code memory}
 	 */
-	public Number memory() {
+	public Integer memory() {
 		return this.memory;
 	}
 
@@ -76,10 +78,10 @@ public final class AutoscalingResources implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("storage");
-		generator.write(this.storage.doubleValue());
+		generator.write(this.storage);
 
 		generator.writeKey("memory");
-		generator.write(this.memory.doubleValue());
+		generator.write(this.memory);
 
 	}
 
@@ -89,14 +91,14 @@ public final class AutoscalingResources implements JsonpSerializable {
 	 * Builder for {@link AutoscalingResources}.
 	 */
 	public static class Builder implements ObjectBuilder<AutoscalingResources> {
-		private Number storage;
+		private Integer storage;
 
-		private Number memory;
+		private Integer memory;
 
 		/**
 		 * API name: {@code storage}
 		 */
-		public Builder storage(Number value) {
+		public Builder storage(Integer value) {
 			this.storage = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class AutoscalingResources implements JsonpSerializable {
 		/**
 		 * API name: {@code memory}
 		 */
-		public Builder memory(Number value) {
+		public Builder memory(Integer value) {
 			this.memory = value;
 			return this;
 		}
@@ -126,14 +128,14 @@ public final class AutoscalingResources implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoscalingResources}
 	 */
-	public static final JsonpDeserializer<AutoscalingResources> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoscalingResources::setupAutoscalingResourcesDeserializer);
+	public static final JsonpDeserializer<AutoscalingResources> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoscalingResources::setupAutoscalingResourcesDeserializer, Builder::build);
 
 	protected static void setupAutoscalingResourcesDeserializer(
 			DelegatingDeserializer<AutoscalingResources.Builder> op) {
 
-		op.add(Builder::storage, JsonpDeserializer.numberDeserializer(), "storage");
-		op.add(Builder::memory, JsonpDeserializer.numberDeserializer(), "memory");
+		op.add(Builder::storage, JsonpDeserializer.integerDeserializer(), "storage");
+		op.add(Builder::memory, JsonpDeserializer.integerDeserializer(), "memory");
 
 	}
 

@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -44,6 +45,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Request
+@JsonpDeserializable
 public final class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -287,8 +289,8 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link InvalidateApiKeyRequest}
 	 */
-	public static final JsonpDeserializer<InvalidateApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestDeserializer);
+	public static final JsonpDeserializer<InvalidateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestDeserializer, Builder::build);
 
 	protected static void setupInvalidateApiKeyRequestDeserializer(
 			DelegatingDeserializer<InvalidateApiKeyRequest.Builder> op) {
@@ -324,5 +326,5 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, InvalidateApiKeyResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, InvalidateApiKeyResponse._DESERIALIZER);
 }

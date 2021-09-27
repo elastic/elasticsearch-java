@@ -25,13 +25,15 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SignificantTermsAggregation
-public final class SignificantTermsAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class SignificantTermsAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Query backgroundFilter;
 
@@ -64,7 +67,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	private final List<String> include;
 
 	@Nullable
-	private final Number minDocCount;
+	private final Long minDocCount;
 
 	@Nullable
 	private final MutualInformationHeuristic mutualInformation;
@@ -76,13 +79,13 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	private final ScriptedHeuristic scriptHeuristic;
 
 	@Nullable
-	private final Number shardMinDocCount;
+	private final Long shardMinDocCount;
 
 	@Nullable
-	private final Number shardSize;
+	private final Integer shardSize;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -104,6 +107,14 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		this.shardSize = builder.shardSize;
 		this.size = builder.size;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "significant_terms";
 	}
 
 	/**
@@ -166,7 +177,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Number minDocCount() {
+	public Long minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -198,7 +209,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
-	public Number shardMinDocCount() {
+	public Long shardMinDocCount() {
 		return this.shardMinDocCount;
 	}
 
@@ -206,7 +217,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Number shardSize() {
+	public Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -214,7 +225,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -275,7 +286,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		if (this.minDocCount != null) {
 
 			generator.writeKey("min_doc_count");
-			generator.write(this.minDocCount.doubleValue());
+			generator.write(this.minDocCount);
 
 		}
 		if (this.mutualInformation != null) {
@@ -299,19 +310,19 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		if (this.shardMinDocCount != null) {
 
 			generator.writeKey("shard_min_doc_count");
-			generator.write(this.shardMinDocCount.doubleValue());
+			generator.write(this.shardMinDocCount);
 
 		}
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
-			generator.write(this.shardSize.doubleValue());
+			generator.write(this.shardSize);
 
 		}
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -347,7 +358,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		private List<String> include;
 
 		@Nullable
-		private Number minDocCount;
+		private Long minDocCount;
 
 		@Nullable
 		private MutualInformationHeuristic mutualInformation;
@@ -359,13 +370,13 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		private ScriptedHeuristic scriptHeuristic;
 
 		@Nullable
-		private Number shardMinDocCount;
+		private Long shardMinDocCount;
 
 		@Nullable
-		private Number shardSize;
+		private Integer shardSize;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code background_filter}
@@ -486,7 +497,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Number value) {
+		public Builder minDocCount(@Nullable Long value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -541,7 +552,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code shard_min_doc_count}
 		 */
-		public Builder shardMinDocCount(@Nullable Number value) {
+		public Builder shardMinDocCount(@Nullable Long value) {
 			this.shardMinDocCount = value;
 			return this;
 		}
@@ -549,7 +560,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Number value) {
+		public Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -557,7 +568,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -584,28 +595,28 @@ public final class SignificantTermsAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link SignificantTermsAggregation}
 	 */
-	public static final JsonpDeserializer<SignificantTermsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SignificantTermsAggregation::setupSignificantTermsAggregationDeserializer);
+	public static final JsonpDeserializer<SignificantTermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SignificantTermsAggregation::setupSignificantTermsAggregationDeserializer, Builder::build);
 
 	protected static void setupSignificantTermsAggregationDeserializer(
 			DelegatingDeserializer<SignificantTermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::backgroundFilter, Query.DESERIALIZER, "background_filter");
-		op.add(Builder::chiSquare, ChiSquareHeuristic.DESERIALIZER, "chi_square");
+		op.add(Builder::backgroundFilter, Query._DESERIALIZER, "background_filter");
+		op.add(Builder::chiSquare, ChiSquareHeuristic._DESERIALIZER, "chi_square");
 		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"exclude");
-		op.add(Builder::executionHint, TermsAggregationExecutionHint.DESERIALIZER, "execution_hint");
+		op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic.DESERIALIZER, "gnd");
+		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic._DESERIALIZER, "gnd");
 		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"include");
-		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
-		op.add(Builder::mutualInformation, MutualInformationHeuristic.DESERIALIZER, "mutual_information");
-		op.add(Builder::percentage, PercentageScoreHeuristic.DESERIALIZER, "percentage");
-		op.add(Builder::scriptHeuristic, ScriptedHeuristic.DESERIALIZER, "script_heuristic");
-		op.add(Builder::shardMinDocCount, JsonpDeserializer.numberDeserializer(), "shard_min_doc_count");
-		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
+		op.add(Builder::mutualInformation, MutualInformationHeuristic._DESERIALIZER, "mutual_information");
+		op.add(Builder::percentage, PercentageScoreHeuristic._DESERIALIZER, "percentage");
+		op.add(Builder::scriptHeuristic, ScriptedHeuristic._DESERIALIZER, "script_heuristic");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.longDeserializer(), "shard_min_doc_count");
+		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

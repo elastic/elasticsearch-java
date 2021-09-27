@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Response
+@JsonpDeserializable
 public final class TermsEnumResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
 
@@ -186,12 +188,12 @@ public final class TermsEnumResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TermsEnumResponse}
 	 */
-	public static final JsonpDeserializer<TermsEnumResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer);
+	public static final JsonpDeserializer<TermsEnumResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer, Builder::build);
 
 	protected static void setupTermsEnumResponseDeserializer(DelegatingDeserializer<TermsEnumResponse.Builder> op) {
 
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");
 		op.add(Builder::complete, JsonpDeserializer.booleanDeserializer(), "complete");
 

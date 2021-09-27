@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoAggregation
+@JsonpDeserializable
 public final class NodeInfoAggregation implements JsonpSerializable {
 	private final List<String> types;
 
@@ -130,8 +132,8 @@ public final class NodeInfoAggregation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoAggregation}
 	 */
-	public static final JsonpDeserializer<NodeInfoAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationDeserializer);
+	public static final JsonpDeserializer<NodeInfoAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoAggregation::setupNodeInfoAggregationDeserializer, Builder::build);
 
 	protected static void setupNodeInfoAggregationDeserializer(DelegatingDeserializer<NodeInfoAggregation.Builder> op) {
 

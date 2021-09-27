@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum GroupBy implements StringEnum {
 	Nodes("nodes"), Parents("parents"), None("none");
 
@@ -39,5 +41,6 @@ public enum GroupBy implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GroupBy> DESERIALIZER = new StringEnum.Deserializer<>(GroupBy.values());
+	public static final StringEnum.Deserializer<GroupBy> _DESERIALIZER = new StringEnum.Deserializer<>(
+			GroupBy.values());
 }

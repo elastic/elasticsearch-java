@@ -24,38 +24,39 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: license._types.License
+@JsonpDeserializable
 public final class License implements JsonpSerializable {
-	private final JsonValue expiryDateInMillis;
+	private final String expiryDateInMillis;
 
-	private final JsonValue issueDateInMillis;
+	private final String issueDateInMillis;
 
 	private final String issuedTo;
 
 	private final String issuer;
 
 	@Nullable
-	private final Number maxNodes;
+	private final Long maxNodes;
 
 	@Nullable
-	private final Number maxResourceUnits;
+	private final Long maxResourceUnits;
 
 	private final String signature;
 
-	private final JsonValue startDateInMillis;
+	private final String startDateInMillis;
 
 	private final LicenseType type;
 
@@ -81,14 +82,14 @@ public final class License implements JsonpSerializable {
 	/**
 	 * API name: {@code expiry_date_in_millis}
 	 */
-	public JsonValue expiryDateInMillis() {
+	public String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
 	/**
 	 * API name: {@code issue_date_in_millis}
 	 */
-	public JsonValue issueDateInMillis() {
+	public String issueDateInMillis() {
 		return this.issueDateInMillis;
 	}
 
@@ -110,7 +111,7 @@ public final class License implements JsonpSerializable {
 	 * API name: {@code max_nodes}
 	 */
 	@Nullable
-	public Number maxNodes() {
+	public Long maxNodes() {
 		return this.maxNodes;
 	}
 
@@ -118,7 +119,7 @@ public final class License implements JsonpSerializable {
 	 * API name: {@code max_resource_units}
 	 */
 	@Nullable
-	public Number maxResourceUnits() {
+	public Long maxResourceUnits() {
 		return this.maxResourceUnits;
 	}
 
@@ -132,7 +133,7 @@ public final class License implements JsonpSerializable {
 	/**
 	 * API name: {@code start_date_in_millis}
 	 */
-	public JsonValue startDateInMillis() {
+	public String startDateInMillis() {
 		return this.startDateInMillis;
 	}
 
@@ -176,13 +177,13 @@ public final class License implements JsonpSerializable {
 		if (this.maxNodes != null) {
 
 			generator.writeKey("max_nodes");
-			generator.write(this.maxNodes.doubleValue());
+			generator.write(this.maxNodes);
 
 		}
 		if (this.maxResourceUnits != null) {
 
 			generator.writeKey("max_resource_units");
-			generator.write(this.maxResourceUnits.doubleValue());
+			generator.write(this.maxResourceUnits);
 
 		}
 
@@ -206,23 +207,23 @@ public final class License implements JsonpSerializable {
 	 * Builder for {@link License}.
 	 */
 	public static class Builder implements ObjectBuilder<License> {
-		private JsonValue expiryDateInMillis;
+		private String expiryDateInMillis;
 
-		private JsonValue issueDateInMillis;
+		private String issueDateInMillis;
 
 		private String issuedTo;
 
 		private String issuer;
 
 		@Nullable
-		private Number maxNodes;
+		private Long maxNodes;
 
 		@Nullable
-		private Number maxResourceUnits;
+		private Long maxResourceUnits;
 
 		private String signature;
 
-		private JsonValue startDateInMillis;
+		private String startDateInMillis;
 
 		private LicenseType type;
 
@@ -231,7 +232,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code expiry_date_in_millis}
 		 */
-		public Builder expiryDateInMillis(JsonValue value) {
+		public Builder expiryDateInMillis(String value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -239,7 +240,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code issue_date_in_millis}
 		 */
-		public Builder issueDateInMillis(JsonValue value) {
+		public Builder issueDateInMillis(String value) {
 			this.issueDateInMillis = value;
 			return this;
 		}
@@ -263,7 +264,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code max_nodes}
 		 */
-		public Builder maxNodes(@Nullable Number value) {
+		public Builder maxNodes(@Nullable Long value) {
 			this.maxNodes = value;
 			return this;
 		}
@@ -271,7 +272,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code max_resource_units}
 		 */
-		public Builder maxResourceUnits(@Nullable Number value) {
+		public Builder maxResourceUnits(@Nullable Long value) {
 			this.maxResourceUnits = value;
 			return this;
 		}
@@ -287,7 +288,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code start_date_in_millis}
 		 */
-		public Builder startDateInMillis(JsonValue value) {
+		public Builder startDateInMillis(String value) {
 			this.startDateInMillis = value;
 			return this;
 		}
@@ -325,20 +326,20 @@ public final class License implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link License}
 	 */
-	public static final JsonpDeserializer<License> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, License::setupLicenseDeserializer);
+	public static final JsonpDeserializer<License> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			License::setupLicenseDeserializer, Builder::build);
 
 	protected static void setupLicenseDeserializer(DelegatingDeserializer<License.Builder> op) {
 
-		op.add(Builder::expiryDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiry_date_in_millis");
-		op.add(Builder::issueDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "issue_date_in_millis");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.stringDeserializer(), "expiry_date_in_millis");
+		op.add(Builder::issueDateInMillis, JsonpDeserializer.stringDeserializer(), "issue_date_in_millis");
 		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
 		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
-		op.add(Builder::maxNodes, JsonpDeserializer.numberDeserializer(), "max_nodes");
-		op.add(Builder::maxResourceUnits, JsonpDeserializer.numberDeserializer(), "max_resource_units");
+		op.add(Builder::maxNodes, JsonpDeserializer.longDeserializer(), "max_nodes");
+		op.add(Builder::maxResourceUnits, JsonpDeserializer.longDeserializer(), "max_resource_units");
 		op.add(Builder::signature, JsonpDeserializer.stringDeserializer(), "signature");
-		op.add(Builder::startDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_date_in_millis");
-		op.add(Builder::type, LicenseType.DESERIALIZER, "type");
+		op.add(Builder::startDateInMillis, JsonpDeserializer.stringDeserializer(), "start_date_in_millis");
+		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
 
 	}

@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
+@JsonpDeserializable
 public final class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
@@ -53,7 +54,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	private final Boolean force;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,7 +99,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -143,7 +144,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 		private Boolean force;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * The ID of the datafeed to stop
@@ -177,7 +178,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -199,13 +200,13 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link StopDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<StopDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<StopDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupStopDatafeedRequestDeserializer(DelegatingDeserializer<StopDatafeedRequest.Builder> op) {
 
 		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 
@@ -251,5 +252,5 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StopDatafeedResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, StopDatafeedResponse._DESERIALIZER);
 }

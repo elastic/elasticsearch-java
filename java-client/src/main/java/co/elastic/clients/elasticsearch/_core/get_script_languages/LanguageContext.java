@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.get_script_languages;
 
 import co.elastic.clients.elasticsearch._types.ScriptLanguage;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.LanguageContext
+@JsonpDeserializable
 public final class LanguageContext implements JsonpSerializable {
 	private final List<String> contexts;
 
@@ -154,14 +156,14 @@ public final class LanguageContext implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link LanguageContext}
 	 */
-	public static final JsonpDeserializer<LanguageContext> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, LanguageContext::setupLanguageContextDeserializer);
+	public static final JsonpDeserializer<LanguageContext> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LanguageContext::setupLanguageContextDeserializer, Builder::build);
 
 	protected static void setupLanguageContextDeserializer(DelegatingDeserializer<LanguageContext.Builder> op) {
 
 		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"contexts");
-		op.add(Builder::language, ScriptLanguage.DESERIALIZER, "language");
+		op.add(Builder::language, ScriptLanguage._DESERIALIZER, "language");
 
 	}
 

@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -46,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.Role
+@JsonpDeserializable
 public final class Role implements JsonpSerializable {
 	private final List<String> cluster;
 
@@ -60,7 +62,7 @@ public final class Role implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
 
 	@Nullable
-	private final List<JsonValue> roleTemplates;
+	private final List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -122,7 +124,7 @@ public final class Role implements JsonpSerializable {
 	 * API name: {@code role_templates}
 	 */
 	@Nullable
-	public List<JsonValue> roleTemplates() {
+	public List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates() {
 		return this.roleTemplates;
 	}
 
@@ -185,7 +187,7 @@ public final class Role implements JsonpSerializable {
 
 			generator.writeKey("role_templates");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.roleTemplates) {
+			for (JsonValue /* security.get_role.RoleTemplate */ item0 : this.roleTemplates) {
 				generator.write(item0);
 
 			}
@@ -214,7 +216,7 @@ public final class Role implements JsonpSerializable {
 		private List<ApplicationPrivileges> applications;
 
 		@Nullable
-		private List<JsonValue> roleTemplates;
+		private List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
 
 		/**
 		 * API name: {@code cluster}
@@ -390,7 +392,7 @@ public final class Role implements JsonpSerializable {
 		/**
 		 * API name: {@code role_templates}
 		 */
-		public Builder roleTemplates(@Nullable List<JsonValue> value) {
+		public Builder roleTemplates(@Nullable List<JsonValue /* security.get_role.RoleTemplate */> value) {
 			this.roleTemplates = value;
 			return this;
 		}
@@ -398,7 +400,7 @@ public final class Role implements JsonpSerializable {
 		/**
 		 * API name: {@code role_templates}
 		 */
-		public Builder roleTemplates(JsonValue... value) {
+		public Builder roleTemplates(JsonValue /* security.get_role.RoleTemplate */... value) {
 			this.roleTemplates = Arrays.asList(value);
 			return this;
 		}
@@ -406,7 +408,7 @@ public final class Role implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
 		 */
-		public Builder addRoleTemplates(JsonValue value) {
+		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
 			if (this.roleTemplates == null) {
 				this.roleTemplates = new ArrayList<>();
 			}
@@ -431,18 +433,18 @@ public final class Role implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Role}
 	 */
-	public static final JsonpDeserializer<Role> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Role::setupRoleDeserializer);
+	public static final JsonpDeserializer<Role> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Role::setupRoleDeserializer, Builder::build);
 
 	protected static void setupRoleDeserializer(DelegatingDeserializer<Role.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadata.DESERIALIZER, "transient_metadata");
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+		op.add(Builder::transientMetadata, TransientMetadata._DESERIALIZER, "transient_metadata");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
 		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"role_templates");

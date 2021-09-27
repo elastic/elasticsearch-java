@@ -24,64 +24,66 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSizeStats
+@JsonpDeserializable
 public final class ModelSizeStats implements JsonpSerializable {
-	private final Number bucketAllocationFailuresCount;
+	private final Long bucketAllocationFailuresCount;
 
 	private final String jobId;
 
-	private final JsonValue logTime;
+	private final String logTime;
 
 	private final MemoryStatus memoryStatus;
 
-	private final Number modelBytes;
+	private final Long modelBytes;
 
-	private final Number modelBytesExceeded;
+	private final Long modelBytesExceeded;
 
-	private final Number modelBytesMemoryLimit;
+	private final Long modelBytesMemoryLimit;
 
-	private final Number peakModelBytes;
+	private final Long peakModelBytes;
 
 	@Nullable
 	private final String assignmentMemoryBasis;
 
 	private final String resultType;
 
-	private final Number totalByFieldCount;
+	private final Long totalByFieldCount;
 
-	private final Number totalOverFieldCount;
+	private final Long totalOverFieldCount;
 
-	private final Number totalPartitionFieldCount;
+	private final Long totalPartitionFieldCount;
 
 	private final CategorizationStatus categorizationStatus;
 
-	private final Number categorizedDocCount;
+	private final Integer categorizedDocCount;
 
-	private final Number deadCategoryCount;
+	private final Integer deadCategoryCount;
 
-	private final Number failedCategoryCount;
+	private final Integer failedCategoryCount;
 
-	private final Number frequentCategoryCount;
+	private final Integer frequentCategoryCount;
 
-	private final Number rareCategoryCount;
+	private final Integer rareCategoryCount;
 
-	private final Number totalCategoryCount;
+	private final Integer totalCategoryCount;
 
 	@Nullable
-	private final Number timestamp;
+	private final Long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -116,7 +118,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code bucket_allocation_failures_count}
 	 */
-	public Number bucketAllocationFailuresCount() {
+	public Long bucketAllocationFailuresCount() {
 		return this.bucketAllocationFailuresCount;
 	}
 
@@ -130,7 +132,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code log_time}
 	 */
-	public JsonValue logTime() {
+	public String logTime() {
 		return this.logTime;
 	}
 
@@ -144,28 +146,28 @@ public final class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code model_bytes}
 	 */
-	public Number modelBytes() {
+	public Long modelBytes() {
 		return this.modelBytes;
 	}
 
 	/**
 	 * API name: {@code model_bytes_exceeded}
 	 */
-	public Number modelBytesExceeded() {
+	public Long modelBytesExceeded() {
 		return this.modelBytesExceeded;
 	}
 
 	/**
 	 * API name: {@code model_bytes_memory_limit}
 	 */
-	public Number modelBytesMemoryLimit() {
+	public Long modelBytesMemoryLimit() {
 		return this.modelBytesMemoryLimit;
 	}
 
 	/**
 	 * API name: {@code peak_model_bytes}
 	 */
-	public Number peakModelBytes() {
+	public Long peakModelBytes() {
 		return this.peakModelBytes;
 	}
 
@@ -187,21 +189,21 @@ public final class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_by_field_count}
 	 */
-	public Number totalByFieldCount() {
+	public Long totalByFieldCount() {
 		return this.totalByFieldCount;
 	}
 
 	/**
 	 * API name: {@code total_over_field_count}
 	 */
-	public Number totalOverFieldCount() {
+	public Long totalOverFieldCount() {
 		return this.totalOverFieldCount;
 	}
 
 	/**
 	 * API name: {@code total_partition_field_count}
 	 */
-	public Number totalPartitionFieldCount() {
+	public Long totalPartitionFieldCount() {
 		return this.totalPartitionFieldCount;
 	}
 
@@ -215,42 +217,42 @@ public final class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code categorized_doc_count}
 	 */
-	public Number categorizedDocCount() {
+	public Integer categorizedDocCount() {
 		return this.categorizedDocCount;
 	}
 
 	/**
 	 * API name: {@code dead_category_count}
 	 */
-	public Number deadCategoryCount() {
+	public Integer deadCategoryCount() {
 		return this.deadCategoryCount;
 	}
 
 	/**
 	 * API name: {@code failed_category_count}
 	 */
-	public Number failedCategoryCount() {
+	public Integer failedCategoryCount() {
 		return this.failedCategoryCount;
 	}
 
 	/**
 	 * API name: {@code frequent_category_count}
 	 */
-	public Number frequentCategoryCount() {
+	public Integer frequentCategoryCount() {
 		return this.frequentCategoryCount;
 	}
 
 	/**
 	 * API name: {@code rare_category_count}
 	 */
-	public Number rareCategoryCount() {
+	public Integer rareCategoryCount() {
 		return this.rareCategoryCount;
 	}
 
 	/**
 	 * API name: {@code total_category_count}
 	 */
-	public Number totalCategoryCount() {
+	public Integer totalCategoryCount() {
 		return this.totalCategoryCount;
 	}
 
@@ -258,7 +260,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -274,7 +276,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_allocation_failures_count");
-		generator.write(this.bucketAllocationFailuresCount.doubleValue());
+		generator.write(this.bucketAllocationFailuresCount);
 
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
@@ -286,16 +288,16 @@ public final class ModelSizeStats implements JsonpSerializable {
 		this.memoryStatus.serialize(generator, mapper);
 
 		generator.writeKey("model_bytes");
-		generator.write(this.modelBytes.doubleValue());
+		generator.write(this.modelBytes);
 
 		generator.writeKey("model_bytes_exceeded");
-		generator.write(this.modelBytesExceeded.doubleValue());
+		generator.write(this.modelBytesExceeded);
 
 		generator.writeKey("model_bytes_memory_limit");
-		generator.write(this.modelBytesMemoryLimit.doubleValue());
+		generator.write(this.modelBytesMemoryLimit);
 
 		generator.writeKey("peak_model_bytes");
-		generator.write(this.peakModelBytes.doubleValue());
+		generator.write(this.peakModelBytes);
 
 		if (this.assignmentMemoryBasis != null) {
 
@@ -308,39 +310,39 @@ public final class ModelSizeStats implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("total_by_field_count");
-		generator.write(this.totalByFieldCount.doubleValue());
+		generator.write(this.totalByFieldCount);
 
 		generator.writeKey("total_over_field_count");
-		generator.write(this.totalOverFieldCount.doubleValue());
+		generator.write(this.totalOverFieldCount);
 
 		generator.writeKey("total_partition_field_count");
-		generator.write(this.totalPartitionFieldCount.doubleValue());
+		generator.write(this.totalPartitionFieldCount);
 
 		generator.writeKey("categorization_status");
 		this.categorizationStatus.serialize(generator, mapper);
 
 		generator.writeKey("categorized_doc_count");
-		generator.write(this.categorizedDocCount.doubleValue());
+		generator.write(this.categorizedDocCount);
 
 		generator.writeKey("dead_category_count");
-		generator.write(this.deadCategoryCount.doubleValue());
+		generator.write(this.deadCategoryCount);
 
 		generator.writeKey("failed_category_count");
-		generator.write(this.failedCategoryCount.doubleValue());
+		generator.write(this.failedCategoryCount);
 
 		generator.writeKey("frequent_category_count");
-		generator.write(this.frequentCategoryCount.doubleValue());
+		generator.write(this.frequentCategoryCount);
 
 		generator.writeKey("rare_category_count");
-		generator.write(this.rareCategoryCount.doubleValue());
+		generator.write(this.rareCategoryCount);
 
 		generator.writeKey("total_category_count");
-		generator.write(this.totalCategoryCount.doubleValue());
+		generator.write(this.totalCategoryCount);
 
 		if (this.timestamp != null) {
 
 			generator.writeKey("timestamp");
-			generator.write(this.timestamp.doubleValue());
+			generator.write(this.timestamp);
 
 		}
 
@@ -352,54 +354,54 @@ public final class ModelSizeStats implements JsonpSerializable {
 	 * Builder for {@link ModelSizeStats}.
 	 */
 	public static class Builder implements ObjectBuilder<ModelSizeStats> {
-		private Number bucketAllocationFailuresCount;
+		private Long bucketAllocationFailuresCount;
 
 		private String jobId;
 
-		private JsonValue logTime;
+		private String logTime;
 
 		private MemoryStatus memoryStatus;
 
-		private Number modelBytes;
+		private Long modelBytes;
 
-		private Number modelBytesExceeded;
+		private Long modelBytesExceeded;
 
-		private Number modelBytesMemoryLimit;
+		private Long modelBytesMemoryLimit;
 
-		private Number peakModelBytes;
+		private Long peakModelBytes;
 
 		@Nullable
 		private String assignmentMemoryBasis;
 
 		private String resultType;
 
-		private Number totalByFieldCount;
+		private Long totalByFieldCount;
 
-		private Number totalOverFieldCount;
+		private Long totalOverFieldCount;
 
-		private Number totalPartitionFieldCount;
+		private Long totalPartitionFieldCount;
 
 		private CategorizationStatus categorizationStatus;
 
-		private Number categorizedDocCount;
+		private Integer categorizedDocCount;
 
-		private Number deadCategoryCount;
+		private Integer deadCategoryCount;
 
-		private Number failedCategoryCount;
+		private Integer failedCategoryCount;
 
-		private Number frequentCategoryCount;
+		private Integer frequentCategoryCount;
 
-		private Number rareCategoryCount;
+		private Integer rareCategoryCount;
 
-		private Number totalCategoryCount;
+		private Integer totalCategoryCount;
 
 		@Nullable
-		private Number timestamp;
+		private Long timestamp;
 
 		/**
 		 * API name: {@code bucket_allocation_failures_count}
 		 */
-		public Builder bucketAllocationFailuresCount(Number value) {
+		public Builder bucketAllocationFailuresCount(Long value) {
 			this.bucketAllocationFailuresCount = value;
 			return this;
 		}
@@ -415,7 +417,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code log_time}
 		 */
-		public Builder logTime(JsonValue value) {
+		public Builder logTime(String value) {
 			this.logTime = value;
 			return this;
 		}
@@ -431,7 +433,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code model_bytes}
 		 */
-		public Builder modelBytes(Number value) {
+		public Builder modelBytes(Long value) {
 			this.modelBytes = value;
 			return this;
 		}
@@ -439,7 +441,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code model_bytes_exceeded}
 		 */
-		public Builder modelBytesExceeded(Number value) {
+		public Builder modelBytesExceeded(Long value) {
 			this.modelBytesExceeded = value;
 			return this;
 		}
@@ -447,7 +449,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code model_bytes_memory_limit}
 		 */
-		public Builder modelBytesMemoryLimit(Number value) {
+		public Builder modelBytesMemoryLimit(Long value) {
 			this.modelBytesMemoryLimit = value;
 			return this;
 		}
@@ -455,7 +457,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code peak_model_bytes}
 		 */
-		public Builder peakModelBytes(Number value) {
+		public Builder peakModelBytes(Long value) {
 			this.peakModelBytes = value;
 			return this;
 		}
@@ -479,7 +481,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_by_field_count}
 		 */
-		public Builder totalByFieldCount(Number value) {
+		public Builder totalByFieldCount(Long value) {
 			this.totalByFieldCount = value;
 			return this;
 		}
@@ -487,7 +489,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_over_field_count}
 		 */
-		public Builder totalOverFieldCount(Number value) {
+		public Builder totalOverFieldCount(Long value) {
 			this.totalOverFieldCount = value;
 			return this;
 		}
@@ -495,7 +497,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_partition_field_count}
 		 */
-		public Builder totalPartitionFieldCount(Number value) {
+		public Builder totalPartitionFieldCount(Long value) {
 			this.totalPartitionFieldCount = value;
 			return this;
 		}
@@ -511,7 +513,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code categorized_doc_count}
 		 */
-		public Builder categorizedDocCount(Number value) {
+		public Builder categorizedDocCount(Integer value) {
 			this.categorizedDocCount = value;
 			return this;
 		}
@@ -519,7 +521,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code dead_category_count}
 		 */
-		public Builder deadCategoryCount(Number value) {
+		public Builder deadCategoryCount(Integer value) {
 			this.deadCategoryCount = value;
 			return this;
 		}
@@ -527,7 +529,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code failed_category_count}
 		 */
-		public Builder failedCategoryCount(Number value) {
+		public Builder failedCategoryCount(Integer value) {
 			this.failedCategoryCount = value;
 			return this;
 		}
@@ -535,7 +537,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code frequent_category_count}
 		 */
-		public Builder frequentCategoryCount(Number value) {
+		public Builder frequentCategoryCount(Integer value) {
 			this.frequentCategoryCount = value;
 			return this;
 		}
@@ -543,7 +545,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code rare_category_count}
 		 */
-		public Builder rareCategoryCount(Number value) {
+		public Builder rareCategoryCount(Integer value) {
 			this.rareCategoryCount = value;
 			return this;
 		}
@@ -551,7 +553,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_category_count}
 		 */
-		public Builder totalCategoryCount(Number value) {
+		public Builder totalCategoryCount(Integer value) {
 			this.totalCategoryCount = value;
 			return this;
 		}
@@ -559,7 +561,7 @@ public final class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(@Nullable Number value) {
+		public Builder timestamp(@Nullable Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -581,34 +583,33 @@ public final class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ModelSizeStats}
 	 */
-	public static final JsonpDeserializer<ModelSizeStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ModelSizeStats::setupModelSizeStatsDeserializer);
+	public static final JsonpDeserializer<ModelSizeStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ModelSizeStats::setupModelSizeStatsDeserializer, Builder::build);
 
 	protected static void setupModelSizeStatsDeserializer(DelegatingDeserializer<ModelSizeStats.Builder> op) {
 
-		op.add(Builder::bucketAllocationFailuresCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::bucketAllocationFailuresCount, JsonpDeserializer.longDeserializer(),
 				"bucket_allocation_failures_count");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::logTime, JsonpDeserializer.jsonValueDeserializer(), "log_time");
-		op.add(Builder::memoryStatus, MemoryStatus.DESERIALIZER, "memory_status");
-		op.add(Builder::modelBytes, JsonpDeserializer.numberDeserializer(), "model_bytes");
-		op.add(Builder::modelBytesExceeded, JsonpDeserializer.numberDeserializer(), "model_bytes_exceeded");
-		op.add(Builder::modelBytesMemoryLimit, JsonpDeserializer.numberDeserializer(), "model_bytes_memory_limit");
-		op.add(Builder::peakModelBytes, JsonpDeserializer.numberDeserializer(), "peak_model_bytes");
+		op.add(Builder::logTime, JsonpDeserializer.stringDeserializer(), "log_time");
+		op.add(Builder::memoryStatus, MemoryStatus._DESERIALIZER, "memory_status");
+		op.add(Builder::modelBytes, JsonpDeserializer.longDeserializer(), "model_bytes");
+		op.add(Builder::modelBytesExceeded, JsonpDeserializer.longDeserializer(), "model_bytes_exceeded");
+		op.add(Builder::modelBytesMemoryLimit, JsonpDeserializer.longDeserializer(), "model_bytes_memory_limit");
+		op.add(Builder::peakModelBytes, JsonpDeserializer.longDeserializer(), "peak_model_bytes");
 		op.add(Builder::assignmentMemoryBasis, JsonpDeserializer.stringDeserializer(), "assignment_memory_basis");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::totalByFieldCount, JsonpDeserializer.numberDeserializer(), "total_by_field_count");
-		op.add(Builder::totalOverFieldCount, JsonpDeserializer.numberDeserializer(), "total_over_field_count");
-		op.add(Builder::totalPartitionFieldCount, JsonpDeserializer.numberDeserializer(),
-				"total_partition_field_count");
-		op.add(Builder::categorizationStatus, CategorizationStatus.DESERIALIZER, "categorization_status");
-		op.add(Builder::categorizedDocCount, JsonpDeserializer.numberDeserializer(), "categorized_doc_count");
-		op.add(Builder::deadCategoryCount, JsonpDeserializer.numberDeserializer(), "dead_category_count");
-		op.add(Builder::failedCategoryCount, JsonpDeserializer.numberDeserializer(), "failed_category_count");
-		op.add(Builder::frequentCategoryCount, JsonpDeserializer.numberDeserializer(), "frequent_category_count");
-		op.add(Builder::rareCategoryCount, JsonpDeserializer.numberDeserializer(), "rare_category_count");
-		op.add(Builder::totalCategoryCount, JsonpDeserializer.numberDeserializer(), "total_category_count");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::totalByFieldCount, JsonpDeserializer.longDeserializer(), "total_by_field_count");
+		op.add(Builder::totalOverFieldCount, JsonpDeserializer.longDeserializer(), "total_over_field_count");
+		op.add(Builder::totalPartitionFieldCount, JsonpDeserializer.longDeserializer(), "total_partition_field_count");
+		op.add(Builder::categorizationStatus, CategorizationStatus._DESERIALIZER, "categorization_status");
+		op.add(Builder::categorizedDocCount, JsonpDeserializer.integerDeserializer(), "categorized_doc_count");
+		op.add(Builder::deadCategoryCount, JsonpDeserializer.integerDeserializer(), "dead_category_count");
+		op.add(Builder::failedCategoryCount, JsonpDeserializer.integerDeserializer(), "failed_category_count");
+		op.add(Builder::frequentCategoryCount, JsonpDeserializer.integerDeserializer(), "frequent_category_count");
+		op.add(Builder::rareCategoryCount, JsonpDeserializer.integerDeserializer(), "rare_category_count");
+		op.add(Builder::totalCategoryCount, JsonpDeserializer.integerDeserializer(), "total_category_count");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

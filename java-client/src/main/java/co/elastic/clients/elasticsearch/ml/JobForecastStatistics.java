@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -39,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobForecastStatistics
+@JsonpDeserializable
 public final class JobForecastStatistics implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics memoryBytes;
@@ -50,11 +53,11 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	private final JobStatistics records;
 
 	@Nullable
-	private final Map<String, Number> status;
+	private final Map<String, Long> status;
 
-	private final Number total;
+	private final Long total;
 
-	private final Number forecastedJobs;
+	private final Integer forecastedJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -97,21 +100,21 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public Map<String, Number> status() {
+	public Map<String, Long> status() {
 		return this.status;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code forecasted_jobs}
 	 */
-	public Number forecastedJobs() {
+	public Integer forecastedJobs() {
 		return this.forecastedJobs;
 	}
 
@@ -148,9 +151,9 @@ public final class JobForecastStatistics implements JsonpSerializable {
 
 			generator.writeKey("status");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.status.entrySet()) {
+			for (Map.Entry<String, Long> item0 : this.status.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -158,10 +161,10 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		}
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("forecasted_jobs");
-		generator.write(this.forecastedJobs.doubleValue());
+		generator.write(this.forecastedJobs);
 
 	}
 
@@ -181,11 +184,11 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		private JobStatistics records;
 
 		@Nullable
-		private Map<String, Number> status;
+		private Map<String, Long> status;
 
-		private Number total;
+		private Long total;
 
-		private Number forecastedJobs;
+		private Integer forecastedJobs;
 
 		/**
 		 * API name: {@code memory_bytes}
@@ -235,7 +238,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable Map<String, Number> value) {
+		public Builder status(@Nullable Map<String, Long> value) {
 			this.status = value;
 			return this;
 		}
@@ -243,7 +246,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #status(Map)}, creating the map if needed.
 		 */
-		public Builder putStatus(String key, Number value) {
+		public Builder putStatus(String key, Long value) {
 			if (this.status == null) {
 				this.status = new HashMap<>();
 			}
@@ -254,7 +257,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -262,7 +265,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code forecasted_jobs}
 		 */
-		public Builder forecastedJobs(Number value) {
+		public Builder forecastedJobs(Integer value) {
 			this.forecastedJobs = value;
 			return this;
 		}
@@ -284,19 +287,19 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link JobForecastStatistics}
 	 */
-	public static final JsonpDeserializer<JobForecastStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer);
+	public static final JsonpDeserializer<JobForecastStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer, Builder::build);
 
 	protected static void setupJobForecastStatisticsDeserializer(
 			DelegatingDeserializer<JobForecastStatistics.Builder> op) {
 
-		op.add(Builder::memoryBytes, JobStatistics.DESERIALIZER, "memory_bytes");
-		op.add(Builder::processingTimeMs, JobStatistics.DESERIALIZER, "processing_time_ms");
-		op.add(Builder::records, JobStatistics.DESERIALIZER, "records");
-		op.add(Builder::status, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::memoryBytes, JobStatistics._DESERIALIZER, "memory_bytes");
+		op.add(Builder::processingTimeMs, JobStatistics._DESERIALIZER, "processing_time_ms");
+		op.add(Builder::records, JobStatistics._DESERIALIZER, "records");
+		op.add(Builder::status, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
 				"status");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::forecastedJobs, JsonpDeserializer.numberDeserializer(), "forecasted_jobs");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::forecastedJobs, JsonpDeserializer.integerDeserializer(), "forecasted_jobs");
 
 	}
 

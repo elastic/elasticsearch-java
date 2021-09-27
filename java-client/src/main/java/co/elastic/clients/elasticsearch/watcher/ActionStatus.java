@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionStatus
+@JsonpDeserializable
 public final class ActionStatus implements JsonpSerializable {
 	private final AcknowledgeState ack;
 
@@ -219,15 +221,15 @@ public final class ActionStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ActionStatus}
 	 */
-	public static final JsonpDeserializer<ActionStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ActionStatus::setupActionStatusDeserializer);
+	public static final JsonpDeserializer<ActionStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ActionStatus::setupActionStatusDeserializer, Builder::build);
 
 	protected static void setupActionStatusDeserializer(DelegatingDeserializer<ActionStatus.Builder> op) {
 
-		op.add(Builder::ack, AcknowledgeState.DESERIALIZER, "ack");
-		op.add(Builder::lastExecution, ExecutionState.DESERIALIZER, "last_execution");
-		op.add(Builder::lastSuccessfulExecution, ExecutionState.DESERIALIZER, "last_successful_execution");
-		op.add(Builder::lastThrottle, ThrottleState.DESERIALIZER, "last_throttle");
+		op.add(Builder::ack, AcknowledgeState._DESERIALIZER, "ack");
+		op.add(Builder::lastExecution, ExecutionState._DESERIALIZER, "last_execution");
+		op.add(Builder::lastSuccessfulExecution, ExecutionState._DESERIALIZER, "last_successful_execution");
+		op.add(Builder::lastThrottle, ThrottleState._DESERIALIZER, "last_throttle");
 
 	}
 

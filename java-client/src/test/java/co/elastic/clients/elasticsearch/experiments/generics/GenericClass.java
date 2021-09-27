@@ -27,13 +27,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 
 import jakarta.json.stream.JsonGenerator;
 import java.util.function.Supplier;
 
-public class GenericClass<GenParam> implements ToJsonp {
+public class GenericClass<GenParam> implements JsonpSerializable {
 
     // Serializers for generic parameters
     private final JsonpSerializer<GenParam> genParamSerializer;
@@ -51,7 +51,7 @@ public class GenericClass<GenParam> implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         generator.writeKey("genParam");
         JsonpUtils.serialize(genParam, generator, genParamSerializer, mapper);

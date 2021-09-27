@@ -23,136 +23,175 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregationSource
-public interface CompositeAggregationSource extends JsonpSerializable {
+@JsonpDeserializable
+public class CompositeAggregationSource implements TaggedUnion<Object>, JsonpSerializable {
 
-	String TERMS = "terms";
-	String HISTOGRAM = "histogram";
-	String DATE_HISTOGRAM = "date_histogram";
-	String GEOTILE_GRID = "geotile_grid";
+	public static final String TERMS = "terms";
+	public static final String HISTOGRAM = "histogram";
+	public static final String DATE_HISTOGRAM = "date_histogram";
+	public static final String GEOTILE_GRID = "geotile_grid";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public CompositeAggregationSource(CompositeAggregationSourceVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private CompositeAggregationSource(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code CompositeAggregationSource}.
+	 * Get the {@code terms} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code terms} kind.
 	 */
-	String _type();
+	public TermsAggregation terms() {
+		return TaggedUnionUtils.get(this, TERMS);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code terms}
-		 */
-		public ObjectBuilder<CompositeAggregationSource> terms(TermsAggregation value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code histogram} kind.
+	 */
+	public HistogramAggregation histogram() {
+		return TaggedUnionUtils.get(this, HISTOGRAM);
+	}
+
+	/**
+	 * Get the {@code date_histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date_histogram} kind.
+	 */
+	public DateHistogramAggregation dateHistogram() {
+		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
+	}
+
+	/**
+	 * Get the {@code geotile_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geotile_grid} kind.
+	 */
+	public GeoTileGridAggregation geotileGrid() {
+		return TaggedUnionUtils.get(this, GEOTILE_GRID);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code terms}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<CompositeAggregationSource> terms(TermsAggregation v) {
+			this._type = TERMS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<CompositeAggregationSource> terms(
-				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
-			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
+				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
+			return this.terms(f.apply(new TermsAggregation.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code histogram}
-		 */
-		public ObjectBuilder<CompositeAggregationSource> histogram(HistogramAggregation value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<CompositeAggregationSource> histogram(HistogramAggregation v) {
+			this._type = HISTOGRAM;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code histogram}
-		 */
 		public ObjectBuilder<CompositeAggregationSource> histogram(
-				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
-			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
+				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
+			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code date_histogram}
-		 */
-		public ObjectBuilder<CompositeAggregationSource> dateHistogram(DateHistogramAggregation value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<CompositeAggregationSource> dateHistogram(DateHistogramAggregation v) {
+			this._type = DATE_HISTOGRAM;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code date_histogram}
-		 */
 		public ObjectBuilder<CompositeAggregationSource> dateHistogram(
-				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
-			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
+			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code geotile_grid}
-		 */
-		public ObjectBuilder<CompositeAggregationSource> geotileGrid(GeoTileGridAggregation value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<CompositeAggregationSource> geotileGrid(GeoTileGridAggregation v) {
+			this._type = GEOTILE_GRID;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code geotile_grid}
-		 */
 		public ObjectBuilder<CompositeAggregationSource> geotileGrid(
-				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
-			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
+			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
+		}
+
+		protected CompositeAggregationSource build() {
+			return new CompositeAggregationSource(this);
 		}
 
 	}
 
-	class $Helper {
-		private static CompositeAggregationSource deserialize(JsonParser parser, JsonpMapper mapper,
-				JsonParser.Event event) {
+	protected static void setupCompositeAggregationSourceDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends CompositeAggregationSource> builder = null;
-			String variant = null;
+		op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
+		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
+		op.add(Builder::dateHistogram, DateHistogramAggregation._DESERIALIZER, "date_histogram");
+		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case TERMS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TermsAggregation.$BUILDER_DESERIALIZER.deserialize(new TermsAggregation.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case HISTOGRAM : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = HistogramAggregation.$BUILDER_DESERIALIZER
-								.deserialize(new HistogramAggregation.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case DATE_HISTOGRAM : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DateHistogramAggregation.$BUILDER_DESERIALIZER
-								.deserialize(new DateHistogramAggregation.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case GEOTILE_GRID : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = GeoTileGridAggregation.$BUILDER_DESERIALIZER
-								.deserialize(new GeoTileGridAggregation.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<CompositeAggregationSource> DESERIALIZER = JsonpDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT), $Helper::deserialize);
+	public static final JsonpDeserializer<CompositeAggregationSource> _DESERIALIZER = JsonpDeserializer.lazy(
+			Builder::new, CompositeAggregationSource::setupCompositeAggregationSourceDeserializer, Builder::build);
 }

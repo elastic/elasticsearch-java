@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influence
+@JsonpDeserializable
 public final class Influence implements JsonpSerializable {
 	private final String influencerFieldName;
 
@@ -154,8 +156,8 @@ public final class Influence implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Influence}
 	 */
-	public static final JsonpDeserializer<Influence> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Influence::setupInfluenceDeserializer);
+	public static final JsonpDeserializer<Influence> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Influence::setupInfluenceDeserializer, Builder::build);
 
 	protected static void setupInfluenceDeserializer(DelegatingDeserializer<Influence.Builder> op) {
 

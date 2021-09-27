@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,15 +42,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Response
+@JsonpDeserializable
 public final class InvalidateTokenResponse implements JsonpSerializable {
-	private final Number errorCount;
+	private final Long errorCount;
 
 	@Nullable
 	private final List<ErrorCause> errorDetails;
 
-	private final Number invalidatedTokens;
+	private final Long invalidatedTokens;
 
-	private final Number previouslyInvalidatedTokens;
+	private final Long previouslyInvalidatedTokens;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +68,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code error_count}
 	 */
-	public Number errorCount() {
+	public Long errorCount() {
 		return this.errorCount;
 	}
 
@@ -81,14 +83,14 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code invalidated_tokens}
 	 */
-	public Number invalidatedTokens() {
+	public Long invalidatedTokens() {
 		return this.invalidatedTokens;
 	}
 
 	/**
 	 * API name: {@code previously_invalidated_tokens}
 	 */
-	public Number previouslyInvalidatedTokens() {
+	public Long previouslyInvalidatedTokens() {
 		return this.previouslyInvalidatedTokens;
 	}
 
@@ -104,7 +106,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("error_count");
-		generator.write(this.errorCount.doubleValue());
+		generator.write(this.errorCount);
 
 		if (this.errorDetails != null) {
 
@@ -119,10 +121,10 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("invalidated_tokens");
-		generator.write(this.invalidatedTokens.doubleValue());
+		generator.write(this.invalidatedTokens);
 
 		generator.writeKey("previously_invalidated_tokens");
-		generator.write(this.previouslyInvalidatedTokens.doubleValue());
+		generator.write(this.previouslyInvalidatedTokens);
 
 	}
 
@@ -132,19 +134,19 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	 * Builder for {@link InvalidateTokenResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<InvalidateTokenResponse> {
-		private Number errorCount;
+		private Long errorCount;
 
 		@Nullable
 		private List<ErrorCause> errorDetails;
 
-		private Number invalidatedTokens;
+		private Long invalidatedTokens;
 
-		private Number previouslyInvalidatedTokens;
+		private Long previouslyInvalidatedTokens;
 
 		/**
 		 * API name: {@code error_count}
 		 */
-		public Builder errorCount(Number value) {
+		public Builder errorCount(Long value) {
 			this.errorCount = value;
 			return this;
 		}
@@ -193,7 +195,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code invalidated_tokens}
 		 */
-		public Builder invalidatedTokens(Number value) {
+		public Builder invalidatedTokens(Long value) {
 			this.invalidatedTokens = value;
 			return this;
 		}
@@ -201,7 +203,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code previously_invalidated_tokens}
 		 */
-		public Builder previouslyInvalidatedTokens(Number value) {
+		public Builder previouslyInvalidatedTokens(Long value) {
 			this.previouslyInvalidatedTokens = value;
 			return this;
 		}
@@ -223,16 +225,16 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InvalidateTokenResponse}
 	 */
-	public static final JsonpDeserializer<InvalidateTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer);
+	public static final JsonpDeserializer<InvalidateTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer, Builder::build);
 
 	protected static void setupInvalidateTokenResponseDeserializer(
 			DelegatingDeserializer<InvalidateTokenResponse.Builder> op) {
 
-		op.add(Builder::errorCount, JsonpDeserializer.numberDeserializer(), "error_count");
-		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "error_details");
-		op.add(Builder::invalidatedTokens, JsonpDeserializer.numberDeserializer(), "invalidated_tokens");
-		op.add(Builder::previouslyInvalidatedTokens, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::errorCount, JsonpDeserializer.longDeserializer(), "error_count");
+		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "error_details");
+		op.add(Builder::invalidatedTokens, JsonpDeserializer.longDeserializer(), "invalidated_tokens");
+		op.add(Builder::previouslyInvalidatedTokens, JsonpDeserializer.longDeserializer(),
 				"previously_invalidated_tokens");
 
 	}

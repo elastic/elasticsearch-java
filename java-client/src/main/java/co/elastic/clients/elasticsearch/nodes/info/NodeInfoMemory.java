@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoMemory
+@JsonpDeserializable
 public final class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
 
-	private final Number totalInBytes;
+	private final Long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public Long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -80,7 +82,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		generator.write(this.total);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 	}
 
@@ -92,7 +94,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<NodeInfoMemory> {
 		private String total;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		/**
 		 * API name: {@code total}
@@ -105,7 +107,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(Long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -127,13 +129,13 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoMemory}
 	 */
-	public static final JsonpDeserializer<NodeInfoMemory> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoMemory::setupNodeInfoMemoryDeserializer);
+	public static final JsonpDeserializer<NodeInfoMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoMemory::setupNodeInfoMemoryDeserializer, Builder::build);
 
 	protected static void setupNodeInfoMemoryDeserializer(DelegatingDeserializer<NodeInfoMemory.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
 	}
 

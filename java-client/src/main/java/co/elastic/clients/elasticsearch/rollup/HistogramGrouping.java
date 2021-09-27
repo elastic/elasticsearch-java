@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,10 +41,11 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.HistogramGrouping
+@JsonpDeserializable
 public final class HistogramGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
-	private final Number interval;
+	private final Long interval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 	/**
 	 * API name: {@code interval}
 	 */
-	public Number interval() {
+	public Long interval() {
 		return this.interval;
 	}
 
@@ -88,7 +90,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("interval");
-		generator.write(this.interval.doubleValue());
+		generator.write(this.interval);
 
 	}
 
@@ -100,7 +102,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<HistogramGrouping> {
 		private List<String> fields;
 
-		private Number interval;
+		private Long interval;
 
 		/**
 		 * API name: {@code fields}
@@ -132,7 +134,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		/**
 		 * API name: {@code interval}
 		 */
-		public Builder interval(Number value) {
+		public Builder interval(Long value) {
 			this.interval = value;
 			return this;
 		}
@@ -154,13 +156,13 @@ public final class HistogramGrouping implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HistogramGrouping}
 	 */
-	public static final JsonpDeserializer<HistogramGrouping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HistogramGrouping::setupHistogramGroupingDeserializer);
+	public static final JsonpDeserializer<HistogramGrouping> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HistogramGrouping::setupHistogramGroupingDeserializer, Builder::build);
 
 	protected static void setupHistogramGroupingDeserializer(DelegatingDeserializer<HistogramGrouping.Builder> op) {
 
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::interval, JsonpDeserializer.numberDeserializer(), "interval");
+		op.add(Builder::interval, JsonpDeserializer.longDeserializer(), "interval");
 
 	}
 

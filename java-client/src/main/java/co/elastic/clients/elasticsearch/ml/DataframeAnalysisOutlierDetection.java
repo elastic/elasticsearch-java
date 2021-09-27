@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,27 +33,29 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisOutlierDetection
-public final class DataframeAnalysisOutlierDetection implements DataframeAnalysis, JsonpSerializable {
+@JsonpDeserializable
+public final class DataframeAnalysisOutlierDetection implements DataframeAnalysisVariant, JsonpSerializable {
 	@Nullable
 	private final Boolean computeFeatureInfluence;
 
 	@Nullable
-	private final Number featureInfluenceThreshold;
+	private final Double featureInfluenceThreshold;
 
 	@Nullable
 	private final String method;
 
 	@Nullable
-	private final Number nNeighbors;
+	private final Integer nNeighbors;
 
 	@Nullable
-	private final Number outlierFraction;
+	private final Double outlierFraction;
 
 	@Nullable
 	private final Boolean standardizationEnabled;
@@ -75,7 +77,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * {@link DataframeAnalysis} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "outlier_detection";
 	}
 
@@ -96,7 +98,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code feature_influence_threshold}
 	 */
 	@Nullable
-	public Number featureInfluenceThreshold() {
+	public Double featureInfluenceThreshold() {
 		return this.featureInfluenceThreshold;
 	}
 
@@ -125,7 +127,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code n_neighbors}
 	 */
 	@Nullable
-	public Number nNeighbors() {
+	public Integer nNeighbors() {
 		return this.nNeighbors;
 	}
 
@@ -137,7 +139,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	 * API name: {@code outlier_fraction}
 	 */
 	@Nullable
-	public Number outlierFraction() {
+	public Double outlierFraction() {
 		return this.outlierFraction;
 	}
 
@@ -162,7 +164,6 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		if (this.computeFeatureInfluence != null) {
 
@@ -173,7 +174,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		if (this.featureInfluenceThreshold != null) {
 
 			generator.writeKey("feature_influence_threshold");
-			generator.write(this.featureInfluenceThreshold.doubleValue());
+			generator.write(this.featureInfluenceThreshold);
 
 		}
 		if (this.method != null) {
@@ -185,13 +186,13 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		if (this.nNeighbors != null) {
 
 			generator.writeKey("n_neighbors");
-			generator.write(this.nNeighbors.doubleValue());
+			generator.write(this.nNeighbors);
 
 		}
 		if (this.outlierFraction != null) {
 
 			generator.writeKey("outlier_fraction");
-			generator.write(this.outlierFraction.doubleValue());
+			generator.write(this.outlierFraction);
 
 		}
 		if (this.standardizationEnabled != null) {
@@ -200,8 +201,6 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 			generator.write(this.standardizationEnabled);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -215,16 +214,16 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		private Boolean computeFeatureInfluence;
 
 		@Nullable
-		private Number featureInfluenceThreshold;
+		private Double featureInfluenceThreshold;
 
 		@Nullable
 		private String method;
 
 		@Nullable
-		private Number nNeighbors;
+		private Integer nNeighbors;
 
 		@Nullable
-		private Number outlierFraction;
+		private Double outlierFraction;
 
 		@Nullable
 		private Boolean standardizationEnabled;
@@ -245,7 +244,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code feature_influence_threshold}
 		 */
-		public Builder featureInfluenceThreshold(@Nullable Number value) {
+		public Builder featureInfluenceThreshold(@Nullable Double value) {
 			this.featureInfluenceThreshold = value;
 			return this;
 		}
@@ -274,7 +273,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code n_neighbors}
 		 */
-		public Builder nNeighbors(@Nullable Number value) {
+		public Builder nNeighbors(@Nullable Integer value) {
 			this.nNeighbors = value;
 			return this;
 		}
@@ -286,7 +285,7 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 		 * <p>
 		 * API name: {@code outlier_fraction}
 		 */
-		public Builder outlierFraction(@Nullable Number value) {
+		public Builder outlierFraction(@Nullable Double value) {
 			this.outlierFraction = value;
 			return this;
 		}
@@ -316,19 +315,22 @@ public final class DataframeAnalysisOutlierDetection implements DataframeAnalysi
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisOutlierDetection.Builder, DataframeAnalysisOutlierDetection.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(DataframeAnalysisOutlierDetection::setupDataframeAnalysisOutlierDetectionDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeAnalysisOutlierDetection}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisOutlierDetection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalysisOutlierDetection::setupDataframeAnalysisOutlierDetectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeAnalysisOutlierDetection.Builder> op) {
 
 		op.add(Builder::computeFeatureInfluence, JsonpDeserializer.booleanDeserializer(), "compute_feature_influence");
-		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::featureInfluenceThreshold, JsonpDeserializer.doubleDeserializer(),
 				"feature_influence_threshold");
 		op.add(Builder::method, JsonpDeserializer.stringDeserializer(), "method");
-		op.add(Builder::nNeighbors, JsonpDeserializer.numberDeserializer(), "n_neighbors");
-		op.add(Builder::outlierFraction, JsonpDeserializer.numberDeserializer(), "outlier_fraction");
+		op.add(Builder::nNeighbors, JsonpDeserializer.integerDeserializer(), "n_neighbors");
+		op.add(Builder::outlierFraction, JsonpDeserializer.doubleDeserializer(), "outlier_fraction");
 		op.add(Builder::standardizationEnabled, JsonpDeserializer.booleanDeserializer(), "standardization_enabled");
 
 	}

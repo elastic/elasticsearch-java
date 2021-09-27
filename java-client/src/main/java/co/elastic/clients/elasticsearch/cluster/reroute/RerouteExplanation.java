@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteExplanation
+@JsonpDeserializable
 public final class RerouteExplanation implements JsonpSerializable {
 	private final String command;
 
@@ -198,14 +200,14 @@ public final class RerouteExplanation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RerouteExplanation}
 	 */
-	public static final JsonpDeserializer<RerouteExplanation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer);
+	public static final JsonpDeserializer<RerouteExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer, Builder::build);
 
 	protected static void setupRerouteExplanationDeserializer(DelegatingDeserializer<RerouteExplanation.Builder> op) {
 
 		op.add(Builder::command, JsonpDeserializer.stringDeserializer(), "command");
-		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision.DESERIALIZER), "decisions");
-		op.add(Builder::parameters, RerouteParameters.DESERIALIZER, "parameters");
+		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision._DESERIALIZER), "decisions");
+		op.add(Builder::parameters, RerouteParameters._DESERIALIZER, "parameters");
 
 	}
 

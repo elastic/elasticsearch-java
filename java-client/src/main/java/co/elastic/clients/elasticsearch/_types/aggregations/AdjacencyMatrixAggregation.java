@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
-public final class AdjacencyMatrixAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Map<String, Query> filters;
 
@@ -50,6 +52,14 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase {
 
 		this.filters = builder.filters;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "adjacency_matrix";
 	}
 
 	/**
@@ -144,13 +154,13 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link AdjacencyMatrixAggregation}
 	 */
-	public static final JsonpDeserializer<AdjacencyMatrixAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer);
+	public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer, Builder::build);
 
 	protected static void setupAdjacencyMatrixAggregationDeserializer(
 			DelegatingDeserializer<AdjacencyMatrixAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query.DESERIALIZER), "filters");
+		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
 
 	}
 

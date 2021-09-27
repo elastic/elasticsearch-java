@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum RuntimeFieldType implements StringEnum {
 	Boolean("boolean"), Date("date"), Double("double"), GeoPoint("geo_point"), Ip("ip"), Keyword("keyword"), Long(
 			"long");
@@ -40,6 +42,6 @@ public enum RuntimeFieldType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<RuntimeFieldType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<RuntimeFieldType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			RuntimeFieldType.values());
 }

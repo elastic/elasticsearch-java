@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher.stats;
 
 import co.elastic.clients.elasticsearch.watcher.ExecutionPhase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
+@JsonpDeserializable
 public final class WatchRecordStats extends WatchRecordQueuedStats {
 	private final ExecutionPhase executionPhase;
 
@@ -230,12 +232,12 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	/**
 	 * Json deserializer for {@link WatchRecordStats}
 	 */
-	public static final JsonpDeserializer<WatchRecordStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatchRecordStats::setupWatchRecordStatsDeserializer);
+	public static final JsonpDeserializer<WatchRecordStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatchRecordStats::setupWatchRecordStatsDeserializer, Builder::build);
 
 	protected static void setupWatchRecordStatsDeserializer(DelegatingDeserializer<WatchRecordStats.Builder> op) {
 		WatchRecordQueuedStats.setupWatchRecordQueuedStatsDeserializer(op);
-		op.add(Builder::executionPhase, ExecutionPhase.DESERIALIZER, "execution_phase");
+		op.add(Builder::executionPhase, ExecutionPhase._DESERIALIZER, "execution_phase");
 		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
 		op.add(Builder::executedActions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"executed_actions");

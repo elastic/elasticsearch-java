@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputProxy
+@JsonpDeserializable
 public final class HttpInputProxy implements JsonpSerializable {
 	private final String host;
 
@@ -127,8 +129,8 @@ public final class HttpInputProxy implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HttpInputProxy}
 	 */
-	public static final JsonpDeserializer<HttpInputProxy> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputProxy::setupHttpInputProxyDeserializer);
+	public static final JsonpDeserializer<HttpInputProxy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HttpInputProxy::setupHttpInputProxyDeserializer, Builder::build);
 
 	protected static void setupHttpInputProxyDeserializer(DelegatingDeserializer<HttpInputProxy.Builder> op) {
 

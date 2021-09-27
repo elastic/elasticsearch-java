@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: dangling_indices.list_dangling_indices.Request
+
 public final class ListDanglingIndicesRequest extends RequestBase {
 	public ListDanglingIndicesRequest() {
 	}
@@ -42,10 +44,7 @@ public final class ListDanglingIndicesRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link ListDanglingIndicesRequest}.
 	 */
-	public static final ListDanglingIndicesRequest INSTANCE = new ListDanglingIndicesRequest();
-
-	public static final JsonpDeserializer<ListDanglingIndicesRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ListDanglingIndicesRequest.INSTANCE);
+	public static final ListDanglingIndicesRequest _INSTANCE = new ListDanglingIndicesRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class ListDanglingIndicesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ListDanglingIndicesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ListDanglingIndicesResponse._DESERIALIZER);
 }

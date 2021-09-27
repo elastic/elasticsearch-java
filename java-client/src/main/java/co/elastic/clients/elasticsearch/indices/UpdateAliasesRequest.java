@@ -28,14 +28,15 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.update_aliases.IndicesUpdateAliasBulk;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,12 +47,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.update_aliases.Request
+@JsonpDeserializable
 public final class UpdateAliasesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final List<IndicesUpdateAliasBulk> actions;
@@ -72,7 +74,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -82,7 +84,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -126,10 +128,10 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	 */
 	public static class Builder implements ObjectBuilder<UpdateAliasesRequest> {
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private List<IndicesUpdateAliasBulk> actions;
@@ -139,7 +141,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -149,7 +151,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -212,13 +214,13 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link UpdateAliasesRequest}
 	 */
-	public static final JsonpDeserializer<UpdateAliasesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer);
+	public static final JsonpDeserializer<UpdateAliasesRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateAliasesRequest::setupUpdateAliasesRequestDeserializer, Builder::build);
 
 	protected static void setupUpdateAliasesRequestDeserializer(
 			DelegatingDeserializer<UpdateAliasesRequest.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(IndicesUpdateAliasBulk.DESERIALIZER), "actions");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(IndicesUpdateAliasBulk._DESERIALIZER), "actions");
 
 	}
 
@@ -244,12 +246,12 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateAliasesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateAliasesResponse._DESERIALIZER);
 }

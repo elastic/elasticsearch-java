@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.PerPartitionCategorization
+@JsonpDeserializable
 public final class PerPartitionCategorization implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
@@ -163,8 +165,8 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PerPartitionCategorization}
 	 */
-	public static final JsonpDeserializer<PerPartitionCategorization> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer);
+	public static final JsonpDeserializer<PerPartitionCategorization> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer, Builder::build);
 
 	protected static void setupPerPartitionCategorizationDeserializer(
 			DelegatingDeserializer<PerPartitionCategorization.Builder> op) {

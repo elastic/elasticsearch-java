@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareContextPayloadCondition
+@JsonpDeserializable
 public final class CompareContextPayloadCondition implements JsonpSerializable {
 	@Nullable
 	private final JsonData eq;
@@ -226,18 +228,18 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CompareContextPayloadCondition}
 	 */
-	public static final JsonpDeserializer<CompareContextPayloadCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer);
+	public static final JsonpDeserializer<CompareContextPayloadCondition> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer,
+					Builder::build);
 
 	protected static void setupCompareContextPayloadConditionDeserializer(
 			DelegatingDeserializer<CompareContextPayloadCondition.Builder> op) {
 
-		op.add(Builder::eq, JsonData.DESERIALIZER, "eq");
-		op.add(Builder::lt, JsonData.DESERIALIZER, "lt");
-		op.add(Builder::gt, JsonData.DESERIALIZER, "gt");
-		op.add(Builder::lte, JsonData.DESERIALIZER, "lte");
-		op.add(Builder::gte, JsonData.DESERIALIZER, "gte");
+		op.add(Builder::eq, JsonData._DESERIALIZER, "eq");
+		op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
+		op.add(Builder::gt, JsonData._DESERIALIZER, "gt");
+		op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
+		op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
 
 	}
 

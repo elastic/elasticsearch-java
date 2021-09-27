@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.InfoFeatureState
+@JsonpDeserializable
 public final class InfoFeatureState implements JsonpSerializable {
 	private final String featureName;
 
@@ -153,8 +155,8 @@ public final class InfoFeatureState implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InfoFeatureState}
 	 */
-	public static final JsonpDeserializer<InfoFeatureState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoFeatureState::setupInfoFeatureStateDeserializer);
+	public static final JsonpDeserializer<InfoFeatureState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoFeatureState::setupInfoFeatureStateDeserializer, Builder::build);
 
 	protected static void setupInfoFeatureStateDeserializer(DelegatingDeserializer<InfoFeatureState.Builder> op) {
 

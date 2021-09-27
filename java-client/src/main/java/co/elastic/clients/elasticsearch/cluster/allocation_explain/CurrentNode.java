@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.CurrentNode
+@JsonpDeserializable
 public final class CurrentNode implements JsonpSerializable {
 	private final String id;
 
@@ -48,7 +50,7 @@ public final class CurrentNode implements JsonpSerializable {
 
 	private final String transportAddress;
 
-	private final Number weightRanking;
+	private final Integer weightRanking;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +95,7 @@ public final class CurrentNode implements JsonpSerializable {
 	/**
 	 * API name: {@code weight_ranking}
 	 */
-	public Number weightRanking() {
+	public Integer weightRanking() {
 		return this.weightRanking;
 	}
 
@@ -127,7 +129,7 @@ public final class CurrentNode implements JsonpSerializable {
 		generator.write(this.transportAddress);
 
 		generator.writeKey("weight_ranking");
-		generator.write(this.weightRanking.doubleValue());
+		generator.write(this.weightRanking);
 
 	}
 
@@ -145,7 +147,7 @@ public final class CurrentNode implements JsonpSerializable {
 
 		private String transportAddress;
 
-		private Number weightRanking;
+		private Integer weightRanking;
 
 		/**
 		 * API name: {@code id}
@@ -193,7 +195,7 @@ public final class CurrentNode implements JsonpSerializable {
 		/**
 		 * API name: {@code weight_ranking}
 		 */
-		public Builder weightRanking(Number value) {
+		public Builder weightRanking(Integer value) {
 			this.weightRanking = value;
 			return this;
 		}
@@ -215,8 +217,8 @@ public final class CurrentNode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CurrentNode}
 	 */
-	public static final JsonpDeserializer<CurrentNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CurrentNode::setupCurrentNodeDeserializer);
+	public static final JsonpDeserializer<CurrentNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CurrentNode::setupCurrentNodeDeserializer, Builder::build);
 
 	protected static void setupCurrentNodeDeserializer(DelegatingDeserializer<CurrentNode.Builder> op) {
 
@@ -225,7 +227,7 @@ public final class CurrentNode implements JsonpSerializable {
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::weightRanking, JsonpDeserializer.numberDeserializer(), "weight_ranking");
+		op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");
 
 	}
 

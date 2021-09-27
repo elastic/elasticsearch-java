@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,9 +36,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketScriptAggregation
-public final class BucketScriptAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class BucketScriptAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -49,10 +51,18 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "bucket_script";
+	}
+
+	/**
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -77,12 +87,12 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 			implements
 				ObjectBuilder<BucketScriptAggregation> {
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -109,8 +119,8 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link BucketScriptAggregation}
 	 */
-	public static final JsonpDeserializer<BucketScriptAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer);
+	public static final JsonpDeserializer<BucketScriptAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer, Builder::build);
 
 	protected static void setupBucketScriptAggregationDeserializer(
 			DelegatingDeserializer<BucketScriptAggregation.Builder> op) {

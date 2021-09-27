@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum DistanceUnit implements StringEnum {
 	Inches("in"), Feet("ft"), Yards("yd"), Miles("mi"), NauticMiles("nmi"), Kilometers("km"), Meters("m"), Centimeters(
 			"cm"), Millimeters("mm");
@@ -40,6 +42,6 @@ public enum DistanceUnit implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DistanceUnit> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<DistanceUnit> _DESERIALIZER = new StringEnum.Deserializer<>(
 			DistanceUnit.values());
 }

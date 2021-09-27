@@ -24,24 +24,25 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
-public final class MissingAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class MissingAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final JsonValue missing;
+	private final String missing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -51,6 +52,14 @@ public final class MissingAggregation extends BucketAggregationBase {
 		this.field = builder.field;
 		this.missing = builder.missing;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "missing";
 	}
 
 	/**
@@ -65,7 +74,7 @@ public final class MissingAggregation extends BucketAggregationBase {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public JsonValue missing() {
+	public String missing() {
 		return this.missing;
 	}
 
@@ -99,7 +108,7 @@ public final class MissingAggregation extends BucketAggregationBase {
 		private String field;
 
 		@Nullable
-		private JsonValue missing;
+		private String missing;
 
 		/**
 		 * API name: {@code field}
@@ -112,7 +121,7 @@ public final class MissingAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable JsonValue value) {
+		public Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -139,13 +148,13 @@ public final class MissingAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link MissingAggregation}
 	 */
-	public static final JsonpDeserializer<MissingAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MissingAggregation::setupMissingAggregationDeserializer);
+	public static final JsonpDeserializer<MissingAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MissingAggregation::setupMissingAggregationDeserializer, Builder::build);
 
 	protected static void setupMissingAggregationDeserializer(DelegatingDeserializer<MissingAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 
 	}
 

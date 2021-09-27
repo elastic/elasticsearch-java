@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: cluster.exists_component_template.Response
+
 public final class ExistsComponentTemplateResponse {
 	public ExistsComponentTemplateResponse() {
 	}
@@ -38,9 +40,9 @@ public final class ExistsComponentTemplateResponse {
 	/**
 	 * Singleton instance for {@link ExistsComponentTemplateResponse}.
 	 */
-	public static final ExistsComponentTemplateResponse INSTANCE = new ExistsComponentTemplateResponse();
+	public static final ExistsComponentTemplateResponse _INSTANCE = new ExistsComponentTemplateResponse();
 
-	public static final JsonpDeserializer<ExistsComponentTemplateResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsComponentTemplateResponse.INSTANCE);
+	public static final JsonpDeserializer<ExistsComponentTemplateResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(ExistsComponentTemplateResponse._INSTANCE);
 
 }

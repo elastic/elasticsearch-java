@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsWildcard
-public final class IntervalsWildcard implements Intervals, JsonpSerializable {
+@JsonpDeserializable
+public final class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -57,10 +58,10 @@ public final class IntervalsWildcard implements Intervals, JsonpSerializable {
 	}
 
 	/**
-	 * {@link Intervals} variant type
+	 * {@link IntervalsQuery}, {@link Intervals} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "wildcard";
 	}
 
@@ -97,7 +98,6 @@ public final class IntervalsWildcard implements Intervals, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		if (this.analyzer != null) {
 
@@ -115,8 +115,6 @@ public final class IntervalsWildcard implements Intervals, JsonpSerializable {
 			generator.write(this.useField);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -172,9 +170,11 @@ public final class IntervalsWildcard implements Intervals, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<IntervalsWildcard.Builder, IntervalsWildcard.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(IntervalsWildcard::setupIntervalsWildcardDeserializer);
+	/**
+	 * Json deserializer for {@link IntervalsWildcard}
+	 */
+	public static final JsonpDeserializer<IntervalsWildcard> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IntervalsWildcard::setupIntervalsWildcardDeserializer, Builder::build);
 
 	protected static void setupIntervalsWildcardDeserializer(DelegatingDeserializer<IntervalsWildcard.Builder> op) {
 

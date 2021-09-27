@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ShapeType implements StringEnum {
 	GeoShape("geo_shape"), Shape("shape");
 
@@ -39,6 +41,6 @@ public enum ShapeType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShapeType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ShapeType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ShapeType.values());
 }

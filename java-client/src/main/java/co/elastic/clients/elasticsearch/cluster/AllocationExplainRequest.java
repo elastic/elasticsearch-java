@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Request
+@JsonpDeserializable
 public final class AllocationExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean includeDiskInfo;
@@ -60,7 +62,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	private final Boolean primary;
 
 	@Nullable
-	private final Number shard;
+	private final Integer shard;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -132,7 +134,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
@@ -168,7 +170,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		if (this.shard != null) {
 
 			generator.writeKey("shard");
-			generator.write(this.shard.doubleValue());
+			generator.write(this.shard);
 
 		}
 
@@ -196,7 +198,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		private Boolean primary;
 
 		@Nullable
-		private Number shard;
+		private Integer shard;
 
 		/**
 		 * If true, returns information about disk usage and shard sizes.
@@ -254,7 +256,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code shard}
 		 */
-		public Builder shard(@Nullable Number value) {
+		public Builder shard(@Nullable Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -276,8 +278,8 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	/**
 	 * Json deserializer for {@link AllocationExplainRequest}
 	 */
-	public static final JsonpDeserializer<AllocationExplainRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer);
+	public static final JsonpDeserializer<AllocationExplainRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AllocationExplainRequest::setupAllocationExplainRequestDeserializer, Builder::build);
 
 	protected static void setupAllocationExplainRequestDeserializer(
 			DelegatingDeserializer<AllocationExplainRequest.Builder> op) {
@@ -285,7 +287,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		op.add(Builder::currentNode, JsonpDeserializer.stringDeserializer(), "current_node");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 
 	}
 
@@ -318,5 +320,5 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse._DESERIALIZER);
 }

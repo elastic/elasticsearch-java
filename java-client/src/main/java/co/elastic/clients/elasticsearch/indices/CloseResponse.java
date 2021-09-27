@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.indices.close.CloseIndexResult;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.Response
+@JsonpDeserializable
 public final class CloseResponse extends AcknowledgedResponseBase {
 	private final Map<String, CloseIndexResult> indices;
 
@@ -163,12 +165,12 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link CloseResponse}
 	 */
-	public static final JsonpDeserializer<CloseResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloseResponse::setupCloseResponseDeserializer);
+	public static final JsonpDeserializer<CloseResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseResponse::setupCloseResponseDeserializer, Builder::build);
 
 	protected static void setupCloseResponseDeserializer(DelegatingDeserializer<CloseResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(CloseIndexResult.DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(CloseIndexResult._DESERIALIZER), "indices");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
 	}

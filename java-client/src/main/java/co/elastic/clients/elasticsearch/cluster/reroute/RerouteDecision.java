@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteDecision
+@JsonpDeserializable
 public final class RerouteDecision implements JsonpSerializable {
 	private final String decider;
 
@@ -149,8 +151,8 @@ public final class RerouteDecision implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RerouteDecision}
 	 */
-	public static final JsonpDeserializer<RerouteDecision> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteDecision::setupRerouteDecisionDeserializer);
+	public static final JsonpDeserializer<RerouteDecision> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RerouteDecision::setupRerouteDecisionDeserializer, Builder::build);
 
 	protected static void setupRerouteDecisionDeserializer(DelegatingDeserializer<RerouteDecision.Builder> op) {
 

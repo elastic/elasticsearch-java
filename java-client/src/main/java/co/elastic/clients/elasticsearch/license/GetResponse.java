@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.get.LicenseInformation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.get.Response
+@JsonpDeserializable
 public final class GetResponse implements JsonpSerializable {
 	private final LicenseInformation license;
 
@@ -111,12 +113,12 @@ public final class GetResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetResponse}
 	 */
-	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
+	public static final JsonpDeserializer<GetResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
-		op.add(Builder::license, LicenseInformation.DESERIALIZER, "license");
+		op.add(Builder::license, LicenseInformation._DESERIALIZER, "license");
 
 	}
 

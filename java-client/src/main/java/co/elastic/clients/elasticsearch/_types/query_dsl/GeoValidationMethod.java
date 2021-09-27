@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum GeoValidationMethod implements StringEnum {
 	Coerce("coerce"), IgnoreMalformed("ignore_malformed"), Strict("strict");
 
@@ -39,6 +41,6 @@ public enum GeoValidationMethod implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoValidationMethod> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<GeoValidationMethod> _DESERIALIZER = new StringEnum.Deserializer<>(
 			GeoValidationMethod.values());
 }

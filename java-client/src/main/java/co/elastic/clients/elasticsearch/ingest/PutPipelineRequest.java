@@ -28,15 +28,15 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,14 +48,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.put_pipeline.Request
+@JsonpDeserializable
 public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Map<String, JsonData> meta;
@@ -70,7 +71,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	private final List<Processor> processors;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -103,7 +104,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -114,7 +115,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -173,7 +174,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -231,7 +232,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -246,10 +247,10 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		private String id;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -264,7 +265,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		private List<Processor> processors;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		/**
 		 * ID of the ingest pipeline to create or update.
@@ -282,7 +283,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -293,7 +294,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -439,7 +440,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -461,16 +462,16 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link PutPipelineRequest}
 	 */
-	public static final JsonpDeserializer<PutPipelineRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer);
+	public static final JsonpDeserializer<PutPipelineRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer, Builder::build);
 
 	protected static void setupPutPipelineRequestDeserializer(DelegatingDeserializer<PutPipelineRequest.Builder> op) {
 
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "on_failure");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "processors");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 
@@ -511,12 +512,12 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutPipelineResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutPipelineResponse._DESERIALIZER);
 }

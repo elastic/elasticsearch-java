@@ -25,16 +25,16 @@ package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Highlight
+@JsonpDeserializable
 public final class Highlight implements JsonpSerializable {
 	private final Map<String, HighlightField> fields;
 
@@ -57,7 +58,7 @@ public final class Highlight implements JsonpSerializable {
 	private final String boundaryChars;
 
 	@Nullable
-	private final Number boundaryMaxScan;
+	private final Integer boundaryMaxScan;
 
 	@Nullable
 	private final BoundaryScanner boundaryScanner;
@@ -72,19 +73,19 @@ public final class Highlight implements JsonpSerializable {
 	private final HighlighterFragmenter fragmenter;
 
 	@Nullable
-	private final Number fragmentOffset;
+	private final Integer fragmentOffset;
 
 	@Nullable
-	private final Number fragmentSize;
+	private final Integer fragmentSize;
 
 	@Nullable
-	private final Number maxFragmentLength;
+	private final Integer maxFragmentLength;
 
 	@Nullable
-	private final Number noMatchSize;
+	private final Integer noMatchSize;
 
 	@Nullable
-	private final Number numberOfFragments;
+	private final Integer numberOfFragments;
 
 	@Nullable
 	private final HighlighterOrder order;
@@ -105,7 +106,7 @@ public final class Highlight implements JsonpSerializable {
 	private final Query highlightQuery;
 
 	@Nullable
-	private final JsonValue maxAnalyzedOffset;
+	private final String maxAnalyzedOffset;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -161,7 +162,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code boundary_max_scan}
 	 */
 	@Nullable
-	public Number boundaryMaxScan() {
+	public Integer boundaryMaxScan() {
 		return this.boundaryMaxScan;
 	}
 
@@ -201,7 +202,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code fragment_offset}
 	 */
 	@Nullable
-	public Number fragmentOffset() {
+	public Integer fragmentOffset() {
 		return this.fragmentOffset;
 	}
 
@@ -209,7 +210,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code fragment_size}
 	 */
 	@Nullable
-	public Number fragmentSize() {
+	public Integer fragmentSize() {
 		return this.fragmentSize;
 	}
 
@@ -217,7 +218,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code max_fragment_length}
 	 */
 	@Nullable
-	public Number maxFragmentLength() {
+	public Integer maxFragmentLength() {
 		return this.maxFragmentLength;
 	}
 
@@ -225,7 +226,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code no_match_size}
 	 */
 	@Nullable
-	public Number noMatchSize() {
+	public Integer noMatchSize() {
 		return this.noMatchSize;
 	}
 
@@ -233,7 +234,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code number_of_fragments}
 	 */
 	@Nullable
-	public Number numberOfFragments() {
+	public Integer numberOfFragments() {
 		return this.numberOfFragments;
 	}
 
@@ -289,7 +290,7 @@ public final class Highlight implements JsonpSerializable {
 	 * API name: {@code max_analyzed_offset}
 	 */
 	@Nullable
-	public JsonValue maxAnalyzedOffset() {
+	public String maxAnalyzedOffset() {
 		return this.maxAnalyzedOffset;
 	}
 
@@ -327,7 +328,7 @@ public final class Highlight implements JsonpSerializable {
 		if (this.boundaryMaxScan != null) {
 
 			generator.writeKey("boundary_max_scan");
-			generator.write(this.boundaryMaxScan.doubleValue());
+			generator.write(this.boundaryMaxScan);
 
 		}
 		if (this.boundaryScanner != null) {
@@ -354,31 +355,31 @@ public final class Highlight implements JsonpSerializable {
 		if (this.fragmentOffset != null) {
 
 			generator.writeKey("fragment_offset");
-			generator.write(this.fragmentOffset.doubleValue());
+			generator.write(this.fragmentOffset);
 
 		}
 		if (this.fragmentSize != null) {
 
 			generator.writeKey("fragment_size");
-			generator.write(this.fragmentSize.doubleValue());
+			generator.write(this.fragmentSize);
 
 		}
 		if (this.maxFragmentLength != null) {
 
 			generator.writeKey("max_fragment_length");
-			generator.write(this.maxFragmentLength.doubleValue());
+			generator.write(this.maxFragmentLength);
 
 		}
 		if (this.noMatchSize != null) {
 
 			generator.writeKey("no_match_size");
-			generator.write(this.noMatchSize.doubleValue());
+			generator.write(this.noMatchSize);
 
 		}
 		if (this.numberOfFragments != null) {
 
 			generator.writeKey("number_of_fragments");
-			generator.write(this.numberOfFragments.doubleValue());
+			generator.write(this.numberOfFragments);
 
 		}
 		if (this.order != null) {
@@ -449,7 +450,7 @@ public final class Highlight implements JsonpSerializable {
 		private String boundaryChars;
 
 		@Nullable
-		private Number boundaryMaxScan;
+		private Integer boundaryMaxScan;
 
 		@Nullable
 		private BoundaryScanner boundaryScanner;
@@ -464,19 +465,19 @@ public final class Highlight implements JsonpSerializable {
 		private HighlighterFragmenter fragmenter;
 
 		@Nullable
-		private Number fragmentOffset;
+		private Integer fragmentOffset;
 
 		@Nullable
-		private Number fragmentSize;
+		private Integer fragmentSize;
 
 		@Nullable
-		private Number maxFragmentLength;
+		private Integer maxFragmentLength;
 
 		@Nullable
-		private Number noMatchSize;
+		private Integer noMatchSize;
 
 		@Nullable
-		private Number numberOfFragments;
+		private Integer numberOfFragments;
 
 		@Nullable
 		private HighlighterOrder order;
@@ -497,7 +498,7 @@ public final class Highlight implements JsonpSerializable {
 		private Query highlightQuery;
 
 		@Nullable
-		private JsonValue maxAnalyzedOffset;
+		private String maxAnalyzedOffset;
 
 		/**
 		 * API name: {@code fields}
@@ -551,7 +552,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code boundary_max_scan}
 		 */
-		public Builder boundaryMaxScan(@Nullable Number value) {
+		public Builder boundaryMaxScan(@Nullable Integer value) {
 			this.boundaryMaxScan = value;
 			return this;
 		}
@@ -591,7 +592,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code fragment_offset}
 		 */
-		public Builder fragmentOffset(@Nullable Number value) {
+		public Builder fragmentOffset(@Nullable Integer value) {
 			this.fragmentOffset = value;
 			return this;
 		}
@@ -599,7 +600,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code fragment_size}
 		 */
-		public Builder fragmentSize(@Nullable Number value) {
+		public Builder fragmentSize(@Nullable Integer value) {
 			this.fragmentSize = value;
 			return this;
 		}
@@ -607,7 +608,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code max_fragment_length}
 		 */
-		public Builder maxFragmentLength(@Nullable Number value) {
+		public Builder maxFragmentLength(@Nullable Integer value) {
 			this.maxFragmentLength = value;
 			return this;
 		}
@@ -615,7 +616,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code no_match_size}
 		 */
-		public Builder noMatchSize(@Nullable Number value) {
+		public Builder noMatchSize(@Nullable Integer value) {
 			this.noMatchSize = value;
 			return this;
 		}
@@ -623,7 +624,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_fragments}
 		 */
-		public Builder numberOfFragments(@Nullable Number value) {
+		public Builder numberOfFragments(@Nullable Integer value) {
 			this.numberOfFragments = value;
 			return this;
 		}
@@ -724,7 +725,7 @@ public final class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code max_analyzed_offset}
 		 */
-		public Builder maxAnalyzedOffset(@Nullable JsonValue value) {
+		public Builder maxAnalyzedOffset(@Nullable String value) {
 			this.maxAnalyzedOffset = value;
 			return this;
 		}
@@ -746,33 +747,33 @@ public final class Highlight implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Highlight}
 	 */
-	public static final JsonpDeserializer<Highlight> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Highlight::setupHighlightDeserializer);
+	public static final JsonpDeserializer<Highlight> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Highlight::setupHighlightDeserializer, Builder::build);
 
 	protected static void setupHighlightDeserializer(DelegatingDeserializer<Highlight.Builder> op) {
 
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(HighlightField.DESERIALIZER), "fields");
-		op.add(Builder::type, HighlighterType.DESERIALIZER, "type");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(HighlightField._DESERIALIZER), "fields");
+		op.add(Builder::type, HighlighterType._DESERIALIZER, "type");
 		op.add(Builder::boundaryChars, JsonpDeserializer.stringDeserializer(), "boundary_chars");
-		op.add(Builder::boundaryMaxScan, JsonpDeserializer.numberDeserializer(), "boundary_max_scan");
-		op.add(Builder::boundaryScanner, BoundaryScanner.DESERIALIZER, "boundary_scanner");
+		op.add(Builder::boundaryMaxScan, JsonpDeserializer.integerDeserializer(), "boundary_max_scan");
+		op.add(Builder::boundaryScanner, BoundaryScanner._DESERIALIZER, "boundary_scanner");
 		op.add(Builder::boundaryScannerLocale, JsonpDeserializer.stringDeserializer(), "boundary_scanner_locale");
-		op.add(Builder::encoder, HighlighterEncoder.DESERIALIZER, "encoder");
-		op.add(Builder::fragmenter, HighlighterFragmenter.DESERIALIZER, "fragmenter");
-		op.add(Builder::fragmentOffset, JsonpDeserializer.numberDeserializer(), "fragment_offset");
-		op.add(Builder::fragmentSize, JsonpDeserializer.numberDeserializer(), "fragment_size");
-		op.add(Builder::maxFragmentLength, JsonpDeserializer.numberDeserializer(), "max_fragment_length");
-		op.add(Builder::noMatchSize, JsonpDeserializer.numberDeserializer(), "no_match_size");
-		op.add(Builder::numberOfFragments, JsonpDeserializer.numberDeserializer(), "number_of_fragments");
-		op.add(Builder::order, HighlighterOrder.DESERIALIZER, "order");
+		op.add(Builder::encoder, HighlighterEncoder._DESERIALIZER, "encoder");
+		op.add(Builder::fragmenter, HighlighterFragmenter._DESERIALIZER, "fragmenter");
+		op.add(Builder::fragmentOffset, JsonpDeserializer.integerDeserializer(), "fragment_offset");
+		op.add(Builder::fragmentSize, JsonpDeserializer.integerDeserializer(), "fragment_size");
+		op.add(Builder::maxFragmentLength, JsonpDeserializer.integerDeserializer(), "max_fragment_length");
+		op.add(Builder::noMatchSize, JsonpDeserializer.integerDeserializer(), "no_match_size");
+		op.add(Builder::numberOfFragments, JsonpDeserializer.integerDeserializer(), "number_of_fragments");
+		op.add(Builder::order, HighlighterOrder._DESERIALIZER, "order");
 		op.add(Builder::postTags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"post_tags");
 		op.add(Builder::preTags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"pre_tags");
 		op.add(Builder::requireFieldMatch, JsonpDeserializer.booleanDeserializer(), "require_field_match");
-		op.add(Builder::tagsSchema, HighlighterTagsSchema.DESERIALIZER, "tags_schema");
-		op.add(Builder::highlightQuery, Query.DESERIALIZER, "highlight_query");
-		op.add(Builder::maxAnalyzedOffset, JsonpDeserializer.jsonValueDeserializer(), "max_analyzed_offset");
+		op.add(Builder::tagsSchema, HighlighterTagsSchema._DESERIALIZER, "tags_schema");
+		op.add(Builder::highlightQuery, Query._DESERIALIZER, "highlight_query");
+		op.add(Builder::maxAnalyzedOffset, JsonpDeserializer.stringDeserializer(), "max_analyzed_offset");
 
 	}
 

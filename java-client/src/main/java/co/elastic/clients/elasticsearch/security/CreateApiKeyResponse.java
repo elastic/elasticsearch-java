@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Response
+@JsonpDeserializable
 public final class CreateApiKeyResponse implements JsonpSerializable {
 	private final String apiKey;
 
 	@Nullable
-	private final Number expiration;
+	private final Long expiration;
 
 	private final String id;
 
@@ -69,7 +71,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public Number expiration() {
+	public Long expiration() {
 		return this.expiration;
 	}
 
@@ -104,7 +106,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		if (this.expiration != null) {
 
 			generator.writeKey("expiration");
-			generator.write(this.expiration.doubleValue());
+			generator.write(this.expiration);
 
 		}
 
@@ -125,7 +127,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		private String apiKey;
 
 		@Nullable
-		private Number expiration;
+		private Long expiration;
 
 		private String id;
 
@@ -142,7 +144,7 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable Number value) {
+		public Builder expiration(@Nullable Long value) {
 			this.expiration = value;
 			return this;
 		}
@@ -180,14 +182,14 @@ public final class CreateApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CreateApiKeyResponse}
 	 */
-	public static final JsonpDeserializer<CreateApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateApiKeyResponse::setupCreateApiKeyResponseDeserializer);
+	public static final JsonpDeserializer<CreateApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateApiKeyResponse::setupCreateApiKeyResponseDeserializer, Builder::build);
 
 	protected static void setupCreateApiKeyResponseDeserializer(
 			DelegatingDeserializer<CreateApiKeyResponse.Builder> op) {
 
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
-		op.add(Builder::expiration, JsonpDeserializer.numberDeserializer(), "expiration");
+		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

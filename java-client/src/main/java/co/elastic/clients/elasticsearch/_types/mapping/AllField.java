@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AllField
+@JsonpDeserializable
 public final class AllField implements JsonpSerializable {
 	private final String analyzer;
 
@@ -314,8 +316,8 @@ public final class AllField implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AllField}
 	 */
-	public static final JsonpDeserializer<AllField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllField::setupAllFieldDeserializer);
+	public static final JsonpDeserializer<AllField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AllField::setupAllFieldDeserializer, Builder::build);
 
 	protected static void setupAllFieldDeserializer(DelegatingDeserializer<AllField.Builder> op) {
 

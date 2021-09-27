@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,17 +33,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalQuery
+@JsonpDeserializable
 public final class RankEvalQuery implements JsonpSerializable {
 	private final Query query;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -85,7 +87,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -100,7 +102,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code query}
@@ -120,7 +122,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -142,13 +144,13 @@ public final class RankEvalQuery implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RankEvalQuery}
 	 */
-	public static final JsonpDeserializer<RankEvalQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalQuery::setupRankEvalQueryDeserializer);
+	public static final JsonpDeserializer<RankEvalQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankEvalQuery::setupRankEvalQueryDeserializer, Builder::build);
 
 	protected static void setupRankEvalQueryDeserializer(DelegatingDeserializer<RankEvalQuery.Builder> op) {
 
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ConvertProcessor
-public final class ConvertProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class ConvertProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -56,6 +58,14 @@ public final class ConvertProcessor extends ProcessorBase {
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "convert";
 	}
 
 	/**
@@ -180,15 +190,15 @@ public final class ConvertProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link ConvertProcessor}
 	 */
-	public static final JsonpDeserializer<ConvertProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ConvertProcessor::setupConvertProcessorDeserializer);
+	public static final JsonpDeserializer<ConvertProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ConvertProcessor::setupConvertProcessorDeserializer, Builder::build);
 
 	protected static void setupConvertProcessorDeserializer(DelegatingDeserializer<ConvertProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
-		op.add(Builder::type, ConvertType.DESERIALIZER, "type");
+		op.add(Builder::type, ConvertType._DESERIALIZER, "type");
 
 	}
 

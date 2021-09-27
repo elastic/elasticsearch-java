@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,12 +38,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RuntimeField
+@JsonpDeserializable
 public final class RuntimeField implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	private final RuntimeFieldType type;
 
@@ -68,7 +70,7 @@ public final class RuntimeField implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -118,7 +120,7 @@ public final class RuntimeField implements JsonpSerializable {
 		private String format;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		private RuntimeFieldType type;
 
@@ -133,7 +135,7 @@ public final class RuntimeField implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -163,14 +165,14 @@ public final class RuntimeField implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RuntimeField}
 	 */
-	public static final JsonpDeserializer<RuntimeField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RuntimeField::setupRuntimeFieldDeserializer);
+	public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RuntimeField::setupRuntimeFieldDeserializer, Builder::build);
 
 	protected static void setupRuntimeFieldDeserializer(DelegatingDeserializer<RuntimeField.Builder> op) {
 
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
-		op.add(Builder::type, RuntimeFieldType.DESERIALIZER, "type");
+		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 
 	}
 

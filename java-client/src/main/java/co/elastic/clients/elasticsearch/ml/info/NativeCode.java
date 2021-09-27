@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.NativeCode
+@JsonpDeserializable
 public final class NativeCode implements JsonpSerializable {
 	private final String buildHash;
 
@@ -126,8 +128,8 @@ public final class NativeCode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NativeCode}
 	 */
-	public static final JsonpDeserializer<NativeCode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NativeCode::setupNativeCodeDeserializer);
+	public static final JsonpDeserializer<NativeCode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NativeCode::setupNativeCodeDeserializer, Builder::build);
 
 	protected static void setupNativeCodeDeserializer(DelegatingDeserializer<NativeCode.Builder> op) {
 

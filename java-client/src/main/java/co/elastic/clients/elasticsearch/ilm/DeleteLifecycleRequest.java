@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.delete_lifecycle.Request
+
 public final class DeleteLifecycleRequest extends RequestBase {
 	private final String policy;
 
@@ -124,5 +126,5 @@ public final class DeleteLifecycleRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteLifecycleResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, DeleteLifecycleResponse._DESERIALIZER);
 }

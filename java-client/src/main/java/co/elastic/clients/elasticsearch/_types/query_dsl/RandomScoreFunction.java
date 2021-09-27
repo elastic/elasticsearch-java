@@ -24,24 +24,25 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
-public final class RandomScoreFunction extends ScoreFunctionBase {
+@JsonpDeserializable
+public final class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final JsonValue seed;
+	private final String seed;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -51,6 +52,14 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 		this.field = builder.field;
 		this.seed = builder.seed;
 
+	}
+
+	/**
+	 * {@link FunctionScore} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "random_score";
 	}
 
 	/**
@@ -65,7 +74,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 	 * API name: {@code seed}
 	 */
 	@Nullable
-	public JsonValue seed() {
+	public String seed() {
 		return this.seed;
 	}
 
@@ -99,7 +108,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 		private String field;
 
 		@Nullable
-		private JsonValue seed;
+		private String seed;
 
 		/**
 		 * API name: {@code field}
@@ -112,7 +121,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 		/**
 		 * API name: {@code seed}
 		 */
-		public Builder seed(@Nullable JsonValue value) {
+		public Builder seed(@Nullable String value) {
 			this.seed = value;
 			return this;
 		}
@@ -139,13 +148,13 @@ public final class RandomScoreFunction extends ScoreFunctionBase {
 	/**
 	 * Json deserializer for {@link RandomScoreFunction}
 	 */
-	public static final JsonpDeserializer<RandomScoreFunction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer);
+	public static final JsonpDeserializer<RandomScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer, Builder::build);
 
 	protected static void setupRandomScoreFunctionDeserializer(DelegatingDeserializer<RandomScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::seed, JsonpDeserializer.jsonValueDeserializer(), "seed");
+		op.add(Builder::seed, JsonpDeserializer.stringDeserializer(), "seed");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,15 +48,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHits
+@JsonpDeserializable
 public final class InnerHits implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
 	private final FieldCollapse collapse;
@@ -82,10 +84,10 @@ public final class InnerHits implements JsonpSerializable {
 	private final List<String> fields;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
 
 	@Nullable
 	private final List<String> storedField;
@@ -131,7 +133,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -139,7 +141,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -211,7 +213,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -219,7 +221,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source() {
 		return this.source;
 	}
 
@@ -267,13 +269,13 @@ public final class InnerHits implements JsonpSerializable {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.from != null) {
 
 			generator.writeKey("from");
-			generator.write(this.from.doubleValue());
+			generator.write(this.from);
 
 		}
 		if (this.collapse != null) {
@@ -344,7 +346,7 @@ public final class InnerHits implements JsonpSerializable {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -393,10 +395,10 @@ public final class InnerHits implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
 		private FieldCollapse collapse;
@@ -423,10 +425,10 @@ public final class InnerHits implements JsonpSerializable {
 		private List<String> fields;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
 
 		@Nullable
 		private List<String> storedField;
@@ -448,7 +450,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -456,7 +458,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -619,7 +621,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue> value) {
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -627,7 +629,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -635,7 +637,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -646,7 +648,8 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(
+				@Nullable JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -711,21 +714,21 @@ public final class InnerHits implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InnerHits}
 	 */
-	public static final JsonpDeserializer<InnerHits> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InnerHits::setupInnerHitsDeserializer);
+	public static final JsonpDeserializer<InnerHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InnerHits::setupInnerHitsDeserializer, Builder::build);
 
 	protected static void setupInnerHitsDeserializer(DelegatingDeserializer<InnerHits.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
-		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
-		op.add(Builder::collapse, FieldCollapse.DESERIALIZER, "collapse");
-		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat.DESERIALIZER),
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
+		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
 				"docvalue_fields");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
-		op.add(Builder::highlight, Highlight.DESERIALIZER, "highlight");
+		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
-		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");

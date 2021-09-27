@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,8 +36,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
-public final class ScriptQuery extends QueryBase implements Query {
-	private final JsonValue script;
+@JsonpDeserializable
+public final class ScriptQuery extends QueryBase implements QueryVariant {
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,26 +53,23 @@ public final class ScriptQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "script";
 	}
 
 	/**
 	 * API name: {@code script}
 	 */
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("script");
 		generator.write(this.script);
-
-		generator.writeEnd();
 
 	}
 
@@ -81,12 +79,12 @@ public final class ScriptQuery extends QueryBase implements Query {
 	 * Builder for {@link ScriptQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(JsonValue value) {
+		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -110,9 +108,11 @@ public final class ScriptQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<ScriptQuery.Builder, ScriptQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(ScriptQuery::setupScriptQueryDeserializer);
+	/**
+	 * Json deserializer for {@link ScriptQuery}
+	 */
+	public static final JsonpDeserializer<ScriptQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ScriptQuery::setupScriptQueryDeserializer, Builder::build);
 
 	protected static void setupScriptQueryDeserializer(DelegatingDeserializer<ScriptQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

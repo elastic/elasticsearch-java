@@ -23,174 +23,216 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsContainer
-public interface Intervals extends JsonpSerializable {
+@JsonpDeserializable
+public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 
-	String ALL_OF = "all_of";
-	String ANY_OF = "any_of";
-	String FUZZY = "fuzzy";
-	String MATCH = "match";
-	String PREFIX = "prefix";
-	String WILDCARD = "wildcard";
+	public static final String ALL_OF = "all_of";
+	public static final String ANY_OF = "any_of";
+	public static final String FUZZY = "fuzzy";
+	public static final String MATCH = "match";
+	public static final String PREFIX = "prefix";
+	public static final String WILDCARD = "wildcard";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Intervals(IntervalsVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private Intervals(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code IntervalsContainer}.
+	 * Get the {@code all_of} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code all_of} kind.
 	 */
-	String _type();
+	public IntervalsAllOf allOf() {
+		return TaggedUnionUtils.get(this, ALL_OF);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code all_of}
-		 */
-		public ObjectBuilder<Intervals> allOf(IntervalsAllOf value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code any_of} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code any_of} kind.
+	 */
+	public IntervalsAnyOf anyOf() {
+		return TaggedUnionUtils.get(this, ANY_OF);
+	}
+
+	/**
+	 * Get the {@code fuzzy} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code fuzzy} kind.
+	 */
+	public IntervalsFuzzy fuzzy() {
+		return TaggedUnionUtils.get(this, FUZZY);
+	}
+
+	/**
+	 * Get the {@code match} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match} kind.
+	 */
+	public IntervalsMatch match() {
+		return TaggedUnionUtils.get(this, MATCH);
+	}
+
+	/**
+	 * Get the {@code prefix} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code prefix} kind.
+	 */
+	public IntervalsPrefix prefix() {
+		return TaggedUnionUtils.get(this, PREFIX);
+	}
+
+	/**
+	 * Get the {@code wildcard} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code wildcard} kind.
+	 */
+	public IntervalsWildcard wildcard() {
+		return TaggedUnionUtils.get(this, WILDCARD);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code all_of}
-		 */
-		public ObjectBuilder<Intervals> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> fn) {
-			return this.allOf(fn.apply(new IntervalsAllOf.Builder()).build());
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<Intervals> allOf(IntervalsAllOf v) {
+			this._type = ALL_OF;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code any_of}
-		 */
-		public ObjectBuilder<Intervals> anyOf(IntervalsAnyOf value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Intervals> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> f) {
+			return this.allOf(f.apply(new IntervalsAllOf.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code any_of}
-		 */
-		public ObjectBuilder<Intervals> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
-			return this.anyOf(fn.apply(new IntervalsAnyOf.Builder()).build());
+		public ObjectBuilder<Intervals> anyOf(IntervalsAnyOf v) {
+			this._type = ANY_OF;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code fuzzy}
-		 */
-		public ObjectBuilder<Intervals> fuzzy(IntervalsFuzzy value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Intervals> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> f) {
+			return this.anyOf(f.apply(new IntervalsAnyOf.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code fuzzy}
-		 */
-		public ObjectBuilder<Intervals> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
-			return this.fuzzy(fn.apply(new IntervalsFuzzy.Builder()).build());
+		public ObjectBuilder<Intervals> fuzzy(IntervalsFuzzy v) {
+			this._type = FUZZY;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code match}
-		 */
-		public ObjectBuilder<Intervals> match(IntervalsMatch value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Intervals> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> f) {
+			return this.fuzzy(f.apply(new IntervalsFuzzy.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code match}
-		 */
-		public ObjectBuilder<Intervals> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> fn) {
-			return this.match(fn.apply(new IntervalsMatch.Builder()).build());
+		public ObjectBuilder<Intervals> match(IntervalsMatch v) {
+			this._type = MATCH;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code prefix}
-		 */
-		public ObjectBuilder<Intervals> prefix(IntervalsPrefix value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Intervals> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> f) {
+			return this.match(f.apply(new IntervalsMatch.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code prefix}
-		 */
-		public ObjectBuilder<Intervals> prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> fn) {
-			return this.prefix(fn.apply(new IntervalsPrefix.Builder()).build());
+		public ObjectBuilder<Intervals> prefix(IntervalsPrefix v) {
+			this._type = PREFIX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code wildcard}
-		 */
-		public ObjectBuilder<Intervals> wildcard(IntervalsWildcard value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Intervals> prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> f) {
+			return this.prefix(f.apply(new IntervalsPrefix.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code wildcard}
-		 */
+		public ObjectBuilder<Intervals> wildcard(IntervalsWildcard v) {
+			this._type = WILDCARD;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<Intervals> wildcard(
-				Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> fn) {
-			return this.wildcard(fn.apply(new IntervalsWildcard.Builder()).build());
+				Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> f) {
+			return this.wildcard(f.apply(new IntervalsWildcard.Builder()).build());
+		}
+
+		protected Intervals build() {
+			return new Intervals(this);
 		}
 
 	}
 
-	class $Helper {
-		private static Intervals deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupIntervalsDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends Intervals> builder = null;
-			String variant = null;
+		op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
+		op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");
+		op.add(Builder::fuzzy, IntervalsFuzzy._DESERIALIZER, "fuzzy");
+		op.add(Builder::match, IntervalsMatch._DESERIALIZER, "match");
+		op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
+		op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case ALL_OF : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsAllOf.$BUILDER_DESERIALIZER.deserialize(new IntervalsAllOf.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case ANY_OF : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsAnyOf.$BUILDER_DESERIALIZER.deserialize(new IntervalsAnyOf.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case FUZZY : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsFuzzy.$BUILDER_DESERIALIZER.deserialize(new IntervalsFuzzy.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case MATCH : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsMatch.$BUILDER_DESERIALIZER.deserialize(new IntervalsMatch.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case PREFIX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsPrefix.$BUILDER_DESERIALIZER.deserialize(new IntervalsPrefix.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case WILDCARD : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsWildcard.$BUILDER_DESERIALIZER.deserialize(new IntervalsWildcard.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<Intervals> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<Intervals> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			Intervals::setupIntervalsDeserializer, Builder::build);
 }

@@ -23,7 +23,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -36,7 +36,7 @@ import java.util.OptionalInt;
 import static java.util.Objects.requireNonNull;
 
 // Implementing ToXContent is optional, only if there's a request body
-public class FooOptRequest implements ToJsonp {
+public class FooOptRequest implements JsonpSerializable {
 
   //===========================================
   // Fields and getters
@@ -118,7 +118,7 @@ public class FooOptRequest implements ToJsonp {
 
 
   @Override
-  public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
+  public void serialize(JsonGenerator builder, JsonpMapper mapper) {
     builder.writeStartObject();
 
     // Classic approach is to use the deserialization field's preferred name:
@@ -153,7 +153,7 @@ public class FooOptRequest implements ToJsonp {
 
     if (this.bar != null) {
       builder.writeKey("bar");
-      this.bar.toJsonp(builder, mapper);
+      this.bar.serialize(builder, mapper);
     }
 
     builder.writeEnd();

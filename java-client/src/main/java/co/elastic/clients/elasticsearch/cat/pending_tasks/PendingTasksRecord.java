@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.pending_tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.pending_tasks.PendingTasksRecord
+@JsonpDeserializable
 public final class PendingTasksRecord implements JsonpSerializable {
 	@Nullable
 	private final String insertorder;
@@ -213,8 +215,8 @@ public final class PendingTasksRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PendingTasksRecord}
 	 */
-	public static final JsonpDeserializer<PendingTasksRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PendingTasksRecord::setupPendingTasksRecordDeserializer);
+	public static final JsonpDeserializer<PendingTasksRecord> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PendingTasksRecord::setupPendingTasksRecordDeserializer, Builder::build);
 
 	protected static void setupPendingTasksRecordDeserializer(DelegatingDeserializer<PendingTasksRecord.Builder> op) {
 

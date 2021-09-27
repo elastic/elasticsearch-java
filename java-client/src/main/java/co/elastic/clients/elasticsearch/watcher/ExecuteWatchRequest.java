@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -44,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Request
+@JsonpDeserializable
 public final class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -401,20 +403,20 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link ExecuteWatchRequest}
 	 */
-	public static final JsonpDeserializer<ExecuteWatchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer);
+	public static final JsonpDeserializer<ExecuteWatchRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer, Builder::build);
 
 	protected static void setupExecuteWatchRequestDeserializer(DelegatingDeserializer<ExecuteWatchRequest.Builder> op) {
 
-		op.add(Builder::actionModes, JsonpDeserializer.stringMapDeserializer(ActionExecutionMode.DESERIALIZER),
+		op.add(Builder::actionModes, JsonpDeserializer.stringMapDeserializer(ActionExecutionMode._DESERIALIZER),
 				"action_modes");
-		op.add(Builder::alternativeInput, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+		op.add(Builder::alternativeInput, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"alternative_input");
 		op.add(Builder::ignoreCondition, JsonpDeserializer.booleanDeserializer(), "ignore_condition");
 		op.add(Builder::recordExecution, JsonpDeserializer.booleanDeserializer(), "record_execution");
-		op.add(Builder::simulatedActions, SimulatedActions.DESERIALIZER, "simulated_actions");
-		op.add(Builder::triggerData, ScheduleTriggerEvent.DESERIALIZER, "trigger_data");
-		op.add(Builder::watch, Watch.DESERIALIZER, "watch");
+		op.add(Builder::simulatedActions, SimulatedActions._DESERIALIZER, "simulated_actions");
+		op.add(Builder::triggerData, ScheduleTriggerEvent._DESERIALIZER, "trigger_data");
+		op.add(Builder::watch, Watch._DESERIALIZER, "watch");
 
 	}
 
@@ -467,5 +469,5 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ExecuteWatchResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ExecuteWatchResponse._DESERIALIZER);
 }

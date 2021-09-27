@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryBase
+
 public abstract class QueryBase implements JsonpSerializable {
 	@Nullable
-	private final Number boost;
+	private final Float boost;
 
 	@Nullable
 	private final String queryName;
@@ -57,7 +59,7 @@ public abstract class QueryBase implements JsonpSerializable {
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Number boost() {
+	public Float boost() {
 		return this.boost;
 	}
 
@@ -83,7 +85,7 @@ public abstract class QueryBase implements JsonpSerializable {
 		if (this.boost != null) {
 
 			generator.writeKey("boost");
-			generator.write(this.boost.doubleValue());
+			generator.write(this.boost);
 
 		}
 		if (this.queryName != null) {
@@ -97,7 +99,7 @@ public abstract class QueryBase implements JsonpSerializable {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private Number boost;
+		private Float boost;
 
 		@Nullable
 		private String queryName;
@@ -105,7 +107,7 @@ public abstract class QueryBase implements JsonpSerializable {
 		/**
 		 * API name: {@code boost}
 		 */
-		public BuilderT boost(@Nullable Number value) {
+		public BuilderT boost(@Nullable Float value) {
 			this.boost = value;
 			return self();
 		}
@@ -126,7 +128,7 @@ public abstract class QueryBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupQueryBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::boost, JsonpDeserializer.numberDeserializer(), "boost");
+		op.add(AbstractBuilder::boost, JsonpDeserializer.floatDeserializer(), "boost");
 		op.add(AbstractBuilder::queryName, JsonpDeserializer.stringDeserializer(), "_name");
 
 	}

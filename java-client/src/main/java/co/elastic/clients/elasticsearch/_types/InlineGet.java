@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,15 +46,16 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.InlineGet
+
 public final class InlineGet<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> fields;
 
 	private final Boolean found;
 
-	private final Number seqNo;
+	private final Integer seqNo;
 
-	private final Number primaryTerm;
+	private final Long primaryTerm;
 
 	@Nullable
 	private final String routing;
@@ -94,14 +97,14 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Number seqNo() {
+	public Integer seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Number primaryTerm() {
+	public Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -148,10 +151,10 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		generator.write(this.found);
 
 		generator.writeKey("_seq_no");
-		generator.write(this.seqNo.doubleValue());
+		generator.write(this.seqNo);
 
 		generator.writeKey("_primary_term");
-		generator.write(this.primaryTerm.doubleValue());
+		generator.write(this.primaryTerm);
 
 		if (this.routing != null) {
 
@@ -176,9 +179,9 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 
 		private Boolean found;
 
-		private Number seqNo;
+		private Integer seqNo;
 
-		private Number primaryTerm;
+		private Long primaryTerm;
 
 		@Nullable
 		private String routing;
@@ -218,7 +221,7 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(Number value) {
+		public Builder<TDocument> seqNo(Integer value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -226,7 +229,7 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> primaryTerm(Number value) {
+		public Builder<TDocument> primaryTerm(Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -283,10 +286,10 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 			DelegatingDeserializer<InlineGet.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "fields");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
+		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 

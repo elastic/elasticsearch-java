@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,12 +33,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationStore
+@JsonpDeserializable
 public final class AllocationStore implements JsonpSerializable {
 	private final String allocationId;
 
@@ -45,7 +47,7 @@ public final class AllocationStore implements JsonpSerializable {
 
 	private final Boolean inSync;
 
-	private final Number matchingSizeInBytes;
+	private final Long matchingSizeInBytes;
 
 	private final Boolean matchingSyncId;
 
@@ -88,7 +90,7 @@ public final class AllocationStore implements JsonpSerializable {
 	/**
 	 * API name: {@code matching_size_in_bytes}
 	 */
-	public Number matchingSizeInBytes() {
+	public Long matchingSizeInBytes() {
 		return this.matchingSizeInBytes;
 	}
 
@@ -127,7 +129,7 @@ public final class AllocationStore implements JsonpSerializable {
 		generator.write(this.inSync);
 
 		generator.writeKey("matching_size_in_bytes");
-		generator.write(this.matchingSizeInBytes.doubleValue());
+		generator.write(this.matchingSizeInBytes);
 
 		generator.writeKey("matching_sync_id");
 		generator.write(this.matchingSyncId);
@@ -149,7 +151,7 @@ public final class AllocationStore implements JsonpSerializable {
 
 		private Boolean inSync;
 
-		private Number matchingSizeInBytes;
+		private Long matchingSizeInBytes;
 
 		private Boolean matchingSyncId;
 
@@ -182,7 +184,7 @@ public final class AllocationStore implements JsonpSerializable {
 		/**
 		 * API name: {@code matching_size_in_bytes}
 		 */
-		public Builder matchingSizeInBytes(Number value) {
+		public Builder matchingSizeInBytes(Long value) {
 			this.matchingSizeInBytes = value;
 			return this;
 		}
@@ -220,15 +222,15 @@ public final class AllocationStore implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AllocationStore}
 	 */
-	public static final JsonpDeserializer<AllocationStore> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationStore::setupAllocationStoreDeserializer);
+	public static final JsonpDeserializer<AllocationStore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AllocationStore::setupAllocationStoreDeserializer, Builder::build);
 
 	protected static void setupAllocationStoreDeserializer(DelegatingDeserializer<AllocationStore.Builder> op) {
 
 		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::inSync, JsonpDeserializer.booleanDeserializer(), "in_sync");
-		op.add(Builder::matchingSizeInBytes, JsonpDeserializer.numberDeserializer(), "matching_size_in_bytes");
+		op.add(Builder::matchingSizeInBytes, JsonpDeserializer.longDeserializer(), "matching_size_in_bytes");
 		op.add(Builder::matchingSyncId, JsonpDeserializer.booleanDeserializer(), "matching_sync_id");
 		op.add(Builder::storeException, JsonpDeserializer.stringDeserializer(), "store_exception");
 

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum NodeRole implements StringEnum {
 	Master("master"), Data("data"), DataCold("data_cold"), DataContent("data_content"), DataFrozen(
 			"data_frozen"), DataHot("data_hot"), DataWarm("data_warm"), Client("client"), Ingest("ingest"), Ml(
@@ -42,6 +44,6 @@ public enum NodeRole implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<NodeRole> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<NodeRole> _DESERIALIZER = new StringEnum.Deserializer<>(
 			NodeRole.values());
 }

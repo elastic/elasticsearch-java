@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputAuthentication
+@JsonpDeserializable
 public final class HttpInputAuthentication implements JsonpSerializable {
 	private final HttpInputBasicAuthentication basic;
 
@@ -111,13 +113,13 @@ public final class HttpInputAuthentication implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HttpInputAuthentication}
 	 */
-	public static final JsonpDeserializer<HttpInputAuthentication> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputAuthentication::setupHttpInputAuthenticationDeserializer);
+	public static final JsonpDeserializer<HttpInputAuthentication> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpInputAuthentication::setupHttpInputAuthenticationDeserializer, Builder::build);
 
 	protected static void setupHttpInputAuthenticationDeserializer(
 			DelegatingDeserializer<HttpInputAuthentication.Builder> op) {
 
-		op.add(Builder::basic, HttpInputBasicAuthentication.DESERIALIZER, "basic");
+		op.add(Builder::basic, HttpInputBasicAuthentication._DESERIALIZER, "basic");
 
 	}
 

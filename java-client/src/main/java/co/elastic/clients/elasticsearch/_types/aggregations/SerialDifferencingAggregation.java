@@ -24,20 +24,22 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
-public final class SerialDifferencingAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class SerialDifferencingAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number lag;
+	private final Integer lag;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -49,10 +51,18 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "serial_diff";
+	}
+
+	/**
 	 * API name: {@code lag}
 	 */
 	@Nullable
-	public Number lag() {
+	public Integer lag() {
 		return this.lag;
 	}
 
@@ -62,7 +72,7 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 		if (this.lag != null) {
 
 			generator.writeKey("lag");
-			generator.write(this.lag.doubleValue());
+			generator.write(this.lag);
 
 		}
 
@@ -77,12 +87,12 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 			implements
 				ObjectBuilder<SerialDifferencingAggregation> {
 		@Nullable
-		private Number lag;
+		private Integer lag;
 
 		/**
 		 * API name: {@code lag}
 		 */
-		public Builder lag(@Nullable Number value) {
+		public Builder lag(@Nullable Integer value) {
 			this.lag = value;
 			return this;
 		}
@@ -109,14 +119,14 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 	/**
 	 * Json deserializer for {@link SerialDifferencingAggregation}
 	 */
-	public static final JsonpDeserializer<SerialDifferencingAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer);
+	public static final JsonpDeserializer<SerialDifferencingAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SerialDifferencingAggregation::setupSerialDifferencingAggregationDeserializer,
+			Builder::build);
 
 	protected static void setupSerialDifferencingAggregationDeserializer(
 			DelegatingDeserializer<SerialDifferencingAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::lag, JsonpDeserializer.numberDeserializer(), "lag");
+		op.add(Builder::lag, JsonpDeserializer.integerDeserializer(), "lag");
 
 	}
 

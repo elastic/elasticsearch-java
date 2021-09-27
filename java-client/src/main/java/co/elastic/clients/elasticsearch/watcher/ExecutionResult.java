@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResult
+@JsonpDeserializable
 public final class ExecutionResult implements JsonpSerializable {
 	private final List<ExecutionResultAction> actions;
 
 	private final ExecutionResultCondition condition;
 
-	private final Number executionDuration;
+	private final Integer executionDuration;
 
 	private final String executionTime;
 
@@ -81,7 +83,7 @@ public final class ExecutionResult implements JsonpSerializable {
 	/**
 	 * API name: {@code execution_duration}
 	 */
-	public Number executionDuration() {
+	public Integer executionDuration() {
 		return this.executionDuration;
 	}
 
@@ -122,7 +124,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		this.condition.serialize(generator, mapper);
 
 		generator.writeKey("execution_duration");
-		generator.write(this.executionDuration.doubleValue());
+		generator.write(this.executionDuration);
 
 		generator.writeKey("execution_time");
 		generator.write(this.executionTime);
@@ -142,7 +144,7 @@ public final class ExecutionResult implements JsonpSerializable {
 
 		private ExecutionResultCondition condition;
 
-		private Number executionDuration;
+		private Integer executionDuration;
 
 		private String executionTime;
 
@@ -208,7 +210,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * API name: {@code execution_duration}
 		 */
-		public Builder executionDuration(Number value) {
+		public Builder executionDuration(Integer value) {
 			this.executionDuration = value;
 			return this;
 		}
@@ -253,16 +255,16 @@ public final class ExecutionResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecutionResult}
 	 */
-	public static final JsonpDeserializer<ExecutionResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionResult::setupExecutionResultDeserializer);
+	public static final JsonpDeserializer<ExecutionResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExecutionResult::setupExecutionResultDeserializer, Builder::build);
 
 	protected static void setupExecutionResultDeserializer(DelegatingDeserializer<ExecutionResult.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction.DESERIALIZER), "actions");
-		op.add(Builder::condition, ExecutionResultCondition.DESERIALIZER, "condition");
-		op.add(Builder::executionDuration, JsonpDeserializer.numberDeserializer(), "execution_duration");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction._DESERIALIZER), "actions");
+		op.add(Builder::condition, ExecutionResultCondition._DESERIALIZER, "condition");
+		op.add(Builder::executionDuration, JsonpDeserializer.integerDeserializer(), "execution_duration");
 		op.add(Builder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
-		op.add(Builder::input, ExecutionResultInput.DESERIALIZER, "input");
+		op.add(Builder::input, ExecutionResultInput._DESERIALIZER, "input");
 
 	}
 

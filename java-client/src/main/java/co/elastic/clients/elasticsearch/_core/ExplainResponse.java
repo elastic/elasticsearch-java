@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.elasticsearch._core.explain.ExplanationDetail;
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Response
+
 public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
 
@@ -289,7 +291,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
-		op.add(Builder::explanation, ExplanationDetail.DESERIALIZER, "explanation");
+		op.add(Builder::explanation, ExplanationDetail._DESERIALIZER, "explanation");
 		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");
 
 	}

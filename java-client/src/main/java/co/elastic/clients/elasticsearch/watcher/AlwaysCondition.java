@@ -23,28 +23,28 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-public class AlwaysCondition implements Condition, JsonpSerializable {
+@JsonpDeserializable
+public class AlwaysCondition implements ConditionVariant, JsonpSerializable {
 
 	/**
 	 * {@link Condition} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "always";
 	}
 
 	public static final class Builder implements ObjectBuilder<AlwaysCondition> {
 		@Override
 		public AlwaysCondition build() {
-			return AlwaysCondition.INSTANCE;
+			return AlwaysCondition._INSTANCE;
 		}
 	}
 
@@ -52,24 +52,16 @@ public class AlwaysCondition implements Condition, JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject();
 		generator.writeEnd();
-		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link AlwaysCondition}.
+	 * Singleton instance for empty class {@link AlwaysCondition}.
 	 */
-	public static final AlwaysCondition INSTANCE = new AlwaysCondition();
+	public static final AlwaysCondition _INSTANCE = new AlwaysCondition();
 
-	public static final JsonpDeserializer<AlwaysCondition> DESERIALIZER = JsonpDeserializer
-			.emptyObject(AlwaysCondition.INSTANCE);
-
-	public static final InstanceDeserializer<AlwaysCondition.Builder, AlwaysCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(b -> {
-			});
+	public static final JsonpDeserializer<AlwaysCondition> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(AlwaysCondition._INSTANCE);
 
 }

@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch.cluster.allocation_explain.Decision;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.NodeAllocationExplanation;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,7 +39,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +50,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Response
+@JsonpDeserializable
 public final class AllocationExplainResponse implements JsonpSerializable {
 	@Nullable
 	private final String allocateExplanation;
@@ -56,7 +59,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	private final String allocationDelay;
 
 	@Nullable
-	private final Number allocationDelayInMillis;
+	private final Long allocationDelayInMillis;
 
 	@Nullable
 	private final Decision canAllocate;
@@ -86,7 +89,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	private final String configuredDelay;
 
 	@Nullable
-	private final Number configuredDelayInMillis;
+	private final Long configuredDelayInMillis;
 
 	@Nullable
 	private final CurrentNode currentNode;
@@ -110,9 +113,9 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	private final String remainingDelay;
 
 	@Nullable
-	private final Number remainingDelayInMillis;
+	private final Long remainingDelayInMillis;
 
-	private final Number shard;
+	private final Integer shard;
 
 	@Nullable
 	private final UnassignedInformation unassignedInfo;
@@ -172,7 +175,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code allocation_delay_in_millis}
 	 */
 	@Nullable
-	public Number allocationDelayInMillis() {
+	public Long allocationDelayInMillis() {
 		return this.allocationDelayInMillis;
 	}
 
@@ -252,7 +255,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code configured_delay_in_millis}
 	 */
 	@Nullable
-	public Number configuredDelayInMillis() {
+	public Long configuredDelayInMillis() {
 		return this.configuredDelayInMillis;
 	}
 
@@ -321,14 +324,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code remaining_delay_in_millis}
 	 */
 	@Nullable
-	public Number remainingDelayInMillis() {
+	public Long remainingDelayInMillis() {
 		return this.remainingDelayInMillis;
 	}
 
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
@@ -374,7 +377,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		if (this.allocationDelayInMillis != null) {
 
 			generator.writeKey("allocation_delay_in_millis");
-			generator.write(this.allocationDelayInMillis.doubleValue());
+			generator.write(this.allocationDelayInMillis);
 
 		}
 		if (this.canAllocate != null) {
@@ -439,7 +442,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		if (this.configuredDelayInMillis != null) {
 
 			generator.writeKey("configured_delay_in_millis");
-			generator.write(this.configuredDelayInMillis.doubleValue());
+			generator.write(this.configuredDelayInMillis);
 
 		}
 		if (this.currentNode != null) {
@@ -491,12 +494,12 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		if (this.remainingDelayInMillis != null) {
 
 			generator.writeKey("remaining_delay_in_millis");
-			generator.write(this.remainingDelayInMillis.doubleValue());
+			generator.write(this.remainingDelayInMillis);
 
 		}
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		if (this.unassignedInfo != null) {
 
@@ -526,7 +529,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		private String allocationDelay;
 
 		@Nullable
-		private Number allocationDelayInMillis;
+		private Long allocationDelayInMillis;
 
 		@Nullable
 		private Decision canAllocate;
@@ -556,7 +559,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		private String configuredDelay;
 
 		@Nullable
-		private Number configuredDelayInMillis;
+		private Long configuredDelayInMillis;
 
 		@Nullable
 		private CurrentNode currentNode;
@@ -580,9 +583,9 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		private String remainingDelay;
 
 		@Nullable
-		private Number remainingDelayInMillis;
+		private Long remainingDelayInMillis;
 
-		private Number shard;
+		private Integer shard;
 
 		@Nullable
 		private UnassignedInformation unassignedInfo;
@@ -609,7 +612,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation_delay_in_millis}
 		 */
-		public Builder allocationDelayInMillis(@Nullable Number value) {
+		public Builder allocationDelayInMillis(@Nullable Long value) {
 			this.allocationDelayInMillis = value;
 			return this;
 		}
@@ -769,7 +772,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code configured_delay_in_millis}
 		 */
-		public Builder configuredDelayInMillis(@Nullable Number value) {
+		public Builder configuredDelayInMillis(@Nullable Long value) {
 			this.configuredDelayInMillis = value;
 			return this;
 		}
@@ -885,7 +888,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code remaining_delay_in_millis}
 		 */
-		public Builder remainingDelayInMillis(@Nullable Number value) {
+		public Builder remainingDelayInMillis(@Nullable Long value) {
 			this.remainingDelayInMillis = value;
 			return this;
 		}
@@ -893,7 +896,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -939,41 +942,41 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AllocationExplainResponse}
 	 */
-	public static final JsonpDeserializer<AllocationExplainResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseDeserializer);
+	public static final JsonpDeserializer<AllocationExplainResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AllocationExplainResponse::setupAllocationExplainResponseDeserializer, Builder::build);
 
 	protected static void setupAllocationExplainResponseDeserializer(
 			DelegatingDeserializer<AllocationExplainResponse.Builder> op) {
 
 		op.add(Builder::allocateExplanation, JsonpDeserializer.stringDeserializer(), "allocate_explanation");
 		op.add(Builder::allocationDelay, JsonpDeserializer.stringDeserializer(), "allocation_delay");
-		op.add(Builder::allocationDelayInMillis, JsonpDeserializer.numberDeserializer(), "allocation_delay_in_millis");
-		op.add(Builder::canAllocate, Decision.DESERIALIZER, "can_allocate");
-		op.add(Builder::canMoveToOtherNode, Decision.DESERIALIZER, "can_move_to_other_node");
-		op.add(Builder::canRebalanceCluster, Decision.DESERIALIZER, "can_rebalance_cluster");
+		op.add(Builder::allocationDelayInMillis, JsonpDeserializer.longDeserializer(), "allocation_delay_in_millis");
+		op.add(Builder::canAllocate, Decision._DESERIALIZER, "can_allocate");
+		op.add(Builder::canMoveToOtherNode, Decision._DESERIALIZER, "can_move_to_other_node");
+		op.add(Builder::canRebalanceCluster, Decision._DESERIALIZER, "can_rebalance_cluster");
 		op.add(Builder::canRebalanceClusterDecisions,
-				JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER),
+				JsonpDeserializer.arrayDeserializer(AllocationDecision._DESERIALIZER),
 				"can_rebalance_cluster_decisions");
-		op.add(Builder::canRebalanceToOtherNode, Decision.DESERIALIZER, "can_rebalance_to_other_node");
-		op.add(Builder::canRemainDecisions, JsonpDeserializer.arrayDeserializer(AllocationDecision.DESERIALIZER),
+		op.add(Builder::canRebalanceToOtherNode, Decision._DESERIALIZER, "can_rebalance_to_other_node");
+		op.add(Builder::canRemainDecisions, JsonpDeserializer.arrayDeserializer(AllocationDecision._DESERIALIZER),
 				"can_remain_decisions");
-		op.add(Builder::canRemainOnCurrentNode, Decision.DESERIALIZER, "can_remain_on_current_node");
-		op.add(Builder::clusterInfo, ClusterInfo.DESERIALIZER, "cluster_info");
+		op.add(Builder::canRemainOnCurrentNode, Decision._DESERIALIZER, "can_remain_on_current_node");
+		op.add(Builder::clusterInfo, ClusterInfo._DESERIALIZER, "cluster_info");
 		op.add(Builder::configuredDelay, JsonpDeserializer.stringDeserializer(), "configured_delay");
-		op.add(Builder::configuredDelayInMillis, JsonpDeserializer.numberDeserializer(), "configured_delay_in_millis");
-		op.add(Builder::currentNode, CurrentNode.DESERIALIZER, "current_node");
+		op.add(Builder::configuredDelayInMillis, JsonpDeserializer.longDeserializer(), "configured_delay_in_millis");
+		op.add(Builder::currentNode, CurrentNode._DESERIALIZER, "current_node");
 		op.add(Builder::currentState, JsonpDeserializer.stringDeserializer(), "current_state");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::moveExplanation, JsonpDeserializer.stringDeserializer(), "move_explanation");
 		op.add(Builder::nodeAllocationDecisions,
-				JsonpDeserializer.arrayDeserializer(NodeAllocationExplanation.DESERIALIZER),
+				JsonpDeserializer.arrayDeserializer(NodeAllocationExplanation._DESERIALIZER),
 				"node_allocation_decisions");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::rebalanceExplanation, JsonpDeserializer.stringDeserializer(), "rebalance_explanation");
 		op.add(Builder::remainingDelay, JsonpDeserializer.stringDeserializer(), "remaining_delay");
-		op.add(Builder::remainingDelayInMillis, JsonpDeserializer.numberDeserializer(), "remaining_delay_in_millis");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
-		op.add(Builder::unassignedInfo, UnassignedInformation.DESERIALIZER, "unassigned_info");
+		op.add(Builder::remainingDelayInMillis, JsonpDeserializer.longDeserializer(), "remaining_delay_in_millis");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
+		op.add(Builder::unassignedInfo, UnassignedInformation._DESERIALIZER, "unassigned_info");
 		op.add(Builder::note, JsonpDeserializer.stringDeserializer(), "note");
 
 	}

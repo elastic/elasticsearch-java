@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ml.JobStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModels
+@JsonpDeserializable
 public final class MlInferenceTrainedModels implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics estimatedOperations;
@@ -221,16 +223,17 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInferenceTrainedModels}
 	 */
-	public static final JsonpDeserializer<MlInferenceTrainedModels> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer);
+	public static final JsonpDeserializer<MlInferenceTrainedModels> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlInferenceTrainedModels::setupMlInferenceTrainedModelsDeserializer, Builder::build);
 
 	protected static void setupMlInferenceTrainedModelsDeserializer(
 			DelegatingDeserializer<MlInferenceTrainedModels.Builder> op) {
 
-		op.add(Builder::estimatedOperations, JobStatistics.DESERIALIZER, "estimated_operations");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics.DESERIALIZER, "estimated_heap_memory_usage_bytes");
-		op.add(Builder::count, MlInferenceTrainedModelsCount.DESERIALIZER, "count");
-		op.add(Builder::all, MlCounter.DESERIALIZER, "_all");
+		op.add(Builder::estimatedOperations, JobStatistics._DESERIALIZER, "estimated_operations");
+		op.add(Builder::estimatedHeapMemoryUsageBytes, JobStatistics._DESERIALIZER,
+				"estimated_heap_memory_usage_bytes");
+		op.add(Builder::count, MlInferenceTrainedModelsCount._DESERIALIZER, "count");
+		op.add(Builder::all, MlCounter._DESERIALIZER, "_all");
 
 	}
 

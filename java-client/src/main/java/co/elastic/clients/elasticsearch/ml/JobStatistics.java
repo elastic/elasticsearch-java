@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,19 +32,20 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStatistics
+@JsonpDeserializable
 public final class JobStatistics implements JsonpSerializable {
-	private final Number avg;
+	private final Double avg;
 
-	private final Number max;
+	private final Double max;
 
-	private final Number min;
+	private final Double min;
 
-	private final Number total;
+	private final Double total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,28 +61,28 @@ public final class JobStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code avg}
 	 */
-	public Number avg() {
+	public Double avg() {
 		return this.avg;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Number max() {
+	public Double max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Number min() {
+	public Double min() {
 		return this.min;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Double total() {
 		return this.total;
 	}
 
@@ -96,16 +98,16 @@ public final class JobStatistics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("avg");
-		generator.write(this.avg.doubleValue());
+		generator.write(this.avg);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -115,18 +117,18 @@ public final class JobStatistics implements JsonpSerializable {
 	 * Builder for {@link JobStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<JobStatistics> {
-		private Number avg;
+		private Double avg;
 
-		private Number max;
+		private Double max;
 
-		private Number min;
+		private Double min;
 
-		private Number total;
+		private Double total;
 
 		/**
 		 * API name: {@code avg}
 		 */
-		public Builder avg(Number value) {
+		public Builder avg(Double value) {
 			this.avg = value;
 			return this;
 		}
@@ -134,7 +136,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(Double value) {
 			this.max = value;
 			return this;
 		}
@@ -142,7 +144,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(Double value) {
 			this.min = value;
 			return this;
 		}
@@ -150,7 +152,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Double value) {
 			this.total = value;
 			return this;
 		}
@@ -172,15 +174,15 @@ public final class JobStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link JobStatistics}
 	 */
-	public static final JsonpDeserializer<JobStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobStatistics::setupJobStatisticsDeserializer);
+	public static final JsonpDeserializer<JobStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JobStatistics::setupJobStatisticsDeserializer, Builder::build);
 
 	protected static void setupJobStatisticsDeserializer(DelegatingDeserializer<JobStatistics.Builder> op) {
 
-		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.doubleDeserializer(), "min");
+		op.add(Builder::total, JsonpDeserializer.doubleDeserializer(), "total");
 
 	}
 

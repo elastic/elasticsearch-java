@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTrigger
+@JsonpDeserializable
 public final class WatcherWatchTrigger implements JsonpSerializable {
 	@Nullable
 	private final WatcherWatchTriggerSchedule schedule;
@@ -148,13 +150,13 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WatcherWatchTrigger}
 	 */
-	public static final JsonpDeserializer<WatcherWatchTrigger> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherWatchTrigger::setupWatcherWatchTriggerDeserializer);
+	public static final JsonpDeserializer<WatcherWatchTrigger> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WatcherWatchTrigger::setupWatcherWatchTriggerDeserializer, Builder::build);
 
 	protected static void setupWatcherWatchTriggerDeserializer(DelegatingDeserializer<WatcherWatchTrigger.Builder> op) {
 
-		op.add(Builder::schedule, WatcherWatchTriggerSchedule.DESERIALIZER, "schedule");
-		op.add(Builder::all, Counter.DESERIALIZER, "_all");
+		op.add(Builder::schedule, WatcherWatchTriggerSchedule._DESERIALIZER, "schedule");
+		op.add(Builder::all, Counter._DESERIALIZER, "_all");
 
 	}
 

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: logstash.delete_pipeline.Response
+
 public final class DeletePipelineResponse {
 	public DeletePipelineResponse() {
 	}
@@ -38,9 +40,9 @@ public final class DeletePipelineResponse {
 	/**
 	 * Singleton instance for {@link DeletePipelineResponse}.
 	 */
-	public static final DeletePipelineResponse INSTANCE = new DeletePipelineResponse();
+	public static final DeletePipelineResponse _INSTANCE = new DeletePipelineResponse();
 
-	public static final JsonpDeserializer<DeletePipelineResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(DeletePipelineResponse.INSTANCE);
+	public static final JsonpDeserializer<DeletePipelineResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(DeletePipelineResponse._INSTANCE);
 
 }

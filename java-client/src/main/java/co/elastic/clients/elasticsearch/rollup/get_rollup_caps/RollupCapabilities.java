@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup.get_rollup_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilities
+@JsonpDeserializable
 public final class RollupCapabilities implements JsonpSerializable {
 	private final List<RollupCapabilitySummary> rollupJobs;
 
@@ -146,12 +148,12 @@ public final class RollupCapabilities implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupCapabilities}
 	 */
-	public static final JsonpDeserializer<RollupCapabilities> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupCapabilities::setupRollupCapabilitiesDeserializer);
+	public static final JsonpDeserializer<RollupCapabilities> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RollupCapabilities::setupRollupCapabilitiesDeserializer, Builder::build);
 
 	protected static void setupRollupCapabilitiesDeserializer(DelegatingDeserializer<RollupCapabilities.Builder> op) {
 
-		op.add(Builder::rollupJobs, JsonpDeserializer.arrayDeserializer(RollupCapabilitySummary.DESERIALIZER),
+		op.add(Builder::rollupJobs, JsonpDeserializer.arrayDeserializer(RollupCapabilitySummary._DESERIALIZER),
 				"rollup_jobs");
 
 	}

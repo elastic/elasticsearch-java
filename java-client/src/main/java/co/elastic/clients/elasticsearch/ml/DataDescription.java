@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataDescription
+@JsonpDeserializable
 public final class DataDescription implements JsonpSerializable {
 	@Nullable
 	private final String format;
@@ -222,8 +224,8 @@ public final class DataDescription implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataDescription}
 	 */
-	public static final JsonpDeserializer<DataDescription> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataDescription::setupDataDescriptionDeserializer);
+	public static final JsonpDeserializer<DataDescription> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataDescription::setupDataDescriptionDeserializer, Builder::build);
 
 	protected static void setupDataDescriptionDeserializer(DelegatingDeserializer<DataDescription.Builder> op) {
 

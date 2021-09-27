@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,37 +32,38 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationBreakdown
+@JsonpDeserializable
 public final class AggregationBreakdown implements JsonpSerializable {
-	private final Number buildAggregation;
+	private final Long buildAggregation;
 
-	private final Number buildAggregationCount;
+	private final Long buildAggregationCount;
 
-	private final Number buildLeafCollector;
+	private final Long buildLeafCollector;
 
-	private final Number buildLeafCollectorCount;
+	private final Long buildLeafCollectorCount;
 
-	private final Number collect;
+	private final Long collect;
 
-	private final Number collectCount;
+	private final Long collectCount;
 
-	private final Number initialize;
+	private final Long initialize;
 
-	private final Number initializeCount;
-
-	@Nullable
-	private final Number postCollection;
+	private final Long initializeCount;
 
 	@Nullable
-	private final Number postCollectionCount;
+	private final Long postCollection;
 
-	private final Number reduce;
+	@Nullable
+	private final Long postCollectionCount;
 
-	private final Number reduceCount;
+	private final Long reduce;
+
+	private final Long reduceCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -86,56 +88,56 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	/**
 	 * API name: {@code build_aggregation}
 	 */
-	public Number buildAggregation() {
+	public Long buildAggregation() {
 		return this.buildAggregation;
 	}
 
 	/**
 	 * API name: {@code build_aggregation_count}
 	 */
-	public Number buildAggregationCount() {
+	public Long buildAggregationCount() {
 		return this.buildAggregationCount;
 	}
 
 	/**
 	 * API name: {@code build_leaf_collector}
 	 */
-	public Number buildLeafCollector() {
+	public Long buildLeafCollector() {
 		return this.buildLeafCollector;
 	}
 
 	/**
 	 * API name: {@code build_leaf_collector_count}
 	 */
-	public Number buildLeafCollectorCount() {
+	public Long buildLeafCollectorCount() {
 		return this.buildLeafCollectorCount;
 	}
 
 	/**
 	 * API name: {@code collect}
 	 */
-	public Number collect() {
+	public Long collect() {
 		return this.collect;
 	}
 
 	/**
 	 * API name: {@code collect_count}
 	 */
-	public Number collectCount() {
+	public Long collectCount() {
 		return this.collectCount;
 	}
 
 	/**
 	 * API name: {@code initialize}
 	 */
-	public Number initialize() {
+	public Long initialize() {
 		return this.initialize;
 	}
 
 	/**
 	 * API name: {@code initialize_count}
 	 */
-	public Number initializeCount() {
+	public Long initializeCount() {
 		return this.initializeCount;
 	}
 
@@ -143,7 +145,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	 * API name: {@code post_collection}
 	 */
 	@Nullable
-	public Number postCollection() {
+	public Long postCollection() {
 		return this.postCollection;
 	}
 
@@ -151,21 +153,21 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	 * API name: {@code post_collection_count}
 	 */
 	@Nullable
-	public Number postCollectionCount() {
+	public Long postCollectionCount() {
 		return this.postCollectionCount;
 	}
 
 	/**
 	 * API name: {@code reduce}
 	 */
-	public Number reduce() {
+	public Long reduce() {
 		return this.reduce;
 	}
 
 	/**
 	 * API name: {@code reduce_count}
 	 */
-	public Number reduceCount() {
+	public Long reduceCount() {
 		return this.reduceCount;
 	}
 
@@ -181,47 +183,47 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("build_aggregation");
-		generator.write(this.buildAggregation.doubleValue());
+		generator.write(this.buildAggregation);
 
 		generator.writeKey("build_aggregation_count");
-		generator.write(this.buildAggregationCount.doubleValue());
+		generator.write(this.buildAggregationCount);
 
 		generator.writeKey("build_leaf_collector");
-		generator.write(this.buildLeafCollector.doubleValue());
+		generator.write(this.buildLeafCollector);
 
 		generator.writeKey("build_leaf_collector_count");
-		generator.write(this.buildLeafCollectorCount.doubleValue());
+		generator.write(this.buildLeafCollectorCount);
 
 		generator.writeKey("collect");
-		generator.write(this.collect.doubleValue());
+		generator.write(this.collect);
 
 		generator.writeKey("collect_count");
-		generator.write(this.collectCount.doubleValue());
+		generator.write(this.collectCount);
 
 		generator.writeKey("initialize");
-		generator.write(this.initialize.doubleValue());
+		generator.write(this.initialize);
 
 		generator.writeKey("initialize_count");
-		generator.write(this.initializeCount.doubleValue());
+		generator.write(this.initializeCount);
 
 		if (this.postCollection != null) {
 
 			generator.writeKey("post_collection");
-			generator.write(this.postCollection.doubleValue());
+			generator.write(this.postCollection);
 
 		}
 		if (this.postCollectionCount != null) {
 
 			generator.writeKey("post_collection_count");
-			generator.write(this.postCollectionCount.doubleValue());
+			generator.write(this.postCollectionCount);
 
 		}
 
 		generator.writeKey("reduce");
-		generator.write(this.reduce.doubleValue());
+		generator.write(this.reduce);
 
 		generator.writeKey("reduce_count");
-		generator.write(this.reduceCount.doubleValue());
+		generator.write(this.reduceCount);
 
 	}
 
@@ -231,36 +233,36 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	 * Builder for {@link AggregationBreakdown}.
 	 */
 	public static class Builder implements ObjectBuilder<AggregationBreakdown> {
-		private Number buildAggregation;
+		private Long buildAggregation;
 
-		private Number buildAggregationCount;
+		private Long buildAggregationCount;
 
-		private Number buildLeafCollector;
+		private Long buildLeafCollector;
 
-		private Number buildLeafCollectorCount;
+		private Long buildLeafCollectorCount;
 
-		private Number collect;
+		private Long collect;
 
-		private Number collectCount;
+		private Long collectCount;
 
-		private Number initialize;
+		private Long initialize;
 
-		private Number initializeCount;
-
-		@Nullable
-		private Number postCollection;
+		private Long initializeCount;
 
 		@Nullable
-		private Number postCollectionCount;
+		private Long postCollection;
 
-		private Number reduce;
+		@Nullable
+		private Long postCollectionCount;
 
-		private Number reduceCount;
+		private Long reduce;
+
+		private Long reduceCount;
 
 		/**
 		 * API name: {@code build_aggregation}
 		 */
-		public Builder buildAggregation(Number value) {
+		public Builder buildAggregation(Long value) {
 			this.buildAggregation = value;
 			return this;
 		}
@@ -268,7 +270,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code build_aggregation_count}
 		 */
-		public Builder buildAggregationCount(Number value) {
+		public Builder buildAggregationCount(Long value) {
 			this.buildAggregationCount = value;
 			return this;
 		}
@@ -276,7 +278,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code build_leaf_collector}
 		 */
-		public Builder buildLeafCollector(Number value) {
+		public Builder buildLeafCollector(Long value) {
 			this.buildLeafCollector = value;
 			return this;
 		}
@@ -284,7 +286,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code build_leaf_collector_count}
 		 */
-		public Builder buildLeafCollectorCount(Number value) {
+		public Builder buildLeafCollectorCount(Long value) {
 			this.buildLeafCollectorCount = value;
 			return this;
 		}
@@ -292,7 +294,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code collect}
 		 */
-		public Builder collect(Number value) {
+		public Builder collect(Long value) {
 			this.collect = value;
 			return this;
 		}
@@ -300,7 +302,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code collect_count}
 		 */
-		public Builder collectCount(Number value) {
+		public Builder collectCount(Long value) {
 			this.collectCount = value;
 			return this;
 		}
@@ -308,7 +310,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code initialize}
 		 */
-		public Builder initialize(Number value) {
+		public Builder initialize(Long value) {
 			this.initialize = value;
 			return this;
 		}
@@ -316,7 +318,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code initialize_count}
 		 */
-		public Builder initializeCount(Number value) {
+		public Builder initializeCount(Long value) {
 			this.initializeCount = value;
 			return this;
 		}
@@ -324,7 +326,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code post_collection}
 		 */
-		public Builder postCollection(@Nullable Number value) {
+		public Builder postCollection(@Nullable Long value) {
 			this.postCollection = value;
 			return this;
 		}
@@ -332,7 +334,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code post_collection_count}
 		 */
-		public Builder postCollectionCount(@Nullable Number value) {
+		public Builder postCollectionCount(@Nullable Long value) {
 			this.postCollectionCount = value;
 			return this;
 		}
@@ -340,7 +342,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code reduce}
 		 */
-		public Builder reduce(Number value) {
+		public Builder reduce(Long value) {
 			this.reduce = value;
 			return this;
 		}
@@ -348,7 +350,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		/**
 		 * API name: {@code reduce_count}
 		 */
-		public Builder reduceCount(Number value) {
+		public Builder reduceCount(Long value) {
 			this.reduceCount = value;
 			return this;
 		}
@@ -370,24 +372,24 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AggregationBreakdown}
 	 */
-	public static final JsonpDeserializer<AggregationBreakdown> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AggregationBreakdown::setupAggregationBreakdownDeserializer);
+	public static final JsonpDeserializer<AggregationBreakdown> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AggregationBreakdown::setupAggregationBreakdownDeserializer, Builder::build);
 
 	protected static void setupAggregationBreakdownDeserializer(
 			DelegatingDeserializer<AggregationBreakdown.Builder> op) {
 
-		op.add(Builder::buildAggregation, JsonpDeserializer.numberDeserializer(), "build_aggregation");
-		op.add(Builder::buildAggregationCount, JsonpDeserializer.numberDeserializer(), "build_aggregation_count");
-		op.add(Builder::buildLeafCollector, JsonpDeserializer.numberDeserializer(), "build_leaf_collector");
-		op.add(Builder::buildLeafCollectorCount, JsonpDeserializer.numberDeserializer(), "build_leaf_collector_count");
-		op.add(Builder::collect, JsonpDeserializer.numberDeserializer(), "collect");
-		op.add(Builder::collectCount, JsonpDeserializer.numberDeserializer(), "collect_count");
-		op.add(Builder::initialize, JsonpDeserializer.numberDeserializer(), "initialize");
-		op.add(Builder::initializeCount, JsonpDeserializer.numberDeserializer(), "initialize_count");
-		op.add(Builder::postCollection, JsonpDeserializer.numberDeserializer(), "post_collection");
-		op.add(Builder::postCollectionCount, JsonpDeserializer.numberDeserializer(), "post_collection_count");
-		op.add(Builder::reduce, JsonpDeserializer.numberDeserializer(), "reduce");
-		op.add(Builder::reduceCount, JsonpDeserializer.numberDeserializer(), "reduce_count");
+		op.add(Builder::buildAggregation, JsonpDeserializer.longDeserializer(), "build_aggregation");
+		op.add(Builder::buildAggregationCount, JsonpDeserializer.longDeserializer(), "build_aggregation_count");
+		op.add(Builder::buildLeafCollector, JsonpDeserializer.longDeserializer(), "build_leaf_collector");
+		op.add(Builder::buildLeafCollectorCount, JsonpDeserializer.longDeserializer(), "build_leaf_collector_count");
+		op.add(Builder::collect, JsonpDeserializer.longDeserializer(), "collect");
+		op.add(Builder::collectCount, JsonpDeserializer.longDeserializer(), "collect_count");
+		op.add(Builder::initialize, JsonpDeserializer.longDeserializer(), "initialize");
+		op.add(Builder::initializeCount, JsonpDeserializer.longDeserializer(), "initialize_count");
+		op.add(Builder::postCollection, JsonpDeserializer.longDeserializer(), "post_collection");
+		op.add(Builder::postCollectionCount, JsonpDeserializer.longDeserializer(), "post_collection_count");
+		op.add(Builder::reduce, JsonpDeserializer.longDeserializer(), "reduce");
+		op.add(Builder::reduceCount, JsonpDeserializer.longDeserializer(), "reduce_count");
 
 	}
 

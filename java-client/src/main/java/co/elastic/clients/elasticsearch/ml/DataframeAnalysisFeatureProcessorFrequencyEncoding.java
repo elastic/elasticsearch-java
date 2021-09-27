@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,15 +40,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorFrequencyEncoding
+@JsonpDeserializable
 public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		implements
-			DataframeAnalysisFeatureProcessor,
+			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
 	private final String featureName;
 
 	private final String field;
 
-	private final Map<String, Number> frequencyMap;
+	private final Map<String, Double> frequencyMap;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	 * {@link DataframeAnalysisFeatureProcessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "frequency_encoding";
 	}
 
@@ -90,7 +91,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	 * <p>
 	 * API name: {@code frequency_map}
 	 */
-	public Map<String, Number> frequencyMap() {
+	public Map<String, Double> frequencyMap() {
 		return this.frequencyMap;
 	}
 
@@ -104,7 +105,6 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
@@ -114,13 +114,11 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 		generator.writeKey("frequency_map");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.frequencyMap.entrySet()) {
+		for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
-		generator.writeEnd();
-
 		generator.writeEnd();
 
 	}
@@ -135,7 +133,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 		private String field;
 
-		private Map<String, Number> frequencyMap;
+		private Map<String, Double> frequencyMap;
 
 		/**
 		 * The resulting feature name.
@@ -161,7 +159,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		 * <p>
 		 * API name: {@code frequency_map}
 		 */
-		public Builder frequencyMap(Map<String, Number> value) {
+		public Builder frequencyMap(Map<String, Double> value) {
 			this.frequencyMap = value;
 			return this;
 		}
@@ -169,7 +167,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		/**
 		 * Add a key/value to {@link #frequencyMap(Map)}, creating the map if needed.
 		 */
-		public Builder putFrequencyMap(String key, Number value) {
+		public Builder putFrequencyMap(String key, Double value) {
 			if (this.frequencyMap == null) {
 				this.frequencyMap = new HashMap<>();
 			}
@@ -191,17 +189,21 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder, DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(
-					DataframeAnalysisFeatureProcessorFrequencyEncoding::setupDataframeAnalysisFeatureProcessorFrequencyEncodingDeserializer);
+	/**
+	 * Json deserializer for
+	 * {@link DataframeAnalysisFeatureProcessorFrequencyEncoding}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorFrequencyEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorFrequencyEncoding::setupDataframeAnalysisFeatureProcessorFrequencyEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorFrequencyEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder> op) {
 
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::frequencyMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::frequencyMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"frequency_map");
 
 	}

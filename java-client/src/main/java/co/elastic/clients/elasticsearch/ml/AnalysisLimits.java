@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisLimits
+@JsonpDeserializable
 public final class AnalysisLimits implements JsonpSerializable {
 	@Nullable
-	private final Number categorizationExamplesLimit;
+	private final Long categorizationExamplesLimit;
 
 	@Nullable
 	private final String modelMemoryLimit;
@@ -64,7 +66,7 @@ public final class AnalysisLimits implements JsonpSerializable {
 	 * API name: {@code categorization_examples_limit}
 	 */
 	@Nullable
-	public Number categorizationExamplesLimit() {
+	public Long categorizationExamplesLimit() {
 		return this.categorizationExamplesLimit;
 	}
 
@@ -108,7 +110,7 @@ public final class AnalysisLimits implements JsonpSerializable {
 		if (this.categorizationExamplesLimit != null) {
 
 			generator.writeKey("categorization_examples_limit");
-			generator.write(this.categorizationExamplesLimit.doubleValue());
+			generator.write(this.categorizationExamplesLimit);
 
 		}
 		if (this.modelMemoryLimit != null) {
@@ -127,7 +129,7 @@ public final class AnalysisLimits implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<AnalysisLimits> {
 		@Nullable
-		private Number categorizationExamplesLimit;
+		private Long categorizationExamplesLimit;
 
 		@Nullable
 		private String modelMemoryLimit;
@@ -142,7 +144,7 @@ public final class AnalysisLimits implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_examples_limit}
 		 */
-		public Builder categorizationExamplesLimit(@Nullable Number value) {
+		public Builder categorizationExamplesLimit(@Nullable Long value) {
 			this.categorizationExamplesLimit = value;
 			return this;
 		}
@@ -190,12 +192,12 @@ public final class AnalysisLimits implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AnalysisLimits}
 	 */
-	public static final JsonpDeserializer<AnalysisLimits> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnalysisLimits::setupAnalysisLimitsDeserializer);
+	public static final JsonpDeserializer<AnalysisLimits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnalysisLimits::setupAnalysisLimitsDeserializer, Builder::build);
 
 	protected static void setupAnalysisLimitsDeserializer(DelegatingDeserializer<AnalysisLimits.Builder> op) {
 
-		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.longDeserializer(),
 				"categorization_examples_limit");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 

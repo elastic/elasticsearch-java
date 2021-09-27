@@ -24,50 +24,51 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Statistics
+@JsonpDeserializable
 public final class Statistics implements JsonpSerializable {
 	@Nullable
 	private final String retentionDeletionTime;
 
 	@Nullable
-	private final JsonValue retentionDeletionTimeMillis;
+	private final String retentionDeletionTimeMillis;
 
 	@Nullable
-	private final Number retentionFailed;
+	private final Long retentionFailed;
 
 	@Nullable
-	private final Number retentionRuns;
+	private final Long retentionRuns;
 
 	@Nullable
-	private final Number retentionTimedOut;
+	private final Long retentionTimedOut;
 
 	@Nullable
 	private final String policy;
 
 	@Nullable
-	private final Number totalSnapshotsDeleted;
+	private final Long totalSnapshotsDeleted;
 
 	@Nullable
-	private final Number totalSnapshotDeletionFailures;
+	private final Long totalSnapshotDeletionFailures;
 
 	@Nullable
-	private final Number totalSnapshotsFailed;
+	private final Long totalSnapshotsFailed;
 
 	@Nullable
-	private final Number totalSnapshotsTaken;
+	private final Long totalSnapshotsTaken;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,7 +99,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code retention_deletion_time_millis}
 	 */
 	@Nullable
-	public JsonValue retentionDeletionTimeMillis() {
+	public String retentionDeletionTimeMillis() {
 		return this.retentionDeletionTimeMillis;
 	}
 
@@ -106,7 +107,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code retention_failed}
 	 */
 	@Nullable
-	public Number retentionFailed() {
+	public Long retentionFailed() {
 		return this.retentionFailed;
 	}
 
@@ -114,7 +115,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code retention_runs}
 	 */
 	@Nullable
-	public Number retentionRuns() {
+	public Long retentionRuns() {
 		return this.retentionRuns;
 	}
 
@@ -122,7 +123,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code retention_timed_out}
 	 */
 	@Nullable
-	public Number retentionTimedOut() {
+	public Long retentionTimedOut() {
 		return this.retentionTimedOut;
 	}
 
@@ -138,7 +139,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code total_snapshots_deleted}
 	 */
 	@Nullable
-	public Number totalSnapshotsDeleted() {
+	public Long totalSnapshotsDeleted() {
 		return this.totalSnapshotsDeleted;
 	}
 
@@ -146,7 +147,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code total_snapshot_deletion_failures}
 	 */
 	@Nullable
-	public Number totalSnapshotDeletionFailures() {
+	public Long totalSnapshotDeletionFailures() {
 		return this.totalSnapshotDeletionFailures;
 	}
 
@@ -154,7 +155,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code total_snapshots_failed}
 	 */
 	@Nullable
-	public Number totalSnapshotsFailed() {
+	public Long totalSnapshotsFailed() {
 		return this.totalSnapshotsFailed;
 	}
 
@@ -162,7 +163,7 @@ public final class Statistics implements JsonpSerializable {
 	 * API name: {@code total_snapshots_taken}
 	 */
 	@Nullable
-	public Number totalSnapshotsTaken() {
+	public Long totalSnapshotsTaken() {
 		return this.totalSnapshotsTaken;
 	}
 
@@ -192,19 +193,19 @@ public final class Statistics implements JsonpSerializable {
 		if (this.retentionFailed != null) {
 
 			generator.writeKey("retention_failed");
-			generator.write(this.retentionFailed.doubleValue());
+			generator.write(this.retentionFailed);
 
 		}
 		if (this.retentionRuns != null) {
 
 			generator.writeKey("retention_runs");
-			generator.write(this.retentionRuns.doubleValue());
+			generator.write(this.retentionRuns);
 
 		}
 		if (this.retentionTimedOut != null) {
 
 			generator.writeKey("retention_timed_out");
-			generator.write(this.retentionTimedOut.doubleValue());
+			generator.write(this.retentionTimedOut);
 
 		}
 		if (this.policy != null) {
@@ -216,25 +217,25 @@ public final class Statistics implements JsonpSerializable {
 		if (this.totalSnapshotsDeleted != null) {
 
 			generator.writeKey("total_snapshots_deleted");
-			generator.write(this.totalSnapshotsDeleted.doubleValue());
+			generator.write(this.totalSnapshotsDeleted);
 
 		}
 		if (this.totalSnapshotDeletionFailures != null) {
 
 			generator.writeKey("total_snapshot_deletion_failures");
-			generator.write(this.totalSnapshotDeletionFailures.doubleValue());
+			generator.write(this.totalSnapshotDeletionFailures);
 
 		}
 		if (this.totalSnapshotsFailed != null) {
 
 			generator.writeKey("total_snapshots_failed");
-			generator.write(this.totalSnapshotsFailed.doubleValue());
+			generator.write(this.totalSnapshotsFailed);
 
 		}
 		if (this.totalSnapshotsTaken != null) {
 
 			generator.writeKey("total_snapshots_taken");
-			generator.write(this.totalSnapshotsTaken.doubleValue());
+			generator.write(this.totalSnapshotsTaken);
 
 		}
 
@@ -250,31 +251,31 @@ public final class Statistics implements JsonpSerializable {
 		private String retentionDeletionTime;
 
 		@Nullable
-		private JsonValue retentionDeletionTimeMillis;
+		private String retentionDeletionTimeMillis;
 
 		@Nullable
-		private Number retentionFailed;
+		private Long retentionFailed;
 
 		@Nullable
-		private Number retentionRuns;
+		private Long retentionRuns;
 
 		@Nullable
-		private Number retentionTimedOut;
+		private Long retentionTimedOut;
 
 		@Nullable
 		private String policy;
 
 		@Nullable
-		private Number totalSnapshotsDeleted;
+		private Long totalSnapshotsDeleted;
 
 		@Nullable
-		private Number totalSnapshotDeletionFailures;
+		private Long totalSnapshotDeletionFailures;
 
 		@Nullable
-		private Number totalSnapshotsFailed;
+		private Long totalSnapshotsFailed;
 
 		@Nullable
-		private Number totalSnapshotsTaken;
+		private Long totalSnapshotsTaken;
 
 		/**
 		 * API name: {@code retention_deletion_time}
@@ -287,7 +288,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_deletion_time_millis}
 		 */
-		public Builder retentionDeletionTimeMillis(@Nullable JsonValue value) {
+		public Builder retentionDeletionTimeMillis(@Nullable String value) {
 			this.retentionDeletionTimeMillis = value;
 			return this;
 		}
@@ -295,7 +296,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_failed}
 		 */
-		public Builder retentionFailed(@Nullable Number value) {
+		public Builder retentionFailed(@Nullable Long value) {
 			this.retentionFailed = value;
 			return this;
 		}
@@ -303,7 +304,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_runs}
 		 */
-		public Builder retentionRuns(@Nullable Number value) {
+		public Builder retentionRuns(@Nullable Long value) {
 			this.retentionRuns = value;
 			return this;
 		}
@@ -311,7 +312,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_timed_out}
 		 */
-		public Builder retentionTimedOut(@Nullable Number value) {
+		public Builder retentionTimedOut(@Nullable Long value) {
 			this.retentionTimedOut = value;
 			return this;
 		}
@@ -327,7 +328,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshots_deleted}
 		 */
-		public Builder totalSnapshotsDeleted(@Nullable Number value) {
+		public Builder totalSnapshotsDeleted(@Nullable Long value) {
 			this.totalSnapshotsDeleted = value;
 			return this;
 		}
@@ -335,7 +336,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshot_deletion_failures}
 		 */
-		public Builder totalSnapshotDeletionFailures(@Nullable Number value) {
+		public Builder totalSnapshotDeletionFailures(@Nullable Long value) {
 			this.totalSnapshotDeletionFailures = value;
 			return this;
 		}
@@ -343,7 +344,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshots_failed}
 		 */
-		public Builder totalSnapshotsFailed(@Nullable Number value) {
+		public Builder totalSnapshotsFailed(@Nullable Long value) {
 			this.totalSnapshotsFailed = value;
 			return this;
 		}
@@ -351,7 +352,7 @@ public final class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total_snapshots_taken}
 		 */
-		public Builder totalSnapshotsTaken(@Nullable Number value) {
+		public Builder totalSnapshotsTaken(@Nullable Long value) {
 			this.totalSnapshotsTaken = value;
 			return this;
 		}
@@ -373,25 +374,25 @@ public final class Statistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Statistics}
 	 */
-	public static final JsonpDeserializer<Statistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Statistics::setupStatisticsDeserializer);
+	public static final JsonpDeserializer<Statistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Statistics::setupStatisticsDeserializer, Builder::build);
 
 	protected static void setupStatisticsDeserializer(DelegatingDeserializer<Statistics.Builder> op) {
 
 		op.add(Builder::retentionDeletionTime, JsonpDeserializer.stringDeserializer(), "retention_deletion_time");
-		op.add(Builder::retentionDeletionTimeMillis, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::retentionDeletionTimeMillis, JsonpDeserializer.stringDeserializer(),
 				"retention_deletion_time_millis");
-		op.add(Builder::retentionFailed, JsonpDeserializer.numberDeserializer(), "retention_failed");
-		op.add(Builder::retentionRuns, JsonpDeserializer.numberDeserializer(), "retention_runs");
-		op.add(Builder::retentionTimedOut, JsonpDeserializer.numberDeserializer(), "retention_timed_out");
+		op.add(Builder::retentionFailed, JsonpDeserializer.longDeserializer(), "retention_failed");
+		op.add(Builder::retentionRuns, JsonpDeserializer.longDeserializer(), "retention_runs");
+		op.add(Builder::retentionTimedOut, JsonpDeserializer.longDeserializer(), "retention_timed_out");
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
-		op.add(Builder::totalSnapshotsDeleted, JsonpDeserializer.numberDeserializer(), "total_snapshots_deleted",
+		op.add(Builder::totalSnapshotsDeleted, JsonpDeserializer.longDeserializer(), "total_snapshots_deleted",
 				"snapshots_deleted");
-		op.add(Builder::totalSnapshotDeletionFailures, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::totalSnapshotDeletionFailures, JsonpDeserializer.longDeserializer(),
 				"total_snapshot_deletion_failures", "snapshot_deletion_failures");
-		op.add(Builder::totalSnapshotsFailed, JsonpDeserializer.numberDeserializer(), "total_snapshots_failed",
+		op.add(Builder::totalSnapshotsFailed, JsonpDeserializer.longDeserializer(), "total_snapshots_failed",
 				"snapshots_failed");
-		op.add(Builder::totalSnapshotsTaken, JsonpDeserializer.numberDeserializer(), "total_snapshots_taken",
+		op.add(Builder::totalSnapshotsTaken, JsonpDeserializer.longDeserializer(), "total_snapshots_taken",
 				"snapshots_taken");
 
 	}

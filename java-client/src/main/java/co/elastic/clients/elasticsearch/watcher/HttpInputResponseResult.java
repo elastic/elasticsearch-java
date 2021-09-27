@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -40,12 +41,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
+@JsonpDeserializable
 public final class HttpInputResponseResult implements JsonpSerializable {
 	private final String body;
 
 	private final Map<String, List<String>> headers;
 
-	private final Number status;
+	private final Integer status;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +76,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	/**
 	 * API name: {@code status}
 	 */
-	public Number status() {
+	public Integer status() {
 		return this.status;
 	}
 
@@ -107,7 +109,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("status");
-		generator.write(this.status.doubleValue());
+		generator.write(this.status);
 
 	}
 
@@ -121,7 +123,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 
 		private Map<String, List<String>> headers;
 
-		private Number status;
+		private Integer status;
 
 		/**
 		 * API name: {@code body}
@@ -153,7 +155,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Number value) {
+		public Builder status(Integer value) {
 			this.status = value;
 			return this;
 		}
@@ -175,8 +177,8 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HttpInputResponseResult}
 	 */
-	public static final JsonpDeserializer<HttpInputResponseResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer);
+	public static final JsonpDeserializer<HttpInputResponseResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer, Builder::build);
 
 	protected static void setupHttpInputResponseResultDeserializer(
 			DelegatingDeserializer<HttpInputResponseResult.Builder> op) {
@@ -184,7 +186,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		op.add(Builder::body, JsonpDeserializer.stringDeserializer(), "body");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
-		op.add(Builder::status, JsonpDeserializer.numberDeserializer(), "status");
+		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 
 	}
 

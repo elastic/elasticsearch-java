@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResult
+@JsonpDeserializable
 public final class IndexResult implements JsonpSerializable {
 	private final IndexResultSummary response;
 
@@ -110,12 +112,12 @@ public final class IndexResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexResult}
 	 */
-	public static final JsonpDeserializer<IndexResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexResult::setupIndexResultDeserializer);
+	public static final JsonpDeserializer<IndexResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexResult::setupIndexResultDeserializer, Builder::build);
 
 	protected static void setupIndexResultDeserializer(DelegatingDeserializer<IndexResult.Builder> op) {
 
-		op.add(Builder::response, IndexResultSummary.DESERIALIZER, "response");
+		op.add(Builder::response, IndexResultSummary._DESERIALIZER, "response");
 
 	}
 

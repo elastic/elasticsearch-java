@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.elasticsearch.searchable_snapshots.mount.MountedSnapshot;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Response
+@JsonpDeserializable
 public final class MountResponse implements JsonpSerializable {
 	private final MountedSnapshot snapshot;
 
@@ -111,12 +113,12 @@ public final class MountResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MountResponse}
 	 */
-	public static final JsonpDeserializer<MountResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MountResponse::setupMountResponseDeserializer);
+	public static final JsonpDeserializer<MountResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MountResponse::setupMountResponseDeserializer, Builder::build);
 
 	protected static void setupMountResponseDeserializer(DelegatingDeserializer<MountResponse.Builder> op) {
 
-		op.add(Builder::snapshot, MountedSnapshot.DESERIALIZER, "snapshot");
+		op.add(Builder::snapshot, MountedSnapshot._DESERIALIZER, "snapshot");
 
 	}
 

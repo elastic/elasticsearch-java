@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.xpack;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -42,6 +43,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Request
+
 public final class InfoRequest extends RequestBase {
 	@Nullable
 	private final List<String> categories;
@@ -145,5 +147,5 @@ public final class InfoRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, InfoResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, InfoResponse._DESERIALIZER);
 }

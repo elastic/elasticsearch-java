@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJob
+@JsonpDeserializable
 public final class RollupJob implements JsonpSerializable {
 	private final RollupJobConfiguration config;
 
@@ -170,14 +172,14 @@ public final class RollupJob implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupJob}
 	 */
-	public static final JsonpDeserializer<RollupJob> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupJob::setupRollupJobDeserializer);
+	public static final JsonpDeserializer<RollupJob> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RollupJob::setupRollupJobDeserializer, Builder::build);
 
 	protected static void setupRollupJobDeserializer(DelegatingDeserializer<RollupJob.Builder> op) {
 
-		op.add(Builder::config, RollupJobConfiguration.DESERIALIZER, "config");
-		op.add(Builder::stats, RollupJobStats.DESERIALIZER, "stats");
-		op.add(Builder::status, RollupJobStatus.DESERIALIZER, "status");
+		op.add(Builder::config, RollupJobConfiguration._DESERIALIZER, "config");
+		op.add(Builder::stats, RollupJobStats._DESERIALIZER, "stats");
+		op.add(Builder::status, RollupJobStatus._DESERIALIZER, "status");
 
 	}
 

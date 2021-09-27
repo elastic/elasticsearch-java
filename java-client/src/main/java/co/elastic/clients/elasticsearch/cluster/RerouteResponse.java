@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteExplanation;
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
+@JsonpDeserializable
 public final class RerouteResponse extends AcknowledgedResponseBase {
 	@Nullable
 	private final List<RerouteExplanation> explanations;
@@ -183,14 +185,14 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link RerouteResponse}
 	 */
-	public static final JsonpDeserializer<RerouteResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteResponse::setupRerouteResponseDeserializer);
+	public static final JsonpDeserializer<RerouteResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RerouteResponse::setupRerouteResponseDeserializer, Builder::build);
 
 	protected static void setupRerouteResponseDeserializer(DelegatingDeserializer<RerouteResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(RerouteExplanation.DESERIALIZER),
+		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(RerouteExplanation._DESERIALIZER),
 				"explanations");
-		op.add(Builder::state, RerouteState.DESERIALIZER, "state");
+		op.add(Builder::state, RerouteState._DESERIALIZER, "state");
 
 	}
 

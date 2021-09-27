@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
+
 public final class DeleteServiceTokenRequest extends RequestBase {
 	private final String namespace;
 
@@ -47,7 +49,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	private final String name;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -96,7 +98,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -113,7 +115,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		private String name;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
 		 * An identifier for the namespace
@@ -153,7 +155,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -223,5 +225,5 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteServiceTokenResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, DeleteServiceTokenResponse._DESERIALIZER);
 }

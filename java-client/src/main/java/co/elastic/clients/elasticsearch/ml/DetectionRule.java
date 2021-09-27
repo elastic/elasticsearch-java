@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DetectionRule
+@JsonpDeserializable
 public final class DetectionRule implements JsonpSerializable {
 	@Nullable
 	private final List<RuleAction> actions;
@@ -299,14 +301,14 @@ public final class DetectionRule implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DetectionRule}
 	 */
-	public static final JsonpDeserializer<DetectionRule> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DetectionRule::setupDetectionRuleDeserializer);
+	public static final JsonpDeserializer<DetectionRule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DetectionRule::setupDetectionRuleDeserializer, Builder::build);
 
 	protected static void setupDetectionRuleDeserializer(DelegatingDeserializer<DetectionRule.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(RuleAction.DESERIALIZER), "actions");
-		op.add(Builder::conditions, JsonpDeserializer.arrayDeserializer(RuleCondition.DESERIALIZER), "conditions");
-		op.add(Builder::scope, JsonpDeserializer.stringMapDeserializer(FilterRef.DESERIALIZER), "scope");
+		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(RuleAction._DESERIALIZER), "actions");
+		op.add(Builder::conditions, JsonpDeserializer.arrayDeserializer(RuleCondition._DESERIALIZER), "conditions");
+		op.add(Builder::scope, JsonpDeserializer.stringMapDeserializer(FilterRef._DESERIALIZER), "scope");
 
 	}
 

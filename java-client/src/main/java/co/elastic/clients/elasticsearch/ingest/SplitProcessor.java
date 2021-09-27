@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SplitProcessor
-public final class SplitProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class SplitProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -61,6 +63,14 @@ public final class SplitProcessor extends ProcessorBase {
 		this.separator = Objects.requireNonNull(builder.separator, "separator");
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "split";
 	}
 
 	/**
@@ -216,8 +226,8 @@ public final class SplitProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link SplitProcessor}
 	 */
-	public static final JsonpDeserializer<SplitProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SplitProcessor::setupSplitProcessorDeserializer);
+	public static final JsonpDeserializer<SplitProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SplitProcessor::setupSplitProcessorDeserializer, Builder::build);
 
 	protected static void setupSplitProcessorDeserializer(DelegatingDeserializer<SplitProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

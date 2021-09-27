@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.search_shards;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.ShardStoreIndex
+@JsonpDeserializable
 public final class ShardStoreIndex implements JsonpSerializable {
 	@Nullable
 	private final List<String> aliases;
@@ -175,14 +177,14 @@ public final class ShardStoreIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardStoreIndex}
 	 */
-	public static final JsonpDeserializer<ShardStoreIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStoreIndex::setupShardStoreIndexDeserializer);
+	public static final JsonpDeserializer<ShardStoreIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStoreIndex::setupShardStoreIndexDeserializer, Builder::build);
 
 	protected static void setupShardStoreIndexDeserializer(DelegatingDeserializer<ShardStoreIndex.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"aliases");
-		op.add(Builder::filter, Query.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInitialRecovery
+@JsonpDeserializable
 public final class IndexRoutingAllocationInitialRecovery implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -110,9 +112,10 @@ public final class IndexRoutingAllocationInitialRecovery implements JsonpSeriali
 	/**
 	 * Json deserializer for {@link IndexRoutingAllocationInitialRecovery}
 	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationInitialRecovery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer);
+	public static final JsonpDeserializer<IndexRoutingAllocationInitialRecovery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					IndexRoutingAllocationInitialRecovery::setupIndexRoutingAllocationInitialRecoveryDeserializer,
+					Builder::build);
 
 	protected static void setupIndexRoutingAllocationInitialRecoveryDeserializer(
 			DelegatingDeserializer<IndexRoutingAllocationInitialRecovery.Builder> op) {

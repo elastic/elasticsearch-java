@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRetentionLeases
+@JsonpDeserializable
 public final class ShardRetentionLeases implements JsonpSerializable {
-	private final Number primaryTerm;
+	private final Long primaryTerm;
 
-	private final Number version;
+	private final Long version;
 
 	private final List<ShardLease> leases;
 
@@ -60,14 +62,14 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	/**
 	 * API name: {@code primary_term}
 	 */
-	public Number primaryTerm() {
+	public Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -90,10 +92,10 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("primary_term");
-		generator.write(this.primaryTerm.doubleValue());
+		generator.write(this.primaryTerm);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 		generator.writeKey("leases");
 		generator.writeStartArray();
@@ -111,16 +113,16 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	 * Builder for {@link ShardRetentionLeases}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardRetentionLeases> {
-		private Number primaryTerm;
+		private Long primaryTerm;
 
-		private Number version;
+		private Long version;
 
 		private List<ShardLease> leases;
 
 		/**
 		 * API name: {@code primary_term}
 		 */
-		public Builder primaryTerm(Number value) {
+		public Builder primaryTerm(Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -128,7 +130,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -191,15 +193,15 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardRetentionLeases}
 	 */
-	public static final JsonpDeserializer<ShardRetentionLeases> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesDeserializer);
+	public static final JsonpDeserializer<ShardRetentionLeases> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesDeserializer, Builder::build);
 
 	protected static void setupShardRetentionLeasesDeserializer(
 			DelegatingDeserializer<ShardRetentionLeases.Builder> op) {
 
-		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "primary_term");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::leases, JsonpDeserializer.arrayDeserializer(ShardLease.DESERIALIZER), "leases");
+		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "primary_term");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::leases, JsonpDeserializer.arrayDeserializer(ShardLease._DESERIALIZER), "leases");
 
 	}
 

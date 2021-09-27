@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,20 +32,21 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.ShardsStatsSummary
+@JsonpDeserializable
 public final class ShardsStatsSummary implements JsonpSerializable {
 	private final ShardsStatsSummaryItem incremental;
 
 	private final ShardsStatsSummaryItem total;
 
-	private final Number startTimeInMillis;
+	private final Long startTimeInMillis;
 
-	private final Number timeInMillis;
+	private final Long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,14 +76,14 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Number startTimeInMillis() {
+	public Long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Number timeInMillis() {
+	public Long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -103,10 +105,10 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		this.total.serialize(generator, mapper);
 
 		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis.doubleValue());
+		generator.write(this.startTimeInMillis);
 
 		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis.doubleValue());
+		generator.write(this.timeInMillis);
 
 	}
 
@@ -120,9 +122,9 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 
 		private ShardsStatsSummaryItem total;
 
-		private Number startTimeInMillis;
+		private Long startTimeInMillis;
 
-		private Number timeInMillis;
+		private Long timeInMillis;
 
 		/**
 		 * API name: {@code incremental}
@@ -157,7 +159,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Number value) {
+		public Builder startTimeInMillis(Long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -165,7 +167,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Number value) {
+		public Builder timeInMillis(Long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -187,15 +189,15 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardsStatsSummary}
 	 */
-	public static final JsonpDeserializer<ShardsStatsSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardsStatsSummary::setupShardsStatsSummaryDeserializer);
+	public static final JsonpDeserializer<ShardsStatsSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ShardsStatsSummary::setupShardsStatsSummaryDeserializer, Builder::build);
 
 	protected static void setupShardsStatsSummaryDeserializer(DelegatingDeserializer<ShardsStatsSummary.Builder> op) {
 
-		op.add(Builder::incremental, ShardsStatsSummaryItem.DESERIALIZER, "incremental");
-		op.add(Builder::total, ShardsStatsSummaryItem.DESERIALIZER, "total");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
-		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
+		op.add(Builder::incremental, ShardsStatsSummaryItem._DESERIALIZER, "incremental");
+		op.add(Builder::total, ShardsStatsSummaryItem._DESERIALIZER, "total");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateMetadataIndexGraveyard
+@JsonpDeserializable
 public final class ClusterStateMetadataIndexGraveyard implements JsonpSerializable {
 	private final List<Tombstone> tombstones;
 
@@ -144,14 +146,14 @@ public final class ClusterStateMetadataIndexGraveyard implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link ClusterStateMetadataIndexGraveyard}
 	 */
-	public static final JsonpDeserializer<ClusterStateMetadataIndexGraveyard> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterStateMetadataIndexGraveyard::setupClusterStateMetadataIndexGraveyardDeserializer);
+	public static final JsonpDeserializer<ClusterStateMetadataIndexGraveyard> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateMetadataIndexGraveyard::setupClusterStateMetadataIndexGraveyardDeserializer,
+					Builder::build);
 
 	protected static void setupClusterStateMetadataIndexGraveyardDeserializer(
 			DelegatingDeserializer<ClusterStateMetadataIndexGraveyard.Builder> op) {
 
-		op.add(Builder::tombstones, JsonpDeserializer.arrayDeserializer(Tombstone.DESERIALIZER), "tombstones");
+		op.add(Builder::tombstones, JsonpDeserializer.arrayDeserializer(Tombstone._DESERIALIZER), "tombstones");
 
 	}
 

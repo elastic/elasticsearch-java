@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,15 +33,20 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phase
+@JsonpDeserializable
 public final class Phase implements JsonpSerializable {
-	private final JsonValue actions;
+	private final JsonValue /*
+							 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false) |
+							 * Array<internal.string>)
+							 */ actions;
 
 	@Nullable
-	private final JsonValue minAge;
+	private final String minAge;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -54,7 +60,10 @@ public final class Phase implements JsonpSerializable {
 	/**
 	 * API name: {@code actions}
 	 */
-	public JsonValue actions() {
+	public JsonValue /*
+						 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false) |
+						 * Array<internal.string>)
+						 */ actions() {
 		return this.actions;
 	}
 
@@ -62,7 +71,7 @@ public final class Phase implements JsonpSerializable {
 	 * API name: {@code min_age}
 	 */
 	@Nullable
-	public JsonValue minAge() {
+	public String minAge() {
 		return this.minAge;
 	}
 
@@ -95,15 +104,21 @@ public final class Phase implements JsonpSerializable {
 	 * Builder for {@link Phase}.
 	 */
 	public static class Builder implements ObjectBuilder<Phase> {
-		private JsonValue actions;
+		private JsonValue /*
+							 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false) |
+							 * Array<internal.string>)
+							 */ actions;
 
 		@Nullable
-		private JsonValue minAge;
+		private String minAge;
 
 		/**
 		 * API name: {@code actions}
 		 */
-		public Builder actions(JsonValue value) {
+		public Builder actions(JsonValue /*
+											 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false)
+											 * | Array<internal.string>)
+											 */ value) {
 			this.actions = value;
 			return this;
 		}
@@ -111,7 +126,7 @@ public final class Phase implements JsonpSerializable {
 		/**
 		 * API name: {@code min_age}
 		 */
-		public Builder minAge(@Nullable JsonValue value) {
+		public Builder minAge(@Nullable String value) {
 			this.minAge = value;
 			return this;
 		}
@@ -133,13 +148,13 @@ public final class Phase implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Phase}
 	 */
-	public static final JsonpDeserializer<Phase> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Phase::setupPhaseDeserializer);
+	public static final JsonpDeserializer<Phase> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Phase::setupPhaseDeserializer, Builder::build);
 
 	protected static void setupPhaseDeserializer(DelegatingDeserializer<Phase.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.jsonValueDeserializer(), "actions");
-		op.add(Builder::minAge, JsonpDeserializer.jsonValueDeserializer(), "min_age");
+		op.add(Builder::minAge, JsonpDeserializer.stringDeserializer(), "min_age");
 
 	}
 

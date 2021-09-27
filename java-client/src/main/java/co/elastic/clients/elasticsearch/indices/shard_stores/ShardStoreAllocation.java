@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ShardStoreAllocation implements StringEnum {
 	Primary("primary"), Replica("replica"), Unused("unused");
 
@@ -39,6 +41,6 @@ public enum ShardStoreAllocation implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShardStoreAllocation> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ShardStoreAllocation> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ShardStoreAllocation.values());
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.cancel.Response
+@JsonpDeserializable
 public final class CancelResponse implements JsonpSerializable {
 	@Nullable
 	private final List<ErrorCause> nodeFailures;
@@ -209,13 +211,13 @@ public final class CancelResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CancelResponse}
 	 */
-	public static final JsonpDeserializer<CancelResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CancelResponse::setupCancelResponseDeserializer);
+	public static final JsonpDeserializer<CancelResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CancelResponse::setupCancelResponseDeserializer, Builder::build);
 
 	protected static void setupCancelResponseDeserializer(DelegatingDeserializer<CancelResponse.Builder> op) {
 
-		op.add(Builder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "node_failures");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode.DESERIALIZER), "nodes");
+		op.add(Builder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "node_failures");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(TaskExecutingNode._DESERIALIZER), "nodes");
 
 	}
 

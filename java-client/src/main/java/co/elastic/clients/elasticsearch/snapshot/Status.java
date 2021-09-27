@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.Status
+@JsonpDeserializable
 public final class Status implements JsonpSerializable {
 	private final Boolean includeGlobalState;
 
@@ -315,18 +317,18 @@ public final class Status implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Status}
 	 */
-	public static final JsonpDeserializer<Status> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Status::setupStatusDeserializer);
+	public static final JsonpDeserializer<Status> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Status::setupStatusDeserializer, Builder::build);
 
 	protected static void setupStatusDeserializer(DelegatingDeserializer<Status.Builder> op) {
 
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(SnapshotIndexStats.DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(SnapshotIndexStats._DESERIALIZER), "indices");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-		op.add(Builder::shardsStats, ShardsStats.DESERIALIZER, "shards_stats");
+		op.add(Builder::shardsStats, ShardsStats._DESERIALIZER, "shards_stats");
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
-		op.add(Builder::stats, SnapshotStats.DESERIALIZER, "stats");
+		op.add(Builder::stats, SnapshotStats._DESERIALIZER, "stats");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 
 	}

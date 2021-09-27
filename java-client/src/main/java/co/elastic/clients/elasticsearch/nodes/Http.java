@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Http
+@JsonpDeserializable
 public final class Http implements JsonpSerializable {
-	private final Number currentOpen;
+	private final Integer currentOpen;
 
-	private final Number totalOpened;
+	private final Long totalOpened;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +56,14 @@ public final class Http implements JsonpSerializable {
 	/**
 	 * API name: {@code current_open}
 	 */
-	public Number currentOpen() {
+	public Integer currentOpen() {
 		return this.currentOpen;
 	}
 
 	/**
 	 * API name: {@code total_opened}
 	 */
-	public Number totalOpened() {
+	public Long totalOpened() {
 		return this.totalOpened;
 	}
 
@@ -76,10 +79,10 @@ public final class Http implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current_open");
-		generator.write(this.currentOpen.doubleValue());
+		generator.write(this.currentOpen);
 
 		generator.writeKey("total_opened");
-		generator.write(this.totalOpened.doubleValue());
+		generator.write(this.totalOpened);
 
 	}
 
@@ -89,14 +92,14 @@ public final class Http implements JsonpSerializable {
 	 * Builder for {@link Http}.
 	 */
 	public static class Builder implements ObjectBuilder<Http> {
-		private Number currentOpen;
+		private Integer currentOpen;
 
-		private Number totalOpened;
+		private Long totalOpened;
 
 		/**
 		 * API name: {@code current_open}
 		 */
-		public Builder currentOpen(Number value) {
+		public Builder currentOpen(Integer value) {
 			this.currentOpen = value;
 			return this;
 		}
@@ -104,7 +107,7 @@ public final class Http implements JsonpSerializable {
 		/**
 		 * API name: {@code total_opened}
 		 */
-		public Builder totalOpened(Number value) {
+		public Builder totalOpened(Long value) {
 			this.totalOpened = value;
 			return this;
 		}
@@ -126,13 +129,13 @@ public final class Http implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Http}
 	 */
-	public static final JsonpDeserializer<Http> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Http::setupHttpDeserializer);
+	public static final JsonpDeserializer<Http> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Http::setupHttpDeserializer, Builder::build);
 
 	protected static void setupHttpDeserializer(DelegatingDeserializer<Http.Builder> op) {
 
-		op.add(Builder::currentOpen, JsonpDeserializer.numberDeserializer(), "current_open");
-		op.add(Builder::totalOpened, JsonpDeserializer.numberDeserializer(), "total_opened");
+		op.add(Builder::currentOpen, JsonpDeserializer.integerDeserializer(), "current_open");
+		op.add(Builder::totalOpened, JsonpDeserializer.longDeserializer(), "total_opened");
 
 	}
 

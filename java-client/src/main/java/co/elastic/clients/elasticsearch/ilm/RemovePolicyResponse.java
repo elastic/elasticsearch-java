@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Response
+@JsonpDeserializable
 public final class RemovePolicyResponse implements JsonpSerializable {
 	private final List<String> failedIndexes;
 
@@ -154,8 +156,8 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RemovePolicyResponse}
 	 */
-	public static final JsonpDeserializer<RemovePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RemovePolicyResponse::setupRemovePolicyResponseDeserializer);
+	public static final JsonpDeserializer<RemovePolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RemovePolicyResponse::setupRemovePolicyResponseDeserializer, Builder::build);
 
 	protected static void setupRemovePolicyResponseDeserializer(
 			DelegatingDeserializer<RemovePolicyResponse.Builder> op) {

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateProcessor
-public final class DateProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final List<String> formats;
@@ -63,6 +65,14 @@ public final class DateProcessor extends ProcessorBase {
 		this.targetField = builder.targetField;
 		this.timezone = builder.timezone;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "date";
 	}
 
 	/**
@@ -239,8 +249,8 @@ public final class DateProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link DateProcessor}
 	 */
-	public static final JsonpDeserializer<DateProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DateProcessor::setupDateProcessorDeserializer);
+	public static final JsonpDeserializer<DateProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DateProcessor::setupDateProcessorDeserializer, Builder::build);
 
 	protected static void setupDateProcessorDeserializer(DelegatingDeserializer<DateProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

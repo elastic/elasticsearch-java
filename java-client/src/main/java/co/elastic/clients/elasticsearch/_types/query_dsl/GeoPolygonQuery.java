@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonQuery
-public final class GeoPolygonQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final GeoValidationMethod validationMethod;
 
@@ -57,7 +58,7 @@ public final class GeoPolygonQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "geo_polygon";
 	}
 
@@ -78,7 +79,6 @@ public final class GeoPolygonQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.validationMethod != null) {
@@ -92,8 +92,6 @@ public final class GeoPolygonQuery extends QueryBase implements Query {
 			generator.write(this.ignoreUnmapped);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -144,13 +142,15 @@ public final class GeoPolygonQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<GeoPolygonQuery.Builder, GeoPolygonQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(GeoPolygonQuery::setupGeoPolygonQueryDeserializer);
+	/**
+	 * Json deserializer for {@link GeoPolygonQuery}
+	 */
+	public static final JsonpDeserializer<GeoPolygonQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoPolygonQuery::setupGeoPolygonQueryDeserializer, Builder::build);
 
 	protected static void setupGeoPolygonQueryDeserializer(DelegatingDeserializer<GeoPolygonQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::validationMethod, GeoValidationMethod.DESERIALIZER, "validation_method");
+		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 	}

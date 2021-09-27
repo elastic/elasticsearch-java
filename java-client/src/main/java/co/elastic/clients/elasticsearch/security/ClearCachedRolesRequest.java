@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -41,6 +42,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Request
+
 public final class ClearCachedRolesRequest extends RequestBase {
 	private final List<String> name;
 
@@ -150,5 +152,5 @@ public final class ClearCachedRolesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedRolesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ClearCachedRolesResponse._DESERIALIZER);
 }

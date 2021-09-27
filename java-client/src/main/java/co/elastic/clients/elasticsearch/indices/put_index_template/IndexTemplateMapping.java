@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.IndexTemplateMapping
+@JsonpDeserializable
 public final class IndexTemplateMapping implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Alias> aliases;
@@ -219,15 +221,15 @@ public final class IndexTemplateMapping implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexTemplateMapping}
 	 */
-	public static final JsonpDeserializer<IndexTemplateMapping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexTemplateMapping::setupIndexTemplateMappingDeserializer);
+	public static final JsonpDeserializer<IndexTemplateMapping> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexTemplateMapping::setupIndexTemplateMappingDeserializer, Builder::build);
 
 	protected static void setupIndexTemplateMappingDeserializer(
 			DelegatingDeserializer<IndexTemplateMapping.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 
 	}
 

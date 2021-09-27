@@ -24,15 +24,16 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,11 +42,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
+@JsonpDeserializable
 public final class CompletionStats implements JsonpSerializable {
-	private final Number sizeInBytes;
+	private final Long sizeInBytes;
 
 	@Nullable
-	private final JsonValue size;
+	private final String size;
 
 	@Nullable
 	private final Map<String, FieldSizeUsage> fields;
@@ -63,7 +65,7 @@ public final class CompletionStats implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public Long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -71,7 +73,7 @@ public final class CompletionStats implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public String size() {
 		return this.size;
 	}
 
@@ -95,7 +97,7 @@ public final class CompletionStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 		if (this.size != null) {
 
@@ -124,10 +126,10 @@ public final class CompletionStats implements JsonpSerializable {
 	 * Builder for {@link CompletionStats}.
 	 */
 	public static class Builder implements ObjectBuilder<CompletionStats> {
-		private Number sizeInBytes;
+		private Long sizeInBytes;
 
 		@Nullable
-		private JsonValue size;
+		private String size;
 
 		@Nullable
 		private Map<String, FieldSizeUsage> fields;
@@ -135,7 +137,7 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(Long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -143,7 +145,7 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -198,14 +200,14 @@ public final class CompletionStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CompletionStats}
 	 */
-	public static final JsonpDeserializer<CompletionStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CompletionStats::setupCompletionStatsDeserializer);
+	public static final JsonpDeserializer<CompletionStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CompletionStats::setupCompletionStatsDeserializer, Builder::build);
 
 	protected static void setupCompletionStatsDeserializer(DelegatingDeserializer<CompletionStats.Builder> op) {
 
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
-		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldSizeUsage.DESERIALIZER), "fields");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldSizeUsage._DESERIALIZER), "fields");
 
 	}
 

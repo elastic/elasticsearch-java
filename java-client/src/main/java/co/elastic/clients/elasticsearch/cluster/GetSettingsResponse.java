@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Response
+@JsonpDeserializable
 public final class GetSettingsResponse implements JsonpSerializable {
 	private final Map<String, JsonData> persistent;
 
@@ -209,14 +211,14 @@ public final class GetSettingsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetSettingsResponse}
 	 */
-	public static final JsonpDeserializer<GetSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
+	public static final JsonpDeserializer<GetSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer, Builder::build);
 
 	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
 
-		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "persistent");
-		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "transient");
-		op.add(Builder::defaults, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "defaults");
+		op.add(Builder::persistent, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "persistent");
+		op.add(Builder::transient_, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "transient");
+		op.add(Builder::defaults, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "defaults");
 
 	}
 

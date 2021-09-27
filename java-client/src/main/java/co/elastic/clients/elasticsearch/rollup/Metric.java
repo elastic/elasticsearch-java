@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum Metric implements StringEnum {
 	Min("min"), Max("max"), Sum("sum"), Avg("avg"), ValueCount("value_count");
 
@@ -39,5 +41,5 @@ public enum Metric implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Metric> DESERIALIZER = new StringEnum.Deserializer<>(Metric.values());
+	public static final StringEnum.Deserializer<Metric> _DESERIALIZER = new StringEnum.Deserializer<>(Metric.values());
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.Pipeline
+@JsonpDeserializable
 public final class Pipeline implements JsonpSerializable {
 	private final String description;
 
@@ -233,17 +235,17 @@ public final class Pipeline implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Pipeline}
 	 */
-	public static final JsonpDeserializer<Pipeline> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Pipeline::setupPipelineDeserializer);
+	public static final JsonpDeserializer<Pipeline> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Pipeline::setupPipelineDeserializer, Builder::build);
 
 	protected static void setupPipelineDeserializer(DelegatingDeserializer<Pipeline.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::lastModified, JsonpDeserializer.stringDeserializer(), "last_modified");
-		op.add(Builder::pipelineMetadata, PipelineMetadata.DESERIALIZER, "pipeline_metadata");
+		op.add(Builder::pipelineMetadata, PipelineMetadata._DESERIALIZER, "pipeline_metadata");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
-		op.add(Builder::pipelineSettings, PipelineSettings.DESERIALIZER, "pipeline_settings");
+		op.add(Builder::pipelineSettings, PipelineSettings._DESERIALIZER, "pipeline_settings");
 
 	}
 

@@ -24,8 +24,8 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScriptCondition
-public final class ScriptCondition implements Condition, JsonpSerializable {
+@JsonpDeserializable
+public final class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	private final String lang;
 
 	@Nullable
@@ -62,7 +63,7 @@ public final class ScriptCondition implements Condition, JsonpSerializable {
 	 * {@link Condition} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "script";
 	}
 
@@ -98,7 +99,6 @@ public final class ScriptCondition implements Condition, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("lang");
 		generator.write(this.lang);
@@ -118,8 +118,6 @@ public final class ScriptCondition implements Condition, JsonpSerializable {
 
 		generator.writeKey("source");
 		generator.write(this.source);
-
-		generator.writeEnd();
 
 	}
 
@@ -185,14 +183,16 @@ public final class ScriptCondition implements Condition, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<ScriptCondition.Builder, ScriptCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(ScriptCondition::setupScriptConditionDeserializer);
+	/**
+	 * Json deserializer for {@link ScriptCondition}
+	 */
+	public static final JsonpDeserializer<ScriptCondition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ScriptCondition::setupScriptConditionDeserializer, Builder::build);
 
 	protected static void setupScriptConditionDeserializer(DelegatingDeserializer<ScriptCondition.Builder> op) {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}

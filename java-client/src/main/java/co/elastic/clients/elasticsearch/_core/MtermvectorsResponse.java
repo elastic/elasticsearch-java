@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._core.mtermvectors.TermVectorsResult;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Response
+@JsonpDeserializable
 public final class MtermvectorsResponse implements JsonpSerializable {
 	private final List<TermVectorsResult> docs;
 
@@ -145,13 +147,13 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MtermvectorsResponse}
 	 */
-	public static final JsonpDeserializer<MtermvectorsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseDeserializer);
+	public static final JsonpDeserializer<MtermvectorsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseDeserializer, Builder::build);
 
 	protected static void setupMtermvectorsResponseDeserializer(
 			DelegatingDeserializer<MtermvectorsResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(TermVectorsResult.DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(TermVectorsResult._DESERIALIZER), "docs");
 
 	}
 

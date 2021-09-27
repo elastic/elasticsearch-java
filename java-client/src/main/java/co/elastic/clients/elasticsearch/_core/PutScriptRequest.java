@@ -28,13 +28,13 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.StoredScript;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.put_script.Request
+@JsonpDeserializable
 public final class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -51,10 +52,10 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	private final String context;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final StoredScript script;
@@ -96,7 +97,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -106,7 +107,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -150,10 +151,10 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		private String context;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private StoredScript script;
@@ -183,7 +184,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -193,7 +194,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -230,12 +231,12 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link PutScriptRequest}
 	 */
-	public static final JsonpDeserializer<PutScriptRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutScriptRequest::setupPutScriptRequestDeserializer);
+	public static final JsonpDeserializer<PutScriptRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutScriptRequest::setupPutScriptRequestDeserializer, Builder::build);
 
 	protected static void setupPutScriptRequestDeserializer(DelegatingDeserializer<PutScriptRequest.Builder> op) {
 
-		op.add(Builder::script, StoredScript.DESERIALIZER, "script");
+		op.add(Builder::script, StoredScript._DESERIALIZER, "script");
 
 	}
 
@@ -287,12 +288,12 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutScriptResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutScriptResponse._DESERIALIZER);
 }

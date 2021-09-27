@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: ilm.start.Response
+@JsonpDeserializable
 public final class StartResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class StartResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link StartResponse}
 	 */
-	public static final JsonpDeserializer<StartResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StartResponse::setupStartResponseDeserializer);
+	public static final JsonpDeserializer<StartResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StartResponse::setupStartResponseDeserializer, Builder::build);
 
 	protected static void setupStartResponseDeserializer(DelegatingDeserializer<StartResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.indices.IndicesRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.Response
+@JsonpDeserializable
 public final class IndicesResponse implements JsonpSerializable {
 	private final List<IndicesRecord> value;
 
@@ -143,12 +145,12 @@ public final class IndicesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesResponse}
 	 */
-	public static final JsonpDeserializer<IndicesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesResponse::setupIndicesResponseDeserializer);
+	public static final JsonpDeserializer<IndicesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndicesResponse::setupIndicesResponseDeserializer, Builder::build);
 
 	protected static void setupIndicesResponseDeserializer(DelegatingDeserializer<IndicesResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(IndicesRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(IndicesRecord._DESERIALIZER), "value");
 
 	}
 

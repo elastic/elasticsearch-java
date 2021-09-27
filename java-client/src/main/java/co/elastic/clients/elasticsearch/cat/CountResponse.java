@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.count.CountRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.Response
+@JsonpDeserializable
 public final class CountResponse implements JsonpSerializable {
 	private final List<CountRecord> value;
 
@@ -143,12 +145,12 @@ public final class CountResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CountResponse}
 	 */
-	public static final JsonpDeserializer<CountResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CountResponse::setupCountResponseDeserializer);
+	public static final JsonpDeserializer<CountResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CountResponse::setupCountResponseDeserializer, Builder::build);
 
 	protected static void setupCountResponseDeserializer(DelegatingDeserializer<CountResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CountRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CountRecord._DESERIALIZER), "value");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.simulate_template.Template;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Response
+@JsonpDeserializable
 public final class SimulateTemplateResponse implements JsonpSerializable {
 	private final Template template;
 
@@ -111,13 +113,13 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SimulateTemplateResponse}
 	 */
-	public static final JsonpDeserializer<SimulateTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer);
+	public static final JsonpDeserializer<SimulateTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimulateTemplateResponse::setupSimulateTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupSimulateTemplateResponseDeserializer(
 			DelegatingDeserializer<SimulateTemplateResponse.Builder> op) {
 
-		op.add(Builder::template, Template.DESERIALIZER, "template");
+		op.add(Builder::template, Template._DESERIALIZER, "template");
 
 	}
 

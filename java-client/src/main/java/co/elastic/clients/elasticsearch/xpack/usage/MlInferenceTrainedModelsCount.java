@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,21 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
+@JsonpDeserializable
 public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
-	private final Number total;
+	private final Long total;
 
-	private final Number prepackaged;
+	private final Long prepackaged;
 
-	private final Number other;
+	private final Long other;
 
-	private final Number regression;
+	private final Long regression;
 
-	private final Number classification;
+	private final Long classification;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,35 +64,35 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code prepackaged}
 	 */
-	public Number prepackaged() {
+	public Long prepackaged() {
 		return this.prepackaged;
 	}
 
 	/**
 	 * API name: {@code other}
 	 */
-	public Number other() {
+	public Long other() {
 		return this.other;
 	}
 
 	/**
 	 * API name: {@code regression}
 	 */
-	public Number regression() {
+	public Long regression() {
 		return this.regression;
 	}
 
 	/**
 	 * API name: {@code classification}
 	 */
-	public Number classification() {
+	public Long classification() {
 		return this.classification;
 	}
 
@@ -106,19 +108,19 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("prepackaged");
-		generator.write(this.prepackaged.doubleValue());
+		generator.write(this.prepackaged);
 
 		generator.writeKey("other");
-		generator.write(this.other.doubleValue());
+		generator.write(this.other);
 
 		generator.writeKey("regression");
-		generator.write(this.regression.doubleValue());
+		generator.write(this.regression);
 
 		generator.writeKey("classification");
-		generator.write(this.classification.doubleValue());
+		generator.write(this.classification);
 
 	}
 
@@ -128,20 +130,20 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	 * Builder for {@link MlInferenceTrainedModelsCount}.
 	 */
 	public static class Builder implements ObjectBuilder<MlInferenceTrainedModelsCount> {
-		private Number total;
+		private Long total;
 
-		private Number prepackaged;
+		private Long prepackaged;
 
-		private Number other;
+		private Long other;
 
-		private Number regression;
+		private Long regression;
 
-		private Number classification;
+		private Long classification;
 
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -149,7 +151,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code prepackaged}
 		 */
-		public Builder prepackaged(Number value) {
+		public Builder prepackaged(Long value) {
 			this.prepackaged = value;
 			return this;
 		}
@@ -157,7 +159,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code other}
 		 */
-		public Builder other(Number value) {
+		public Builder other(Long value) {
 			this.other = value;
 			return this;
 		}
@@ -165,7 +167,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public Builder regression(Number value) {
+		public Builder regression(Long value) {
 			this.regression = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * API name: {@code classification}
 		 */
-		public Builder classification(Number value) {
+		public Builder classification(Long value) {
 			this.classification = value;
 			return this;
 		}
@@ -195,18 +197,18 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInferenceTrainedModelsCount}
 	 */
-	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer);
+	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer,
+			Builder::build);
 
 	protected static void setupMlInferenceTrainedModelsCountDeserializer(
 			DelegatingDeserializer<MlInferenceTrainedModelsCount.Builder> op) {
 
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::prepackaged, JsonpDeserializer.numberDeserializer(), "prepackaged");
-		op.add(Builder::other, JsonpDeserializer.numberDeserializer(), "other");
-		op.add(Builder::regression, JsonpDeserializer.numberDeserializer(), "regression");
-		op.add(Builder::classification, JsonpDeserializer.numberDeserializer(), "classification");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::prepackaged, JsonpDeserializer.longDeserializer(), "prepackaged");
+		op.add(Builder::other, JsonpDeserializer.longDeserializer(), "other");
+		op.add(Builder::regression, JsonpDeserializer.longDeserializer(), "regression");
+		op.add(Builder::classification, JsonpDeserializer.longDeserializer(), "classification");
 
 	}
 

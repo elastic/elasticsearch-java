@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherActions
+@JsonpDeserializable
 public final class WatcherActions implements JsonpSerializable {
 	private final Map<String, WatcherActionTotals> actions;
 
@@ -139,12 +141,12 @@ public final class WatcherActions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WatcherActions}
 	 */
-	public static final JsonpDeserializer<WatcherActions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherActions::setupWatcherActionsDeserializer);
+	public static final JsonpDeserializer<WatcherActions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatcherActions::setupWatcherActionsDeserializer, Builder::build);
 
 	protected static void setupWatcherActionsDeserializer(DelegatingDeserializer<WatcherActions.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(WatcherActionTotals.DESERIALIZER), "actions");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(WatcherActionTotals._DESERIALIZER), "actions");
 
 	}
 

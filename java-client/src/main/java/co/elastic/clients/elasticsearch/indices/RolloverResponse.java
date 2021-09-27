@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.Response
+@JsonpDeserializable
 public final class RolloverResponse extends AcknowledgedResponseBase {
 	private final Map<String, Boolean> conditions;
 
@@ -239,8 +241,8 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link RolloverResponse}
 	 */
-	public static final JsonpDeserializer<RolloverResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RolloverResponse::setupRolloverResponseDeserializer);
+	public static final JsonpDeserializer<RolloverResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RolloverResponse::setupRolloverResponseDeserializer, Builder::build);
 
 	protected static void setupRolloverResponseDeserializer(DelegatingDeserializer<RolloverResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

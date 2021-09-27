@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -41,7 +42,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
-public final class GrokProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -65,6 +67,14 @@ public final class GrokProcessor extends ProcessorBase {
 		this.patterns = Objects.requireNonNull(builder.patterns, "patterns");
 		this.traceMatch = builder.traceMatch;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "grok";
 	}
 
 	/**
@@ -255,8 +265,8 @@ public final class GrokProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link GrokProcessor}
 	 */
-	public static final JsonpDeserializer<GrokProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GrokProcessor::setupGrokProcessorDeserializer);
+	public static final JsonpDeserializer<GrokProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GrokProcessor::setupGrokProcessorDeserializer, Builder::build);
 
 	protected static void setupGrokProcessorDeserializer(DelegatingDeserializer<GrokProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

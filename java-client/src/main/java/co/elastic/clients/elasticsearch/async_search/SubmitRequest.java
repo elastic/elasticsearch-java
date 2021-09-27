@@ -31,6 +31,7 @@ import co.elastic.clients.elasticsearch._core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch._core.search.Rescore;
 import co.elastic.clients.elasticsearch._core.search.Suggest;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
@@ -39,6 +40,7 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -48,7 +50,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,6 +66,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: async_search.submit.Request
+@JsonpDeserializable
 public final class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
@@ -82,7 +87,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean analyzeWildcard;
 
 	@Nullable
-	private final Number batchedReduceSize;
+	private final Long batchedReduceSize;
 
 	@Nullable
 	private final FieldCollapse collapse;
@@ -97,13 +102,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final List<String> docvalueFields;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean explain;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
 	private final Highlight highlight;
@@ -115,10 +120,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final List<Map<String, Number>> indicesBoost;
+	private final List<Map<String, Double>> indicesBoost;
 
 	@Nullable
-	private final JsonValue keepAlive;
+	private final String keepAlive;
 
 	@Nullable
 	private final Boolean keepOnCompletion;
@@ -127,10 +132,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean lenient;
 
 	@Nullable
-	private final Number maxConcurrentShardRequests;
+	private final Long maxConcurrentShardRequests;
 
 	@Nullable
-	private final Number minScore;
+	private final Double minScore;
 
 	@Nullable
 	private final Query postFilter;
@@ -160,7 +165,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
-	private final List<JsonValue> searchAfter;
+	private final List<String> searchAfter;
 
 	@Nullable
 	private final SearchType searchType;
@@ -169,13 +174,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean sequenceNumberPrimaryTerm;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
 
 	@Nullable
 	private final List<String> stats;
@@ -193,13 +198,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final SuggestMode suggestMode;
 
 	@Nullable
-	private final Number suggestSize;
+	private final Long suggestSize;
 
 	@Nullable
 	private final String suggestText;
 
 	@Nullable
-	private final Number terminateAfter;
+	private final Long terminateAfter;
 
 	@Nullable
 	private final String timeout;
@@ -217,10 +222,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean version;
 
 	@Nullable
-	private final JsonValue waitForCompletionTimeout;
+	private final String waitForCompletionTimeout;
 
 	@Nullable
-	private final List<JsonValue> fields;
+	private final List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -341,7 +346,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code batched_reduce_size}
 	 */
 	@Nullable
-	public Number batchedReduceSize() {
+	public Long batchedReduceSize() {
 		return this.batchedReduceSize;
 	}
 
@@ -381,7 +386,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -397,7 +402,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -429,7 +434,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code indices_boost}
 	 */
 	@Nullable
-	public List<Map<String, Number>> indicesBoost() {
+	public List<Map<String, Double>> indicesBoost() {
 		return this.indicesBoost;
 	}
 
@@ -437,7 +442,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public JsonValue keepAlive() {
+	public String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -461,7 +466,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
-	public Number maxConcurrentShardRequests() {
+	public Long maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
 	}
 
@@ -469,7 +474,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code min_score}
 	 */
 	@Nullable
-	public Number minScore() {
+	public Double minScore() {
 		return this.minScore;
 	}
 
@@ -549,7 +554,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code search_after}
 	 */
 	@Nullable
-	public List<JsonValue> searchAfter() {
+	public List<String> searchAfter() {
 		return this.searchAfter;
 	}
 
@@ -573,7 +578,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -581,7 +586,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -589,7 +594,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source() {
 		return this.source;
 	}
 
@@ -637,7 +642,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code suggest_size}
 	 */
 	@Nullable
-	public Number suggestSize() {
+	public Long suggestSize() {
 		return this.suggestSize;
 	}
 
@@ -653,7 +658,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
-	public Number terminateAfter() {
+	public Long terminateAfter() {
 		return this.terminateAfter;
 	}
 
@@ -701,7 +706,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public JsonValue waitForCompletionTimeout() {
+	public String waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -709,7 +714,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public List<JsonValue> fields() {
+	public List<JsonValue /* Union(_types.Field | _types.DateField) */> fields() {
 		return this.fields;
 	}
 
@@ -771,7 +776,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.batchedReduceSize != null) {
 
 			generator.writeKey("batched_reduce_size");
-			generator.write(this.batchedReduceSize.doubleValue());
+			generator.write(this.batchedReduceSize);
 
 		}
 		if (this.collapse != null) {
@@ -805,7 +810,11 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.expandWildcards != null) {
 
 			generator.writeKey("expand_wildcards");
-			generator.write(this.expandWildcards);
+			generator.writeStartArray();
+			for (ExpandWildcardOptions item0 : this.expandWildcards) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
 		if (this.explain != null) {
@@ -817,7 +826,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.from != null) {
 
 			generator.writeKey("from");
-			generator.write(this.from.doubleValue());
+			generator.write(this.from);
 
 		}
 		if (this.highlight != null) {
@@ -842,11 +851,11 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("indices_boost");
 			generator.writeStartArray();
-			for (Map<String, Number> item0 : this.indicesBoost) {
+			for (Map<String, Double> item0 : this.indicesBoost) {
 				generator.writeStartObject();
-				for (Map.Entry<String, Number> item1 : item0.entrySet()) {
+				for (Map.Entry<String, Double> item1 : item0.entrySet()) {
 					generator.writeKey(item1.getKey());
-					generator.write(item1.getValue().doubleValue());
+					generator.write(item1.getValue());
 
 				}
 				generator.writeEnd();
@@ -876,13 +885,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.maxConcurrentShardRequests != null) {
 
 			generator.writeKey("max_concurrent_shard_requests");
-			generator.write(this.maxConcurrentShardRequests.doubleValue());
+			generator.write(this.maxConcurrentShardRequests);
 
 		}
 		if (this.minScore != null) {
 
 			generator.writeKey("min_score");
-			generator.write(this.minScore.doubleValue());
+			generator.write(this.minScore);
 
 		}
 		if (this.postFilter != null) {
@@ -954,7 +963,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("search_after");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.searchAfter) {
+			for (String item0 : this.searchAfter) {
 				generator.write(item0);
 
 			}
@@ -975,14 +984,14 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.sort != null) {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -1043,7 +1052,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.suggestSize != null) {
 
 			generator.writeKey("suggest_size");
-			generator.write(this.suggestSize.doubleValue());
+			generator.write(this.suggestSize);
 
 		}
 		if (this.suggestText != null) {
@@ -1055,7 +1064,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		if (this.terminateAfter != null) {
 
 			generator.writeKey("terminate_after");
-			generator.write(this.terminateAfter.doubleValue());
+			generator.write(this.terminateAfter);
 
 		}
 		if (this.timeout != null) {
@@ -1098,7 +1107,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.fields) {
+			for (JsonValue /* Union(_types.Field | _types.DateField) */ item0 : this.fields) {
 				generator.write(item0);
 
 			}
@@ -1145,7 +1154,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean analyzeWildcard;
 
 		@Nullable
-		private Number batchedReduceSize;
+		private Long batchedReduceSize;
 
 		@Nullable
 		private FieldCollapse collapse;
@@ -1160,13 +1169,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private List<String> docvalueFields;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean explain;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
 		private Highlight highlight;
@@ -1178,10 +1187,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private List<Map<String, Number>> indicesBoost;
+		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
-		private JsonValue keepAlive;
+		private String keepAlive;
 
 		@Nullable
 		private Boolean keepOnCompletion;
@@ -1190,10 +1199,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean lenient;
 
 		@Nullable
-		private Number maxConcurrentShardRequests;
+		private Long maxConcurrentShardRequests;
 
 		@Nullable
-		private Number minScore;
+		private Double minScore;
 
 		@Nullable
 		private Query postFilter;
@@ -1223,7 +1232,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private List<JsonValue> searchAfter;
+		private List<String> searchAfter;
 
 		@Nullable
 		private SearchType searchType;
@@ -1232,13 +1241,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean sequenceNumberPrimaryTerm;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
 
 		@Nullable
 		private List<String> stats;
@@ -1256,13 +1265,13 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private SuggestMode suggestMode;
 
 		@Nullable
-		private Number suggestSize;
+		private Long suggestSize;
 
 		@Nullable
 		private String suggestText;
 
 		@Nullable
-		private Number terminateAfter;
+		private Long terminateAfter;
 
 		@Nullable
 		private String timeout;
@@ -1280,10 +1289,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean version;
 
 		@Nullable
-		private JsonValue waitForCompletionTimeout;
+		private String waitForCompletionTimeout;
 
 		@Nullable
-		private List<JsonValue> fields;
+		private List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -1389,7 +1398,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code batched_reduce_size}
 		 */
-		public Builder batchedReduceSize(@Nullable Number value) {
+		public Builder batchedReduceSize(@Nullable Long value) {
 			this.batchedReduceSize = value;
 			return this;
 		}
@@ -1455,8 +1464,27 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -1471,7 +1499,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -1510,7 +1538,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code indices_boost}
 		 */
-		public Builder indicesBoost(@Nullable List<Map<String, Number>> value) {
+		public Builder indicesBoost(@Nullable List<Map<String, Double>> value) {
 			this.indicesBoost = value;
 			return this;
 		}
@@ -1518,7 +1546,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code indices_boost}
 		 */
-		public Builder indicesBoost(Map<String, Number>... value) {
+		public Builder indicesBoost(Map<String, Double>... value) {
 			this.indicesBoost = Arrays.asList(value);
 			return this;
 		}
@@ -1526,7 +1554,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed.
 		 */
-		public Builder addIndicesBoost(Map<String, Number> value) {
+		public Builder addIndicesBoost(Map<String, Double> value) {
 			if (this.indicesBoost == null) {
 				this.indicesBoost = new ArrayList<>();
 			}
@@ -1537,7 +1565,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable JsonValue value) {
+		public Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -1561,7 +1589,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
-		public Builder maxConcurrentShardRequests(@Nullable Number value) {
+		public Builder maxConcurrentShardRequests(@Nullable Long value) {
 			this.maxConcurrentShardRequests = value;
 			return this;
 		}
@@ -1569,7 +1597,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code min_score}
 		 */
-		public Builder minScore(@Nullable Number value) {
+		public Builder minScore(@Nullable Double value) {
 			this.minScore = value;
 			return this;
 		}
@@ -1728,7 +1756,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code search_after}
 		 */
-		public Builder searchAfter(@Nullable List<JsonValue> value) {
+		public Builder searchAfter(@Nullable List<String> value) {
 			this.searchAfter = value;
 			return this;
 		}
@@ -1736,7 +1764,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code search_after}
 		 */
-		public Builder searchAfter(JsonValue... value) {
+		public Builder searchAfter(String... value) {
 			this.searchAfter = Arrays.asList(value);
 			return this;
 		}
@@ -1744,7 +1772,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
 		 */
-		public Builder addSearchAfter(JsonValue value) {
+		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {
 				this.searchAfter = new ArrayList<>();
 			}
@@ -1771,7 +1799,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -1779,7 +1807,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue> value) {
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -1787,7 +1815,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -1795,7 +1823,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -1806,7 +1834,8 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(
+				@Nullable JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -1917,7 +1946,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code suggest_size}
 		 */
-		public Builder suggestSize(@Nullable Number value) {
+		public Builder suggestSize(@Nullable Long value) {
 			this.suggestSize = value;
 			return this;
 		}
@@ -1933,7 +1962,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code terminate_after}
 		 */
-		public Builder terminateAfter(@Nullable Number value) {
+		public Builder terminateAfter(@Nullable Long value) {
 			this.terminateAfter = value;
 			return this;
 		}
@@ -1981,7 +2010,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable JsonValue value) {
+		public Builder waitForCompletionTimeout(@Nullable String value) {
 			this.waitForCompletionTimeout = value;
 			return this;
 		}
@@ -1989,7 +2018,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<JsonValue> value) {
+		public Builder fields(@Nullable List<JsonValue /* Union(_types.Field | _types.DateField) */> value) {
 			this.fields = value;
 			return this;
 		}
@@ -1997,7 +2026,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(JsonValue... value) {
+		public Builder fields(JsonValue /* Union(_types.Field | _types.DateField) */... value) {
 			this.fields = Arrays.asList(value);
 			return this;
 		}
@@ -2005,7 +2034,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
-		public Builder addFields(JsonValue value) {
+		public Builder addFields(JsonValue /* Union(_types.Field | _types.DateField) */ value) {
 			if (this.fields == null) {
 				this.fields = new ArrayList<>();
 			}
@@ -2063,76 +2092,77 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link SubmitRequest}
 	 */
-	public static final JsonpDeserializer<SubmitRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SubmitRequest::setupSubmitRequestDeserializer);
+	public static final JsonpDeserializer<SubmitRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SubmitRequest::setupSubmitRequestDeserializer, Builder::build);
 
 	protected static void setupSubmitRequestDeserializer(DelegatingDeserializer<SubmitRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER), "aggs");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
 		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
 		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
 				"allow_partial_search_results");
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
-		op.add(Builder::batchedReduceSize, JsonpDeserializer.numberDeserializer(), "batched_reduce_size");
-		op.add(Builder::collapse, FieldCollapse.DESERIALIZER, "collapse");
-		op.add(Builder::defaultOperator, DefaultOperator.DESERIALIZER, "default_operator");
+		op.add(Builder::batchedReduceSize, JsonpDeserializer.longDeserializer(), "batched_reduce_size");
+		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
+		op.add(Builder::defaultOperator, DefaultOperator._DESERIALIZER, "default_operator");
 		op.add(Builder::df, JsonpDeserializer.stringDeserializer(), "df");
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"docvalue_fields");
-		op.add(Builder::expandWildcards, JsonpDeserializer.jsonValueDeserializer(), "expand_wildcards");
+		op.add(Builder::expandWildcards, JsonpDeserializer.arrayDeserializer(ExpandWildcardOptions._DESERIALIZER),
+				"expand_wildcards");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
-		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
-		op.add(Builder::highlight, Highlight.DESERIALIZER, "highlight");
+		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
+		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::indicesBoost,
 				JsonpDeserializer.arrayDeserializer(
-						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer())),
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
-		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
+		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
-		op.add(Builder::maxConcurrentShardRequests, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::maxConcurrentShardRequests, JsonpDeserializer.longDeserializer(),
 				"max_concurrent_shard_requests");
-		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
-		op.add(Builder::postFilter, Query.DESERIALIZER, "post_filter");
+		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
+		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
-		op.add(Builder::pit, PointInTimeReference.DESERIALIZER, "pit");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
-		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore.DESERIALIZER), "rescore");
+		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"search_after");
-		op.add(Builder::searchType, SearchType.DESERIALIZER, "search_type");
+		op.add(Builder::searchType, SearchType._DESERIALIZER, "search_type");
 		op.add(Builder::sequenceNumberPrimaryTerm, JsonpDeserializer.booleanDeserializer(),
 				"sequence_number_primary_term");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
 		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");
-		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(Suggest.DESERIALIZER), "suggest");
+		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(Suggest._DESERIALIZER), "suggest");
 		op.add(Builder::suggestField, JsonpDeserializer.stringDeserializer(), "suggest_field");
-		op.add(Builder::suggestMode, SuggestMode.DESERIALIZER, "suggest_mode");
-		op.add(Builder::suggestSize, JsonpDeserializer.numberDeserializer(), "suggest_size");
+		op.add(Builder::suggestMode, SuggestMode._DESERIALIZER, "suggest_mode");
+		op.add(Builder::suggestSize, JsonpDeserializer.longDeserializer(), "suggest_size");
 		op.add(Builder::suggestText, JsonpDeserializer.stringDeserializer(), "suggest_text");
-		op.add(Builder::terminateAfter, JsonpDeserializer.numberDeserializer(), "terminate_after");
+		op.add(Builder::terminateAfter, JsonpDeserializer.longDeserializer(), "terminate_after");
 		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
 		op.add(Builder::trackTotalHits, JsonpDeserializer.booleanDeserializer(), "track_total_hits");
 		op.add(Builder::typedKeys, JsonpDeserializer.booleanDeserializer(), "typed_keys");
 		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
-		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.stringDeserializer(),
 				"wait_for_completion_timeout");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 
 	}

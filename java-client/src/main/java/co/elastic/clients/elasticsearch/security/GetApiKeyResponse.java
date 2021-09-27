@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_api_key.ApiKey;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Response
+@JsonpDeserializable
 public final class GetApiKeyResponse implements JsonpSerializable {
 	private final List<ApiKey> apiKeys;
 
@@ -145,12 +147,12 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetApiKeyResponse}
 	 */
-	public static final JsonpDeserializer<GetApiKeyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer);
+	public static final JsonpDeserializer<GetApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer, Builder::build);
 
 	protected static void setupGetApiKeyResponseDeserializer(DelegatingDeserializer<GetApiKeyResponse.Builder> op) {
 
-		op.add(Builder::apiKeys, JsonpDeserializer.arrayDeserializer(ApiKey.DESERIALIZER), "api_keys");
+		op.add(Builder::apiKeys, JsonpDeserializer.arrayDeserializer(ApiKey._DESERIALIZER), "api_keys");
 
 	}
 

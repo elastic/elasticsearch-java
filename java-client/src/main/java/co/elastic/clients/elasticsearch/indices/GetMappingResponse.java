@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.indices.get_mapping.IndexMappingRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: indices.get_mapping.Response
+@JsonpDeserializable
 public final class GetMappingResponse extends AdditionalProperties<String, IndexMappingRecord> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,12 +77,12 @@ public final class GetMappingResponse extends AdditionalProperties<String, Index
 	/**
 	 * Json deserializer for {@link GetMappingResponse}
 	 */
-	public static final JsonpDeserializer<GetMappingResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetMappingResponse::setupGetMappingResponseDeserializer);
+	public static final JsonpDeserializer<GetMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetMappingResponse::setupGetMappingResponseDeserializer, Builder::build);
 
 	protected static void setupGetMappingResponseDeserializer(DelegatingDeserializer<GetMappingResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexMappingRecord.DESERIALIZER);
+				IndexMappingRecord._DESERIALIZER);
 
 	}
 

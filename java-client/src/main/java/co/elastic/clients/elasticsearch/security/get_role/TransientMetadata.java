@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.TransientMetadata
+@JsonpDeserializable
 public final class TransientMetadata implements JsonpSerializable {
 	private final Boolean enabled;
 
@@ -103,8 +105,8 @@ public final class TransientMetadata implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TransientMetadata}
 	 */
-	public static final JsonpDeserializer<TransientMetadata> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TransientMetadata::setupTransientMetadataDeserializer);
+	public static final JsonpDeserializer<TransientMetadata> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer, Builder::build);
 
 	protected static void setupTransientMetadataDeserializer(DelegatingDeserializer<TransientMetadata.Builder> op) {
 

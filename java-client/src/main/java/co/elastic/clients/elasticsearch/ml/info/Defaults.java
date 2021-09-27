@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Defaults
+@JsonpDeserializable
 public final class Defaults implements JsonpSerializable {
 	private final AnomalyDetectors anomalyDetectors;
 
@@ -140,13 +142,13 @@ public final class Defaults implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Defaults}
 	 */
-	public static final JsonpDeserializer<Defaults> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Defaults::setupDefaultsDeserializer);
+	public static final JsonpDeserializer<Defaults> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Defaults::setupDefaultsDeserializer, Builder::build);
 
 	protected static void setupDefaultsDeserializer(DelegatingDeserializer<Defaults.Builder> op) {
 
-		op.add(Builder::anomalyDetectors, AnomalyDetectors.DESERIALIZER, "anomaly_detectors");
-		op.add(Builder::datafeeds, Datafeeds.DESERIALIZER, "datafeeds");
+		op.add(Builder::anomalyDetectors, AnomalyDetectors._DESERIALIZER, "anomaly_detectors");
+		op.add(Builder::datafeeds, Datafeeds._DESERIALIZER, "datafeeds");
 
 	}
 

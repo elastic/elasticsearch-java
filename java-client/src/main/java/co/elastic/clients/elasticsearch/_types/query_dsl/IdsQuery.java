@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +39,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
-public final class IdsQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class IdsQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final List<String> values;
 
@@ -56,7 +57,7 @@ public final class IdsQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "ids";
 	}
 
@@ -69,7 +70,6 @@ public final class IdsQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.values != null) {
@@ -83,8 +83,6 @@ public final class IdsQuery extends QueryBase implements Query {
 			generator.writeEnd();
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -143,9 +141,11 @@ public final class IdsQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<IdsQuery.Builder, IdsQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(IdsQuery::setupIdsQueryDeserializer);
+	/**
+	 * Json deserializer for {@link IdsQuery}
+	 */
+	public static final JsonpDeserializer<IdsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IdsQuery::setupIdsQueryDeserializer, Builder::build);
 
 	protected static void setupIdsQueryDeserializer(DelegatingDeserializer<IdsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

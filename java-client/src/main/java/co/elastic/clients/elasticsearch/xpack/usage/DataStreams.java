@@ -24,21 +24,23 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataStreams
+@JsonpDeserializable
 public final class DataStreams extends Base {
-	private final Number dataStreams;
+	private final Long dataStreams;
 
-	private final Number indicesCount;
+	private final Long indicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class DataStreams extends Base {
 	/**
 	 * API name: {@code data_streams}
 	 */
-	public Number dataStreams() {
+	public Long dataStreams() {
 		return this.dataStreams;
 	}
 
 	/**
 	 * API name: {@code indices_count}
 	 */
-	public Number indicesCount() {
+	public Long indicesCount() {
 		return this.indicesCount;
 	}
 
@@ -69,10 +71,10 @@ public final class DataStreams extends Base {
 		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("data_streams");
-		generator.write(this.dataStreams.doubleValue());
+		generator.write(this.dataStreams);
 
 		generator.writeKey("indices_count");
-		generator.write(this.indicesCount.doubleValue());
+		generator.write(this.indicesCount);
 
 	}
 
@@ -82,14 +84,14 @@ public final class DataStreams extends Base {
 	 * Builder for {@link DataStreams}.
 	 */
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<DataStreams> {
-		private Number dataStreams;
+		private Long dataStreams;
 
-		private Number indicesCount;
+		private Long indicesCount;
 
 		/**
 		 * API name: {@code data_streams}
 		 */
-		public Builder dataStreams(Number value) {
+		public Builder dataStreams(Long value) {
 			this.dataStreams = value;
 			return this;
 		}
@@ -97,7 +99,7 @@ public final class DataStreams extends Base {
 		/**
 		 * API name: {@code indices_count}
 		 */
-		public Builder indicesCount(Number value) {
+		public Builder indicesCount(Long value) {
 			this.indicesCount = value;
 			return this;
 		}
@@ -124,13 +126,13 @@ public final class DataStreams extends Base {
 	/**
 	 * Json deserializer for {@link DataStreams}
 	 */
-	public static final JsonpDeserializer<DataStreams> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataStreams::setupDataStreamsDeserializer);
+	public static final JsonpDeserializer<DataStreams> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataStreams::setupDataStreamsDeserializer, Builder::build);
 
 	protected static void setupDataStreamsDeserializer(DelegatingDeserializer<DataStreams.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::dataStreams, JsonpDeserializer.numberDeserializer(), "data_streams");
-		op.add(Builder::indicesCount, JsonpDeserializer.numberDeserializer(), "indices_count");
+		op.add(Builder::dataStreams, JsonpDeserializer.longDeserializer(), "data_streams");
+		op.add(Builder::indicesCount, JsonpDeserializer.longDeserializer(), "indices_count");
 
 	}
 

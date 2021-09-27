@@ -24,13 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -38,10 +37,11 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermQuery
-public final class TermQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class TermQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
-	private final JsonValue value;
+	private final String value;
 
 	@Nullable
 	private final Boolean caseInsensitive;
@@ -61,7 +61,7 @@ public final class TermQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "term";
 	}
 
@@ -77,7 +77,7 @@ public final class TermQuery extends QueryBase implements Query {
 	/**
 	 * API name: {@code value}
 	 */
-	public JsonValue value() {
+	public String value() {
 		return this.value;
 	}
 
@@ -90,8 +90,6 @@ public final class TermQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
@@ -107,9 +105,6 @@ public final class TermQuery extends QueryBase implements Query {
 		}
 
 		generator.writeEnd();
-
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -130,7 +125,7 @@ public final class TermQuery extends QueryBase implements Query {
 			return this;
 		}
 
-		private JsonValue value;
+		private String value;
 
 		@Nullable
 		private Boolean caseInsensitive;
@@ -138,7 +133,7 @@ public final class TermQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue value) {
+		public Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -170,13 +165,15 @@ public final class TermQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<TermQuery.Builder, TermQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(TermQuery::setupTermQueryDeserializer);
+	/**
+	 * Json deserializer for {@link TermQuery}
+	 */
+	public static final JsonpDeserializer<TermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TermQuery::setupTermQueryDeserializer, Builder::build);
 
 	protected static void setupTermQueryDeserializer(DelegatingDeserializer<TermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 
 		op.setKey(Builder::field);

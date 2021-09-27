@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummary
+@JsonpDeserializable
 public final class DataframeClassificationSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
@@ -268,19 +270,19 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeClassificationSummary}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummary::setupDataframeClassificationSummaryDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeClassificationSummary::setupDataframeClassificationSummaryDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummary.Builder> op) {
 
-		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc.DESERIALIZER, "auc_roc");
-		op.add(Builder::accuracy, DataframeClassificationSummaryAccuracy.DESERIALIZER, "accuracy");
-		op.add(Builder::multiclassConfusionMatrix, DataframeClassificationSummaryMulticlassConfusionMatrix.DESERIALIZER,
-				"multiclass_confusion_matrix");
-		op.add(Builder::precision, DataframeClassificationSummaryPrecision.DESERIALIZER, "precision");
-		op.add(Builder::recall, DataframeClassificationSummaryRecall.DESERIALIZER, "recall");
+		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc._DESERIALIZER, "auc_roc");
+		op.add(Builder::accuracy, DataframeClassificationSummaryAccuracy._DESERIALIZER, "accuracy");
+		op.add(Builder::multiclassConfusionMatrix,
+				DataframeClassificationSummaryMulticlassConfusionMatrix._DESERIALIZER, "multiclass_confusion_matrix");
+		op.add(Builder::precision, DataframeClassificationSummaryPrecision._DESERIALIZER, "precision");
+		op.add(Builder::recall, DataframeClassificationSummaryRecall._DESERIALIZER, "recall");
 
 	}
 

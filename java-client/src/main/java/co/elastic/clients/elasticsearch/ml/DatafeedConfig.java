@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,6 +49,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedConfig
+@JsonpDeserializable
 public final class DatafeedConfig implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Aggregation> aggregations;
@@ -79,7 +81,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final Number maxEmptySearches;
+	private final Integer maxEmptySearches;
 
 	private final Query query;
 
@@ -93,7 +95,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
-	private final Number scrollSize;
+	private final Integer scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -243,7 +245,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 	 * API name: {@code max_empty_searches}
 	 */
 	@Nullable
-	public Number maxEmptySearches() {
+	public Integer maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
@@ -304,7 +306,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Number scrollSize() {
+	public Integer scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -402,7 +404,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		if (this.maxEmptySearches != null) {
 
 			generator.writeKey("max_empty_searches");
-			generator.write(this.maxEmptySearches.doubleValue());
+			generator.write(this.maxEmptySearches);
 
 		}
 
@@ -442,7 +444,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		if (this.scrollSize != null) {
 
 			generator.writeKey("scroll_size");
-			generator.write(this.scrollSize.doubleValue());
+			generator.write(this.scrollSize);
 
 		}
 
@@ -484,7 +486,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		private String jobId;
 
 		@Nullable
-		private Number maxEmptySearches;
+		private Integer maxEmptySearches;
 
 		private Query query;
 
@@ -498,7 +500,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private Number scrollSize;
+		private Integer scrollSize;
 
 		/**
 		 * If set, the datafeed performs aggregation searches. Support for aggregations
@@ -754,7 +756,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(@Nullable Number value) {
+		public Builder maxEmptySearches(@Nullable Integer value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
@@ -878,7 +880,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Number value) {
+		public Builder scrollSize(@Nullable Integer value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -900,32 +902,32 @@ public final class DatafeedConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DatafeedConfig}
 	 */
-	public static final JsonpDeserializer<DatafeedConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DatafeedConfig::setupDatafeedConfigDeserializer);
+	public static final JsonpDeserializer<DatafeedConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DatafeedConfig::setupDatafeedConfigDeserializer, Builder::build);
 
 	protected static void setupDatafeedConfigDeserializer(DelegatingDeserializer<DatafeedConfig.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER), "aggs");
-		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
-		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig.DESERIALIZER, "delayed_data_check_config");
+		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
 		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indexes");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions.DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
+		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
 
 	}
 

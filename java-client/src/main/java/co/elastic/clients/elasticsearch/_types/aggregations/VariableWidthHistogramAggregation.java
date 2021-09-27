@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,24 +32,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.VariableWidthHistogramAggregation
-public final class VariableWidthHistogramAggregation implements JsonpSerializable {
+@JsonpDeserializable
+public final class VariableWidthHistogramAggregation implements AggregationVariant, JsonpSerializable {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final Number buckets;
+	private final Integer buckets;
 
 	@Nullable
-	private final Number shardSize;
+	private final Integer shardSize;
 
 	@Nullable
-	private final Number initialBuffer;
+	private final Integer initialBuffer;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,6 +61,14 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 		this.shardSize = builder.shardSize;
 		this.initialBuffer = builder.initialBuffer;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "variable_width_histogram";
 	}
 
 	/**
@@ -73,7 +83,7 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 	 * API name: {@code buckets}
 	 */
 	@Nullable
-	public Number buckets() {
+	public Integer buckets() {
 		return this.buckets;
 	}
 
@@ -81,7 +91,7 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Number shardSize() {
+	public Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -89,7 +99,7 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 	 * API name: {@code initial_buffer}
 	 */
 	@Nullable
-	public Number initialBuffer() {
+	public Integer initialBuffer() {
 		return this.initialBuffer;
 	}
 
@@ -113,19 +123,19 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 		if (this.buckets != null) {
 
 			generator.writeKey("buckets");
-			generator.write(this.buckets.doubleValue());
+			generator.write(this.buckets);
 
 		}
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
-			generator.write(this.shardSize.doubleValue());
+			generator.write(this.shardSize);
 
 		}
 		if (this.initialBuffer != null) {
 
 			generator.writeKey("initial_buffer");
-			generator.write(this.initialBuffer.doubleValue());
+			generator.write(this.initialBuffer);
 
 		}
 
@@ -141,13 +151,13 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 		private String field;
 
 		@Nullable
-		private Number buckets;
+		private Integer buckets;
 
 		@Nullable
-		private Number shardSize;
+		private Integer shardSize;
 
 		@Nullable
-		private Number initialBuffer;
+		private Integer initialBuffer;
 
 		/**
 		 * API name: {@code field}
@@ -160,7 +170,7 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 		/**
 		 * API name: {@code buckets}
 		 */
-		public Builder buckets(@Nullable Number value) {
+		public Builder buckets(@Nullable Integer value) {
 			this.buckets = value;
 			return this;
 		}
@@ -168,7 +178,7 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Number value) {
+		public Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -176,7 +186,7 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 		/**
 		 * API name: {@code initial_buffer}
 		 */
-		public Builder initialBuffer(@Nullable Number value) {
+		public Builder initialBuffer(@Nullable Integer value) {
 			this.initialBuffer = value;
 			return this;
 		}
@@ -198,17 +208,17 @@ public final class VariableWidthHistogramAggregation implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link VariableWidthHistogramAggregation}
 	 */
-	public static final JsonpDeserializer<VariableWidthHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					VariableWidthHistogramAggregation::setupVariableWidthHistogramAggregationDeserializer);
+	public static final JsonpDeserializer<VariableWidthHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, VariableWidthHistogramAggregation::setupVariableWidthHistogramAggregationDeserializer,
+					Builder::build);
 
 	protected static void setupVariableWidthHistogramAggregationDeserializer(
 			DelegatingDeserializer<VariableWidthHistogramAggregation.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::buckets, JsonpDeserializer.numberDeserializer(), "buckets");
-		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
-		op.add(Builder::initialBuffer, JsonpDeserializer.numberDeserializer(), "initial_buffer");
+		op.add(Builder::buckets, JsonpDeserializer.integerDeserializer(), "buckets");
+		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
+		op.add(Builder::initialBuffer, JsonpDeserializer.integerDeserializer(), "initial_buffer");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
+@JsonpDeserializable
 public final class CharFilterDetail implements JsonpSerializable {
 	private final List<String> filteredText;
 
@@ -153,8 +155,8 @@ public final class CharFilterDetail implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CharFilterDetail}
 	 */
-	public static final JsonpDeserializer<CharFilterDetail> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CharFilterDetail::setupCharFilterDetailDeserializer);
+	public static final JsonpDeserializer<CharFilterDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CharFilterDetail::setupCharFilterDetailDeserializer, Builder::build);
 
 	protected static void setupCharFilterDetailDeserializer(DelegatingDeserializer<CharFilterDetail.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,16 +33,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmVersion
+@JsonpDeserializable
 public final class ClusterJvmVersion implements JsonpSerializable {
 	private final Boolean bundledJdk;
 
-	private final Number count;
+	private final Integer count;
 
 	private final Boolean usingBundledJdk;
 
@@ -77,7 +79,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -131,7 +133,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		generator.write(this.bundledJdk);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("using_bundled_jdk");
 		generator.write(this.usingBundledJdk);
@@ -158,7 +160,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ClusterJvmVersion> {
 		private Boolean bundledJdk;
 
-		private Number count;
+		private Integer count;
 
 		private Boolean usingBundledJdk;
 
@@ -181,7 +183,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -243,13 +245,13 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterJvmVersion}
 	 */
-	public static final JsonpDeserializer<ClusterJvmVersion> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer);
+	public static final JsonpDeserializer<ClusterJvmVersion> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer, Builder::build);
 
 	protected static void setupClusterJvmVersionDeserializer(DelegatingDeserializer<ClusterJvmVersion.Builder> op) {
 
 		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");

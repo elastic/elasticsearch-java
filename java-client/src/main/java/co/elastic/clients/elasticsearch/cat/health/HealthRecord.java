@@ -24,22 +24,23 @@
 package co.elastic.clients.elasticsearch.cat.health;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.HealthRecord
+@JsonpDeserializable
 public final class HealthRecord implements JsonpSerializable {
 	@Nullable
-	private final JsonValue epoch;
+	private final String epoch;
 
 	@Nullable
 	private final String timestamp;
@@ -51,10 +52,10 @@ public final class HealthRecord implements JsonpSerializable {
 	private final String status;
 
 	@Nullable
-	private final String node_total;
+	private final String nodeTotal;
 
 	@Nullable
-	private final String node_data;
+	private final String nodeData;
 
 	@Nullable
 	private final String shards;
@@ -88,8 +89,8 @@ public final class HealthRecord implements JsonpSerializable {
 		this.timestamp = builder.timestamp;
 		this.cluster = builder.cluster;
 		this.status = builder.status;
-		this.node_total = builder.node_total;
-		this.node_data = builder.node_data;
+		this.nodeTotal = builder.nodeTotal;
+		this.nodeData = builder.nodeData;
 		this.shards = builder.shards;
 		this.pri = builder.pri;
 		this.relo = builder.relo;
@@ -107,7 +108,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code epoch}
 	 */
 	@Nullable
-	public JsonValue epoch() {
+	public String epoch() {
 		return this.epoch;
 	}
 
@@ -147,8 +148,8 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code node.total}
 	 */
 	@Nullable
-	public String node_total() {
-		return this.node_total;
+	public String nodeTotal() {
+		return this.nodeTotal;
 	}
 
 	/**
@@ -157,8 +158,8 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code node.data}
 	 */
 	@Nullable
-	public String node_data() {
-		return this.node_data;
+	public String nodeData() {
+		return this.nodeData;
 	}
 
 	/**
@@ -276,16 +277,16 @@ public final class HealthRecord implements JsonpSerializable {
 			generator.write(this.status);
 
 		}
-		if (this.node_total != null) {
+		if (this.nodeTotal != null) {
 
 			generator.writeKey("node.total");
-			generator.write(this.node_total);
+			generator.write(this.nodeTotal);
 
 		}
-		if (this.node_data != null) {
+		if (this.nodeData != null) {
 
 			generator.writeKey("node.data");
-			generator.write(this.node_data);
+			generator.write(this.nodeData);
 
 		}
 		if (this.shards != null) {
@@ -346,7 +347,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<HealthRecord> {
 		@Nullable
-		private JsonValue epoch;
+		private String epoch;
 
 		@Nullable
 		private String timestamp;
@@ -358,10 +359,10 @@ public final class HealthRecord implements JsonpSerializable {
 		private String status;
 
 		@Nullable
-		private String node_total;
+		private String nodeTotal;
 
 		@Nullable
-		private String node_data;
+		private String nodeData;
 
 		@Nullable
 		private String shards;
@@ -392,7 +393,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code epoch}
 		 */
-		public Builder epoch(@Nullable JsonValue value) {
+		public Builder epoch(@Nullable String value) {
 			this.epoch = value;
 			return this;
 		}
@@ -432,8 +433,8 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.total}
 		 */
-		public Builder node_total(@Nullable String value) {
-			this.node_total = value;
+		public Builder nodeTotal(@Nullable String value) {
+			this.nodeTotal = value;
 			return this;
 		}
 
@@ -442,8 +443,8 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.data}
 		 */
-		public Builder node_data(@Nullable String value) {
-			this.node_data = value;
+		public Builder nodeData(@Nullable String value) {
+			this.nodeData = value;
 			return this;
 		}
 
@@ -544,17 +545,17 @@ public final class HealthRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HealthRecord}
 	 */
-	public static final JsonpDeserializer<HealthRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HealthRecord::setupHealthRecordDeserializer);
+	public static final JsonpDeserializer<HealthRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HealthRecord::setupHealthRecordDeserializer, Builder::build);
 
 	protected static void setupHealthRecordDeserializer(DelegatingDeserializer<HealthRecord.Builder> op) {
 
-		op.add(Builder::epoch, JsonpDeserializer.jsonValueDeserializer(), "epoch", "time");
+		op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch", "time");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
 		op.add(Builder::cluster, JsonpDeserializer.stringDeserializer(), "cluster", "cl");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status", "st");
-		op.add(Builder::node_total, JsonpDeserializer.stringDeserializer(), "node.total", "nt", "nodeTotal");
-		op.add(Builder::node_data, JsonpDeserializer.stringDeserializer(), "node.data", "nd", "nodeData");
+		op.add(Builder::nodeTotal, JsonpDeserializer.stringDeserializer(), "node.total", "nt", "nodeTotal");
+		op.add(Builder::nodeData, JsonpDeserializer.stringDeserializer(), "node.data", "nd", "nodeData");
 		op.add(Builder::shards, JsonpDeserializer.stringDeserializer(), "shards", "t", "sh", "shards.total",
 				"shardsTotal");
 		op.add(Builder::pri, JsonpDeserializer.stringDeserializer(), "pri", "p", "shards.primary", "shardsPrimary");

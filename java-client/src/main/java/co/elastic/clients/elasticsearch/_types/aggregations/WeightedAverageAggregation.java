@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageAggregation
-public final class WeightedAverageAggregation extends AggregationBase {
+@JsonpDeserializable
+public final class WeightedAverageAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
 	private final String format;
 
@@ -59,6 +61,14 @@ public final class WeightedAverageAggregation extends AggregationBase {
 		this.valueType = builder.valueType;
 		this.weight = builder.weight;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "weighted_avg";
 	}
 
 	/**
@@ -210,16 +220,16 @@ public final class WeightedAverageAggregation extends AggregationBase {
 	/**
 	 * Json deserializer for {@link WeightedAverageAggregation}
 	 */
-	public static final JsonpDeserializer<WeightedAverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer);
+	public static final JsonpDeserializer<WeightedAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer, Builder::build);
 
 	protected static void setupWeightedAverageAggregationDeserializer(
 			DelegatingDeserializer<WeightedAverageAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::value, WeightedAverageValue.DESERIALIZER, "value");
-		op.add(Builder::valueType, ValueType.DESERIALIZER, "value_type");
-		op.add(Builder::weight, WeightedAverageValue.DESERIALIZER, "weight");
+		op.add(Builder::value, WeightedAverageValue._DESERIALIZER, "value");
+		op.add(Builder::valueType, ValueType._DESERIALIZER, "value_type");
+		op.add(Builder::weight, WeightedAverageValue._DESERIALIZER, "weight");
 
 	}
 

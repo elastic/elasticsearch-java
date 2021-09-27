@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Response
+@JsonpDeserializable
 public final class ActivateWatchResponse implements JsonpSerializable {
 	private final ActivationStatus status;
 
@@ -110,13 +112,13 @@ public final class ActivateWatchResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ActivateWatchResponse}
 	 */
-	public static final JsonpDeserializer<ActivateWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ActivateWatchResponse::setupActivateWatchResponseDeserializer);
+	public static final JsonpDeserializer<ActivateWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ActivateWatchResponse::setupActivateWatchResponseDeserializer, Builder::build);
 
 	protected static void setupActivateWatchResponseDeserializer(
 			DelegatingDeserializer<ActivateWatchResponse.Builder> op) {
 
-		op.add(Builder::status, ActivationStatus.DESERIALIZER, "status");
+		op.add(Builder::status, ActivationStatus._DESERIALIZER, "status");
 
 	}
 

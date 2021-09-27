@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabaseName
+@JsonpDeserializable
 public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 	private final String name;
 
@@ -107,8 +109,8 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoIpNodeDatabaseName}
 	 */
-	public static final JsonpDeserializer<GeoIpNodeDatabaseName> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoIpNodeDatabaseName::setupGeoIpNodeDatabaseNameDeserializer);
+	public static final JsonpDeserializer<GeoIpNodeDatabaseName> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoIpNodeDatabaseName::setupGeoIpNodeDatabaseNameDeserializer, Builder::build);
 
 	protected static void setupGeoIpNodeDatabaseNameDeserializer(
 			DelegatingDeserializer<GeoIpNodeDatabaseName.Builder> op) {

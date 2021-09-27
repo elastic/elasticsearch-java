@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Explanation
+@JsonpDeserializable
 public final class Explanation implements JsonpSerializable {
 	private final String description;
 
 	private final List<ExplanationDetail> details;
 
-	private final Number value;
+	private final Float value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ public final class Explanation implements JsonpSerializable {
 	/**
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public Float value() {
 		return this.value;
 	}
 
@@ -102,7 +104,7 @@ public final class Explanation implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -116,7 +118,7 @@ public final class Explanation implements JsonpSerializable {
 
 		private List<ExplanationDetail> details;
 
-		private Number value;
+		private Float value;
 
 		/**
 		 * API name: {@code description}
@@ -170,7 +172,7 @@ public final class Explanation implements JsonpSerializable {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(Float value) {
 			this.value = value;
 			return this;
 		}
@@ -192,14 +194,14 @@ public final class Explanation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Explanation}
 	 */
-	public static final JsonpDeserializer<Explanation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Explanation::setupExplanationDeserializer);
+	public static final JsonpDeserializer<Explanation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Explanation::setupExplanationDeserializer, Builder::build);
 
 	protected static void setupExplanationDeserializer(DelegatingDeserializer<Explanation.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail.DESERIALIZER), "details");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail._DESERIALIZER), "details");
+		op.add(Builder::value, JsonpDeserializer.floatDeserializer(), "value");
 
 	}
 

@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,7 +37,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -44,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Request
+@JsonpDeserializable
 public final class ExplainDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -63,10 +65,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue analyzedFields;
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	@Nullable
 	private final Boolean allowLazyStart;
@@ -167,7 +169,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -181,7 +183,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -238,7 +240,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.analyzedFields != null) {
@@ -280,10 +282,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue analyzedFields;
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		@Nullable
 		private Boolean allowLazyStart;
@@ -400,7 +402,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -414,7 +416,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -447,19 +449,19 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Json deserializer for {@link ExplainDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<ExplainDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer);
+	public static final JsonpDeserializer<ExplainDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer,
+					Builder::build);
 
 	protected static void setupExplainDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
-		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
+		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 
@@ -512,5 +514,5 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ExplainDataFrameAnalyticsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ExplainDataFrameAnalyticsResponse._DESERIALIZER);
 }

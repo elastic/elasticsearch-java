@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.LifecycleOperationMode;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateIndexLifecycle
+@JsonpDeserializable
 public final class ClusterStateIndexLifecycle implements JsonpSerializable {
 	private final Map<String, ClusterStateIndexLifecycleSummary> policies;
 
@@ -164,15 +166,15 @@ public final class ClusterStateIndexLifecycle implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateIndexLifecycle}
 	 */
-	public static final JsonpDeserializer<ClusterStateIndexLifecycle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateIndexLifecycle::setupClusterStateIndexLifecycleDeserializer);
+	public static final JsonpDeserializer<ClusterStateIndexLifecycle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ClusterStateIndexLifecycle::setupClusterStateIndexLifecycleDeserializer, Builder::build);
 
 	protected static void setupClusterStateIndexLifecycleDeserializer(
 			DelegatingDeserializer<ClusterStateIndexLifecycle.Builder> op) {
 
 		op.add(Builder::policies,
-				JsonpDeserializer.stringMapDeserializer(ClusterStateIndexLifecycleSummary.DESERIALIZER), "policies");
-		op.add(Builder::operationMode, LifecycleOperationMode.DESERIALIZER, "operation_mode");
+				JsonpDeserializer.stringMapDeserializer(ClusterStateIndexLifecycleSummary._DESERIALIZER), "policies");
+		op.add(Builder::operationMode, LifecycleOperationMode._DESERIALIZER, "operation_mode");
 
 	}
 

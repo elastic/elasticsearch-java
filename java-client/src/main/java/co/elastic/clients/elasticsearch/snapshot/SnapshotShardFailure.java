@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardFailure
+@JsonpDeserializable
 public final class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;
 
@@ -195,8 +197,8 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SnapshotShardFailure}
 	 */
-	public static final JsonpDeserializer<SnapshotShardFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer);
+	public static final JsonpDeserializer<SnapshotShardFailure> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer, Builder::build);
 
 	protected static void setupSnapshotShardFailureDeserializer(
 			DelegatingDeserializer<SnapshotShardFailure.Builder> op) {

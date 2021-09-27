@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.Groupings
+@JsonpDeserializable
 public final class Groupings implements JsonpSerializable {
 	@Nullable
 	private final DateHistogramGrouping dateHistogram;
@@ -189,14 +191,14 @@ public final class Groupings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Groupings}
 	 */
-	public static final JsonpDeserializer<Groupings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Groupings::setupGroupingsDeserializer);
+	public static final JsonpDeserializer<Groupings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Groupings::setupGroupingsDeserializer, Builder::build);
 
 	protected static void setupGroupingsDeserializer(DelegatingDeserializer<Groupings.Builder> op) {
 
-		op.add(Builder::dateHistogram, DateHistogramGrouping.DESERIALIZER, "date_histogram");
-		op.add(Builder::histogram, HistogramGrouping.DESERIALIZER, "histogram");
-		op.add(Builder::terms, TermsGrouping.DESERIALIZER, "terms");
+		op.add(Builder::dateHistogram, DateHistogramGrouping._DESERIALIZER, "date_histogram");
+		op.add(Builder::histogram, HistogramGrouping._DESERIALIZER, "histogram");
+		op.add(Builder::terms, TermsGrouping._DESERIALIZER, "terms");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch.snapshot.Status;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateSnapshots
+@JsonpDeserializable
 public final class ClusterStateSnapshots implements JsonpSerializable {
 	private final List<Status> snapshots;
 
@@ -145,13 +147,13 @@ public final class ClusterStateSnapshots implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateSnapshots}
 	 */
-	public static final JsonpDeserializer<ClusterStateSnapshots> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateSnapshots::setupClusterStateSnapshotsDeserializer);
+	public static final JsonpDeserializer<ClusterStateSnapshots> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateSnapshots::setupClusterStateSnapshotsDeserializer, Builder::build);
 
 	protected static void setupClusterStateSnapshotsDeserializer(
 			DelegatingDeserializer<ClusterStateSnapshots.Builder> op) {
 
-		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status.DESERIALIZER), "snapshots");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status._DESERIALIZER), "snapshots");
 
 	}
 

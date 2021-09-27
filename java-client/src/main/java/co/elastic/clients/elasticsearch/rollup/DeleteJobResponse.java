@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.rollup.delete_job.TaskFailure;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Response
+@JsonpDeserializable
 public final class DeleteJobResponse extends AcknowledgedResponseBase {
 	@Nullable
 	private final List<TaskFailure> taskFailures;
@@ -152,12 +154,12 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link DeleteJobResponse}
 	 */
-	public static final JsonpDeserializer<DeleteJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteJobResponse::setupDeleteJobResponseDeserializer);
+	public static final JsonpDeserializer<DeleteJobResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteJobResponse::setupDeleteJobResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteJobResponseDeserializer(DelegatingDeserializer<DeleteJobResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::taskFailures, JsonpDeserializer.arrayDeserializer(TaskFailure.DESERIALIZER), "task_failures");
+		op.add(Builder::taskFailures, JsonpDeserializer.arrayDeserializer(TaskFailure._DESERIALIZER), "task_failures");
 
 	}
 

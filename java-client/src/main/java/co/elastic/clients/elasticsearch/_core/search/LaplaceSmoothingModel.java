@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.LaplaceSmoothingModel
-public final class LaplaceSmoothingModel implements SmoothingModel, JsonpSerializable {
-	private final Number alpha;
+@JsonpDeserializable
+public final class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+	private final Double alpha;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,14 +53,14 @@ public final class LaplaceSmoothingModel implements SmoothingModel, JsonpSeriali
 	 * {@link SmoothingModel} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "laplace";
 	}
 
 	/**
 	 * API name: {@code alpha}
 	 */
-	public Number alpha() {
+	public Double alpha() {
 		return this.alpha;
 	}
 
@@ -73,12 +74,9 @@ public final class LaplaceSmoothingModel implements SmoothingModel, JsonpSeriali
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("alpha");
-		generator.write(this.alpha.doubleValue());
-
-		generator.writeEnd();
+		generator.write(this.alpha);
 
 	}
 
@@ -88,12 +86,12 @@ public final class LaplaceSmoothingModel implements SmoothingModel, JsonpSeriali
 	 * Builder for {@link LaplaceSmoothingModel}.
 	 */
 	public static class Builder implements ObjectBuilder<LaplaceSmoothingModel> {
-		private Number alpha;
+		private Double alpha;
 
 		/**
 		 * API name: {@code alpha}
 		 */
-		public Builder alpha(Number value) {
+		public Builder alpha(Double value) {
 			this.alpha = value;
 			return this;
 		}
@@ -112,14 +110,16 @@ public final class LaplaceSmoothingModel implements SmoothingModel, JsonpSeriali
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<LaplaceSmoothingModel.Builder, LaplaceSmoothingModel.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(LaplaceSmoothingModel::setupLaplaceSmoothingModelDeserializer);
+	/**
+	 * Json deserializer for {@link LaplaceSmoothingModel}
+	 */
+	public static final JsonpDeserializer<LaplaceSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, LaplaceSmoothingModel::setupLaplaceSmoothingModelDeserializer, Builder::build);
 
 	protected static void setupLaplaceSmoothingModelDeserializer(
 			DelegatingDeserializer<LaplaceSmoothingModel.Builder> op) {
 
-		op.add(Builder::alpha, JsonpDeserializer.numberDeserializer(), "alpha");
+		op.add(Builder::alpha, JsonpDeserializer.doubleDeserializer(), "alpha");
 
 	}
 

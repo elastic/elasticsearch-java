@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplate
+@JsonpDeserializable
 public final class ComponentTemplate implements JsonpSerializable {
 	private final String name;
 
@@ -135,13 +137,13 @@ public final class ComponentTemplate implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ComponentTemplate}
 	 */
-	public static final JsonpDeserializer<ComponentTemplate> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ComponentTemplate::setupComponentTemplateDeserializer);
+	public static final JsonpDeserializer<ComponentTemplate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ComponentTemplate::setupComponentTemplateDeserializer, Builder::build);
 
 	protected static void setupComponentTemplateDeserializer(DelegatingDeserializer<ComponentTemplate.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::componentTemplate, ComponentTemplateNode.DESERIALIZER, "component_template");
+		op.add(Builder::componentTemplate, ComponentTemplateNode._DESERIALIZER, "component_template");
 
 	}
 

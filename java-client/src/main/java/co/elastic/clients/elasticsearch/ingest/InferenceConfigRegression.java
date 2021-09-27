@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfigRegression
+@JsonpDeserializable
 public final class InferenceConfigRegression implements JsonpSerializable {
 	private final String resultsField;
 
@@ -103,8 +105,8 @@ public final class InferenceConfigRegression implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InferenceConfigRegression}
 	 */
-	public static final JsonpDeserializer<InferenceConfigRegression> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InferenceConfigRegression::setupInferenceConfigRegressionDeserializer);
+	public static final JsonpDeserializer<InferenceConfigRegression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceConfigRegression::setupInferenceConfigRegressionDeserializer, Builder::build);
 
 	protected static void setupInferenceConfigRegressionDeserializer(
 			DelegatingDeserializer<InferenceConfigRegression.Builder> op) {

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.features;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: features._types.Feature
+@JsonpDeserializable
 public final class Feature implements JsonpSerializable {
 	private final String name;
 
@@ -126,8 +128,8 @@ public final class Feature implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Feature}
 	 */
-	public static final JsonpDeserializer<Feature> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Feature::setupFeatureDeserializer);
+	public static final JsonpDeserializer<Feature> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Feature::setupFeatureDeserializer, Builder::build);
 
 	protected static void setupFeatureDeserializer(DelegatingDeserializer<Feature.Builder> op) {
 

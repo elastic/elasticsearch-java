@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: ml.delete_trained_model_alias.Response
+@JsonpDeserializable
 public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,9 +73,9 @@ public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseB
 	/**
 	 * Json deserializer for {@link DeleteTrainedModelAliasResponse}
 	 */
-	public static final JsonpDeserializer<DeleteTrainedModelAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteTrainedModelAliasResponse::setupDeleteTrainedModelAliasResponseDeserializer);
+	public static final JsonpDeserializer<DeleteTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteTrainedModelAliasResponse::setupDeleteTrainedModelAliasResponseDeserializer,
+					Builder::build);
 
 	protected static void setupDeleteTrainedModelAliasResponseDeserializer(
 			DelegatingDeserializer<DeleteTrainedModelAliasResponse.Builder> op) {

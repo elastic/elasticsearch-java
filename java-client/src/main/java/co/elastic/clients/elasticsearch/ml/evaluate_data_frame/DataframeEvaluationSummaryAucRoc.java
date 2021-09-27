@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRoc
+@JsonpDeserializable
 public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	@Nullable
 	private final List<DataframeEvaluationSummaryAucRocCurveItem> curve;
@@ -152,15 +154,15 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 	/**
 	 * Json deserializer for {@link DataframeEvaluationSummaryAucRoc}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRoc> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRoc> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationSummaryAucRocDeserializer(
 			DelegatingDeserializer<DataframeEvaluationSummaryAucRoc.Builder> op) {
 		DataframeEvaluationValue.setupDataframeEvaluationValueDeserializer(op);
 		op.add(Builder::curve,
-				JsonpDeserializer.arrayDeserializer(DataframeEvaluationSummaryAucRocCurveItem.DESERIALIZER), "curve");
+				JsonpDeserializer.arrayDeserializer(DataframeEvaluationSummaryAucRocCurveItem._DESERIALIZER), "curve");
 
 	}
 

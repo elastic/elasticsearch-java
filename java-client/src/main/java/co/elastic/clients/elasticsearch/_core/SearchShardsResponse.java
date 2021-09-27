@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._core.search_shards.ShardStoreIndex;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch._types.NodeShard;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -45,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.Response
+@JsonpDeserializable
 public final class SearchShardsResponse implements JsonpSerializable {
 	private final Map<String, NodeAttributes> nodes;
 
@@ -249,17 +251,17 @@ public final class SearchShardsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SearchShardsResponse}
 	 */
-	public static final JsonpDeserializer<SearchShardsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer);
+	public static final JsonpDeserializer<SearchShardsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer, Builder::build);
 
 	protected static void setupSearchShardsResponseDeserializer(
 			DelegatingDeserializer<SearchShardsResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes._DESERIALIZER), "nodes");
 		op.add(Builder::shards,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER)),
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard._DESERIALIZER)),
 				"shards");
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(ShardStoreIndex.DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(ShardStoreIndex._DESERIALIZER), "indices");
 
 	}
 

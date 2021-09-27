@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.field_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapabilitiesBodyIndexFilterTerm
+@JsonpDeserializable
 public final class FieldCapabilitiesBodyIndexFilterTerm implements JsonpSerializable {
 	private final FieldCapabilitiesBodyIndexFilterTermVersionControl versioncontrol;
 
@@ -112,14 +114,15 @@ public final class FieldCapabilitiesBodyIndexFilterTerm implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link FieldCapabilitiesBodyIndexFilterTerm}
 	 */
-	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterTerm> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilterTerm::setupFieldCapabilitiesBodyIndexFilterTermDeserializer);
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilterTerm> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					FieldCapabilitiesBodyIndexFilterTerm::setupFieldCapabilitiesBodyIndexFilterTermDeserializer,
+					Builder::build);
 
 	protected static void setupFieldCapabilitiesBodyIndexFilterTermDeserializer(
 			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilterTerm.Builder> op) {
 
-		op.add(Builder::versioncontrol, FieldCapabilitiesBodyIndexFilterTermVersionControl.DESERIALIZER,
+		op.add(Builder::versioncontrol, FieldCapabilitiesBodyIndexFilterTermVersionControl._DESERIALIZER,
 				"versionControl");
 
 	}

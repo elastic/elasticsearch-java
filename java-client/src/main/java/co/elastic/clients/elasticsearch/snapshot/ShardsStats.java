@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,23 +32,24 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.ShardsStats
+@JsonpDeserializable
 public final class ShardsStats implements JsonpSerializable {
-	private final Number done;
+	private final Long done;
 
-	private final Number failed;
+	private final Long failed;
 
-	private final Number finalizing;
+	private final Long finalizing;
 
-	private final Number initializing;
+	private final Long initializing;
 
-	private final Number started;
+	private final Long started;
 
-	private final Number total;
+	private final Long total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,42 +67,42 @@ public final class ShardsStats implements JsonpSerializable {
 	/**
 	 * API name: {@code done}
 	 */
-	public Number done() {
+	public Long done() {
 		return this.done;
 	}
 
 	/**
 	 * API name: {@code failed}
 	 */
-	public Number failed() {
+	public Long failed() {
 		return this.failed;
 	}
 
 	/**
 	 * API name: {@code finalizing}
 	 */
-	public Number finalizing() {
+	public Long finalizing() {
 		return this.finalizing;
 	}
 
 	/**
 	 * API name: {@code initializing}
 	 */
-	public Number initializing() {
+	public Long initializing() {
 		return this.initializing;
 	}
 
 	/**
 	 * API name: {@code started}
 	 */
-	public Number started() {
+	public Long started() {
 		return this.started;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
@@ -116,22 +118,22 @@ public final class ShardsStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("done");
-		generator.write(this.done.doubleValue());
+		generator.write(this.done);
 
 		generator.writeKey("failed");
-		generator.write(this.failed.doubleValue());
+		generator.write(this.failed);
 
 		generator.writeKey("finalizing");
-		generator.write(this.finalizing.doubleValue());
+		generator.write(this.finalizing);
 
 		generator.writeKey("initializing");
-		generator.write(this.initializing.doubleValue());
+		generator.write(this.initializing);
 
 		generator.writeKey("started");
-		generator.write(this.started.doubleValue());
+		generator.write(this.started);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -141,22 +143,22 @@ public final class ShardsStats implements JsonpSerializable {
 	 * Builder for {@link ShardsStats}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardsStats> {
-		private Number done;
+		private Long done;
 
-		private Number failed;
+		private Long failed;
 
-		private Number finalizing;
+		private Long finalizing;
 
-		private Number initializing;
+		private Long initializing;
 
-		private Number started;
+		private Long started;
 
-		private Number total;
+		private Long total;
 
 		/**
 		 * API name: {@code done}
 		 */
-		public Builder done(Number value) {
+		public Builder done(Long value) {
 			this.done = value;
 			return this;
 		}
@@ -164,7 +166,7 @@ public final class ShardsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code failed}
 		 */
-		public Builder failed(Number value) {
+		public Builder failed(Long value) {
 			this.failed = value;
 			return this;
 		}
@@ -172,7 +174,7 @@ public final class ShardsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code finalizing}
 		 */
-		public Builder finalizing(Number value) {
+		public Builder finalizing(Long value) {
 			this.finalizing = value;
 			return this;
 		}
@@ -180,7 +182,7 @@ public final class ShardsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code initializing}
 		 */
-		public Builder initializing(Number value) {
+		public Builder initializing(Long value) {
 			this.initializing = value;
 			return this;
 		}
@@ -188,7 +190,7 @@ public final class ShardsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code started}
 		 */
-		public Builder started(Number value) {
+		public Builder started(Long value) {
 			this.started = value;
 			return this;
 		}
@@ -196,7 +198,7 @@ public final class ShardsStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -218,17 +220,17 @@ public final class ShardsStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardsStats}
 	 */
-	public static final JsonpDeserializer<ShardsStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardsStats::setupShardsStatsDeserializer);
+	public static final JsonpDeserializer<ShardsStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardsStats::setupShardsStatsDeserializer, Builder::build);
 
 	protected static void setupShardsStatsDeserializer(DelegatingDeserializer<ShardsStats.Builder> op) {
 
-		op.add(Builder::done, JsonpDeserializer.numberDeserializer(), "done");
-		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
-		op.add(Builder::finalizing, JsonpDeserializer.numberDeserializer(), "finalizing");
-		op.add(Builder::initializing, JsonpDeserializer.numberDeserializer(), "initializing");
-		op.add(Builder::started, JsonpDeserializer.numberDeserializer(), "started");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::done, JsonpDeserializer.longDeserializer(), "done");
+		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::finalizing, JsonpDeserializer.longDeserializer(), "finalizing");
+		op.add(Builder::initializing, JsonpDeserializer.longDeserializer(), "initializing");
+		op.add(Builder::started, JsonpDeserializer.longDeserializer(), "started");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

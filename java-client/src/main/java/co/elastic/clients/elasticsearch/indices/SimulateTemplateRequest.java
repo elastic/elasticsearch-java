@@ -28,13 +28,13 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Request
+@JsonpDeserializable
 public final class SimulateTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String name;
@@ -53,7 +54,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	private final Boolean create;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	private final IndexTemplate value;
 
@@ -100,7 +101,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -134,7 +135,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		private Boolean create;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		private IndexTemplate value;
 
@@ -169,7 +170,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -210,13 +211,13 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link SimulateTemplateRequest}
 	 */
-	public static final JsonpDeserializer<SimulateTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateTemplateRequest::setupSimulateTemplateRequestDeserializer);
+	public static final JsonpDeserializer<SimulateTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimulateTemplateRequest::setupSimulateTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupSimulateTemplateRequestDeserializer(
 			DelegatingDeserializer<SimulateTemplateRequest.Builder> op) {
 
-		op.add(Builder::value, IndexTemplate.DESERIALIZER, "value");
+		op.add(Builder::value, IndexTemplate._DESERIALIZER, "value");
 
 	}
 
@@ -266,9 +267,9 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 					params.put("create", String.valueOf(request.create));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateTemplateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, SimulateTemplateResponse._DESERIALIZER);
 }

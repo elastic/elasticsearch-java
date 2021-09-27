@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.ElasticsearchVersionInfo
+@JsonpDeserializable
 public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
 
@@ -290,8 +292,8 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ElasticsearchVersionInfo}
 	 */
-	public static final JsonpDeserializer<ElasticsearchVersionInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
+	public static final JsonpDeserializer<ElasticsearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer, Builder::build);
 
 	protected static void setupElasticsearchVersionInfoDeserializer(
 			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {

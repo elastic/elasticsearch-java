@@ -23,23 +23,26 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreContainer
-public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String EXP = "exp";
 	public static final String GAUSS = "gauss";
@@ -48,14 +51,42 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	public static final String RANDOM_SCORE = "random_score";
 	public static final String SCRIPT_SCORE = "script_score";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
 	@Nullable
 	private final Query filter;
 
 	@Nullable
-	private final Number weight;
+	private final Double weight;
+
+	public FunctionScore(FunctionScoreVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+		this.filter = null;
+		this.weight = null;
+
+	}
 
 	private FunctionScore(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
 		this.filter = builder.filter;
 		this.weight = builder.weight;
 
@@ -73,7 +104,7 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 * API name: {@code weight}
 	 */
 	@Nullable
-	public Number weight() {
+	public Double weight() {
 		return this.weight;
 	}
 
@@ -83,8 +114,8 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code exp} kind.
 	 */
-	public JsonValue exp() {
-		return _get(EXP);
+	public JsonValue /* _types.query_dsl.DecayFunction */ exp() {
+		return TaggedUnionUtils.get(this, EXP);
 	}
 
 	/**
@@ -93,8 +124,8 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code gauss} kind.
 	 */
-	public JsonValue gauss() {
-		return _get(GAUSS);
+	public JsonValue /* _types.query_dsl.DecayFunction */ gauss() {
+		return TaggedUnionUtils.get(this, GAUSS);
 	}
 
 	/**
@@ -103,8 +134,8 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code linear} kind.
 	 */
-	public JsonValue linear() {
-		return _get(LINEAR);
+	public JsonValue /* _types.query_dsl.DecayFunction */ linear() {
+		return TaggedUnionUtils.get(this, LINEAR);
 	}
 
 	/**
@@ -115,7 +146,7 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 *             kind.
 	 */
 	public FieldValueFactorScoreFunction fieldValueFactor() {
-		return _get(FIELD_VALUE_FACTOR);
+		return TaggedUnionUtils.get(this, FIELD_VALUE_FACTOR);
 	}
 
 	/**
@@ -125,7 +156,7 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 *             if the current variant is not of the {@code random_score} kind.
 	 */
 	public RandomScoreFunction randomScore() {
-		return _get(RANDOM_SCORE);
+		return TaggedUnionUtils.get(this, RANDOM_SCORE);
 	}
 
 	/**
@@ -135,31 +166,13 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	 *             if the current variant is not of the {@code script_score} kind.
 	 */
 	public ScriptScoreFunction scriptScore() {
-		return _get(SCRIPT_SCORE);
+		return TaggedUnionUtils.get(this, SCRIPT_SCORE);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		generator.writeKey(_type);
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_type) {
-				case EXP :
-					generator.write(this.<JsonValue>_get(EXP));
-
-					break;
-				case GAUSS :
-					generator.write(this.<JsonValue>_get(GAUSS));
-
-					break;
-				case LINEAR :
-					generator.write(this.<JsonValue>_get(LINEAR));
-
-					break;
-			}
-		}
 
 		if (this.filter != null) {
 
@@ -170,21 +183,42 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 		if (this.weight != null) {
 
 			generator.writeKey("weight");
-			generator.write(this.weight.doubleValue());
+			generator.write(this.weight);
 
+		}
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_type) {
+				case EXP :
+					generator.write(((JsonValue /* _types.query_dsl.DecayFunction */) this._value));
+
+					break;
+				case GAUSS :
+					generator.write(((JsonValue /* _types.query_dsl.DecayFunction */) this._value));
+
+					break;
+				case LINEAR :
+					generator.write(((JsonValue /* _types.query_dsl.DecayFunction */) this._value));
+
+					break;
+			}
 		}
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		@Nullable
 		private Query filter;
 
 		@Nullable
-		private Number weight;
+		private Double weight;
 
 		/**
 		 * API name: {@code filter}
@@ -204,32 +238,32 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(@Nullable Number value) {
+		public Builder weight(@Nullable Double value) {
 			this.weight = value;
 			return this;
 		}
 
-		public ContainerBuilder exp(JsonValue v) {
-			this.$variant = v;
-			this.$tag = EXP;
+		public ContainerBuilder exp(JsonValue /* _types.query_dsl.DecayFunction */ v) {
+			this._type = EXP;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder gauss(JsonValue v) {
-			this.$variant = v;
-			this.$tag = GAUSS;
+		public ContainerBuilder gauss(JsonValue /* _types.query_dsl.DecayFunction */ v) {
+			this._type = GAUSS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder linear(JsonValue v) {
-			this.$variant = v;
-			this.$tag = LINEAR;
+		public ContainerBuilder linear(JsonValue /* _types.query_dsl.DecayFunction */ v) {
+			this._type = LINEAR;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder fieldValueFactor(FieldValueFactorScoreFunction v) {
-			this.$variant = v;
-			this.$tag = FIELD_VALUE_FACTOR;
+			this._type = FIELD_VALUE_FACTOR;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -239,8 +273,8 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 		}
 
 		public ContainerBuilder randomScore(RandomScoreFunction v) {
-			this.$variant = v;
-			this.$tag = RANDOM_SCORE;
+			this._type = RANDOM_SCORE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -250,8 +284,8 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 		}
 
 		public ContainerBuilder scriptScore(ScriptScoreFunction v) {
-			this.$variant = v;
-			this.$tag = SCRIPT_SCORE;
+			this._type = SCRIPT_SCORE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -284,7 +318,7 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 			/**
 			 * API name: {@code weight}
 			 */
-			public ContainerBuilder weight(@Nullable Number value) {
+			public ContainerBuilder weight(@Nullable Double value) {
 				Builder.this.weight = value;
 				return this;
 			}
@@ -296,21 +330,18 @@ public class FunctionScore extends TaggedUnion<Object> implements JsonpSerializa
 	}
 
 	protected static void setupFunctionScoreDeserializer(DelegatingDeserializer<Builder> op) {
+
 		op.add(Builder::exp, JsonpDeserializer.jsonValueDeserializer(), "exp");
 		op.add(Builder::gauss, JsonpDeserializer.jsonValueDeserializer(), "gauss");
 		op.add(Builder::linear, JsonpDeserializer.jsonValueDeserializer(), "linear");
-		op.add(Builder::fieldValueFactor, FieldValueFactorScoreFunction.DESERIALIZER, "field_value_factor");
-		op.add(Builder::randomScore, RandomScoreFunction.DESERIALIZER, "random_score");
-		op.add(Builder::scriptScore, ScriptScoreFunction.DESERIALIZER, "script_score");
-		op.add(Builder::filter, Query.DESERIALIZER, "filter");
-		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
+		op.add(Builder::fieldValueFactor, FieldValueFactorScoreFunction._DESERIALIZER, "field_value_factor");
+		op.add(Builder::randomScore, RandomScoreFunction._DESERIALIZER, "random_score");
+		op.add(Builder::scriptScore, ScriptScoreFunction._DESERIALIZER, "script_score");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<FunctionScore> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<FunctionScore> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			FunctionScore::setupFunctionScoreDeserializer, Builder::build);
 }

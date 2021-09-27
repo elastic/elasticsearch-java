@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum TotalHitsRelation implements StringEnum {
 	/**
 	 * Accurate
@@ -46,6 +48,6 @@ public enum TotalHitsRelation implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TotalHitsRelation> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new StringEnum.Deserializer<>(
 			TotalHitsRelation.values());
 }

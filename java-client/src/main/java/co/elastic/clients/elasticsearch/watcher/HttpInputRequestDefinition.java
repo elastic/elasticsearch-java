@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -41,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputRequestDefinition
+@JsonpDeserializable
 public class HttpInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final HttpInputAuthentication auth;
@@ -49,7 +50,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	private final String body;
 
 	@Nullable
-	private final JsonValue connectionTimeout;
+	private final String connectionTimeout;
 
 	@Nullable
 	private final Map<String, String> headers;
@@ -73,7 +74,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	private final HttpInputProxy proxy;
 
 	@Nullable
-	private final JsonValue readTimeout;
+	private final String readTimeout;
 
 	@Nullable
 	private final ConnectionScheme scheme;
@@ -121,7 +122,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code connection_timeout}
 	 */
 	@Nullable
-	public JsonValue connectionTimeout() {
+	public String connectionTimeout() {
 		return this.connectionTimeout;
 	}
 
@@ -185,7 +186,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code read_timeout}
 	 */
 	@Nullable
-	public JsonValue readTimeout() {
+	public String readTimeout() {
 		return this.readTimeout;
 	}
 
@@ -340,7 +341,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		private String body;
 
 		@Nullable
-		private JsonValue connectionTimeout;
+		private String connectionTimeout;
 
 		@Nullable
 		private Map<String, String> headers;
@@ -364,7 +365,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		private HttpInputProxy proxy;
 
 		@Nullable
-		private JsonValue readTimeout;
+		private String readTimeout;
 
 		@Nullable
 		private ConnectionScheme scheme;
@@ -398,7 +399,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code connection_timeout}
 		 */
-		public BuilderT connectionTimeout(@Nullable JsonValue value) {
+		public BuilderT connectionTimeout(@Nullable String value) {
 			this.connectionTimeout = value;
 			return self();
 		}
@@ -491,7 +492,7 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code read_timeout}
 		 */
-		public BuilderT readTimeout(@Nullable JsonValue value) {
+		public BuilderT readTimeout(@Nullable String value) {
 			this.readTimeout = value;
 			return self();
 		}
@@ -521,26 +522,26 @@ public class HttpInputRequestDefinition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HttpInputRequestDefinition}
 	 */
-	public static final JsonpDeserializer<HttpInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionDeserializer);
+	public static final JsonpDeserializer<HttpInputRequestDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupHttpInputRequestDefinitionDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::auth, HttpInputAuthentication.DESERIALIZER, "auth");
+		op.add(AbstractBuilder::auth, HttpInputAuthentication._DESERIALIZER, "auth");
 		op.add(AbstractBuilder::body, JsonpDeserializer.stringDeserializer(), "body");
-		op.add(AbstractBuilder::connectionTimeout, JsonpDeserializer.jsonValueDeserializer(), "connection_timeout");
+		op.add(AbstractBuilder::connectionTimeout, JsonpDeserializer.stringDeserializer(), "connection_timeout");
 		op.add(AbstractBuilder::headers,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
 		op.add(AbstractBuilder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(AbstractBuilder::method, HttpInputMethod.DESERIALIZER, "method");
+		op.add(AbstractBuilder::method, HttpInputMethod._DESERIALIZER, "method");
 		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"params");
 		op.add(AbstractBuilder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(AbstractBuilder::port, JsonpDeserializer.numberDeserializer(), "port");
-		op.add(AbstractBuilder::proxy, HttpInputProxy.DESERIALIZER, "proxy");
-		op.add(AbstractBuilder::readTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_timeout");
-		op.add(AbstractBuilder::scheme, ConnectionScheme.DESERIALIZER, "scheme");
+		op.add(AbstractBuilder::proxy, HttpInputProxy._DESERIALIZER, "proxy");
+		op.add(AbstractBuilder::readTimeout, JsonpDeserializer.stringDeserializer(), "read_timeout");
+		op.add(AbstractBuilder::scheme, ConnectionScheme._DESERIALIZER, "scheme");
 		op.add(AbstractBuilder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}

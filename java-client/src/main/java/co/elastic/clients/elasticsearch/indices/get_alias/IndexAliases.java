@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices.get_alias;
 
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_alias.IndexAliases
+@JsonpDeserializable
 public final class IndexAliases implements JsonpSerializable {
 	private final Map<String, AliasDefinition> aliases;
 
@@ -138,12 +140,12 @@ public final class IndexAliases implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexAliases}
 	 */
-	public static final JsonpDeserializer<IndexAliases> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexAliases::setupIndexAliasesDeserializer);
+	public static final JsonpDeserializer<IndexAliases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexAliases::setupIndexAliasesDeserializer, Builder::build);
 
 	protected static void setupIndexAliasesDeserializer(DelegatingDeserializer<IndexAliases.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 
 	}
 

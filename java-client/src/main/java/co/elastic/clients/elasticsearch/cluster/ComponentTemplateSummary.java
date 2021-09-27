@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,12 +45,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateSummary
+@JsonpDeserializable
 public final class ComponentTemplateSummary implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> meta;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	private final Map<String, IndexSettings> settings;
 
@@ -83,7 +85,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -136,7 +138,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -180,7 +182,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 		private Map<String, JsonData> meta;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		private Map<String, IndexSettings> settings;
 
@@ -212,7 +214,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -315,17 +317,17 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ComponentTemplateSummary}
 	 */
-	public static final JsonpDeserializer<ComponentTemplateSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer);
+	public static final JsonpDeserializer<ComponentTemplateSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ComponentTemplateSummary::setupComponentTemplateSummaryDeserializer, Builder::build);
 
 	protected static void setupComponentTemplateSummaryDeserializer(
 			DelegatingDeserializer<ComponentTemplateSummary.Builder> op) {
 
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings.DESERIALIZER), "settings");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition.DESERIALIZER), "aliases");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings._DESERIALIZER), "settings");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 
 	}
 

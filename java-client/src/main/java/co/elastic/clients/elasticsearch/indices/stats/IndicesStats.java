@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndicesStats
+@JsonpDeserializable
 public final class IndicesStats implements JsonpSerializable {
 	private final IndexStats primaries;
 
@@ -226,16 +228,16 @@ public final class IndicesStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesStats}
 	 */
-	public static final JsonpDeserializer<IndicesStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesStats::setupIndicesStatsDeserializer);
+	public static final JsonpDeserializer<IndicesStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndicesStats::setupIndicesStatsDeserializer, Builder::build);
 
 	protected static void setupIndicesStatsDeserializer(DelegatingDeserializer<IndicesStats.Builder> op) {
 
-		op.add(Builder::primaries, IndexStats.DESERIALIZER, "primaries");
+		op.add(Builder::primaries, IndexStats._DESERIALIZER, "primaries");
 		op.add(Builder::shards,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardStats.DESERIALIZER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardStats._DESERIALIZER)),
 				"shards");
-		op.add(Builder::total, IndexStats.DESERIALIZER, "total");
+		op.add(Builder::total, IndexStats._DESERIALIZER, "total");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 
 	}

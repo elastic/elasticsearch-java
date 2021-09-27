@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest.geo_ip_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabases
+@JsonpDeserializable
 public final class GeoIpNodeDatabases implements JsonpSerializable {
 	private final List<GeoIpNodeDatabaseName> databases;
 
@@ -210,12 +212,12 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoIpNodeDatabases}
 	 */
-	public static final JsonpDeserializer<GeoIpNodeDatabases> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer);
+	public static final JsonpDeserializer<GeoIpNodeDatabases> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoIpNodeDatabases::setupGeoIpNodeDatabasesDeserializer, Builder::build);
 
 	protected static void setupGeoIpNodeDatabasesDeserializer(DelegatingDeserializer<GeoIpNodeDatabases.Builder> op) {
 
-		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(GeoIpNodeDatabaseName.DESERIALIZER),
+		op.add(Builder::databases, JsonpDeserializer.arrayDeserializer(GeoIpNodeDatabaseName._DESERIALIZER),
 				"databases");
 		op.add(Builder::filesInTemp, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"files_in_temp");

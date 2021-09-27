@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices.add_block;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum IndicesBlockOptions implements StringEnum {
 	Metadata("metadata"), Read("read"), ReadOnly("read_only"), Write("write");
 
@@ -39,6 +41,6 @@ public enum IndicesBlockOptions implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndicesBlockOptions> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<IndicesBlockOptions> _DESERIALIZER = new StringEnum.Deserializer<>(
 			IndicesBlockOptions.values());
 }

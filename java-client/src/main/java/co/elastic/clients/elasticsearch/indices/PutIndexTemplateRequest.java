@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +52,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.Request
+@JsonpDeserializable
 public final class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
@@ -66,10 +69,10 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	private final EmptyObject dataStream;
 
 	@Nullable
-	private final Number priority;
+	private final Integer priority;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final Map<String, JsonData> meta;
@@ -134,7 +137,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public Number priority() {
+	public Integer priority() {
 		return this.priority;
 	}
 
@@ -142,7 +145,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -202,13 +205,13 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		if (this.priority != null) {
 
 			generator.writeKey("priority");
-			generator.write(this.priority.doubleValue());
+			generator.write(this.priority);
 
 		}
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.meta != null) {
@@ -247,10 +250,10 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		private EmptyObject dataStream;
 
 		@Nullable
-		private Number priority;
+		private Integer priority;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -352,7 +355,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code priority}
 		 */
-		public Builder priority(@Nullable Number value) {
+		public Builder priority(@Nullable Integer value) {
 			this.priority = value;
 			return this;
 		}
@@ -360,7 +363,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -401,8 +404,8 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link PutIndexTemplateRequest}
 	 */
-	public static final JsonpDeserializer<PutIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer);
+	public static final JsonpDeserializer<PutIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupPutIndexTemplateRequestDeserializer(
 			DelegatingDeserializer<PutIndexTemplateRequest.Builder> op) {
@@ -411,11 +414,11 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 				"index_patterns");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::template, IndexTemplateMapping.DESERIALIZER, "template");
-		op.add(Builder::dataStream, EmptyObject.DESERIALIZER, "data_stream");
-		op.add(Builder::priority, JsonpDeserializer.numberDeserializer(), "priority");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
+		op.add(Builder::dataStream, EmptyObject._DESERIALIZER, "data_stream");
+		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 
@@ -455,5 +458,5 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutIndexTemplateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
 }

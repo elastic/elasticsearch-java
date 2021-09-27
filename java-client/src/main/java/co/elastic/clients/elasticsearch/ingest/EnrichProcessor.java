@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,20 +33,21 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.EnrichProcessor
-public final class EnrichProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
 	private final Boolean ignoreMissing;
 
 	@Nullable
-	private final Number maxMatches;
+	private final Integer maxMatches;
 
 	@Nullable
 	private final Boolean override;
@@ -73,6 +75,14 @@ public final class EnrichProcessor extends ProcessorBase {
 	}
 
 	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "enrich";
+	}
+
+	/**
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -91,7 +101,7 @@ public final class EnrichProcessor extends ProcessorBase {
 	 * API name: {@code max_matches}
 	 */
 	@Nullable
-	public Number maxMatches() {
+	public Integer maxMatches() {
 		return this.maxMatches;
 	}
 
@@ -141,7 +151,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		if (this.maxMatches != null) {
 
 			generator.writeKey("max_matches");
-			generator.write(this.maxMatches.doubleValue());
+			generator.write(this.maxMatches);
 
 		}
 		if (this.override != null) {
@@ -179,7 +189,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		private Boolean ignoreMissing;
 
 		@Nullable
-		private Number maxMatches;
+		private Integer maxMatches;
 
 		@Nullable
 		private Boolean override;
@@ -210,7 +220,7 @@ public final class EnrichProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code max_matches}
 		 */
-		public Builder maxMatches(@Nullable Number value) {
+		public Builder maxMatches(@Nullable Integer value) {
 			this.maxMatches = value;
 			return this;
 		}
@@ -269,17 +279,17 @@ public final class EnrichProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link EnrichProcessor}
 	 */
-	public static final JsonpDeserializer<EnrichProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EnrichProcessor::setupEnrichProcessorDeserializer);
+	public static final JsonpDeserializer<EnrichProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EnrichProcessor::setupEnrichProcessorDeserializer, Builder::build);
 
 	protected static void setupEnrichProcessorDeserializer(DelegatingDeserializer<EnrichProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::maxMatches, JsonpDeserializer.numberDeserializer(), "max_matches");
+		op.add(Builder::maxMatches, JsonpDeserializer.integerDeserializer(), "max_matches");
 		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
 		op.add(Builder::policyName, JsonpDeserializer.stringDeserializer(), "policy_name");
-		op.add(Builder::shapeRelation, GeoShapeRelation.DESERIALIZER, "shape_relation");
+		op.add(Builder::shapeRelation, GeoShapeRelation._DESERIALIZER, "shape_relation");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

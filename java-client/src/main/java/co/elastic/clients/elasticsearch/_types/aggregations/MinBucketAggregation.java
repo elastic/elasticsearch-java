@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.MinBucketAggregation
-public final class MinBucketAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public MinBucketAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "min_bucket";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class MinBucketAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link MinBucketAggregation}
 	 */
-	public static final JsonpDeserializer<MinBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer);
+	public static final JsonpDeserializer<MinBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer, Builder::build);
 
 	protected static void setupMinBucketAggregationDeserializer(
 			DelegatingDeserializer<MinBucketAggregation.Builder> op) {

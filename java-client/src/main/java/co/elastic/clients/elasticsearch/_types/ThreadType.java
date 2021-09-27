@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ThreadType implements StringEnum {
 	Cpu("cpu"), Wait("wait"), Block("block");
 
@@ -39,6 +41,6 @@ public enum ThreadType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ThreadType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ThreadType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ThreadType.values());
 }

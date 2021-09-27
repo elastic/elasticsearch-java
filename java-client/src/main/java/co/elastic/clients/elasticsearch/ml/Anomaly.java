@@ -24,16 +24,17 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,11 +44,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Anomaly
+@JsonpDeserializable
 public final class Anomaly implements JsonpSerializable {
 	@Nullable
-	private final List<Number> actual;
+	private final List<Double> actual;
 
-	private final JsonValue bucketSpan;
+	private final String bucketSpan;
 
 	@Nullable
 	private final String byFieldName;
@@ -58,7 +60,7 @@ public final class Anomaly implements JsonpSerializable {
 	@Nullable
 	private final List<AnomalyCause> causes;
 
-	private final Number detectorIndex;
+	private final Integer detectorIndex;
 
 	@Nullable
 	private final String fieldName;
@@ -72,7 +74,7 @@ public final class Anomaly implements JsonpSerializable {
 	@Nullable
 	private final List<Influence> influencers;
 
-	private final Number initialRecordScore;
+	private final Double initialRecordScore;
 
 	private final Boolean isInterim;
 
@@ -90,16 +92,16 @@ public final class Anomaly implements JsonpSerializable {
 	@Nullable
 	private final String partitionFieldValue;
 
-	private final Number probability;
+	private final Double probability;
 
-	private final Number recordScore;
+	private final Double recordScore;
 
 	private final String resultType;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	@Nullable
-	private final List<Number> typical;
+	private final List<Double> typical;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -134,14 +136,14 @@ public final class Anomaly implements JsonpSerializable {
 	 * API name: {@code actual}
 	 */
 	@Nullable
-	public List<Number> actual() {
+	public List<Double> actual() {
 		return this.actual;
 	}
 
 	/**
 	 * API name: {@code bucket_span}
 	 */
-	public JsonValue bucketSpan() {
+	public String bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -172,7 +174,7 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code detector_index}
 	 */
-	public Number detectorIndex() {
+	public Integer detectorIndex() {
 		return this.detectorIndex;
 	}
 
@@ -211,7 +213,7 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code initial_record_score}
 	 */
-	public Number initialRecordScore() {
+	public Double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
@@ -264,14 +266,14 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code probability}
 	 */
-	public Number probability() {
+	public Double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * API name: {@code record_score}
 	 */
-	public Number recordScore() {
+	public Double recordScore() {
 		return this.recordScore;
 	}
 
@@ -285,7 +287,7 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
@@ -293,7 +295,7 @@ public final class Anomaly implements JsonpSerializable {
 	 * API name: {@code typical}
 	 */
 	@Nullable
-	public List<Number> typical() {
+	public List<Double> typical() {
 		return this.typical;
 	}
 
@@ -312,8 +314,8 @@ public final class Anomaly implements JsonpSerializable {
 
 			generator.writeKey("actual");
 			generator.writeStartArray();
-			for (Number item0 : this.actual) {
-				generator.write(item0.doubleValue());
+			for (Double item0 : this.actual) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -348,7 +350,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		generator.writeKey("detector_index");
-		generator.write(this.detectorIndex.doubleValue());
+		generator.write(this.detectorIndex);
 
 		if (this.fieldName != null) {
 
@@ -381,7 +383,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		generator.writeKey("initial_record_score");
-		generator.write(this.initialRecordScore.doubleValue());
+		generator.write(this.initialRecordScore);
 
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
@@ -415,10 +417,10 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		generator.writeKey("probability");
-		generator.write(this.probability.doubleValue());
+		generator.write(this.probability);
 
 		generator.writeKey("record_score");
-		generator.write(this.recordScore.doubleValue());
+		generator.write(this.recordScore);
 
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
@@ -430,8 +432,8 @@ public final class Anomaly implements JsonpSerializable {
 
 			generator.writeKey("typical");
 			generator.writeStartArray();
-			for (Number item0 : this.typical) {
-				generator.write(item0.doubleValue());
+			for (Double item0 : this.typical) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -447,9 +449,9 @@ public final class Anomaly implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Anomaly> {
 		@Nullable
-		private List<Number> actual;
+		private List<Double> actual;
 
-		private JsonValue bucketSpan;
+		private String bucketSpan;
 
 		@Nullable
 		private String byFieldName;
@@ -460,7 +462,7 @@ public final class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<AnomalyCause> causes;
 
-		private Number detectorIndex;
+		private Integer detectorIndex;
 
 		@Nullable
 		private String fieldName;
@@ -474,7 +476,7 @@ public final class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<Influence> influencers;
 
-		private Number initialRecordScore;
+		private Double initialRecordScore;
 
 		private Boolean isInterim;
 
@@ -492,21 +494,21 @@ public final class Anomaly implements JsonpSerializable {
 		@Nullable
 		private String partitionFieldValue;
 
-		private Number probability;
+		private Double probability;
 
-		private Number recordScore;
+		private Double recordScore;
 
 		private String resultType;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		@Nullable
-		private List<Number> typical;
+		private List<Double> typical;
 
 		/**
 		 * API name: {@code actual}
 		 */
-		public Builder actual(@Nullable List<Number> value) {
+		public Builder actual(@Nullable List<Double> value) {
 			this.actual = value;
 			return this;
 		}
@@ -514,7 +516,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code actual}
 		 */
-		public Builder actual(Number... value) {
+		public Builder actual(Double... value) {
 			this.actual = Arrays.asList(value);
 			return this;
 		}
@@ -522,7 +524,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #actual(List)}, creating the list if needed.
 		 */
-		public Builder addActual(Number value) {
+		public Builder addActual(Double value) {
 			if (this.actual == null) {
 				this.actual = new ArrayList<>();
 			}
@@ -533,7 +535,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(JsonValue value) {
+		public Builder bucketSpan(String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -598,7 +600,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code detector_index}
 		 */
-		public Builder detectorIndex(Number value) {
+		public Builder detectorIndex(Integer value) {
 			this.detectorIndex = value;
 			return this;
 		}
@@ -671,7 +673,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code initial_record_score}
 		 */
-		public Builder initialRecordScore(Number value) {
+		public Builder initialRecordScore(Double value) {
 			this.initialRecordScore = value;
 			return this;
 		}
@@ -727,7 +729,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Number value) {
+		public Builder probability(Double value) {
 			this.probability = value;
 			return this;
 		}
@@ -735,7 +737,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code record_score}
 		 */
-		public Builder recordScore(Number value) {
+		public Builder recordScore(Double value) {
 			this.recordScore = value;
 			return this;
 		}
@@ -751,7 +753,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -759,7 +761,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code typical}
 		 */
-		public Builder typical(@Nullable List<Number> value) {
+		public Builder typical(@Nullable List<Double> value) {
 			this.typical = value;
 			return this;
 		}
@@ -767,7 +769,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * API name: {@code typical}
 		 */
-		public Builder typical(Number... value) {
+		public Builder typical(Double... value) {
 			this.typical = Arrays.asList(value);
 			return this;
 		}
@@ -775,7 +777,7 @@ public final class Anomaly implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #typical(List)}, creating the list if needed.
 		 */
-		public Builder addTypical(Number value) {
+		public Builder addTypical(Double value) {
 			if (this.typical == null) {
 				this.typical = new ArrayList<>();
 			}
@@ -800,33 +802,33 @@ public final class Anomaly implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Anomaly}
 	 */
-	public static final JsonpDeserializer<Anomaly> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Anomaly::setupAnomalyDeserializer);
+	public static final JsonpDeserializer<Anomaly> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Anomaly::setupAnomalyDeserializer, Builder::build);
 
 	protected static void setupAnomalyDeserializer(DelegatingDeserializer<Anomaly.Builder> op) {
 
-		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "actual");
-		op.add(Builder::bucketSpan, JsonpDeserializer.jsonValueDeserializer(), "bucket_span");
+		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
+		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
-		op.add(Builder::causes, JsonpDeserializer.arrayDeserializer(AnomalyCause.DESERIALIZER), "causes");
-		op.add(Builder::detectorIndex, JsonpDeserializer.numberDeserializer(), "detector_index");
+		op.add(Builder::causes, JsonpDeserializer.arrayDeserializer(AnomalyCause._DESERIALIZER), "causes");
+		op.add(Builder::detectorIndex, JsonpDeserializer.integerDeserializer(), "detector_index");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::functionDescription, JsonpDeserializer.stringDeserializer(), "function_description");
-		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence.DESERIALIZER), "influencers");
-		op.add(Builder::initialRecordScore, JsonpDeserializer.numberDeserializer(), "initial_record_score");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(Influence._DESERIALIZER), "influencers");
+		op.add(Builder::initialRecordScore, JsonpDeserializer.doubleDeserializer(), "initial_record_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::overFieldValue, JsonpDeserializer.stringDeserializer(), "over_field_value");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
 		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
-		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
-		op.add(Builder::recordScore, JsonpDeserializer.numberDeserializer(), "record_score");
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
+		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
-		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"typical");
 
 	}

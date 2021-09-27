@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorBase
+
 public abstract class ProcessorBase implements JsonpSerializable {
 	@Nullable
 	private final String if_;
@@ -228,7 +230,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		op.add(AbstractBuilder::if_, JsonpDeserializer.stringDeserializer(), "if");
 		op.add(AbstractBuilder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
-		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "on_failure");
+		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
 		op.add(AbstractBuilder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 
 	}

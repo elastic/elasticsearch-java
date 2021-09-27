@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,17 +42,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.QueryProfile
+@JsonpDeserializable
 public final class QueryProfile implements JsonpSerializable {
 	private final QueryBreakdown breakdown;
 
 	private final String description;
 
-	private final Number timeInNanos;
+	private final Long timeInNanos;
 
 	private final String type;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._core.search.QueryProfile> children;
+	private final List<QueryProfile> children;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,7 +84,7 @@ public final class QueryProfile implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_nanos}
 	 */
-	public Number timeInNanos() {
+	public Long timeInNanos() {
 		return this.timeInNanos;
 	}
 
@@ -97,7 +99,7 @@ public final class QueryProfile implements JsonpSerializable {
 	 * API name: {@code children}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._core.search.QueryProfile> children() {
+	public List<QueryProfile> children() {
 		return this.children;
 	}
 
@@ -119,7 +121,7 @@ public final class QueryProfile implements JsonpSerializable {
 		generator.write(this.description);
 
 		generator.writeKey("time_in_nanos");
-		generator.write(this.timeInNanos.doubleValue());
+		generator.write(this.timeInNanos);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -128,7 +130,7 @@ public final class QueryProfile implements JsonpSerializable {
 
 			generator.writeKey("children");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._core.search.QueryProfile item0 : this.children) {
+			for (QueryProfile item0 : this.children) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -148,12 +150,12 @@ public final class QueryProfile implements JsonpSerializable {
 
 		private String description;
 
-		private Number timeInNanos;
+		private Long timeInNanos;
 
 		private String type;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._core.search.QueryProfile> children;
+		private List<QueryProfile> children;
 
 		/**
 		 * API name: {@code breakdown}
@@ -181,7 +183,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(Number value) {
+		public Builder timeInNanos(Long value) {
 			this.timeInNanos = value;
 			return this;
 		}
@@ -197,7 +199,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<co.elastic.clients.elasticsearch._core.search.QueryProfile> value) {
+		public Builder children(@Nullable List<QueryProfile> value) {
 			this.children = value;
 			return this;
 		}
@@ -205,7 +207,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(co.elastic.clients.elasticsearch._core.search.QueryProfile... value) {
+		public Builder children(QueryProfile... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
@@ -213,7 +215,7 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(co.elastic.clients.elasticsearch._core.search.QueryProfile value) {
+		public Builder addChildren(QueryProfile value) {
 			if (this.children == null) {
 				this.children = new ArrayList<>();
 			}
@@ -224,19 +226,15 @@ public final class QueryProfile implements JsonpSerializable {
 		/**
 		 * Set {@link #children(List)} to a singleton list.
 		 */
-		public Builder children(
-				Function<co.elastic.clients.elasticsearch._core.search.QueryProfile.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.search.QueryProfile>> fn) {
-			return this.children(
-					fn.apply(new co.elastic.clients.elasticsearch._core.search.QueryProfile.Builder()).build());
+		public Builder children(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
+			return this.children(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(
-				Function<co.elastic.clients.elasticsearch._core.search.QueryProfile.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.search.QueryProfile>> fn) {
-			return this.addChildren(
-					fn.apply(new co.elastic.clients.elasticsearch._core.search.QueryProfile.Builder()).build());
+		public Builder addChildren(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
+			return this.addChildren(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**
@@ -256,17 +254,16 @@ public final class QueryProfile implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link QueryProfile}
 	 */
-	public static final JsonpDeserializer<QueryProfile> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryProfile::setupQueryProfileDeserializer);
+	public static final JsonpDeserializer<QueryProfile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			QueryProfile::setupQueryProfileDeserializer, Builder::build);
 
 	protected static void setupQueryProfileDeserializer(DelegatingDeserializer<QueryProfile.Builder> op) {
 
-		op.add(Builder::breakdown, QueryBreakdown.DESERIALIZER, "breakdown");
+		op.add(Builder::breakdown, QueryBreakdown._DESERIALIZER, "breakdown");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
+		op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(
-				co.elastic.clients.elasticsearch._core.search.QueryProfile.DESERIALIZER), "children");
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(QueryProfile._DESERIALIZER), "children");
 
 	}
 

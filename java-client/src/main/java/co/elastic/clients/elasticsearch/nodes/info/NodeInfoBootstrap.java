@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoBootstrap
+@JsonpDeserializable
 public final class NodeInfoBootstrap implements JsonpSerializable {
 	private final String memoryLock;
 
@@ -103,8 +105,8 @@ public final class NodeInfoBootstrap implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoBootstrap}
 	 */
-	public static final JsonpDeserializer<NodeInfoBootstrap> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer);
+	public static final JsonpDeserializer<NodeInfoBootstrap> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer, Builder::build);
 
 	protected static void setupNodeInfoBootstrapDeserializer(DelegatingDeserializer<NodeInfoBootstrap.Builder> op) {
 

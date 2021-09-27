@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,7 +39,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
-public final class SetSecurityUserProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -52,6 +54,14 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.properties = builder.properties;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "set_security_user";
 	}
 
 	/**
@@ -160,8 +170,8 @@ public final class SetSecurityUserProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link SetSecurityUserProcessor}
 	 */
-	public static final JsonpDeserializer<SetSecurityUserProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer);
+	public static final JsonpDeserializer<SetSecurityUserProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer, Builder::build);
 
 	protected static void setupSetSecurityUserProcessorDeserializer(
 			DelegatingDeserializer<SetSecurityUserProcessor.Builder> op) {

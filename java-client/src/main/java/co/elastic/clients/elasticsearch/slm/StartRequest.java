@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.slm;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: slm.start.Request
+
 public final class StartRequest extends RequestBase {
 	public StartRequest() {
 	}
@@ -42,10 +44,7 @@ public final class StartRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link StartRequest}.
 	 */
-	public static final StartRequest INSTANCE = new StartRequest();
-
-	public static final JsonpDeserializer<StartRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(StartRequest.INSTANCE);
+	public static final StartRequest _INSTANCE = new StartRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class StartRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, StartResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, StartResponse._DESERIALIZER);
 }

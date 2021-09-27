@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.FeatureToggle
+@JsonpDeserializable
 public class FeatureToggle implements JsonpSerializable {
 	private final Boolean enabled;
 
@@ -113,8 +115,8 @@ public class FeatureToggle implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FeatureToggle}
 	 */
-	public static final JsonpDeserializer<FeatureToggle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FeatureToggle::setupFeatureToggleDeserializer);
+	public static final JsonpDeserializer<FeatureToggle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FeatureToggle::setupFeatureToggleDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFeatureToggleDeserializer(
 			DelegatingDeserializer<BuilderT> op) {

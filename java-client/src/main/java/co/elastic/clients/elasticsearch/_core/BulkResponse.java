@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._core.bulk.ResponseItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,15 +43,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Response
+@JsonpDeserializable
 public final class BulkResponse implements JsonpSerializable {
 	private final Boolean errors;
 
 	private final List<ResponseItem> items;
 
-	private final Number took;
+	private final Long took;
 
 	@Nullable
-	private final Number ingestTook;
+	private final Long ingestTook;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,7 +82,7 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -88,7 +90,7 @@ public final class BulkResponse implements JsonpSerializable {
 	 * API name: {@code ingest_took}
 	 */
 	@Nullable
-	public Number ingestTook() {
+	public Long ingestTook() {
 		return this.ingestTook;
 	}
 
@@ -115,12 +117,12 @@ public final class BulkResponse implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 		if (this.ingestTook != null) {
 
 			generator.writeKey("ingest_took");
-			generator.write(this.ingestTook.doubleValue());
+			generator.write(this.ingestTook);
 
 		}
 
@@ -136,10 +138,10 @@ public final class BulkResponse implements JsonpSerializable {
 
 		private List<ResponseItem> items;
 
-		private Number took;
+		private Long took;
 
 		@Nullable
-		private Number ingestTook;
+		private Long ingestTook;
 
 		/**
 		 * API name: {@code errors}
@@ -193,7 +195,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Number value) {
+		public Builder took(Long value) {
 			this.took = value;
 			return this;
 		}
@@ -201,7 +203,7 @@ public final class BulkResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code ingest_took}
 		 */
-		public Builder ingestTook(@Nullable Number value) {
+		public Builder ingestTook(@Nullable Long value) {
 			this.ingestTook = value;
 			return this;
 		}
@@ -223,15 +225,15 @@ public final class BulkResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link BulkResponse}
 	 */
-	public static final JsonpDeserializer<BulkResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BulkResponse::setupBulkResponseDeserializer);
+	public static final JsonpDeserializer<BulkResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BulkResponse::setupBulkResponseDeserializer, Builder::build);
 
 	protected static void setupBulkResponseDeserializer(DelegatingDeserializer<BulkResponse.Builder> op) {
 
 		op.add(Builder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
-		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(ResponseItem.DESERIALIZER), "items");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
-		op.add(Builder::ingestTook, JsonpDeserializer.numberDeserializer(), "ingest_took");
+		op.add(Builder::items, JsonpDeserializer.arrayDeserializer(ResponseItem._DESERIALIZER), "items");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
+		op.add(Builder::ingestTook, JsonpDeserializer.longDeserializer(), "ingest_took");
 
 	}
 

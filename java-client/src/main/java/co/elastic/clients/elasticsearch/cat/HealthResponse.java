@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.health.HealthRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Response
+@JsonpDeserializable
 public final class HealthResponse implements JsonpSerializable {
 	private final List<HealthRecord> value;
 
@@ -143,12 +145,12 @@ public final class HealthResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HealthResponse}
 	 */
-	public static final JsonpDeserializer<HealthResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HealthResponse::setupHealthResponseDeserializer);
+	public static final JsonpDeserializer<HealthResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HealthResponse::setupHealthResponseDeserializer, Builder::build);
 
 	protected static void setupHealthResponseDeserializer(DelegatingDeserializer<HealthResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(HealthRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(HealthRecord._DESERIALIZER), "value");
 
 	}
 

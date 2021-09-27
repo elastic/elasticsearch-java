@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,11 +42,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisConfigRead
+@JsonpDeserializable
 public final class AnalysisConfigRead implements JsonpSerializable {
 	private final String bucketSpan;
 
 	@Nullable
-	private final JsonValue categorizationAnalyzer;
+	private final CategorizationAnalyzer categorizationAnalyzer;
 
 	@Nullable
 	private final String categorizationFieldName;
@@ -59,10 +60,10 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 	private final List<String> influencers;
 
 	@Nullable
-	private final JsonValue modelPruneWindow;
+	private final String modelPruneWindow;
 
 	@Nullable
-	private final JsonValue latency;
+	private final String latency;
 
 	@Nullable
 	private final Boolean multivariateByFields;
@@ -119,7 +120,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 	 * API name: {@code categorization_analyzer}
 	 */
 	@Nullable
-	public JsonValue categorizationAnalyzer() {
+	public CategorizationAnalyzer categorizationAnalyzer() {
 		return this.categorizationAnalyzer;
 	}
 
@@ -195,7 +196,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 	 * API name: {@code model_prune_window}
 	 */
 	@Nullable
-	public JsonValue modelPruneWindow() {
+	public String modelPruneWindow() {
 		return this.modelPruneWindow;
 	}
 
@@ -208,7 +209,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 	 * API name: {@code latency}
 	 */
 	@Nullable
-	public JsonValue latency() {
+	public String latency() {
 		return this.latency;
 	}
 
@@ -275,7 +276,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 		if (this.categorizationAnalyzer != null) {
 
 			generator.writeKey("categorization_analyzer");
-			generator.write(this.categorizationAnalyzer);
+			this.categorizationAnalyzer.serialize(generator, mapper);
 
 		}
 		if (this.categorizationFieldName != null) {
@@ -354,7 +355,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 		private String bucketSpan;
 
 		@Nullable
-		private JsonValue categorizationAnalyzer;
+		private CategorizationAnalyzer categorizationAnalyzer;
 
 		@Nullable
 		private String categorizationFieldName;
@@ -367,10 +368,10 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 		private List<String> influencers;
 
 		@Nullable
-		private JsonValue modelPruneWindow;
+		private String modelPruneWindow;
 
 		@Nullable
-		private JsonValue latency;
+		private String latency;
 
 		@Nullable
 		private Boolean multivariateByFields;
@@ -409,9 +410,26 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
-		public Builder categorizationAnalyzer(@Nullable JsonValue value) {
+		public Builder categorizationAnalyzer(@Nullable CategorizationAnalyzer value) {
 			this.categorizationAnalyzer = value;
 			return this;
+		}
+
+		/**
+		 * If <code>categorization_field_name</code> is specified, you can also define
+		 * the analyzer that is used to interpret the categorization field. This
+		 * property cannot be used at the same time as
+		 * <code>categorization_filters</code>. The categorization analyzer specifies
+		 * how the <code>categorization_field</code> is interpreted by the
+		 * categorization process. The <code>categorization_analyzer</code> field can be
+		 * specified either as a string or as an object. If it is a string it must refer
+		 * to a built-in analyzer or one added by another plugin.
+		 * <p>
+		 * API name: {@code categorization_analyzer}
+		 */
+		public Builder categorizationAnalyzer(
+				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
 		}
 
 		/**
@@ -585,7 +603,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */
-		public Builder modelPruneWindow(@Nullable JsonValue value) {
+		public Builder modelPruneWindow(@Nullable String value) {
 			this.modelPruneWindow = value;
 			return this;
 		}
@@ -598,7 +616,7 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latency}
 		 */
-		public Builder latency(@Nullable JsonValue value) {
+		public Builder latency(@Nullable String value) {
 			this.latency = value;
 			return this;
 		}
@@ -676,23 +694,23 @@ public final class AnalysisConfigRead implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AnalysisConfigRead}
 	 */
-	public static final JsonpDeserializer<AnalysisConfigRead> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnalysisConfigRead::setupAnalysisConfigReadDeserializer);
+	public static final JsonpDeserializer<AnalysisConfigRead> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AnalysisConfigRead::setupAnalysisConfigReadDeserializer, Builder::build);
 
 	protected static void setupAnalysisConfigReadDeserializer(DelegatingDeserializer<AnalysisConfigRead.Builder> op) {
 
 		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
-		op.add(Builder::categorizationAnalyzer, JsonpDeserializer.jsonValueDeserializer(), "categorization_analyzer");
+		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");
 		op.add(Builder::categorizationFieldName, JsonpDeserializer.stringDeserializer(), "categorization_field_name");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
-		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector.DESERIALIZER), "detectors");
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
 		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"influencers");
-		op.add(Builder::modelPruneWindow, JsonpDeserializer.jsonValueDeserializer(), "model_prune_window");
-		op.add(Builder::latency, JsonpDeserializer.jsonValueDeserializer(), "latency");
+		op.add(Builder::modelPruneWindow, JsonpDeserializer.stringDeserializer(), "model_prune_window");
+		op.add(Builder::latency, JsonpDeserializer.stringDeserializer(), "latency");
 		op.add(Builder::multivariateByFields, JsonpDeserializer.booleanDeserializer(), "multivariate_by_fields");
-		op.add(Builder::perPartitionCategorization, PerPartitionCategorization.DESERIALIZER,
+		op.add(Builder::perPartitionCategorization, PerPartitionCategorization._DESERIALIZER,
 				"per_partition_categorization");
 		op.add(Builder::summaryCountFieldName, JsonpDeserializer.stringDeserializer(), "summary_count_field_name");
 

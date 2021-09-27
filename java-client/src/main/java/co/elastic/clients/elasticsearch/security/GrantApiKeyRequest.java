@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.Request
+@JsonpDeserializable
 public final class GrantApiKeyRequest extends RequestBase implements JsonpSerializable {
 	private final ApiKey apiKey;
 
@@ -227,13 +229,13 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link GrantApiKeyRequest}
 	 */
-	public static final JsonpDeserializer<GrantApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer);
+	public static final JsonpDeserializer<GrantApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer, Builder::build);
 
 	protected static void setupGrantApiKeyRequestDeserializer(DelegatingDeserializer<GrantApiKeyRequest.Builder> op) {
 
-		op.add(Builder::apiKey, ApiKey.DESERIALIZER, "api_key");
-		op.add(Builder::grantType, ApiKeyGrantType.DESERIALIZER, "grant_type");
+		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
+		op.add(Builder::grantType, ApiKeyGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
@@ -262,5 +264,5 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse._DESERIALIZER);
 }

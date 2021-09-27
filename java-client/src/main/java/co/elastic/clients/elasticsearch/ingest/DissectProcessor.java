@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DissectProcessor
-public final class DissectProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DissectProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String appendSeparator;
 
 	private final String field;
@@ -55,6 +57,14 @@ public final class DissectProcessor extends ProcessorBase {
 		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
 		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "dissect";
 	}
 
 	/**
@@ -173,8 +183,8 @@ public final class DissectProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link DissectProcessor}
 	 */
-	public static final JsonpDeserializer<DissectProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DissectProcessor::setupDissectProcessorDeserializer);
+	public static final JsonpDeserializer<DissectProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DissectProcessor::setupDissectProcessorDeserializer, Builder::build);
 
 	protected static void setupDissectProcessorDeserializer(DelegatingDeserializer<DissectProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

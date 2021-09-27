@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch.shutdown.get_node.NodeShutdownStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Response
+@JsonpDeserializable
 public final class GetNodeResponse implements JsonpSerializable {
 	private final List<NodeShutdownStatus> nodes;
 
@@ -145,12 +147,12 @@ public final class GetNodeResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetNodeResponse}
 	 */
-	public static final JsonpDeserializer<GetNodeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetNodeResponse::setupGetNodeResponseDeserializer);
+	public static final JsonpDeserializer<GetNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetNodeResponse::setupGetNodeResponseDeserializer, Builder::build);
 
 	protected static void setupGetNodeResponseDeserializer(DelegatingDeserializer<GetNodeResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus._DESERIALIZER), "nodes");
 
 	}
 

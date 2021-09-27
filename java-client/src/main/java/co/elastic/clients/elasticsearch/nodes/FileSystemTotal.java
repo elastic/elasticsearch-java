@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,24 +32,25 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.FileSystemTotal
+@JsonpDeserializable
 public final class FileSystemTotal implements JsonpSerializable {
 	private final String available;
 
-	private final Number availableInBytes;
+	private final Long availableInBytes;
 
 	private final String free;
 
-	private final Number freeInBytes;
+	private final Long freeInBytes;
 
 	private final String total;
 
-	private final Number totalInBytes;
+	private final Long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +75,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Number availableInBytes() {
+	public Long availableInBytes() {
 		return this.availableInBytes;
 	}
 
@@ -87,7 +89,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Number freeInBytes() {
+	public Long freeInBytes() {
 		return this.freeInBytes;
 	}
 
@@ -101,7 +103,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public Long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -120,19 +122,19 @@ public final class FileSystemTotal implements JsonpSerializable {
 		generator.write(this.available);
 
 		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes.doubleValue());
+		generator.write(this.availableInBytes);
 
 		generator.writeKey("free");
 		generator.write(this.free);
 
 		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes.doubleValue());
+		generator.write(this.freeInBytes);
 
 		generator.writeKey("total");
 		generator.write(this.total);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 	}
 
@@ -144,15 +146,15 @@ public final class FileSystemTotal implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<FileSystemTotal> {
 		private String available;
 
-		private Number availableInBytes;
+		private Long availableInBytes;
 
 		private String free;
 
-		private Number freeInBytes;
+		private Long freeInBytes;
 
 		private String total;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		/**
 		 * API name: {@code available}
@@ -165,7 +167,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Number value) {
+		public Builder availableInBytes(Long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -181,7 +183,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Number value) {
+		public Builder freeInBytes(Long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -197,7 +199,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(Long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -219,17 +221,17 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FileSystemTotal}
 	 */
-	public static final JsonpDeserializer<FileSystemTotal> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FileSystemTotal::setupFileSystemTotalDeserializer);
+	public static final JsonpDeserializer<FileSystemTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FileSystemTotal::setupFileSystemTotalDeserializer, Builder::build);
 
 	protected static void setupFileSystemTotalDeserializer(DelegatingDeserializer<FileSystemTotal.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
-		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
+		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
 		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
-		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
 	}
 

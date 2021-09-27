@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -43,6 +44,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Request
+
 public final class GetDatafeedStatsRequest extends RequestBase {
 	@Nullable
 	private final List<String> datafeedId;
@@ -195,5 +197,5 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetDatafeedStatsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetDatafeedStatsResponse._DESERIALIZER);
 }

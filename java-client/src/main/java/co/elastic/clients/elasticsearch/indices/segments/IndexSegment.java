@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
+@JsonpDeserializable
 public final class IndexSegment implements JsonpSerializable {
 	private final Map<String, List<ShardsSegment>> shards;
 
@@ -127,13 +129,13 @@ public final class IndexSegment implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexSegment}
 	 */
-	public static final JsonpDeserializer<IndexSegment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexSegment::setupIndexSegmentDeserializer);
+	public static final JsonpDeserializer<IndexSegment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexSegment::setupIndexSegmentDeserializer, Builder::build);
 
 	protected static void setupIndexSegmentDeserializer(DelegatingDeserializer<IndexSegment.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer
-				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardsSegment.DESERIALIZER)), "shards");
+				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(ShardsSegment._DESERIALIZER)), "shards");
 
 	}
 

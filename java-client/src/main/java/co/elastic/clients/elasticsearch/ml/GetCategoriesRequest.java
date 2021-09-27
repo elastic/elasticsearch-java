@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Request
+@JsonpDeserializable
 public final class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -50,10 +52,10 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	private final String categoryId;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String partitionFieldValue;
@@ -103,7 +105,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -113,7 +115,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -167,10 +169,10 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		private String categoryId;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String partitionFieldValue;
@@ -207,7 +209,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -217,7 +219,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -264,13 +266,13 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link GetCategoriesRequest}
 	 */
-	public static final JsonpDeserializer<GetCategoriesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCategoriesRequest::setupGetCategoriesRequestDeserializer);
+	public static final JsonpDeserializer<GetCategoriesRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCategoriesRequest::setupGetCategoriesRequestDeserializer, Builder::build);
 
 	protected static void setupGetCategoriesRequestDeserializer(
 			DelegatingDeserializer<GetCategoriesRequest.Builder> op) {
 
-		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
 
 	}
 
@@ -328,15 +330,15 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.partitionFieldValue != null) {
 					params.put("partition_field_value", request.partitionFieldValue);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCategoriesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetCategoriesResponse._DESERIALIZER);
 }

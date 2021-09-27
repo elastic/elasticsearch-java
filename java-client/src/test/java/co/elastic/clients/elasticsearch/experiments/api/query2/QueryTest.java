@@ -36,7 +36,7 @@ public class QueryTest extends Assert {
         assertEquals("bool", q._type());
 
         JsonpSerializable v = q._get();
-        assertEquals("bool", ((Query.Variant)v)._type());
+        assertEquals("bool", ((Query.Variant)v)._variantType());
 
         Query q1 = ((Query.Variant)v)._toQuery();
 

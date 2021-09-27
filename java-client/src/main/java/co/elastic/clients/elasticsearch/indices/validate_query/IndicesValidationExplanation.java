@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.validate_query;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.IndicesValidationExplanation
+@JsonpDeserializable
 public final class IndicesValidationExplanation implements JsonpSerializable {
 	@Nullable
 	private final String error;
@@ -186,8 +188,8 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesValidationExplanation}
 	 */
-	public static final JsonpDeserializer<IndicesValidationExplanation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationDeserializer);
+	public static final JsonpDeserializer<IndicesValidationExplanation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationDeserializer, Builder::build);
 
 	protected static void setupIndicesValidationExplanationDeserializer(
 			DelegatingDeserializer<IndicesValidationExplanation.Builder> op) {

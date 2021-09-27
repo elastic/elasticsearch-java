@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformStats
+@JsonpDeserializable
 public final class TransformStats implements JsonpSerializable {
 	private final Checkpointing checkpointing;
 
@@ -254,17 +256,17 @@ public final class TransformStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TransformStats}
 	 */
-	public static final JsonpDeserializer<TransformStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TransformStats::setupTransformStatsDeserializer);
+	public static final JsonpDeserializer<TransformStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TransformStats::setupTransformStatsDeserializer, Builder::build);
 
 	protected static void setupTransformStatsDeserializer(DelegatingDeserializer<TransformStats.Builder> op) {
 
-		op.add(Builder::checkpointing, Checkpointing.DESERIALIZER, "checkpointing");
+		op.add(Builder::checkpointing, Checkpointing._DESERIALIZER, "checkpointing");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::node, NodeAttributes.DESERIALIZER, "node");
+		op.add(Builder::node, NodeAttributes._DESERIALIZER, "node");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
-		op.add(Builder::stats, TransformIndexerStats.DESERIALIZER, "stats");
+		op.add(Builder::stats, TransformIndexerStats._DESERIALIZER, "stats");
 
 	}
 

@@ -26,15 +26,16 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._core.field_caps.FieldCapabilitiesBodyIndexFilter;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -49,6 +50,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Request
+@JsonpDeserializable
 public final class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
@@ -57,7 +59,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final List<String> fields;
@@ -115,7 +117,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -191,7 +193,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private List<String> fields;
@@ -256,8 +258,30 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -346,12 +370,12 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link FieldCapsRequest}
 	 */
-	public static final JsonpDeserializer<FieldCapsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldCapsRequest::setupFieldCapsRequestDeserializer);
+	public static final JsonpDeserializer<FieldCapsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldCapsRequest::setupFieldCapsRequestDeserializer, Builder::build);
 
 	protected static void setupFieldCapsRequestDeserializer(DelegatingDeserializer<FieldCapsRequest.Builder> op) {
 
-		op.add(Builder::indexFilter, FieldCapabilitiesBodyIndexFilter.DESERIALIZER, "index_filter");
+		op.add(Builder::indexFilter, FieldCapabilitiesBodyIndexFilter._DESERIALIZER, "index_filter");
 
 	}
 
@@ -399,7 +423,8 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.fields != null) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -412,5 +437,5 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FieldCapsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, FieldCapsResponse._DESERIALIZER);
 }

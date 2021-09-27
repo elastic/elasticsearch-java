@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: ccr.stats.Request
+
 public final class StatsRequest extends RequestBase {
 	public StatsRequest() {
 	}
@@ -42,10 +44,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link StatsRequest}.
 	 */
-	public static final StatsRequest INSTANCE = new StatsRequest();
-
-	public static final JsonpDeserializer<StatsRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(StatsRequest.INSTANCE);
+	public static final StatsRequest _INSTANCE = new StatsRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class StatsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, StatsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, StatsResponse._DESERIALIZER);
 }

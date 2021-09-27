@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_data_frame_analytics.Response
+@JsonpDeserializable
 public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final Boolean stopped;
 
@@ -103,9 +105,9 @@ public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StopDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<StopDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<StopDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupStopDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<StopDataFrameAnalyticsResponse.Builder> op) {

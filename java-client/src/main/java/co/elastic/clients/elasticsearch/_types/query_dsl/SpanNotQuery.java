@@ -24,32 +24,33 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanNotQuery
-public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
+@JsonpDeserializable
+public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	@Nullable
-	private final Number dist;
+	private final Integer dist;
 
 	private final SpanQuery exclude;
 
 	private final SpanQuery include;
 
 	@Nullable
-	private final Number post;
+	private final Integer post;
 
 	@Nullable
-	private final Number pre;
+	private final Integer pre;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +69,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "span_not";
 	}
 
@@ -76,7 +77,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 	 * API name: {@code dist}
 	 */
 	@Nullable
-	public Number dist() {
+	public Integer dist() {
 		return this.dist;
 	}
 
@@ -98,7 +99,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 	 * API name: {@code post}
 	 */
 	@Nullable
-	public Number post() {
+	public Integer post() {
 		return this.post;
 	}
 
@@ -106,18 +107,17 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 	 * API name: {@code pre}
 	 */
 	@Nullable
-	public Number pre() {
+	public Integer pre() {
 		return this.pre;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.dist != null) {
 
 			generator.writeKey("dist");
-			generator.write(this.dist.doubleValue());
+			generator.write(this.dist);
 
 		}
 
@@ -130,17 +130,15 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 		if (this.post != null) {
 
 			generator.writeKey("post");
-			generator.write(this.post.doubleValue());
+			generator.write(this.post);
 
 		}
 		if (this.pre != null) {
 
 			generator.writeKey("pre");
-			generator.write(this.pre.doubleValue());
+			generator.write(this.pre);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -151,22 +149,22 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanNotQuery> {
 		@Nullable
-		private Number dist;
+		private Integer dist;
 
 		private SpanQuery exclude;
 
 		private SpanQuery include;
 
 		@Nullable
-		private Number post;
+		private Integer post;
 
 		@Nullable
-		private Number pre;
+		private Integer pre;
 
 		/**
 		 * API name: {@code dist}
 		 */
-		public Builder dist(@Nullable Number value) {
+		public Builder dist(@Nullable Integer value) {
 			this.dist = value;
 			return this;
 		}
@@ -204,7 +202,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 		/**
 		 * API name: {@code post}
 		 */
-		public Builder post(@Nullable Number value) {
+		public Builder post(@Nullable Integer value) {
 			this.post = value;
 			return this;
 		}
@@ -212,7 +210,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 		/**
 		 * API name: {@code pre}
 		 */
-		public Builder pre(@Nullable Number value) {
+		public Builder pre(@Nullable Integer value) {
 			this.pre = value;
 			return this;
 		}
@@ -236,17 +234,19 @@ public final class SpanNotQuery extends QueryBase implements SpanQuery, Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<SpanNotQuery.Builder, SpanNotQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(SpanNotQuery::setupSpanNotQueryDeserializer);
+	/**
+	 * Json deserializer for {@link SpanNotQuery}
+	 */
+	public static final JsonpDeserializer<SpanNotQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SpanNotQuery::setupSpanNotQueryDeserializer, Builder::build);
 
 	protected static void setupSpanNotQueryDeserializer(DelegatingDeserializer<SpanNotQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::dist, JsonpDeserializer.numberDeserializer(), "dist");
-		op.add(Builder::exclude, SpanQuery.DESERIALIZER, "exclude");
-		op.add(Builder::include, SpanQuery.DESERIALIZER, "include");
-		op.add(Builder::post, JsonpDeserializer.numberDeserializer(), "post");
-		op.add(Builder::pre, JsonpDeserializer.numberDeserializer(), "pre");
+		op.add(Builder::dist, JsonpDeserializer.integerDeserializer(), "dist");
+		op.add(Builder::exclude, SpanQuery._DESERIALIZER, "exclude");
+		op.add(Builder::include, SpanQuery._DESERIALIZER, "include");
+		op.add(Builder::post, JsonpDeserializer.integerDeserializer(), "post");
+		op.add(Builder::pre, JsonpDeserializer.integerDeserializer(), "pre");
 
 	}
 

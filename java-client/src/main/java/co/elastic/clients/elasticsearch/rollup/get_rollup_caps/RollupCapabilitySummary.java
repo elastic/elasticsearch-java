@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup.get_rollup_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilitySummary
+@JsonpDeserializable
 public final class RollupCapabilitySummary implements JsonpSerializable {
 	private final Map<String, Map<String, JsonData>> fields;
 
@@ -198,15 +200,14 @@ public final class RollupCapabilitySummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupCapabilitySummary}
 	 */
-	public static final JsonpDeserializer<RollupCapabilitySummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryDeserializer);
+	public static final JsonpDeserializer<RollupCapabilitySummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RollupCapabilitySummary::setupRollupCapabilitySummaryDeserializer, Builder::build);
 
 	protected static void setupRollupCapabilitySummaryDeserializer(
 			DelegatingDeserializer<RollupCapabilitySummary.Builder> op) {
 
-		op.add(Builder::fields,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER)),
-				"fields");
+		op.add(Builder::fields, JsonpDeserializer
+				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)), "fields");
 		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");

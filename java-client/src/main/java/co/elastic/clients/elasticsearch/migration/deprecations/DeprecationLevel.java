@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.migration.deprecations;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum DeprecationLevel implements StringEnum {
 	None("none"), Info("info"),
 	/**
@@ -48,6 +50,6 @@ public enum DeprecationLevel implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DeprecationLevel> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<DeprecationLevel> _DESERIALIZER = new StringEnum.Deserializer<>(
 			DeprecationLevel.values());
 }

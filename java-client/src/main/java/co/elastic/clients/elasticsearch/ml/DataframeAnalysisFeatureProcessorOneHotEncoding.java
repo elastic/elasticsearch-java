@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,9 +37,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorOneHotEncoding
+@JsonpDeserializable
 public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 		implements
-			DataframeAnalysisFeatureProcessor,
+			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
 	private final String field;
 
@@ -58,7 +59,7 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 	 * {@link DataframeAnalysisFeatureProcessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "one_hot_encoding";
 	}
 
@@ -90,15 +91,12 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("hot_map");
 		generator.write(this.hotMap);
-
-		generator.writeEnd();
 
 	}
 
@@ -146,10 +144,13 @@ public final class DataframeAnalysisFeatureProcessorOneHotEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(
-					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeAnalysisFeatureProcessorOneHotEncoding}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorOneHotEncoding::setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorOneHotEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder> op) {

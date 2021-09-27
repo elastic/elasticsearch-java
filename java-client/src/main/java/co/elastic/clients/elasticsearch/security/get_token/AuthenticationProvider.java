@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security.get_token;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.AuthenticationProvider
+@JsonpDeserializable
 public final class AuthenticationProvider implements JsonpSerializable {
 	private final String type;
 
@@ -126,8 +128,8 @@ public final class AuthenticationProvider implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AuthenticationProvider}
 	 */
-	public static final JsonpDeserializer<AuthenticationProvider> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AuthenticationProvider::setupAuthenticationProviderDeserializer);
+	public static final JsonpDeserializer<AuthenticationProvider> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AuthenticationProvider::setupAuthenticationProviderDeserializer, Builder::build);
 
 	protected static void setupAuthenticationProviderDeserializer(
 			DelegatingDeserializer<AuthenticationProvider.Builder> op) {

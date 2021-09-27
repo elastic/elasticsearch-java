@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.SumBucketAggregation
-public final class SumBucketAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public SumBucketAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "sum_bucket";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class SumBucketAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link SumBucketAggregation}
 	 */
-	public static final JsonpDeserializer<SumBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SumBucketAggregation::setupSumBucketAggregationDeserializer);
+	public static final JsonpDeserializer<SumBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SumBucketAggregation::setupSumBucketAggregationDeserializer, Builder::build);
 
 	protected static void setupSumBucketAggregationDeserializer(
 			DelegatingDeserializer<SumBucketAggregation.Builder> op) {

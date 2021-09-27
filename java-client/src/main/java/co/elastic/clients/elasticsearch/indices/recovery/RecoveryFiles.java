@@ -24,15 +24,16 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,17 +42,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryFiles
+@JsonpDeserializable
 public final class RecoveryFiles implements JsonpSerializable {
 	@Nullable
 	private final List<FileDetails> details;
 
-	private final JsonValue percent;
+	private final String percent;
 
-	private final Number recovered;
+	private final Long recovered;
 
-	private final Number reused;
+	private final Long reused;
 
-	private final Number total;
+	private final Long total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,28 +78,28 @@ public final class RecoveryFiles implements JsonpSerializable {
 	/**
 	 * API name: {@code percent}
 	 */
-	public JsonValue percent() {
+	public String percent() {
 		return this.percent;
 	}
 
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Number recovered() {
+	public Long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * API name: {@code reused}
 	 */
-	public Number reused() {
+	public Long reused() {
 		return this.reused;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
@@ -128,13 +130,13 @@ public final class RecoveryFiles implements JsonpSerializable {
 		generator.write(this.percent);
 
 		generator.writeKey("recovered");
-		generator.write(this.recovered.doubleValue());
+		generator.write(this.recovered);
 
 		generator.writeKey("reused");
-		generator.write(this.reused.doubleValue());
+		generator.write(this.reused);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -147,13 +149,13 @@ public final class RecoveryFiles implements JsonpSerializable {
 		@Nullable
 		private List<FileDetails> details;
 
-		private JsonValue percent;
+		private String percent;
 
-		private Number recovered;
+		private Long recovered;
 
-		private Number reused;
+		private Long reused;
 
-		private Number total;
+		private Long total;
 
 		/**
 		 * API name: {@code details}
@@ -199,7 +201,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code percent}
 		 */
-		public Builder percent(JsonValue value) {
+		public Builder percent(String value) {
 			this.percent = value;
 			return this;
 		}
@@ -207,7 +209,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Number value) {
+		public Builder recovered(Long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -215,7 +217,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code reused}
 		 */
-		public Builder reused(Number value) {
+		public Builder reused(Long value) {
 			this.reused = value;
 			return this;
 		}
@@ -223,7 +225,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -245,16 +247,16 @@ public final class RecoveryFiles implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryFiles}
 	 */
-	public static final JsonpDeserializer<RecoveryFiles> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryFiles::setupRecoveryFilesDeserializer);
+	public static final JsonpDeserializer<RecoveryFiles> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryFiles::setupRecoveryFilesDeserializer, Builder::build);
 
 	protected static void setupRecoveryFilesDeserializer(DelegatingDeserializer<RecoveryFiles.Builder> op) {
 
-		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(FileDetails.DESERIALIZER), "details");
-		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
-		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
-		op.add(Builder::reused, JsonpDeserializer.numberDeserializer(), "reused");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(FileDetails._DESERIALIZER), "details");
+		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
+		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
+		op.add(Builder::reused, JsonpDeserializer.longDeserializer(), "reused");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

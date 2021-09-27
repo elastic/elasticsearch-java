@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexState
+@JsonpDeserializable
 public final class IndexState implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Alias> aliases;
@@ -49,7 +51,10 @@ public final class IndexState implements JsonpSerializable {
 	@Nullable
 	private final TypeMapping mappings;
 
-	private final JsonValue settings;
+	private final JsonValue /*
+							 * Union(indices._types.IndexSettings |
+							 * indices._types.IndexStatePrefixedSettings)
+							 */ settings;
 
 	@Nullable
 	private final String dataStream;
@@ -84,7 +89,10 @@ public final class IndexState implements JsonpSerializable {
 	/**
 	 * API name: {@code settings}
 	 */
-	public JsonValue settings() {
+	public JsonValue /*
+						 * Union(indices._types.IndexSettings |
+						 * indices._types.IndexStatePrefixedSettings)
+						 */ settings() {
 		return this.settings;
 	}
 
@@ -150,7 +158,10 @@ public final class IndexState implements JsonpSerializable {
 		@Nullable
 		private TypeMapping mappings;
 
-		private JsonValue settings;
+		private JsonValue /*
+							 * Union(indices._types.IndexSettings |
+							 * indices._types.IndexStatePrefixedSettings)
+							 */ settings;
 
 		@Nullable
 		private String dataStream;
@@ -206,7 +217,10 @@ public final class IndexState implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(JsonValue value) {
+		public Builder settings(JsonValue /*
+											 * Union(indices._types.IndexSettings |
+											 * indices._types.IndexStatePrefixedSettings)
+											 */ value) {
 			this.settings = value;
 			return this;
 		}
@@ -236,13 +250,13 @@ public final class IndexState implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexState}
 	 */
-	public static final JsonpDeserializer<IndexState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexState::setupIndexStateDeserializer);
+	public static final JsonpDeserializer<IndexState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexState::setupIndexStateDeserializer, Builder::build);
 
 	protected static void setupIndexStateDeserializer(DelegatingDeserializer<IndexState.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 

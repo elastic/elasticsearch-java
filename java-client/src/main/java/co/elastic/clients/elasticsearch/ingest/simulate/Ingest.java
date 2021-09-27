@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
+@JsonpDeserializable
 public final class Ingest implements JsonpSerializable {
 	private final String timestamp;
 
@@ -133,8 +135,8 @@ public final class Ingest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Ingest}
 	 */
-	public static final JsonpDeserializer<Ingest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Ingest::setupIngestDeserializer);
+	public static final JsonpDeserializer<Ingest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ingest::setupIngestDeserializer, Builder::build);
 
 	protected static void setupIngestDeserializer(DelegatingDeserializer<Ingest.Builder> op) {
 

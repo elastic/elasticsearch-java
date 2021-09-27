@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.termvectors;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,23 +32,24 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Token
+@JsonpDeserializable
 public final class Token implements JsonpSerializable {
 	@Nullable
-	private final Number endOffset;
+	private final Integer endOffset;
 
 	@Nullable
 	private final String payload;
 
-	private final Number position;
+	private final Integer position;
 
 	@Nullable
-	private final Number startOffset;
+	private final Integer startOffset;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class Token implements JsonpSerializable {
 	 * API name: {@code end_offset}
 	 */
 	@Nullable
-	public Number endOffset() {
+	public Integer endOffset() {
 		return this.endOffset;
 	}
 
@@ -79,7 +81,7 @@ public final class Token implements JsonpSerializable {
 	/**
 	 * API name: {@code position}
 	 */
-	public Number position() {
+	public Integer position() {
 		return this.position;
 	}
 
@@ -87,7 +89,7 @@ public final class Token implements JsonpSerializable {
 	 * API name: {@code start_offset}
 	 */
 	@Nullable
-	public Number startOffset() {
+	public Integer startOffset() {
 		return this.startOffset;
 	}
 
@@ -105,7 +107,7 @@ public final class Token implements JsonpSerializable {
 		if (this.endOffset != null) {
 
 			generator.writeKey("end_offset");
-			generator.write(this.endOffset.doubleValue());
+			generator.write(this.endOffset);
 
 		}
 		if (this.payload != null) {
@@ -116,12 +118,12 @@ public final class Token implements JsonpSerializable {
 		}
 
 		generator.writeKey("position");
-		generator.write(this.position.doubleValue());
+		generator.write(this.position);
 
 		if (this.startOffset != null) {
 
 			generator.writeKey("start_offset");
-			generator.write(this.startOffset.doubleValue());
+			generator.write(this.startOffset);
 
 		}
 
@@ -134,20 +136,20 @@ public final class Token implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Token> {
 		@Nullable
-		private Number endOffset;
+		private Integer endOffset;
 
 		@Nullable
 		private String payload;
 
-		private Number position;
+		private Integer position;
 
 		@Nullable
-		private Number startOffset;
+		private Integer startOffset;
 
 		/**
 		 * API name: {@code end_offset}
 		 */
-		public Builder endOffset(@Nullable Number value) {
+		public Builder endOffset(@Nullable Integer value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -163,7 +165,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * API name: {@code position}
 		 */
-		public Builder position(Number value) {
+		public Builder position(Integer value) {
 			this.position = value;
 			return this;
 		}
@@ -171,7 +173,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * API name: {@code start_offset}
 		 */
-		public Builder startOffset(@Nullable Number value) {
+		public Builder startOffset(@Nullable Integer value) {
 			this.startOffset = value;
 			return this;
 		}
@@ -193,15 +195,15 @@ public final class Token implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Token}
 	 */
-	public static final JsonpDeserializer<Token> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Token::setupTokenDeserializer);
+	public static final JsonpDeserializer<Token> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Token::setupTokenDeserializer, Builder::build);
 
 	protected static void setupTokenDeserializer(DelegatingDeserializer<Token.Builder> op) {
 
-		op.add(Builder::endOffset, JsonpDeserializer.numberDeserializer(), "end_offset");
+		op.add(Builder::endOffset, JsonpDeserializer.integerDeserializer(), "end_offset");
 		op.add(Builder::payload, JsonpDeserializer.stringDeserializer(), "payload");
-		op.add(Builder::position, JsonpDeserializer.numberDeserializer(), "position");
-		op.add(Builder::startOffset, JsonpDeserializer.numberDeserializer(), "start_offset");
+		op.add(Builder::position, JsonpDeserializer.integerDeserializer(), "position");
+		op.add(Builder::startOffset, JsonpDeserializer.integerDeserializer(), "start_offset");
 
 	}
 

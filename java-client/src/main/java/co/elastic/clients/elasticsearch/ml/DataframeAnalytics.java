@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalytics
+@JsonpDeserializable
 public final class DataframeAnalytics implements JsonpSerializable {
 	@Nullable
 	private final DataframeAnalyticsStats analysisStats;
@@ -415,20 +417,20 @@ public final class DataframeAnalytics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeAnalytics}
 	 */
-	public static final JsonpDeserializer<DataframeAnalytics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeAnalytics::setupDataframeAnalyticsDeserializer);
+	public static final JsonpDeserializer<DataframeAnalytics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalytics::setupDataframeAnalyticsDeserializer, Builder::build);
 
 	protected static void setupDataframeAnalyticsDeserializer(DelegatingDeserializer<DataframeAnalytics.Builder> op) {
 
-		op.add(Builder::analysisStats, DataframeAnalyticsStats.DESERIALIZER, "analysis_stats");
+		op.add(Builder::analysisStats, DataframeAnalyticsStats._DESERIALIZER, "analysis_stats");
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
-		op.add(Builder::dataCounts, DataframeAnalyticsStatsDataCounts.DESERIALIZER, "data_counts");
+		op.add(Builder::dataCounts, DataframeAnalyticsStatsDataCounts._DESERIALIZER, "data_counts");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::memoryUsage, DataframeAnalyticsStatsMemoryUsage.DESERIALIZER, "memory_usage");
-		op.add(Builder::node, NodeAttributes.DESERIALIZER, "node");
-		op.add(Builder::progress, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsStatsProgress.DESERIALIZER),
+		op.add(Builder::memoryUsage, DataframeAnalyticsStatsMemoryUsage._DESERIALIZER, "memory_usage");
+		op.add(Builder::node, NodeAttributes._DESERIALIZER, "node");
+		op.add(Builder::progress, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsStatsProgress._DESERIALIZER),
 				"progress");
-		op.add(Builder::state, DataframeState.DESERIALIZER, "state");
+		op.add(Builder::state, DataframeState._DESERIALIZER, "state");
 
 	}
 

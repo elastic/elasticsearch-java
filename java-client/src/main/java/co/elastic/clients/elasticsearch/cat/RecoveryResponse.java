@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.recovery.RecoveryRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.Response
+@JsonpDeserializable
 public final class RecoveryResponse implements JsonpSerializable {
 	private final List<RecoveryRecord> value;
 
@@ -143,12 +145,12 @@ public final class RecoveryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryResponse}
 	 */
-	public static final JsonpDeserializer<RecoveryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseDeserializer);
+	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
 
 	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(RecoveryRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(RecoveryRecord._DESERIALIZER), "value");
 
 	}
 

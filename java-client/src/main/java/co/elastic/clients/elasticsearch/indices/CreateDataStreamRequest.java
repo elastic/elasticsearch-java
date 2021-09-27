@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.create_data_stream.Request
+
 public final class CreateDataStreamRequest extends RequestBase {
 	private final String name;
 
@@ -123,5 +125,5 @@ public final class CreateDataStreamRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, CreateDataStreamResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, CreateDataStreamResponse._DESERIALIZER);
 }

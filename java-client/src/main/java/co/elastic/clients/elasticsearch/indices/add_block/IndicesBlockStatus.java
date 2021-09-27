@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.add_block;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.add_block.IndicesBlockStatus
+@JsonpDeserializable
 public final class IndicesBlockStatus implements JsonpSerializable {
 	private final String name;
 
@@ -127,8 +129,8 @@ public final class IndicesBlockStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesBlockStatus}
 	 */
-	public static final JsonpDeserializer<IndicesBlockStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer);
+	public static final JsonpDeserializer<IndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer, Builder::build);
 
 	protected static void setupIndicesBlockStatusDeserializer(DelegatingDeserializer<IndicesBlockStatus.Builder> op) {
 

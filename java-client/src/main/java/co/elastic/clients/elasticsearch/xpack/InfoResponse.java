@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.xpack.info.BuildInformation;
 import co.elastic.clients.elasticsearch.xpack.info.Features;
 import co.elastic.clients.elasticsearch.xpack.info.MinimalLicenseInformation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Response
+@JsonpDeserializable
 public final class InfoResponse implements JsonpSerializable {
 	private final BuildInformation build;
 
@@ -198,14 +200,14 @@ public final class InfoResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InfoResponse}
 	 */
-	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
+	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoResponse::setupInfoResponseDeserializer, Builder::build);
 
 	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 
-		op.add(Builder::build, BuildInformation.DESERIALIZER, "build");
-		op.add(Builder::features, Features.DESERIALIZER, "features");
-		op.add(Builder::license, MinimalLicenseInformation.DESERIALIZER, "license");
+		op.add(Builder::build, BuildInformation._DESERIALIZER, "build");
+		op.add(Builder::features, Features._DESERIALIZER, "features");
+		op.add(Builder::license, MinimalLicenseInformation._DESERIALIZER, "license");
 		op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
 
 	}

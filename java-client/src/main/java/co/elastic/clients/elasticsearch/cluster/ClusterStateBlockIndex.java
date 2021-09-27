@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,7 +37,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +51,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateBlockIndex
+@JsonpDeserializable
 public final class ClusterStateBlockIndex implements JsonpSerializable {
 	@Nullable
 	private final String description;
@@ -63,19 +66,19 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	private final List<String> aliases;
 
 	@Nullable
-	private final Number aliasesVersion;
+	private final Long aliasesVersion;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
-	private final Number mappingVersion;
+	private final Long mappingVersion;
 
 	@Nullable
-	private final Number settingsVersion;
+	private final Long settingsVersion;
 
 	@Nullable
-	private final Number routingNumShards;
+	private final Long routingNumShards;
 
 	@Nullable
 	private final String state;
@@ -87,7 +90,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	private final Map<String, List<String>> inSyncAllocations;
 
 	@Nullable
-	private final Map<String, Number> primaryTerms;
+	private final Map<String, Integer> primaryTerms;
 
 	@Nullable
 	private final Map<String, TypeMapping> mappings;
@@ -161,7 +164,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	 * API name: {@code aliases_version}
 	 */
 	@Nullable
-	public Number aliasesVersion() {
+	public Long aliasesVersion() {
 		return this.aliasesVersion;
 	}
 
@@ -169,7 +172,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -177,7 +180,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	 * API name: {@code mapping_version}
 	 */
 	@Nullable
-	public Number mappingVersion() {
+	public Long mappingVersion() {
 		return this.mappingVersion;
 	}
 
@@ -185,7 +188,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	 * API name: {@code settings_version}
 	 */
 	@Nullable
-	public Number settingsVersion() {
+	public Long settingsVersion() {
 		return this.settingsVersion;
 	}
 
@@ -193,7 +196,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	 * API name: {@code routing_num_shards}
 	 */
 	@Nullable
-	public Number routingNumShards() {
+	public Long routingNumShards() {
 		return this.routingNumShards;
 	}
 
@@ -225,7 +228,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	 * API name: {@code primary_terms}
 	 */
 	@Nullable
-	public Map<String, Number> primaryTerms() {
+	public Map<String, Integer> primaryTerms() {
 		return this.primaryTerms;
 	}
 
@@ -309,31 +312,31 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		if (this.aliasesVersion != null) {
 
 			generator.writeKey("aliases_version");
-			generator.write(this.aliasesVersion.doubleValue());
+			generator.write(this.aliasesVersion);
 
 		}
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.mappingVersion != null) {
 
 			generator.writeKey("mapping_version");
-			generator.write(this.mappingVersion.doubleValue());
+			generator.write(this.mappingVersion);
 
 		}
 		if (this.settingsVersion != null) {
 
 			generator.writeKey("settings_version");
-			generator.write(this.settingsVersion.doubleValue());
+			generator.write(this.settingsVersion);
 
 		}
 		if (this.routingNumShards != null) {
 
 			generator.writeKey("routing_num_shards");
-			generator.write(this.routingNumShards.doubleValue());
+			generator.write(this.routingNumShards);
 
 		}
 		if (this.state != null) {
@@ -375,9 +378,9 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 
 			generator.writeKey("primary_terms");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.primaryTerms.entrySet()) {
+			for (Map.Entry<String, Integer> item0 : this.primaryTerms.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -447,19 +450,19 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		private List<String> aliases;
 
 		@Nullable
-		private Number aliasesVersion;
+		private Long aliasesVersion;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
-		private Number mappingVersion;
+		private Long mappingVersion;
 
 		@Nullable
-		private Number settingsVersion;
+		private Long settingsVersion;
 
 		@Nullable
-		private Number routingNumShards;
+		private Long routingNumShards;
 
 		@Nullable
 		private String state;
@@ -471,7 +474,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		private Map<String, List<String>> inSyncAllocations;
 
 		@Nullable
-		private Map<String, Number> primaryTerms;
+		private Map<String, Integer> primaryTerms;
 
 		@Nullable
 		private Map<String, TypeMapping> mappings;
@@ -558,7 +561,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code aliases_version}
 		 */
-		public Builder aliasesVersion(@Nullable Number value) {
+		public Builder aliasesVersion(@Nullable Long value) {
 			this.aliasesVersion = value;
 			return this;
 		}
@@ -566,7 +569,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -574,7 +577,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code mapping_version}
 		 */
-		public Builder mappingVersion(@Nullable Number value) {
+		public Builder mappingVersion(@Nullable Long value) {
 			this.mappingVersion = value;
 			return this;
 		}
@@ -582,7 +585,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code settings_version}
 		 */
-		public Builder settingsVersion(@Nullable Number value) {
+		public Builder settingsVersion(@Nullable Long value) {
 			this.settingsVersion = value;
 			return this;
 		}
@@ -590,7 +593,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code routing_num_shards}
 		 */
-		public Builder routingNumShards(@Nullable Number value) {
+		public Builder routingNumShards(@Nullable Long value) {
 			this.routingNumShards = value;
 			return this;
 		}
@@ -659,7 +662,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code primary_terms}
 		 */
-		public Builder primaryTerms(@Nullable Map<String, Number> value) {
+		public Builder primaryTerms(@Nullable Map<String, Integer> value) {
 			this.primaryTerms = value;
 			return this;
 		}
@@ -667,7 +670,7 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #primaryTerms(Map)}, creating the map if needed.
 		 */
-		public Builder putPrimaryTerms(String key, Number value) {
+		public Builder putPrimaryTerms(String key, Integer value) {
 			if (this.primaryTerms == null) {
 				this.primaryTerms = new HashMap<>();
 			}
@@ -787,8 +790,8 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateBlockIndex}
 	 */
-	public static final JsonpDeserializer<ClusterStateBlockIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateBlockIndex::setupClusterStateBlockIndexDeserializer);
+	public static final JsonpDeserializer<ClusterStateBlockIndex> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateBlockIndex::setupClusterStateBlockIndexDeserializer, Builder::build);
 
 	protected static void setupClusterStateBlockIndexDeserializer(
 			DelegatingDeserializer<ClusterStateBlockIndex.Builder> op) {
@@ -798,23 +801,23 @@ public final class ClusterStateBlockIndex implements JsonpSerializable {
 		op.add(Builder::levels, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "levels");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"aliases");
-		op.add(Builder::aliasesVersion, JsonpDeserializer.numberDeserializer(), "aliases_version");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::mappingVersion, JsonpDeserializer.numberDeserializer(), "mapping_version");
-		op.add(Builder::settingsVersion, JsonpDeserializer.numberDeserializer(), "settings_version");
-		op.add(Builder::routingNumShards, JsonpDeserializer.numberDeserializer(), "routing_num_shards");
+		op.add(Builder::aliasesVersion, JsonpDeserializer.longDeserializer(), "aliases_version");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::mappingVersion, JsonpDeserializer.longDeserializer(), "mapping_version");
+		op.add(Builder::settingsVersion, JsonpDeserializer.longDeserializer(), "settings_version");
+		op.add(Builder::routingNumShards, JsonpDeserializer.longDeserializer(), "routing_num_shards");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings.DESERIALIZER), "settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(IndexSettings._DESERIALIZER), "settings");
 		op.add(Builder::inSyncAllocations,
 				JsonpDeserializer.stringMapDeserializer(
 						JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
 				"in_sync_allocations");
-		op.add(Builder::primaryTerms, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::primaryTerms, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"primary_terms");
-		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(TypeMapping.DESERIALIZER), "mappings");
-		op.add(Builder::rolloverInfo, JsonpDeserializer.stringMapDeserializer(RolloverConditions.DESERIALIZER),
+		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(TypeMapping._DESERIALIZER), "mappings");
+		op.add(Builder::rolloverInfo, JsonpDeserializer.stringMapDeserializer(RolloverConditions._DESERIALIZER),
 				"rollover_info");
-		op.add(Builder::timestampRange, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+		op.add(Builder::timestampRange, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"timestamp_range");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 

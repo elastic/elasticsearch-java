@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.elasticsearch.migration.deprecations.Deprecation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Response
+@JsonpDeserializable
 public final class DeprecationsResponse implements JsonpSerializable {
 	private final List<Deprecation> clusterSettings;
 
@@ -314,19 +316,19 @@ public final class DeprecationsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DeprecationsResponse}
 	 */
-	public static final JsonpDeserializer<DeprecationsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeprecationsResponse::setupDeprecationsResponseDeserializer);
+	public static final JsonpDeserializer<DeprecationsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeprecationsResponse::setupDeprecationsResponseDeserializer, Builder::build);
 
 	protected static void setupDeprecationsResponseDeserializer(
 			DelegatingDeserializer<DeprecationsResponse.Builder> op) {
 
-		op.add(Builder::clusterSettings, JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER),
+		op.add(Builder::clusterSettings, JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER),
 				"cluster_settings");
 		op.add(Builder::indexSettings,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER)),
 				"index_settings");
-		op.add(Builder::nodeSettings, JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER), "node_settings");
-		op.add(Builder::mlSettings, JsonpDeserializer.arrayDeserializer(Deprecation.DESERIALIZER), "ml_settings");
+		op.add(Builder::nodeSettings, JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER), "node_settings");
+		op.add(Builder::mlSettings, JsonpDeserializer.arrayDeserializer(Deprecation._DESERIALIZER), "ml_settings");
 
 	}
 

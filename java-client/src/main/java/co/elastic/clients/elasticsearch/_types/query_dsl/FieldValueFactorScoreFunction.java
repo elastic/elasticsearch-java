@@ -24,26 +24,28 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
-public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
+@JsonpDeserializable
+public final class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	private final String field;
 
 	@Nullable
-	private final Number factor;
+	private final Double factor;
 
 	@Nullable
-	private final Number missing;
+	private final Double missing;
 
 	@Nullable
 	private final FieldValueFactorModifier modifier;
@@ -61,6 +63,14 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	}
 
 	/**
+	 * {@link FunctionScore} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "field_value_factor";
+	}
+
+	/**
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -71,7 +81,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	 * API name: {@code factor}
 	 */
 	@Nullable
-	public Number factor() {
+	public Double factor() {
 		return this.factor;
 	}
 
@@ -79,7 +89,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Number missing() {
+	public Double missing() {
 		return this.missing;
 	}
 
@@ -101,13 +111,13 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		if (this.factor != null) {
 
 			generator.writeKey("factor");
-			generator.write(this.factor.doubleValue());
+			generator.write(this.factor);
 
 		}
 		if (this.missing != null) {
 
 			generator.writeKey("missing");
-			generator.write(this.missing.doubleValue());
+			generator.write(this.missing);
 
 		}
 		if (this.modifier != null) {
@@ -129,10 +139,10 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		private String field;
 
 		@Nullable
-		private Number factor;
+		private Double factor;
 
 		@Nullable
-		private Number missing;
+		private Double missing;
 
 		@Nullable
 		private FieldValueFactorModifier modifier;
@@ -148,7 +158,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		/**
 		 * API name: {@code factor}
 		 */
-		public Builder factor(@Nullable Number value) {
+		public Builder factor(@Nullable Double value) {
 			this.factor = value;
 			return this;
 		}
@@ -156,7 +166,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable Number value) {
+		public Builder missing(@Nullable Double value) {
 			this.missing = value;
 			return this;
 		}
@@ -191,17 +201,17 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase {
 	/**
 	 * Json deserializer for {@link FieldValueFactorScoreFunction}
 	 */
-	public static final JsonpDeserializer<FieldValueFactorScoreFunction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer);
+	public static final JsonpDeserializer<FieldValueFactorScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, FieldValueFactorScoreFunction::setupFieldValueFactorScoreFunctionDeserializer,
+			Builder::build);
 
 	protected static void setupFieldValueFactorScoreFunctionDeserializer(
 			DelegatingDeserializer<FieldValueFactorScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::factor, JsonpDeserializer.numberDeserializer(), "factor");
-		op.add(Builder::missing, JsonpDeserializer.numberDeserializer(), "missing");
-		op.add(Builder::modifier, FieldValueFactorModifier.DESERIALIZER, "modifier");
+		op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");
+		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
+		op.add(Builder::modifier, FieldValueFactorModifier._DESERIALIZER, "modifier");
 
 	}
 

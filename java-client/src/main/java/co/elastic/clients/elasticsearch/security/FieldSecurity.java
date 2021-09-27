@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
+@JsonpDeserializable
 public final class FieldSecurity implements JsonpSerializable {
 	@Nullable
 	private final List<String> except;
@@ -184,8 +186,8 @@ public final class FieldSecurity implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldSecurity}
 	 */
-	public static final JsonpDeserializer<FieldSecurity> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldSecurity::setupFieldSecurityDeserializer);
+	public static final JsonpDeserializer<FieldSecurity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldSecurity::setupFieldSecurityDeserializer, Builder::build);
 
 	protected static void setupFieldSecurityDeserializer(DelegatingDeserializer<FieldSecurity.Builder> op) {
 

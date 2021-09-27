@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsAnyOf
-public final class IntervalsAnyOf implements Intervals, JsonpSerializable {
+@JsonpDeserializable
+public final class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	private final List<Intervals> intervals;
 
 	@Nullable
@@ -56,10 +57,10 @@ public final class IntervalsAnyOf implements Intervals, JsonpSerializable {
 	}
 
 	/**
-	 * {@link Intervals} variant type
+	 * {@link IntervalsQuery}, {@link Intervals} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "any_of";
 	}
 
@@ -88,7 +89,6 @@ public final class IntervalsAnyOf implements Intervals, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("intervals");
 		generator.writeStartArray();
@@ -104,8 +104,6 @@ public final class IntervalsAnyOf implements Intervals, JsonpSerializable {
 			this.filter.serialize(generator, mapper);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -190,14 +188,16 @@ public final class IntervalsAnyOf implements Intervals, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<IntervalsAnyOf.Builder, IntervalsAnyOf.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(IntervalsAnyOf::setupIntervalsAnyOfDeserializer);
+	/**
+	 * Json deserializer for {@link IntervalsAnyOf}
+	 */
+	public static final JsonpDeserializer<IntervalsAnyOf> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IntervalsAnyOf::setupIntervalsAnyOfDeserializer, Builder::build);
 
 	protected static void setupIntervalsAnyOfDeserializer(DelegatingDeserializer<IntervalsAnyOf.Builder> op) {
 
-		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals.DESERIALIZER), "intervals");
-		op.add(Builder::filter, IntervalsFilter.DESERIALIZER, "filter");
+		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals._DESERIALIZER), "intervals");
+		op.add(Builder::filter, IntervalsFilter._DESERIALIZER, "filter");
 
 	}
 

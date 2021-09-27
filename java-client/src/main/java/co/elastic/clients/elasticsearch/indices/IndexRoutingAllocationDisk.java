@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationDisk
+@JsonpDeserializable
 public final class IndexRoutingAllocationDisk implements JsonpSerializable {
-	private final String thresholdEnabled;
+	private final Boolean thresholdEnabled;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 	/**
 	 * API name: {@code threshold_enabled}
 	 */
-	public String thresholdEnabled() {
+	public Boolean thresholdEnabled() {
 		return this.thresholdEnabled;
 	}
 
@@ -76,12 +78,12 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 	 * Builder for {@link IndexRoutingAllocationDisk}.
 	 */
 	public static class Builder implements ObjectBuilder<IndexRoutingAllocationDisk> {
-		private String thresholdEnabled;
+		private Boolean thresholdEnabled;
 
 		/**
 		 * API name: {@code threshold_enabled}
 		 */
-		public Builder thresholdEnabled(String value) {
+		public Builder thresholdEnabled(Boolean value) {
 			this.thresholdEnabled = value;
 			return this;
 		}
@@ -103,13 +105,13 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexRoutingAllocationDisk}
 	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationDisk> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer);
+	public static final JsonpDeserializer<IndexRoutingAllocationDisk> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, IndexRoutingAllocationDisk::setupIndexRoutingAllocationDiskDeserializer, Builder::build);
 
 	protected static void setupIndexRoutingAllocationDiskDeserializer(
 			DelegatingDeserializer<IndexRoutingAllocationDisk.Builder> op) {
 
-		op.add(Builder::thresholdEnabled, JsonpDeserializer.stringDeserializer(), "threshold_enabled");
+		op.add(Builder::thresholdEnabled, JsonpDeserializer.booleanDeserializer(), "threshold_enabled");
 
 	}
 

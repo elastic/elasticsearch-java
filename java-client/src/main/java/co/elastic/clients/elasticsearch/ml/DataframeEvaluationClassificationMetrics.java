@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetrics
+@JsonpDeserializable
 public final class DataframeEvaluationClassificationMetrics extends DataframeEvaluationMetrics {
 	@Nullable
 	private final Map<String, JsonData> accuracy;
@@ -183,15 +185,16 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 	/**
 	 * Json deserializer for {@link DataframeEvaluationClassificationMetrics}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationClassificationMetrics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationClassificationMetrics::setupDataframeEvaluationClassificationMetricsDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationClassificationMetrics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationClassificationMetrics::setupDataframeEvaluationClassificationMetricsDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationClassificationMetricsDeserializer(
 			DelegatingDeserializer<DataframeEvaluationClassificationMetrics.Builder> op) {
 		DataframeEvaluationMetrics.setupDataframeEvaluationMetricsDeserializer(op);
-		op.add(Builder::accuracy, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "accuracy");
-		op.add(Builder::multiclassConfusionMatrix, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+		op.add(Builder::accuracy, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "accuracy");
+		op.add(Builder::multiclassConfusionMatrix, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"multiclass_confusion_matrix");
 
 	}

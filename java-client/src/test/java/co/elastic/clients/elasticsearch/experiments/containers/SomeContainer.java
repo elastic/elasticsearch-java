@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.experiments.containers;
 
-import co.elastic.clients.elasticsearch.experiments.containers.subpackage.VariantA;
-import co.elastic.clients.elasticsearch.experiments.containers.subpackage.VariantB;
+import co.elastic.clients.elasticsearch.experiments.containers.container_members.VariantA;
+import co.elastic.clients.elasticsearch.experiments.containers.container_members.VariantB;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;

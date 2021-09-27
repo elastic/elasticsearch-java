@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,17 +33,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesFile
+@JsonpDeserializable
 public final class SecurityRolesFile implements JsonpSerializable {
 	private final Boolean dls;
 
 	private final Boolean fls;
 
-	private final Number size;
+	private final Long size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +73,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 	/**
 	 * API name: {@code size}
 	 */
-	public Number size() {
+	public Long size() {
 		return this.size;
 	}
 
@@ -93,7 +95,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 		generator.write(this.fls);
 
 		generator.writeKey("size");
-		generator.write(this.size.doubleValue());
+		generator.write(this.size);
 
 	}
 
@@ -107,7 +109,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 
 		private Boolean fls;
 
-		private Number size;
+		private Long size;
 
 		/**
 		 * API name: {@code dls}
@@ -128,7 +130,7 @@ public final class SecurityRolesFile implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Number value) {
+		public Builder size(Long value) {
 			this.size = value;
 			return this;
 		}
@@ -150,14 +152,14 @@ public final class SecurityRolesFile implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SecurityRolesFile}
 	 */
-	public static final JsonpDeserializer<SecurityRolesFile> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SecurityRolesFile::setupSecurityRolesFileDeserializer);
+	public static final JsonpDeserializer<SecurityRolesFile> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SecurityRolesFile::setupSecurityRolesFileDeserializer, Builder::build);
 
 	protected static void setupSecurityRolesFileDeserializer(DelegatingDeserializer<SecurityRolesFile.Builder> op) {
 
 		op.add(Builder::dls, JsonpDeserializer.booleanDeserializer(), "dls");
 		op.add(Builder::fls, JsonpDeserializer.booleanDeserializer(), "fls");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 
 	}
 

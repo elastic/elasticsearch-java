@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,19 +32,20 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessor
+@JsonpDeserializable
 public final class ClusterProcessor implements JsonpSerializable {
-	private final Number count;
+	private final Long count;
 
-	private final Number current;
+	private final Long current;
 
-	private final Number failed;
+	private final Long failed;
 
-	private final Number timeInMillis;
+	private final Long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,28 +61,28 @@ public final class ClusterProcessor implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code current}
 	 */
-	public Number current() {
+	public Long current() {
 		return this.current;
 	}
 
 	/**
 	 * API name: {@code failed}
 	 */
-	public Number failed() {
+	public Long failed() {
 		return this.failed;
 	}
 
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Number timeInMillis() {
+	public Long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -96,16 +98,16 @@ public final class ClusterProcessor implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("current");
-		generator.write(this.current.doubleValue());
+		generator.write(this.current);
 
 		generator.writeKey("failed");
-		generator.write(this.failed.doubleValue());
+		generator.write(this.failed);
 
 		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis.doubleValue());
+		generator.write(this.timeInMillis);
 
 	}
 
@@ -115,18 +117,18 @@ public final class ClusterProcessor implements JsonpSerializable {
 	 * Builder for {@link ClusterProcessor}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterProcessor> {
-		private Number count;
+		private Long count;
 
-		private Number current;
+		private Long current;
 
-		private Number failed;
+		private Long failed;
 
-		private Number timeInMillis;
+		private Long timeInMillis;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -134,7 +136,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Number value) {
+		public Builder current(Long value) {
 			this.current = value;
 			return this;
 		}
@@ -142,7 +144,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code failed}
 		 */
-		public Builder failed(Number value) {
+		public Builder failed(Long value) {
 			this.failed = value;
 			return this;
 		}
@@ -150,7 +152,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Number value) {
+		public Builder timeInMillis(Long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -172,15 +174,15 @@ public final class ClusterProcessor implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterProcessor}
 	 */
-	public static final JsonpDeserializer<ClusterProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterProcessor::setupClusterProcessorDeserializer);
+	public static final JsonpDeserializer<ClusterProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterProcessor::setupClusterProcessorDeserializer, Builder::build);
 
 	protected static void setupClusterProcessorDeserializer(DelegatingDeserializer<ClusterProcessor.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
-		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
-		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
+		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}
 

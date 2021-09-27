@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.slm;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: slm.get_status.Request
+
 public final class GetStatusRequest extends RequestBase {
 	public GetStatusRequest() {
 	}
@@ -42,10 +44,7 @@ public final class GetStatusRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link GetStatusRequest}.
 	 */
-	public static final GetStatusRequest INSTANCE = new GetStatusRequest();
-
-	public static final JsonpDeserializer<GetStatusRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetStatusRequest.INSTANCE);
+	public static final GetStatusRequest _INSTANCE = new GetStatusRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class GetStatusRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetStatusResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetStatusResponse._DESERIALIZER);
 }

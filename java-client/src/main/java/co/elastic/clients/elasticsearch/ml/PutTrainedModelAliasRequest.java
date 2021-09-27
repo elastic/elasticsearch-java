@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model_alias.Request
+
 public final class PutTrainedModelAliasRequest extends RequestBase {
 	private final String modelAlias;
 
@@ -191,5 +193,5 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, PutTrainedModelAliasResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, PutTrainedModelAliasResponse._DESERIALIZER);
 }

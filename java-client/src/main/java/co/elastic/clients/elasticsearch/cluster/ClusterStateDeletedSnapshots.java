@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateDeletedSnapshots
+@JsonpDeserializable
 public final class ClusterStateDeletedSnapshots implements JsonpSerializable {
 	private final List<String> snapshotDeletions;
 
@@ -130,8 +132,8 @@ public final class ClusterStateDeletedSnapshots implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateDeletedSnapshots}
 	 */
-	public static final JsonpDeserializer<ClusterStateDeletedSnapshots> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateDeletedSnapshots::setupClusterStateDeletedSnapshotsDeserializer);
+	public static final JsonpDeserializer<ClusterStateDeletedSnapshots> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ClusterStateDeletedSnapshots::setupClusterStateDeletedSnapshotsDeserializer, Builder::build);
 
 	protected static void setupClusterStateDeletedSnapshotsDeserializer(
 			DelegatingDeserializer<ClusterStateDeletedSnapshots.Builder> op) {

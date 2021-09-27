@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceConfigContainer
+@JsonpDeserializable
 public final class InferenceConfig implements JsonpSerializable {
 	@Nullable
 	private final RegressionInferenceOptions regression;
@@ -167,13 +169,13 @@ public final class InferenceConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InferenceConfig}
 	 */
-	public static final JsonpDeserializer<InferenceConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InferenceConfig::setupInferenceConfigDeserializer);
+	public static final JsonpDeserializer<InferenceConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InferenceConfig::setupInferenceConfigDeserializer, Builder::build);
 
 	protected static void setupInferenceConfigDeserializer(DelegatingDeserializer<InferenceConfig.Builder> op) {
 
-		op.add(Builder::regression, RegressionInferenceOptions.DESERIALIZER, "regression");
-		op.add(Builder::classification, ClassificationInferenceOptions.DESERIALIZER, "classification");
+		op.add(Builder::regression, RegressionInferenceOptions._DESERIALIZER, "regression");
+		op.add(Builder::classification, ClassificationInferenceOptions._DESERIALIZER, "classification");
 
 	}
 

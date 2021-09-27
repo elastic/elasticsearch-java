@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.revert_model_snapshot.Request
+@JsonpDeserializable
 public final class RevertModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -163,8 +165,8 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Json deserializer for {@link RevertModelSnapshotRequest}
 	 */
-	public static final JsonpDeserializer<RevertModelSnapshotRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer);
+	public static final JsonpDeserializer<RevertModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RevertModelSnapshotRequest::setupRevertModelSnapshotRequestDeserializer, Builder::build);
 
 	protected static void setupRevertModelSnapshotRequestDeserializer(
 			DelegatingDeserializer<RevertModelSnapshotRequest.Builder> op) {
@@ -218,5 +220,5 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RevertModelSnapshotResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, RevertModelSnapshotResponse._DESERIALIZER);
 }

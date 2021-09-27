@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,9 +43,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CustomSettings
+@JsonpDeserializable
 public final class CustomSettings implements JsonpSerializable {
 	@Nullable
-	private final List<JsonValue> customUrls;
+	private final List<JsonValue /* xpack.usage.UrlConfig */> customUrls;
 
 	@Nullable
 	private final String createdBy;
@@ -66,7 +68,7 @@ public final class CustomSettings implements JsonpSerializable {
 	 * API name: {@code custom_urls}
 	 */
 	@Nullable
-	public List<JsonValue> customUrls() {
+	public List<JsonValue /* xpack.usage.UrlConfig */> customUrls() {
 		return this.customUrls;
 	}
 
@@ -101,7 +103,7 @@ public final class CustomSettings implements JsonpSerializable {
 
 			generator.writeKey("custom_urls");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.customUrls) {
+			for (JsonValue /* xpack.usage.UrlConfig */ item0 : this.customUrls) {
 				generator.write(item0);
 
 			}
@@ -136,7 +138,7 @@ public final class CustomSettings implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<CustomSettings> {
 		@Nullable
-		private List<JsonValue> customUrls;
+		private List<JsonValue /* xpack.usage.UrlConfig */> customUrls;
 
 		@Nullable
 		private String createdBy;
@@ -147,7 +149,7 @@ public final class CustomSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_urls}
 		 */
-		public Builder customUrls(@Nullable List<JsonValue> value) {
+		public Builder customUrls(@Nullable List<JsonValue /* xpack.usage.UrlConfig */> value) {
 			this.customUrls = value;
 			return this;
 		}
@@ -155,7 +157,7 @@ public final class CustomSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code custom_urls}
 		 */
-		public Builder customUrls(JsonValue... value) {
+		public Builder customUrls(JsonValue /* xpack.usage.UrlConfig */... value) {
 			this.customUrls = Arrays.asList(value);
 			return this;
 		}
@@ -163,7 +165,7 @@ public final class CustomSettings implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #customUrls(List)}, creating the list if needed.
 		 */
-		public Builder addCustomUrls(JsonValue value) {
+		public Builder addCustomUrls(JsonValue /* xpack.usage.UrlConfig */ value) {
 			if (this.customUrls == null) {
 				this.customUrls = new ArrayList<>();
 			}
@@ -215,8 +217,8 @@ public final class CustomSettings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CustomSettings}
 	 */
-	public static final JsonpDeserializer<CustomSettings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CustomSettings::setupCustomSettingsDeserializer);
+	public static final JsonpDeserializer<CustomSettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CustomSettings::setupCustomSettingsDeserializer, Builder::build);
 
 	protected static void setupCustomSettingsDeserializer(DelegatingDeserializer<CustomSettings.Builder> op) {
 

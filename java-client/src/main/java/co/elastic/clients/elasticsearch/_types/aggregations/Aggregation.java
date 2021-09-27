@@ -24,28 +24,30 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
-public class Aggregation extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String ADJACENCY_MATRIX = "adjacency_matrix";
-	public static final String AGGREGATIONS = "aggregations";
 	public static final String AUTO_DATE_HISTOGRAM = "auto_date_histogram";
 	public static final String AVG = "avg";
 	public static final String AVG_BUCKET = "avg_bucket";
@@ -58,6 +60,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	public static final String COMPOSITE = "composite";
 	public static final String CUMULATIVE_CARDINALITY = "cumulative_cardinality";
 	public static final String CUMULATIVE_SUM = "cumulative_sum";
+	public static final String DATE_HISTOGRAM = "date_histogram";
 	public static final String DATE_RANGE = "date_range";
 	public static final String DERIVATIVE = "derivative";
 	public static final String DIVERSIFIED_SAMPLER = "diversified_sampler";
@@ -70,7 +73,9 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	public static final String GEO_DISTANCE = "geo_distance";
 	public static final String GEOHASH_GRID = "geohash_grid";
 	public static final String GEO_LINE = "geo_line";
+	public static final String GEOTILE_GRID = "geotile_grid";
 	public static final String GLOBAL = "global";
+	public static final String HISTOGRAM = "histogram";
 	public static final String IP_RANGE = "ip_range";
 	public static final String INFERENCE = "inference";
 	public static final String MATRIX_STATS = "matrix_stats";
@@ -104,6 +109,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	public static final String STRING_STATS = "string_stats";
 	public static final String SUM = "sum";
 	public static final String SUM_BUCKET = "sum_bucket";
+	public static final String TERMS = "terms";
 	public static final String TOP_HITS = "top_hits";
 	public static final String T_TEST = "t_test";
 	public static final String TOP_METRICS = "top_metrics";
@@ -111,14 +117,42 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	public static final String WEIGHTED_AVG = "weighted_avg";
 	public static final String VARIABLE_WIDTH_HISTOGRAM = "variable_width_histogram";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
 	@Nullable
-	private final Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> aggs;
+	private final Map<String, Aggregation> aggs;
 
 	@Nullable
 	private final Map<String, JsonData> meta;
 
+	public Aggregation(AggregationVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+		this.aggs = null;
+		this.meta = null;
+
+	}
+
 	private Aggregation(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
 		this.aggs = builder.aggs;
 		this.meta = builder.meta;
 
@@ -128,7 +162,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 * API name: {@code aggs}
 	 */
 	@Nullable
-	public Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> aggs() {
+	public Map<String, Aggregation> aggs() {
 		return this.aggs;
 	}
 
@@ -148,17 +182,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public AdjacencyMatrixAggregation adjacencyMatrix() {
-		return _get(ADJACENCY_MATRIX);
-	}
-
-	/**
-	 * Get the {@code aggregations} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code aggregations} kind.
-	 */
-	public Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> aggregations() {
-		return _get(AGGREGATIONS);
+		return TaggedUnionUtils.get(this, ADJACENCY_MATRIX);
 	}
 
 	/**
@@ -169,7 +193,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public AutoDateHistogramAggregation autoDateHistogram() {
-		return _get(AUTO_DATE_HISTOGRAM);
+		return TaggedUnionUtils.get(this, AUTO_DATE_HISTOGRAM);
 	}
 
 	/**
@@ -179,7 +203,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code avg} kind.
 	 */
 	public AverageAggregation avg() {
-		return _get(AVG);
+		return TaggedUnionUtils.get(this, AVG);
 	}
 
 	/**
@@ -189,7 +213,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code avg_bucket} kind.
 	 */
 	public AverageBucketAggregation avgBucket() {
-		return _get(AVG_BUCKET);
+		return TaggedUnionUtils.get(this, AVG_BUCKET);
 	}
 
 	/**
@@ -199,7 +223,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code boxplot} kind.
 	 */
 	public BoxplotAggregation boxplot() {
-		return _get(BOXPLOT);
+		return TaggedUnionUtils.get(this, BOXPLOT);
 	}
 
 	/**
@@ -209,7 +233,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code bucket_script} kind.
 	 */
 	public BucketScriptAggregation bucketScript() {
-		return _get(BUCKET_SCRIPT);
+		return TaggedUnionUtils.get(this, BUCKET_SCRIPT);
 	}
 
 	/**
@@ -220,7 +244,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public BucketSelectorAggregation bucketSelector() {
-		return _get(BUCKET_SELECTOR);
+		return TaggedUnionUtils.get(this, BUCKET_SELECTOR);
 	}
 
 	/**
@@ -230,7 +254,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code bucket_sort} kind.
 	 */
 	public BucketSortAggregation bucketSort() {
-		return _get(BUCKET_SORT);
+		return TaggedUnionUtils.get(this, BUCKET_SORT);
 	}
 
 	/**
@@ -240,7 +264,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code cardinality} kind.
 	 */
 	public CardinalityAggregation cardinality() {
-		return _get(CARDINALITY);
+		return TaggedUnionUtils.get(this, CARDINALITY);
 	}
 
 	/**
@@ -250,7 +274,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code children} kind.
 	 */
 	public ChildrenAggregation children() {
-		return _get(CHILDREN);
+		return TaggedUnionUtils.get(this, CHILDREN);
 	}
 
 	/**
@@ -260,7 +284,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code composite} kind.
 	 */
 	public CompositeAggregation composite() {
-		return _get(COMPOSITE);
+		return TaggedUnionUtils.get(this, COMPOSITE);
 	}
 
 	/**
@@ -271,7 +295,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             {@code cumulative_cardinality} kind.
 	 */
 	public CumulativeCardinalityAggregation cumulativeCardinality() {
-		return _get(CUMULATIVE_CARDINALITY);
+		return TaggedUnionUtils.get(this, CUMULATIVE_CARDINALITY);
 	}
 
 	/**
@@ -281,7 +305,17 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code cumulative_sum} kind.
 	 */
 	public CumulativeSumAggregation cumulativeSum() {
-		return _get(CUMULATIVE_SUM);
+		return TaggedUnionUtils.get(this, CUMULATIVE_SUM);
+	}
+
+	/**
+	 * Get the {@code date_histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date_histogram} kind.
+	 */
+	public DateHistogramAggregation dateHistogram() {
+		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
 	}
 
 	/**
@@ -291,7 +325,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code date_range} kind.
 	 */
 	public DateRangeAggregation dateRange() {
-		return _get(DATE_RANGE);
+		return TaggedUnionUtils.get(this, DATE_RANGE);
 	}
 
 	/**
@@ -301,7 +335,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code derivative} kind.
 	 */
 	public DerivativeAggregation derivative() {
-		return _get(DERIVATIVE);
+		return TaggedUnionUtils.get(this, DERIVATIVE);
 	}
 
 	/**
@@ -312,7 +346,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public DiversifiedSamplerAggregation diversifiedSampler() {
-		return _get(DIVERSIFIED_SAMPLER);
+		return TaggedUnionUtils.get(this, DIVERSIFIED_SAMPLER);
 	}
 
 	/**
@@ -322,7 +356,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code extended_stats} kind.
 	 */
 	public ExtendedStatsAggregation extendedStats() {
-		return _get(EXTENDED_STATS);
+		return TaggedUnionUtils.get(this, EXTENDED_STATS);
 	}
 
 	/**
@@ -333,7 +367,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             {@code extended_stats_bucket} kind.
 	 */
 	public ExtendedStatsBucketAggregation extendedStatsBucket() {
-		return _get(EXTENDED_STATS_BUCKET);
+		return TaggedUnionUtils.get(this, EXTENDED_STATS_BUCKET);
 	}
 
 	/**
@@ -343,7 +377,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code filter} kind.
 	 */
 	public Query filter() {
-		return _get(FILTER);
+		return TaggedUnionUtils.get(this, FILTER);
 	}
 
 	/**
@@ -353,7 +387,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code filters} kind.
 	 */
 	public FiltersAggregation filters() {
-		return _get(FILTERS);
+		return TaggedUnionUtils.get(this, FILTERS);
 	}
 
 	/**
@@ -363,7 +397,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code geo_bounds} kind.
 	 */
 	public GeoBoundsAggregation geoBounds() {
-		return _get(GEO_BOUNDS);
+		return TaggedUnionUtils.get(this, GEO_BOUNDS);
 	}
 
 	/**
@@ -373,7 +407,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code geo_centroid} kind.
 	 */
 	public GeoCentroidAggregation geoCentroid() {
-		return _get(GEO_CENTROID);
+		return TaggedUnionUtils.get(this, GEO_CENTROID);
 	}
 
 	/**
@@ -383,7 +417,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code geo_distance} kind.
 	 */
 	public GeoDistanceAggregation geoDistance() {
-		return _get(GEO_DISTANCE);
+		return TaggedUnionUtils.get(this, GEO_DISTANCE);
 	}
 
 	/**
@@ -393,7 +427,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code geohash_grid} kind.
 	 */
 	public GeoHashGridAggregation geohashGrid() {
-		return _get(GEOHASH_GRID);
+		return TaggedUnionUtils.get(this, GEOHASH_GRID);
 	}
 
 	/**
@@ -403,7 +437,17 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code geo_line} kind.
 	 */
 	public GeoLineAggregation geoLine() {
-		return _get(GEO_LINE);
+		return TaggedUnionUtils.get(this, GEO_LINE);
+	}
+
+	/**
+	 * Get the {@code geotile_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geotile_grid} kind.
+	 */
+	public GeoTileGridAggregation geotileGrid() {
+		return TaggedUnionUtils.get(this, GEOTILE_GRID);
 	}
 
 	/**
@@ -413,7 +457,17 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code global} kind.
 	 */
 	public GlobalAggregation global() {
-		return _get(GLOBAL);
+		return TaggedUnionUtils.get(this, GLOBAL);
+	}
+
+	/**
+	 * Get the {@code histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code histogram} kind.
+	 */
+	public HistogramAggregation histogram() {
+		return TaggedUnionUtils.get(this, HISTOGRAM);
 	}
 
 	/**
@@ -423,7 +477,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code ip_range} kind.
 	 */
 	public IpRangeAggregation ipRange() {
-		return _get(IP_RANGE);
+		return TaggedUnionUtils.get(this, IP_RANGE);
 	}
 
 	/**
@@ -433,7 +487,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code inference} kind.
 	 */
 	public InferenceAggregation inference() {
-		return _get(INFERENCE);
+		return TaggedUnionUtils.get(this, INFERENCE);
 	}
 
 	/**
@@ -443,7 +497,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code matrix_stats} kind.
 	 */
 	public MatrixStatsAggregation matrixStats() {
-		return _get(MATRIX_STATS);
+		return TaggedUnionUtils.get(this, MATRIX_STATS);
 	}
 
 	/**
@@ -453,7 +507,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code max} kind.
 	 */
 	public MaxAggregation max() {
-		return _get(MAX);
+		return TaggedUnionUtils.get(this, MAX);
 	}
 
 	/**
@@ -463,7 +517,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code max_bucket} kind.
 	 */
 	public MaxBucketAggregation maxBucket() {
-		return _get(MAX_BUCKET);
+		return TaggedUnionUtils.get(this, MAX_BUCKET);
 	}
 
 	/**
@@ -474,7 +528,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             {@code median_absolute_deviation} kind.
 	 */
 	public MedianAbsoluteDeviationAggregation medianAbsoluteDeviation() {
-		return _get(MEDIAN_ABSOLUTE_DEVIATION);
+		return TaggedUnionUtils.get(this, MEDIAN_ABSOLUTE_DEVIATION);
 	}
 
 	/**
@@ -484,7 +538,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code min} kind.
 	 */
 	public MinAggregation min() {
-		return _get(MIN);
+		return TaggedUnionUtils.get(this, MIN);
 	}
 
 	/**
@@ -494,7 +548,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code min_bucket} kind.
 	 */
 	public MinBucketAggregation minBucket() {
-		return _get(MIN_BUCKET);
+		return TaggedUnionUtils.get(this, MIN_BUCKET);
 	}
 
 	/**
@@ -504,7 +558,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code missing} kind.
 	 */
 	public MissingAggregation missing() {
-		return _get(MISSING);
+		return TaggedUnionUtils.get(this, MISSING);
 	}
 
 	/**
@@ -514,7 +568,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code moving_avg} kind.
 	 */
 	public MovingAverageAggregation movingAvg() {
-		return _get(MOVING_AVG);
+		return TaggedUnionUtils.get(this, MOVING_AVG);
 	}
 
 	/**
@@ -525,7 +579,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public MovingPercentilesAggregation movingPercentiles() {
-		return _get(MOVING_PERCENTILES);
+		return TaggedUnionUtils.get(this, MOVING_PERCENTILES);
 	}
 
 	/**
@@ -535,7 +589,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code moving_fn} kind.
 	 */
 	public MovingFunctionAggregation movingFn() {
-		return _get(MOVING_FN);
+		return TaggedUnionUtils.get(this, MOVING_FN);
 	}
 
 	/**
@@ -545,7 +599,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code multi_terms} kind.
 	 */
 	public MultiTermsAggregation multiTerms() {
-		return _get(MULTI_TERMS);
+		return TaggedUnionUtils.get(this, MULTI_TERMS);
 	}
 
 	/**
@@ -555,7 +609,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code nested} kind.
 	 */
 	public NestedAggregation nested() {
-		return _get(NESTED);
+		return TaggedUnionUtils.get(this, NESTED);
 	}
 
 	/**
@@ -565,7 +619,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code normalize} kind.
 	 */
 	public NormalizeAggregation normalize() {
-		return _get(NORMALIZE);
+		return TaggedUnionUtils.get(this, NORMALIZE);
 	}
 
 	/**
@@ -575,7 +629,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code parent} kind.
 	 */
 	public ParentAggregation parent() {
-		return _get(PARENT);
+		return TaggedUnionUtils.get(this, PARENT);
 	}
 
 	/**
@@ -586,7 +640,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public PercentileRanksAggregation percentileRanks() {
-		return _get(PERCENTILE_RANKS);
+		return TaggedUnionUtils.get(this, PERCENTILE_RANKS);
 	}
 
 	/**
@@ -596,7 +650,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code percentiles} kind.
 	 */
 	public PercentilesAggregation percentiles() {
-		return _get(PERCENTILES);
+		return TaggedUnionUtils.get(this, PERCENTILES);
 	}
 
 	/**
@@ -607,7 +661,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public PercentilesBucketAggregation percentilesBucket() {
-		return _get(PERCENTILES_BUCKET);
+		return TaggedUnionUtils.get(this, PERCENTILES_BUCKET);
 	}
 
 	/**
@@ -617,7 +671,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code range} kind.
 	 */
 	public RangeAggregation range() {
-		return _get(RANGE);
+		return TaggedUnionUtils.get(this, RANGE);
 	}
 
 	/**
@@ -627,7 +681,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code rare_terms} kind.
 	 */
 	public RareTermsAggregation rareTerms() {
-		return _get(RARE_TERMS);
+		return TaggedUnionUtils.get(this, RARE_TERMS);
 	}
 
 	/**
@@ -637,7 +691,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code rate} kind.
 	 */
 	public RateAggregation rate() {
-		return _get(RATE);
+		return TaggedUnionUtils.get(this, RATE);
 	}
 
 	/**
@@ -647,7 +701,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code reverse_nested} kind.
 	 */
 	public ReverseNestedAggregation reverseNested() {
-		return _get(REVERSE_NESTED);
+		return TaggedUnionUtils.get(this, REVERSE_NESTED);
 	}
 
 	/**
@@ -657,7 +711,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code sampler} kind.
 	 */
 	public SamplerAggregation sampler() {
-		return _get(SAMPLER);
+		return TaggedUnionUtils.get(this, SAMPLER);
 	}
 
 	/**
@@ -668,7 +722,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public ScriptedMetricAggregation scriptedMetric() {
-		return _get(SCRIPTED_METRIC);
+		return TaggedUnionUtils.get(this, SCRIPTED_METRIC);
 	}
 
 	/**
@@ -678,7 +732,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code serial_diff} kind.
 	 */
 	public SerialDifferencingAggregation serialDiff() {
-		return _get(SERIAL_DIFF);
+		return TaggedUnionUtils.get(this, SERIAL_DIFF);
 	}
 
 	/**
@@ -689,7 +743,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public SignificantTermsAggregation significantTerms() {
-		return _get(SIGNIFICANT_TERMS);
+		return TaggedUnionUtils.get(this, SIGNIFICANT_TERMS);
 	}
 
 	/**
@@ -700,7 +754,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             kind.
 	 */
 	public SignificantTextAggregation significantText() {
-		return _get(SIGNIFICANT_TEXT);
+		return TaggedUnionUtils.get(this, SIGNIFICANT_TEXT);
 	}
 
 	/**
@@ -710,7 +764,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code stats} kind.
 	 */
 	public StatsAggregation stats() {
-		return _get(STATS);
+		return TaggedUnionUtils.get(this, STATS);
 	}
 
 	/**
@@ -720,7 +774,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code stats_bucket} kind.
 	 */
 	public StatsBucketAggregation statsBucket() {
-		return _get(STATS_BUCKET);
+		return TaggedUnionUtils.get(this, STATS_BUCKET);
 	}
 
 	/**
@@ -730,7 +784,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code string_stats} kind.
 	 */
 	public StringStatsAggregation stringStats() {
-		return _get(STRING_STATS);
+		return TaggedUnionUtils.get(this, STRING_STATS);
 	}
 
 	/**
@@ -740,7 +794,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code sum} kind.
 	 */
 	public SumAggregation sum() {
-		return _get(SUM);
+		return TaggedUnionUtils.get(this, SUM);
 	}
 
 	/**
@@ -750,7 +804,17 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code sum_bucket} kind.
 	 */
 	public SumBucketAggregation sumBucket() {
-		return _get(SUM_BUCKET);
+		return TaggedUnionUtils.get(this, SUM_BUCKET);
+	}
+
+	/**
+	 * Get the {@code terms} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code terms} kind.
+	 */
+	public TermsAggregation terms() {
+		return TaggedUnionUtils.get(this, TERMS);
 	}
 
 	/**
@@ -760,7 +824,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code top_hits} kind.
 	 */
 	public TopHitsAggregation topHits() {
-		return _get(TOP_HITS);
+		return TaggedUnionUtils.get(this, TOP_HITS);
 	}
 
 	/**
@@ -770,7 +834,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code t_test} kind.
 	 */
 	public TTestAggregation tTest() {
-		return _get(T_TEST);
+		return TaggedUnionUtils.get(this, T_TEST);
 	}
 
 	/**
@@ -780,7 +844,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code top_metrics} kind.
 	 */
 	public TopMetricsAggregation topMetrics() {
-		return _get(TOP_METRICS);
+		return TaggedUnionUtils.get(this, TOP_METRICS);
 	}
 
 	/**
@@ -790,7 +854,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code value_count} kind.
 	 */
 	public ValueCountAggregation valueCount() {
-		return _get(VALUE_COUNT);
+		return TaggedUnionUtils.get(this, VALUE_COUNT);
 	}
 
 	/**
@@ -800,7 +864,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             if the current variant is not of the {@code weighted_avg} kind.
 	 */
 	public WeightedAverageAggregation weightedAvg() {
-		return _get(WEIGHTED_AVG);
+		return TaggedUnionUtils.get(this, WEIGHTED_AVG);
 	}
 
 	/**
@@ -811,37 +875,19 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	 *             {@code variable_width_histogram} kind.
 	 */
 	public VariableWidthHistogramAggregation variableWidthHistogram() {
-		return _get(VARIABLE_WIDTH_HISTOGRAM);
+		return TaggedUnionUtils.get(this, VARIABLE_WIDTH_HISTOGRAM);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		generator.writeKey(_type);
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_type) {
-				case AGGREGATIONS :
-					generator.writeStartObject();
-					for (Map.Entry<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> item0 : this.<Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation>>_get(
-							AGGREGATIONS).entrySet()) {
-						generator.writeKey(item0.getKey());
-						item0.getValue().serialize(generator, mapper);
-
-					}
-					generator.writeEnd();
-
-					break;
-			}
-		}
 
 		if (this.aggs != null) {
 
 			generator.writeKey("aggs");
 			generator.writeStartObject();
-			for (Map.Entry<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> item0 : this.aggs
-					.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -862,14 +908,20 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 
 		}
 
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		}
+
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		@Nullable
-		private Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> aggs;
+		private Map<String, Aggregation> aggs;
 
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -877,8 +929,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		/**
 		 * API name: {@code aggs}
 		 */
-		public Builder aggs(
-				@Nullable Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> value) {
+		public Builder aggs(@Nullable Map<String, Aggregation> value) {
 			this.aggs = value;
 			return this;
 		}
@@ -886,7 +937,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key, co.elastic.clients.elasticsearch._types.aggregations.Aggregation value) {
+		public Builder putAggs(String key, Aggregation value) {
 			if (this.aggs == null) {
 				this.aggs = new HashMap<>();
 			}
@@ -897,19 +948,15 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		/**
 		 * Set {@link #aggs(Map)} to a singleton map.
 		 */
-		public Builder aggs(String key,
-				Function<co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.Aggregation>> fn) {
-			return this.aggs(Collections.singletonMap(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder()).build()));
+		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 		 */
-		public Builder putAggs(String key,
-				Function<co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.Aggregation>> fn) {
-			return this.putAggs(key,
-					fn.apply(new co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder()).build());
+		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -932,8 +979,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder adjacencyMatrix(AdjacencyMatrixAggregation v) {
-			this.$variant = v;
-			this.$tag = ADJACENCY_MATRIX;
+			this._type = ADJACENCY_MATRIX;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -942,16 +989,9 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			return this.adjacencyMatrix(f.apply(new AdjacencyMatrixAggregation.Builder()).build());
 		}
 
-		public ContainerBuilder aggregations(
-				Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> v) {
-			this.$variant = v;
-			this.$tag = AGGREGATIONS;
-			return new ContainerBuilder();
-		}
-
 		public ContainerBuilder autoDateHistogram(AutoDateHistogramAggregation v) {
-			this.$variant = v;
-			this.$tag = AUTO_DATE_HISTOGRAM;
+			this._type = AUTO_DATE_HISTOGRAM;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -961,8 +1001,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder avg(AverageAggregation v) {
-			this.$variant = v;
-			this.$tag = AVG;
+			this._type = AVG;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -971,8 +1011,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder avgBucket(AverageBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = AVG_BUCKET;
+			this._type = AVG_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -982,8 +1022,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder boxplot(BoxplotAggregation v) {
-			this.$variant = v;
-			this.$tag = BOXPLOT;
+			this._type = BOXPLOT;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -992,8 +1032,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder bucketScript(BucketScriptAggregation v) {
-			this.$variant = v;
-			this.$tag = BUCKET_SCRIPT;
+			this._type = BUCKET_SCRIPT;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1003,8 +1043,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder bucketSelector(BucketSelectorAggregation v) {
-			this.$variant = v;
-			this.$tag = BUCKET_SELECTOR;
+			this._type = BUCKET_SELECTOR;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1014,8 +1054,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder bucketSort(BucketSortAggregation v) {
-			this.$variant = v;
-			this.$tag = BUCKET_SORT;
+			this._type = BUCKET_SORT;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1025,8 +1065,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder cardinality(CardinalityAggregation v) {
-			this.$variant = v;
-			this.$tag = CARDINALITY;
+			this._type = CARDINALITY;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1036,8 +1076,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder children(ChildrenAggregation v) {
-			this.$variant = v;
-			this.$tag = CHILDREN;
+			this._type = CHILDREN;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1046,8 +1086,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder composite(CompositeAggregation v) {
-			this.$variant = v;
-			this.$tag = COMPOSITE;
+			this._type = COMPOSITE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1057,8 +1097,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder cumulativeCardinality(CumulativeCardinalityAggregation v) {
-			this.$variant = v;
-			this.$tag = CUMULATIVE_CARDINALITY;
+			this._type = CUMULATIVE_CARDINALITY;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1068,8 +1108,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder cumulativeSum(CumulativeSumAggregation v) {
-			this.$variant = v;
-			this.$tag = CUMULATIVE_SUM;
+			this._type = CUMULATIVE_SUM;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1078,9 +1118,20 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			return this.cumulativeSum(f.apply(new CumulativeSumAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder dateHistogram(DateHistogramAggregation v) {
+			this._type = DATE_HISTOGRAM;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder dateHistogram(
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
+			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder dateRange(DateRangeAggregation v) {
-			this.$variant = v;
-			this.$tag = DATE_RANGE;
+			this._type = DATE_RANGE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1090,8 +1141,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder derivative(DerivativeAggregation v) {
-			this.$variant = v;
-			this.$tag = DERIVATIVE;
+			this._type = DERIVATIVE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1101,8 +1152,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder diversifiedSampler(DiversifiedSamplerAggregation v) {
-			this.$variant = v;
-			this.$tag = DIVERSIFIED_SAMPLER;
+			this._type = DIVERSIFIED_SAMPLER;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1112,8 +1163,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder extendedStats(ExtendedStatsAggregation v) {
-			this.$variant = v;
-			this.$tag = EXTENDED_STATS;
+			this._type = EXTENDED_STATS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1123,8 +1174,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder extendedStatsBucket(ExtendedStatsBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = EXTENDED_STATS_BUCKET;
+			this._type = EXTENDED_STATS_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1134,8 +1185,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder filter(Query v) {
-			this.$variant = v;
-			this.$tag = FILTER;
+			this._type = FILTER;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1144,8 +1195,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder filters(FiltersAggregation v) {
-			this.$variant = v;
-			this.$tag = FILTERS;
+			this._type = FILTERS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1154,8 +1205,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder geoBounds(GeoBoundsAggregation v) {
-			this.$variant = v;
-			this.$tag = GEO_BOUNDS;
+			this._type = GEO_BOUNDS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1165,8 +1216,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder geoCentroid(GeoCentroidAggregation v) {
-			this.$variant = v;
-			this.$tag = GEO_CENTROID;
+			this._type = GEO_CENTROID;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1176,8 +1227,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder geoDistance(GeoDistanceAggregation v) {
-			this.$variant = v;
-			this.$tag = GEO_DISTANCE;
+			this._type = GEO_DISTANCE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1187,8 +1238,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder geohashGrid(GeoHashGridAggregation v) {
-			this.$variant = v;
-			this.$tag = GEOHASH_GRID;
+			this._type = GEOHASH_GRID;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1198,8 +1249,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder geoLine(GeoLineAggregation v) {
-			this.$variant = v;
-			this.$tag = GEO_LINE;
+			this._type = GEO_LINE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1207,9 +1258,20 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			return this.geoLine(f.apply(new GeoLineAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder geotileGrid(GeoTileGridAggregation v) {
+			this._type = GEOTILE_GRID;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder geotileGrid(
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
+			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder global(GlobalAggregation v) {
-			this.$variant = v;
-			this.$tag = GLOBAL;
+			this._type = GLOBAL;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1217,9 +1279,20 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			return this.global(f.apply(new GlobalAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder histogram(HistogramAggregation v) {
+			this._type = HISTOGRAM;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder histogram(
+				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
+			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder ipRange(IpRangeAggregation v) {
-			this.$variant = v;
-			this.$tag = IP_RANGE;
+			this._type = IP_RANGE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1228,8 +1301,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder inference(InferenceAggregation v) {
-			this.$variant = v;
-			this.$tag = INFERENCE;
+			this._type = INFERENCE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1239,8 +1312,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder matrixStats(MatrixStatsAggregation v) {
-			this.$variant = v;
-			this.$tag = MATRIX_STATS;
+			this._type = MATRIX_STATS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1250,8 +1323,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder max(MaxAggregation v) {
-			this.$variant = v;
-			this.$tag = MAX;
+			this._type = MAX;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1260,8 +1333,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder maxBucket(MaxBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = MAX_BUCKET;
+			this._type = MAX_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1271,8 +1344,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder medianAbsoluteDeviation(MedianAbsoluteDeviationAggregation v) {
-			this.$variant = v;
-			this.$tag = MEDIAN_ABSOLUTE_DEVIATION;
+			this._type = MEDIAN_ABSOLUTE_DEVIATION;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1282,8 +1355,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder min(MinAggregation v) {
-			this.$variant = v;
-			this.$tag = MIN;
+			this._type = MIN;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1292,8 +1365,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder minBucket(MinBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = MIN_BUCKET;
+			this._type = MIN_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1303,8 +1376,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder missing(MissingAggregation v) {
-			this.$variant = v;
-			this.$tag = MISSING;
+			this._type = MISSING;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1313,8 +1386,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder movingAvg(MovingAverageAggregation v) {
-			this.$variant = v;
-			this.$tag = MOVING_AVG;
+			this._type = MOVING_AVG;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1324,8 +1397,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder movingPercentiles(MovingPercentilesAggregation v) {
-			this.$variant = v;
-			this.$tag = MOVING_PERCENTILES;
+			this._type = MOVING_PERCENTILES;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1335,8 +1408,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder movingFn(MovingFunctionAggregation v) {
-			this.$variant = v;
-			this.$tag = MOVING_FN;
+			this._type = MOVING_FN;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1346,8 +1419,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder multiTerms(MultiTermsAggregation v) {
-			this.$variant = v;
-			this.$tag = MULTI_TERMS;
+			this._type = MULTI_TERMS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1357,8 +1430,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder nested(NestedAggregation v) {
-			this.$variant = v;
-			this.$tag = NESTED;
+			this._type = NESTED;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1367,8 +1440,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder normalize(NormalizeAggregation v) {
-			this.$variant = v;
-			this.$tag = NORMALIZE;
+			this._type = NORMALIZE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1378,8 +1451,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder parent(ParentAggregation v) {
-			this.$variant = v;
-			this.$tag = PARENT;
+			this._type = PARENT;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1388,8 +1461,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder percentileRanks(PercentileRanksAggregation v) {
-			this.$variant = v;
-			this.$tag = PERCENTILE_RANKS;
+			this._type = PERCENTILE_RANKS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1399,8 +1472,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder percentiles(PercentilesAggregation v) {
-			this.$variant = v;
-			this.$tag = PERCENTILES;
+			this._type = PERCENTILES;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1410,8 +1483,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder percentilesBucket(PercentilesBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = PERCENTILES_BUCKET;
+			this._type = PERCENTILES_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1421,8 +1494,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder range(RangeAggregation v) {
-			this.$variant = v;
-			this.$tag = RANGE;
+			this._type = RANGE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1431,8 +1504,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder rareTerms(RareTermsAggregation v) {
-			this.$variant = v;
-			this.$tag = RARE_TERMS;
+			this._type = RARE_TERMS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1442,8 +1515,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder rate(RateAggregation v) {
-			this.$variant = v;
-			this.$tag = RATE;
+			this._type = RATE;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1452,8 +1525,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder reverseNested(ReverseNestedAggregation v) {
-			this.$variant = v;
-			this.$tag = REVERSE_NESTED;
+			this._type = REVERSE_NESTED;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1463,8 +1536,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder sampler(SamplerAggregation v) {
-			this.$variant = v;
-			this.$tag = SAMPLER;
+			this._type = SAMPLER;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1473,8 +1546,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder scriptedMetric(ScriptedMetricAggregation v) {
-			this.$variant = v;
-			this.$tag = SCRIPTED_METRIC;
+			this._type = SCRIPTED_METRIC;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1484,8 +1557,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder serialDiff(SerialDifferencingAggregation v) {
-			this.$variant = v;
-			this.$tag = SERIAL_DIFF;
+			this._type = SERIAL_DIFF;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1495,8 +1568,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder significantTerms(SignificantTermsAggregation v) {
-			this.$variant = v;
-			this.$tag = SIGNIFICANT_TERMS;
+			this._type = SIGNIFICANT_TERMS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1506,8 +1579,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder significantText(SignificantTextAggregation v) {
-			this.$variant = v;
-			this.$tag = SIGNIFICANT_TEXT;
+			this._type = SIGNIFICANT_TEXT;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1517,8 +1590,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder stats(StatsAggregation v) {
-			this.$variant = v;
-			this.$tag = STATS;
+			this._type = STATS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1527,8 +1600,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder statsBucket(StatsBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = STATS_BUCKET;
+			this._type = STATS_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1538,8 +1611,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder stringStats(StringStatsAggregation v) {
-			this.$variant = v;
-			this.$tag = STRING_STATS;
+			this._type = STRING_STATS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1549,8 +1622,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder sum(SumAggregation v) {
-			this.$variant = v;
-			this.$tag = SUM;
+			this._type = SUM;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1559,8 +1632,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder sumBucket(SumBucketAggregation v) {
-			this.$variant = v;
-			this.$tag = SUM_BUCKET;
+			this._type = SUM_BUCKET;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1569,9 +1642,19 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			return this.sumBucket(f.apply(new SumBucketAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder terms(TermsAggregation v) {
+			this._type = TERMS;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
+			return this.terms(f.apply(new TermsAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder topHits(TopHitsAggregation v) {
-			this.$variant = v;
-			this.$tag = TOP_HITS;
+			this._type = TOP_HITS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1580,8 +1663,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder tTest(TTestAggregation v) {
-			this.$variant = v;
-			this.$tag = T_TEST;
+			this._type = T_TEST;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1590,8 +1673,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder topMetrics(TopMetricsAggregation v) {
-			this.$variant = v;
-			this.$tag = TOP_METRICS;
+			this._type = TOP_METRICS;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1601,8 +1684,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder valueCount(ValueCountAggregation v) {
-			this.$variant = v;
-			this.$tag = VALUE_COUNT;
+			this._type = VALUE_COUNT;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1612,8 +1695,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder weightedAvg(WeightedAverageAggregation v) {
-			this.$variant = v;
-			this.$tag = WEIGHTED_AVG;
+			this._type = WEIGHTED_AVG;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1623,8 +1706,8 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 		}
 
 		public ContainerBuilder variableWidthHistogram(VariableWidthHistogramAggregation v) {
-			this.$variant = v;
-			this.$tag = VARIABLE_WIDTH_HISTOGRAM;
+			this._type = VARIABLE_WIDTH_HISTOGRAM;
+			this._value = v;
 			return new ContainerBuilder();
 		}
 
@@ -1642,8 +1725,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			/**
 			 * API name: {@code aggs}
 			 */
-			public ContainerBuilder aggs(
-					@Nullable Map<String, co.elastic.clients.elasticsearch._types.aggregations.Aggregation> value) {
+			public ContainerBuilder aggs(@Nullable Map<String, Aggregation> value) {
 				Builder.this.aggs = value;
 				return this;
 			}
@@ -1651,8 +1733,7 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			/**
 			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 			 */
-			public ContainerBuilder putAggs(String key,
-					co.elastic.clients.elasticsearch._types.aggregations.Aggregation value) {
+			public ContainerBuilder putAggs(String key, Aggregation value) {
 				if (Builder.this.aggs == null) {
 					Builder.this.aggs = new HashMap<>();
 				}
@@ -1663,20 +1744,15 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 			/**
 			 * Set {@link #aggs(Map)} to a singleton map.
 			 */
-			public ContainerBuilder aggs(String key,
-					Function<co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.Aggregation>> fn) {
-				return this.aggs(Collections.singletonMap(key,
-						fn.apply(new co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder())
-								.build()));
+			public ContainerBuilder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+				return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 			}
 
 			/**
 			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
 			 */
-			public ContainerBuilder putAggs(String key,
-					Function<co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._types.aggregations.Aggregation>> fn) {
-				return this.putAggs(key, fn
-						.apply(new co.elastic.clients.elasticsearch._types.aggregations.Aggregation.Builder()).build());
+			public ContainerBuilder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+				return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
 			}
 
 			/**
@@ -1705,85 +1781,84 @@ public class Aggregation extends TaggedUnion<Object> implements JsonpSerializabl
 	}
 
 	protected static void setupAggregationDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(
-				co.elastic.clients.elasticsearch._types.aggregations.Aggregation.DESERIALIZER), "aggs");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "meta");
-		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation.DESERIALIZER, "adjacency_matrix");
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(
-				co.elastic.clients.elasticsearch._types.aggregations.Aggregation.DESERIALIZER), "aggregations");
-		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation.DESERIALIZER, "auto_date_histogram");
-		op.add(Builder::avg, AverageAggregation.DESERIALIZER, "avg");
-		op.add(Builder::avgBucket, AverageBucketAggregation.DESERIALIZER, "avg_bucket");
-		op.add(Builder::boxplot, BoxplotAggregation.DESERIALIZER, "boxplot");
-		op.add(Builder::bucketScript, BucketScriptAggregation.DESERIALIZER, "bucket_script");
-		op.add(Builder::bucketSelector, BucketSelectorAggregation.DESERIALIZER, "bucket_selector");
-		op.add(Builder::bucketSort, BucketSortAggregation.DESERIALIZER, "bucket_sort");
-		op.add(Builder::cardinality, CardinalityAggregation.DESERIALIZER, "cardinality");
-		op.add(Builder::children, ChildrenAggregation.DESERIALIZER, "children");
-		op.add(Builder::composite, CompositeAggregation.DESERIALIZER, "composite");
-		op.add(Builder::cumulativeCardinality, CumulativeCardinalityAggregation.DESERIALIZER, "cumulative_cardinality");
-		op.add(Builder::cumulativeSum, CumulativeSumAggregation.DESERIALIZER, "cumulative_sum");
-		op.add(Builder::dateRange, DateRangeAggregation.DESERIALIZER, "date_range");
-		op.add(Builder::derivative, DerivativeAggregation.DESERIALIZER, "derivative");
-		op.add(Builder::diversifiedSampler, DiversifiedSamplerAggregation.DESERIALIZER, "diversified_sampler");
-		op.add(Builder::extendedStats, ExtendedStatsAggregation.DESERIALIZER, "extended_stats");
-		op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation.DESERIALIZER, "extended_stats_bucket");
-		op.add(Builder::filter, Query.DESERIALIZER, "filter");
-		op.add(Builder::filters, FiltersAggregation.DESERIALIZER, "filters");
-		op.add(Builder::geoBounds, GeoBoundsAggregation.DESERIALIZER, "geo_bounds");
-		op.add(Builder::geoCentroid, GeoCentroidAggregation.DESERIALIZER, "geo_centroid");
-		op.add(Builder::geoDistance, GeoDistanceAggregation.DESERIALIZER, "geo_distance");
-		op.add(Builder::geohashGrid, GeoHashGridAggregation.DESERIALIZER, "geohash_grid");
-		op.add(Builder::geoLine, GeoLineAggregation.DESERIALIZER, "geo_line");
-		op.add(Builder::global, GlobalAggregation.DESERIALIZER, "global");
-		op.add(Builder::ipRange, IpRangeAggregation.DESERIALIZER, "ip_range");
-		op.add(Builder::inference, InferenceAggregation.DESERIALIZER, "inference");
-		op.add(Builder::matrixStats, MatrixStatsAggregation.DESERIALIZER, "matrix_stats");
-		op.add(Builder::max, MaxAggregation.DESERIALIZER, "max");
-		op.add(Builder::maxBucket, MaxBucketAggregation.DESERIALIZER, "max_bucket");
-		op.add(Builder::medianAbsoluteDeviation, MedianAbsoluteDeviationAggregation.DESERIALIZER,
+
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
+		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation._DESERIALIZER, "adjacency_matrix");
+		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation._DESERIALIZER, "auto_date_histogram");
+		op.add(Builder::avg, AverageAggregation._DESERIALIZER, "avg");
+		op.add(Builder::avgBucket, AverageBucketAggregation._DESERIALIZER, "avg_bucket");
+		op.add(Builder::boxplot, BoxplotAggregation._DESERIALIZER, "boxplot");
+		op.add(Builder::bucketScript, BucketScriptAggregation._DESERIALIZER, "bucket_script");
+		op.add(Builder::bucketSelector, BucketSelectorAggregation._DESERIALIZER, "bucket_selector");
+		op.add(Builder::bucketSort, BucketSortAggregation._DESERIALIZER, "bucket_sort");
+		op.add(Builder::cardinality, CardinalityAggregation._DESERIALIZER, "cardinality");
+		op.add(Builder::children, ChildrenAggregation._DESERIALIZER, "children");
+		op.add(Builder::composite, CompositeAggregation._DESERIALIZER, "composite");
+		op.add(Builder::cumulativeCardinality, CumulativeCardinalityAggregation._DESERIALIZER,
+				"cumulative_cardinality");
+		op.add(Builder::cumulativeSum, CumulativeSumAggregation._DESERIALIZER, "cumulative_sum");
+		op.add(Builder::dateHistogram, DateHistogramAggregation._DESERIALIZER, "date_histogram");
+		op.add(Builder::dateRange, DateRangeAggregation._DESERIALIZER, "date_range");
+		op.add(Builder::derivative, DerivativeAggregation._DESERIALIZER, "derivative");
+		op.add(Builder::diversifiedSampler, DiversifiedSamplerAggregation._DESERIALIZER, "diversified_sampler");
+		op.add(Builder::extendedStats, ExtendedStatsAggregation._DESERIALIZER, "extended_stats");
+		op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation._DESERIALIZER, "extended_stats_bucket");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::filters, FiltersAggregation._DESERIALIZER, "filters");
+		op.add(Builder::geoBounds, GeoBoundsAggregation._DESERIALIZER, "geo_bounds");
+		op.add(Builder::geoCentroid, GeoCentroidAggregation._DESERIALIZER, "geo_centroid");
+		op.add(Builder::geoDistance, GeoDistanceAggregation._DESERIALIZER, "geo_distance");
+		op.add(Builder::geohashGrid, GeoHashGridAggregation._DESERIALIZER, "geohash_grid");
+		op.add(Builder::geoLine, GeoLineAggregation._DESERIALIZER, "geo_line");
+		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
+		op.add(Builder::global, GlobalAggregation._DESERIALIZER, "global");
+		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
+		op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");
+		op.add(Builder::inference, InferenceAggregation._DESERIALIZER, "inference");
+		op.add(Builder::matrixStats, MatrixStatsAggregation._DESERIALIZER, "matrix_stats");
+		op.add(Builder::max, MaxAggregation._DESERIALIZER, "max");
+		op.add(Builder::maxBucket, MaxBucketAggregation._DESERIALIZER, "max_bucket");
+		op.add(Builder::medianAbsoluteDeviation, MedianAbsoluteDeviationAggregation._DESERIALIZER,
 				"median_absolute_deviation");
-		op.add(Builder::min, MinAggregation.DESERIALIZER, "min");
-		op.add(Builder::minBucket, MinBucketAggregation.DESERIALIZER, "min_bucket");
-		op.add(Builder::missing, MissingAggregation.DESERIALIZER, "missing");
-		op.add(Builder::movingAvg, MovingAverageAggregation.DESERIALIZER, "moving_avg");
-		op.add(Builder::movingPercentiles, MovingPercentilesAggregation.DESERIALIZER, "moving_percentiles");
-		op.add(Builder::movingFn, MovingFunctionAggregation.DESERIALIZER, "moving_fn");
-		op.add(Builder::multiTerms, MultiTermsAggregation.DESERIALIZER, "multi_terms");
-		op.add(Builder::nested, NestedAggregation.DESERIALIZER, "nested");
-		op.add(Builder::normalize, NormalizeAggregation.DESERIALIZER, "normalize");
-		op.add(Builder::parent, ParentAggregation.DESERIALIZER, "parent");
-		op.add(Builder::percentileRanks, PercentileRanksAggregation.DESERIALIZER, "percentile_ranks");
-		op.add(Builder::percentiles, PercentilesAggregation.DESERIALIZER, "percentiles");
-		op.add(Builder::percentilesBucket, PercentilesBucketAggregation.DESERIALIZER, "percentiles_bucket");
-		op.add(Builder::range, RangeAggregation.DESERIALIZER, "range");
-		op.add(Builder::rareTerms, RareTermsAggregation.DESERIALIZER, "rare_terms");
-		op.add(Builder::rate, RateAggregation.DESERIALIZER, "rate");
-		op.add(Builder::reverseNested, ReverseNestedAggregation.DESERIALIZER, "reverse_nested");
-		op.add(Builder::sampler, SamplerAggregation.DESERIALIZER, "sampler");
-		op.add(Builder::scriptedMetric, ScriptedMetricAggregation.DESERIALIZER, "scripted_metric");
-		op.add(Builder::serialDiff, SerialDifferencingAggregation.DESERIALIZER, "serial_diff");
-		op.add(Builder::significantTerms, SignificantTermsAggregation.DESERIALIZER, "significant_terms");
-		op.add(Builder::significantText, SignificantTextAggregation.DESERIALIZER, "significant_text");
-		op.add(Builder::stats, StatsAggregation.DESERIALIZER, "stats");
-		op.add(Builder::statsBucket, StatsBucketAggregation.DESERIALIZER, "stats_bucket");
-		op.add(Builder::stringStats, StringStatsAggregation.DESERIALIZER, "string_stats");
-		op.add(Builder::sum, SumAggregation.DESERIALIZER, "sum");
-		op.add(Builder::sumBucket, SumBucketAggregation.DESERIALIZER, "sum_bucket");
-		op.add(Builder::topHits, TopHitsAggregation.DESERIALIZER, "top_hits");
-		op.add(Builder::tTest, TTestAggregation.DESERIALIZER, "t_test");
-		op.add(Builder::topMetrics, TopMetricsAggregation.DESERIALIZER, "top_metrics");
-		op.add(Builder::valueCount, ValueCountAggregation.DESERIALIZER, "value_count");
-		op.add(Builder::weightedAvg, WeightedAverageAggregation.DESERIALIZER, "weighted_avg");
-		op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation.DESERIALIZER,
+		op.add(Builder::min, MinAggregation._DESERIALIZER, "min");
+		op.add(Builder::minBucket, MinBucketAggregation._DESERIALIZER, "min_bucket");
+		op.add(Builder::missing, MissingAggregation._DESERIALIZER, "missing");
+		op.add(Builder::movingAvg, MovingAverageAggregation._DESERIALIZER, "moving_avg");
+		op.add(Builder::movingPercentiles, MovingPercentilesAggregation._DESERIALIZER, "moving_percentiles");
+		op.add(Builder::movingFn, MovingFunctionAggregation._DESERIALIZER, "moving_fn");
+		op.add(Builder::multiTerms, MultiTermsAggregation._DESERIALIZER, "multi_terms");
+		op.add(Builder::nested, NestedAggregation._DESERIALIZER, "nested");
+		op.add(Builder::normalize, NormalizeAggregation._DESERIALIZER, "normalize");
+		op.add(Builder::parent, ParentAggregation._DESERIALIZER, "parent");
+		op.add(Builder::percentileRanks, PercentileRanksAggregation._DESERIALIZER, "percentile_ranks");
+		op.add(Builder::percentiles, PercentilesAggregation._DESERIALIZER, "percentiles");
+		op.add(Builder::percentilesBucket, PercentilesBucketAggregation._DESERIALIZER, "percentiles_bucket");
+		op.add(Builder::range, RangeAggregation._DESERIALIZER, "range");
+		op.add(Builder::rareTerms, RareTermsAggregation._DESERIALIZER, "rare_terms");
+		op.add(Builder::rate, RateAggregation._DESERIALIZER, "rate");
+		op.add(Builder::reverseNested, ReverseNestedAggregation._DESERIALIZER, "reverse_nested");
+		op.add(Builder::sampler, SamplerAggregation._DESERIALIZER, "sampler");
+		op.add(Builder::scriptedMetric, ScriptedMetricAggregation._DESERIALIZER, "scripted_metric");
+		op.add(Builder::serialDiff, SerialDifferencingAggregation._DESERIALIZER, "serial_diff");
+		op.add(Builder::significantTerms, SignificantTermsAggregation._DESERIALIZER, "significant_terms");
+		op.add(Builder::significantText, SignificantTextAggregation._DESERIALIZER, "significant_text");
+		op.add(Builder::stats, StatsAggregation._DESERIALIZER, "stats");
+		op.add(Builder::statsBucket, StatsBucketAggregation._DESERIALIZER, "stats_bucket");
+		op.add(Builder::stringStats, StringStatsAggregation._DESERIALIZER, "string_stats");
+		op.add(Builder::sum, SumAggregation._DESERIALIZER, "sum");
+		op.add(Builder::sumBucket, SumBucketAggregation._DESERIALIZER, "sum_bucket");
+		op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
+		op.add(Builder::topHits, TopHitsAggregation._DESERIALIZER, "top_hits");
+		op.add(Builder::tTest, TTestAggregation._DESERIALIZER, "t_test");
+		op.add(Builder::topMetrics, TopMetricsAggregation._DESERIALIZER, "top_metrics");
+		op.add(Builder::valueCount, ValueCountAggregation._DESERIALIZER, "value_count");
+		op.add(Builder::weightedAvg, WeightedAverageAggregation._DESERIALIZER, "weighted_avg");
+		op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation._DESERIALIZER,
 				"variable_width_histogram");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<Aggregation> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Aggregation> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			Aggregation::setupAggregationDeserializer, Builder::build);
 }

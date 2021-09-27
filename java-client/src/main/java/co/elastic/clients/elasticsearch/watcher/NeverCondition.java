@@ -23,28 +23,28 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-public class NeverCondition implements Condition, JsonpSerializable {
+@JsonpDeserializable
+public class NeverCondition implements ConditionVariant, JsonpSerializable {
 
 	/**
 	 * {@link Condition} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "never";
 	}
 
 	public static final class Builder implements ObjectBuilder<NeverCondition> {
 		@Override
 		public NeverCondition build() {
-			return NeverCondition.INSTANCE;
+			return NeverCondition._INSTANCE;
 		}
 	}
 
@@ -52,24 +52,16 @@ public class NeverCondition implements Condition, JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject();
 		generator.writeEnd();
-		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link NeverCondition}.
+	 * Singleton instance for empty class {@link NeverCondition}.
 	 */
-	public static final NeverCondition INSTANCE = new NeverCondition();
+	public static final NeverCondition _INSTANCE = new NeverCondition();
 
-	public static final JsonpDeserializer<NeverCondition> DESERIALIZER = JsonpDeserializer
-			.emptyObject(NeverCondition.INSTANCE);
-
-	public static final InstanceDeserializer<NeverCondition.Builder, NeverCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(b -> {
-			});
+	public static final JsonpDeserializer<NeverCondition> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(NeverCondition._INSTANCE);
 
 }

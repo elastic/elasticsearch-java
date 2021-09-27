@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocateReplicaAction
+@JsonpDeserializable
 public final class CommandAllocateReplicaAction implements JsonpSerializable {
 	private final String index;
 
-	private final Number shard;
+	private final Integer shard;
 
 	private final String node;
 
@@ -64,7 +66,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
@@ -90,7 +92,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		generator.write(this.index);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -105,7 +107,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<CommandAllocateReplicaAction> {
 		private String index;
 
-		private Number shard;
+		private Integer shard;
 
 		private String node;
 
@@ -120,7 +122,7 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -150,14 +152,14 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CommandAllocateReplicaAction}
 	 */
-	public static final JsonpDeserializer<CommandAllocateReplicaAction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CommandAllocateReplicaAction::setupCommandAllocateReplicaActionDeserializer);
+	public static final JsonpDeserializer<CommandAllocateReplicaAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, CommandAllocateReplicaAction::setupCommandAllocateReplicaActionDeserializer, Builder::build);
 
 	protected static void setupCommandAllocateReplicaActionDeserializer(
 			DelegatingDeserializer<CommandAllocateReplicaAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 
 	}

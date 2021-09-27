@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.close_job.Response
+@JsonpDeserializable
 public final class CloseJobResponse implements JsonpSerializable {
 	private final Boolean closed;
 
@@ -103,8 +105,8 @@ public final class CloseJobResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CloseJobResponse}
 	 */
-	public static final JsonpDeserializer<CloseJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloseJobResponse::setupCloseJobResponseDeserializer);
+	public static final JsonpDeserializer<CloseJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseJobResponse::setupCloseJobResponseDeserializer, Builder::build);
 
 	protected static void setupCloseJobResponseDeserializer(DelegatingDeserializer<CloseJobResponse.Builder> op) {
 

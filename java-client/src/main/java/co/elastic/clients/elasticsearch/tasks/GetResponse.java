@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.get.Response
+@JsonpDeserializable
 public final class GetResponse implements JsonpSerializable {
 	private final Boolean completed;
 
@@ -208,15 +210,15 @@ public final class GetResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetResponse}
 	 */
-	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
+	public static final JsonpDeserializer<GetResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
 		op.add(Builder::completed, JsonpDeserializer.booleanDeserializer(), "completed");
-		op.add(Builder::task, Info.DESERIALIZER, "task");
-		op.add(Builder::response, Status.DESERIALIZER, "response");
-		op.add(Builder::error, ErrorCause.DESERIALIZER, "error");
+		op.add(Builder::task, Info._DESERIALIZER, "task");
+		op.add(Builder::response, Status._DESERIALIZER, "response");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}
 

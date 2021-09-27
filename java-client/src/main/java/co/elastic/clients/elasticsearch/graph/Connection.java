@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,19 +32,21 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Connection
+@JsonpDeserializable
 public final class Connection implements JsonpSerializable {
-	private final Number docCount;
+	private final Long docCount;
 
-	private final Number source;
+	private final Long source;
 
-	private final Number target;
+	private final Long target;
 
-	private final Number weight;
+	private final Double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,28 +62,28 @@ public final class Connection implements JsonpSerializable {
 	/**
 	 * API name: {@code doc_count}
 	 */
-	public Number docCount() {
+	public Long docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * API name: {@code source}
 	 */
-	public Number source() {
+	public Long source() {
 		return this.source;
 	}
 
 	/**
 	 * API name: {@code target}
 	 */
-	public Number target() {
+	public Long target() {
 		return this.target;
 	}
 
 	/**
 	 * API name: {@code weight}
 	 */
-	public Number weight() {
+	public Double weight() {
 		return this.weight;
 	}
 
@@ -96,16 +99,16 @@ public final class Connection implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("doc_count");
-		generator.write(this.docCount.doubleValue());
+		generator.write(this.docCount);
 
 		generator.writeKey("source");
-		generator.write(this.source.doubleValue());
+		generator.write(this.source);
 
 		generator.writeKey("target");
-		generator.write(this.target.doubleValue());
+		generator.write(this.target);
 
 		generator.writeKey("weight");
-		generator.write(this.weight.doubleValue());
+		generator.write(this.weight);
 
 	}
 
@@ -115,18 +118,18 @@ public final class Connection implements JsonpSerializable {
 	 * Builder for {@link Connection}.
 	 */
 	public static class Builder implements ObjectBuilder<Connection> {
-		private Number docCount;
+		private Long docCount;
 
-		private Number source;
+		private Long source;
 
-		private Number target;
+		private Long target;
 
-		private Number weight;
+		private Double weight;
 
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(Number value) {
+		public Builder docCount(Long value) {
 			this.docCount = value;
 			return this;
 		}
@@ -134,7 +137,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code source}
 		 */
-		public Builder source(Number value) {
+		public Builder source(Long value) {
 			this.source = value;
 			return this;
 		}
@@ -142,7 +145,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code target}
 		 */
-		public Builder target(Number value) {
+		public Builder target(Long value) {
 			this.target = value;
 			return this;
 		}
@@ -150,7 +153,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(Number value) {
+		public Builder weight(Double value) {
 			this.weight = value;
 			return this;
 		}
@@ -172,15 +175,15 @@ public final class Connection implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Connection}
 	 */
-	public static final JsonpDeserializer<Connection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Connection::setupConnectionDeserializer);
+	public static final JsonpDeserializer<Connection> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Connection::setupConnectionDeserializer, Builder::build);
 
 	protected static void setupConnectionDeserializer(DelegatingDeserializer<Connection.Builder> op) {
 
-		op.add(Builder::docCount, JsonpDeserializer.numberDeserializer(), "doc_count");
-		op.add(Builder::source, JsonpDeserializer.numberDeserializer(), "source");
-		op.add(Builder::target, JsonpDeserializer.numberDeserializer(), "target");
-		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
+		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
+		op.add(Builder::source, JsonpDeserializer.longDeserializer(), "source");
+		op.add(Builder::target, JsonpDeserializer.longDeserializer(), "target");
+		op.add(Builder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
 	}
 

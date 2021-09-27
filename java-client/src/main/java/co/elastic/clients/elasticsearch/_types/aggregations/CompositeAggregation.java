@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,12 +42,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregation
-public final class CompositeAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class CompositeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Map<String, JsonValue> after;
+	private final Map<String, String> after;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final List<Map<String, CompositeAggregationSource>> sources;
@@ -63,10 +65,18 @@ public final class CompositeAggregation extends BucketAggregationBase {
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "composite";
+	}
+
+	/**
 	 * API name: {@code after}
 	 */
 	@Nullable
-	public Map<String, JsonValue> after() {
+	public Map<String, String> after() {
 		return this.after;
 	}
 
@@ -74,7 +84,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -93,7 +103,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 
 			generator.writeKey("after");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.after.entrySet()) {
+			for (Map.Entry<String, String> item0 : this.after.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
 
@@ -104,7 +114,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.sources != null) {
@@ -136,10 +146,10 @@ public final class CompositeAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<CompositeAggregation> {
 		@Nullable
-		private Map<String, JsonValue> after;
+		private Map<String, String> after;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private List<Map<String, CompositeAggregationSource>> sources;
@@ -147,7 +157,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code after}
 		 */
-		public Builder after(@Nullable Map<String, JsonValue> value) {
+		public Builder after(@Nullable Map<String, String> value) {
 			this.after = value;
 			return this;
 		}
@@ -155,7 +165,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 		/**
 		 * Add a key/value to {@link #after(Map)}, creating the map if needed.
 		 */
-		public Builder putAfter(String key, JsonValue value) {
+		public Builder putAfter(String key, String value) {
 			if (this.after == null) {
 				this.after = new HashMap<>();
 			}
@@ -166,7 +176,7 @@ public final class CompositeAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -220,17 +230,17 @@ public final class CompositeAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link CompositeAggregation}
 	 */
-	public static final JsonpDeserializer<CompositeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CompositeAggregation::setupCompositeAggregationDeserializer);
+	public static final JsonpDeserializer<CompositeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CompositeAggregation::setupCompositeAggregationDeserializer, Builder::build);
 
 	protected static void setupCompositeAggregationDeserializer(
 			DelegatingDeserializer<CompositeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"after");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sources, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(CompositeAggregationSource.DESERIALIZER)), "sources");
+				JsonpDeserializer.stringMapDeserializer(CompositeAggregationSource._DESERIALIZER)), "sources");
 
 	}
 

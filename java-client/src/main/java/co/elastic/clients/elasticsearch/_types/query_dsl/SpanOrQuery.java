@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +39,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanOrQuery
-public final class SpanOrQuery extends QueryBase implements SpanQuery, Query {
+@JsonpDeserializable
+public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final List<SpanQuery> clauses;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQuery, Query {
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "span_or";
 	}
 
@@ -67,7 +68,6 @@ public final class SpanOrQuery extends QueryBase implements SpanQuery, Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 
@@ -77,8 +77,6 @@ public final class SpanOrQuery extends QueryBase implements SpanQuery, Query {
 			item0.serialize(generator, mapper);
 
 		}
-		generator.writeEnd();
-
 		generator.writeEnd();
 
 	}
@@ -151,13 +149,15 @@ public final class SpanOrQuery extends QueryBase implements SpanQuery, Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<SpanOrQuery.Builder, SpanOrQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(SpanOrQuery::setupSpanOrQueryDeserializer);
+	/**
+	 * Json deserializer for {@link SpanOrQuery}
+	 */
+	public static final JsonpDeserializer<SpanOrQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SpanOrQuery::setupSpanOrQueryDeserializer, Builder::build);
 
 	protected static void setupSpanOrQueryDeserializer(DelegatingDeserializer<SpanOrQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery.DESERIALIZER), "clauses");
+		op.add(Builder::clauses, JsonpDeserializer.arrayDeserializer(SpanQuery._DESERIALIZER), "clauses");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachment
+@JsonpDeserializable
 public final class SlackAttachment implements JsonpSerializable {
 	@Nullable
 	private final String authorIcon;
@@ -548,8 +550,8 @@ public final class SlackAttachment implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SlackAttachment}
 	 */
-	public static final JsonpDeserializer<SlackAttachment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlackAttachment::setupSlackAttachmentDeserializer);
+	public static final JsonpDeserializer<SlackAttachment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SlackAttachment::setupSlackAttachmentDeserializer, Builder::build);
 
 	protected static void setupSlackAttachmentDeserializer(DelegatingDeserializer<SlackAttachment.Builder> op) {
 
@@ -558,7 +560,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		op.add(Builder::authorName, JsonpDeserializer.stringDeserializer(), "author_name");
 		op.add(Builder::color, JsonpDeserializer.stringDeserializer(), "color");
 		op.add(Builder::fallback, JsonpDeserializer.stringDeserializer(), "fallback");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(SlackAttachmentField.DESERIALIZER), "fields");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(SlackAttachmentField._DESERIALIZER), "fields");
 		op.add(Builder::footer, JsonpDeserializer.stringDeserializer(), "footer");
 		op.add(Builder::footerIcon, JsonpDeserializer.stringDeserializer(), "footer_icon");
 		op.add(Builder::imageUrl, JsonpDeserializer.stringDeserializer(), "image_url");

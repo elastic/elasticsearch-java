@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ScoreMode implements StringEnum {
 	Avg("avg"), Max("max"), Min("min"), Multiply("multiply"), Total("total");
 
@@ -39,6 +41,6 @@ public enum ScoreMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ScoreMode> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ScoreMode> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ScoreMode.values());
 }

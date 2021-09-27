@@ -25,22 +25,23 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,9 +51,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_datafeed.Request
+@JsonpDeserializable
 public final class PutDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
@@ -60,7 +63,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -78,7 +81,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	private final DelayedDataCheckConfig delayedDataCheckConfig;
 
 	@Nullable
-	private final JsonValue frequency;
+	private final String frequency;
 
 	@Nullable
 	private final List<String> indices;
@@ -93,13 +96,13 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	private final String jobId;
 
 	@Nullable
-	private final Number maxEmptySearches;
+	private final Integer maxEmptySearches;
 
 	@Nullable
 	private final Query query;
 
 	@Nullable
-	private final JsonValue queryDelay;
+	private final String queryDelay;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -108,7 +111,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
-	private final Number scrollSize;
+	private final Integer scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -163,7 +166,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -215,7 +218,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public JsonValue frequency() {
+	public String frequency() {
 		return this.frequency;
 	}
 
@@ -255,7 +258,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code max_empty_searches}
 	 */
 	@Nullable
-	public Number maxEmptySearches() {
+	public Integer maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
@@ -271,7 +274,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code query_delay}
 	 */
 	@Nullable
-	public JsonValue queryDelay() {
+	public String queryDelay() {
 		return this.queryDelay;
 	}
 
@@ -295,7 +298,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Number scrollSize() {
+	public Integer scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -377,7 +380,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		if (this.maxEmptySearches != null) {
 
 			generator.writeKey("max_empty_searches");
-			generator.write(this.maxEmptySearches.doubleValue());
+			generator.write(this.maxEmptySearches);
 
 		}
 		if (this.query != null) {
@@ -419,7 +422,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		if (this.scrollSize != null) {
 
 			generator.writeKey("scroll_size");
-			generator.write(this.scrollSize.doubleValue());
+			generator.write(this.scrollSize);
 
 		}
 
@@ -437,7 +440,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -455,7 +458,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private DelayedDataCheckConfig delayedDataCheckConfig;
 
 		@Nullable
-		private JsonValue frequency;
+		private String frequency;
 
 		@Nullable
 		private List<String> indices;
@@ -470,13 +473,13 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private String jobId;
 
 		@Nullable
-		private Number maxEmptySearches;
+		private Integer maxEmptySearches;
 
 		@Nullable
 		private Query query;
 
 		@Nullable
-		private JsonValue queryDelay;
+		private String queryDelay;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -485,7 +488,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private Number scrollSize;
+		private Integer scrollSize;
 
 		/**
 		 * The ID of the datafeed to create
@@ -514,8 +517,30 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether source index expressions should get expanded to open or closed
+		 * indices (default: open)
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -606,7 +631,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(@Nullable JsonValue value) {
+		public Builder frequency(@Nullable String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -692,7 +717,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(@Nullable Number value) {
+		public Builder maxEmptySearches(@Nullable Integer value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
@@ -715,7 +740,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code query_delay}
 		 */
-		public Builder queryDelay(@Nullable JsonValue value) {
+		public Builder queryDelay(@Nullable String value) {
 			this.queryDelay = value;
 			return this;
 		}
@@ -789,7 +814,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		/**
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Number value) {
+		public Builder scrollSize(@Nullable Integer value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -811,30 +836,30 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link PutDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<PutDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<PutDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupPutDatafeedRequestDeserializer(DelegatingDeserializer<PutDatafeedRequest.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
-		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
-		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig.DESERIALIZER, "delayed_data_check_config");
-		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
+		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
+		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
+		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indexes");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions.DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::queryDelay, JsonpDeserializer.jsonValueDeserializer(), "query_delay");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
+		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
 
 	}
 
@@ -878,7 +903,8 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreThrottled != null) {
 					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
@@ -888,5 +914,5 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutDatafeedResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutDatafeedResponse._DESERIALIZER);
 }

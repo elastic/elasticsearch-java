@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,13 +42,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.ExplanationDetail
+@JsonpDeserializable
 public final class ExplanationDetail implements JsonpSerializable {
 	private final String description;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail> details;
+	private final List<ExplanationDetail> details;
 
-	private final Number value;
+	private final Float value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,14 +72,14 @@ public final class ExplanationDetail implements JsonpSerializable {
 	 * API name: {@code details}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail> details() {
+	public List<ExplanationDetail> details() {
 		return this.details;
 	}
 
 	/**
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public Float value() {
 		return this.value;
 	}
 
@@ -99,7 +101,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 
 			generator.writeKey("details");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._core.explain.ExplanationDetail item0 : this.details) {
+			for (ExplanationDetail item0 : this.details) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -108,7 +110,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		}
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -121,9 +123,9 @@ public final class ExplanationDetail implements JsonpSerializable {
 		private String description;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail> details;
+		private List<ExplanationDetail> details;
 
-		private Number value;
+		private Float value;
 
 		/**
 		 * API name: {@code description}
@@ -136,7 +138,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(@Nullable List<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail> value) {
+		public Builder details(@Nullable List<ExplanationDetail> value) {
 			this.details = value;
 			return this;
 		}
@@ -144,7 +146,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(co.elastic.clients.elasticsearch._core.explain.ExplanationDetail... value) {
+		public Builder details(ExplanationDetail... value) {
 			this.details = Arrays.asList(value);
 			return this;
 		}
@@ -152,7 +154,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
-		public Builder addDetails(co.elastic.clients.elasticsearch._core.explain.ExplanationDetail value) {
+		public Builder addDetails(ExplanationDetail value) {
 			if (this.details == null) {
 				this.details = new ArrayList<>();
 			}
@@ -163,25 +165,21 @@ public final class ExplanationDetail implements JsonpSerializable {
 		/**
 		 * Set {@link #details(List)} to a singleton list.
 		 */
-		public Builder details(
-				Function<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail>> fn) {
-			return this.details(
-					fn.apply(new co.elastic.clients.elasticsearch._core.explain.ExplanationDetail.Builder()).build());
+		public Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
+			return this.details(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
-		public Builder addDetails(
-				Function<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.explain.ExplanationDetail>> fn) {
-			return this.addDetails(
-					fn.apply(new co.elastic.clients.elasticsearch._core.explain.ExplanationDetail.Builder()).build());
+		public Builder addDetails(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
+			return this.addDetails(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(Float value) {
 			this.value = value;
 			return this;
 		}
@@ -203,15 +201,14 @@ public final class ExplanationDetail implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExplanationDetail}
 	 */
-	public static final JsonpDeserializer<ExplanationDetail> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExplanationDetail::setupExplanationDetailDeserializer);
+	public static final JsonpDeserializer<ExplanationDetail> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplanationDetail::setupExplanationDetailDeserializer, Builder::build);
 
 	protected static void setupExplanationDetailDeserializer(DelegatingDeserializer<ExplanationDetail.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(
-				co.elastic.clients.elasticsearch._core.explain.ExplanationDetail.DESERIALIZER), "details");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail._DESERIALIZER), "details");
+		op.add(Builder::value, JsonpDeserializer.floatDeserializer(), "value");
 
 	}
 

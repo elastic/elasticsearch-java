@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm.get_lifecycle;
 
 import co.elastic.clients.elasticsearch.ilm.Policy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,19 +33,20 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Lifecycle
+@JsonpDeserializable
 public final class Lifecycle implements JsonpSerializable {
 	private final String modifiedDate;
 
 	private final Policy policy;
 
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +75,7 @@ public final class Lifecycle implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -95,7 +97,7 @@ public final class Lifecycle implements JsonpSerializable {
 		this.policy.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -109,7 +111,7 @@ public final class Lifecycle implements JsonpSerializable {
 
 		private Policy policy;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code modified_date}
@@ -137,7 +139,7 @@ public final class Lifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -159,14 +161,14 @@ public final class Lifecycle implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Lifecycle}
 	 */
-	public static final JsonpDeserializer<Lifecycle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Lifecycle::setupLifecycleDeserializer);
+	public static final JsonpDeserializer<Lifecycle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Lifecycle::setupLifecycleDeserializer, Builder::build);
 
 	protected static void setupLifecycleDeserializer(DelegatingDeserializer<Lifecycle.Builder> op) {
 
 		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
-		op.add(Builder::policy, Policy.DESERIALIZER, "policy");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::policy, Policy._DESERIALIZER, "policy");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

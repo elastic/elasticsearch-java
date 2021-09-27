@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,7 +35,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregation
-public final class RateAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final DateInterval unit;
 
@@ -49,6 +51,14 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 		this.unit = builder.unit;
 		this.mode = builder.mode;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "rate";
 	}
 
 	/**
@@ -135,13 +145,13 @@ public final class RateAggregation extends FormatMetricAggregationBase {
 	/**
 	 * Json deserializer for {@link RateAggregation}
 	 */
-	public static final JsonpDeserializer<RateAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RateAggregation::setupRateAggregationDeserializer);
+	public static final JsonpDeserializer<RateAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RateAggregation::setupRateAggregationDeserializer, Builder::build);
 
 	protected static void setupRateAggregationDeserializer(DelegatingDeserializer<RateAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::unit, DateInterval.DESERIALIZER, "unit");
-		op.add(Builder::mode, RateMode.DESERIALIZER, "mode");
+		op.add(Builder::unit, DateInterval._DESERIALIZER, "unit");
+		op.add(Builder::mode, RateMode._DESERIALIZER, "mode");
 
 	}
 

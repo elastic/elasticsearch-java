@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Index
+@JsonpDeserializable
 public final class Index implements JsonpSerializable {
 	private final String index;
 
@@ -44,7 +46,7 @@ public final class Index implements JsonpSerializable {
 	private final String docId;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ public final class Index implements JsonpSerializable {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -120,7 +122,7 @@ public final class Index implements JsonpSerializable {
 		private String docId;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
 		 * API name: {@code index}
@@ -141,7 +143,7 @@ public final class Index implements JsonpSerializable {
 		/**
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -163,8 +165,8 @@ public final class Index implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Index}
 	 */
-	public static final JsonpDeserializer<Index> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Index::setupIndexDeserializer);
+	public static final JsonpDeserializer<Index> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Index::setupIndexDeserializer, Builder::build);
 
 	protected static void setupIndexDeserializer(DelegatingDeserializer<Index.Builder> op) {
 

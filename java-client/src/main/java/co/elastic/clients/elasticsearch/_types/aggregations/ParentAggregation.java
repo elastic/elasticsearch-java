@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
-public final class ParentAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String type;
 
@@ -46,6 +48,14 @@ public final class ParentAggregation extends BucketAggregationBase {
 
 		this.type = builder.type;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "parent";
 	}
 
 	/**
@@ -109,8 +119,8 @@ public final class ParentAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link ParentAggregation}
 	 */
-	public static final JsonpDeserializer<ParentAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ParentAggregation::setupParentAggregationDeserializer);
+	public static final JsonpDeserializer<ParentAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ParentAggregation::setupParentAggregationDeserializer, Builder::build);
 
 	protected static void setupParentAggregationDeserializer(DelegatingDeserializer<ParentAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);

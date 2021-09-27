@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.TemplateMapping
+@JsonpDeserializable
 public final class TemplateMapping implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
 
@@ -53,12 +56,12 @@ public final class TemplateMapping implements JsonpSerializable {
 
 	private final TypeMapping mappings;
 
-	private final Number order;
+	private final Integer order;
 
 	private final Map<String, JsonData> settings;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -97,7 +100,7 @@ public final class TemplateMapping implements JsonpSerializable {
 	/**
 	 * API name: {@code order}
 	 */
-	public Number order() {
+	public Integer order() {
 		return this.order;
 	}
 
@@ -112,7 +115,7 @@ public final class TemplateMapping implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -148,7 +151,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		this.mappings.serialize(generator, mapper);
 
 		generator.writeKey("order");
-		generator.write(this.order.doubleValue());
+		generator.write(this.order);
 
 		generator.writeKey("settings");
 		generator.writeStartObject();
@@ -162,7 +165,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -180,12 +183,12 @@ public final class TemplateMapping implements JsonpSerializable {
 
 		private TypeMapping mappings;
 
-		private Number order;
+		private Integer order;
 
 		private Map<String, JsonData> settings;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code aliases}
@@ -265,7 +268,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(Number value) {
+		public Builder order(Integer value) {
 			this.order = value;
 			return this;
 		}
@@ -292,7 +295,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -314,18 +317,18 @@ public final class TemplateMapping implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TemplateMapping}
 	 */
-	public static final JsonpDeserializer<TemplateMapping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TemplateMapping::setupTemplateMappingDeserializer);
+	public static final JsonpDeserializer<TemplateMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TemplateMapping::setupTemplateMappingDeserializer, Builder::build);
 
 	protected static void setupTemplateMappingDeserializer(DelegatingDeserializer<TemplateMapping.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::order, JsonpDeserializer.numberDeserializer(), "order");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::order, JsonpDeserializer.integerDeserializer(), "order");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

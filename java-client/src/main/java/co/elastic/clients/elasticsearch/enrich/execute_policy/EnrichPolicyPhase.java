@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.enrich.execute_policy;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum EnrichPolicyPhase implements StringEnum {
 	Scheduled("SCHEDULED"), Running("RUNNING"), Complete("COMPLETE"), Failed("FAILED");
 
@@ -39,6 +41,6 @@ public enum EnrichPolicyPhase implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<EnrichPolicyPhase> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<EnrichPolicyPhase> _DESERIALIZER = new StringEnum.Deserializer<>(
 			EnrichPolicyPhase.values());
 }

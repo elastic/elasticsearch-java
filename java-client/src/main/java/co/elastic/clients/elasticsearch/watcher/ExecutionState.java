@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionState
+@JsonpDeserializable
 public final class ExecutionState implements JsonpSerializable {
 	private final Boolean successful;
 
@@ -127,8 +129,8 @@ public final class ExecutionState implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecutionState}
 	 */
-	public static final JsonpDeserializer<ExecutionState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionState::setupExecutionStateDeserializer);
+	public static final JsonpDeserializer<ExecutionState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExecutionState::setupExecutionStateDeserializer, Builder::build);
 
 	protected static void setupExecutionStateDeserializer(DelegatingDeserializer<ExecutionState.Builder> op) {
 

@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.put_job.Request
+@JsonpDeserializable
 public final class PutJobRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -61,7 +63,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	private final List<FieldMetric> metrics;
 
 	@Nullable
-	private final Number pageSize;
+	private final Long pageSize;
 
 	@Nullable
 	private final String rollupIndex;
@@ -125,7 +127,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code page_size}
 	 */
 	@Nullable
-	public Number pageSize() {
+	public Long pageSize() {
 		return this.pageSize;
 	}
 
@@ -180,7 +182,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		if (this.pageSize != null) {
 
 			generator.writeKey("page_size");
-			generator.write(this.pageSize.doubleValue());
+			generator.write(this.pageSize);
 
 		}
 		if (this.rollupIndex != null) {
@@ -213,7 +215,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		private List<FieldMetric> metrics;
 
 		@Nullable
-		private Number pageSize;
+		private Long pageSize;
 
 		@Nullable
 		private String rollupIndex;
@@ -303,7 +305,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code page_size}
 		 */
-		public Builder pageSize(@Nullable Number value) {
+		public Builder pageSize(@Nullable Long value) {
 			this.pageSize = value;
 			return this;
 		}
@@ -333,16 +335,16 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link PutJobRequest}
 	 */
-	public static final JsonpDeserializer<PutJobRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutJobRequest::setupPutJobRequestDeserializer);
+	public static final JsonpDeserializer<PutJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutJobRequest::setupPutJobRequestDeserializer, Builder::build);
 
 	protected static void setupPutJobRequestDeserializer(DelegatingDeserializer<PutJobRequest.Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
-		op.add(Builder::groups, Groupings.DESERIALIZER, "groups");
+		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");
 		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
-		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric.DESERIALIZER), "metrics");
-		op.add(Builder::pageSize, JsonpDeserializer.numberDeserializer(), "page_size");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric._DESERIALIZER), "metrics");
+		op.add(Builder::pageSize, JsonpDeserializer.longDeserializer(), "page_size");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
 
 	}
@@ -384,5 +386,5 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutJobResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutJobResponse._DESERIALIZER);
 }

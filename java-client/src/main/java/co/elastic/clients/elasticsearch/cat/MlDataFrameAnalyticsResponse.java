@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.ml_data_frame_analytics.DataFrameAnalyticsRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Response
+@JsonpDeserializable
 public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataFrameAnalyticsRecord> value;
 
@@ -144,13 +146,13 @@ public final class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<MlDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlDataFrameAnalyticsResponse::setupMlDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<MlDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MlDataFrameAnalyticsResponse::setupMlDataFrameAnalyticsResponseDeserializer, Builder::build);
 
 	protected static void setupMlDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<MlDataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(DataFrameAnalyticsRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(DataFrameAnalyticsRecord._DESERIALIZER), "value");
 
 	}
 

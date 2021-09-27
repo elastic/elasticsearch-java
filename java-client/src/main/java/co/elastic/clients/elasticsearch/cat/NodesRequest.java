@@ -26,24 +26,26 @@ package co.elastic.clients.elasticsearch.cat;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
+
 public final class NodesRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
 	@Nullable
-	private final String fullId;
+	private final Boolean fullId;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +72,7 @@ public final class NodesRequest extends CatRequestBase {
 	 * API name: {@code full_id}
 	 */
 	@Nullable
-	public String fullId() {
+	public Boolean fullId() {
 		return this.fullId;
 	}
 
@@ -84,7 +86,7 @@ public final class NodesRequest extends CatRequestBase {
 		private Bytes bytes;
 
 		@Nullable
-		private String fullId;
+		private Boolean fullId;
 
 		/**
 		 * The unit in which to display byte values
@@ -101,7 +103,7 @@ public final class NodesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code full_id}
 		 */
-		public Builder fullId(@Nullable String value) {
+		public Builder fullId(@Nullable Boolean value) {
 			this.fullId = value;
 			return this;
 		}
@@ -143,9 +145,9 @@ public final class NodesRequest extends CatRequestBase {
 					params.put("bytes", request.bytes.toString());
 				}
 				if (request.fullId != null) {
-					params.put("full_id", request.fullId);
+					params.put("full_id", String.valueOf(request.fullId));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, NodesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, NodesResponse._DESERIALIZER);
 }

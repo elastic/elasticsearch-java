@@ -24,22 +24,24 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DelayedDataCheckConfig
+@JsonpDeserializable
 public final class DelayedDataCheckConfig implements JsonpSerializable {
 	@Nullable
-	private final JsonValue checkWindow;
+	private final String checkWindow;
 
 	private final Boolean enabled;
 
@@ -62,7 +64,7 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 	 * API name: {@code check_window}
 	 */
 	@Nullable
-	public JsonValue checkWindow() {
+	public String checkWindow() {
 		return this.checkWindow;
 	}
 
@@ -105,7 +107,7 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<DelayedDataCheckConfig> {
 		@Nullable
-		private JsonValue checkWindow;
+		private String checkWindow;
 
 		private Boolean enabled;
 
@@ -118,7 +120,7 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code check_window}
 		 */
-		public Builder checkWindow(@Nullable JsonValue value) {
+		public Builder checkWindow(@Nullable String value) {
 			this.checkWindow = value;
 			return this;
 		}
@@ -150,13 +152,13 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DelayedDataCheckConfig}
 	 */
-	public static final JsonpDeserializer<DelayedDataCheckConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer);
+	public static final JsonpDeserializer<DelayedDataCheckConfig> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DelayedDataCheckConfig::setupDelayedDataCheckConfigDeserializer, Builder::build);
 
 	protected static void setupDelayedDataCheckConfigDeserializer(
 			DelegatingDeserializer<DelayedDataCheckConfig.Builder> op) {
 
-		op.add(Builder::checkWindow, JsonpDeserializer.jsonValueDeserializer(), "check_window");
+		op.add(Builder::checkWindow, JsonpDeserializer.stringDeserializer(), "check_window");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}

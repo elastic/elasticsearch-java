@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.InProgress
+@JsonpDeserializable
 public final class InProgress implements JsonpSerializable {
 	private final String name;
 
@@ -172,8 +174,8 @@ public final class InProgress implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InProgress}
 	 */
-	public static final JsonpDeserializer<InProgress> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InProgress::setupInProgressDeserializer);
+	public static final JsonpDeserializer<InProgress> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InProgress::setupInProgressDeserializer, Builder::build);
 
 	protected static void setupInProgressDeserializer(DelegatingDeserializer<InProgress.Builder> op) {
 

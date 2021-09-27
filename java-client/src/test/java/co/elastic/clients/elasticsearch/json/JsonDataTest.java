@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.json;
 
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -38,7 +39,7 @@ public class JsonDataTest extends Assert {
         String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
             "\"stringValue\":\"foo\"}";
 
-        JsonParser parser = mapper.jsonpProvider().createParser(new StringReader(json));
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
 
         JsonData data = JsonData.from(parser, mapper);
         assertEquals("foo", data.toJson().asJsonObject().getString("stringValue"));
@@ -54,9 +55,9 @@ public class JsonDataTest extends Assert {
         String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
             "\"stringValue\":\"foo\"}";
 
-        JsonParser parser = mapper.jsonpProvider().createParser(new StringReader(json));
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
         JsonpMapperTest.SomeClass sc =
-            mapper.getDeserializer(JsonpMapperTest.SomeClass.class).deserialize(parser, mapper);
+            mapper.deserialize(parser, JsonpMapperTest.SomeClass.class);
 
         assertEquals("foo", sc.getStringValue());
         assertEquals(1, sc.getChildren().size());
@@ -66,7 +67,7 @@ public class JsonDataTest extends Assert {
         JsonData data = JsonData.of(sc);
 
         StringWriter sw = new StringWriter();
-        JsonGenerator generator = mapper.jsonpProvider().createGenerator(sw);
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(sw);
 
         data.serialize(generator, mapper);
         generator.close();

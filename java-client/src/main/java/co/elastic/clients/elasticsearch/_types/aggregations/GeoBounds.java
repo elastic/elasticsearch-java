@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.LatLon;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBounds
+@JsonpDeserializable
 public final class GeoBounds implements JsonpSerializable {
 	private final LatLon bottomRight;
 
@@ -141,13 +143,13 @@ public final class GeoBounds implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoBounds}
 	 */
-	public static final JsonpDeserializer<GeoBounds> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoBounds::setupGeoBoundsDeserializer);
+	public static final JsonpDeserializer<GeoBounds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoBounds::setupGeoBoundsDeserializer, Builder::build);
 
 	protected static void setupGeoBoundsDeserializer(DelegatingDeserializer<GeoBounds.Builder> op) {
 
-		op.add(Builder::bottomRight, LatLon.DESERIALIZER, "bottom_right");
-		op.add(Builder::topLeft, LatLon.DESERIALIZER, "top_left");
+		op.add(Builder::bottomRight, LatLon._DESERIALIZER, "bottom_right");
+		op.add(Builder::topLeft, LatLon._DESERIALIZER, "top_left");
 
 	}
 

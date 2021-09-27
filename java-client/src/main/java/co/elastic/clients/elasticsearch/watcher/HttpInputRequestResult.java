@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: watcher._types.HttpInputRequestResult
+@JsonpDeserializable
 public final class HttpInputRequestResult extends HttpInputRequestDefinition {
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,8 +72,8 @@ public final class HttpInputRequestResult extends HttpInputRequestDefinition {
 	/**
 	 * Json deserializer for {@link HttpInputRequestResult}
 	 */
-	public static final JsonpDeserializer<HttpInputRequestResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputRequestResult::setupHttpInputRequestResultDeserializer);
+	public static final JsonpDeserializer<HttpInputRequestResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpInputRequestResult::setupHttpInputRequestResultDeserializer, Builder::build);
 
 	protected static void setupHttpInputRequestResultDeserializer(
 			DelegatingDeserializer<HttpInputRequestResult.Builder> op) {

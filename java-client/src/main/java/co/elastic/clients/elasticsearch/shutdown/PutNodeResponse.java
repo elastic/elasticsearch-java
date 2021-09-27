@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: shutdown.put_node.Response
+@JsonpDeserializable
 public final class PutNodeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class PutNodeResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link PutNodeResponse}
 	 */
-	public static final JsonpDeserializer<PutNodeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutNodeResponse::setupPutNodeResponseDeserializer);
+	public static final JsonpDeserializer<PutNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutNodeResponse::setupPutNodeResponseDeserializer, Builder::build);
 
 	protected static void setupPutNodeResponseDeserializer(DelegatingDeserializer<PutNodeResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

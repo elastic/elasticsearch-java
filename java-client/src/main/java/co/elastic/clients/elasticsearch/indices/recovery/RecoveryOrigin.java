@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryOrigin
+@JsonpDeserializable
 public final class RecoveryOrigin implements JsonpSerializable {
 	@Nullable
 	private final String hostname;
@@ -430,8 +432,8 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryOrigin}
 	 */
-	public static final JsonpDeserializer<RecoveryOrigin> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryOrigin::setupRecoveryOriginDeserializer);
+	public static final JsonpDeserializer<RecoveryOrigin> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryOrigin::setupRecoveryOriginDeserializer, Builder::build);
 
 	protected static void setupRecoveryOriginDeserializer(DelegatingDeserializer<RecoveryOrigin.Builder> op) {
 

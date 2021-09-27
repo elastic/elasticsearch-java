@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster.state;
 
 import co.elastic.clients.elasticsearch.cluster.ClusterStateBlockIndex;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.state.ClusterStateBlocks
+@JsonpDeserializable
 public final class ClusterStateBlocks implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Map<String, ClusterStateBlockIndex>> indices;
@@ -135,13 +137,13 @@ public final class ClusterStateBlocks implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateBlocks}
 	 */
-	public static final JsonpDeserializer<ClusterStateBlocks> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateBlocks::setupClusterStateBlocksDeserializer);
+	public static final JsonpDeserializer<ClusterStateBlocks> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateBlocks::setupClusterStateBlocksDeserializer, Builder::build);
 
 	protected static void setupClusterStateBlocksDeserializer(DelegatingDeserializer<ClusterStateBlocks.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.stringMapDeserializer(ClusterStateBlockIndex.DESERIALIZER)), "indices");
+				JsonpDeserializer.stringMapDeserializer(ClusterStateBlockIndex._DESERIALIZER)), "indices");
 
 	}
 

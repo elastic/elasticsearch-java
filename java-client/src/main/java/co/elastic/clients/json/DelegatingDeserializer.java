@@ -20,6 +20,7 @@
 package co.elastic.clients.json;
 
 import jakarta.json.stream.JsonParser;
+
 import java.util.EnumSet;
 import java.util.function.BiConsumer;
 
@@ -33,4 +34,29 @@ public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializ
         JsonpDeserializer<FieldType> valueParser,
         String name, String... deprecatedNames
     );
+
+    /**
+     * Used for SingleKeyDictionary properties where the JSON representation is a property name and a nested object.
+     * This structure is flattened in the corresponding Java classes, and this method should be used to register
+     * its setter.
+     *
+     * @param keySetter the key setter
+     */
+    public abstract void setKey(
+        BiConsumer<ObjectType, String> keySetter
+    );
+
+    /**
+     * Used for internally tagged variants containers to indicate the object's property that defines the variant type
+     * @param name
+     */
+    public abstract void setTypeProperty(String name);
+
+    /**
+     * Used for internally tagged variants items to ignore their variant type property.
+     * @param name
+     */
+    public void ignore(String name) {
+        throw new UnsupportedOperationException();
+    }
 }

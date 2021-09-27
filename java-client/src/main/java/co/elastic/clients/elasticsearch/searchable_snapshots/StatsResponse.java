@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Response
+@JsonpDeserializable
 public final class StatsResponse implements JsonpSerializable {
 	private final JsonData stats;
 
@@ -126,13 +128,13 @@ public final class StatsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::stats, JsonData.DESERIALIZER, "stats");
-		op.add(Builder::total, JsonData.DESERIALIZER, "total");
+		op.add(Builder::stats, JsonData._DESERIALIZER, "stats");
+		op.add(Builder::total, JsonData._DESERIALIZER, "total");
 
 	}
 

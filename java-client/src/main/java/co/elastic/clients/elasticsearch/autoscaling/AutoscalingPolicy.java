@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling._types.AutoscalingPolicy
+@JsonpDeserializable
 public final class AutoscalingPolicy implements JsonpSerializable {
 	private final List<String> roles;
 
@@ -177,13 +179,13 @@ public final class AutoscalingPolicy implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoscalingPolicy}
 	 */
-	public static final JsonpDeserializer<AutoscalingPolicy> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoscalingPolicy::setupAutoscalingPolicyDeserializer);
+	public static final JsonpDeserializer<AutoscalingPolicy> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoscalingPolicy::setupAutoscalingPolicyDeserializer, Builder::build);
 
 	protected static void setupAutoscalingPolicyDeserializer(DelegatingDeserializer<AutoscalingPolicy.Builder> op) {
 
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "deciders");
+		op.add(Builder::deciders, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "deciders");
 
 	}
 

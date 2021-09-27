@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.DerivativeAggregation
-public final class DerivativeAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public DerivativeAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "derivative";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class DerivativeAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link DerivativeAggregation}
 	 */
-	public static final JsonpDeserializer<DerivativeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer);
+	public static final JsonpDeserializer<DerivativeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer, Builder::build);
 
 	protected static void setupDerivativeAggregationDeserializer(
 			DelegatingDeserializer<DerivativeAggregation.Builder> op) {

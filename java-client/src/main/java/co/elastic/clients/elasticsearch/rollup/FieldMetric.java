@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.FieldMetric
+@JsonpDeserializable
 public final class FieldMetric implements JsonpSerializable {
 	private final String field;
 
@@ -152,13 +154,13 @@ public final class FieldMetric implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldMetric}
 	 */
-	public static final JsonpDeserializer<FieldMetric> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldMetric::setupFieldMetricDeserializer);
+	public static final JsonpDeserializer<FieldMetric> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldMetric::setupFieldMetricDeserializer, Builder::build);
 
 	protected static void setupFieldMetricDeserializer(DelegatingDeserializer<FieldMetric.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(Metric.DESERIALIZER), "metrics");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(Metric._DESERIALIZER), "metrics");
 
 	}
 

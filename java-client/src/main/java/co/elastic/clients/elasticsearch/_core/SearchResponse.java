@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,7 +42,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,8 +56,9 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search.Response
+
 public class SearchResponse<TDocument> implements JsonpSerializable {
-	private final Number took;
+	private final Long took;
 
 	private final Boolean timedOut;
 
@@ -64,7 +67,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	private final HitsMetadata<TDocument> hits;
 
 	@Nullable
-	private final Map<String, JsonValue> aggregations;
+	private final Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations;
 
 	@Nullable
 	private final ClusterStatistics clusters;
@@ -76,10 +79,10 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	private final Map<String, JsonData> fields;
 
 	@Nullable
-	private final Number maxScore;
+	private final Double maxScore;
 
 	@Nullable
-	private final Number numReducePhases;
+	private final Long numReducePhases;
 
 	@Nullable
 	private final Profile profile;
@@ -125,7 +128,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -154,7 +157,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code aggregations}
 	 */
 	@Nullable
-	public Map<String, JsonValue> aggregations() {
+	public Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations() {
 		return this.aggregations;
 	}
 
@@ -186,7 +189,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code max_score}
 	 */
 	@Nullable
-	public Number maxScore() {
+	public Double maxScore() {
 		return this.maxScore;
 	}
 
@@ -194,7 +197,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	 * API name: {@code num_reduce_phases}
 	 */
 	@Nullable
-	public Number numReducePhases() {
+	public Long numReducePhases() {
 		return this.numReducePhases;
 	}
 
@@ -250,7 +253,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 		generator.writeKey("timed_out");
 		generator.write(this.timedOut);
@@ -265,7 +268,8 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.aggregations.entrySet()) {
+			for (Map.Entry<String, JsonValue /* _types.aggregations.Aggregate */> item0 : this.aggregations
+					.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
 
@@ -305,13 +309,13 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		if (this.maxScore != null) {
 
 			generator.writeKey("max_score");
-			generator.write(this.maxScore.doubleValue());
+			generator.write(this.maxScore);
 
 		}
 		if (this.numReducePhases != null) {
 
 			generator.writeKey("num_reduce_phases");
-			generator.write(this.numReducePhases.doubleValue());
+			generator.write(this.numReducePhases);
 
 		}
 		if (this.profile != null) {
@@ -384,7 +388,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> {
-		private Number took;
+		private Long took;
 
 		private Boolean timedOut;
 
@@ -393,7 +397,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		private HitsMetadata<TDocument> hits;
 
 		@Nullable
-		private Map<String, JsonValue> aggregations;
+		private Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations;
 
 		@Nullable
 		private ClusterStatistics clusters;
@@ -405,10 +409,10 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		private Map<String, JsonData> fields;
 
 		@Nullable
-		private Number maxScore;
+		private Double maxScore;
 
 		@Nullable
-		private Number numReducePhases;
+		private Long numReducePhases;
 
 		@Nullable
 		private Profile profile;
@@ -431,7 +435,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public BuilderT took(Number value) {
+		public BuilderT took(Long value) {
 			this.took = value;
 			return self();
 		}
@@ -477,7 +481,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public BuilderT aggregations(@Nullable Map<String, JsonValue> value) {
+		public BuilderT aggregations(@Nullable Map<String, JsonValue /* _types.aggregations.Aggregate */> value) {
 			this.aggregations = value;
 			return self();
 		}
@@ -485,7 +489,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public BuilderT putAggregations(String key, JsonValue value) {
+		public BuilderT putAggregations(String key, JsonValue /* _types.aggregations.Aggregate */ value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -557,7 +561,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code max_score}
 		 */
-		public BuilderT maxScore(@Nullable Number value) {
+		public BuilderT maxScore(@Nullable Double value) {
 			this.maxScore = value;
 			return self();
 		}
@@ -565,7 +569,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code num_reduce_phases}
 		 */
-		public BuilderT numReducePhases(@Nullable Number value) {
+		public BuilderT numReducePhases(@Nullable Long value) {
 			this.numReducePhases = value;
 			return self();
 		}
@@ -655,18 +659,18 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
 			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(AbstractBuilder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(AbstractBuilder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(AbstractBuilder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
 		op.add(AbstractBuilder::aggregations,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
-		op.add(AbstractBuilder::clusters, ClusterStatistics.DESERIALIZER, "_clusters");
+		op.add(AbstractBuilder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
 		op.add(AbstractBuilder::documents, JsonpDeserializer.arrayDeserializer(tDocumentDeserializer), "documents");
-		op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "fields");
-		op.add(AbstractBuilder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
-		op.add(AbstractBuilder::numReducePhases, JsonpDeserializer.numberDeserializer(), "num_reduce_phases");
-		op.add(AbstractBuilder::profile, Profile.DESERIALIZER, "profile");
+		op.add(AbstractBuilder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
+		op.add(AbstractBuilder::maxScore, JsonpDeserializer.doubleDeserializer(), "max_score");
+		op.add(AbstractBuilder::numReducePhases, JsonpDeserializer.longDeserializer(), "num_reduce_phases");
+		op.add(AbstractBuilder::profile, Profile._DESERIALIZER, "profile");
 		op.add(AbstractBuilder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
 		op.add(AbstractBuilder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
 		op.add(AbstractBuilder::suggest, JsonpDeserializer.stringMapDeserializer(

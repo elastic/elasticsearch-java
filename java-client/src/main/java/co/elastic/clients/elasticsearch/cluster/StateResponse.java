@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch.cluster.state.ClusterStateBlocks;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.state.Response
+@JsonpDeserializable
 public final class StateResponse implements JsonpSerializable {
 	private final String clusterName;
 
@@ -62,7 +64,7 @@ public final class StateResponse implements JsonpSerializable {
 	private final String stateUuid;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final ClusterStateBlocks blocks;
@@ -147,7 +149,7 @@ public final class StateResponse implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -250,7 +252,7 @@ public final class StateResponse implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.blocks != null) {
@@ -330,7 +332,7 @@ public final class StateResponse implements JsonpSerializable {
 		private String stateUuid;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private ClusterStateBlocks blocks;
@@ -415,7 +417,7 @@ public final class StateResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -580,8 +582,8 @@ public final class StateResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StateResponse}
 	 */
-	public static final JsonpDeserializer<StateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StateResponse::setupStateResponseDeserializer);
+	public static final JsonpDeserializer<StateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StateResponse::setupStateResponseDeserializer, Builder::build);
 
 	protected static void setupStateResponseDeserializer(DelegatingDeserializer<StateResponse.Builder> op) {
 
@@ -590,15 +592,15 @@ public final class StateResponse implements JsonpSerializable {
 		op.add(Builder::masterNode, JsonpDeserializer.stringDeserializer(), "master_node");
 		op.add(Builder::state, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "state");
 		op.add(Builder::stateUuid, JsonpDeserializer.stringDeserializer(), "state_uuid");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::blocks, ClusterStateBlocks.DESERIALIZER, "blocks");
-		op.add(Builder::metadata, ClusterStateMetadata.DESERIALIZER, "metadata");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
-		op.add(Builder::routingTable, JsonpDeserializer.stringMapDeserializer(EmptyObject.DESERIALIZER),
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::blocks, ClusterStateBlocks._DESERIALIZER, "blocks");
+		op.add(Builder::metadata, ClusterStateMetadata._DESERIALIZER, "metadata");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes._DESERIALIZER), "nodes");
+		op.add(Builder::routingTable, JsonpDeserializer.stringMapDeserializer(EmptyObject._DESERIALIZER),
 				"routing_table");
-		op.add(Builder::routingNodes, ClusterStateRoutingNodes.DESERIALIZER, "routing_nodes");
-		op.add(Builder::snapshots, ClusterStateSnapshots.DESERIALIZER, "snapshots");
-		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots.DESERIALIZER, "snapshot_deletions");
+		op.add(Builder::routingNodes, ClusterStateRoutingNodes._DESERIALIZER, "routing_nodes");
+		op.add(Builder::snapshots, ClusterStateSnapshots._DESERIALIZER, "snapshots");
+		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots._DESERIALIZER, "snapshot_deletions");
 
 	}
 

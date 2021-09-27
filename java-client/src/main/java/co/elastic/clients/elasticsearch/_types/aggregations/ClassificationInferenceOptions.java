@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,18 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ClassificationInferenceOptions
+@JsonpDeserializable
 public final class ClassificationInferenceOptions implements JsonpSerializable {
 	@Nullable
-	private final Number numTopClasses;
+	private final Integer numTopClasses;
 
 	@Nullable
-	private final Number numTopFeatureImportanceValues;
+	private final Integer numTopFeatureImportanceValues;
 
 	@Nullable
 	private final String predictionFieldType;
@@ -71,7 +73,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
-	public Number numTopClasses() {
+	public Integer numTopClasses() {
 		return this.numTopClasses;
 	}
 
@@ -82,7 +84,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Number numTopFeatureImportanceValues() {
+	public Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
@@ -134,13 +136,13 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		if (this.numTopClasses != null) {
 
 			generator.writeKey("num_top_classes");
-			generator.write(this.numTopClasses.doubleValue());
+			generator.write(this.numTopClasses);
 
 		}
 		if (this.numTopFeatureImportanceValues != null) {
 
 			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues.doubleValue());
+			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 		if (this.predictionFieldType != null) {
@@ -171,10 +173,10 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<ClassificationInferenceOptions> {
 		@Nullable
-		private Number numTopClasses;
+		private Integer numTopClasses;
 
 		@Nullable
-		private Number numTopFeatureImportanceValues;
+		private Integer numTopFeatureImportanceValues;
 
 		@Nullable
 		private String predictionFieldType;
@@ -190,7 +192,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
-		public Builder numTopClasses(@Nullable Number value) {
+		public Builder numTopClasses(@Nullable Integer value) {
 			this.numTopClasses = value;
 			return this;
 		}
@@ -201,7 +203,7 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public Builder numTopFeatureImportanceValues(@Nullable Number value) {
+		public Builder numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
@@ -257,15 +259,15 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClassificationInferenceOptions}
 	 */
-	public static final JsonpDeserializer<ClassificationInferenceOptions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClassificationInferenceOptions::setupClassificationInferenceOptionsDeserializer);
+	public static final JsonpDeserializer<ClassificationInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClassificationInferenceOptions::setupClassificationInferenceOptionsDeserializer,
+					Builder::build);
 
 	protected static void setupClassificationInferenceOptionsDeserializer(
 			DelegatingDeserializer<ClassificationInferenceOptions.Builder> op) {
 
-		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
 				"num_top_feature_importance_values");
 		op.add(Builder::predictionFieldType, JsonpDeserializer.stringDeserializer(), "prediction_field_type");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");

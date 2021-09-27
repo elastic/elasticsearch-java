@@ -24,8 +24,8 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptTransform
-public final class ScriptTransform implements Transform, JsonpSerializable {
+@JsonpDeserializable
+public final class ScriptTransform implements TransformVariant, JsonpSerializable {
 	private final String lang;
 
 	private final Map<String, JsonData> params;
@@ -58,7 +59,7 @@ public final class ScriptTransform implements Transform, JsonpSerializable {
 	 * {@link Transform} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "script";
 	}
 
@@ -86,7 +87,6 @@ public final class ScriptTransform implements Transform, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("lang");
 		generator.write(this.lang);
@@ -98,8 +98,6 @@ public final class ScriptTransform implements Transform, JsonpSerializable {
 			item0.getValue().serialize(generator, mapper);
 
 		}
-		generator.writeEnd();
-
 		generator.writeEnd();
 
 	}
@@ -155,14 +153,16 @@ public final class ScriptTransform implements Transform, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<ScriptTransform.Builder, ScriptTransform.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(ScriptTransform::setupScriptTransformDeserializer);
+	/**
+	 * Json deserializer for {@link ScriptTransform}
+	 */
+	public static final JsonpDeserializer<ScriptTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ScriptTransform::setupScriptTransformDeserializer, Builder::build);
 
 	protected static void setupScriptTransformDeserializer(DelegatingDeserializer<ScriptTransform.Builder> op) {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}
 

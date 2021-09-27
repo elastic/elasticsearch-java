@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.RenameProcessor
-public final class RenameProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -53,6 +55,14 @@ public final class RenameProcessor extends ProcessorBase {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "rename";
 	}
 
 	/**
@@ -157,8 +167,8 @@ public final class RenameProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link RenameProcessor}
 	 */
-	public static final JsonpDeserializer<RenameProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RenameProcessor::setupRenameProcessorDeserializer);
+	public static final JsonpDeserializer<RenameProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RenameProcessor::setupRenameProcessorDeserializer, Builder::build);
 
 	protected static void setupRenameProcessorDeserializer(DelegatingDeserializer<RenameProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

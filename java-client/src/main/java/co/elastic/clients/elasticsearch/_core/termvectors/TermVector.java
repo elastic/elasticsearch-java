@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.termvectors;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.TermVector
+@JsonpDeserializable
 public final class TermVector implements JsonpSerializable {
 	private final FieldStatistics fieldStatistics;
 
@@ -167,13 +169,13 @@ public final class TermVector implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TermVector}
 	 */
-	public static final JsonpDeserializer<TermVector> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermVector::setupTermVectorDeserializer);
+	public static final JsonpDeserializer<TermVector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TermVector::setupTermVectorDeserializer, Builder::build);
 
 	protected static void setupTermVectorDeserializer(DelegatingDeserializer<TermVector.Builder> op) {
 
-		op.add(Builder::fieldStatistics, FieldStatistics.DESERIALIZER, "field_statistics");
-		op.add(Builder::terms, JsonpDeserializer.stringMapDeserializer(Term.DESERIALIZER), "terms");
+		op.add(Builder::fieldStatistics, FieldStatistics._DESERIALIZER, "field_statistics");
+		op.add(Builder::terms, JsonpDeserializer.stringMapDeserializer(Term._DESERIALIZER), "terms");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Response
+@JsonpDeserializable
 public final class AckWatchResponse implements JsonpSerializable {
 	private final WatchStatus status;
 
@@ -110,12 +112,12 @@ public final class AckWatchResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AckWatchResponse}
 	 */
-	public static final JsonpDeserializer<AckWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AckWatchResponse::setupAckWatchResponseDeserializer);
+	public static final JsonpDeserializer<AckWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AckWatchResponse::setupAckWatchResponseDeserializer, Builder::build);
 
 	protected static void setupAckWatchResponseDeserializer(DelegatingDeserializer<AckWatchResponse.Builder> op) {
 
-		op.add(Builder::status, WatchStatus.DESERIALIZER, "status");
+		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 
 	}
 

@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_filter.Request
+@JsonpDeserializable
 public final class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	private final String filterId;
 
@@ -194,8 +196,8 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link PutFilterRequest}
 	 */
-	public static final JsonpDeserializer<PutFilterRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutFilterRequest::setupPutFilterRequestDeserializer);
+	public static final JsonpDeserializer<PutFilterRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutFilterRequest::setupPutFilterRequestDeserializer, Builder::build);
 
 	protected static void setupPutFilterRequestDeserializer(DelegatingDeserializer<PutFilterRequest.Builder> op) {
 
@@ -241,5 +243,5 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutFilterResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutFilterResponse._DESERIALIZER);
 }

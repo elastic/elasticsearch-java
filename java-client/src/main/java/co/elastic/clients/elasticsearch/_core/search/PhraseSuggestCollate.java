@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollate
+@JsonpDeserializable
 public final class PhraseSuggestCollate implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> params;
@@ -190,15 +192,15 @@ public final class PhraseSuggestCollate implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PhraseSuggestCollate}
 	 */
-	public static final JsonpDeserializer<PhraseSuggestCollate> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PhraseSuggestCollate::setupPhraseSuggestCollateDeserializer);
+	public static final JsonpDeserializer<PhraseSuggestCollate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PhraseSuggestCollate::setupPhraseSuggestCollateDeserializer, Builder::build);
 
 	protected static void setupPhraseSuggestCollateDeserializer(
 			DelegatingDeserializer<PhraseSuggestCollate.Builder> op) {
 
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::prune, JsonpDeserializer.booleanDeserializer(), "prune");
-		op.add(Builder::query, PhraseSuggestCollateQuery.DESERIALIZER, "query");
+		op.add(Builder::query, PhraseSuggestCollateQuery._DESERIALIZER, "query");
 
 	}
 

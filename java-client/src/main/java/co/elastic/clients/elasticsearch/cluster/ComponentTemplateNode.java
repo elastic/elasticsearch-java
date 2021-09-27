@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -40,11 +41,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ComponentTemplateNode
+@JsonpDeserializable
 public final class ComponentTemplateNode implements JsonpSerializable {
 	private final ComponentTemplateSummary template;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final Map<String, JsonData> meta;
@@ -70,7 +72,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -99,7 +101,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.meta != null) {
@@ -126,7 +128,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		private ComponentTemplateSummary template;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private Map<String, JsonData> meta;
@@ -150,7 +152,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -191,15 +193,15 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ComponentTemplateNode}
 	 */
-	public static final JsonpDeserializer<ComponentTemplateNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ComponentTemplateNode::setupComponentTemplateNodeDeserializer);
+	public static final JsonpDeserializer<ComponentTemplateNode> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ComponentTemplateNode::setupComponentTemplateNodeDeserializer, Builder::build);
 
 	protected static void setupComponentTemplateNodeDeserializer(
 			DelegatingDeserializer<ComponentTemplateNode.Builder> op) {
 
-		op.add(Builder::template, ComponentTemplateSummary.DESERIALIZER, "template");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_meta");
+		op.add(Builder::template, ComponentTemplateSummary._DESERIALIZER, "template");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 

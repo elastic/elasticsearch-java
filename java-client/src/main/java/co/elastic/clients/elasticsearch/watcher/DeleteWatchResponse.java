@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,18 +33,19 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher.delete_watch.Response
+@JsonpDeserializable
 public final class DeleteWatchResponse implements JsonpSerializable {
 	private final Boolean found;
 
 	private final String id;
 
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -72,7 +74,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -94,7 +96,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		generator.write(this.id);
 
 		generator.writeKey("_version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -108,7 +110,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 
 		private String id;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code found}
@@ -129,7 +131,7 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -151,14 +153,14 @@ public final class DeleteWatchResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DeleteWatchResponse}
 	 */
-	public static final JsonpDeserializer<DeleteWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteWatchResponse::setupDeleteWatchResponseDeserializer);
+	public static final JsonpDeserializer<DeleteWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteWatchResponse::setupDeleteWatchResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteWatchResponseDeserializer(DelegatingDeserializer<DeleteWatchResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}
 

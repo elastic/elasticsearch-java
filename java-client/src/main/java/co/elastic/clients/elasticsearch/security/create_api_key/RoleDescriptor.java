@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security.create_api_key;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.RoleDescriptor
+@JsonpDeserializable
 public final class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
 
@@ -262,15 +264,15 @@ public final class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RoleDescriptor}
 	 */
-	public static final JsonpDeserializer<RoleDescriptor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RoleDescriptor::setupRoleDescriptorDeserializer);
+	public static final JsonpDeserializer<RoleDescriptor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RoleDescriptor::setupRoleDescriptorDeserializer, Builder::build);
 
 	protected static void setupRoleDescriptorDeserializer(DelegatingDeserializer<RoleDescriptor.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivileges.DESERIALIZER), "index");
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivileges._DESERIALIZER), "index");
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
 
 	}

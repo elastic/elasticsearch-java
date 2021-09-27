@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,12 +43,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
+@JsonpDeserializable
 public final class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String username;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final String password;
@@ -81,7 +83,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -123,7 +125,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		private String username;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private String password;
@@ -146,7 +148,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -176,8 +178,8 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link ChangePasswordRequest}
 	 */
-	public static final JsonpDeserializer<ChangePasswordRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer);
+	public static final JsonpDeserializer<ChangePasswordRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer, Builder::build);
 
 	protected static void setupChangePasswordRequestDeserializer(
 			DelegatingDeserializer<ChangePasswordRequest.Builder> op) {
@@ -235,5 +237,5 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ChangePasswordResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ChangePasswordResponse._DESERIALIZER);
 }

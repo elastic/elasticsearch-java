@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryPrecision
+@JsonpDeserializable
 public final class DataframeClassificationSummaryPrecision implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Number avgPrecision;
+	private final Double avgPrecision;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 	/**
 	 * API name: {@code avg_precision}
 	 */
-	public Number avgPrecision() {
+	public Double avgPrecision() {
 		return this.avgPrecision;
 	}
 
@@ -88,7 +90,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		generator.writeEnd();
 
 		generator.writeKey("avg_precision");
-		generator.write(this.avgPrecision.doubleValue());
+		generator.write(this.avgPrecision);
 
 	}
 
@@ -100,7 +102,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryPrecision> {
 		private List<DataframeEvaluationClass> classes;
 
-		private Number avgPrecision;
+		private Double avgPrecision;
 
 		/**
 		 * API name: {@code classes}
@@ -147,7 +149,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		/**
 		 * API name: {@code avg_precision}
 		 */
-		public Builder avgPrecision(Number value) {
+		public Builder avgPrecision(Double value) {
 			this.avgPrecision = value;
 			return this;
 		}
@@ -169,15 +171,17 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 	/**
 	 * Json deserializer for {@link DataframeClassificationSummaryPrecision}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummaryPrecision> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummaryPrecision::setupDataframeClassificationSummaryPrecisionDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummaryPrecision> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeClassificationSummaryPrecision::setupDataframeClassificationSummaryPrecisionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryPrecisionDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummaryPrecision.Builder> op) {
 
-		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass.DESERIALIZER), "classes");
-		op.add(Builder::avgPrecision, JsonpDeserializer.numberDeserializer(), "avg_precision");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass._DESERIALIZER),
+				"classes");
+		op.add(Builder::avgPrecision, JsonpDeserializer.doubleDeserializer(), "avg_precision");
 
 	}
 

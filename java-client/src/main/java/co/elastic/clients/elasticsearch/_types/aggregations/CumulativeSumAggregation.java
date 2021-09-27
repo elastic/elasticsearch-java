@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.CumulativeSumAggregation
-public final class CumulativeSumAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public CumulativeSumAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "cumulative_sum";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class CumulativeSumAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link CumulativeSumAggregation}
 	 */
-	public static final JsonpDeserializer<CumulativeSumAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer);
+	public static final JsonpDeserializer<CumulativeSumAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer, Builder::build);
 
 	protected static void setupCumulativeSumAggregationDeserializer(
 			DelegatingDeserializer<CumulativeSumAggregation.Builder> op) {

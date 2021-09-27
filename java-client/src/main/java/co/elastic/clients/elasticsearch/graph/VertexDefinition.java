@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexDefinition
+@JsonpDeserializable
 public final class VertexDefinition implements JsonpSerializable {
 	@Nullable
 	private final List<String> exclude;
@@ -51,13 +54,13 @@ public final class VertexDefinition implements JsonpSerializable {
 	private final List<VertexInclude> include;
 
 	@Nullable
-	private final Number minDocCount;
+	private final Long minDocCount;
 
 	@Nullable
-	private final Number shardMinDocCount;
+	private final Long shardMinDocCount;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -99,7 +102,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Number minDocCount() {
+	public Long minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -107,7 +110,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	 * API name: {@code shard_min_doc_count}
 	 */
 	@Nullable
-	public Number shardMinDocCount() {
+	public Long shardMinDocCount() {
 		return this.shardMinDocCount;
 	}
 
@@ -115,7 +118,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -159,19 +162,19 @@ public final class VertexDefinition implements JsonpSerializable {
 		if (this.minDocCount != null) {
 
 			generator.writeKey("min_doc_count");
-			generator.write(this.minDocCount.doubleValue());
+			generator.write(this.minDocCount);
 
 		}
 		if (this.shardMinDocCount != null) {
 
 			generator.writeKey("shard_min_doc_count");
-			generator.write(this.shardMinDocCount.doubleValue());
+			generator.write(this.shardMinDocCount);
 
 		}
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -192,13 +195,13 @@ public final class VertexDefinition implements JsonpSerializable {
 		private List<VertexInclude> include;
 
 		@Nullable
-		private Number minDocCount;
+		private Long minDocCount;
 
 		@Nullable
-		private Number shardMinDocCount;
+		private Long shardMinDocCount;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code exclude}
@@ -279,7 +282,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Number value) {
+		public Builder minDocCount(@Nullable Long value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -287,7 +290,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code shard_min_doc_count}
 		 */
-		public Builder shardMinDocCount(@Nullable Number value) {
+		public Builder shardMinDocCount(@Nullable Long value) {
 			this.shardMinDocCount = value;
 			return this;
 		}
@@ -295,7 +298,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -317,18 +320,18 @@ public final class VertexDefinition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link VertexDefinition}
 	 */
-	public static final JsonpDeserializer<VertexDefinition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, VertexDefinition::setupVertexDefinitionDeserializer);
+	public static final JsonpDeserializer<VertexDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			VertexDefinition::setupVertexDefinitionDeserializer, Builder::build);
 
 	protected static void setupVertexDefinitionDeserializer(DelegatingDeserializer<VertexDefinition.Builder> op) {
 
 		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"exclude");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(VertexInclude.DESERIALIZER), "include");
-		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
-		op.add(Builder::shardMinDocCount, JsonpDeserializer.numberDeserializer(), "shard_min_doc_count");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(VertexInclude._DESERIALIZER), "include");
+		op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
+		op.add(Builder::shardMinDocCount, JsonpDeserializer.longDeserializer(), "shard_min_doc_count");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

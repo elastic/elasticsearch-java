@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,9 +42,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
+@JsonpDeserializable
 public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		implements
-			DataframeAnalysisFeatureProcessor,
+			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
 	@Nullable
 	private final String featurePrefix;
@@ -52,12 +53,12 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	private final String field;
 
 	@Nullable
-	private final Number length;
+	private final Integer length;
 
-	private final List<Number> nGrams;
+	private final List<Integer> nGrams;
 
 	@Nullable
-	private final Number start;
+	private final Integer start;
 
 	@Nullable
 	private final Boolean custom;
@@ -79,7 +80,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * {@link DataframeAnalysisFeatureProcessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "n_gram_encoding";
 	}
 
@@ -109,7 +110,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * API name: {@code length}
 	 */
 	@Nullable
-	public Number length() {
+	public Integer length() {
 		return this.length;
 	}
 
@@ -119,7 +120,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * <p>
 	 * API name: {@code n_grams}
 	 */
-	public List<Number> nGrams() {
+	public List<Integer> nGrams() {
 		return this.nGrams;
 	}
 
@@ -130,7 +131,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public Number start() {
+	public Integer start() {
 		return this.start;
 	}
 
@@ -152,7 +153,6 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		if (this.featurePrefix != null) {
 
@@ -167,14 +167,14 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		if (this.length != null) {
 
 			generator.writeKey("length");
-			generator.write(this.length.doubleValue());
+			generator.write(this.length);
 
 		}
 
 		generator.writeKey("n_grams");
 		generator.writeStartArray();
-		for (Number item0 : this.nGrams) {
-			generator.write(item0.doubleValue());
+		for (Integer item0 : this.nGrams) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -182,7 +182,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		if (this.start != null) {
 
 			generator.writeKey("start");
-			generator.write(this.start.doubleValue());
+			generator.write(this.start);
 
 		}
 		if (this.custom != null) {
@@ -191,8 +191,6 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 			generator.write(this.custom);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -208,12 +206,12 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		private String field;
 
 		@Nullable
-		private Number length;
+		private Integer length;
 
-		private List<Number> nGrams;
+		private List<Integer> nGrams;
 
 		@Nullable
-		private Number start;
+		private Integer start;
 
 		@Nullable
 		private Boolean custom;
@@ -244,7 +242,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code length}
 		 */
-		public Builder length(@Nullable Number value) {
+		public Builder length(@Nullable Integer value) {
 			this.length = value;
 			return this;
 		}
@@ -255,7 +253,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code n_grams}
 		 */
-		public Builder nGrams(List<Number> value) {
+		public Builder nGrams(List<Integer> value) {
 			this.nGrams = value;
 			return this;
 		}
@@ -266,7 +264,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code n_grams}
 		 */
-		public Builder nGrams(Number... value) {
+		public Builder nGrams(Integer... value) {
 			this.nGrams = Arrays.asList(value);
 			return this;
 		}
@@ -274,7 +272,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		/**
 		 * Add a value to {@link #nGrams(List)}, creating the list if needed.
 		 */
-		public Builder addNGrams(Number value) {
+		public Builder addNGrams(Integer value) {
 			if (this.nGrams == null) {
 				this.nGrams = new ArrayList<>();
 			}
@@ -288,7 +286,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable Number value) {
+		public Builder start(@Nullable Integer value) {
 			this.start = value;
 			return this;
 		}
@@ -315,19 +313,23 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, DataframeAnalysisFeatureProcessorNGramEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(
-					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeAnalysisFeatureProcessorNGramEncoding}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> op) {
 
 		op.add(Builder::featurePrefix, JsonpDeserializer.stringDeserializer(), "feature_prefix");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
-		op.add(Builder::nGrams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "n_grams");
-		op.add(Builder::start, JsonpDeserializer.numberDeserializer(), "start");
+		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
+		op.add(Builder::nGrams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()),
+				"n_grams");
+		op.add(Builder::start, JsonpDeserializer.integerDeserializer(), "start");
 		op.add(Builder::custom, JsonpDeserializer.booleanDeserializer(), "custom");
 
 	}

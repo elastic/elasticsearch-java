@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_mvt.Response
+@JsonpDeserializable
 public final class SearchMvtResponse implements JsonpSerializable {
 	private final JsonValue value;
 
@@ -99,8 +101,8 @@ public final class SearchMvtResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SearchMvtResponse}
 	 */
-	public static final JsonpDeserializer<SearchMvtResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchMvtResponse::setupSearchMvtResponseDeserializer);
+	public static final JsonpDeserializer<SearchMvtResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SearchMvtResponse::setupSearchMvtResponseDeserializer, Builder::build);
 
 	protected static void setupSearchMvtResponseDeserializer(DelegatingDeserializer<SearchMvtResponse.Builder> op) {
 

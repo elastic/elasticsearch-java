@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_service_tokens.Response
+@JsonpDeserializable
 public final class ClearCachedServiceTokensResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
@@ -192,16 +194,16 @@ public final class ClearCachedServiceTokensResponse implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link ClearCachedServiceTokensResponse}
 	 */
-	public static final JsonpDeserializer<ClearCachedServiceTokensResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClearCachedServiceTokensResponse::setupClearCachedServiceTokensResponseDeserializer);
+	public static final JsonpDeserializer<ClearCachedServiceTokensResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCachedServiceTokensResponse::setupClearCachedServiceTokensResponseDeserializer,
+					Builder::build);
 
 	protected static void setupClearCachedServiceTokensResponseDeserializer(
 			DelegatingDeserializer<ClearCachedServiceTokensResponse.Builder> op) {
 
-		op.add(Builder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
+		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode._DESERIALIZER), "nodes");
 
 	}
 

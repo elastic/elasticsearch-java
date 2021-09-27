@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,12 +41,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ReservedSize
+@JsonpDeserializable
 public final class ReservedSize implements JsonpSerializable {
 	private final String nodeId;
 
 	private final String path;
 
-	private final Number total;
+	private final Long total;
 
 	private final List<String> shards;
 
@@ -77,7 +79,7 @@ public final class ReservedSize implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
@@ -106,7 +108,7 @@ public final class ReservedSize implements JsonpSerializable {
 		generator.write(this.path);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("shards");
 		generator.writeStartArray();
@@ -128,7 +130,7 @@ public final class ReservedSize implements JsonpSerializable {
 
 		private String path;
 
-		private Number total;
+		private Long total;
 
 		private List<String> shards;
 
@@ -151,7 +153,7 @@ public final class ReservedSize implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -200,14 +202,14 @@ public final class ReservedSize implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReservedSize}
 	 */
-	public static final JsonpDeserializer<ReservedSize> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReservedSize::setupReservedSizeDeserializer);
+	public static final JsonpDeserializer<ReservedSize> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReservedSize::setupReservedSizeDeserializer, Builder::build);
 
 	protected static void setupReservedSizeDeserializer(DelegatingDeserializer<ReservedSize.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "shards");
 
 	}

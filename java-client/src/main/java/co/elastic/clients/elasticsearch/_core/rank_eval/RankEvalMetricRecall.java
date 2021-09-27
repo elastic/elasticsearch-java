@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,6 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.rank_eval.RankEvalMetricRecall
+@JsonpDeserializable
 public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,8 +72,8 @@ public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	/**
 	 * Json deserializer for {@link RankEvalMetricRecall}
 	 */
-	public static final JsonpDeserializer<RankEvalMetricRecall> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalMetricRecall::setupRankEvalMetricRecallDeserializer);
+	public static final JsonpDeserializer<RankEvalMetricRecall> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankEvalMetricRecall::setupRankEvalMetricRecallDeserializer, Builder::build);
 
 	protected static void setupRankEvalMetricRecallDeserializer(
 			DelegatingDeserializer<RankEvalMetricRecall.Builder> op) {

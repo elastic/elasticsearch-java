@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.eql;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -39,14 +39,15 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: eql.get.Request
+
 public final class GetRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final JsonValue keepAlive;
+	private final String keepAlive;
 
 	@Nullable
-	private final JsonValue waitForCompletionTimeout;
+	private final String waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +75,7 @@ public final class GetRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public JsonValue keepAlive() {
+	public String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -85,7 +86,7 @@ public final class GetRequest extends RequestBase {
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public JsonValue waitForCompletionTimeout() {
+	public String waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -98,10 +99,10 @@ public final class GetRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private JsonValue keepAlive;
+		private String keepAlive;
 
 		@Nullable
-		private JsonValue waitForCompletionTimeout;
+		private String waitForCompletionTimeout;
 
 		/**
 		 * Identifier for the search.
@@ -119,7 +120,7 @@ public final class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable JsonValue value) {
+		public Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -130,7 +131,7 @@ public final class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable JsonValue value) {
+		public Builder waitForCompletionTimeout(@Nullable String value) {
 			this.waitForCompletionTimeout = value;
 			return this;
 		}
@@ -184,10 +185,10 @@ public final class GetRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive.toString());
+					params.put("keep_alive", request.keepAlive);
 				}
 				if (request.waitForCompletionTimeout != null) {
-					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout.toString());
+					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout);
 				}
 				return params;
 

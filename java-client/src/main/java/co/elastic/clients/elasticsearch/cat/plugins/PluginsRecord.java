@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.plugins;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.plugins.PluginsRecord
+@JsonpDeserializable
 public final class PluginsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -279,8 +281,8 @@ public final class PluginsRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PluginsRecord}
 	 */
-	public static final JsonpDeserializer<PluginsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PluginsRecord::setupPluginsRecordDeserializer);
+	public static final JsonpDeserializer<PluginsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PluginsRecord::setupPluginsRecordDeserializer, Builder::build);
 
 	protected static void setupPluginsRecordDeserializer(DelegatingDeserializer<PluginsRecord.Builder> op) {
 

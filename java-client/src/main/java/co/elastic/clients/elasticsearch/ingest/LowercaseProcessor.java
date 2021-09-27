@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.LowercaseProcessor
-public final class LowercaseProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class LowercaseProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -54,6 +56,14 @@ public final class LowercaseProcessor extends ProcessorBase {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "lowercase";
 	}
 
 	/**
@@ -163,8 +173,8 @@ public final class LowercaseProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link LowercaseProcessor}
 	 */
-	public static final JsonpDeserializer<LowercaseProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, LowercaseProcessor::setupLowercaseProcessorDeserializer);
+	public static final JsonpDeserializer<LowercaseProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, LowercaseProcessor::setupLowercaseProcessorDeserializer, Builder::build);
 
 	protected static void setupLowercaseProcessorDeserializer(DelegatingDeserializer<LowercaseProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

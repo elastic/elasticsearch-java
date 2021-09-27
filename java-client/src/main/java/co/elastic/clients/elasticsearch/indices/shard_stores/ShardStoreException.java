@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreException
+@JsonpDeserializable
 public final class ShardStoreException implements JsonpSerializable {
 	private final String reason;
 
@@ -126,8 +128,8 @@ public final class ShardStoreException implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardStoreException}
 	 */
-	public static final JsonpDeserializer<ShardStoreException> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStoreException::setupShardStoreExceptionDeserializer);
+	public static final JsonpDeserializer<ShardStoreException> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ShardStoreException::setupShardStoreExceptionDeserializer, Builder::build);
 
 	protected static void setupShardStoreExceptionDeserializer(DelegatingDeserializer<ShardStoreException.Builder> op) {
 

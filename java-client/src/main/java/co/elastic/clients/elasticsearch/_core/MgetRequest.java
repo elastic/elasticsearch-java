@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._core.mget.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -49,6 +50,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Request
+@JsonpDeserializable
 public final class MgetRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String index;
@@ -66,7 +68,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	private final String routing;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -81,7 +83,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	private final List<Operation> docs;
 
 	@Nullable
-	private final List<JsonValue> ids;
+	private final List<String> ids;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -159,7 +161,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
 		return this.source;
 	}
 
@@ -205,7 +207,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code ids}
 	 */
 	@Nullable
-	public List<JsonValue> ids() {
+	public List<String> ids() {
 		return this.ids;
 	}
 
@@ -235,7 +237,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 
 			generator.writeKey("ids");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.ids) {
+			for (String item0 : this.ids) {
 				generator.write(item0);
 
 			}
@@ -267,7 +269,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		private String routing;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -282,7 +284,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		private List<Operation> docs;
 
 		@Nullable
-		private List<JsonValue> ids;
+		private List<String> ids;
 
 		/**
 		 * The name of the index
@@ -341,7 +343,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -483,7 +485,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code ids}
 		 */
-		public Builder ids(@Nullable List<JsonValue> value) {
+		public Builder ids(@Nullable List<String> value) {
 			this.ids = value;
 			return this;
 		}
@@ -491,7 +493,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code ids}
 		 */
-		public Builder ids(JsonValue... value) {
+		public Builder ids(String... value) {
 			this.ids = Arrays.asList(value);
 			return this;
 		}
@@ -499,7 +501,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * Add a value to {@link #ids(List)}, creating the list if needed.
 		 */
-		public Builder addIds(JsonValue value) {
+		public Builder addIds(String value) {
 			if (this.ids == null) {
 				this.ids = new ArrayList<>();
 			}
@@ -524,13 +526,13 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Json deserializer for {@link MgetRequest}
 	 */
-	public static final JsonpDeserializer<MgetRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MgetRequest::setupMgetRequestDeserializer);
+	public static final JsonpDeserializer<MgetRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MgetRequest::setupMgetRequestDeserializer, Builder::build);
 
 	protected static void setupMgetRequestDeserializer(DelegatingDeserializer<MgetRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation.DESERIALIZER), "docs");
-		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "ids");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
+		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
 
 	}
 

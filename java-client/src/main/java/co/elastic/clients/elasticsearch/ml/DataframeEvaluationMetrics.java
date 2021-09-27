@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
+
 public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationClassificationMetricsAucRoc aucRoc;
@@ -219,9 +221,10 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationMetricsDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc.DESERIALIZER, "auc_roc");
-		op.add(AbstractBuilder::precision, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "precision");
-		op.add(AbstractBuilder::recall, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "recall");
+		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc._DESERIALIZER, "auc_roc");
+		op.add(AbstractBuilder::precision, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"precision");
+		op.add(AbstractBuilder::recall, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "recall");
 
 	}
 

@@ -46,7 +46,7 @@ public class BoolQuery implements Query.Variant, JsonpSerializable {
     }
 
     @Override
-    public String _type() {
+    public String _variantType() {
         return "bool";
     }
 

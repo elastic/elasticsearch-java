@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: cat.help.Request
+
 public final class HelpRequest extends CatRequestBase {
 	public HelpRequest() {
 	}
@@ -41,10 +43,7 @@ public final class HelpRequest extends CatRequestBase {
 	/**
 	 * Singleton instance for {@link HelpRequest}.
 	 */
-	public static final HelpRequest INSTANCE = new HelpRequest();
-
-	public static final JsonpDeserializer<HelpRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(HelpRequest.INSTANCE);
+	public static final HelpRequest _INSTANCE = new HelpRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,5 +67,5 @@ public final class HelpRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, HelpResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, HelpResponse._DESERIALIZER);
 }

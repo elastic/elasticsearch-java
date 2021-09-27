@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ilm;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.ilm.get_lifecycle.Lifecycle;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: ilm.get_lifecycle.Response
+@JsonpDeserializable
 public final class GetLifecycleResponse extends AdditionalProperties<String, Lifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,13 +77,13 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Lif
 	/**
 	 * Json deserializer for {@link GetLifecycleResponse}
 	 */
-	public static final JsonpDeserializer<GetLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);
+	public static final JsonpDeserializer<GetLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer, Builder::build);
 
 	protected static void setupGetLifecycleResponseDeserializer(
 			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Lifecycle.DESERIALIZER);
+				Lifecycle._DESERIALIZER);
 
 	}
 

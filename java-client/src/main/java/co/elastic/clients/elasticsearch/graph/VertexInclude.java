@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexInclude
+@JsonpDeserializable
 public final class VertexInclude implements JsonpSerializable {
-	private final Number boost;
+	private final Double boost;
 
 	private final String term;
 
@@ -54,7 +56,7 @@ public final class VertexInclude implements JsonpSerializable {
 	/**
 	 * API name: {@code boost}
 	 */
-	public Number boost() {
+	public Double boost() {
 		return this.boost;
 	}
 
@@ -77,7 +79,7 @@ public final class VertexInclude implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("boost");
-		generator.write(this.boost.doubleValue());
+		generator.write(this.boost);
 
 		generator.writeKey("term");
 		generator.write(this.term);
@@ -90,14 +92,14 @@ public final class VertexInclude implements JsonpSerializable {
 	 * Builder for {@link VertexInclude}.
 	 */
 	public static class Builder implements ObjectBuilder<VertexInclude> {
-		private Number boost;
+		private Double boost;
 
 		private String term;
 
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(Number value) {
+		public Builder boost(Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -127,12 +129,12 @@ public final class VertexInclude implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link VertexInclude}
 	 */
-	public static final JsonpDeserializer<VertexInclude> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, VertexInclude::setupVertexIncludeDeserializer);
+	public static final JsonpDeserializer<VertexInclude> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			VertexInclude::setupVertexIncludeDeserializer, Builder::build);
 
 	protected static void setupVertexIncludeDeserializer(DelegatingDeserializer<VertexInclude.Builder> op) {
 
-		op.add(Builder::boost, JsonpDeserializer.numberDeserializer(), "boost");
+		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
 
 	}

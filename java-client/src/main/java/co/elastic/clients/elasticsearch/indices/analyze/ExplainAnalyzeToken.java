@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,27 +33,28 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.ExplainAnalyzeToken
+@JsonpDeserializable
 public final class ExplainAnalyzeToken implements JsonpSerializable {
 	private final String bytes;
 
-	private final Number endOffset;
+	private final Long endOffset;
 
 	@Nullable
 	private final Boolean keyword;
 
-	private final Number position;
+	private final Long position;
 
-	private final Number positionlength;
+	private final Long positionlength;
 
-	private final Number startOffset;
+	private final Long startOffset;
 
-	private final Number termfrequency;
+	private final Long termfrequency;
 
 	private final String token;
 
@@ -84,7 +86,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code end_offset}
 	 */
-	public Number endOffset() {
+	public Long endOffset() {
 		return this.endOffset;
 	}
 
@@ -99,28 +101,28 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code position}
 	 */
-	public Number position() {
+	public Long position() {
 		return this.position;
 	}
 
 	/**
 	 * API name: {@code positionLength}
 	 */
-	public Number positionlength() {
+	public Long positionlength() {
 		return this.positionlength;
 	}
 
 	/**
 	 * API name: {@code start_offset}
 	 */
-	public Number startOffset() {
+	public Long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
 	 * API name: {@code termFrequency}
 	 */
-	public Number termfrequency() {
+	public Long termfrequency() {
 		return this.termfrequency;
 	}
 
@@ -153,7 +155,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		generator.write(this.bytes);
 
 		generator.writeKey("end_offset");
-		generator.write(this.endOffset.doubleValue());
+		generator.write(this.endOffset);
 
 		if (this.keyword != null) {
 
@@ -163,16 +165,16 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 
 		generator.writeKey("position");
-		generator.write(this.position.doubleValue());
+		generator.write(this.position);
 
 		generator.writeKey("positionLength");
-		generator.write(this.positionlength.doubleValue());
+		generator.write(this.positionlength);
 
 		generator.writeKey("start_offset");
-		generator.write(this.startOffset.doubleValue());
+		generator.write(this.startOffset);
 
 		generator.writeKey("termFrequency");
-		generator.write(this.termfrequency.doubleValue());
+		generator.write(this.termfrequency);
 
 		generator.writeKey("token");
 		generator.write(this.token);
@@ -190,18 +192,18 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ExplainAnalyzeToken> {
 		private String bytes;
 
-		private Number endOffset;
+		private Long endOffset;
 
 		@Nullable
 		private Boolean keyword;
 
-		private Number position;
+		private Long position;
 
-		private Number positionlength;
+		private Long positionlength;
 
-		private Number startOffset;
+		private Long startOffset;
 
-		private Number termfrequency;
+		private Long termfrequency;
 
 		private String token;
 
@@ -218,7 +220,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code end_offset}
 		 */
-		public Builder endOffset(Number value) {
+		public Builder endOffset(Long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -234,7 +236,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code position}
 		 */
-		public Builder position(Number value) {
+		public Builder position(Long value) {
 			this.position = value;
 			return this;
 		}
@@ -242,7 +244,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code positionLength}
 		 */
-		public Builder positionlength(Number value) {
+		public Builder positionlength(Long value) {
 			this.positionlength = value;
 			return this;
 		}
@@ -250,7 +252,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code start_offset}
 		 */
-		public Builder startOffset(Number value) {
+		public Builder startOffset(Long value) {
 			this.startOffset = value;
 			return this;
 		}
@@ -258,7 +260,7 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code termFrequency}
 		 */
-		public Builder termfrequency(Number value) {
+		public Builder termfrequency(Long value) {
 			this.termfrequency = value;
 			return this;
 		}
@@ -296,18 +298,18 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExplainAnalyzeToken}
 	 */
-	public static final JsonpDeserializer<ExplainAnalyzeToken> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExplainAnalyzeToken::setupExplainAnalyzeTokenDeserializer);
+	public static final JsonpDeserializer<ExplainAnalyzeToken> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplainAnalyzeToken::setupExplainAnalyzeTokenDeserializer, Builder::build);
 
 	protected static void setupExplainAnalyzeTokenDeserializer(DelegatingDeserializer<ExplainAnalyzeToken.Builder> op) {
 
 		op.add(Builder::bytes, JsonpDeserializer.stringDeserializer(), "bytes");
-		op.add(Builder::endOffset, JsonpDeserializer.numberDeserializer(), "end_offset");
+		op.add(Builder::endOffset, JsonpDeserializer.longDeserializer(), "end_offset");
 		op.add(Builder::keyword, JsonpDeserializer.booleanDeserializer(), "keyword");
-		op.add(Builder::position, JsonpDeserializer.numberDeserializer(), "position");
-		op.add(Builder::positionlength, JsonpDeserializer.numberDeserializer(), "positionLength");
-		op.add(Builder::startOffset, JsonpDeserializer.numberDeserializer(), "start_offset");
-		op.add(Builder::termfrequency, JsonpDeserializer.numberDeserializer(), "termFrequency");
+		op.add(Builder::position, JsonpDeserializer.longDeserializer(), "position");
+		op.add(Builder::positionlength, JsonpDeserializer.longDeserializer(), "positionLength");
+		op.add(Builder::startOffset, JsonpDeserializer.longDeserializer(), "start_offset");
+		op.add(Builder::termfrequency, JsonpDeserializer.longDeserializer(), "termFrequency");
 		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

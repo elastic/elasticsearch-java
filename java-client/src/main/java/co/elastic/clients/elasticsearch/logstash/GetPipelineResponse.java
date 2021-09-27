@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Response
+@JsonpDeserializable
 public final class GetPipelineResponse implements JsonpSerializable {
 	private final Map<String, Pipeline> value;
 
@@ -133,12 +135,12 @@ public final class GetPipelineResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetPipelineResponse}
 	 */
-	public static final JsonpDeserializer<GetPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
+	public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer, Builder::build);
 
 	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.stringMapDeserializer(Pipeline.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.stringMapDeserializer(Pipeline._DESERIALIZER), "value");
 
 	}
 

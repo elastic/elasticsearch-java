@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNode
+@JsonpDeserializable
 public final class NodeInfoSettingsNode implements JsonpSerializable {
 	private final String name;
 
@@ -176,14 +178,14 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoSettingsNode}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettingsNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSettingsNode::setupNodeInfoSettingsNodeDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettingsNode> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoSettingsNode::setupNodeInfoSettingsNodeDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSettingsNodeDeserializer(
 			DelegatingDeserializer<NodeInfoSettingsNode.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::attr, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "attr");
+		op.add(Builder::attr, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "attr");
 		op.add(Builder::maxLocalStorageNodes, JsonpDeserializer.stringDeserializer(), "max_local_storage_nodes");
 
 	}

@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -40,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PinnedQuery
-public final class PinnedQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class PinnedQuery extends QueryBase implements QueryVariant {
 	private final List<String> ids;
 
 	private final Query organic;
@@ -59,7 +60,7 @@ public final class PinnedQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "pinned";
 	}
 
@@ -78,7 +79,6 @@ public final class PinnedQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 
@@ -92,8 +92,6 @@ public final class PinnedQuery extends QueryBase implements Query {
 
 		generator.writeKey("organic");
 		this.organic.serialize(generator, mapper);
-
-		generator.writeEnd();
 
 	}
 
@@ -168,14 +166,16 @@ public final class PinnedQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<PinnedQuery.Builder, PinnedQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(PinnedQuery::setupPinnedQueryDeserializer);
+	/**
+	 * Json deserializer for {@link PinnedQuery}
+	 */
+	public static final JsonpDeserializer<PinnedQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PinnedQuery::setupPinnedQueryDeserializer, Builder::build);
 
 	protected static void setupPinnedQueryDeserializer(DelegatingDeserializer<PinnedQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
-		op.add(Builder::organic, Query.DESERIALIZER, "organic");
+		op.add(Builder::organic, Query._DESERIALIZER, "organic");
 
 	}
 

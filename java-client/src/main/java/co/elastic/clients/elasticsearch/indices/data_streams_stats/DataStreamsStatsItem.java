@@ -24,31 +24,32 @@
 package co.elastic.clients.elasticsearch.indices.data_streams_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
+@JsonpDeserializable
 public final class DataStreamsStatsItem implements JsonpSerializable {
-	private final Number backingIndices;
+	private final Integer backingIndices;
 
 	private final String dataStream;
 
 	@Nullable
-	private final JsonValue storeSize;
+	private final String storeSize;
 
-	private final Number storeSizeBytes;
+	private final Integer storeSizeBytes;
 
-	private final Number maximumTimestamp;
+	private final Integer maximumTimestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +66,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * API name: {@code backing_indices}
 	 */
-	public Number backingIndices() {
+	public Integer backingIndices() {
 		return this.backingIndices;
 	}
 
@@ -80,21 +81,21 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	 * API name: {@code store_size}
 	 */
 	@Nullable
-	public JsonValue storeSize() {
+	public String storeSize() {
 		return this.storeSize;
 	}
 
 	/**
 	 * API name: {@code store_size_bytes}
 	 */
-	public Number storeSizeBytes() {
+	public Integer storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
 	/**
 	 * API name: {@code maximum_timestamp}
 	 */
-	public Number maximumTimestamp() {
+	public Integer maximumTimestamp() {
 		return this.maximumTimestamp;
 	}
 
@@ -110,7 +111,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("backing_indices");
-		generator.write(this.backingIndices.doubleValue());
+		generator.write(this.backingIndices);
 
 		generator.writeKey("data_stream");
 		generator.write(this.dataStream);
@@ -123,10 +124,10 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		generator.writeKey("store_size_bytes");
-		generator.write(this.storeSizeBytes.doubleValue());
+		generator.write(this.storeSizeBytes);
 
 		generator.writeKey("maximum_timestamp");
-		generator.write(this.maximumTimestamp.doubleValue());
+		generator.write(this.maximumTimestamp);
 
 	}
 
@@ -136,21 +137,21 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	 * Builder for {@link DataStreamsStatsItem}.
 	 */
 	public static class Builder implements ObjectBuilder<DataStreamsStatsItem> {
-		private Number backingIndices;
+		private Integer backingIndices;
 
 		private String dataStream;
 
 		@Nullable
-		private JsonValue storeSize;
+		private String storeSize;
 
-		private Number storeSizeBytes;
+		private Integer storeSizeBytes;
 
-		private Number maximumTimestamp;
+		private Integer maximumTimestamp;
 
 		/**
 		 * API name: {@code backing_indices}
 		 */
-		public Builder backingIndices(Number value) {
+		public Builder backingIndices(Integer value) {
 			this.backingIndices = value;
 			return this;
 		}
@@ -166,7 +167,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code store_size}
 		 */
-		public Builder storeSize(@Nullable JsonValue value) {
+		public Builder storeSize(@Nullable String value) {
 			this.storeSize = value;
 			return this;
 		}
@@ -174,7 +175,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code store_size_bytes}
 		 */
-		public Builder storeSizeBytes(Number value) {
+		public Builder storeSizeBytes(Integer value) {
 			this.storeSizeBytes = value;
 			return this;
 		}
@@ -182,7 +183,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * API name: {@code maximum_timestamp}
 		 */
-		public Builder maximumTimestamp(Number value) {
+		public Builder maximumTimestamp(Integer value) {
 			this.maximumTimestamp = value;
 			return this;
 		}
@@ -204,17 +205,17 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataStreamsStatsItem}
 	 */
-	public static final JsonpDeserializer<DataStreamsStatsItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer);
+	public static final JsonpDeserializer<DataStreamsStatsItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer, Builder::build);
 
 	protected static void setupDataStreamsStatsItemDeserializer(
 			DelegatingDeserializer<DataStreamsStatsItem.Builder> op) {
 
-		op.add(Builder::backingIndices, JsonpDeserializer.numberDeserializer(), "backing_indices");
+		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
-		op.add(Builder::storeSize, JsonpDeserializer.jsonValueDeserializer(), "store_size");
-		op.add(Builder::storeSizeBytes, JsonpDeserializer.numberDeserializer(), "store_size_bytes");
-		op.add(Builder::maximumTimestamp, JsonpDeserializer.numberDeserializer(), "maximum_timestamp");
+		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store_size");
+		op.add(Builder::storeSizeBytes, JsonpDeserializer.integerDeserializer(), "store_size_bytes");
+		op.add(Builder::maximumTimestamp, JsonpDeserializer.integerDeserializer(), "maximum_timestamp");
 
 	}
 

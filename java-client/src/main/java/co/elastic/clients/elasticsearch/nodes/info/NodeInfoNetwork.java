@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetwork
+@JsonpDeserializable
 public final class NodeInfoNetwork implements JsonpSerializable {
 	private final NodeInfoNetworkInterface primaryInterface;
 
-	private final Number refreshInterval;
+	private final Integer refreshInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	/**
 	 * API name: {@code refresh_interval}
 	 */
-	public Number refreshInterval() {
+	public Integer refreshInterval() {
 		return this.refreshInterval;
 	}
 
@@ -80,7 +82,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		this.primaryInterface.serialize(generator, mapper);
 
 		generator.writeKey("refresh_interval");
-		generator.write(this.refreshInterval.doubleValue());
+		generator.write(this.refreshInterval);
 
 	}
 
@@ -92,7 +94,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<NodeInfoNetwork> {
 		private NodeInfoNetworkInterface primaryInterface;
 
-		private Number refreshInterval;
+		private Integer refreshInterval;
 
 		/**
 		 * API name: {@code primary_interface}
@@ -113,7 +115,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		/**
 		 * API name: {@code refresh_interval}
 		 */
-		public Builder refreshInterval(Number value) {
+		public Builder refreshInterval(Integer value) {
 			this.refreshInterval = value;
 			return this;
 		}
@@ -135,13 +137,13 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoNetwork}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetwork> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoNetwork::setupNodeInfoNetworkDeserializer);
+	public static final JsonpDeserializer<NodeInfoNetwork> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoNetwork::setupNodeInfoNetworkDeserializer, Builder::build);
 
 	protected static void setupNodeInfoNetworkDeserializer(DelegatingDeserializer<NodeInfoNetwork.Builder> op) {
 
-		op.add(Builder::primaryInterface, NodeInfoNetworkInterface.DESERIALIZER, "primary_interface");
-		op.add(Builder::refreshInterval, JsonpDeserializer.numberDeserializer(), "refresh_interval");
+		op.add(Builder::primaryInterface, NodeInfoNetworkInterface._DESERIALIZER, "primary_interface");
+		op.add(Builder::refreshInterval, JsonpDeserializer.integerDeserializer(), "refresh_interval");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineConfig
+@JsonpDeserializable
 public final class PipelineConfig implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	private final List<Processor> processors;
 
@@ -72,7 +74,7 @@ public final class PipelineConfig implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -103,7 +105,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -127,7 +129,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		private String description;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		private List<Processor> processors;
 
@@ -142,7 +144,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -205,14 +207,14 @@ public final class PipelineConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PipelineConfig}
 	 */
-	public static final JsonpDeserializer<PipelineConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineConfig::setupPipelineConfigDeserializer);
+	public static final JsonpDeserializer<PipelineConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PipelineConfig::setupPipelineConfigDeserializer, Builder::build);
 
 	protected static void setupPipelineConfigDeserializer(DelegatingDeserializer<PipelineConfig.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "processors");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");
 
 	}
 

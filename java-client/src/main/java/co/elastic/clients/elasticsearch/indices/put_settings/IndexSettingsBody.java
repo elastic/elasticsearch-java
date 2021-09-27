@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices.put_settings;
 
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_settings.IndexSettingsBody
+@JsonpDeserializable
 public final class IndexSettingsBody extends IndexSettings {
 	@Nullable
 	private final IndexSettings settings;
@@ -117,12 +119,12 @@ public final class IndexSettingsBody extends IndexSettings {
 	/**
 	 * Json deserializer for {@link IndexSettingsBody}
 	 */
-	public static final JsonpDeserializer<IndexSettingsBody> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexSettingsBody::setupIndexSettingsBodyDeserializer);
+	public static final JsonpDeserializer<IndexSettingsBody> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexSettingsBody::setupIndexSettingsBodyDeserializer, Builder::build);
 
 	protected static void setupIndexSettingsBodyDeserializer(DelegatingDeserializer<IndexSettingsBody.Builder> op) {
 		IndexSettings.setupIndexSettingsDeserializer(op);
-		op.add(Builder::settings, IndexSettings.DESERIALIZER, "settings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 
 	}
 

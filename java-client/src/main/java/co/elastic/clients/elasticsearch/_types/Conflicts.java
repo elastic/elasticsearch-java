@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum Conflicts implements StringEnum {
 	Abort("abort"), Proceed("proceed");
 
@@ -39,6 +41,6 @@ public enum Conflicts implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Conflicts> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<Conflicts> _DESERIALIZER = new StringEnum.Deserializer<>(
 			Conflicts.values());
 }

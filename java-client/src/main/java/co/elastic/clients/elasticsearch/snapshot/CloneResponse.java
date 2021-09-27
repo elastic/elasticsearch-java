@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: snapshot.clone.Response
+@JsonpDeserializable
 public final class CloneResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link CloneResponse}
 	 */
-	public static final JsonpDeserializer<CloneResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloneResponse::setupCloneResponseDeserializer);
+	public static final JsonpDeserializer<CloneResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloneResponse::setupCloneResponseDeserializer, Builder::build);
 
 	protected static void setupCloneResponseDeserializer(DelegatingDeserializer<CloneResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

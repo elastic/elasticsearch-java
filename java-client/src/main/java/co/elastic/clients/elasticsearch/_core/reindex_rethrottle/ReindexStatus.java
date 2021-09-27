@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.reindex_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.Retries;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,34 +33,36 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexStatus
+@JsonpDeserializable
 public final class ReindexStatus implements JsonpSerializable {
-	private final Number batches;
+	private final Long batches;
 
-	private final Number created;
+	private final Long created;
 
-	private final Number deleted;
+	private final Long deleted;
 
-	private final Number noops;
+	private final Long noops;
 
-	private final Number requestsPerSecond;
+	private final Float requestsPerSecond;
 
 	private final Retries retries;
 
-	private final Number throttledMillis;
+	private final Long throttledMillis;
 
-	private final Number throttledUntilMillis;
+	private final Long throttledUntilMillis;
 
-	private final Number total;
+	private final Long total;
 
-	private final Number updated;
+	private final Long updated;
 
-	private final Number versionConflicts;
+	private final Long versionConflicts;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -82,35 +85,35 @@ public final class ReindexStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code batches}
 	 */
-	public Number batches() {
+	public Long batches() {
 		return this.batches;
 	}
 
 	/**
 	 * API name: {@code created}
 	 */
-	public Number created() {
+	public Long created() {
 		return this.created;
 	}
 
 	/**
 	 * API name: {@code deleted}
 	 */
-	public Number deleted() {
+	public Long deleted() {
 		return this.deleted;
 	}
 
 	/**
 	 * API name: {@code noops}
 	 */
-	public Number noops() {
+	public Long noops() {
 		return this.noops;
 	}
 
 	/**
 	 * API name: {@code requests_per_second}
 	 */
-	public Number requestsPerSecond() {
+	public Float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -124,35 +127,35 @@ public final class ReindexStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code throttled_millis}
 	 */
-	public Number throttledMillis() {
+	public Long throttledMillis() {
 		return this.throttledMillis;
 	}
 
 	/**
 	 * API name: {@code throttled_until_millis}
 	 */
-	public Number throttledUntilMillis() {
+	public Long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code updated}
 	 */
-	public Number updated() {
+	public Long updated() {
 		return this.updated;
 	}
 
 	/**
 	 * API name: {@code version_conflicts}
 	 */
-	public Number versionConflicts() {
+	public Long versionConflicts() {
 		return this.versionConflicts;
 	}
 
@@ -168,37 +171,37 @@ public final class ReindexStatus implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("batches");
-		generator.write(this.batches.doubleValue());
+		generator.write(this.batches);
 
 		generator.writeKey("created");
-		generator.write(this.created.doubleValue());
+		generator.write(this.created);
 
 		generator.writeKey("deleted");
-		generator.write(this.deleted.doubleValue());
+		generator.write(this.deleted);
 
 		generator.writeKey("noops");
-		generator.write(this.noops.doubleValue());
+		generator.write(this.noops);
 
 		generator.writeKey("requests_per_second");
-		generator.write(this.requestsPerSecond.doubleValue());
+		generator.write(this.requestsPerSecond);
 
 		generator.writeKey("retries");
 		this.retries.serialize(generator, mapper);
 
 		generator.writeKey("throttled_millis");
-		generator.write(this.throttledMillis.doubleValue());
+		generator.write(this.throttledMillis);
 
 		generator.writeKey("throttled_until_millis");
-		generator.write(this.throttledUntilMillis.doubleValue());
+		generator.write(this.throttledUntilMillis);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("updated");
-		generator.write(this.updated.doubleValue());
+		generator.write(this.updated);
 
 		generator.writeKey("version_conflicts");
-		generator.write(this.versionConflicts.doubleValue());
+		generator.write(this.versionConflicts);
 
 	}
 
@@ -208,32 +211,32 @@ public final class ReindexStatus implements JsonpSerializable {
 	 * Builder for {@link ReindexStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<ReindexStatus> {
-		private Number batches;
+		private Long batches;
 
-		private Number created;
+		private Long created;
 
-		private Number deleted;
+		private Long deleted;
 
-		private Number noops;
+		private Long noops;
 
-		private Number requestsPerSecond;
+		private Float requestsPerSecond;
 
 		private Retries retries;
 
-		private Number throttledMillis;
+		private Long throttledMillis;
 
-		private Number throttledUntilMillis;
+		private Long throttledUntilMillis;
 
-		private Number total;
+		private Long total;
 
-		private Number updated;
+		private Long updated;
 
-		private Number versionConflicts;
+		private Long versionConflicts;
 
 		/**
 		 * API name: {@code batches}
 		 */
-		public Builder batches(Number value) {
+		public Builder batches(Long value) {
 			this.batches = value;
 			return this;
 		}
@@ -241,7 +244,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Number value) {
+		public Builder created(Long value) {
 			this.created = value;
 			return this;
 		}
@@ -249,7 +252,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted}
 		 */
-		public Builder deleted(Number value) {
+		public Builder deleted(Long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -257,7 +260,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code noops}
 		 */
-		public Builder noops(Number value) {
+		public Builder noops(Long value) {
 			this.noops = value;
 			return this;
 		}
@@ -265,7 +268,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(Number value) {
+		public Builder requestsPerSecond(Float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -288,7 +291,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_millis}
 		 */
-		public Builder throttledMillis(Number value) {
+		public Builder throttledMillis(Long value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -296,7 +299,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until_millis}
 		 */
-		public Builder throttledUntilMillis(Number value) {
+		public Builder throttledUntilMillis(Long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -304,7 +307,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Long value) {
 			this.total = value;
 			return this;
 		}
@@ -312,7 +315,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code updated}
 		 */
-		public Builder updated(Number value) {
+		public Builder updated(Long value) {
 			this.updated = value;
 			return this;
 		}
@@ -320,7 +323,7 @@ public final class ReindexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code version_conflicts}
 		 */
-		public Builder versionConflicts(Number value) {
+		public Builder versionConflicts(Long value) {
 			this.versionConflicts = value;
 			return this;
 		}
@@ -342,22 +345,22 @@ public final class ReindexStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReindexStatus}
 	 */
-	public static final JsonpDeserializer<ReindexStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReindexStatus::setupReindexStatusDeserializer);
+	public static final JsonpDeserializer<ReindexStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReindexStatus::setupReindexStatusDeserializer, Builder::build);
 
 	protected static void setupReindexStatusDeserializer(DelegatingDeserializer<ReindexStatus.Builder> op) {
 
-		op.add(Builder::batches, JsonpDeserializer.numberDeserializer(), "batches");
-		op.add(Builder::created, JsonpDeserializer.numberDeserializer(), "created");
-		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
-		op.add(Builder::noops, JsonpDeserializer.numberDeserializer(), "noops");
-		op.add(Builder::requestsPerSecond, JsonpDeserializer.numberDeserializer(), "requests_per_second");
-		op.add(Builder::retries, Retries.DESERIALIZER, "retries");
-		op.add(Builder::throttledMillis, JsonpDeserializer.numberDeserializer(), "throttled_millis");
-		op.add(Builder::throttledUntilMillis, JsonpDeserializer.numberDeserializer(), "throttled_until_millis");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::updated, JsonpDeserializer.numberDeserializer(), "updated");
-		op.add(Builder::versionConflicts, JsonpDeserializer.numberDeserializer(), "version_conflicts");
+		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
+		op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");
+		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
+		op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
+		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
+		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
+		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
+		op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");
 
 	}
 

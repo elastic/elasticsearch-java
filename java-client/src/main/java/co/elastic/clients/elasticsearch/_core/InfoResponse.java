@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._types.ElasticsearchVersionInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.info.Response
+@JsonpDeserializable
 public final class InfoResponse implements JsonpSerializable {
 	private final String clusterName;
 
@@ -204,8 +206,8 @@ public final class InfoResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InfoResponse}
 	 */
-	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
+	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoResponse::setupInfoResponseDeserializer, Builder::build);
 
 	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 
@@ -213,7 +215,7 @@ public final class InfoResponse implements JsonpSerializable {
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::tagline, JsonpDeserializer.stringDeserializer(), "tagline");
-		op.add(Builder::version, ElasticsearchVersionInfo.DESERIALIZER, "version");
+		op.add(Builder::version, ElasticsearchVersionInfo._DESERIALIZER, "version");
 
 	}
 

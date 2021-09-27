@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
+@JsonpDeserializable
 public final class ChiSquareHeuristic implements JsonpSerializable {
 	private final Boolean backgroundIsSuperset;
 
@@ -126,8 +128,8 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ChiSquareHeuristic}
 	 */
-	public static final JsonpDeserializer<ChiSquareHeuristic> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer);
+	public static final JsonpDeserializer<ChiSquareHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer, Builder::build);
 
 	protected static void setupChiSquareHeuristicDeserializer(DelegatingDeserializer<ChiSquareHeuristic.Builder> op) {
 

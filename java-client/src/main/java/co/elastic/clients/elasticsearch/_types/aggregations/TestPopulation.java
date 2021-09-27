@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,11 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TestPopulation
+@JsonpDeserializable
 public final class TestPopulation implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
 	private final Query filter;
@@ -69,7 +71,7 @@ public final class TestPopulation implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -119,7 +121,7 @@ public final class TestPopulation implements JsonpSerializable {
 		private String field;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
 		private Query filter;
@@ -135,7 +137,7 @@ public final class TestPopulation implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -172,14 +174,14 @@ public final class TestPopulation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TestPopulation}
 	 */
-	public static final JsonpDeserializer<TestPopulation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TestPopulation::setupTestPopulationDeserializer);
+	public static final JsonpDeserializer<TestPopulation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TestPopulation::setupTestPopulationDeserializer, Builder::build);
 
 	protected static void setupTestPopulationDeserializer(DelegatingDeserializer<TestPopulation.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
-		op.add(Builder::filter, Query.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 
 	}
 

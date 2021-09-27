@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IpFilter
+@JsonpDeserializable
 public final class IpFilter implements JsonpSerializable {
 	private final Boolean http;
 
@@ -126,8 +128,8 @@ public final class IpFilter implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IpFilter}
 	 */
-	public static final JsonpDeserializer<IpFilter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IpFilter::setupIpFilterDeserializer);
+	public static final JsonpDeserializer<IpFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IpFilter::setupIpFilterDeserializer, Builder::build);
 
 	protected static void setupIpFilterDeserializer(DelegatingDeserializer<IpFilter.Builder> op) {
 

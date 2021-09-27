@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch.cluster.ClusterStateMetadata;
 import co.elastic.clients.elasticsearch.cluster.ClusterStateRoutingNodes;
 import co.elastic.clients.elasticsearch.cluster.ClusterStateSnapshots;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -47,6 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteState
+@JsonpDeserializable
 public final class RerouteState implements JsonpSerializable {
 	private final String clusterUuid;
 
@@ -57,7 +59,7 @@ public final class RerouteState implements JsonpSerializable {
 	private final String masterNode;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final EmptyObject blocks;
@@ -129,7 +131,7 @@ public final class RerouteState implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -226,7 +228,7 @@ public final class RerouteState implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 		if (this.blocks != null) {
@@ -307,7 +309,7 @@ public final class RerouteState implements JsonpSerializable {
 		private String masterNode;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private EmptyObject blocks;
@@ -360,7 +362,7 @@ public final class RerouteState implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -526,24 +528,24 @@ public final class RerouteState implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RerouteState}
 	 */
-	public static final JsonpDeserializer<RerouteState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteState::setupRerouteStateDeserializer);
+	public static final JsonpDeserializer<RerouteState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RerouteState::setupRerouteStateDeserializer, Builder::build);
 
 	protected static void setupRerouteStateDeserializer(DelegatingDeserializer<RerouteState.Builder> op) {
 
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::stateUuid, JsonpDeserializer.stringDeserializer(), "state_uuid");
 		op.add(Builder::masterNode, JsonpDeserializer.stringDeserializer(), "master_node");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::blocks, EmptyObject.DESERIALIZER, "blocks");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes.DESERIALIZER), "nodes");
-		op.add(Builder::routingTable, RoutingTable.DESERIALIZER, "routing_table");
-		op.add(Builder::routingNodes, ClusterStateRoutingNodes.DESERIALIZER, "routing_nodes");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::blocks, EmptyObject._DESERIALIZER, "blocks");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes._DESERIALIZER), "nodes");
+		op.add(Builder::routingTable, RoutingTable._DESERIALIZER, "routing_table");
+		op.add(Builder::routingNodes, ClusterStateRoutingNodes._DESERIALIZER, "routing_nodes");
 		op.add(Builder::securityTokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"security_tokens");
-		op.add(Builder::snapshots, ClusterStateSnapshots.DESERIALIZER, "snapshots");
-		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots.DESERIALIZER, "snapshot_deletions");
-		op.add(Builder::metadata, ClusterStateMetadata.DESERIALIZER, "metadata");
+		op.add(Builder::snapshots, ClusterStateSnapshots._DESERIALIZER, "snapshots");
+		op.add(Builder::snapshotDeletions, ClusterStateDeletedSnapshots._DESERIALIZER, "snapshot_deletions");
+		op.add(Builder::metadata, ClusterStateMetadata._DESERIALIZER, "metadata");
 
 	}
 

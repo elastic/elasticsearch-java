@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTree
+@JsonpDeserializable
 public final class TrainedModelTree implements JsonpSerializable {
 	@Nullable
 	private final List<String> classificationLabels;
@@ -278,8 +280,8 @@ public final class TrainedModelTree implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelTree}
 	 */
-	public static final JsonpDeserializer<TrainedModelTree> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelTree::setupTrainedModelTreeDeserializer);
+	public static final JsonpDeserializer<TrainedModelTree> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TrainedModelTree::setupTrainedModelTreeDeserializer, Builder::build);
 
 	protected static void setupTrainedModelTreeDeserializer(DelegatingDeserializer<TrainedModelTree.Builder> op) {
 
@@ -288,7 +290,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		op.add(Builder::featureNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_names");
 		op.add(Builder::targetType, JsonpDeserializer.stringDeserializer(), "target_type");
-		op.add(Builder::treeStructure, JsonpDeserializer.arrayDeserializer(TrainedModelTreeNode.DESERIALIZER),
+		op.add(Builder::treeStructure, JsonpDeserializer.arrayDeserializer(TrainedModelTreeNode._DESERIALIZER),
 				"tree_structure");
 
 	}

@@ -24,13 +24,14 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,8 +40,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Sql
+@JsonpDeserializable
 public final class Sql extends Base {
-	private final Map<String, Number> features;
+	private final Map<String, Integer> features;
 
 	private final Map<String, Query> queries;
 
@@ -57,7 +59,7 @@ public final class Sql extends Base {
 	/**
 	 * API name: {@code features}
 	 */
-	public Map<String, Number> features() {
+	public Map<String, Integer> features() {
 		return this.features;
 	}
 
@@ -74,9 +76,9 @@ public final class Sql extends Base {
 
 		generator.writeKey("features");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.features.entrySet()) {
+		for (Map.Entry<String, Integer> item0 : this.features.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
@@ -98,14 +100,14 @@ public final class Sql extends Base {
 	 * Builder for {@link Sql}.
 	 */
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Sql> {
-		private Map<String, Number> features;
+		private Map<String, Integer> features;
 
 		private Map<String, Query> queries;
 
 		/**
 		 * API name: {@code features}
 		 */
-		public Builder features(Map<String, Number> value) {
+		public Builder features(Map<String, Integer> value) {
 			this.features = value;
 			return this;
 		}
@@ -113,7 +115,7 @@ public final class Sql extends Base {
 		/**
 		 * Add a key/value to {@link #features(Map)}, creating the map if needed.
 		 */
-		public Builder putFeatures(String key, Number value) {
+		public Builder putFeatures(String key, Integer value) {
 			if (this.features == null) {
 				this.features = new HashMap<>();
 			}
@@ -176,14 +178,14 @@ public final class Sql extends Base {
 	/**
 	 * Json deserializer for {@link Sql}
 	 */
-	public static final JsonpDeserializer<Sql> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Sql::setupSqlDeserializer);
+	public static final JsonpDeserializer<Sql> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Sql::setupSqlDeserializer, Builder::build);
 
 	protected static void setupSqlDeserializer(DelegatingDeserializer<Sql.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::features, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::features, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"features");
-		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query.DESERIALIZER), "queries");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");
 
 	}
 

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.indices.get_alias.IndexAliases;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: indices.get_alias.Response
+@JsonpDeserializable
 public final class GetAliasResponse extends AdditionalProperties<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,12 +77,12 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 	/**
 	 * Json deserializer for {@link GetAliasResponse}
 	 */
-	public static final JsonpDeserializer<GetAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetAliasResponse::setupGetAliasResponseDeserializer);
+	public static final JsonpDeserializer<GetAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetAliasResponse::setupGetAliasResponseDeserializer, Builder::build);
 
 	protected static void setupGetAliasResponseDeserializer(DelegatingDeserializer<GetAliasResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexAliases.DESERIALIZER);
+				IndexAliases._DESERIALIZER);
 
 	}
 

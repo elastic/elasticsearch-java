@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: _global.get_script_languages.Request
+
 public final class GetScriptLanguagesRequest extends RequestBase {
 	public GetScriptLanguagesRequest() {
 	}
@@ -42,10 +44,7 @@ public final class GetScriptLanguagesRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link GetScriptLanguagesRequest}.
 	 */
-	public static final GetScriptLanguagesRequest INSTANCE = new GetScriptLanguagesRequest();
-
-	public static final JsonpDeserializer<GetScriptLanguagesRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetScriptLanguagesRequest.INSTANCE);
+	public static final GetScriptLanguagesRequest _INSTANCE = new GetScriptLanguagesRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class GetScriptLanguagesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetScriptLanguagesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetScriptLanguagesResponse._DESERIALIZER);
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.TokenDetail
+@JsonpDeserializable
 public final class TokenDetail implements JsonpSerializable {
 	private final String name;
 
@@ -168,13 +170,13 @@ public final class TokenDetail implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TokenDetail}
 	 */
-	public static final JsonpDeserializer<TokenDetail> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TokenDetail::setupTokenDetailDeserializer);
+	public static final JsonpDeserializer<TokenDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TokenDetail::setupTokenDetailDeserializer, Builder::build);
 
 	protected static void setupTokenDetailDeserializer(DelegatingDeserializer<TokenDetail.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken.DESERIALIZER), "tokens");
+		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken._DESERIALIZER), "tokens");
 
 	}
 

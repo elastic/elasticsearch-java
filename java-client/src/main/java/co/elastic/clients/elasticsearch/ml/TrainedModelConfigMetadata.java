@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigMetadata
+@JsonpDeserializable
 public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	@Nullable
 	private final List<String> modelAliases;
@@ -357,8 +359,8 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelConfigMetadata}
 	 */
-	public static final JsonpDeserializer<TrainedModelConfigMetadata> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataDeserializer);
+	public static final JsonpDeserializer<TrainedModelConfigMetadata> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataDeserializer, Builder::build);
 
 	protected static void setupTrainedModelConfigMetadataDeserializer(
 			DelegatingDeserializer<TrainedModelConfigMetadata.Builder> op) {
@@ -368,10 +370,10 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		op.add(Builder::featureImportanceBaseline,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_importance_baseline");
-		op.add(Builder::hyperparameters, JsonpDeserializer.arrayDeserializer(Hyperparameter.DESERIALIZER),
+		op.add(Builder::hyperparameters, JsonpDeserializer.arrayDeserializer(Hyperparameter._DESERIALIZER),
 				"hyperparameters");
 		op.add(Builder::totalFeatureImportance,
-				JsonpDeserializer.arrayDeserializer(TotalFeatureImportance.DESERIALIZER), "total_feature_importance");
+				JsonpDeserializer.arrayDeserializer(TotalFeatureImportance._DESERIALIZER), "total_feature_importance");
 
 	}
 

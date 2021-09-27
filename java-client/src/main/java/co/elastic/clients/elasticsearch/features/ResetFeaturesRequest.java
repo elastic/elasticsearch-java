@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.features;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: features.reset_features.Request
+
 public final class ResetFeaturesRequest extends RequestBase {
 	public ResetFeaturesRequest() {
 	}
@@ -42,10 +44,7 @@ public final class ResetFeaturesRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link ResetFeaturesRequest}.
 	 */
-	public static final ResetFeaturesRequest INSTANCE = new ResetFeaturesRequest();
-
-	public static final JsonpDeserializer<ResetFeaturesRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ResetFeaturesRequest.INSTANCE);
+	public static final ResetFeaturesRequest _INSTANCE = new ResetFeaturesRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class ResetFeaturesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ResetFeaturesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ResetFeaturesResponse._DESERIALIZER);
 }

@@ -29,13 +29,13 @@ import co.elastic.clients.elasticsearch._core.reindex.Destination;
 import co.elastic.clients.elasticsearch._core.reindex.Source;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Request
+@JsonpDeserializable
 public class PreviewTransformRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String transformId;
@@ -55,7 +56,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	private final String description;
 
 	@Nullable
-	private final JsonValue frequency;
+	private final String frequency;
 
 	@Nullable
 	private final Pivot pivot;
@@ -131,7 +132,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public JsonValue frequency() {
+	public String frequency() {
 		return this.frequency;
 	}
 
@@ -302,7 +303,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		private String description;
 
 		@Nullable
-		private JsonValue frequency;
+		private String frequency;
 
 		@Nullable
 		private Pivot pivot;
@@ -369,7 +370,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public BuilderT frequency(@Nullable JsonValue value) {
+		public BuilderT frequency(@Nullable String value) {
 			this.frequency = value;
 			return self();
 		}
@@ -503,21 +504,21 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Json deserializer for {@link PreviewTransformRequest}
 	 */
-	public static final JsonpDeserializer<PreviewTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer);
+	public static final JsonpDeserializer<PreviewTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PreviewTransformRequest::setupPreviewTransformRequestDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPreviewTransformRequestDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::dest, Destination.DESERIALIZER, "dest");
+		op.add(AbstractBuilder::dest, Destination._DESERIALIZER, "dest");
 		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(AbstractBuilder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
-		op.add(AbstractBuilder::pivot, Pivot.DESERIALIZER, "pivot");
-		op.add(AbstractBuilder::source, Source.DESERIALIZER, "source");
-		op.add(AbstractBuilder::settings, Settings.DESERIALIZER, "settings");
-		op.add(AbstractBuilder::sync, Sync.DESERIALIZER, "sync");
-		op.add(AbstractBuilder::retentionPolicy, RetentionPolicy.DESERIALIZER, "retention_policy");
-		op.add(AbstractBuilder::latest, Latest.DESERIALIZER, "latest");
+		op.add(AbstractBuilder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(AbstractBuilder::pivot, Pivot._DESERIALIZER, "pivot");
+		op.add(AbstractBuilder::source, Source._DESERIALIZER, "source");
+		op.add(AbstractBuilder::settings, Settings._DESERIALIZER, "settings");
+		op.add(AbstractBuilder::sync, Sync._DESERIALIZER, "sync");
+		op.add(AbstractBuilder::retentionPolicy, RetentionPolicy._DESERIALIZER, "retention_policy");
+		op.add(AbstractBuilder::latest, Latest._DESERIALIZER, "latest");
 
 	}
 

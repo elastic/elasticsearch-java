@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.index.Response
+@JsonpDeserializable
 public final class IndexResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class IndexResponse extends WriteResponseBase {
 	/**
 	 * Json deserializer for {@link IndexResponse}
 	 */
-	public static final JsonpDeserializer<IndexResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexResponse::setupIndexResponseDeserializer);
+	public static final JsonpDeserializer<IndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexResponse::setupIndexResponseDeserializer, Builder::build);
 
 	protected static void setupIndexResponseDeserializer(DelegatingDeserializer<IndexResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);

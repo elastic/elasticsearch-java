@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch.ml.get_calendars.Calendar;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,10 +42,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Response
+@JsonpDeserializable
 public final class GetCalendarsResponse implements JsonpSerializable {
 	private final List<Calendar> calendars;
 
-	private final Number count;
+	private final Long count;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +67,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -89,7 +91,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -101,7 +103,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<GetCalendarsResponse> {
 		private List<Calendar> calendars;
 
-		private Number count;
+		private Long count;
 
 		/**
 		 * API name: {@code calendars}
@@ -147,7 +149,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -169,14 +171,14 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetCalendarsResponse}
 	 */
-	public static final JsonpDeserializer<GetCalendarsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseDeserializer);
+	public static final JsonpDeserializer<GetCalendarsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCalendarsResponse::setupGetCalendarsResponseDeserializer, Builder::build);
 
 	protected static void setupGetCalendarsResponseDeserializer(
 			DelegatingDeserializer<GetCalendarsResponse.Builder> op) {
 
-		op.add(Builder::calendars, JsonpDeserializer.arrayDeserializer(Calendar.DESERIALIZER), "calendars");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::calendars, JsonpDeserializer.arrayDeserializer(Calendar._DESERIALIZER), "calendars");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

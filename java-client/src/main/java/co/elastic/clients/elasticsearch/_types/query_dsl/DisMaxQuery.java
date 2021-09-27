@@ -24,14 +24,14 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,11 +40,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
-public final class DisMaxQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	private final List<Query> queries;
 
 	@Nullable
-	private final Number tieBreaker;
+	private final Double tieBreaker;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +61,7 @@ public final class DisMaxQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "dis_max";
 	}
 
@@ -75,12 +76,11 @@ public final class DisMaxQuery extends QueryBase implements Query {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Number tieBreaker() {
+	public Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 
@@ -95,11 +95,9 @@ public final class DisMaxQuery extends QueryBase implements Query {
 		if (this.tieBreaker != null) {
 
 			generator.writeKey("tie_breaker");
-			generator.write(this.tieBreaker.doubleValue());
+			generator.write(this.tieBreaker);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -112,7 +110,7 @@ public final class DisMaxQuery extends QueryBase implements Query {
 		private List<Query> queries;
 
 		@Nullable
-		private Number tieBreaker;
+		private Double tieBreaker;
 
 		/**
 		 * API name: {@code queries}
@@ -158,7 +156,7 @@ public final class DisMaxQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Number value) {
+		public Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -182,14 +180,16 @@ public final class DisMaxQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DisMaxQuery.Builder, DisMaxQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(DisMaxQuery::setupDisMaxQueryDeserializer);
+	/**
+	 * Json deserializer for {@link DisMaxQuery}
+	 */
+	public static final JsonpDeserializer<DisMaxQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DisMaxQuery::setupDisMaxQueryDeserializer, Builder::build);
 
 	protected static void setupDisMaxQueryDeserializer(DelegatingDeserializer<DisMaxQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "queries");
-		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
+		op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "queries");
+		op.add(Builder::tieBreaker, JsonpDeserializer.doubleDeserializer(), "tie_breaker");
 
 	}
 

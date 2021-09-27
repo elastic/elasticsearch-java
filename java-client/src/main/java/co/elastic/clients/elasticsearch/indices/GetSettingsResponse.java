@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: indices.get_settings.Response
+@JsonpDeserializable
 public final class GetSettingsResponse extends AdditionalProperties<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,12 +76,12 @@ public final class GetSettingsResponse extends AdditionalProperties<String, Inde
 	/**
 	 * Json deserializer for {@link GetSettingsResponse}
 	 */
-	public static final JsonpDeserializer<GetSettingsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer);
+	public static final JsonpDeserializer<GetSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer, Builder::build);
 
 	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexState.DESERIALIZER);
+				IndexState._DESERIALIZER);
 
 	}
 

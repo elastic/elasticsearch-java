@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInference
+@JsonpDeserializable
 public final class MlInference implements JsonpSerializable {
 	private final Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
@@ -173,14 +175,14 @@ public final class MlInference implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInference}
 	 */
-	public static final JsonpDeserializer<MlInference> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlInference::setupMlInferenceDeserializer);
+	public static final JsonpDeserializer<MlInference> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MlInference::setupMlInferenceDeserializer, Builder::build);
 
 	protected static void setupMlInferenceDeserializer(DelegatingDeserializer<MlInference.Builder> op) {
 
 		op.add(Builder::ingestProcessors,
-				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor.DESERIALIZER), "ingest_processors");
-		op.add(Builder::trainedModels, MlInferenceTrainedModels.DESERIALIZER, "trained_models");
+				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor._DESERIALIZER), "ingest_processors");
+		op.add(Builder::trainedModels, MlInferenceTrainedModels._DESERIALIZER, "trained_models");
 
 	}
 

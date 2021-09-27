@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Response
+@JsonpDeserializable
 public final class GetModelSnapshotsResponse implements JsonpSerializable {
-	private final Number count;
+	private final Long count;
 
 	private final List<ModelSnapshot> modelSnapshots;
 
@@ -57,7 +59,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -80,7 +82,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("model_snapshots");
 		generator.writeStartArray();
@@ -98,14 +100,14 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	 * Builder for {@link GetModelSnapshotsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetModelSnapshotsResponse> {
-		private Number count;
+		private Long count;
 
 		private List<ModelSnapshot> modelSnapshots;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -168,14 +170,14 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetModelSnapshotsResponse}
 	 */
-	public static final JsonpDeserializer<GetModelSnapshotsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetModelSnapshotsResponse::setupGetModelSnapshotsResponseDeserializer);
+	public static final JsonpDeserializer<GetModelSnapshotsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetModelSnapshotsResponse::setupGetModelSnapshotsResponseDeserializer, Builder::build);
 
 	protected static void setupGetModelSnapshotsResponseDeserializer(
 			DelegatingDeserializer<GetModelSnapshotsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::modelSnapshots, JsonpDeserializer.arrayDeserializer(ModelSnapshot.DESERIALIZER),
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::modelSnapshots, JsonpDeserializer.arrayDeserializer(ModelSnapshot._DESERIALIZER),
 				"model_snapshots");
 
 	}

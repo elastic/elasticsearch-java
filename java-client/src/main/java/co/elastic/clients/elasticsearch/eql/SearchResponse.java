@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql.search.Response
+
 public final class SearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	@Nullable
 	private final JsonpSerializer<TEvent> tEventSerializer;

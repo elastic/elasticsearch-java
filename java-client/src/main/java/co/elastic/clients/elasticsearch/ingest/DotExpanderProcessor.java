@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DotExpanderProcessor
-public final class DotExpanderProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DotExpanderProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -49,6 +51,14 @@ public final class DotExpanderProcessor extends ProcessorBase {
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.path = builder.path;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "dot_expander";
 	}
 
 	/**
@@ -133,8 +143,8 @@ public final class DotExpanderProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link DotExpanderProcessor}
 	 */
-	public static final JsonpDeserializer<DotExpanderProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DotExpanderProcessor::setupDotExpanderProcessorDeserializer);
+	public static final JsonpDeserializer<DotExpanderProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DotExpanderProcessor::setupDotExpanderProcessorDeserializer, Builder::build);
 
 	protected static void setupDotExpanderProcessorDeserializer(
 			DelegatingDeserializer<DotExpanderProcessor.Builder> op) {

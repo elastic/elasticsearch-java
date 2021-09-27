@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardsStatus
+@JsonpDeserializable
 public final class SnapshotShardsStatus implements JsonpSerializable {
 	private final ShardsStatsStage stage;
 
@@ -133,14 +135,14 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SnapshotShardsStatus}
 	 */
-	public static final JsonpDeserializer<SnapshotShardsStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotShardsStatus::setupSnapshotShardsStatusDeserializer);
+	public static final JsonpDeserializer<SnapshotShardsStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotShardsStatus::setupSnapshotShardsStatusDeserializer, Builder::build);
 
 	protected static void setupSnapshotShardsStatusDeserializer(
 			DelegatingDeserializer<SnapshotShardsStatus.Builder> op) {
 
-		op.add(Builder::stage, ShardsStatsStage.DESERIALIZER, "stage");
-		op.add(Builder::stats, ShardsStatsSummary.DESERIALIZER, "stats");
+		op.add(Builder::stage, ShardsStatsStage._DESERIALIZER, "stage");
+		op.add(Builder::stats, ShardsStatsSummary._DESERIALIZER, "stats");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.FailProcessor
-public final class FailProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String message;
 
 	// ---------------------------------------------------------------------------------------------
@@ -45,6 +47,14 @@ public final class FailProcessor extends ProcessorBase {
 
 		this.message = Objects.requireNonNull(builder.message, "message");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "fail";
 	}
 
 	/**
@@ -101,8 +111,8 @@ public final class FailProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link FailProcessor}
 	 */
-	public static final JsonpDeserializer<FailProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FailProcessor::setupFailProcessorDeserializer);
+	public static final JsonpDeserializer<FailProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FailProcessor::setupFailProcessorDeserializer, Builder::build);
 
 	protected static void setupFailProcessorDeserializer(DelegatingDeserializer<FailProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

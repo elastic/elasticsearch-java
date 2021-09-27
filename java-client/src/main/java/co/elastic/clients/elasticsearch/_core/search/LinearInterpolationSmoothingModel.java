@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
-public final class LinearInterpolationSmoothingModel implements SmoothingModel, JsonpSerializable {
-	private final Number bigramLambda;
+@JsonpDeserializable
+public final class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+	private final Double bigramLambda;
 
-	private final Number trigramLambda;
+	private final Double trigramLambda;
 
-	private final Number unigramLambda;
+	private final Double unigramLambda;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,28 +59,28 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModel, 
 	 * {@link SmoothingModel} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "linear_interpolation";
 	}
 
 	/**
 	 * API name: {@code bigram_lambda}
 	 */
-	public Number bigramLambda() {
+	public Double bigramLambda() {
 		return this.bigramLambda;
 	}
 
 	/**
 	 * API name: {@code trigram_lambda}
 	 */
-	public Number trigramLambda() {
+	public Double trigramLambda() {
 		return this.trigramLambda;
 	}
 
 	/**
 	 * API name: {@code unigram_lambda}
 	 */
-	public Number unigramLambda() {
+	public Double unigramLambda() {
 		return this.unigramLambda;
 	}
 
@@ -93,18 +94,15 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModel, 
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("bigram_lambda");
-		generator.write(this.bigramLambda.doubleValue());
+		generator.write(this.bigramLambda);
 
 		generator.writeKey("trigram_lambda");
-		generator.write(this.trigramLambda.doubleValue());
+		generator.write(this.trigramLambda);
 
 		generator.writeKey("unigram_lambda");
-		generator.write(this.unigramLambda.doubleValue());
-
-		generator.writeEnd();
+		generator.write(this.unigramLambda);
 
 	}
 
@@ -114,16 +112,16 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModel, 
 	 * Builder for {@link LinearInterpolationSmoothingModel}.
 	 */
 	public static class Builder implements ObjectBuilder<LinearInterpolationSmoothingModel> {
-		private Number bigramLambda;
+		private Double bigramLambda;
 
-		private Number trigramLambda;
+		private Double trigramLambda;
 
-		private Number unigramLambda;
+		private Double unigramLambda;
 
 		/**
 		 * API name: {@code bigram_lambda}
 		 */
-		public Builder bigramLambda(Number value) {
+		public Builder bigramLambda(Double value) {
 			this.bigramLambda = value;
 			return this;
 		}
@@ -131,7 +129,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModel, 
 		/**
 		 * API name: {@code trigram_lambda}
 		 */
-		public Builder trigramLambda(Number value) {
+		public Builder trigramLambda(Double value) {
 			this.trigramLambda = value;
 			return this;
 		}
@@ -139,7 +137,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModel, 
 		/**
 		 * API name: {@code unigram_lambda}
 		 */
-		public Builder unigramLambda(Number value) {
+		public Builder unigramLambda(Double value) {
 			this.unigramLambda = value;
 			return this;
 		}
@@ -158,16 +156,19 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModel, 
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<LinearInterpolationSmoothingModel.Builder, LinearInterpolationSmoothingModel.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer);
+	/**
+	 * Json deserializer for {@link LinearInterpolationSmoothingModel}
+	 */
+	public static final JsonpDeserializer<LinearInterpolationSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer,
+					Builder::build);
 
 	protected static void setupLinearInterpolationSmoothingModelDeserializer(
 			DelegatingDeserializer<LinearInterpolationSmoothingModel.Builder> op) {
 
-		op.add(Builder::bigramLambda, JsonpDeserializer.numberDeserializer(), "bigram_lambda");
-		op.add(Builder::trigramLambda, JsonpDeserializer.numberDeserializer(), "trigram_lambda");
-		op.add(Builder::unigramLambda, JsonpDeserializer.numberDeserializer(), "unigram_lambda");
+		op.add(Builder::bigramLambda, JsonpDeserializer.doubleDeserializer(), "bigram_lambda");
+		op.add(Builder::trigramLambda, JsonpDeserializer.doubleDeserializer(), "trigram_lambda");
+		op.add(Builder::unigramLambda, JsonpDeserializer.doubleDeserializer(), "unigram_lambda");
 
 	}
 

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_caps.RollupCapabilities;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: rollup.get_rollup_caps.Response
+@JsonpDeserializable
 public final class GetRollupCapsResponse extends AdditionalProperties<String, RollupCapabilities> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,13 +77,13 @@ public final class GetRollupCapsResponse extends AdditionalProperties<String, Ro
 	/**
 	 * Json deserializer for {@link GetRollupCapsResponse}
 	 */
-	public static final JsonpDeserializer<GetRollupCapsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetRollupCapsResponse::setupGetRollupCapsResponseDeserializer);
+	public static final JsonpDeserializer<GetRollupCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRollupCapsResponse::setupGetRollupCapsResponseDeserializer, Builder::build);
 
 	protected static void setupGetRollupCapsResponseDeserializer(
 			DelegatingDeserializer<GetRollupCapsResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RollupCapabilities.DESERIALIZER);
+				RollupCapabilities._DESERIALIZER);
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_calendar_events.Response
+@JsonpDeserializable
 public final class PostCalendarEventsResponse implements JsonpSerializable {
 	private final List<CalendarEvent> events;
 
@@ -144,13 +146,13 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PostCalendarEventsResponse}
 	 */
-	public static final JsonpDeserializer<PostCalendarEventsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostCalendarEventsResponse::setupPostCalendarEventsResponseDeserializer);
+	public static final JsonpDeserializer<PostCalendarEventsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PostCalendarEventsResponse::setupPostCalendarEventsResponseDeserializer, Builder::build);
 
 	protected static void setupPostCalendarEventsResponseDeserializer(
 			DelegatingDeserializer<PostCalendarEventsResponse.Builder> op) {
 
-		op.add(Builder::events, JsonpDeserializer.arrayDeserializer(CalendarEvent.DESERIALIZER), "events");
+		op.add(Builder::events, JsonpDeserializer.arrayDeserializer(CalendarEvent._DESERIALIZER), "events");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch.tasks.ListResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.delete_by_query_rethrottle.Response
+@JsonpDeserializable
 public final class DeleteByQueryRethrottleResponse extends ListResponse {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,9 +73,9 @@ public final class DeleteByQueryRethrottleResponse extends ListResponse {
 	/**
 	 * Json deserializer for {@link DeleteByQueryRethrottleResponse}
 	 */
-	public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer);
+	public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer,
+					Builder::build);
 
 	protected static void setupDeleteByQueryRethrottleResponseDeserializer(
 			DelegatingDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -40,7 +41,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CsvProcessor
-public final class CsvProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 	private final JsonData emptyValue;
 
 	@Nullable
@@ -75,6 +77,14 @@ public final class CsvProcessor extends ProcessorBase {
 		this.targetFields = Objects.requireNonNull(builder.targetFields, "target_fields");
 		this.trim = Objects.requireNonNull(builder.trim, "trim");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "csv";
 	}
 
 	/**
@@ -317,12 +327,12 @@ public final class CsvProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link CsvProcessor}
 	 */
-	public static final JsonpDeserializer<CsvProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CsvProcessor::setupCsvProcessorDeserializer);
+	public static final JsonpDeserializer<CsvProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CsvProcessor::setupCsvProcessorDeserializer, Builder::build);
 
 	protected static void setupCsvProcessorDeserializer(DelegatingDeserializer<CsvProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
-		op.add(Builder::emptyValue, JsonData.DESERIALIZER, "empty_value");
+		op.add(Builder::emptyValue, JsonData._DESERIALIZER, "empty_value");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

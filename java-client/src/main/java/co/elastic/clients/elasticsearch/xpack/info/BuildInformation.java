@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.BuildInformation
+@JsonpDeserializable
 public final class BuildInformation implements JsonpSerializable {
 	private final String date;
 
@@ -126,8 +128,8 @@ public final class BuildInformation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link BuildInformation}
 	 */
-	public static final JsonpDeserializer<BuildInformation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BuildInformation::setupBuildInformationDeserializer);
+	public static final JsonpDeserializer<BuildInformation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BuildInformation::setupBuildInformationDeserializer, Builder::build);
 
 	protected static void setupBuildInformationDeserializer(DelegatingDeserializer<BuildInformation.Builder> op) {
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: ccr.delete_auto_follow_pattern.Response
+@JsonpDeserializable
 public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,9 +73,9 @@ public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseB
 	/**
 	 * Json deserializer for {@link DeleteAutoFollowPatternResponse}
 	 */
-	public static final JsonpDeserializer<DeleteAutoFollowPatternResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteAutoFollowPatternResponse::setupDeleteAutoFollowPatternResponseDeserializer);
+	public static final JsonpDeserializer<DeleteAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteAutoFollowPatternResponse::setupDeleteAutoFollowPatternResponseDeserializer,
+					Builder::build);
 
 	protected static void setupDeleteAutoFollowPatternResponseDeserializer(
 			DelegatingDeserializer<DeleteAutoFollowPatternResponse.Builder> op) {

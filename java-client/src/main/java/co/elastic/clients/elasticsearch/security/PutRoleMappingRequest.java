@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -48,11 +49,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Request
+@JsonpDeserializable
 public final class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final Boolean enabled;
@@ -101,7 +103,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -214,7 +216,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		private String name;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private Boolean enabled;
@@ -249,7 +251,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -367,16 +369,16 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link PutRoleMappingRequest}
 	 */
-	public static final JsonpDeserializer<PutRoleMappingRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer);
+	public static final JsonpDeserializer<PutRoleMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer, Builder::build);
 
 	protected static void setupPutRoleMappingRequestDeserializer(
 			DelegatingDeserializer<PutRoleMappingRequest.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::rules, RoleMappingRule.DESERIALIZER, "rules");
+		op.add(Builder::rules, RoleMappingRule._DESERIALIZER, "rules");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}
@@ -422,5 +424,5 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleMappingResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutRoleMappingResponse._DESERIALIZER);
 }

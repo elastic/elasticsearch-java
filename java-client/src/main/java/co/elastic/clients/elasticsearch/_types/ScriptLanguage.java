@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ScriptLanguage implements StringEnum {
 	Painless("painless"), Expression("expression"), Mustache("mustache"), Java("java");
 
@@ -39,6 +41,6 @@ public enum ScriptLanguage implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ScriptLanguage> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ScriptLanguage> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ScriptLanguage.values());
 }

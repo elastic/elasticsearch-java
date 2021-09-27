@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,13 +44,14 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.HitsMetadata
+
 public final class HitsMetadata<T> implements JsonpSerializable {
-	private final JsonValue total;
+	private final JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
 
 	private final List<Hit<T>> hits;
 
 	@Nullable
-	private final Number maxScore;
+	private final Double maxScore;
 
 	@Nullable
 	private final JsonpSerializer<T> tSerializer;
@@ -68,7 +70,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	/**
 	 * API name: {@code total}
 	 */
-	public JsonValue total() {
+	public JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total() {
 		return this.total;
 	}
 
@@ -83,7 +85,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	 * API name: {@code max_score}
 	 */
 	@Nullable
-	public Number maxScore() {
+	public Double maxScore() {
 		return this.maxScore;
 	}
 
@@ -112,7 +114,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		if (this.maxScore != null) {
 
 			generator.writeKey("max_score");
-			generator.write(this.maxScore.doubleValue());
+			generator.write(this.maxScore);
 
 		}
 
@@ -124,12 +126,12 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	 * Builder for {@link HitsMetadata}.
 	 */
 	public static class Builder<T> implements ObjectBuilder<HitsMetadata<T>> {
-		private JsonValue total;
+		private JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ total;
 
 		private List<Hit<T>> hits;
 
 		@Nullable
-		private Number maxScore;
+		private Double maxScore;
 
 		@Nullable
 		private JsonpSerializer<T> tSerializer;
@@ -137,7 +139,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder<T> total(JsonValue value) {
+		public Builder<T> total(JsonValue /* Union(_global.search._types.TotalHits | _types.long) */ value) {
 			this.total = value;
 			return this;
 		}
@@ -186,7 +188,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		/**
 		 * API name: {@code max_score}
 		 */
-		public Builder<T> maxScore(@Nullable Number value) {
+		public Builder<T> maxScore(@Nullable Double value) {
 			this.maxScore = value;
 			return this;
 		}
@@ -228,7 +230,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 
 		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
 		op.add(Builder::hits, JsonpDeserializer.arrayDeserializer(Hit.createHitDeserializer(tDeserializer)), "hits");
-		op.add(Builder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
+		op.add(Builder::maxScore, JsonpDeserializer.doubleDeserializer(), "max_score");
 
 	}
 

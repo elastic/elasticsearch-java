@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeatures
+@JsonpDeserializable
 public final class EqlFeatures implements JsonpSerializable {
 	private final Number join;
 
@@ -270,18 +272,18 @@ public final class EqlFeatures implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link EqlFeatures}
 	 */
-	public static final JsonpDeserializer<EqlFeatures> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeatures::setupEqlFeaturesDeserializer);
+	public static final JsonpDeserializer<EqlFeatures> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeatures::setupEqlFeaturesDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesDeserializer(DelegatingDeserializer<EqlFeatures.Builder> op) {
 
 		op.add(Builder::join, JsonpDeserializer.numberDeserializer(), "join");
-		op.add(Builder::joins, EqlFeaturesJoin.DESERIALIZER, "joins");
-		op.add(Builder::keys, EqlFeaturesKeys.DESERIALIZER, "keys");
+		op.add(Builder::joins, EqlFeaturesJoin._DESERIALIZER, "joins");
+		op.add(Builder::keys, EqlFeaturesKeys._DESERIALIZER, "keys");
 		op.add(Builder::event, JsonpDeserializer.numberDeserializer(), "event");
-		op.add(Builder::pipes, EqlFeaturesPipes.DESERIALIZER, "pipes");
+		op.add(Builder::pipes, EqlFeaturesPipes._DESERIALIZER, "pipes");
 		op.add(Builder::sequence, JsonpDeserializer.numberDeserializer(), "sequence");
-		op.add(Builder::sequences, EqlFeaturesSequences.DESERIALIZER, "sequences");
+		op.add(Builder::sequences, EqlFeaturesSequences._DESERIALIZER, "sequences");
 
 	}
 

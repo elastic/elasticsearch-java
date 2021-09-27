@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum IndexRoutingRebalanceOptions implements StringEnum {
 	All("all"), Primaries("primaries"), Replicas("replicas"), None("none");
 
@@ -39,6 +41,6 @@ public enum IndexRoutingRebalanceOptions implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexRoutingRebalanceOptions> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<IndexRoutingRebalanceOptions> _DESERIALIZER = new StringEnum.Deserializer<>(
 			IndexRoutingRebalanceOptions.values());
 }

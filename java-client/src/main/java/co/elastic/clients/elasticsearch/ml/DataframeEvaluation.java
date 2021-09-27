@@ -23,133 +23,153 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationContainer
-public interface DataframeEvaluation extends JsonpSerializable {
+@JsonpDeserializable
+public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializable {
 
-	String CLASSIFICATION = "classification";
-	String OUTLIER_DETECTION = "outlier_detection";
-	String REGRESSION = "regression";
+	public static final String CLASSIFICATION = "classification";
+	public static final String OUTLIER_DETECTION = "outlier_detection";
+	public static final String REGRESSION = "regression";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public DataframeEvaluation(DataframeEvaluationVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private DataframeEvaluation(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code DataframeEvaluationContainer}.
+	 * Get the {@code classification} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code classification} kind.
 	 */
-	String _type();
+	public DataframeEvaluationClassification classification() {
+		return TaggedUnionUtils.get(this, CLASSIFICATION);
+	}
 
-	class Builder {
-		/**
-		 * Classification evaluation evaluates the results of a classification analysis
-		 * which outputs a prediction that identifies to which of the classes each
-		 * document belongs.
-		 * <p>
-		 * API name: {@code classification}
-		 */
-		public ObjectBuilder<DataframeEvaluation> classification(DataframeEvaluationClassification value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code outlier_detection} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code outlier_detection}
+	 *             kind.
+	 */
+	public DataframeEvaluationOutlierDetection outlierDetection() {
+		return TaggedUnionUtils.get(this, OUTLIER_DETECTION);
+	}
+
+	/**
+	 * Get the {@code regression} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code regression} kind.
+	 */
+	public DataframeEvaluationRegression regression() {
+		return TaggedUnionUtils.get(this, REGRESSION);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * Classification evaluation evaluates the results of a classification analysis
-		 * which outputs a prediction that identifies to which of the classes each
-		 * document belongs.
-		 * <p>
-		 * API name: {@code classification}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<DataframeEvaluation> classification(DataframeEvaluationClassification v) {
+			this._type = CLASSIFICATION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<DataframeEvaluation> classification(
-				Function<DataframeEvaluationClassification.Builder, ObjectBuilder<DataframeEvaluationClassification>> fn) {
-			return this.classification(fn.apply(new DataframeEvaluationClassification.Builder()).build());
+				Function<DataframeEvaluationClassification.Builder, ObjectBuilder<DataframeEvaluationClassification>> f) {
+			return this.classification(f.apply(new DataframeEvaluationClassification.Builder()).build());
 		}
 
-		/**
-		 * Outlier detection evaluates the results of an outlier detection analysis
-		 * which outputs the probability that each document is an outlier.
-		 * <p>
-		 * API name: {@code outlier_detection}
-		 */
-		public ObjectBuilder<DataframeEvaluation> outlierDetection(DataframeEvaluationOutlierDetection value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<DataframeEvaluation> outlierDetection(DataframeEvaluationOutlierDetection v) {
+			this._type = OUTLIER_DETECTION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * Outlier detection evaluates the results of an outlier detection analysis
-		 * which outputs the probability that each document is an outlier.
-		 * <p>
-		 * API name: {@code outlier_detection}
-		 */
 		public ObjectBuilder<DataframeEvaluation> outlierDetection(
-				Function<DataframeEvaluationOutlierDetection.Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> fn) {
-			return this.outlierDetection(fn.apply(new DataframeEvaluationOutlierDetection.Builder()).build());
+				Function<DataframeEvaluationOutlierDetection.Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> f) {
+			return this.outlierDetection(f.apply(new DataframeEvaluationOutlierDetection.Builder()).build());
 		}
 
-		/**
-		 * Regression evaluation evaluates the results of a regression analysis which
-		 * outputs a prediction of values.
-		 * <p>
-		 * API name: {@code regression}
-		 */
-		public ObjectBuilder<DataframeEvaluation> regression(DataframeEvaluationRegression value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<DataframeEvaluation> regression(DataframeEvaluationRegression v) {
+			this._type = REGRESSION;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * Regression evaluation evaluates the results of a regression analysis which
-		 * outputs a prediction of values.
-		 * <p>
-		 * API name: {@code regression}
-		 */
 		public ObjectBuilder<DataframeEvaluation> regression(
-				Function<DataframeEvaluationRegression.Builder, ObjectBuilder<DataframeEvaluationRegression>> fn) {
-			return this.regression(fn.apply(new DataframeEvaluationRegression.Builder()).build());
+				Function<DataframeEvaluationRegression.Builder, ObjectBuilder<DataframeEvaluationRegression>> f) {
+			return this.regression(f.apply(new DataframeEvaluationRegression.Builder()).build());
+		}
+
+		protected DataframeEvaluation build() {
+			return new DataframeEvaluation(this);
 		}
 
 	}
 
-	class $Helper {
-		private static DataframeEvaluation deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupDataframeEvaluationDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends DataframeEvaluation> builder = null;
-			String variant = null;
+		op.add(Builder::classification, DataframeEvaluationClassification._DESERIALIZER, "classification");
+		op.add(Builder::outlierDetection, DataframeEvaluationOutlierDetection._DESERIALIZER, "outlier_detection");
+		op.add(Builder::regression, DataframeEvaluationRegression._DESERIALIZER, "regression");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case CLASSIFICATION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DataframeEvaluationClassification.$BUILDER_DESERIALIZER.deserialize(
-								new DataframeEvaluationClassification.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case OUTLIER_DETECTION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DataframeEvaluationOutlierDetection.$BUILDER_DESERIALIZER.deserialize(
-								new DataframeEvaluationOutlierDetection.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case REGRESSION : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DataframeEvaluationRegression.$BUILDER_DESERIALIZER.deserialize(
-								new DataframeEvaluationRegression.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<DataframeEvaluation> DESERIALIZER = JsonpDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT), $Helper::deserialize);
+	public static final JsonpDeserializer<DataframeEvaluation> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			DataframeEvaluation::setupDataframeEvaluationDeserializer, Builder::build);
 }

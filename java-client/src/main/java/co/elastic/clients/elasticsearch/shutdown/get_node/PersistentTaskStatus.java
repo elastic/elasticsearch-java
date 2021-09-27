@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,6 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.PersistentTaskStatus
+@JsonpDeserializable
 public final class PersistentTaskStatus implements JsonpSerializable {
 	private final ShutdownStatus status;
 
@@ -102,13 +104,13 @@ public final class PersistentTaskStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PersistentTaskStatus}
 	 */
-	public static final JsonpDeserializer<PersistentTaskStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer);
+	public static final JsonpDeserializer<PersistentTaskStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer, Builder::build);
 
 	protected static void setupPersistentTaskStatusDeserializer(
 			DelegatingDeserializer<PersistentTaskStatus.Builder> op) {
 
-		op.add(Builder::status, ShutdownStatus.DESERIALIZER, "status");
+		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 
 	}
 

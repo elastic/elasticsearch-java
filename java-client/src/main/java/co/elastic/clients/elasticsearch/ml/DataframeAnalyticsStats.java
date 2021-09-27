@@ -23,28 +23,55 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsContainer
-public class DataframeAnalyticsStats extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String CLASSIFICATION_STATS = "classification_stats";
 	public static final String OUTLIER_DETECTION_STATS = "outlier_detection_stats";
 	public static final String REGRESSION_STATS = "regression_stats";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public DataframeAnalyticsStats(DataframeAnalyticsStatsVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private DataframeAnalyticsStats(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -56,7 +83,7 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 	 *             kind.
 	 */
 	public DataframeAnalyticsStatsHyperparameters classificationStats() {
-		return _get(CLASSIFICATION_STATS);
+		return TaggedUnionUtils.get(this, CLASSIFICATION_STATS);
 	}
 
 	/**
@@ -67,7 +94,7 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 	 *             {@code outlier_detection_stats} kind.
 	 */
 	public DataframeAnalyticsStatsOutlierDetection outlierDetectionStats() {
-		return _get(OUTLIER_DETECTION_STATS);
+		return TaggedUnionUtils.get(this, OUTLIER_DETECTION_STATS);
 	}
 
 	/**
@@ -78,12 +105,14 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 	 *             kind.
 	 */
 	public DataframeAnalyticsStatsHyperparameters regressionStats() {
-		return _get(REGRESSION_STATS);
+		return TaggedUnionUtils.get(this, REGRESSION_STATS);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
@@ -91,13 +120,14 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(DataframeAnalyticsStatsHyperparameters v) {
-			this.$variant = v;
-			this.$tag = CLASSIFICATION_STATS;
+			this._type = CLASSIFICATION_STATS;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -107,8 +137,8 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
-			this.$variant = v;
-			this.$tag = OUTLIER_DETECTION_STATS;
+			this._type = OUTLIER_DETECTION_STATS;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -118,8 +148,8 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 		}
 
 		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(DataframeAnalyticsStatsHyperparameters v) {
-			this.$variant = v;
-			this.$tag = REGRESSION_STATS;
+			this._type = REGRESSION_STATS;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -135,18 +165,15 @@ public class DataframeAnalyticsStats extends TaggedUnion<Object> implements Json
 	}
 
 	protected static void setupDataframeAnalyticsStatsDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::classificationStats, DataframeAnalyticsStatsHyperparameters.DESERIALIZER,
+
+		op.add(Builder::classificationStats, DataframeAnalyticsStatsHyperparameters._DESERIALIZER,
 				"classification_stats");
-		op.add(Builder::outlierDetectionStats, DataframeAnalyticsStatsOutlierDetection.DESERIALIZER,
+		op.add(Builder::outlierDetectionStats, DataframeAnalyticsStatsOutlierDetection._DESERIALIZER,
 				"outlier_detection_stats");
-		op.add(Builder::regressionStats, DataframeAnalyticsStatsHyperparameters.DESERIALIZER, "regression_stats");
+		op.add(Builder::regressionStats, DataframeAnalyticsStatsHyperparameters._DESERIALIZER, "regression_stats");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<DataframeAnalyticsStats> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<DataframeAnalyticsStats> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			DataframeAnalyticsStats::setupDataframeAnalyticsStatsDeserializer, Builder::build);
 }

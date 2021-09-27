@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregationRange
+@JsonpDeserializable
 public final class IpRangeAggregationRange implements JsonpSerializable {
 	@Nullable
 	private final String from;
@@ -168,8 +170,8 @@ public final class IpRangeAggregationRange implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IpRangeAggregationRange}
 	 */
-	public static final JsonpDeserializer<IpRangeAggregationRange> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer);
+	public static final JsonpDeserializer<IpRangeAggregationRange> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IpRangeAggregationRange::setupIpRangeAggregationRangeDeserializer, Builder::build);
 
 	protected static void setupIpRangeAggregationRangeDeserializer(
 			DelegatingDeserializer<IpRangeAggregationRange.Builder> op) {

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security.grant_api_key;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ApiKeyGrantType implements StringEnum {
 	AccessToken("access_token"), Password("password");
 
@@ -39,6 +41,6 @@ public enum ApiKeyGrantType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ApiKeyGrantType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ApiKeyGrantType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ApiKeyGrantType.values());
 }

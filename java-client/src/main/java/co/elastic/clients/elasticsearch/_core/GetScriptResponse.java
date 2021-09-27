@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._types.StoredScript;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Response
+@JsonpDeserializable
 public final class GetScriptResponse implements JsonpSerializable {
 	private final String id;
 
@@ -166,14 +168,14 @@ public final class GetScriptResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetScriptResponse}
 	 */
-	public static final JsonpDeserializer<GetScriptResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetScriptResponse::setupGetScriptResponseDeserializer);
+	public static final JsonpDeserializer<GetScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetScriptResponse::setupGetScriptResponseDeserializer, Builder::build);
 
 	protected static void setupGetScriptResponseDeserializer(DelegatingDeserializer<GetScriptResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
-		op.add(Builder::script, StoredScript.DESERIALIZER, "script");
+		op.add(Builder::script, StoredScript._DESERIALIZER, "script");
 
 	}
 

@@ -24,32 +24,33 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhrasePrefixQuery
-public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
 	private final String analyzer;
 
 	@Nullable
-	private final Number maxExpansions;
+	private final Integer maxExpansions;
 
 	private final String query;
 
 	@Nullable
-	private final Number slop;
+	private final Integer slop;
 
 	@Nullable
 	private final ZeroTermsQuery zeroTermsQuery;
@@ -72,7 +73,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "match_phrase_prefix";
 	}
 
@@ -97,7 +98,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Number maxExpansions() {
+	public Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
@@ -112,7 +113,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 	 * API name: {@code slop}
 	 */
 	@Nullable
-	public Number slop() {
+	public Integer slop() {
 		return this.slop;
 	}
 
@@ -125,8 +126,6 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
@@ -139,7 +138,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 		if (this.maxExpansions != null) {
 
 			generator.writeKey("max_expansions");
-			generator.write(this.maxExpansions.doubleValue());
+			generator.write(this.maxExpansions);
 
 		}
 
@@ -149,7 +148,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 		if (this.slop != null) {
 
 			generator.writeKey("slop");
-			generator.write(this.slop.doubleValue());
+			generator.write(this.slop);
 
 		}
 		if (this.zeroTermsQuery != null) {
@@ -159,9 +158,6 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 		}
 
 		generator.writeEnd();
-
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -188,12 +184,12 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 		private String analyzer;
 
 		@Nullable
-		private Number maxExpansions;
+		private Integer maxExpansions;
 
 		private String query;
 
 		@Nullable
-		private Number slop;
+		private Integer slop;
 
 		@Nullable
 		private ZeroTermsQuery zeroTermsQuery;
@@ -209,7 +205,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Number value) {
+		public Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -225,7 +221,7 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code slop}
 		 */
-		public Builder slop(@Nullable Number value) {
+		public Builder slop(@Nullable Integer value) {
 			this.slop = value;
 			return this;
 		}
@@ -257,18 +253,20 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<MatchPhrasePrefixQuery.Builder, MatchPhrasePrefixQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(MatchPhrasePrefixQuery::setupMatchPhrasePrefixQueryDeserializer);
+	/**
+	 * Json deserializer for {@link MatchPhrasePrefixQuery}
+	 */
+	public static final JsonpDeserializer<MatchPhrasePrefixQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MatchPhrasePrefixQuery::setupMatchPhrasePrefixQueryDeserializer, Builder::build);
 
 	protected static void setupMatchPhrasePrefixQueryDeserializer(
 			DelegatingDeserializer<MatchPhrasePrefixQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(Builder::maxExpansions, JsonpDeserializer.numberDeserializer(), "max_expansions");
+		op.add(Builder::maxExpansions, JsonpDeserializer.integerDeserializer(), "max_expansions");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::slop, JsonpDeserializer.numberDeserializer(), "slop");
-		op.add(Builder::zeroTermsQuery, ZeroTermsQuery.DESERIALIZER, "zero_terms_query");
+		op.add(Builder::slop, JsonpDeserializer.integerDeserializer(), "slop");
+		op.add(Builder::zeroTermsQuery, ZeroTermsQuery._DESERIALIZER, "zero_terms_query");
 
 		op.setKey(Builder::field);
 

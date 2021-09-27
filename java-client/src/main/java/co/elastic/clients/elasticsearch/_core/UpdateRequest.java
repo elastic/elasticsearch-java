@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,7 +39,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +53,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.update.Request
+
 public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -60,31 +63,31 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final String type;
 
 	@Nullable
-	private final Number ifPrimaryTerm;
+	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Number ifSeqNo;
+	private final Integer ifSeqNo;
 
 	@Nullable
 	private final String lang;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final Boolean requireAlias;
 
 	@Nullable
-	private final Number retryOnConflict;
+	private final Long retryOnConflict;
 
 	@Nullable
 	private final String routing;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -102,13 +105,13 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final Boolean docAsUpsert;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
 	private final Boolean scriptedUpsert;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
 
 	@Nullable
 	private final TDocument upsert;
@@ -183,7 +186,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Number ifPrimaryTerm() {
+	public Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -193,7 +196,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Number ifSeqNo() {
+	public Integer ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -215,7 +218,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -236,7 +239,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code retry_on_conflict}
 	 */
 	@Nullable
-	public Number retryOnConflict() {
+	public Long retryOnConflict() {
 		return this.retryOnConflict;
 	}
 
@@ -258,7 +261,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -271,7 +274,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -332,7 +335,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -353,7 +356,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source() {
 		return this.source;
 	}
 
@@ -440,31 +443,31 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private String type;
 
 		@Nullable
-		private Number ifPrimaryTerm;
+		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Number ifSeqNo;
+		private Integer ifSeqNo;
 
 		@Nullable
 		private String lang;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private Boolean requireAlias;
 
 		@Nullable
-		private Number retryOnConflict;
+		private Long retryOnConflict;
 
 		@Nullable
 		private String routing;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -482,13 +485,13 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private Boolean docAsUpsert;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
 		private Boolean scriptedUpsert;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
 
 		@Nullable
 		private TDocument upsert;
@@ -534,7 +537,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder<TDocument, TPartialDocument> ifPrimaryTerm(@Nullable Number value) {
+		public Builder<TDocument, TPartialDocument> ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -544,7 +547,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Number value) {
+		public Builder<TDocument, TPartialDocument> ifSeqNo(@Nullable Integer value) {
 			this.ifSeqNo = value;
 			return this;
 		}
@@ -566,7 +569,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder<TDocument, TPartialDocument> refresh(@Nullable JsonValue value) {
+		public Builder<TDocument, TPartialDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -587,7 +590,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code retry_on_conflict}
 		 */
-		public Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Number value) {
+		public Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Long value) {
 			this.retryOnConflict = value;
 			return this;
 		}
@@ -609,7 +612,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TDocument, TPartialDocument> timeout(@Nullable JsonValue value) {
+		public Builder<TDocument, TPartialDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -622,7 +625,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder<TDocument, TPartialDocument> waitForActiveShards(@Nullable JsonValue value) {
+		public Builder<TDocument, TPartialDocument> waitForActiveShards(
+				@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -725,7 +729,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code script}
 		 */
-		public Builder<TDocument, TPartialDocument> script(@Nullable JsonValue value) {
+		public Builder<TDocument, TPartialDocument> script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -746,7 +750,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument, TPartialDocument> source(@Nullable JsonValue value) {
+		public Builder<TDocument, TPartialDocument> source(
+				@Nullable JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -876,10 +881,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.ifPrimaryTerm != null) {
-					params.put("if_primary_term", request.ifPrimaryTerm.toString());
+					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
 				if (request.ifSeqNo != null) {
-					params.put("if_seq_no", request.ifSeqNo.toString());
+					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.lang != null) {
 					params.put("lang", request.lang);
@@ -891,13 +896,13 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				if (request.retryOnConflict != null) {
-					params.put("retry_on_conflict", request.retryOnConflict.toString());
+					params.put("retry_on_conflict", String.valueOf(request.retryOnConflict));
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards.toString());

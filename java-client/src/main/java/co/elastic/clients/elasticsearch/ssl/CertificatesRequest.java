@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ssl;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: ssl.certificates.Request
+
 public final class CertificatesRequest extends RequestBase {
 	public CertificatesRequest() {
 	}
@@ -42,10 +44,7 @@ public final class CertificatesRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link CertificatesRequest}.
 	 */
-	public static final CertificatesRequest INSTANCE = new CertificatesRequest();
-
-	public static final JsonpDeserializer<CertificatesRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(CertificatesRequest.INSTANCE);
+	public static final CertificatesRequest _INSTANCE = new CertificatesRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class CertificatesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, CertificatesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, CertificatesResponse._DESERIALIZER);
 }

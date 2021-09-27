@@ -27,16 +27,16 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,23 +44,24 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
+@JsonpDeserializable
 public final class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final JsonValue bucketSpan;
+	private final String bucketSpan;
 
 	@Nullable
-	private final JsonValue overallScore;
+	private final String overallScore;
 
 	@Nullable
-	private final Number topN;
+	private final Integer topN;
 
 	@Nullable
-	private final JsonValue end;
+	private final String end;
 
 	@Nullable
-	private final JsonValue start;
+	private final String start;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -105,7 +106,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code bucket_span}
 	 */
 	@Nullable
-	public JsonValue bucketSpan() {
+	public String bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -116,7 +117,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code overall_score}
 	 */
 	@Nullable
-	public JsonValue overallScore() {
+	public String overallScore() {
 		return this.overallScore;
 	}
 
@@ -127,7 +128,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code top_n}
 	 */
 	@Nullable
-	public Number topN() {
+	public Integer topN() {
 		return this.topN;
 	}
 
@@ -137,7 +138,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public JsonValue end() {
+	public String end() {
 		return this.end;
 	}
 
@@ -147,7 +148,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public JsonValue start() {
+	public String start() {
 		return this.start;
 	}
 
@@ -210,19 +211,19 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		private String jobId;
 
 		@Nullable
-		private JsonValue bucketSpan;
+		private String bucketSpan;
 
 		@Nullable
-		private JsonValue overallScore;
+		private String overallScore;
 
 		@Nullable
-		private Number topN;
+		private Integer topN;
 
 		@Nullable
-		private JsonValue end;
+		private String end;
 
 		@Nullable
-		private JsonValue start;
+		private String start;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -251,7 +252,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(@Nullable JsonValue value) {
+		public Builder bucketSpan(@Nullable String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -262,7 +263,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(@Nullable JsonValue value) {
+		public Builder overallScore(@Nullable String value) {
 			this.overallScore = value;
 			return this;
 		}
@@ -273,7 +274,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code top_n}
 		 */
-		public Builder topN(@Nullable Number value) {
+		public Builder topN(@Nullable Integer value) {
 			this.topN = value;
 			return this;
 		}
@@ -283,7 +284,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable JsonValue value) {
+		public Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -293,7 +294,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable JsonValue value) {
+		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -345,8 +346,8 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	/**
 	 * Json deserializer for {@link GetOverallBucketsRequest}
 	 */
-	public static final JsonpDeserializer<GetOverallBucketsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer);
+	public static final JsonpDeserializer<GetOverallBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer, Builder::build);
 
 	protected static void setupGetOverallBucketsRequestDeserializer(
 			DelegatingDeserializer<GetOverallBucketsRequest.Builder> op) {
@@ -394,19 +395,19 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.bucketSpan != null) {
-					params.put("bucket_span", request.bucketSpan.toString());
+					params.put("bucket_span", request.bucketSpan);
 				}
 				if (request.overallScore != null) {
-					params.put("overall_score", request.overallScore.toString());
+					params.put("overall_score", request.overallScore);
 				}
 				if (request.topN != null) {
-					params.put("top_n", request.topN.toString());
+					params.put("top_n", String.valueOf(request.topN));
 				}
 				if (request.end != null) {
-					params.put("end", request.end.toString());
+					params.put("end", request.end);
 				}
 				if (request.start != null) {
-					params.put("start", request.start.toString());
+					params.put("start", request.start);
 				}
 				if (request.excludeInterim != null) {
 					params.put("exclude_interim", String.valueOf(request.excludeInterim));
@@ -416,5 +417,5 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetOverallBucketsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
 }

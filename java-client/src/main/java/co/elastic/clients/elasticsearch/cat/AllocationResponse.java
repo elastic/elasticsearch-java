@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.allocation.AllocationRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Response
+@JsonpDeserializable
 public final class AllocationResponse implements JsonpSerializable {
 	private final List<AllocationRecord> value;
 
@@ -143,12 +145,12 @@ public final class AllocationResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AllocationResponse}
 	 */
-	public static final JsonpDeserializer<AllocationResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationResponse::setupAllocationResponseDeserializer);
+	public static final JsonpDeserializer<AllocationResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AllocationResponse::setupAllocationResponseDeserializer, Builder::build);
 
 	protected static void setupAllocationResponseDeserializer(DelegatingDeserializer<AllocationResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(AllocationRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(AllocationRecord._DESERIALIZER), "value");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.NodeShard;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateRoutingNodes
+@JsonpDeserializable
 public final class ClusterStateRoutingNodes implements JsonpSerializable {
 	private final List<NodeShard> unassigned;
 
@@ -192,15 +194,15 @@ public final class ClusterStateRoutingNodes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStateRoutingNodes}
 	 */
-	public static final JsonpDeserializer<ClusterStateRoutingNodes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStateRoutingNodes::setupClusterStateRoutingNodesDeserializer);
+	public static final JsonpDeserializer<ClusterStateRoutingNodes> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateRoutingNodes::setupClusterStateRoutingNodesDeserializer, Builder::build);
 
 	protected static void setupClusterStateRoutingNodesDeserializer(
 			DelegatingDeserializer<ClusterStateRoutingNodes.Builder> op) {
 
-		op.add(Builder::unassigned, JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER), "unassigned");
+		op.add(Builder::unassigned, JsonpDeserializer.arrayDeserializer(NodeShard._DESERIALIZER), "unassigned");
 		op.add(Builder::nodes,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard._DESERIALIZER)),
 				"nodes");
 
 	}

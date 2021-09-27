@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricBase
+
 public abstract class RankEvalMetricBase implements JsonpSerializable {
 	@Nullable
-	private final Number k;
+	private final Integer k;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -55,7 +57,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 	 * API name: {@code k}
 	 */
 	@Nullable
-	public Number k() {
+	public Integer k() {
 		return this.k;
 	}
 
@@ -73,7 +75,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 		if (this.k != null) {
 
 			generator.writeKey("k");
-			generator.write(this.k.doubleValue());
+			generator.write(this.k);
 
 		}
 
@@ -81,7 +83,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private Number k;
+		private Integer k;
 
 		/**
 		 * Sets the maximum number of documents retrieved per query. This value will act
@@ -89,7 +91,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code k}
 		 */
-		public BuilderT k(@Nullable Number value) {
+		public BuilderT k(@Nullable Integer value) {
 			this.k = value;
 			return self();
 		}
@@ -102,7 +104,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::k, JsonpDeserializer.numberDeserializer(), "k");
+		op.add(AbstractBuilder::k, JsonpDeserializer.integerDeserializer(), "k");
 
 	}
 

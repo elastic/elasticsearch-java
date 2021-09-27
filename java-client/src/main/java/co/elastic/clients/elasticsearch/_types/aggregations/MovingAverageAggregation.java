@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,25 +33,26 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregation
-public final class MovingAverageAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class MovingAverageAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean minimize;
 
 	@Nullable
 	private final MovingAverageModel model;
 
-	private final JsonValue settings;
+	private final JsonValue /* _types.aggregations.MovingAverageSettings */ settings;
 
 	@Nullable
-	private final Number predict;
+	private final Integer predict;
 
 	@Nullable
-	private final Number window;
+	private final Integer window;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,6 +65,14 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		this.predict = builder.predict;
 		this.window = builder.window;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "moving_avg";
 	}
 
 	/**
@@ -84,7 +94,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	/**
 	 * API name: {@code settings}
 	 */
-	public JsonValue settings() {
+	public JsonValue /* _types.aggregations.MovingAverageSettings */ settings() {
 		return this.settings;
 	}
 
@@ -92,7 +102,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	 * API name: {@code predict}
 	 */
 	@Nullable
-	public Number predict() {
+	public Integer predict() {
 		return this.predict;
 	}
 
@@ -100,7 +110,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Number window() {
+	public Integer window() {
 		return this.window;
 	}
 
@@ -125,13 +135,13 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		if (this.predict != null) {
 
 			generator.writeKey("predict");
-			generator.write(this.predict.doubleValue());
+			generator.write(this.predict);
 
 		}
 		if (this.window != null) {
 
 			generator.writeKey("window");
-			generator.write(this.window.doubleValue());
+			generator.write(this.window);
 
 		}
 
@@ -151,13 +161,13 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		@Nullable
 		private MovingAverageModel model;
 
-		private JsonValue settings;
+		private JsonValue /* _types.aggregations.MovingAverageSettings */ settings;
 
 		@Nullable
-		private Number predict;
+		private Integer predict;
 
 		@Nullable
-		private Number window;
+		private Integer window;
 
 		/**
 		 * API name: {@code minimize}
@@ -178,7 +188,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(JsonValue value) {
+		public Builder settings(JsonValue /* _types.aggregations.MovingAverageSettings */ value) {
 			this.settings = value;
 			return this;
 		}
@@ -186,7 +196,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		/**
 		 * API name: {@code predict}
 		 */
-		public Builder predict(@Nullable Number value) {
+		public Builder predict(@Nullable Integer value) {
 			this.predict = value;
 			return this;
 		}
@@ -194,7 +204,7 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Number value) {
+		public Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -221,17 +231,17 @@ public final class MovingAverageAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link MovingAverageAggregation}
 	 */
-	public static final JsonpDeserializer<MovingAverageAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer);
+	public static final JsonpDeserializer<MovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer, Builder::build);
 
 	protected static void setupMovingAverageAggregationDeserializer(
 			DelegatingDeserializer<MovingAverageAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::minimize, JsonpDeserializer.booleanDeserializer(), "minimize");
-		op.add(Builder::model, MovingAverageModel.DESERIALIZER, "model");
+		op.add(Builder::model, MovingAverageModel._DESERIALIZER, "model");
 		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
-		op.add(Builder::predict, JsonpDeserializer.numberDeserializer(), "predict");
-		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");
+		op.add(Builder::predict, JsonpDeserializer.integerDeserializer(), "predict");
+		op.add(Builder::window, JsonpDeserializer.integerDeserializer(), "window");
 
 	}
 

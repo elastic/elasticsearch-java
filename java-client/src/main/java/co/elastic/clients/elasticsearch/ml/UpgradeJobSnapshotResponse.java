@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Response
+@JsonpDeserializable
 public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private final String node;
 
@@ -135,8 +137,8 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UpgradeJobSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<UpgradeJobSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpgradeJobSnapshotResponse::setupUpgradeJobSnapshotResponseDeserializer);
+	public static final JsonpDeserializer<UpgradeJobSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, UpgradeJobSnapshotResponse::setupUpgradeJobSnapshotResponseDeserializer, Builder::build);
 
 	protected static void setupUpgradeJobSnapshotResponseDeserializer(
 			DelegatingDeserializer<UpgradeJobSnapshotResponse.Builder> op) {

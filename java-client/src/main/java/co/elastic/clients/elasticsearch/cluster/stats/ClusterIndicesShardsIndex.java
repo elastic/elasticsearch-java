@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndicesShardsIndex
+@JsonpDeserializable
 public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	private final ClusterShardMetrics primaries;
 
@@ -194,15 +196,15 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterIndicesShardsIndex}
 	 */
-	public static final JsonpDeserializer<ClusterIndicesShardsIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer);
+	public static final JsonpDeserializer<ClusterIndicesShardsIndex> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterIndicesShardsIndex::setupClusterIndicesShardsIndexDeserializer, Builder::build);
 
 	protected static void setupClusterIndicesShardsIndexDeserializer(
 			DelegatingDeserializer<ClusterIndicesShardsIndex.Builder> op) {
 
-		op.add(Builder::primaries, ClusterShardMetrics.DESERIALIZER, "primaries");
-		op.add(Builder::replication, ClusterShardMetrics.DESERIALIZER, "replication");
-		op.add(Builder::shards, ClusterShardMetrics.DESERIALIZER, "shards");
+		op.add(Builder::primaries, ClusterShardMetrics._DESERIALIZER, "primaries");
+		op.add(Builder::replication, ClusterShardMetrics._DESERIALIZER, "replication");
+		op.add(Builder::shards, ClusterShardMetrics._DESERIALIZER, "shards");
 
 	}
 

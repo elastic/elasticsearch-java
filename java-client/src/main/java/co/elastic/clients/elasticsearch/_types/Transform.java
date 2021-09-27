@@ -23,110 +23,149 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TransformContainer
-public interface Transform extends JsonpSerializable {
+@JsonpDeserializable
+public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
-	String CHAIN = "chain";
-	String SCRIPT = "script";
-	String SEARCH = "search";
+	public static final String CHAIN = "chain";
+	public static final String SCRIPT = "script";
+	public static final String SEARCH = "search";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Transform(TransformVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private Transform(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code TransformContainer}.
+	 * Get the {@code chain} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code chain} kind.
 	 */
-	String _type();
+	public ChainTransform chain() {
+		return TaggedUnionUtils.get(this, CHAIN);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code chain}
-		 */
-		public ObjectBuilder<Transform> chain(ChainTransform value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code script} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code script} kind.
+	 */
+	public ScriptTransform script() {
+		return TaggedUnionUtils.get(this, SCRIPT);
+	}
+
+	/**
+	 * Get the {@code search} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code search} kind.
+	 */
+	public SearchTransform search() {
+		return TaggedUnionUtils.get(this, SEARCH);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code chain}
-		 */
-		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> fn) {
-			return this.chain(fn.apply(new ChainTransform.Builder()).build());
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<Transform> chain(ChainTransform v) {
+			this._type = CHAIN;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code script}
-		 */
-		public ObjectBuilder<Transform> script(ScriptTransform value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> f) {
+			return this.chain(f.apply(new ChainTransform.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code script}
-		 */
-		public ObjectBuilder<Transform> script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> fn) {
-			return this.script(fn.apply(new ScriptTransform.Builder()).build());
+		public ObjectBuilder<Transform> script(ScriptTransform v) {
+			this._type = SCRIPT;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code search}
-		 */
-		public ObjectBuilder<Transform> search(SearchTransform value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<Transform> script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> f) {
+			return this.script(f.apply(new ScriptTransform.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code search}
-		 */
-		public ObjectBuilder<Transform> search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> fn) {
-			return this.search(fn.apply(new SearchTransform.Builder()).build());
+		public ObjectBuilder<Transform> search(SearchTransform v) {
+			this._type = SEARCH;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Transform> search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> f) {
+			return this.search(f.apply(new SearchTransform.Builder()).build());
+		}
+
+		protected Transform build() {
+			return new Transform(this);
 		}
 
 	}
 
-	class $Helper {
-		private static Transform deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupTransformDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends Transform> builder = null;
-			String variant = null;
+		op.add(Builder::chain, ChainTransform._DESERIALIZER, "chain");
+		op.add(Builder::script, ScriptTransform._DESERIALIZER, "script");
+		op.add(Builder::search, SearchTransform._DESERIALIZER, "search");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case CHAIN : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ChainTransform.$BUILDER_DESERIALIZER.deserialize(new ChainTransform.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SCRIPT : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ScriptTransform.$BUILDER_DESERIALIZER.deserialize(new ScriptTransform.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case SEARCH : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SearchTransform.$BUILDER_DESERIALIZER.deserialize(new SearchTransform.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<Transform> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<Transform> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			Transform::setupTransformDeserializer, Builder::build);
 }

@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Request
+@JsonpDeserializable
 public final class UpdateModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -192,8 +194,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Json deserializer for {@link UpdateModelSnapshotRequest}
 	 */
-	public static final JsonpDeserializer<UpdateModelSnapshotRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer);
+	public static final JsonpDeserializer<UpdateModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer, Builder::build);
 
 	protected static void setupUpdateModelSnapshotRequestDeserializer(
 			DelegatingDeserializer<UpdateModelSnapshotRequest.Builder> op) {
@@ -247,5 +249,5 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateModelSnapshotResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateModelSnapshotResponse._DESERIALIZER);
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,12 +32,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggesterBase
+
 public abstract class SuggesterBase implements JsonpSerializable {
 	private final String field;
 
@@ -44,7 +46,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	private final String analyzer;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -102,7 +104,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -115,7 +117,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		private String analyzer;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code field}
@@ -136,7 +138,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public BuilderT size(@Nullable Number value) {
+		public BuilderT size(@Nullable Integer value) {
 			this.size = value;
 			return self();
 		}
@@ -151,7 +153,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 
 		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(AbstractBuilder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(AbstractBuilder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(AbstractBuilder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

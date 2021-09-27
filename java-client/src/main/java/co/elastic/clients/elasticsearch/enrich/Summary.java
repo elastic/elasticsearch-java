@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Summary
+@JsonpDeserializable
 public final class Summary implements JsonpSerializable {
 	private final Configuration config;
 
@@ -110,12 +112,12 @@ public final class Summary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Summary}
 	 */
-	public static final JsonpDeserializer<Summary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Summary::setupSummaryDeserializer);
+	public static final JsonpDeserializer<Summary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Summary::setupSummaryDeserializer, Builder::build);
 
 	protected static void setupSummaryDeserializer(DelegatingDeserializer<Summary.Builder> op) {
 
-		op.add(Builder::config, Configuration.DESERIALIZER, "config");
+		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 
 	}
 

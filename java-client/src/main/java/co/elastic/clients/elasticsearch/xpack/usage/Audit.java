@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
+@JsonpDeserializable
 public final class Audit extends FeatureToggle {
 	@Nullable
 	private final List<String> outputs;
@@ -134,8 +136,8 @@ public final class Audit extends FeatureToggle {
 	/**
 	 * Json deserializer for {@link Audit}
 	 */
-	public static final JsonpDeserializer<Audit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Audit::setupAuditDeserializer);
+	public static final JsonpDeserializer<Audit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Audit::setupAuditDeserializer, Builder::build);
 
 	protected static void setupAuditDeserializer(DelegatingDeserializer<Audit.Builder> op) {
 		FeatureToggle.setupFeatureToggleDeserializer(op);

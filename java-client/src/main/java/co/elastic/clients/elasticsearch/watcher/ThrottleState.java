@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ThrottleState
+@JsonpDeserializable
 public final class ThrottleState implements JsonpSerializable {
 	private final String reason;
 
@@ -126,8 +128,8 @@ public final class ThrottleState implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ThrottleState}
 	 */
-	public static final JsonpDeserializer<ThrottleState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ThrottleState::setupThrottleStateDeserializer);
+	public static final JsonpDeserializer<ThrottleState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ThrottleState::setupThrottleStateDeserializer, Builder::build);
 
 	protected static void setupThrottleStateDeserializer(DelegatingDeserializer<ThrottleState.Builder> op) {
 

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.enrich;
 import co.elastic.clients.elasticsearch.enrich.stats.CoordinatorStats;
 import co.elastic.clients.elasticsearch.enrich.stats.ExecutingPolicy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.Response
+@JsonpDeserializable
 public final class StatsResponse implements JsonpSerializable {
 	private final List<CoordinatorStats> coordinatorStats;
 
@@ -207,14 +209,14 @@ public final class StatsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::coordinatorStats, JsonpDeserializer.arrayDeserializer(CoordinatorStats.DESERIALIZER),
+		op.add(Builder::coordinatorStats, JsonpDeserializer.arrayDeserializer(CoordinatorStats._DESERIALIZER),
 				"coordinator_stats");
-		op.add(Builder::executingPolicies, JsonpDeserializer.arrayDeserializer(ExecutingPolicy.DESERIALIZER),
+		op.add(Builder::executingPolicies, JsonpDeserializer.arrayDeserializer(ExecutingPolicy._DESERIALIZER),
 				"executing_policies");
 
 	}

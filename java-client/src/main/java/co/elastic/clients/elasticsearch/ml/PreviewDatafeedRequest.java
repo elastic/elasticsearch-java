@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Request
+@JsonpDeserializable
 public final class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String datafeedId;
@@ -185,14 +187,14 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Json deserializer for {@link PreviewDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<PreviewDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<PreviewDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupPreviewDatafeedRequestDeserializer(
 			DelegatingDeserializer<PreviewDatafeedRequest.Builder> op) {
 
-		op.add(Builder::jobConfig, JobConfig.DESERIALIZER, "job_config");
-		op.add(Builder::datafeedConfig, DatafeedConfig.DESERIALIZER, "datafeed_config");
+		op.add(Builder::jobConfig, JobConfig._DESERIALIZER, "job_config");
+		op.add(Builder::datafeedConfig, DatafeedConfig._DESERIALIZER, "datafeed_config");
 
 	}
 

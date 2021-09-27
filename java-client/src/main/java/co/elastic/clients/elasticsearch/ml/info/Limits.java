@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Limits
+@JsonpDeserializable
 public final class Limits implements JsonpSerializable {
 	@Nullable
 	private final String maxModelMemoryLimit;
@@ -157,8 +159,8 @@ public final class Limits implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Limits}
 	 */
-	public static final JsonpDeserializer<Limits> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Limits::setupLimitsDeserializer);
+	public static final JsonpDeserializer<Limits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Limits::setupLimitsDeserializer, Builder::build);
 
 	protected static void setupLimitsDeserializer(DelegatingDeserializer<Limits.Builder> op) {
 

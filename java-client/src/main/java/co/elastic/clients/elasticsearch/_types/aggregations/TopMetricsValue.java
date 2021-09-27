@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsValue
+@JsonpDeserializable
 public final class TopMetricsValue implements JsonpSerializable {
 	private final String field;
 
@@ -103,8 +105,8 @@ public final class TopMetricsValue implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TopMetricsValue}
 	 */
-	public static final JsonpDeserializer<TopMetricsValue> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TopMetricsValue::setupTopMetricsValueDeserializer);
+	public static final JsonpDeserializer<TopMetricsValue> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TopMetricsValue::setupTopMetricsValueDeserializer, Builder::build);
 
 	protected static void setupTopMetricsValueDeserializer(DelegatingDeserializer<TopMetricsValue.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Definition
+@JsonpDeserializable
 public final class Definition implements JsonpSerializable {
 	@Nullable
 	private final List<Preprocessor> preprocessors;
@@ -193,13 +195,14 @@ public final class Definition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Definition}
 	 */
-	public static final JsonpDeserializer<Definition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Definition::setupDefinitionDeserializer);
+	public static final JsonpDeserializer<Definition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Definition::setupDefinitionDeserializer, Builder::build);
 
 	protected static void setupDefinitionDeserializer(DelegatingDeserializer<Definition.Builder> op) {
 
-		op.add(Builder::preprocessors, JsonpDeserializer.arrayDeserializer(Preprocessor.DESERIALIZER), "preprocessors");
-		op.add(Builder::trainedModel, TrainedModel.DESERIALIZER, "trained_model");
+		op.add(Builder::preprocessors, JsonpDeserializer.arrayDeserializer(Preprocessor._DESERIALIZER),
+				"preprocessors");
+		op.add(Builder::trainedModel, TrainedModel._DESERIALIZER, "trained_model");
 
 	}
 

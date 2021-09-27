@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Response
+@JsonpDeserializable
 public final class CreateResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean accepted;
@@ -141,13 +143,13 @@ public final class CreateResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CreateResponse}
 	 */
-	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
+	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateResponse::setupCreateResponseDeserializer, Builder::build);
 
 	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
 
 		op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
-		op.add(Builder::snapshot, SnapshotInfo.DESERIALIZER, "snapshot");
+		op.add(Builder::snapshot, SnapshotInfo._DESERIALIZER, "snapshot");
 
 	}
 

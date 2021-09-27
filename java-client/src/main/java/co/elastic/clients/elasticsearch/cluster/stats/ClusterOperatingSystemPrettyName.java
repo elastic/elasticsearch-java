@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemPrettyName
+@JsonpDeserializable
 public final class ClusterOperatingSystemPrettyName implements JsonpSerializable {
-	private final Number count;
+	private final Integer count;
 
 	private final String prettyName;
 
@@ -54,7 +56,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -77,7 +79,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("pretty_name");
 		generator.write(this.prettyName);
@@ -90,14 +92,14 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	 * Builder for {@link ClusterOperatingSystemPrettyName}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
-		private Number count;
+		private Integer count;
 
 		private String prettyName;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -127,14 +129,14 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link ClusterOperatingSystemPrettyName}
 	 */
-	public static final JsonpDeserializer<ClusterOperatingSystemPrettyName> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterOperatingSystemPrettyName::setupClusterOperatingSystemPrettyNameDeserializer);
+	public static final JsonpDeserializer<ClusterOperatingSystemPrettyName> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterOperatingSystemPrettyName::setupClusterOperatingSystemPrettyNameDeserializer,
+					Builder::build);
 
 	protected static void setupClusterOperatingSystemPrettyNameDeserializer(
 			DelegatingDeserializer<ClusterOperatingSystemPrettyName.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
 
 	}

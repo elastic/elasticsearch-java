@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregation
-public final class IpRangeAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class IpRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -54,6 +56,14 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 		this.field = builder.field;
 		this.ranges = builder.ranges;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "ip_range";
 	}
 
 	/**
@@ -180,13 +190,13 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link IpRangeAggregation}
 	 */
-	public static final JsonpDeserializer<IpRangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IpRangeAggregation::setupIpRangeAggregationDeserializer);
+	public static final JsonpDeserializer<IpRangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IpRangeAggregation::setupIpRangeAggregationDeserializer, Builder::build);
 
 	protected static void setupIpRangeAggregationDeserializer(DelegatingDeserializer<IpRangeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(IpRangeAggregationRange.DESERIALIZER), "ranges");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(IpRangeAggregationRange._DESERIALIZER), "ranges");
 
 	}
 

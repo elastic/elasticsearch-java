@@ -28,13 +28,13 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -47,13 +47,14 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Request
+@JsonpDeserializable
 public final class CreateRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -118,7 +119,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -289,7 +290,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		private String snapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -338,7 +339,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -509,8 +510,8 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link CreateRequest}
 	 */
-	public static final JsonpDeserializer<CreateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateRequest::setupCreateRequestDeserializer);
+	public static final JsonpDeserializer<CreateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateRequest::setupCreateRequestDeserializer, Builder::build);
 
 	protected static void setupCreateRequestDeserializer(DelegatingDeserializer<CreateRequest.Builder> op) {
 
@@ -520,7 +521,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 				"indices");
 		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_states");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
 
 	}
@@ -566,12 +567,12 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

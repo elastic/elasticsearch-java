@@ -24,19 +24,21 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricExpectedReciprocalRank
+@JsonpDeserializable
 public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
-	private final Number maximumRelevance;
+	private final Integer maximumRelevance;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +54,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	 * <p>
 	 * API name: {@code maximum_relevance}
 	 */
-	public Number maximumRelevance() {
+	public Integer maximumRelevance() {
 		return this.maximumRelevance;
 	}
 
@@ -61,7 +63,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("maximum_relevance");
-		generator.write(this.maximumRelevance.doubleValue());
+		generator.write(this.maximumRelevance);
 
 	}
 
@@ -73,14 +75,14 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	public static class Builder extends RankEvalMetricBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricExpectedReciprocalRank> {
-		private Number maximumRelevance;
+		private Integer maximumRelevance;
 
 		/**
 		 * The highest relevance grade used in the user-supplied relevance judgments.
 		 * <p>
 		 * API name: {@code maximum_relevance}
 		 */
-		public Builder maximumRelevance(Number value) {
+		public Builder maximumRelevance(Integer value) {
 			this.maximumRelevance = value;
 			return this;
 		}
@@ -107,14 +109,15 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	/**
 	 * Json deserializer for {@link RankEvalMetricExpectedReciprocalRank}
 	 */
-	public static final JsonpDeserializer<RankEvalMetricExpectedReciprocalRank> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer);
+	public static final JsonpDeserializer<RankEvalMetricExpectedReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer,
+					Builder::build);
 
 	protected static void setupRankEvalMetricExpectedReciprocalRankDeserializer(
 			DelegatingDeserializer<RankEvalMetricExpectedReciprocalRank.Builder> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
-		op.add(Builder::maximumRelevance, JsonpDeserializer.numberDeserializer(), "maximum_relevance");
+		op.add(Builder::maximumRelevance, JsonpDeserializer.integerDeserializer(), "maximum_relevance");
 
 	}
 

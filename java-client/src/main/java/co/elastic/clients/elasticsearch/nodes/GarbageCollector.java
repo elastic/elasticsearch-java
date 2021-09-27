@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollector
+@JsonpDeserializable
 public final class GarbageCollector implements JsonpSerializable {
 	private final Map<String, GarbageCollectorTotal> collectors;
 
@@ -140,12 +142,12 @@ public final class GarbageCollector implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GarbageCollector}
 	 */
-	public static final JsonpDeserializer<GarbageCollector> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GarbageCollector::setupGarbageCollectorDeserializer);
+	public static final JsonpDeserializer<GarbageCollector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GarbageCollector::setupGarbageCollectorDeserializer, Builder::build);
 
 	protected static void setupGarbageCollectorDeserializer(DelegatingDeserializer<GarbageCollector.Builder> op) {
 
-		op.add(Builder::collectors, JsonpDeserializer.stringMapDeserializer(GarbageCollectorTotal.DESERIALIZER),
+		op.add(Builder::collectors, JsonpDeserializer.stringMapDeserializer(GarbageCollectorTotal._DESERIALIZER),
 				"collectors");
 
 	}

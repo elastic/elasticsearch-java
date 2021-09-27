@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeRegressionSummary
+@JsonpDeserializable
 public final class DataframeRegressionSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationValue huber;
@@ -226,16 +228,16 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframeRegressionSummary}
 	 */
-	public static final JsonpDeserializer<DataframeRegressionSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer);
+	public static final JsonpDeserializer<DataframeRegressionSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer, Builder::build);
 
 	protected static void setupDataframeRegressionSummaryDeserializer(
 			DelegatingDeserializer<DataframeRegressionSummary.Builder> op) {
 
-		op.add(Builder::huber, DataframeEvaluationValue.DESERIALIZER, "huber");
-		op.add(Builder::mse, DataframeEvaluationValue.DESERIALIZER, "mse");
-		op.add(Builder::msle, DataframeEvaluationValue.DESERIALIZER, "msle");
-		op.add(Builder::rSquared, DataframeEvaluationValue.DESERIALIZER, "r_squared");
+		op.add(Builder::huber, DataframeEvaluationValue._DESERIALIZER, "huber");
+		op.add(Builder::mse, DataframeEvaluationValue._DESERIALIZER, "mse");
+		op.add(Builder::msle, DataframeEvaluationValue._DESERIALIZER, "msle");
+		op.add(Builder::rSquared, DataframeEvaluationValue._DESERIALIZER, "r_squared");
 
 	}
 

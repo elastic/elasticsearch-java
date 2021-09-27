@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -49,6 +50,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Request
+
 public final class BulkRequest<TSource> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String index;
@@ -60,13 +62,13 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	private final String pipeline;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final String routing;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -75,15 +77,15 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	private final List<String> sourceIncludes;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
 	private final Boolean requireAlias;
 
-	private final List<JsonValue> value;
+	private final List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value;
 
 	@Nullable
 	private final JsonpSerializer<TSource> tSourceSerializer;
@@ -147,7 +149,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -168,7 +170,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
 		return this.source;
 	}
 
@@ -200,7 +202,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -214,7 +216,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -233,7 +235,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public List<JsonValue> value() {
+	public List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value() {
 		return this.value;
 	}
 
@@ -242,7 +244,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue item0 : this.value) {
+		for (JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */ item0 : this.value) {
 			generator.write(item0);
 
 		}
@@ -266,13 +268,13 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		private String pipeline;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private String routing;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -281,15 +283,15 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		private List<String> sourceIncludes;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
 		private Boolean requireAlias;
 
-		private List<JsonValue> value;
+		private List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value;
 
 		@Nullable
 		private JsonpSerializer<TSource> tSourceSerializer;
@@ -332,7 +334,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder<TSource> refresh(@Nullable JsonValue value) {
+		public Builder<TSource> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -353,7 +355,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder<TSource> source(@Nullable JsonValue value) {
+		public Builder<TSource> source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -429,7 +431,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TSource> timeout(@Nullable JsonValue value) {
+		public Builder<TSource> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -443,7 +445,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder<TSource> waitForActiveShards(@Nullable JsonValue value) {
+		public Builder<TSource> waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -463,7 +465,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder<TSource> value(List<JsonValue> value) {
+		public Builder<TSource> value(
+				List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value) {
 			this.value = value;
 			return this;
 		}
@@ -473,7 +476,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder<TSource> value(JsonValue... value) {
+		public Builder<TSource> value(
+				JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */... value) {
 			this.value = Arrays.asList(value);
 			return this;
 		}
@@ -481,7 +485,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		/**
 		 * Add a value to {@link #value(List)}, creating the list if needed.
 		 */
-		public Builder<TSource> addValue(JsonValue value) {
+		public Builder<TSource> addValue(
+				JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */ value) {
 			if (this.value == null) {
 				this.value = new ArrayList<>();
 			}
@@ -601,7 +606,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
@@ -611,5 +616,5 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, BulkResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, BulkResponse._DESERIALIZER);
 }

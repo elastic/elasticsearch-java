@@ -30,6 +30,7 @@ import java.util.EnumSet;
  * This type is used in the API for values that don't have a statically-defined type or that cannot be represented
  * as a generic parameter of the enclosing data structure.
  */
+@JsonpDeserializable
 public interface JsonData extends JsonpSerializable {
 
     /**
@@ -92,7 +93,7 @@ public interface JsonData extends JsonpSerializable {
         return of(parser.getValue(), mapper);
     }
 
-    JsonpDeserializer<JsonData> DESERIALIZER = JsonpDeserializer.of(
+    JsonpDeserializer<JsonData> _DESERIALIZER = JsonpDeserializer.of(
         EnumSet.allOf(JsonParser.Event.class), JsonData::from
     );
 }

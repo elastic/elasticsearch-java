@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.elasticsearch._core.rank_eval.RankEvalMetricDetail;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +43,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.Response
+@JsonpDeserializable
 public final class RankEvalResponse implements JsonpSerializable {
-	private final Number metricScore;
+	private final Double metricScore;
 
 	private final Map<String, RankEvalMetricDetail> details;
 
@@ -64,7 +66,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code metric_score}
 	 */
-	public Number metricScore() {
+	public Double metricScore() {
 		return this.metricScore;
 	}
 
@@ -97,7 +99,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("metric_score");
-		generator.write(this.metricScore.doubleValue());
+		generator.write(this.metricScore);
 
 		generator.writeKey("details");
 		generator.writeStartObject();
@@ -125,7 +127,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 	 * Builder for {@link RankEvalResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<RankEvalResponse> {
-		private Number metricScore;
+		private Double metricScore;
 
 		private Map<String, RankEvalMetricDetail> details;
 
@@ -136,7 +138,7 @@ public final class RankEvalResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metric_score}
 		 */
-		public Builder metricScore(Number value) {
+		public Builder metricScore(Double value) {
 			this.metricScore = value;
 			return this;
 		}
@@ -215,14 +217,15 @@ public final class RankEvalResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RankEvalResponse}
 	 */
-	public static final JsonpDeserializer<RankEvalResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalResponse::setupRankEvalResponseDeserializer);
+	public static final JsonpDeserializer<RankEvalResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankEvalResponse::setupRankEvalResponseDeserializer, Builder::build);
 
 	protected static void setupRankEvalResponseDeserializer(DelegatingDeserializer<RankEvalResponse.Builder> op) {
 
-		op.add(Builder::metricScore, JsonpDeserializer.numberDeserializer(), "metric_score");
-		op.add(Builder::details, JsonpDeserializer.stringMapDeserializer(RankEvalMetricDetail.DESERIALIZER), "details");
-		op.add(Builder::failures, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "failures");
+		op.add(Builder::metricScore, JsonpDeserializer.doubleDeserializer(), "metric_score");
+		op.add(Builder::details, JsonpDeserializer.stringMapDeserializer(RankEvalMetricDetail._DESERIALIZER),
+				"details");
+		op.add(Builder::failures, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "failures");
 
 	}
 

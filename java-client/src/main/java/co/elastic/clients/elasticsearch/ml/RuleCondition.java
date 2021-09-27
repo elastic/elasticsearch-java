@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.RuleCondition
+@JsonpDeserializable
 public final class RuleCondition implements JsonpSerializable {
 	private final AppliesTo appliesTo;
 
 	private final ConditionOperator operator;
 
-	private final Number value;
+	private final Double value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,7 +82,7 @@ public final class RuleCondition implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public Double value() {
 		return this.value;
 	}
 
@@ -102,7 +104,7 @@ public final class RuleCondition implements JsonpSerializable {
 		this.operator.serialize(generator, mapper);
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -116,7 +118,7 @@ public final class RuleCondition implements JsonpSerializable {
 
 		private ConditionOperator operator;
 
-		private Number value;
+		private Double value;
 
 		/**
 		 * Specifies the result property to which the condition applies. If your
@@ -147,7 +149,7 @@ public final class RuleCondition implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(Double value) {
 			this.value = value;
 			return this;
 		}
@@ -169,14 +171,14 @@ public final class RuleCondition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RuleCondition}
 	 */
-	public static final JsonpDeserializer<RuleCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RuleCondition::setupRuleConditionDeserializer);
+	public static final JsonpDeserializer<RuleCondition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RuleCondition::setupRuleConditionDeserializer, Builder::build);
 
 	protected static void setupRuleConditionDeserializer(DelegatingDeserializer<RuleCondition.Builder> op) {
 
-		op.add(Builder::appliesTo, AppliesTo.DESERIALIZER, "applies_to");
-		op.add(Builder::operator, ConditionOperator.DESERIALIZER, "operator");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::appliesTo, AppliesTo._DESERIALIZER, "applies_to");
+		op.add(Builder::operator, ConditionOperator._DESERIALIZER, "operator");
+		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 
 	}
 

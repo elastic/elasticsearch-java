@@ -23,73 +23,106 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicyContainer
-public interface RetentionPolicy extends JsonpSerializable {
+@JsonpDeserializable
+public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
 
-	String TIME = "time";
+	public static final String TIME = "time";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public RetentionPolicy(RetentionPolicyVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private RetentionPolicy(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code RetentionPolicyContainer}.
+	 * Get the {@code time} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code time} kind.
 	 */
-	String _type();
+	public TimeRetentionPolicy time() {
+		return TaggedUnionUtils.get(this, TIME);
+	}
 
-	class Builder {
-		/**
-		 * Specifies that the transform uses a time field to set the retention policy.
-		 * <p>
-		 * API name: {@code time}
-		 */
-		public ObjectBuilder<RetentionPolicy> time(TimeRetentionPolicy value) {
-			return ObjectBuilder.constant(value);
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * Specifies that the transform uses a time field to set the retention policy.
-		 * <p>
-		 * API name: {@code time}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<RetentionPolicy> time(TimeRetentionPolicy v) {
+			this._type = TIME;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<RetentionPolicy> time(
-				Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
-			return this.time(fn.apply(new TimeRetentionPolicy.Builder()).build());
+				Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> f) {
+			return this.time(f.apply(new TimeRetentionPolicy.Builder()).build());
+		}
+
+		protected RetentionPolicy build() {
+			return new RetentionPolicy(this);
 		}
 
 	}
 
-	class $Helper {
-		private static RetentionPolicy deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupRetentionPolicyDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends RetentionPolicy> builder = null;
-			String variant = null;
+		op.add(Builder::time, TimeRetentionPolicy._DESERIALIZER, "time");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case TIME : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TimeRetentionPolicy.$BUILDER_DESERIALIZER
-								.deserialize(new TimeRetentionPolicy.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<RetentionPolicy> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<RetentionPolicy> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			RetentionPolicy::setupRetentionPolicyDeserializer, Builder::build);
 }

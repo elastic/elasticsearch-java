@@ -28,16 +28,16 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -45,16 +45,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Request
+@JsonpDeserializable
 public final class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	private final String field;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean caseInsensitive;
@@ -109,7 +110,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -121,7 +122,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -183,7 +184,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.timeout != null) {
@@ -230,10 +231,10 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		private String field;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean caseInsensitive;
@@ -274,7 +275,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -286,7 +287,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -358,16 +359,16 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link TermsEnumRequest}
 	 */
-	public static final JsonpDeserializer<TermsEnumRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TermsEnumRequest::setupTermsEnumRequestDeserializer);
+	public static final JsonpDeserializer<TermsEnumRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TermsEnumRequest::setupTermsEnumRequestDeserializer, Builder::build);
 
 	protected static void setupTermsEnumRequestDeserializer(DelegatingDeserializer<TermsEnumRequest.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
-		op.add(Builder::indexFilter, Query.DESERIALIZER, "index_filter");
+		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
 		op.add(Builder::string, JsonpDeserializer.stringDeserializer(), "string");
 		op.add(Builder::searchAfter, JsonpDeserializer.stringDeserializer(), "search_after");
 
@@ -409,5 +410,5 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, TermsEnumResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, TermsEnumResponse._DESERIALIZER);
 }

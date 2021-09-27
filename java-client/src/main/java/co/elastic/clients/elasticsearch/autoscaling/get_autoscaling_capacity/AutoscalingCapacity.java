@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingCapacity
+@JsonpDeserializable
 public final class AutoscalingCapacity implements JsonpSerializable {
 	private final AutoscalingResources node;
 
@@ -140,13 +142,13 @@ public final class AutoscalingCapacity implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoscalingCapacity}
 	 */
-	public static final JsonpDeserializer<AutoscalingCapacity> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoscalingCapacity::setupAutoscalingCapacityDeserializer);
+	public static final JsonpDeserializer<AutoscalingCapacity> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoscalingCapacity::setupAutoscalingCapacityDeserializer, Builder::build);
 
 	protected static void setupAutoscalingCapacityDeserializer(DelegatingDeserializer<AutoscalingCapacity.Builder> op) {
 
-		op.add(Builder::node, AutoscalingResources.DESERIALIZER, "node");
-		op.add(Builder::total, AutoscalingResources.DESERIALIZER, "total");
+		op.add(Builder::node, AutoscalingResources._DESERIALIZER, "node");
+		op.add(Builder::total, AutoscalingResources._DESERIALIZER, "total");
 
 	}
 

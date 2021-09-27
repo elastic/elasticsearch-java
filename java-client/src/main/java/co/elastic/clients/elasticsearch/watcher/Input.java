@@ -23,31 +23,58 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.InputContainer
-public class Input extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String CHAIN = "chain";
 	public static final String HTTP = "http";
 	public static final String SEARCH = "search";
 	public static final String SIMPLE = "simple";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Input(InputVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private Input(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -58,7 +85,7 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 	 *             if the current variant is not of the {@code chain} kind.
 	 */
 	public ChainInput chain() {
-		return _get(CHAIN);
+		return TaggedUnionUtils.get(this, CHAIN);
 	}
 
 	/**
@@ -68,7 +95,7 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 	 *             if the current variant is not of the {@code http} kind.
 	 */
 	public HttpInput http() {
-		return _get(HTTP);
+		return TaggedUnionUtils.get(this, HTTP);
 	}
 
 	/**
@@ -78,7 +105,7 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 	 *             if the current variant is not of the {@code search} kind.
 	 */
 	public SearchInput search() {
-		return _get(SEARCH);
+		return TaggedUnionUtils.get(this, SEARCH);
 	}
 
 	/**
@@ -88,12 +115,14 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 	 *             if the current variant is not of the {@code simple} kind.
 	 */
 	public Map<String, JsonData> simple() {
-		return _get(SIMPLE);
+		return TaggedUnionUtils.get(this, SIMPLE);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
@@ -101,7 +130,7 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 			switch (_type) {
 				case SIMPLE :
 					generator.writeStartObject();
-					for (Map.Entry<String, JsonData> item0 : this.<Map<String, JsonData>>_get(SIMPLE).entrySet()) {
+					for (Map.Entry<String, JsonData> item0 : ((Map<String, JsonData>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
 						item0.getValue().serialize(generator, mapper);
 
@@ -114,13 +143,14 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<Input> chain(ChainInput v) {
-			this.$variant = v;
-			this.$tag = CHAIN;
+			this._type = CHAIN;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -129,8 +159,8 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 		}
 
 		public ObjectBuilder<Input> http(HttpInput v) {
-			this.$variant = v;
-			this.$tag = HTTP;
+			this._type = HTTP;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -139,8 +169,8 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 		}
 
 		public ObjectBuilder<Input> search(SearchInput v) {
-			this.$variant = v;
-			this.$tag = SEARCH;
+			this._type = SEARCH;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -149,8 +179,8 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 		}
 
 		public ObjectBuilder<Input> simple(Map<String, JsonData> v) {
-			this.$variant = v;
-			this.$tag = SIMPLE;
+			this._type = SIMPLE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -161,17 +191,14 @@ public class Input extends TaggedUnion<Object> implements JsonpSerializable {
 	}
 
 	protected static void setupInputDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::chain, ChainInput.DESERIALIZER, "chain");
-		op.add(Builder::http, HttpInput.DESERIALIZER, "http");
-		op.add(Builder::search, SearchInput.DESERIALIZER, "search");
-		op.add(Builder::simple, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "simple");
+
+		op.add(Builder::chain, ChainInput._DESERIALIZER, "chain");
+		op.add(Builder::http, HttpInput._DESERIALIZER, "http");
+		op.add(Builder::search, SearchInput._DESERIALIZER, "search");
+		op.add(Builder::simple, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "simple");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<Input> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Input> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			Input::setupInputDeserializer, Builder::build);
 }

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.snapshot.get;
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch.snapshot.SnapshotInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.SnapshotResponseItem
+@JsonpDeserializable
 public final class SnapshotResponseItem implements JsonpSerializable {
 	private final String repository;
 
@@ -213,15 +215,15 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SnapshotResponseItem}
 	 */
-	public static final JsonpDeserializer<SnapshotResponseItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer);
+	public static final JsonpDeserializer<SnapshotResponseItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotResponseItem::setupSnapshotResponseItemDeserializer, Builder::build);
 
 	protected static void setupSnapshotResponseItemDeserializer(
 			DelegatingDeserializer<SnapshotResponseItem.Builder> op) {
 
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo.DESERIALIZER), "snapshots");
-		op.add(Builder::error, ErrorCause.DESERIALIZER, "error");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}
 

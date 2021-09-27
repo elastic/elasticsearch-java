@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStatus
+@JsonpDeserializable
 public final class RecoveryStatus implements JsonpSerializable {
 	private final List<ShardRecovery> shards;
 
@@ -144,12 +146,12 @@ public final class RecoveryStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryStatus}
 	 */
-	public static final JsonpDeserializer<RecoveryStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryStatus::setupRecoveryStatusDeserializer);
+	public static final JsonpDeserializer<RecoveryStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryStatus::setupRecoveryStatusDeserializer, Builder::build);
 
 	protected static void setupRecoveryStatusDeserializer(DelegatingDeserializer<RecoveryStatus.Builder> op) {
 
-		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery.DESERIALIZER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery._DESERIALIZER), "shards");
 
 	}
 

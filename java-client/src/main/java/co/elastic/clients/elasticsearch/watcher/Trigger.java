@@ -23,68 +23,105 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerContainer
-public interface Trigger extends JsonpSerializable {
+@JsonpDeserializable
+public class Trigger implements TaggedUnion<Object>, JsonpSerializable {
 
-	String SCHEDULE = "schedule";
+	public static final String SCHEDULE = "schedule";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Trigger(TriggerVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private Trigger(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code TriggerContainer}.
+	 * Get the {@code schedule} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code schedule} kind.
 	 */
-	String _type();
+	public Schedule schedule() {
+		return TaggedUnionUtils.get(this, SCHEDULE);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code schedule}
-		 */
-		public ObjectBuilder<Trigger> schedule(Schedule value) {
-			return ObjectBuilder.constant(value);
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code schedule}
-		 */
-		public ObjectBuilder<Trigger> schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> fn) {
-			return this.schedule(fn.apply(new Schedule.Builder()).build());
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<Trigger> schedule(Schedule v) {
+			this._type = SCHEDULE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Trigger> schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> f) {
+			return this.schedule(f.apply(new Schedule.Builder()).build());
+		}
+
+		protected Trigger build() {
+			return new Trigger(this);
 		}
 
 	}
 
-	class $Helper {
-		private static Trigger deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupTriggerDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends Trigger> builder = null;
-			String variant = null;
+		op.add(Builder::schedule, Schedule._DESERIALIZER, "schedule");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case SCHEDULE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = Schedule.$BUILDER_DESERIALIZER.deserialize(new Schedule.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<Trigger> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<Trigger> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			Trigger::setupTriggerDeserializer, Builder::build);
 }

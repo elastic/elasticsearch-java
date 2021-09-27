@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.nodes.info.NodeInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.Response
+@JsonpDeserializable
 public final class InfoResponse extends NodesResponseBase {
 	private final String clusterName;
 
@@ -162,13 +164,13 @@ public final class InfoResponse extends NodesResponseBase {
 	/**
 	 * Json deserializer for {@link InfoResponse}
 	 */
-	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
+	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoResponse::setupInfoResponseDeserializer, Builder::build);
 
 	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeInfo.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeInfo._DESERIALIZER), "nodes");
 
 	}
 

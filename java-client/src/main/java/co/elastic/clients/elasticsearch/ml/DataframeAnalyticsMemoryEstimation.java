@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsMemoryEstimation
+@JsonpDeserializable
 public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 	private final String expectedMemoryWithDisk;
 
@@ -144,9 +146,9 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsMemoryEstimation}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsMemoryEstimation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsMemoryEstimation::setupDataframeAnalyticsMemoryEstimationDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsMemoryEstimation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsMemoryEstimation::setupDataframeAnalyticsMemoryEstimationDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsMemoryEstimationDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsMemoryEstimation.Builder> op) {

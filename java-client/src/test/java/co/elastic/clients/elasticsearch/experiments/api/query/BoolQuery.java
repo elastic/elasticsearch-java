@@ -23,7 +23,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.Union2;
 
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Function;
 
-public class BoolQuery implements ToJsonp {
+public class BoolQuery implements JsonpSerializable {
 
     private final Collection<Query> should;
     private final Collection<Query> must;
@@ -46,27 +46,27 @@ public class BoolQuery implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
+    public void serialize(JsonGenerator builder, JsonpMapper mapper) {
         builder.writeStartObject();
 
         if (should != null) {
             builder.writeKey("should");
             builder.writeStartArray();
-            for (Query v: should) v.toJsonp(builder, mapper);
+            for (Query v: should) v.serialize(builder, mapper);
             builder.writeEnd();
         }
 
         if (should != null) {
             builder.writeKey("must");
             builder.writeStartArray();
-            for (Query v: must) v.toJsonp(builder, mapper);
+            for (Query v: must) v.serialize(builder, mapper);
             builder.writeEnd();
         }
 
         if (minimumShouldMatch != null) {
             builder.writeKey("minimum_should_match");
             // Unions have to be expanded inline as serialization depends on the value type.
-            this.minimumShouldMatch.toJsonp(builder, mapper,
+            this.minimumShouldMatch.serialize(builder, mapper,
                 (v, b, p) -> builder.write(v),
                 (v, b, p) -> builder.write(v)
             );

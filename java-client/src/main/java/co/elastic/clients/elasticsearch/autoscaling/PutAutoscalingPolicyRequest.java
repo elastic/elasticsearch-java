@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.put_autoscaling_policy.Request
+@JsonpDeserializable
 public final class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
@@ -137,13 +139,13 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	/**
 	 * Json deserializer for {@link PutAutoscalingPolicyRequest}
 	 */
-	public static final JsonpDeserializer<PutAutoscalingPolicyRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutAutoscalingPolicyRequest::setupPutAutoscalingPolicyRequestDeserializer);
+	public static final JsonpDeserializer<PutAutoscalingPolicyRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutAutoscalingPolicyRequest::setupPutAutoscalingPolicyRequestDeserializer, Builder::build);
 
 	protected static void setupPutAutoscalingPolicyRequestDeserializer(
 			DelegatingDeserializer<PutAutoscalingPolicyRequest.Builder> op) {
 
-		op.add(Builder::value, AutoscalingPolicy.DESERIALIZER, "value");
+		op.add(Builder::value, AutoscalingPolicy._DESERIALIZER, "value");
 
 	}
 
@@ -184,5 +186,5 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutAutoscalingPolicyResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutAutoscalingPolicyResponse._DESERIALIZER);
 }

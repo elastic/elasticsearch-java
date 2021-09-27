@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Invocation
+@JsonpDeserializable
 public final class Invocation implements JsonpSerializable {
 	private final String snapshotName;
 
@@ -126,8 +128,8 @@ public final class Invocation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Invocation}
 	 */
-	public static final JsonpDeserializer<Invocation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Invocation::setupInvocationDeserializer);
+	public static final JsonpDeserializer<Invocation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Invocation::setupInvocationDeserializer, Builder::build);
 
 	protected static void setupInvocationDeserializer(DelegatingDeserializer<Invocation.Builder> op) {
 

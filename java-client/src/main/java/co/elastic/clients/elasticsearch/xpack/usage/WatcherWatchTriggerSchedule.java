@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTriggerSchedule
+@JsonpDeserializable
 public final class WatcherWatchTriggerSchedule extends Counter {
 	private final Counter cron;
 
@@ -140,14 +142,14 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 	/**
 	 * Json deserializer for {@link WatcherWatchTriggerSchedule}
 	 */
-	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer);
+	public static final JsonpDeserializer<WatcherWatchTriggerSchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, WatcherWatchTriggerSchedule::setupWatcherWatchTriggerScheduleDeserializer, Builder::build);
 
 	protected static void setupWatcherWatchTriggerScheduleDeserializer(
 			DelegatingDeserializer<WatcherWatchTriggerSchedule.Builder> op) {
 		Counter.setupCounterDeserializer(op);
-		op.add(Builder::cron, Counter.DESERIALIZER, "cron");
-		op.add(Builder::all, Counter.DESERIALIZER, "_all");
+		op.add(Builder::cron, Counter._DESERIALIZER, "cron");
+		op.add(Builder::all, Counter._DESERIALIZER, "_all");
 
 	}
 

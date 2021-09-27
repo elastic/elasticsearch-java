@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,26 +32,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
+@JsonpDeserializable
 public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	private final String arch;
 
-	private final Number availableProcessors;
+	private final Integer availableProcessors;
 
 	@Nullable
-	private final Number allocatedProcessors;
+	private final Integer allocatedProcessors;
 
 	private final String name;
 
 	private final String prettyName;
 
-	private final Number refreshIntervalInMillis;
+	private final Integer refreshIntervalInMillis;
 
 	private final String version;
 
@@ -95,7 +97,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code available_processors}
 	 */
-	public Number availableProcessors() {
+	public Integer availableProcessors() {
 		return this.availableProcessors;
 	}
 
@@ -107,7 +109,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * API name: {@code allocated_processors}
 	 */
 	@Nullable
-	public Number allocatedProcessors() {
+	public Integer allocatedProcessors() {
 		return this.allocatedProcessors;
 	}
 
@@ -132,7 +134,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public Number refreshIntervalInMillis() {
+	public Integer refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -184,12 +186,12 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		generator.write(this.arch);
 
 		generator.writeKey("available_processors");
-		generator.write(this.availableProcessors.doubleValue());
+		generator.write(this.availableProcessors);
 
 		if (this.allocatedProcessors != null) {
 
 			generator.writeKey("allocated_processors");
-			generator.write(this.allocatedProcessors.doubleValue());
+			generator.write(this.allocatedProcessors);
 
 		}
 
@@ -200,7 +202,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		generator.write(this.prettyName);
 
 		generator.writeKey("refresh_interval_in_millis");
-		generator.write(this.refreshIntervalInMillis.doubleValue());
+		generator.write(this.refreshIntervalInMillis);
 
 		generator.writeKey("version");
 		generator.write(this.version);
@@ -234,16 +236,16 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<NodeOperatingSystemInfo> {
 		private String arch;
 
-		private Number availableProcessors;
+		private Integer availableProcessors;
 
 		@Nullable
-		private Number allocatedProcessors;
+		private Integer allocatedProcessors;
 
 		private String name;
 
 		private String prettyName;
 
-		private Number refreshIntervalInMillis;
+		private Integer refreshIntervalInMillis;
 
 		private String version;
 
@@ -271,7 +273,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code available_processors}
 		 */
-		public Builder availableProcessors(Number value) {
+		public Builder availableProcessors(Integer value) {
 			this.availableProcessors = value;
 			return this;
 		}
@@ -283,7 +285,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocated_processors}
 		 */
-		public Builder allocatedProcessors(@Nullable Number value) {
+		public Builder allocatedProcessors(@Nullable Integer value) {
 			this.allocatedProcessors = value;
 			return this;
 		}
@@ -311,7 +313,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(Number value) {
+		public Builder refreshIntervalInMillis(Integer value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
@@ -388,22 +390,22 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeOperatingSystemInfo}
 	 */
-	public static final JsonpDeserializer<NodeOperatingSystemInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer);
+	public static final JsonpDeserializer<NodeOperatingSystemInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer, Builder::build);
 
 	protected static void setupNodeOperatingSystemInfoDeserializer(
 			DelegatingDeserializer<NodeOperatingSystemInfo.Builder> op) {
 
 		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
-		op.add(Builder::availableProcessors, JsonpDeserializer.numberDeserializer(), "available_processors");
-		op.add(Builder::allocatedProcessors, JsonpDeserializer.numberDeserializer(), "allocated_processors");
+		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");
+		op.add(Builder::allocatedProcessors, JsonpDeserializer.integerDeserializer(), "allocated_processors");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
-		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.numberDeserializer(), "refresh_interval_in_millis");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.integerDeserializer(), "refresh_interval_in_millis");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::cpu, NodeInfoOSCPU.DESERIALIZER, "cpu");
-		op.add(Builder::mem, NodeInfoMemory.DESERIALIZER, "mem");
-		op.add(Builder::swap, NodeInfoMemory.DESERIALIZER, "swap");
+		op.add(Builder::cpu, NodeInfoOSCPU._DESERIALIZER, "cpu");
+		op.add(Builder::mem, NodeInfoMemory._DESERIALIZER, "mem");
+		op.add(Builder::swap, NodeInfoMemory._DESERIALIZER, "swap");
 
 	}
 

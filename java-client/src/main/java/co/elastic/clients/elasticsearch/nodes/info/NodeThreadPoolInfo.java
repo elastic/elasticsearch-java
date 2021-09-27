@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,26 +32,27 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeThreadPoolInfo
+@JsonpDeserializable
 public final class NodeThreadPoolInfo implements JsonpSerializable {
 	@Nullable
-	private final Number core;
+	private final Integer core;
 
 	@Nullable
 	private final String keepAlive;
 
 	@Nullable
-	private final Number max;
+	private final Integer max;
 
-	private final Number queueSize;
+	private final Integer queueSize;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	private final String type;
 
@@ -71,7 +73,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code core}
 	 */
 	@Nullable
-	public Number core() {
+	public Integer core() {
 		return this.core;
 	}
 
@@ -87,14 +89,14 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code max}
 	 */
 	@Nullable
-	public Number max() {
+	public Integer max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code queue_size}
 	 */
-	public Number queueSize() {
+	public Integer queueSize() {
 		return this.queueSize;
 	}
 
@@ -102,7 +104,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -127,7 +129,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		if (this.core != null) {
 
 			generator.writeKey("core");
-			generator.write(this.core.doubleValue());
+			generator.write(this.core);
 
 		}
 		if (this.keepAlive != null) {
@@ -139,17 +141,17 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		if (this.max != null) {
 
 			generator.writeKey("max");
-			generator.write(this.max.doubleValue());
+			generator.write(this.max);
 
 		}
 
 		generator.writeKey("queue_size");
-		generator.write(this.queueSize.doubleValue());
+		generator.write(this.queueSize);
 
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -165,25 +167,25 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<NodeThreadPoolInfo> {
 		@Nullable
-		private Number core;
+		private Integer core;
 
 		@Nullable
 		private String keepAlive;
 
 		@Nullable
-		private Number max;
+		private Integer max;
 
-		private Number queueSize;
+		private Integer queueSize;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		private String type;
 
 		/**
 		 * API name: {@code core}
 		 */
-		public Builder core(@Nullable Number value) {
+		public Builder core(@Nullable Integer value) {
 			this.core = value;
 			return this;
 		}
@@ -199,7 +201,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(@Nullable Number value) {
+		public Builder max(@Nullable Integer value) {
 			this.max = value;
 			return this;
 		}
@@ -207,7 +209,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code queue_size}
 		 */
-		public Builder queueSize(Number value) {
+		public Builder queueSize(Integer value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -215,7 +217,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -245,16 +247,16 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeThreadPoolInfo}
 	 */
-	public static final JsonpDeserializer<NodeThreadPoolInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer);
+	public static final JsonpDeserializer<NodeThreadPoolInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer, Builder::build);
 
 	protected static void setupNodeThreadPoolInfoDeserializer(DelegatingDeserializer<NodeThreadPoolInfo.Builder> op) {
 
-		op.add(Builder::core, JsonpDeserializer.numberDeserializer(), "core");
+		op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
 		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::queueSize, JsonpDeserializer.numberDeserializer(), "queue_size");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
+		op.add(Builder::queueSize, JsonpDeserializer.integerDeserializer(), "queue_size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

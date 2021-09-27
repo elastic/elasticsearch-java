@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,7 +36,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Request
+@JsonpDeserializable
 public final class GetInfluencersRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -57,13 +60,13 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	private final Boolean excludeInterim;
 
 	@Nullable
-	private final Number influencerScore;
+	private final Double influencerScore;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String sort;
@@ -137,7 +140,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code influencer_score}
 	 */
 	@Nullable
-	public Number influencerScore() {
+	public Double influencerScore() {
 		return this.influencerScore;
 	}
 
@@ -147,7 +150,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -157,7 +160,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -228,13 +231,13 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		private Boolean excludeInterim;
 
 		@Nullable
-		private Number influencerScore;
+		private Double influencerScore;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String sort;
@@ -291,7 +294,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code influencer_score}
 		 */
-		public Builder influencerScore(@Nullable Number value) {
+		public Builder influencerScore(@Nullable Double value) {
 			this.influencerScore = value;
 			return this;
 		}
@@ -301,7 +304,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -311,7 +314,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -369,13 +372,13 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	/**
 	 * Json deserializer for {@link GetInfluencersRequest}
 	 */
-	public static final JsonpDeserializer<GetInfluencersRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer);
+	public static final JsonpDeserializer<GetInfluencersRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer, Builder::build);
 
 	protected static void setupGetInfluencersRequestDeserializer(
 			DelegatingDeserializer<GetInfluencersRequest.Builder> op) {
 
-		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
 
 	}
 
@@ -427,13 +430,13 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 					params.put("exclude_interim", String.valueOf(request.excludeInterim));
 				}
 				if (request.influencerScore != null) {
-					params.put("influencer_score", request.influencerScore.toString());
+					params.put("influencer_score", String.valueOf(request.influencerScore));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.sort != null) {
 					params.put("sort", request.sort);
@@ -443,5 +446,5 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetInfluencersResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetInfluencersResponse._DESERIALIZER);
 }

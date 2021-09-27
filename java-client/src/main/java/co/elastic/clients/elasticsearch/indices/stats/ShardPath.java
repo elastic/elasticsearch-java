@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardPath
+@JsonpDeserializable
 public final class ShardPath implements JsonpSerializable {
 	private final String dataPath;
 
@@ -150,8 +152,8 @@ public final class ShardPath implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardPath}
 	 */
-	public static final JsonpDeserializer<ShardPath> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardPath::setupShardPathDeserializer);
+	public static final JsonpDeserializer<ShardPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardPath::setupShardPathDeserializer, Builder::build);
 
 	protected static void setupShardPathDeserializer(DelegatingDeserializer<ShardPath.Builder> op) {
 

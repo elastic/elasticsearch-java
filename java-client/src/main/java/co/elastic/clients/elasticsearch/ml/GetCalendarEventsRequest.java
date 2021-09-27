@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Request
+@JsonpDeserializable
 public final class GetCalendarEventsRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
@@ -52,13 +54,13 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	private final String end;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
 	private final String start;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -104,7 +106,7 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -120,7 +122,7 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -144,7 +146,7 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		if (this.from != null) {
 
 			generator.writeKey("from");
-			generator.write(this.from.doubleValue());
+			generator.write(this.from);
 
 		}
 		if (this.start != null) {
@@ -156,7 +158,7 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -177,13 +179,13 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		private String end;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
 		private String start;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * The ID of the calendar containing the events
@@ -216,7 +218,7 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -232,7 +234,7 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -254,16 +256,16 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	/**
 	 * Json deserializer for {@link GetCalendarEventsRequest}
 	 */
-	public static final JsonpDeserializer<GetCalendarEventsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCalendarEventsRequest::setupGetCalendarEventsRequestDeserializer);
+	public static final JsonpDeserializer<GetCalendarEventsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCalendarEventsRequest::setupGetCalendarEventsRequestDeserializer, Builder::build);
 
 	protected static void setupGetCalendarEventsRequestDeserializer(
 			DelegatingDeserializer<GetCalendarEventsRequest.Builder> op) {
 
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
+		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 
@@ -309,5 +311,5 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarEventsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetCalendarEventsResponse._DESERIALIZER);
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,14 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixItem
+@JsonpDeserializable
 public final class ConfusionMatrixItem implements JsonpSerializable {
 	private final String actualClass;
 
-	private final Number actualClassDocCount;
+	private final Integer actualClassDocCount;
 
 	private final List<ConfusionMatrixPrediction> predictedClasses;
 
-	private final Number otherPredictedClassDocCount;
+	private final Integer otherPredictedClassDocCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -72,7 +74,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	/**
 	 * API name: {@code actual_class_doc_count}
 	 */
-	public Number actualClassDocCount() {
+	public Integer actualClassDocCount() {
 		return this.actualClassDocCount;
 	}
 
@@ -86,7 +88,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	/**
 	 * API name: {@code other_predicted_class_doc_count}
 	 */
-	public Number otherPredictedClassDocCount() {
+	public Integer otherPredictedClassDocCount() {
 		return this.otherPredictedClassDocCount;
 	}
 
@@ -105,7 +107,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		generator.write(this.actualClass);
 
 		generator.writeKey("actual_class_doc_count");
-		generator.write(this.actualClassDocCount.doubleValue());
+		generator.write(this.actualClassDocCount);
 
 		generator.writeKey("predicted_classes");
 		generator.writeStartArray();
@@ -116,7 +118,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("other_predicted_class_doc_count");
-		generator.write(this.otherPredictedClassDocCount.doubleValue());
+		generator.write(this.otherPredictedClassDocCount);
 
 	}
 
@@ -128,11 +130,11 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ConfusionMatrixItem> {
 		private String actualClass;
 
-		private Number actualClassDocCount;
+		private Integer actualClassDocCount;
 
 		private List<ConfusionMatrixPrediction> predictedClasses;
 
-		private Number otherPredictedClassDocCount;
+		private Integer otherPredictedClassDocCount;
 
 		/**
 		 * API name: {@code actual_class}
@@ -145,7 +147,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		/**
 		 * API name: {@code actual_class_doc_count}
 		 */
-		public Builder actualClassDocCount(Number value) {
+		public Builder actualClassDocCount(Integer value) {
 			this.actualClassDocCount = value;
 			return this;
 		}
@@ -196,7 +198,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		/**
 		 * API name: {@code other_predicted_class_doc_count}
 		 */
-		public Builder otherPredictedClassDocCount(Number value) {
+		public Builder otherPredictedClassDocCount(Integer value) {
 			this.otherPredictedClassDocCount = value;
 			return this;
 		}
@@ -218,16 +220,16 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ConfusionMatrixItem}
 	 */
-	public static final JsonpDeserializer<ConfusionMatrixItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ConfusionMatrixItem::setupConfusionMatrixItemDeserializer);
+	public static final JsonpDeserializer<ConfusionMatrixItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ConfusionMatrixItem::setupConfusionMatrixItemDeserializer, Builder::build);
 
 	protected static void setupConfusionMatrixItemDeserializer(DelegatingDeserializer<ConfusionMatrixItem.Builder> op) {
 
 		op.add(Builder::actualClass, JsonpDeserializer.stringDeserializer(), "actual_class");
-		op.add(Builder::actualClassDocCount, JsonpDeserializer.numberDeserializer(), "actual_class_doc_count");
-		op.add(Builder::predictedClasses, JsonpDeserializer.arrayDeserializer(ConfusionMatrixPrediction.DESERIALIZER),
+		op.add(Builder::actualClassDocCount, JsonpDeserializer.integerDeserializer(), "actual_class_doc_count");
+		op.add(Builder::predictedClasses, JsonpDeserializer.arrayDeserializer(ConfusionMatrixPrediction._DESERIALIZER),
 				"predicted_classes");
-		op.add(Builder::otherPredictedClassDocCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::otherPredictedClassDocCount, JsonpDeserializer.integerDeserializer(),
 				"other_predicted_class_doc_count");
 
 	}

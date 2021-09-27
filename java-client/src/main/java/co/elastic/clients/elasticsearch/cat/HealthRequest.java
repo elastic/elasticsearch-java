@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
+
 public final class HealthRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean includeTimestamp;
@@ -142,5 +144,5 @@ public final class HealthRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, HealthResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, HealthResponse._DESERIALIZER);
 }

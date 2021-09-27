@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,28 +32,29 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardFileSizeInfo
+@JsonpDeserializable
 public final class ShardFileSizeInfo implements JsonpSerializable {
 	private final String description;
 
-	private final Number sizeInBytes;
+	private final Long sizeInBytes;
 
 	@Nullable
-	private final Number minSizeInBytes;
+	private final Long minSizeInBytes;
 
 	@Nullable
-	private final Number maxSizeInBytes;
+	private final Long maxSizeInBytes;
 
 	@Nullable
-	private final Number averageSizeInBytes;
+	private final Long averageSizeInBytes;
 
 	@Nullable
-	private final Number count;
+	private final Long count;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +79,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public Long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -85,7 +87,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	 * API name: {@code min_size_in_bytes}
 	 */
 	@Nullable
-	public Number minSizeInBytes() {
+	public Long minSizeInBytes() {
 		return this.minSizeInBytes;
 	}
 
@@ -93,7 +95,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	 * API name: {@code max_size_in_bytes}
 	 */
 	@Nullable
-	public Number maxSizeInBytes() {
+	public Long maxSizeInBytes() {
 		return this.maxSizeInBytes;
 	}
 
@@ -101,7 +103,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	 * API name: {@code average_size_in_bytes}
 	 */
 	@Nullable
-	public Number averageSizeInBytes() {
+	public Long averageSizeInBytes() {
 		return this.averageSizeInBytes;
 	}
 
@@ -109,7 +111,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -128,30 +130,30 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		generator.write(this.description);
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 		if (this.minSizeInBytes != null) {
 
 			generator.writeKey("min_size_in_bytes");
-			generator.write(this.minSizeInBytes.doubleValue());
+			generator.write(this.minSizeInBytes);
 
 		}
 		if (this.maxSizeInBytes != null) {
 
 			generator.writeKey("max_size_in_bytes");
-			generator.write(this.maxSizeInBytes.doubleValue());
+			generator.write(this.maxSizeInBytes);
 
 		}
 		if (this.averageSizeInBytes != null) {
 
 			generator.writeKey("average_size_in_bytes");
-			generator.write(this.averageSizeInBytes.doubleValue());
+			generator.write(this.averageSizeInBytes);
 
 		}
 		if (this.count != null) {
 
 			generator.writeKey("count");
-			generator.write(this.count.doubleValue());
+			generator.write(this.count);
 
 		}
 
@@ -165,19 +167,19 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ShardFileSizeInfo> {
 		private String description;
 
-		private Number sizeInBytes;
+		private Long sizeInBytes;
 
 		@Nullable
-		private Number minSizeInBytes;
+		private Long minSizeInBytes;
 
 		@Nullable
-		private Number maxSizeInBytes;
+		private Long maxSizeInBytes;
 
 		@Nullable
-		private Number averageSizeInBytes;
+		private Long averageSizeInBytes;
 
 		@Nullable
-		private Number count;
+		private Long count;
 
 		/**
 		 * API name: {@code description}
@@ -190,7 +192,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(Long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -198,7 +200,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code min_size_in_bytes}
 		 */
-		public Builder minSizeInBytes(@Nullable Number value) {
+		public Builder minSizeInBytes(@Nullable Long value) {
 			this.minSizeInBytes = value;
 			return this;
 		}
@@ -206,7 +208,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code max_size_in_bytes}
 		 */
-		public Builder maxSizeInBytes(@Nullable Number value) {
+		public Builder maxSizeInBytes(@Nullable Long value) {
 			this.maxSizeInBytes = value;
 			return this;
 		}
@@ -214,7 +216,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code average_size_in_bytes}
 		 */
-		public Builder averageSizeInBytes(@Nullable Number value) {
+		public Builder averageSizeInBytes(@Nullable Long value) {
 			this.averageSizeInBytes = value;
 			return this;
 		}
@@ -222,7 +224,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable Number value) {
+		public Builder count(@Nullable Long value) {
 			this.count = value;
 			return this;
 		}
@@ -244,17 +246,17 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardFileSizeInfo}
 	 */
-	public static final JsonpDeserializer<ShardFileSizeInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardFileSizeInfo::setupShardFileSizeInfoDeserializer);
+	public static final JsonpDeserializer<ShardFileSizeInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ShardFileSizeInfo::setupShardFileSizeInfoDeserializer, Builder::build);
 
 	protected static void setupShardFileSizeInfoDeserializer(DelegatingDeserializer<ShardFileSizeInfo.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
-		op.add(Builder::minSizeInBytes, JsonpDeserializer.numberDeserializer(), "min_size_in_bytes");
-		op.add(Builder::maxSizeInBytes, JsonpDeserializer.numberDeserializer(), "max_size_in_bytes");
-		op.add(Builder::averageSizeInBytes, JsonpDeserializer.numberDeserializer(), "average_size_in_bytes");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+		op.add(Builder::minSizeInBytes, JsonpDeserializer.longDeserializer(), "min_size_in_bytes");
+		op.add(Builder::maxSizeInBytes, JsonpDeserializer.longDeserializer(), "max_size_in_bytes");
+		op.add(Builder::averageSizeInBytes, JsonpDeserializer.longDeserializer(), "average_size_in_bytes");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

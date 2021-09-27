@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._core.field_caps.FieldCapability;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.Response
+@JsonpDeserializable
 public final class FieldCapsResponse implements JsonpSerializable {
 	private final List<String> indices;
 
@@ -179,15 +181,15 @@ public final class FieldCapsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldCapsResponse}
 	 */
-	public static final JsonpDeserializer<FieldCapsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldCapsResponse::setupFieldCapsResponseDeserializer);
+	public static final JsonpDeserializer<FieldCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FieldCapsResponse::setupFieldCapsResponseDeserializer, Builder::build);
 
 	protected static void setupFieldCapsResponseDeserializer(DelegatingDeserializer<FieldCapsResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.stringMapDeserializer(FieldCapability.DESERIALIZER)), "fields");
+				JsonpDeserializer.stringMapDeserializer(FieldCapability._DESERIALIZER)), "fields");
 
 	}
 

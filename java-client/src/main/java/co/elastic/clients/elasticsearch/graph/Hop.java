@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,9 +41,10 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Hop
+@JsonpDeserializable
 public final class Hop implements JsonpSerializable {
 	@Nullable
-	private final co.elastic.clients.elasticsearch.graph.Hop connections;
+	private final Hop connections;
 
 	private final Query query;
 
@@ -62,7 +64,7 @@ public final class Hop implements JsonpSerializable {
 	 * API name: {@code connections}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch.graph.Hop connections() {
+	public Hop connections() {
 		return this.connections;
 	}
 
@@ -118,7 +120,7 @@ public final class Hop implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Hop> {
 		@Nullable
-		private co.elastic.clients.elasticsearch.graph.Hop connections;
+		private Hop connections;
 
 		private Query query;
 
@@ -127,7 +129,7 @@ public final class Hop implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(@Nullable co.elastic.clients.elasticsearch.graph.Hop value) {
+		public Builder connections(@Nullable Hop value) {
 			this.connections = value;
 			return this;
 		}
@@ -135,9 +137,8 @@ public final class Hop implements JsonpSerializable {
 		/**
 		 * API name: {@code connections}
 		 */
-		public Builder connections(
-				Function<co.elastic.clients.elasticsearch.graph.Hop.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.graph.Hop>> fn) {
-			return this.connections(fn.apply(new co.elastic.clients.elasticsearch.graph.Hop.Builder()).build());
+		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+			return this.connections(fn.apply(new Hop.Builder()).build());
 		}
 
 		/**
@@ -213,14 +214,14 @@ public final class Hop implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Hop}
 	 */
-	public static final JsonpDeserializer<Hop> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Hop::setupHopDeserializer);
+	public static final JsonpDeserializer<Hop> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Hop::setupHopDeserializer, Builder::build);
 
 	protected static void setupHopDeserializer(DelegatingDeserializer<Hop.Builder> op) {
 
-		op.add(Builder::connections, co.elastic.clients.elasticsearch.graph.Hop.DESERIALIZER, "connections");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition.DESERIALIZER), "vertices");
+		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(VertexDefinition._DESERIALIZER), "vertices");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsMemoryUsage
+@JsonpDeserializable
 public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	@Nullable
-	private final Number memoryReestimateBytes;
+	private final Long memoryReestimateBytes;
 
-	private final Number peakUsageBytes;
+	private final Long peakUsageBytes;
 
 	private final String status;
 
@@ -66,7 +68,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * API name: {@code memory_reestimate_bytes}
 	 */
 	@Nullable
-	public Number memoryReestimateBytes() {
+	public Long memoryReestimateBytes() {
 		return this.memoryReestimateBytes;
 	}
 
@@ -75,7 +77,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 * <p>
 	 * API name: {@code peak_usage_bytes}
 	 */
-	public Number peakUsageBytes() {
+	public Long peakUsageBytes() {
 		return this.peakUsageBytes;
 	}
 
@@ -112,12 +114,12 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		if (this.memoryReestimateBytes != null) {
 
 			generator.writeKey("memory_reestimate_bytes");
-			generator.write(this.memoryReestimateBytes.doubleValue());
+			generator.write(this.memoryReestimateBytes);
 
 		}
 
 		generator.writeKey("peak_usage_bytes");
-		generator.write(this.peakUsageBytes.doubleValue());
+		generator.write(this.peakUsageBytes);
 
 		generator.writeKey("status");
 		generator.write(this.status);
@@ -138,9 +140,9 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsMemoryUsage> {
 		@Nullable
-		private Number memoryReestimateBytes;
+		private Long memoryReestimateBytes;
 
-		private Number peakUsageBytes;
+		private Long peakUsageBytes;
 
 		private String status;
 
@@ -153,7 +155,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code memory_reestimate_bytes}
 		 */
-		public Builder memoryReestimateBytes(@Nullable Number value) {
+		public Builder memoryReestimateBytes(@Nullable Long value) {
 			this.memoryReestimateBytes = value;
 			return this;
 		}
@@ -163,7 +165,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		 * <p>
 		 * API name: {@code peak_usage_bytes}
 		 */
-		public Builder peakUsageBytes(Number value) {
+		public Builder peakUsageBytes(Long value) {
 			this.peakUsageBytes = value;
 			return this;
 		}
@@ -205,15 +207,15 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsStatsMemoryUsage}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsMemoryUsage> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsMemoryUsage::setupDataframeAnalyticsStatsMemoryUsageDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsMemoryUsage> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsStatsMemoryUsage::setupDataframeAnalyticsStatsMemoryUsageDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsMemoryUsageDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsMemoryUsage.Builder> op) {
 
-		op.add(Builder::memoryReestimateBytes, JsonpDeserializer.numberDeserializer(), "memory_reestimate_bytes");
-		op.add(Builder::peakUsageBytes, JsonpDeserializer.numberDeserializer(), "peak_usage_bytes");
+		op.add(Builder::memoryReestimateBytes, JsonpDeserializer.longDeserializer(), "memory_reestimate_bytes");
+		op.add(Builder::peakUsageBytes, JsonpDeserializer.longDeserializer(), "peak_usage_bytes");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 

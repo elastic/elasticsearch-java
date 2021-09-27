@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.NodeDiskUsage
+@JsonpDeserializable
 public final class NodeDiskUsage implements JsonpSerializable {
 	private final String nodeName;
 
@@ -164,14 +166,14 @@ public final class NodeDiskUsage implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeDiskUsage}
 	 */
-	public static final JsonpDeserializer<NodeDiskUsage> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeDiskUsage::setupNodeDiskUsageDeserializer);
+	public static final JsonpDeserializer<NodeDiskUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeDiskUsage::setupNodeDiskUsageDeserializer, Builder::build);
 
 	protected static void setupNodeDiskUsageDeserializer(DelegatingDeserializer<NodeDiskUsage.Builder> op) {
 
 		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
-		op.add(Builder::leastAvailable, DiskUsage.DESERIALIZER, "least_available");
-		op.add(Builder::mostAvailable, DiskUsage.DESERIALIZER, "most_available");
+		op.add(Builder::leastAvailable, DiskUsage._DESERIALIZER, "least_available");
+		op.add(Builder::mostAvailable, DiskUsage._DESERIALIZER, "most_available");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.create.Response
+@JsonpDeserializable
 public final class CreateResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class CreateResponse extends WriteResponseBase {
 	/**
 	 * Json deserializer for {@link CreateResponse}
 	 */
-	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
+	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateResponse::setupCreateResponseDeserializer, Builder::build);
 
 	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);

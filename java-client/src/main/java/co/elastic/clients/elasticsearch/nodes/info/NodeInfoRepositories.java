@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositories
+@JsonpDeserializable
 public final class NodeInfoRepositories implements JsonpSerializable {
 	private final NodeInfoRepositoriesUrl url;
 
@@ -110,13 +112,13 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoRepositories}
 	 */
-	public static final JsonpDeserializer<NodeInfoRepositories> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoRepositories::setupNodeInfoRepositoriesDeserializer);
+	public static final JsonpDeserializer<NodeInfoRepositories> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoRepositories::setupNodeInfoRepositoriesDeserializer, Builder::build);
 
 	protected static void setupNodeInfoRepositoriesDeserializer(
 			DelegatingDeserializer<NodeInfoRepositories.Builder> op) {
 
-		op.add(Builder::url, NodeInfoRepositoriesUrl.DESERIALIZER, "url");
+		op.add(Builder::url, NodeInfoRepositoriesUrl._DESERIALIZER, "url");
 
 	}
 

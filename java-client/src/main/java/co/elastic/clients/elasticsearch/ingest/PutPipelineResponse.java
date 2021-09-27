@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: ingest.put_pipeline.Response
+@JsonpDeserializable
 public final class PutPipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class PutPipelineResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link PutPipelineResponse}
 	 */
-	public static final JsonpDeserializer<PutPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutPipelineResponse::setupPutPipelineResponseDeserializer);
+	public static final JsonpDeserializer<PutPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutPipelineResponse::setupPutPipelineResponseDeserializer, Builder::build);
 
 	protected static void setupPutPipelineResponseDeserializer(DelegatingDeserializer<PutPipelineResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

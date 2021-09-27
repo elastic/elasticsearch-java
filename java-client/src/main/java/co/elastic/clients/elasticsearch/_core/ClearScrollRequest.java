@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -44,6 +45,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.clear_scroll.Request
+@JsonpDeserializable
 public final class ClearScrollRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> scrollId;
@@ -136,8 +138,8 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link ClearScrollRequest}
 	 */
-	public static final JsonpDeserializer<ClearScrollRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearScrollRequest::setupClearScrollRequestDeserializer);
+	public static final JsonpDeserializer<ClearScrollRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearScrollRequest::setupClearScrollRequestDeserializer, Builder::build);
 
 	protected static void setupClearScrollRequestDeserializer(DelegatingDeserializer<ClearScrollRequest.Builder> op) {
 
@@ -186,5 +188,5 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ClearScrollResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ClearScrollResponse._DESERIALIZER);
 }

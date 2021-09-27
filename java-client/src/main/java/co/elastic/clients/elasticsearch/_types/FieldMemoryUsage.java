@@ -24,24 +24,26 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldMemoryUsage
+@JsonpDeserializable
 public final class FieldMemoryUsage implements JsonpSerializable {
 	@Nullable
-	private final JsonValue memorySize;
+	private final String memorySize;
 
-	private final Number memorySizeInBytes;
+	private final Long memorySizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,14 +58,14 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public JsonValue memorySize() {
+	public String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Number memorySizeInBytes() {
+	public Long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
@@ -86,7 +88,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 		}
 
 		generator.writeKey("memory_size_in_bytes");
-		generator.write(this.memorySizeInBytes.doubleValue());
+		generator.write(this.memorySizeInBytes);
 
 	}
 
@@ -97,14 +99,14 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<FieldMemoryUsage> {
 		@Nullable
-		private JsonValue memorySize;
+		private String memorySize;
 
-		private Number memorySizeInBytes;
+		private Long memorySizeInBytes;
 
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable JsonValue value) {
+		public Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
@@ -112,7 +114,7 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Number value) {
+		public Builder memorySizeInBytes(Long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -134,13 +136,13 @@ public final class FieldMemoryUsage implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldMemoryUsage}
 	 */
-	public static final JsonpDeserializer<FieldMemoryUsage> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldMemoryUsage::setupFieldMemoryUsageDeserializer);
+	public static final JsonpDeserializer<FieldMemoryUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldMemoryUsage::setupFieldMemoryUsageDeserializer, Builder::build);
 
 	protected static void setupFieldMemoryUsageDeserializer(DelegatingDeserializer<FieldMemoryUsage.Builder> op) {
 
-		op.add(Builder::memorySize, JsonpDeserializer.jsonValueDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
 
 	}
 

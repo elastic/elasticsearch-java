@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,11 +40,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorMultiEncoding
+@JsonpDeserializable
 public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		implements
-			DataframeAnalysisFeatureProcessor,
+			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
-	private final List<Number> processors;
+	private final List<Integer> processors;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,7 +59,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	 * {@link DataframeAnalysisFeatureProcessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "multi_encoding";
 	}
 
@@ -67,7 +68,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	 * <p>
 	 * API name: {@code processors}
 	 */
-	public List<Number> processors() {
+	public List<Integer> processors() {
 		return this.processors;
 	}
 
@@ -81,16 +82,13 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("processors");
 		generator.writeStartArray();
-		for (Number item0 : this.processors) {
-			generator.write(item0.doubleValue());
+		for (Integer item0 : this.processors) {
+			generator.write(item0);
 
 		}
-		generator.writeEnd();
-
 		generator.writeEnd();
 
 	}
@@ -101,14 +99,14 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	 * Builder for {@link DataframeAnalysisFeatureProcessorMultiEncoding}.
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding> {
-		private List<Number> processors;
+		private List<Integer> processors;
 
 		/**
 		 * The ordered array of custom processors to execute. Must be more than 1.
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		public Builder processors(List<Number> value) {
+		public Builder processors(List<Integer> value) {
 			this.processors = value;
 			return this;
 		}
@@ -118,7 +116,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		 * <p>
 		 * API name: {@code processors}
 		 */
-		public Builder processors(Number... value) {
+		public Builder processors(Integer... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
@@ -126,7 +124,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		/**
 		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
-		public Builder addProcessors(Number value) {
+		public Builder addProcessors(Integer value) {
 			if (this.processors == null) {
 				this.processors = new ArrayList<>();
 			}
@@ -148,15 +146,18 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, DataframeAnalysisFeatureProcessorMultiEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(
-					DataframeAnalysisFeatureProcessorMultiEncoding::setupDataframeAnalysisFeatureProcessorMultiEncodingDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeAnalysisFeatureProcessorMultiEncoding}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorMultiEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorMultiEncoding::setupDataframeAnalysisFeatureProcessorMultiEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorMultiEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorMultiEncoding.Builder> op) {
 
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()),
 				"processors");
 
 	}

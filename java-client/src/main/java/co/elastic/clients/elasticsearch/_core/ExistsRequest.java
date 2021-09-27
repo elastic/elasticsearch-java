@@ -28,6 +28,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +48,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.exists.Request
+
 public final class ExistsRequest extends RequestBase {
 	private final String id;
 
@@ -65,7 +67,7 @@ public final class ExistsRequest extends RequestBase {
 	private final String routing;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -77,7 +79,7 @@ public final class ExistsRequest extends RequestBase {
 	private final List<String> storedFields;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
@@ -167,7 +169,7 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
 		return this.source;
 	}
 
@@ -207,7 +209,7 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -244,7 +246,7 @@ public final class ExistsRequest extends RequestBase {
 		private String routing;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -256,7 +258,7 @@ public final class ExistsRequest extends RequestBase {
 		private List<String> storedFields;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
@@ -328,7 +330,7 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -431,7 +433,7 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -526,7 +528,7 @@ public final class ExistsRequest extends RequestBase {
 							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());

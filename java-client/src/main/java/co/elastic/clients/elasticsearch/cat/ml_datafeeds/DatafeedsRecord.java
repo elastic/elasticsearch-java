@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat.ml_datafeeds;
 
 import co.elastic.clients.elasticsearch.ml.DatafeedState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.DatafeedsRecord
+@JsonpDeserializable
 public final class DatafeedsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -48,31 +50,31 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	private final String assignmentExplanation;
 
 	@Nullable
-	private final String buckets_count;
+	private final String bucketsCount;
 
 	@Nullable
-	private final String search_count;
+	private final String searchCount;
 
 	@Nullable
-	private final String search_time;
+	private final String searchTime;
 
 	@Nullable
-	private final String search_bucketAvg;
+	private final String searchBucketAvg;
 
 	@Nullable
-	private final String search_expAvgHour;
+	private final String searchExpAvgHour;
 
 	@Nullable
-	private final String node_id;
+	private final String nodeId;
 
 	@Nullable
-	private final String node_name;
+	private final String nodeName;
 
 	@Nullable
-	private final String node_ephemeralId;
+	private final String nodeEphemeralId;
 
 	@Nullable
-	private final String node_address;
+	private final String nodeAddress;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,15 +83,15 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		this.id = builder.id;
 		this.state = builder.state;
 		this.assignmentExplanation = builder.assignmentExplanation;
-		this.buckets_count = builder.buckets_count;
-		this.search_count = builder.search_count;
-		this.search_time = builder.search_time;
-		this.search_bucketAvg = builder.search_bucketAvg;
-		this.search_expAvgHour = builder.search_expAvgHour;
-		this.node_id = builder.node_id;
-		this.node_name = builder.node_name;
-		this.node_ephemeralId = builder.node_ephemeralId;
-		this.node_address = builder.node_address;
+		this.bucketsCount = builder.bucketsCount;
+		this.searchCount = builder.searchCount;
+		this.searchTime = builder.searchTime;
+		this.searchBucketAvg = builder.searchBucketAvg;
+		this.searchExpAvgHour = builder.searchExpAvgHour;
+		this.nodeId = builder.nodeId;
+		this.nodeName = builder.nodeName;
+		this.nodeEphemeralId = builder.nodeEphemeralId;
+		this.nodeAddress = builder.nodeAddress;
 
 	}
 
@@ -129,8 +131,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code buckets.count}
 	 */
 	@Nullable
-	public String buckets_count() {
-		return this.buckets_count;
+	public String bucketsCount() {
+		return this.bucketsCount;
 	}
 
 	/**
@@ -139,8 +141,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.count}
 	 */
 	@Nullable
-	public String search_count() {
-		return this.search_count;
+	public String searchCount() {
+		return this.searchCount;
 	}
 
 	/**
@@ -149,8 +151,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.time}
 	 */
 	@Nullable
-	public String search_time() {
-		return this.search_time;
+	public String searchTime() {
+		return this.searchTime;
 	}
 
 	/**
@@ -159,8 +161,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.bucket_avg}
 	 */
 	@Nullable
-	public String search_bucketAvg() {
-		return this.search_bucketAvg;
+	public String searchBucketAvg() {
+		return this.searchBucketAvg;
 	}
 
 	/**
@@ -169,8 +171,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code search.exp_avg_hour}
 	 */
 	@Nullable
-	public String search_expAvgHour() {
-		return this.search_expAvgHour;
+	public String searchExpAvgHour() {
+		return this.searchExpAvgHour;
 	}
 
 	/**
@@ -179,8 +181,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.id}
 	 */
 	@Nullable
-	public String node_id() {
-		return this.node_id;
+	public String nodeId() {
+		return this.nodeId;
 	}
 
 	/**
@@ -189,8 +191,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.name}
 	 */
 	@Nullable
-	public String node_name() {
-		return this.node_name;
+	public String nodeName() {
+		return this.nodeName;
 	}
 
 	/**
@@ -199,8 +201,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
-	public String node_ephemeralId() {
-		return this.node_ephemeralId;
+	public String nodeEphemeralId() {
+		return this.nodeEphemeralId;
 	}
 
 	/**
@@ -209,8 +211,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	 * API name: {@code node.address}
 	 */
 	@Nullable
-	public String node_address() {
-		return this.node_address;
+	public String nodeAddress() {
+		return this.nodeAddress;
 	}
 
 	/**
@@ -241,58 +243,58 @@ public final class DatafeedsRecord implements JsonpSerializable {
 			generator.write(this.assignmentExplanation);
 
 		}
-		if (this.buckets_count != null) {
+		if (this.bucketsCount != null) {
 
 			generator.writeKey("buckets.count");
-			generator.write(this.buckets_count);
+			generator.write(this.bucketsCount);
 
 		}
-		if (this.search_count != null) {
+		if (this.searchCount != null) {
 
 			generator.writeKey("search.count");
-			generator.write(this.search_count);
+			generator.write(this.searchCount);
 
 		}
-		if (this.search_time != null) {
+		if (this.searchTime != null) {
 
 			generator.writeKey("search.time");
-			generator.write(this.search_time);
+			generator.write(this.searchTime);
 
 		}
-		if (this.search_bucketAvg != null) {
+		if (this.searchBucketAvg != null) {
 
 			generator.writeKey("search.bucket_avg");
-			generator.write(this.search_bucketAvg);
+			generator.write(this.searchBucketAvg);
 
 		}
-		if (this.search_expAvgHour != null) {
+		if (this.searchExpAvgHour != null) {
 
 			generator.writeKey("search.exp_avg_hour");
-			generator.write(this.search_expAvgHour);
+			generator.write(this.searchExpAvgHour);
 
 		}
-		if (this.node_id != null) {
+		if (this.nodeId != null) {
 
 			generator.writeKey("node.id");
-			generator.write(this.node_id);
+			generator.write(this.nodeId);
 
 		}
-		if (this.node_name != null) {
+		if (this.nodeName != null) {
 
 			generator.writeKey("node.name");
-			generator.write(this.node_name);
+			generator.write(this.nodeName);
 
 		}
-		if (this.node_ephemeralId != null) {
+		if (this.nodeEphemeralId != null) {
 
 			generator.writeKey("node.ephemeral_id");
-			generator.write(this.node_ephemeralId);
+			generator.write(this.nodeEphemeralId);
 
 		}
-		if (this.node_address != null) {
+		if (this.nodeAddress != null) {
 
 			generator.writeKey("node.address");
-			generator.write(this.node_address);
+			generator.write(this.nodeAddress);
 
 		}
 
@@ -314,31 +316,31 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		private String assignmentExplanation;
 
 		@Nullable
-		private String buckets_count;
+		private String bucketsCount;
 
 		@Nullable
-		private String search_count;
+		private String searchCount;
 
 		@Nullable
-		private String search_time;
+		private String searchTime;
 
 		@Nullable
-		private String search_bucketAvg;
+		private String searchBucketAvg;
 
 		@Nullable
-		private String search_expAvgHour;
+		private String searchExpAvgHour;
 
 		@Nullable
-		private String node_id;
+		private String nodeId;
 
 		@Nullable
-		private String node_name;
+		private String nodeName;
 
 		@Nullable
-		private String node_ephemeralId;
+		private String nodeEphemeralId;
 
 		@Nullable
-		private String node_address;
+		private String nodeAddress;
 
 		/**
 		 * the datafeed_id
@@ -375,8 +377,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code buckets.count}
 		 */
-		public Builder buckets_count(@Nullable String value) {
-			this.buckets_count = value;
+		public Builder bucketsCount(@Nullable String value) {
+			this.bucketsCount = value;
 			return this;
 		}
 
@@ -385,8 +387,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.count}
 		 */
-		public Builder search_count(@Nullable String value) {
-			this.search_count = value;
+		public Builder searchCount(@Nullable String value) {
+			this.searchCount = value;
 			return this;
 		}
 
@@ -395,8 +397,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.time}
 		 */
-		public Builder search_time(@Nullable String value) {
-			this.search_time = value;
+		public Builder searchTime(@Nullable String value) {
+			this.searchTime = value;
 			return this;
 		}
 
@@ -405,8 +407,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.bucket_avg}
 		 */
-		public Builder search_bucketAvg(@Nullable String value) {
-			this.search_bucketAvg = value;
+		public Builder searchBucketAvg(@Nullable String value) {
+			this.searchBucketAvg = value;
 			return this;
 		}
 
@@ -415,8 +417,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.exp_avg_hour}
 		 */
-		public Builder search_expAvgHour(@Nullable String value) {
-			this.search_expAvgHour = value;
+		public Builder searchExpAvgHour(@Nullable String value) {
+			this.searchExpAvgHour = value;
 			return this;
 		}
 
@@ -425,8 +427,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.id}
 		 */
-		public Builder node_id(@Nullable String value) {
-			this.node_id = value;
+		public Builder nodeId(@Nullable String value) {
+			this.nodeId = value;
 			return this;
 		}
 
@@ -435,8 +437,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.name}
 		 */
-		public Builder node_name(@Nullable String value) {
-			this.node_name = value;
+		public Builder nodeName(@Nullable String value) {
+			this.nodeName = value;
 			return this;
 		}
 
@@ -445,8 +447,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
-		public Builder node_ephemeralId(@Nullable String value) {
-			this.node_ephemeralId = value;
+		public Builder nodeEphemeralId(@Nullable String value) {
+			this.nodeEphemeralId = value;
 			return this;
 		}
 
@@ -455,8 +457,8 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.address}
 		 */
-		public Builder node_address(@Nullable String value) {
-			this.node_address = value;
+		public Builder nodeAddress(@Nullable String value) {
+			this.nodeAddress = value;
 			return this;
 		}
 
@@ -477,26 +479,26 @@ public final class DatafeedsRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DatafeedsRecord}
 	 */
-	public static final JsonpDeserializer<DatafeedsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DatafeedsRecord::setupDatafeedsRecordDeserializer);
+	public static final JsonpDeserializer<DatafeedsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DatafeedsRecord::setupDatafeedsRecordDeserializer, Builder::build);
 
 	protected static void setupDatafeedsRecordDeserializer(DelegatingDeserializer<DatafeedsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::state, DatafeedState.DESERIALIZER, "state", "s");
+		op.add(Builder::state, DatafeedState._DESERIALIZER, "state", "s");
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation", "ae");
-		op.add(Builder::buckets_count, JsonpDeserializer.stringDeserializer(), "buckets.count", "bc", "bucketsCount");
-		op.add(Builder::search_count, JsonpDeserializer.stringDeserializer(), "search.count", "sc", "searchCount");
-		op.add(Builder::search_time, JsonpDeserializer.stringDeserializer(), "search.time", "st", "searchTime");
-		op.add(Builder::search_bucketAvg, JsonpDeserializer.stringDeserializer(), "search.bucket_avg", "sba",
+		op.add(Builder::bucketsCount, JsonpDeserializer.stringDeserializer(), "buckets.count", "bc", "bucketsCount");
+		op.add(Builder::searchCount, JsonpDeserializer.stringDeserializer(), "search.count", "sc", "searchCount");
+		op.add(Builder::searchTime, JsonpDeserializer.stringDeserializer(), "search.time", "st", "searchTime");
+		op.add(Builder::searchBucketAvg, JsonpDeserializer.stringDeserializer(), "search.bucket_avg", "sba",
 				"searchBucketAvg");
-		op.add(Builder::search_expAvgHour, JsonpDeserializer.stringDeserializer(), "search.exp_avg_hour", "seah",
+		op.add(Builder::searchExpAvgHour, JsonpDeserializer.stringDeserializer(), "search.exp_avg_hour", "seah",
 				"searchExpAvgHour");
-		op.add(Builder::node_id, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
-		op.add(Builder::node_name, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
-		op.add(Builder::node_ephemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
+		op.add(Builder::nodeEphemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
 				"nodeEphemeralId");
-		op.add(Builder::node_address, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
+		op.add(Builder::nodeAddress, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
 
 	}
 

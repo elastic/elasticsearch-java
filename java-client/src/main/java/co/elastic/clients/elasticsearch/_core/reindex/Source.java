@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core.reindex;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Source
+@JsonpDeserializable
 public final class Source implements JsonpSerializable {
 	private final List<String> index;
 
@@ -54,13 +56,13 @@ public final class Source implements JsonpSerializable {
 	private final RemoteSource remote;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final SlicedScroll slice;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	@Nullable
 	private final List<String> sourceFields;
@@ -106,7 +108,7 @@ public final class Source implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -122,7 +124,7 @@ public final class Source implements JsonpSerializable {
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -168,7 +170,7 @@ public final class Source implements JsonpSerializable {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.slice != null) {
@@ -181,7 +183,7 @@ public final class Source implements JsonpSerializable {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -217,13 +219,13 @@ public final class Source implements JsonpSerializable {
 		private RemoteSource remote;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private SlicedScroll slice;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		@Nullable
 		private List<String> sourceFields;
@@ -288,7 +290,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -311,7 +313,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue> value) {
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -319,7 +321,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -327,7 +329,7 @@ public final class Source implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -379,16 +381,16 @@ public final class Source implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Source}
 	 */
-	public static final JsonpDeserializer<Source> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Source::setupSourceDeserializer);
+	public static final JsonpDeserializer<Source> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Source::setupSourceDeserializer, Builder::build);
 
 	protected static void setupSourceDeserializer(DelegatingDeserializer<Source.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::remote, RemoteSource.DESERIALIZER, "remote");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
-		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::remote, RemoteSource._DESERIALIZER, "remote");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_source");

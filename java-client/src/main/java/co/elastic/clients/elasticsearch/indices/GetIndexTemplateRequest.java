@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
+@JsonpDeserializable
 public final class GetIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String name;
@@ -57,7 +58,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -120,7 +121,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -175,7 +176,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 		private Boolean includeTypeName;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
 		 * Comma-separated list of index template names used to limit the request.
@@ -225,7 +226,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -247,15 +248,15 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link GetIndexTemplateRequest}
 	 */
-	public static final JsonpDeserializer<GetIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestDeserializer);
+	public static final JsonpDeserializer<GetIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupGetIndexTemplateRequestDeserializer(
 			DelegatingDeserializer<GetIndexTemplateRequest.Builder> op) {
 
 		op.add(Builder::flatSettings, JsonpDeserializer.booleanDeserializer(), "flat_settings");
 		op.add(Builder::includeTypeName, JsonpDeserializer.booleanDeserializer(), "include_type_name");
-		op.add(Builder::masterTimeout, JsonpDeserializer.jsonValueDeserializer(), "master_timeout");
+		op.add(Builder::masterTimeout, JsonpDeserializer.stringDeserializer(), "master_timeout");
 
 	}
 
@@ -304,5 +305,5 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetIndexTemplateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetIndexTemplateResponse._DESERIALIZER);
 }

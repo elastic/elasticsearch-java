@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,14 +40,15 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TargetMeanEncodingPreprocessor
-public final class TargetMeanEncodingPreprocessor implements Preprocessor, JsonpSerializable {
+@JsonpDeserializable
+public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
 
 	private final String featureName;
 
-	private final Map<String, Number> targetMap;
+	private final Map<String, Double> targetMap;
 
-	private final Number defaultValue;
+	private final Double defaultValue;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 	 * {@link Preprocessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "target_mean_encoding";
 	}
 
@@ -85,14 +86,14 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 	/**
 	 * API name: {@code target_map}
 	 */
-	public Map<String, Number> targetMap() {
+	public Map<String, Double> targetMap() {
 		return this.targetMap;
 	}
 
 	/**
 	 * API name: {@code default_value}
 	 */
-	public Number defaultValue() {
+	public Double defaultValue() {
 		return this.defaultValue;
 	}
 
@@ -106,7 +107,6 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -116,17 +116,15 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 
 		generator.writeKey("target_map");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.targetMap.entrySet()) {
+		for (Map.Entry<String, Double> item0 : this.targetMap.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("default_value");
-		generator.write(this.defaultValue.doubleValue());
-
-		generator.writeEnd();
+		generator.write(this.defaultValue);
 
 	}
 
@@ -140,9 +138,9 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 
 		private String featureName;
 
-		private Map<String, Number> targetMap;
+		private Map<String, Double> targetMap;
 
-		private Number defaultValue;
+		private Double defaultValue;
 
 		/**
 		 * API name: {@code field}
@@ -163,7 +161,7 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 		/**
 		 * API name: {@code target_map}
 		 */
-		public Builder targetMap(Map<String, Number> value) {
+		public Builder targetMap(Map<String, Double> value) {
 			this.targetMap = value;
 			return this;
 		}
@@ -171,7 +169,7 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 		/**
 		 * Add a key/value to {@link #targetMap(Map)}, creating the map if needed.
 		 */
-		public Builder putTargetMap(String key, Number value) {
+		public Builder putTargetMap(String key, Double value) {
 			if (this.targetMap == null) {
 				this.targetMap = new HashMap<>();
 			}
@@ -182,7 +180,7 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 		/**
 		 * API name: {@code default_value}
 		 */
-		public Builder defaultValue(Number value) {
+		public Builder defaultValue(Double value) {
 			this.defaultValue = value;
 			return this;
 		}
@@ -201,18 +199,21 @@ public final class TargetMeanEncodingPreprocessor implements Preprocessor, Jsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<TargetMeanEncodingPreprocessor.Builder, TargetMeanEncodingPreprocessor.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(TargetMeanEncodingPreprocessor::setupTargetMeanEncodingPreprocessorDeserializer);
+	/**
+	 * Json deserializer for {@link TargetMeanEncodingPreprocessor}
+	 */
+	public static final JsonpDeserializer<TargetMeanEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TargetMeanEncodingPreprocessor::setupTargetMeanEncodingPreprocessorDeserializer,
+					Builder::build);
 
 	protected static void setupTargetMeanEncodingPreprocessorDeserializer(
 			DelegatingDeserializer<TargetMeanEncodingPreprocessor.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
-		op.add(Builder::targetMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::targetMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"target_map");
-		op.add(Builder::defaultValue, JsonpDeserializer.numberDeserializer(), "default_value");
+		op.add(Builder::defaultValue, JsonpDeserializer.doubleDeserializer(), "default_value");
 
 	}
 

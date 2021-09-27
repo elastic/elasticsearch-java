@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.UserAgentProcessor
-public final class UserAgentProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class UserAgentProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final Boolean ignoreMissing;
@@ -61,6 +63,14 @@ public final class UserAgentProcessor extends ProcessorBase {
 		this.regexFile = Objects.requireNonNull(builder.regexFile, "regex_file");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "user_agent";
 	}
 
 	/**
@@ -222,14 +232,14 @@ public final class UserAgentProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link UserAgentProcessor}
 	 */
-	public static final JsonpDeserializer<UserAgentProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UserAgentProcessor::setupUserAgentProcessorDeserializer);
+	public static final JsonpDeserializer<UserAgentProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UserAgentProcessor::setupUserAgentProcessorDeserializer, Builder::build);
 
 	protected static void setupUserAgentProcessorDeserializer(DelegatingDeserializer<UserAgentProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::options, JsonpDeserializer.arrayDeserializer(UserAgentProperty.DESERIALIZER), "options");
+		op.add(Builder::options, JsonpDeserializer.arrayDeserializer(UserAgentProperty._DESERIALIZER), "options");
 		op.add(Builder::regexFile, JsonpDeserializer.stringDeserializer(), "regex_file");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 

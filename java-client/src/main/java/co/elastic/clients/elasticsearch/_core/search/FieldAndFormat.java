@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldAndFormat
+@JsonpDeserializable
 public final class FieldAndFormat implements JsonpSerializable {
 	private final String field;
 
@@ -163,8 +165,8 @@ public final class FieldAndFormat implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldAndFormat}
 	 */
-	public static final JsonpDeserializer<FieldAndFormat> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldAndFormat::setupFieldAndFormatDeserializer);
+	public static final JsonpDeserializer<FieldAndFormat> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldAndFormat::setupFieldAndFormatDeserializer, Builder::build);
 
 	protected static void setupFieldAndFormatDeserializer(DelegatingDeserializer<FieldAndFormat.Builder> op) {
 

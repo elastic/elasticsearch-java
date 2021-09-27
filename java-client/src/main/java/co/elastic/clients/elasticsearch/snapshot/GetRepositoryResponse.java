@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: snapshot.get_repository.Response
+@JsonpDeserializable
 public final class GetRepositoryResponse extends AdditionalProperties<String, Repository> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,13 +76,13 @@ public final class GetRepositoryResponse extends AdditionalProperties<String, Re
 	/**
 	 * Json deserializer for {@link GetRepositoryResponse}
 	 */
-	public static final JsonpDeserializer<GetRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer);
+	public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer, Builder::build);
 
 	protected static void setupGetRepositoryResponseDeserializer(
 			DelegatingDeserializer<GetRepositoryResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Repository.DESERIALIZER);
+				Repository._DESERIALIZER);
 
 	}
 

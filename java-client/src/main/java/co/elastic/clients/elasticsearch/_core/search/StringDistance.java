@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum StringDistance implements StringEnum {
 	Internal("internal"), DamerauLevenshtein("damerau_levenshtein"), Levenshtein("levenshtein"), JaroWinkler(
 			"jaro_winkler"), Ngram("ngram");
@@ -40,6 +42,6 @@ public enum StringDistance implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<StringDistance> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<StringDistance> _DESERIALIZER = new StringEnum.Deserializer<>(
 			StringDistance.values());
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Eql
+@JsonpDeserializable
 public final class Eql extends Base {
 	private final EqlFeatures features;
 
@@ -165,13 +167,13 @@ public final class Eql extends Base {
 	/**
 	 * Json deserializer for {@link Eql}
 	 */
-	public static final JsonpDeserializer<Eql> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Eql::setupEqlDeserializer);
+	public static final JsonpDeserializer<Eql> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Eql::setupEqlDeserializer, Builder::build);
 
 	protected static void setupEqlDeserializer(DelegatingDeserializer<Eql.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::features, EqlFeatures.DESERIALIZER, "features");
-		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query.DESERIALIZER), "queries");
+		op.add(Builder::features, EqlFeatures._DESERIALIZER, "features");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");
 
 	}
 

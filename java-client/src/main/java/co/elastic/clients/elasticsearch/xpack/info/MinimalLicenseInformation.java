@@ -26,21 +26,22 @@ package co.elastic.clients.elasticsearch.xpack.info;
 import co.elastic.clients.elasticsearch.license.LicenseStatus;
 import co.elastic.clients.elasticsearch.license.LicenseType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.MinimalLicenseInformation
+@JsonpDeserializable
 public final class MinimalLicenseInformation implements JsonpSerializable {
-	private final JsonValue expiryDateInMillis;
+	private final String expiryDateInMillis;
 
 	private final LicenseType mode;
 
@@ -65,7 +66,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 	/**
 	 * API name: {@code expiry_date_in_millis}
 	 */
-	public JsonValue expiryDateInMillis() {
+	public String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
@@ -131,7 +132,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 	 * Builder for {@link MinimalLicenseInformation}.
 	 */
 	public static class Builder implements ObjectBuilder<MinimalLicenseInformation> {
-		private JsonValue expiryDateInMillis;
+		private String expiryDateInMillis;
 
 		private LicenseType mode;
 
@@ -144,7 +145,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code expiry_date_in_millis}
 		 */
-		public Builder expiryDateInMillis(JsonValue value) {
+		public Builder expiryDateInMillis(String value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -198,16 +199,16 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MinimalLicenseInformation}
 	 */
-	public static final JsonpDeserializer<MinimalLicenseInformation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MinimalLicenseInformation::setupMinimalLicenseInformationDeserializer);
+	public static final JsonpDeserializer<MinimalLicenseInformation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MinimalLicenseInformation::setupMinimalLicenseInformationDeserializer, Builder::build);
 
 	protected static void setupMinimalLicenseInformationDeserializer(
 			DelegatingDeserializer<MinimalLicenseInformation.Builder> op) {
 
-		op.add(Builder::expiryDateInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiry_date_in_millis");
-		op.add(Builder::mode, LicenseType.DESERIALIZER, "mode");
-		op.add(Builder::status, LicenseStatus.DESERIALIZER, "status");
-		op.add(Builder::type, LicenseType.DESERIALIZER, "type");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.stringDeserializer(), "expiry_date_in_millis");
+		op.add(Builder::mode, LicenseType._DESERIALIZER, "mode");
+		op.add(Builder::status, LicenseStatus._DESERIALIZER, "status");
+		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
 
 	}

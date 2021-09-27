@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Response
+@JsonpDeserializable
 public final class PutRoleResponse implements JsonpSerializable {
 	private final CreatedStatus role;
 
@@ -110,12 +112,12 @@ public final class PutRoleResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PutRoleResponse}
 	 */
-	public static final JsonpDeserializer<PutRoleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutRoleResponse::setupPutRoleResponseDeserializer);
+	public static final JsonpDeserializer<PutRoleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutRoleResponse::setupPutRoleResponseDeserializer, Builder::build);
 
 	protected static void setupPutRoleResponseDeserializer(DelegatingDeserializer<PutRoleResponse.Builder> op) {
 
-		op.add(Builder::role, CreatedStatus.DESERIALIZER, "role");
+		op.add(Builder::role, CreatedStatus._DESERIALIZER, "role");
 
 	}
 

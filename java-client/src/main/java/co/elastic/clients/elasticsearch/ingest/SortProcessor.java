@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._core.search.SortOrder;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SortProcessor
-public final class SortProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final SortOrder order;
@@ -52,6 +54,14 @@ public final class SortProcessor extends ProcessorBase {
 		this.order = Objects.requireNonNull(builder.order, "order");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "sort";
 	}
 
 	/**
@@ -148,13 +158,13 @@ public final class SortProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link SortProcessor}
 	 */
-	public static final JsonpDeserializer<SortProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SortProcessor::setupSortProcessorDeserializer);
+	public static final JsonpDeserializer<SortProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SortProcessor::setupSortProcessorDeserializer, Builder::build);
 
 	protected static void setupSortProcessorDeserializer(DelegatingDeserializer<SortProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::order, SortOrder.DESERIALIZER, "order");
+		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 
 	}

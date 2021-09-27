@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -43,11 +43,12 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Request
+
 public final class OpenPointInTimeRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
-	private final JsonValue keepAlive;
+	private final String keepAlive;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +75,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public JsonValue keepAlive() {
+	public String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -87,7 +88,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		private List<String> index;
 
 		@Nullable
-		private JsonValue keepAlive;
+		private String keepAlive;
 
 		/**
 		 * A comma-separated list of index names to open point in time; use
@@ -127,7 +128,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable JsonValue value) {
+		public Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -180,9 +181,9 @@ public final class OpenPointInTimeRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive.toString());
+					params.put("keep_alive", request.keepAlive);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, OpenPointInTimeResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, OpenPointInTimeResponse._DESERIALIZER);
 }

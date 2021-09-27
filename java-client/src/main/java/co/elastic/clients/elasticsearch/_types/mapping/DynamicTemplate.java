@@ -24,22 +24,24 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DynamicTemplate
+@JsonpDeserializable
 public final class DynamicTemplate implements JsonpSerializable {
 	@Nullable
-	private final JsonValue mapping;
+	private final Property mapping;
 
 	@Nullable
 	private final String match;
@@ -77,7 +79,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 * API name: {@code mapping}
 	 */
 	@Nullable
-	public JsonValue mapping() {
+	public Property mapping() {
 		return this.mapping;
 	}
 
@@ -143,7 +145,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 		if (this.mapping != null) {
 
 			generator.writeKey("mapping");
-			generator.write(this.mapping);
+			this.mapping.serialize(generator, mapper);
 
 		}
 		if (this.match != null) {
@@ -191,7 +193,7 @@ public final class DynamicTemplate implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<DynamicTemplate> {
 		@Nullable
-		private JsonValue mapping;
+		private Property mapping;
 
 		@Nullable
 		private String match;
@@ -214,9 +216,16 @@ public final class DynamicTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code mapping}
 		 */
-		public Builder mapping(@Nullable JsonValue value) {
+		public Builder mapping(@Nullable Property value) {
 			this.mapping = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code mapping}
+		 */
+		public Builder mapping(Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return this.mapping(fn.apply(new Property.Builder()).build());
 		}
 
 		/**
@@ -284,15 +293,15 @@ public final class DynamicTemplate implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DynamicTemplate}
 	 */
-	public static final JsonpDeserializer<DynamicTemplate> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DynamicTemplate::setupDynamicTemplateDeserializer);
+	public static final JsonpDeserializer<DynamicTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DynamicTemplate::setupDynamicTemplateDeserializer, Builder::build);
 
 	protected static void setupDynamicTemplateDeserializer(DelegatingDeserializer<DynamicTemplate.Builder> op) {
 
-		op.add(Builder::mapping, JsonpDeserializer.jsonValueDeserializer(), "mapping");
+		op.add(Builder::mapping, Property._DESERIALIZER, "mapping");
 		op.add(Builder::match, JsonpDeserializer.stringDeserializer(), "match");
 		op.add(Builder::matchMappingType, JsonpDeserializer.stringDeserializer(), "match_mapping_type");
-		op.add(Builder::matchPattern, MatchType.DESERIALIZER, "match_pattern");
+		op.add(Builder::matchPattern, MatchType._DESERIALIZER, "match_pattern");
 		op.add(Builder::pathMatch, JsonpDeserializer.stringDeserializer(), "path_match");
 		op.add(Builder::pathUnmatch, JsonpDeserializer.stringDeserializer(), "path_unmatch");
 		op.add(Builder::unmatch, JsonpDeserializer.stringDeserializer(), "unmatch");

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MultiTermLookup
+@JsonpDeserializable
 public final class MultiTermLookup implements JsonpSerializable {
 	private final String field;
 
@@ -103,8 +105,8 @@ public final class MultiTermLookup implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MultiTermLookup}
 	 */
-	public static final JsonpDeserializer<MultiTermLookup> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MultiTermLookup::setupMultiTermLookupDeserializer);
+	public static final JsonpDeserializer<MultiTermLookup> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MultiTermLookup::setupMultiTermLookupDeserializer, Builder::build);
 
 	protected static void setupMultiTermLookupDeserializer(DelegatingDeserializer<MultiTermLookup.Builder> op) {
 

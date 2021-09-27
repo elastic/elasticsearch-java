@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,15 +41,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeOutlierDetectionSummary
+@JsonpDeserializable
 public final class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
 
 	@Nullable
-	private final Map<String, Number> precision;
+	private final Map<String, Double> precision;
 
 	@Nullable
-	private final Map<String, Number> recall;
+	private final Map<String, Double> recall;
 
 	@Nullable
 	private final Map<String, ConfusionMatrixThreshold> confusionMatrix;
@@ -76,7 +78,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public Map<String, Number> precision() {
+	public Map<String, Double> precision() {
 		return this.precision;
 	}
 
@@ -84,7 +86,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	 * API name: {@code recall}
 	 */
 	@Nullable
-	public Map<String, Number> recall() {
+	public Map<String, Double> recall() {
 		return this.recall;
 	}
 
@@ -117,9 +119,9 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 
 			generator.writeKey("precision");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.precision.entrySet()) {
+			for (Map.Entry<String, Double> item0 : this.precision.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -129,9 +131,9 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 
 			generator.writeKey("recall");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.recall.entrySet()) {
+			for (Map.Entry<String, Double> item0 : this.recall.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -162,10 +164,10 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		private DataframeEvaluationSummaryAucRoc aucRoc;
 
 		@Nullable
-		private Map<String, Number> precision;
+		private Map<String, Double> precision;
 
 		@Nullable
-		private Map<String, Number> recall;
+		private Map<String, Double> recall;
 
 		@Nullable
 		private Map<String, ConfusionMatrixThreshold> confusionMatrix;
@@ -189,7 +191,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable Map<String, Number> value) {
+		public Builder precision(@Nullable Map<String, Double> value) {
 			this.precision = value;
 			return this;
 		}
@@ -197,7 +199,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		/**
 		 * Add a key/value to {@link #precision(Map)}, creating the map if needed.
 		 */
-		public Builder putPrecision(String key, Number value) {
+		public Builder putPrecision(String key, Double value) {
 			if (this.precision == null) {
 				this.precision = new HashMap<>();
 			}
@@ -208,7 +210,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		/**
 		 * API name: {@code recall}
 		 */
-		public Builder recall(@Nullable Map<String, Number> value) {
+		public Builder recall(@Nullable Map<String, Double> value) {
 			this.recall = value;
 			return this;
 		}
@@ -216,7 +218,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		/**
 		 * Add a key/value to {@link #recall(Map)}, creating the map if needed.
 		 */
-		public Builder putRecall(String key, Number value) {
+		public Builder putRecall(String key, Double value) {
 			if (this.recall == null) {
 				this.recall = new HashMap<>();
 			}
@@ -277,20 +279,20 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link DataframeOutlierDetectionSummary}
 	 */
-	public static final JsonpDeserializer<DataframeOutlierDetectionSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer);
+	public static final JsonpDeserializer<DataframeOutlierDetectionSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeOutlierDetectionSummaryDeserializer(
 			DelegatingDeserializer<DataframeOutlierDetectionSummary.Builder> op) {
 
-		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc.DESERIALIZER, "auc_roc");
-		op.add(Builder::precision, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc._DESERIALIZER, "auc_roc");
+		op.add(Builder::precision, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"precision");
-		op.add(Builder::recall, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::recall, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"recall");
-		op.add(Builder::confusionMatrix, JsonpDeserializer.stringMapDeserializer(ConfusionMatrixThreshold.DESERIALIZER),
-				"confusion_matrix");
+		op.add(Builder::confusionMatrix,
+				JsonpDeserializer.stringMapDeserializer(ConfusionMatrixThreshold._DESERIALIZER), "confusion_matrix");
 
 	}
 

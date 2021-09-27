@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher.stats;
 
 import co.elastic.clients.elasticsearch.watcher.ExecutionThreadPool;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatcherNodeStats
+@JsonpDeserializable
 public final class WatcherNodeStats implements JsonpSerializable {
 	@Nullable
 	private final List<WatchRecordStats> currentWatches;
@@ -51,7 +53,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	@Nullable
 	private final List<WatchRecordQueuedStats> queuedWatches;
 
-	private final Number watchCount;
+	private final Long watchCount;
 
 	private final WatcherState watcherState;
 
@@ -96,7 +98,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	/**
 	 * API name: {@code watch_count}
 	 */
-	public Number watchCount() {
+	public Long watchCount() {
 		return this.watchCount;
 	}
 
@@ -153,7 +155,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("watch_count");
-		generator.write(this.watchCount.doubleValue());
+		generator.write(this.watchCount);
 
 		generator.writeKey("watcher_state");
 		this.watcherState.serialize(generator, mapper);
@@ -177,7 +179,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		@Nullable
 		private List<WatchRecordQueuedStats> queuedWatches;
 
-		private Number watchCount;
+		private Long watchCount;
 
 		private WatcherState watcherState;
 
@@ -286,7 +288,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * API name: {@code watch_count}
 		 */
-		public Builder watchCount(Number value) {
+		public Builder watchCount(Long value) {
 			this.watchCount = value;
 			return this;
 		}
@@ -324,18 +326,18 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WatcherNodeStats}
 	 */
-	public static final JsonpDeserializer<WatcherNodeStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherNodeStats::setupWatcherNodeStatsDeserializer);
+	public static final JsonpDeserializer<WatcherNodeStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatcherNodeStats::setupWatcherNodeStatsDeserializer, Builder::build);
 
 	protected static void setupWatcherNodeStatsDeserializer(DelegatingDeserializer<WatcherNodeStats.Builder> op) {
 
-		op.add(Builder::currentWatches, JsonpDeserializer.arrayDeserializer(WatchRecordStats.DESERIALIZER),
+		op.add(Builder::currentWatches, JsonpDeserializer.arrayDeserializer(WatchRecordStats._DESERIALIZER),
 				"current_watches");
-		op.add(Builder::executionThreadPool, ExecutionThreadPool.DESERIALIZER, "execution_thread_pool");
-		op.add(Builder::queuedWatches, JsonpDeserializer.arrayDeserializer(WatchRecordQueuedStats.DESERIALIZER),
+		op.add(Builder::executionThreadPool, ExecutionThreadPool._DESERIALIZER, "execution_thread_pool");
+		op.add(Builder::queuedWatches, JsonpDeserializer.arrayDeserializer(WatchRecordQueuedStats._DESERIALIZER),
 				"queued_watches");
-		op.add(Builder::watchCount, JsonpDeserializer.numberDeserializer(), "watch_count");
-		op.add(Builder::watcherState, WatcherState.DESERIALIZER, "watcher_state");
+		op.add(Builder::watchCount, JsonpDeserializer.longDeserializer(), "watch_count");
+		op.add(Builder::watcherState, WatcherState._DESERIALIZER, "watcher_state");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 
 	}

@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+@JsonpDeserializable
 public class RankFeatureFunctionLinear extends RankFeatureFunction implements JsonpSerializable {
 
 	public static final class Builder implements ObjectBuilder<RankFeatureFunctionLinear> {
 		@Override
 		public RankFeatureFunctionLinear build() {
-			return RankFeatureFunctionLinear.INSTANCE;
+			return RankFeatureFunctionLinear._INSTANCE;
 		}
 	}
 
@@ -42,18 +44,16 @@ public class RankFeatureFunctionLinear extends RankFeatureFunction implements Js
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
 		generator.writeStartObject();
 		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link RankFeatureFunctionLinear}.
+	 * Singleton instance for empty class {@link RankFeatureFunctionLinear}.
 	 */
-	public static final RankFeatureFunctionLinear INSTANCE = new RankFeatureFunctionLinear();
+	public static final RankFeatureFunctionLinear _INSTANCE = new RankFeatureFunctionLinear();
 
-	public static final JsonpDeserializer<RankFeatureFunctionLinear> DESERIALIZER = JsonpDeserializer
-			.emptyObject(RankFeatureFunctionLinear.INSTANCE);
+	public static final JsonpDeserializer<RankFeatureFunctionLinear> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(RankFeatureFunctionLinear._INSTANCE);
 
 }

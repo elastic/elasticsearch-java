@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: cluster.delete_voting_config_exclusions.Response
+
 public final class DeleteVotingConfigExclusionsResponse {
 	public DeleteVotingConfigExclusionsResponse() {
 	}
@@ -38,9 +40,9 @@ public final class DeleteVotingConfigExclusionsResponse {
 	/**
 	 * Singleton instance for {@link DeleteVotingConfigExclusionsResponse}.
 	 */
-	public static final DeleteVotingConfigExclusionsResponse INSTANCE = new DeleteVotingConfigExclusionsResponse();
+	public static final DeleteVotingConfigExclusionsResponse _INSTANCE = new DeleteVotingConfigExclusionsResponse();
 
-	public static final JsonpDeserializer<DeleteVotingConfigExclusionsResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(DeleteVotingConfigExclusionsResponse.INSTANCE);
+	public static final JsonpDeserializer<DeleteVotingConfigExclusionsResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(DeleteVotingConfigExclusionsResponse._INSTANCE);
 
 }

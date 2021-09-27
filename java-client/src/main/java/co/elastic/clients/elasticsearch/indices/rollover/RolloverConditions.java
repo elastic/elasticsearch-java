@@ -24,32 +24,33 @@
 package co.elastic.clients.elasticsearch.indices.rollover;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.RolloverConditions
+@JsonpDeserializable
 public final class RolloverConditions implements JsonpSerializable {
 	@Nullable
-	private final JsonValue maxAge;
+	private final String maxAge;
 
 	@Nullable
-	private final Number maxDocs;
+	private final Long maxDocs;
 
 	@Nullable
 	private final String maxSize;
 
 	@Nullable
-	private final JsonValue maxPrimaryShardSize;
+	private final String maxPrimaryShardSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +67,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_age}
 	 */
 	@Nullable
-	public JsonValue maxAge() {
+	public String maxAge() {
 		return this.maxAge;
 	}
 
@@ -74,7 +75,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_docs}
 	 */
 	@Nullable
-	public Number maxDocs() {
+	public Long maxDocs() {
 		return this.maxDocs;
 	}
 
@@ -90,7 +91,7 @@ public final class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_primary_shard_size}
 	 */
 	@Nullable
-	public JsonValue maxPrimaryShardSize() {
+	public String maxPrimaryShardSize() {
 		return this.maxPrimaryShardSize;
 	}
 
@@ -114,7 +115,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		if (this.maxDocs != null) {
 
 			generator.writeKey("max_docs");
-			generator.write(this.maxDocs.doubleValue());
+			generator.write(this.maxDocs);
 
 		}
 		if (this.maxSize != null) {
@@ -139,21 +140,21 @@ public final class RolloverConditions implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<RolloverConditions> {
 		@Nullable
-		private JsonValue maxAge;
+		private String maxAge;
 
 		@Nullable
-		private Number maxDocs;
+		private Long maxDocs;
 
 		@Nullable
 		private String maxSize;
 
 		@Nullable
-		private JsonValue maxPrimaryShardSize;
+		private String maxPrimaryShardSize;
 
 		/**
 		 * API name: {@code max_age}
 		 */
-		public Builder maxAge(@Nullable JsonValue value) {
+		public Builder maxAge(@Nullable String value) {
 			this.maxAge = value;
 			return this;
 		}
@@ -161,7 +162,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_docs}
 		 */
-		public Builder maxDocs(@Nullable Number value) {
+		public Builder maxDocs(@Nullable Long value) {
 			this.maxDocs = value;
 			return this;
 		}
@@ -177,7 +178,7 @@ public final class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_primary_shard_size}
 		 */
-		public Builder maxPrimaryShardSize(@Nullable JsonValue value) {
+		public Builder maxPrimaryShardSize(@Nullable String value) {
 			this.maxPrimaryShardSize = value;
 			return this;
 		}
@@ -199,15 +200,15 @@ public final class RolloverConditions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RolloverConditions}
 	 */
-	public static final JsonpDeserializer<RolloverConditions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RolloverConditions::setupRolloverConditionsDeserializer);
+	public static final JsonpDeserializer<RolloverConditions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RolloverConditions::setupRolloverConditionsDeserializer, Builder::build);
 
 	protected static void setupRolloverConditionsDeserializer(DelegatingDeserializer<RolloverConditions.Builder> op) {
 
-		op.add(Builder::maxAge, JsonpDeserializer.jsonValueDeserializer(), "max_age");
-		op.add(Builder::maxDocs, JsonpDeserializer.numberDeserializer(), "max_docs");
+		op.add(Builder::maxAge, JsonpDeserializer.stringDeserializer(), "max_age");
+		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
-		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.jsonValueDeserializer(), "max_primary_shard_size");
+		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
 
 	}
 

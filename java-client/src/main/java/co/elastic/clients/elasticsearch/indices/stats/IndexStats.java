@@ -41,6 +41,7 @@ import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -53,6 +54,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.IndexStats
+@JsonpDeserializable
 public final class IndexStats implements JsonpSerializable {
 	@Nullable
 	private final CompletionStats completion;
@@ -818,28 +820,28 @@ public final class IndexStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexStats}
 	 */
-	public static final JsonpDeserializer<IndexStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexStats::setupIndexStatsDeserializer);
+	public static final JsonpDeserializer<IndexStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexStats::setupIndexStatsDeserializer, Builder::build);
 
 	protected static void setupIndexStatsDeserializer(DelegatingDeserializer<IndexStats.Builder> op) {
 
-		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
-		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
-		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
-		op.add(Builder::flush, FlushStats.DESERIALIZER, "flush");
-		op.add(Builder::get, GetStats.DESERIALIZER, "get");
-		op.add(Builder::indexing, IndexingStats.DESERIALIZER, "indexing");
-		op.add(Builder::merges, MergesStats.DESERIALIZER, "merges");
-		op.add(Builder::queryCache, QueryCacheStats.DESERIALIZER, "query_cache");
-		op.add(Builder::recovery, RecoveryStats.DESERIALIZER, "recovery");
-		op.add(Builder::refresh, RefreshStats.DESERIALIZER, "refresh");
-		op.add(Builder::requestCache, RequestCacheStats.DESERIALIZER, "request_cache");
-		op.add(Builder::search, SearchStats.DESERIALIZER, "search");
-		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
-		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
-		op.add(Builder::translog, TranslogStats.DESERIALIZER, "translog");
-		op.add(Builder::warmer, WarmerStats.DESERIALIZER, "warmer");
-		op.add(Builder::bulk, BulkStats.DESERIALIZER, "bulk");
+		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
+		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
+		op.add(Builder::get, GetStats._DESERIALIZER, "get");
+		op.add(Builder::indexing, IndexingStats._DESERIALIZER, "indexing");
+		op.add(Builder::merges, MergesStats._DESERIALIZER, "merges");
+		op.add(Builder::queryCache, QueryCacheStats._DESERIALIZER, "query_cache");
+		op.add(Builder::recovery, RecoveryStats._DESERIALIZER, "recovery");
+		op.add(Builder::refresh, RefreshStats._DESERIALIZER, "refresh");
+		op.add(Builder::requestCache, RequestCacheStats._DESERIALIZER, "request_cache");
+		op.add(Builder::search, SearchStats._DESERIALIZER, "search");
+		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
+		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
+		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
+		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
+		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
 
 	}
 

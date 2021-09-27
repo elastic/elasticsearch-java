@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStats
+@JsonpDeserializable
 public final class JobStats implements JsonpSerializable {
 	private final String assignmentExplanation;
 
@@ -362,20 +364,20 @@ public final class JobStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link JobStats}
 	 */
-	public static final JsonpDeserializer<JobStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobStats::setupJobStatsDeserializer);
+	public static final JsonpDeserializer<JobStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JobStats::setupJobStatsDeserializer, Builder::build);
 
 	protected static void setupJobStatsDeserializer(DelegatingDeserializer<JobStats.Builder> op) {
 
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
-		op.add(Builder::dataCounts, DataCounts.DESERIALIZER, "data_counts");
-		op.add(Builder::forecastsStats, JobForecastStatistics.DESERIALIZER, "forecasts_stats");
+		op.add(Builder::dataCounts, DataCounts._DESERIALIZER, "data_counts");
+		op.add(Builder::forecastsStats, JobForecastStatistics._DESERIALIZER, "forecasts_stats");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
-		op.add(Builder::node, DiscoveryNode.DESERIALIZER, "node");
+		op.add(Builder::modelSizeStats, ModelSizeStats._DESERIALIZER, "model_size_stats");
+		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
 		op.add(Builder::openTime, JsonpDeserializer.stringDeserializer(), "open_time");
-		op.add(Builder::state, JobState.DESERIALIZER, "state");
-		op.add(Builder::timingStats, JobTimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::state, JobState._DESERIALIZER, "state");
+		op.add(Builder::timingStats, JobTimingStats._DESERIALIZER, "timing_stats");
 		op.add(Builder::deleting, JsonpDeserializer.booleanDeserializer(), "deleting");
 
 	}

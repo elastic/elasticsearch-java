@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr.get_auto_follow_pattern;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPattern
+@JsonpDeserializable
 public final class AutoFollowPattern implements JsonpSerializable {
 	private final String name;
 
@@ -134,13 +136,13 @@ public final class AutoFollowPattern implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoFollowPattern}
 	 */
-	public static final JsonpDeserializer<AutoFollowPattern> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoFollowPattern::setupAutoFollowPatternDeserializer);
+	public static final JsonpDeserializer<AutoFollowPattern> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoFollowPattern::setupAutoFollowPatternDeserializer, Builder::build);
 
 	protected static void setupAutoFollowPatternDeserializer(DelegatingDeserializer<AutoFollowPattern.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::pattern, AutoFollowPatternSummary.DESERIALIZER, "pattern");
+		op.add(Builder::pattern, AutoFollowPatternSummary._DESERIALIZER, "pattern");
 
 	}
 

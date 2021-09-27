@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Feature
+@JsonpDeserializable
 public final class Feature implements JsonpSerializable {
 	private final Boolean available;
 
@@ -196,15 +198,15 @@ public final class Feature implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Feature}
 	 */
-	public static final JsonpDeserializer<Feature> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Feature::setupFeatureDeserializer);
+	public static final JsonpDeserializer<Feature> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Feature::setupFeatureDeserializer, Builder::build);
 
 	protected static void setupFeatureDeserializer(DelegatingDeserializer<Feature.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.booleanDeserializer(), "available");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::nativeCodeInfo, NativeCodeInformation.DESERIALIZER, "native_code_info");
+		op.add(Builder::nativeCodeInfo, NativeCodeInformation._DESERIALIZER, "native_code_info");
 
 	}
 

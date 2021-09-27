@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,7 +39,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +48,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.create.Request
+
 public final class CreateRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -59,22 +61,22 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	private final String pipeline;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final String routing;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	private final TDocument value;
 
@@ -147,7 +149,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -167,7 +169,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -177,7 +179,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -201,7 +203,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -239,22 +241,22 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		private String pipeline;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private String routing;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		private TDocument value;
 
@@ -309,7 +311,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder<TDocument> refresh(@Nullable JsonValue value) {
+		public Builder<TDocument> refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -329,7 +331,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TDocument> timeout(@Nullable JsonValue value) {
+		public Builder<TDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -339,7 +341,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder<TDocument> version(@Nullable Number value) {
+		public Builder<TDocument> version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -363,7 +365,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder<TDocument> waitForActiveShards(@Nullable JsonValue value) {
+		public Builder<TDocument> waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -482,10 +484,10 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());
@@ -495,5 +497,5 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

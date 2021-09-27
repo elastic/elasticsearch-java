@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.enrich.execute_policy;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,6 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.ExecuteEnrichPolicyStatus
+@JsonpDeserializable
 public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	private final EnrichPolicyPhase phase;
 
@@ -102,13 +104,13 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecuteEnrichPolicyStatus}
 	 */
-	public static final JsonpDeserializer<ExecuteEnrichPolicyStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer);
+	public static final JsonpDeserializer<ExecuteEnrichPolicyStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer, Builder::build);
 
 	protected static void setupExecuteEnrichPolicyStatusDeserializer(
 			DelegatingDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
 
-		op.add(Builder::phase, EnrichPolicyPhase.DESERIALIZER, "phase");
+		op.add(Builder::phase, EnrichPolicyPhase._DESERIALIZER, "phase");
 
 	}
 

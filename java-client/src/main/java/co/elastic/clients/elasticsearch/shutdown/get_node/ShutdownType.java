@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ShutdownType implements StringEnum {
 	Remove("remove"), Restart("restart");
 
@@ -39,6 +41,6 @@ public enum ShutdownType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShutdownType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ShutdownType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ShutdownType.values());
 }

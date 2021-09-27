@@ -19,52 +19,27 @@
 
 package co.elastic.clients.util;
 
-public class TaggedUnion2<LowClass, HighClass extends UnionVariant> {
+public class TaggedUnion2<Tag extends Enum<Tag> & StringEnum, Value> {
 
-    protected final String _type;
-    protected final LowClass _value;
+    protected final Tag tag;
+    protected final Value value;
 
-    public TaggedUnion2(HighClass value) {
-        this._type = value._type();
-        this._value = (LowClass)value;
+    protected TaggedUnion2(Tag tag, Value value) {
+        this.tag = tag;
+        this.value = value;
     }
 
-    protected TaggedUnion2(String tag, LowClass value) {
-        this._type = tag;
-        this._value = value;
+    protected boolean is(Tag tag) {
+        return tag == this.tag;
     }
 
-    /**
-     * Get the variant type of this union.
-     *
-     * @return the variant type
-     */
-    public String _type() {
-        return this._type;
-    }
-
-    public LowClass get() {
-        return this._value;
-    }
-
-    /**
-     * Checks if this object is of a given variant type.
-     */
-    public boolean _is(String type) {
-        return type.equals(this._type);
-    }
-
-    protected <V extends LowClass> V _get(String type) {
-        if (type.equals(this._type)) {
+    protected <V extends Value> V get(Tag tag) {
+        if (tag == this.tag) {
             @SuppressWarnings("unchecked")
-            V result = (V) this._value;
+            V result = (V) this.value;
             return result;
         } else {
-            throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + this._type + "'.");
+            throw new IllegalStateException("Cannot get '" + tag + "' variant. Current variant is '" + this.tag + "'");
         }
-    }
-
-    public LowClass _get() {
-        return this._value;
     }
 }

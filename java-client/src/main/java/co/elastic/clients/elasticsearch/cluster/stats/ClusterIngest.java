@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,8 +41,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIngest
+@JsonpDeserializable
 public final class ClusterIngest implements JsonpSerializable {
-	private final Number numberOfPipelines;
+	private final Integer numberOfPipelines;
 
 	private final Map<String, ClusterProcessor> processorStats;
 
@@ -57,7 +59,7 @@ public final class ClusterIngest implements JsonpSerializable {
 	/**
 	 * API name: {@code number_of_pipelines}
 	 */
-	public Number numberOfPipelines() {
+	public Integer numberOfPipelines() {
 		return this.numberOfPipelines;
 	}
 
@@ -80,7 +82,7 @@ public final class ClusterIngest implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("number_of_pipelines");
-		generator.write(this.numberOfPipelines.doubleValue());
+		generator.write(this.numberOfPipelines);
 
 		generator.writeKey("processor_stats");
 		generator.writeStartObject();
@@ -99,14 +101,14 @@ public final class ClusterIngest implements JsonpSerializable {
 	 * Builder for {@link ClusterIngest}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterIngest> {
-		private Number numberOfPipelines;
+		private Integer numberOfPipelines;
 
 		private Map<String, ClusterProcessor> processorStats;
 
 		/**
 		 * API name: {@code number_of_pipelines}
 		 */
-		public Builder numberOfPipelines(Number value) {
+		public Builder numberOfPipelines(Integer value) {
 			this.numberOfPipelines = value;
 			return this;
 		}
@@ -163,13 +165,13 @@ public final class ClusterIngest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterIngest}
 	 */
-	public static final JsonpDeserializer<ClusterIngest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIngest::setupClusterIngestDeserializer);
+	public static final JsonpDeserializer<ClusterIngest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterIngest::setupClusterIngestDeserializer, Builder::build);
 
 	protected static void setupClusterIngestDeserializer(DelegatingDeserializer<ClusterIngest.Builder> op) {
 
-		op.add(Builder::numberOfPipelines, JsonpDeserializer.numberDeserializer(), "number_of_pipelines");
-		op.add(Builder::processorStats, JsonpDeserializer.stringMapDeserializer(ClusterProcessor.DESERIALIZER),
+		op.add(Builder::numberOfPipelines, JsonpDeserializer.integerDeserializer(), "number_of_pipelines");
+		op.add(Builder::processorStats, JsonpDeserializer.stringMapDeserializer(ClusterProcessor._DESERIALIZER),
 				"processor_stats");
 
 	}

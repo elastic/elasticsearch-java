@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum IndexPrivilege implements StringEnum {
 	All("all"), AutoConfigure("auto_configure"), Create("create"), CreateDoc("create_doc"), CreateIndex(
 			"create_index"), Delete("delete"), DeleteIndex("delete_index"), Index("index"), Maintenance(
@@ -44,6 +46,6 @@ public enum IndexPrivilege implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexPrivilege> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<IndexPrivilege> _DESERIALIZER = new StringEnum.Deserializer<>(
 			IndexPrivilege.values());
 }

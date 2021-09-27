@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
 import co.elastic.clients.elasticsearch.indices.stats.ShardRoutingState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
+@JsonpDeserializable
 public final class NodeShard implements JsonpSerializable {
 	private final ShardRoutingState state;
 
@@ -51,7 +53,7 @@ public final class NodeShard implements JsonpSerializable {
 	@Nullable
 	private final String node;
 
-	private final Number shard;
+	private final Integer shard;
 
 	private final String index;
 
@@ -104,7 +106,7 @@ public final class NodeShard implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
@@ -164,7 +166,7 @@ public final class NodeShard implements JsonpSerializable {
 		}
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -215,7 +217,7 @@ public final class NodeShard implements JsonpSerializable {
 		@Nullable
 		private String node;
 
-		private Number shard;
+		private Integer shard;
 
 		private String index;
 
@@ -255,7 +257,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -339,21 +341,21 @@ public final class NodeShard implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeShard}
 	 */
-	public static final JsonpDeserializer<NodeShard> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeShard::setupNodeShardDeserializer);
+	public static final JsonpDeserializer<NodeShard> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeShard::setupNodeShardDeserializer, Builder::build);
 
 	protected static void setupNodeShardDeserializer(DelegatingDeserializer<NodeShard.Builder> op) {
 
-		op.add(Builder::state, ShardRoutingState.DESERIALIZER, "state");
+		op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::allocationId, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"allocation_id");
 		op.add(Builder::recoverySource, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"recovery_source");
-		op.add(Builder::unassignedInfo, UnassignedInformation.DESERIALIZER, "unassigned_info");
+		op.add(Builder::unassignedInfo, UnassignedInformation._DESERIALIZER, "unassigned_info");
 
 	}
 

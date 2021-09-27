@@ -19,27 +19,22 @@
 
 package co.elastic.clients.util;
 
-public class TaggedUnion<Tag extends Enum<Tag> & StringEnum, Value> {
+public interface TaggedUnion<BaseType> {
 
-    protected final Tag tag;
-    protected final Value value;
+    /**
+     * Get the of the type of the variant held by this union object.
+     *
+     * @return the variant type
+     */
+    public String _type();
 
-    protected TaggedUnion(Tag tag, Value value) {
-        this.tag = tag;
-        this.value = value;
+    public BaseType _get();
+
+    /**
+     * Checks if this object is of a given variant type.
+     */
+    default boolean _is(String type) {
+        return _type().equals(type);
     }
 
-    protected boolean is(Tag tag) {
-        return tag == this.tag;
-    }
-
-    protected <V extends Value> V get(Tag tag) {
-        if (tag == this.tag) {
-            @SuppressWarnings("unchecked")
-            V result = (V) this.value;
-            return result;
-        } else {
-            throw new IllegalStateException("Cannot get '" + tag + "' variant. Current variant is '" + this.tag + "'");
-        }
-    }
 }

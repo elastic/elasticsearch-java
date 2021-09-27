@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
+@JsonpDeserializable
 public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implements JsonpSerializable {
-	private final Number pivot;
+	private final Float pivot;
 
-	private final Number exponent;
+	private final Float exponent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	/**
 	 * API name: {@code pivot}
 	 */
-	public Number pivot() {
+	public Float pivot() {
 		return this.pivot;
 	}
 
 	/**
 	 * API name: {@code exponent}
 	 */
-	public Number exponent() {
+	public Float exponent() {
 		return this.exponent;
 	}
 
@@ -76,10 +78,10 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("pivot");
-		generator.write(this.pivot.doubleValue());
+		generator.write(this.pivot);
 
 		generator.writeKey("exponent");
-		generator.write(this.exponent.doubleValue());
+		generator.write(this.exponent);
 
 	}
 
@@ -89,14 +91,14 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	 * Builder for {@link RankFeatureFunctionSigmoid}.
 	 */
 	public static class Builder implements ObjectBuilder<RankFeatureFunctionSigmoid> {
-		private Number pivot;
+		private Float pivot;
 
-		private Number exponent;
+		private Float exponent;
 
 		/**
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(Number value) {
+		public Builder pivot(Float value) {
 			this.pivot = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		/**
 		 * API name: {@code exponent}
 		 */
-		public Builder exponent(Number value) {
+		public Builder exponent(Float value) {
 			this.exponent = value;
 			return this;
 		}
@@ -126,14 +128,14 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionSigmoid}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSigmoid> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer);
+	public static final JsonpDeserializer<RankFeatureFunctionSigmoid> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RankFeatureFunctionSigmoid::setupRankFeatureFunctionSigmoidDeserializer, Builder::build);
 
 	protected static void setupRankFeatureFunctionSigmoidDeserializer(
 			DelegatingDeserializer<RankFeatureFunctionSigmoid.Builder> op) {
 
-		op.add(Builder::pivot, JsonpDeserializer.numberDeserializer(), "pivot");
-		op.add(Builder::exponent, JsonpDeserializer.numberDeserializer(), "exponent");
+		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
+		op.add(Builder::exponent, JsonpDeserializer.floatDeserializer(), "exponent");
 
 	}
 

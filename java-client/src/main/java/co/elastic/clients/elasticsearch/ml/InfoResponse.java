@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.ml.info.Defaults;
 import co.elastic.clients.elasticsearch.ml.info.Limits;
 import co.elastic.clients.elasticsearch.ml.info.NativeCode;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
+@JsonpDeserializable
 public final class InfoResponse implements JsonpSerializable {
 	private final Defaults defaults;
 
@@ -197,15 +199,15 @@ public final class InfoResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link InfoResponse}
 	 */
-	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
+	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoResponse::setupInfoResponseDeserializer, Builder::build);
 
 	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 
-		op.add(Builder::defaults, Defaults.DESERIALIZER, "defaults");
-		op.add(Builder::limits, Limits.DESERIALIZER, "limits");
+		op.add(Builder::defaults, Defaults._DESERIALIZER, "defaults");
+		op.add(Builder::limits, Limits._DESERIALIZER, "limits");
 		op.add(Builder::upgradeMode, JsonpDeserializer.booleanDeserializer(), "upgrade_mode");
-		op.add(Builder::nativeCode, NativeCode.DESERIALIZER, "native_code");
+		op.add(Builder::nativeCode, NativeCode._DESERIALIZER, "native_code");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Response
+@JsonpDeserializable
 public final class GetPolicyResponse implements JsonpSerializable {
 	private final List<Summary> policies;
 
@@ -144,12 +146,12 @@ public final class GetPolicyResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetPolicyResponse}
 	 */
-	public static final JsonpDeserializer<GetPolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetPolicyResponse::setupGetPolicyResponseDeserializer);
+	public static final JsonpDeserializer<GetPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetPolicyResponse::setupGetPolicyResponseDeserializer, Builder::build);
 
 	protected static void setupGetPolicyResponseDeserializer(DelegatingDeserializer<GetPolicyResponse.Builder> op) {
 
-		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(Summary.DESERIALIZER), "policies");
+		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(Summary._DESERIALIZER), "policies");
 
 	}
 

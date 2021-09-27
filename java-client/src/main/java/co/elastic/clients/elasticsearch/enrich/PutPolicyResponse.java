@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: enrich.put_policy.Response
+@JsonpDeserializable
 public final class PutPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class PutPolicyResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link PutPolicyResponse}
 	 */
-	public static final JsonpDeserializer<PutPolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutPolicyResponse::setupPutPolicyResponseDeserializer);
+	public static final JsonpDeserializer<PutPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutPolicyResponse::setupPutPolicyResponseDeserializer, Builder::build);
 
 	protected static void setupPutPolicyResponseDeserializer(DelegatingDeserializer<PutPolicyResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

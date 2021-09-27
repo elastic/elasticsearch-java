@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedBounds
+
 public final class ExtendedBounds<T> implements JsonpSerializable {
 	private final T max;
 

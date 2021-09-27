@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ChainInput
-public final class ChainInput implements JsonpSerializable {
+@JsonpDeserializable
+public final class ChainInput implements InputVariant, JsonpSerializable {
 	private final List<Input> inputs;
 
 	// ---------------------------------------------------------------------------------------------
@@ -48,6 +50,14 @@ public final class ChainInput implements JsonpSerializable {
 
 		this.inputs = Objects.requireNonNull(builder.inputs, "inputs");
 
+	}
+
+	/**
+	 * {@link Input} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "chain";
 	}
 
 	/**
@@ -144,12 +154,12 @@ public final class ChainInput implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ChainInput}
 	 */
-	public static final JsonpDeserializer<ChainInput> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ChainInput::setupChainInputDeserializer);
+	public static final JsonpDeserializer<ChainInput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ChainInput::setupChainInputDeserializer, Builder::build);
 
 	protected static void setupChainInputDeserializer(DelegatingDeserializer<ChainInput.Builder> op) {
 
-		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(Input.DESERIALIZER), "inputs");
+		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(Input._DESERIALIZER), "inputs");
 
 	}
 

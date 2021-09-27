@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Response
+@JsonpDeserializable
 public final class ForecastResponse extends AcknowledgedResponseBase {
 	private final String forecastId;
 
@@ -104,8 +106,8 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link ForecastResponse}
 	 */
-	public static final JsonpDeserializer<ForecastResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ForecastResponse::setupForecastResponseDeserializer);
+	public static final JsonpDeserializer<ForecastResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ForecastResponse::setupForecastResponseDeserializer, Builder::build);
 
 	protected static void setupForecastResponseDeserializer(DelegatingDeserializer<ForecastResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

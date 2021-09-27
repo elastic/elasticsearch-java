@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: rollup.put_job.Response
+@JsonpDeserializable
 public final class PutJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class PutJobResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link PutJobResponse}
 	 */
-	public static final JsonpDeserializer<PutJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutJobResponse::setupPutJobResponseDeserializer);
+	public static final JsonpDeserializer<PutJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutJobResponse::setupPutJobResponseDeserializer, Builder::build);
 
 	protected static void setupPutJobResponseDeserializer(DelegatingDeserializer<PutJobResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

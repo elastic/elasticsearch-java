@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultAction
+@JsonpDeserializable
 public final class ExecutionResultAction implements JsonpSerializable {
 	@Nullable
 	private final EmailResult email;
@@ -397,22 +399,22 @@ public final class ExecutionResultAction implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecutionResultAction}
 	 */
-	public static final JsonpDeserializer<ExecutionResultAction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionResultAction::setupExecutionResultActionDeserializer);
+	public static final JsonpDeserializer<ExecutionResultAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecutionResultAction::setupExecutionResultActionDeserializer, Builder::build);
 
 	protected static void setupExecutionResultActionDeserializer(
 			DelegatingDeserializer<ExecutionResultAction.Builder> op) {
 
-		op.add(Builder::email, EmailResult.DESERIALIZER, "email");
+		op.add(Builder::email, EmailResult._DESERIALIZER, "email");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::index, IndexResult.DESERIALIZER, "index");
-		op.add(Builder::logging, LoggingResult.DESERIALIZER, "logging");
-		op.add(Builder::pagerduty, PagerDutyResult.DESERIALIZER, "pagerduty");
+		op.add(Builder::index, IndexResult._DESERIALIZER, "index");
+		op.add(Builder::logging, LoggingResult._DESERIALIZER, "logging");
+		op.add(Builder::pagerduty, PagerDutyResult._DESERIALIZER, "pagerduty");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::slack, SlackResult.DESERIALIZER, "slack");
-		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
-		op.add(Builder::type, ActionType.DESERIALIZER, "type");
-		op.add(Builder::webhook, WebhookResult.DESERIALIZER, "webhook");
+		op.add(Builder::slack, SlackResult._DESERIALIZER, "slack");
+		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::type, ActionType._DESERIALIZER, "type");
+		op.add(Builder::webhook, WebhookResult._DESERIALIZER, "webhook");
 
 	}
 

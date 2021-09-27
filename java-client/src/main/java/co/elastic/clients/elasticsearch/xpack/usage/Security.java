@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Security
+@JsonpDeserializable
 public final class Security extends Base {
 	private final FeatureToggle apiKeyService;
 
@@ -496,23 +498,24 @@ public final class Security extends Base {
 	/**
 	 * Json deserializer for {@link Security}
 	 */
-	public static final JsonpDeserializer<Security> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Security::setupSecurityDeserializer);
+	public static final JsonpDeserializer<Security> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Security::setupSecurityDeserializer, Builder::build);
 
 	protected static void setupSecurityDeserializer(DelegatingDeserializer<Security.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::apiKeyService, FeatureToggle.DESERIALIZER, "api_key_service");
-		op.add(Builder::anonymous, FeatureToggle.DESERIALIZER, "anonymous");
-		op.add(Builder::audit, Audit.DESERIALIZER, "audit");
-		op.add(Builder::fips140, FeatureToggle.DESERIALIZER, "fips_140");
-		op.add(Builder::ipfilter, IpFilter.DESERIALIZER, "ipfilter");
-		op.add(Builder::realms, JsonpDeserializer.stringMapDeserializer(Realm.DESERIALIZER), "realms");
-		op.add(Builder::roleMapping, JsonpDeserializer.stringMapDeserializer(RoleMapping.DESERIALIZER), "role_mapping");
-		op.add(Builder::roles, SecurityRoles.DESERIALIZER, "roles");
-		op.add(Builder::ssl, Ssl.DESERIALIZER, "ssl");
-		op.add(Builder::systemKey, FeatureToggle.DESERIALIZER, "system_key");
-		op.add(Builder::tokenService, FeatureToggle.DESERIALIZER, "token_service");
-		op.add(Builder::operatorPrivileges, Base.DESERIALIZER, "operator_privileges");
+		op.add(Builder::apiKeyService, FeatureToggle._DESERIALIZER, "api_key_service");
+		op.add(Builder::anonymous, FeatureToggle._DESERIALIZER, "anonymous");
+		op.add(Builder::audit, Audit._DESERIALIZER, "audit");
+		op.add(Builder::fips140, FeatureToggle._DESERIALIZER, "fips_140");
+		op.add(Builder::ipfilter, IpFilter._DESERIALIZER, "ipfilter");
+		op.add(Builder::realms, JsonpDeserializer.stringMapDeserializer(Realm._DESERIALIZER), "realms");
+		op.add(Builder::roleMapping, JsonpDeserializer.stringMapDeserializer(RoleMapping._DESERIALIZER),
+				"role_mapping");
+		op.add(Builder::roles, SecurityRoles._DESERIALIZER, "roles");
+		op.add(Builder::ssl, Ssl._DESERIALIZER, "ssl");
+		op.add(Builder::systemKey, FeatureToggle._DESERIALIZER, "system_key");
+		op.add(Builder::tokenService, FeatureToggle._DESERIALIZER, "token_service");
+		op.add(Builder::operatorPrivileges, Base._DESERIALIZER, "operator_privileges");
 
 	}
 

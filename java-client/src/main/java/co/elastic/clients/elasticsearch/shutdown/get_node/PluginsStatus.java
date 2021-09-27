@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,6 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.PluginsStatus
+@JsonpDeserializable
 public final class PluginsStatus implements JsonpSerializable {
 	private final ShutdownStatus status;
 
@@ -102,12 +104,12 @@ public final class PluginsStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PluginsStatus}
 	 */
-	public static final JsonpDeserializer<PluginsStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PluginsStatus::setupPluginsStatusDeserializer);
+	public static final JsonpDeserializer<PluginsStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PluginsStatus::setupPluginsStatusDeserializer, Builder::build);
 
 	protected static void setupPluginsStatusDeserializer(DelegatingDeserializer<PluginsStatus.Builder> op) {
 
-		op.add(Builder::status, ShutdownStatus.DESERIALIZER, "status");
+		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 
 	}
 

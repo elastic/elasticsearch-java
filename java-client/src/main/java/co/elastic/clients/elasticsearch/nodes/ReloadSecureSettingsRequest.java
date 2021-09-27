@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -46,12 +46,13 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Request
+@JsonpDeserializable
 public final class ReloadSecureSettingsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> nodeId;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final String secureSettingsPassword;
@@ -83,7 +84,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -125,7 +126,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		private List<String> nodeId;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private String secureSettingsPassword;
@@ -168,7 +169,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -198,8 +199,8 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	/**
 	 * Json deserializer for {@link ReloadSecureSettingsRequest}
 	 */
-	public static final JsonpDeserializer<ReloadSecureSettingsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer);
+	public static final JsonpDeserializer<ReloadSecureSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ReloadSecureSettingsRequest::setupReloadSecureSettingsRequestDeserializer, Builder::build);
 
 	protected static void setupReloadSecureSettingsRequestDeserializer(
 			DelegatingDeserializer<ReloadSecureSettingsRequest.Builder> op) {
@@ -251,9 +252,9 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ReloadSecureSettingsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ReloadSecureSettingsResponse._DESERIALIZER);
 }

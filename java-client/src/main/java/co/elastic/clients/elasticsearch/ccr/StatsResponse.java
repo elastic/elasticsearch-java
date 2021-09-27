@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.elasticsearch.ccr.stats.AutoFollowStats;
 import co.elastic.clients.elasticsearch.ccr.stats.FollowStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.Response
+@JsonpDeserializable
 public final class StatsResponse implements JsonpSerializable {
 	private final AutoFollowStats autoFollowStats;
 
@@ -142,13 +144,13 @@ public final class StatsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::autoFollowStats, AutoFollowStats.DESERIALIZER, "auto_follow_stats");
-		op.add(Builder::followStats, FollowStats.DESERIALIZER, "follow_stats");
+		op.add(Builder::autoFollowStats, AutoFollowStats._DESERIALIZER, "auto_follow_stats");
+		op.add(Builder::followStats, FollowStats._DESERIALIZER, "follow_stats");
 
 	}
 

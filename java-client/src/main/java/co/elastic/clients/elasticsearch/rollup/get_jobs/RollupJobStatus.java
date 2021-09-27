@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
+@JsonpDeserializable
 public final class RollupJobStatus implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> currentPosition;
@@ -182,14 +184,14 @@ public final class RollupJobStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupJobStatus}
 	 */
-	public static final JsonpDeserializer<RollupJobStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupJobStatus::setupRollupJobStatusDeserializer);
+	public static final JsonpDeserializer<RollupJobStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RollupJobStatus::setupRollupJobStatusDeserializer, Builder::build);
 
 	protected static void setupRollupJobStatusDeserializer(DelegatingDeserializer<RollupJobStatus.Builder> op) {
 
-		op.add(Builder::currentPosition, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER),
+		op.add(Builder::currentPosition, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
 				"current_position");
-		op.add(Builder::jobState, IndexingJobState.DESERIALIZER, "job_state");
+		op.add(Builder::jobState, IndexingJobState._DESERIALIZER, "job_state");
 		op.add(Builder::upgradedDocId, JsonpDeserializer.booleanDeserializer(), "upgraded_doc_id");
 
 	}

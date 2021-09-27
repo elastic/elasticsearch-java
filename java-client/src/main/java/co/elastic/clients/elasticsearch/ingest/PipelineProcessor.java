@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineProcessor
-public final class PipelineProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -45,6 +47,14 @@ public final class PipelineProcessor extends ProcessorBase {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "pipeline";
 	}
 
 	/**
@@ -103,8 +113,8 @@ public final class PipelineProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link PipelineProcessor}
 	 */
-	public static final JsonpDeserializer<PipelineProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer);
+	public static final JsonpDeserializer<PipelineProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer, Builder::build);
 
 	protected static void setupPipelineProcessorDeserializer(DelegatingDeserializer<PipelineProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

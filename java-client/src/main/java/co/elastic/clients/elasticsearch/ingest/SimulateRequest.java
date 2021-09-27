@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ingest.simulate.Document;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -47,6 +48,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Request
+@JsonpDeserializable
 public final class SimulateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -249,13 +251,13 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link SimulateRequest}
 	 */
-	public static final JsonpDeserializer<SimulateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateRequest::setupSimulateRequestDeserializer);
+	public static final JsonpDeserializer<SimulateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SimulateRequest::setupSimulateRequestDeserializer, Builder::build);
 
 	protected static void setupSimulateRequestDeserializer(DelegatingDeserializer<SimulateRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document.DESERIALIZER), "docs");
-		op.add(Builder::pipeline, Pipeline.DESERIALIZER, "pipeline");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document._DESERIALIZER), "docs");
+		op.add(Builder::pipeline, Pipeline._DESERIALIZER, "pipeline");
 
 	}
 
@@ -308,5 +310,5 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, SimulateResponse._DESERIALIZER);
 }

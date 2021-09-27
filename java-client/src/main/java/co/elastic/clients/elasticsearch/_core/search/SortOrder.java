@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum SortOrder implements StringEnum {
 	Asc("asc"), Desc("desc"), Document("_doc");
 
@@ -39,6 +41,6 @@ public enum SortOrder implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SortOrder> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<SortOrder> _DESERIALIZER = new StringEnum.Deserializer<>(
 			SortOrder.values());
 }

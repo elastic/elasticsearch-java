@@ -28,16 +28,16 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
+@JsonpDeserializable
 public final class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String format;
@@ -57,7 +58,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	private final String cursor;
 
 	@Nullable
-	private final Number fetchSize;
+	private final Integer fetchSize;
 
 	@Nullable
 	private final Query filter;
@@ -66,10 +67,10 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	private final String query;
 
 	@Nullable
-	private final JsonValue requestTimeout;
+	private final String requestTimeout;
 
 	@Nullable
-	private final JsonValue pageTimeout;
+	private final String pageTimeout;
 
 	@Nullable
 	private final String timeZone;
@@ -126,7 +127,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Number fetchSize() {
+	public Integer fetchSize() {
 		return this.fetchSize;
 	}
 
@@ -156,7 +157,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code request_timeout}
 	 */
 	@Nullable
-	public JsonValue requestTimeout() {
+	public String requestTimeout() {
 		return this.requestTimeout;
 	}
 
@@ -166,7 +167,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code page_timeout}
 	 */
 	@Nullable
-	public JsonValue pageTimeout() {
+	public String pageTimeout() {
 		return this.pageTimeout;
 	}
 
@@ -219,7 +220,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		if (this.fetchSize != null) {
 
 			generator.writeKey("fetch_size");
-			generator.write(this.fetchSize.doubleValue());
+			generator.write(this.fetchSize);
 
 		}
 		if (this.filter != null) {
@@ -277,7 +278,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		private String cursor;
 
 		@Nullable
-		private Number fetchSize;
+		private Integer fetchSize;
 
 		@Nullable
 		private Query filter;
@@ -286,10 +287,10 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		private String query;
 
 		@Nullable
-		private JsonValue requestTimeout;
+		private String requestTimeout;
 
 		@Nullable
-		private JsonValue pageTimeout;
+		private String pageTimeout;
 
 		@Nullable
 		private String timeZone;
@@ -328,7 +329,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Number value) {
+		public Builder fetchSize(@Nullable Integer value) {
 			this.fetchSize = value;
 			return this;
 		}
@@ -367,7 +368,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code request_timeout}
 		 */
-		public Builder requestTimeout(@Nullable JsonValue value) {
+		public Builder requestTimeout(@Nullable String value) {
 			this.requestTimeout = value;
 			return this;
 		}
@@ -377,7 +378,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code page_timeout}
 		 */
-		public Builder pageTimeout(@Nullable JsonValue value) {
+		public Builder pageTimeout(@Nullable String value) {
 			this.pageTimeout = value;
 			return this;
 		}
@@ -422,18 +423,18 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link QueryRequest}
 	 */
-	public static final JsonpDeserializer<QueryRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryRequest::setupQueryRequestDeserializer);
+	public static final JsonpDeserializer<QueryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			QueryRequest::setupQueryRequestDeserializer, Builder::build);
 
 	protected static void setupQueryRequestDeserializer(DelegatingDeserializer<QueryRequest.Builder> op) {
 
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
-		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, Query.DESERIALIZER, "filter");
+		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::requestTimeout, JsonpDeserializer.jsonValueDeserializer(), "request_timeout");
-		op.add(Builder::pageTimeout, JsonpDeserializer.jsonValueDeserializer(), "page_timeout");
+		op.add(Builder::requestTimeout, JsonpDeserializer.stringDeserializer(), "request_timeout");
+		op.add(Builder::pageTimeout, JsonpDeserializer.stringDeserializer(), "page_timeout");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 
@@ -465,5 +466,5 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, QueryResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, QueryResponse._DESERIALIZER);
 }

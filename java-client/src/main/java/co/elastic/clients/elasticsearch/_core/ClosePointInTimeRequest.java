@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.close_point_in_time.Request
+@JsonpDeserializable
 public final class ClosePointInTimeRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -107,8 +109,8 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 	/**
 	 * Json deserializer for {@link ClosePointInTimeRequest}
 	 */
-	public static final JsonpDeserializer<ClosePointInTimeRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer);
+	public static final JsonpDeserializer<ClosePointInTimeRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer, Builder::build);
 
 	protected static void setupClosePointInTimeRequestDeserializer(
 			DelegatingDeserializer<ClosePointInTimeRequest.Builder> op) {
@@ -139,5 +141,5 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ClosePointInTimeResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ClosePointInTimeResponse._DESERIALIZER);
 }

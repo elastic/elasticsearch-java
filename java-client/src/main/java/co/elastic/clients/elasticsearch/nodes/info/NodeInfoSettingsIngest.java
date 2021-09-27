@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsIngest
+@JsonpDeserializable
 public final class NodeInfoSettingsIngest implements JsonpSerializable {
 	@Nullable
 	private final NodeInfoIngestInfo attachment;
@@ -1305,46 +1307,46 @@ public final class NodeInfoSettingsIngest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoSettingsIngest}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettingsIngest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoSettingsIngest::setupNodeInfoSettingsIngestDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettingsIngest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoSettingsIngest::setupNodeInfoSettingsIngestDeserializer, Builder::build);
 
 	protected static void setupNodeInfoSettingsIngestDeserializer(
 			DelegatingDeserializer<NodeInfoSettingsIngest.Builder> op) {
 
-		op.add(Builder::attachment, NodeInfoIngestInfo.DESERIALIZER, "attachment");
-		op.add(Builder::append, NodeInfoIngestInfo.DESERIALIZER, "append");
-		op.add(Builder::csv, NodeInfoIngestInfo.DESERIALIZER, "csv");
-		op.add(Builder::convert, NodeInfoIngestInfo.DESERIALIZER, "convert");
-		op.add(Builder::date, NodeInfoIngestInfo.DESERIALIZER, "date");
-		op.add(Builder::dateIndexName, NodeInfoIngestInfo.DESERIALIZER, "date_index_name");
-		op.add(Builder::dotExpander, NodeInfoIngestInfo.DESERIALIZER, "dot_expander");
-		op.add(Builder::enrich, NodeInfoIngestInfo.DESERIALIZER, "enrich");
-		op.add(Builder::fail, NodeInfoIngestInfo.DESERIALIZER, "fail");
-		op.add(Builder::foreach, NodeInfoIngestInfo.DESERIALIZER, "foreach");
-		op.add(Builder::json, NodeInfoIngestInfo.DESERIALIZER, "json");
-		op.add(Builder::userAgent, NodeInfoIngestInfo.DESERIALIZER, "user_agent");
-		op.add(Builder::kv, NodeInfoIngestInfo.DESERIALIZER, "kv");
-		op.add(Builder::geoip, NodeInfoIngestInfo.DESERIALIZER, "geoip");
-		op.add(Builder::grok, NodeInfoIngestInfo.DESERIALIZER, "grok");
-		op.add(Builder::gsub, NodeInfoIngestInfo.DESERIALIZER, "gsub");
-		op.add(Builder::join, NodeInfoIngestInfo.DESERIALIZER, "join");
-		op.add(Builder::lowercase, NodeInfoIngestInfo.DESERIALIZER, "lowercase");
-		op.add(Builder::remove, NodeInfoIngestInfo.DESERIALIZER, "remove");
-		op.add(Builder::rename, NodeInfoIngestInfo.DESERIALIZER, "rename");
-		op.add(Builder::script, NodeInfoIngestInfo.DESERIALIZER, "script");
-		op.add(Builder::set, NodeInfoIngestInfo.DESERIALIZER, "set");
-		op.add(Builder::sort, NodeInfoIngestInfo.DESERIALIZER, "sort");
-		op.add(Builder::split, NodeInfoIngestInfo.DESERIALIZER, "split");
-		op.add(Builder::trim, NodeInfoIngestInfo.DESERIALIZER, "trim");
-		op.add(Builder::uppercase, NodeInfoIngestInfo.DESERIALIZER, "uppercase");
-		op.add(Builder::urldecode, NodeInfoIngestInfo.DESERIALIZER, "urldecode");
-		op.add(Builder::bytes, NodeInfoIngestInfo.DESERIALIZER, "bytes");
-		op.add(Builder::dissect, NodeInfoIngestInfo.DESERIALIZER, "dissect");
-		op.add(Builder::setSecurityUser, NodeInfoIngestInfo.DESERIALIZER, "set_security_user");
-		op.add(Builder::pipeline, NodeInfoIngestInfo.DESERIALIZER, "pipeline");
-		op.add(Builder::drop, NodeInfoIngestInfo.DESERIALIZER, "drop");
-		op.add(Builder::circle, NodeInfoIngestInfo.DESERIALIZER, "circle");
-		op.add(Builder::inference, NodeInfoIngestInfo.DESERIALIZER, "inference");
+		op.add(Builder::attachment, NodeInfoIngestInfo._DESERIALIZER, "attachment");
+		op.add(Builder::append, NodeInfoIngestInfo._DESERIALIZER, "append");
+		op.add(Builder::csv, NodeInfoIngestInfo._DESERIALIZER, "csv");
+		op.add(Builder::convert, NodeInfoIngestInfo._DESERIALIZER, "convert");
+		op.add(Builder::date, NodeInfoIngestInfo._DESERIALIZER, "date");
+		op.add(Builder::dateIndexName, NodeInfoIngestInfo._DESERIALIZER, "date_index_name");
+		op.add(Builder::dotExpander, NodeInfoIngestInfo._DESERIALIZER, "dot_expander");
+		op.add(Builder::enrich, NodeInfoIngestInfo._DESERIALIZER, "enrich");
+		op.add(Builder::fail, NodeInfoIngestInfo._DESERIALIZER, "fail");
+		op.add(Builder::foreach, NodeInfoIngestInfo._DESERIALIZER, "foreach");
+		op.add(Builder::json, NodeInfoIngestInfo._DESERIALIZER, "json");
+		op.add(Builder::userAgent, NodeInfoIngestInfo._DESERIALIZER, "user_agent");
+		op.add(Builder::kv, NodeInfoIngestInfo._DESERIALIZER, "kv");
+		op.add(Builder::geoip, NodeInfoIngestInfo._DESERIALIZER, "geoip");
+		op.add(Builder::grok, NodeInfoIngestInfo._DESERIALIZER, "grok");
+		op.add(Builder::gsub, NodeInfoIngestInfo._DESERIALIZER, "gsub");
+		op.add(Builder::join, NodeInfoIngestInfo._DESERIALIZER, "join");
+		op.add(Builder::lowercase, NodeInfoIngestInfo._DESERIALIZER, "lowercase");
+		op.add(Builder::remove, NodeInfoIngestInfo._DESERIALIZER, "remove");
+		op.add(Builder::rename, NodeInfoIngestInfo._DESERIALIZER, "rename");
+		op.add(Builder::script, NodeInfoIngestInfo._DESERIALIZER, "script");
+		op.add(Builder::set, NodeInfoIngestInfo._DESERIALIZER, "set");
+		op.add(Builder::sort, NodeInfoIngestInfo._DESERIALIZER, "sort");
+		op.add(Builder::split, NodeInfoIngestInfo._DESERIALIZER, "split");
+		op.add(Builder::trim, NodeInfoIngestInfo._DESERIALIZER, "trim");
+		op.add(Builder::uppercase, NodeInfoIngestInfo._DESERIALIZER, "uppercase");
+		op.add(Builder::urldecode, NodeInfoIngestInfo._DESERIALIZER, "urldecode");
+		op.add(Builder::bytes, NodeInfoIngestInfo._DESERIALIZER, "bytes");
+		op.add(Builder::dissect, NodeInfoIngestInfo._DESERIALIZER, "dissect");
+		op.add(Builder::setSecurityUser, NodeInfoIngestInfo._DESERIALIZER, "set_security_user");
+		op.add(Builder::pipeline, NodeInfoIngestInfo._DESERIALIZER, "pipeline");
+		op.add(Builder::drop, NodeInfoIngestInfo._DESERIALIZER, "drop");
+		op.add(Builder::circle, NodeInfoIngestInfo._DESERIALIZER, "circle");
+		op.add(Builder::inference, NodeInfoIngestInfo._DESERIALIZER, "inference");
 
 	}
 

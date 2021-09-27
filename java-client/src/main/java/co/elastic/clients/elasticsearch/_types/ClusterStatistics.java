@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.ClusterStatistics
+@JsonpDeserializable
 public final class ClusterStatistics implements JsonpSerializable {
-	private final Number skipped;
+	private final Integer skipped;
 
-	private final Number successful;
+	private final Integer successful;
 
-	private final Number total;
+	private final Integer total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,21 +58,21 @@ public final class ClusterStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code skipped}
 	 */
-	public Number skipped() {
+	public Integer skipped() {
 		return this.skipped;
 	}
 
 	/**
 	 * API name: {@code successful}
 	 */
-	public Number successful() {
+	public Integer successful() {
 		return this.successful;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Integer total() {
 		return this.total;
 	}
 
@@ -86,13 +88,13 @@ public final class ClusterStatistics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("skipped");
-		generator.write(this.skipped.doubleValue());
+		generator.write(this.skipped);
 
 		generator.writeKey("successful");
-		generator.write(this.successful.doubleValue());
+		generator.write(this.successful);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -102,16 +104,16 @@ public final class ClusterStatistics implements JsonpSerializable {
 	 * Builder for {@link ClusterStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterStatistics> {
-		private Number skipped;
+		private Integer skipped;
 
-		private Number successful;
+		private Integer successful;
 
-		private Number total;
+		private Integer total;
 
 		/**
 		 * API name: {@code skipped}
 		 */
-		public Builder skipped(Number value) {
+		public Builder skipped(Integer value) {
 			this.skipped = value;
 			return this;
 		}
@@ -119,7 +121,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code successful}
 		 */
-		public Builder successful(Number value) {
+		public Builder successful(Integer value) {
 			this.successful = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(Integer value) {
 			this.total = value;
 			return this;
 		}
@@ -149,14 +151,14 @@ public final class ClusterStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterStatistics}
 	 */
-	public static final JsonpDeserializer<ClusterStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterStatistics::setupClusterStatisticsDeserializer);
+	public static final JsonpDeserializer<ClusterStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStatistics::setupClusterStatisticsDeserializer, Builder::build);
 
 	protected static void setupClusterStatisticsDeserializer(DelegatingDeserializer<ClusterStatistics.Builder> op) {
 
-		op.add(Builder::skipped, JsonpDeserializer.numberDeserializer(), "skipped");
-		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::skipped, JsonpDeserializer.integerDeserializer(), "skipped");
+		op.add(Builder::successful, JsonpDeserializer.integerDeserializer(), "successful");
+		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,14 +41,15 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AttachmentProcessor
-public final class AttachmentProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class AttachmentProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
 	private final Boolean ignoreMissing;
 
 	@Nullable
-	private final Number indexedChars;
+	private final Long indexedChars;
 
 	@Nullable
 	private final String indexedCharsField;
@@ -77,6 +79,14 @@ public final class AttachmentProcessor extends ProcessorBase {
 	}
 
 	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "attachment";
+	}
+
+	/**
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -95,7 +105,7 @@ public final class AttachmentProcessor extends ProcessorBase {
 	 * API name: {@code indexed_chars}
 	 */
 	@Nullable
-	public Number indexedChars() {
+	public Long indexedChars() {
 		return this.indexedChars;
 	}
 
@@ -147,7 +157,7 @@ public final class AttachmentProcessor extends ProcessorBase {
 		if (this.indexedChars != null) {
 
 			generator.writeKey("indexed_chars");
-			generator.write(this.indexedChars.doubleValue());
+			generator.write(this.indexedChars);
 
 		}
 		if (this.indexedCharsField != null) {
@@ -196,7 +206,7 @@ public final class AttachmentProcessor extends ProcessorBase {
 		private Boolean ignoreMissing;
 
 		@Nullable
-		private Number indexedChars;
+		private Long indexedChars;
 
 		@Nullable
 		private String indexedCharsField;
@@ -229,7 +239,7 @@ public final class AttachmentProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code indexed_chars}
 		 */
-		public Builder indexedChars(@Nullable Number value) {
+		public Builder indexedChars(@Nullable Long value) {
 			this.indexedChars = value;
 			return this;
 		}
@@ -307,14 +317,14 @@ public final class AttachmentProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link AttachmentProcessor}
 	 */
-	public static final JsonpDeserializer<AttachmentProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AttachmentProcessor::setupAttachmentProcessorDeserializer);
+	public static final JsonpDeserializer<AttachmentProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AttachmentProcessor::setupAttachmentProcessorDeserializer, Builder::build);
 
 	protected static void setupAttachmentProcessorDeserializer(DelegatingDeserializer<AttachmentProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::indexedChars, JsonpDeserializer.numberDeserializer(), "indexed_chars");
+		op.add(Builder::indexedChars, JsonpDeserializer.longDeserializer(), "indexed_chars");
 		op.add(Builder::indexedCharsField, JsonpDeserializer.stringDeserializer(), "indexed_chars_field");
 		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"properties");

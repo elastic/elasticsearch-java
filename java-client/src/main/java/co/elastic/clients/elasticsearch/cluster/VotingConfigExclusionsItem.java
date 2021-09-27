@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.VotingConfigExclusionsItem
+@JsonpDeserializable
 public final class VotingConfigExclusionsItem implements JsonpSerializable {
 	private final String nodeId;
 
@@ -126,8 +128,8 @@ public final class VotingConfigExclusionsItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link VotingConfigExclusionsItem}
 	 */
-	public static final JsonpDeserializer<VotingConfigExclusionsItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, VotingConfigExclusionsItem::setupVotingConfigExclusionsItemDeserializer);
+	public static final JsonpDeserializer<VotingConfigExclusionsItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, VotingConfigExclusionsItem::setupVotingConfigExclusionsItemDeserializer, Builder::build);
 
 	protected static void setupVotingConfigExclusionsItemDeserializer(
 			DelegatingDeserializer<VotingConfigExclusionsItem.Builder> op) {

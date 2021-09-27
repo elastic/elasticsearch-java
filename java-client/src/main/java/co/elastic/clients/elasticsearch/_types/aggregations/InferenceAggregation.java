@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.InferenceAggregation
-public final class InferenceAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class InferenceAggregation extends PipelineAggregationBase implements AggregationVariant {
 	private final String modelId;
 
 	@Nullable
@@ -50,6 +52,14 @@ public final class InferenceAggregation extends PipelineAggregationBase {
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.inferenceConfig = builder.inferenceConfig;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "inference";
 	}
 
 	/**
@@ -141,14 +151,14 @@ public final class InferenceAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link InferenceAggregation}
 	 */
-	public static final JsonpDeserializer<InferenceAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InferenceAggregation::setupInferenceAggregationDeserializer);
+	public static final JsonpDeserializer<InferenceAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceAggregation::setupInferenceAggregationDeserializer, Builder::build);
 
 	protected static void setupInferenceAggregationDeserializer(
 			DelegatingDeserializer<InferenceAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::inferenceConfig, InferenceConfig.DESERIALIZER, "inference_config");
+		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
 
 	}
 

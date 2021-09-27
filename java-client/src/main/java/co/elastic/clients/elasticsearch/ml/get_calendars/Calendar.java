@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.get_calendars;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Calendar
+@JsonpDeserializable
 public final class Calendar implements JsonpSerializable {
 	private final String calendarId;
 
@@ -193,8 +195,8 @@ public final class Calendar implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Calendar}
 	 */
-	public static final JsonpDeserializer<Calendar> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Calendar::setupCalendarDeserializer);
+	public static final JsonpDeserializer<Calendar> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Calendar::setupCalendarDeserializer, Builder::build);
 
 	protected static void setupCalendarDeserializer(DelegatingDeserializer<Calendar.Builder> op) {
 

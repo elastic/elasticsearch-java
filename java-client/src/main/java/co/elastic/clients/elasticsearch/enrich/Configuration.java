@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Configuration
+@JsonpDeserializable
 public final class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Policy geoMatch;
@@ -147,13 +149,13 @@ public final class Configuration implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Configuration}
 	 */
-	public static final JsonpDeserializer<Configuration> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Configuration::setupConfigurationDeserializer);
+	public static final JsonpDeserializer<Configuration> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Configuration::setupConfigurationDeserializer, Builder::build);
 
 	protected static void setupConfigurationDeserializer(DelegatingDeserializer<Configuration.Builder> op) {
 
-		op.add(Builder::geoMatch, Policy.DESERIALIZER, "geo_match");
-		op.add(Builder::match, Policy.DESERIALIZER, "match");
+		op.add(Builder::geoMatch, Policy._DESERIALIZER, "geo_match");
+		op.add(Builder::match, Policy._DESERIALIZER, "match");
 
 	}
 

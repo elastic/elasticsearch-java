@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.validate_query.IndicesValidationExplanation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Response
+@JsonpDeserializable
 public final class ValidateQueryResponse implements JsonpSerializable {
 	@Nullable
 	private final List<IndicesValidationExplanation> explanations;
@@ -246,15 +248,15 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ValidateQueryResponse}
 	 */
-	public static final JsonpDeserializer<ValidateQueryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer);
+	public static final JsonpDeserializer<ValidateQueryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ValidateQueryResponse::setupValidateQueryResponseDeserializer, Builder::build);
 
 	protected static void setupValidateQueryResponseDeserializer(
 			DelegatingDeserializer<ValidateQueryResponse.Builder> op) {
 
-		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation.DESERIALIZER),
+		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(IndicesValidationExplanation._DESERIALIZER),
 				"explanations");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 

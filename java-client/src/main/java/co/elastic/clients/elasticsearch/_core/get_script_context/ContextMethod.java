@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.get_script_context;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.ContextMethod
+@JsonpDeserializable
 public final class ContextMethod implements JsonpSerializable {
 	private final String name;
 
@@ -191,14 +193,14 @@ public final class ContextMethod implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ContextMethod}
 	 */
-	public static final JsonpDeserializer<ContextMethod> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ContextMethod::setupContextMethodDeserializer);
+	public static final JsonpDeserializer<ContextMethod> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ContextMethod::setupContextMethodDeserializer, Builder::build);
 
 	protected static void setupContextMethodDeserializer(DelegatingDeserializer<ContextMethod.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::returnType, JsonpDeserializer.stringDeserializer(), "return_type");
-		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(ContextMethodParam.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(ContextMethodParam._DESERIALIZER), "params");
 
 	}
 

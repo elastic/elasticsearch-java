@@ -25,13 +25,14 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +44,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.Request
+
 public final class TasksRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> actions;
@@ -54,7 +56,7 @@ public final class TasksRequest extends CatRequestBase {
 	private final List<String> nodeId;
 
 	@Nullable
-	private final Number parentTask;
+	private final Long parentTask;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -100,7 +102,7 @@ public final class TasksRequest extends CatRequestBase {
 	 * API name: {@code parent_task}
 	 */
 	@Nullable
-	public Number parentTask() {
+	public Long parentTask() {
 		return this.parentTask;
 	}
 
@@ -120,7 +122,7 @@ public final class TasksRequest extends CatRequestBase {
 		private List<String> nodeId;
 
 		@Nullable
-		private Number parentTask;
+		private Long parentTask;
 
 		/**
 		 * A comma-separated list of actions that should be returned. Leave empty to
@@ -195,7 +197,7 @@ public final class TasksRequest extends CatRequestBase {
 		/**
 		 * API name: {@code parent_task}
 		 */
-		public Builder parentTask(@Nullable Number value) {
+		public Builder parentTask(@Nullable Long value) {
 			this.parentTask = value;
 			return this;
 		}
@@ -243,9 +245,9 @@ public final class TasksRequest extends CatRequestBase {
 					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.parentTask != null) {
-					params.put("parent_task", request.parentTask.toString());
+					params.put("parent_task", String.valueOf(request.parentTask));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, TasksResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, TasksResponse._DESERIALIZER);
 }

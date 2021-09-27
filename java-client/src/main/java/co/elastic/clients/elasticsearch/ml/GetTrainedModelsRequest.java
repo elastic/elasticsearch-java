@@ -26,13 +26,14 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Request
+
 public final class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
 	private final String modelId;
@@ -54,13 +56,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	private final Boolean excludeGenerated;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
 	private final String include;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String tags;
@@ -134,7 +136,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -154,7 +156,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -189,13 +191,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
 		private String include;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String tags;
@@ -253,7 +255,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -273,7 +275,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -354,18 +356,18 @@ public final class GetTrainedModelsRequest extends RequestBase {
 					params.put("exclude_generated", String.valueOf(request.excludeGenerated));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.include != null) {
 					params.put("include", request.include);
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.tags != null) {
 					params.put("tags", request.tags);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsResponse._DESERIALIZER);
 }

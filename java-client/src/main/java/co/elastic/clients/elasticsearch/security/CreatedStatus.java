@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.CreatedStatus
+@JsonpDeserializable
 public final class CreatedStatus implements JsonpSerializable {
 	private final Boolean created;
 
@@ -103,8 +105,8 @@ public final class CreatedStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CreatedStatus}
 	 */
-	public static final JsonpDeserializer<CreatedStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreatedStatus::setupCreatedStatusDeserializer);
+	public static final JsonpDeserializer<CreatedStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreatedStatus::setupCreatedStatusDeserializer, Builder::build);
 
 	protected static void setupCreatedStatusDeserializer(DelegatingDeserializer<CreatedStatus.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TimingStats
+@JsonpDeserializable
 public final class TimingStats implements JsonpSerializable {
-	private final Number elapsedTime;
+	private final Integer elapsedTime;
 
 	@Nullable
-	private final Number iterationTime;
+	private final Integer iterationTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,7 +58,7 @@ public final class TimingStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code elapsed_time}
 	 */
-	public Number elapsedTime() {
+	public Integer elapsedTime() {
 		return this.elapsedTime;
 	}
 
@@ -66,7 +68,7 @@ public final class TimingStats implements JsonpSerializable {
 	 * API name: {@code iteration_time}
 	 */
 	@Nullable
-	public Number iterationTime() {
+	public Integer iterationTime() {
 		return this.iterationTime;
 	}
 
@@ -82,12 +84,12 @@ public final class TimingStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("elapsed_time");
-		generator.write(this.elapsedTime.doubleValue());
+		generator.write(this.elapsedTime);
 
 		if (this.iterationTime != null) {
 
 			generator.writeKey("iteration_time");
-			generator.write(this.iterationTime.doubleValue());
+			generator.write(this.iterationTime);
 
 		}
 
@@ -99,17 +101,17 @@ public final class TimingStats implements JsonpSerializable {
 	 * Builder for {@link TimingStats}.
 	 */
 	public static class Builder implements ObjectBuilder<TimingStats> {
-		private Number elapsedTime;
+		private Integer elapsedTime;
 
 		@Nullable
-		private Number iterationTime;
+		private Integer iterationTime;
 
 		/**
 		 * Runtime of the analysis in milliseconds.
 		 * <p>
 		 * API name: {@code elapsed_time}
 		 */
-		public Builder elapsedTime(Number value) {
+		public Builder elapsedTime(Integer value) {
 			this.elapsedTime = value;
 			return this;
 		}
@@ -119,7 +121,7 @@ public final class TimingStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code iteration_time}
 		 */
-		public Builder iterationTime(@Nullable Number value) {
+		public Builder iterationTime(@Nullable Integer value) {
 			this.iterationTime = value;
 			return this;
 		}
@@ -141,13 +143,13 @@ public final class TimingStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TimingStats}
 	 */
-	public static final JsonpDeserializer<TimingStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TimingStats::setupTimingStatsDeserializer);
+	public static final JsonpDeserializer<TimingStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TimingStats::setupTimingStatsDeserializer, Builder::build);
 
 	protected static void setupTimingStatsDeserializer(DelegatingDeserializer<TimingStats.Builder> op) {
 
-		op.add(Builder::elapsedTime, JsonpDeserializer.numberDeserializer(), "elapsed_time");
-		op.add(Builder::iterationTime, JsonpDeserializer.numberDeserializer(), "iteration_time");
+		op.add(Builder::elapsedTime, JsonpDeserializer.integerDeserializer(), "elapsed_time");
+		op.add(Builder::iterationTime, JsonpDeserializer.integerDeserializer(), "iteration_time");
 
 	}
 

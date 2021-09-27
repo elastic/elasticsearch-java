@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+@JsonpDeserializable
 public class PercentageScoreHeuristic implements JsonpSerializable {
 
 	public static final class Builder implements ObjectBuilder<PercentageScoreHeuristic> {
 		@Override
 		public PercentageScoreHeuristic build() {
-			return PercentageScoreHeuristic.INSTANCE;
+			return PercentageScoreHeuristic._INSTANCE;
 		}
 	}
 
@@ -42,18 +44,16 @@ public class PercentageScoreHeuristic implements JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
 		generator.writeStartObject();
 		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link PercentageScoreHeuristic}.
+	 * Singleton instance for empty class {@link PercentageScoreHeuristic}.
 	 */
-	public static final PercentageScoreHeuristic INSTANCE = new PercentageScoreHeuristic();
+	public static final PercentageScoreHeuristic _INSTANCE = new PercentageScoreHeuristic();
 
-	public static final JsonpDeserializer<PercentageScoreHeuristic> DESERIALIZER = JsonpDeserializer
-			.emptyObject(PercentageScoreHeuristic.INSTANCE);
+	public static final JsonpDeserializer<PercentageScoreHeuristic> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(PercentageScoreHeuristic._INSTANCE);
 
 }

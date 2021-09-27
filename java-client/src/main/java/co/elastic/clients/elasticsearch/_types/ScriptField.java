@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,8 +38,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptField
+@JsonpDeserializable
 public final class ScriptField implements JsonpSerializable {
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
 	private final Boolean ignoreFailure;
@@ -55,7 +57,7 @@ public final class ScriptField implements JsonpSerializable {
 	/**
 	 * API name: {@code script}
 	 */
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -96,7 +98,7 @@ public final class ScriptField implements JsonpSerializable {
 	 * Builder for {@link ScriptField}.
 	 */
 	public static class Builder implements ObjectBuilder<ScriptField> {
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
 		private Boolean ignoreFailure;
@@ -104,7 +106,7 @@ public final class ScriptField implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(JsonValue value) {
+		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -134,8 +136,8 @@ public final class ScriptField implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ScriptField}
 	 */
-	public static final JsonpDeserializer<ScriptField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptField::setupScriptFieldDeserializer);
+	public static final JsonpDeserializer<ScriptField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ScriptField::setupScriptFieldDeserializer, Builder::build);
 
 	protected static void setupScriptFieldDeserializer(DelegatingDeserializer<ScriptField.Builder> op) {
 

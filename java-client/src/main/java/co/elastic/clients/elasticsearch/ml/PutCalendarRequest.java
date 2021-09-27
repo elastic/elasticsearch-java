@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
+@JsonpDeserializable
 public final class PutCalendarRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
@@ -138,8 +140,8 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link PutCalendarRequest}
 	 */
-	public static final JsonpDeserializer<PutCalendarRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer);
+	public static final JsonpDeserializer<PutCalendarRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer, Builder::build);
 
 	protected static void setupPutCalendarRequestDeserializer(DelegatingDeserializer<PutCalendarRequest.Builder> op) {
 
@@ -184,5 +186,5 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutCalendarResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutCalendarResponse._DESERIALIZER);
 }

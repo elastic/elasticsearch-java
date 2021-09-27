@@ -25,13 +25,13 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,9 +39,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptBase
+
 public abstract class ScriptBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue lang;
+	private final ScriptLanguage lang;
 
 	@Nullable
 	private final Map<String, JsonData> params;
@@ -59,7 +60,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 	 * API name: {@code lang}
 	 */
 	@Nullable
-	public JsonValue lang() {
+	public ScriptLanguage lang() {
 		return this.lang;
 	}
 
@@ -85,8 +86,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 		if (this.lang != null) {
 
 			generator.writeKey("lang");
-			generator.write(this.lang);
-
+			this.lang.serialize(generator, mapper);
 		}
 		if (this.params != null) {
 
@@ -105,7 +105,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private JsonValue lang;
+		private ScriptLanguage lang;
 
 		@Nullable
 		private Map<String, JsonData> params;
@@ -113,7 +113,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 		/**
 		 * API name: {@code lang}
 		 */
-		public BuilderT lang(@Nullable JsonValue value) {
+		public BuilderT lang(@Nullable ScriptLanguage value) {
 			this.lang = value;
 			return self();
 		}
@@ -145,8 +145,8 @@ public abstract class ScriptBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::lang, JsonpDeserializer.jsonValueDeserializer(), "lang");
-		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(AbstractBuilder::lang, ScriptLanguage._DESERIALIZER, "lang");
+		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}
 

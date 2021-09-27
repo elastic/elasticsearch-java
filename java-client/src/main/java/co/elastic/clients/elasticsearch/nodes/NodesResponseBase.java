@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodesResponseBase
+
 public abstract class NodesResponseBase implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
@@ -106,7 +108,7 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupNodesResponseBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
+		op.add(AbstractBuilder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 
 	}
 

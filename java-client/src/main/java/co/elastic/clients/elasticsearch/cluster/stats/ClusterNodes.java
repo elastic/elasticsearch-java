@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.elasticsearch._types.PluginStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +45,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNodes
+@JsonpDeserializable
 public final class ClusterNodes implements JsonpSerializable {
 	private final ClusterNodeCount count;
 
-	private final Map<String, Number> discoveryTypes;
+	private final Map<String, Integer> discoveryTypes;
 
 	private final ClusterFileSystem fs;
 
@@ -99,7 +101,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code discovery_types}
 	 */
-	public Map<String, Number> discoveryTypes() {
+	public Map<String, Integer> discoveryTypes() {
 		return this.discoveryTypes;
 	}
 
@@ -201,9 +203,9 @@ public final class ClusterNodes implements JsonpSerializable {
 
 		generator.writeKey("discovery_types");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.discoveryTypes.entrySet()) {
+		for (Map.Entry<String, Integer> item0 : this.discoveryTypes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
@@ -260,7 +262,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ClusterNodes> {
 		private ClusterNodeCount count;
 
-		private Map<String, Number> discoveryTypes;
+		private Map<String, Integer> discoveryTypes;
 
 		private ClusterFileSystem fs;
 
@@ -304,7 +306,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code discovery_types}
 		 */
-		public Builder discoveryTypes(Map<String, Number> value) {
+		public Builder discoveryTypes(Map<String, Integer> value) {
 			this.discoveryTypes = value;
 			return this;
 		}
@@ -312,7 +314,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #discoveryTypes(Map)}, creating the map if needed.
 		 */
-		public Builder putDiscoveryTypes(String key, Number value) {
+		public Builder putDiscoveryTypes(String key, Integer value) {
 			if (this.discoveryTypes == null) {
 				this.discoveryTypes = new HashMap<>();
 			}
@@ -574,23 +576,23 @@ public final class ClusterNodes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterNodes}
 	 */
-	public static final JsonpDeserializer<ClusterNodes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterNodes::setupClusterNodesDeserializer);
+	public static final JsonpDeserializer<ClusterNodes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterNodes::setupClusterNodesDeserializer, Builder::build);
 
 	protected static void setupClusterNodesDeserializer(DelegatingDeserializer<ClusterNodes.Builder> op) {
 
-		op.add(Builder::count, ClusterNodeCount.DESERIALIZER, "count");
-		op.add(Builder::discoveryTypes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
-				"discovery_types");
-		op.add(Builder::fs, ClusterFileSystem.DESERIALIZER, "fs");
-		op.add(Builder::ingest, ClusterIngest.DESERIALIZER, "ingest");
-		op.add(Builder::jvm, ClusterJvm.DESERIALIZER, "jvm");
-		op.add(Builder::networkTypes, ClusterNetworkTypes.DESERIALIZER, "network_types");
-		op.add(Builder::os, ClusterOperatingSystem.DESERIALIZER, "os");
-		op.add(Builder::packagingTypes, JsonpDeserializer.arrayDeserializer(NodePackagingType.DESERIALIZER),
+		op.add(Builder::count, ClusterNodeCount._DESERIALIZER, "count");
+		op.add(Builder::discoveryTypes,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "discovery_types");
+		op.add(Builder::fs, ClusterFileSystem._DESERIALIZER, "fs");
+		op.add(Builder::ingest, ClusterIngest._DESERIALIZER, "ingest");
+		op.add(Builder::jvm, ClusterJvm._DESERIALIZER, "jvm");
+		op.add(Builder::networkTypes, ClusterNetworkTypes._DESERIALIZER, "network_types");
+		op.add(Builder::os, ClusterOperatingSystem._DESERIALIZER, "os");
+		op.add(Builder::packagingTypes, JsonpDeserializer.arrayDeserializer(NodePackagingType._DESERIALIZER),
 				"packaging_types");
-		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
-		op.add(Builder::process, ClusterProcess.DESERIALIZER, "process");
+		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "plugins");
+		op.add(Builder::process, ClusterProcess._DESERIALIZER, "process");
 		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"versions");
 

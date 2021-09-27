@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.create.Response
+@JsonpDeserializable
 public final class CreateResponse extends AcknowledgedResponseBase {
 	private final String index;
 
@@ -128,8 +130,8 @@ public final class CreateResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link CreateResponse}
 	 */
-	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
+	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateResponse::setupCreateResponseDeserializer, Builder::build);
 
 	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

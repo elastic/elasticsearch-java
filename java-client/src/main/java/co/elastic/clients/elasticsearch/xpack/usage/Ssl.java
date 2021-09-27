@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Ssl
+@JsonpDeserializable
 public final class Ssl implements JsonpSerializable {
 	private final FeatureToggle http;
 
@@ -140,13 +142,13 @@ public final class Ssl implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Ssl}
 	 */
-	public static final JsonpDeserializer<Ssl> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Ssl::setupSslDeserializer);
+	public static final JsonpDeserializer<Ssl> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ssl::setupSslDeserializer, Builder::build);
 
 	protected static void setupSslDeserializer(DelegatingDeserializer<Ssl.Builder> op) {
 
-		op.add(Builder::http, FeatureToggle.DESERIALIZER, "http");
-		op.add(Builder::transport, FeatureToggle.DESERIALIZER, "transport");
+		op.add(Builder::http, FeatureToggle._DESERIALIZER, "http");
+		op.add(Builder::transport, FeatureToggle._DESERIALIZER, "transport");
 
 	}
 

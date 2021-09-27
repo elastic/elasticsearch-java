@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SizeField
+@JsonpDeserializable
 public final class SizeField implements JsonpSerializable {
 	private final Boolean enabled;
 
@@ -103,8 +105,8 @@ public final class SizeField implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SizeField}
 	 */
-	public static final JsonpDeserializer<SizeField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SizeField::setupSizeFieldDeserializer);
+	public static final JsonpDeserializer<SizeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SizeField::setupSizeFieldDeserializer, Builder::build);
 
 	protected static void setupSizeFieldDeserializer(DelegatingDeserializer<SizeField.Builder> op) {
 

@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
+import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
@@ -39,10 +41,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoTileGridAggregation
+@JsonpDeserializable
 public final class GeoTileGridAggregation extends BucketAggregationBase
 		implements
-			PivotGroupBy,
-			CompositeAggregationSource {
+			AggregationVariant,
+			PivotGroupByVariant,
+			CompositeAggregationSourceVariant {
 	@Nullable
 	private final String field;
 
@@ -50,10 +54,10 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	private final Number precision;
 
 	@Nullable
-	private final Number shardSize;
+	private final Integer shardSize;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final GeoBounds bounds;
@@ -72,10 +76,11 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	}
 
 	/**
-	 * {@link PivotGroupBy}, {@link CompositeAggregationSource} variant type
+	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
+	 * variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "geotile_grid";
 	}
 
@@ -99,7 +104,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Number shardSize() {
+	public Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -107,7 +112,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -120,7 +125,6 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
@@ -138,13 +142,13 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
-			generator.write(this.shardSize.doubleValue());
+			generator.write(this.shardSize);
 
 		}
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.bounds != null) {
@@ -153,8 +157,6 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 			this.bounds.serialize(generator, mapper);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -173,10 +175,10 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		private Number precision;
 
 		@Nullable
-		private Number shardSize;
+		private Integer shardSize;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private GeoBounds bounds;
@@ -200,7 +202,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Number value) {
+		public Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -208,7 +210,7 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -247,18 +249,20 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<GeoTileGridAggregation.Builder, GeoTileGridAggregation.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer);
+	/**
+	 * Json deserializer for {@link GeoTileGridAggregation}
+	 */
+	public static final JsonpDeserializer<GeoTileGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoTileGridAggregation::setupGeoTileGridAggregationDeserializer, Builder::build);
 
 	protected static void setupGeoTileGridAggregationDeserializer(
 			DelegatingDeserializer<GeoTileGridAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::precision, JsonpDeserializer.numberDeserializer(), "precision");
-		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
-		op.add(Builder::bounds, GeoBounds.DESERIALIZER, "bounds");
+		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
 
 	}
 

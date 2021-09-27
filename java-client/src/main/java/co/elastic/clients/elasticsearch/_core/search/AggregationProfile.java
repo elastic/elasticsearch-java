@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationProfile
+@JsonpDeserializable
 public final class AggregationProfile implements JsonpSerializable {
 	private final AggregationBreakdown breakdown;
 
 	private final String description;
 
-	private final Number timeInNanos;
+	private final Long timeInNanos;
 
 	private final String type;
 
@@ -86,7 +88,7 @@ public final class AggregationProfile implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_nanos}
 	 */
-	public Number timeInNanos() {
+	public Long timeInNanos() {
 		return this.timeInNanos;
 	}
 
@@ -131,7 +133,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		generator.write(this.description);
 
 		generator.writeKey("time_in_nanos");
-		generator.write(this.timeInNanos.doubleValue());
+		generator.write(this.timeInNanos);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -166,7 +168,7 @@ public final class AggregationProfile implements JsonpSerializable {
 
 		private String description;
 
-		private Number timeInNanos;
+		private Long timeInNanos;
 
 		private String type;
 
@@ -202,7 +204,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(Number value) {
+		public Builder timeInNanos(Long value) {
 			this.timeInNanos = value;
 			return this;
 		}
@@ -289,17 +291,17 @@ public final class AggregationProfile implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AggregationProfile}
 	 */
-	public static final JsonpDeserializer<AggregationProfile> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AggregationProfile::setupAggregationProfileDeserializer);
+	public static final JsonpDeserializer<AggregationProfile> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AggregationProfile::setupAggregationProfileDeserializer, Builder::build);
 
 	protected static void setupAggregationProfileDeserializer(DelegatingDeserializer<AggregationProfile.Builder> op) {
 
-		op.add(Builder::breakdown, AggregationBreakdown.DESERIALIZER, "breakdown");
+		op.add(Builder::breakdown, AggregationBreakdown._DESERIALIZER, "breakdown");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
+		op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::debug, AggregationProfileDebug.DESERIALIZER, "debug");
-		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(AggregationProfileDebug.DESERIALIZER),
+		op.add(Builder::debug, AggregationProfileDebug._DESERIALIZER, "debug");
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(AggregationProfileDebug._DESERIALIZER),
 				"children");
 
 	}

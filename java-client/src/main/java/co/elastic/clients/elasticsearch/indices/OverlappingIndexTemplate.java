@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.OverlappingIndexTemplate
+@JsonpDeserializable
 public final class OverlappingIndexTemplate implements JsonpSerializable {
 	private final String name;
 
@@ -160,8 +162,8 @@ public final class OverlappingIndexTemplate implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link OverlappingIndexTemplate}
 	 */
-	public static final JsonpDeserializer<OverlappingIndexTemplate> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OverlappingIndexTemplate::setupOverlappingIndexTemplateDeserializer);
+	public static final JsonpDeserializer<OverlappingIndexTemplate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, OverlappingIndexTemplate::setupOverlappingIndexTemplateDeserializer, Builder::build);
 
 	protected static void setupOverlappingIndexTemplateDeserializer(
 			DelegatingDeserializer<OverlappingIndexTemplate.Builder> op) {

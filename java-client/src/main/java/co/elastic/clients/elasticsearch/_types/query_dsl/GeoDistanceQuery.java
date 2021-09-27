@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.GeoDistanceType;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoDistanceQuery
-public final class GeoDistanceQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String distance;
 
@@ -62,7 +63,7 @@ public final class GeoDistanceQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "geo_distance";
 	}
 
@@ -91,7 +92,6 @@ public final class GeoDistanceQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.distance != null) {
@@ -110,8 +110,6 @@ public final class GeoDistanceQuery extends QueryBase implements Query {
 			generator.writeKey("validation_method");
 			this.validationMethod.serialize(generator, mapper);
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -173,15 +171,17 @@ public final class GeoDistanceQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<GeoDistanceQuery.Builder, GeoDistanceQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(GeoDistanceQuery::setupGeoDistanceQueryDeserializer);
+	/**
+	 * Json deserializer for {@link GeoDistanceQuery}
+	 */
+	public static final JsonpDeserializer<GeoDistanceQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoDistanceQuery::setupGeoDistanceQueryDeserializer, Builder::build);
 
 	protected static void setupGeoDistanceQueryDeserializer(DelegatingDeserializer<GeoDistanceQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::distance, JsonpDeserializer.stringDeserializer(), "distance");
-		op.add(Builder::distanceType, GeoDistanceType.DESERIALIZER, "distance_type");
-		op.add(Builder::validationMethod, GeoValidationMethod.DESERIALIZER, "validation_method");
+		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
+		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.GlobalPrivilege
+@JsonpDeserializable
 public final class GlobalPrivilege implements JsonpSerializable {
 	private final ApplicationGlobalUserPrivileges application;
 
@@ -111,12 +113,12 @@ public final class GlobalPrivilege implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GlobalPrivilege}
 	 */
-	public static final JsonpDeserializer<GlobalPrivilege> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GlobalPrivilege::setupGlobalPrivilegeDeserializer);
+	public static final JsonpDeserializer<GlobalPrivilege> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GlobalPrivilege::setupGlobalPrivilegeDeserializer, Builder::build);
 
 	protected static void setupGlobalPrivilegeDeserializer(DelegatingDeserializer<GlobalPrivilege.Builder> op) {
 
-		op.add(Builder::application, ApplicationGlobalUserPrivileges.DESERIALIZER, "application");
+		op.add(Builder::application, ApplicationGlobalUserPrivileges._DESERIALIZER, "application");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActionWebhook
+@JsonpDeserializable
 public final class ActionWebhook implements JsonpSerializable {
 	private final String host;
 
-	private final Number port;
+	private final Integer port;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class ActionWebhook implements JsonpSerializable {
 	/**
 	 * API name: {@code port}
 	 */
-	public Number port() {
+	public Integer port() {
 		return this.port;
 	}
 
@@ -80,7 +82,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		generator.write(this.host);
 
 		generator.writeKey("port");
-		generator.write(this.port.doubleValue());
+		generator.write(this.port);
 
 	}
 
@@ -92,7 +94,7 @@ public final class ActionWebhook implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ActionWebhook> {
 		private String host;
 
-		private Number port;
+		private Integer port;
 
 		/**
 		 * API name: {@code host}
@@ -105,7 +107,7 @@ public final class ActionWebhook implements JsonpSerializable {
 		/**
 		 * API name: {@code port}
 		 */
-		public Builder port(Number value) {
+		public Builder port(Integer value) {
 			this.port = value;
 			return this;
 		}
@@ -127,13 +129,13 @@ public final class ActionWebhook implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ActionWebhook}
 	 */
-	public static final JsonpDeserializer<ActionWebhook> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ActionWebhook::setupActionWebhookDeserializer);
+	public static final JsonpDeserializer<ActionWebhook> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ActionWebhook::setupActionWebhookDeserializer, Builder::build);
 
 	protected static void setupActionWebhookDeserializer(DelegatingDeserializer<ActionWebhook.Builder> op) {
 
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(Builder::port, JsonpDeserializer.numberDeserializer(), "port");
+		op.add(Builder::port, JsonpDeserializer.integerDeserializer(), "port");
 
 	}
 

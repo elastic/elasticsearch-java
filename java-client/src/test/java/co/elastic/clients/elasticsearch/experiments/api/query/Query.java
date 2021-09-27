@@ -24,9 +24,9 @@ import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.StringEnum;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnion2;
 
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -35,7 +35,7 @@ import java.util.function.Function;
 
 // TODO: add a generic parameter that constrains the variant type? Allows e.g. to restrict sub aggregations
 // to bucket and metric aggregations
-public class Query extends TaggedUnion<Query.Tag, ToJsonp> implements ToJsonp {
+public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements JsonpSerializable {
 
     public enum Tag implements StringEnum {
         bool("bool"),
@@ -87,10 +87,10 @@ public class Query extends TaggedUnion<Query.Tag, ToJsonp> implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
         generator.writeKey(tag.jsonValue);
-        value.toJsonp(generator, mapper);
+        value.serialize(generator, mapper);
         if (meta != null) {
             generator.writeStartObject("meta");
             for (Map.Entry<String, JsonValue> e: meta.entrySet()) {
@@ -103,7 +103,7 @@ public class Query extends TaggedUnion<Query.Tag, ToJsonp> implements ToJsonp {
 
     public static class Builder {
 
-        private ToJsonp $variant;
+        private JsonpSerializable $variant;
         private Tag $tag;
         private Map<String, JsonValue> meta;
 

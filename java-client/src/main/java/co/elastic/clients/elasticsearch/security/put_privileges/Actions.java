@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security.put_privileges;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Actions
+@JsonpDeserializable
 public final class Actions implements JsonpSerializable {
 	private final List<String> actions;
 
@@ -238,8 +240,8 @@ public final class Actions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Actions}
 	 */
-	public static final JsonpDeserializer<Actions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Actions::setupActionsDeserializer);
+	public static final JsonpDeserializer<Actions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Actions::setupActionsDeserializer, Builder::build);
 
 	protected static void setupActionsDeserializer(DelegatingDeserializer<Actions.Builder> op) {
 
@@ -247,7 +249,7 @@ public final class Actions implements JsonpSerializable {
 				"actions");
 		op.add(Builder::application, JsonpDeserializer.stringDeserializer(), "application");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 
 	}
 

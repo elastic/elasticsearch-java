@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+@JsonpDeserializable
 public class FieldMapping implements JsonpSerializable {
 
 	public static final class Builder implements ObjectBuilder<FieldMapping> {
 		@Override
 		public FieldMapping build() {
-			return FieldMapping.INSTANCE;
+			return FieldMapping._INSTANCE;
 		}
 	}
 
@@ -42,18 +44,16 @@ public class FieldMapping implements JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
 		generator.writeStartObject();
 		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link FieldMapping}.
+	 * Singleton instance for empty class {@link FieldMapping}.
 	 */
-	public static final FieldMapping INSTANCE = new FieldMapping();
+	public static final FieldMapping _INSTANCE = new FieldMapping();
 
-	public static final JsonpDeserializer<FieldMapping> DESERIALIZER = JsonpDeserializer
-			.emptyObject(FieldMapping.INSTANCE);
+	public static final JsonpDeserializer<FieldMapping> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(FieldMapping._INSTANCE);
 
 }

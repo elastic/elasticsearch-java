@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.NativeCodeInformation
+@JsonpDeserializable
 public final class NativeCodeInformation implements JsonpSerializable {
 	private final String buildHash;
 
@@ -126,8 +128,8 @@ public final class NativeCodeInformation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NativeCodeInformation}
 	 */
-	public static final JsonpDeserializer<NativeCodeInformation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NativeCodeInformation::setupNativeCodeInformationDeserializer);
+	public static final JsonpDeserializer<NativeCodeInformation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NativeCodeInformation::setupNativeCodeInformationDeserializer, Builder::build);
 
 	protected static void setupNativeCodeInformationDeserializer(
 			DelegatingDeserializer<NativeCodeInformation.Builder> op) {

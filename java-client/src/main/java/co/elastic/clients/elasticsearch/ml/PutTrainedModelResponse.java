@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Response
+@JsonpDeserializable
 public final class PutTrainedModelResponse implements JsonpSerializable {
 	private final TrainedModelConfig value;
 
@@ -108,13 +110,13 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PutTrainedModelResponse}
 	 */
-	public static final JsonpDeserializer<PutTrainedModelResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTrainedModelResponse::setupPutTrainedModelResponseDeserializer);
+	public static final JsonpDeserializer<PutTrainedModelResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTrainedModelResponse::setupPutTrainedModelResponseDeserializer, Builder::build);
 
 	protected static void setupPutTrainedModelResponseDeserializer(
 			DelegatingDeserializer<PutTrainedModelResponse.Builder> op) {
 
-		op.add(Builder::value, TrainedModelConfig.DESERIALIZER, "value");
+		op.add(Builder::value, TrainedModelConfig._DESERIALIZER, "value");
 
 	}
 

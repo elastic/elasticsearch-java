@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,7 +37,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GsubProcessor
-public final class GsubProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -60,6 +62,14 @@ public final class GsubProcessor extends ProcessorBase {
 		this.replacement = Objects.requireNonNull(builder.replacement, "replacement");
 		this.targetField = builder.targetField;
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "gsub";
 	}
 
 	/**
@@ -208,8 +218,8 @@ public final class GsubProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link GsubProcessor}
 	 */
-	public static final JsonpDeserializer<GsubProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GsubProcessor::setupGsubProcessorDeserializer);
+	public static final JsonpDeserializer<GsubProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GsubProcessor::setupGsubProcessorDeserializer, Builder::build);
 
 	protected static void setupGsubProcessorDeserializer(DelegatingDeserializer<GsubProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

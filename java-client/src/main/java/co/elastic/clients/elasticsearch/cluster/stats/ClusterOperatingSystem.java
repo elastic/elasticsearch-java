@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystem
+@JsonpDeserializable
 public final class ClusterOperatingSystem implements JsonpSerializable {
-	private final Number allocatedProcessors;
+	private final Integer allocatedProcessors;
 
-	private final Number availableProcessors;
+	private final Integer availableProcessors;
 
 	private final OperatingSystemMemoryInfo mem;
 
@@ -70,14 +72,14 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code allocated_processors}
 	 */
-	public Number allocatedProcessors() {
+	public Integer allocatedProcessors() {
 		return this.allocatedProcessors;
 	}
 
 	/**
 	 * API name: {@code available_processors}
 	 */
-	public Number availableProcessors() {
+	public Integer availableProcessors() {
 		return this.availableProcessors;
 	}
 
@@ -122,10 +124,10 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allocated_processors");
-		generator.write(this.allocatedProcessors.doubleValue());
+		generator.write(this.allocatedProcessors);
 
 		generator.writeKey("available_processors");
-		generator.write(this.availableProcessors.doubleValue());
+		generator.write(this.availableProcessors);
 
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
@@ -166,9 +168,9 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 	 * Builder for {@link ClusterOperatingSystem}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterOperatingSystem> {
-		private Number allocatedProcessors;
+		private Integer allocatedProcessors;
 
-		private Number availableProcessors;
+		private Integer availableProcessors;
 
 		private OperatingSystemMemoryInfo mem;
 
@@ -182,7 +184,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code allocated_processors}
 		 */
-		public Builder allocatedProcessors(Number value) {
+		public Builder allocatedProcessors(Integer value) {
 			this.allocatedProcessors = value;
 			return this;
 		}
@@ -190,7 +192,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code available_processors}
 		 */
-		public Builder availableProcessors(Number value) {
+		public Builder availableProcessors(Integer value) {
 			this.availableProcessors = value;
 			return this;
 		}
@@ -356,20 +358,20 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterOperatingSystem}
 	 */
-	public static final JsonpDeserializer<ClusterOperatingSystem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemDeserializer);
+	public static final JsonpDeserializer<ClusterOperatingSystem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterOperatingSystem::setupClusterOperatingSystemDeserializer, Builder::build);
 
 	protected static void setupClusterOperatingSystemDeserializer(
 			DelegatingDeserializer<ClusterOperatingSystem.Builder> op) {
 
-		op.add(Builder::allocatedProcessors, JsonpDeserializer.numberDeserializer(), "allocated_processors");
-		op.add(Builder::availableProcessors, JsonpDeserializer.numberDeserializer(), "available_processors");
-		op.add(Builder::mem, OperatingSystemMemoryInfo.DESERIALIZER, "mem");
-		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemName.DESERIALIZER), "names");
-		op.add(Builder::prettyNames, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemPrettyName.DESERIALIZER),
-				"pretty_names");
+		op.add(Builder::allocatedProcessors, JsonpDeserializer.integerDeserializer(), "allocated_processors");
+		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");
+		op.add(Builder::mem, OperatingSystemMemoryInfo._DESERIALIZER, "mem");
+		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemName._DESERIALIZER), "names");
+		op.add(Builder::prettyNames,
+				JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemPrettyName._DESERIALIZER), "pretty_names");
 		op.add(Builder::architectures,
-				JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemArchitecture.DESERIALIZER), "architectures");
+				JsonpDeserializer.arrayDeserializer(ClusterOperatingSystemArchitecture._DESERIALIZER), "architectures");
 
 	}
 

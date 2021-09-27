@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Datafeeds
+@JsonpDeserializable
 public final class Datafeeds implements JsonpSerializable {
-	private final Number scrollSize;
+	private final Integer scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class Datafeeds implements JsonpSerializable {
 	/**
 	 * API name: {@code scroll_size}
 	 */
-	public Number scrollSize() {
+	public Integer scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -66,7 +68,7 @@ public final class Datafeeds implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("scroll_size");
-		generator.write(this.scrollSize.doubleValue());
+		generator.write(this.scrollSize);
 
 	}
 
@@ -76,12 +78,12 @@ public final class Datafeeds implements JsonpSerializable {
 	 * Builder for {@link Datafeeds}.
 	 */
 	public static class Builder implements ObjectBuilder<Datafeeds> {
-		private Number scrollSize;
+		private Integer scrollSize;
 
 		/**
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(Number value) {
+		public Builder scrollSize(Integer value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -103,12 +105,12 @@ public final class Datafeeds implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Datafeeds}
 	 */
-	public static final JsonpDeserializer<Datafeeds> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Datafeeds::setupDatafeedsDeserializer);
+	public static final JsonpDeserializer<Datafeeds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Datafeeds::setupDatafeedsDeserializer, Builder::build);
 
 	protected static void setupDatafeedsDeserializer(DelegatingDeserializer<Datafeeds.Builder> op) {
 
-		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
+		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
 
 	}
 

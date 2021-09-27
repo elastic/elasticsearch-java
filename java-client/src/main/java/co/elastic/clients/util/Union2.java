@@ -19,9 +19,8 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
-
+import co.elastic.clients.json.JsonpMapper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -37,7 +36,7 @@ import jakarta.json.stream.JsonParsingException;
  * @param <B> type of the second variant
  */
 
-// Design note: we cannot require A and B, and by extension Union2, to implement ToJsonp as they can be builtin types
+// Design note: we cannot require A and B, and by extension Union2, to implement JsonpSerializable as they can be builtin types
 // like String or Integer
 
 public class Union2<A, B> {
@@ -110,7 +109,7 @@ public class Union2<A, B> {
   //-----------------------------------------------------------------------------------------------
   // Serialization / deserialization
 
-  public void toJsonp(
+  public void serialize(
     JsonGenerator builder, JsonpMapper params,
     TriConsumer<A, JsonGenerator, JsonpMapper> a,
     TriConsumer<B, JsonGenerator, JsonpMapper> b

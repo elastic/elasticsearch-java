@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.elasticsearch._core.search.HitsMetadata;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,19 +36,20 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_template.Response
+
 public final class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	private final Boolean timedOut;
 
-	private final Number took;
+	private final Integer took;
 
 	private final HitsMetadata<TDocument> hits;
 
@@ -83,7 +85,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Integer took() {
 		return this.took;
 	}
 
@@ -112,7 +114,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		generator.write(this.timedOut);
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
@@ -129,7 +131,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 
 		private Boolean timedOut;
 
-		private Number took;
+		private Integer took;
 
 		private HitsMetadata<TDocument> hits;
 
@@ -162,7 +164,7 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder<TDocument> took(Number value) {
+		public Builder<TDocument> took(Integer value) {
 			this.took = value;
 			return this;
 		}
@@ -219,9 +221,9 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 			DelegatingDeserializer<SearchTemplateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::took, JsonpDeserializer.integerDeserializer(), "took");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
 
 	}

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.ml_trained_models.TrainedModelsRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Response
+@JsonpDeserializable
 public final class MlTrainedModelsResponse implements JsonpSerializable {
 	private final List<TrainedModelsRecord> value;
 
@@ -143,13 +145,13 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlTrainedModelsResponse}
 	 */
-	public static final JsonpDeserializer<MlTrainedModelsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlTrainedModelsResponse::setupMlTrainedModelsResponseDeserializer);
+	public static final JsonpDeserializer<MlTrainedModelsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlTrainedModelsResponse::setupMlTrainedModelsResponseDeserializer, Builder::build);
 
 	protected static void setupMlTrainedModelsResponseDeserializer(
 			DelegatingDeserializer<MlTrainedModelsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TrainedModelsRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TrainedModelsRecord._DESERIALIZER), "value");
 
 	}
 

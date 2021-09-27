@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: security.disable_user.Response
+
 public final class DisableUserResponse {
 	public DisableUserResponse() {
 	}
@@ -38,9 +40,9 @@ public final class DisableUserResponse {
 	/**
 	 * Singleton instance for {@link DisableUserResponse}.
 	 */
-	public static final DisableUserResponse INSTANCE = new DisableUserResponse();
+	public static final DisableUserResponse _INSTANCE = new DisableUserResponse();
 
-	public static final JsonpDeserializer<DisableUserResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(DisableUserResponse.INSTANCE);
+	public static final JsonpDeserializer<DisableUserResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(DisableUserResponse._INSTANCE);
 
 }

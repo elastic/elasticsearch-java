@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,18 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.DocumentRating
+@JsonpDeserializable
 public final class DocumentRating implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
 
-	private final Number rating;
+	private final Integer rating;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +80,7 @@ public final class DocumentRating implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code rating}
 	 */
-	public Number rating() {
+	public Integer rating() {
 		return this.rating;
 	}
 
@@ -100,7 +102,7 @@ public final class DocumentRating implements JsonpSerializable {
 		generator.write(this.index);
 
 		generator.writeKey("rating");
-		generator.write(this.rating.doubleValue());
+		generator.write(this.rating);
 
 	}
 
@@ -114,7 +116,7 @@ public final class DocumentRating implements JsonpSerializable {
 
 		private String index;
 
-		private Number rating;
+		private Integer rating;
 
 		/**
 		 * The document ID.
@@ -142,7 +144,7 @@ public final class DocumentRating implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code rating}
 		 */
-		public Builder rating(Number value) {
+		public Builder rating(Integer value) {
 			this.rating = value;
 			return this;
 		}
@@ -164,14 +166,14 @@ public final class DocumentRating implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DocumentRating}
 	 */
-	public static final JsonpDeserializer<DocumentRating> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DocumentRating::setupDocumentRatingDeserializer);
+	public static final JsonpDeserializer<DocumentRating> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DocumentRating::setupDocumentRatingDeserializer, Builder::build);
 
 	protected static void setupDocumentRatingDeserializer(DelegatingDeserializer<DocumentRating.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::rating, JsonpDeserializer.numberDeserializer(), "rating");
+		op.add(Builder::rating, JsonpDeserializer.integerDeserializer(), "rating");
 
 	}
 

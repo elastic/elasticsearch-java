@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.elasticsearch._types.ShardFailure;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Response
+@JsonpDeserializable
 public final class ExploreResponse implements JsonpSerializable {
 	private final List<Connection> connections;
 
@@ -49,7 +51,7 @@ public final class ExploreResponse implements JsonpSerializable {
 
 	private final Boolean timedOut;
 
-	private final Number took;
+	private final Long took;
 
 	private final List<Vertex> vertices;
 
@@ -89,7 +91,7 @@ public final class ExploreResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -131,7 +133,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		generator.write(this.timedOut);
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 		generator.writeKey("vertices");
 		generator.writeStartArray();
@@ -155,7 +157,7 @@ public final class ExploreResponse implements JsonpSerializable {
 
 		private Boolean timedOut;
 
-		private Number took;
+		private Long took;
 
 		private List<Vertex> vertices;
 
@@ -252,7 +254,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(Number value) {
+		public Builder took(Long value) {
 			this.took = value;
 			return this;
 		}
@@ -315,16 +317,16 @@ public final class ExploreResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExploreResponse}
 	 */
-	public static final JsonpDeserializer<ExploreResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExploreResponse::setupExploreResponseDeserializer);
+	public static final JsonpDeserializer<ExploreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExploreResponse::setupExploreResponseDeserializer, Builder::build);
 
 	protected static void setupExploreResponseDeserializer(DelegatingDeserializer<ExploreResponse.Builder> op) {
 
-		op.add(Builder::connections, JsonpDeserializer.arrayDeserializer(Connection.DESERIALIZER), "connections");
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure.DESERIALIZER), "failures");
+		op.add(Builder::connections, JsonpDeserializer.arrayDeserializer(Connection._DESERIALIZER), "connections");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
-		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(Vertex.DESERIALIZER), "vertices");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
+		op.add(Builder::vertices, JsonpDeserializer.arrayDeserializer(Vertex._DESERIALIZER), "vertices");
 
 	}
 

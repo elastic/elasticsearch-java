@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ClusterNode
+@JsonpDeserializable
 public final class ClusterNode implements JsonpSerializable {
 	private final String name;
 
@@ -103,8 +105,8 @@ public final class ClusterNode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterNode}
 	 */
-	public static final JsonpDeserializer<ClusterNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterNode::setupClusterNodeDeserializer);
+	public static final JsonpDeserializer<ClusterNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterNode::setupClusterNodeDeserializer, Builder::build);
 
 	protected static void setupClusterNodeDeserializer(DelegatingDeserializer<ClusterNode.Builder> op) {
 

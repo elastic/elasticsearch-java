@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.AliasDefinition
+@JsonpDeserializable
 public final class AliasDefinition implements JsonpSerializable {
 	@Nullable
 	private final Query filter;
@@ -236,12 +238,12 @@ public final class AliasDefinition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AliasDefinition}
 	 */
-	public static final JsonpDeserializer<AliasDefinition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AliasDefinition::setupAliasDefinitionDeserializer);
+	public static final JsonpDeserializer<AliasDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AliasDefinition::setupAliasDefinitionDeserializer, Builder::build);
 
 	protected static void setupAliasDefinitionDeserializer(DelegatingDeserializer<AliasDefinition.Builder> op) {
 
-		op.add(Builder::filter, Query.DESERIALIZER, "filter");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");

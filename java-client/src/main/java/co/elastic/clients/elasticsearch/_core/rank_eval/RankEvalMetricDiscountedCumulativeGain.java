@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDiscountedCumulativeGain
+@JsonpDeserializable
 public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 	@Nullable
 	private final Boolean normalize;
@@ -113,9 +115,10 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 	/**
 	 * Json deserializer for {@link RankEvalMetricDiscountedCumulativeGain}
 	 */
-	public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer);
+	public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer,
+					Builder::build);
 
 	protected static void setupRankEvalMetricDiscountedCumulativeGainDeserializer(
 			DelegatingDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {

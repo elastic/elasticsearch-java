@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemArchitecture
+@JsonpDeserializable
 public final class ClusterOperatingSystemArchitecture implements JsonpSerializable {
-	private final Number count;
+	private final Integer count;
 
 	private final String arch;
 
@@ -54,7 +56,7 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -77,7 +79,7 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("arch");
 		generator.write(this.arch);
@@ -90,14 +92,14 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 	 * Builder for {@link ClusterOperatingSystemArchitecture}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterOperatingSystemArchitecture> {
-		private Number count;
+		private Integer count;
 
 		private String arch;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -127,14 +129,14 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link ClusterOperatingSystemArchitecture}
 	 */
-	public static final JsonpDeserializer<ClusterOperatingSystemArchitecture> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterOperatingSystemArchitecture::setupClusterOperatingSystemArchitectureDeserializer);
+	public static final JsonpDeserializer<ClusterOperatingSystemArchitecture> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterOperatingSystemArchitecture::setupClusterOperatingSystemArchitectureDeserializer,
+					Builder::build);
 
 	protected static void setupClusterOperatingSystemArchitectureDeserializer(
 			DelegatingDeserializer<ClusterOperatingSystemArchitecture.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
 
 	}

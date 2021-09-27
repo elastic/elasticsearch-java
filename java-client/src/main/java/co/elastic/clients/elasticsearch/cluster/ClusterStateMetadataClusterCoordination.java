@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +42,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateMetadataClusterCoordination
+@JsonpDeserializable
 public final class ClusterStateMetadataClusterCoordination implements JsonpSerializable {
-	private final Number term;
+	private final Integer term;
 
 	private final List<String> lastCommittedConfig;
 
@@ -65,7 +67,7 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 	/**
 	 * API name: {@code term}
 	 */
-	public Number term() {
+	public Integer term() {
 		return this.term;
 	}
 
@@ -102,7 +104,7 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("term");
-		generator.write(this.term.doubleValue());
+		generator.write(this.term);
 
 		generator.writeKey("last_committed_config");
 		generator.writeStartArray();
@@ -136,7 +138,7 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 	 * Builder for {@link ClusterStateMetadataClusterCoordination}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterStateMetadataClusterCoordination> {
-		private Number term;
+		private Integer term;
 
 		private List<String> lastCommittedConfig;
 
@@ -147,7 +149,7 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 		/**
 		 * API name: {@code term}
 		 */
-		public Builder term(Number value) {
+		public Builder term(Integer value) {
 			this.term = value;
 			return this;
 		}
@@ -270,20 +272,21 @@ public final class ClusterStateMetadataClusterCoordination implements JsonpSeria
 	/**
 	 * Json deserializer for {@link ClusterStateMetadataClusterCoordination}
 	 */
-	public static final JsonpDeserializer<ClusterStateMetadataClusterCoordination> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterStateMetadataClusterCoordination::setupClusterStateMetadataClusterCoordinationDeserializer);
+	public static final JsonpDeserializer<ClusterStateMetadataClusterCoordination> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					ClusterStateMetadataClusterCoordination::setupClusterStateMetadataClusterCoordinationDeserializer,
+					Builder::build);
 
 	protected static void setupClusterStateMetadataClusterCoordinationDeserializer(
 			DelegatingDeserializer<ClusterStateMetadataClusterCoordination.Builder> op) {
 
-		op.add(Builder::term, JsonpDeserializer.numberDeserializer(), "term");
+		op.add(Builder::term, JsonpDeserializer.integerDeserializer(), "term");
 		op.add(Builder::lastCommittedConfig,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "last_committed_config");
 		op.add(Builder::lastAcceptedConfig, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"last_accepted_config");
 		op.add(Builder::votingConfigExclusions,
-				JsonpDeserializer.arrayDeserializer(VotingConfigExclusionsItem.DESERIALIZER),
+				JsonpDeserializer.arrayDeserializer(VotingConfigExclusionsItem._DESERIALIZER),
 				"voting_config_exclusions");
 
 	}

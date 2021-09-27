@@ -19,12 +19,11 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -33,14 +32,15 @@ import jakarta.json.stream.JsonParser;
 import java.util.EnumSet;
 import java.util.Objects;
 
-public class SpanGapQuery implements SpanQuery {
+@JsonpDeserializable
+public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 
 	private final String field;
 
 	private final int spanWidth;
 
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "span_gap";
 	}
 
@@ -59,7 +59,7 @@ public class SpanGapQuery implements SpanQuery {
 
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
+		generator.writeStartObject();
 		generator.write(this.field, this.spanWidth);
 		generator.writeEnd();
 	}
@@ -92,18 +92,19 @@ public class SpanGapQuery implements SpanQuery {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<SpanGapQuery.Builder, SpanGapQuery.Builder> $BUILDER_DESERIALIZER = InstanceDeserializer
-			.of((value, parser, mapper, event) -> {
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
-				String name = parser.getString();
+	/**
+	 * Json deserializer for {@link SpanFirstQuery}
+	 */
+	public static final JsonpDeserializer<SpanGapQuery> _DESERIALIZER = ObjectDeserializer
+			.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper, event) -> {
 
-				JsonpUtils.expectKeyName(parser, JsonParser.Event.VALUE_NUMBER);
+				String name = JsonpUtils.expectKeyName(parser, parser.next());
+
+				JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);
 				int spanWidth = parser.getInt();
 
 				JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
 
-				return value.field(name).spanWidth(spanWidth);
+				return new Builder().field(name).spanWidth(spanWidth).build();
 			});
-
 }

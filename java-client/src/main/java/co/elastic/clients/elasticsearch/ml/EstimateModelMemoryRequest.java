@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,15 +44,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Request
+@JsonpDeserializable
 public final class EstimateModelMemoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AnalysisConfig analysisConfig;
 
 	@Nullable
-	private final Map<String, Number> maxBucketCardinality;
+	private final Map<String, Long> maxBucketCardinality;
 
 	@Nullable
-	private final Map<String, Number> overallCardinality;
+	private final Map<String, Long> overallCardinality;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +77,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	 * API name: {@code max_bucket_cardinality}
 	 */
 	@Nullable
-	public Map<String, Number> maxBucketCardinality() {
+	public Map<String, Long> maxBucketCardinality() {
 		return this.maxBucketCardinality;
 	}
 
@@ -83,7 +85,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	 * API name: {@code overall_cardinality}
 	 */
 	@Nullable
-	public Map<String, Number> overallCardinality() {
+	public Map<String, Long> overallCardinality() {
 		return this.overallCardinality;
 	}
 
@@ -108,9 +110,9 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 
 			generator.writeKey("max_bucket_cardinality");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.maxBucketCardinality.entrySet()) {
+			for (Map.Entry<String, Long> item0 : this.maxBucketCardinality.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -120,9 +122,9 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 
 			generator.writeKey("overall_cardinality");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.overallCardinality.entrySet()) {
+			for (Map.Entry<String, Long> item0 : this.overallCardinality.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -141,10 +143,10 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		private AnalysisConfig analysisConfig;
 
 		@Nullable
-		private Map<String, Number> maxBucketCardinality;
+		private Map<String, Long> maxBucketCardinality;
 
 		@Nullable
-		private Map<String, Number> overallCardinality;
+		private Map<String, Long> overallCardinality;
 
 		/**
 		 * API name: {@code analysis_config}
@@ -164,7 +166,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		/**
 		 * API name: {@code max_bucket_cardinality}
 		 */
-		public Builder maxBucketCardinality(@Nullable Map<String, Number> value) {
+		public Builder maxBucketCardinality(@Nullable Map<String, Long> value) {
 			this.maxBucketCardinality = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		 * Add a key/value to {@link #maxBucketCardinality(Map)}, creating the map if
 		 * needed.
 		 */
-		public Builder putMaxBucketCardinality(String key, Number value) {
+		public Builder putMaxBucketCardinality(String key, Long value) {
 			if (this.maxBucketCardinality == null) {
 				this.maxBucketCardinality = new HashMap<>();
 			}
@@ -184,7 +186,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		/**
 		 * API name: {@code overall_cardinality}
 		 */
-		public Builder overallCardinality(@Nullable Map<String, Number> value) {
+		public Builder overallCardinality(@Nullable Map<String, Long> value) {
 			this.overallCardinality = value;
 			return this;
 		}
@@ -193,7 +195,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		 * Add a key/value to {@link #overallCardinality(Map)}, creating the map if
 		 * needed.
 		 */
-		public Builder putOverallCardinality(String key, Number value) {
+		public Builder putOverallCardinality(String key, Long value) {
 			if (this.overallCardinality == null) {
 				this.overallCardinality = new HashMap<>();
 			}
@@ -218,18 +220,18 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	/**
 	 * Json deserializer for {@link EstimateModelMemoryRequest}
 	 */
-	public static final JsonpDeserializer<EstimateModelMemoryRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer);
+	public static final JsonpDeserializer<EstimateModelMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer, Builder::build);
 
 	protected static void setupEstimateModelMemoryRequestDeserializer(
 			DelegatingDeserializer<EstimateModelMemoryRequest.Builder> op) {
 
-		op.add(Builder::analysisConfig, AnalysisConfig.DESERIALIZER, "analysis_config");
+		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::maxBucketCardinality,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
 				"max_bucket_cardinality");
 		op.add(Builder::overallCardinality,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()), "overall_cardinality");
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()), "overall_cardinality");
 
 	}
 
@@ -255,5 +257,5 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, EstimateModelMemoryResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, EstimateModelMemoryResponse._DESERIALIZER);
 }

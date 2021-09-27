@@ -26,15 +26,15 @@ package co.elastic.clients.elasticsearch.nodes.info;
 import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch._types.PluginStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfo
+@JsonpDeserializable
 public final class NodeInfo implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
@@ -89,10 +90,10 @@ public final class NodeInfo implements JsonpSerializable {
 	private final Map<String, NodeThreadPoolInfo> threadPool;
 
 	@Nullable
-	private final Number totalIndexingBuffer;
+	private final Long totalIndexingBuffer;
 
 	@Nullable
-	private final JsonValue totalIndexingBufferInBytes;
+	private final String totalIndexingBufferInBytes;
 
 	@Nullable
 	private final NodeInfoTransport transport;
@@ -277,7 +278,7 @@ public final class NodeInfo implements JsonpSerializable {
 	 * API name: {@code total_indexing_buffer}
 	 */
 	@Nullable
-	public Number totalIndexingBuffer() {
+	public Long totalIndexingBuffer() {
 		return this.totalIndexingBuffer;
 	}
 
@@ -287,7 +288,7 @@ public final class NodeInfo implements JsonpSerializable {
 	 * API name: {@code total_indexing_buffer_in_bytes}
 	 */
 	@Nullable
-	public JsonValue totalIndexingBufferInBytes() {
+	public String totalIndexingBufferInBytes() {
 		return this.totalIndexingBufferInBytes;
 	}
 
@@ -451,7 +452,7 @@ public final class NodeInfo implements JsonpSerializable {
 		if (this.totalIndexingBuffer != null) {
 
 			generator.writeKey("total_indexing_buffer");
-			generator.write(this.totalIndexingBuffer.doubleValue());
+			generator.write(this.totalIndexingBuffer);
 
 		}
 		if (this.totalIndexingBufferInBytes != null) {
@@ -552,10 +553,10 @@ public final class NodeInfo implements JsonpSerializable {
 		private Map<String, NodeThreadPoolInfo> threadPool;
 
 		@Nullable
-		private Number totalIndexingBuffer;
+		private Long totalIndexingBuffer;
 
 		@Nullable
-		private JsonValue totalIndexingBufferInBytes;
+		private String totalIndexingBufferInBytes;
 
 		@Nullable
 		private NodeInfoTransport transport;
@@ -848,7 +849,7 @@ public final class NodeInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_indexing_buffer}
 		 */
-		public Builder totalIndexingBuffer(@Nullable Number value) {
+		public Builder totalIndexingBuffer(@Nullable Long value) {
 			this.totalIndexingBuffer = value;
 			return this;
 		}
@@ -858,7 +859,7 @@ public final class NodeInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_indexing_buffer_in_bytes}
 		 */
-		public Builder totalIndexingBufferInBytes(@Nullable JsonValue value) {
+		public Builder totalIndexingBufferInBytes(@Nullable String value) {
 			this.totalIndexingBufferInBytes = value;
 			return this;
 		}
@@ -1007,8 +1008,8 @@ public final class NodeInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfo}
 	 */
-	public static final JsonpDeserializer<NodeInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfo::setupNodeInfoDeserializer);
+	public static final JsonpDeserializer<NodeInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfo::setupNodeInfoDeserializer, Builder::build);
 
 	protected static void setupNodeInfoDeserializer(DelegatingDeserializer<NodeInfo.Builder> op) {
 
@@ -1018,27 +1019,27 @@ public final class NodeInfo implements JsonpSerializable {
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(Builder::http, NodeInfoHttp.DESERIALIZER, "http");
+		op.add(Builder::http, NodeInfoHttp._DESERIALIZER, "http");
 		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
-		op.add(Builder::jvm, NodeJvmInfo.DESERIALIZER, "jvm");
+		op.add(Builder::jvm, NodeJvmInfo._DESERIALIZER, "jvm");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::network, NodeInfoNetwork.DESERIALIZER, "network");
-		op.add(Builder::os, NodeOperatingSystemInfo.DESERIALIZER, "os");
-		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "plugins");
-		op.add(Builder::process, NodeProcessInfo.DESERIALIZER, "process");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
-		op.add(Builder::settings, NodeInfoSettings.DESERIALIZER, "settings");
-		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo.DESERIALIZER),
+		op.add(Builder::network, NodeInfoNetwork._DESERIALIZER, "network");
+		op.add(Builder::os, NodeOperatingSystemInfo._DESERIALIZER, "os");
+		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "plugins");
+		op.add(Builder::process, NodeProcessInfo._DESERIALIZER, "process");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
+		op.add(Builder::settings, NodeInfoSettings._DESERIALIZER, "settings");
+		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(NodeThreadPoolInfo._DESERIALIZER),
 				"thread_pool");
-		op.add(Builder::totalIndexingBuffer, JsonpDeserializer.numberDeserializer(), "total_indexing_buffer");
-		op.add(Builder::totalIndexingBufferInBytes, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::totalIndexingBuffer, JsonpDeserializer.longDeserializer(), "total_indexing_buffer");
+		op.add(Builder::totalIndexingBufferInBytes, JsonpDeserializer.stringDeserializer(),
 				"total_indexing_buffer_in_bytes");
-		op.add(Builder::transport, NodeInfoTransport.DESERIALIZER, "transport");
+		op.add(Builder::transport, NodeInfoTransport._DESERIALIZER, "transport");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::modules, JsonpDeserializer.arrayDeserializer(PluginStats.DESERIALIZER), "modules");
-		op.add(Builder::ingest, NodeInfoIngest.DESERIALIZER, "ingest");
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(NodeInfoAggregation.DESERIALIZER),
+		op.add(Builder::modules, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "modules");
+		op.add(Builder::ingest, NodeInfoIngest._DESERIALIZER, "ingest");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(NodeInfoAggregation._DESERIALIZER),
 				"aggregations");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.FollowIndexStats
+@JsonpDeserializable
 public final class FollowIndexStats implements JsonpSerializable {
 	private final String index;
 
@@ -168,13 +170,13 @@ public final class FollowIndexStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FollowIndexStats}
 	 */
-	public static final JsonpDeserializer<FollowIndexStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FollowIndexStats::setupFollowIndexStatsDeserializer);
+	public static final JsonpDeserializer<FollowIndexStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FollowIndexStats::setupFollowIndexStatsDeserializer, Builder::build);
 
 	protected static void setupFollowIndexStatsDeserializer(DelegatingDeserializer<FollowIndexStats.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardStats.DESERIALIZER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardStats._DESERIALIZER), "shards");
 
 	}
 

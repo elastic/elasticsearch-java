@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.ml_data_frame_analytics;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.DataFrameAnalyticsRecord
+@JsonpDeserializable
 public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -74,16 +76,16 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	private final String assignmentExplanation;
 
 	@Nullable
-	private final String node_id;
+	private final String nodeId;
 
 	@Nullable
-	private final String node_name;
+	private final String nodeName;
 
 	@Nullable
-	private final String node_ephemeralId;
+	private final String nodeEphemeralId;
 
 	@Nullable
-	private final String node_address;
+	private final String nodeAddress;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -101,10 +103,10 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		this.failureReason = builder.failureReason;
 		this.progress = builder.progress;
 		this.assignmentExplanation = builder.assignmentExplanation;
-		this.node_id = builder.node_id;
-		this.node_name = builder.node_name;
-		this.node_ephemeralId = builder.node_ephemeralId;
-		this.node_address = builder.node_address;
+		this.nodeId = builder.nodeId;
+		this.nodeName = builder.nodeName;
+		this.nodeEphemeralId = builder.nodeEphemeralId;
+		this.nodeAddress = builder.nodeAddress;
 
 	}
 
@@ -234,8 +236,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.id}
 	 */
 	@Nullable
-	public String node_id() {
-		return this.node_id;
+	public String nodeId() {
+		return this.nodeId;
 	}
 
 	/**
@@ -244,8 +246,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.name}
 	 */
 	@Nullable
-	public String node_name() {
-		return this.node_name;
+	public String nodeName() {
+		return this.nodeName;
 	}
 
 	/**
@@ -254,8 +256,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
-	public String node_ephemeralId() {
-		return this.node_ephemeralId;
+	public String nodeEphemeralId() {
+		return this.nodeEphemeralId;
 	}
 
 	/**
@@ -264,8 +266,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.address}
 	 */
 	@Nullable
-	public String node_address() {
-		return this.node_address;
+	public String nodeAddress() {
+		return this.nodeAddress;
 	}
 
 	/**
@@ -351,28 +353,28 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 			generator.write(this.assignmentExplanation);
 
 		}
-		if (this.node_id != null) {
+		if (this.nodeId != null) {
 
 			generator.writeKey("node.id");
-			generator.write(this.node_id);
+			generator.write(this.nodeId);
 
 		}
-		if (this.node_name != null) {
+		if (this.nodeName != null) {
 
 			generator.writeKey("node.name");
-			generator.write(this.node_name);
+			generator.write(this.nodeName);
 
 		}
-		if (this.node_ephemeralId != null) {
+		if (this.nodeEphemeralId != null) {
 
 			generator.writeKey("node.ephemeral_id");
-			generator.write(this.node_ephemeralId);
+			generator.write(this.nodeEphemeralId);
 
 		}
-		if (this.node_address != null) {
+		if (this.nodeAddress != null) {
 
 			generator.writeKey("node.address");
-			generator.write(this.node_address);
+			generator.write(this.nodeAddress);
 
 		}
 
@@ -421,16 +423,16 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		private String assignmentExplanation;
 
 		@Nullable
-		private String node_id;
+		private String nodeId;
 
 		@Nullable
-		private String node_name;
+		private String nodeName;
 
 		@Nullable
-		private String node_ephemeralId;
+		private String nodeEphemeralId;
 
 		@Nullable
-		private String node_address;
+		private String nodeAddress;
 
 		/**
 		 * the id
@@ -557,8 +559,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.id}
 		 */
-		public Builder node_id(@Nullable String value) {
-			this.node_id = value;
+		public Builder nodeId(@Nullable String value) {
+			this.nodeId = value;
 			return this;
 		}
 
@@ -567,8 +569,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.name}
 		 */
-		public Builder node_name(@Nullable String value) {
-			this.node_name = value;
+		public Builder nodeName(@Nullable String value) {
+			this.nodeName = value;
 			return this;
 		}
 
@@ -577,8 +579,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
-		public Builder node_ephemeralId(@Nullable String value) {
-			this.node_ephemeralId = value;
+		public Builder nodeEphemeralId(@Nullable String value) {
+			this.nodeEphemeralId = value;
 			return this;
 		}
 
@@ -587,8 +589,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.address}
 		 */
-		public Builder node_address(@Nullable String value) {
-			this.node_address = value;
+		public Builder nodeAddress(@Nullable String value) {
+			this.nodeAddress = value;
 			return this;
 		}
 
@@ -609,8 +611,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataFrameAnalyticsRecord}
 	 */
-	public static final JsonpDeserializer<DataFrameAnalyticsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer);
+	public static final JsonpDeserializer<DataFrameAnalyticsRecord> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer, Builder::build);
 
 	protected static void setupDataFrameAnalyticsRecordDeserializer(
 			DelegatingDeserializer<DataFrameAnalyticsRecord.Builder> op) {
@@ -629,11 +631,11 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		op.add(Builder::progress, JsonpDeserializer.stringDeserializer(), "progress", "p");
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation", "ae",
 				"assignmentExplanation");
-		op.add(Builder::node_id, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
-		op.add(Builder::node_name, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
-		op.add(Builder::node_ephemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node.id", "ni", "nodeId");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node.name", "nn", "nodeName");
+		op.add(Builder::nodeEphemeralId, JsonpDeserializer.stringDeserializer(), "node.ephemeral_id", "ne",
 				"nodeEphemeralId");
-		op.add(Builder::node_address, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
+		op.add(Builder::nodeAddress, JsonpDeserializer.stringDeserializer(), "node.address", "na", "nodeAddress");
 
 	}
 

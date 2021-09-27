@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,21 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.RecoveryStats
+@JsonpDeserializable
 public final class RecoveryStats implements JsonpSerializable {
-	private final Number currentAsSource;
+	private final Long currentAsSource;
 
-	private final Number currentAsTarget;
+	private final Long currentAsTarget;
 
 	@Nullable
 	private final String throttleTime;
 
-	private final Number throttleTimeInMillis;
+	private final Long throttleTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,14 +63,14 @@ public final class RecoveryStats implements JsonpSerializable {
 	/**
 	 * API name: {@code current_as_source}
 	 */
-	public Number currentAsSource() {
+	public Long currentAsSource() {
 		return this.currentAsSource;
 	}
 
 	/**
 	 * API name: {@code current_as_target}
 	 */
-	public Number currentAsTarget() {
+	public Long currentAsTarget() {
 		return this.currentAsTarget;
 	}
 
@@ -83,7 +85,7 @@ public final class RecoveryStats implements JsonpSerializable {
 	/**
 	 * API name: {@code throttle_time_in_millis}
 	 */
-	public Number throttleTimeInMillis() {
+	public Long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
 	}
 
@@ -99,10 +101,10 @@ public final class RecoveryStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current_as_source");
-		generator.write(this.currentAsSource.doubleValue());
+		generator.write(this.currentAsSource);
 
 		generator.writeKey("current_as_target");
-		generator.write(this.currentAsTarget.doubleValue());
+		generator.write(this.currentAsTarget);
 
 		if (this.throttleTime != null) {
 
@@ -112,7 +114,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("throttle_time_in_millis");
-		generator.write(this.throttleTimeInMillis.doubleValue());
+		generator.write(this.throttleTimeInMillis);
 
 	}
 
@@ -122,19 +124,19 @@ public final class RecoveryStats implements JsonpSerializable {
 	 * Builder for {@link RecoveryStats}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryStats> {
-		private Number currentAsSource;
+		private Long currentAsSource;
 
-		private Number currentAsTarget;
+		private Long currentAsTarget;
 
 		@Nullable
 		private String throttleTime;
 
-		private Number throttleTimeInMillis;
+		private Long throttleTimeInMillis;
 
 		/**
 		 * API name: {@code current_as_source}
 		 */
-		public Builder currentAsSource(Number value) {
+		public Builder currentAsSource(Long value) {
 			this.currentAsSource = value;
 			return this;
 		}
@@ -142,7 +144,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code current_as_target}
 		 */
-		public Builder currentAsTarget(Number value) {
+		public Builder currentAsTarget(Long value) {
 			this.currentAsTarget = value;
 			return this;
 		}
@@ -158,7 +160,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time_in_millis}
 		 */
-		public Builder throttleTimeInMillis(Number value) {
+		public Builder throttleTimeInMillis(Long value) {
 			this.throttleTimeInMillis = value;
 			return this;
 		}
@@ -180,15 +182,15 @@ public final class RecoveryStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryStats}
 	 */
-	public static final JsonpDeserializer<RecoveryStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryStats::setupRecoveryStatsDeserializer);
+	public static final JsonpDeserializer<RecoveryStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryStats::setupRecoveryStatsDeserializer, Builder::build);
 
 	protected static void setupRecoveryStatsDeserializer(DelegatingDeserializer<RecoveryStats.Builder> op) {
 
-		op.add(Builder::currentAsSource, JsonpDeserializer.numberDeserializer(), "current_as_source");
-		op.add(Builder::currentAsTarget, JsonpDeserializer.numberDeserializer(), "current_as_target");
+		op.add(Builder::currentAsSource, JsonpDeserializer.longDeserializer(), "current_as_source");
+		op.add(Builder::currentAsTarget, JsonpDeserializer.longDeserializer(), "current_as_target");
 		op.add(Builder::throttleTime, JsonpDeserializer.stringDeserializer(), "throttle_time");
-		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.numberDeserializer(), "throttle_time_in_millis");
+		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.longDeserializer(), "throttle_time_in_millis");
 
 	}
 

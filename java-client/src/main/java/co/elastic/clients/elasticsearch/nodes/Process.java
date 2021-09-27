@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,20 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Process
+@JsonpDeserializable
 public final class Process implements JsonpSerializable {
 	private final Cpu cpu;
 
 	private final MemoryStats mem;
 
-	private final Number openFileDescriptors;
+	private final Integer openFileDescriptors;
 
-	private final Number timestamp;
+	private final Long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,14 +77,14 @@ public final class Process implements JsonpSerializable {
 	/**
 	 * API name: {@code open_file_descriptors}
 	 */
-	public Number openFileDescriptors() {
+	public Integer openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -103,10 +106,10 @@ public final class Process implements JsonpSerializable {
 		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("open_file_descriptors");
-		generator.write(this.openFileDescriptors.doubleValue());
+		generator.write(this.openFileDescriptors);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -120,9 +123,9 @@ public final class Process implements JsonpSerializable {
 
 		private MemoryStats mem;
 
-		private Number openFileDescriptors;
+		private Integer openFileDescriptors;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		/**
 		 * API name: {@code cpu}
@@ -157,7 +160,7 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(Number value) {
+		public Builder openFileDescriptors(Integer value) {
 			this.openFileDescriptors = value;
 			return this;
 		}
@@ -165,7 +168,7 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -187,15 +190,15 @@ public final class Process implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Process}
 	 */
-	public static final JsonpDeserializer<Process> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Process::setupProcessDeserializer);
+	public static final JsonpDeserializer<Process> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Process::setupProcessDeserializer, Builder::build);
 
 	protected static void setupProcessDeserializer(DelegatingDeserializer<Process.Builder> op) {
 
-		op.add(Builder::cpu, Cpu.DESERIALIZER, "cpu");
-		op.add(Builder::mem, MemoryStats.DESERIALIZER, "mem");
-		op.add(Builder::openFileDescriptors, JsonpDeserializer.numberDeserializer(), "open_file_descriptors");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
+		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");
+		op.add(Builder::openFileDescriptors, JsonpDeserializer.integerDeserializer(), "open_file_descriptors");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsHuber
+@JsonpDeserializable
 public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializable {
 	@Nullable
-	private final Number delta;
+	private final Double delta;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,7 +58,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 	 * API name: {@code delta}
 	 */
 	@Nullable
-	public Number delta() {
+	public Double delta() {
 		return this.delta;
 	}
 
@@ -74,7 +76,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 		if (this.delta != null) {
 
 			generator.writeKey("delta");
-			generator.write(this.delta.doubleValue());
+			generator.write(this.delta);
 
 		}
 
@@ -87,7 +89,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 	 */
 	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetricsHuber> {
 		@Nullable
-		private Number delta;
+		private Double delta;
 
 		/**
 		 * Approximates 1/2 (prediction - actual)2 for values much less than delta and
@@ -96,7 +98,7 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 		 * <p>
 		 * API name: {@code delta}
 		 */
-		public Builder delta(@Nullable Number value) {
+		public Builder delta(@Nullable Double value) {
 			this.delta = value;
 			return this;
 		}
@@ -118,14 +120,15 @@ public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSer
 	/**
 	 * Json deserializer for {@link DataframeEvaluationRegressionMetricsHuber}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsHuber> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetricsHuber::setupDataframeEvaluationRegressionMetricsHuberDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsHuber> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationRegressionMetricsHuber::setupDataframeEvaluationRegressionMetricsHuberDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionMetricsHuberDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegressionMetricsHuber.Builder> op) {
 
-		op.add(Builder::delta, JsonpDeserializer.numberDeserializer(), "delta");
+		op.add(Builder::delta, JsonpDeserializer.doubleDeserializer(), "delta");
 
 	}
 

@@ -27,19 +27,21 @@ import co.elastic.clients.elasticsearch.cluster.stats.ClusterIndices;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterNodes;
 import co.elastic.clients.elasticsearch.nodes.NodesResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Response
+@JsonpDeserializable
 public final class StatsResponse extends NodesResponseBase {
 	private final String clusterName;
 
@@ -51,7 +53,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 	private final ClusterStatus status;
 
-	private final Number timestamp;
+	private final Long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -119,7 +121,7 @@ public final class StatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -143,7 +145,7 @@ public final class StatsResponse extends NodesResponseBase {
 		this.status.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -165,7 +167,7 @@ public final class StatsResponse extends NodesResponseBase {
 
 		private ClusterStatus status;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		/**
 		 * Name of the cluster, based on the Cluster name setting setting.
@@ -242,7 +244,7 @@ public final class StatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -269,17 +271,17 @@ public final class StatsResponse extends NodesResponseBase {
 	/**
 	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
-		op.add(Builder::indices, ClusterIndices.DESERIALIZER, "indices");
-		op.add(Builder::nodes, ClusterNodes.DESERIALIZER, "nodes");
-		op.add(Builder::status, ClusterStatus.DESERIALIZER, "status");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::indices, ClusterIndices._DESERIALIZER, "indices");
+		op.add(Builder::nodes, ClusterNodes._DESERIALIZER, "nodes");
+		op.add(Builder::status, ClusterStatus._DESERIALIZER, "status");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

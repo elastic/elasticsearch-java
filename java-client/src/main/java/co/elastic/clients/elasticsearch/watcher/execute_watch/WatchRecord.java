@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch.watcher.Input;
 import co.elastic.clients.elasticsearch.watcher.TriggerEventResult;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -48,6 +49,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.WatchRecord
+@JsonpDeserializable
 public final class WatchRecord implements JsonpSerializable {
 	private final Condition condition;
 
@@ -391,20 +393,20 @@ public final class WatchRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WatchRecord}
 	 */
-	public static final JsonpDeserializer<WatchRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatchRecord::setupWatchRecordDeserializer);
+	public static final JsonpDeserializer<WatchRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatchRecord::setupWatchRecordDeserializer, Builder::build);
 
 	protected static void setupWatchRecordDeserializer(DelegatingDeserializer<WatchRecord.Builder> op) {
 
-		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
-		op.add(Builder::input, Input.DESERIALIZER, "input");
+		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
+		op.add(Builder::input, Input._DESERIALIZER, "input");
 		op.add(Builder::messages, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"messages");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::result, ExecutionResult.DESERIALIZER, "result");
-		op.add(Builder::state, ExecutionStatus.DESERIALIZER, "state");
-		op.add(Builder::triggerEvent, TriggerEventResult.DESERIALIZER, "trigger_event");
+		op.add(Builder::result, ExecutionResult._DESERIALIZER, "result");
+		op.add(Builder::state, ExecutionStatus._DESERIALIZER, "state");
+		op.add(Builder::triggerEvent, TriggerEventResult._DESERIALIZER, "trigger_event");
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
 		op.add(Builder::watchId, JsonpDeserializer.stringDeserializer(), "watch_id");
 

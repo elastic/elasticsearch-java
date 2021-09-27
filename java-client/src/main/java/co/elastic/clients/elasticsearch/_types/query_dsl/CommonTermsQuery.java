@@ -24,28 +24,28 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CommonTermsQuery
-public final class CommonTermsQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
 	private final String analyzer;
 
 	@Nullable
-	private final Number cutoffFrequency;
+	private final Double cutoffFrequency;
 
 	@Nullable
 	private final Operator highFreqOperator;
@@ -54,7 +54,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 	private final Operator lowFreqOperator;
 
 	@Nullable
-	private final JsonValue minimumShouldMatch;
+	private final String minimumShouldMatch;
 
 	private final String query;
 
@@ -77,7 +77,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "common";
 	}
 
@@ -102,7 +102,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 	 * API name: {@code cutoff_frequency}
 	 */
 	@Nullable
-	public Number cutoffFrequency() {
+	public Double cutoffFrequency() {
 		return this.cutoffFrequency;
 	}
 
@@ -126,7 +126,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public JsonValue minimumShouldMatch() {
+	public String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -138,8 +138,6 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
@@ -152,7 +150,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 		if (this.cutoffFrequency != null) {
 
 			generator.writeKey("cutoff_frequency");
-			generator.write(this.cutoffFrequency.doubleValue());
+			generator.write(this.cutoffFrequency);
 
 		}
 		if (this.highFreqOperator != null) {
@@ -176,9 +174,6 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 		generator.write(this.query);
 
 		generator.writeEnd();
-
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -203,7 +198,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 		private String analyzer;
 
 		@Nullable
-		private Number cutoffFrequency;
+		private Double cutoffFrequency;
 
 		@Nullable
 		private Operator highFreqOperator;
@@ -212,7 +207,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 		private Operator lowFreqOperator;
 
 		@Nullable
-		private JsonValue minimumShouldMatch;
+		private String minimumShouldMatch;
 
 		private String query;
 
@@ -227,7 +222,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code cutoff_frequency}
 		 */
-		public Builder cutoffFrequency(@Nullable Number value) {
+		public Builder cutoffFrequency(@Nullable Double value) {
 			this.cutoffFrequency = value;
 			return this;
 		}
@@ -251,7 +246,7 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+		public Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -283,17 +278,19 @@ public final class CommonTermsQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<CommonTermsQuery.Builder, CommonTermsQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(CommonTermsQuery::setupCommonTermsQueryDeserializer);
+	/**
+	 * Json deserializer for {@link CommonTermsQuery}
+	 */
+	public static final JsonpDeserializer<CommonTermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CommonTermsQuery::setupCommonTermsQueryDeserializer, Builder::build);
 
 	protected static void setupCommonTermsQueryDeserializer(DelegatingDeserializer<CommonTermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
-		op.add(Builder::cutoffFrequency, JsonpDeserializer.numberDeserializer(), "cutoff_frequency");
-		op.add(Builder::highFreqOperator, Operator.DESERIALIZER, "high_freq_operator");
-		op.add(Builder::lowFreqOperator, Operator.DESERIALIZER, "low_freq_operator");
-		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
+		op.add(Builder::cutoffFrequency, JsonpDeserializer.doubleDeserializer(), "cutoff_frequency");
+		op.add(Builder::highFreqOperator, Operator._DESERIALIZER, "high_freq_operator");
+		op.add(Builder::lowFreqOperator, Operator._DESERIALIZER, "low_freq_operator");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
 		op.setKey(Builder::field);

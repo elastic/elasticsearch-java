@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.split.Response
+@JsonpDeserializable
 public final class SplitResponse extends AcknowledgedResponseBase {
 	private final Boolean shardsAcknowledged;
 
@@ -128,8 +130,8 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link SplitResponse}
 	 */
-	public static final JsonpDeserializer<SplitResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SplitResponse::setupSplitResponseDeserializer);
+	public static final JsonpDeserializer<SplitResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SplitResponse::setupSplitResponseDeserializer, Builder::build);
 
 	protected static void setupSplitResponseDeserializer(DelegatingDeserializer<SplitResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

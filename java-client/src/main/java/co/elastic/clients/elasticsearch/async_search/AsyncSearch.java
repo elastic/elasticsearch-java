@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,7 +41,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -51,9 +53,10 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearch
+
 public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	@Nullable
-	private final Map<String, JsonValue> aggregations;
+	private final Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations;
 
 	@Nullable
 	private final ClusterStatistics clusters;
@@ -64,10 +67,10 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	private final HitsMetadata<TDocument> hits;
 
 	@Nullable
-	private final Number maxScore;
+	private final Double maxScore;
 
 	@Nullable
-	private final Number numReducePhases;
+	private final Long numReducePhases;
 
 	@Nullable
 	private final Profile profile;
@@ -88,7 +91,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	private final Boolean timedOut;
 
-	private final Number took;
+	private final Long took;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -119,7 +122,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	 * API name: {@code aggregations}
 	 */
 	@Nullable
-	public Map<String, JsonValue> aggregations() {
+	public Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations() {
 		return this.aggregations;
 	}
 
@@ -150,7 +153,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	 * API name: {@code max_score}
 	 */
 	@Nullable
-	public Number maxScore() {
+	public Double maxScore() {
 		return this.maxScore;
 	}
 
@@ -158,7 +161,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	 * API name: {@code num_reduce_phases}
 	 */
 	@Nullable
-	public Number numReducePhases() {
+	public Long numReducePhases() {
 		return this.numReducePhases;
 	}
 
@@ -219,7 +222,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code took}
 	 */
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -238,7 +241,8 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.aggregations.entrySet()) {
+			for (Map.Entry<String, JsonValue /* _types.aggregations.Aggregate */> item0 : this.aggregations
+					.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.write(item0.getValue());
 
@@ -271,13 +275,13 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		if (this.maxScore != null) {
 
 			generator.writeKey("max_score");
-			generator.write(this.maxScore.doubleValue());
+			generator.write(this.maxScore);
 
 		}
 		if (this.numReducePhases != null) {
 
 			generator.writeKey("num_reduce_phases");
-			generator.write(this.numReducePhases.doubleValue());
+			generator.write(this.numReducePhases);
 
 		}
 		if (this.profile != null) {
@@ -330,7 +334,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		generator.write(this.timedOut);
 
 		generator.writeKey("took");
-		generator.write(this.took.doubleValue());
+		generator.write(this.took);
 
 	}
 
@@ -341,7 +345,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<AsyncSearch<TDocument>> {
 		@Nullable
-		private Map<String, JsonValue> aggregations;
+		private Map<String, JsonValue /* _types.aggregations.Aggregate */> aggregations;
 
 		@Nullable
 		private ClusterStatistics clusters;
@@ -352,10 +356,10 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		private HitsMetadata<TDocument> hits;
 
 		@Nullable
-		private Number maxScore;
+		private Double maxScore;
 
 		@Nullable
-		private Number numReducePhases;
+		private Long numReducePhases;
 
 		@Nullable
 		private Profile profile;
@@ -376,7 +380,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		private Boolean timedOut;
 
-		private Number took;
+		private Long took;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -384,7 +388,8 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder<TDocument> aggregations(@Nullable Map<String, JsonValue> value) {
+		public Builder<TDocument> aggregations(
+				@Nullable Map<String, JsonValue /* _types.aggregations.Aggregate */> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -392,7 +397,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder<TDocument> putAggregations(String key, JsonValue value) {
+		public Builder<TDocument> putAggregations(String key, JsonValue /* _types.aggregations.Aggregate */ value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -453,7 +458,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code max_score}
 		 */
-		public Builder<TDocument> maxScore(@Nullable Number value) {
+		public Builder<TDocument> maxScore(@Nullable Double value) {
 			this.maxScore = value;
 			return this;
 		}
@@ -461,7 +466,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code num_reduce_phases}
 		 */
-		public Builder<TDocument> numReducePhases(@Nullable Number value) {
+		public Builder<TDocument> numReducePhases(@Nullable Long value) {
 			this.numReducePhases = value;
 			return this;
 		}
@@ -550,7 +555,7 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder<TDocument> took(Number value) {
+		public Builder<TDocument> took(Long value) {
 			this.took = value;
 			return this;
 		}
@@ -593,21 +598,21 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		op.add(Builder::aggregations,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "aggregations");
-		op.add(Builder::clusters, ClusterStatistics.DESERIALIZER, "_clusters");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "fields");
+		op.add(Builder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(tDocumentDeserializer), "hits");
-		op.add(Builder::maxScore, JsonpDeserializer.numberDeserializer(), "max_score");
-		op.add(Builder::numReducePhases, JsonpDeserializer.numberDeserializer(), "num_reduce_phases");
-		op.add(Builder::profile, Profile.DESERIALIZER, "profile");
+		op.add(Builder::maxScore, JsonpDeserializer.doubleDeserializer(), "max_score");
+		op.add(Builder::numReducePhases, JsonpDeserializer.longDeserializer(), "num_reduce_phases");
+		op.add(Builder::profile, Profile._DESERIALIZER, "profile");
 		op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
 		op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(Suggestion.createSuggestionDeserializer(tDocumentDeserializer))),
 				"suggest");
 		op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 
 	}
 

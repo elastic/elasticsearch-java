@@ -43,6 +43,6 @@ public class Client {
   protected <RequestT, ResponseT, ErrorT> ResponseT performRequest(
       RequestT request, Endpoint<RequestT, ResponseT, ErrorT> endpoint
   ) throws IOException {
-    return transport.performRequest(request, endpoint, null);
+    return transport.performRequest(request, endpoint);
   }
 }

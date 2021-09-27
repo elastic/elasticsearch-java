@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.Pipeline
+@JsonpDeserializable
 public final class Pipeline implements JsonpSerializable {
 	@Nullable
 	private final String description;
@@ -52,7 +54,7 @@ public final class Pipeline implements JsonpSerializable {
 	private final List<Processor> processors;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +95,7 @@ public final class Pipeline implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -139,7 +141,7 @@ public final class Pipeline implements JsonpSerializable {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -161,7 +163,7 @@ public final class Pipeline implements JsonpSerializable {
 		private List<Processor> processors;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code description}
@@ -256,7 +258,7 @@ public final class Pipeline implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -278,15 +280,15 @@ public final class Pipeline implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Pipeline}
 	 */
-	public static final JsonpDeserializer<Pipeline> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Pipeline::setupPipelineDeserializer);
+	public static final JsonpDeserializer<Pipeline> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Pipeline::setupPipelineDeserializer, Builder::build);
 
 	protected static void setupPipelineDeserializer(DelegatingDeserializer<Pipeline.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "on_failure");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor.DESERIALIZER), "processors");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

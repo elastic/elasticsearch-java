@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataTiers
+@JsonpDeserializable
 public final class DataTiers extends Base {
 	private final DataTierPhaseStatistics dataWarm;
 
@@ -237,16 +239,16 @@ public final class DataTiers extends Base {
 	/**
 	 * Json deserializer for {@link DataTiers}
 	 */
-	public static final JsonpDeserializer<DataTiers> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataTiers::setupDataTiersDeserializer);
+	public static final JsonpDeserializer<DataTiers> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataTiers::setupDataTiersDeserializer, Builder::build);
 
 	protected static void setupDataTiersDeserializer(DelegatingDeserializer<DataTiers.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::dataWarm, DataTierPhaseStatistics.DESERIALIZER, "data_warm");
-		op.add(Builder::dataFrozen, DataTierPhaseStatistics.DESERIALIZER, "data_frozen");
-		op.add(Builder::dataCold, DataTierPhaseStatistics.DESERIALIZER, "data_cold");
-		op.add(Builder::dataContent, DataTierPhaseStatistics.DESERIALIZER, "data_content");
-		op.add(Builder::dataHot, DataTierPhaseStatistics.DESERIALIZER, "data_hot");
+		op.add(Builder::dataWarm, DataTierPhaseStatistics._DESERIALIZER, "data_warm");
+		op.add(Builder::dataFrozen, DataTierPhaseStatistics._DESERIALIZER, "data_frozen");
+		op.add(Builder::dataCold, DataTierPhaseStatistics._DESERIALIZER, "data_cold");
+		op.add(Builder::dataContent, DataTierPhaseStatistics._DESERIALIZER, "data_content");
+		op.add(Builder::dataHot, DataTierPhaseStatistics._DESERIALIZER, "data_hot");
 
 	}
 

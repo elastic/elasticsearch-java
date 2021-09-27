@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security.has_privileges;
 
 import co.elastic.clients.elasticsearch.security.IndexPrivilege;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.IndexPrivilegesCheck
+@JsonpDeserializable
 public final class IndexPrivilegesCheck implements JsonpSerializable {
 	private final List<String> names;
 
@@ -177,14 +179,14 @@ public final class IndexPrivilegesCheck implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexPrivilegesCheck}
 	 */
-	public static final JsonpDeserializer<IndexPrivilegesCheck> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexPrivilegesCheck::setupIndexPrivilegesCheckDeserializer);
+	public static final JsonpDeserializer<IndexPrivilegesCheck> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexPrivilegesCheck::setupIndexPrivilegesCheckDeserializer, Builder::build);
 
 	protected static void setupIndexPrivilegesCheckDeserializer(
 			DelegatingDeserializer<IndexPrivilegesCheck.Builder> op) {
 
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
-		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege.DESERIALIZER), "privileges");
+		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
 
 	}
 

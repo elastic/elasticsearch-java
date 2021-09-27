@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -35,13 +36,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_data_frame_analytics.Request
+@JsonpDeserializable
 public final class UpdateDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -52,7 +54,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
 	private final Boolean allowLazyStart;
@@ -115,7 +117,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -156,7 +158,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.allowLazyStart != null) {
@@ -183,7 +185,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
 		private Boolean allowLazyStart;
@@ -234,7 +236,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -267,16 +269,16 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	/**
 	 * Json deserializer for {@link UpdateDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<UpdateDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					UpdateDataFrameAnalyticsRequest::setupUpdateDataFrameAnalyticsRequestDeserializer);
+	public static final JsonpDeserializer<UpdateDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateDataFrameAnalyticsRequest::setupUpdateDataFrameAnalyticsRequestDeserializer,
+					Builder::build);
 
 	protected static void setupUpdateDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<UpdateDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 
 	}
@@ -320,5 +322,5 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateDataFrameAnalyticsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, UpdateDataFrameAnalyticsResponse._DESERIALIZER);
 }

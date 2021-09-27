@@ -26,11 +26,11 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,12 +40,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ingest.get_pipeline.Request
+
 public final class GetPipelineRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean summary;
@@ -76,7 +77,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -100,7 +101,7 @@ public final class GetPipelineRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean summary;
@@ -120,7 +121,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -190,12 +191,12 @@ public final class GetPipelineRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.summary != null) {
 					params.put("summary", String.valueOf(request.summary));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetPipelineResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
 }

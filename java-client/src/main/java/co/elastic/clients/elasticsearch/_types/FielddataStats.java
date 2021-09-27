@@ -24,15 +24,16 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,14 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FielddataStats
+@JsonpDeserializable
 public final class FielddataStats implements JsonpSerializable {
 	@Nullable
-	private final Number evictions;
+	private final Long evictions;
 
 	@Nullable
-	private final JsonValue memorySize;
+	private final String memorySize;
 
-	private final Number memorySizeInBytes;
+	private final Long memorySizeInBytes;
 
 	@Nullable
 	private final Map<String, FieldMemoryUsage> fields;
@@ -68,7 +70,7 @@ public final class FielddataStats implements JsonpSerializable {
 	 * API name: {@code evictions}
 	 */
 	@Nullable
-	public Number evictions() {
+	public Long evictions() {
 		return this.evictions;
 	}
 
@@ -76,14 +78,14 @@ public final class FielddataStats implements JsonpSerializable {
 	 * API name: {@code memory_size}
 	 */
 	@Nullable
-	public JsonValue memorySize() {
+	public String memorySize() {
 		return this.memorySize;
 	}
 
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Number memorySizeInBytes() {
+	public Long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
@@ -109,7 +111,7 @@ public final class FielddataStats implements JsonpSerializable {
 		if (this.evictions != null) {
 
 			generator.writeKey("evictions");
-			generator.write(this.evictions.doubleValue());
+			generator.write(this.evictions);
 
 		}
 		if (this.memorySize != null) {
@@ -120,7 +122,7 @@ public final class FielddataStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("memory_size_in_bytes");
-		generator.write(this.memorySizeInBytes.doubleValue());
+		generator.write(this.memorySizeInBytes);
 
 		if (this.fields != null) {
 
@@ -144,12 +146,12 @@ public final class FielddataStats implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<FielddataStats> {
 		@Nullable
-		private Number evictions;
+		private Long evictions;
 
 		@Nullable
-		private JsonValue memorySize;
+		private String memorySize;
 
-		private Number memorySizeInBytes;
+		private Long memorySizeInBytes;
 
 		@Nullable
 		private Map<String, FieldMemoryUsage> fields;
@@ -157,7 +159,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code evictions}
 		 */
-		public Builder evictions(@Nullable Number value) {
+		public Builder evictions(@Nullable Long value) {
 			this.evictions = value;
 			return this;
 		}
@@ -165,7 +167,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size}
 		 */
-		public Builder memorySize(@Nullable JsonValue value) {
+		public Builder memorySize(@Nullable String value) {
 			this.memorySize = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class FielddataStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Number value) {
+		public Builder memorySizeInBytes(Long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -228,15 +230,15 @@ public final class FielddataStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FielddataStats}
 	 */
-	public static final JsonpDeserializer<FielddataStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FielddataStats::setupFielddataStatsDeserializer);
+	public static final JsonpDeserializer<FielddataStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FielddataStats::setupFielddataStatsDeserializer, Builder::build);
 
 	protected static void setupFielddataStatsDeserializer(DelegatingDeserializer<FielddataStats.Builder> op) {
 
-		op.add(Builder::evictions, JsonpDeserializer.numberDeserializer(), "evictions");
-		op.add(Builder::memorySize, JsonpDeserializer.jsonValueDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldMemoryUsage.DESERIALIZER), "fields");
+		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
+		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldMemoryUsage._DESERIALIZER), "fields");
 
 	}
 

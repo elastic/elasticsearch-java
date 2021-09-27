@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.ManageUserPrivileges
+@JsonpDeserializable
 public final class ManageUserPrivileges implements JsonpSerializable {
 	private final List<String> applications;
 
@@ -130,8 +132,8 @@ public final class ManageUserPrivileges implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ManageUserPrivileges}
 	 */
-	public static final JsonpDeserializer<ManageUserPrivileges> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ManageUserPrivileges::setupManageUserPrivilegesDeserializer);
+	public static final JsonpDeserializer<ManageUserPrivileges> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ManageUserPrivileges::setupManageUserPrivilegesDeserializer, Builder::build);
 
 	protected static void setupManageUserPrivilegesDeserializer(
 			DelegatingDeserializer<ManageUserPrivileges.Builder> op) {

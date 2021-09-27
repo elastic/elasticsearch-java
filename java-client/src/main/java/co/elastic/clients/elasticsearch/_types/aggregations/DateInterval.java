@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum DateInterval implements StringEnum {
 	Second("second"), Minute("minute"), Hour("hour"), Day("day"), Week("week"), Month("month"), Quarter(
 			"quarter"), Year("year");
@@ -40,6 +42,6 @@ public enum DateInterval implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DateInterval> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<DateInterval> _DESERIALIZER = new StringEnum.Deserializer<>(
 			DateInterval.values());
 }

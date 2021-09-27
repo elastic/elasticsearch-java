@@ -24,16 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +45,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Response
+@JsonpDeserializable
 public final class UpdateJobResponse implements JsonpSerializable {
 	private final Boolean allowLazyOpen;
 
@@ -53,17 +54,17 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	private final AnalysisLimits analysisLimits;
 
 	@Nullable
-	private final JsonValue backgroundPersistInterval;
+	private final String backgroundPersistInterval;
 
-	private final JsonValue createTime;
+	private final String createTime;
 
 	@Nullable
-	private final JsonValue finishedTime;
+	private final String finishedTime;
 
 	@Nullable
 	private final Map<String, String> customSettings;
 
-	private final Number dailyModelSnapshotRetentionAfterDays;
+	private final Long dailyModelSnapshotRetentionAfterDays;
 
 	private final DataDescription dataDescription;
 
@@ -88,15 +89,15 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	@Nullable
 	private final String modelSnapshotId;
 
-	private final Number modelSnapshotRetentionDays;
+	private final Long modelSnapshotRetentionDays;
 
 	@Nullable
-	private final Number renormalizationWindowDays;
+	private final Long renormalizationWindowDays;
 
 	private final String resultsIndexName;
 
 	@Nullable
-	private final Number resultsRetentionDays;
+	private final Long resultsRetentionDays;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -153,14 +154,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
-	public JsonValue backgroundPersistInterval() {
+	public String backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
 	/**
 	 * API name: {@code create_time}
 	 */
-	public JsonValue createTime() {
+	public String createTime() {
 		return this.createTime;
 	}
 
@@ -168,7 +169,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code finished_time}
 	 */
 	@Nullable
-	public JsonValue finishedTime() {
+	public String finishedTime() {
 		return this.finishedTime;
 	}
 
@@ -183,7 +184,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
-	public Number dailyModelSnapshotRetentionAfterDays() {
+	public Long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -258,7 +259,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code model_snapshot_retention_days}
 	 */
-	public Number modelSnapshotRetentionDays() {
+	public Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -266,7 +267,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
-	public Number renormalizationWindowDays() {
+	public Long renormalizationWindowDays() {
 		return this.renormalizationWindowDays;
 	}
 
@@ -281,7 +282,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
-	public Number resultsRetentionDays() {
+	public Long resultsRetentionDays() {
 		return this.resultsRetentionDays;
 	}
 
@@ -335,7 +336,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("daily_model_snapshot_retention_after_days");
-		generator.write(this.dailyModelSnapshotRetentionAfterDays.doubleValue());
+		generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
 		generator.writeKey("data_description");
 		this.dataDescription.serialize(generator, mapper);
@@ -387,12 +388,12 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("model_snapshot_retention_days");
-		generator.write(this.modelSnapshotRetentionDays.doubleValue());
+		generator.write(this.modelSnapshotRetentionDays);
 
 		if (this.renormalizationWindowDays != null) {
 
 			generator.writeKey("renormalization_window_days");
-			generator.write(this.renormalizationWindowDays.doubleValue());
+			generator.write(this.renormalizationWindowDays);
 
 		}
 
@@ -402,7 +403,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		if (this.resultsRetentionDays != null) {
 
 			generator.writeKey("results_retention_days");
-			generator.write(this.resultsRetentionDays.doubleValue());
+			generator.write(this.resultsRetentionDays);
 
 		}
 
@@ -421,17 +422,17 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		private AnalysisLimits analysisLimits;
 
 		@Nullable
-		private JsonValue backgroundPersistInterval;
+		private String backgroundPersistInterval;
 
-		private JsonValue createTime;
+		private String createTime;
 
 		@Nullable
-		private JsonValue finishedTime;
+		private String finishedTime;
 
 		@Nullable
 		private Map<String, String> customSettings;
 
-		private Number dailyModelSnapshotRetentionAfterDays;
+		private Long dailyModelSnapshotRetentionAfterDays;
 
 		private DataDescription dataDescription;
 
@@ -456,15 +457,15 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		@Nullable
 		private String modelSnapshotId;
 
-		private Number modelSnapshotRetentionDays;
+		private Long modelSnapshotRetentionDays;
 
 		@Nullable
-		private Number renormalizationWindowDays;
+		private Long renormalizationWindowDays;
 
 		private String resultsIndexName;
 
 		@Nullable
-		private Number resultsRetentionDays;
+		private Long resultsRetentionDays;
 
 		/**
 		 * API name: {@code allow_lazy_open}
@@ -507,7 +508,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public Builder backgroundPersistInterval(@Nullable JsonValue value) {
+		public Builder backgroundPersistInterval(@Nullable String value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
@@ -515,7 +516,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(JsonValue value) {
+		public Builder createTime(String value) {
 			this.createTime = value;
 			return this;
 		}
@@ -523,7 +524,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code finished_time}
 		 */
-		public Builder finishedTime(@Nullable JsonValue value) {
+		public Builder finishedTime(@Nullable String value) {
 			this.finishedTime = value;
 			return this;
 		}
@@ -550,7 +551,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(Number value) {
+		public Builder dailyModelSnapshotRetentionAfterDays(Long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -670,7 +671,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(Number value) {
+		public Builder modelSnapshotRetentionDays(Long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -678,7 +679,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code renormalization_window_days}
 		 */
-		public Builder renormalizationWindowDays(@Nullable Number value) {
+		public Builder renormalizationWindowDays(@Nullable Long value) {
 			this.renormalizationWindowDays = value;
 			return this;
 		}
@@ -694,7 +695,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code results_retention_days}
 		 */
-		public Builder resultsRetentionDays(@Nullable Number value) {
+		public Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
 			return this;
 		}
@@ -716,37 +717,36 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UpdateJobResponse}
 	 */
-	public static final JsonpDeserializer<UpdateJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateJobResponse::setupUpdateJobResponseDeserializer);
+	public static final JsonpDeserializer<UpdateJobResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateJobResponse::setupUpdateJobResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateJobResponseDeserializer(DelegatingDeserializer<UpdateJobResponse.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
-		op.add(Builder::analysisConfig, AnalysisConfigRead.DESERIALIZER, "analysis_config");
-		op.add(Builder::analysisLimits, AnalysisLimits.DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::analysisConfig, AnalysisConfigRead._DESERIALIZER, "analysis_config");
+		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
+		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
 				"background_persist_interval");
-		op.add(Builder::createTime, JsonpDeserializer.jsonValueDeserializer(), "create_time");
-		op.add(Builder::finishedTime, JsonpDeserializer.jsonValueDeserializer(), "finished_time");
+		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
+		op.add(Builder::finishedTime, JsonpDeserializer.stringDeserializer(), "finished_time");
 		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"custom_settings");
-		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
-		op.add(Builder::dataDescription, DataDescription.DESERIALIZER, "data_description");
-		op.add(Builder::datafeedConfig, Datafeed.DESERIALIZER, "datafeed_config");
+		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");
+		op.add(Builder::datafeedConfig, Datafeed._DESERIALIZER, "datafeed_config");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::jobType, JsonpDeserializer.stringDeserializer(), "job_type");
 		op.add(Builder::jobVersion, JsonpDeserializer.stringDeserializer(), "job_version");
-		op.add(Builder::modelPlotConfig, ModelPlotConfig.DESERIALIZER, "model_plot_config");
+		op.add(Builder::modelPlotConfig, ModelPlotConfig._DESERIALIZER, "model_plot_config");
 		op.add(Builder::modelSnapshotId, JsonpDeserializer.stringDeserializer(), "model_snapshot_id");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
-		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.numberDeserializer(),
-				"renormalization_window_days");
+		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.longDeserializer(), "renormalization_window_days");
 		op.add(Builder::resultsIndexName, JsonpDeserializer.stringDeserializer(), "results_index_name");
-		op.add(Builder::resultsRetentionDays, JsonpDeserializer.numberDeserializer(), "results_retention_days");
+		op.add(Builder::resultsRetentionDays, JsonpDeserializer.longDeserializer(), "results_retention_days");
 
 	}
 

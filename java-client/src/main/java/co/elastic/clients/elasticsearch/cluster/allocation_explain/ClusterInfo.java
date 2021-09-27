@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +45,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ClusterInfo
+@JsonpDeserializable
 public final class ClusterInfo implements JsonpSerializable {
 	private final Map<String, NodeDiskUsage> nodes;
 
-	private final Map<String, Number> shardSizes;
+	private final Map<String, Long> shardSizes;
 
 	@Nullable
 	private final Map<String, String> shardDataSetSizes;
@@ -78,7 +80,7 @@ public final class ClusterInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code shard_sizes}
 	 */
-	public Map<String, Number> shardSizes() {
+	public Map<String, Long> shardSizes() {
 		return this.shardSizes;
 	}
 
@@ -126,9 +128,9 @@ public final class ClusterInfo implements JsonpSerializable {
 
 		generator.writeKey("shard_sizes");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.shardSizes.entrySet()) {
+		for (Map.Entry<String, Long> item0 : this.shardSizes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
@@ -173,7 +175,7 @@ public final class ClusterInfo implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ClusterInfo> {
 		private Map<String, NodeDiskUsage> nodes;
 
-		private Map<String, Number> shardSizes;
+		private Map<String, Long> shardSizes;
 
 		@Nullable
 		private Map<String, String> shardDataSetSizes;
@@ -218,7 +220,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code shard_sizes}
 		 */
-		public Builder shardSizes(Map<String, Number> value) {
+		public Builder shardSizes(Map<String, Long> value) {
 			this.shardSizes = value;
 			return this;
 		}
@@ -226,7 +228,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #shardSizes(Map)}, creating the map if needed.
 		 */
-		public Builder putShardSizes(String key, Number value) {
+		public Builder putShardSizes(String key, Long value) {
 			if (this.shardSizes == null) {
 				this.shardSizes = new HashMap<>();
 			}
@@ -331,20 +333,20 @@ public final class ClusterInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterInfo}
 	 */
-	public static final JsonpDeserializer<ClusterInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterInfo::setupClusterInfoDeserializer);
+	public static final JsonpDeserializer<ClusterInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterInfo::setupClusterInfoDeserializer, Builder::build);
 
 	protected static void setupClusterInfoDeserializer(DelegatingDeserializer<ClusterInfo.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDiskUsage.DESERIALIZER), "nodes");
-		op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDiskUsage._DESERIALIZER), "nodes");
+		op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
 				"shard_sizes");
 		op.add(Builder::shardDataSetSizes,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"shard_data_set_sizes");
 		op.add(Builder::shardPaths, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"shard_paths");
-		op.add(Builder::reservedSizes, JsonpDeserializer.arrayDeserializer(ReservedSize.DESERIALIZER),
+		op.add(Builder::reservedSizes, JsonpDeserializer.arrayDeserializer(ReservedSize._DESERIALIZER),
 				"reserved_sizes");
 
 	}

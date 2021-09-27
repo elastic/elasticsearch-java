@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.msearch_template;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.TemplateItem
+@JsonpDeserializable
 public final class TemplateItem implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -244,14 +246,14 @@ public final class TemplateItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TemplateItem}
 	 */
-	public static final JsonpDeserializer<TemplateItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TemplateItem::setupTemplateItemDeserializer);
+	public static final JsonpDeserializer<TemplateItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TemplateItem::setupTemplateItemDeserializer, Builder::build);
 
 	protected static void setupTemplateItemDeserializer(DelegatingDeserializer<TemplateItem.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}

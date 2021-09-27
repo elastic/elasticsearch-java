@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics.Response
+@JsonpDeserializable
 public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
-	private final Number count;
+	private final Integer count;
 
 	private final List<DataframeAnalyticsSummary> dataFrameAnalytics;
 
@@ -57,7 +59,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -83,7 +85,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("data_frame_analytics");
 		generator.writeStartArray();
@@ -101,14 +103,14 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * Builder for {@link GetDataFrameAnalyticsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsResponse> {
-		private Number count;
+		private Integer count;
 
 		private List<DataframeAnalyticsSummary> dataFrameAnalytics;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -181,16 +183,16 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<GetDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					GetDataFrameAnalyticsResponse::setupGetDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<GetDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetDataFrameAnalyticsResponse::setupGetDataFrameAnalyticsResponseDeserializer,
+			Builder::build);
 
 	protected static void setupGetDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<GetDataFrameAnalyticsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::dataFrameAnalytics, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsSummary.DESERIALIZER),
-				"data_frame_analytics");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::dataFrameAnalytics,
+				JsonpDeserializer.arrayDeserializer(DataframeAnalyticsSummary._DESERIALIZER), "data_frame_analytics");
 
 	}
 

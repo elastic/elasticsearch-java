@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.GlobalAggregation
-public final class GlobalAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public GlobalAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "global";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class GlobalAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link GlobalAggregation}
 	 */
-	public static final JsonpDeserializer<GlobalAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer);
+	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer, Builder::build);
 
 	protected static void setupGlobalAggregationDeserializer(DelegatingDeserializer<GlobalAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);

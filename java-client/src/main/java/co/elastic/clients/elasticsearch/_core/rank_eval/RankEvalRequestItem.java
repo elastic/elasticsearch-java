@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalRequestItem
+@JsonpDeserializable
 public final class RankEvalRequestItem implements JsonpSerializable {
 	private final String id;
 
@@ -308,16 +310,16 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RankEvalRequestItem}
 	 */
-	public static final JsonpDeserializer<RankEvalRequestItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer);
+	public static final JsonpDeserializer<RankEvalRequestItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer, Builder::build);
 
 	protected static void setupRankEvalRequestItemDeserializer(DelegatingDeserializer<RankEvalRequestItem.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::request, RankEvalQuery.DESERIALIZER, "request");
-		op.add(Builder::ratings, JsonpDeserializer.arrayDeserializer(DocumentRating.DESERIALIZER), "ratings");
+		op.add(Builder::request, RankEvalQuery._DESERIALIZER, "request");
+		op.add(Builder::ratings, JsonpDeserializer.arrayDeserializer(DocumentRating._DESERIALIZER), "ratings");
 		op.add(Builder::templateId, JsonpDeserializer.stringDeserializer(), "template_id");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}
 

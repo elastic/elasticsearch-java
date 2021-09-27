@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
+@JsonpDeserializable
 public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	private final String policy;
 
@@ -108,8 +110,8 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
-	public static final JsonpDeserializer<PutLifecycleRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
+	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
 
 	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
 
@@ -152,5 +154,5 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

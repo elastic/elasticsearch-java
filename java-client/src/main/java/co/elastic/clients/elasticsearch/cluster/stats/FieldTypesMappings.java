@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypesMappings
+@JsonpDeserializable
 public final class FieldTypesMappings implements JsonpSerializable {
 	private final List<FieldTypes> fieldTypes;
 
@@ -212,13 +214,13 @@ public final class FieldTypesMappings implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldTypesMappings}
 	 */
-	public static final JsonpDeserializer<FieldTypesMappings> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer);
+	public static final JsonpDeserializer<FieldTypesMappings> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FieldTypesMappings::setupFieldTypesMappingsDeserializer, Builder::build);
 
 	protected static void setupFieldTypesMappingsDeserializer(DelegatingDeserializer<FieldTypesMappings.Builder> op) {
 
-		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "field_types");
-		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes.DESERIALIZER),
+		op.add(Builder::fieldTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "field_types");
+		op.add(Builder::runtimeFieldTypes, JsonpDeserializer.arrayDeserializer(RuntimeFieldTypes._DESERIALIZER),
 				"runtime_field_types");
 
 	}

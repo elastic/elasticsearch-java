@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsProgress
+@JsonpDeserializable
 public final class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	private final String phase;
 
-	private final Number progressPercent;
+	private final Integer progressPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +68,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code progress_percent}
 	 */
-	public Number progressPercent() {
+	public Integer progressPercent() {
 		return this.progressPercent;
 	}
 
@@ -85,7 +87,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		generator.write(this.phase);
 
 		generator.writeKey("progress_percent");
-		generator.write(this.progressPercent.doubleValue());
+		generator.write(this.progressPercent);
 
 	}
 
@@ -97,7 +99,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsProgress> {
 		private String phase;
 
-		private Number progressPercent;
+		private Integer progressPercent;
 
 		/**
 		 * Defines the phase of the data frame analytics job.
@@ -115,7 +117,7 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code progress_percent}
 		 */
-		public Builder progressPercent(Number value) {
+		public Builder progressPercent(Integer value) {
 			this.progressPercent = value;
 			return this;
 		}
@@ -137,15 +139,15 @@ public final class DataframeAnalyticsStatsProgress implements JsonpSerializable 
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsStatsProgress}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsProgressDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsProgress.Builder> op) {
 
 		op.add(Builder::phase, JsonpDeserializer.stringDeserializer(), "phase");
-		op.add(Builder::progressPercent, JsonpDeserializer.numberDeserializer(), "progress_percent");
+		op.add(Builder::progressPercent, JsonpDeserializer.integerDeserializer(), "progress_percent");
 
 	}
 

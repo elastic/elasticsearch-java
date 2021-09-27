@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessCpu
+@JsonpDeserializable
 public final class ClusterProcessCpu implements JsonpSerializable {
-	private final Number percent;
+	private final Integer percent;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	/**
 	 * API name: {@code percent}
 	 */
-	public Number percent() {
+	public Integer percent() {
 		return this.percent;
 	}
 
@@ -66,7 +68,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("percent");
-		generator.write(this.percent.doubleValue());
+		generator.write(this.percent);
 
 	}
 
@@ -76,12 +78,12 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	 * Builder for {@link ClusterProcessCpu}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterProcessCpu> {
-		private Number percent;
+		private Integer percent;
 
 		/**
 		 * API name: {@code percent}
 		 */
-		public Builder percent(Number value) {
+		public Builder percent(Integer value) {
 			this.percent = value;
 			return this;
 		}
@@ -103,12 +105,12 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterProcessCpu}
 	 */
-	public static final JsonpDeserializer<ClusterProcessCpu> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterProcessCpu::setupClusterProcessCpuDeserializer);
+	public static final JsonpDeserializer<ClusterProcessCpu> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterProcessCpu::setupClusterProcessCpuDeserializer, Builder::build);
 
 	protected static void setupClusterProcessCpuDeserializer(DelegatingDeserializer<ClusterProcessCpu.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.numberDeserializer(), "percent");
+		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,13 +34,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlSearchResponseBase
+
 public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -51,7 +53,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	private final Boolean isRunning;
 
 	@Nullable
-	private final Number took;
+	private final Integer took;
 
 	@Nullable
 	private final Boolean timedOut;
@@ -111,7 +113,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public Number took() {
+	public Integer took() {
 		return this.took;
 	}
 
@@ -166,7 +168,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		if (this.took != null) {
 
 			generator.writeKey("took");
-			generator.write(this.took.doubleValue());
+			generator.write(this.took);
 
 		}
 		if (this.timedOut != null) {
@@ -192,7 +194,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		private Boolean isRunning;
 
 		@Nullable
-		private Number took;
+		private Integer took;
 
 		@Nullable
 		private Boolean timedOut;
@@ -237,7 +239,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code took}
 		 */
-		public BuilderT took(@Nullable Number value) {
+		public BuilderT took(@Nullable Integer value) {
 			this.took = value;
 			return self();
 		}
@@ -291,7 +293,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(AbstractBuilder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(AbstractBuilder::took, JsonpDeserializer.integerDeserializer(), "took");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(AbstractBuilder::hits, EqlHits.createEqlHitsDeserializer(tEventDeserializer), "hits");
 

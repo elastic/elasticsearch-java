@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpack
+@JsonpDeserializable
 public final class NodeInfoXpack implements JsonpSerializable {
 	@Nullable
 	private final NodeInfoXpackLicense license;
@@ -197,14 +199,14 @@ public final class NodeInfoXpack implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpack}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpack> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpack::setupNodeInfoXpackDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpack> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoXpack::setupNodeInfoXpackDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackDeserializer(DelegatingDeserializer<NodeInfoXpack.Builder> op) {
 
-		op.add(Builder::license, NodeInfoXpackLicense.DESERIALIZER, "license");
-		op.add(Builder::security, NodeInfoXpackSecurity.DESERIALIZER, "security");
-		op.add(Builder::notification, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "notification");
+		op.add(Builder::license, NodeInfoXpackLicense._DESERIALIZER, "license");
+		op.add(Builder::security, NodeInfoXpackSecurity._DESERIALIZER, "security");
+		op.add(Builder::notification, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "notification");
 
 	}
 

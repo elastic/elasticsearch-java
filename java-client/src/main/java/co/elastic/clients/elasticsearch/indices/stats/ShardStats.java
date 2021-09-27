@@ -40,6 +40,7 @@ import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -52,6 +53,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
+@JsonpDeserializable
 public final class ShardStats implements JsonpSerializable {
 	private final ShardCommit commit;
 
@@ -763,33 +765,33 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ShardStats}
 	 */
-	public static final JsonpDeserializer<ShardStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStats::setupShardStatsDeserializer);
+	public static final JsonpDeserializer<ShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStats::setupShardStatsDeserializer, Builder::build);
 
 	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
 
-		op.add(Builder::commit, ShardCommit.DESERIALIZER, "commit");
-		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
-		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
-		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
-		op.add(Builder::flush, FlushStats.DESERIALIZER, "flush");
-		op.add(Builder::get, GetStats.DESERIALIZER, "get");
-		op.add(Builder::indexing, IndexingStats.DESERIALIZER, "indexing");
-		op.add(Builder::merges, MergesStats.DESERIALIZER, "merges");
-		op.add(Builder::shardPath, ShardPath.DESERIALIZER, "shard_path");
-		op.add(Builder::queryCache, ShardQueryCache.DESERIALIZER, "query_cache");
-		op.add(Builder::recovery, RecoveryStats.DESERIALIZER, "recovery");
-		op.add(Builder::refresh, RefreshStats.DESERIALIZER, "refresh");
-		op.add(Builder::requestCache, RequestCacheStats.DESERIALIZER, "request_cache");
-		op.add(Builder::retentionLeases, ShardRetentionLeases.DESERIALIZER, "retention_leases");
-		op.add(Builder::routing, ShardRouting.DESERIALIZER, "routing");
-		op.add(Builder::search, SearchStats.DESERIALIZER, "search");
-		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
-		op.add(Builder::seqNo, ShardSequenceNumber.DESERIALIZER, "seq_no");
-		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
-		op.add(Builder::translog, TranslogStats.DESERIALIZER, "translog");
-		op.add(Builder::warmer, WarmerStats.DESERIALIZER, "warmer");
-		op.add(Builder::bulk, BulkStats.DESERIALIZER, "bulk");
+		op.add(Builder::commit, ShardCommit._DESERIALIZER, "commit");
+		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
+		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
+		op.add(Builder::get, GetStats._DESERIALIZER, "get");
+		op.add(Builder::indexing, IndexingStats._DESERIALIZER, "indexing");
+		op.add(Builder::merges, MergesStats._DESERIALIZER, "merges");
+		op.add(Builder::shardPath, ShardPath._DESERIALIZER, "shard_path");
+		op.add(Builder::queryCache, ShardQueryCache._DESERIALIZER, "query_cache");
+		op.add(Builder::recovery, RecoveryStats._DESERIALIZER, "recovery");
+		op.add(Builder::refresh, RefreshStats._DESERIALIZER, "refresh");
+		op.add(Builder::requestCache, RequestCacheStats._DESERIALIZER, "request_cache");
+		op.add(Builder::retentionLeases, ShardRetentionLeases._DESERIALIZER, "retention_leases");
+		op.add(Builder::routing, ShardRouting._DESERIALIZER, "routing");
+		op.add(Builder::search, SearchStats._DESERIALIZER, "search");
+		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
+		op.add(Builder::seqNo, ShardSequenceNumber._DESERIALIZER, "seq_no");
+		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
+		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
+		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
+		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
 
 	}
 

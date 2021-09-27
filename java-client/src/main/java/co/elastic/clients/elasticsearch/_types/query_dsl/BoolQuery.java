@@ -24,14 +24,14 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +40,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoolQuery
-public final class BoolQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class BoolQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final List<Query> filter;
 
 	@Nullable
-	private final JsonValue minimumShouldMatch;
+	private final String minimumShouldMatch;
 
 	@Nullable
 	private final List<Query> must;
@@ -73,7 +74,7 @@ public final class BoolQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "bool";
 	}
 
@@ -89,7 +90,7 @@ public final class BoolQuery extends QueryBase implements Query {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public JsonValue minimumShouldMatch() {
+	public String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -118,7 +119,6 @@ public final class BoolQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.filter != null) {
@@ -172,8 +172,6 @@ public final class BoolQuery extends QueryBase implements Query {
 
 		}
 
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -186,7 +184,7 @@ public final class BoolQuery extends QueryBase implements Query {
 		private List<Query> filter;
 
 		@Nullable
-		private JsonValue minimumShouldMatch;
+		private String minimumShouldMatch;
 
 		@Nullable
 		private List<Query> must;
@@ -241,7 +239,7 @@ public final class BoolQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+		public Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -388,17 +386,19 @@ public final class BoolQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<BoolQuery.Builder, BoolQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(BoolQuery::setupBoolQueryDeserializer);
+	/**
+	 * Json deserializer for {@link BoolQuery}
+	 */
+	public static final JsonpDeserializer<BoolQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BoolQuery::setupBoolQueryDeserializer, Builder::build);
 
 	protected static void setupBoolQueryDeserializer(DelegatingDeserializer<BoolQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "filter");
-		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::must, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "must");
-		op.add(Builder::mustNot, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "must_not");
-		op.add(Builder::should, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "should");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
+		op.add(Builder::must, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "must");
+		op.add(Builder::mustNot, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "must_not");
+		op.add(Builder::should, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "should");
 
 	}
 

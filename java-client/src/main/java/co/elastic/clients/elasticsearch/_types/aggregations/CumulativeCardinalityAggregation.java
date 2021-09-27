@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregation
-public final class CumulativeCardinalityAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public CumulativeCardinalityAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "cumulative_cardinality";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,9 +80,9 @@ public final class CumulativeCardinalityAggregation extends PipelineAggregationB
 	/**
 	 * Json deserializer for {@link CumulativeCardinalityAggregation}
 	 */
-	public static final JsonpDeserializer<CumulativeCardinalityAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					CumulativeCardinalityAggregation::setupCumulativeCardinalityAggregationDeserializer);
+	public static final JsonpDeserializer<CumulativeCardinalityAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CumulativeCardinalityAggregation::setupCumulativeCardinalityAggregationDeserializer,
+					Builder::build);
 
 	protected static void setupCumulativeCardinalityAggregationDeserializer(
 			DelegatingDeserializer<CumulativeCardinalityAggregation.Builder> op) {

@@ -24,41 +24,43 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryBytes
+@JsonpDeserializable
 public final class RecoveryBytes implements JsonpSerializable {
-	private final JsonValue percent;
+	private final String percent;
 
 	@Nullable
-	private final JsonValue recovered;
+	private final String recovered;
 
-	private final JsonValue recoveredInBytes;
-
-	@Nullable
-	private final JsonValue recoveredFromSnapshot;
+	private final String recoveredInBytes;
 
 	@Nullable
-	private final JsonValue recoveredFromSnapshotInBytes;
+	private final String recoveredFromSnapshot;
 
 	@Nullable
-	private final JsonValue reused;
-
-	private final JsonValue reusedInBytes;
+	private final String recoveredFromSnapshotInBytes;
 
 	@Nullable
-	private final JsonValue total;
+	private final String reused;
 
-	private final JsonValue totalInBytes;
+	private final String reusedInBytes;
+
+	@Nullable
+	private final String total;
+
+	private final String totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +81,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	/**
 	 * API name: {@code percent}
 	 */
-	public JsonValue percent() {
+	public String percent() {
 		return this.percent;
 	}
 
@@ -87,14 +89,14 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code recovered}
 	 */
 	@Nullable
-	public JsonValue recovered() {
+	public String recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * API name: {@code recovered_in_bytes}
 	 */
-	public JsonValue recoveredInBytes() {
+	public String recoveredInBytes() {
 		return this.recoveredInBytes;
 	}
 
@@ -102,7 +104,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code recovered_from_snapshot}
 	 */
 	@Nullable
-	public JsonValue recoveredFromSnapshot() {
+	public String recoveredFromSnapshot() {
 		return this.recoveredFromSnapshot;
 	}
 
@@ -110,7 +112,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code recovered_from_snapshot_in_bytes}
 	 */
 	@Nullable
-	public JsonValue recoveredFromSnapshotInBytes() {
+	public String recoveredFromSnapshotInBytes() {
 		return this.recoveredFromSnapshotInBytes;
 	}
 
@@ -118,14 +120,14 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code reused}
 	 */
 	@Nullable
-	public JsonValue reused() {
+	public String reused() {
 		return this.reused;
 	}
 
 	/**
 	 * API name: {@code reused_in_bytes}
 	 */
-	public JsonValue reusedInBytes() {
+	public String reusedInBytes() {
 		return this.reusedInBytes;
 	}
 
@@ -133,14 +135,14 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public JsonValue total() {
+	public String total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public JsonValue totalInBytes() {
+	public String totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -208,33 +210,33 @@ public final class RecoveryBytes implements JsonpSerializable {
 	 * Builder for {@link RecoveryBytes}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryBytes> {
-		private JsonValue percent;
+		private String percent;
 
 		@Nullable
-		private JsonValue recovered;
+		private String recovered;
 
-		private JsonValue recoveredInBytes;
-
-		@Nullable
-		private JsonValue recoveredFromSnapshot;
+		private String recoveredInBytes;
 
 		@Nullable
-		private JsonValue recoveredFromSnapshotInBytes;
+		private String recoveredFromSnapshot;
 
 		@Nullable
-		private JsonValue reused;
-
-		private JsonValue reusedInBytes;
+		private String recoveredFromSnapshotInBytes;
 
 		@Nullable
-		private JsonValue total;
+		private String reused;
 
-		private JsonValue totalInBytes;
+		private String reusedInBytes;
+
+		@Nullable
+		private String total;
+
+		private String totalInBytes;
 
 		/**
 		 * API name: {@code percent}
 		 */
-		public Builder percent(JsonValue value) {
+		public Builder percent(String value) {
 			this.percent = value;
 			return this;
 		}
@@ -242,7 +244,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(@Nullable JsonValue value) {
+		public Builder recovered(@Nullable String value) {
 			this.recovered = value;
 			return this;
 		}
@@ -250,7 +252,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered_in_bytes}
 		 */
-		public Builder recoveredInBytes(JsonValue value) {
+		public Builder recoveredInBytes(String value) {
 			this.recoveredInBytes = value;
 			return this;
 		}
@@ -258,7 +260,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered_from_snapshot}
 		 */
-		public Builder recoveredFromSnapshot(@Nullable JsonValue value) {
+		public Builder recoveredFromSnapshot(@Nullable String value) {
 			this.recoveredFromSnapshot = value;
 			return this;
 		}
@@ -266,7 +268,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code recovered_from_snapshot_in_bytes}
 		 */
-		public Builder recoveredFromSnapshotInBytes(@Nullable JsonValue value) {
+		public Builder recoveredFromSnapshotInBytes(@Nullable String value) {
 			this.recoveredFromSnapshotInBytes = value;
 			return this;
 		}
@@ -274,7 +276,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code reused}
 		 */
-		public Builder reused(@Nullable JsonValue value) {
+		public Builder reused(@Nullable String value) {
 			this.reused = value;
 			return this;
 		}
@@ -282,7 +284,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code reused_in_bytes}
 		 */
-		public Builder reusedInBytes(JsonValue value) {
+		public Builder reusedInBytes(String value) {
 			this.reusedInBytes = value;
 			return this;
 		}
@@ -290,7 +292,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable JsonValue value) {
+		public Builder total(@Nullable String value) {
 			this.total = value;
 			return this;
 		}
@@ -298,7 +300,7 @@ public final class RecoveryBytes implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(JsonValue value) {
+		public Builder totalInBytes(String value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -320,21 +322,21 @@ public final class RecoveryBytes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryBytes}
 	 */
-	public static final JsonpDeserializer<RecoveryBytes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryBytes::setupRecoveryBytesDeserializer);
+	public static final JsonpDeserializer<RecoveryBytes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryBytes::setupRecoveryBytesDeserializer, Builder::build);
 
 	protected static void setupRecoveryBytesDeserializer(DelegatingDeserializer<RecoveryBytes.Builder> op) {
 
-		op.add(Builder::percent, JsonpDeserializer.jsonValueDeserializer(), "percent");
-		op.add(Builder::recovered, JsonpDeserializer.jsonValueDeserializer(), "recovered");
-		op.add(Builder::recoveredInBytes, JsonpDeserializer.jsonValueDeserializer(), "recovered_in_bytes");
-		op.add(Builder::recoveredFromSnapshot, JsonpDeserializer.jsonValueDeserializer(), "recovered_from_snapshot");
-		op.add(Builder::recoveredFromSnapshotInBytes, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
+		op.add(Builder::recovered, JsonpDeserializer.stringDeserializer(), "recovered");
+		op.add(Builder::recoveredInBytes, JsonpDeserializer.stringDeserializer(), "recovered_in_bytes");
+		op.add(Builder::recoveredFromSnapshot, JsonpDeserializer.stringDeserializer(), "recovered_from_snapshot");
+		op.add(Builder::recoveredFromSnapshotInBytes, JsonpDeserializer.stringDeserializer(),
 				"recovered_from_snapshot_in_bytes");
-		op.add(Builder::reused, JsonpDeserializer.jsonValueDeserializer(), "reused");
-		op.add(Builder::reusedInBytes, JsonpDeserializer.jsonValueDeserializer(), "reused_in_bytes");
-		op.add(Builder::total, JsonpDeserializer.jsonValueDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.jsonValueDeserializer(), "total_in_bytes");
+		op.add(Builder::reused, JsonpDeserializer.stringDeserializer(), "reused");
+		op.add(Builder::reusedInBytes, JsonpDeserializer.stringDeserializer(), "reused_in_bytes");
+		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+		op.add(Builder::totalInBytes, JsonpDeserializer.stringDeserializer(), "total_in_bytes");
 
 	}
 

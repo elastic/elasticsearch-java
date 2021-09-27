@@ -24,30 +24,32 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.ExploreControls
+@JsonpDeserializable
 public final class ExploreControls implements JsonpSerializable {
 	@Nullable
 	private final SampleDiversity sampleDiversity;
 
 	@Nullable
-	private final Number sampleSize;
+	private final Integer sampleSize;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	private final Boolean useSignificance;
 
@@ -74,7 +76,7 @@ public final class ExploreControls implements JsonpSerializable {
 	 * API name: {@code sample_size}
 	 */
 	@Nullable
-	public Number sampleSize() {
+	public Integer sampleSize() {
 		return this.sampleSize;
 	}
 
@@ -82,7 +84,7 @@ public final class ExploreControls implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -113,7 +115,7 @@ public final class ExploreControls implements JsonpSerializable {
 		if (this.sampleSize != null) {
 
 			generator.writeKey("sample_size");
-			generator.write(this.sampleSize.doubleValue());
+			generator.write(this.sampleSize);
 
 		}
 		if (this.timeout != null) {
@@ -138,10 +140,10 @@ public final class ExploreControls implements JsonpSerializable {
 		private SampleDiversity sampleDiversity;
 
 		@Nullable
-		private Number sampleSize;
+		private Integer sampleSize;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		private Boolean useSignificance;
 
@@ -163,7 +165,7 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code sample_size}
 		 */
-		public Builder sampleSize(@Nullable Number value) {
+		public Builder sampleSize(@Nullable Integer value) {
 			this.sampleSize = value;
 			return this;
 		}
@@ -171,7 +173,7 @@ public final class ExploreControls implements JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -201,14 +203,14 @@ public final class ExploreControls implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExploreControls}
 	 */
-	public static final JsonpDeserializer<ExploreControls> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExploreControls::setupExploreControlsDeserializer);
+	public static final JsonpDeserializer<ExploreControls> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ExploreControls::setupExploreControlsDeserializer, Builder::build);
 
 	protected static void setupExploreControlsDeserializer(DelegatingDeserializer<ExploreControls.Builder> op) {
 
-		op.add(Builder::sampleDiversity, SampleDiversity.DESERIALIZER, "sample_diversity");
-		op.add(Builder::sampleSize, JsonpDeserializer.numberDeserializer(), "sample_size");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::sampleDiversity, SampleDiversity._DESERIALIZER, "sample_diversity");
+		op.add(Builder::sampleSize, JsonpDeserializer.integerDeserializer(), "sample_size");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 		op.add(Builder::useSignificance, JsonpDeserializer.booleanDeserializer(), "use_significance");
 
 	}

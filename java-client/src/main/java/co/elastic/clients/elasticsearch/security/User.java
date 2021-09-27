@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
+@JsonpDeserializable
 public class User implements JsonpSerializable {
 	@Nullable
 	private final String email;
@@ -289,15 +291,15 @@ public class User implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link User}
 	 */
-	public static final JsonpDeserializer<User> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			User::setupUserDeserializer);
+	public static final JsonpDeserializer<User> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			User::setupUserDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupUserDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(AbstractBuilder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
-		op.add(AbstractBuilder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(AbstractBuilder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(AbstractBuilder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"roles");
 		op.add(AbstractBuilder::username, JsonpDeserializer.stringDeserializer(), "username");

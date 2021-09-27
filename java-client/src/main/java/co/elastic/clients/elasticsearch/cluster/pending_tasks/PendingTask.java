@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.pending_tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
+@JsonpDeserializable
 public final class PendingTask implements JsonpSerializable {
-	private final Number insertOrder;
+	private final Integer insertOrder;
 
 	private final String priority;
 
@@ -46,7 +48,7 @@ public final class PendingTask implements JsonpSerializable {
 
 	private final String timeInQueue;
 
-	private final Number timeInQueueMillis;
+	private final Integer timeInQueueMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +65,7 @@ public final class PendingTask implements JsonpSerializable {
 	/**
 	 * API name: {@code insert_order}
 	 */
-	public Number insertOrder() {
+	public Integer insertOrder() {
 		return this.insertOrder;
 	}
 
@@ -91,7 +93,7 @@ public final class PendingTask implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_queue_millis}
 	 */
-	public Number timeInQueueMillis() {
+	public Integer timeInQueueMillis() {
 		return this.timeInQueueMillis;
 	}
 
@@ -107,7 +109,7 @@ public final class PendingTask implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("insert_order");
-		generator.write(this.insertOrder.doubleValue());
+		generator.write(this.insertOrder);
 
 		generator.writeKey("priority");
 		generator.write(this.priority);
@@ -119,7 +121,7 @@ public final class PendingTask implements JsonpSerializable {
 		generator.write(this.timeInQueue);
 
 		generator.writeKey("time_in_queue_millis");
-		generator.write(this.timeInQueueMillis.doubleValue());
+		generator.write(this.timeInQueueMillis);
 
 	}
 
@@ -129,7 +131,7 @@ public final class PendingTask implements JsonpSerializable {
 	 * Builder for {@link PendingTask}.
 	 */
 	public static class Builder implements ObjectBuilder<PendingTask> {
-		private Number insertOrder;
+		private Integer insertOrder;
 
 		private String priority;
 
@@ -137,12 +139,12 @@ public final class PendingTask implements JsonpSerializable {
 
 		private String timeInQueue;
 
-		private Number timeInQueueMillis;
+		private Integer timeInQueueMillis;
 
 		/**
 		 * API name: {@code insert_order}
 		 */
-		public Builder insertOrder(Number value) {
+		public Builder insertOrder(Integer value) {
 			this.insertOrder = value;
 			return this;
 		}
@@ -174,7 +176,7 @@ public final class PendingTask implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_queue_millis}
 		 */
-		public Builder timeInQueueMillis(Number value) {
+		public Builder timeInQueueMillis(Integer value) {
 			this.timeInQueueMillis = value;
 			return this;
 		}
@@ -196,16 +198,16 @@ public final class PendingTask implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PendingTask}
 	 */
-	public static final JsonpDeserializer<PendingTask> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PendingTask::setupPendingTaskDeserializer);
+	public static final JsonpDeserializer<PendingTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PendingTask::setupPendingTaskDeserializer, Builder::build);
 
 	protected static void setupPendingTaskDeserializer(DelegatingDeserializer<PendingTask.Builder> op) {
 
-		op.add(Builder::insertOrder, JsonpDeserializer.numberDeserializer(), "insert_order");
+		op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 		op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
-		op.add(Builder::timeInQueueMillis, JsonpDeserializer.numberDeserializer(), "time_in_queue_millis");
+		op.add(Builder::timeInQueueMillis, JsonpDeserializer.integerDeserializer(), "time_in_queue_millis");
 
 	}
 

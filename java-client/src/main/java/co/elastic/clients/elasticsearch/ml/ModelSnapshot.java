@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,22 +33,24 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelSnapshot
+@JsonpDeserializable
 public final class ModelSnapshot implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	private final String jobId;
 
-	private final Number latestRecordTimeStamp;
+	private final Integer latestRecordTimeStamp;
 
-	private final Number latestResultTimeStamp;
+	private final Integer latestResultTimeStamp;
 
 	private final String minVersion;
 
@@ -55,11 +58,11 @@ public final class ModelSnapshot implements JsonpSerializable {
 
 	private final Boolean retain;
 
-	private final Number snapshotDocCount;
+	private final Long snapshotDocCount;
 
 	private final String snapshotId;
 
-	private final Number timestamp;
+	private final Integer timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -103,7 +106,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
-	public Number latestRecordTimeStamp() {
+	public Integer latestRecordTimeStamp() {
 		return this.latestRecordTimeStamp;
 	}
 
@@ -112,7 +115,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
-	public Number latestResultTimeStamp() {
+	public Integer latestResultTimeStamp() {
 		return this.latestResultTimeStamp;
 	}
 
@@ -150,7 +153,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code snapshot_doc_count}
 	 */
-	public Number snapshotDocCount() {
+	public Long snapshotDocCount() {
 		return this.snapshotDocCount;
 	}
 
@@ -168,7 +171,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Integer timestamp() {
 		return this.timestamp;
 	}
 
@@ -194,10 +197,10 @@ public final class ModelSnapshot implements JsonpSerializable {
 		generator.write(this.jobId);
 
 		generator.writeKey("latest_record_time_stamp");
-		generator.write(this.latestRecordTimeStamp.doubleValue());
+		generator.write(this.latestRecordTimeStamp);
 
 		generator.writeKey("latest_result_time_stamp");
-		generator.write(this.latestResultTimeStamp.doubleValue());
+		generator.write(this.latestResultTimeStamp);
 
 		generator.writeKey("min_version");
 		generator.write(this.minVersion);
@@ -209,13 +212,13 @@ public final class ModelSnapshot implements JsonpSerializable {
 		generator.write(this.retain);
 
 		generator.writeKey("snapshot_doc_count");
-		generator.write(this.snapshotDocCount.doubleValue());
+		generator.write(this.snapshotDocCount);
 
 		generator.writeKey("snapshot_id");
 		generator.write(this.snapshotId);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -230,9 +233,9 @@ public final class ModelSnapshot implements JsonpSerializable {
 
 		private String jobId;
 
-		private Number latestRecordTimeStamp;
+		private Integer latestRecordTimeStamp;
 
-		private Number latestResultTimeStamp;
+		private Integer latestResultTimeStamp;
 
 		private String minVersion;
 
@@ -240,11 +243,11 @@ public final class ModelSnapshot implements JsonpSerializable {
 
 		private Boolean retain;
 
-		private Number snapshotDocCount;
+		private Long snapshotDocCount;
 
 		private String snapshotId;
 
-		private Number timestamp;
+		private Integer timestamp;
 
 		/**
 		 * An optional description of the job.
@@ -272,7 +275,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
-		public Builder latestRecordTimeStamp(Number value) {
+		public Builder latestRecordTimeStamp(Integer value) {
 			this.latestRecordTimeStamp = value;
 			return this;
 		}
@@ -282,7 +285,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
-		public Builder latestResultTimeStamp(Number value) {
+		public Builder latestResultTimeStamp(Integer value) {
 			this.latestResultTimeStamp = value;
 			return this;
 		}
@@ -333,7 +336,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code snapshot_doc_count}
 		 */
-		public Builder snapshotDocCount(Number value) {
+		public Builder snapshotDocCount(Long value) {
 			this.snapshotDocCount = value;
 			return this;
 		}
@@ -353,7 +356,7 @@ public final class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Integer value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -375,21 +378,21 @@ public final class ModelSnapshot implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ModelSnapshot}
 	 */
-	public static final JsonpDeserializer<ModelSnapshot> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ModelSnapshot::setupModelSnapshotDeserializer);
+	public static final JsonpDeserializer<ModelSnapshot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ModelSnapshot::setupModelSnapshotDeserializer, Builder::build);
 
 	protected static void setupModelSnapshotDeserializer(DelegatingDeserializer<ModelSnapshot.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.numberDeserializer(), "latest_record_time_stamp");
-		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.numberDeserializer(), "latest_result_time_stamp");
+		op.add(Builder::latestRecordTimeStamp, JsonpDeserializer.integerDeserializer(), "latest_record_time_stamp");
+		op.add(Builder::latestResultTimeStamp, JsonpDeserializer.integerDeserializer(), "latest_result_time_stamp");
 		op.add(Builder::minVersion, JsonpDeserializer.stringDeserializer(), "min_version");
-		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
+		op.add(Builder::modelSizeStats, ModelSizeStats._DESERIALIZER, "model_size_stats");
 		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
-		op.add(Builder::snapshotDocCount, JsonpDeserializer.numberDeserializer(), "snapshot_doc_count");
+		op.add(Builder::snapshotDocCount, JsonpDeserializer.longDeserializer(), "snapshot_doc_count");
 		op.add(Builder::snapshotId, JsonpDeserializer.stringDeserializer(), "snapshot_id");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.integerDeserializer(), "timestamp");
 
 	}
 

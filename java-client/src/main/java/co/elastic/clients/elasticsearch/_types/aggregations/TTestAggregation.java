@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregation
-public final class TTestAggregation extends AggregationBase {
+@JsonpDeserializable
+public final class TTestAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
 	private final TestPopulation a;
 
@@ -54,6 +56,14 @@ public final class TTestAggregation extends AggregationBase {
 		this.b = builder.b;
 		this.type = builder.type;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "t_test";
 	}
 
 	/**
@@ -180,14 +190,14 @@ public final class TTestAggregation extends AggregationBase {
 	/**
 	 * Json deserializer for {@link TTestAggregation}
 	 */
-	public static final JsonpDeserializer<TTestAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TTestAggregation::setupTTestAggregationDeserializer);
+	public static final JsonpDeserializer<TTestAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TTestAggregation::setupTTestAggregationDeserializer, Builder::build);
 
 	protected static void setupTTestAggregationDeserializer(DelegatingDeserializer<TTestAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
-		op.add(Builder::a, TestPopulation.DESERIALIZER, "a");
-		op.add(Builder::b, TestPopulation.DESERIALIZER, "b");
-		op.add(Builder::type, TTestType.DESERIALIZER, "type");
+		op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
+		op.add(Builder::b, TestPopulation._DESERIALIZER, "b");
+		op.add(Builder::type, TTestType._DESERIALIZER, "type");
 
 	}
 

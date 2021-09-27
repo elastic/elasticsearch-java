@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -43,6 +44,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.Request
+
 public final class RecoveryRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
@@ -222,5 +224,5 @@ public final class RecoveryRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, RecoveryResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, RecoveryResponse._DESERIALIZER);
 }

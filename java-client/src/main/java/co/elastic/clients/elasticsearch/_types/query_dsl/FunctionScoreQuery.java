@@ -24,14 +24,14 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreQuery
-public final class FunctionScoreQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final FunctionBoostMode boostMode;
 
@@ -48,10 +49,10 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 	private final List<FunctionScore> functions;
 
 	@Nullable
-	private final Number maxBoost;
+	private final Double maxBoost;
 
 	@Nullable
-	private final Number minScore;
+	private final Double minScore;
 
 	@Nullable
 	private final Query query;
@@ -77,7 +78,7 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "function_score";
 	}
 
@@ -101,7 +102,7 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 	 * API name: {@code max_boost}
 	 */
 	@Nullable
-	public Number maxBoost() {
+	public Double maxBoost() {
 		return this.maxBoost;
 	}
 
@@ -109,7 +110,7 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 	 * API name: {@code min_score}
 	 */
 	@Nullable
-	public Number minScore() {
+	public Double minScore() {
 		return this.minScore;
 	}
 
@@ -130,7 +131,6 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.boostMode != null) {
@@ -152,13 +152,13 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 		if (this.maxBoost != null) {
 
 			generator.writeKey("max_boost");
-			generator.write(this.maxBoost.doubleValue());
+			generator.write(this.maxBoost);
 
 		}
 		if (this.minScore != null) {
 
 			generator.writeKey("min_score");
-			generator.write(this.minScore.doubleValue());
+			generator.write(this.minScore);
 
 		}
 		if (this.query != null) {
@@ -172,8 +172,6 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 			generator.writeKey("score_mode");
 			this.scoreMode.serialize(generator, mapper);
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -192,10 +190,10 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 		private List<FunctionScore> functions;
 
 		@Nullable
-		private Number maxBoost;
+		private Double maxBoost;
 
 		@Nullable
-		private Number minScore;
+		private Double minScore;
 
 		@Nullable
 		private Query query;
@@ -255,7 +253,7 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code max_boost}
 		 */
-		public Builder maxBoost(@Nullable Number value) {
+		public Builder maxBoost(@Nullable Double value) {
 			this.maxBoost = value;
 			return this;
 		}
@@ -263,7 +261,7 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code min_score}
 		 */
-		public Builder minScore(@Nullable Number value) {
+		public Builder minScore(@Nullable Double value) {
 			this.minScore = value;
 			return this;
 		}
@@ -310,18 +308,20 @@ public final class FunctionScoreQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<FunctionScoreQuery.Builder, FunctionScoreQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(FunctionScoreQuery::setupFunctionScoreQueryDeserializer);
+	/**
+	 * Json deserializer for {@link FunctionScoreQuery}
+	 */
+	public static final JsonpDeserializer<FunctionScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryDeserializer, Builder::build);
 
 	protected static void setupFunctionScoreQueryDeserializer(DelegatingDeserializer<FunctionScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::boostMode, FunctionBoostMode.DESERIALIZER, "boost_mode");
-		op.add(Builder::functions, JsonpDeserializer.arrayDeserializer(FunctionScore.DESERIALIZER), "functions");
-		op.add(Builder::maxBoost, JsonpDeserializer.numberDeserializer(), "max_boost");
-		op.add(Builder::minScore, JsonpDeserializer.numberDeserializer(), "min_score");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::scoreMode, FunctionScoreMode.DESERIALIZER, "score_mode");
+		op.add(Builder::boostMode, FunctionBoostMode._DESERIALIZER, "boost_mode");
+		op.add(Builder::functions, JsonpDeserializer.arrayDeserializer(FunctionScore._DESERIALIZER), "functions");
+		op.add(Builder::maxBoost, JsonpDeserializer.doubleDeserializer(), "max_boost");
+		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::scoreMode, FunctionScoreMode._DESERIALIZER, "score_mode");
 
 	}
 

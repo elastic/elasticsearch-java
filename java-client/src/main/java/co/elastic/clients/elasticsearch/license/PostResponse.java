@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.post.Acknowledgement;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Response
+@JsonpDeserializable
 public final class PostResponse implements JsonpSerializable {
 	@Nullable
 	private final Acknowledgement acknowledge;
@@ -165,14 +167,14 @@ public final class PostResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PostResponse}
 	 */
-	public static final JsonpDeserializer<PostResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostResponse::setupPostResponseDeserializer);
+	public static final JsonpDeserializer<PostResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PostResponse::setupPostResponseDeserializer, Builder::build);
 
 	protected static void setupPostResponseDeserializer(DelegatingDeserializer<PostResponse.Builder> op) {
 
-		op.add(Builder::acknowledge, Acknowledgement.DESERIALIZER, "acknowledge");
+		op.add(Builder::acknowledge, Acknowledgement._DESERIALIZER, "acknowledge");
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
-		op.add(Builder::licenseStatus, LicenseStatus.DESERIALIZER, "license_status");
+		op.add(Builder::licenseStatus, LicenseStatus._DESERIALIZER, "license_status");
 
 	}
 

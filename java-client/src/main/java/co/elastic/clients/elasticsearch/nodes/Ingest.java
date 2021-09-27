@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Ingest
+@JsonpDeserializable
 public final class Ingest implements JsonpSerializable {
 	private final Map<String, IngestTotal> pipelines;
 
@@ -167,13 +169,13 @@ public final class Ingest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Ingest}
 	 */
-	public static final JsonpDeserializer<Ingest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Ingest::setupIngestDeserializer);
+	public static final JsonpDeserializer<Ingest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Ingest::setupIngestDeserializer, Builder::build);
 
 	protected static void setupIngestDeserializer(DelegatingDeserializer<Ingest.Builder> op) {
 
-		op.add(Builder::pipelines, JsonpDeserializer.stringMapDeserializer(IngestTotal.DESERIALIZER), "pipelines");
-		op.add(Builder::total, IngestTotal.DESERIALIZER, "total");
+		op.add(Builder::pipelines, JsonpDeserializer.stringMapDeserializer(IngestTotal._DESERIALIZER), "pipelines");
+		op.add(Builder::total, IngestTotal._DESERIALIZER, "total");
 
 	}
 

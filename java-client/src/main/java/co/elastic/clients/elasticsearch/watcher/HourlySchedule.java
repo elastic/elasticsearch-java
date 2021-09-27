@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,8 +40,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HourlySchedule
-public final class HourlySchedule implements JsonpSerializable {
-	private final List<Number> minute;
+@JsonpDeserializable
+public final class HourlySchedule implements ScheduleVariant, JsonpSerializable {
+	private final List<Integer> minute;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -51,9 +53,17 @@ public final class HourlySchedule implements JsonpSerializable {
 	}
 
 	/**
+	 * {@link Schedule} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "hourly";
+	}
+
+	/**
 	 * API name: {@code minute}
 	 */
-	public List<Number> minute() {
+	public List<Integer> minute() {
 		return this.minute;
 	}
 
@@ -70,8 +80,8 @@ public final class HourlySchedule implements JsonpSerializable {
 
 		generator.writeKey("minute");
 		generator.writeStartArray();
-		for (Number item0 : this.minute) {
-			generator.write(item0.doubleValue());
+		for (Integer item0 : this.minute) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -84,12 +94,12 @@ public final class HourlySchedule implements JsonpSerializable {
 	 * Builder for {@link HourlySchedule}.
 	 */
 	public static class Builder implements ObjectBuilder<HourlySchedule> {
-		private List<Number> minute;
+		private List<Integer> minute;
 
 		/**
 		 * API name: {@code minute}
 		 */
-		public Builder minute(List<Number> value) {
+		public Builder minute(List<Integer> value) {
 			this.minute = value;
 			return this;
 		}
@@ -97,7 +107,7 @@ public final class HourlySchedule implements JsonpSerializable {
 		/**
 		 * API name: {@code minute}
 		 */
-		public Builder minute(Number... value) {
+		public Builder minute(Integer... value) {
 			this.minute = Arrays.asList(value);
 			return this;
 		}
@@ -105,7 +115,7 @@ public final class HourlySchedule implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #minute(List)}, creating the list if needed.
 		 */
-		public Builder addMinute(Number value) {
+		public Builder addMinute(Integer value) {
 			if (this.minute == null) {
 				this.minute = new ArrayList<>();
 			}
@@ -130,12 +140,12 @@ public final class HourlySchedule implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HourlySchedule}
 	 */
-	public static final JsonpDeserializer<HourlySchedule> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HourlySchedule::setupHourlyScheduleDeserializer);
+	public static final JsonpDeserializer<HourlySchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HourlySchedule::setupHourlyScheduleDeserializer, Builder::build);
 
 	protected static void setupHourlyScheduleDeserializer(DelegatingDeserializer<HourlySchedule.Builder> op) {
 
-		op.add(Builder::minute, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "minute");
+		op.add(Builder::minute, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()), "minute");
 
 	}
 

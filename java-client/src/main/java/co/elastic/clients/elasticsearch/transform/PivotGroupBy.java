@@ -27,135 +27,175 @@ import co.elastic.clients.elasticsearch._types.aggregations.DateHistogramAggrega
 import co.elastic.clients.elasticsearch._types.aggregations.GeoTileGridAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.TermsAggregation;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.PivotGroupByContainer
-public interface PivotGroupBy extends JsonpSerializable {
+@JsonpDeserializable
+public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
-	String DATE_HISTOGRAM = "date_histogram";
-	String GEOTILE_GRID = "geotile_grid";
-	String HISTOGRAM = "histogram";
-	String TERMS = "terms";
+	public static final String DATE_HISTOGRAM = "date_histogram";
+	public static final String GEOTILE_GRID = "geotile_grid";
+	public static final String HISTOGRAM = "histogram";
+	public static final String TERMS = "terms";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public PivotGroupBy(PivotGroupByVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private PivotGroupBy(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code PivotGroupByContainer}.
+	 * Get the {@code date_histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date_histogram} kind.
 	 */
-	String _type();
+	public DateHistogramAggregation dateHistogram() {
+		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code date_histogram}
-		 */
-		public ObjectBuilder<PivotGroupBy> dateHistogram(DateHistogramAggregation value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code geotile_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geotile_grid} kind.
+	 */
+	public GeoTileGridAggregation geotileGrid() {
+		return TaggedUnionUtils.get(this, GEOTILE_GRID);
+	}
+
+	/**
+	 * Get the {@code histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code histogram} kind.
+	 */
+	public HistogramAggregation histogram() {
+		return TaggedUnionUtils.get(this, HISTOGRAM);
+	}
+
+	/**
+	 * Get the {@code terms} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code terms} kind.
+	 */
+	public TermsAggregation terms() {
+		return TaggedUnionUtils.get(this, TERMS);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code date_histogram}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<PivotGroupBy> dateHistogram(DateHistogramAggregation v) {
+			this._type = DATE_HISTOGRAM;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<PivotGroupBy> dateHistogram(
-				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
-			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
+			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code geotile_grid}
-		 */
-		public ObjectBuilder<PivotGroupBy> geotileGrid(GeoTileGridAggregation value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<PivotGroupBy> geotileGrid(GeoTileGridAggregation v) {
+			this._type = GEOTILE_GRID;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code geotile_grid}
-		 */
 		public ObjectBuilder<PivotGroupBy> geotileGrid(
-				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
-			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
+			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code histogram}
-		 */
-		public ObjectBuilder<PivotGroupBy> histogram(HistogramAggregation value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<PivotGroupBy> histogram(HistogramAggregation v) {
+			this._type = HISTOGRAM;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code histogram}
-		 */
 		public ObjectBuilder<PivotGroupBy> histogram(
-				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
-			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
+				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
+			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code terms}
-		 */
-		public ObjectBuilder<PivotGroupBy> terms(TermsAggregation value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<PivotGroupBy> terms(TermsAggregation v) {
+			this._type = TERMS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code terms}
-		 */
 		public ObjectBuilder<PivotGroupBy> terms(
-				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
-			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
+				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
+			return this.terms(f.apply(new TermsAggregation.Builder()).build());
+		}
+
+		protected PivotGroupBy build() {
+			return new PivotGroupBy(this);
 		}
 
 	}
 
-	class $Helper {
-		private static PivotGroupBy deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupPivotGroupByDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends PivotGroupBy> builder = null;
-			String variant = null;
+		op.add(Builder::dateHistogram, DateHistogramAggregation._DESERIALIZER, "date_histogram");
+		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
+		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
+		op.add(Builder::terms, TermsAggregation._DESERIALIZER, "terms");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case DATE_HISTOGRAM : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DateHistogramAggregation.$BUILDER_DESERIALIZER
-								.deserialize(new DateHistogramAggregation.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case GEOTILE_GRID : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = GeoTileGridAggregation.$BUILDER_DESERIALIZER
-								.deserialize(new GeoTileGridAggregation.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case HISTOGRAM : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = HistogramAggregation.$BUILDER_DESERIALIZER
-								.deserialize(new HistogramAggregation.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case TERMS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TermsAggregation.$BUILDER_DESERIALIZER.deserialize(new TermsAggregation.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<PivotGroupBy> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<PivotGroupBy> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			PivotGroupBy::setupPivotGroupByDeserializer, Builder::build);
 }

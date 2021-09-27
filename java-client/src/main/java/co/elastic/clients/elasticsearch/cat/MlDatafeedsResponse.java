@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.ml_datafeeds.DatafeedsRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Response
+@JsonpDeserializable
 public final class MlDatafeedsResponse implements JsonpSerializable {
 	private final List<DatafeedsRecord> value;
 
@@ -143,12 +145,12 @@ public final class MlDatafeedsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlDatafeedsResponse}
 	 */
-	public static final JsonpDeserializer<MlDatafeedsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlDatafeedsResponse::setupMlDatafeedsResponseDeserializer);
+	public static final JsonpDeserializer<MlDatafeedsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlDatafeedsResponse::setupMlDatafeedsResponseDeserializer, Builder::build);
 
 	protected static void setupMlDatafeedsResponseDeserializer(DelegatingDeserializer<MlDatafeedsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(DatafeedsRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(DatafeedsRecord._DESERIALIZER), "value");
 
 	}
 

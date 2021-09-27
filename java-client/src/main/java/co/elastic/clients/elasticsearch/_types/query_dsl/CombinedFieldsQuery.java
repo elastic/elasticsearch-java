@@ -24,13 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -41,7 +40,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CombinedFieldsQuery
-public final class CombinedFieldsQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	private final List<String> fields;
 
 	private final String query;
@@ -53,7 +53,7 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 	private final CombinedFieldsOperator operator;
 
 	@Nullable
-	private final JsonValue mimimumShouldMatch;
+	private final String mimimumShouldMatch;
 
 	@Nullable
 	private final CombinedFieldsZeroTerms zeroTermsQuery;
@@ -76,7 +76,7 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "combined_fields";
 	}
 
@@ -114,7 +114,7 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 	 * API name: {@code mimimum_should_match}
 	 */
 	@Nullable
-	public JsonValue mimimumShouldMatch() {
+	public String mimimumShouldMatch() {
 		return this.mimimumShouldMatch;
 	}
 
@@ -127,7 +127,6 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 
@@ -165,8 +164,6 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 			this.zeroTermsQuery.serialize(generator, mapper);
 		}
 
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -188,7 +185,7 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 		private CombinedFieldsOperator operator;
 
 		@Nullable
-		private JsonValue mimimumShouldMatch;
+		private String mimimumShouldMatch;
 
 		@Nullable
 		private CombinedFieldsZeroTerms zeroTermsQuery;
@@ -247,7 +244,7 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code mimimum_should_match}
 		 */
-		public Builder mimimumShouldMatch(@Nullable JsonValue value) {
+		public Builder mimimumShouldMatch(@Nullable String value) {
 			this.mimimumShouldMatch = value;
 			return this;
 		}
@@ -279,9 +276,11 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<CombinedFieldsQuery.Builder, CombinedFieldsQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(CombinedFieldsQuery::setupCombinedFieldsQueryDeserializer);
+	/**
+	 * Json deserializer for {@link CombinedFieldsQuery}
+	 */
+	public static final JsonpDeserializer<CombinedFieldsQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CombinedFieldsQuery::setupCombinedFieldsQueryDeserializer, Builder::build);
 
 	protected static void setupCombinedFieldsQueryDeserializer(DelegatingDeserializer<CombinedFieldsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
@@ -289,9 +288,9 @@ public final class CombinedFieldsQuery extends QueryBase implements Query {
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
-		op.add(Builder::operator, CombinedFieldsOperator.DESERIALIZER, "operator");
-		op.add(Builder::mimimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "mimimum_should_match");
-		op.add(Builder::zeroTermsQuery, CombinedFieldsZeroTerms.DESERIALIZER, "zero_terms_query");
+		op.add(Builder::operator, CombinedFieldsOperator._DESERIALIZER, "operator");
+		op.add(Builder::mimimumShouldMatch, JsonpDeserializer.stringDeserializer(), "mimimum_should_match");
+		op.add(Builder::zeroTermsQuery, CombinedFieldsZeroTerms._DESERIALIZER, "zero_terms_query");
 
 	}
 

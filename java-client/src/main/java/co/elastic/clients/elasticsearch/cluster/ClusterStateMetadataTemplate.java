@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+@JsonpDeserializable
 public class ClusterStateMetadataTemplate implements JsonpSerializable {
 
 	public static final class Builder implements ObjectBuilder<ClusterStateMetadataTemplate> {
 		@Override
 		public ClusterStateMetadataTemplate build() {
-			return ClusterStateMetadataTemplate.INSTANCE;
+			return ClusterStateMetadataTemplate._INSTANCE;
 		}
 	}
 
@@ -42,18 +44,16 @@ public class ClusterStateMetadataTemplate implements JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
 		generator.writeStartObject();
 		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link ClusterStateMetadataTemplate}.
+	 * Singleton instance for empty class {@link ClusterStateMetadataTemplate}.
 	 */
-	public static final ClusterStateMetadataTemplate INSTANCE = new ClusterStateMetadataTemplate();
+	public static final ClusterStateMetadataTemplate _INSTANCE = new ClusterStateMetadataTemplate();
 
-	public static final JsonpDeserializer<ClusterStateMetadataTemplate> DESERIALIZER = JsonpDeserializer
-			.emptyObject(ClusterStateMetadataTemplate.INSTANCE);
+	public static final JsonpDeserializer<ClusterStateMetadataTemplate> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(ClusterStateMetadataTemplate._INSTANCE);
 
 }

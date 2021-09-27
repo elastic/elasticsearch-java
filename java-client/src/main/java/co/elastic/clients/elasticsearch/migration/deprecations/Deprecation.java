@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.migration.deprecations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Deprecation
+@JsonpDeserializable
 public final class Deprecation implements JsonpSerializable {
 	private final String details;
 
@@ -176,13 +178,13 @@ public final class Deprecation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Deprecation}
 	 */
-	public static final JsonpDeserializer<Deprecation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Deprecation::setupDeprecationDeserializer);
+	public static final JsonpDeserializer<Deprecation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Deprecation::setupDeprecationDeserializer, Builder::build);
 
 	protected static void setupDeprecationDeserializer(DelegatingDeserializer<Deprecation.Builder> op) {
 
 		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");
-		op.add(Builder::level, DeprecationLevel.DESERIALIZER, "level");
+		op.add(Builder::level, DeprecationLevel._DESERIALIZER, "level");
 		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
 

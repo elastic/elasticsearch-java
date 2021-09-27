@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.experiments.base;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -135,7 +135,7 @@ public class Variants<T> {
      * Serializes an externally tagged variant object
      */
 
-    public static <T extends ToJsonp> void toJsonp(
+    public static <T extends JsonpSerializable> void serialize(
         Variants<T> variants, T v, JsonGenerator builder, JsonpMapper mapper
     ) {
       @SuppressWarnings("unchecked")
@@ -147,7 +147,7 @@ public class Variants<T> {
 
       builder.writeStartObject();
       builder.writeKey(variant);
-      v.toJsonp(builder, mapper);
+      v.serialize(builder, mapper);
       builder.writeEnd();
     }
   }

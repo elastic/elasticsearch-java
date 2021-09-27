@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.sql.query;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Column
+@JsonpDeserializable
 public final class Column implements JsonpSerializable {
 	private final String name;
 
@@ -126,8 +128,8 @@ public final class Column implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Column}
 	 */
-	public static final JsonpDeserializer<Column> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Column::setupColumnDeserializer);
+	public static final JsonpDeserializer<Column> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Column::setupColumnDeserializer, Builder::build);
 
 	protected static void setupColumnDeserializer(DelegatingDeserializer<Column.Builder> op) {
 

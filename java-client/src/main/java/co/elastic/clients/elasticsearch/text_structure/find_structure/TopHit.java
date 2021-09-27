@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.text_structure.find_structure;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,13 +33,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.TopHit
+@JsonpDeserializable
 public final class TopHit implements JsonpSerializable {
-	private final Number count;
+	private final Long count;
 
 	private final JsonData value;
 
@@ -54,7 +56,7 @@ public final class TopHit implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -77,7 +79,7 @@ public final class TopHit implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("value");
 		this.value.serialize(generator, mapper);
@@ -90,14 +92,14 @@ public final class TopHit implements JsonpSerializable {
 	 * Builder for {@link TopHit}.
 	 */
 	public static class Builder implements ObjectBuilder<TopHit> {
-		private Number count;
+		private Long count;
 
 		private JsonData value;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -127,13 +129,13 @@ public final class TopHit implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TopHit}
 	 */
-	public static final JsonpDeserializer<TopHit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			TopHit::setupTopHitDeserializer);
+	public static final JsonpDeserializer<TopHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TopHit::setupTopHitDeserializer, Builder::build);
 
 	protected static void setupTopHitDeserializer(DelegatingDeserializer<TopHit.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

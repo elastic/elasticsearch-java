@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.cat;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Request
+
 public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
 	private final String id;
@@ -202,5 +204,5 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, MlDataFrameAnalyticsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, MlDataFrameAnalyticsResponse._DESERIALIZER);
 }

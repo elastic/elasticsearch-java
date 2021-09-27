@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: indices.get_template.Response
+@JsonpDeserializable
 public final class GetTemplateResponse extends AdditionalProperties<String, TemplateMapping> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,12 +76,12 @@ public final class GetTemplateResponse extends AdditionalProperties<String, Temp
 	/**
 	 * Json deserializer for {@link GetTemplateResponse}
 	 */
-	public static final JsonpDeserializer<GetTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer);
+	public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupGetTemplateResponseDeserializer(DelegatingDeserializer<GetTemplateResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				TemplateMapping.DESERIALIZER);
+				TemplateMapping._DESERIALIZER);
 
 	}
 

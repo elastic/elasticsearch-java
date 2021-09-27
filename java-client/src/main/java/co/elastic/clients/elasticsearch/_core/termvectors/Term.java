@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.termvectors;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,19 +42,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Term
+@JsonpDeserializable
 public final class Term implements JsonpSerializable {
 	@Nullable
-	private final Number docFreq;
+	private final Integer docFreq;
 
 	@Nullable
-	private final Number score;
+	private final Double score;
 
-	private final Number termFreq;
+	private final Integer termFreq;
 
 	private final List<Token> tokens;
 
 	@Nullable
-	private final Number ttf;
+	private final Integer ttf;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +73,7 @@ public final class Term implements JsonpSerializable {
 	 * API name: {@code doc_freq}
 	 */
 	@Nullable
-	public Number docFreq() {
+	public Integer docFreq() {
 		return this.docFreq;
 	}
 
@@ -78,14 +81,14 @@ public final class Term implements JsonpSerializable {
 	 * API name: {@code score}
 	 */
 	@Nullable
-	public Number score() {
+	public Double score() {
 		return this.score;
 	}
 
 	/**
 	 * API name: {@code term_freq}
 	 */
-	public Number termFreq() {
+	public Integer termFreq() {
 		return this.termFreq;
 	}
 
@@ -100,7 +103,7 @@ public final class Term implements JsonpSerializable {
 	 * API name: {@code ttf}
 	 */
 	@Nullable
-	public Number ttf() {
+	public Integer ttf() {
 		return this.ttf;
 	}
 
@@ -118,18 +121,18 @@ public final class Term implements JsonpSerializable {
 		if (this.docFreq != null) {
 
 			generator.writeKey("doc_freq");
-			generator.write(this.docFreq.doubleValue());
+			generator.write(this.docFreq);
 
 		}
 		if (this.score != null) {
 
 			generator.writeKey("score");
-			generator.write(this.score.doubleValue());
+			generator.write(this.score);
 
 		}
 
 		generator.writeKey("term_freq");
-		generator.write(this.termFreq.doubleValue());
+		generator.write(this.termFreq);
 
 		generator.writeKey("tokens");
 		generator.writeStartArray();
@@ -142,7 +145,7 @@ public final class Term implements JsonpSerializable {
 		if (this.ttf != null) {
 
 			generator.writeKey("ttf");
-			generator.write(this.ttf.doubleValue());
+			generator.write(this.ttf);
 
 		}
 
@@ -155,22 +158,22 @@ public final class Term implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Term> {
 		@Nullable
-		private Number docFreq;
+		private Integer docFreq;
 
 		@Nullable
-		private Number score;
+		private Double score;
 
-		private Number termFreq;
+		private Integer termFreq;
 
 		private List<Token> tokens;
 
 		@Nullable
-		private Number ttf;
+		private Integer ttf;
 
 		/**
 		 * API name: {@code doc_freq}
 		 */
-		public Builder docFreq(@Nullable Number value) {
+		public Builder docFreq(@Nullable Integer value) {
 			this.docFreq = value;
 			return this;
 		}
@@ -178,7 +181,7 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * API name: {@code score}
 		 */
-		public Builder score(@Nullable Number value) {
+		public Builder score(@Nullable Double value) {
 			this.score = value;
 			return this;
 		}
@@ -186,7 +189,7 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * API name: {@code term_freq}
 		 */
-		public Builder termFreq(Number value) {
+		public Builder termFreq(Integer value) {
 			this.termFreq = value;
 			return this;
 		}
@@ -235,7 +238,7 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * API name: {@code ttf}
 		 */
-		public Builder ttf(@Nullable Number value) {
+		public Builder ttf(@Nullable Integer value) {
 			this.ttf = value;
 			return this;
 		}
@@ -257,16 +260,16 @@ public final class Term implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Term}
 	 */
-	public static final JsonpDeserializer<Term> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Term::setupTermDeserializer);
+	public static final JsonpDeserializer<Term> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Term::setupTermDeserializer, Builder::build);
 
 	protected static void setupTermDeserializer(DelegatingDeserializer<Term.Builder> op) {
 
-		op.add(Builder::docFreq, JsonpDeserializer.numberDeserializer(), "doc_freq");
-		op.add(Builder::score, JsonpDeserializer.numberDeserializer(), "score");
-		op.add(Builder::termFreq, JsonpDeserializer.numberDeserializer(), "term_freq");
-		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(Token.DESERIALIZER), "tokens");
-		op.add(Builder::ttf, JsonpDeserializer.numberDeserializer(), "ttf");
+		op.add(Builder::docFreq, JsonpDeserializer.integerDeserializer(), "doc_freq");
+		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
+		op.add(Builder::termFreq, JsonpDeserializer.integerDeserializer(), "term_freq");
+		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(Token._DESERIALIZER), "tokens");
+		op.add(Builder::ttf, JsonpDeserializer.integerDeserializer(), "ttf");
 
 	}
 

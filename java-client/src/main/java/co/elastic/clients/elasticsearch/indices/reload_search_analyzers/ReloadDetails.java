@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.reload_search_analyzers;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
+@JsonpDeserializable
 public final class ReloadDetails implements JsonpSerializable {
 	private final String index;
 
@@ -200,8 +202,8 @@ public final class ReloadDetails implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReloadDetails}
 	 */
-	public static final JsonpDeserializer<ReloadDetails> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReloadDetails::setupReloadDetailsDeserializer);
+	public static final JsonpDeserializer<ReloadDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReloadDetails::setupReloadDetailsDeserializer, Builder::build);
 
 	protected static void setupReloadDetailsDeserializer(DelegatingDeserializer<ReloadDetails.Builder> op) {
 

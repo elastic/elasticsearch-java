@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: dangling_indices.delete_dangling_index.Response
+@JsonpDeserializable
 public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link DeleteDanglingIndexResponse}
 	 */
-	public static final JsonpDeserializer<DeleteDanglingIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer);
+	public static final JsonpDeserializer<DeleteDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteDanglingIndexResponseDeserializer(
 			DelegatingDeserializer<DeleteDanglingIndexResponse.Builder> op) {

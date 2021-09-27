@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,11 +33,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
+@JsonpDeserializable
 public final class IndexSettingBlocks implements JsonpSerializable {
 	@Nullable
 	private final Boolean readOnly;
@@ -48,7 +49,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	private final Boolean read;
 
 	@Nullable
-	private final String write;
+	private final Boolean write;
 
 	@Nullable
 	private final Boolean metadata;
@@ -93,7 +94,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	 * API name: {@code write}
 	 */
 	@Nullable
-	public String write() {
+	public Boolean write() {
 		return this.write;
 	}
 
@@ -165,7 +166,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		private Boolean read;
 
 		@Nullable
-		private String write;
+		private Boolean write;
 
 		@Nullable
 		private Boolean metadata;
@@ -197,7 +198,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		/**
 		 * API name: {@code write}
 		 */
-		public Builder write(@Nullable String value) {
+		public Builder write(@Nullable Boolean value) {
 			this.write = value;
 			return this;
 		}
@@ -227,8 +228,8 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexSettingBlocks}
 	 */
-	public static final JsonpDeserializer<IndexSettingBlocks> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer);
+	public static final JsonpDeserializer<IndexSettingBlocks> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexSettingBlocks::setupIndexSettingBlocksDeserializer, Builder::build);
 
 	protected static void setupIndexSettingBlocksDeserializer(DelegatingDeserializer<IndexSettingBlocks.Builder> op) {
 
@@ -236,7 +237,7 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		op.add(Builder::readOnlyAllowDelete, JsonpDeserializer.booleanDeserializer(), "read_only_allow_delete",
 				"index.blocks.read_only_allow_delete");
 		op.add(Builder::read, JsonpDeserializer.booleanDeserializer(), "read", "index.blocks.read");
-		op.add(Builder::write, JsonpDeserializer.stringDeserializer(), "write", "index.blocks.write");
+		op.add(Builder::write, JsonpDeserializer.booleanDeserializer(), "write", "index.blocks.write");
 		op.add(Builder::metadata, JsonpDeserializer.booleanDeserializer(), "metadata", "index.blocks.metadata");
 
 	}

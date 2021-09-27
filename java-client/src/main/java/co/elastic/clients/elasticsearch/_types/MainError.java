@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.MainError
+@JsonpDeserializable
 public final class MainError extends ErrorCause {
 	@Nullable
 	private final Map<String, String> headers;
@@ -126,8 +128,8 @@ public final class MainError extends ErrorCause {
 	/**
 	 * Json deserializer for {@link MainError}
 	 */
-	public static final JsonpDeserializer<MainError> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MainError::setupMainErrorDeserializer);
+	public static final JsonpDeserializer<MainError> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MainError::setupMainErrorDeserializer, Builder::build);
 
 	protected static void setupMainErrorDeserializer(DelegatingDeserializer<MainError.Builder> op) {
 		ErrorCause.setupErrorCauseDeserializer(op);

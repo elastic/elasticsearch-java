@@ -103,185 +103,180 @@ import co.elastic.clients.elasticsearch._core.UpdateByQueryRethrottleRequest;
 import co.elastic.clients.elasticsearch._core.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch._core.UpdateRequest;
 import co.elastic.clients.elasticsearch._core.UpdateResponse;
-import co.elastic.clients.elasticsearch.async_search.AsyncSearchApiClient;
-import co.elastic.clients.elasticsearch.autoscaling.AutoscalingApiClient;
-import co.elastic.clients.elasticsearch.cat.CatApiClient;
-import co.elastic.clients.elasticsearch.ccr.CcrApiClient;
-import co.elastic.clients.elasticsearch.cluster.ClusterApiClient;
-import co.elastic.clients.elasticsearch.dangling_indices.DanglingIndicesApiClient;
-import co.elastic.clients.elasticsearch.enrich.EnrichApiClient;
-import co.elastic.clients.elasticsearch.eql.EqlApiClient;
-import co.elastic.clients.elasticsearch.features.FeaturesApiClient;
-import co.elastic.clients.elasticsearch.graph.GraphApiClient;
-import co.elastic.clients.elasticsearch.ilm.IlmApiClient;
-import co.elastic.clients.elasticsearch.indices.IndicesApiClient;
-import co.elastic.clients.elasticsearch.ingest.IngestApiClient;
-import co.elastic.clients.elasticsearch.license.LicenseApiClient;
-import co.elastic.clients.elasticsearch.logstash.LogstashApiClient;
-import co.elastic.clients.elasticsearch.migration.MigrationApiClient;
-import co.elastic.clients.elasticsearch.ml.MlApiClient;
-import co.elastic.clients.elasticsearch.monitoring.MonitoringApiClient;
-import co.elastic.clients.elasticsearch.nodes.NodesApiClient;
-import co.elastic.clients.elasticsearch.rollup.RollupApiClient;
-import co.elastic.clients.elasticsearch.searchable_snapshots.SearchableSnapshotsApiClient;
-import co.elastic.clients.elasticsearch.security.SecurityApiClient;
-import co.elastic.clients.elasticsearch.shutdown.ShutdownApiClient;
-import co.elastic.clients.elasticsearch.slm.SlmApiClient;
-import co.elastic.clients.elasticsearch.snapshot.SnapshotApiClient;
-import co.elastic.clients.elasticsearch.sql.SqlApiClient;
-import co.elastic.clients.elasticsearch.ssl.SslApiClient;
-import co.elastic.clients.elasticsearch.tasks.TasksApiClient;
-import co.elastic.clients.elasticsearch.text_structure.TextStructureApiClient;
-import co.elastic.clients.elasticsearch.transform.TransformApiClient;
-import co.elastic.clients.elasticsearch.watcher.WatcherApiClient;
-import co.elastic.clients.elasticsearch.xpack.XpackApiClient;
+import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchClient;
+import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingClient;
+import co.elastic.clients.elasticsearch.cat.ElasticsearchCatClient;
+import co.elastic.clients.elasticsearch.ccr.ElasticsearchCcrClient;
+import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterClient;
+import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesClient;
+import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichClient;
+import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlClient;
+import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesClient;
+import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphClient;
+import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmClient;
+import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesClient;
+import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestClient;
+import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseClient;
+import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashClient;
+import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationClient;
+import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
+import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringClient;
+import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesClient;
+import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupClient;
+import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsClient;
+import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityClient;
+import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownClient;
+import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmClient;
+import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
+import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
+import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslClient;
+import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
+import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureClient;
+import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformClient;
+import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherClient;
+import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the namespace.
  */
-public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
+public class ElasticsearchClient extends ApiClient {
 
 	public ElasticsearchClient(Transport transport) {
-		super(transport, null);
-	}
-
-	public ElasticsearchClient(Transport transport, RequestOptions options) {
-		super(transport, options);
+		super(transport);
 	}
 
 	// ----- Child clients
 
-	public AsyncSearchApiClient asyncSearch() {
-		return new AsyncSearchApiClient(this.transport);
+	public ElasticsearchAsyncSearchClient asyncSearch() {
+		return new ElasticsearchAsyncSearchClient(this.transport);
 	}
 
-	public AutoscalingApiClient autoscaling() {
-		return new AutoscalingApiClient(this.transport);
+	public ElasticsearchAutoscalingClient autoscaling() {
+		return new ElasticsearchAutoscalingClient(this.transport);
 	}
 
-	public CatApiClient cat() {
-		return new CatApiClient(this.transport);
+	public ElasticsearchCatClient cat() {
+		return new ElasticsearchCatClient(this.transport);
 	}
 
-	public CcrApiClient ccr() {
-		return new CcrApiClient(this.transport);
+	public ElasticsearchCcrClient ccr() {
+		return new ElasticsearchCcrClient(this.transport);
 	}
 
-	public ClusterApiClient cluster() {
-		return new ClusterApiClient(this.transport);
+	public ElasticsearchClusterClient cluster() {
+		return new ElasticsearchClusterClient(this.transport);
 	}
 
-	public DanglingIndicesApiClient danglingIndices() {
-		return new DanglingIndicesApiClient(this.transport);
+	public ElasticsearchDanglingIndicesClient danglingIndices() {
+		return new ElasticsearchDanglingIndicesClient(this.transport);
 	}
 
-	public EnrichApiClient enrich() {
-		return new EnrichApiClient(this.transport);
+	public ElasticsearchEnrichClient enrich() {
+		return new ElasticsearchEnrichClient(this.transport);
 	}
 
-	public EqlApiClient eql() {
-		return new EqlApiClient(this.transport);
+	public ElasticsearchEqlClient eql() {
+		return new ElasticsearchEqlClient(this.transport);
 	}
 
-	public FeaturesApiClient features() {
-		return new FeaturesApiClient(this.transport);
+	public ElasticsearchFeaturesClient features() {
+		return new ElasticsearchFeaturesClient(this.transport);
 	}
 
-	public GraphApiClient graph() {
-		return new GraphApiClient(this.transport);
+	public ElasticsearchGraphClient graph() {
+		return new ElasticsearchGraphClient(this.transport);
 	}
 
-	public IlmApiClient ilm() {
-		return new IlmApiClient(this.transport);
+	public ElasticsearchIlmClient ilm() {
+		return new ElasticsearchIlmClient(this.transport);
 	}
 
-	public IndicesApiClient indices() {
-		return new IndicesApiClient(this.transport);
+	public ElasticsearchIndicesClient indices() {
+		return new ElasticsearchIndicesClient(this.transport);
 	}
 
-	public IngestApiClient ingest() {
-		return new IngestApiClient(this.transport);
+	public ElasticsearchIngestClient ingest() {
+		return new ElasticsearchIngestClient(this.transport);
 	}
 
-	public LicenseApiClient license() {
-		return new LicenseApiClient(this.transport);
+	public ElasticsearchLicenseClient license() {
+		return new ElasticsearchLicenseClient(this.transport);
 	}
 
-	public LogstashApiClient logstash() {
-		return new LogstashApiClient(this.transport);
+	public ElasticsearchLogstashClient logstash() {
+		return new ElasticsearchLogstashClient(this.transport);
 	}
 
-	public MigrationApiClient migration() {
-		return new MigrationApiClient(this.transport);
+	public ElasticsearchMigrationClient migration() {
+		return new ElasticsearchMigrationClient(this.transport);
 	}
 
-	public MlApiClient ml() {
-		return new MlApiClient(this.transport);
+	public ElasticsearchMlClient ml() {
+		return new ElasticsearchMlClient(this.transport);
 	}
 
-	public MonitoringApiClient monitoring() {
-		return new MonitoringApiClient(this.transport);
+	public ElasticsearchMonitoringClient monitoring() {
+		return new ElasticsearchMonitoringClient(this.transport);
 	}
 
-	public NodesApiClient nodes() {
-		return new NodesApiClient(this.transport);
+	public ElasticsearchNodesClient nodes() {
+		return new ElasticsearchNodesClient(this.transport);
 	}
 
-	public RollupApiClient rollup() {
-		return new RollupApiClient(this.transport);
+	public ElasticsearchRollupClient rollup() {
+		return new ElasticsearchRollupClient(this.transport);
 	}
 
-	public SearchableSnapshotsApiClient searchableSnapshots() {
-		return new SearchableSnapshotsApiClient(this.transport);
+	public ElasticsearchSearchableSnapshotsClient searchableSnapshots() {
+		return new ElasticsearchSearchableSnapshotsClient(this.transport);
 	}
 
-	public SecurityApiClient security() {
-		return new SecurityApiClient(this.transport);
+	public ElasticsearchSecurityClient security() {
+		return new ElasticsearchSecurityClient(this.transport);
 	}
 
-	public ShutdownApiClient shutdown() {
-		return new ShutdownApiClient(this.transport);
+	public ElasticsearchShutdownClient shutdown() {
+		return new ElasticsearchShutdownClient(this.transport);
 	}
 
-	public SlmApiClient slm() {
-		return new SlmApiClient(this.transport);
+	public ElasticsearchSlmClient slm() {
+		return new ElasticsearchSlmClient(this.transport);
 	}
 
-	public SnapshotApiClient snapshot() {
-		return new SnapshotApiClient(this.transport);
+	public ElasticsearchSnapshotClient snapshot() {
+		return new ElasticsearchSnapshotClient(this.transport);
 	}
 
-	public SqlApiClient sql() {
-		return new SqlApiClient(this.transport);
+	public ElasticsearchSqlClient sql() {
+		return new ElasticsearchSqlClient(this.transport);
 	}
 
-	public SslApiClient ssl() {
-		return new SslApiClient(this.transport);
+	public ElasticsearchSslClient ssl() {
+		return new ElasticsearchSslClient(this.transport);
 	}
 
-	public TasksApiClient tasks() {
-		return new TasksApiClient(this.transport);
+	public ElasticsearchTasksClient tasks() {
+		return new ElasticsearchTasksClient(this.transport);
 	}
 
-	public TextStructureApiClient textStructure() {
-		return new TextStructureApiClient(this.transport);
+	public ElasticsearchTextStructureClient textStructure() {
+		return new ElasticsearchTextStructureClient(this.transport);
 	}
 
-	public TransformApiClient transform() {
-		return new TransformApiClient(this.transport);
+	public ElasticsearchTransformClient transform() {
+		return new ElasticsearchTransformClient(this.transport);
 	}
 
-	public WatcherApiClient watcher() {
-		return new WatcherApiClient(this.transport);
+	public ElasticsearchWatcherClient watcher() {
+		return new ElasticsearchWatcherClient(this.transport);
 	}
 
-	public XpackApiClient xpack() {
-		return new XpackApiClient(this.transport);
+	public ElasticsearchXpackClient xpack() {
+		return new ElasticsearchXpackClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk
@@ -296,7 +291,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
-		return this.transport.performRequest(request, BulkRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
 	}
 
 	/**
@@ -328,7 +323,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException {
-		return this.transport.performRequest(request, ClearScrollRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ClearScrollRequest.ENDPOINT);
 	}
 
 	/**
@@ -359,7 +354,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request) throws IOException {
-		return this.transport.performRequest(request, ClosePointInTimeRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ClosePointInTimeRequest.ENDPOINT);
 	}
 
 	/**
@@ -390,7 +385,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public CountResponse count(CountRequest request) throws IOException {
-		return this.transport.performRequest(request, CountRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, CountRequest.ENDPOINT);
 	}
 
 	/**
@@ -424,7 +419,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public <TDocument> CreateResponse create(CreateRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, CreateRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, CreateRequest.ENDPOINT);
 	}
 
 	/**
@@ -458,7 +453,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
 	}
 
 	/**
@@ -489,7 +484,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteByQueryRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteByQueryRequest.ENDPOINT);
 	}
 
 	/**
@@ -522,7 +517,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
 			throws IOException {
-		return this.transport.performRequest(request, DeleteByQueryRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteByQueryRethrottleRequest.ENDPOINT);
 	}
 
 	/**
@@ -555,7 +550,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, DeleteScriptRequest.ENDPOINT);
 	}
 
 	/**
@@ -586,7 +581,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public BooleanResponse exists(ExistsRequest request) throws IOException {
-		return this.transport.performRequest(request, ExistsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ExistsRequest.ENDPOINT);
 	}
 
 	/**
@@ -617,7 +612,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException {
-		return this.transport.performRequest(request, ExistsSourceRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ExistsSourceRequest.ENDPOINT);
 	}
 
 	/**
@@ -650,7 +645,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -683,7 +678,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException {
-		return this.transport.performRequest(request, FieldCapsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, FieldCapsRequest.ENDPOINT);
 	}
 
 	/**
@@ -716,8 +711,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
-		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -748,7 +742,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public GetScriptResponse getScript(GetScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, GetScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, GetScriptRequest.ENDPOINT);
 	}
 
 	/**
@@ -778,8 +772,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 *      on elastic.co</a>
 	 */
 	public GetScriptContextResponse getScriptContext() throws IOException {
-		return this.transport.performRequest(GetScriptContextRequest.INSTANCE, GetScriptContextRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get_script_languages
@@ -792,8 +785,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 *      on elastic.co</a>
 	 */
 	public GetScriptLanguagesResponse getScriptLanguages() throws IOException {
-		return this.transport.performRequest(GetScriptLanguagesRequest.INSTANCE, GetScriptLanguagesRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get_source
@@ -809,7 +801,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -841,7 +833,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, IndexRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, IndexRequest.ENDPOINT);
 	}
 
 	/**
@@ -871,7 +863,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 *      on elastic.co</a>
 	 */
 	public InfoResponse info() throws IOException {
-		return this.transport.performRequest(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: mget
@@ -886,8 +878,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
-		return this.transport.performRequest(request, MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+		return this.transport.performRequest(request, MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -920,7 +911,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -954,8 +945,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequest(request,
-				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -987,7 +977,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException {
-		return this.transport.performRequest(request, MtermvectorsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, MtermvectorsRequest.ENDPOINT);
 	}
 
 	/**
@@ -1018,7 +1008,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request) throws IOException {
-		return this.transport.performRequest(request, OpenPointInTimeRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, OpenPointInTimeRequest.ENDPOINT);
 	}
 
 	/**
@@ -1048,7 +1038,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 *      on elastic.co</a>
 	 */
 	public BooleanResponse ping() throws IOException {
-		return this.transport.performRequest(PingRequest.INSTANCE, PingRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: put_script
@@ -1062,7 +1052,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public PutScriptResponse putScript(PutScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, PutScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, PutScriptRequest.ENDPOINT);
 	}
 
 	/**
@@ -1094,7 +1084,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException {
-		return this.transport.performRequest(request, RankEvalRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, RankEvalRequest.ENDPOINT);
 	}
 
 	/**
@@ -1128,7 +1118,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public ReindexResponse reindex(ReindexRequest request) throws IOException {
-		return this.transport.performRequest(request, ReindexRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ReindexRequest.ENDPOINT);
 	}
 
 	/**
@@ -1161,7 +1151,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request) throws IOException {
-		return this.transport.performRequest(request, ReindexRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, ReindexRethrottleRequest.ENDPOINT);
 	}
 
 	/**
@@ -1194,8 +1184,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
 			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass) throws IOException {
 		return this.transport.performRequest(request,
-				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)),
-				this.requestOptions);
+				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)));
 	}
 
 	/**
@@ -1229,7 +1218,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
 			throws IOException {
 		return this.transport.performRequest(request,
-				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -1262,7 +1251,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public SearchMvtResponse searchMvt(SearchMvtRequest request) throws IOException {
-		return this.transport.performRequest(request, SearchMvtRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, SearchMvtRequest.ENDPOINT);
 	}
 
 	/**
@@ -1295,7 +1284,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException {
-		return this.transport.performRequest(request, SearchShardsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, SearchShardsRequest.ENDPOINT);
 	}
 
 	/**
@@ -1329,8 +1318,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequest(request,
-				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -1364,7 +1352,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException {
-		return this.transport.performRequest(request, TermsEnumRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, TermsEnumRequest.ENDPOINT);
 	}
 
 	/**
@@ -1398,7 +1386,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, TermvectorsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, TermvectorsRequest.ENDPOINT);
 	}
 
 	/**
@@ -1433,7 +1421,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
 			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequest(request,
-				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
@@ -1466,7 +1454,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 	 */
 
 	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request) throws IOException {
-		return this.transport.performRequest(request, UpdateByQueryRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, UpdateByQueryRequest.ENDPOINT);
 	}
 
 	/**
@@ -1500,7 +1488,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
 			throws IOException {
-		return this.transport.performRequest(request, UpdateByQueryRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequest(request, UpdateByQueryRethrottleRequest.ENDPOINT);
 	}
 
 	/**
@@ -1522,29 +1510,4 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchClient> {
 		return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
 	}
 
-	// ----- Misc
-
-	/**
-	 * Creates a new {@link #ElasticsearchClient} with specific request options.
-	 */
-	@Override
-	public ElasticsearchClient withRequestOptions(@Nullable RequestOptions options) {
-		return new ElasticsearchClient(transport, options);
-	}
-
-	/**
-	 * Creates a new {@link #ElasticsearchClient} with specific request options,
-	 * inheriting existing options.
-	 *
-	 * @param fn
-	 *            a function taking an options builder initialized with the current
-	 *            request options, or initialized with default values.
-	 */
-	public ElasticsearchClient withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
-		RequestOptions.Builder builder = requestOptions == null
-				? RequestOptions.DEFAULT.toBuilder()
-				: requestOptions.toBuilder();
-
-		return withRequestOptions(fn.apply(builder).build());
-	}
 }

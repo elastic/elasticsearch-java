@@ -24,8 +24,9 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
+import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,7 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,7 +44,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
-public final class TermsAggregation extends BucketAggregationBase implements PivotGroupBy, CompositeAggregationSource {
+@JsonpDeserializable
+public final class TermsAggregation extends BucketAggregationBase
+		implements
+			AggregationVariant,
+			PivotGroupByVariant,
+			CompositeAggregationSourceVariant {
 	@Nullable
 	private final TermsAggregationCollectMode collectMode;
 
@@ -57,13 +63,13 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	private final String field;
 
 	@Nullable
-	private final JsonValue include;
+	private final JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include;
 
 	@Nullable
-	private final Number minDocCount;
+	private final Integer minDocCount;
 
 	@Nullable
-	private final JsonValue missing;
+	private final String missing;
 
 	@Nullable
 	private final Boolean missingBucket;
@@ -72,19 +78,19 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	private final String valueType;
 
 	@Nullable
-	private final JsonValue order;
+	private final JsonValue /* _types.aggregations.TermsAggregationOrder */ order;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
-	private final Number shardSize;
+	private final Integer shardSize;
 
 	@Nullable
 	private final Boolean showTermDocCountError;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -109,10 +115,11 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	}
 
 	/**
-	 * {@link PivotGroupBy}, {@link CompositeAggregationSource} variant type
+	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
+	 * variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "terms";
 	}
 
@@ -152,7 +159,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public JsonValue include() {
+	public JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include() {
 		return this.include;
 	}
 
@@ -160,7 +167,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Number minDocCount() {
+	public Integer minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -168,7 +175,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public JsonValue missing() {
+	public String missing() {
 		return this.missing;
 	}
 
@@ -192,7 +199,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public JsonValue order() {
+	public JsonValue /* _types.aggregations.TermsAggregationOrder */ order() {
 		return this.order;
 	}
 
@@ -200,7 +207,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -208,7 +215,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Number shardSize() {
+	public Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -224,12 +231,11 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.collectMode != null) {
@@ -268,7 +274,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		if (this.minDocCount != null) {
 
 			generator.writeKey("min_doc_count");
-			generator.write(this.minDocCount.doubleValue());
+			generator.write(this.minDocCount);
 
 		}
 		if (this.missing != null) {
@@ -304,7 +310,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
-			generator.write(this.shardSize.doubleValue());
+			generator.write(this.shardSize);
 
 		}
 		if (this.showTermDocCountError != null) {
@@ -316,11 +322,9 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -345,13 +349,13 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		private String field;
 
 		@Nullable
-		private JsonValue include;
+		private JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ include;
 
 		@Nullable
-		private Number minDocCount;
+		private Integer minDocCount;
 
 		@Nullable
-		private JsonValue missing;
+		private String missing;
 
 		@Nullable
 		private Boolean missingBucket;
@@ -360,19 +364,19 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		private String valueType;
 
 		@Nullable
-		private JsonValue order;
+		private JsonValue /* _types.aggregations.TermsAggregationOrder */ order;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
-		private Number shardSize;
+		private Integer shardSize;
 
 		@Nullable
 		private Boolean showTermDocCountError;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * API name: {@code collect_mode}
@@ -428,7 +432,8 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(@Nullable JsonValue value) {
+		public Builder include(
+				@Nullable JsonValue /* Union(Array<internal.string> | _types.aggregations.TermsInclude) */ value) {
 			this.include = value;
 			return this;
 		}
@@ -436,7 +441,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Number value) {
+		public Builder minDocCount(@Nullable Integer value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -444,7 +449,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable JsonValue value) {
+		public Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -468,7 +473,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable JsonValue value) {
+		public Builder order(@Nullable JsonValue /* _types.aggregations.TermsAggregationOrder */ value) {
 			this.order = value;
 			return this;
 		}
@@ -476,7 +481,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -484,7 +489,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Number value) {
+		public Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -500,7 +505,7 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -524,27 +529,29 @@ public final class TermsAggregation extends BucketAggregationBase implements Piv
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<TermsAggregation.Builder, TermsAggregation.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(TermsAggregation::setupTermsAggregationDeserializer);
+	/**
+	 * Json deserializer for {@link TermsAggregation}
+	 */
+	public static final JsonpDeserializer<TermsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TermsAggregation::setupTermsAggregationDeserializer, Builder::build);
 
 	protected static void setupTermsAggregationDeserializer(DelegatingDeserializer<TermsAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::collectMode, TermsAggregationCollectMode.DESERIALIZER, "collect_mode");
+		op.add(Builder::collectMode, TermsAggregationCollectMode._DESERIALIZER, "collect_mode");
 		op.add(Builder::exclude, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"exclude");
-		op.add(Builder::executionHint, TermsAggregationExecutionHint.DESERIALIZER, "execution_hint");
+		op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::include, JsonpDeserializer.jsonValueDeserializer(), "include");
-		op.add(Builder::minDocCount, JsonpDeserializer.numberDeserializer(), "min_doc_count");
-		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
+		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
 		op.add(Builder::order, JsonpDeserializer.jsonValueDeserializer(), "order");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
-		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

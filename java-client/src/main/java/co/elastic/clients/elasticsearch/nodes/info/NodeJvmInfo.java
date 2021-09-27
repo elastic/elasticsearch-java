@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
+@JsonpDeserializable
 public final class NodeJvmInfo implements JsonpSerializable {
 	private final List<String> gcCollectors;
 
@@ -49,9 +52,9 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 	private final List<String> memoryPools;
 
-	private final Number pid;
+	private final Integer pid;
 
-	private final Number startTimeInMillis;
+	private final Long startTimeInMillis;
 
 	private final String version;
 
@@ -66,7 +69,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	private final Boolean usingBundledJdk;
 
 	@Nullable
-	private final String usingCompressedOrdinaryObjectPointers;
+	private final Boolean usingCompressedOrdinaryObjectPointers;
 
 	private final List<String> inputArguments;
 
@@ -114,14 +117,14 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * API name: {@code pid}
 	 */
-	public Number pid() {
+	public Integer pid() {
 		return this.pid;
 	}
 
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Number startTimeInMillis() {
+	public Long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -171,7 +174,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	 * API name: {@code using_compressed_ordinary_object_pointers}
 	 */
 	@Nullable
-	public String usingCompressedOrdinaryObjectPointers() {
+	public Boolean usingCompressedOrdinaryObjectPointers() {
 		return this.usingCompressedOrdinaryObjectPointers;
 	}
 
@@ -213,10 +216,10 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("pid");
-		generator.write(this.pid.doubleValue());
+		generator.write(this.pid);
 
 		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis.doubleValue());
+		generator.write(this.startTimeInMillis);
 
 		generator.writeKey("version");
 		generator.write(this.version);
@@ -265,9 +268,9 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 		private List<String> memoryPools;
 
-		private Number pid;
+		private Integer pid;
 
-		private Number startTimeInMillis;
+		private Long startTimeInMillis;
 
 		private String version;
 
@@ -282,7 +285,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		private Boolean usingBundledJdk;
 
 		@Nullable
-		private String usingCompressedOrdinaryObjectPointers;
+		private Boolean usingCompressedOrdinaryObjectPointers;
 
 		private List<String> inputArguments;
 
@@ -358,7 +361,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code pid}
 		 */
-		public Builder pid(Number value) {
+		public Builder pid(Integer value) {
 			this.pid = value;
 			return this;
 		}
@@ -366,7 +369,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Number value) {
+		public Builder startTimeInMillis(Long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -422,7 +425,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code using_compressed_ordinary_object_pointers}
 		 */
-		public Builder usingCompressedOrdinaryObjectPointers(@Nullable String value) {
+		public Builder usingCompressedOrdinaryObjectPointers(@Nullable Boolean value) {
 			this.usingCompressedOrdinaryObjectPointers = value;
 			return this;
 		}
@@ -471,25 +474,25 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeJvmInfo}
 	 */
-	public static final JsonpDeserializer<NodeJvmInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeJvmInfo::setupNodeJvmInfoDeserializer);
+	public static final JsonpDeserializer<NodeJvmInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeJvmInfo::setupNodeJvmInfoDeserializer, Builder::build);
 
 	protected static void setupNodeJvmInfoDeserializer(DelegatingDeserializer<NodeJvmInfo.Builder> op) {
 
 		op.add(Builder::gcCollectors, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"gc_collectors");
-		op.add(Builder::mem, NodeInfoJvmMemory.DESERIALIZER, "mem");
+		op.add(Builder::mem, NodeInfoJvmMemory._DESERIALIZER, "mem");
 		op.add(Builder::memoryPools, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"memory_pools");
-		op.add(Builder::pid, JsonpDeserializer.numberDeserializer(), "pid");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
+		op.add(Builder::pid, JsonpDeserializer.integerDeserializer(), "pid");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");
 		op.add(Builder::vmVendor, JsonpDeserializer.stringDeserializer(), "vm_vendor");
 		op.add(Builder::vmVersion, JsonpDeserializer.stringDeserializer(), "vm_version");
 		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
 		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
-		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.stringDeserializer(),
+		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.booleanDeserializer(),
 				"using_compressed_ordinary_object_pointers");
 		op.add(Builder::inputArguments, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"input_arguments");

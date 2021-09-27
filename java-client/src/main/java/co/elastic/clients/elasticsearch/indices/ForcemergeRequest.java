@@ -25,15 +25,16 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.forcemerge.Request
+
 public final class ForcemergeRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
@@ -53,7 +55,7 @@ public final class ForcemergeRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean flush;
@@ -62,7 +64,7 @@ public final class ForcemergeRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Number maxNumSegments;
+	private final Long maxNumSegments;
 
 	@Nullable
 	private final Boolean onlyExpungeDeletes;
@@ -111,7 +113,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -143,7 +145,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code max_num_segments}
 	 */
 	@Nullable
-	public Number maxNumSegments() {
+	public Long maxNumSegments() {
 		return this.maxNumSegments;
 	}
 
@@ -170,7 +172,7 @@ public final class ForcemergeRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean flush;
@@ -179,7 +181,7 @@ public final class ForcemergeRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Number maxNumSegments;
+		private Long maxNumSegments;
 
 		@Nullable
 		private Boolean onlyExpungeDeletes;
@@ -235,8 +237,30 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -267,7 +291,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code max_num_segments}
 		 */
-		public Builder maxNumSegments(@Nullable Number value) {
+		public Builder maxNumSegments(@Nullable Long value) {
 			this.maxNumSegments = value;
 			return this;
 		}
@@ -338,7 +362,8 @@ public final class ForcemergeRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.flush != null) {
 					params.put("flush", String.valueOf(request.flush));
@@ -347,12 +372,12 @@ public final class ForcemergeRequest extends RequestBase {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.maxNumSegments != null) {
-					params.put("max_num_segments", request.maxNumSegments.toString());
+					params.put("max_num_segments", String.valueOf(request.maxNumSegments));
 				}
 				if (request.onlyExpungeDeletes != null) {
 					params.put("only_expunge_deletes", String.valueOf(request.onlyExpungeDeletes));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ForcemergeResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ForcemergeResponse._DESERIALIZER);
 }

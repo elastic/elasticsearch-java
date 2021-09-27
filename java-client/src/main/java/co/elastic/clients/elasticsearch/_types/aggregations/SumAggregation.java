@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.SumAggregation
-public final class SumAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class SumAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public SumAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "sum";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class SumAggregation extends FormatMetricAggregationBase {
 	/**
 	 * Json deserializer for {@link SumAggregation}
 	 */
-	public static final JsonpDeserializer<SumAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SumAggregation::setupSumAggregationDeserializer);
+	public static final JsonpDeserializer<SumAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SumAggregation::setupSumAggregationDeserializer, Builder::build);
 
 	protected static void setupSumAggregationDeserializer(DelegatingDeserializer<SumAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);

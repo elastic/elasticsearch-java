@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,14 +41,15 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Request
+@JsonpDeserializable
 public final class ForecastRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final JsonValue duration;
+	private final String duration;
 
 	@Nullable
-	private final JsonValue expiresIn;
+	private final String expiresIn;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +74,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public JsonValue duration() {
+	public String duration() {
 		return this.duration;
 	}
 
@@ -81,7 +82,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code expires_in}
 	 */
 	@Nullable
-	public JsonValue expiresIn() {
+	public String expiresIn() {
 		return this.expiresIn;
 	}
 
@@ -120,10 +121,10 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		private String jobId;
 
 		@Nullable
-		private JsonValue duration;
+		private String duration;
 
 		@Nullable
-		private JsonValue expiresIn;
+		private String expiresIn;
 
 		/**
 		 * The ID of the job to forecast for
@@ -138,7 +139,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code duration}
 		 */
-		public Builder duration(@Nullable JsonValue value) {
+		public Builder duration(@Nullable String value) {
 			this.duration = value;
 			return this;
 		}
@@ -146,7 +147,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code expires_in}
 		 */
-		public Builder expiresIn(@Nullable JsonValue value) {
+		public Builder expiresIn(@Nullable String value) {
 			this.expiresIn = value;
 			return this;
 		}
@@ -168,13 +169,13 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link ForecastRequest}
 	 */
-	public static final JsonpDeserializer<ForecastRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ForecastRequest::setupForecastRequestDeserializer);
+	public static final JsonpDeserializer<ForecastRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ForecastRequest::setupForecastRequestDeserializer, Builder::build);
 
 	protected static void setupForecastRequestDeserializer(DelegatingDeserializer<ForecastRequest.Builder> op) {
 
-		op.add(Builder::duration, JsonpDeserializer.jsonValueDeserializer(), "duration");
-		op.add(Builder::expiresIn, JsonpDeserializer.jsonValueDeserializer(), "expires_in");
+		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
+		op.add(Builder::expiresIn, JsonpDeserializer.stringDeserializer(), "expires_in");
 
 	}
 
@@ -216,5 +217,5 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ForecastResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ForecastResponse._DESERIALIZER);
 }

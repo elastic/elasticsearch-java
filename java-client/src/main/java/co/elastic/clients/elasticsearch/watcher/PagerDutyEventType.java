@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum PagerDutyEventType implements StringEnum {
 	Trigger("trigger"), Resolve("resolve"), Acknowledge("acknowledge");
 
@@ -39,6 +41,6 @@ public enum PagerDutyEventType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<PagerDutyEventType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<PagerDutyEventType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			PagerDutyEventType.values());
 }

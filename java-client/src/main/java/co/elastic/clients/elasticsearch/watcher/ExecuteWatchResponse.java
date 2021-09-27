@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch.watcher.execute_watch.WatchRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Response
+@JsonpDeserializable
 public final class ExecuteWatchResponse implements JsonpSerializable {
 	private final String id;
 
@@ -135,14 +137,14 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecuteWatchResponse}
 	 */
-	public static final JsonpDeserializer<ExecuteWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecuteWatchResponse::setupExecuteWatchResponseDeserializer);
+	public static final JsonpDeserializer<ExecuteWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecuteWatchResponse::setupExecuteWatchResponseDeserializer, Builder::build);
 
 	protected static void setupExecuteWatchResponseDeserializer(
 			DelegatingDeserializer<ExecuteWatchResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::watchRecord, WatchRecord.DESERIALIZER, "watch_record");
+		op.add(Builder::watchRecord, WatchRecord._DESERIALIZER, "watch_record");
 
 	}
 

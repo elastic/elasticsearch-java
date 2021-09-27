@@ -23,26 +23,53 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventContainer
-public class TriggerEvent extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class TriggerEvent implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String SCHEDULE = "schedule";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public TriggerEvent(TriggerEventVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private TriggerEvent(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -53,12 +80,14 @@ public class TriggerEvent extends TaggedUnion<Object> implements JsonpSerializab
 	 *             if the current variant is not of the {@code schedule} kind.
 	 */
 	public ScheduleTriggerEvent schedule() {
-		return _get(SCHEDULE);
+		return TaggedUnionUtils.get(this, SCHEDULE);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
@@ -66,13 +95,14 @@ public class TriggerEvent extends TaggedUnion<Object> implements JsonpSerializab
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<TriggerEvent> schedule(ScheduleTriggerEvent v) {
-			this.$variant = v;
-			this.$tag = SCHEDULE;
+			this._type = SCHEDULE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -88,14 +118,11 @@ public class TriggerEvent extends TaggedUnion<Object> implements JsonpSerializab
 	}
 
 	protected static void setupTriggerEventDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::schedule, ScheduleTriggerEvent.DESERIALIZER, "schedule");
+
+		op.add(Builder::schedule, ScheduleTriggerEvent._DESERIALIZER, "schedule");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<TriggerEvent> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<TriggerEvent> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			TriggerEvent::setupTriggerEventDeserializer, Builder::build);
 }

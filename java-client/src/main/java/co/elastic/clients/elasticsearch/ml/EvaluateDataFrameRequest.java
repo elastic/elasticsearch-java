@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Request
+@JsonpDeserializable
 public final class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
 	private final DataframeEvaluation evaluation;
 
@@ -192,15 +194,15 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	/**
 	 * Json deserializer for {@link EvaluateDataFrameRequest}
 	 */
-	public static final JsonpDeserializer<EvaluateDataFrameRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer);
+	public static final JsonpDeserializer<EvaluateDataFrameRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer, Builder::build);
 
 	protected static void setupEvaluateDataFrameRequestDeserializer(
 			DelegatingDeserializer<EvaluateDataFrameRequest.Builder> op) {
 
-		op.add(Builder::evaluation, DataframeEvaluation.DESERIALIZER, "evaluation");
+		op.add(Builder::evaluation, DataframeEvaluation._DESERIALIZER, "evaluation");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 
 	}
 
@@ -226,5 +228,5 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, EvaluateDataFrameResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, EvaluateDataFrameResponse._DESERIALIZER);
 }

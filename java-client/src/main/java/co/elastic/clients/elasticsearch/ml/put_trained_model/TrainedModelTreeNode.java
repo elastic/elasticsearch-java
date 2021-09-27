@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,12 +33,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModelTreeNode
+@JsonpDeserializable
 public final class TrainedModelTreeNode implements JsonpSerializable {
 	@Nullable
 	private final String decisionType;
@@ -46,24 +49,24 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	private final Boolean defaultLeft;
 
 	@Nullable
-	private final Number leafValue;
+	private final Double leafValue;
 
 	@Nullable
-	private final Number leftChild;
+	private final Integer leftChild;
 
-	private final Number nodeIndex;
-
-	@Nullable
-	private final Number rightChild;
+	private final Integer nodeIndex;
 
 	@Nullable
-	private final Number splitFeature;
+	private final Integer rightChild;
 
 	@Nullable
-	private final Number splitGain;
+	private final Integer splitFeature;
 
 	@Nullable
-	private final Number threshold;
+	private final Integer splitGain;
+
+	@Nullable
+	private final Double threshold;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -101,7 +104,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code leaf_value}
 	 */
 	@Nullable
-	public Number leafValue() {
+	public Double leafValue() {
 		return this.leafValue;
 	}
 
@@ -109,14 +112,14 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code left_child}
 	 */
 	@Nullable
-	public Number leftChild() {
+	public Integer leftChild() {
 		return this.leftChild;
 	}
 
 	/**
 	 * API name: {@code node_index}
 	 */
-	public Number nodeIndex() {
+	public Integer nodeIndex() {
 		return this.nodeIndex;
 	}
 
@@ -124,7 +127,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code right_child}
 	 */
 	@Nullable
-	public Number rightChild() {
+	public Integer rightChild() {
 		return this.rightChild;
 	}
 
@@ -132,7 +135,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code split_feature}
 	 */
 	@Nullable
-	public Number splitFeature() {
+	public Integer splitFeature() {
 		return this.splitFeature;
 	}
 
@@ -140,7 +143,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code split_gain}
 	 */
 	@Nullable
-	public Number splitGain() {
+	public Integer splitGain() {
 		return this.splitGain;
 	}
 
@@ -148,7 +151,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	 * API name: {@code threshold}
 	 */
 	@Nullable
-	public Number threshold() {
+	public Double threshold() {
 		return this.threshold;
 	}
 
@@ -178,41 +181,41 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		if (this.leafValue != null) {
 
 			generator.writeKey("leaf_value");
-			generator.write(this.leafValue.doubleValue());
+			generator.write(this.leafValue);
 
 		}
 		if (this.leftChild != null) {
 
 			generator.writeKey("left_child");
-			generator.write(this.leftChild.doubleValue());
+			generator.write(this.leftChild);
 
 		}
 
 		generator.writeKey("node_index");
-		generator.write(this.nodeIndex.doubleValue());
+		generator.write(this.nodeIndex);
 
 		if (this.rightChild != null) {
 
 			generator.writeKey("right_child");
-			generator.write(this.rightChild.doubleValue());
+			generator.write(this.rightChild);
 
 		}
 		if (this.splitFeature != null) {
 
 			generator.writeKey("split_feature");
-			generator.write(this.splitFeature.doubleValue());
+			generator.write(this.splitFeature);
 
 		}
 		if (this.splitGain != null) {
 
 			generator.writeKey("split_gain");
-			generator.write(this.splitGain.doubleValue());
+			generator.write(this.splitGain);
 
 		}
 		if (this.threshold != null) {
 
 			generator.writeKey("threshold");
-			generator.write(this.threshold.doubleValue());
+			generator.write(this.threshold);
 
 		}
 
@@ -231,24 +234,24 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		private Boolean defaultLeft;
 
 		@Nullable
-		private Number leafValue;
+		private Double leafValue;
 
 		@Nullable
-		private Number leftChild;
+		private Integer leftChild;
 
-		private Number nodeIndex;
-
-		@Nullable
-		private Number rightChild;
+		private Integer nodeIndex;
 
 		@Nullable
-		private Number splitFeature;
+		private Integer rightChild;
 
 		@Nullable
-		private Number splitGain;
+		private Integer splitFeature;
 
 		@Nullable
-		private Number threshold;
+		private Integer splitGain;
+
+		@Nullable
+		private Double threshold;
 
 		/**
 		 * API name: {@code decision_type}
@@ -269,7 +272,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code leaf_value}
 		 */
-		public Builder leafValue(@Nullable Number value) {
+		public Builder leafValue(@Nullable Double value) {
 			this.leafValue = value;
 			return this;
 		}
@@ -277,7 +280,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code left_child}
 		 */
-		public Builder leftChild(@Nullable Number value) {
+		public Builder leftChild(@Nullable Integer value) {
 			this.leftChild = value;
 			return this;
 		}
@@ -285,7 +288,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code node_index}
 		 */
-		public Builder nodeIndex(Number value) {
+		public Builder nodeIndex(Integer value) {
 			this.nodeIndex = value;
 			return this;
 		}
@@ -293,7 +296,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code right_child}
 		 */
-		public Builder rightChild(@Nullable Number value) {
+		public Builder rightChild(@Nullable Integer value) {
 			this.rightChild = value;
 			return this;
 		}
@@ -301,7 +304,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code split_feature}
 		 */
-		public Builder splitFeature(@Nullable Number value) {
+		public Builder splitFeature(@Nullable Integer value) {
 			this.splitFeature = value;
 			return this;
 		}
@@ -309,7 +312,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code split_gain}
 		 */
-		public Builder splitGain(@Nullable Number value) {
+		public Builder splitGain(@Nullable Integer value) {
 			this.splitGain = value;
 			return this;
 		}
@@ -317,7 +320,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		/**
 		 * API name: {@code threshold}
 		 */
-		public Builder threshold(@Nullable Number value) {
+		public Builder threshold(@Nullable Double value) {
 			this.threshold = value;
 			return this;
 		}
@@ -339,21 +342,21 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelTreeNode}
 	 */
-	public static final JsonpDeserializer<TrainedModelTreeNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelTreeNode::setupTrainedModelTreeNodeDeserializer);
+	public static final JsonpDeserializer<TrainedModelTreeNode> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelTreeNode::setupTrainedModelTreeNodeDeserializer, Builder::build);
 
 	protected static void setupTrainedModelTreeNodeDeserializer(
 			DelegatingDeserializer<TrainedModelTreeNode.Builder> op) {
 
 		op.add(Builder::decisionType, JsonpDeserializer.stringDeserializer(), "decision_type");
 		op.add(Builder::defaultLeft, JsonpDeserializer.booleanDeserializer(), "default_left");
-		op.add(Builder::leafValue, JsonpDeserializer.numberDeserializer(), "leaf_value");
-		op.add(Builder::leftChild, JsonpDeserializer.numberDeserializer(), "left_child");
-		op.add(Builder::nodeIndex, JsonpDeserializer.numberDeserializer(), "node_index");
-		op.add(Builder::rightChild, JsonpDeserializer.numberDeserializer(), "right_child");
-		op.add(Builder::splitFeature, JsonpDeserializer.numberDeserializer(), "split_feature");
-		op.add(Builder::splitGain, JsonpDeserializer.numberDeserializer(), "split_gain");
-		op.add(Builder::threshold, JsonpDeserializer.numberDeserializer(), "threshold");
+		op.add(Builder::leafValue, JsonpDeserializer.doubleDeserializer(), "leaf_value");
+		op.add(Builder::leftChild, JsonpDeserializer.integerDeserializer(), "left_child");
+		op.add(Builder::nodeIndex, JsonpDeserializer.integerDeserializer(), "node_index");
+		op.add(Builder::rightChild, JsonpDeserializer.integerDeserializer(), "right_child");
+		op.add(Builder::splitFeature, JsonpDeserializer.integerDeserializer(), "split_feature");
+		op.add(Builder::splitGain, JsonpDeserializer.integerDeserializer(), "split_gain");
+		op.add(Builder::threshold, JsonpDeserializer.doubleDeserializer(), "threshold");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.termvectors;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,32 +32,33 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Filter
+@JsonpDeserializable
 public final class Filter implements JsonpSerializable {
 	@Nullable
-	private final Number maxDocFreq;
+	private final Integer maxDocFreq;
 
 	@Nullable
-	private final Number maxNumTerms;
+	private final Integer maxNumTerms;
 
 	@Nullable
-	private final Number maxTermFreq;
+	private final Integer maxTermFreq;
 
 	@Nullable
-	private final Number maxWordLength;
+	private final Integer maxWordLength;
 
 	@Nullable
-	private final Number minDocFreq;
+	private final Integer minDocFreq;
 
 	@Nullable
-	private final Number minTermFreq;
+	private final Integer minTermFreq;
 
 	@Nullable
-	private final Number minWordLength;
+	private final Integer minWordLength;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +78,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_doc_freq}
 	 */
 	@Nullable
-	public Number maxDocFreq() {
+	public Integer maxDocFreq() {
 		return this.maxDocFreq;
 	}
 
@@ -84,7 +86,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_num_terms}
 	 */
 	@Nullable
-	public Number maxNumTerms() {
+	public Integer maxNumTerms() {
 		return this.maxNumTerms;
 	}
 
@@ -92,7 +94,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
-	public Number maxTermFreq() {
+	public Integer maxTermFreq() {
 		return this.maxTermFreq;
 	}
 
@@ -100,7 +102,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code max_word_length}
 	 */
 	@Nullable
-	public Number maxWordLength() {
+	public Integer maxWordLength() {
 		return this.maxWordLength;
 	}
 
@@ -108,7 +110,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
-	public Number minDocFreq() {
+	public Integer minDocFreq() {
 		return this.minDocFreq;
 	}
 
@@ -116,7 +118,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code min_term_freq}
 	 */
 	@Nullable
-	public Number minTermFreq() {
+	public Integer minTermFreq() {
 		return this.minTermFreq;
 	}
 
@@ -124,7 +126,7 @@ public final class Filter implements JsonpSerializable {
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
-	public Number minWordLength() {
+	public Integer minWordLength() {
 		return this.minWordLength;
 	}
 
@@ -142,43 +144,43 @@ public final class Filter implements JsonpSerializable {
 		if (this.maxDocFreq != null) {
 
 			generator.writeKey("max_doc_freq");
-			generator.write(this.maxDocFreq.doubleValue());
+			generator.write(this.maxDocFreq);
 
 		}
 		if (this.maxNumTerms != null) {
 
 			generator.writeKey("max_num_terms");
-			generator.write(this.maxNumTerms.doubleValue());
+			generator.write(this.maxNumTerms);
 
 		}
 		if (this.maxTermFreq != null) {
 
 			generator.writeKey("max_term_freq");
-			generator.write(this.maxTermFreq.doubleValue());
+			generator.write(this.maxTermFreq);
 
 		}
 		if (this.maxWordLength != null) {
 
 			generator.writeKey("max_word_length");
-			generator.write(this.maxWordLength.doubleValue());
+			generator.write(this.maxWordLength);
 
 		}
 		if (this.minDocFreq != null) {
 
 			generator.writeKey("min_doc_freq");
-			generator.write(this.minDocFreq.doubleValue());
+			generator.write(this.minDocFreq);
 
 		}
 		if (this.minTermFreq != null) {
 
 			generator.writeKey("min_term_freq");
-			generator.write(this.minTermFreq.doubleValue());
+			generator.write(this.minTermFreq);
 
 		}
 		if (this.minWordLength != null) {
 
 			generator.writeKey("min_word_length");
-			generator.write(this.minWordLength.doubleValue());
+			generator.write(this.minWordLength);
 
 		}
 
@@ -191,30 +193,30 @@ public final class Filter implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Filter> {
 		@Nullable
-		private Number maxDocFreq;
+		private Integer maxDocFreq;
 
 		@Nullable
-		private Number maxNumTerms;
+		private Integer maxNumTerms;
 
 		@Nullable
-		private Number maxTermFreq;
+		private Integer maxTermFreq;
 
 		@Nullable
-		private Number maxWordLength;
+		private Integer maxWordLength;
 
 		@Nullable
-		private Number minDocFreq;
+		private Integer minDocFreq;
 
 		@Nullable
-		private Number minTermFreq;
+		private Integer minTermFreq;
 
 		@Nullable
-		private Number minWordLength;
+		private Integer minWordLength;
 
 		/**
 		 * API name: {@code max_doc_freq}
 		 */
-		public Builder maxDocFreq(@Nullable Number value) {
+		public Builder maxDocFreq(@Nullable Integer value) {
 			this.maxDocFreq = value;
 			return this;
 		}
@@ -222,7 +224,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_terms}
 		 */
-		public Builder maxNumTerms(@Nullable Number value) {
+		public Builder maxNumTerms(@Nullable Integer value) {
 			this.maxNumTerms = value;
 			return this;
 		}
@@ -230,7 +232,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_term_freq}
 		 */
-		public Builder maxTermFreq(@Nullable Number value) {
+		public Builder maxTermFreq(@Nullable Integer value) {
 			this.maxTermFreq = value;
 			return this;
 		}
@@ -238,7 +240,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code max_word_length}
 		 */
-		public Builder maxWordLength(@Nullable Number value) {
+		public Builder maxWordLength(@Nullable Integer value) {
 			this.maxWordLength = value;
 			return this;
 		}
@@ -246,7 +248,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_doc_freq}
 		 */
-		public Builder minDocFreq(@Nullable Number value) {
+		public Builder minDocFreq(@Nullable Integer value) {
 			this.minDocFreq = value;
 			return this;
 		}
@@ -254,7 +256,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_term_freq}
 		 */
-		public Builder minTermFreq(@Nullable Number value) {
+		public Builder minTermFreq(@Nullable Integer value) {
 			this.minTermFreq = value;
 			return this;
 		}
@@ -262,7 +264,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code min_word_length}
 		 */
-		public Builder minWordLength(@Nullable Number value) {
+		public Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
 			return this;
 		}
@@ -284,18 +286,18 @@ public final class Filter implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Filter}
 	 */
-	public static final JsonpDeserializer<Filter> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Filter::setupFilterDeserializer);
+	public static final JsonpDeserializer<Filter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Filter::setupFilterDeserializer, Builder::build);
 
 	protected static void setupFilterDeserializer(DelegatingDeserializer<Filter.Builder> op) {
 
-		op.add(Builder::maxDocFreq, JsonpDeserializer.numberDeserializer(), "max_doc_freq");
-		op.add(Builder::maxNumTerms, JsonpDeserializer.numberDeserializer(), "max_num_terms");
-		op.add(Builder::maxTermFreq, JsonpDeserializer.numberDeserializer(), "max_term_freq");
-		op.add(Builder::maxWordLength, JsonpDeserializer.numberDeserializer(), "max_word_length");
-		op.add(Builder::minDocFreq, JsonpDeserializer.numberDeserializer(), "min_doc_freq");
-		op.add(Builder::minTermFreq, JsonpDeserializer.numberDeserializer(), "min_term_freq");
-		op.add(Builder::minWordLength, JsonpDeserializer.numberDeserializer(), "min_word_length");
+		op.add(Builder::maxDocFreq, JsonpDeserializer.integerDeserializer(), "max_doc_freq");
+		op.add(Builder::maxNumTerms, JsonpDeserializer.integerDeserializer(), "max_num_terms");
+		op.add(Builder::maxTermFreq, JsonpDeserializer.integerDeserializer(), "max_term_freq");
+		op.add(Builder::maxWordLength, JsonpDeserializer.integerDeserializer(), "max_word_length");
+		op.add(Builder::minDocFreq, JsonpDeserializer.integerDeserializer(), "min_doc_freq");
+		op.add(Builder::minTermFreq, JsonpDeserializer.integerDeserializer(), "min_term_freq");
+		op.add(Builder::minWordLength, JsonpDeserializer.integerDeserializer(), "min_word_length");
 
 	}
 

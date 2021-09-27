@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._core;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.exists_source.Response
+
 public final class ExistsSourceResponse {
 	public ExistsSourceResponse() {
 	}
@@ -38,9 +40,9 @@ public final class ExistsSourceResponse {
 	/**
 	 * Singleton instance for {@link ExistsSourceResponse}.
 	 */
-	public static final ExistsSourceResponse INSTANCE = new ExistsSourceResponse();
+	public static final ExistsSourceResponse _INSTANCE = new ExistsSourceResponse();
 
-	public static final JsonpDeserializer<ExistsSourceResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsSourceResponse.INSTANCE);
+	public static final JsonpDeserializer<ExistsSourceResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(ExistsSourceResponse._INSTANCE);
 
 }

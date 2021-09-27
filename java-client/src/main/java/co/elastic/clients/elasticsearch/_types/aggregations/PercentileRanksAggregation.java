@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,12 +41,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentileRanksAggregation
-public final class PercentileRanksAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class PercentileRanksAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean keyed;
 
 	@Nullable
-	private final List<Number> values;
+	private final List<Double> values;
 
 	@Nullable
 	private final HdrMethod hdr;
@@ -66,6 +68,14 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "percentile_ranks";
+	}
+
+	/**
 	 * API name: {@code keyed}
 	 */
 	@Nullable
@@ -77,7 +87,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	 * API name: {@code values}
 	 */
 	@Nullable
-	public List<Number> values() {
+	public List<Double> values() {
 		return this.values;
 	}
 
@@ -110,8 +120,8 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 
 			generator.writeKey("values");
 			generator.writeStartArray();
-			for (Number item0 : this.values) {
-				generator.write(item0.doubleValue());
+			for (Double item0 : this.values) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -144,7 +154,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		private Boolean keyed;
 
 		@Nullable
-		private List<Number> values;
+		private List<Double> values;
 
 		@Nullable
 		private HdrMethod hdr;
@@ -163,7 +173,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(@Nullable List<Number> value) {
+		public Builder values(@Nullable List<Double> value) {
 			this.values = value;
 			return this;
 		}
@@ -171,7 +181,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(Number... value) {
+		public Builder values(Double... value) {
 			this.values = Arrays.asList(value);
 			return this;
 		}
@@ -179,7 +189,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		/**
 		 * Add a value to {@link #values(List)}, creating the list if needed.
 		 */
-		public Builder addValues(Number value) {
+		public Builder addValues(Double value) {
 			if (this.values == null) {
 				this.values = new ArrayList<>();
 			}
@@ -239,16 +249,16 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 	/**
 	 * Json deserializer for {@link PercentileRanksAggregation}
 	 */
-	public static final JsonpDeserializer<PercentileRanksAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationDeserializer);
+	public static final JsonpDeserializer<PercentileRanksAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PercentileRanksAggregation::setupPercentileRanksAggregationDeserializer, Builder::build);
 
 	protected static void setupPercentileRanksAggregationDeserializer(
 			DelegatingDeserializer<PercentileRanksAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
-		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "values");
-		op.add(Builder::hdr, HdrMethod.DESERIALIZER, "hdr");
-		op.add(Builder::tdigest, TDigest.DESERIALIZER, "tdigest");
+		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "values");
+		op.add(Builder::hdr, HdrMethod._DESERIALIZER, "hdr");
+		op.add(Builder::tdigest, TDigest._DESERIALIZER, "tdigest");
 
 	}
 

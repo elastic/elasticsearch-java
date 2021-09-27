@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,12 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggester
-public final class PhraseSuggester extends SuggesterBase {
+@JsonpDeserializable
+public final class PhraseSuggester extends SuggesterBase implements SuggestVariant {
 	@Nullable
 	private final PhraseSuggestCollate collate;
 
 	@Nullable
-	private final Number confidence;
+	private final Double confidence;
 
 	@Nullable
 	private final List<DirectGenerator> directGenerator;
@@ -55,22 +58,22 @@ public final class PhraseSuggester extends SuggesterBase {
 	private final Boolean forceUnigrams;
 
 	@Nullable
-	private final Number gramSize;
+	private final Integer gramSize;
 
 	@Nullable
 	private final PhraseSuggestHighlight highlight;
 
 	@Nullable
-	private final Number maxErrors;
+	private final Double maxErrors;
 
 	@Nullable
-	private final Number realWordErrorLikelihood;
+	private final Double realWordErrorLikelihood;
 
 	@Nullable
 	private final String separator;
 
 	@Nullable
-	private final Number shardSize;
+	private final Integer shardSize;
 
 	@Nullable
 	private final SmoothingModel smoothing;
@@ -79,7 +82,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	private final String text;
 
 	@Nullable
-	private final Number tokenLimit;
+	private final Integer tokenLimit;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -103,6 +106,14 @@ public final class PhraseSuggester extends SuggesterBase {
 	}
 
 	/**
+	 * {@link Suggest} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "phrase";
+	}
+
+	/**
 	 * API name: {@code collate}
 	 */
 	@Nullable
@@ -114,7 +125,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	 * API name: {@code confidence}
 	 */
 	@Nullable
-	public Number confidence() {
+	public Double confidence() {
 		return this.confidence;
 	}
 
@@ -138,7 +149,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	 * API name: {@code gram_size}
 	 */
 	@Nullable
-	public Number gramSize() {
+	public Integer gramSize() {
 		return this.gramSize;
 	}
 
@@ -154,7 +165,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	 * API name: {@code max_errors}
 	 */
 	@Nullable
-	public Number maxErrors() {
+	public Double maxErrors() {
 		return this.maxErrors;
 	}
 
@@ -162,7 +173,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	 * API name: {@code real_word_error_likelihood}
 	 */
 	@Nullable
-	public Number realWordErrorLikelihood() {
+	public Double realWordErrorLikelihood() {
 		return this.realWordErrorLikelihood;
 	}
 
@@ -178,7 +189,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Number shardSize() {
+	public Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -202,7 +213,7 @@ public final class PhraseSuggester extends SuggesterBase {
 	 * API name: {@code token_limit}
 	 */
 	@Nullable
-	public Number tokenLimit() {
+	public Integer tokenLimit() {
 		return this.tokenLimit;
 	}
 
@@ -218,7 +229,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		if (this.confidence != null) {
 
 			generator.writeKey("confidence");
-			generator.write(this.confidence.doubleValue());
+			generator.write(this.confidence);
 
 		}
 		if (this.directGenerator != null) {
@@ -241,7 +252,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		if (this.gramSize != null) {
 
 			generator.writeKey("gram_size");
-			generator.write(this.gramSize.doubleValue());
+			generator.write(this.gramSize);
 
 		}
 		if (this.highlight != null) {
@@ -253,13 +264,13 @@ public final class PhraseSuggester extends SuggesterBase {
 		if (this.maxErrors != null) {
 
 			generator.writeKey("max_errors");
-			generator.write(this.maxErrors.doubleValue());
+			generator.write(this.maxErrors);
 
 		}
 		if (this.realWordErrorLikelihood != null) {
 
 			generator.writeKey("real_word_error_likelihood");
-			generator.write(this.realWordErrorLikelihood.doubleValue());
+			generator.write(this.realWordErrorLikelihood);
 
 		}
 		if (this.separator != null) {
@@ -271,7 +282,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
-			generator.write(this.shardSize.doubleValue());
+			generator.write(this.shardSize);
 
 		}
 		if (this.smoothing != null) {
@@ -289,7 +300,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		if (this.tokenLimit != null) {
 
 			generator.writeKey("token_limit");
-			generator.write(this.tokenLimit.doubleValue());
+			generator.write(this.tokenLimit);
 
 		}
 
@@ -307,7 +318,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		private PhraseSuggestCollate collate;
 
 		@Nullable
-		private Number confidence;
+		private Double confidence;
 
 		@Nullable
 		private List<DirectGenerator> directGenerator;
@@ -316,22 +327,22 @@ public final class PhraseSuggester extends SuggesterBase {
 		private Boolean forceUnigrams;
 
 		@Nullable
-		private Number gramSize;
+		private Integer gramSize;
 
 		@Nullable
 		private PhraseSuggestHighlight highlight;
 
 		@Nullable
-		private Number maxErrors;
+		private Double maxErrors;
 
 		@Nullable
-		private Number realWordErrorLikelihood;
+		private Double realWordErrorLikelihood;
 
 		@Nullable
 		private String separator;
 
 		@Nullable
-		private Number shardSize;
+		private Integer shardSize;
 
 		@Nullable
 		private SmoothingModel smoothing;
@@ -340,7 +351,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		private String text;
 
 		@Nullable
-		private Number tokenLimit;
+		private Integer tokenLimit;
 
 		/**
 		 * API name: {@code collate}
@@ -360,7 +371,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		/**
 		 * API name: {@code confidence}
 		 */
-		public Builder confidence(@Nullable Number value) {
+		public Builder confidence(@Nullable Double value) {
 			this.confidence = value;
 			return this;
 		}
@@ -417,7 +428,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		/**
 		 * API name: {@code gram_size}
 		 */
-		public Builder gramSize(@Nullable Number value) {
+		public Builder gramSize(@Nullable Integer value) {
 			this.gramSize = value;
 			return this;
 		}
@@ -440,7 +451,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		/**
 		 * API name: {@code max_errors}
 		 */
-		public Builder maxErrors(@Nullable Number value) {
+		public Builder maxErrors(@Nullable Double value) {
 			this.maxErrors = value;
 			return this;
 		}
@@ -448,7 +459,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		/**
 		 * API name: {@code real_word_error_likelihood}
 		 */
-		public Builder realWordErrorLikelihood(@Nullable Number value) {
+		public Builder realWordErrorLikelihood(@Nullable Double value) {
 			this.realWordErrorLikelihood = value;
 			return this;
 		}
@@ -464,7 +475,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Number value) {
+		public Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -495,7 +506,7 @@ public final class PhraseSuggester extends SuggesterBase {
 		/**
 		 * API name: {@code token_limit}
 		 */
-		public Builder tokenLimit(@Nullable Number value) {
+		public Builder tokenLimit(@Nullable Integer value) {
 			this.tokenLimit = value;
 			return this;
 		}
@@ -522,25 +533,25 @@ public final class PhraseSuggester extends SuggesterBase {
 	/**
 	 * Json deserializer for {@link PhraseSuggester}
 	 */
-	public static final JsonpDeserializer<PhraseSuggester> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PhraseSuggester::setupPhraseSuggesterDeserializer);
+	public static final JsonpDeserializer<PhraseSuggester> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PhraseSuggester::setupPhraseSuggesterDeserializer, Builder::build);
 
 	protected static void setupPhraseSuggesterDeserializer(DelegatingDeserializer<PhraseSuggester.Builder> op) {
 		SuggesterBase.setupSuggesterBaseDeserializer(op);
-		op.add(Builder::collate, PhraseSuggestCollate.DESERIALIZER, "collate");
-		op.add(Builder::confidence, JsonpDeserializer.numberDeserializer(), "confidence");
-		op.add(Builder::directGenerator, JsonpDeserializer.arrayDeserializer(DirectGenerator.DESERIALIZER),
+		op.add(Builder::collate, PhraseSuggestCollate._DESERIALIZER, "collate");
+		op.add(Builder::confidence, JsonpDeserializer.doubleDeserializer(), "confidence");
+		op.add(Builder::directGenerator, JsonpDeserializer.arrayDeserializer(DirectGenerator._DESERIALIZER),
 				"direct_generator");
 		op.add(Builder::forceUnigrams, JsonpDeserializer.booleanDeserializer(), "force_unigrams");
-		op.add(Builder::gramSize, JsonpDeserializer.numberDeserializer(), "gram_size");
-		op.add(Builder::highlight, PhraseSuggestHighlight.DESERIALIZER, "highlight");
-		op.add(Builder::maxErrors, JsonpDeserializer.numberDeserializer(), "max_errors");
-		op.add(Builder::realWordErrorLikelihood, JsonpDeserializer.numberDeserializer(), "real_word_error_likelihood");
+		op.add(Builder::gramSize, JsonpDeserializer.integerDeserializer(), "gram_size");
+		op.add(Builder::highlight, PhraseSuggestHighlight._DESERIALIZER, "highlight");
+		op.add(Builder::maxErrors, JsonpDeserializer.doubleDeserializer(), "max_errors");
+		op.add(Builder::realWordErrorLikelihood, JsonpDeserializer.doubleDeserializer(), "real_word_error_likelihood");
 		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
-		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
-		op.add(Builder::smoothing, SmoothingModel.DESERIALIZER, "smoothing");
+		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
+		op.add(Builder::smoothing, SmoothingModel._DESERIALIZER, "smoothing");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-		op.add(Builder::tokenLimit, JsonpDeserializer.numberDeserializer(), "token_limit");
+		op.add(Builder::tokenLimit, JsonpDeserializer.integerDeserializer(), "token_limit");
 
 	}
 

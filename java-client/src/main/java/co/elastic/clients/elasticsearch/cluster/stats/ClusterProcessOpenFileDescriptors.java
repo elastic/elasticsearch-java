@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessOpenFileDescriptors
+@JsonpDeserializable
 public final class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
-	private final Number avg;
+	private final Long avg;
 
-	private final Number max;
+	private final Long max;
 
-	private final Number min;
+	private final Long min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,21 +58,21 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 	/**
 	 * API name: {@code avg}
 	 */
-	public Number avg() {
+	public Long avg() {
 		return this.avg;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Number max() {
+	public Long max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Number min() {
+	public Long min() {
 		return this.min;
 	}
 
@@ -86,13 +88,13 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("avg");
-		generator.write(this.avg.doubleValue());
+		generator.write(this.avg);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 	}
 
@@ -102,16 +104,16 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 	 * Builder for {@link ClusterProcessOpenFileDescriptors}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterProcessOpenFileDescriptors> {
-		private Number avg;
+		private Long avg;
 
-		private Number max;
+		private Long max;
 
-		private Number min;
+		private Long min;
 
 		/**
 		 * API name: {@code avg}
 		 */
-		public Builder avg(Number value) {
+		public Builder avg(Long value) {
 			this.avg = value;
 			return this;
 		}
@@ -119,7 +121,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(Long value) {
 			this.max = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(Long value) {
 			this.min = value;
 			return this;
 		}
@@ -149,16 +151,16 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link ClusterProcessOpenFileDescriptors}
 	 */
-	public static final JsonpDeserializer<ClusterProcessOpenFileDescriptors> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterProcessOpenFileDescriptors::setupClusterProcessOpenFileDescriptorsDeserializer);
+	public static final JsonpDeserializer<ClusterProcessOpenFileDescriptors> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterProcessOpenFileDescriptors::setupClusterProcessOpenFileDescriptorsDeserializer,
+					Builder::build);
 
 	protected static void setupClusterProcessOpenFileDescriptorsDeserializer(
 			DelegatingDeserializer<ClusterProcessOpenFileDescriptors.Builder> op) {
 
-		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::avg, JsonpDeserializer.longDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.longDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.longDeserializer(), "min");
 
 	}
 

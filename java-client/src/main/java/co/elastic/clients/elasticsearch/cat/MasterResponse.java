@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.master.MasterRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.master.Response
+@JsonpDeserializable
 public final class MasterResponse implements JsonpSerializable {
 	private final List<MasterRecord> value;
 
@@ -143,12 +145,12 @@ public final class MasterResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MasterResponse}
 	 */
-	public static final JsonpDeserializer<MasterResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MasterResponse::setupMasterResponseDeserializer);
+	public static final JsonpDeserializer<MasterResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MasterResponse::setupMasterResponseDeserializer, Builder::build);
 
 	protected static void setupMasterResponseDeserializer(DelegatingDeserializer<MasterResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(MasterRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(MasterRecord._DESERIALIZER), "value");
 
 	}
 

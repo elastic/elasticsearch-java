@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexAliasI
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexDataStreamsItem;
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.Response
+@JsonpDeserializable
 public final class ResolveIndexResponse implements JsonpSerializable {
 	private final List<ResolveIndexItem> indices;
 
@@ -271,15 +273,15 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ResolveIndexResponse}
 	 */
-	public static final JsonpDeserializer<ResolveIndexResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResolveIndexResponse::setupResolveIndexResponseDeserializer);
+	public static final JsonpDeserializer<ResolveIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexResponse::setupResolveIndexResponseDeserializer, Builder::build);
 
 	protected static void setupResolveIndexResponseDeserializer(
 			DelegatingDeserializer<ResolveIndexResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem.DESERIALIZER), "indices");
-		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem.DESERIALIZER), "aliases");
-		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(ResolveIndexDataStreamsItem.DESERIALIZER),
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem._DESERIALIZER), "indices");
+		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem._DESERIALIZER), "aliases");
+		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(ResolveIndexDataStreamsItem._DESERIALIZER),
 				"data_streams");
 
 	}

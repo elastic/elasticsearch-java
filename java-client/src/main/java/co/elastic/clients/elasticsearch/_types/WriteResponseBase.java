@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,30 +33,32 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.WriteResponseBase
+
 public abstract class WriteResponseBase implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
 
-	private final Number primaryTerm;
+	private final Long primaryTerm;
 
 	private final Result result;
 
-	private final Number seqNo;
+	private final Integer seqNo;
 
 	private final ShardStatistics shards;
 
 	@Nullable
 	private final String type;
 
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final Boolean forcedRefresh;
@@ -93,7 +96,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Number primaryTerm() {
+	public Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -107,7 +110,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Number seqNo() {
+	public Integer seqNo() {
 		return this.seqNo;
 	}
 
@@ -129,7 +132,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -159,13 +162,13 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		generator.write(this.index);
 
 		generator.writeKey("_primary_term");
-		generator.write(this.primaryTerm.doubleValue());
+		generator.write(this.primaryTerm);
 
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
 
 		generator.writeKey("_seq_no");
-		generator.write(this.seqNo.doubleValue());
+		generator.write(this.seqNo);
 
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
@@ -178,7 +181,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		generator.writeKey("_version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 		if (this.forcedRefresh != null) {
 
@@ -194,18 +197,18 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		private String index;
 
-		private Number primaryTerm;
+		private Long primaryTerm;
 
 		private Result result;
 
-		private Number seqNo;
+		private Integer seqNo;
 
 		private ShardStatistics shards;
 
 		@Nullable
 		private String type;
 
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private Boolean forcedRefresh;
@@ -229,7 +232,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public BuilderT primaryTerm(Number value) {
+		public BuilderT primaryTerm(Long value) {
 			this.primaryTerm = value;
 			return self();
 		}
@@ -245,7 +248,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public BuilderT seqNo(Number value) {
+		public BuilderT seqNo(Integer value) {
 			this.seqNo = value;
 			return self();
 		}
@@ -276,7 +279,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public BuilderT version(Number value) {
+		public BuilderT version(Long value) {
 			this.version = value;
 			return self();
 		}
@@ -299,12 +302,12 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(AbstractBuilder::result, Result.DESERIALIZER, "result");
-		op.add(AbstractBuilder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
+		op.add(AbstractBuilder::result, Result._DESERIALIZER, "result");
+		op.add(AbstractBuilder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
-		op.add(AbstractBuilder::version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
 		op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
 
 	}

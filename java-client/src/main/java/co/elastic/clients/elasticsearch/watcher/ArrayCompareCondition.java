@@ -24,8 +24,8 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,7 +38,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ArrayCompareCondition
-public final class ArrayCompareCondition implements Condition, JsonpSerializable {
+@JsonpDeserializable
+public final class ArrayCompareCondition implements ConditionVariant, JsonpSerializable {
 	private final String arrayPath;
 
 	private final String comparison;
@@ -65,7 +66,7 @@ public final class ArrayCompareCondition implements Condition, JsonpSerializable
 	 * {@link Condition} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "array_compare";
 	}
 
@@ -114,7 +115,6 @@ public final class ArrayCompareCondition implements Condition, JsonpSerializable
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("array_path");
 		generator.write(this.arrayPath);
@@ -130,8 +130,6 @@ public final class ArrayCompareCondition implements Condition, JsonpSerializable
 
 		generator.writeKey("value");
 		this.value.serialize(generator, mapper);
-
-		generator.writeEnd();
 
 	}
 
@@ -205,9 +203,11 @@ public final class ArrayCompareCondition implements Condition, JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<ArrayCompareCondition.Builder, ArrayCompareCondition.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(ArrayCompareCondition::setupArrayCompareConditionDeserializer);
+	/**
+	 * Json deserializer for {@link ArrayCompareCondition}
+	 */
+	public static final JsonpDeserializer<ArrayCompareCondition> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ArrayCompareCondition::setupArrayCompareConditionDeserializer, Builder::build);
 
 	protected static void setupArrayCompareConditionDeserializer(
 			DelegatingDeserializer<ArrayCompareCondition.Builder> op) {
@@ -215,8 +215,8 @@ public final class ArrayCompareCondition implements Condition, JsonpSerializable
 		op.add(Builder::arrayPath, JsonpDeserializer.stringDeserializer(), "array_path");
 		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::quantifier, Quantifier.DESERIALIZER, "quantifier");
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::quantifier, Quantifier._DESERIALIZER, "quantifier");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

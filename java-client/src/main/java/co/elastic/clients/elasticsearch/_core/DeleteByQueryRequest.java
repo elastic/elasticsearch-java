@@ -27,11 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.Conflicts;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,7 +43,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +56,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query.Request
+@JsonpDeserializable
 public final class DeleteByQueryRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
@@ -76,10 +79,10 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final String df;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
-	private final Number from;
+	private final Long from;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -97,7 +100,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final Boolean requestCache;
 
 	@Nullable
-	private final Number requestsPerSecond;
+	private final Long requestsPerSecond;
 
 	@Nullable
 	private final String routing;
@@ -106,28 +109,28 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final String q;
 
 	@Nullable
-	private final JsonValue scroll;
+	private final String scroll;
 
 	@Nullable
-	private final Number scrollSize;
+	private final Long scrollSize;
 
 	@Nullable
-	private final JsonValue searchTimeout;
+	private final String searchTimeout;
 
 	@Nullable
 	private final SearchType searchType;
 
 	@Nullable
-	private final Number size;
+	private final Long size;
 
 	@Nullable
-	private final Number slices;
+	private final Long slices;
 
 	@Nullable
 	private final List<String> sort;
 
 	@Nullable
-	private final JsonValue source;
+	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -139,22 +142,22 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final List<String> stats;
 
 	@Nullable
-	private final Number terminateAfter;
+	private final Long terminateAfter;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean version;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
 	private final Boolean waitForCompletion;
 
 	@Nullable
-	private final Number maxDocs;
+	private final Long maxDocs;
 
 	@Nullable
 	private final Query query;
@@ -286,7 +289,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -296,7 +299,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Long from() {
 		return this.from;
 	}
 
@@ -361,7 +364,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Number requestsPerSecond() {
+	public Long requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -392,7 +395,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public JsonValue scroll() {
+	public String scroll() {
 		return this.scroll;
 	}
 
@@ -402,7 +405,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Number scrollSize() {
+	public Long scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -412,7 +415,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code search_timeout}
 	 */
 	@Nullable
-	public JsonValue searchTimeout() {
+	public String searchTimeout() {
 		return this.searchTimeout;
 	}
 
@@ -430,7 +433,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Long size() {
 		return this.size;
 	}
 
@@ -441,7 +444,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code slices}
 	 */
 	@Nullable
-	public Number slices() {
+	public Long slices() {
 		return this.slices;
 	}
 
@@ -462,7 +465,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue source() {
+	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
 		return this.source;
 	}
 
@@ -503,7 +506,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
-	public Number terminateAfter() {
+	public Long terminateAfter() {
 		return this.terminateAfter;
 	}
 
@@ -514,7 +517,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -538,7 +541,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -556,7 +559,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code max_docs}
 	 */
 	@Nullable
-	public Number maxDocs() {
+	public Long maxDocs() {
 		return this.maxDocs;
 	}
 
@@ -590,7 +593,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		if (this.maxDocs != null) {
 
 			generator.writeKey("max_docs");
-			generator.write(this.maxDocs.doubleValue());
+			generator.write(this.maxDocs);
 
 		}
 		if (this.query != null) {
@@ -635,10 +638,10 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private String df;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
-		private Number from;
+		private Long from;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -656,7 +659,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private Boolean requestCache;
 
 		@Nullable
-		private Number requestsPerSecond;
+		private Long requestsPerSecond;
 
 		@Nullable
 		private String routing;
@@ -665,28 +668,28 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private String q;
 
 		@Nullable
-		private JsonValue scroll;
+		private String scroll;
 
 		@Nullable
-		private Number scrollSize;
+		private Long scrollSize;
 
 		@Nullable
-		private JsonValue searchTimeout;
+		private String searchTimeout;
 
 		@Nullable
 		private SearchType searchType;
 
 		@Nullable
-		private Number size;
+		private Long size;
 
 		@Nullable
-		private Number slices;
+		private Long slices;
 
 		@Nullable
 		private List<String> sort;
 
 		@Nullable
-		private JsonValue source;
+		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -698,22 +701,22 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private List<String> stats;
 
 		@Nullable
-		private Number terminateAfter;
+		private Long terminateAfter;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean version;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
 		private Boolean waitForCompletion;
 
 		@Nullable
-		private Number maxDocs;
+		private Long maxDocs;
 
 		@Nullable
 		private Query query;
@@ -824,8 +827,30 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -834,7 +859,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Long value) {
 			this.from = value;
 			return this;
 		}
@@ -899,7 +924,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Number value) {
+		public Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -930,7 +955,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public Builder scroll(@Nullable JsonValue value) {
+		public Builder scroll(@Nullable String value) {
 			this.scroll = value;
 			return this;
 		}
@@ -940,7 +965,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Number value) {
+		public Builder scrollSize(@Nullable Long value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -950,7 +975,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
-		public Builder searchTimeout(@Nullable JsonValue value) {
+		public Builder searchTimeout(@Nullable String value) {
 			this.searchTimeout = value;
 			return this;
 		}
@@ -968,7 +993,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Long value) {
 			this.size = value;
 			return this;
 		}
@@ -979,7 +1004,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code slices}
 		 */
-		public Builder slices(@Nullable Number value) {
+		public Builder slices(@Nullable Long value) {
 			this.slices = value;
 			return this;
 		}
@@ -1021,7 +1046,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue value) {
+		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -1125,7 +1150,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
-		public Builder terminateAfter(@Nullable Number value) {
+		public Builder terminateAfter(@Nullable Long value) {
 			this.terminateAfter = value;
 			return this;
 		}
@@ -1136,7 +1161,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -1160,7 +1185,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -1178,7 +1203,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code max_docs}
 		 */
-		public Builder maxDocs(@Nullable Number value) {
+		public Builder maxDocs(@Nullable Long value) {
 			this.maxDocs = value;
 			return this;
 		}
@@ -1230,15 +1255,15 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link DeleteByQueryRequest}
 	 */
-	public static final JsonpDeserializer<DeleteByQueryRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer);
+	public static final JsonpDeserializer<DeleteByQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer, Builder::build);
 
 	protected static void setupDeleteByQueryRequestDeserializer(
 			DelegatingDeserializer<DeleteByQueryRequest.Builder> op) {
 
-		op.add(Builder::maxDocs, JsonpDeserializer.numberDeserializer(), "max_docs");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::slice, SlicedScroll.DESERIALIZER, "slice");
+		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 
 	}
 
@@ -1296,10 +1321,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("df", request.df);
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -1317,7 +1343,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("request_cache", String.valueOf(request.requestCache));
 				}
 				if (request.requestsPerSecond != null) {
-					params.put("requests_per_second", request.requestsPerSecond.toString());
+					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
@@ -1326,22 +1352,22 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("q", request.q);
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll.toString());
+					params.put("scroll", request.scroll);
 				}
 				if (request.scrollSize != null) {
-					params.put("scroll_size", request.scrollSize.toString());
+					params.put("scroll_size", String.valueOf(request.scrollSize));
 				}
 				if (request.searchTimeout != null) {
-					params.put("search_timeout", request.searchTimeout.toString());
+					params.put("search_timeout", request.searchTimeout);
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.slices != null) {
-					params.put("slices", request.slices.toString());
+					params.put("slices", String.valueOf(request.slices));
 				}
 				if (request.sort != null) {
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -1361,10 +1387,10 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.terminateAfter != null) {
-					params.put("terminate_after", request.terminateAfter.toString());
+					params.put("terminate_after", String.valueOf(request.terminateAfter));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
@@ -1377,5 +1403,5 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, DeleteByQueryResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, DeleteByQueryResponse._DESERIALIZER);
 }

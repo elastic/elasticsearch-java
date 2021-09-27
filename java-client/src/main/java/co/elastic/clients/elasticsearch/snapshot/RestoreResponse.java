@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.restore.SnapshotRestore;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Response
+@JsonpDeserializable
 public final class RestoreResponse implements JsonpSerializable {
 	private final SnapshotRestore snapshot;
 
@@ -111,12 +113,12 @@ public final class RestoreResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RestoreResponse}
 	 */
-	public static final JsonpDeserializer<RestoreResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RestoreResponse::setupRestoreResponseDeserializer);
+	public static final JsonpDeserializer<RestoreResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RestoreResponse::setupRestoreResponseDeserializer, Builder::build);
 
 	protected static void setupRestoreResponseDeserializer(DelegatingDeserializer<RestoreResponse.Builder> op) {
 
-		op.add(Builder::snapshot, SnapshotRestore.DESERIALIZER, "snapshot");
+		op.add(Builder::snapshot, SnapshotRestore._DESERIALIZER, "snapshot");
 
 	}
 

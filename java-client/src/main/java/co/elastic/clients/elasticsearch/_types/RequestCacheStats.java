@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,23 +32,24 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.RequestCacheStats
+@JsonpDeserializable
 public final class RequestCacheStats implements JsonpSerializable {
-	private final Number evictions;
+	private final Long evictions;
 
-	private final Number hitCount;
+	private final Long hitCount;
 
 	@Nullable
 	private final String memorySize;
 
-	private final Number memorySizeInBytes;
+	private final Long memorySizeInBytes;
 
-	private final Number missCount;
+	private final Long missCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,14 +66,14 @@ public final class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * API name: {@code evictions}
 	 */
-	public Number evictions() {
+	public Long evictions() {
 		return this.evictions;
 	}
 
 	/**
 	 * API name: {@code hit_count}
 	 */
-	public Number hitCount() {
+	public Long hitCount() {
 		return this.hitCount;
 	}
 
@@ -86,14 +88,14 @@ public final class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * API name: {@code memory_size_in_bytes}
 	 */
-	public Number memorySizeInBytes() {
+	public Long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
 	 * API name: {@code miss_count}
 	 */
-	public Number missCount() {
+	public Long missCount() {
 		return this.missCount;
 	}
 
@@ -109,10 +111,10 @@ public final class RequestCacheStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("evictions");
-		generator.write(this.evictions.doubleValue());
+		generator.write(this.evictions);
 
 		generator.writeKey("hit_count");
-		generator.write(this.hitCount.doubleValue());
+		generator.write(this.hitCount);
 
 		if (this.memorySize != null) {
 
@@ -122,10 +124,10 @@ public final class RequestCacheStats implements JsonpSerializable {
 		}
 
 		generator.writeKey("memory_size_in_bytes");
-		generator.write(this.memorySizeInBytes.doubleValue());
+		generator.write(this.memorySizeInBytes);
 
 		generator.writeKey("miss_count");
-		generator.write(this.missCount.doubleValue());
+		generator.write(this.missCount);
 
 	}
 
@@ -135,21 +137,21 @@ public final class RequestCacheStats implements JsonpSerializable {
 	 * Builder for {@link RequestCacheStats}.
 	 */
 	public static class Builder implements ObjectBuilder<RequestCacheStats> {
-		private Number evictions;
+		private Long evictions;
 
-		private Number hitCount;
+		private Long hitCount;
 
 		@Nullable
 		private String memorySize;
 
-		private Number memorySizeInBytes;
+		private Long memorySizeInBytes;
 
-		private Number missCount;
+		private Long missCount;
 
 		/**
 		 * API name: {@code evictions}
 		 */
-		public Builder evictions(Number value) {
+		public Builder evictions(Long value) {
 			this.evictions = value;
 			return this;
 		}
@@ -157,7 +159,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code hit_count}
 		 */
-		public Builder hitCount(Number value) {
+		public Builder hitCount(Long value) {
 			this.hitCount = value;
 			return this;
 		}
@@ -173,7 +175,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_size_in_bytes}
 		 */
-		public Builder memorySizeInBytes(Number value) {
+		public Builder memorySizeInBytes(Long value) {
 			this.memorySizeInBytes = value;
 			return this;
 		}
@@ -181,7 +183,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		/**
 		 * API name: {@code miss_count}
 		 */
-		public Builder missCount(Number value) {
+		public Builder missCount(Long value) {
 			this.missCount = value;
 			return this;
 		}
@@ -203,16 +205,16 @@ public final class RequestCacheStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RequestCacheStats}
 	 */
-	public static final JsonpDeserializer<RequestCacheStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RequestCacheStats::setupRequestCacheStatsDeserializer);
+	public static final JsonpDeserializer<RequestCacheStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RequestCacheStats::setupRequestCacheStatsDeserializer, Builder::build);
 
 	protected static void setupRequestCacheStatsDeserializer(DelegatingDeserializer<RequestCacheStats.Builder> op) {
 
-		op.add(Builder::evictions, JsonpDeserializer.numberDeserializer(), "evictions");
-		op.add(Builder::hitCount, JsonpDeserializer.numberDeserializer(), "hit_count");
+		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
+		op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
 		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
-		op.add(Builder::memorySizeInBytes, JsonpDeserializer.numberDeserializer(), "memory_size_in_bytes");
-		op.add(Builder::missCount, JsonpDeserializer.numberDeserializer(), "miss_count");
+		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
+		op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
 
 	}
 

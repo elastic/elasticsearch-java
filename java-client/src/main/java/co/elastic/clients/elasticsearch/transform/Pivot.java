@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Pivot
+@JsonpDeserializable
 public final class Pivot implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Aggregation> aggregations;
@@ -49,7 +51,7 @@ public final class Pivot implements JsonpSerializable {
 	private final Map<String, PivotGroupBy> groupBy;
 
 	@Nullable
-	private final Number maxPageSearchSize;
+	private final Integer maxPageSearchSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,7 +83,7 @@ public final class Pivot implements JsonpSerializable {
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public Number maxPageSearchSize() {
+	public Integer maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
@@ -123,7 +125,7 @@ public final class Pivot implements JsonpSerializable {
 		if (this.maxPageSearchSize != null) {
 
 			generator.writeKey("max_page_search_size");
-			generator.write(this.maxPageSearchSize.doubleValue());
+			generator.write(this.maxPageSearchSize);
 
 		}
 
@@ -142,7 +144,7 @@ public final class Pivot implements JsonpSerializable {
 		private Map<String, PivotGroupBy> groupBy;
 
 		@Nullable
-		private Number maxPageSearchSize;
+		private Integer maxPageSearchSize;
 
 		/**
 		 * API name: {@code aggregations}
@@ -213,7 +215,7 @@ public final class Pivot implements JsonpSerializable {
 		/**
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable Number value) {
+		public Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -235,15 +237,15 @@ public final class Pivot implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Pivot}
 	 */
-	public static final JsonpDeserializer<Pivot> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Pivot::setupPivotDeserializer);
+	public static final JsonpDeserializer<Pivot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Pivot::setupPivotDeserializer, Builder::build);
 
 	protected static void setupPivotDeserializer(DelegatingDeserializer<Pivot.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER), "aggregations",
-				"aggs");
-		op.add(Builder::groupBy, JsonpDeserializer.stringMapDeserializer(PivotGroupBy.DESERIALIZER), "group_by");
-		op.add(Builder::maxPageSearchSize, JsonpDeserializer.numberDeserializer(), "max_page_search_size");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
+				"aggregations", "aggs");
+		op.add(Builder::groupBy, JsonpDeserializer.stringMapDeserializer(PivotGroupBy._DESERIALIZER), "group_by");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldCollapse
+@JsonpDeserializable
 public final class FieldCollapse implements JsonpSerializable {
 	private final String field;
 
@@ -48,7 +50,7 @@ public final class FieldCollapse implements JsonpSerializable {
 	private final List<InnerHits> innerHits;
 
 	@Nullable
-	private final Number maxConcurrentGroupSearches;
+	private final Integer maxConcurrentGroupSearches;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +81,7 @@ public final class FieldCollapse implements JsonpSerializable {
 	 * API name: {@code max_concurrent_group_searches}
 	 */
 	@Nullable
-	public Number maxConcurrentGroupSearches() {
+	public Integer maxConcurrentGroupSearches() {
 		return this.maxConcurrentGroupSearches;
 	}
 
@@ -111,7 +113,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		if (this.maxConcurrentGroupSearches != null) {
 
 			generator.writeKey("max_concurrent_group_searches");
-			generator.write(this.maxConcurrentGroupSearches.doubleValue());
+			generator.write(this.maxConcurrentGroupSearches);
 
 		}
 
@@ -129,7 +131,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		private List<InnerHits> innerHits;
 
 		@Nullable
-		private Number maxConcurrentGroupSearches;
+		private Integer maxConcurrentGroupSearches;
 
 		/**
 		 * API name: {@code field}
@@ -183,7 +185,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		/**
 		 * API name: {@code max_concurrent_group_searches}
 		 */
-		public Builder maxConcurrentGroupSearches(@Nullable Number value) {
+		public Builder maxConcurrentGroupSearches(@Nullable Integer value) {
 			this.maxConcurrentGroupSearches = value;
 			return this;
 		}
@@ -205,14 +207,14 @@ public final class FieldCollapse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldCollapse}
 	 */
-	public static final JsonpDeserializer<FieldCollapse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldCollapse::setupFieldCollapseDeserializer);
+	public static final JsonpDeserializer<FieldCollapse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldCollapse::setupFieldCollapseDeserializer, Builder::build);
 
 	protected static void setupFieldCollapseDeserializer(DelegatingDeserializer<FieldCollapse.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::innerHits, JsonpDeserializer.arrayDeserializer(InnerHits.DESERIALIZER), "inner_hits");
-		op.add(Builder::maxConcurrentGroupSearches, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::innerHits, JsonpDeserializer.arrayDeserializer(InnerHits._DESERIALIZER), "inner_hits");
+		op.add(Builder::maxConcurrentGroupSearches, JsonpDeserializer.integerDeserializer(),
 				"max_concurrent_group_searches");
 
 	}

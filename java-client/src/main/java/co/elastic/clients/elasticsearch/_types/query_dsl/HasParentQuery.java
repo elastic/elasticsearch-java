@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -39,7 +39,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasParentQuery
-public final class HasParentQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class HasParentQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -70,7 +71,7 @@ public final class HasParentQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "has_parent";
 	}
 
@@ -113,7 +114,6 @@ public final class HasParentQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
@@ -141,8 +141,6 @@ public final class HasParentQuery extends QueryBase implements Query {
 			generator.write(this.score);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -238,16 +236,18 @@ public final class HasParentQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<HasParentQuery.Builder, HasParentQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(HasParentQuery::setupHasParentQueryDeserializer);
+	/**
+	 * Json deserializer for {@link HasParentQuery}
+	 */
+	public static final JsonpDeserializer<HasParentQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HasParentQuery::setupHasParentQueryDeserializer, Builder::build);
 
 	protected static void setupHasParentQueryDeserializer(DelegatingDeserializer<HasParentQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
-		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
+		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
 		op.add(Builder::parentType, JsonpDeserializer.stringDeserializer(), "parent_type");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::score, JsonpDeserializer.booleanDeserializer(), "score");
 
 	}

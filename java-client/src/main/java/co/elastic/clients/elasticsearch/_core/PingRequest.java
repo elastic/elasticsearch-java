@@ -27,6 +27,7 @@ import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,6 +37,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: _global.ping.Request
+
 public final class PingRequest extends RequestBase {
 	public PingRequest() {
 	}
@@ -43,10 +45,7 @@ public final class PingRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link PingRequest}.
 	 */
-	public static final PingRequest INSTANCE = new PingRequest();
-
-	public static final JsonpDeserializer<PingRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(PingRequest.INSTANCE);
+	public static final PingRequest _INSTANCE = new PingRequest();
 
 	// ---------------------------------------------------------------------------------------------
 

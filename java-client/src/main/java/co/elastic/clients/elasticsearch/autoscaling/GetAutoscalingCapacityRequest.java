@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: autoscaling.get_autoscaling_capacity.Request
+
 public final class GetAutoscalingCapacityRequest extends RequestBase {
 	public GetAutoscalingCapacityRequest() {
 	}
@@ -42,10 +44,7 @@ public final class GetAutoscalingCapacityRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link GetAutoscalingCapacityRequest}.
 	 */
-	public static final GetAutoscalingCapacityRequest INSTANCE = new GetAutoscalingCapacityRequest();
-
-	public static final JsonpDeserializer<GetAutoscalingCapacityRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetAutoscalingCapacityRequest.INSTANCE);
+	public static final GetAutoscalingCapacityRequest _INSTANCE = new GetAutoscalingCapacityRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class GetAutoscalingCapacityRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetAutoscalingCapacityResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetAutoscalingCapacityResponse._DESERIALIZER);
 }

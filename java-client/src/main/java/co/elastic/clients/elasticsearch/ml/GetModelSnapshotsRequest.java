@@ -27,16 +27,16 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +44,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Request
+@JsonpDeserializable
 public final class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -54,19 +55,19 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	private final Boolean desc;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String sort;
 
 	@Nullable
-	private final JsonValue start;
+	private final String start;
 
 	@Nullable
-	private final JsonValue end;
+	private final String end;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -118,7 +119,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -128,7 +129,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -147,7 +148,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public JsonValue start() {
+	public String start() {
 		return this.start;
 	}
 
@@ -155,7 +156,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public JsonValue end() {
+	public String end() {
 		return this.end;
 	}
 
@@ -200,19 +201,19 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		private Boolean desc;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String sort;
 
 		@Nullable
-		private JsonValue start;
+		private String start;
 
 		@Nullable
-		private JsonValue end;
+		private String end;
 
 		/**
 		 * Identifier for the anomaly detection job.
@@ -249,7 +250,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -259,7 +260,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -278,7 +279,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		/**
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable JsonValue value) {
+		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -286,7 +287,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable JsonValue value) {
+		public Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -308,14 +309,14 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	/**
 	 * Json deserializer for {@link GetModelSnapshotsRequest}
 	 */
-	public static final JsonpDeserializer<GetModelSnapshotsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer);
+	public static final JsonpDeserializer<GetModelSnapshotsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer, Builder::build);
 
 	protected static void setupGetModelSnapshotsRequestDeserializer(
 			DelegatingDeserializer<GetModelSnapshotsRequest.Builder> op) {
 
-		op.add(Builder::start, JsonpDeserializer.jsonValueDeserializer(), "start");
-		op.add(Builder::end, JsonpDeserializer.jsonValueDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -374,15 +375,15 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 					params.put("desc", String.valueOf(request.desc));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.sort != null) {
 					params.put("sort", request.sort);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetModelSnapshotsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetModelSnapshotsResponse._DESERIALIZER);
 }

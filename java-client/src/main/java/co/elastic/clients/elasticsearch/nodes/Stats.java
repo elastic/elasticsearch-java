@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.elasticsearch._types.NodeRole;
 import co.elastic.clients.elasticsearch.indices.stats.IndexStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Stats
+@JsonpDeserializable
 public final class Stats implements JsonpSerializable {
 	private final Map<String, AdaptiveSelection> adaptiveSelection;
 
@@ -77,7 +79,7 @@ public final class Stats implements JsonpSerializable {
 
 	private final Map<String, ThreadCount> threadPool;
 
-	private final Number timestamp;
+	private final Long timestamp;
 
 	private final Transport transport;
 
@@ -219,7 +221,7 @@ public final class Stats implements JsonpSerializable {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -328,7 +330,7 @@ public final class Stats implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 		generator.writeKey("transport");
 		this.transport.serialize(generator, mapper);
@@ -383,7 +385,7 @@ public final class Stats implements JsonpSerializable {
 
 		private Map<String, ThreadCount> threadPool;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		private Transport transport;
 
@@ -688,7 +690,7 @@ public final class Stats implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -752,29 +754,29 @@ public final class Stats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Stats}
 	 */
-	public static final JsonpDeserializer<Stats> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Stats::setupStatsDeserializer);
+	public static final JsonpDeserializer<Stats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Stats::setupStatsDeserializer, Builder::build);
 
 	protected static void setupStatsDeserializer(DelegatingDeserializer<Stats.Builder> op) {
 
-		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection.DESERIALIZER),
+		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection._DESERIALIZER),
 				"adaptive_selection");
-		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker.DESERIALIZER), "breakers");
-		op.add(Builder::fs, FileSystem.DESERIALIZER, "fs");
+		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker._DESERIALIZER), "breakers");
+		op.add(Builder::fs, FileSystem._DESERIALIZER, "fs");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(Builder::http, Http.DESERIALIZER, "http");
-		op.add(Builder::indices, IndexStats.DESERIALIZER, "indices");
-		op.add(Builder::ingest, Ingest.DESERIALIZER, "ingest");
+		op.add(Builder::http, Http._DESERIALIZER, "http");
+		op.add(Builder::indices, IndexStats._DESERIALIZER, "indices");
+		op.add(Builder::ingest, Ingest._DESERIALIZER, "ingest");
 		op.add(Builder::ip, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ip");
-		op.add(Builder::jvm, Jvm.DESERIALIZER, "jvm");
+		op.add(Builder::jvm, Jvm._DESERIALIZER, "jvm");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::os, OperatingSystem.DESERIALIZER, "os");
-		op.add(Builder::process, Process.DESERIALIZER, "process");
-		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole.DESERIALIZER), "roles");
-		op.add(Builder::script, Scripting.DESERIALIZER, "script");
-		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(ThreadCount.DESERIALIZER), "thread_pool");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
-		op.add(Builder::transport, Transport.DESERIALIZER, "transport");
+		op.add(Builder::os, OperatingSystem._DESERIALIZER, "os");
+		op.add(Builder::process, Process._DESERIALIZER, "process");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
+		op.add(Builder::script, Scripting._DESERIALIZER, "script");
+		op.add(Builder::threadPool, JsonpDeserializer.stringMapDeserializer(ThreadCount._DESERIALIZER), "thread_pool");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+		op.add(Builder::transport, Transport._DESERIALIZER, "transport");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");

@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegression
-public final class DataframeEvaluationRegression implements DataframeEvaluation, JsonpSerializable {
+@JsonpDeserializable
+public final class DataframeEvaluationRegression implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	private final String predictedField;
@@ -60,7 +61,7 @@ public final class DataframeEvaluationRegression implements DataframeEvaluation,
 	 * {@link DataframeEvaluation} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "regression";
 	}
 
@@ -106,7 +107,6 @@ public final class DataframeEvaluationRegression implements DataframeEvaluation,
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -120,8 +120,6 @@ public final class DataframeEvaluationRegression implements DataframeEvaluation,
 			this.metrics.serialize(generator, mapper);
 
 		}
-
-		generator.writeEnd();
 
 	}
 
@@ -198,16 +196,19 @@ public final class DataframeEvaluationRegression implements DataframeEvaluation,
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeEvaluationRegression.Builder, DataframeEvaluationRegression.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(DataframeEvaluationRegression::setupDataframeEvaluationRegressionDeserializer);
+	/**
+	 * Json deserializer for {@link DataframeEvaluationRegression}
+	 */
+	public static final JsonpDeserializer<DataframeEvaluationRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeEvaluationRegression::setupDataframeEvaluationRegressionDeserializer,
+			Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegression.Builder> op) {
 
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedField, JsonpDeserializer.stringDeserializer(), "predicted_field");
-		op.add(Builder::metrics, DataframeEvaluationRegressionMetrics.DESERIALIZER, "metrics");
+		op.add(Builder::metrics, DataframeEvaluationRegressionMetrics._DESERIALIZER, "metrics");
 
 	}
 

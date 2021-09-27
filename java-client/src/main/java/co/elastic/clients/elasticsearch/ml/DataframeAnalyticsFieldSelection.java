@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
+@JsonpDeserializable
 public final class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	private final Boolean isIncluded;
 
@@ -288,9 +290,9 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsFieldSelection}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsFieldSelection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsFieldSelection::setupDataframeAnalyticsFieldSelectionDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsFieldSelection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsFieldSelection::setupDataframeAnalyticsFieldSelectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsFieldSelectionDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsFieldSelection.Builder> op) {

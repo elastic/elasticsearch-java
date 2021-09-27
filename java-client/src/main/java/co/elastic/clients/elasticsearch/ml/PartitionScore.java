@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,22 +32,23 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.PartitionScore
+@JsonpDeserializable
 public final class PartitionScore implements JsonpSerializable {
-	private final Number initialRecordScore;
+	private final Double initialRecordScore;
 
 	private final String partitionFieldName;
 
 	private final String partitionFieldValue;
 
-	private final Number probability;
+	private final Double probability;
 
-	private final Number recordScore;
+	private final Double recordScore;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +65,7 @@ public final class PartitionScore implements JsonpSerializable {
 	/**
 	 * API name: {@code initial_record_score}
 	 */
-	public Number initialRecordScore() {
+	public Double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
@@ -84,14 +86,14 @@ public final class PartitionScore implements JsonpSerializable {
 	/**
 	 * API name: {@code probability}
 	 */
-	public Number probability() {
+	public Double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * API name: {@code record_score}
 	 */
-	public Number recordScore() {
+	public Double recordScore() {
 		return this.recordScore;
 	}
 
@@ -107,7 +109,7 @@ public final class PartitionScore implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("initial_record_score");
-		generator.write(this.initialRecordScore.doubleValue());
+		generator.write(this.initialRecordScore);
 
 		generator.writeKey("partition_field_name");
 		generator.write(this.partitionFieldName);
@@ -116,10 +118,10 @@ public final class PartitionScore implements JsonpSerializable {
 		generator.write(this.partitionFieldValue);
 
 		generator.writeKey("probability");
-		generator.write(this.probability.doubleValue());
+		generator.write(this.probability);
 
 		generator.writeKey("record_score");
-		generator.write(this.recordScore.doubleValue());
+		generator.write(this.recordScore);
 
 	}
 
@@ -129,20 +131,20 @@ public final class PartitionScore implements JsonpSerializable {
 	 * Builder for {@link PartitionScore}.
 	 */
 	public static class Builder implements ObjectBuilder<PartitionScore> {
-		private Number initialRecordScore;
+		private Double initialRecordScore;
 
 		private String partitionFieldName;
 
 		private String partitionFieldValue;
 
-		private Number probability;
+		private Double probability;
 
-		private Number recordScore;
+		private Double recordScore;
 
 		/**
 		 * API name: {@code initial_record_score}
 		 */
-		public Builder initialRecordScore(Number value) {
+		public Builder initialRecordScore(Double value) {
 			this.initialRecordScore = value;
 			return this;
 		}
@@ -166,7 +168,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Number value) {
+		public Builder probability(Double value) {
 			this.probability = value;
 			return this;
 		}
@@ -174,7 +176,7 @@ public final class PartitionScore implements JsonpSerializable {
 		/**
 		 * API name: {@code record_score}
 		 */
-		public Builder recordScore(Number value) {
+		public Builder recordScore(Double value) {
 			this.recordScore = value;
 			return this;
 		}
@@ -196,16 +198,16 @@ public final class PartitionScore implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PartitionScore}
 	 */
-	public static final JsonpDeserializer<PartitionScore> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PartitionScore::setupPartitionScoreDeserializer);
+	public static final JsonpDeserializer<PartitionScore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PartitionScore::setupPartitionScoreDeserializer, Builder::build);
 
 	protected static void setupPartitionScoreDeserializer(DelegatingDeserializer<PartitionScore.Builder> op) {
 
-		op.add(Builder::initialRecordScore, JsonpDeserializer.numberDeserializer(), "initial_record_score");
+		op.add(Builder::initialRecordScore, JsonpDeserializer.doubleDeserializer(), "initial_record_score");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
 		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
-		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
-		op.add(Builder::recordScore, JsonpDeserializer.numberDeserializer(), "record_score");
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
+		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 
 	}
 

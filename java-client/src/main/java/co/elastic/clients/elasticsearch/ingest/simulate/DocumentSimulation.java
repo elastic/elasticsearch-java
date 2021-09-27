@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest.simulate;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.DocumentSimulation
+@JsonpDeserializable
 public final class DocumentSimulation implements JsonpSerializable {
 	private final String id;
 
@@ -289,17 +291,17 @@ public final class DocumentSimulation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DocumentSimulation}
 	 */
-	public static final JsonpDeserializer<DocumentSimulation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer);
+	public static final JsonpDeserializer<DocumentSimulation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer, Builder::build);
 
 	protected static void setupDocumentSimulationDeserializer(DelegatingDeserializer<DocumentSimulation.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::ingest, Ingest.DESERIALIZER, "_ingest");
+		op.add(Builder::ingest, Ingest._DESERIALIZER, "_ingest");
 		op.add(Builder::parent, JsonpDeserializer.stringDeserializer(), "_parent");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "_source");
+		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_source");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 
 	}

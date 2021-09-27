@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedStats
+@JsonpDeserializable
 public final class DatafeedStats implements JsonpSerializable {
 	private final String assignmentExplanation;
 
@@ -210,16 +212,16 @@ public final class DatafeedStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DatafeedStats}
 	 */
-	public static final JsonpDeserializer<DatafeedStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DatafeedStats::setupDatafeedStatsDeserializer);
+	public static final JsonpDeserializer<DatafeedStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DatafeedStats::setupDatafeedStatsDeserializer, Builder::build);
 
 	protected static void setupDatafeedStatsDeserializer(DelegatingDeserializer<DatafeedStats.Builder> op) {
 
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
-		op.add(Builder::node, DiscoveryNode.DESERIALIZER, "node");
-		op.add(Builder::state, DatafeedState.DESERIALIZER, "state");
-		op.add(Builder::timingStats, DatafeedTimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
+		op.add(Builder::state, DatafeedState._DESERIALIZER, "state");
+		op.add(Builder::timingStats, DatafeedTimingStats._DESERIALIZER, "timing_stats");
 
 	}
 

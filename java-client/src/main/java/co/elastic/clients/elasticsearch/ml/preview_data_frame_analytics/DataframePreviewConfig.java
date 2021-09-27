@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalysis;
 import co.elastic.clients.elasticsearch.ml.DataframeAnalyticsSource;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,13 +35,14 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.DataframePreviewConfig
+@JsonpDeserializable
 public final class DataframePreviewConfig implements JsonpSerializable {
 	private final DataframeAnalyticsSource source;
 
@@ -50,10 +52,10 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue analyzedFields;
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +95,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -101,7 +103,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -131,7 +133,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.analyzedFields != null) {
@@ -157,10 +159,10 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue analyzedFields;
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		/**
 		 * API name: {@code source}
@@ -203,7 +205,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -211,7 +213,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -233,16 +235,16 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataframePreviewConfig}
 	 */
-	public static final JsonpDeserializer<DataframePreviewConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigDeserializer);
+	public static final JsonpDeserializer<DataframePreviewConfig> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframePreviewConfig::setupDataframePreviewConfigDeserializer, Builder::build);
 
 	protected static void setupDataframePreviewConfigDeserializer(
 			DelegatingDeserializer<DataframePreviewConfig.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 
 	}

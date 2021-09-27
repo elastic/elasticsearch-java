@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterFileSystem
+@JsonpDeserializable
 public final class ClusterFileSystem implements JsonpSerializable {
-	private final Number availableInBytes;
+	private final Long availableInBytes;
 
-	private final Number freeInBytes;
+	private final Long freeInBytes;
 
-	private final Number totalInBytes;
+	private final Long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,21 +58,21 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Number availableInBytes() {
+	public Long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Number freeInBytes() {
+	public Long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public Long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -86,13 +88,13 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes.doubleValue());
+		generator.write(this.availableInBytes);
 
 		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes.doubleValue());
+		generator.write(this.freeInBytes);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 	}
 
@@ -102,16 +104,16 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	 * Builder for {@link ClusterFileSystem}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterFileSystem> {
-		private Number availableInBytes;
+		private Long availableInBytes;
 
-		private Number freeInBytes;
+		private Long freeInBytes;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Number value) {
+		public Builder availableInBytes(Long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -119,7 +121,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Number value) {
+		public Builder freeInBytes(Long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -127,7 +129,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(Long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -149,14 +151,14 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterFileSystem}
 	 */
-	public static final JsonpDeserializer<ClusterFileSystem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer);
+	public static final JsonpDeserializer<ClusterFileSystem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer, Builder::build);
 
 	protected static void setupClusterFileSystemDeserializer(DelegatingDeserializer<ClusterFileSystem.Builder> op) {
 
-		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
-		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
 	}
 

@@ -27,11 +27,11 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.GroupBy;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,6 +45,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: tasks.list.Request
+
 public final class ListRequest extends RequestBase {
 	@Nullable
 	private final List<String> actions;
@@ -62,7 +63,7 @@ public final class ListRequest extends RequestBase {
 	private final String parentTaskId;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -141,7 +142,7 @@ public final class ListRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -177,7 +178,7 @@ public final class ListRequest extends RequestBase {
 		private String parentTaskId;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -286,7 +287,7 @@ public final class ListRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -350,12 +351,12 @@ public final class ListRequest extends RequestBase {
 					params.put("parent_task_id", request.parentTaskId);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ListResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ListResponse._DESERIALIZER);
 }

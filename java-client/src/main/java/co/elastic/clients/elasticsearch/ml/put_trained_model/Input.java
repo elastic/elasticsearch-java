@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
+@JsonpDeserializable
 public final class Input implements JsonpSerializable {
 	private final List<String> fieldNames;
 
@@ -130,8 +132,8 @@ public final class Input implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Input}
 	 */
-	public static final JsonpDeserializer<Input> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Input::setupInputDeserializer);
+	public static final JsonpDeserializer<Input> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Input::setupInputDeserializer, Builder::build);
 
 	protected static void setupInputDeserializer(DelegatingDeserializer<Input.Builder> op) {
 

@@ -23,24 +23,27 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldRule
-public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
 	public static final String USERNAME = "username";
 	public static final String DN = "dn";
@@ -48,8 +51,40 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	public static final String METADATA = "metadata";
 	public static final String REALM = "realm";
 
+	/**
+	 * {@link RoleMappingRule} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "field";
+	}
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public FieldRule(FieldRuleVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private FieldRule(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -60,7 +95,7 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code username} kind.
 	 */
 	public String username() {
-		return _get(USERNAME);
+		return TaggedUnionUtils.get(this, USERNAME);
 	}
 
 	/**
@@ -70,7 +105,7 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code dn} kind.
 	 */
 	public List<String> dn() {
-		return _get(DN);
+		return TaggedUnionUtils.get(this, DN);
 	}
 
 	/**
@@ -80,7 +115,7 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code groups} kind.
 	 */
 	public List<String> groups() {
-		return _get(GROUPS);
+		return TaggedUnionUtils.get(this, GROUPS);
 	}
 
 	/**
@@ -90,7 +125,7 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code metadata} kind.
 	 */
 	public JsonData metadata() {
-		return _get(METADATA);
+		return TaggedUnionUtils.get(this, METADATA);
 	}
 
 	/**
@@ -100,24 +135,26 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code realm} kind.
 	 */
 	public Realm realm() {
-		return _get(REALM);
+		return TaggedUnionUtils.get(this, REALM);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_type) {
 				case USERNAME :
-					generator.write(this.<String>_get(USERNAME));
+					generator.write(((String) this._value));
 
 					break;
 				case DN :
 					generator.writeStartArray();
-					for (String item0 : this.<List<String>>_get(DN)) {
+					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
 
 					}
@@ -126,7 +163,7 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 					break;
 				case GROUPS :
 					generator.writeStartArray();
-					for (String item0 : this.<List<String>>_get(GROUPS)) {
+					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
 
 					}
@@ -134,7 +171,7 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 
 					break;
 				case METADATA :
-					this.<JsonData>_get(METADATA).serialize(generator, mapper);
+					((JsonData) this._value).serialize(generator, mapper);
 
 					break;
 			}
@@ -142,37 +179,38 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<FieldRule> username(String v) {
-			this.$variant = v;
-			this.$tag = USERNAME;
+			this._type = USERNAME;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<FieldRule> dn(List<String> v) {
-			this.$variant = v;
-			this.$tag = DN;
+			this._type = DN;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<FieldRule> groups(List<String> v) {
-			this.$variant = v;
-			this.$tag = GROUPS;
+			this._type = GROUPS;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<FieldRule> metadata(JsonData v) {
-			this.$variant = v;
-			this.$tag = METADATA;
+			this._type = METADATA;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<FieldRule> realm(Realm v) {
-			this.$variant = v;
-			this.$tag = REALM;
+			this._type = REALM;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -187,18 +225,15 @@ public class FieldRule extends TaggedUnion<Object> implements JsonpSerializable 
 	}
 
 	protected static void setupFieldRuleDeserializer(DelegatingDeserializer<Builder> op) {
+
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::dn, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "dn");
 		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
-		op.add(Builder::metadata, JsonData.DESERIALIZER, "metadata");
-		op.add(Builder::realm, Realm.DESERIALIZER, "realm");
+		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
+		op.add(Builder::realm, Realm._DESERIALIZER, "realm");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<FieldRule> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<FieldRule> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			FieldRule::setupFieldRuleDeserializer, Builder::build);
 }

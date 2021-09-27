@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._core.termvectors.Filter;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,7 +40,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +54,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Request
+
 public final class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	private final String index;
 
@@ -87,7 +89,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	private final Boolean termStatistics;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
@@ -246,7 +248,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -361,7 +363,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private Boolean termStatistics;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
@@ -517,7 +519,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder<TDocument> version(@Nullable Number value) {
+		public Builder<TDocument> version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -612,7 +614,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::doc, tDocumentDeserializer, "doc");
-		op.add(Builder::filter, Filter.DESERIALIZER, "filter");
+		op.add(Builder::filter, Filter._DESERIALIZER, "filter");
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
 
@@ -693,12 +695,12 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 					params.put("term_statistics", String.valueOf(request.termStatistics));
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, TermvectorsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, TermvectorsResponse._DESERIALIZER);
 }

@@ -24,9 +24,10 @@ import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._global.SearchResponse;
+import co.elastic.clients.elasticsearch._core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.CreateResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
@@ -45,6 +46,7 @@ import java.util.Map;
 public class RequestTest extends Assert {
 
     private static ElasticsearchContainer container;
+    private final JsonpMapper mapper = new JsonbJsonpMapper();
 
     @BeforeClass
     public static void setup() {
@@ -65,7 +67,7 @@ public class RequestTest extends Assert {
     @Test
     public void testIndexCreation() throws IOException {
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
-        Transport transport = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        Transport transport = new RestClientTransport(restClient, mapper);
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
         // Ping the server
@@ -89,7 +91,7 @@ public class RequestTest extends Assert {
         // Create the low-level client
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         // Build the high-level client
-        Transport transport = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        Transport transport = new RestClientTransport(restClient, mapper);
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
         // Create an index
@@ -130,8 +132,9 @@ public class RequestTest extends Assert {
             .addHeader("x-super-header", "bar")
             .build();
 
-        SearchResponse<AppData> search = client
-            .withRequestOptions(options)
+        SearchResponse<AppData> search = new ElasticsearchClient(
+            ((RestClientTransport) client._transport()).withRequestOptions(options)
+        )
             .search(b -> b
                 .index("test")
                 , AppData.class

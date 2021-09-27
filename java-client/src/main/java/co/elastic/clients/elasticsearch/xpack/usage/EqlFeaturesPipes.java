@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesPipes
+@JsonpDeserializable
 public final class EqlFeaturesPipes implements JsonpSerializable {
 	private final Number pipeTail;
 
@@ -126,8 +128,8 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link EqlFeaturesPipes}
 	 */
-	public static final JsonpDeserializer<EqlFeaturesPipes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer);
+	public static final JsonpDeserializer<EqlFeaturesPipes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesPipesDeserializer(DelegatingDeserializer<EqlFeaturesPipes.Builder> op) {
 

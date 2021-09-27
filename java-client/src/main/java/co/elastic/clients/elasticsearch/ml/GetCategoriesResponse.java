@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_categories.Response
+@JsonpDeserializable
 public final class GetCategoriesResponse implements JsonpSerializable {
 	private final List<Category> categories;
 
-	private final Number count;
+	private final Long count;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,7 +66,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -88,7 +90,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -100,7 +102,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<GetCategoriesResponse> {
 		private List<Category> categories;
 
-		private Number count;
+		private Long count;
 
 		/**
 		 * API name: {@code categories}
@@ -146,7 +148,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -168,14 +170,14 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetCategoriesResponse}
 	 */
-	public static final JsonpDeserializer<GetCategoriesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCategoriesResponse::setupGetCategoriesResponseDeserializer);
+	public static final JsonpDeserializer<GetCategoriesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCategoriesResponse::setupGetCategoriesResponseDeserializer, Builder::build);
 
 	protected static void setupGetCategoriesResponseDeserializer(
 			DelegatingDeserializer<GetCategoriesResponse.Builder> op) {
 
-		op.add(Builder::categories, JsonpDeserializer.arrayDeserializer(Category.DESERIALIZER), "categories");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::categories, JsonpDeserializer.arrayDeserializer(Category._DESERIALIZER), "categories");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

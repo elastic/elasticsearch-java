@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum MatchType implements StringEnum {
 	Simple("simple"), Regex("regex");
 
@@ -39,6 +41,6 @@ public enum MatchType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<MatchType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<MatchType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			MatchType.values());
 }

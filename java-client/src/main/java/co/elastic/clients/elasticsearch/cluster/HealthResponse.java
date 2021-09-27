@@ -26,16 +26,16 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.Health;
 import co.elastic.clients.elasticsearch.cluster.health.IndexHealthStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,39 +45,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Response
+@JsonpDeserializable
 public final class HealthResponse implements JsonpSerializable {
-	private final Number activePrimaryShards;
+	private final Integer activePrimaryShards;
 
-	private final Number activeShards;
+	private final Integer activeShards;
 
-	private final JsonValue activeShardsPercentAsNumber;
+	private final String activeShardsPercentAsNumber;
 
 	private final String clusterName;
 
-	private final Number delayedUnassignedShards;
+	private final Integer delayedUnassignedShards;
 
 	@Nullable
 	private final Map<String, IndexHealthStats> indices;
 
-	private final Number initializingShards;
+	private final Integer initializingShards;
 
-	private final Number numberOfDataNodes;
+	private final Integer numberOfDataNodes;
 
-	private final Number numberOfInFlightFetch;
+	private final Integer numberOfInFlightFetch;
 
-	private final Number numberOfNodes;
+	private final Integer numberOfNodes;
 
-	private final Number numberOfPendingTasks;
+	private final Integer numberOfPendingTasks;
 
-	private final Number relocatingShards;
+	private final Integer relocatingShards;
 
 	private final Health status;
 
-	private final JsonValue taskMaxWaitingInQueueMillis;
+	private final String taskMaxWaitingInQueueMillis;
 
 	private final Boolean timedOut;
 
-	private final Number unassignedShards;
+	private final Integer unassignedShards;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -110,7 +111,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code active_primary_shards}
 	 */
-	public Number activePrimaryShards() {
+	public Integer activePrimaryShards() {
 		return this.activePrimaryShards;
 	}
 
@@ -119,7 +120,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code active_shards}
 	 */
-	public Number activeShards() {
+	public Integer activeShards() {
 		return this.activeShards;
 	}
 
@@ -128,7 +129,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code active_shards_percent_as_number}
 	 */
-	public JsonValue activeShardsPercentAsNumber() {
+	public String activeShardsPercentAsNumber() {
 		return this.activeShardsPercentAsNumber;
 	}
 
@@ -147,7 +148,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code delayed_unassigned_shards}
 	 */
-	public Number delayedUnassignedShards() {
+	public Integer delayedUnassignedShards() {
 		return this.delayedUnassignedShards;
 	}
 
@@ -164,7 +165,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code initializing_shards}
 	 */
-	public Number initializingShards() {
+	public Integer initializingShards() {
 		return this.initializingShards;
 	}
 
@@ -173,14 +174,14 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code number_of_data_nodes}
 	 */
-	public Number numberOfDataNodes() {
+	public Integer numberOfDataNodes() {
 		return this.numberOfDataNodes;
 	}
 
 	/**
 	 * API name: {@code number_of_in_flight_fetch}
 	 */
-	public Number numberOfInFlightFetch() {
+	public Integer numberOfInFlightFetch() {
 		return this.numberOfInFlightFetch;
 	}
 
@@ -189,7 +190,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code number_of_nodes}
 	 */
-	public Number numberOfNodes() {
+	public Integer numberOfNodes() {
 		return this.numberOfNodes;
 	}
 
@@ -198,7 +199,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code number_of_pending_tasks}
 	 */
-	public Number numberOfPendingTasks() {
+	public Integer numberOfPendingTasks() {
 		return this.numberOfPendingTasks;
 	}
 
@@ -207,7 +208,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code relocating_shards}
 	 */
-	public Number relocatingShards() {
+	public Integer relocatingShards() {
 		return this.relocatingShards;
 	}
 
@@ -224,7 +225,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
-	public JsonValue taskMaxWaitingInQueueMillis() {
+	public String taskMaxWaitingInQueueMillis() {
 		return this.taskMaxWaitingInQueueMillis;
 	}
 
@@ -243,7 +244,7 @@ public final class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code unassigned_shards}
 	 */
-	public Number unassignedShards() {
+	public Integer unassignedShards() {
 		return this.unassignedShards;
 	}
 
@@ -259,10 +260,10 @@ public final class HealthResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active_primary_shards");
-		generator.write(this.activePrimaryShards.doubleValue());
+		generator.write(this.activePrimaryShards);
 
 		generator.writeKey("active_shards");
-		generator.write(this.activeShards.doubleValue());
+		generator.write(this.activeShards);
 
 		generator.writeKey("active_shards_percent_as_number");
 		generator.write(this.activeShardsPercentAsNumber);
@@ -271,7 +272,7 @@ public final class HealthResponse implements JsonpSerializable {
 		generator.write(this.clusterName);
 
 		generator.writeKey("delayed_unassigned_shards");
-		generator.write(this.delayedUnassignedShards.doubleValue());
+		generator.write(this.delayedUnassignedShards);
 
 		if (this.indices != null) {
 
@@ -287,22 +288,22 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		generator.writeKey("initializing_shards");
-		generator.write(this.initializingShards.doubleValue());
+		generator.write(this.initializingShards);
 
 		generator.writeKey("number_of_data_nodes");
-		generator.write(this.numberOfDataNodes.doubleValue());
+		generator.write(this.numberOfDataNodes);
 
 		generator.writeKey("number_of_in_flight_fetch");
-		generator.write(this.numberOfInFlightFetch.doubleValue());
+		generator.write(this.numberOfInFlightFetch);
 
 		generator.writeKey("number_of_nodes");
-		generator.write(this.numberOfNodes.doubleValue());
+		generator.write(this.numberOfNodes);
 
 		generator.writeKey("number_of_pending_tasks");
-		generator.write(this.numberOfPendingTasks.doubleValue());
+		generator.write(this.numberOfPendingTasks);
 
 		generator.writeKey("relocating_shards");
-		generator.write(this.relocatingShards.doubleValue());
+		generator.write(this.relocatingShards);
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
@@ -314,7 +315,7 @@ public final class HealthResponse implements JsonpSerializable {
 		generator.write(this.timedOut);
 
 		generator.writeKey("unassigned_shards");
-		generator.write(this.unassignedShards.doubleValue());
+		generator.write(this.unassignedShards);
 
 	}
 
@@ -324,45 +325,45 @@ public final class HealthResponse implements JsonpSerializable {
 	 * Builder for {@link HealthResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<HealthResponse> {
-		private Number activePrimaryShards;
+		private Integer activePrimaryShards;
 
-		private Number activeShards;
+		private Integer activeShards;
 
-		private JsonValue activeShardsPercentAsNumber;
+		private String activeShardsPercentAsNumber;
 
 		private String clusterName;
 
-		private Number delayedUnassignedShards;
+		private Integer delayedUnassignedShards;
 
 		@Nullable
 		private Map<String, IndexHealthStats> indices;
 
-		private Number initializingShards;
+		private Integer initializingShards;
 
-		private Number numberOfDataNodes;
+		private Integer numberOfDataNodes;
 
-		private Number numberOfInFlightFetch;
+		private Integer numberOfInFlightFetch;
 
-		private Number numberOfNodes;
+		private Integer numberOfNodes;
 
-		private Number numberOfPendingTasks;
+		private Integer numberOfPendingTasks;
 
-		private Number relocatingShards;
+		private Integer relocatingShards;
 
 		private Health status;
 
-		private JsonValue taskMaxWaitingInQueueMillis;
+		private String taskMaxWaitingInQueueMillis;
 
 		private Boolean timedOut;
 
-		private Number unassignedShards;
+		private Integer unassignedShards;
 
 		/**
 		 * The number of active primary shards.
 		 * <p>
 		 * API name: {@code active_primary_shards}
 		 */
-		public Builder activePrimaryShards(Number value) {
+		public Builder activePrimaryShards(Integer value) {
 			this.activePrimaryShards = value;
 			return this;
 		}
@@ -372,7 +373,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active_shards}
 		 */
-		public Builder activeShards(Number value) {
+		public Builder activeShards(Integer value) {
 			this.activeShards = value;
 			return this;
 		}
@@ -382,7 +383,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active_shards_percent_as_number}
 		 */
-		public Builder activeShardsPercentAsNumber(JsonValue value) {
+		public Builder activeShardsPercentAsNumber(String value) {
 			this.activeShardsPercentAsNumber = value;
 			return this;
 		}
@@ -403,7 +404,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code delayed_unassigned_shards}
 		 */
-		public Builder delayedUnassignedShards(Number value) {
+		public Builder delayedUnassignedShards(Integer value) {
 			this.delayedUnassignedShards = value;
 			return this;
 		}
@@ -446,7 +447,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code initializing_shards}
 		 */
-		public Builder initializingShards(Number value) {
+		public Builder initializingShards(Integer value) {
 			this.initializingShards = value;
 			return this;
 		}
@@ -456,7 +457,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code number_of_data_nodes}
 		 */
-		public Builder numberOfDataNodes(Number value) {
+		public Builder numberOfDataNodes(Integer value) {
 			this.numberOfDataNodes = value;
 			return this;
 		}
@@ -464,7 +465,7 @@ public final class HealthResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code number_of_in_flight_fetch}
 		 */
-		public Builder numberOfInFlightFetch(Number value) {
+		public Builder numberOfInFlightFetch(Integer value) {
 			this.numberOfInFlightFetch = value;
 			return this;
 		}
@@ -474,7 +475,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code number_of_nodes}
 		 */
-		public Builder numberOfNodes(Number value) {
+		public Builder numberOfNodes(Integer value) {
 			this.numberOfNodes = value;
 			return this;
 		}
@@ -484,7 +485,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code number_of_pending_tasks}
 		 */
-		public Builder numberOfPendingTasks(Number value) {
+		public Builder numberOfPendingTasks(Integer value) {
 			this.numberOfPendingTasks = value;
 			return this;
 		}
@@ -494,7 +495,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code relocating_shards}
 		 */
-		public Builder relocatingShards(Number value) {
+		public Builder relocatingShards(Integer value) {
 			this.relocatingShards = value;
 			return this;
 		}
@@ -513,7 +514,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
-		public Builder taskMaxWaitingInQueueMillis(JsonValue value) {
+		public Builder taskMaxWaitingInQueueMillis(String value) {
 			this.taskMaxWaitingInQueueMillis = value;
 			return this;
 		}
@@ -534,7 +535,7 @@ public final class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassigned_shards}
 		 */
-		public Builder unassignedShards(Number value) {
+		public Builder unassignedShards(Integer value) {
 			this.unassignedShards = value;
 			return this;
 		}
@@ -556,29 +557,29 @@ public final class HealthResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HealthResponse}
 	 */
-	public static final JsonpDeserializer<HealthResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HealthResponse::setupHealthResponseDeserializer);
+	public static final JsonpDeserializer<HealthResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HealthResponse::setupHealthResponseDeserializer, Builder::build);
 
 	protected static void setupHealthResponseDeserializer(DelegatingDeserializer<HealthResponse.Builder> op) {
 
-		op.add(Builder::activePrimaryShards, JsonpDeserializer.numberDeserializer(), "active_primary_shards");
-		op.add(Builder::activeShards, JsonpDeserializer.numberDeserializer(), "active_shards");
-		op.add(Builder::activeShardsPercentAsNumber, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::activePrimaryShards, JsonpDeserializer.integerDeserializer(), "active_primary_shards");
+		op.add(Builder::activeShards, JsonpDeserializer.integerDeserializer(), "active_shards");
+		op.add(Builder::activeShardsPercentAsNumber, JsonpDeserializer.stringDeserializer(),
 				"active_shards_percent_as_number");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::delayedUnassignedShards, JsonpDeserializer.numberDeserializer(), "delayed_unassigned_shards");
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexHealthStats.DESERIALIZER), "indices");
-		op.add(Builder::initializingShards, JsonpDeserializer.numberDeserializer(), "initializing_shards");
-		op.add(Builder::numberOfDataNodes, JsonpDeserializer.numberDeserializer(), "number_of_data_nodes");
-		op.add(Builder::numberOfInFlightFetch, JsonpDeserializer.numberDeserializer(), "number_of_in_flight_fetch");
-		op.add(Builder::numberOfNodes, JsonpDeserializer.numberDeserializer(), "number_of_nodes");
-		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.numberDeserializer(), "number_of_pending_tasks");
-		op.add(Builder::relocatingShards, JsonpDeserializer.numberDeserializer(), "relocating_shards");
-		op.add(Builder::status, Health.DESERIALIZER, "status");
-		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::delayedUnassignedShards, JsonpDeserializer.integerDeserializer(), "delayed_unassigned_shards");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexHealthStats._DESERIALIZER), "indices");
+		op.add(Builder::initializingShards, JsonpDeserializer.integerDeserializer(), "initializing_shards");
+		op.add(Builder::numberOfDataNodes, JsonpDeserializer.integerDeserializer(), "number_of_data_nodes");
+		op.add(Builder::numberOfInFlightFetch, JsonpDeserializer.integerDeserializer(), "number_of_in_flight_fetch");
+		op.add(Builder::numberOfNodes, JsonpDeserializer.integerDeserializer(), "number_of_nodes");
+		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.integerDeserializer(), "number_of_pending_tasks");
+		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
+		op.add(Builder::status, Health._DESERIALIZER, "status");
+		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.stringDeserializer(),
 				"task_max_waiting_in_queue_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::unassignedShards, JsonpDeserializer.numberDeserializer(), "unassigned_shards");
+		op.add(Builder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsClusterElection
+@JsonpDeserializable
 public final class NodeInfoSettingsClusterElection implements JsonpSerializable {
 	private final String strategy;
 
@@ -103,9 +105,9 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 	/**
 	 * Json deserializer for {@link NodeInfoSettingsClusterElection}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer,
+					Builder::build);
 
 	protected static void setupNodeInfoSettingsClusterElectionDeserializer(
 			DelegatingDeserializer<NodeInfoSettingsClusterElection.Builder> op) {

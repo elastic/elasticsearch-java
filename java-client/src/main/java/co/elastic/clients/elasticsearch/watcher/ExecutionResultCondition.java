@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultCondition
+@JsonpDeserializable
 public final class ExecutionResultCondition implements JsonpSerializable {
 	private final Boolean met;
 
@@ -149,15 +151,15 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecutionResultCondition}
 	 */
-	public static final JsonpDeserializer<ExecutionResultCondition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionResultCondition::setupExecutionResultConditionDeserializer);
+	public static final JsonpDeserializer<ExecutionResultCondition> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecutionResultCondition::setupExecutionResultConditionDeserializer, Builder::build);
 
 	protected static void setupExecutionResultConditionDeserializer(
 			DelegatingDeserializer<ExecutionResultCondition.Builder> op) {
 
 		op.add(Builder::met, JsonpDeserializer.booleanDeserializer(), "met");
-		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
-		op.add(Builder::type, ConditionType.DESERIALIZER, "type");
+		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::type, ConditionType._DESERIALIZER, "type");
 
 	}
 

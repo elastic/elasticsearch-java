@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.watcher;
 import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Watch
+@JsonpDeserializable
 public final class Watch implements JsonpSerializable {
 	private final Map<String, Action> actions;
 
@@ -65,7 +67,7 @@ public final class Watch implements JsonpSerializable {
 	private final Trigger trigger;
 
 	@Nullable
-	private final Number throttlePeriodInMillis;
+	private final Long throttlePeriodInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -147,7 +149,7 @@ public final class Watch implements JsonpSerializable {
 	 * API name: {@code throttle_period_in_millis}
 	 */
 	@Nullable
-	public Number throttlePeriodInMillis() {
+	public Long throttlePeriodInMillis() {
 		return this.throttlePeriodInMillis;
 	}
 
@@ -214,7 +216,7 @@ public final class Watch implements JsonpSerializable {
 		if (this.throttlePeriodInMillis != null) {
 
 			generator.writeKey("throttle_period_in_millis");
-			generator.write(this.throttlePeriodInMillis.doubleValue());
+			generator.write(this.throttlePeriodInMillis);
 
 		}
 
@@ -247,7 +249,7 @@ public final class Watch implements JsonpSerializable {
 		private Trigger trigger;
 
 		@Nullable
-		private Number throttlePeriodInMillis;
+		private Long throttlePeriodInMillis;
 
 		/**
 		 * API name: {@code actions}
@@ -387,7 +389,7 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period_in_millis}
 		 */
-		public Builder throttlePeriodInMillis(@Nullable Number value) {
+		public Builder throttlePeriodInMillis(@Nullable Long value) {
 			this.throttlePeriodInMillis = value;
 			return this;
 		}
@@ -409,20 +411,20 @@ public final class Watch implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Watch}
 	 */
-	public static final JsonpDeserializer<Watch> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Watch::setupWatchDeserializer);
+	public static final JsonpDeserializer<Watch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Watch::setupWatchDeserializer, Builder::build);
 
 	protected static void setupWatchDeserializer(DelegatingDeserializer<Watch.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action.DESERIALIZER), "actions");
-		op.add(Builder::condition, Condition.DESERIALIZER, "condition");
-		op.add(Builder::input, Input.DESERIALIZER, "input");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
-		op.add(Builder::status, WatchStatus.DESERIALIZER, "status");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action._DESERIALIZER), "actions");
+		op.add(Builder::condition, Condition._DESERIALIZER, "condition");
+		op.add(Builder::input, Input._DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
-		op.add(Builder::transform, Transform.DESERIALIZER, "transform");
-		op.add(Builder::trigger, Trigger.DESERIALIZER, "trigger");
-		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.numberDeserializer(), "throttle_period_in_millis");
+		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
+		op.add(Builder::trigger, Trigger._DESERIALIZER, "trigger");
+		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.longDeserializer(), "throttle_period_in_millis");
 
 	}
 

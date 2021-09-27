@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,12 +34,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResultSummary
+@JsonpDeserializable
 public final class IndexResultSummary implements JsonpSerializable {
 	private final Boolean created;
 
@@ -48,7 +50,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 
 	private final Result result;
 
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final String type;
@@ -97,7 +99,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -133,7 +135,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		this.result.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 		if (this.type != null) {
 
@@ -158,7 +160,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 
 		private Result result;
 
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private String type;
@@ -198,7 +200,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -228,16 +230,16 @@ public final class IndexResultSummary implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexResultSummary}
 	 */
-	public static final JsonpDeserializer<IndexResultSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer);
+	public static final JsonpDeserializer<IndexResultSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer, Builder::build);
 
 	protected static void setupIndexResultSummaryDeserializer(DelegatingDeserializer<IndexResultSummary.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::result, Result.DESERIALIZER, "result");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::result, Result._DESERIALIZER, "result");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetricsAucRoc
+@JsonpDeserializable
 public final class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSerializable {
 	@Nullable
 	private final String className;
@@ -156,9 +158,10 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 	/**
 	 * Json deserializer for {@link DataframeEvaluationClassificationMetricsAucRoc}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationClassificationMetricsAucRoc> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationClassificationMetricsAucRoc::setupDataframeEvaluationClassificationMetricsAucRocDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationClassificationMetricsAucRoc> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationClassificationMetricsAucRoc::setupDataframeEvaluationClassificationMetricsAucRocDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationClassificationMetricsAucRocDeserializer(
 			DelegatingDeserializer<DataframeEvaluationClassificationMetricsAucRoc.Builder> op) {

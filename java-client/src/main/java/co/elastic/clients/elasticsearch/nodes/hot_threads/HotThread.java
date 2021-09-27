@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.hot_threads;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.HotThread
+@JsonpDeserializable
 public final class HotThread implements JsonpSerializable {
 	private final List<String> hosts;
 
@@ -223,8 +225,8 @@ public final class HotThread implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HotThread}
 	 */
-	public static final JsonpDeserializer<HotThread> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HotThread::setupHotThreadDeserializer);
+	public static final JsonpDeserializer<HotThread> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HotThread::setupHotThreadDeserializer, Builder::build);
 
 	protected static void setupHotThreadDeserializer(DelegatingDeserializer<HotThread.Builder> op) {
 

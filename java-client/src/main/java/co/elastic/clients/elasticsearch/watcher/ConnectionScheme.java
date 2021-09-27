@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ConnectionScheme implements StringEnum {
 	Http("http"), Https("https");
 
@@ -39,6 +41,6 @@ public enum ConnectionScheme implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ConnectionScheme> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ConnectionScheme> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ConnectionScheme.values());
 }

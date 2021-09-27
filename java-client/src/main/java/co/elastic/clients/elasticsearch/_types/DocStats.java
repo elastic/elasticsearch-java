@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.DocStats
+@JsonpDeserializable
 public final class DocStats implements JsonpSerializable {
-	private final Number count;
+	private final Long count;
 
-	private final Number deleted;
+	private final Long deleted;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class DocStats implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code deleted}
 	 */
-	public Number deleted() {
+	public Long deleted() {
 		return this.deleted;
 	}
 
@@ -76,10 +78,10 @@ public final class DocStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("deleted");
-		generator.write(this.deleted.doubleValue());
+		generator.write(this.deleted);
 
 	}
 
@@ -89,14 +91,14 @@ public final class DocStats implements JsonpSerializable {
 	 * Builder for {@link DocStats}.
 	 */
 	public static class Builder implements ObjectBuilder<DocStats> {
-		private Number count;
+		private Long count;
 
-		private Number deleted;
+		private Long deleted;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class DocStats implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted}
 		 */
-		public Builder deleted(Number value) {
+		public Builder deleted(Long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -126,13 +128,13 @@ public final class DocStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DocStats}
 	 */
-	public static final JsonpDeserializer<DocStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DocStats::setupDocStatsDeserializer);
+	public static final JsonpDeserializer<DocStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DocStats::setupDocStatsDeserializer, Builder::build);
 
 	protected static void setupDocStatsDeserializer(DelegatingDeserializer<DocStats.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
 
 	}
 

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum MovingAverageModel implements StringEnum {
 	Linear("linear"), Simple("simple"), Ewma("ewma"), Holt("holt"), HoltWinters("holt_winters");
 
@@ -39,6 +41,6 @@ public enum MovingAverageModel implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<MovingAverageModel> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<MovingAverageModel> _DESERIALIZER = new StringEnum.Deserializer<>(
 			MovingAverageModel.values());
 }

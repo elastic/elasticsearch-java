@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum UserAgentProperty implements StringEnum {
 	Name("NAME"), Major("MAJOR"), Minor("MINOR"), Patch("PATCH"), Os("OS"), OsName("OS_NAME"), OsMajor(
 			"OS_MAJOR"), OsMinor("OS_MINOR"), Device("DEVICE"), Build("BUILD");
@@ -40,6 +42,6 @@ public enum UserAgentProperty implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<UserAgentProperty> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new StringEnum.Deserializer<>(
 			UserAgentProperty.values());
 }

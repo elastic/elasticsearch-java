@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,21 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeToken
+@JsonpDeserializable
 public final class AnalyzeToken implements JsonpSerializable {
-	private final Number endOffset;
+	private final Long endOffset;
 
-	private final Number position;
+	private final Long position;
 
 	@Nullable
-	private final Number positionLength;
+	private final Long positionLength;
 
-	private final Number startOffset;
+	private final Long startOffset;
 
 	private final String token;
 
@@ -67,14 +69,14 @@ public final class AnalyzeToken implements JsonpSerializable {
 	/**
 	 * API name: {@code end_offset}
 	 */
-	public Number endOffset() {
+	public Long endOffset() {
 		return this.endOffset;
 	}
 
 	/**
 	 * API name: {@code position}
 	 */
-	public Number position() {
+	public Long position() {
 		return this.position;
 	}
 
@@ -82,14 +84,14 @@ public final class AnalyzeToken implements JsonpSerializable {
 	 * API name: {@code position_length}
 	 */
 	@Nullable
-	public Number positionLength() {
+	public Long positionLength() {
 		return this.positionLength;
 	}
 
 	/**
 	 * API name: {@code start_offset}
 	 */
-	public Number startOffset() {
+	public Long startOffset() {
 		return this.startOffset;
 	}
 
@@ -119,20 +121,20 @@ public final class AnalyzeToken implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("end_offset");
-		generator.write(this.endOffset.doubleValue());
+		generator.write(this.endOffset);
 
 		generator.writeKey("position");
-		generator.write(this.position.doubleValue());
+		generator.write(this.position);
 
 		if (this.positionLength != null) {
 
 			generator.writeKey("position_length");
-			generator.write(this.positionLength.doubleValue());
+			generator.write(this.positionLength);
 
 		}
 
 		generator.writeKey("start_offset");
-		generator.write(this.startOffset.doubleValue());
+		generator.write(this.startOffset);
 
 		generator.writeKey("token");
 		generator.write(this.token);
@@ -148,14 +150,14 @@ public final class AnalyzeToken implements JsonpSerializable {
 	 * Builder for {@link AnalyzeToken}.
 	 */
 	public static class Builder implements ObjectBuilder<AnalyzeToken> {
-		private Number endOffset;
+		private Long endOffset;
 
-		private Number position;
+		private Long position;
 
 		@Nullable
-		private Number positionLength;
+		private Long positionLength;
 
-		private Number startOffset;
+		private Long startOffset;
 
 		private String token;
 
@@ -164,7 +166,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code end_offset}
 		 */
-		public Builder endOffset(Number value) {
+		public Builder endOffset(Long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -172,7 +174,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code position}
 		 */
-		public Builder position(Number value) {
+		public Builder position(Long value) {
 			this.position = value;
 			return this;
 		}
@@ -180,7 +182,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code position_length}
 		 */
-		public Builder positionLength(@Nullable Number value) {
+		public Builder positionLength(@Nullable Long value) {
 			this.positionLength = value;
 			return this;
 		}
@@ -188,7 +190,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code start_offset}
 		 */
-		public Builder startOffset(Number value) {
+		public Builder startOffset(Long value) {
 			this.startOffset = value;
 			return this;
 		}
@@ -226,15 +228,15 @@ public final class AnalyzeToken implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AnalyzeToken}
 	 */
-	public static final JsonpDeserializer<AnalyzeToken> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnalyzeToken::setupAnalyzeTokenDeserializer);
+	public static final JsonpDeserializer<AnalyzeToken> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnalyzeToken::setupAnalyzeTokenDeserializer, Builder::build);
 
 	protected static void setupAnalyzeTokenDeserializer(DelegatingDeserializer<AnalyzeToken.Builder> op) {
 
-		op.add(Builder::endOffset, JsonpDeserializer.numberDeserializer(), "end_offset");
-		op.add(Builder::position, JsonpDeserializer.numberDeserializer(), "position");
-		op.add(Builder::positionLength, JsonpDeserializer.numberDeserializer(), "position_length");
-		op.add(Builder::startOffset, JsonpDeserializer.numberDeserializer(), "start_offset");
+		op.add(Builder::endOffset, JsonpDeserializer.longDeserializer(), "end_offset");
+		op.add(Builder::position, JsonpDeserializer.longDeserializer(), "position");
+		op.add(Builder::positionLength, JsonpDeserializer.longDeserializer(), "position_length");
+		op.add(Builder::startOffset, JsonpDeserializer.longDeserializer(), "start_offset");
 		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

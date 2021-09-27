@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,15 +38,16 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MetricAggregationBase
+
 public abstract class MetricAggregationBase implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final JsonValue missing;
+	private final String missing;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,7 +71,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public JsonValue missing() {
+	public String missing() {
 		return this.missing;
 	}
 
@@ -77,7 +79,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -118,10 +120,10 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		private String field;
 
 		@Nullable
-		private JsonValue missing;
+		private String missing;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code field}
@@ -134,7 +136,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public BuilderT missing(@Nullable JsonValue value) {
+		public BuilderT missing(@Nullable String value) {
 			this.missing = value;
 			return self();
 		}
@@ -142,7 +144,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public BuilderT script(@Nullable JsonValue value) {
+		public BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return self();
 		}
@@ -156,7 +158,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 			DelegatingDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(AbstractBuilder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
+		op.add(AbstractBuilder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(AbstractBuilder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}

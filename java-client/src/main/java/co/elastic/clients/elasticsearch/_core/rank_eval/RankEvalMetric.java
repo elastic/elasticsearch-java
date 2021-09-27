@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.rank_eval;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetric
+@JsonpDeserializable
 public final class RankEvalMetric implements JsonpSerializable {
 	@Nullable
 	private final RankEvalMetricPrecision precision;
@@ -264,16 +266,16 @@ public final class RankEvalMetric implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RankEvalMetric}
 	 */
-	public static final JsonpDeserializer<RankEvalMetric> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalMetric::setupRankEvalMetricDeserializer);
+	public static final JsonpDeserializer<RankEvalMetric> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankEvalMetric::setupRankEvalMetricDeserializer, Builder::build);
 
 	protected static void setupRankEvalMetricDeserializer(DelegatingDeserializer<RankEvalMetric.Builder> op) {
 
-		op.add(Builder::precision, RankEvalMetricPrecision.DESERIALIZER, "precision");
-		op.add(Builder::recall, RankEvalMetricRecall.DESERIALIZER, "recall");
-		op.add(Builder::meanReciprocalRank, RankEvalMetricMeanReciprocalRank.DESERIALIZER, "mean_reciprocal_rank");
-		op.add(Builder::dcg, RankEvalMetricDiscountedCumulativeGain.DESERIALIZER, "dcg");
-		op.add(Builder::expectedReciprocalRank, RankEvalMetricExpectedReciprocalRank.DESERIALIZER,
+		op.add(Builder::precision, RankEvalMetricPrecision._DESERIALIZER, "precision");
+		op.add(Builder::recall, RankEvalMetricRecall._DESERIALIZER, "recall");
+		op.add(Builder::meanReciprocalRank, RankEvalMetricMeanReciprocalRank._DESERIALIZER, "mean_reciprocal_rank");
+		op.add(Builder::dcg, RankEvalMetricDiscountedCumulativeGain._DESERIALIZER, "dcg");
+		op.add(Builder::expectedReciprocalRank, RankEvalMetricExpectedReciprocalRank._DESERIALIZER,
 				"expected_reciprocal_rank");
 
 	}

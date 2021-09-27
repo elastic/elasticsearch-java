@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: _global.info.Request
+
 public final class InfoRequest extends RequestBase {
 	public InfoRequest() {
 	}
@@ -42,10 +44,7 @@ public final class InfoRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link InfoRequest}.
 	 */
-	public static final InfoRequest INSTANCE = new InfoRequest();
-
-	public static final JsonpDeserializer<InfoRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(InfoRequest.INSTANCE);
+	public static final InfoRequest _INSTANCE = new InfoRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class InfoRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, InfoResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, InfoResponse._DESERIALIZER);
 }

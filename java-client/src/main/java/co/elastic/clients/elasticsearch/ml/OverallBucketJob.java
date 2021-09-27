@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucketJob
+@JsonpDeserializable
 public final class OverallBucketJob implements JsonpSerializable {
 	private final String jobId;
 
-	private final Number maxAnomalyScore;
+	private final Double maxAnomalyScore;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 	/**
 	 * API name: {@code max_anomaly_score}
 	 */
-	public Number maxAnomalyScore() {
+	public Double maxAnomalyScore() {
 		return this.maxAnomalyScore;
 	}
 
@@ -80,7 +82,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		generator.write(this.jobId);
 
 		generator.writeKey("max_anomaly_score");
-		generator.write(this.maxAnomalyScore.doubleValue());
+		generator.write(this.maxAnomalyScore);
 
 	}
 
@@ -92,7 +94,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<OverallBucketJob> {
 		private String jobId;
 
-		private Number maxAnomalyScore;
+		private Double maxAnomalyScore;
 
 		/**
 		 * API name: {@code job_id}
@@ -105,7 +107,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		/**
 		 * API name: {@code max_anomaly_score}
 		 */
-		public Builder maxAnomalyScore(Number value) {
+		public Builder maxAnomalyScore(Double value) {
 			this.maxAnomalyScore = value;
 			return this;
 		}
@@ -127,13 +129,13 @@ public final class OverallBucketJob implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link OverallBucketJob}
 	 */
-	public static final JsonpDeserializer<OverallBucketJob> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OverallBucketJob::setupOverallBucketJobDeserializer);
+	public static final JsonpDeserializer<OverallBucketJob> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			OverallBucketJob::setupOverallBucketJobDeserializer, Builder::build);
 
 	protected static void setupOverallBucketJobDeserializer(DelegatingDeserializer<OverallBucketJob.Builder> op) {
 
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::maxAnomalyScore, JsonpDeserializer.numberDeserializer(), "max_anomaly_score");
+		op.add(Builder::maxAnomalyScore, JsonpDeserializer.doubleDeserializer(), "max_anomaly_score");
 
 	}
 

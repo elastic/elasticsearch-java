@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_user.Response
+@JsonpDeserializable
 public final class DeleteUserResponse implements JsonpSerializable {
 	private final Boolean found;
 
@@ -103,8 +105,8 @@ public final class DeleteUserResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DeleteUserResponse}
 	 */
-	public static final JsonpDeserializer<DeleteUserResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteUserResponse::setupDeleteUserResponseDeserializer);
+	public static final JsonpDeserializer<DeleteUserResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteUserResponse::setupDeleteUserResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteUserResponseDeserializer(DelegatingDeserializer<DeleteUserResponse.Builder> op) {
 

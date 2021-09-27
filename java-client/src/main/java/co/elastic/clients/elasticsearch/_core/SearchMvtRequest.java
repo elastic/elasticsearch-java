@@ -31,6 +31,7 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,7 +41,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,16 +55,17 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_mvt.Request
+@JsonpDeserializable
 public final class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
 	private final String field;
 
-	private final Number zoom;
+	private final Integer zoom;
 
-	private final Number x;
+	private final Integer x;
 
-	private final Number y;
+	private final Integer y;
 
 	@Nullable
 	private final Map<String, Aggregation> aggs;
@@ -72,13 +74,13 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	private final Boolean exactBounds;
 
 	@Nullable
-	private final Number extent;
+	private final Integer extent;
 
 	@Nullable
 	private final List<String> fields;
 
 	@Nullable
-	private final Number gridPrecision;
+	private final Integer gridPrecision;
 
 	@Nullable
 	private final GridType gridType;
@@ -90,10 +92,10 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -140,7 +142,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code zoom}
 	 */
-	public Number zoom() {
+	public Integer zoom() {
 		return this.zoom;
 	}
 
@@ -149,7 +151,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code x}
 	 */
-	public Number x() {
+	public Integer x() {
 		return this.x;
 	}
 
@@ -158,7 +160,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code y}
 	 */
-	public Number y() {
+	public Integer y() {
 		return this.y;
 	}
 
@@ -202,7 +204,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code extent}
 	 */
 	@Nullable
-	public Number extent() {
+	public Integer extent() {
 		return this.extent;
 	}
 
@@ -226,7 +228,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code grid_precision}
 	 */
 	@Nullable
-	public Number gridPrecision() {
+	public Integer gridPrecision() {
 		return this.gridPrecision;
 	}
 
@@ -271,7 +273,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -283,7 +285,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -319,7 +321,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		if (this.extent != null) {
 
 			generator.writeKey("extent");
-			generator.write(this.extent.doubleValue());
+			generator.write(this.extent);
 
 		}
 		if (this.fields != null) {
@@ -336,7 +338,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		if (this.gridPrecision != null) {
 
 			generator.writeKey("grid_precision");
-			generator.write(this.gridPrecision.doubleValue());
+			generator.write(this.gridPrecision);
 
 		}
 		if (this.gridType != null) {
@@ -365,14 +367,14 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.sort != null) {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -392,11 +394,11 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 		private String field;
 
-		private Number zoom;
+		private Integer zoom;
 
-		private Number x;
+		private Integer x;
 
-		private Number y;
+		private Integer y;
 
 		@Nullable
 		private Map<String, Aggregation> aggs;
@@ -405,13 +407,13 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		private Boolean exactBounds;
 
 		@Nullable
-		private Number extent;
+		private Integer extent;
 
 		@Nullable
 		private List<String> fields;
 
 		@Nullable
-		private Number gridPrecision;
+		private Integer gridPrecision;
 
 		@Nullable
 		private GridType gridType;
@@ -423,10 +425,10 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
 		 * Comma-separated list of data streams, indices, or aliases to search
@@ -474,7 +476,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code zoom}
 		 */
-		public Builder zoom(Number value) {
+		public Builder zoom(Integer value) {
 			this.zoom = value;
 			return this;
 		}
@@ -484,7 +486,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code x}
 		 */
-		public Builder x(Number value) {
+		public Builder x(Integer value) {
 			this.x = value;
 			return this;
 		}
@@ -494,7 +496,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code y}
 		 */
-		public Builder y(Number value) {
+		public Builder y(Integer value) {
 			this.y = value;
 			return this;
 		}
@@ -563,7 +565,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code extent}
 		 */
-		public Builder extent(@Nullable Number value) {
+		public Builder extent(@Nullable Integer value) {
 			this.extent = value;
 			return this;
 		}
@@ -610,7 +612,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code grid_precision}
 		 */
-		public Builder gridPrecision(@Nullable Number value) {
+		public Builder gridPrecision(@Nullable Integer value) {
 			this.gridPrecision = value;
 			return this;
 		}
@@ -689,7 +691,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -701,7 +703,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue> value) {
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -713,7 +715,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -721,7 +723,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -746,21 +748,21 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link SearchMvtRequest}
 	 */
-	public static final JsonpDeserializer<SearchMvtRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchMvtRequest::setupSearchMvtRequestDeserializer);
+	public static final JsonpDeserializer<SearchMvtRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchMvtRequest::setupSearchMvtRequestDeserializer, Builder::build);
 
 	protected static void setupSearchMvtRequestDeserializer(DelegatingDeserializer<SearchMvtRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER), "aggs");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
 		op.add(Builder::exactBounds, JsonpDeserializer.booleanDeserializer(), "exact_bounds");
-		op.add(Builder::extent, JsonpDeserializer.numberDeserializer(), "extent");
+		op.add(Builder::extent, JsonpDeserializer.integerDeserializer(), "extent");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::gridPrecision, JsonpDeserializer.numberDeserializer(), "grid_precision");
-		op.add(Builder::gridType, GridType.DESERIALIZER, "grid_type");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::gridPrecision, JsonpDeserializer.integerDeserializer(), "grid_precision");
+		op.add(Builder::gridType, GridType._DESERIALIZER, "grid_type");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}
@@ -806,11 +808,11 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 					buf.append("/");
 					buf.append(request.field);
 					buf.append("/");
-					buf.append(request.zoom.toString());
+					buf.append(String.valueOf(request.zoom));
 					buf.append("/");
-					buf.append(request.x.toString());
+					buf.append(String.valueOf(request.x));
 					buf.append("/");
-					buf.append(request.y.toString());
+					buf.append(String.valueOf(request.y));
 					return buf.toString();
 				}
 				throw Endpoint.Simple.noPathTemplateFound("path");
@@ -822,5 +824,5 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 				Map<String, String> params = new HashMap<>();
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SearchMvtResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, SearchMvtResponse._DESERIALIZER);
 }

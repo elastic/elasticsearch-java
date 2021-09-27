@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.license;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: license.get_trial_status.Request
+
 public final class GetTrialStatusRequest extends RequestBase {
 	public GetTrialStatusRequest() {
 	}
@@ -42,10 +44,7 @@ public final class GetTrialStatusRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link GetTrialStatusRequest}.
 	 */
-	public static final GetTrialStatusRequest INSTANCE = new GetTrialStatusRequest();
-
-	public static final JsonpDeserializer<GetTrialStatusRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetTrialStatusRequest.INSTANCE);
+	public static final GetTrialStatusRequest _INSTANCE = new GetTrialStatusRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class GetTrialStatusRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetTrialStatusResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetTrialStatusResponse._DESERIALIZER);
 }

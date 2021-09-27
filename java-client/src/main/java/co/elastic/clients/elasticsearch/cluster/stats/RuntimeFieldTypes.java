@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,34 +41,35 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.RuntimeFieldTypes
+@JsonpDeserializable
 public final class RuntimeFieldTypes implements JsonpSerializable {
 	private final String name;
 
-	private final Number count;
+	private final Integer count;
 
-	private final Number indexCount;
+	private final Integer indexCount;
 
-	private final Number scriptlessCount;
+	private final Integer scriptlessCount;
 
-	private final Number shadowedCount;
+	private final Integer shadowedCount;
 
 	private final List<String> lang;
 
-	private final Number linesMax;
+	private final Integer linesMax;
 
-	private final Number linesTotal;
+	private final Integer linesTotal;
 
-	private final Number charsMax;
+	private final Integer charsMax;
 
-	private final Number charsTotal;
+	private final Integer charsTotal;
 
-	private final Number sourceMax;
+	private final Integer sourceMax;
 
-	private final Number sourceTotal;
+	private final Integer sourceTotal;
 
-	private final Number docMax;
+	private final Integer docMax;
 
-	private final Number docTotal;
+	private final Integer docTotal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -100,28 +102,28 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Number indexCount() {
+	public Integer indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * API name: {@code scriptless_count}
 	 */
-	public Number scriptlessCount() {
+	public Integer scriptlessCount() {
 		return this.scriptlessCount;
 	}
 
 	/**
 	 * API name: {@code shadowed_count}
 	 */
-	public Number shadowedCount() {
+	public Integer shadowedCount() {
 		return this.shadowedCount;
 	}
 
@@ -135,56 +137,56 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	/**
 	 * API name: {@code lines_max}
 	 */
-	public Number linesMax() {
+	public Integer linesMax() {
 		return this.linesMax;
 	}
 
 	/**
 	 * API name: {@code lines_total}
 	 */
-	public Number linesTotal() {
+	public Integer linesTotal() {
 		return this.linesTotal;
 	}
 
 	/**
 	 * API name: {@code chars_max}
 	 */
-	public Number charsMax() {
+	public Integer charsMax() {
 		return this.charsMax;
 	}
 
 	/**
 	 * API name: {@code chars_total}
 	 */
-	public Number charsTotal() {
+	public Integer charsTotal() {
 		return this.charsTotal;
 	}
 
 	/**
 	 * API name: {@code source_max}
 	 */
-	public Number sourceMax() {
+	public Integer sourceMax() {
 		return this.sourceMax;
 	}
 
 	/**
 	 * API name: {@code source_total}
 	 */
-	public Number sourceTotal() {
+	public Integer sourceTotal() {
 		return this.sourceTotal;
 	}
 
 	/**
 	 * API name: {@code doc_max}
 	 */
-	public Number docMax() {
+	public Integer docMax() {
 		return this.docMax;
 	}
 
 	/**
 	 * API name: {@code doc_total}
 	 */
-	public Number docTotal() {
+	public Integer docTotal() {
 		return this.docTotal;
 	}
 
@@ -203,16 +205,16 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		generator.write(this.name);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("index_count");
-		generator.write(this.indexCount.doubleValue());
+		generator.write(this.indexCount);
 
 		generator.writeKey("scriptless_count");
-		generator.write(this.scriptlessCount.doubleValue());
+		generator.write(this.scriptlessCount);
 
 		generator.writeKey("shadowed_count");
-		generator.write(this.shadowedCount.doubleValue());
+		generator.write(this.shadowedCount);
 
 		generator.writeKey("lang");
 		generator.writeStartArray();
@@ -223,28 +225,28 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("lines_max");
-		generator.write(this.linesMax.doubleValue());
+		generator.write(this.linesMax);
 
 		generator.writeKey("lines_total");
-		generator.write(this.linesTotal.doubleValue());
+		generator.write(this.linesTotal);
 
 		generator.writeKey("chars_max");
-		generator.write(this.charsMax.doubleValue());
+		generator.write(this.charsMax);
 
 		generator.writeKey("chars_total");
-		generator.write(this.charsTotal.doubleValue());
+		generator.write(this.charsTotal);
 
 		generator.writeKey("source_max");
-		generator.write(this.sourceMax.doubleValue());
+		generator.write(this.sourceMax);
 
 		generator.writeKey("source_total");
-		generator.write(this.sourceTotal.doubleValue());
+		generator.write(this.sourceTotal);
 
 		generator.writeKey("doc_max");
-		generator.write(this.docMax.doubleValue());
+		generator.write(this.docMax);
 
 		generator.writeKey("doc_total");
-		generator.write(this.docTotal.doubleValue());
+		generator.write(this.docTotal);
 
 	}
 
@@ -256,31 +258,31 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<RuntimeFieldTypes> {
 		private String name;
 
-		private Number count;
+		private Integer count;
 
-		private Number indexCount;
+		private Integer indexCount;
 
-		private Number scriptlessCount;
+		private Integer scriptlessCount;
 
-		private Number shadowedCount;
+		private Integer shadowedCount;
 
 		private List<String> lang;
 
-		private Number linesMax;
+		private Integer linesMax;
 
-		private Number linesTotal;
+		private Integer linesTotal;
 
-		private Number charsMax;
+		private Integer charsMax;
 
-		private Number charsTotal;
+		private Integer charsTotal;
 
-		private Number sourceMax;
+		private Integer sourceMax;
 
-		private Number sourceTotal;
+		private Integer sourceTotal;
 
-		private Number docMax;
+		private Integer docMax;
 
-		private Number docTotal;
+		private Integer docTotal;
 
 		/**
 		 * API name: {@code name}
@@ -293,7 +295,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -301,7 +303,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Number value) {
+		public Builder indexCount(Integer value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -309,7 +311,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code scriptless_count}
 		 */
-		public Builder scriptlessCount(Number value) {
+		public Builder scriptlessCount(Integer value) {
 			this.scriptlessCount = value;
 			return this;
 		}
@@ -317,7 +319,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code shadowed_count}
 		 */
-		public Builder shadowedCount(Number value) {
+		public Builder shadowedCount(Integer value) {
 			this.shadowedCount = value;
 			return this;
 		}
@@ -352,7 +354,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code lines_max}
 		 */
-		public Builder linesMax(Number value) {
+		public Builder linesMax(Integer value) {
 			this.linesMax = value;
 			return this;
 		}
@@ -360,7 +362,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code lines_total}
 		 */
-		public Builder linesTotal(Number value) {
+		public Builder linesTotal(Integer value) {
 			this.linesTotal = value;
 			return this;
 		}
@@ -368,7 +370,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code chars_max}
 		 */
-		public Builder charsMax(Number value) {
+		public Builder charsMax(Integer value) {
 			this.charsMax = value;
 			return this;
 		}
@@ -376,7 +378,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code chars_total}
 		 */
-		public Builder charsTotal(Number value) {
+		public Builder charsTotal(Integer value) {
 			this.charsTotal = value;
 			return this;
 		}
@@ -384,7 +386,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code source_max}
 		 */
-		public Builder sourceMax(Number value) {
+		public Builder sourceMax(Integer value) {
 			this.sourceMax = value;
 			return this;
 		}
@@ -392,7 +394,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code source_total}
 		 */
-		public Builder sourceTotal(Number value) {
+		public Builder sourceTotal(Integer value) {
 			this.sourceTotal = value;
 			return this;
 		}
@@ -400,7 +402,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_max}
 		 */
-		public Builder docMax(Number value) {
+		public Builder docMax(Integer value) {
 			this.docMax = value;
 			return this;
 		}
@@ -408,7 +410,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_total}
 		 */
-		public Builder docTotal(Number value) {
+		public Builder docTotal(Integer value) {
 			this.docTotal = value;
 			return this;
 		}
@@ -430,25 +432,25 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RuntimeFieldTypes}
 	 */
-	public static final JsonpDeserializer<RuntimeFieldTypes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer);
+	public static final JsonpDeserializer<RuntimeFieldTypes> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RuntimeFieldTypes::setupRuntimeFieldTypesDeserializer, Builder::build);
 
 	protected static void setupRuntimeFieldTypesDeserializer(DelegatingDeserializer<RuntimeFieldTypes.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
-		op.add(Builder::scriptlessCount, JsonpDeserializer.numberDeserializer(), "scriptless_count");
-		op.add(Builder::shadowedCount, JsonpDeserializer.numberDeserializer(), "shadowed_count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+		op.add(Builder::scriptlessCount, JsonpDeserializer.integerDeserializer(), "scriptless_count");
+		op.add(Builder::shadowedCount, JsonpDeserializer.integerDeserializer(), "shadowed_count");
 		op.add(Builder::lang, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "lang");
-		op.add(Builder::linesMax, JsonpDeserializer.numberDeserializer(), "lines_max");
-		op.add(Builder::linesTotal, JsonpDeserializer.numberDeserializer(), "lines_total");
-		op.add(Builder::charsMax, JsonpDeserializer.numberDeserializer(), "chars_max");
-		op.add(Builder::charsTotal, JsonpDeserializer.numberDeserializer(), "chars_total");
-		op.add(Builder::sourceMax, JsonpDeserializer.numberDeserializer(), "source_max");
-		op.add(Builder::sourceTotal, JsonpDeserializer.numberDeserializer(), "source_total");
-		op.add(Builder::docMax, JsonpDeserializer.numberDeserializer(), "doc_max");
-		op.add(Builder::docTotal, JsonpDeserializer.numberDeserializer(), "doc_total");
+		op.add(Builder::linesMax, JsonpDeserializer.integerDeserializer(), "lines_max");
+		op.add(Builder::linesTotal, JsonpDeserializer.integerDeserializer(), "lines_total");
+		op.add(Builder::charsMax, JsonpDeserializer.integerDeserializer(), "chars_max");
+		op.add(Builder::charsTotal, JsonpDeserializer.integerDeserializer(), "chars_total");
+		op.add(Builder::sourceMax, JsonpDeserializer.integerDeserializer(), "source_max");
+		op.add(Builder::sourceTotal, JsonpDeserializer.integerDeserializer(), "source_total");
+		op.add(Builder::docMax, JsonpDeserializer.integerDeserializer(), "doc_max");
+		op.add(Builder::docTotal, JsonpDeserializer.integerDeserializer(), "doc_total");
 
 	}
 

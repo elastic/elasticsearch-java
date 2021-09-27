@@ -24,19 +24,20 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CalendarEvent
+@JsonpDeserializable
 public final class CalendarEvent implements JsonpSerializable {
 	@Nullable
 	private final String calendarId;
@@ -46,9 +47,9 @@ public final class CalendarEvent implements JsonpSerializable {
 
 	private final String description;
 
-	private final JsonValue endTime;
+	private final String endTime;
 
-	private final JsonValue startTime;
+	private final String startTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +94,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code end_time}
 	 */
-	public JsonValue endTime() {
+	public String endTime() {
 		return this.endTime;
 	}
 
@@ -103,7 +104,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code start_time}
 	 */
-	public JsonValue startTime() {
+	public String startTime() {
 		return this.startTime;
 	}
 
@@ -156,9 +157,9 @@ public final class CalendarEvent implements JsonpSerializable {
 
 		private String description;
 
-		private JsonValue endTime;
+		private String endTime;
 
-		private JsonValue startTime;
+		private String startTime;
 
 		/**
 		 * API name: {@code calendar_id}
@@ -192,7 +193,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end_time}
 		 */
-		public Builder endTime(JsonValue value) {
+		public Builder endTime(String value) {
 			this.endTime = value;
 			return this;
 		}
@@ -203,7 +204,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(JsonValue value) {
+		public Builder startTime(String value) {
 			this.startTime = value;
 			return this;
 		}
@@ -225,16 +226,16 @@ public final class CalendarEvent implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CalendarEvent}
 	 */
-	public static final JsonpDeserializer<CalendarEvent> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CalendarEvent::setupCalendarEventDeserializer);
+	public static final JsonpDeserializer<CalendarEvent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CalendarEvent::setupCalendarEventDeserializer, Builder::build);
 
 	protected static void setupCalendarEventDeserializer(DelegatingDeserializer<CalendarEvent.Builder> op) {
 
 		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
 		op.add(Builder::eventId, JsonpDeserializer.stringDeserializer(), "event_id");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::endTime, JsonpDeserializer.jsonValueDeserializer(), "end_time");
-		op.add(Builder::startTime, JsonpDeserializer.jsonValueDeserializer(), "start_time");
+		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time");
+		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetrics
+@JsonpDeserializable
 public final class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	@Nullable
 	private final Map<String, JsonData> mse;
@@ -277,17 +279,18 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link DataframeEvaluationRegressionMetrics}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegressionMetrics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetrics::setupDataframeEvaluationRegressionMetricsDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetrics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationRegressionMetrics::setupDataframeEvaluationRegressionMetricsDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionMetricsDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegressionMetrics.Builder> op) {
 
-		op.add(Builder::mse, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "mse");
-		op.add(Builder::msle, DataframeEvaluationRegressionMetricsMsle.DESERIALIZER, "msle");
-		op.add(Builder::huber, DataframeEvaluationRegressionMetricsHuber.DESERIALIZER, "huber");
-		op.add(Builder::rSquared, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "r_squared");
+		op.add(Builder::mse, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "mse");
+		op.add(Builder::msle, DataframeEvaluationRegressionMetricsMsle._DESERIALIZER, "msle");
+		op.add(Builder::huber, DataframeEvaluationRegressionMetricsHuber._DESERIALIZER, "huber");
+		op.add(Builder::rSquared, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "r_squared");
 
 	}
 

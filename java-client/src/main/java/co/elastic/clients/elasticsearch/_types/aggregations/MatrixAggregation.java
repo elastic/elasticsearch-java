@@ -24,13 +24,14 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,12 +42,13 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
+
 public abstract class MatrixAggregation extends AggregationBase {
 	@Nullable
 	private final List<String> fields;
 
 	@Nullable
-	private final Map<String, Number> missing;
+	private final Map<String, Double> missing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +72,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Map<String, Number> missing() {
+	public Map<String, Double> missing() {
 		return this.missing;
 	}
 
@@ -92,9 +94,9 @@ public abstract class MatrixAggregation extends AggregationBase {
 
 			generator.writeKey("missing");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.missing.entrySet()) {
+			for (Map.Entry<String, Double> item0 : this.missing.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -110,7 +112,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		private List<String> fields;
 
 		@Nullable
-		private Map<String, Number> missing;
+		private Map<String, Double> missing;
 
 		/**
 		 * API name: {@code fields}
@@ -142,7 +144,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		/**
 		 * API name: {@code missing}
 		 */
-		public BuilderT missing(@Nullable Map<String, Number> value) {
+		public BuilderT missing(@Nullable Map<String, Double> value) {
 			this.missing = value;
 			return self();
 		}
@@ -150,7 +152,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		/**
 		 * Add a key/value to {@link #missing(Map)}, creating the map if needed.
 		 */
-		public BuilderT putMissing(String key, Number value) {
+		public BuilderT putMissing(String key, Double value) {
 			if (this.missing == null) {
 				this.missing = new HashMap<>();
 			}
@@ -167,7 +169,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		op.add(AbstractBuilder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"fields");
 		op.add(AbstractBuilder::missing,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()), "missing");
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()), "missing");
 
 	}
 

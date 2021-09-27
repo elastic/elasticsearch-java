@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -46,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Request
+@JsonpDeserializable
 public final class HasPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String user;
@@ -306,16 +308,16 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Json deserializer for {@link HasPrivilegesRequest}
 	 */
-	public static final JsonpDeserializer<HasPrivilegesRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer);
+	public static final JsonpDeserializer<HasPrivilegesRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HasPrivilegesRequest::setupHasPrivilegesRequestDeserializer, Builder::build);
 
 	protected static void setupHasPrivilegesRequestDeserializer(
 			DelegatingDeserializer<HasPrivilegesRequest.Builder> op) {
 
-		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck.DESERIALIZER),
+		op.add(Builder::application, JsonpDeserializer.arrayDeserializer(ApplicationPrivilegesCheck._DESERIALIZER),
 				"application");
-		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege.DESERIALIZER), "cluster");
-		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivilegesCheck.DESERIALIZER), "index");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege._DESERIALIZER), "cluster");
+		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(IndexPrivilegesCheck._DESERIALIZER), "index");
 
 	}
 
@@ -364,5 +366,5 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, HasPrivilegesResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, HasPrivilegesResponse._DESERIALIZER);
 }

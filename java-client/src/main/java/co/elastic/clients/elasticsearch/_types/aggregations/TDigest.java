@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TDigest
+@JsonpDeserializable
 public final class TDigest implements JsonpSerializable {
 	@Nullable
-	private final Number compression;
+	private final Integer compression;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,7 +54,7 @@ public final class TDigest implements JsonpSerializable {
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Number compression() {
+	public Integer compression() {
 		return this.compression;
 	}
 
@@ -70,7 +72,7 @@ public final class TDigest implements JsonpSerializable {
 		if (this.compression != null) {
 
 			generator.writeKey("compression");
-			generator.write(this.compression.doubleValue());
+			generator.write(this.compression);
 
 		}
 
@@ -83,12 +85,12 @@ public final class TDigest implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<TDigest> {
 		@Nullable
-		private Number compression;
+		private Integer compression;
 
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Number value) {
+		public Builder compression(@Nullable Integer value) {
 			this.compression = value;
 			return this;
 		}
@@ -110,12 +112,12 @@ public final class TDigest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TDigest}
 	 */
-	public static final JsonpDeserializer<TDigest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TDigest::setupTDigestDeserializer);
+	public static final JsonpDeserializer<TDigest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TDigest::setupTDigestDeserializer, Builder::build);
 
 	protected static void setupTDigestDeserializer(DelegatingDeserializer<TDigest.Builder> op) {
 
-		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
+		op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
 
 	}
 

@@ -24,23 +24,25 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobBlocked
+@JsonpDeserializable
 public final class JobBlocked implements JsonpSerializable {
 	private final JobBlockedReason reason;
 
 	@Nullable
-	private final JsonValue taskId;
+	private final String taskId;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -62,7 +64,7 @@ public final class JobBlocked implements JsonpSerializable {
 	 * API name: {@code task_id}
 	 */
 	@Nullable
-	public JsonValue taskId() {
+	public String taskId() {
 		return this.taskId;
 	}
 
@@ -97,7 +99,7 @@ public final class JobBlocked implements JsonpSerializable {
 		private JobBlockedReason reason;
 
 		@Nullable
-		private JsonValue taskId;
+		private String taskId;
 
 		/**
 		 * API name: {@code reason}
@@ -110,7 +112,7 @@ public final class JobBlocked implements JsonpSerializable {
 		/**
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(@Nullable JsonValue value) {
+		public Builder taskId(@Nullable String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -132,13 +134,13 @@ public final class JobBlocked implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link JobBlocked}
 	 */
-	public static final JsonpDeserializer<JobBlocked> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobBlocked::setupJobBlockedDeserializer);
+	public static final JsonpDeserializer<JobBlocked> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JobBlocked::setupJobBlockedDeserializer, Builder::build);
 
 	protected static void setupJobBlockedDeserializer(DelegatingDeserializer<JobBlocked.Builder> op) {
 
-		op.add(Builder::reason, JobBlockedReason.DESERIALIZER, "reason");
-		op.add(Builder::taskId, JsonpDeserializer.jsonValueDeserializer(), "task_id");
+		op.add(Builder::reason, JobBlockedReason._DESERIALIZER, "reason");
+		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
 
 	}
 

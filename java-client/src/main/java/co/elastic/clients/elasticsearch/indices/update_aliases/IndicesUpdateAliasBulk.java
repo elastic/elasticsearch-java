@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.indices.update_aliases;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+@JsonpDeserializable
 public class IndicesUpdateAliasBulk implements JsonpSerializable {
 
 	public static final class Builder implements ObjectBuilder<IndicesUpdateAliasBulk> {
 		@Override
 		public IndicesUpdateAliasBulk build() {
-			return IndicesUpdateAliasBulk.INSTANCE;
+			return IndicesUpdateAliasBulk._INSTANCE;
 		}
 	}
 
@@ -42,18 +44,16 @@ public class IndicesUpdateAliasBulk implements JsonpSerializable {
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-
 		generator.writeStartObject();
 		generator.writeEnd();
-
 	}
 
 	/**
-	 * Singleton instance for {@link IndicesUpdateAliasBulk}.
+	 * Singleton instance for empty class {@link IndicesUpdateAliasBulk}.
 	 */
-	public static final IndicesUpdateAliasBulk INSTANCE = new IndicesUpdateAliasBulk();
+	public static final IndicesUpdateAliasBulk _INSTANCE = new IndicesUpdateAliasBulk();
 
-	public static final JsonpDeserializer<IndicesUpdateAliasBulk> DESERIALIZER = JsonpDeserializer
-			.emptyObject(IndicesUpdateAliasBulk.INSTANCE);
+	public static final JsonpDeserializer<IndicesUpdateAliasBulk> _DESERIALIZER = JsonpDeserializer
+			.emptyObject(IndicesUpdateAliasBulk._INSTANCE);
 
 }

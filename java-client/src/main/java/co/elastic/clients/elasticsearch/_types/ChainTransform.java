@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,7 +40,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ChainTransform
-public final class ChainTransform implements Transform, JsonpSerializable {
+@JsonpDeserializable
+public final class ChainTransform implements TransformVariant, JsonpSerializable {
 	private final List<Transform> transforms;
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,7 +56,7 @@ public final class ChainTransform implements Transform, JsonpSerializable {
 	 * {@link Transform} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "chain";
 	}
 
@@ -76,7 +77,6 @@ public final class ChainTransform implements Transform, JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("transforms");
 		generator.writeStartArray();
@@ -84,8 +84,6 @@ public final class ChainTransform implements Transform, JsonpSerializable {
 			item0.serialize(generator, mapper);
 
 		}
-		generator.writeEnd();
-
 		generator.writeEnd();
 
 	}
@@ -153,13 +151,15 @@ public final class ChainTransform implements Transform, JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<ChainTransform.Builder, ChainTransform.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(ChainTransform::setupChainTransformDeserializer);
+	/**
+	 * Json deserializer for {@link ChainTransform}
+	 */
+	public static final JsonpDeserializer<ChainTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ChainTransform::setupChainTransformDeserializer, Builder::build);
 
 	protected static void setupChainTransformDeserializer(DelegatingDeserializer<ChainTransform.Builder> op) {
 
-		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(Transform.DESERIALIZER), "transforms");
+		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(Transform._DESERIALIZER), "transforms");
 
 	}
 

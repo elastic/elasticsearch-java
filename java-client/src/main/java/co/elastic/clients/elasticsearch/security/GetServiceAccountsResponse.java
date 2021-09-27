@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.security.get_service_accounts.RoleDescriptorWrapper;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: security.get_service_accounts.Response
+@JsonpDeserializable
 public final class GetServiceAccountsResponse extends AdditionalProperties<String, RoleDescriptorWrapper> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,13 +77,13 @@ public final class GetServiceAccountsResponse extends AdditionalProperties<Strin
 	/**
 	 * Json deserializer for {@link GetServiceAccountsResponse}
 	 */
-	public static final JsonpDeserializer<GetServiceAccountsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer);
+	public static final JsonpDeserializer<GetServiceAccountsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer, Builder::build);
 
 	protected static void setupGetServiceAccountsResponseDeserializer(
 			DelegatingDeserializer<GetServiceAccountsResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RoleDescriptorWrapper.DESERIALIZER);
+				RoleDescriptorWrapper._DESERIALIZER);
 
 	}
 

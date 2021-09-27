@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Response
+@JsonpDeserializable
 public final class RollupResponse implements JsonpSerializable {
 	private final JsonData value;
 
@@ -99,12 +101,12 @@ public final class RollupResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupResponse}
 	 */
-	public static final JsonpDeserializer<RollupResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupResponse::setupRollupResponseDeserializer);
+	public static final JsonpDeserializer<RollupResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RollupResponse::setupRollupResponseDeserializer, Builder::build);
 
 	protected static void setupRollupResponseDeserializer(DelegatingDeserializer<RollupResponse.Builder> op) {
 
-		op.add(Builder::value, JsonData.DESERIALIZER, "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

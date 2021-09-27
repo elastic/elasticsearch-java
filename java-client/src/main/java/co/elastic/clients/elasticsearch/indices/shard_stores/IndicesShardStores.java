@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.IndicesShardStores
+@JsonpDeserializable
 public final class IndicesShardStores implements JsonpSerializable {
 	private final Map<String, ShardStoreWrapper> shards;
 
@@ -137,12 +139,12 @@ public final class IndicesShardStores implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesShardStores}
 	 */
-	public static final JsonpDeserializer<IndicesShardStores> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesShardStores::setupIndicesShardStoresDeserializer);
+	public static final JsonpDeserializer<IndicesShardStores> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesShardStores::setupIndicesShardStoresDeserializer, Builder::build);
 
 	protected static void setupIndicesShardStoresDeserializer(DelegatingDeserializer<IndicesShardStores.Builder> op) {
 
-		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(ShardStoreWrapper.DESERIALIZER), "shards");
+		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(ShardStoreWrapper._DESERIALIZER), "shards");
 
 	}
 

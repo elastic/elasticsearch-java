@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.cat;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -42,6 +43,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Request
+
 public final class AllocationRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> nodeId;
@@ -190,5 +192,5 @@ public final class AllocationRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, AllocationResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, AllocationResponse._DESERIALIZER);
 }

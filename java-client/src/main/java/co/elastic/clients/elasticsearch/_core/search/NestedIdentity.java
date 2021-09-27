@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,20 +32,21 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.NestedIdentity
+@JsonpDeserializable
 public final class NestedIdentity implements JsonpSerializable {
 	private final String field;
 
-	private final Number offset;
+	private final Integer offset;
 
 	@Nullable
-	private final co.elastic.clients.elasticsearch._core.search.NestedIdentity nested;
+	private final NestedIdentity nested;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +68,7 @@ public final class NestedIdentity implements JsonpSerializable {
 	/**
 	 * API name: {@code offset}
 	 */
-	public Number offset() {
+	public Integer offset() {
 		return this.offset;
 	}
 
@@ -74,7 +76,7 @@ public final class NestedIdentity implements JsonpSerializable {
 	 * API name: {@code _nested}
 	 */
 	@Nullable
-	public co.elastic.clients.elasticsearch._core.search.NestedIdentity nested() {
+	public NestedIdentity nested() {
 		return this.nested;
 	}
 
@@ -93,7 +95,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		generator.write(this.field);
 
 		generator.writeKey("offset");
-		generator.write(this.offset.doubleValue());
+		generator.write(this.offset);
 
 		if (this.nested != null) {
 
@@ -112,10 +114,10 @@ public final class NestedIdentity implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<NestedIdentity> {
 		private String field;
 
-		private Number offset;
+		private Integer offset;
 
 		@Nullable
-		private co.elastic.clients.elasticsearch._core.search.NestedIdentity nested;
+		private NestedIdentity nested;
 
 		/**
 		 * API name: {@code field}
@@ -128,7 +130,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code offset}
 		 */
-		public Builder offset(Number value) {
+		public Builder offset(Integer value) {
 			this.offset = value;
 			return this;
 		}
@@ -136,7 +138,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder nested(@Nullable co.elastic.clients.elasticsearch._core.search.NestedIdentity value) {
+		public Builder nested(@Nullable NestedIdentity value) {
 			this.nested = value;
 			return this;
 		}
@@ -144,10 +146,8 @@ public final class NestedIdentity implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder nested(
-				Function<co.elastic.clients.elasticsearch._core.search.NestedIdentity.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.search.NestedIdentity>> fn) {
-			return this.nested(
-					fn.apply(new co.elastic.clients.elasticsearch._core.search.NestedIdentity.Builder()).build());
+		public Builder nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
+			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
 		}
 
 		/**
@@ -167,14 +167,14 @@ public final class NestedIdentity implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NestedIdentity}
 	 */
-	public static final JsonpDeserializer<NestedIdentity> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NestedIdentity::setupNestedIdentityDeserializer);
+	public static final JsonpDeserializer<NestedIdentity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NestedIdentity::setupNestedIdentityDeserializer, Builder::build);
 
 	protected static void setupNestedIdentityDeserializer(DelegatingDeserializer<NestedIdentity.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
-		op.add(Builder::nested, co.elastic.clients.elasticsearch._core.search.NestedIdentity.DESERIALIZER, "_nested");
+		op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");
+		op.add(Builder::nested, NestedIdentity._DESERIALIZER, "_nested");
 
 	}
 

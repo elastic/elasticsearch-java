@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotIndexStats
+@JsonpDeserializable
 public final class SnapshotIndexStats implements JsonpSerializable {
 	private final Map<String, SnapshotShardsStatus> shards;
 
@@ -199,14 +201,14 @@ public final class SnapshotIndexStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SnapshotIndexStats}
 	 */
-	public static final JsonpDeserializer<SnapshotIndexStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotIndexStats::setupSnapshotIndexStatsDeserializer);
+	public static final JsonpDeserializer<SnapshotIndexStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotIndexStats::setupSnapshotIndexStatsDeserializer, Builder::build);
 
 	protected static void setupSnapshotIndexStatsDeserializer(DelegatingDeserializer<SnapshotIndexStats.Builder> op) {
 
-		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(SnapshotShardsStatus.DESERIALIZER), "shards");
-		op.add(Builder::shardsStats, ShardsStats.DESERIALIZER, "shards_stats");
-		op.add(Builder::stats, SnapshotStats.DESERIALIZER, "stats");
+		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(SnapshotShardsStatus._DESERIALIZER), "shards");
+		op.add(Builder::shardsStats, ShardsStats._DESERIALIZER, "shards_stats");
+		op.add(Builder::stats, SnapshotStats._DESERIALIZER, "stats");
 
 	}
 

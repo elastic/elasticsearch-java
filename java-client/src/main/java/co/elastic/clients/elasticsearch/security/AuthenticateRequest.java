@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,6 +36,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: security.authenticate.Request
+
 public final class AuthenticateRequest extends RequestBase {
 	public AuthenticateRequest() {
 	}
@@ -42,10 +44,7 @@ public final class AuthenticateRequest extends RequestBase {
 	/**
 	 * Singleton instance for {@link AuthenticateRequest}.
 	 */
-	public static final AuthenticateRequest INSTANCE = new AuthenticateRequest();
-
-	public static final JsonpDeserializer<AuthenticateRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(AuthenticateRequest.INSTANCE);
+	public static final AuthenticateRequest _INSTANCE = new AuthenticateRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,5 +68,5 @@ public final class AuthenticateRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, AuthenticateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, AuthenticateResponse._DESERIALIZER);
 }

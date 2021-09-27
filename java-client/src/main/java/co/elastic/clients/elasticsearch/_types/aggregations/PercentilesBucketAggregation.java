@@ -24,13 +24,14 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,9 +39,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
-public final class PercentilesBucketAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class PercentilesBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
-	private final List<Number> percents;
+	private final List<Double> percents;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -52,10 +54,18 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "percentiles_bucket";
+	}
+
+	/**
 	 * API name: {@code percents}
 	 */
 	@Nullable
-	public List<Number> percents() {
+	public List<Double> percents() {
 		return this.percents;
 	}
 
@@ -66,8 +76,8 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 
 			generator.writeKey("percents");
 			generator.writeStartArray();
-			for (Number item0 : this.percents) {
-				generator.write(item0.doubleValue());
+			for (Double item0 : this.percents) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -85,12 +95,12 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 			implements
 				ObjectBuilder<PercentilesBucketAggregation> {
 		@Nullable
-		private List<Number> percents;
+		private List<Double> percents;
 
 		/**
 		 * API name: {@code percents}
 		 */
-		public Builder percents(@Nullable List<Number> value) {
+		public Builder percents(@Nullable List<Double> value) {
 			this.percents = value;
 			return this;
 		}
@@ -98,7 +108,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code percents}
 		 */
-		public Builder percents(Number... value) {
+		public Builder percents(Double... value) {
 			this.percents = Arrays.asList(value);
 			return this;
 		}
@@ -106,7 +116,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		/**
 		 * Add a value to {@link #percents(List)}, creating the list if needed.
 		 */
-		public Builder addPercents(Number value) {
+		public Builder addPercents(Double value) {
 			if (this.percents == null) {
 				this.percents = new ArrayList<>();
 			}
@@ -136,13 +146,13 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 	/**
 	 * Json deserializer for {@link PercentilesBucketAggregation}
 	 */
-	public static final JsonpDeserializer<PercentilesBucketAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PercentilesBucketAggregation::setupPercentilesBucketAggregationDeserializer);
+	public static final JsonpDeserializer<PercentilesBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PercentilesBucketAggregation::setupPercentilesBucketAggregationDeserializer, Builder::build);
 
 	protected static void setupPercentilesBucketAggregationDeserializer(
 			DelegatingDeserializer<PercentilesBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"percents");
 
 	}

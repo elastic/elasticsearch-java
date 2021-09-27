@@ -27,15 +27,16 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._core.rank_eval.RankEvalMetric;
 import co.elastic.clients.elasticsearch._core.rank_eval.RankEvalRequestItem;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -50,6 +51,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.Request
+@JsonpDeserializable
 public final class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
@@ -57,7 +59,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -116,7 +118,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -199,7 +201,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -267,8 +269,30 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -373,13 +397,13 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Json deserializer for {@link RankEvalRequest}
 	 */
-	public static final JsonpDeserializer<RankEvalRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RankEvalRequest::setupRankEvalRequestDeserializer);
+	public static final JsonpDeserializer<RankEvalRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RankEvalRequest::setupRankEvalRequestDeserializer, Builder::build);
 
 	protected static void setupRankEvalRequestDeserializer(DelegatingDeserializer<RankEvalRequest.Builder> op) {
 
-		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem.DESERIALIZER), "requests");
-		op.add(Builder::metric, RankEvalMetric.DESERIALIZER, "metric");
+		op.add(Builder::requests, JsonpDeserializer.arrayDeserializer(RankEvalRequestItem._DESERIALIZER), "requests");
+		op.add(Builder::metric, RankEvalMetric._DESERIALIZER, "metric");
 
 	}
 
@@ -427,7 +451,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -437,5 +462,5 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RankEvalResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, RankEvalResponse._DESERIALIZER);
 }

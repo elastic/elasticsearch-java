@@ -25,10 +25,12 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.eql.search.ResultPosition;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -47,9 +49,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: eql.search.Request
+@JsonpDeserializable
 public final class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
@@ -57,7 +61,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -83,19 +87,19 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final List<Query> filter;
 
 	@Nullable
-	private final JsonValue keepAlive;
+	private final String keepAlive;
 
 	@Nullable
 	private final Boolean keepOnCompletion;
 
 	@Nullable
-	private final JsonValue waitForCompletionTimeout;
+	private final String waitForCompletionTimeout;
 
 	@Nullable
-	private final JsonValue size;
+	private final JsonValue /* Union(_types.uint | _types.float) */ size;
 
 	@Nullable
-	private final List<JsonValue> fields;
+	private final List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
 
 	@Nullable
 	private final ResultPosition resultPosition;
@@ -145,7 +149,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -231,7 +235,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public JsonValue keepAlive() {
+	public String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -247,7 +251,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public JsonValue waitForCompletionTimeout() {
+	public String waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -258,7 +262,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public JsonValue /* Union(_types.uint | _types.float) */ size() {
 		return this.size;
 	}
 
@@ -269,7 +273,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public List<JsonValue> fields() {
+	public List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields() {
 		return this.fields;
 	}
 
@@ -364,7 +368,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.fields) {
+			for (JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ item0 : this.fields) {
 				generator.write(item0);
 
 			}
@@ -391,7 +395,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -417,19 +421,19 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private List<Query> filter;
 
 		@Nullable
-		private JsonValue keepAlive;
+		private String keepAlive;
 
 		@Nullable
 		private Boolean keepOnCompletion;
 
 		@Nullable
-		private JsonValue waitForCompletionTimeout;
+		private String waitForCompletionTimeout;
 
 		@Nullable
-		private JsonValue size;
+		private JsonValue /* Union(_types.uint | _types.float) */ size;
 
 		@Nullable
-		private List<JsonValue> fields;
+		private List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
 
 		@Nullable
 		private ResultPosition resultPosition;
@@ -455,8 +459,27 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -578,7 +601,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable JsonValue value) {
+		public Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -594,7 +617,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable JsonValue value) {
+		public Builder waitForCompletionTimeout(@Nullable String value) {
 			this.waitForCompletionTimeout = value;
 			return this;
 		}
@@ -605,7 +628,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable JsonValue /* Union(_types.uint | _types.float) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -616,7 +639,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<JsonValue> value) {
+		public Builder fields(
+				@Nullable List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> value) {
 			this.fields = value;
 			return this;
 		}
@@ -627,7 +651,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(JsonValue... value) {
+		public Builder fields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */... value) {
 			this.fields = Arrays.asList(value);
 			return this;
 		}
@@ -635,7 +659,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
-		public Builder addFields(JsonValue value) {
+		public Builder addFields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ value) {
 			if (this.fields == null) {
 				this.fields = new ArrayList<>();
 			}
@@ -668,8 +692,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link SearchRequest}
 	 */
-	public static final JsonpDeserializer<SearchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchRequest::setupSearchRequestDeserializer);
+	public static final JsonpDeserializer<SearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchRequest::setupSearchRequestDeserializer, Builder::build);
 
 	protected static void setupSearchRequestDeserializer(DelegatingDeserializer<SearchRequest.Builder> op) {
 
@@ -679,15 +703,15 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		op.add(Builder::tiebreakerField, JsonpDeserializer.stringDeserializer(), "tiebreaker_field");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
 		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query.DESERIALIZER), "filter");
-		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
-		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.stringDeserializer(),
 				"wait_for_completion_timeout");
 		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
-		op.add(Builder::resultPosition, ResultPosition.DESERIALIZER, "result_position");
+		op.add(Builder::resultPosition, ResultPosition._DESERIALIZER, "result_position");
 
 	}
 
@@ -731,7 +755,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

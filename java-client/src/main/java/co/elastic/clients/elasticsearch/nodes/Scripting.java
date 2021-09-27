@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Scripting
+@JsonpDeserializable
 public final class Scripting implements JsonpSerializable {
-	private final Number cacheEvictions;
+	private final Long cacheEvictions;
 
-	private final Number compilations;
+	private final Long compilations;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class Scripting implements JsonpSerializable {
 	/**
 	 * API name: {@code cache_evictions}
 	 */
-	public Number cacheEvictions() {
+	public Long cacheEvictions() {
 		return this.cacheEvictions;
 	}
 
 	/**
 	 * API name: {@code compilations}
 	 */
-	public Number compilations() {
+	public Long compilations() {
 		return this.compilations;
 	}
 
@@ -76,10 +78,10 @@ public final class Scripting implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cache_evictions");
-		generator.write(this.cacheEvictions.doubleValue());
+		generator.write(this.cacheEvictions);
 
 		generator.writeKey("compilations");
-		generator.write(this.compilations.doubleValue());
+		generator.write(this.compilations);
 
 	}
 
@@ -89,14 +91,14 @@ public final class Scripting implements JsonpSerializable {
 	 * Builder for {@link Scripting}.
 	 */
 	public static class Builder implements ObjectBuilder<Scripting> {
-		private Number cacheEvictions;
+		private Long cacheEvictions;
 
-		private Number compilations;
+		private Long compilations;
 
 		/**
 		 * API name: {@code cache_evictions}
 		 */
-		public Builder cacheEvictions(Number value) {
+		public Builder cacheEvictions(Long value) {
 			this.cacheEvictions = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class Scripting implements JsonpSerializable {
 		/**
 		 * API name: {@code compilations}
 		 */
-		public Builder compilations(Number value) {
+		public Builder compilations(Long value) {
 			this.compilations = value;
 			return this;
 		}
@@ -126,13 +128,13 @@ public final class Scripting implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Scripting}
 	 */
-	public static final JsonpDeserializer<Scripting> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Scripting::setupScriptingDeserializer);
+	public static final JsonpDeserializer<Scripting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Scripting::setupScriptingDeserializer, Builder::build);
 
 	protected static void setupScriptingDeserializer(DelegatingDeserializer<Scripting.Builder> op) {
 
-		op.add(Builder::cacheEvictions, JsonpDeserializer.numberDeserializer(), "cache_evictions");
-		op.add(Builder::compilations, JsonpDeserializer.numberDeserializer(), "compilations");
+		op.add(Builder::cacheEvictions, JsonpDeserializer.longDeserializer(), "cache_evictions");
+		op.add(Builder::compilations, JsonpDeserializer.longDeserializer(), "compilations");
 
 	}
 

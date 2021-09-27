@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Configuration
+@JsonpDeserializable
 public final class Configuration implements JsonpSerializable {
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -390,8 +392,8 @@ public final class Configuration implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Configuration}
 	 */
-	public static final JsonpDeserializer<Configuration> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Configuration::setupConfigurationDeserializer);
+	public static final JsonpDeserializer<Configuration> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Configuration::setupConfigurationDeserializer, Builder::build);
 
 	protected static void setupConfigurationDeserializer(DelegatingDeserializer<Configuration.Builder> op) {
 
@@ -401,7 +403,7 @@ public final class Configuration implements JsonpSerializable {
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
 		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_states");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
 
 	}

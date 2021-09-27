@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingNode
+@JsonpDeserializable
 public final class AutoscalingNode implements JsonpSerializable {
 	private final String name;
 
@@ -103,8 +105,8 @@ public final class AutoscalingNode implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AutoscalingNode}
 	 */
-	public static final JsonpDeserializer<AutoscalingNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoscalingNode::setupAutoscalingNodeDeserializer);
+	public static final JsonpDeserializer<AutoscalingNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AutoscalingNode::setupAutoscalingNodeDeserializer, Builder::build);
 
 	protected static void setupAutoscalingNodeDeserializer(DelegatingDeserializer<AutoscalingNode.Builder> op) {
 

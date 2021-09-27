@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum HttpInputMethod implements StringEnum {
 	Head("head"), Get("get"), Post("post"), Put("put"), Delete("delete");
 
@@ -39,6 +41,6 @@ public enum HttpInputMethod implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<HttpInputMethod> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<HttpInputMethod> _DESERIALIZER = new StringEnum.Deserializer<>(
 			HttpInputMethod.values());
 }

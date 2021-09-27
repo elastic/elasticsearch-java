@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecuritySsl
+@JsonpDeserializable
 public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	private final Map<String, String> ssl;
 
@@ -122,8 +124,8 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpackSecuritySsl}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackSecuritySsl> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackSecuritySsl> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackSecuritySsl::setupNodeInfoXpackSecuritySslDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackSecuritySslDeserializer(
 			DelegatingDeserializer<NodeInfoXpackSecuritySsl.Builder> op) {

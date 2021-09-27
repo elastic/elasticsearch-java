@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Response
+@JsonpDeserializable
 public final class UpdateFilterResponse implements JsonpSerializable {
 	private final String description;
 
@@ -176,8 +178,8 @@ public final class UpdateFilterResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link UpdateFilterResponse}
 	 */
-	public static final JsonpDeserializer<UpdateFilterResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseDeserializer);
+	public static final JsonpDeserializer<UpdateFilterResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateFilterResponse::setupUpdateFilterResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateFilterResponseDeserializer(
 			DelegatingDeserializer<UpdateFilterResponse.Builder> op) {

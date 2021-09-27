@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,16 +33,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandCancelAction
+@JsonpDeserializable
 public final class CommandCancelAction implements JsonpSerializable {
 	private final String index;
 
-	private final Number shard;
+	private final Integer shard;
 
 	private final String node;
 
@@ -69,7 +71,7 @@ public final class CommandCancelAction implements JsonpSerializable {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public Integer shard() {
 		return this.shard;
 	}
 
@@ -103,7 +105,7 @@ public final class CommandCancelAction implements JsonpSerializable {
 		generator.write(this.index);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -125,7 +127,7 @@ public final class CommandCancelAction implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<CommandCancelAction> {
 		private String index;
 
-		private Number shard;
+		private Integer shard;
 
 		private String node;
 
@@ -143,7 +145,7 @@ public final class CommandCancelAction implements JsonpSerializable {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -181,13 +183,13 @@ public final class CommandCancelAction implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CommandCancelAction}
 	 */
-	public static final JsonpDeserializer<CommandCancelAction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CommandCancelAction::setupCommandCancelActionDeserializer);
+	public static final JsonpDeserializer<CommandCancelAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CommandCancelAction::setupCommandCancelActionDeserializer, Builder::build);
 
 	protected static void setupCommandCancelActionDeserializer(DelegatingDeserializer<CommandCancelAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::allowPrimary, JsonpDeserializer.booleanDeserializer(), "allow_primary");
 

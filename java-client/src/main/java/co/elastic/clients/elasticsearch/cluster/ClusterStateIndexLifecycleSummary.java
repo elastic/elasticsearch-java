@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -41,14 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.ClusterStateIndexLifecycleSummary
+@JsonpDeserializable
 public final class ClusterStateIndexLifecycleSummary implements JsonpSerializable {
 	private final ClusterStateIndexLifecyclePolicy policy;
 
 	private final Map<String, List<String>> headers;
 
-	private final Number version;
+	private final Long version;
 
-	private final Number modifiedDate;
+	private final Long modifiedDate;
 
 	private final String modifiedDateString;
 
@@ -81,14 +83,14 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
 	/**
 	 * API name: {@code modified_date}
 	 */
-	public Number modifiedDate() {
+	public Long modifiedDate() {
 		return this.modifiedDate;
 	}
 
@@ -128,10 +130,10 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 		generator.writeEnd();
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 		generator.writeKey("modified_date");
-		generator.write(this.modifiedDate.doubleValue());
+		generator.write(this.modifiedDate);
 
 		generator.writeKey("modified_date_string");
 		generator.write(this.modifiedDateString);
@@ -148,9 +150,9 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 
 		private Map<String, List<String>> headers;
 
-		private Number version;
+		private Long version;
 
-		private Number modifiedDate;
+		private Long modifiedDate;
 
 		private String modifiedDateString;
 
@@ -192,7 +194,7 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(Long value) {
 			this.version = value;
 			return this;
 		}
@@ -200,7 +202,7 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 		/**
 		 * API name: {@code modified_date}
 		 */
-		public Builder modifiedDate(Number value) {
+		public Builder modifiedDate(Long value) {
 			this.modifiedDate = value;
 			return this;
 		}
@@ -230,18 +232,18 @@ public final class ClusterStateIndexLifecycleSummary implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link ClusterStateIndexLifecycleSummary}
 	 */
-	public static final JsonpDeserializer<ClusterStateIndexLifecycleSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterStateIndexLifecycleSummary::setupClusterStateIndexLifecycleSummaryDeserializer);
+	public static final JsonpDeserializer<ClusterStateIndexLifecycleSummary> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterStateIndexLifecycleSummary::setupClusterStateIndexLifecycleSummaryDeserializer,
+					Builder::build);
 
 	protected static void setupClusterStateIndexLifecycleSummaryDeserializer(
 			DelegatingDeserializer<ClusterStateIndexLifecycleSummary.Builder> op) {
 
-		op.add(Builder::policy, ClusterStateIndexLifecyclePolicy.DESERIALIZER, "policy");
+		op.add(Builder::policy, ClusterStateIndexLifecyclePolicy._DESERIALIZER, "policy");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::modifiedDate, JsonpDeserializer.numberDeserializer(), "modified_date");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::modifiedDate, JsonpDeserializer.longDeserializer(), "modified_date");
 		op.add(Builder::modifiedDateString, JsonpDeserializer.stringDeserializer(), "modified_date_string");
 
 	}

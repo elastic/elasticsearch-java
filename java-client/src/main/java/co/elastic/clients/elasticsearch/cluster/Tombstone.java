@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,20 +32,21 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster._types.Tombstone
+@JsonpDeserializable
 public final class Tombstone implements JsonpSerializable {
 	private final TombstoneIndex index;
 
 	@Nullable
 	private final String deleteDate;
 
-	private final Number deleteDateInMillis;
+	private final Long deleteDateInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +76,7 @@ public final class Tombstone implements JsonpSerializable {
 	/**
 	 * API name: {@code delete_date_in_millis}
 	 */
-	public Number deleteDateInMillis() {
+	public Long deleteDateInMillis() {
 		return this.deleteDateInMillis;
 	}
 
@@ -100,7 +102,7 @@ public final class Tombstone implements JsonpSerializable {
 		}
 
 		generator.writeKey("delete_date_in_millis");
-		generator.write(this.deleteDateInMillis.doubleValue());
+		generator.write(this.deleteDateInMillis);
 
 	}
 
@@ -115,7 +117,7 @@ public final class Tombstone implements JsonpSerializable {
 		@Nullable
 		private String deleteDate;
 
-		private Number deleteDateInMillis;
+		private Long deleteDateInMillis;
 
 		/**
 		 * API name: {@code index}
@@ -143,7 +145,7 @@ public final class Tombstone implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_date_in_millis}
 		 */
-		public Builder deleteDateInMillis(Number value) {
+		public Builder deleteDateInMillis(Long value) {
 			this.deleteDateInMillis = value;
 			return this;
 		}
@@ -165,14 +167,14 @@ public final class Tombstone implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Tombstone}
 	 */
-	public static final JsonpDeserializer<Tombstone> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Tombstone::setupTombstoneDeserializer);
+	public static final JsonpDeserializer<Tombstone> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Tombstone::setupTombstoneDeserializer, Builder::build);
 
 	protected static void setupTombstoneDeserializer(DelegatingDeserializer<Tombstone.Builder> op) {
 
-		op.add(Builder::index, TombstoneIndex.DESERIALIZER, "index");
+		op.add(Builder::index, TombstoneIndex._DESERIALIZER, "index");
 		op.add(Builder::deleteDate, JsonpDeserializer.stringDeserializer(), "delete_date");
-		op.add(Builder::deleteDateInMillis, JsonpDeserializer.numberDeserializer(), "delete_date_in_millis");
+		op.add(Builder::deleteDateInMillis, JsonpDeserializer.longDeserializer(), "delete_date_in_millis");
 
 	}
 

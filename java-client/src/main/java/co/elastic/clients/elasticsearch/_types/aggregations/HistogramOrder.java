@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._core.search.SortOrder;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramOrder
+@JsonpDeserializable
 public final class HistogramOrder implements JsonpSerializable {
 	@Nullable
 	private final SortOrder count;
@@ -137,13 +139,13 @@ public final class HistogramOrder implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HistogramOrder}
 	 */
-	public static final JsonpDeserializer<HistogramOrder> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HistogramOrder::setupHistogramOrderDeserializer);
+	public static final JsonpDeserializer<HistogramOrder> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HistogramOrder::setupHistogramOrderDeserializer, Builder::build);
 
 	protected static void setupHistogramOrderDeserializer(DelegatingDeserializer<HistogramOrder.Builder> op) {
 
-		op.add(Builder::count, SortOrder.DESERIALIZER, "_count");
-		op.add(Builder::key, SortOrder.DESERIALIZER, "_key");
+		op.add(Builder::count, SortOrder._DESERIALIZER, "_count");
+		op.add(Builder::key, SortOrder._DESERIALIZER, "_key");
 
 	}
 

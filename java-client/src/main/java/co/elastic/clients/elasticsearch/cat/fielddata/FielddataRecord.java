@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.fielddata;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
+@JsonpDeserializable
 public final class FielddataRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -279,8 +281,8 @@ public final class FielddataRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FielddataRecord}
 	 */
-	public static final JsonpDeserializer<FielddataRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FielddataRecord::setupFielddataRecordDeserializer);
+	public static final JsonpDeserializer<FielddataRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FielddataRecord::setupFielddataRecordDeserializer, Builder::build);
 
 	protected static void setupFielddataRecordDeserializer(DelegatingDeserializer<FielddataRecord.Builder> op) {
 

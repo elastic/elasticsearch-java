@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackDynamicAttachment
+@JsonpDeserializable
 public final class SlackDynamicAttachment implements JsonpSerializable {
 	private final SlackAttachment attachmentTemplate;
 
@@ -134,13 +136,13 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SlackDynamicAttachment}
 	 */
-	public static final JsonpDeserializer<SlackDynamicAttachment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlackDynamicAttachment::setupSlackDynamicAttachmentDeserializer);
+	public static final JsonpDeserializer<SlackDynamicAttachment> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SlackDynamicAttachment::setupSlackDynamicAttachmentDeserializer, Builder::build);
 
 	protected static void setupSlackDynamicAttachmentDeserializer(
 			DelegatingDeserializer<SlackDynamicAttachment.Builder> op) {
 
-		op.add(Builder::attachmentTemplate, SlackAttachment.DESERIALIZER, "attachment_template");
+		op.add(Builder::attachmentTemplate, SlackAttachment._DESERIALIZER, "attachment_template");
 		op.add(Builder::listPath, JsonpDeserializer.stringDeserializer(), "list_path");
 
 	}

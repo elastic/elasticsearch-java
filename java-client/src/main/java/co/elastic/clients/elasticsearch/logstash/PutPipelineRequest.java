@@ -28,6 +28,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.put_pipeline.Request
+@JsonpDeserializable
 public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -138,12 +140,12 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link PutPipelineRequest}
 	 */
-	public static final JsonpDeserializer<PutPipelineRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer);
+	public static final JsonpDeserializer<PutPipelineRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer, Builder::build);
 
 	protected static void setupPutPipelineRequestDeserializer(DelegatingDeserializer<PutPipelineRequest.Builder> op) {
 
-		op.add(Builder::value, Pipeline.DESERIALIZER, "value");
+		op.add(Builder::value, Pipeline._DESERIALIZER, "value");
 
 	}
 

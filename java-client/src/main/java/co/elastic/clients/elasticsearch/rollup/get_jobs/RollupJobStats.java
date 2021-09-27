@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,35 +32,36 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStats
+@JsonpDeserializable
 public final class RollupJobStats implements JsonpSerializable {
-	private final Number documentsProcessed;
+	private final Long documentsProcessed;
 
-	private final Number indexFailures;
+	private final Long indexFailures;
 
-	private final Number indexTimeInMs;
+	private final Long indexTimeInMs;
 
-	private final Number indexTotal;
+	private final Long indexTotal;
 
-	private final Number pagesProcessed;
+	private final Long pagesProcessed;
 
-	private final Number rollupsIndexed;
+	private final Long rollupsIndexed;
 
-	private final Number searchFailures;
+	private final Long searchFailures;
 
-	private final Number searchTimeInMs;
+	private final Long searchTimeInMs;
 
-	private final Number searchTotal;
+	private final Long searchTotal;
 
-	private final Number triggerCount;
+	private final Long triggerCount;
 
-	private final Number processingTimeInMs;
+	private final Long processingTimeInMs;
 
-	private final Number processingTotal;
+	private final Long processingTotal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -83,84 +85,84 @@ public final class RollupJobStats implements JsonpSerializable {
 	/**
 	 * API name: {@code documents_processed}
 	 */
-	public Number documentsProcessed() {
+	public Long documentsProcessed() {
 		return this.documentsProcessed;
 	}
 
 	/**
 	 * API name: {@code index_failures}
 	 */
-	public Number indexFailures() {
+	public Long indexFailures() {
 		return this.indexFailures;
 	}
 
 	/**
 	 * API name: {@code index_time_in_ms}
 	 */
-	public Number indexTimeInMs() {
+	public Long indexTimeInMs() {
 		return this.indexTimeInMs;
 	}
 
 	/**
 	 * API name: {@code index_total}
 	 */
-	public Number indexTotal() {
+	public Long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
 	 * API name: {@code pages_processed}
 	 */
-	public Number pagesProcessed() {
+	public Long pagesProcessed() {
 		return this.pagesProcessed;
 	}
 
 	/**
 	 * API name: {@code rollups_indexed}
 	 */
-	public Number rollupsIndexed() {
+	public Long rollupsIndexed() {
 		return this.rollupsIndexed;
 	}
 
 	/**
 	 * API name: {@code search_failures}
 	 */
-	public Number searchFailures() {
+	public Long searchFailures() {
 		return this.searchFailures;
 	}
 
 	/**
 	 * API name: {@code search_time_in_ms}
 	 */
-	public Number searchTimeInMs() {
+	public Long searchTimeInMs() {
 		return this.searchTimeInMs;
 	}
 
 	/**
 	 * API name: {@code search_total}
 	 */
-	public Number searchTotal() {
+	public Long searchTotal() {
 		return this.searchTotal;
 	}
 
 	/**
 	 * API name: {@code trigger_count}
 	 */
-	public Number triggerCount() {
+	public Long triggerCount() {
 		return this.triggerCount;
 	}
 
 	/**
 	 * API name: {@code processing_time_in_ms}
 	 */
-	public Number processingTimeInMs() {
+	public Long processingTimeInMs() {
 		return this.processingTimeInMs;
 	}
 
 	/**
 	 * API name: {@code processing_total}
 	 */
-	public Number processingTotal() {
+	public Long processingTotal() {
 		return this.processingTotal;
 	}
 
@@ -176,40 +178,40 @@ public final class RollupJobStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("documents_processed");
-		generator.write(this.documentsProcessed.doubleValue());
+		generator.write(this.documentsProcessed);
 
 		generator.writeKey("index_failures");
-		generator.write(this.indexFailures.doubleValue());
+		generator.write(this.indexFailures);
 
 		generator.writeKey("index_time_in_ms");
-		generator.write(this.indexTimeInMs.doubleValue());
+		generator.write(this.indexTimeInMs);
 
 		generator.writeKey("index_total");
-		generator.write(this.indexTotal.doubleValue());
+		generator.write(this.indexTotal);
 
 		generator.writeKey("pages_processed");
-		generator.write(this.pagesProcessed.doubleValue());
+		generator.write(this.pagesProcessed);
 
 		generator.writeKey("rollups_indexed");
-		generator.write(this.rollupsIndexed.doubleValue());
+		generator.write(this.rollupsIndexed);
 
 		generator.writeKey("search_failures");
-		generator.write(this.searchFailures.doubleValue());
+		generator.write(this.searchFailures);
 
 		generator.writeKey("search_time_in_ms");
-		generator.write(this.searchTimeInMs.doubleValue());
+		generator.write(this.searchTimeInMs);
 
 		generator.writeKey("search_total");
-		generator.write(this.searchTotal.doubleValue());
+		generator.write(this.searchTotal);
 
 		generator.writeKey("trigger_count");
-		generator.write(this.triggerCount.doubleValue());
+		generator.write(this.triggerCount);
 
 		generator.writeKey("processing_time_in_ms");
-		generator.write(this.processingTimeInMs.doubleValue());
+		generator.write(this.processingTimeInMs);
 
 		generator.writeKey("processing_total");
-		generator.write(this.processingTotal.doubleValue());
+		generator.write(this.processingTotal);
 
 	}
 
@@ -219,34 +221,34 @@ public final class RollupJobStats implements JsonpSerializable {
 	 * Builder for {@link RollupJobStats}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupJobStats> {
-		private Number documentsProcessed;
+		private Long documentsProcessed;
 
-		private Number indexFailures;
+		private Long indexFailures;
 
-		private Number indexTimeInMs;
+		private Long indexTimeInMs;
 
-		private Number indexTotal;
+		private Long indexTotal;
 
-		private Number pagesProcessed;
+		private Long pagesProcessed;
 
-		private Number rollupsIndexed;
+		private Long rollupsIndexed;
 
-		private Number searchFailures;
+		private Long searchFailures;
 
-		private Number searchTimeInMs;
+		private Long searchTimeInMs;
 
-		private Number searchTotal;
+		private Long searchTotal;
 
-		private Number triggerCount;
+		private Long triggerCount;
 
-		private Number processingTimeInMs;
+		private Long processingTimeInMs;
 
-		private Number processingTotal;
+		private Long processingTotal;
 
 		/**
 		 * API name: {@code documents_processed}
 		 */
-		public Builder documentsProcessed(Number value) {
+		public Builder documentsProcessed(Long value) {
 			this.documentsProcessed = value;
 			return this;
 		}
@@ -254,7 +256,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_failures}
 		 */
-		public Builder indexFailures(Number value) {
+		public Builder indexFailures(Long value) {
 			this.indexFailures = value;
 			return this;
 		}
@@ -262,7 +264,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_time_in_ms}
 		 */
-		public Builder indexTimeInMs(Number value) {
+		public Builder indexTimeInMs(Long value) {
 			this.indexTimeInMs = value;
 			return this;
 		}
@@ -270,7 +272,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_total}
 		 */
-		public Builder indexTotal(Number value) {
+		public Builder indexTotal(Long value) {
 			this.indexTotal = value;
 			return this;
 		}
@@ -278,7 +280,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code pages_processed}
 		 */
-		public Builder pagesProcessed(Number value) {
+		public Builder pagesProcessed(Long value) {
 			this.pagesProcessed = value;
 			return this;
 		}
@@ -286,7 +288,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code rollups_indexed}
 		 */
-		public Builder rollupsIndexed(Number value) {
+		public Builder rollupsIndexed(Long value) {
 			this.rollupsIndexed = value;
 			return this;
 		}
@@ -294,7 +296,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code search_failures}
 		 */
-		public Builder searchFailures(Number value) {
+		public Builder searchFailures(Long value) {
 			this.searchFailures = value;
 			return this;
 		}
@@ -302,7 +304,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code search_time_in_ms}
 		 */
-		public Builder searchTimeInMs(Number value) {
+		public Builder searchTimeInMs(Long value) {
 			this.searchTimeInMs = value;
 			return this;
 		}
@@ -310,7 +312,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code search_total}
 		 */
-		public Builder searchTotal(Number value) {
+		public Builder searchTotal(Long value) {
 			this.searchTotal = value;
 			return this;
 		}
@@ -318,7 +320,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code trigger_count}
 		 */
-		public Builder triggerCount(Number value) {
+		public Builder triggerCount(Long value) {
 			this.triggerCount = value;
 			return this;
 		}
@@ -326,7 +328,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code processing_time_in_ms}
 		 */
-		public Builder processingTimeInMs(Number value) {
+		public Builder processingTimeInMs(Long value) {
 			this.processingTimeInMs = value;
 			return this;
 		}
@@ -334,7 +336,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code processing_total}
 		 */
-		public Builder processingTotal(Number value) {
+		public Builder processingTotal(Long value) {
 			this.processingTotal = value;
 			return this;
 		}
@@ -356,23 +358,23 @@ public final class RollupJobStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupJobStats}
 	 */
-	public static final JsonpDeserializer<RollupJobStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupJobStats::setupRollupJobStatsDeserializer);
+	public static final JsonpDeserializer<RollupJobStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RollupJobStats::setupRollupJobStatsDeserializer, Builder::build);
 
 	protected static void setupRollupJobStatsDeserializer(DelegatingDeserializer<RollupJobStats.Builder> op) {
 
-		op.add(Builder::documentsProcessed, JsonpDeserializer.numberDeserializer(), "documents_processed");
-		op.add(Builder::indexFailures, JsonpDeserializer.numberDeserializer(), "index_failures");
-		op.add(Builder::indexTimeInMs, JsonpDeserializer.numberDeserializer(), "index_time_in_ms");
-		op.add(Builder::indexTotal, JsonpDeserializer.numberDeserializer(), "index_total");
-		op.add(Builder::pagesProcessed, JsonpDeserializer.numberDeserializer(), "pages_processed");
-		op.add(Builder::rollupsIndexed, JsonpDeserializer.numberDeserializer(), "rollups_indexed");
-		op.add(Builder::searchFailures, JsonpDeserializer.numberDeserializer(), "search_failures");
-		op.add(Builder::searchTimeInMs, JsonpDeserializer.numberDeserializer(), "search_time_in_ms");
-		op.add(Builder::searchTotal, JsonpDeserializer.numberDeserializer(), "search_total");
-		op.add(Builder::triggerCount, JsonpDeserializer.numberDeserializer(), "trigger_count");
-		op.add(Builder::processingTimeInMs, JsonpDeserializer.numberDeserializer(), "processing_time_in_ms");
-		op.add(Builder::processingTotal, JsonpDeserializer.numberDeserializer(), "processing_total");
+		op.add(Builder::documentsProcessed, JsonpDeserializer.longDeserializer(), "documents_processed");
+		op.add(Builder::indexFailures, JsonpDeserializer.longDeserializer(), "index_failures");
+		op.add(Builder::indexTimeInMs, JsonpDeserializer.longDeserializer(), "index_time_in_ms");
+		op.add(Builder::indexTotal, JsonpDeserializer.longDeserializer(), "index_total");
+		op.add(Builder::pagesProcessed, JsonpDeserializer.longDeserializer(), "pages_processed");
+		op.add(Builder::rollupsIndexed, JsonpDeserializer.longDeserializer(), "rollups_indexed");
+		op.add(Builder::searchFailures, JsonpDeserializer.longDeserializer(), "search_failures");
+		op.add(Builder::searchTimeInMs, JsonpDeserializer.longDeserializer(), "search_time_in_ms");
+		op.add(Builder::searchTotal, JsonpDeserializer.longDeserializer(), "search_total");
+		op.add(Builder::triggerCount, JsonpDeserializer.longDeserializer(), "trigger_count");
+		op.add(Builder::processingTimeInMs, JsonpDeserializer.longDeserializer(), "processing_time_in_ms");
+		op.add(Builder::processingTotal, JsonpDeserializer.longDeserializer(), "processing_total");
 
 	}
 

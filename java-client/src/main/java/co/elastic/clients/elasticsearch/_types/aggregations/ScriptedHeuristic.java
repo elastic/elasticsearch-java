@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,8 +37,9 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedHeuristic
+@JsonpDeserializable
 public final class ScriptedHeuristic implements JsonpSerializable {
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	/**
 	 * API name: {@code script}
 	 */
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -76,12 +78,12 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	 * Builder for {@link ScriptedHeuristic}.
 	 */
 	public static class Builder implements ObjectBuilder<ScriptedHeuristic> {
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(JsonValue value) {
+		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -103,8 +105,8 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ScriptedHeuristic}
 	 */
-	public static final JsonpDeserializer<ScriptedHeuristic> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer);
+	public static final JsonpDeserializer<ScriptedHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer, Builder::build);
 
 	protected static void setupScriptedHeuristicDeserializer(DelegatingDeserializer<ScriptedHeuristic.Builder> op) {
 

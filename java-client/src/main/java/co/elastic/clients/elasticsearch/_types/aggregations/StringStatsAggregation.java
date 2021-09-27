@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
-public final class StringStatsAggregation extends MetricAggregationBase {
+@JsonpDeserializable
+public final class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean showDistribution;
 
@@ -46,6 +48,14 @@ public final class StringStatsAggregation extends MetricAggregationBase {
 
 		this.showDistribution = builder.showDistribution;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "string_stats";
 	}
 
 	/**
@@ -109,8 +119,8 @@ public final class StringStatsAggregation extends MetricAggregationBase {
 	/**
 	 * Json deserializer for {@link StringStatsAggregation}
 	 */
-	public static final JsonpDeserializer<StringStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer);
+	public static final JsonpDeserializer<StringStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer, Builder::build);
 
 	protected static void setupStringStatsAggregationDeserializer(
 			DelegatingDeserializer<StringStatsAggregation.Builder> op) {

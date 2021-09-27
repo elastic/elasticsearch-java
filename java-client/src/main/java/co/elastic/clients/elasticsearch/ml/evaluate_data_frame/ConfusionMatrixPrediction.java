@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,16 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixPrediction
+@JsonpDeserializable
 public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	private final String predictedClass;
 
-	private final Number count;
+	private final Integer count;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -80,7 +82,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		generator.write(this.predictedClass);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -92,7 +94,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ConfusionMatrixPrediction> {
 		private String predictedClass;
 
-		private Number count;
+		private Integer count;
 
 		/**
 		 * API name: {@code predicted_class}
@@ -105,7 +107,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -127,14 +129,14 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ConfusionMatrixPrediction}
 	 */
-	public static final JsonpDeserializer<ConfusionMatrixPrediction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ConfusionMatrixPrediction::setupConfusionMatrixPredictionDeserializer);
+	public static final JsonpDeserializer<ConfusionMatrixPrediction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ConfusionMatrixPrediction::setupConfusionMatrixPredictionDeserializer, Builder::build);
 
 	protected static void setupConfusionMatrixPredictionDeserializer(
 			DelegatingDeserializer<ConfusionMatrixPrediction.Builder> op) {
 
 		op.add(Builder::predictedClass, JsonpDeserializer.stringDeserializer(), "predicted_class");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 
 	}
 

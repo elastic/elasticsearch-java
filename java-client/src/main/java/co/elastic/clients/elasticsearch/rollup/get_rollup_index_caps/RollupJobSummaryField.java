@@ -24,19 +24,20 @@
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
+@JsonpDeserializable
 public final class RollupJobSummaryField implements JsonpSerializable {
 	private final String agg;
 
@@ -44,7 +45,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	private final String timeZone;
 
 	@Nullable
-	private final JsonValue calendarInterval;
+	private final String calendarInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +76,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public JsonValue calendarInterval() {
+	public String calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -120,7 +121,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		private String timeZone;
 
 		@Nullable
-		private JsonValue calendarInterval;
+		private String calendarInterval;
 
 		/**
 		 * API name: {@code agg}
@@ -141,7 +142,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public Builder calendarInterval(@Nullable JsonValue value) {
+		public Builder calendarInterval(@Nullable String value) {
 			this.calendarInterval = value;
 			return this;
 		}
@@ -163,15 +164,15 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupJobSummaryField}
 	 */
-	public static final JsonpDeserializer<RollupJobSummaryField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer);
+	public static final JsonpDeserializer<RollupJobSummaryField> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer, Builder::build);
 
 	protected static void setupRollupJobSummaryFieldDeserializer(
 			DelegatingDeserializer<RollupJobSummaryField.Builder> op) {
 
 		op.add(Builder::agg, JsonpDeserializer.stringDeserializer(), "agg");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-		op.add(Builder::calendarInterval, JsonpDeserializer.jsonValueDeserializer(), "calendar_interval");
+		op.add(Builder::calendarInterval, JsonpDeserializer.stringDeserializer(), "calendar_interval");
 
 	}
 

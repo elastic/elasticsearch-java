@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow.Response
+@JsonpDeserializable
 public final class FollowResponse implements JsonpSerializable {
 	private final Boolean followIndexCreated;
 
@@ -150,8 +152,8 @@ public final class FollowResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FollowResponse}
 	 */
-	public static final JsonpDeserializer<FollowResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FollowResponse::setupFollowResponseDeserializer);
+	public static final JsonpDeserializer<FollowResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FollowResponse::setupFollowResponseDeserializer, Builder::build);
 
 	protected static void setupFollowResponseDeserializer(DelegatingDeserializer<FollowResponse.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,8 +41,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Response
+@JsonpDeserializable
 public final class QueryWatchesResponse implements JsonpSerializable {
-	private final Number count;
+	private final Integer count;
 
 	private final List<QueryWatch> watches;
 
@@ -57,7 +59,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -80,7 +82,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("watches");
 		generator.writeStartArray();
@@ -98,14 +100,14 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	 * Builder for {@link QueryWatchesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<QueryWatchesResponse> {
-		private Number count;
+		private Integer count;
 
 		private List<QueryWatch> watches;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -168,14 +170,14 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link QueryWatchesResponse}
 	 */
-	public static final JsonpDeserializer<QueryWatchesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryWatchesResponse::setupQueryWatchesResponseDeserializer);
+	public static final JsonpDeserializer<QueryWatchesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, QueryWatchesResponse::setupQueryWatchesResponseDeserializer, Builder::build);
 
 	protected static void setupQueryWatchesResponseDeserializer(
 			DelegatingDeserializer<QueryWatchesResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::watches, JsonpDeserializer.arrayDeserializer(QueryWatch.DESERIALIZER), "watches");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::watches, JsonpDeserializer.arrayDeserializer(QueryWatch._DESERIALIZER), "watches");
 
 	}
 

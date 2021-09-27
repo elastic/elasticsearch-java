@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -43,6 +44,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Response
+
 public final class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	private final IndexState generatedDestIndex;
 
@@ -190,7 +192,7 @@ public final class PreviewTransformResponse<TTransform> implements JsonpSerializ
 			DelegatingDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
 			JsonpDeserializer<TTransform> tTransformDeserializer) {
 
-		op.add(Builder::generatedDestIndex, IndexState.DESERIALIZER, "generated_dest_index");
+		op.add(Builder::generatedDestIndex, IndexState._DESERIALIZER, "generated_dest_index");
 		op.add(Builder::preview, JsonpDeserializer.arrayDeserializer(tTransformDeserializer), "preview");
 
 	}

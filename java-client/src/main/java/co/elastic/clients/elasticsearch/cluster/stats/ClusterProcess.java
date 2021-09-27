@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
+@JsonpDeserializable
 public final class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;
 
@@ -141,13 +143,13 @@ public final class ClusterProcess implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterProcess}
 	 */
-	public static final JsonpDeserializer<ClusterProcess> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterProcess::setupClusterProcessDeserializer);
+	public static final JsonpDeserializer<ClusterProcess> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterProcess::setupClusterProcessDeserializer, Builder::build);
 
 	protected static void setupClusterProcessDeserializer(DelegatingDeserializer<ClusterProcess.Builder> op) {
 
-		op.add(Builder::cpu, ClusterProcessCpu.DESERIALIZER, "cpu");
-		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors.DESERIALIZER, "open_file_descriptors");
+		op.add(Builder::cpu, ClusterProcessCpu._DESERIALIZER, "cpu");
+		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors._DESERIALIZER, "open_file_descriptors");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.FilterRef
+@JsonpDeserializable
 public final class FilterRef implements JsonpSerializable {
 	private final String filterId;
 
@@ -142,13 +144,13 @@ public final class FilterRef implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FilterRef}
 	 */
-	public static final JsonpDeserializer<FilterRef> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FilterRef::setupFilterRefDeserializer);
+	public static final JsonpDeserializer<FilterRef> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FilterRef::setupFilterRefDeserializer, Builder::build);
 
 	protected static void setupFilterRefDeserializer(DelegatingDeserializer<FilterRef.Builder> op) {
 
 		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");
-		op.add(Builder::filterType, FilterType.DESERIALIZER, "filter_type");
+		op.add(Builder::filterType, FilterType._DESERIALIZER, "filter_type");
 
 	}
 

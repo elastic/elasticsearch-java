@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Detector
+@JsonpDeserializable
 public final class Detector implements JsonpSerializable {
 	@Nullable
 	private final String byFieldName;
@@ -53,7 +55,7 @@ public final class Detector implements JsonpSerializable {
 	private final String detectorDescription;
 
 	@Nullable
-	private final Number detectorIndex;
+	private final Integer detectorIndex;
 
 	@Nullable
 	private final ExcludeFrequent excludeFrequent;
@@ -131,7 +133,7 @@ public final class Detector implements JsonpSerializable {
 	 * API name: {@code detector_index}
 	 */
 	@Nullable
-	public Number detectorIndex() {
+	public Integer detectorIndex() {
 		return this.detectorIndex;
 	}
 
@@ -243,7 +245,7 @@ public final class Detector implements JsonpSerializable {
 		if (this.detectorIndex != null) {
 
 			generator.writeKey("detector_index");
-			generator.write(this.detectorIndex.doubleValue());
+			generator.write(this.detectorIndex);
 
 		}
 		if (this.excludeFrequent != null) {
@@ -298,7 +300,7 @@ public final class Detector implements JsonpSerializable {
 		private String detectorDescription;
 
 		@Nullable
-		private Number detectorIndex;
+		private Integer detectorIndex;
 
 		@Nullable
 		private ExcludeFrequent excludeFrequent;
@@ -395,7 +397,7 @@ public final class Detector implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code detector_index}
 		 */
-		public Builder detectorIndex(@Nullable Number value) {
+		public Builder detectorIndex(@Nullable Integer value) {
 			this.detectorIndex = value;
 			return this;
 		}
@@ -489,16 +491,16 @@ public final class Detector implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Detector}
 	 */
-	public static final JsonpDeserializer<Detector> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Detector::setupDetectorDeserializer);
+	public static final JsonpDeserializer<Detector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Detector::setupDetectorDeserializer, Builder::build);
 
 	protected static void setupDetectorDeserializer(DelegatingDeserializer<Detector.Builder> op) {
 
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
-		op.add(Builder::customRules, JsonpDeserializer.arrayDeserializer(DetectionRule.DESERIALIZER), "custom_rules");
+		op.add(Builder::customRules, JsonpDeserializer.arrayDeserializer(DetectionRule._DESERIALIZER), "custom_rules");
 		op.add(Builder::detectorDescription, JsonpDeserializer.stringDeserializer(), "detector_description");
-		op.add(Builder::detectorIndex, JsonpDeserializer.numberDeserializer(), "detector_index");
-		op.add(Builder::excludeFrequent, ExcludeFrequent.DESERIALIZER, "exclude_frequent");
+		op.add(Builder::detectorIndex, JsonpDeserializer.integerDeserializer(), "detector_index");
+		op.add(Builder::excludeFrequent, ExcludeFrequent._DESERIALIZER, "exclude_frequent");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
 		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");

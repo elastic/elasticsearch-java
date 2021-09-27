@@ -24,20 +24,22 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SamplerAggregation
-public final class SamplerAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number shardSize;
+	private final Integer shardSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -49,10 +51,18 @@ public final class SamplerAggregation extends BucketAggregationBase {
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "sampler";
+	}
+
+	/**
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Number shardSize() {
+	public Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -62,7 +72,7 @@ public final class SamplerAggregation extends BucketAggregationBase {
 		if (this.shardSize != null) {
 
 			generator.writeKey("shard_size");
-			generator.write(this.shardSize.doubleValue());
+			generator.write(this.shardSize);
 
 		}
 
@@ -77,12 +87,12 @@ public final class SamplerAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<SamplerAggregation> {
 		@Nullable
-		private Number shardSize;
+		private Integer shardSize;
 
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Number value) {
+		public Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -109,12 +119,12 @@ public final class SamplerAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link SamplerAggregation}
 	 */
-	public static final JsonpDeserializer<SamplerAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SamplerAggregation::setupSamplerAggregationDeserializer);
+	public static final JsonpDeserializer<SamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SamplerAggregation::setupSamplerAggregationDeserializer, Builder::build);
 
 	protected static void setupSamplerAggregationDeserializer(DelegatingDeserializer<SamplerAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::shardSize, JsonpDeserializer.numberDeserializer(), "shard_size");
+		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 
 	}
 

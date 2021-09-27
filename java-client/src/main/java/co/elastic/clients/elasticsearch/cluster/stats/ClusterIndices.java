@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch._types.QueryCacheStats;
 import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,10 +47,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndices
+@JsonpDeserializable
 public final class ClusterIndices implements JsonpSerializable {
 	private final CompletionStats completion;
 
-	private final Number count;
+	private final Long count;
 
 	private final DocStats docs;
 
@@ -102,7 +104,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -202,7 +204,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		this.completion.serialize(generator, mapper);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("docs");
 		this.docs.serialize(generator, mapper);
@@ -250,7 +252,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ClusterIndices> {
 		private CompletionStats completion;
 
-		private Number count;
+		private Long count;
 
 		private DocStats docs;
 
@@ -295,7 +297,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -512,22 +514,22 @@ public final class ClusterIndices implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterIndices}
 	 */
-	public static final JsonpDeserializer<ClusterIndices> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIndices::setupClusterIndicesDeserializer);
+	public static final JsonpDeserializer<ClusterIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterIndices::setupClusterIndicesDeserializer, Builder::build);
 
 	protected static void setupClusterIndicesDeserializer(DelegatingDeserializer<ClusterIndices.Builder> op) {
 
-		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
-		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
-		op.add(Builder::queryCache, QueryCacheStats.DESERIALIZER, "query_cache");
-		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
-		op.add(Builder::shards, ClusterIndicesShards.DESERIALIZER, "shards");
-		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
-		op.add(Builder::mappings, FieldTypesMappings.DESERIALIZER, "mappings");
-		op.add(Builder::analysis, CharFilterTypes.DESERIALIZER, "analysis");
-		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(IndicesVersions.DESERIALIZER), "versions");
+		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
+		op.add(Builder::queryCache, QueryCacheStats._DESERIALIZER, "query_cache");
+		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
+		op.add(Builder::shards, ClusterIndicesShards._DESERIALIZER, "shards");
+		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
+		op.add(Builder::mappings, FieldTypesMappings._DESERIALIZER, "mappings");
+		op.add(Builder::analysis, CharFilterTypes._DESERIALIZER, "analysis");
+		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(IndicesVersions._DESERIALIZER), "versions");
 
 	}
 

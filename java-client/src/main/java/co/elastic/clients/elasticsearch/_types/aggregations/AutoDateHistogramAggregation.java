@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,9 +41,10 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AutoDateHistogramAggregation
-public final class AutoDateHistogramAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class AutoDateHistogramAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number buckets;
+	private final Integer buckets;
 
 	@Nullable
 	private final String field;
@@ -63,7 +65,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	@Nullable
 	private final String timeZone;
@@ -86,10 +88,18 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "auto_date_histogram";
+	}
+
+	/**
 	 * API name: {@code buckets}
 	 */
 	@Nullable
-	public Number buckets() {
+	public Integer buckets() {
 		return this.buckets;
 	}
 
@@ -145,7 +155,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
@@ -163,7 +173,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		if (this.buckets != null) {
 
 			generator.writeKey("buckets");
-			generator.write(this.buckets.doubleValue());
+			generator.write(this.buckets);
 
 		}
 		if (this.field != null) {
@@ -231,7 +241,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<AutoDateHistogramAggregation> {
 		@Nullable
-		private Number buckets;
+		private Integer buckets;
 
 		@Nullable
 		private String field;
@@ -252,7 +262,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		@Nullable
 		private String timeZone;
@@ -260,7 +270,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code buckets}
 		 */
-		public Builder buckets(@Nullable Number value) {
+		public Builder buckets(@Nullable Integer value) {
 			this.buckets = value;
 			return this;
 		}
@@ -327,7 +337,7 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -362,19 +372,19 @@ public final class AutoDateHistogramAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link AutoDateHistogramAggregation}
 	 */
-	public static final JsonpDeserializer<AutoDateHistogramAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer);
+	public static final JsonpDeserializer<AutoDateHistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, AutoDateHistogramAggregation::setupAutoDateHistogramAggregationDeserializer, Builder::build);
 
 	protected static void setupAutoDateHistogramAggregationDeserializer(
 			DelegatingDeserializer<AutoDateHistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::buckets, JsonpDeserializer.numberDeserializer(), "buckets");
+		op.add(Builder::buckets, JsonpDeserializer.integerDeserializer(), "buckets");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::minimumInterval, MinimumInterval.DESERIALIZER, "minimum_interval");
+		op.add(Builder::minimumInterval, MinimumInterval._DESERIALIZER, "minimum_interval");
 		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.stringDeserializer(), "offset");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 

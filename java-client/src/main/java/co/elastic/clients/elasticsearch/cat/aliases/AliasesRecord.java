@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.aliases;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.aliases.AliasesRecord
+@JsonpDeserializable
 public final class AliasesRecord implements JsonpSerializable {
 	@Nullable
 	private final String alias;
@@ -47,10 +49,10 @@ public final class AliasesRecord implements JsonpSerializable {
 	private final String filter;
 
 	@Nullable
-	private final String routing_index;
+	private final String routingIndex;
 
 	@Nullable
-	private final String routing_search;
+	private final String routingSearch;
 
 	@Nullable
 	private final String isWriteIndex;
@@ -62,8 +64,8 @@ public final class AliasesRecord implements JsonpSerializable {
 		this.alias = builder.alias;
 		this.index = builder.index;
 		this.filter = builder.filter;
-		this.routing_index = builder.routing_index;
-		this.routing_search = builder.routing_search;
+		this.routingIndex = builder.routingIndex;
+		this.routingSearch = builder.routingSearch;
 		this.isWriteIndex = builder.isWriteIndex;
 
 	}
@@ -104,8 +106,8 @@ public final class AliasesRecord implements JsonpSerializable {
 	 * API name: {@code routing.index}
 	 */
 	@Nullable
-	public String routing_index() {
-		return this.routing_index;
+	public String routingIndex() {
+		return this.routingIndex;
 	}
 
 	/**
@@ -114,8 +116,8 @@ public final class AliasesRecord implements JsonpSerializable {
 	 * API name: {@code routing.search}
 	 */
 	@Nullable
-	public String routing_search() {
-		return this.routing_search;
+	public String routingSearch() {
+		return this.routingSearch;
 	}
 
 	/**
@@ -157,16 +159,16 @@ public final class AliasesRecord implements JsonpSerializable {
 			generator.write(this.filter);
 
 		}
-		if (this.routing_index != null) {
+		if (this.routingIndex != null) {
 
 			generator.writeKey("routing.index");
-			generator.write(this.routing_index);
+			generator.write(this.routingIndex);
 
 		}
-		if (this.routing_search != null) {
+		if (this.routingSearch != null) {
 
 			generator.writeKey("routing.search");
-			generator.write(this.routing_search);
+			generator.write(this.routingSearch);
 
 		}
 		if (this.isWriteIndex != null) {
@@ -194,10 +196,10 @@ public final class AliasesRecord implements JsonpSerializable {
 		private String filter;
 
 		@Nullable
-		private String routing_index;
+		private String routingIndex;
 
 		@Nullable
-		private String routing_search;
+		private String routingSearch;
 
 		@Nullable
 		private String isWriteIndex;
@@ -237,8 +239,8 @@ public final class AliasesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code routing.index}
 		 */
-		public Builder routing_index(@Nullable String value) {
-			this.routing_index = value;
+		public Builder routingIndex(@Nullable String value) {
+			this.routingIndex = value;
 			return this;
 		}
 
@@ -247,8 +249,8 @@ public final class AliasesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code routing.search}
 		 */
-		public Builder routing_search(@Nullable String value) {
-			this.routing_search = value;
+		public Builder routingSearch(@Nullable String value) {
+			this.routingSearch = value;
 			return this;
 		}
 
@@ -279,17 +281,16 @@ public final class AliasesRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AliasesRecord}
 	 */
-	public static final JsonpDeserializer<AliasesRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AliasesRecord::setupAliasesRecordDeserializer);
+	public static final JsonpDeserializer<AliasesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AliasesRecord::setupAliasesRecordDeserializer, Builder::build);
 
 	protected static void setupAliasesRecordDeserializer(DelegatingDeserializer<AliasesRecord.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias", "a");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
 		op.add(Builder::filter, JsonpDeserializer.stringDeserializer(), "filter", "f", "fi");
-		op.add(Builder::routing_index, JsonpDeserializer.stringDeserializer(), "routing.index", "ri", "routingIndex");
-		op.add(Builder::routing_search, JsonpDeserializer.stringDeserializer(), "routing.search", "rs",
-				"routingSearch");
+		op.add(Builder::routingIndex, JsonpDeserializer.stringDeserializer(), "routing.index", "ri", "routingIndex");
+		op.add(Builder::routingSearch, JsonpDeserializer.stringDeserializer(), "routing.search", "rs", "routingSearch");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.stringDeserializer(), "is_write_index", "w", "isWriteIndex");
 
 	}

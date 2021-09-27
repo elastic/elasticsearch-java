@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: slm.execute_lifecycle.Response
+@JsonpDeserializable
 public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	private final String snapshotName;
 
@@ -103,8 +105,8 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecuteLifecycleResponse}
 	 */
-	public static final JsonpDeserializer<ExecuteLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecuteLifecycleResponse::setupExecuteLifecycleResponseDeserializer);
+	public static final JsonpDeserializer<ExecuteLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecuteLifecycleResponse::setupExecuteLifecycleResponseDeserializer, Builder::build);
 
 	protected static void setupExecuteLifecycleResponseDeserializer(
 			DelegatingDeserializer<ExecuteLifecycleResponse.Builder> op) {

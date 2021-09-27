@@ -24,7 +24,7 @@ import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 
 import jakarta.json.stream.JsonGenerator;
@@ -33,7 +33,7 @@ import java.util.Objects;
 /**
  * A concrete class that both inherits a parent class and has child classes
  */
-public class ChildClass extends BaseClass implements ToJsonp {
+public class ChildClass extends BaseClass implements JsonpSerializable {
 
     private final String childField;
 

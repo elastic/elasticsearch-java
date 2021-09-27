@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,14 +32,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStartStatus
+@JsonpDeserializable
 public final class RecoveryStartStatus implements JsonpSerializable {
-	private final Number checkIndexTime;
+	private final Long checkIndexTime;
 
 	private final String totalTimeInMillis;
 
@@ -54,7 +56,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	/**
 	 * API name: {@code check_index_time}
 	 */
-	public Number checkIndexTime() {
+	public Long checkIndexTime() {
 		return this.checkIndexTime;
 	}
 
@@ -77,7 +79,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("check_index_time");
-		generator.write(this.checkIndexTime.doubleValue());
+		generator.write(this.checkIndexTime);
 
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
@@ -90,14 +92,14 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	 * Builder for {@link RecoveryStartStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryStartStatus> {
-		private Number checkIndexTime;
+		private Long checkIndexTime;
 
 		private String totalTimeInMillis;
 
 		/**
 		 * API name: {@code check_index_time}
 		 */
-		public Builder checkIndexTime(Number value) {
+		public Builder checkIndexTime(Long value) {
 			this.checkIndexTime = value;
 			return this;
 		}
@@ -127,12 +129,12 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RecoveryStartStatus}
 	 */
-	public static final JsonpDeserializer<RecoveryStartStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer);
+	public static final JsonpDeserializer<RecoveryStartStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RecoveryStartStatus::setupRecoveryStartStatusDeserializer, Builder::build);
 
 	protected static void setupRecoveryStartStatusDeserializer(DelegatingDeserializer<RecoveryStartStatus.Builder> op) {
 
-		op.add(Builder::checkIndexTime, JsonpDeserializer.numberDeserializer(), "check_index_time");
+		op.add(Builder::checkIndexTime, JsonpDeserializer.longDeserializer(), "check_index_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
 
 	}

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -38,6 +39,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultInput
+@JsonpDeserializable
 public final class ExecutionResultInput implements JsonpSerializable {
 	private final Map<String, JsonData> payload;
 
@@ -168,15 +170,15 @@ public final class ExecutionResultInput implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ExecutionResultInput}
 	 */
-	public static final JsonpDeserializer<ExecutionResultInput> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutionResultInput::setupExecutionResultInputDeserializer);
+	public static final JsonpDeserializer<ExecutionResultInput> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecutionResultInput::setupExecutionResultInputDeserializer, Builder::build);
 
 	protected static void setupExecutionResultInputDeserializer(
 			DelegatingDeserializer<ExecutionResultInput.Builder> op) {
 
-		op.add(Builder::payload, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "payload");
-		op.add(Builder::status, ActionStatusOptions.DESERIALIZER, "status");
-		op.add(Builder::type, InputType.DESERIALIZER, "type");
+		op.add(Builder::payload, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "payload");
+		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::type, InputType._DESERIALIZER, "type");
 
 	}
 

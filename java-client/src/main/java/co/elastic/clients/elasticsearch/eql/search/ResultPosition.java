@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.eql.search;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ResultPosition implements StringEnum {
 	/**
 	 * Return the most recent matches, similar to the Unix tail command.
@@ -46,6 +48,6 @@ public enum ResultPosition implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ResultPosition> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ResultPosition> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ResultPosition.values());
 }

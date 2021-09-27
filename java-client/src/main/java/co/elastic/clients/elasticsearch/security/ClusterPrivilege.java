@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ClusterPrivilege implements StringEnum {
 	All("all"), CancelTask("cancel_task"), CreateSnapshot("create_snapshot"), GrantApiKey("grant_api_key"), Manage(
 			"manage"), ManageApiKey("manage_api_key"), ManageCcr("manage_ccr"), ManageIlm(
@@ -63,6 +65,6 @@ public enum ClusterPrivilege implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ClusterPrivilege> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ClusterPrivilege> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ClusterPrivilege.values());
 }

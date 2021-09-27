@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,34 +32,35 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.DataPathStats
+@JsonpDeserializable
 public final class DataPathStats implements JsonpSerializable {
 	private final String available;
 
-	private final Number availableInBytes;
+	private final Long availableInBytes;
 
 	private final String diskQueue;
 
-	private final Number diskReads;
+	private final Long diskReads;
 
 	private final String diskReadSize;
 
-	private final Number diskReadSizeInBytes;
+	private final Long diskReadSizeInBytes;
 
-	private final Number diskWrites;
+	private final Long diskWrites;
 
 	private final String diskWriteSize;
 
-	private final Number diskWriteSizeInBytes;
+	private final Long diskWriteSizeInBytes;
 
 	private final String free;
 
-	private final Number freeInBytes;
+	private final Long freeInBytes;
 
 	private final String mount;
 
@@ -66,7 +68,7 @@ public final class DataPathStats implements JsonpSerializable {
 
 	private final String total;
 
-	private final Number totalInBytes;
+	private final Long totalInBytes;
 
 	private final String type;
 
@@ -103,7 +105,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Number availableInBytes() {
+	public Long availableInBytes() {
 		return this.availableInBytes;
 	}
 
@@ -117,7 +119,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code disk_reads}
 	 */
-	public Number diskReads() {
+	public Long diskReads() {
 		return this.diskReads;
 	}
 
@@ -131,14 +133,14 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code disk_read_size_in_bytes}
 	 */
-	public Number diskReadSizeInBytes() {
+	public Long diskReadSizeInBytes() {
 		return this.diskReadSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code disk_writes}
 	 */
-	public Number diskWrites() {
+	public Long diskWrites() {
 		return this.diskWrites;
 	}
 
@@ -152,7 +154,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code disk_write_size_in_bytes}
 	 */
-	public Number diskWriteSizeInBytes() {
+	public Long diskWriteSizeInBytes() {
 		return this.diskWriteSizeInBytes;
 	}
 
@@ -166,7 +168,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Number freeInBytes() {
+	public Long freeInBytes() {
 		return this.freeInBytes;
 	}
 
@@ -194,7 +196,7 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public Long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -220,34 +222,34 @@ public final class DataPathStats implements JsonpSerializable {
 		generator.write(this.available);
 
 		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes.doubleValue());
+		generator.write(this.availableInBytes);
 
 		generator.writeKey("disk_queue");
 		generator.write(this.diskQueue);
 
 		generator.writeKey("disk_reads");
-		generator.write(this.diskReads.doubleValue());
+		generator.write(this.diskReads);
 
 		generator.writeKey("disk_read_size");
 		generator.write(this.diskReadSize);
 
 		generator.writeKey("disk_read_size_in_bytes");
-		generator.write(this.diskReadSizeInBytes.doubleValue());
+		generator.write(this.diskReadSizeInBytes);
 
 		generator.writeKey("disk_writes");
-		generator.write(this.diskWrites.doubleValue());
+		generator.write(this.diskWrites);
 
 		generator.writeKey("disk_write_size");
 		generator.write(this.diskWriteSize);
 
 		generator.writeKey("disk_write_size_in_bytes");
-		generator.write(this.diskWriteSizeInBytes.doubleValue());
+		generator.write(this.diskWriteSizeInBytes);
 
 		generator.writeKey("free");
 		generator.write(this.free);
 
 		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes.doubleValue());
+		generator.write(this.freeInBytes);
 
 		generator.writeKey("mount");
 		generator.write(this.mount);
@@ -259,7 +261,7 @@ public final class DataPathStats implements JsonpSerializable {
 		generator.write(this.total);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -274,25 +276,25 @@ public final class DataPathStats implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<DataPathStats> {
 		private String available;
 
-		private Number availableInBytes;
+		private Long availableInBytes;
 
 		private String diskQueue;
 
-		private Number diskReads;
+		private Long diskReads;
 
 		private String diskReadSize;
 
-		private Number diskReadSizeInBytes;
+		private Long diskReadSizeInBytes;
 
-		private Number diskWrites;
+		private Long diskWrites;
 
 		private String diskWriteSize;
 
-		private Number diskWriteSizeInBytes;
+		private Long diskWriteSizeInBytes;
 
 		private String free;
 
-		private Number freeInBytes;
+		private Long freeInBytes;
 
 		private String mount;
 
@@ -300,7 +302,7 @@ public final class DataPathStats implements JsonpSerializable {
 
 		private String total;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		private String type;
 
@@ -315,7 +317,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Number value) {
+		public Builder availableInBytes(Long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -331,7 +333,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_reads}
 		 */
-		public Builder diskReads(Number value) {
+		public Builder diskReads(Long value) {
 			this.diskReads = value;
 			return this;
 		}
@@ -347,7 +349,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_read_size_in_bytes}
 		 */
-		public Builder diskReadSizeInBytes(Number value) {
+		public Builder diskReadSizeInBytes(Long value) {
 			this.diskReadSizeInBytes = value;
 			return this;
 		}
@@ -355,7 +357,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_writes}
 		 */
-		public Builder diskWrites(Number value) {
+		public Builder diskWrites(Long value) {
 			this.diskWrites = value;
 			return this;
 		}
@@ -371,7 +373,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code disk_write_size_in_bytes}
 		 */
-		public Builder diskWriteSizeInBytes(Number value) {
+		public Builder diskWriteSizeInBytes(Long value) {
 			this.diskWriteSizeInBytes = value;
 			return this;
 		}
@@ -387,7 +389,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Number value) {
+		public Builder freeInBytes(Long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -419,7 +421,7 @@ public final class DataPathStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(Long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -449,26 +451,26 @@ public final class DataPathStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DataPathStats}
 	 */
-	public static final JsonpDeserializer<DataPathStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataPathStats::setupDataPathStatsDeserializer);
+	public static final JsonpDeserializer<DataPathStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataPathStats::setupDataPathStatsDeserializer, Builder::build);
 
 	protected static void setupDataPathStatsDeserializer(DelegatingDeserializer<DataPathStats.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
-		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
+		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
 		op.add(Builder::diskQueue, JsonpDeserializer.stringDeserializer(), "disk_queue");
-		op.add(Builder::diskReads, JsonpDeserializer.numberDeserializer(), "disk_reads");
+		op.add(Builder::diskReads, JsonpDeserializer.longDeserializer(), "disk_reads");
 		op.add(Builder::diskReadSize, JsonpDeserializer.stringDeserializer(), "disk_read_size");
-		op.add(Builder::diskReadSizeInBytes, JsonpDeserializer.numberDeserializer(), "disk_read_size_in_bytes");
-		op.add(Builder::diskWrites, JsonpDeserializer.numberDeserializer(), "disk_writes");
+		op.add(Builder::diskReadSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_read_size_in_bytes");
+		op.add(Builder::diskWrites, JsonpDeserializer.longDeserializer(), "disk_writes");
 		op.add(Builder::diskWriteSize, JsonpDeserializer.stringDeserializer(), "disk_write_size");
-		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.numberDeserializer(), "disk_write_size_in_bytes");
+		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_write_size_in_bytes");
 		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
-		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
 		op.add(Builder::mount, JsonpDeserializer.stringDeserializer(), "mount");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

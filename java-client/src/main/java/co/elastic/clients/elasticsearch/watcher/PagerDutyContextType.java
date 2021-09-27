@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum PagerDutyContextType implements StringEnum {
 	Link("link"), Image("image");
 
@@ -39,6 +41,6 @@ public enum PagerDutyContextType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<PagerDutyContextType> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<PagerDutyContextType> _DESERIALIZER = new StringEnum.Deserializer<>(
 			PagerDutyContextType.values());
 }

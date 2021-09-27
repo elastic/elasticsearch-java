@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventResult
+@JsonpDeserializable
 public final class TriggerEventResult implements JsonpSerializable {
 	private final TriggerEvent manual;
 
@@ -157,12 +159,12 @@ public final class TriggerEventResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TriggerEventResult}
 	 */
-	public static final JsonpDeserializer<TriggerEventResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer);
+	public static final JsonpDeserializer<TriggerEventResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer, Builder::build);
 
 	protected static void setupTriggerEventResultDeserializer(DelegatingDeserializer<TriggerEventResult.Builder> op) {
 
-		op.add(Builder::manual, TriggerEvent.DESERIALIZER, "manual");
+		op.add(Builder::manual, TriggerEvent._DESERIALIZER, "manual");
 		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

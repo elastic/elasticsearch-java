@@ -26,15 +26,15 @@ package co.elastic.clients.elasticsearch.rollup.get_jobs;
 import co.elastic.clients.elasticsearch.rollup.FieldMetric;
 import co.elastic.clients.elasticsearch.rollup.Groupings;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +44,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobConfiguration
+@JsonpDeserializable
 public final class RollupJobConfiguration implements JsonpSerializable {
 	private final String cron;
 
@@ -55,11 +56,11 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 
 	private final List<FieldMetric> metrics;
 
-	private final Number pageSize;
+	private final Long pageSize;
 
 	private final String rollupIndex;
 
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -114,7 +115,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * API name: {@code page_size}
 	 */
-	public Number pageSize() {
+	public Long pageSize() {
 		return this.pageSize;
 	}
 
@@ -128,7 +129,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * API name: {@code timeout}
 	 */
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -164,7 +165,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		generator.writeEnd();
 
 		generator.writeKey("page_size");
-		generator.write(this.pageSize.doubleValue());
+		generator.write(this.pageSize);
 
 		generator.writeKey("rollup_index");
 		generator.write(this.rollupIndex);
@@ -190,11 +191,11 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 
 		private List<FieldMetric> metrics;
 
-		private Number pageSize;
+		private Long pageSize;
 
 		private String rollupIndex;
 
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * API name: {@code cron}
@@ -279,7 +280,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * API name: {@code page_size}
 		 */
-		public Builder pageSize(Number value) {
+		public Builder pageSize(Long value) {
 			this.pageSize = value;
 			return this;
 		}
@@ -295,7 +296,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(JsonValue value) {
+		public Builder timeout(String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -317,20 +318,20 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RollupJobConfiguration}
 	 */
-	public static final JsonpDeserializer<RollupJobConfiguration> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer);
+	public static final JsonpDeserializer<RollupJobConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RollupJobConfiguration::setupRollupJobConfigurationDeserializer, Builder::build);
 
 	protected static void setupRollupJobConfigurationDeserializer(
 			DelegatingDeserializer<RollupJobConfiguration.Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
-		op.add(Builder::groups, Groupings.DESERIALIZER, "groups");
+		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
-		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric.DESERIALIZER), "metrics");
-		op.add(Builder::pageSize, JsonpDeserializer.numberDeserializer(), "page_size");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric._DESERIALIZER), "metrics");
+		op.add(Builder::pageSize, JsonpDeserializer.longDeserializer(), "page_size");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 

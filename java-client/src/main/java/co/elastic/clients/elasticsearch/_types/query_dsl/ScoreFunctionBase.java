@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,18 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScoreFunctionBase
+
 public abstract class ScoreFunctionBase implements JsonpSerializable {
 	@Nullable
 	private final Query filter;
 
 	@Nullable
-	private final Number weight;
+	private final Double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +67,7 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 	 * API name: {@code weight}
 	 */
 	@Nullable
-	public Number weight() {
+	public Double weight() {
 		return this.weight;
 	}
 
@@ -89,7 +91,7 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 		if (this.weight != null) {
 
 			generator.writeKey("weight");
-			generator.write(this.weight.doubleValue());
+			generator.write(this.weight);
 
 		}
 
@@ -100,7 +102,7 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 		private Query filter;
 
 		@Nullable
-		private Number weight;
+		private Double weight;
 
 		/**
 		 * API name: {@code filter}
@@ -120,7 +122,7 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 		/**
 		 * API name: {@code weight}
 		 */
-		public BuilderT weight(@Nullable Number value) {
+		public BuilderT weight(@Nullable Double value) {
 			this.weight = value;
 			return self();
 		}
@@ -133,8 +135,8 @@ public abstract class ScoreFunctionBase implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScoreFunctionBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::filter, Query.DESERIALIZER, "filter");
-		op.add(AbstractBuilder::weight, JsonpDeserializer.numberDeserializer(), "weight");
+		op.add(AbstractBuilder::filter, Query._DESERIALIZER, "filter");
+		op.add(AbstractBuilder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
 	}
 

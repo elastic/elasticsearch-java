@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +52,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup_search.Request
+@JsonpDeserializable
 public final class RollupSearchRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
@@ -70,7 +72,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	private final Query query;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -148,7 +150,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -184,7 +186,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -214,7 +216,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		private Query query;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * The indices or index-pattern(s) (containing rollup or regular data) that
@@ -332,7 +334,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -354,14 +356,14 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link RollupSearchRequest}
 	 */
-	public static final JsonpDeserializer<RollupSearchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer);
+	public static final JsonpDeserializer<RollupSearchRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RollupSearchRequest::setupRollupSearchRequestDeserializer, Builder::build);
 
 	protected static void setupRollupSearchRequestDeserializer(DelegatingDeserializer<RollupSearchRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation.DESERIALIZER), "aggs");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 
 	}
 

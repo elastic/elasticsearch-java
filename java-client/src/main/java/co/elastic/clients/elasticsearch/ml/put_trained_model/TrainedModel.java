@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.TrainedModel
+@JsonpDeserializable
 public final class TrainedModel implements JsonpSerializable {
 	@Nullable
 	private final TrainedModelTree tree;
@@ -225,14 +227,14 @@ public final class TrainedModel implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModel}
 	 */
-	public static final JsonpDeserializer<TrainedModel> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModel::setupTrainedModelDeserializer);
+	public static final JsonpDeserializer<TrainedModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TrainedModel::setupTrainedModelDeserializer, Builder::build);
 
 	protected static void setupTrainedModelDeserializer(DelegatingDeserializer<TrainedModel.Builder> op) {
 
-		op.add(Builder::tree, TrainedModelTree.DESERIALIZER, "tree");
-		op.add(Builder::treeNode, TrainedModelTreeNode.DESERIALIZER, "tree_node");
-		op.add(Builder::ensemble, Ensemble.DESERIALIZER, "ensemble");
+		op.add(Builder::tree, TrainedModelTree._DESERIALIZER, "tree");
+		op.add(Builder::treeNode, TrainedModelTreeNode._DESERIALIZER, "tree_node");
+		op.add(Builder::ensemble, Ensemble._DESERIALIZER, "ensemble");
 
 	}
 

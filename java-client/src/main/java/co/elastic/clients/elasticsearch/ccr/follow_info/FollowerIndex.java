@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr.follow_info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.FollowerIndex
+@JsonpDeserializable
 public final class FollowerIndex implements JsonpSerializable {
 	private final String followerIndex;
 
@@ -211,16 +213,16 @@ public final class FollowerIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FollowerIndex}
 	 */
-	public static final JsonpDeserializer<FollowerIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FollowerIndex::setupFollowerIndexDeserializer);
+	public static final JsonpDeserializer<FollowerIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FollowerIndex::setupFollowerIndexDeserializer, Builder::build);
 
 	protected static void setupFollowerIndexDeserializer(DelegatingDeserializer<FollowerIndex.Builder> op) {
 
 		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
-		op.add(Builder::parameters, FollowerIndexParameters.DESERIALIZER, "parameters");
+		op.add(Builder::parameters, FollowerIndexParameters._DESERIALIZER, "parameters");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
-		op.add(Builder::status, FollowerIndexStatus.DESERIALIZER, "status");
+		op.add(Builder::status, FollowerIndexStatus._DESERIALIZER, "status");
 
 	}
 

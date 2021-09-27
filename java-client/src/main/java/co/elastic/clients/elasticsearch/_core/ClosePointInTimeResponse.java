@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,15 +33,16 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.close_point_in_time.Response
+@JsonpDeserializable
 public final class ClosePointInTimeResponse implements JsonpSerializable {
 	private final Boolean succeeded;
 
-	private final Number numFreed;
+	private final Integer numFreed;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class ClosePointInTimeResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code num_freed}
 	 */
-	public Number numFreed() {
+	public Integer numFreed() {
 		return this.numFreed;
 	}
 
@@ -80,7 +82,7 @@ public final class ClosePointInTimeResponse implements JsonpSerializable {
 		generator.write(this.succeeded);
 
 		generator.writeKey("num_freed");
-		generator.write(this.numFreed.doubleValue());
+		generator.write(this.numFreed);
 
 	}
 
@@ -92,7 +94,7 @@ public final class ClosePointInTimeResponse implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<ClosePointInTimeResponse> {
 		private Boolean succeeded;
 
-		private Number numFreed;
+		private Integer numFreed;
 
 		/**
 		 * API name: {@code succeeded}
@@ -105,7 +107,7 @@ public final class ClosePointInTimeResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code num_freed}
 		 */
-		public Builder numFreed(Number value) {
+		public Builder numFreed(Integer value) {
 			this.numFreed = value;
 			return this;
 		}
@@ -127,14 +129,14 @@ public final class ClosePointInTimeResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClosePointInTimeResponse}
 	 */
-	public static final JsonpDeserializer<ClosePointInTimeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClosePointInTimeResponse::setupClosePointInTimeResponseDeserializer);
+	public static final JsonpDeserializer<ClosePointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClosePointInTimeResponse::setupClosePointInTimeResponseDeserializer, Builder::build);
 
 	protected static void setupClosePointInTimeResponseDeserializer(
 			DelegatingDeserializer<ClosePointInTimeResponse.Builder> op) {
 
 		op.add(Builder::succeeded, JsonpDeserializer.booleanDeserializer(), "succeeded");
-		op.add(Builder::numFreed, JsonpDeserializer.numberDeserializer(), "num_freed");
+		op.add(Builder::numFreed, JsonpDeserializer.integerDeserializer(), "num_freed");
 
 	}
 

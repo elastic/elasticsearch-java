@@ -24,21 +24,22 @@
 package co.elastic.clients.elasticsearch._core.reindex;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.RemoteSource
+@JsonpDeserializable
 public final class RemoteSource implements JsonpSerializable {
-	private final JsonValue connectTimeout;
+	private final String connectTimeout;
 
 	private final String host;
 
@@ -46,7 +47,7 @@ public final class RemoteSource implements JsonpSerializable {
 
 	private final String password;
 
-	private final JsonValue socketTimeout;
+	private final String socketTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,7 +64,7 @@ public final class RemoteSource implements JsonpSerializable {
 	/**
 	 * API name: {@code connect_timeout}
 	 */
-	public JsonValue connectTimeout() {
+	public String connectTimeout() {
 		return this.connectTimeout;
 	}
 
@@ -91,7 +92,7 @@ public final class RemoteSource implements JsonpSerializable {
 	/**
 	 * API name: {@code socket_timeout}
 	 */
-	public JsonValue socketTimeout() {
+	public String socketTimeout() {
 		return this.socketTimeout;
 	}
 
@@ -129,7 +130,7 @@ public final class RemoteSource implements JsonpSerializable {
 	 * Builder for {@link RemoteSource}.
 	 */
 	public static class Builder implements ObjectBuilder<RemoteSource> {
-		private JsonValue connectTimeout;
+		private String connectTimeout;
 
 		private String host;
 
@@ -137,12 +138,12 @@ public final class RemoteSource implements JsonpSerializable {
 
 		private String password;
 
-		private JsonValue socketTimeout;
+		private String socketTimeout;
 
 		/**
 		 * API name: {@code connect_timeout}
 		 */
-		public Builder connectTimeout(JsonValue value) {
+		public Builder connectTimeout(String value) {
 			this.connectTimeout = value;
 			return this;
 		}
@@ -174,7 +175,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * API name: {@code socket_timeout}
 		 */
-		public Builder socketTimeout(JsonValue value) {
+		public Builder socketTimeout(String value) {
 			this.socketTimeout = value;
 			return this;
 		}
@@ -196,16 +197,16 @@ public final class RemoteSource implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RemoteSource}
 	 */
-	public static final JsonpDeserializer<RemoteSource> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RemoteSource::setupRemoteSourceDeserializer);
+	public static final JsonpDeserializer<RemoteSource> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RemoteSource::setupRemoteSourceDeserializer, Builder::build);
 
 	protected static void setupRemoteSourceDeserializer(DelegatingDeserializer<RemoteSource.Builder> op) {
 
-		op.add(Builder::connectTimeout, JsonpDeserializer.jsonValueDeserializer(), "connect_timeout");
+		op.add(Builder::connectTimeout, JsonpDeserializer.stringDeserializer(), "connect_timeout");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
-		op.add(Builder::socketTimeout, JsonpDeserializer.jsonValueDeserializer(), "socket_timeout");
+		op.add(Builder::socketTimeout, JsonpDeserializer.stringDeserializer(), "socket_timeout");
 
 	}
 

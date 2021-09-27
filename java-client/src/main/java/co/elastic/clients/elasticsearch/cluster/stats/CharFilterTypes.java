@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.CharFilterTypes
+@JsonpDeserializable
 public final class CharFilterTypes implements JsonpSerializable {
 	private final List<FieldTypes> charFilterTypes;
 
@@ -573,24 +575,24 @@ public final class CharFilterTypes implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CharFilterTypes}
 	 */
-	public static final JsonpDeserializer<CharFilterTypes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CharFilterTypes::setupCharFilterTypesDeserializer);
+	public static final JsonpDeserializer<CharFilterTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CharFilterTypes::setupCharFilterTypesDeserializer, Builder::build);
 
 	protected static void setupCharFilterTypesDeserializer(DelegatingDeserializer<CharFilterTypes.Builder> op) {
 
-		op.add(Builder::charFilterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::charFilterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"char_filter_types");
-		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"tokenizer_types");
-		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "filter_types");
-		op.add(Builder::analyzerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER), "analyzer_types");
-		op.add(Builder::builtInCharFilters, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "filter_types");
+		op.add(Builder::analyzerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "analyzer_types");
+		op.add(Builder::builtInCharFilters, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_char_filters");
-		op.add(Builder::builtInTokenizers, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::builtInTokenizers, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_tokenizers");
-		op.add(Builder::builtInFilters, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::builtInFilters, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_filters");
-		op.add(Builder::builtInAnalyzers, JsonpDeserializer.arrayDeserializer(FieldTypes.DESERIALIZER),
+		op.add(Builder::builtInAnalyzers, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"built_in_analyzers");
 
 	}

@@ -19,8 +19,10 @@
 
 package co.elastic.clients.json.jackson;
 
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpMapperBase;
+import co.elastic.clients.json.JsonpSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -29,7 +31,7 @@ import jakarta.json.stream.JsonParser;
 import java.io.IOException;
 import java.util.EnumSet;
 
-public class JacksonJsonpMapper implements JsonpMapper {
+public class JacksonJsonpMapper extends JsonpMapperBase {
 
     private final JacksonJsonProvider provider;
     private final ObjectMapper objectMapper;
@@ -51,12 +53,12 @@ public class JacksonJsonpMapper implements JsonpMapper {
     }
 
     @Override
-    public JsonProvider jsonpProvider() {
+    public JsonProvider jsonProvider() {
         return provider;
     }
 
     @Override
-    public <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
+    protected  <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
         return new JacksonValueParser<>(clazz);
     }
 
@@ -65,6 +67,12 @@ public class JacksonJsonpMapper implements JsonpMapper {
 
         if (!(generator instanceof JacksonJsonpGenerator)) {
             throw new IllegalArgumentException("Jackson' ObjectMapper can only be used with the JacksonJsonpProvider");
+        }
+
+        JsonpSerializer<T> serializer = findSerializer(value);
+        if (serializer != null) {
+            serializer.serialize(value, generator, this);
+            return;
         }
 
         com.fasterxml.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator)generator).jacksonGenerator();

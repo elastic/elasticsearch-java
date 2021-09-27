@@ -23,1134 +23,1282 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryContainer
-public interface Query extends JsonpSerializable {
+@JsonpDeserializable
+public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSerializable {
 
-	String BOOL = "bool";
-	String BOOSTING = "boosting";
-	String COMMON = "common";
-	String COMBINED_FIELDS = "combined_fields";
-	String CONSTANT_SCORE = "constant_score";
-	String DIS_MAX = "dis_max";
-	String EXISTS = "exists";
-	String FUNCTION_SCORE = "function_score";
-	String FUZZY = "fuzzy";
-	String GEO_BOUNDING_BOX = "geo_bounding_box";
-	String GEO_DISTANCE = "geo_distance";
-	String GEO_POLYGON = "geo_polygon";
-	String GEO_SHAPE = "geo_shape";
-	String HAS_CHILD = "has_child";
-	String HAS_PARENT = "has_parent";
-	String IDS = "ids";
-	String INTERVALS = "intervals";
-	String MATCH = "match";
-	String MATCH_ALL = "match_all";
-	String MATCH_BOOL_PREFIX = "match_bool_prefix";
-	String MATCH_NONE = "match_none";
-	String MATCH_PHRASE = "match_phrase";
-	String MATCH_PHRASE_PREFIX = "match_phrase_prefix";
-	String MORE_LIKE_THIS = "more_like_this";
-	String MULTI_MATCH = "multi_match";
-	String NESTED = "nested";
-	String PARENT_ID = "parent_id";
-	String PERCOLATE = "percolate";
-	String PINNED = "pinned";
-	String PREFIX = "prefix";
-	String QUERY_STRING = "query_string";
-	String RANK_FEATURE = "rank_feature";
-	String REGEXP = "regexp";
-	String SCRIPT = "script";
-	String SCRIPT_SCORE = "script_score";
-	String SHAPE = "shape";
-	String SIMPLE_QUERY_STRING = "simple_query_string";
-	String SPAN_CONTAINING = "span_containing";
-	String FIELD_MASKING_SPAN = "field_masking_span";
-	String SPAN_FIRST = "span_first";
-	String SPAN_MULTI = "span_multi";
-	String SPAN_NEAR = "span_near";
-	String SPAN_NOT = "span_not";
-	String SPAN_OR = "span_or";
-	String SPAN_TERM = "span_term";
-	String SPAN_WITHIN = "span_within";
-	String TERM = "term";
-	String TERMS = "terms";
-	String TERMS_SET = "terms_set";
-	String WILDCARD = "wildcard";
-	String TYPE = "type";
+	public static final String BOOL = "bool";
+	public static final String BOOSTING = "boosting";
+	public static final String COMMON = "common";
+	public static final String COMBINED_FIELDS = "combined_fields";
+	public static final String CONSTANT_SCORE = "constant_score";
+	public static final String DIS_MAX = "dis_max";
+	public static final String DISTANCE_FEATURE = "distance_feature";
+	public static final String EXISTS = "exists";
+	public static final String FUNCTION_SCORE = "function_score";
+	public static final String FUZZY = "fuzzy";
+	public static final String GEO_BOUNDING_BOX = "geo_bounding_box";
+	public static final String GEO_DISTANCE = "geo_distance";
+	public static final String GEO_POLYGON = "geo_polygon";
+	public static final String GEO_SHAPE = "geo_shape";
+	public static final String HAS_CHILD = "has_child";
+	public static final String HAS_PARENT = "has_parent";
+	public static final String IDS = "ids";
+	public static final String INTERVALS = "intervals";
+	public static final String MATCH = "match";
+	public static final String MATCH_ALL = "match_all";
+	public static final String MATCH_BOOL_PREFIX = "match_bool_prefix";
+	public static final String MATCH_NONE = "match_none";
+	public static final String MATCH_PHRASE = "match_phrase";
+	public static final String MATCH_PHRASE_PREFIX = "match_phrase_prefix";
+	public static final String MORE_LIKE_THIS = "more_like_this";
+	public static final String MULTI_MATCH = "multi_match";
+	public static final String NESTED = "nested";
+	public static final String PARENT_ID = "parent_id";
+	public static final String PERCOLATE = "percolate";
+	public static final String PINNED = "pinned";
+	public static final String PREFIX = "prefix";
+	public static final String QUERY_STRING = "query_string";
+	public static final String RANGE = "range";
+	public static final String RANK_FEATURE = "rank_feature";
+	public static final String REGEXP = "regexp";
+	public static final String SCRIPT = "script";
+	public static final String SCRIPT_SCORE = "script_score";
+	public static final String SHAPE = "shape";
+	public static final String SIMPLE_QUERY_STRING = "simple_query_string";
+	public static final String SPAN_CONTAINING = "span_containing";
+	public static final String FIELD_MASKING_SPAN = "field_masking_span";
+	public static final String SPAN_FIRST = "span_first";
+	public static final String SPAN_MULTI = "span_multi";
+	public static final String SPAN_NEAR = "span_near";
+	public static final String SPAN_NOT = "span_not";
+	public static final String SPAN_OR = "span_or";
+	public static final String SPAN_TERM = "span_term";
+	public static final String SPAN_WITHIN = "span_within";
+	public static final String TERM = "term";
+	public static final String TERMS = "terms";
+	public static final String TERMS_SET = "terms_set";
+	public static final String WILDCARD = "wildcard";
+	public static final String TYPE = "type";
 
 	/**
-	 * The type of this {@code QueryContainer}.
+	 * {@link Aggregation} variant type
 	 */
-	String _type();
+	@Override
+	public String _variantType() {
+		return "filter";
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code bool}
-		 */
-		public ObjectBuilder<Query> bool(BoolQuery value) {
-			return ObjectBuilder.constant(value);
-		}
+	// Tagged union implementation
 
-		/**
-		 * API name: {@code bool}
-		 */
-		public ObjectBuilder<Query> bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> fn) {
-			return this.bool(fn.apply(new BoolQuery.Builder()).build());
-		}
+	private final String _type;
+	private final Object _value;
 
-		/**
-		 * API name: {@code boosting}
-		 */
-		public ObjectBuilder<Query> boosting(BoostingQuery value) {
-			return ObjectBuilder.constant(value);
-		}
+	@Override
+	public String _type() {
+		return _type;
+	}
 
-		/**
-		 * API name: {@code boosting}
-		 */
-		public ObjectBuilder<Query> boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> fn) {
-			return this.boosting(fn.apply(new BoostingQuery.Builder()).build());
-		}
+	@Override
+	public Object _get() {
+		return _value;
+	}
 
-		/**
-		 * API name: {@code common}
-		 */
-		public ObjectBuilder<Query> common(CommonTermsQuery value) {
-			return ObjectBuilder.constant(value);
-		}
+	public Query(QueryVariant value) {
 
-		/**
-		 * API name: {@code common}
-		 */
-		public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> fn) {
-			return this.common(fn.apply(new CommonTermsQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code combined_fields}
-		 */
-		public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code combined_fields}
-		 */
-		public ObjectBuilder<Query> combinedFields(
-				Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
-			return this.combinedFields(fn.apply(new CombinedFieldsQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code constant_score}
-		 */
-		public ObjectBuilder<Query> constantScore(ConstantScoreQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code constant_score}
-		 */
-		public ObjectBuilder<Query> constantScore(
-				Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> fn) {
-			return this.constantScore(fn.apply(new ConstantScoreQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code dis_max}
-		 */
-		public ObjectBuilder<Query> disMax(DisMaxQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code dis_max}
-		 */
-		public ObjectBuilder<Query> disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> fn) {
-			return this.disMax(fn.apply(new DisMaxQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code exists}
-		 */
-		public ObjectBuilder<Query> exists(ExistsQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code exists}
-		 */
-		public ObjectBuilder<Query> exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> fn) {
-			return this.exists(fn.apply(new ExistsQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code function_score}
-		 */
-		public ObjectBuilder<Query> functionScore(FunctionScoreQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code function_score}
-		 */
-		public ObjectBuilder<Query> functionScore(
-				Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> fn) {
-			return this.functionScore(fn.apply(new FunctionScoreQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code fuzzy}
-		 */
-		public ObjectBuilder<Query> fuzzy(FuzzyQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code fuzzy}
-		 */
-		public ObjectBuilder<Query> fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> fn) {
-			return this.fuzzy(fn.apply(new FuzzyQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code geo_bounding_box}
-		 */
-		public ObjectBuilder<Query> geoBoundingBox(GeoBoundingBoxQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code geo_bounding_box}
-		 */
-		public ObjectBuilder<Query> geoBoundingBox(
-				Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> fn) {
-			return this.geoBoundingBox(fn.apply(new GeoBoundingBoxQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code geo_distance}
-		 */
-		public ObjectBuilder<Query> geoDistance(GeoDistanceQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code geo_distance}
-		 */
-		public ObjectBuilder<Query> geoDistance(
-				Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
-			return this.geoDistance(fn.apply(new GeoDistanceQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code geo_polygon}
-		 */
-		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code geo_polygon}
-		 */
-		public ObjectBuilder<Query> geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> fn) {
-			return this.geoPolygon(fn.apply(new GeoPolygonQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code geo_shape}
-		 */
-		public ObjectBuilder<Query> geoShape(GeoShapeQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code geo_shape}
-		 */
-		public ObjectBuilder<Query> geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> fn) {
-			return this.geoShape(fn.apply(new GeoShapeQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code has_child}
-		 */
-		public ObjectBuilder<Query> hasChild(HasChildQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code has_child}
-		 */
-		public ObjectBuilder<Query> hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> fn) {
-			return this.hasChild(fn.apply(new HasChildQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code has_parent}
-		 */
-		public ObjectBuilder<Query> hasParent(HasParentQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code has_parent}
-		 */
-		public ObjectBuilder<Query> hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> fn) {
-			return this.hasParent(fn.apply(new HasParentQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code ids}
-		 */
-		public ObjectBuilder<Query> ids(IdsQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code ids}
-		 */
-		public ObjectBuilder<Query> ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> fn) {
-			return this.ids(fn.apply(new IdsQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code intervals}
-		 */
-		public ObjectBuilder<Query> intervals(IntervalsQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code intervals}
-		 */
-		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
-			return this.intervals(fn.apply(new IntervalsQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code match}
-		 */
-		public ObjectBuilder<Query> match(MatchQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code match}
-		 */
-		public ObjectBuilder<Query> match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> fn) {
-			return this.match(fn.apply(new MatchQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code match_all}
-		 */
-		public ObjectBuilder<Query> matchAll(MatchAllQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code match_all}
-		 */
-		public ObjectBuilder<Query> matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> fn) {
-			return this.matchAll(fn.apply(new MatchAllQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code match_bool_prefix}
-		 */
-		public ObjectBuilder<Query> matchBoolPrefix(MatchBoolPrefixQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code match_bool_prefix}
-		 */
-		public ObjectBuilder<Query> matchBoolPrefix(
-				Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> fn) {
-			return this.matchBoolPrefix(fn.apply(new MatchBoolPrefixQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code match_none}
-		 */
-		public ObjectBuilder<Query> matchNone(MatchNoneQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code match_none}
-		 */
-		public ObjectBuilder<Query> matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> fn) {
-			return this.matchNone(fn.apply(new MatchNoneQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code match_phrase}
-		 */
-		public ObjectBuilder<Query> matchPhrase(MatchPhraseQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code match_phrase}
-		 */
-		public ObjectBuilder<Query> matchPhrase(
-				Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> fn) {
-			return this.matchPhrase(fn.apply(new MatchPhraseQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code match_phrase_prefix}
-		 */
-		public ObjectBuilder<Query> matchPhrasePrefix(MatchPhrasePrefixQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code match_phrase_prefix}
-		 */
-		public ObjectBuilder<Query> matchPhrasePrefix(
-				Function<MatchPhrasePrefixQuery.Builder, ObjectBuilder<MatchPhrasePrefixQuery>> fn) {
-			return this.matchPhrasePrefix(fn.apply(new MatchPhrasePrefixQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code more_like_this}
-		 */
-		public ObjectBuilder<Query> moreLikeThis(MoreLikeThisQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code more_like_this}
-		 */
-		public ObjectBuilder<Query> moreLikeThis(
-				Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> fn) {
-			return this.moreLikeThis(fn.apply(new MoreLikeThisQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code multi_match}
-		 */
-		public ObjectBuilder<Query> multiMatch(MultiMatchQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code multi_match}
-		 */
-		public ObjectBuilder<Query> multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> fn) {
-			return this.multiMatch(fn.apply(new MultiMatchQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code nested}
-		 */
-		public ObjectBuilder<Query> nested(NestedQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code nested}
-		 */
-		public ObjectBuilder<Query> nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> fn) {
-			return this.nested(fn.apply(new NestedQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code parent_id}
-		 */
-		public ObjectBuilder<Query> parentId(ParentIdQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code parent_id}
-		 */
-		public ObjectBuilder<Query> parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> fn) {
-			return this.parentId(fn.apply(new ParentIdQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code percolate}
-		 */
-		public ObjectBuilder<Query> percolate(PercolateQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code percolate}
-		 */
-		public ObjectBuilder<Query> percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> fn) {
-			return this.percolate(fn.apply(new PercolateQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code pinned}
-		 */
-		public ObjectBuilder<Query> pinned(PinnedQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code pinned}
-		 */
-		public ObjectBuilder<Query> pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> fn) {
-			return this.pinned(fn.apply(new PinnedQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code prefix}
-		 */
-		public ObjectBuilder<Query> prefix(PrefixQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code prefix}
-		 */
-		public ObjectBuilder<Query> prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> fn) {
-			return this.prefix(fn.apply(new PrefixQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code query_string}
-		 */
-		public ObjectBuilder<Query> queryString(QueryStringQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code query_string}
-		 */
-		public ObjectBuilder<Query> queryString(
-				Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> fn) {
-			return this.queryString(fn.apply(new QueryStringQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code rank_feature}
-		 */
-		public ObjectBuilder<Query> rankFeature(RankFeatureQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code rank_feature}
-		 */
-		public ObjectBuilder<Query> rankFeature(
-				Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> fn) {
-			return this.rankFeature(fn.apply(new RankFeatureQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code regexp}
-		 */
-		public ObjectBuilder<Query> regexp(RegexpQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code regexp}
-		 */
-		public ObjectBuilder<Query> regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> fn) {
-			return this.regexp(fn.apply(new RegexpQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code script}
-		 */
-		public ObjectBuilder<Query> script(ScriptQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code script}
-		 */
-		public ObjectBuilder<Query> script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> fn) {
-			return this.script(fn.apply(new ScriptQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code script_score}
-		 */
-		public ObjectBuilder<Query> scriptScore(ScriptScoreQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code script_score}
-		 */
-		public ObjectBuilder<Query> scriptScore(
-				Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
-			return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code shape}
-		 */
-		public ObjectBuilder<Query> shape(ShapeQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code shape}
-		 */
-		public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> fn) {
-			return this.shape(fn.apply(new ShapeQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code simple_query_string}
-		 */
-		public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code simple_query_string}
-		 */
-		public ObjectBuilder<Query> simpleQueryString(
-				Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
-			return this.simpleQueryString(fn.apply(new SimpleQueryStringQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_containing}
-		 */
-		public ObjectBuilder<Query> spanContaining(SpanContainingQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_containing}
-		 */
-		public ObjectBuilder<Query> spanContaining(
-				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> fn) {
-			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code field_masking_span}
-		 */
-		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code field_masking_span}
-		 */
-		public ObjectBuilder<Query> fieldMaskingSpan(
-				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
-			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_first}
-		 */
-		public ObjectBuilder<Query> spanFirst(SpanFirstQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_first}
-		 */
-		public ObjectBuilder<Query> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> fn) {
-			return this.spanFirst(fn.apply(new SpanFirstQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_multi}
-		 */
-		public ObjectBuilder<Query> spanMulti(SpanMultiTermQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_multi}
-		 */
-		public ObjectBuilder<Query> spanMulti(
-				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
-			return this.spanMulti(fn.apply(new SpanMultiTermQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_near}
-		 */
-		public ObjectBuilder<Query> spanNear(SpanNearQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_near}
-		 */
-		public ObjectBuilder<Query> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> fn) {
-			return this.spanNear(fn.apply(new SpanNearQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_not}
-		 */
-		public ObjectBuilder<Query> spanNot(SpanNotQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_not}
-		 */
-		public ObjectBuilder<Query> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> fn) {
-			return this.spanNot(fn.apply(new SpanNotQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_or}
-		 */
-		public ObjectBuilder<Query> spanOr(SpanOrQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_or}
-		 */
-		public ObjectBuilder<Query> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> fn) {
-			return this.spanOr(fn.apply(new SpanOrQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_term}
-		 */
-		public ObjectBuilder<Query> spanTerm(SpanTermQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_term}
-		 */
-		public ObjectBuilder<Query> spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> fn) {
-			return this.spanTerm(fn.apply(new SpanTermQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code span_within}
-		 */
-		public ObjectBuilder<Query> spanWithin(SpanWithinQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code span_within}
-		 */
-		public ObjectBuilder<Query> spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> fn) {
-			return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code term}
-		 */
-		public ObjectBuilder<Query> term(TermQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code term}
-		 */
-		public ObjectBuilder<Query> term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> fn) {
-			return this.term(fn.apply(new TermQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code terms}
-		 */
-		public ObjectBuilder<Query> terms(TermsQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code terms}
-		 */
-		public ObjectBuilder<Query> terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> fn) {
-			return this.terms(fn.apply(new TermsQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code terms_set}
-		 */
-		public ObjectBuilder<Query> termsSet(TermsSetQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code terms_set}
-		 */
-		public ObjectBuilder<Query> termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> fn) {
-			return this.termsSet(fn.apply(new TermsSetQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code wildcard}
-		 */
-		public ObjectBuilder<Query> wildcard(WildcardQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code wildcard}
-		 */
-		public ObjectBuilder<Query> wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> fn) {
-			return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public ObjectBuilder<Query> type(TypeQuery value) {
-			return ObjectBuilder.constant(value);
-		}
-
-		/**
-		 * API name: {@code type}
-		 */
-		public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> fn) {
-			return this.type(fn.apply(new TypeQuery.Builder()).build());
-		}
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
 
 	}
 
-	class $Helper {
-		private static Query deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	private Query(Builder builder) {
 
-			ObjectBuilder<? extends Query> builder = null;
-			String variant = null;
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case BOOL : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = BoolQuery.$BUILDER_DESERIALIZER.deserialize(new BoolQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case BOOSTING : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = BoostingQuery.$BUILDER_DESERIALIZER.deserialize(new BoostingQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case COMMON : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = CommonTermsQuery.$BUILDER_DESERIALIZER.deserialize(new CommonTermsQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case COMBINED_FIELDS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = CombinedFieldsQuery.$BUILDER_DESERIALIZER
-								.deserialize(new CombinedFieldsQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case CONSTANT_SCORE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ConstantScoreQuery.$BUILDER_DESERIALIZER.deserialize(new ConstantScoreQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case DIS_MAX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DisMaxQuery.$BUILDER_DESERIALIZER.deserialize(new DisMaxQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case EXISTS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ExistsQuery.$BUILDER_DESERIALIZER.deserialize(new ExistsQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case FUNCTION_SCORE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = FunctionScoreQuery.$BUILDER_DESERIALIZER.deserialize(new FunctionScoreQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case FUZZY : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = FuzzyQuery.$BUILDER_DESERIALIZER.deserialize(new FuzzyQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case GEO_BOUNDING_BOX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = GeoBoundingBoxQuery.$BUILDER_DESERIALIZER
-								.deserialize(new GeoBoundingBoxQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case GEO_DISTANCE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = GeoDistanceQuery.$BUILDER_DESERIALIZER.deserialize(new GeoDistanceQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case GEO_POLYGON : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = GeoPolygonQuery.$BUILDER_DESERIALIZER.deserialize(new GeoPolygonQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case GEO_SHAPE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = GeoShapeQuery.$BUILDER_DESERIALIZER.deserialize(new GeoShapeQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case HAS_CHILD : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = HasChildQuery.$BUILDER_DESERIALIZER.deserialize(new HasChildQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case HAS_PARENT : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = HasParentQuery.$BUILDER_DESERIALIZER.deserialize(new HasParentQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case IDS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IdsQuery.$BUILDER_DESERIALIZER.deserialize(new IdsQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case INTERVALS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IntervalsQuery.$BUILDER_DESERIALIZER.deserialize(new IntervalsQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case MATCH : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MatchQuery.$BUILDER_DESERIALIZER.deserialize(new MatchQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case MATCH_ALL : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MatchAllQuery.$BUILDER_DESERIALIZER.deserialize(new MatchAllQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case MATCH_BOOL_PREFIX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MatchBoolPrefixQuery.$BUILDER_DESERIALIZER
-								.deserialize(new MatchBoolPrefixQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case MATCH_NONE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MatchNoneQuery.$BUILDER_DESERIALIZER.deserialize(new MatchNoneQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case MATCH_PHRASE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MatchPhraseQuery.$BUILDER_DESERIALIZER.deserialize(new MatchPhraseQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case MATCH_PHRASE_PREFIX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MatchPhrasePrefixQuery.$BUILDER_DESERIALIZER
-								.deserialize(new MatchPhrasePrefixQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case MORE_LIKE_THIS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MoreLikeThisQuery.$BUILDER_DESERIALIZER.deserialize(new MoreLikeThisQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case MULTI_MATCH : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = MultiMatchQuery.$BUILDER_DESERIALIZER.deserialize(new MultiMatchQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case NESTED : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = NestedQuery.$BUILDER_DESERIALIZER.deserialize(new NestedQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case PARENT_ID : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ParentIdQuery.$BUILDER_DESERIALIZER.deserialize(new ParentIdQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case PERCOLATE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = PercolateQuery.$BUILDER_DESERIALIZER.deserialize(new PercolateQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case PINNED : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = PinnedQuery.$BUILDER_DESERIALIZER.deserialize(new PinnedQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case PREFIX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = PrefixQuery.$BUILDER_DESERIALIZER.deserialize(new PrefixQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case QUERY_STRING : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = QueryStringQuery.$BUILDER_DESERIALIZER.deserialize(new QueryStringQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case RANK_FEATURE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = RankFeatureQuery.$BUILDER_DESERIALIZER.deserialize(new RankFeatureQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case REGEXP : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = RegexpQuery.$BUILDER_DESERIALIZER.deserialize(new RegexpQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SCRIPT : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ScriptQuery.$BUILDER_DESERIALIZER.deserialize(new ScriptQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SCRIPT_SCORE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ScriptScoreQuery.$BUILDER_DESERIALIZER.deserialize(new ScriptScoreQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case SHAPE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = ShapeQuery.$BUILDER_DESERIALIZER.deserialize(new ShapeQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case SIMPLE_QUERY_STRING : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SimpleQueryStringQuery.$BUILDER_DESERIALIZER
-								.deserialize(new SimpleQueryStringQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case SPAN_CONTAINING : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanContainingQuery.$BUILDER_DESERIALIZER
-								.deserialize(new SpanContainingQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case FIELD_MASKING_SPAN : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanFieldMaskingQuery.$BUILDER_DESERIALIZER
-								.deserialize(new SpanFieldMaskingQuery.Builder(), parser, mapper, parser.next());
-						break;
-					}
-					case SPAN_FIRST : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanFirstQuery.$BUILDER_DESERIALIZER.deserialize(new SpanFirstQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SPAN_MULTI : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanMultiTermQuery.$BUILDER_DESERIALIZER.deserialize(new SpanMultiTermQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case SPAN_NEAR : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanNearQuery.$BUILDER_DESERIALIZER.deserialize(new SpanNearQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SPAN_NOT : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanNotQuery.$BUILDER_DESERIALIZER.deserialize(new SpanNotQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SPAN_OR : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanOrQuery.$BUILDER_DESERIALIZER.deserialize(new SpanOrQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SPAN_TERM : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanTermQuery.$BUILDER_DESERIALIZER.deserialize(new SpanTermQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case SPAN_WITHIN : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = SpanWithinQuery.$BUILDER_DESERIALIZER.deserialize(new SpanWithinQuery.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case TERM : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TermQuery.$BUILDER_DESERIALIZER.deserialize(new TermQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case TERMS : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TermsQuery.$BUILDER_DESERIALIZER.deserialize(new TermsQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					case TERMS_SET : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TermsSetQuery.$BUILDER_DESERIALIZER.deserialize(new TermsSetQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case WILDCARD : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = WildcardQuery.$BUILDER_DESERIALIZER.deserialize(new WildcardQuery.Builder(), parser,
-								mapper, parser.next());
-						break;
-					}
-					case TYPE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = TypeQuery.$BUILDER_DESERIALIZER.deserialize(new TypeQuery.Builder(), parser, mapper,
-								parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
+	}
+
+	/**
+	 * Get the {@code bool} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bool} kind.
+	 */
+	public BoolQuery bool() {
+		return TaggedUnionUtils.get(this, BOOL);
+	}
+
+	/**
+	 * Get the {@code boosting} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code boosting} kind.
+	 */
+	public BoostingQuery boosting() {
+		return TaggedUnionUtils.get(this, BOOSTING);
+	}
+
+	/**
+	 * Get the {@code common} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code common} kind.
+	 */
+	public CommonTermsQuery common() {
+		return TaggedUnionUtils.get(this, COMMON);
+	}
+
+	/**
+	 * Get the {@code combined_fields} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code combined_fields}
+	 *             kind.
+	 */
+	public CombinedFieldsQuery combinedFields() {
+		return TaggedUnionUtils.get(this, COMBINED_FIELDS);
+	}
+
+	/**
+	 * Get the {@code constant_score} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code constant_score} kind.
+	 */
+	public ConstantScoreQuery constantScore() {
+		return TaggedUnionUtils.get(this, CONSTANT_SCORE);
+	}
+
+	/**
+	 * Get the {@code dis_max} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dis_max} kind.
+	 */
+	public DisMaxQuery disMax() {
+		return TaggedUnionUtils.get(this, DIS_MAX);
+	}
+
+	/**
+	 * Get the {@code distance_feature} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code distance_feature}
+	 *             kind.
+	 */
+	public JsonValue /* _types.query_dsl.DistanceFeatureQuery */ distanceFeature() {
+		return TaggedUnionUtils.get(this, DISTANCE_FEATURE);
+	}
+
+	/**
+	 * Get the {@code exists} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code exists} kind.
+	 */
+	public ExistsQuery exists() {
+		return TaggedUnionUtils.get(this, EXISTS);
+	}
+
+	/**
+	 * Get the {@code function_score} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code function_score} kind.
+	 */
+	public FunctionScoreQuery functionScore() {
+		return TaggedUnionUtils.get(this, FUNCTION_SCORE);
+	}
+
+	/**
+	 * Get the {@code fuzzy} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code fuzzy} kind.
+	 */
+	public FuzzyQuery fuzzy() {
+		return TaggedUnionUtils.get(this, FUZZY);
+	}
+
+	/**
+	 * Get the {@code geo_bounding_box} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo_bounding_box}
+	 *             kind.
+	 */
+	public GeoBoundingBoxQuery geoBoundingBox() {
+		return TaggedUnionUtils.get(this, GEO_BOUNDING_BOX);
+	}
+
+	/**
+	 * Get the {@code geo_distance} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo_distance} kind.
+	 */
+	public GeoDistanceQuery geoDistance() {
+		return TaggedUnionUtils.get(this, GEO_DISTANCE);
+	}
+
+	/**
+	 * Get the {@code geo_polygon} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo_polygon} kind.
+	 */
+	public GeoPolygonQuery geoPolygon() {
+		return TaggedUnionUtils.get(this, GEO_POLYGON);
+	}
+
+	/**
+	 * Get the {@code geo_shape} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geo_shape} kind.
+	 */
+	public GeoShapeQuery geoShape() {
+		return TaggedUnionUtils.get(this, GEO_SHAPE);
+	}
+
+	/**
+	 * Get the {@code has_child} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code has_child} kind.
+	 */
+	public HasChildQuery hasChild() {
+		return TaggedUnionUtils.get(this, HAS_CHILD);
+	}
+
+	/**
+	 * Get the {@code has_parent} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code has_parent} kind.
+	 */
+	public HasParentQuery hasParent() {
+		return TaggedUnionUtils.get(this, HAS_PARENT);
+	}
+
+	/**
+	 * Get the {@code ids} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ids} kind.
+	 */
+	public IdsQuery ids() {
+		return TaggedUnionUtils.get(this, IDS);
+	}
+
+	/**
+	 * Get the {@code intervals} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code intervals} kind.
+	 */
+	public IntervalsQuery intervals() {
+		return TaggedUnionUtils.get(this, INTERVALS);
+	}
+
+	/**
+	 * Get the {@code match} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match} kind.
+	 */
+	public MatchQuery match() {
+		return TaggedUnionUtils.get(this, MATCH);
+	}
+
+	/**
+	 * Get the {@code match_all} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match_all} kind.
+	 */
+	public MatchAllQuery matchAll() {
+		return TaggedUnionUtils.get(this, MATCH_ALL);
+	}
+
+	/**
+	 * Get the {@code match_bool_prefix} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match_bool_prefix}
+	 *             kind.
+	 */
+	public MatchBoolPrefixQuery matchBoolPrefix() {
+		return TaggedUnionUtils.get(this, MATCH_BOOL_PREFIX);
+	}
+
+	/**
+	 * Get the {@code match_none} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match_none} kind.
+	 */
+	public MatchNoneQuery matchNone() {
+		return TaggedUnionUtils.get(this, MATCH_NONE);
+	}
+
+	/**
+	 * Get the {@code match_phrase} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match_phrase} kind.
+	 */
+	public MatchPhraseQuery matchPhrase() {
+		return TaggedUnionUtils.get(this, MATCH_PHRASE);
+	}
+
+	/**
+	 * Get the {@code match_phrase_prefix} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match_phrase_prefix}
+	 *             kind.
+	 */
+	public MatchPhrasePrefixQuery matchPhrasePrefix() {
+		return TaggedUnionUtils.get(this, MATCH_PHRASE_PREFIX);
+	}
+
+	/**
+	 * Get the {@code more_like_this} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code more_like_this} kind.
+	 */
+	public MoreLikeThisQuery moreLikeThis() {
+		return TaggedUnionUtils.get(this, MORE_LIKE_THIS);
+	}
+
+	/**
+	 * Get the {@code multi_match} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code multi_match} kind.
+	 */
+	public MultiMatchQuery multiMatch() {
+		return TaggedUnionUtils.get(this, MULTI_MATCH);
+	}
+
+	/**
+	 * Get the {@code nested} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code nested} kind.
+	 */
+	public NestedQuery nested() {
+		return TaggedUnionUtils.get(this, NESTED);
+	}
+
+	/**
+	 * Get the {@code parent_id} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code parent_id} kind.
+	 */
+	public ParentIdQuery parentId() {
+		return TaggedUnionUtils.get(this, PARENT_ID);
+	}
+
+	/**
+	 * Get the {@code percolate} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code percolate} kind.
+	 */
+	public PercolateQuery percolate() {
+		return TaggedUnionUtils.get(this, PERCOLATE);
+	}
+
+	/**
+	 * Get the {@code pinned} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code pinned} kind.
+	 */
+	public PinnedQuery pinned() {
+		return TaggedUnionUtils.get(this, PINNED);
+	}
+
+	/**
+	 * Get the {@code prefix} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code prefix} kind.
+	 */
+	public PrefixQuery prefix() {
+		return TaggedUnionUtils.get(this, PREFIX);
+	}
+
+	/**
+	 * Get the {@code query_string} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code query_string} kind.
+	 */
+	public QueryStringQuery queryString() {
+		return TaggedUnionUtils.get(this, QUERY_STRING);
+	}
+
+	/**
+	 * Get the {@code range} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code range} kind.
+	 */
+	public JsonValue /* _types.query_dsl.RangeQuery */ range() {
+		return TaggedUnionUtils.get(this, RANGE);
+	}
+
+	/**
+	 * Get the {@code rank_feature} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code rank_feature} kind.
+	 */
+	public RankFeatureQuery rankFeature() {
+		return TaggedUnionUtils.get(this, RANK_FEATURE);
+	}
+
+	/**
+	 * Get the {@code regexp} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code regexp} kind.
+	 */
+	public RegexpQuery regexp() {
+		return TaggedUnionUtils.get(this, REGEXP);
+	}
+
+	/**
+	 * Get the {@code script} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code script} kind.
+	 */
+	public ScriptQuery script() {
+		return TaggedUnionUtils.get(this, SCRIPT);
+	}
+
+	/**
+	 * Get the {@code script_score} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code script_score} kind.
+	 */
+	public ScriptScoreQuery scriptScore() {
+		return TaggedUnionUtils.get(this, SCRIPT_SCORE);
+	}
+
+	/**
+	 * Get the {@code shape} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code shape} kind.
+	 */
+	public ShapeQuery shape() {
+		return TaggedUnionUtils.get(this, SHAPE);
+	}
+
+	/**
+	 * Get the {@code simple_query_string} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code simple_query_string}
+	 *             kind.
+	 */
+	public SimpleQueryStringQuery simpleQueryString() {
+		return TaggedUnionUtils.get(this, SIMPLE_QUERY_STRING);
+	}
+
+	/**
+	 * Get the {@code span_containing} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_containing}
+	 *             kind.
+	 */
+	public SpanContainingQuery spanContaining() {
+		return TaggedUnionUtils.get(this, SPAN_CONTAINING);
+	}
+
+	/**
+	 * Get the {@code field_masking_span} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code field_masking_span}
+	 *             kind.
+	 */
+	public SpanFieldMaskingQuery fieldMaskingSpan() {
+		return TaggedUnionUtils.get(this, FIELD_MASKING_SPAN);
+	}
+
+	/**
+	 * Get the {@code span_first} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_first} kind.
+	 */
+	public SpanFirstQuery spanFirst() {
+		return TaggedUnionUtils.get(this, SPAN_FIRST);
+	}
+
+	/**
+	 * Get the {@code span_multi} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_multi} kind.
+	 */
+	public SpanMultiTermQuery spanMulti() {
+		return TaggedUnionUtils.get(this, SPAN_MULTI);
+	}
+
+	/**
+	 * Get the {@code span_near} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_near} kind.
+	 */
+	public SpanNearQuery spanNear() {
+		return TaggedUnionUtils.get(this, SPAN_NEAR);
+	}
+
+	/**
+	 * Get the {@code span_not} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_not} kind.
+	 */
+	public SpanNotQuery spanNot() {
+		return TaggedUnionUtils.get(this, SPAN_NOT);
+	}
+
+	/**
+	 * Get the {@code span_or} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_or} kind.
+	 */
+	public SpanOrQuery spanOr() {
+		return TaggedUnionUtils.get(this, SPAN_OR);
+	}
+
+	/**
+	 * Get the {@code span_term} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_term} kind.
+	 */
+	public SpanTermQuery spanTerm() {
+		return TaggedUnionUtils.get(this, SPAN_TERM);
+	}
+
+	/**
+	 * Get the {@code span_within} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code span_within} kind.
+	 */
+	public SpanWithinQuery spanWithin() {
+		return TaggedUnionUtils.get(this, SPAN_WITHIN);
+	}
+
+	/**
+	 * Get the {@code term} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code term} kind.
+	 */
+	public TermQuery term() {
+		return TaggedUnionUtils.get(this, TERM);
+	}
+
+	/**
+	 * Get the {@code terms} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code terms} kind.
+	 */
+	public TermsQuery terms() {
+		return TaggedUnionUtils.get(this, TERMS);
+	}
+
+	/**
+	 * Get the {@code terms_set} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code terms_set} kind.
+	 */
+	public TermsSetQuery termsSet() {
+		return TaggedUnionUtils.get(this, TERMS_SET);
+	}
+
+	/**
+	 * Get the {@code wildcard} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code wildcard} kind.
+	 */
+	public WildcardQuery wildcard() {
+		return TaggedUnionUtils.get(this, WILDCARD);
+	}
+
+	/**
+	 * Get the {@code type} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code type} kind.
+	 */
+	public TypeQuery type() {
+		return TaggedUnionUtils.get(this, TYPE);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_type) {
+				case DISTANCE_FEATURE :
+					generator.write(((JsonValue /* _types.query_dsl.DistanceFeatureQuery */) this._value));
+
+					break;
+				case RANGE :
+					generator.write(((JsonValue /* _types.query_dsl.RangeQuery */) this._value));
+
+					break;
 			}
-
-			return JsonpUtils.buildVariant(parser, builder);
 		}
+
+		generator.writeEnd();
 	}
 
-	JsonpDeserializer<Query> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<Query> bool(BoolQuery v) {
+			this._type = BOOL;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {
+			return this.bool(f.apply(new BoolQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> boosting(BoostingQuery v) {
+			this._type = BOOSTING;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> f) {
+			return this.boosting(f.apply(new BoostingQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> common(CommonTermsQuery v) {
+			this._type = COMMON;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> f) {
+			return this.common(f.apply(new CommonTermsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery v) {
+			this._type = COMBINED_FIELDS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> combinedFields(
+				Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> f) {
+			return this.combinedFields(f.apply(new CombinedFieldsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> constantScore(ConstantScoreQuery v) {
+			this._type = CONSTANT_SCORE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> constantScore(
+				Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> f) {
+			return this.constantScore(f.apply(new ConstantScoreQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> disMax(DisMaxQuery v) {
+			this._type = DIS_MAX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> f) {
+			return this.disMax(f.apply(new DisMaxQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> distanceFeature(JsonValue /* _types.query_dsl.DistanceFeatureQuery */ v) {
+			this._type = DISTANCE_FEATURE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> exists(ExistsQuery v) {
+			this._type = EXISTS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> f) {
+			return this.exists(f.apply(new ExistsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> functionScore(FunctionScoreQuery v) {
+			this._type = FUNCTION_SCORE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> functionScore(
+				Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> f) {
+			return this.functionScore(f.apply(new FunctionScoreQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> fuzzy(FuzzyQuery v) {
+			this._type = FUZZY;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> f) {
+			return this.fuzzy(f.apply(new FuzzyQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> geoBoundingBox(GeoBoundingBoxQuery v) {
+			this._type = GEO_BOUNDING_BOX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> geoBoundingBox(
+				Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> f) {
+			return this.geoBoundingBox(f.apply(new GeoBoundingBoxQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> geoDistance(GeoDistanceQuery v) {
+			this._type = GEO_DISTANCE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> geoDistance(Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> f) {
+			return this.geoDistance(f.apply(new GeoDistanceQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery v) {
+			this._type = GEO_POLYGON;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> f) {
+			return this.geoPolygon(f.apply(new GeoPolygonQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> geoShape(GeoShapeQuery v) {
+			this._type = GEO_SHAPE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> f) {
+			return this.geoShape(f.apply(new GeoShapeQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> hasChild(HasChildQuery v) {
+			this._type = HAS_CHILD;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> f) {
+			return this.hasChild(f.apply(new HasChildQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> hasParent(HasParentQuery v) {
+			this._type = HAS_PARENT;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> f) {
+			return this.hasParent(f.apply(new HasParentQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> ids(IdsQuery v) {
+			this._type = IDS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> f) {
+			return this.ids(f.apply(new IdsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> intervals(IntervalsQuery v) {
+			this._type = INTERVALS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> f) {
+			return this.intervals(f.apply(new IntervalsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> match(MatchQuery v) {
+			this._type = MATCH;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> f) {
+			return this.match(f.apply(new MatchQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> matchAll(MatchAllQuery v) {
+			this._type = MATCH_ALL;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> f) {
+			return this.matchAll(f.apply(new MatchAllQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> matchBoolPrefix(MatchBoolPrefixQuery v) {
+			this._type = MATCH_BOOL_PREFIX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> matchBoolPrefix(
+				Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> f) {
+			return this.matchBoolPrefix(f.apply(new MatchBoolPrefixQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> matchNone(MatchNoneQuery v) {
+			this._type = MATCH_NONE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> f) {
+			return this.matchNone(f.apply(new MatchNoneQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> matchPhrase(MatchPhraseQuery v) {
+			this._type = MATCH_PHRASE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> matchPhrase(Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> f) {
+			return this.matchPhrase(f.apply(new MatchPhraseQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> matchPhrasePrefix(MatchPhrasePrefixQuery v) {
+			this._type = MATCH_PHRASE_PREFIX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> matchPhrasePrefix(
+				Function<MatchPhrasePrefixQuery.Builder, ObjectBuilder<MatchPhrasePrefixQuery>> f) {
+			return this.matchPhrasePrefix(f.apply(new MatchPhrasePrefixQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> moreLikeThis(MoreLikeThisQuery v) {
+			this._type = MORE_LIKE_THIS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> moreLikeThis(
+				Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> f) {
+			return this.moreLikeThis(f.apply(new MoreLikeThisQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> multiMatch(MultiMatchQuery v) {
+			this._type = MULTI_MATCH;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> f) {
+			return this.multiMatch(f.apply(new MultiMatchQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> nested(NestedQuery v) {
+			this._type = NESTED;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> f) {
+			return this.nested(f.apply(new NestedQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> parentId(ParentIdQuery v) {
+			this._type = PARENT_ID;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> f) {
+			return this.parentId(f.apply(new ParentIdQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> percolate(PercolateQuery v) {
+			this._type = PERCOLATE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> f) {
+			return this.percolate(f.apply(new PercolateQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> pinned(PinnedQuery v) {
+			this._type = PINNED;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> f) {
+			return this.pinned(f.apply(new PinnedQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> prefix(PrefixQuery v) {
+			this._type = PREFIX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> f) {
+			return this.prefix(f.apply(new PrefixQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> queryString(QueryStringQuery v) {
+			this._type = QUERY_STRING;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> queryString(Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> f) {
+			return this.queryString(f.apply(new QueryStringQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> range(JsonValue /* _types.query_dsl.RangeQuery */ v) {
+			this._type = RANGE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> rankFeature(RankFeatureQuery v) {
+			this._type = RANK_FEATURE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> rankFeature(Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> f) {
+			return this.rankFeature(f.apply(new RankFeatureQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> regexp(RegexpQuery v) {
+			this._type = REGEXP;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> f) {
+			return this.regexp(f.apply(new RegexpQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> script(ScriptQuery v) {
+			this._type = SCRIPT;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> f) {
+			return this.script(f.apply(new ScriptQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> scriptScore(ScriptScoreQuery v) {
+			this._type = SCRIPT_SCORE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> scriptScore(Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> f) {
+			return this.scriptScore(f.apply(new ScriptScoreQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> shape(ShapeQuery v) {
+			this._type = SHAPE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> f) {
+			return this.shape(f.apply(new ShapeQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
+			this._type = SIMPLE_QUERY_STRING;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> simpleQueryString(
+				Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> f) {
+			return this.simpleQueryString(f.apply(new SimpleQueryStringQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanContaining(SpanContainingQuery v) {
+			this._type = SPAN_CONTAINING;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanContaining(
+				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> f) {
+			return this.spanContaining(f.apply(new SpanContainingQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
+			this._type = FIELD_MASKING_SPAN;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> fieldMaskingSpan(
+				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> f) {
+			return this.fieldMaskingSpan(f.apply(new SpanFieldMaskingQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
+			this._type = SPAN_FIRST;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> f) {
+			return this.spanFirst(f.apply(new SpanFirstQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanMulti(SpanMultiTermQuery v) {
+			this._type = SPAN_MULTI;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanMulti(
+				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> f) {
+			return this.spanMulti(f.apply(new SpanMultiTermQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanNear(SpanNearQuery v) {
+			this._type = SPAN_NEAR;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> f) {
+			return this.spanNear(f.apply(new SpanNearQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanNot(SpanNotQuery v) {
+			this._type = SPAN_NOT;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> f) {
+			return this.spanNot(f.apply(new SpanNotQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanOr(SpanOrQuery v) {
+			this._type = SPAN_OR;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> f) {
+			return this.spanOr(f.apply(new SpanOrQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanTerm(SpanTermQuery v) {
+			this._type = SPAN_TERM;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> f) {
+			return this.spanTerm(f.apply(new SpanTermQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> spanWithin(SpanWithinQuery v) {
+			this._type = SPAN_WITHIN;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> f) {
+			return this.spanWithin(f.apply(new SpanWithinQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> term(TermQuery v) {
+			this._type = TERM;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> f) {
+			return this.term(f.apply(new TermQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> terms(TermsQuery v) {
+			this._type = TERMS;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> f) {
+			return this.terms(f.apply(new TermsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> termsSet(TermsSetQuery v) {
+			this._type = TERMS_SET;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> f) {
+			return this.termsSet(f.apply(new TermsSetQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
+			this._type = WILDCARD;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> f) {
+			return this.wildcard(f.apply(new WildcardQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> type(TypeQuery v) {
+			this._type = TYPE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
+		public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> f) {
+			return this.type(f.apply(new TypeQuery.Builder()).build());
+		}
+
+		protected Query build() {
+			return new Query(this);
+		}
+
+	}
+
+	protected static void setupQueryDeserializer(DelegatingDeserializer<Builder> op) {
+
+		op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
+		op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");
+		op.add(Builder::common, CommonTermsQuery._DESERIALIZER, "common");
+		op.add(Builder::combinedFields, CombinedFieldsQuery._DESERIALIZER, "combined_fields");
+		op.add(Builder::constantScore, ConstantScoreQuery._DESERIALIZER, "constant_score");
+		op.add(Builder::disMax, DisMaxQuery._DESERIALIZER, "dis_max");
+		op.add(Builder::distanceFeature, JsonpDeserializer.jsonValueDeserializer(), "distance_feature");
+		op.add(Builder::exists, ExistsQuery._DESERIALIZER, "exists");
+		op.add(Builder::functionScore, FunctionScoreQuery._DESERIALIZER, "function_score");
+		op.add(Builder::fuzzy, FuzzyQuery._DESERIALIZER, "fuzzy");
+		op.add(Builder::geoBoundingBox, GeoBoundingBoxQuery._DESERIALIZER, "geo_bounding_box");
+		op.add(Builder::geoDistance, GeoDistanceQuery._DESERIALIZER, "geo_distance");
+		op.add(Builder::geoPolygon, GeoPolygonQuery._DESERIALIZER, "geo_polygon");
+		op.add(Builder::geoShape, GeoShapeQuery._DESERIALIZER, "geo_shape");
+		op.add(Builder::hasChild, HasChildQuery._DESERIALIZER, "has_child");
+		op.add(Builder::hasParent, HasParentQuery._DESERIALIZER, "has_parent");
+		op.add(Builder::ids, IdsQuery._DESERIALIZER, "ids");
+		op.add(Builder::intervals, IntervalsQuery._DESERIALIZER, "intervals");
+		op.add(Builder::match, MatchQuery._DESERIALIZER, "match");
+		op.add(Builder::matchAll, MatchAllQuery._DESERIALIZER, "match_all");
+		op.add(Builder::matchBoolPrefix, MatchBoolPrefixQuery._DESERIALIZER, "match_bool_prefix");
+		op.add(Builder::matchNone, MatchNoneQuery._DESERIALIZER, "match_none");
+		op.add(Builder::matchPhrase, MatchPhraseQuery._DESERIALIZER, "match_phrase");
+		op.add(Builder::matchPhrasePrefix, MatchPhrasePrefixQuery._DESERIALIZER, "match_phrase_prefix");
+		op.add(Builder::moreLikeThis, MoreLikeThisQuery._DESERIALIZER, "more_like_this");
+		op.add(Builder::multiMatch, MultiMatchQuery._DESERIALIZER, "multi_match");
+		op.add(Builder::nested, NestedQuery._DESERIALIZER, "nested");
+		op.add(Builder::parentId, ParentIdQuery._DESERIALIZER, "parent_id");
+		op.add(Builder::percolate, PercolateQuery._DESERIALIZER, "percolate");
+		op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");
+		op.add(Builder::prefix, PrefixQuery._DESERIALIZER, "prefix");
+		op.add(Builder::queryString, QueryStringQuery._DESERIALIZER, "query_string");
+		op.add(Builder::range, JsonpDeserializer.jsonValueDeserializer(), "range");
+		op.add(Builder::rankFeature, RankFeatureQuery._DESERIALIZER, "rank_feature");
+		op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
+		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
+		op.add(Builder::scriptScore, ScriptScoreQuery._DESERIALIZER, "script_score");
+		op.add(Builder::shape, ShapeQuery._DESERIALIZER, "shape");
+		op.add(Builder::simpleQueryString, SimpleQueryStringQuery._DESERIALIZER, "simple_query_string");
+		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
+		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
+		op.add(Builder::spanFirst, SpanFirstQuery._DESERIALIZER, "span_first");
+		op.add(Builder::spanMulti, SpanMultiTermQuery._DESERIALIZER, "span_multi");
+		op.add(Builder::spanNear, SpanNearQuery._DESERIALIZER, "span_near");
+		op.add(Builder::spanNot, SpanNotQuery._DESERIALIZER, "span_not");
+		op.add(Builder::spanOr, SpanOrQuery._DESERIALIZER, "span_or");
+		op.add(Builder::spanTerm, SpanTermQuery._DESERIALIZER, "span_term");
+		op.add(Builder::spanWithin, SpanWithinQuery._DESERIALIZER, "span_within");
+		op.add(Builder::term, TermQuery._DESERIALIZER, "term");
+		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
+		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
+		op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
+		op.add(Builder::type, TypeQuery._DESERIALIZER, "type");
+
+	}
+
+	public static final JsonpDeserializer<Query> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			Query::setupQueryDeserializer, Builder::build);
 }

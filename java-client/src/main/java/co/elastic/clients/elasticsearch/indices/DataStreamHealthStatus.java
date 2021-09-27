@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum DataStreamHealthStatus implements StringEnum {
 	/**
 	 * All shards are assigned.
@@ -51,6 +53,6 @@ public enum DataStreamHealthStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DataStreamHealthStatus> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<DataStreamHealthStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
 			DataStreamHealthStatus.values());
 }

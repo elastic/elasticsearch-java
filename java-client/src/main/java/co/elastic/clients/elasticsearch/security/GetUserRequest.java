@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -41,6 +42,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user.Request
+
 public final class GetUserRequest extends RequestBase {
 	@Nullable
 	private final List<String> username;
@@ -164,5 +166,5 @@ public final class GetUserRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetUserResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, GetUserResponse._DESERIALIZER);
 }

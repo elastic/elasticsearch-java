@@ -23,30 +23,65 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RoleMappingRule
-public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
 	public static final String ANY = "any";
 	public static final String ALL = "all";
 	public static final String FIELD = "field";
 	public static final String EXCEPT = "except";
 
+	/**
+	 * {@link RoleMappingRule} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "except";
+	}
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public RoleMappingRule(RoleMappingRuleVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private RoleMappingRule(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -56,8 +91,8 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code any} kind.
 	 */
-	public List<co.elastic.clients.elasticsearch.security.RoleMappingRule> any() {
-		return _get(ANY);
+	public List<RoleMappingRule> any() {
+		return TaggedUnionUtils.get(this, ANY);
 	}
 
 	/**
@@ -66,8 +101,8 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code all} kind.
 	 */
-	public List<co.elastic.clients.elasticsearch.security.RoleMappingRule> all() {
-		return _get(ALL);
+	public List<RoleMappingRule> all() {
+		return TaggedUnionUtils.get(this, ALL);
 	}
 
 	/**
@@ -77,7 +112,7 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code field} kind.
 	 */
 	public FieldRule field() {
-		return _get(FIELD);
+		return TaggedUnionUtils.get(this, FIELD);
 	}
 
 	/**
@@ -86,13 +121,15 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code except} kind.
 	 */
-	public co.elastic.clients.elasticsearch.security.RoleMappingRule except() {
-		return _get(EXCEPT);
+	public RoleMappingRule except() {
+		return TaggedUnionUtils.get(this, EXCEPT);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
@@ -100,8 +137,7 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 			switch (_type) {
 				case ANY :
 					generator.writeStartArray();
-					for (co.elastic.clients.elasticsearch.security.RoleMappingRule item0 : this.<List<co.elastic.clients.elasticsearch.security.RoleMappingRule>>_get(
-							ANY)) {
+					for (RoleMappingRule item0 : ((List<RoleMappingRule>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -110,8 +146,7 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 					break;
 				case ALL :
 					generator.writeStartArray();
-					for (co.elastic.clients.elasticsearch.security.RoleMappingRule item0 : this.<List<co.elastic.clients.elasticsearch.security.RoleMappingRule>>_get(
-							ALL)) {
+					for (RoleMappingRule item0 : ((List<RoleMappingRule>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -123,25 +158,26 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 
 		generator.writeEnd();
 	}
-	public static class Builder {
-		private String $tag;
-		private Object $variant;
 
-		public ObjectBuilder<RoleMappingRule> any(List<co.elastic.clients.elasticsearch.security.RoleMappingRule> v) {
-			this.$variant = v;
-			this.$tag = ANY;
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<RoleMappingRule> any(List<RoleMappingRule> v) {
+			this._type = ANY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
-		public ObjectBuilder<RoleMappingRule> all(List<co.elastic.clients.elasticsearch.security.RoleMappingRule> v) {
-			this.$variant = v;
-			this.$tag = ALL;
+		public ObjectBuilder<RoleMappingRule> all(List<RoleMappingRule> v) {
+			this._type = ALL;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<RoleMappingRule> field(FieldRule v) {
-			this.$variant = v;
-			this.$tag = FIELD;
+			this._type = FIELD;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -149,16 +185,15 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 			return this.field(f.apply(new FieldRule.Builder()).build());
 		}
 
-		public ObjectBuilder<RoleMappingRule> except(co.elastic.clients.elasticsearch.security.RoleMappingRule v) {
-			this.$variant = v;
-			this.$tag = EXCEPT;
+		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
+			this._type = EXCEPT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<RoleMappingRule> except(
-				Function<co.elastic.clients.elasticsearch.security.RoleMappingRule.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.security.RoleMappingRule>> f) {
-			return this
-					.except(f.apply(new co.elastic.clients.elasticsearch.security.RoleMappingRule.Builder()).build());
+				Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> f) {
+			return this.except(f.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		protected RoleMappingRule build() {
@@ -168,19 +203,14 @@ public class RoleMappingRule extends TaggedUnion<Object> implements JsonpSeriali
 	}
 
 	protected static void setupRoleMappingRuleDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::any, JsonpDeserializer
-				.arrayDeserializer(co.elastic.clients.elasticsearch.security.RoleMappingRule.DESERIALIZER), "any");
-		op.add(Builder::all, JsonpDeserializer
-				.arrayDeserializer(co.elastic.clients.elasticsearch.security.RoleMappingRule.DESERIALIZER), "all");
-		op.add(Builder::field, FieldRule.DESERIALIZER, "field");
-		op.add(Builder::except, co.elastic.clients.elasticsearch.security.RoleMappingRule.DESERIALIZER, "except");
+
+		op.add(Builder::any, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "any");
+		op.add(Builder::all, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "all");
+		op.add(Builder::field, FieldRule._DESERIALIZER, "field");
+		op.add(Builder::except, RoleMappingRule._DESERIALIZER, "except");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<RoleMappingRule> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<RoleMappingRule> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			RoleMappingRule::setupRoleMappingRuleDeserializer, Builder::build);
 }

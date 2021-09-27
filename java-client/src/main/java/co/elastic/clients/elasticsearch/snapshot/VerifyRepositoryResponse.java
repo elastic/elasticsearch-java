@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.verify_repository.CompactNodeInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.Response
+@JsonpDeserializable
 public final class VerifyRepositoryResponse implements JsonpSerializable {
 	private final Map<String, CompactNodeInfo> nodes;
 
@@ -138,13 +140,13 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link VerifyRepositoryResponse}
 	 */
-	public static final JsonpDeserializer<VerifyRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer);
+	public static final JsonpDeserializer<VerifyRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer, Builder::build);
 
 	protected static void setupVerifyRepositoryResponseDeserializer(
 			DelegatingDeserializer<VerifyRepositoryResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Weights
+@JsonpDeserializable
 public final class Weights implements JsonpSerializable {
-	private final Number weights;
+	private final Double weights;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class Weights implements JsonpSerializable {
 	/**
 	 * API name: {@code weights}
 	 */
-	public Number weights() {
+	public Double weights() {
 		return this.weights;
 	}
 
@@ -66,7 +68,7 @@ public final class Weights implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("weights");
-		generator.write(this.weights.doubleValue());
+		generator.write(this.weights);
 
 	}
 
@@ -76,12 +78,12 @@ public final class Weights implements JsonpSerializable {
 	 * Builder for {@link Weights}.
 	 */
 	public static class Builder implements ObjectBuilder<Weights> {
-		private Number weights;
+		private Double weights;
 
 		/**
 		 * API name: {@code weights}
 		 */
-		public Builder weights(Number value) {
+		public Builder weights(Double value) {
 			this.weights = value;
 			return this;
 		}
@@ -103,12 +105,12 @@ public final class Weights implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Weights}
 	 */
-	public static final JsonpDeserializer<Weights> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Weights::setupWeightsDeserializer);
+	public static final JsonpDeserializer<Weights> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Weights::setupWeightsDeserializer, Builder::build);
 
 	protected static void setupWeightsDeserializer(DelegatingDeserializer<Weights.Builder> op) {
 
-		op.add(Builder::weights, JsonpDeserializer.numberDeserializer(), "weights");
+		op.add(Builder::weights, JsonpDeserializer.doubleDeserializer(), "weights");
 
 	}
 

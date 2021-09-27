@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -41,7 +41,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeAggregation
-public final class DateRangeAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class DateRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -49,7 +50,7 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 	private final String format;
 
 	@Nullable
-	private final JsonValue missing;
+	private final String missing;
 
 	@Nullable
 	private final List<DateRangeExpression> ranges;
@@ -75,6 +76,14 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 	}
 
 	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "date_range";
+	}
+
+	/**
 	 * API name: {@code field}
 	 */
 	@Nullable
@@ -94,7 +103,7 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public JsonValue missing() {
+	public String missing() {
 		return this.missing;
 	}
 
@@ -184,7 +193,7 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 		private String format;
 
 		@Nullable
-		private JsonValue missing;
+		private String missing;
 
 		@Nullable
 		private List<DateRangeExpression> ranges;
@@ -214,7 +223,7 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable JsonValue value) {
+		public Builder missing(@Nullable String value) {
 			this.missing = value;
 			return this;
 		}
@@ -298,16 +307,16 @@ public final class DateRangeAggregation extends BucketAggregationBase {
 	/**
 	 * Json deserializer for {@link DateRangeAggregation}
 	 */
-	public static final JsonpDeserializer<DateRangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DateRangeAggregation::setupDateRangeAggregationDeserializer);
+	public static final JsonpDeserializer<DateRangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DateRangeAggregation::setupDateRangeAggregationDeserializer, Builder::build);
 
 	protected static void setupDateRangeAggregationDeserializer(
 			DelegatingDeserializer<DateRangeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::missing, JsonpDeserializer.jsonValueDeserializer(), "missing");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateRangeExpression.DESERIALIZER), "ranges");
+		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateRangeExpression._DESERIALIZER), "ranges");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 

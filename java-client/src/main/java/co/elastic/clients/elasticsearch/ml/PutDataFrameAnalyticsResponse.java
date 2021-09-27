@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,17 +34,19 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Response
+@JsonpDeserializable
 public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final String id;
 
-	private final Number createTime;
+	private final Long createTime;
 
 	private final String version;
 
@@ -58,12 +61,12 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private final Boolean allowLazyStart;
 
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	private final DataframeAnalysis analysis;
 
 	@Nullable
-	private final JsonValue analyzedFields;
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +96,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code create_time}
 	 */
-	public Number createTime() {
+	public Long createTime() {
 		return this.createTime;
 	}
 
@@ -143,7 +146,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code max_num_threads}
 	 */
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -158,7 +161,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -177,7 +180,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		generator.write(this.id);
 
 		generator.writeKey("create_time");
-		generator.write(this.createTime.doubleValue());
+		generator.write(this.createTime);
 
 		generator.writeKey("version");
 		generator.write(this.version);
@@ -202,7 +205,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		generator.write(this.allowLazyStart);
 
 		generator.writeKey("max_num_threads");
-		generator.write(this.maxNumThreads.doubleValue());
+		generator.write(this.maxNumThreads);
 
 		generator.writeKey("analysis");
 		this.analysis.serialize(generator, mapper);
@@ -224,7 +227,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<PutDataFrameAnalyticsResponse> {
 		private String id;
 
-		private Number createTime;
+		private Long createTime;
 
 		private String version;
 
@@ -239,12 +242,12 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		private Boolean allowLazyStart;
 
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		private DataframeAnalysis analysis;
 
 		@Nullable
-		private JsonValue analyzedFields;
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		/**
 		 * API name: {@code id}
@@ -257,7 +260,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(Number value) {
+		public Builder createTime(Long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -328,7 +331,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(Number value) {
+		public Builder maxNumThreads(Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -351,7 +354,7 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -373,23 +376,23 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PutDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					PutDataFrameAnalyticsResponse::setupPutDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<PutDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutDataFrameAnalyticsResponse::setupPutDataFrameAnalyticsResponseDeserializer,
+			Builder::build);
 
 	protected static void setupPutDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<PutDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::createTime, JsonpDeserializer.numberDeserializer(), "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
+		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
-		op.add(Builder::analysis, DataframeAnalysis.DESERIALIZER, "analysis");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,9 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.Segment
+@JsonpDeserializable
 public final class Segment implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
@@ -47,17 +51,17 @@ public final class Segment implements JsonpSerializable {
 
 	private final Boolean compound;
 
-	private final Number deletedDocs;
+	private final Long deletedDocs;
 
-	private final Number generation;
+	private final Integer generation;
 
-	private final Number memoryInBytes;
+	private final Double memoryInBytes;
 
 	private final Boolean search;
 
-	private final Number sizeInBytes;
+	private final Double sizeInBytes;
 
-	private final Number numDocs;
+	private final Long numDocs;
 
 	private final String version;
 
@@ -102,21 +106,21 @@ public final class Segment implements JsonpSerializable {
 	/**
 	 * API name: {@code deleted_docs}
 	 */
-	public Number deletedDocs() {
+	public Long deletedDocs() {
 		return this.deletedDocs;
 	}
 
 	/**
 	 * API name: {@code generation}
 	 */
-	public Number generation() {
+	public Integer generation() {
 		return this.generation;
 	}
 
 	/**
 	 * API name: {@code memory_in_bytes}
 	 */
-	public Number memoryInBytes() {
+	public Double memoryInBytes() {
 		return this.memoryInBytes;
 	}
 
@@ -130,14 +134,14 @@ public final class Segment implements JsonpSerializable {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public Double sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * API name: {@code num_docs}
 	 */
-	public Number numDocs() {
+	public Long numDocs() {
 		return this.numDocs;
 	}
 
@@ -175,22 +179,22 @@ public final class Segment implements JsonpSerializable {
 		generator.write(this.compound);
 
 		generator.writeKey("deleted_docs");
-		generator.write(this.deletedDocs.doubleValue());
+		generator.write(this.deletedDocs);
 
 		generator.writeKey("generation");
-		generator.write(this.generation.doubleValue());
+		generator.write(this.generation);
 
 		generator.writeKey("memory_in_bytes");
-		generator.write(this.memoryInBytes.doubleValue());
+		generator.write(this.memoryInBytes);
 
 		generator.writeKey("search");
 		generator.write(this.search);
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 		generator.writeKey("num_docs");
-		generator.write(this.numDocs.doubleValue());
+		generator.write(this.numDocs);
 
 		generator.writeKey("version");
 		generator.write(this.version);
@@ -209,17 +213,17 @@ public final class Segment implements JsonpSerializable {
 
 		private Boolean compound;
 
-		private Number deletedDocs;
+		private Long deletedDocs;
 
-		private Number generation;
+		private Integer generation;
 
-		private Number memoryInBytes;
+		private Double memoryInBytes;
 
 		private Boolean search;
 
-		private Number sizeInBytes;
+		private Double sizeInBytes;
 
-		private Number numDocs;
+		private Long numDocs;
 
 		private String version;
 
@@ -261,7 +265,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted_docs}
 		 */
-		public Builder deletedDocs(Number value) {
+		public Builder deletedDocs(Long value) {
 			this.deletedDocs = value;
 			return this;
 		}
@@ -269,7 +273,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code generation}
 		 */
-		public Builder generation(Number value) {
+		public Builder generation(Integer value) {
 			this.generation = value;
 			return this;
 		}
@@ -277,7 +281,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_in_bytes}
 		 */
-		public Builder memoryInBytes(Number value) {
+		public Builder memoryInBytes(Double value) {
 			this.memoryInBytes = value;
 			return this;
 		}
@@ -293,7 +297,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(Double value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -301,7 +305,7 @@ public final class Segment implements JsonpSerializable {
 		/**
 		 * API name: {@code num_docs}
 		 */
-		public Builder numDocs(Number value) {
+		public Builder numDocs(Long value) {
 			this.numDocs = value;
 			return this;
 		}
@@ -331,8 +335,8 @@ public final class Segment implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Segment}
 	 */
-	public static final JsonpDeserializer<Segment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Segment::setupSegmentDeserializer);
+	public static final JsonpDeserializer<Segment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Segment::setupSegmentDeserializer, Builder::build);
 
 	protected static void setupSegmentDeserializer(DelegatingDeserializer<Segment.Builder> op) {
 
@@ -340,12 +344,12 @@ public final class Segment implements JsonpSerializable {
 				"attributes");
 		op.add(Builder::committed, JsonpDeserializer.booleanDeserializer(), "committed");
 		op.add(Builder::compound, JsonpDeserializer.booleanDeserializer(), "compound");
-		op.add(Builder::deletedDocs, JsonpDeserializer.numberDeserializer(), "deleted_docs");
-		op.add(Builder::generation, JsonpDeserializer.numberDeserializer(), "generation");
-		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
+		op.add(Builder::deletedDocs, JsonpDeserializer.longDeserializer(), "deleted_docs");
+		op.add(Builder::generation, JsonpDeserializer.integerDeserializer(), "generation");
+		op.add(Builder::memoryInBytes, JsonpDeserializer.doubleDeserializer(), "memory_in_bytes");
 		op.add(Builder::search, JsonpDeserializer.booleanDeserializer(), "search");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
-		op.add(Builder::numDocs, JsonpDeserializer.numberDeserializer(), "num_docs");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.doubleDeserializer(), "size_in_bytes");
+		op.add(Builder::numDocs, JsonpDeserializer.longDeserializer(), "num_docs");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}

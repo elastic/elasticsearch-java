@@ -23,22 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFilter
-public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String AFTER = "after";
 	public static final String BEFORE = "before";
@@ -50,8 +53,32 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	public static final String OVERLAPPING = "overlapping";
 	public static final String SCRIPT = "script";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public IntervalsFilter(IntervalsFilterVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private IntervalsFilter(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -62,7 +89,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code after} kind.
 	 */
 	public Intervals after() {
-		return _get(AFTER);
+		return TaggedUnionUtils.get(this, AFTER);
 	}
 
 	/**
@@ -72,7 +99,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code before} kind.
 	 */
 	public Intervals before() {
-		return _get(BEFORE);
+		return TaggedUnionUtils.get(this, BEFORE);
 	}
 
 	/**
@@ -82,7 +109,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code contained_by} kind.
 	 */
 	public Intervals containedBy() {
-		return _get(CONTAINED_BY);
+		return TaggedUnionUtils.get(this, CONTAINED_BY);
 	}
 
 	/**
@@ -92,7 +119,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code containing} kind.
 	 */
 	public Intervals containing() {
-		return _get(CONTAINING);
+		return TaggedUnionUtils.get(this, CONTAINING);
 	}
 
 	/**
@@ -103,7 +130,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             kind.
 	 */
 	public Intervals notContainedBy() {
-		return _get(NOT_CONTAINED_BY);
+		return TaggedUnionUtils.get(this, NOT_CONTAINED_BY);
 	}
 
 	/**
@@ -113,7 +140,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code not_containing} kind.
 	 */
 	public Intervals notContaining() {
-		return _get(NOT_CONTAINING);
+		return TaggedUnionUtils.get(this, NOT_CONTAINING);
 	}
 
 	/**
@@ -124,7 +151,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             kind.
 	 */
 	public Intervals notOverlapping() {
-		return _get(NOT_OVERLAPPING);
+		return TaggedUnionUtils.get(this, NOT_OVERLAPPING);
 	}
 
 	/**
@@ -134,7 +161,7 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 *             if the current variant is not of the {@code overlapping} kind.
 	 */
 	public Intervals overlapping() {
-		return _get(OVERLAPPING);
+		return TaggedUnionUtils.get(this, OVERLAPPING);
 	}
 
 	/**
@@ -143,20 +170,22 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code script} kind.
 	 */
-	public JsonValue script() {
-		return _get(SCRIPT);
+	public JsonValue /* _types.Script */ script() {
+		return TaggedUnionUtils.get(this, SCRIPT);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_type) {
 				case SCRIPT :
-					generator.write(this.<JsonValue>_get(SCRIPT));
+					generator.write(((JsonValue /* _types.Script */) this._value));
 
 					break;
 			}
@@ -164,13 +193,14 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<IntervalsFilter> after(Intervals v) {
-			this.$variant = v;
-			this.$tag = AFTER;
+			this._type = AFTER;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -179,8 +209,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> before(Intervals v) {
-			this.$variant = v;
-			this.$tag = BEFORE;
+			this._type = BEFORE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -189,8 +219,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> containedBy(Intervals v) {
-			this.$variant = v;
-			this.$tag = CONTAINED_BY;
+			this._type = CONTAINED_BY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -199,8 +229,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> containing(Intervals v) {
-			this.$variant = v;
-			this.$tag = CONTAINING;
+			this._type = CONTAINING;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -209,8 +239,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> notContainedBy(Intervals v) {
-			this.$variant = v;
-			this.$tag = NOT_CONTAINED_BY;
+			this._type = NOT_CONTAINED_BY;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -219,8 +249,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> notContaining(Intervals v) {
-			this.$variant = v;
-			this.$tag = NOT_CONTAINING;
+			this._type = NOT_CONTAINING;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -229,8 +259,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> notOverlapping(Intervals v) {
-			this.$variant = v;
-			this.$tag = NOT_OVERLAPPING;
+			this._type = NOT_OVERLAPPING;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -239,8 +269,8 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 		}
 
 		public ObjectBuilder<IntervalsFilter> overlapping(Intervals v) {
-			this.$variant = v;
-			this.$tag = OVERLAPPING;
+			this._type = OVERLAPPING;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -248,9 +278,9 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 			return this.overlapping(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> script(JsonValue v) {
-			this.$variant = v;
-			this.$tag = SCRIPT;
+		public ObjectBuilder<IntervalsFilter> script(JsonValue /* _types.Script */ v) {
+			this._type = SCRIPT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -261,22 +291,19 @@ public class IntervalsFilter extends TaggedUnion<Object> implements JsonpSeriali
 	}
 
 	protected static void setupIntervalsFilterDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::after, Intervals.DESERIALIZER, "after");
-		op.add(Builder::before, Intervals.DESERIALIZER, "before");
-		op.add(Builder::containedBy, Intervals.DESERIALIZER, "contained_by");
-		op.add(Builder::containing, Intervals.DESERIALIZER, "containing");
-		op.add(Builder::notContainedBy, Intervals.DESERIALIZER, "not_contained_by");
-		op.add(Builder::notContaining, Intervals.DESERIALIZER, "not_containing");
-		op.add(Builder::notOverlapping, Intervals.DESERIALIZER, "not_overlapping");
-		op.add(Builder::overlapping, Intervals.DESERIALIZER, "overlapping");
+
+		op.add(Builder::after, Intervals._DESERIALIZER, "after");
+		op.add(Builder::before, Intervals._DESERIALIZER, "before");
+		op.add(Builder::containedBy, Intervals._DESERIALIZER, "contained_by");
+		op.add(Builder::containing, Intervals._DESERIALIZER, "containing");
+		op.add(Builder::notContainedBy, Intervals._DESERIALIZER, "not_contained_by");
+		op.add(Builder::notContaining, Intervals._DESERIALIZER, "not_containing");
+		op.add(Builder::notOverlapping, Intervals._DESERIALIZER, "not_overlapping");
+		op.add(Builder::overlapping, Intervals._DESERIALIZER, "overlapping");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<IntervalsFilter> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<IntervalsFilter> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			IntervalsFilter::setupIntervalsFilterDeserializer, Builder::build);
 }

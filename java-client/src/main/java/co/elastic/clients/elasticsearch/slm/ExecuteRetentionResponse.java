@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: slm.execute_retention.Response
+@JsonpDeserializable
 public final class ExecuteRetentionResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,8 +73,8 @@ public final class ExecuteRetentionResponse extends AcknowledgedResponseBase {
 	/**
 	 * Json deserializer for {@link ExecuteRetentionResponse}
 	 */
-	public static final JsonpDeserializer<ExecuteRetentionResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecuteRetentionResponse::setupExecuteRetentionResponseDeserializer);
+	public static final JsonpDeserializer<ExecuteRetentionResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecuteRetentionResponse::setupExecuteRetentionResponseDeserializer, Builder::build);
 
 	protected static void setupExecuteRetentionResponseDeserializer(
 			DelegatingDeserializer<ExecuteRetentionResponse.Builder> op) {

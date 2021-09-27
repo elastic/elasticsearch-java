@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,18 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RegressionInferenceOptions
+@JsonpDeserializable
 public final class RegressionInferenceOptions implements JsonpSerializable {
 	@Nullable
 	private final String resultsField;
 
 	@Nullable
-	private final Number numTopFeatureImportanceValues;
+	private final Integer numTopFeatureImportanceValues;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +73,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Number numTopFeatureImportanceValues() {
+	public Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
@@ -95,7 +97,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		if (this.numTopFeatureImportanceValues != null) {
 
 			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues.doubleValue());
+			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 
@@ -111,7 +113,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		private String resultsField;
 
 		@Nullable
-		private Number numTopFeatureImportanceValues;
+		private Integer numTopFeatureImportanceValues;
 
 		/**
 		 * The field that is added to incoming documents to contain the inference
@@ -130,7 +132,7 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public Builder numTopFeatureImportanceValues(@Nullable Number value) {
+		public Builder numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
@@ -152,14 +154,14 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RegressionInferenceOptions}
 	 */
-	public static final JsonpDeserializer<RegressionInferenceOptions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer);
+	public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer, Builder::build);
 
 	protected static void setupRegressionInferenceOptionsDeserializer(
 			DelegatingDeserializer<RegressionInferenceOptions.Builder> op) {
 
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
 				"num_top_feature_importance_values");
 
 	}

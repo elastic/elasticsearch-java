@@ -24,29 +24,31 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelInferenceStats
+@JsonpDeserializable
 public final class TrainedModelInferenceStats implements JsonpSerializable {
-	private final Number failureCount;
+	private final Long failureCount;
 
-	private final Number inferenceCount;
+	private final Long inferenceCount;
 
-	private final Number cacheMissCount;
+	private final Long cacheMissCount;
 
-	private final Number missingAllFieldsCount;
+	private final Long missingAllFieldsCount;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +67,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failure_count}
 	 */
-	public Number failureCount() {
+	public Long failureCount() {
 		return this.failureCount;
 	}
 
@@ -75,7 +77,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code inference_count}
 	 */
-	public Number inferenceCount() {
+	public Long inferenceCount() {
 		return this.inferenceCount;
 	}
 
@@ -88,7 +90,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code cache_miss_count}
 	 */
-	public Number cacheMissCount() {
+	public Long cacheMissCount() {
 		return this.cacheMissCount;
 	}
 
@@ -98,7 +100,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
-	public Number missingAllFieldsCount() {
+	public Long missingAllFieldsCount() {
 		return this.missingAllFieldsCount;
 	}
 
@@ -107,7 +109,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
@@ -123,16 +125,16 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("failure_count");
-		generator.write(this.failureCount.doubleValue());
+		generator.write(this.failureCount);
 
 		generator.writeKey("inference_count");
-		generator.write(this.inferenceCount.doubleValue());
+		generator.write(this.inferenceCount);
 
 		generator.writeKey("cache_miss_count");
-		generator.write(this.cacheMissCount.doubleValue());
+		generator.write(this.cacheMissCount);
 
 		generator.writeKey("missing_all_fields_count");
-		generator.write(this.missingAllFieldsCount.doubleValue());
+		generator.write(this.missingAllFieldsCount);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
@@ -145,22 +147,22 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * Builder for {@link TrainedModelInferenceStats}.
 	 */
 	public static class Builder implements ObjectBuilder<TrainedModelInferenceStats> {
-		private Number failureCount;
+		private Long failureCount;
 
-		private Number inferenceCount;
+		private Long inferenceCount;
 
-		private Number cacheMissCount;
+		private Long cacheMissCount;
 
-		private Number missingAllFieldsCount;
+		private Long missingAllFieldsCount;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		/**
 		 * The number of failures when using the model for inference.
 		 * <p>
 		 * API name: {@code failure_count}
 		 */
-		public Builder failureCount(Number value) {
+		public Builder failureCount(Long value) {
 			this.failureCount = value;
 			return this;
 		}
@@ -171,7 +173,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_count}
 		 */
-		public Builder inferenceCount(Number value) {
+		public Builder inferenceCount(Long value) {
 			this.inferenceCount = value;
 			return this;
 		}
@@ -185,7 +187,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cache_miss_count}
 		 */
-		public Builder cacheMissCount(Number value) {
+		public Builder cacheMissCount(Long value) {
 			this.cacheMissCount = value;
 			return this;
 		}
@@ -196,7 +198,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
-		public Builder missingAllFieldsCount(Number value) {
+		public Builder missingAllFieldsCount(Long value) {
 			this.missingAllFieldsCount = value;
 			return this;
 		}
@@ -206,7 +208,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -228,17 +230,17 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelInferenceStats}
 	 */
-	public static final JsonpDeserializer<TrainedModelInferenceStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer);
+	public static final JsonpDeserializer<TrainedModelInferenceStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer, Builder::build);
 
 	protected static void setupTrainedModelInferenceStatsDeserializer(
 			DelegatingDeserializer<TrainedModelInferenceStats.Builder> op) {
 
-		op.add(Builder::failureCount, JsonpDeserializer.numberDeserializer(), "failure_count");
-		op.add(Builder::inferenceCount, JsonpDeserializer.numberDeserializer(), "inference_count");
-		op.add(Builder::cacheMissCount, JsonpDeserializer.numberDeserializer(), "cache_miss_count");
-		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.numberDeserializer(), "missing_all_fields_count");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::failureCount, JsonpDeserializer.longDeserializer(), "failure_count");
+		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");
+		op.add(Builder::cacheMissCount, JsonpDeserializer.longDeserializer(), "cache_miss_count");
+		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.longDeserializer(), "missing_all_fields_count");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Counter
+@JsonpDeserializable
 public class Counter implements JsonpSerializable {
-	private final Number active;
+	private final Long active;
 
-	private final Number total;
+	private final Long total;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public class Counter implements JsonpSerializable {
 	/**
 	 * API name: {@code active}
 	 */
-	public Number active() {
+	public Long active() {
 		return this.active;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
@@ -76,10 +78,10 @@ public class Counter implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active");
-		generator.write(this.active.doubleValue());
+		generator.write(this.active);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -107,14 +109,14 @@ public class Counter implements JsonpSerializable {
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		private Number active;
+		private Long active;
 
-		private Number total;
+		private Long total;
 
 		/**
 		 * API name: {@code active}
 		 */
-		public BuilderT active(Number value) {
+		public BuilderT active(Long value) {
 			this.active = value;
 			return self();
 		}
@@ -122,7 +124,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public BuilderT total(Number value) {
+		public BuilderT total(Long value) {
 			this.total = value;
 			return self();
 		}
@@ -136,14 +138,14 @@ public class Counter implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Counter}
 	 */
-	public static final JsonpDeserializer<Counter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Counter::setupCounterDeserializer);
+	public static final JsonpDeserializer<Counter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Counter::setupCounterDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCounterDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::active, JsonpDeserializer.numberDeserializer(), "active");
-		op.add(AbstractBuilder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(AbstractBuilder::active, JsonpDeserializer.longDeserializer(), "active");
+		op.add(AbstractBuilder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

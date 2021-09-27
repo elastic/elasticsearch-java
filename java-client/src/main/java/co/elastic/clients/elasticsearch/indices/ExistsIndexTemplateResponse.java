@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -31,6 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: indices.exists_index_template.Response
+
 public final class ExistsIndexTemplateResponse {
 	public ExistsIndexTemplateResponse() {
 	}
@@ -38,9 +40,9 @@ public final class ExistsIndexTemplateResponse {
 	/**
 	 * Singleton instance for {@link ExistsIndexTemplateResponse}.
 	 */
-	public static final ExistsIndexTemplateResponse INSTANCE = new ExistsIndexTemplateResponse();
+	public static final ExistsIndexTemplateResponse _INSTANCE = new ExistsIndexTemplateResponse();
 
-	public static final JsonpDeserializer<ExistsIndexTemplateResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsIndexTemplateResponse.INSTANCE);
+	public static final JsonpDeserializer<ExistsIndexTemplateResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(ExistsIndexTemplateResponse._INSTANCE);
 
 }

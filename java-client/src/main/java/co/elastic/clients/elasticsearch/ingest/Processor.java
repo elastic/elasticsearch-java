@@ -23,22 +23,25 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorContainer
-public class Processor extends TaggedUnion<Object> implements JsonpSerializable {
+@JsonpDeserializable
+public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 	public static final String ATTACHMENT = "attachment";
 	public static final String APPEND = "append";
@@ -75,8 +78,32 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	public static final String CIRCLE = "circle";
 	public static final String INFERENCE = "inference";
 
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public Processor(ProcessorVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
 	private Processor(Builder builder) {
-		super(builder.$tag, builder.$variant);
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
 
 	}
 
@@ -87,7 +114,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code attachment} kind.
 	 */
 	public AttachmentProcessor attachment() {
-		return _get(ATTACHMENT);
+		return TaggedUnionUtils.get(this, ATTACHMENT);
 	}
 
 	/**
@@ -97,7 +124,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code append} kind.
 	 */
 	public AppendProcessor append() {
-		return _get(APPEND);
+		return TaggedUnionUtils.get(this, APPEND);
 	}
 
 	/**
@@ -107,7 +134,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code csv} kind.
 	 */
 	public CsvProcessor csv() {
-		return _get(CSV);
+		return TaggedUnionUtils.get(this, CSV);
 	}
 
 	/**
@@ -117,7 +144,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code convert} kind.
 	 */
 	public ConvertProcessor convert() {
-		return _get(CONVERT);
+		return TaggedUnionUtils.get(this, CONVERT);
 	}
 
 	/**
@@ -127,7 +154,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code date} kind.
 	 */
 	public DateProcessor date() {
-		return _get(DATE);
+		return TaggedUnionUtils.get(this, DATE);
 	}
 
 	/**
@@ -138,7 +165,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             kind.
 	 */
 	public DateIndexNameProcessor dateIndexName() {
-		return _get(DATE_INDEX_NAME);
+		return TaggedUnionUtils.get(this, DATE_INDEX_NAME);
 	}
 
 	/**
@@ -148,7 +175,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code dot_expander} kind.
 	 */
 	public DotExpanderProcessor dotExpander() {
-		return _get(DOT_EXPANDER);
+		return TaggedUnionUtils.get(this, DOT_EXPANDER);
 	}
 
 	/**
@@ -158,7 +185,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code enrich} kind.
 	 */
 	public EnrichProcessor enrich() {
-		return _get(ENRICH);
+		return TaggedUnionUtils.get(this, ENRICH);
 	}
 
 	/**
@@ -168,7 +195,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code fail} kind.
 	 */
 	public FailProcessor fail() {
-		return _get(FAIL);
+		return TaggedUnionUtils.get(this, FAIL);
 	}
 
 	/**
@@ -178,7 +205,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code foreach} kind.
 	 */
 	public ForeachProcessor foreach() {
-		return _get(FOREACH);
+		return TaggedUnionUtils.get(this, FOREACH);
 	}
 
 	/**
@@ -188,7 +215,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code json} kind.
 	 */
 	public JsonProcessor json() {
-		return _get(JSON);
+		return TaggedUnionUtils.get(this, JSON);
 	}
 
 	/**
@@ -198,7 +225,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code user_agent} kind.
 	 */
 	public UserAgentProcessor userAgent() {
-		return _get(USER_AGENT);
+		return TaggedUnionUtils.get(this, USER_AGENT);
 	}
 
 	/**
@@ -208,7 +235,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code kv} kind.
 	 */
 	public KeyValueProcessor kv() {
-		return _get(KV);
+		return TaggedUnionUtils.get(this, KV);
 	}
 
 	/**
@@ -218,7 +245,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code geoip} kind.
 	 */
 	public GeoIpProcessor geoip() {
-		return _get(GEOIP);
+		return TaggedUnionUtils.get(this, GEOIP);
 	}
 
 	/**
@@ -228,7 +255,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code grok} kind.
 	 */
 	public GrokProcessor grok() {
-		return _get(GROK);
+		return TaggedUnionUtils.get(this, GROK);
 	}
 
 	/**
@@ -238,7 +265,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code gsub} kind.
 	 */
 	public GsubProcessor gsub() {
-		return _get(GSUB);
+		return TaggedUnionUtils.get(this, GSUB);
 	}
 
 	/**
@@ -248,7 +275,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code join} kind.
 	 */
 	public JoinProcessor join() {
-		return _get(JOIN);
+		return TaggedUnionUtils.get(this, JOIN);
 	}
 
 	/**
@@ -258,7 +285,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code lowercase} kind.
 	 */
 	public LowercaseProcessor lowercase() {
-		return _get(LOWERCASE);
+		return TaggedUnionUtils.get(this, LOWERCASE);
 	}
 
 	/**
@@ -268,7 +295,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code remove} kind.
 	 */
 	public RemoveProcessor remove() {
-		return _get(REMOVE);
+		return TaggedUnionUtils.get(this, REMOVE);
 	}
 
 	/**
@@ -278,7 +305,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code rename} kind.
 	 */
 	public RenameProcessor rename() {
-		return _get(RENAME);
+		return TaggedUnionUtils.get(this, RENAME);
 	}
 
 	/**
@@ -287,8 +314,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code script} kind.
 	 */
-	public JsonValue script() {
-		return _get(SCRIPT);
+	public JsonValue /* _types.Script */ script() {
+		return TaggedUnionUtils.get(this, SCRIPT);
 	}
 
 	/**
@@ -298,7 +325,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code set} kind.
 	 */
 	public SetProcessor set() {
-		return _get(SET);
+		return TaggedUnionUtils.get(this, SET);
 	}
 
 	/**
@@ -308,7 +335,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code sort} kind.
 	 */
 	public SortProcessor sort() {
-		return _get(SORT);
+		return TaggedUnionUtils.get(this, SORT);
 	}
 
 	/**
@@ -318,7 +345,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code split} kind.
 	 */
 	public SplitProcessor split() {
-		return _get(SPLIT);
+		return TaggedUnionUtils.get(this, SPLIT);
 	}
 
 	/**
@@ -328,7 +355,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code trim} kind.
 	 */
 	public TrimProcessor trim() {
-		return _get(TRIM);
+		return TaggedUnionUtils.get(this, TRIM);
 	}
 
 	/**
@@ -338,7 +365,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code uppercase} kind.
 	 */
 	public UppercaseProcessor uppercase() {
-		return _get(UPPERCASE);
+		return TaggedUnionUtils.get(this, UPPERCASE);
 	}
 
 	/**
@@ -348,7 +375,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code urldecode} kind.
 	 */
 	public UrlDecodeProcessor urldecode() {
-		return _get(URLDECODE);
+		return TaggedUnionUtils.get(this, URLDECODE);
 	}
 
 	/**
@@ -358,7 +385,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code bytes} kind.
 	 */
 	public BytesProcessor bytes() {
-		return _get(BYTES);
+		return TaggedUnionUtils.get(this, BYTES);
 	}
 
 	/**
@@ -368,7 +395,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code dissect} kind.
 	 */
 	public DissectProcessor dissect() {
-		return _get(DISSECT);
+		return TaggedUnionUtils.get(this, DISSECT);
 	}
 
 	/**
@@ -379,7 +406,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             kind.
 	 */
 	public SetSecurityUserProcessor setSecurityUser() {
-		return _get(SET_SECURITY_USER);
+		return TaggedUnionUtils.get(this, SET_SECURITY_USER);
 	}
 
 	/**
@@ -389,7 +416,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code pipeline} kind.
 	 */
 	public PipelineProcessor pipeline() {
-		return _get(PIPELINE);
+		return TaggedUnionUtils.get(this, PIPELINE);
 	}
 
 	/**
@@ -399,7 +426,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code drop} kind.
 	 */
 	public DropProcessor drop() {
-		return _get(DROP);
+		return TaggedUnionUtils.get(this, DROP);
 	}
 
 	/**
@@ -409,7 +436,7 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code circle} kind.
 	 */
 	public CircleProcessor circle() {
-		return _get(CIRCLE);
+		return TaggedUnionUtils.get(this, CIRCLE);
 	}
 
 	/**
@@ -419,19 +446,21 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	 *             if the current variant is not of the {@code inference} kind.
 	 */
 	public InferenceProcessor inference() {
-		return _get(INFERENCE);
+		return TaggedUnionUtils.get(this, INFERENCE);
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
+
 		generator.writeKey(_type);
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_type) {
 				case SCRIPT :
-					generator.write(this.<JsonValue>_get(SCRIPT));
+					generator.write(((JsonValue /* _types.Script */) this._value));
 
 					break;
 			}
@@ -439,13 +468,14 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 
 		generator.writeEnd();
 	}
+
 	public static class Builder {
-		private String $tag;
-		private Object $variant;
+		private String _type;
+		private Object _value;
 
 		public ObjectBuilder<Processor> attachment(AttachmentProcessor v) {
-			this.$variant = v;
-			this.$tag = ATTACHMENT;
+			this._type = ATTACHMENT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -455,8 +485,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> append(AppendProcessor v) {
-			this.$variant = v;
-			this.$tag = APPEND;
+			this._type = APPEND;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -465,8 +495,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> csv(CsvProcessor v) {
-			this.$variant = v;
-			this.$tag = CSV;
+			this._type = CSV;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -475,8 +505,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> convert(ConvertProcessor v) {
-			this.$variant = v;
-			this.$tag = CONVERT;
+			this._type = CONVERT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -485,8 +515,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> date(DateProcessor v) {
-			this.$variant = v;
-			this.$tag = DATE;
+			this._type = DATE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -495,8 +525,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> dateIndexName(DateIndexNameProcessor v) {
-			this.$variant = v;
-			this.$tag = DATE_INDEX_NAME;
+			this._type = DATE_INDEX_NAME;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -506,8 +536,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> dotExpander(DotExpanderProcessor v) {
-			this.$variant = v;
-			this.$tag = DOT_EXPANDER;
+			this._type = DOT_EXPANDER;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -517,8 +547,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> enrich(EnrichProcessor v) {
-			this.$variant = v;
-			this.$tag = ENRICH;
+			this._type = ENRICH;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -527,8 +557,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> fail(FailProcessor v) {
-			this.$variant = v;
-			this.$tag = FAIL;
+			this._type = FAIL;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -537,8 +567,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> foreach(ForeachProcessor v) {
-			this.$variant = v;
-			this.$tag = FOREACH;
+			this._type = FOREACH;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -547,8 +577,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> json(JsonProcessor v) {
-			this.$variant = v;
-			this.$tag = JSON;
+			this._type = JSON;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -557,8 +587,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
-			this.$variant = v;
-			this.$tag = USER_AGENT;
+			this._type = USER_AGENT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -568,8 +598,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> kv(KeyValueProcessor v) {
-			this.$variant = v;
-			this.$tag = KV;
+			this._type = KV;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -578,8 +608,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> geoip(GeoIpProcessor v) {
-			this.$variant = v;
-			this.$tag = GEOIP;
+			this._type = GEOIP;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -588,8 +618,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> grok(GrokProcessor v) {
-			this.$variant = v;
-			this.$tag = GROK;
+			this._type = GROK;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -598,8 +628,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> gsub(GsubProcessor v) {
-			this.$variant = v;
-			this.$tag = GSUB;
+			this._type = GSUB;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -608,8 +638,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> join(JoinProcessor v) {
-			this.$variant = v;
-			this.$tag = JOIN;
+			this._type = JOIN;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -618,8 +648,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> lowercase(LowercaseProcessor v) {
-			this.$variant = v;
-			this.$tag = LOWERCASE;
+			this._type = LOWERCASE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -629,8 +659,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
-			this.$variant = v;
-			this.$tag = REMOVE;
+			this._type = REMOVE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -639,8 +669,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> rename(RenameProcessor v) {
-			this.$variant = v;
-			this.$tag = RENAME;
+			this._type = RENAME;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -648,15 +678,15 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 			return this.rename(f.apply(new RenameProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> script(JsonValue v) {
-			this.$variant = v;
-			this.$tag = SCRIPT;
+		public ObjectBuilder<Processor> script(JsonValue /* _types.Script */ v) {
+			this._type = SCRIPT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
 		public ObjectBuilder<Processor> set(SetProcessor v) {
-			this.$variant = v;
-			this.$tag = SET;
+			this._type = SET;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -665,8 +695,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> sort(SortProcessor v) {
-			this.$variant = v;
-			this.$tag = SORT;
+			this._type = SORT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -675,8 +705,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> split(SplitProcessor v) {
-			this.$variant = v;
-			this.$tag = SPLIT;
+			this._type = SPLIT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -685,8 +715,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> trim(TrimProcessor v) {
-			this.$variant = v;
-			this.$tag = TRIM;
+			this._type = TRIM;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -695,8 +725,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> uppercase(UppercaseProcessor v) {
-			this.$variant = v;
-			this.$tag = UPPERCASE;
+			this._type = UPPERCASE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -706,8 +736,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> urldecode(UrlDecodeProcessor v) {
-			this.$variant = v;
-			this.$tag = URLDECODE;
+			this._type = URLDECODE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -717,8 +747,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> bytes(BytesProcessor v) {
-			this.$variant = v;
-			this.$tag = BYTES;
+			this._type = BYTES;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -727,8 +757,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> dissect(DissectProcessor v) {
-			this.$variant = v;
-			this.$tag = DISSECT;
+			this._type = DISSECT;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -737,8 +767,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> setSecurityUser(SetSecurityUserProcessor v) {
-			this.$variant = v;
-			this.$tag = SET_SECURITY_USER;
+			this._type = SET_SECURITY_USER;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -748,8 +778,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
-			this.$variant = v;
-			this.$tag = PIPELINE;
+			this._type = PIPELINE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -759,8 +789,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> drop(DropProcessor v) {
-			this.$variant = v;
-			this.$tag = DROP;
+			this._type = DROP;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -769,8 +799,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> circle(CircleProcessor v) {
-			this.$variant = v;
-			this.$tag = CIRCLE;
+			this._type = CIRCLE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -779,8 +809,8 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 		}
 
 		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
-			this.$variant = v;
-			this.$tag = INFERENCE;
+			this._type = INFERENCE;
+			this._value = v;
 			return ObjectBuilder.constant(this.build());
 		}
 
@@ -796,47 +826,44 @@ public class Processor extends TaggedUnion<Object> implements JsonpSerializable 
 	}
 
 	protected static void setupProcessorDeserializer(DelegatingDeserializer<Builder> op) {
-		op.add(Builder::attachment, AttachmentProcessor.DESERIALIZER, "attachment");
-		op.add(Builder::append, AppendProcessor.DESERIALIZER, "append");
-		op.add(Builder::csv, CsvProcessor.DESERIALIZER, "csv");
-		op.add(Builder::convert, ConvertProcessor.DESERIALIZER, "convert");
-		op.add(Builder::date, DateProcessor.DESERIALIZER, "date");
-		op.add(Builder::dateIndexName, DateIndexNameProcessor.DESERIALIZER, "date_index_name");
-		op.add(Builder::dotExpander, DotExpanderProcessor.DESERIALIZER, "dot_expander");
-		op.add(Builder::enrich, EnrichProcessor.DESERIALIZER, "enrich");
-		op.add(Builder::fail, FailProcessor.DESERIALIZER, "fail");
-		op.add(Builder::foreach, ForeachProcessor.DESERIALIZER, "foreach");
-		op.add(Builder::json, JsonProcessor.DESERIALIZER, "json");
-		op.add(Builder::userAgent, UserAgentProcessor.DESERIALIZER, "user_agent");
-		op.add(Builder::kv, KeyValueProcessor.DESERIALIZER, "kv");
-		op.add(Builder::geoip, GeoIpProcessor.DESERIALIZER, "geoip");
-		op.add(Builder::grok, GrokProcessor.DESERIALIZER, "grok");
-		op.add(Builder::gsub, GsubProcessor.DESERIALIZER, "gsub");
-		op.add(Builder::join, JoinProcessor.DESERIALIZER, "join");
-		op.add(Builder::lowercase, LowercaseProcessor.DESERIALIZER, "lowercase");
-		op.add(Builder::remove, RemoveProcessor.DESERIALIZER, "remove");
-		op.add(Builder::rename, RenameProcessor.DESERIALIZER, "rename");
+
+		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
+		op.add(Builder::append, AppendProcessor._DESERIALIZER, "append");
+		op.add(Builder::csv, CsvProcessor._DESERIALIZER, "csv");
+		op.add(Builder::convert, ConvertProcessor._DESERIALIZER, "convert");
+		op.add(Builder::date, DateProcessor._DESERIALIZER, "date");
+		op.add(Builder::dateIndexName, DateIndexNameProcessor._DESERIALIZER, "date_index_name");
+		op.add(Builder::dotExpander, DotExpanderProcessor._DESERIALIZER, "dot_expander");
+		op.add(Builder::enrich, EnrichProcessor._DESERIALIZER, "enrich");
+		op.add(Builder::fail, FailProcessor._DESERIALIZER, "fail");
+		op.add(Builder::foreach, ForeachProcessor._DESERIALIZER, "foreach");
+		op.add(Builder::json, JsonProcessor._DESERIALIZER, "json");
+		op.add(Builder::userAgent, UserAgentProcessor._DESERIALIZER, "user_agent");
+		op.add(Builder::kv, KeyValueProcessor._DESERIALIZER, "kv");
+		op.add(Builder::geoip, GeoIpProcessor._DESERIALIZER, "geoip");
+		op.add(Builder::grok, GrokProcessor._DESERIALIZER, "grok");
+		op.add(Builder::gsub, GsubProcessor._DESERIALIZER, "gsub");
+		op.add(Builder::join, JoinProcessor._DESERIALIZER, "join");
+		op.add(Builder::lowercase, LowercaseProcessor._DESERIALIZER, "lowercase");
+		op.add(Builder::remove, RemoveProcessor._DESERIALIZER, "remove");
+		op.add(Builder::rename, RenameProcessor._DESERIALIZER, "rename");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
-		op.add(Builder::set, SetProcessor.DESERIALIZER, "set");
-		op.add(Builder::sort, SortProcessor.DESERIALIZER, "sort");
-		op.add(Builder::split, SplitProcessor.DESERIALIZER, "split");
-		op.add(Builder::trim, TrimProcessor.DESERIALIZER, "trim");
-		op.add(Builder::uppercase, UppercaseProcessor.DESERIALIZER, "uppercase");
-		op.add(Builder::urldecode, UrlDecodeProcessor.DESERIALIZER, "urldecode");
-		op.add(Builder::bytes, BytesProcessor.DESERIALIZER, "bytes");
-		op.add(Builder::dissect, DissectProcessor.DESERIALIZER, "dissect");
-		op.add(Builder::setSecurityUser, SetSecurityUserProcessor.DESERIALIZER, "set_security_user");
-		op.add(Builder::pipeline, PipelineProcessor.DESERIALIZER, "pipeline");
-		op.add(Builder::drop, DropProcessor.DESERIALIZER, "drop");
-		op.add(Builder::circle, CircleProcessor.DESERIALIZER, "circle");
-		op.add(Builder::inference, InferenceProcessor.DESERIALIZER, "inference");
+		op.add(Builder::set, SetProcessor._DESERIALIZER, "set");
+		op.add(Builder::sort, SortProcessor._DESERIALIZER, "sort");
+		op.add(Builder::split, SplitProcessor._DESERIALIZER, "split");
+		op.add(Builder::trim, TrimProcessor._DESERIALIZER, "trim");
+		op.add(Builder::uppercase, UppercaseProcessor._DESERIALIZER, "uppercase");
+		op.add(Builder::urldecode, UrlDecodeProcessor._DESERIALIZER, "urldecode");
+		op.add(Builder::bytes, BytesProcessor._DESERIALIZER, "bytes");
+		op.add(Builder::dissect, DissectProcessor._DESERIALIZER, "dissect");
+		op.add(Builder::setSecurityUser, SetSecurityUserProcessor._DESERIALIZER, "set_security_user");
+		op.add(Builder::pipeline, PipelineProcessor._DESERIALIZER, "pipeline");
+		op.add(Builder::drop, DropProcessor._DESERIALIZER, "drop");
+		op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
+		op.add(Builder::inference, InferenceProcessor._DESERIALIZER, "inference");
 
 	}
 
-	// Variants can be recursive data structures. Building the union's deserializer
-	// lazily avoids cyclic dependencies between static class initialization code,
-	// which can lead to unwanted things like NPEs or stack overflows
-
-	public static final JsonpDeserializer<Processor> DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Processor> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
 			Processor::setupProcessorDeserializer, Builder::build);
 }

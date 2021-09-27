@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,16 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.LatLon
+@JsonpDeserializable
 public final class LatLon implements JsonpSerializable {
-	private final Number lat;
+	private final Double lat;
 
-	private final Number lon;
+	private final Double lon;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +55,14 @@ public final class LatLon implements JsonpSerializable {
 	/**
 	 * API name: {@code lat}
 	 */
-	public Number lat() {
+	public Double lat() {
 		return this.lat;
 	}
 
 	/**
 	 * API name: {@code lon}
 	 */
-	public Number lon() {
+	public Double lon() {
 		return this.lon;
 	}
 
@@ -76,10 +78,10 @@ public final class LatLon implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("lat");
-		generator.write(this.lat.doubleValue());
+		generator.write(this.lat);
 
 		generator.writeKey("lon");
-		generator.write(this.lon.doubleValue());
+		generator.write(this.lon);
 
 	}
 
@@ -89,14 +91,14 @@ public final class LatLon implements JsonpSerializable {
 	 * Builder for {@link LatLon}.
 	 */
 	public static class Builder implements ObjectBuilder<LatLon> {
-		private Number lat;
+		private Double lat;
 
-		private Number lon;
+		private Double lon;
 
 		/**
 		 * API name: {@code lat}
 		 */
-		public Builder lat(Number value) {
+		public Builder lat(Double value) {
 			this.lat = value;
 			return this;
 		}
@@ -104,7 +106,7 @@ public final class LatLon implements JsonpSerializable {
 		/**
 		 * API name: {@code lon}
 		 */
-		public Builder lon(Number value) {
+		public Builder lon(Double value) {
 			this.lon = value;
 			return this;
 		}
@@ -126,13 +128,13 @@ public final class LatLon implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link LatLon}
 	 */
-	public static final JsonpDeserializer<LatLon> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			LatLon::setupLatLonDeserializer);
+	public static final JsonpDeserializer<LatLon> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LatLon::setupLatLonDeserializer, Builder::build);
 
 	protected static void setupLatLonDeserializer(DelegatingDeserializer<LatLon.Builder> op) {
 
-		op.add(Builder::lat, JsonpDeserializer.numberDeserializer(), "lat");
-		op.add(Builder::lon, JsonpDeserializer.numberDeserializer(), "lon");
+		op.add(Builder::lat, JsonpDeserializer.doubleDeserializer(), "lat");
+		op.add(Builder::lon, JsonpDeserializer.doubleDeserializer(), "lon");
 
 	}
 

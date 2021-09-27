@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._core.search.InnerHits;
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -33,14 +33,15 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.HasChildQuery
-public final class HasChildQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class HasChildQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
@@ -48,10 +49,10 @@ public final class HasChildQuery extends QueryBase implements Query {
 	private final InnerHits innerHits;
 
 	@Nullable
-	private final Number maxChildren;
+	private final Integer maxChildren;
 
 	@Nullable
-	private final Number minChildren;
+	private final Integer minChildren;
 
 	private final Query query;
 
@@ -79,7 +80,7 @@ public final class HasChildQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "has_child";
 	}
 
@@ -103,7 +104,7 @@ public final class HasChildQuery extends QueryBase implements Query {
 	 * API name: {@code max_children}
 	 */
 	@Nullable
-	public Number maxChildren() {
+	public Integer maxChildren() {
 		return this.maxChildren;
 	}
 
@@ -111,7 +112,7 @@ public final class HasChildQuery extends QueryBase implements Query {
 	 * API name: {@code min_children}
 	 */
 	@Nullable
-	public Number minChildren() {
+	public Integer minChildren() {
 		return this.minChildren;
 	}
 
@@ -138,7 +139,6 @@ public final class HasChildQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnmapped != null) {
@@ -156,13 +156,13 @@ public final class HasChildQuery extends QueryBase implements Query {
 		if (this.maxChildren != null) {
 
 			generator.writeKey("max_children");
-			generator.write(this.maxChildren.doubleValue());
+			generator.write(this.maxChildren);
 
 		}
 		if (this.minChildren != null) {
 
 			generator.writeKey("min_children");
-			generator.write(this.minChildren.doubleValue());
+			generator.write(this.minChildren);
 
 		}
 
@@ -177,8 +177,6 @@ public final class HasChildQuery extends QueryBase implements Query {
 
 		generator.writeKey("type");
 		generator.write(this.type);
-
-		generator.writeEnd();
 
 	}
 
@@ -195,10 +193,10 @@ public final class HasChildQuery extends QueryBase implements Query {
 		private InnerHits innerHits;
 
 		@Nullable
-		private Number maxChildren;
+		private Integer maxChildren;
 
 		@Nullable
-		private Number minChildren;
+		private Integer minChildren;
 
 		private Query query;
 
@@ -233,7 +231,7 @@ public final class HasChildQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code max_children}
 		 */
-		public Builder maxChildren(@Nullable Number value) {
+		public Builder maxChildren(@Nullable Integer value) {
 			this.maxChildren = value;
 			return this;
 		}
@@ -241,7 +239,7 @@ public final class HasChildQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code min_children}
 		 */
-		public Builder minChildren(@Nullable Number value) {
+		public Builder minChildren(@Nullable Integer value) {
 			this.minChildren = value;
 			return this;
 		}
@@ -296,18 +294,20 @@ public final class HasChildQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<HasChildQuery.Builder, HasChildQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(HasChildQuery::setupHasChildQueryDeserializer);
+	/**
+	 * Json deserializer for {@link HasChildQuery}
+	 */
+	public static final JsonpDeserializer<HasChildQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HasChildQuery::setupHasChildQueryDeserializer, Builder::build);
 
 	protected static void setupHasChildQueryDeserializer(DelegatingDeserializer<HasChildQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
-		op.add(Builder::innerHits, InnerHits.DESERIALIZER, "inner_hits");
-		op.add(Builder::maxChildren, JsonpDeserializer.numberDeserializer(), "max_children");
-		op.add(Builder::minChildren, JsonpDeserializer.numberDeserializer(), "min_children");
-		op.add(Builder::query, Query.DESERIALIZER, "query");
-		op.add(Builder::scoreMode, ChildScoreMode.DESERIALIZER, "score_mode");
+		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
+		op.add(Builder::maxChildren, JsonpDeserializer.integerDeserializer(), "max_children");
+		op.add(Builder::minChildren, JsonpDeserializer.integerDeserializer(), "min_children");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::scoreMode, ChildScoreMode._DESERIALIZER, "score_mode");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._core.bulk;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,7 +33,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.bulk.IndexResponseItem
-public final class IndexResponseItem extends ResponseItemBase implements ResponseItem {
+@JsonpDeserializable
+public final class IndexResponseItem extends ResponseItemBase implements ResponseItemVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public IndexResponseItem(Builder builder) {
@@ -45,7 +46,7 @@ public final class IndexResponseItem extends ResponseItemBase implements Respons
 	 * {@link ResponseItem} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "index";
 	}
 
@@ -76,9 +77,11 @@ public final class IndexResponseItem extends ResponseItemBase implements Respons
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<IndexResponseItem.Builder, IndexResponseItem.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(IndexResponseItem::setupIndexResponseItemDeserializer);
+	/**
+	 * Json deserializer for {@link IndexResponseItem}
+	 */
+	public static final JsonpDeserializer<IndexResponseItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexResponseItem::setupIndexResponseItemDeserializer, Builder::build);
 
 	protected static void setupIndexResponseItemDeserializer(DelegatingDeserializer<IndexResponseItem.Builder> op) {
 		ResponseItemBase.setupResponseItemBaseDeserializer(op);

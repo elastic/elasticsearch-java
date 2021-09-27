@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,7 +39,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
-public final class OneHotEncodingPreprocessor implements Preprocessor, JsonpSerializable {
+@JsonpDeserializable
+public final class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
 
 	private final Map<String, String> hotMap;
@@ -57,7 +58,7 @@ public final class OneHotEncodingPreprocessor implements Preprocessor, JsonpSeri
 	 * {@link Preprocessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "one_hot_encoding";
 	}
 
@@ -85,7 +86,6 @@ public final class OneHotEncodingPreprocessor implements Preprocessor, JsonpSeri
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -97,8 +97,6 @@ public final class OneHotEncodingPreprocessor implements Preprocessor, JsonpSeri
 			generator.write(item0.getValue());
 
 		}
-		generator.writeEnd();
-
 		generator.writeEnd();
 
 	}
@@ -154,9 +152,11 @@ public final class OneHotEncodingPreprocessor implements Preprocessor, JsonpSeri
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<OneHotEncodingPreprocessor.Builder, OneHotEncodingPreprocessor.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(OneHotEncodingPreprocessor::setupOneHotEncodingPreprocessorDeserializer);
+	/**
+	 * Json deserializer for {@link OneHotEncodingPreprocessor}
+	 */
+	public static final JsonpDeserializer<OneHotEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, OneHotEncodingPreprocessor::setupOneHotEncodingPreprocessorDeserializer, Builder::build);
 
 	protected static void setupOneHotEncodingPreprocessorDeserializer(
 			DelegatingDeserializer<OneHotEncodingPreprocessor.Builder> op) {

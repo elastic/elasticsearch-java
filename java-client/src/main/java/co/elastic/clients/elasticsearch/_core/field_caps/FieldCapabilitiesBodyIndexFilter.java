@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core.field_caps;
 
 import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapabilitiesBodyIndexFilter
+@JsonpDeserializable
 public final class FieldCapabilitiesBodyIndexFilter implements JsonpSerializable {
 	@Nullable
 	private final FieldCapabilitiesBodyIndexFilterRange range;
@@ -192,16 +194,16 @@ public final class FieldCapabilitiesBodyIndexFilter implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link FieldCapabilitiesBodyIndexFilter}
 	 */
-	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					FieldCapabilitiesBodyIndexFilter::setupFieldCapabilitiesBodyIndexFilterDeserializer);
+	public static final JsonpDeserializer<FieldCapabilitiesBodyIndexFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FieldCapabilitiesBodyIndexFilter::setupFieldCapabilitiesBodyIndexFilterDeserializer,
+					Builder::build);
 
 	protected static void setupFieldCapabilitiesBodyIndexFilterDeserializer(
 			DelegatingDeserializer<FieldCapabilitiesBodyIndexFilter.Builder> op) {
 
-		op.add(Builder::range, FieldCapabilitiesBodyIndexFilterRange.DESERIALIZER, "range");
-		op.add(Builder::matchNone, EmptyObject.DESERIALIZER, "match_none");
-		op.add(Builder::term, FieldCapabilitiesBodyIndexFilterTerm.DESERIALIZER, "term");
+		op.add(Builder::range, FieldCapabilitiesBodyIndexFilterRange._DESERIALIZER, "range");
+		op.add(Builder::matchNone, EmptyObject._DESERIALIZER, "match_none");
+		op.add(Builder::term, FieldCapabilitiesBodyIndexFilterTerm._DESERIALIZER, "term");
 
 	}
 

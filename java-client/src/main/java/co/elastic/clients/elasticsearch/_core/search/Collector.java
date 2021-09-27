@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,15 +42,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Collector
+@JsonpDeserializable
 public final class Collector implements JsonpSerializable {
 	private final String name;
 
 	private final String reason;
 
-	private final Number timeInNanos;
+	private final Long timeInNanos;
 
 	@Nullable
-	private final List<co.elastic.clients.elasticsearch._core.search.Collector> children;
+	private final List<Collector> children;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -79,7 +81,7 @@ public final class Collector implements JsonpSerializable {
 	/**
 	 * API name: {@code time_in_nanos}
 	 */
-	public Number timeInNanos() {
+	public Long timeInNanos() {
 		return this.timeInNanos;
 	}
 
@@ -87,7 +89,7 @@ public final class Collector implements JsonpSerializable {
 	 * API name: {@code children}
 	 */
 	@Nullable
-	public List<co.elastic.clients.elasticsearch._core.search.Collector> children() {
+	public List<Collector> children() {
 		return this.children;
 	}
 
@@ -109,13 +111,13 @@ public final class Collector implements JsonpSerializable {
 		generator.write(this.reason);
 
 		generator.writeKey("time_in_nanos");
-		generator.write(this.timeInNanos.doubleValue());
+		generator.write(this.timeInNanos);
 
 		if (this.children != null) {
 
 			generator.writeKey("children");
 			generator.writeStartArray();
-			for (co.elastic.clients.elasticsearch._core.search.Collector item0 : this.children) {
+			for (Collector item0 : this.children) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -135,10 +137,10 @@ public final class Collector implements JsonpSerializable {
 
 		private String reason;
 
-		private Number timeInNanos;
+		private Long timeInNanos;
 
 		@Nullable
-		private List<co.elastic.clients.elasticsearch._core.search.Collector> children;
+		private List<Collector> children;
 
 		/**
 		 * API name: {@code name}
@@ -159,7 +161,7 @@ public final class Collector implements JsonpSerializable {
 		/**
 		 * API name: {@code time_in_nanos}
 		 */
-		public Builder timeInNanos(Number value) {
+		public Builder timeInNanos(Long value) {
 			this.timeInNanos = value;
 			return this;
 		}
@@ -167,7 +169,7 @@ public final class Collector implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(@Nullable List<co.elastic.clients.elasticsearch._core.search.Collector> value) {
+		public Builder children(@Nullable List<Collector> value) {
 			this.children = value;
 			return this;
 		}
@@ -175,7 +177,7 @@ public final class Collector implements JsonpSerializable {
 		/**
 		 * API name: {@code children}
 		 */
-		public Builder children(co.elastic.clients.elasticsearch._core.search.Collector... value) {
+		public Builder children(Collector... value) {
 			this.children = Arrays.asList(value);
 			return this;
 		}
@@ -183,7 +185,7 @@ public final class Collector implements JsonpSerializable {
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(co.elastic.clients.elasticsearch._core.search.Collector value) {
+		public Builder addChildren(Collector value) {
 			if (this.children == null) {
 				this.children = new ArrayList<>();
 			}
@@ -194,19 +196,15 @@ public final class Collector implements JsonpSerializable {
 		/**
 		 * Set {@link #children(List)} to a singleton list.
 		 */
-		public Builder children(
-				Function<co.elastic.clients.elasticsearch._core.search.Collector.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.search.Collector>> fn) {
-			return this
-					.children(fn.apply(new co.elastic.clients.elasticsearch._core.search.Collector.Builder()).build());
+		public Builder children(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
+			return this.children(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**
 		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
-		public Builder addChildren(
-				Function<co.elastic.clients.elasticsearch._core.search.Collector.Builder, ObjectBuilder<co.elastic.clients.elasticsearch._core.search.Collector>> fn) {
-			return this.addChildren(
-					fn.apply(new co.elastic.clients.elasticsearch._core.search.Collector.Builder()).build());
+		public Builder addChildren(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
+			return this.addChildren(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**
@@ -226,16 +224,15 @@ public final class Collector implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Collector}
 	 */
-	public static final JsonpDeserializer<Collector> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Collector::setupCollectorDeserializer);
+	public static final JsonpDeserializer<Collector> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Collector::setupCollectorDeserializer, Builder::build);
 
 	protected static void setupCollectorDeserializer(DelegatingDeserializer<Collector.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::timeInNanos, JsonpDeserializer.numberDeserializer(), "time_in_nanos");
-		op.add(Builder::children, JsonpDeserializer
-				.arrayDeserializer(co.elastic.clients.elasticsearch._core.search.Collector.DESERIALIZER), "children");
+		op.add(Builder::timeInNanos, JsonpDeserializer.longDeserializer(), "time_in_nanos");
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(Collector._DESERIALIZER), "children");
 
 	}
 

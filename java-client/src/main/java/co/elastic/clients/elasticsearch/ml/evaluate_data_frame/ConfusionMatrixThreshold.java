@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,19 +32,20 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixThreshold
+@JsonpDeserializable
 public final class ConfusionMatrixThreshold implements JsonpSerializable {
-	private final Number truePositive;
+	private final Integer truePositive;
 
-	private final Number falsePositive;
+	private final Integer falsePositive;
 
-	private final Number trueNegative;
+	private final Integer trueNegative;
 
-	private final Number falseNegative;
+	private final Integer falseNegative;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +63,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code tp}
 	 */
-	public Number truePositive() {
+	public Integer truePositive() {
 		return this.truePositive;
 	}
 
@@ -70,7 +72,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fp}
 	 */
-	public Number falsePositive() {
+	public Integer falsePositive() {
 		return this.falsePositive;
 	}
 
@@ -79,7 +81,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code tn}
 	 */
-	public Number trueNegative() {
+	public Integer trueNegative() {
 		return this.trueNegative;
 	}
 
@@ -88,7 +90,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fn}
 	 */
-	public Number falseNegative() {
+	public Integer falseNegative() {
 		return this.falseNegative;
 	}
 
@@ -104,16 +106,16 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("tp");
-		generator.write(this.truePositive.doubleValue());
+		generator.write(this.truePositive);
 
 		generator.writeKey("fp");
-		generator.write(this.falsePositive.doubleValue());
+		generator.write(this.falsePositive);
 
 		generator.writeKey("tn");
-		generator.write(this.trueNegative.doubleValue());
+		generator.write(this.trueNegative);
 
 		generator.writeKey("fn");
-		generator.write(this.falseNegative.doubleValue());
+		generator.write(this.falseNegative);
 
 	}
 
@@ -123,20 +125,20 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	 * Builder for {@link ConfusionMatrixThreshold}.
 	 */
 	public static class Builder implements ObjectBuilder<ConfusionMatrixThreshold> {
-		private Number truePositive;
+		private Integer truePositive;
 
-		private Number falsePositive;
+		private Integer falsePositive;
 
-		private Number trueNegative;
+		private Integer trueNegative;
 
-		private Number falseNegative;
+		private Integer falseNegative;
 
 		/**
 		 * True Positive
 		 * <p>
 		 * API name: {@code tp}
 		 */
-		public Builder truePositive(Number value) {
+		public Builder truePositive(Integer value) {
 			this.truePositive = value;
 			return this;
 		}
@@ -146,7 +148,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fp}
 		 */
-		public Builder falsePositive(Number value) {
+		public Builder falsePositive(Integer value) {
 			this.falsePositive = value;
 			return this;
 		}
@@ -156,7 +158,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code tn}
 		 */
-		public Builder trueNegative(Number value) {
+		public Builder trueNegative(Integer value) {
 			this.trueNegative = value;
 			return this;
 		}
@@ -166,7 +168,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fn}
 		 */
-		public Builder falseNegative(Number value) {
+		public Builder falseNegative(Integer value) {
 			this.falseNegative = value;
 			return this;
 		}
@@ -188,16 +190,16 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ConfusionMatrixThreshold}
 	 */
-	public static final JsonpDeserializer<ConfusionMatrixThreshold> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ConfusionMatrixThreshold::setupConfusionMatrixThresholdDeserializer);
+	public static final JsonpDeserializer<ConfusionMatrixThreshold> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ConfusionMatrixThreshold::setupConfusionMatrixThresholdDeserializer, Builder::build);
 
 	protected static void setupConfusionMatrixThresholdDeserializer(
 			DelegatingDeserializer<ConfusionMatrixThreshold.Builder> op) {
 
-		op.add(Builder::truePositive, JsonpDeserializer.numberDeserializer(), "tp");
-		op.add(Builder::falsePositive, JsonpDeserializer.numberDeserializer(), "fp");
-		op.add(Builder::trueNegative, JsonpDeserializer.numberDeserializer(), "tn");
-		op.add(Builder::falseNegative, JsonpDeserializer.numberDeserializer(), "fn");
+		op.add(Builder::truePositive, JsonpDeserializer.integerDeserializer(), "tp");
+		op.add(Builder::falsePositive, JsonpDeserializer.integerDeserializer(), "fp");
+		op.add(Builder::trueNegative, JsonpDeserializer.integerDeserializer(), "tn");
+		op.add(Builder::falseNegative, JsonpDeserializer.integerDeserializer(), "fn");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.segments.SegmentsRecord;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.segments.Response
+@JsonpDeserializable
 public final class SegmentsResponse implements JsonpSerializable {
 	private final List<SegmentsRecord> value;
 
@@ -143,12 +145,12 @@ public final class SegmentsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SegmentsResponse}
 	 */
-	public static final JsonpDeserializer<SegmentsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SegmentsResponse::setupSegmentsResponseDeserializer);
+	public static final JsonpDeserializer<SegmentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SegmentsResponse::setupSegmentsResponseDeserializer, Builder::build);
 
 	protected static void setupSegmentsResponseDeserializer(DelegatingDeserializer<SegmentsResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(SegmentsRecord.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(SegmentsRecord._DESERIALIZER), "value");
 
 	}
 

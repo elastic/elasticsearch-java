@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum IndexCheckOnStartup implements StringEnum {
 	False("false"), Checksum("checksum"), True("true");
 
@@ -39,6 +41,6 @@ public enum IndexCheckOnStartup implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexCheckOnStartup> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new StringEnum.Deserializer<>(
 			IndexCheckOnStartup.values());
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,15 +32,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.FileCountSnapshotStats
+@JsonpDeserializable
 public final class FileCountSnapshotStats implements JsonpSerializable {
-	private final Number fileCount;
+	private final Integer fileCount;
 
-	private final Number sizeInBytes;
+	private final Long sizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -53,14 +56,14 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 	/**
 	 * API name: {@code file_count}
 	 */
-	public Number fileCount() {
+	public Integer fileCount() {
 		return this.fileCount;
 	}
 
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public Long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -76,10 +79,10 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("file_count");
-		generator.write(this.fileCount.doubleValue());
+		generator.write(this.fileCount);
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 	}
 
@@ -89,14 +92,14 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 	 * Builder for {@link FileCountSnapshotStats}.
 	 */
 	public static class Builder implements ObjectBuilder<FileCountSnapshotStats> {
-		private Number fileCount;
+		private Integer fileCount;
 
-		private Number sizeInBytes;
+		private Long sizeInBytes;
 
 		/**
 		 * API name: {@code file_count}
 		 */
-		public Builder fileCount(Number value) {
+		public Builder fileCount(Integer value) {
 			this.fileCount = value;
 			return this;
 		}
@@ -104,7 +107,7 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(Long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -126,14 +129,14 @@ public final class FileCountSnapshotStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FileCountSnapshotStats}
 	 */
-	public static final JsonpDeserializer<FileCountSnapshotStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FileCountSnapshotStats::setupFileCountSnapshotStatsDeserializer);
+	public static final JsonpDeserializer<FileCountSnapshotStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FileCountSnapshotStats::setupFileCountSnapshotStatsDeserializer, Builder::build);
 
 	protected static void setupFileCountSnapshotStatsDeserializer(
 			DelegatingDeserializer<FileCountSnapshotStats.Builder> op) {
 
-		op.add(Builder::fileCount, JsonpDeserializer.numberDeserializer(), "file_count");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::fileCount, JsonpDeserializer.integerDeserializer(), "file_count");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 
 	}
 

@@ -135,6 +135,7 @@ dependencies {
     compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
     testImplementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     testImplementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+    testImplementation("io.github.classgraph:classgraph:4.8.116")
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/

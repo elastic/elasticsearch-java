@@ -28,6 +28,7 @@ import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -46,6 +47,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.create.Request
+@JsonpDeserializable
 public final class CreateRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
@@ -53,19 +55,22 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
 	private final Map<String, Alias> aliases;
 
 	@Nullable
-	private final JsonValue mappings;
+	private final JsonValue /*
+							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+							 * false) | _types.mapping.TypeMapping)
+							 */ mappings;
 
 	@Nullable
 	private final Map<String, JsonData> settings;
@@ -108,7 +113,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -118,7 +123,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -128,7 +133,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -151,7 +156,10 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code mappings}
 	 */
 	@Nullable
-	public JsonValue mappings() {
+	public JsonValue /*
+						 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+						 * false) | _types.mapping.TypeMapping)
+						 */ mappings() {
 		return this.mappings;
 	}
 
@@ -219,19 +227,22 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		private Boolean includeTypeName;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
 		private Map<String, Alias> aliases;
 
 		@Nullable
-		private JsonValue mappings;
+		private JsonValue /*
+							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+							 * false) | _types.mapping.TypeMapping)
+							 */ mappings;
 
 		@Nullable
 		private Map<String, JsonData> settings;
@@ -259,7 +270,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -269,7 +280,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -279,7 +290,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -327,7 +338,10 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(@Nullable JsonValue value) {
+		public Builder mappings(@Nullable JsonValue /*
+													 * Union(Dictionary<internal.string, _types.mapping.TypeMapping>
+													 * (singleKey = false) | _types.mapping.TypeMapping)
+													 */ value) {
 			this.mappings = value;
 			return this;
 		}
@@ -368,14 +382,14 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Json deserializer for {@link CreateRequest}
 	 */
-	public static final JsonpDeserializer<CreateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateRequest::setupCreateRequestDeserializer);
+	public static final JsonpDeserializer<CreateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateRequest::setupCreateRequestDeserializer, Builder::build);
 
 	protected static void setupCreateRequestDeserializer(DelegatingDeserializer<CreateRequest.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, JsonpDeserializer.jsonValueDeserializer(), "mappings");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
 
 	}
 
@@ -417,15 +431,15 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

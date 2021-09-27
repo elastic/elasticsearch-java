@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.text_structure;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -49,6 +49,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Request
+
 public final class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	@Nullable
 	private final String charset;
@@ -84,7 +85,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	private final Boolean shouldTrimFields;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final String timestampField;
@@ -281,7 +282,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -367,7 +368,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		private Boolean shouldTrimFields;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private String timestampField;
@@ -540,7 +541,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TJsonDocument> timeout(@Nullable JsonValue value) {
+		public Builder<TJsonDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -691,7 +692,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 					params.put("should_trim_fields", String.valueOf(request.shouldTrimFields));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.timestampField != null) {
 					params.put("timestamp_field", request.timestampField);
@@ -701,5 +702,5 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FindStructureResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, FindStructureResponse._DESERIALIZER);
 }

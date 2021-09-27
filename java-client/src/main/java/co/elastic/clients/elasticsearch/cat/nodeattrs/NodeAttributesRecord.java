@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cat.nodeattrs;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodeattrs.NodeAttributesRecord
+@JsonpDeserializable
 public final class NodeAttributesRecord implements JsonpSerializable {
 	@Nullable
 	private final String node;
@@ -345,8 +347,8 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeAttributesRecord}
 	 */
-	public static final JsonpDeserializer<NodeAttributesRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeAttributesRecord::setupNodeAttributesRecordDeserializer);
+	public static final JsonpDeserializer<NodeAttributesRecord> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeAttributesRecord::setupNodeAttributesRecordDeserializer, Builder::build);
 
 	protected static void setupNodeAttributesRecordDeserializer(
 			DelegatingDeserializer<NodeAttributesRecord.Builder> op) {

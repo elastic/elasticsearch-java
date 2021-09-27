@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.transform.get_transform_stats.TransformStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,8 +42,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Response
+@JsonpDeserializable
 public final class GetTransformStatsResponse implements JsonpSerializable {
-	private final Number count;
+	private final Long count;
 
 	private final List<TransformStats> transforms;
 
@@ -58,7 +60,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -81,7 +83,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("transforms");
 		generator.writeStartArray();
@@ -99,14 +101,14 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 	 * Builder for {@link GetTransformStatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetTransformStatsResponse> {
-		private Number count;
+		private Long count;
 
 		private List<TransformStats> transforms;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(Long value) {
 			this.count = value;
 			return this;
 		}
@@ -169,14 +171,14 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetTransformStatsResponse}
 	 */
-	public static final JsonpDeserializer<GetTransformStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer);
+	public static final JsonpDeserializer<GetTransformStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer, Builder::build);
 
 	protected static void setupGetTransformStatsResponseDeserializer(
 			DelegatingDeserializer<GetTransformStatsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformStats.DESERIALIZER), "transforms");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformStats._DESERIALIZER), "transforms");
 
 	}
 

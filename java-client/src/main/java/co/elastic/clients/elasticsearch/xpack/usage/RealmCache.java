@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,13 +32,14 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RealmCache
+@JsonpDeserializable
 public final class RealmCache implements JsonpSerializable {
-	private final Number size;
+	private final Long size;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -50,7 +52,7 @@ public final class RealmCache implements JsonpSerializable {
 	/**
 	 * API name: {@code size}
 	 */
-	public Number size() {
+	public Long size() {
 		return this.size;
 	}
 
@@ -66,7 +68,7 @@ public final class RealmCache implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("size");
-		generator.write(this.size.doubleValue());
+		generator.write(this.size);
 
 	}
 
@@ -76,12 +78,12 @@ public final class RealmCache implements JsonpSerializable {
 	 * Builder for {@link RealmCache}.
 	 */
 	public static class Builder implements ObjectBuilder<RealmCache> {
-		private Number size;
+		private Long size;
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Number value) {
+		public Builder size(Long value) {
 			this.size = value;
 			return this;
 		}
@@ -103,12 +105,12 @@ public final class RealmCache implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RealmCache}
 	 */
-	public static final JsonpDeserializer<RealmCache> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RealmCache::setupRealmCacheDeserializer);
+	public static final JsonpDeserializer<RealmCache> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RealmCache::setupRealmCacheDeserializer, Builder::build);
 
 	protected static void setupRealmCacheDeserializer(DelegatingDeserializer<RealmCache.Builder> op) {
 
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 
 	}
 

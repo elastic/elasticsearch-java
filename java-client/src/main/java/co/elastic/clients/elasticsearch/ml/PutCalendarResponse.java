@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Response
+@JsonpDeserializable
 public final class PutCalendarResponse implements JsonpSerializable {
 	private final String calendarId;
 
@@ -176,8 +178,8 @@ public final class PutCalendarResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PutCalendarResponse}
 	 */
-	public static final JsonpDeserializer<PutCalendarResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutCalendarResponse::setupPutCalendarResponseDeserializer);
+	public static final JsonpDeserializer<PutCalendarResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutCalendarResponse::setupPutCalendarResponseDeserializer, Builder::build);
 
 	protected static void setupPutCalendarResponseDeserializer(DelegatingDeserializer<PutCalendarResponse.Builder> op) {
 

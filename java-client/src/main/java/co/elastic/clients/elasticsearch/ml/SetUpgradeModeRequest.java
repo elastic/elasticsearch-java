@@ -26,25 +26,27 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.set_upgrade_mode.Request
+
 public final class SetUpgradeModeRequest extends RequestBase {
 	@Nullable
 	private final Boolean enabled;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +73,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -85,7 +87,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		private Boolean enabled;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
@@ -102,7 +104,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -144,9 +146,9 @@ public final class SetUpgradeModeRequest extends RequestBase {
 					params.put("enabled", String.valueOf(request.enabled));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, SetUpgradeModeResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, SetUpgradeModeResponse._DESERIALIZER);
 }

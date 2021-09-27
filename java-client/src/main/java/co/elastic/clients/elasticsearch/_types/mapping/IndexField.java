@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IndexField
+@JsonpDeserializable
 public final class IndexField implements JsonpSerializable {
 	private final Boolean enabled;
 
@@ -103,8 +105,8 @@ public final class IndexField implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexField}
 	 */
-	public static final JsonpDeserializer<IndexField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexField::setupIndexFieldDeserializer);
+	public static final JsonpDeserializer<IndexField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexField::setupIndexFieldDeserializer, Builder::build);
 
 	protected static void setupIndexFieldDeserializer(DelegatingDeserializer<IndexField.Builder> op) {
 

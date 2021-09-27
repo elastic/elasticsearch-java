@@ -24,8 +24,8 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,11 +41,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorTargetMeanEncoding
+@JsonpDeserializable
 public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		implements
-			DataframeAnalysisFeatureProcessor,
+			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
-	private final Number defaultValue;
+	private final Integer defaultValue;
 
 	private final String featureName;
 
@@ -68,7 +69,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * {@link DataframeAnalysisFeatureProcessor} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "target_mean_encoding";
 	}
 
@@ -77,7 +78,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * <p>
 	 * API name: {@code default_value}
 	 */
-	public Number defaultValue() {
+	public Integer defaultValue() {
 		return this.defaultValue;
 	}
 
@@ -118,10 +119,9 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
 
 		generator.writeKey("default_value");
-		generator.write(this.defaultValue.doubleValue());
+		generator.write(this.defaultValue);
 
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
@@ -138,8 +138,6 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		}
 		generator.writeEnd();
 
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -148,7 +146,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * Builder for {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding}.
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding> {
-		private Number defaultValue;
+		private Integer defaultValue;
 
 		private String featureName;
 
@@ -161,7 +159,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * <p>
 		 * API name: {@code default_value}
 		 */
-		public Builder defaultValue(Number value) {
+		public Builder defaultValue(Integer value) {
 			this.defaultValue = value;
 			return this;
 		}
@@ -221,18 +219,22 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder, DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(
-					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer);
+	/**
+	 * Json deserializer for
+	 * {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding}
+	 */
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
 
-		op.add(Builder::defaultValue, JsonpDeserializer.numberDeserializer(), "default_value");
+		op.add(Builder::defaultValue, JsonpDeserializer.integerDeserializer(), "default_value");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::targetMap, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "target_map");
+		op.add(Builder::targetMap, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "target_map");
 
 	}
 

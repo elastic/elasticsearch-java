@@ -26,16 +26,19 @@ package co.elastic.clients.elasticsearch._core;
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Float;
+import java.lang.Integer;
+import java.lang.Long;
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,48 +47,49 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query.Response
+@JsonpDeserializable
 public final class DeleteByQueryResponse implements JsonpSerializable {
 	@Nullable
-	private final Number batches;
+	private final Long batches;
 
 	@Nullable
-	private final Number deleted;
+	private final Long deleted;
 
 	@Nullable
 	private final List<BulkIndexByScrollFailure> failures;
 
 	@Nullable
-	private final Number noops;
+	private final Long noops;
 
 	@Nullable
-	private final Number requestsPerSecond;
+	private final Float requestsPerSecond;
 
 	@Nullable
 	private final Retries retries;
 
 	@Nullable
-	private final Number sliceId;
+	private final Integer sliceId;
 
 	@Nullable
-	private final JsonValue task;
+	private final String task;
 
 	@Nullable
-	private final Number throttledMillis;
+	private final Long throttledMillis;
 
 	@Nullable
-	private final Number throttledUntilMillis;
+	private final Long throttledUntilMillis;
 
 	@Nullable
 	private final Boolean timedOut;
 
 	@Nullable
-	private final Number took;
+	private final Long took;
 
 	@Nullable
-	private final Number total;
+	private final Long total;
 
 	@Nullable
-	private final Number versionConflicts;
+	private final Long versionConflicts;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -112,7 +116,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code batches}
 	 */
 	@Nullable
-	public Number batches() {
+	public Long batches() {
 		return this.batches;
 	}
 
@@ -120,7 +124,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code deleted}
 	 */
 	@Nullable
-	public Number deleted() {
+	public Long deleted() {
 		return this.deleted;
 	}
 
@@ -136,7 +140,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code noops}
 	 */
 	@Nullable
-	public Number noops() {
+	public Long noops() {
 		return this.noops;
 	}
 
@@ -144,7 +148,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Number requestsPerSecond() {
+	public Float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -160,7 +164,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code slice_id}
 	 */
 	@Nullable
-	public Number sliceId() {
+	public Integer sliceId() {
 		return this.sliceId;
 	}
 
@@ -168,7 +172,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code task}
 	 */
 	@Nullable
-	public JsonValue task() {
+	public String task() {
 		return this.task;
 	}
 
@@ -176,7 +180,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code throttled_millis}
 	 */
 	@Nullable
-	public Number throttledMillis() {
+	public Long throttledMillis() {
 		return this.throttledMillis;
 	}
 
@@ -184,7 +188,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code throttled_until_millis}
 	 */
 	@Nullable
-	public Number throttledUntilMillis() {
+	public Long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
@@ -200,7 +204,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public Number took() {
+	public Long took() {
 		return this.took;
 	}
 
@@ -208,7 +212,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public Number total() {
+	public Long total() {
 		return this.total;
 	}
 
@@ -216,7 +220,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 * API name: {@code version_conflicts}
 	 */
 	@Nullable
-	public Number versionConflicts() {
+	public Long versionConflicts() {
 		return this.versionConflicts;
 	}
 
@@ -234,13 +238,13 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		if (this.batches != null) {
 
 			generator.writeKey("batches");
-			generator.write(this.batches.doubleValue());
+			generator.write(this.batches);
 
 		}
 		if (this.deleted != null) {
 
 			generator.writeKey("deleted");
-			generator.write(this.deleted.doubleValue());
+			generator.write(this.deleted);
 
 		}
 		if (this.failures != null) {
@@ -257,13 +261,13 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		if (this.noops != null) {
 
 			generator.writeKey("noops");
-			generator.write(this.noops.doubleValue());
+			generator.write(this.noops);
 
 		}
 		if (this.requestsPerSecond != null) {
 
 			generator.writeKey("requests_per_second");
-			generator.write(this.requestsPerSecond.doubleValue());
+			generator.write(this.requestsPerSecond);
 
 		}
 		if (this.retries != null) {
@@ -275,7 +279,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		if (this.sliceId != null) {
 
 			generator.writeKey("slice_id");
-			generator.write(this.sliceId.doubleValue());
+			generator.write(this.sliceId);
 
 		}
 		if (this.task != null) {
@@ -287,13 +291,13 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		if (this.throttledMillis != null) {
 
 			generator.writeKey("throttled_millis");
-			generator.write(this.throttledMillis.doubleValue());
+			generator.write(this.throttledMillis);
 
 		}
 		if (this.throttledUntilMillis != null) {
 
 			generator.writeKey("throttled_until_millis");
-			generator.write(this.throttledUntilMillis.doubleValue());
+			generator.write(this.throttledUntilMillis);
 
 		}
 		if (this.timedOut != null) {
@@ -305,19 +309,19 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		if (this.took != null) {
 
 			generator.writeKey("took");
-			generator.write(this.took.doubleValue());
+			generator.write(this.took);
 
 		}
 		if (this.total != null) {
 
 			generator.writeKey("total");
-			generator.write(this.total.doubleValue());
+			generator.write(this.total);
 
 		}
 		if (this.versionConflicts != null) {
 
 			generator.writeKey("version_conflicts");
-			generator.write(this.versionConflicts.doubleValue());
+			generator.write(this.versionConflicts);
 
 		}
 
@@ -330,51 +334,51 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<DeleteByQueryResponse> {
 		@Nullable
-		private Number batches;
+		private Long batches;
 
 		@Nullable
-		private Number deleted;
+		private Long deleted;
 
 		@Nullable
 		private List<BulkIndexByScrollFailure> failures;
 
 		@Nullable
-		private Number noops;
+		private Long noops;
 
 		@Nullable
-		private Number requestsPerSecond;
+		private Float requestsPerSecond;
 
 		@Nullable
 		private Retries retries;
 
 		@Nullable
-		private Number sliceId;
+		private Integer sliceId;
 
 		@Nullable
-		private JsonValue task;
+		private String task;
 
 		@Nullable
-		private Number throttledMillis;
+		private Long throttledMillis;
 
 		@Nullable
-		private Number throttledUntilMillis;
+		private Long throttledUntilMillis;
 
 		@Nullable
 		private Boolean timedOut;
 
 		@Nullable
-		private Number took;
+		private Long took;
 
 		@Nullable
-		private Number total;
+		private Long total;
 
 		@Nullable
-		private Number versionConflicts;
+		private Long versionConflicts;
 
 		/**
 		 * API name: {@code batches}
 		 */
-		public Builder batches(@Nullable Number value) {
+		public Builder batches(@Nullable Long value) {
 			this.batches = value;
 			return this;
 		}
@@ -382,7 +386,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code deleted}
 		 */
-		public Builder deleted(@Nullable Number value) {
+		public Builder deleted(@Nullable Long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -433,7 +437,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code noops}
 		 */
-		public Builder noops(@Nullable Number value) {
+		public Builder noops(@Nullable Long value) {
 			this.noops = value;
 			return this;
 		}
@@ -441,7 +445,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Number value) {
+		public Builder requestsPerSecond(@Nullable Float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -464,7 +468,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code slice_id}
 		 */
-		public Builder sliceId(@Nullable Number value) {
+		public Builder sliceId(@Nullable Integer value) {
 			this.sliceId = value;
 			return this;
 		}
@@ -472,7 +476,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code task}
 		 */
-		public Builder task(@Nullable JsonValue value) {
+		public Builder task(@Nullable String value) {
 			this.task = value;
 			return this;
 		}
@@ -480,7 +484,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_millis}
 		 */
-		public Builder throttledMillis(@Nullable Number value) {
+		public Builder throttledMillis(@Nullable Long value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -488,7 +492,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until_millis}
 		 */
-		public Builder throttledUntilMillis(@Nullable Number value) {
+		public Builder throttledUntilMillis(@Nullable Long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -504,7 +508,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public Builder took(@Nullable Number value) {
+		public Builder took(@Nullable Long value) {
 			this.took = value;
 			return this;
 		}
@@ -512,7 +516,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable Number value) {
+		public Builder total(@Nullable Long value) {
 			this.total = value;
 			return this;
 		}
@@ -520,7 +524,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code version_conflicts}
 		 */
-		public Builder versionConflicts(@Nullable Number value) {
+		public Builder versionConflicts(@Nullable Long value) {
 			this.versionConflicts = value;
 			return this;
 		}
@@ -542,27 +546,27 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DeleteByQueryResponse}
 	 */
-	public static final JsonpDeserializer<DeleteByQueryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteByQueryResponse::setupDeleteByQueryResponseDeserializer);
+	public static final JsonpDeserializer<DeleteByQueryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteByQueryResponse::setupDeleteByQueryResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteByQueryResponseDeserializer(
 			DelegatingDeserializer<DeleteByQueryResponse.Builder> op) {
 
-		op.add(Builder::batches, JsonpDeserializer.numberDeserializer(), "batches");
-		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
-		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(BulkIndexByScrollFailure.DESERIALIZER),
+		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
+		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
+		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(BulkIndexByScrollFailure._DESERIALIZER),
 				"failures");
-		op.add(Builder::noops, JsonpDeserializer.numberDeserializer(), "noops");
-		op.add(Builder::requestsPerSecond, JsonpDeserializer.numberDeserializer(), "requests_per_second");
-		op.add(Builder::retries, Retries.DESERIALIZER, "retries");
-		op.add(Builder::sliceId, JsonpDeserializer.numberDeserializer(), "slice_id");
-		op.add(Builder::task, JsonpDeserializer.jsonValueDeserializer(), "task");
-		op.add(Builder::throttledMillis, JsonpDeserializer.numberDeserializer(), "throttled_millis");
-		op.add(Builder::throttledUntilMillis, JsonpDeserializer.numberDeserializer(), "throttled_until_millis");
+		op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
+		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
+		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
+		op.add(Builder::sliceId, JsonpDeserializer.integerDeserializer(), "slice_id");
+		op.add(Builder::task, JsonpDeserializer.stringDeserializer(), "task");
+		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, JsonpDeserializer.numberDeserializer(), "took");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::versionConflicts, JsonpDeserializer.numberDeserializer(), "version_conflicts");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");
 
 	}
 

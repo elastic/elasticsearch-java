@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.get_builtin_privileges.Response
+@JsonpDeserializable
 public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	private final List<String> cluster;
 
@@ -177,8 +179,8 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetBuiltinPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupGetBuiltinPrivilegesResponseDeserializer(
 			DelegatingDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {

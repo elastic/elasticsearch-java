@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocation
+@JsonpDeserializable
 public final class IndexRoutingAllocation implements JsonpSerializable {
 	@Nullable
 	private final IndexRoutingAllocationOptions enable;
@@ -220,16 +222,16 @@ public final class IndexRoutingAllocation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexRoutingAllocation}
 	 */
-	public static final JsonpDeserializer<IndexRoutingAllocation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer);
+	public static final JsonpDeserializer<IndexRoutingAllocation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexRoutingAllocation::setupIndexRoutingAllocationDeserializer, Builder::build);
 
 	protected static void setupIndexRoutingAllocationDeserializer(
 			DelegatingDeserializer<IndexRoutingAllocation.Builder> op) {
 
-		op.add(Builder::enable, IndexRoutingAllocationOptions.DESERIALIZER, "enable");
-		op.add(Builder::include, IndexRoutingAllocationInclude.DESERIALIZER, "include");
-		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery.DESERIALIZER, "initial_recovery");
-		op.add(Builder::disk, IndexRoutingAllocationDisk.DESERIALIZER, "disk");
+		op.add(Builder::enable, IndexRoutingAllocationOptions._DESERIALIZER, "enable");
+		op.add(Builder::include, IndexRoutingAllocationInclude._DESERIALIZER, "include");
+		op.add(Builder::initialRecovery, IndexRoutingAllocationInitialRecovery._DESERIALIZER, "initial_recovery");
+		op.add(Builder::disk, IndexRoutingAllocationDisk._DESERIALIZER, "disk");
 
 	}
 

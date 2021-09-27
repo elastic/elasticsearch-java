@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesKeys
+@JsonpDeserializable
 public final class EqlFeaturesKeys implements JsonpSerializable {
 	private final Number joinKeysTwo;
 
@@ -195,8 +197,8 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link EqlFeaturesKeys}
 	 */
-	public static final JsonpDeserializer<EqlFeaturesKeys> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeaturesKeys::setupEqlFeaturesKeysDeserializer);
+	public static final JsonpDeserializer<EqlFeaturesKeys> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeaturesKeys::setupEqlFeaturesKeysDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesKeysDeserializer(DelegatingDeserializer<EqlFeaturesKeys.Builder> op) {
 

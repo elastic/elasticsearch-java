@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.termvectors;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.FieldStatistics
+@JsonpDeserializable
 public final class FieldStatistics implements JsonpSerializable {
-	private final Number docCount;
+	private final Integer docCount;
 
-	private final Number sumDocFreq;
+	private final Long sumDocFreq;
 
-	private final Number sumTtf;
+	private final Long sumTtf;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,21 +59,21 @@ public final class FieldStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code doc_count}
 	 */
-	public Number docCount() {
+	public Integer docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * API name: {@code sum_doc_freq}
 	 */
-	public Number sumDocFreq() {
+	public Long sumDocFreq() {
 		return this.sumDocFreq;
 	}
 
 	/**
 	 * API name: {@code sum_ttf}
 	 */
-	public Number sumTtf() {
+	public Long sumTtf() {
 		return this.sumTtf;
 	}
 
@@ -86,13 +89,13 @@ public final class FieldStatistics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("doc_count");
-		generator.write(this.docCount.doubleValue());
+		generator.write(this.docCount);
 
 		generator.writeKey("sum_doc_freq");
-		generator.write(this.sumDocFreq.doubleValue());
+		generator.write(this.sumDocFreq);
 
 		generator.writeKey("sum_ttf");
-		generator.write(this.sumTtf.doubleValue());
+		generator.write(this.sumTtf);
 
 	}
 
@@ -102,16 +105,16 @@ public final class FieldStatistics implements JsonpSerializable {
 	 * Builder for {@link FieldStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<FieldStatistics> {
-		private Number docCount;
+		private Integer docCount;
 
-		private Number sumDocFreq;
+		private Long sumDocFreq;
 
-		private Number sumTtf;
+		private Long sumTtf;
 
 		/**
 		 * API name: {@code doc_count}
 		 */
-		public Builder docCount(Number value) {
+		public Builder docCount(Integer value) {
 			this.docCount = value;
 			return this;
 		}
@@ -119,7 +122,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code sum_doc_freq}
 		 */
-		public Builder sumDocFreq(Number value) {
+		public Builder sumDocFreq(Long value) {
 			this.sumDocFreq = value;
 			return this;
 		}
@@ -127,7 +130,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code sum_ttf}
 		 */
-		public Builder sumTtf(Number value) {
+		public Builder sumTtf(Long value) {
 			this.sumTtf = value;
 			return this;
 		}
@@ -149,14 +152,14 @@ public final class FieldStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FieldStatistics}
 	 */
-	public static final JsonpDeserializer<FieldStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldStatistics::setupFieldStatisticsDeserializer);
+	public static final JsonpDeserializer<FieldStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldStatistics::setupFieldStatisticsDeserializer, Builder::build);
 
 	protected static void setupFieldStatisticsDeserializer(DelegatingDeserializer<FieldStatistics.Builder> op) {
 
-		op.add(Builder::docCount, JsonpDeserializer.numberDeserializer(), "doc_count");
-		op.add(Builder::sumDocFreq, JsonpDeserializer.numberDeserializer(), "sum_doc_freq");
-		op.add(Builder::sumTtf, JsonpDeserializer.numberDeserializer(), "sum_ttf");
+		op.add(Builder::docCount, JsonpDeserializer.integerDeserializer(), "doc_count");
+		op.add(Builder::sumDocFreq, JsonpDeserializer.longDeserializer(), "sum_doc_freq");
+		op.add(Builder::sumTtf, JsonpDeserializer.longDeserializer(), "sum_ttf");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
+@JsonpDeserializable
 public final class PluginStats implements JsonpSerializable {
 	private final String classname;
 
@@ -338,8 +340,8 @@ public final class PluginStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PluginStats}
 	 */
-	public static final JsonpDeserializer<PluginStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PluginStats::setupPluginStatsDeserializer);
+	public static final JsonpDeserializer<PluginStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PluginStats::setupPluginStatsDeserializer, Builder::build);
 
 	protected static void setupPluginStatsDeserializer(DelegatingDeserializer<PluginStats.Builder> op) {
 

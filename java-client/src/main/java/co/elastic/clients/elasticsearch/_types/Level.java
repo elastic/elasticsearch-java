@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum Level implements StringEnum {
 	Cluster("cluster"), Indices("indices"), Shards("shards");
 
@@ -39,5 +41,5 @@ public enum Level implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Level> DESERIALIZER = new StringEnum.Deserializer<>(Level.values());
+	public static final StringEnum.Deserializer<Level> _DESERIALIZER = new StringEnum.Deserializer<>(Level.values());
 }

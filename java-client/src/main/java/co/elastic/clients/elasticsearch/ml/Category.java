@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,6 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
+@JsonpDeserializable
 public final class Category implements JsonpSerializable {
 	private final Number categoryId;
 
@@ -63,7 +66,7 @@ public final class Category implements JsonpSerializable {
 	private final String terms;
 
 	@Nullable
-	private final Number numMatches;
+	private final Long numMatches;
 
 	@Nullable
 	private final List<String> preferredToCategories;
@@ -200,7 +203,7 @@ public final class Category implements JsonpSerializable {
 	 * API name: {@code num_matches}
 	 */
 	@Nullable
-	public Number numMatches() {
+	public Long numMatches() {
 		return this.numMatches;
 	}
 
@@ -296,7 +299,7 @@ public final class Category implements JsonpSerializable {
 		if (this.numMatches != null) {
 
 			generator.writeKey("num_matches");
-			generator.write(this.numMatches.doubleValue());
+			generator.write(this.numMatches);
 
 		}
 		if (this.preferredToCategories != null) {
@@ -353,7 +356,7 @@ public final class Category implements JsonpSerializable {
 		private String terms;
 
 		@Nullable
-		private Number numMatches;
+		private Long numMatches;
 
 		@Nullable
 		private List<String> preferredToCategories;
@@ -495,7 +498,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_matches}
 		 */
-		public Builder numMatches(@Nullable Number value) {
+		public Builder numMatches(@Nullable Long value) {
 			this.numMatches = value;
 			return this;
 		}
@@ -579,8 +582,8 @@ public final class Category implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Category}
 	 */
-	public static final JsonpDeserializer<Category> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Category::setupCategoryDeserializer);
+	public static final JsonpDeserializer<Category> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Category::setupCategoryDeserializer, Builder::build);
 
 	protected static void setupCategoryDeserializer(DelegatingDeserializer<Category.Builder> op) {
 
@@ -594,7 +597,7 @@ public final class Category implements JsonpSerializable {
 		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
 		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
 		op.add(Builder::terms, JsonpDeserializer.stringDeserializer(), "terms");
-		op.add(Builder::numMatches, JsonpDeserializer.numberDeserializer(), "num_matches");
+		op.add(Builder::numMatches, JsonpDeserializer.longDeserializer(), "num_matches");
 		op.add(Builder::preferredToCategories,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preferred_to_categories");
 		op.add(Builder::p, JsonpDeserializer.stringDeserializer(), "p");

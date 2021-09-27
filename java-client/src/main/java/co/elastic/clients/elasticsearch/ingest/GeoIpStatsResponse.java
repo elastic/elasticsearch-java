@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ingest;
 import co.elastic.clients.elasticsearch.ingest.geo_ip_stats.GeoIpDownloadStatistics;
 import co.elastic.clients.elasticsearch.ingest.geo_ip_stats.GeoIpNodeDatabases;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.Response
+@JsonpDeserializable
 public final class GeoIpStatsResponse implements JsonpSerializable {
 	private final GeoIpDownloadStatistics stats;
 
@@ -180,13 +182,13 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GeoIpStatsResponse}
 	 */
-	public static final JsonpDeserializer<GeoIpStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoIpStatsResponse::setupGeoIpStatsResponseDeserializer);
+	public static final JsonpDeserializer<GeoIpStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoIpStatsResponse::setupGeoIpStatsResponseDeserializer, Builder::build);
 
 	protected static void setupGeoIpStatsResponseDeserializer(DelegatingDeserializer<GeoIpStatsResponse.Builder> op) {
 
-		op.add(Builder::stats, GeoIpDownloadStatistics.DESERIALIZER, "stats");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(GeoIpNodeDatabases.DESERIALIZER), "nodes");
+		op.add(Builder::stats, GeoIpDownloadStatistics._DESERIALIZER, "stats");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(GeoIpNodeDatabases._DESERIALIZER), "nodes");
 
 	}
 

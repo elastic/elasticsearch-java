@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.PagerDutyEvent
+@JsonpDeserializable
 public final class PagerDutyEvent implements JsonpSerializable {
 	private final String account;
 
@@ -307,8 +309,8 @@ public final class PagerDutyEvent implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PagerDutyEvent}
 	 */
-	public static final JsonpDeserializer<PagerDutyEvent> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PagerDutyEvent::setupPagerDutyEventDeserializer);
+	public static final JsonpDeserializer<PagerDutyEvent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PagerDutyEvent::setupPagerDutyEventDeserializer, Builder::build);
 
 	protected static void setupPagerDutyEventDeserializer(DelegatingDeserializer<PagerDutyEvent.Builder> op) {
 
@@ -316,9 +318,9 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		op.add(Builder::attachPayload, JsonpDeserializer.booleanDeserializer(), "attach_payload");
 		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
 		op.add(Builder::clientUrl, JsonpDeserializer.stringDeserializer(), "client_url");
-		op.add(Builder::context, JsonpDeserializer.arrayDeserializer(PagerDutyContext.DESERIALIZER), "context");
+		op.add(Builder::context, JsonpDeserializer.arrayDeserializer(PagerDutyContext._DESERIALIZER), "context");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::eventType, PagerDutyEventType.DESERIALIZER, "event_type");
+		op.add(Builder::eventType, PagerDutyEventType._DESERIALIZER, "event_type");
 		op.add(Builder::incidentKey, JsonpDeserializer.stringDeserializer(), "incident_key");
 
 	}

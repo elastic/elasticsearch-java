@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -45,6 +46,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Request
+@JsonpDeserializable
 public final class PostRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean acknowledge;
@@ -220,13 +222,13 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Json deserializer for {@link PostRequest}
 	 */
-	public static final JsonpDeserializer<PostRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostRequest::setupPostRequestDeserializer);
+	public static final JsonpDeserializer<PostRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PostRequest::setupPostRequestDeserializer, Builder::build);
 
 	protected static void setupPostRequestDeserializer(DelegatingDeserializer<PostRequest.Builder> op) {
 
-		op.add(Builder::license, License.DESERIALIZER, "license");
-		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License.DESERIALIZER), "licenses");
+		op.add(Builder::license, License._DESERIALIZER, "license");
+		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License._DESERIALIZER), "licenses");
 
 	}
 
@@ -256,5 +258,5 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PostResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PostResponse._DESERIALIZER);
 }

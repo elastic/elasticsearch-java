@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum Quantifier implements StringEnum {
 	Some("some"), All("all");
 
@@ -39,6 +41,6 @@ public enum Quantifier implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Quantifier> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<Quantifier> _DESERIALIZER = new StringEnum.Deserializer<>(
 			Quantifier.values());
 }

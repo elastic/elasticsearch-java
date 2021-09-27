@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum ExecutionPhase implements StringEnum {
 	AwaitsExecution("awaits_execution"), Started("started"), Input("input"), Condition("condition"), Actions(
 			"actions"), WatchTransform("watch_transform"), Aborted("aborted"), Finished("finished");
@@ -40,6 +42,6 @@ public enum ExecutionPhase implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ExecutionPhase> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<ExecutionPhase> _DESERIALIZER = new StringEnum.Deserializer<>(
 			ExecutionPhase.values());
 }

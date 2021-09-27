@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestHighlight
+@JsonpDeserializable
 public final class PhraseSuggestHighlight implements JsonpSerializable {
 	private final String postTag;
 
@@ -126,8 +128,8 @@ public final class PhraseSuggestHighlight implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PhraseSuggestHighlight}
 	 */
-	public static final JsonpDeserializer<PhraseSuggestHighlight> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PhraseSuggestHighlight::setupPhraseSuggestHighlightDeserializer);
+	public static final JsonpDeserializer<PhraseSuggestHighlight> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PhraseSuggestHighlight::setupPhraseSuggestHighlightDeserializer, Builder::build);
 
 	protected static void setupPhraseSuggestHighlightDeserializer(
 			DelegatingDeserializer<PhraseSuggestHighlight.Builder> op) {

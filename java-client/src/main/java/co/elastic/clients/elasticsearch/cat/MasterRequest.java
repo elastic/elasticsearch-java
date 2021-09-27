@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.util.Collections;
 import java.util.Objects;
 
 // typedef: cat.master.Request
+
 public final class MasterRequest extends CatRequestBase {
 	public MasterRequest() {
 	}
@@ -41,10 +43,7 @@ public final class MasterRequest extends CatRequestBase {
 	/**
 	 * Singleton instance for {@link MasterRequest}.
 	 */
-	public static final MasterRequest INSTANCE = new MasterRequest();
-
-	public static final JsonpDeserializer<MasterRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(MasterRequest.INSTANCE);
+	public static final MasterRequest _INSTANCE = new MasterRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,5 +67,5 @@ public final class MasterRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, MasterResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, MasterResponse._DESERIALIZER);
 }

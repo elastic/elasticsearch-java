@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ccr;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -41,6 +42,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_stats.Request
+
 public final class FollowStatsRequest extends RequestBase {
 	private final List<String> index;
 
@@ -152,5 +154,5 @@ public final class FollowStatsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, FollowStatsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, FollowStatsResponse._DESERIALIZER);
 }

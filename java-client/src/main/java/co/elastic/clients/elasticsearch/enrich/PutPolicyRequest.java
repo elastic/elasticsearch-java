@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -41,6 +42,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.put_policy.Request
+@JsonpDeserializable
 public final class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
@@ -182,13 +184,13 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Json deserializer for {@link PutPolicyRequest}
 	 */
-	public static final JsonpDeserializer<PutPolicyRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutPolicyRequest::setupPutPolicyRequestDeserializer);
+	public static final JsonpDeserializer<PutPolicyRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutPolicyRequest::setupPutPolicyRequestDeserializer, Builder::build);
 
 	protected static void setupPutPolicyRequestDeserializer(DelegatingDeserializer<PutPolicyRequest.Builder> op) {
 
-		op.add(Builder::geoMatch, Policy.DESERIALIZER, "geo_match");
-		op.add(Builder::match, Policy.DESERIALIZER, "match");
+		op.add(Builder::geoMatch, Policy._DESERIALIZER, "geo_match");
+		op.add(Builder::match, Policy._DESERIALIZER, "match");
 
 	}
 
@@ -229,5 +231,5 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutPolicyResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutPolicyResponse._DESERIALIZER);
 }

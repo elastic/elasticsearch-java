@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,20 +32,22 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
+@JsonpDeserializable
 public final class Vertex implements JsonpSerializable {
-	private final Number depth;
+	private final Long depth;
 
 	private final String field;
 
 	private final String term;
 
-	private final Number weight;
+	private final Double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +63,7 @@ public final class Vertex implements JsonpSerializable {
 	/**
 	 * API name: {@code depth}
 	 */
-	public Number depth() {
+	public Long depth() {
 		return this.depth;
 	}
 
@@ -81,7 +84,7 @@ public final class Vertex implements JsonpSerializable {
 	/**
 	 * API name: {@code weight}
 	 */
-	public Number weight() {
+	public Double weight() {
 		return this.weight;
 	}
 
@@ -97,7 +100,7 @@ public final class Vertex implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("depth");
-		generator.write(this.depth.doubleValue());
+		generator.write(this.depth);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -106,7 +109,7 @@ public final class Vertex implements JsonpSerializable {
 		generator.write(this.term);
 
 		generator.writeKey("weight");
-		generator.write(this.weight.doubleValue());
+		generator.write(this.weight);
 
 	}
 
@@ -116,18 +119,18 @@ public final class Vertex implements JsonpSerializable {
 	 * Builder for {@link Vertex}.
 	 */
 	public static class Builder implements ObjectBuilder<Vertex> {
-		private Number depth;
+		private Long depth;
 
 		private String field;
 
 		private String term;
 
-		private Number weight;
+		private Double weight;
 
 		/**
 		 * API name: {@code depth}
 		 */
-		public Builder depth(Number value) {
+		public Builder depth(Long value) {
 			this.depth = value;
 			return this;
 		}
@@ -151,7 +154,7 @@ public final class Vertex implements JsonpSerializable {
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(Number value) {
+		public Builder weight(Double value) {
 			this.weight = value;
 			return this;
 		}
@@ -173,15 +176,15 @@ public final class Vertex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Vertex}
 	 */
-	public static final JsonpDeserializer<Vertex> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Vertex::setupVertexDeserializer);
+	public static final JsonpDeserializer<Vertex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Vertex::setupVertexDeserializer, Builder::build);
 
 	protected static void setupVertexDeserializer(DelegatingDeserializer<Vertex.Builder> op) {
 
-		op.add(Builder::depth, JsonpDeserializer.numberDeserializer(), "depth");
+		op.add(Builder::depth, JsonpDeserializer.longDeserializer(), "depth");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
-		op.add(Builder::weight, JsonpDeserializer.numberDeserializer(), "weight");
+		op.add(Builder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
 	}
 

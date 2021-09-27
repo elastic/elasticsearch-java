@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.AcknowledgeState
+@JsonpDeserializable
 public final class AcknowledgeState implements JsonpSerializable {
 	private final AcknowledgementOptions state;
 
@@ -126,12 +128,12 @@ public final class AcknowledgeState implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AcknowledgeState}
 	 */
-	public static final JsonpDeserializer<AcknowledgeState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AcknowledgeState::setupAcknowledgeStateDeserializer);
+	public static final JsonpDeserializer<AcknowledgeState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AcknowledgeState::setupAcknowledgeStateDeserializer, Builder::build);
 
 	protected static void setupAcknowledgeStateDeserializer(DelegatingDeserializer<AcknowledgeState.Builder> op) {
 
-		op.add(Builder::state, AcknowledgementOptions.DESERIALIZER, "state");
+		op.add(Builder::state, AcknowledgementOptions._DESERIALIZER, "state");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}

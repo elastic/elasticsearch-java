@@ -26,14 +26,15 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.indices.PutSettingsRequest;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,16 +44,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.Request
+@JsonpDeserializable
 public final class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -70,7 +73,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	private final Boolean includeGlobalState;
 
 	@Nullable
-	private final JsonValue indexSettings;
+	private final PutSettingsRequest indexSettings;
 
 	@Nullable
 	private final List<String> indices;
@@ -128,7 +131,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -178,7 +181,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code index_settings}
 	 */
 	@Nullable
-	public JsonValue indexSettings() {
+	public PutSettingsRequest indexSettings() {
 		return this.indexSettings;
 	}
 
@@ -257,7 +260,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		if (this.indexSettings != null) {
 
 			generator.writeKey("index_settings");
-			generator.write(this.indexSettings);
+			this.indexSettings.serialize(generator, mapper);
 
 		}
 		if (this.indices != null) {
@@ -303,7 +306,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		private String snapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -321,7 +324,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		private Boolean includeGlobalState;
 
 		@Nullable
-		private JsonValue indexSettings;
+		private PutSettingsRequest indexSettings;
 
 		@Nullable
 		private List<String> indices;
@@ -360,7 +363,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -430,9 +433,16 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public Builder indexSettings(@Nullable JsonValue value) {
+		public Builder indexSettings(@Nullable PutSettingsRequest value) {
 			this.indexSettings = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code index_settings}
+		 */
+		public Builder indexSettings(Function<PutSettingsRequest.Builder, ObjectBuilder<PutSettingsRequest>> fn) {
+			return this.indexSettings(fn.apply(new PutSettingsRequest.Builder()).build());
 		}
 
 		/**
@@ -503,8 +513,8 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link RestoreRequest}
 	 */
-	public static final JsonpDeserializer<RestoreRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RestoreRequest::setupRestoreRequestDeserializer);
+	public static final JsonpDeserializer<RestoreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RestoreRequest::setupRestoreRequestDeserializer, Builder::build);
 
 	protected static void setupRestoreRequestDeserializer(DelegatingDeserializer<RestoreRequest.Builder> op) {
 
@@ -513,7 +523,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::includeAliases, JsonpDeserializer.booleanDeserializer(), "include_aliases");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
-		op.add(Builder::indexSettings, JsonpDeserializer.jsonValueDeserializer(), "index_settings");
+		op.add(Builder::indexSettings, PutSettingsRequest._DESERIALIZER, "index_settings");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
@@ -564,12 +574,12 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RestoreResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, RestoreResponse._DESERIALIZER);
 }

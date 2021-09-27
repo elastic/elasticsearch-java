@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,15 +41,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsAggregation
-public final class TopMetricsAggregation extends MetricAggregationBase {
+@JsonpDeserializable
+public final class TopMetricsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final List<TopMetricsValue> metrics;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -59,6 +61,14 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		this.size = builder.size;
 		this.sort = builder.sort;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "top_metrics";
 	}
 
 	/**
@@ -73,7 +83,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -81,7 +91,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
@@ -102,14 +112,14 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.sort != null) {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -131,10 +141,10 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		private List<TopMetricsValue> metrics;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
 		 * API name: {@code metrics}
@@ -180,7 +190,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -188,7 +198,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue> value) {
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -196,7 +206,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
@@ -204,7 +214,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 		/**
 		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -234,14 +244,14 @@ public final class TopMetricsAggregation extends MetricAggregationBase {
 	/**
 	 * Json deserializer for {@link TopMetricsAggregation}
 	 */
-	public static final JsonpDeserializer<TopMetricsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer);
+	public static final JsonpDeserializer<TopMetricsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TopMetricsAggregation::setupTopMetricsAggregationDeserializer, Builder::build);
 
 	protected static void setupTopMetricsAggregationDeserializer(
 			DelegatingDeserializer<TopMetricsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
-		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(TopMetricsValue.DESERIALIZER), "metrics");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(TopMetricsValue._DESERIALIZER), "metrics");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}

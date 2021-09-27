@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ssl;
 
 import co.elastic.clients.elasticsearch.ssl.certificates.CertificateInformation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ssl.certificates.Response
+@JsonpDeserializable
 public final class CertificatesResponse implements JsonpSerializable {
 	private final List<CertificateInformation> value;
 
@@ -143,13 +145,13 @@ public final class CertificatesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CertificatesResponse}
 	 */
-	public static final JsonpDeserializer<CertificatesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CertificatesResponse::setupCertificatesResponseDeserializer);
+	public static final JsonpDeserializer<CertificatesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CertificatesResponse::setupCertificatesResponseDeserializer, Builder::build);
 
 	protected static void setupCertificatesResponseDeserializer(
 			DelegatingDeserializer<CertificatesResponse.Builder> op) {
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CertificateInformation.DESERIALIZER), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CertificateInformation._DESERIALIZER), "value");
 
 	}
 

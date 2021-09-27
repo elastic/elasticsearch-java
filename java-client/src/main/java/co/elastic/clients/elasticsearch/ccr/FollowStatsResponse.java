@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_stats.Response
+@JsonpDeserializable
 public final class FollowStatsResponse implements JsonpSerializable {
 	private final List<FollowIndexStats> indices;
 
@@ -144,12 +146,12 @@ public final class FollowStatsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link FollowStatsResponse}
 	 */
-	public static final JsonpDeserializer<FollowStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FollowStatsResponse::setupFollowStatsResponseDeserializer);
+	public static final JsonpDeserializer<FollowStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FollowStatsResponse::setupFollowStatsResponseDeserializer, Builder::build);
 
 	protected static void setupFollowStatsResponseDeserializer(DelegatingDeserializer<FollowStatsResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(FollowIndexStats.DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(FollowIndexStats._DESERIALIZER), "indices");
 
 	}
 

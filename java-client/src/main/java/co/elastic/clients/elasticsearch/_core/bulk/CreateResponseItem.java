@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch._core.bulk;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,7 +33,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _global.bulk.CreateResponseItem
-public final class CreateResponseItem extends ResponseItemBase implements ResponseItem {
+@JsonpDeserializable
+public final class CreateResponseItem extends ResponseItemBase implements ResponseItemVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public CreateResponseItem(Builder builder) {
@@ -45,7 +46,7 @@ public final class CreateResponseItem extends ResponseItemBase implements Respon
 	 * {@link ResponseItem} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "create";
 	}
 
@@ -76,9 +77,11 @@ public final class CreateResponseItem extends ResponseItemBase implements Respon
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<CreateResponseItem.Builder, CreateResponseItem.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(CreateResponseItem::setupCreateResponseItemDeserializer);
+	/**
+	 * Json deserializer for {@link CreateResponseItem}
+	 */
+	public static final JsonpDeserializer<CreateResponseItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateResponseItem::setupCreateResponseItemDeserializer, Builder::build);
 
 	protected static void setupCreateResponseItemDeserializer(DelegatingDeserializer<CreateResponseItem.Builder> op) {
 		ResponseItemBase.setupResponseItemBaseDeserializer(op);

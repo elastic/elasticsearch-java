@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -48,11 +49,12 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Request
+@JsonpDeserializable
 public final class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final List<ApplicationPrivileges> applications;
@@ -109,7 +111,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -288,7 +290,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		private String name;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private List<ApplicationPrivileges> applications;
@@ -329,7 +331,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -580,19 +582,19 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link PutRoleRequest}
 	 */
-	public static final JsonpDeserializer<PutRoleRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutRoleRequest::setupPutRoleRequestDeserializer);
+	public static final JsonpDeserializer<PutRoleRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutRoleRequest::setupPutRoleRequestDeserializer, Builder::build);
 
 	protected static void setupPutRoleRequestDeserializer(DelegatingDeserializer<PutRoleRequest.Builder> op) {
 
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
-		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege.DESERIALIZER), "cluster");
-		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "global");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "metadata");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege._DESERIALIZER), "cluster");
+		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "global");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadata.DESERIALIZER, "transient_metadata");
+		op.add(Builder::transientMetadata, TransientMetadata._DESERIALIZER, "transient_metadata");
 
 	}
 
@@ -637,5 +639,5 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, PutRoleResponse._DESERIALIZER);
 }

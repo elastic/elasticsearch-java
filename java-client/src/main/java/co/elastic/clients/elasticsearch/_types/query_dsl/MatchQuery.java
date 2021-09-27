@@ -24,22 +24,23 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.InstanceDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchQuery
-public final class MatchQuery extends QueryBase implements Query {
+@JsonpDeserializable
+public final class MatchQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
@@ -49,10 +50,10 @@ public final class MatchQuery extends QueryBase implements Query {
 	private final Boolean autoGenerateSynonymsPhraseQuery;
 
 	@Nullable
-	private final Number cutoffFrequency;
+	private final Double cutoffFrequency;
 
 	@Nullable
-	private final JsonValue fuzziness;
+	private final String fuzziness;
 
 	@Nullable
 	private final String fuzzyRewrite;
@@ -64,18 +65,18 @@ public final class MatchQuery extends QueryBase implements Query {
 	private final Boolean lenient;
 
 	@Nullable
-	private final Number maxExpansions;
+	private final Integer maxExpansions;
 
 	@Nullable
-	private final JsonValue minimumShouldMatch;
+	private final String minimumShouldMatch;
 
 	@Nullable
 	private final Operator operator;
 
 	@Nullable
-	private final Number prefixLength;
+	private final Integer prefixLength;
 
-	private final JsonValue query;
+	private final String query;
 
 	@Nullable
 	private final ZeroTermsQuery zeroTermsQuery;
@@ -106,7 +107,7 @@ public final class MatchQuery extends QueryBase implements Query {
 	 * {@link Query} variant type
 	 */
 	@Override
-	public String _type() {
+	public String _variantType() {
 		return "match";
 	}
 
@@ -139,7 +140,7 @@ public final class MatchQuery extends QueryBase implements Query {
 	 * API name: {@code cutoff_frequency}
 	 */
 	@Nullable
-	public Number cutoffFrequency() {
+	public Double cutoffFrequency() {
 		return this.cutoffFrequency;
 	}
 
@@ -147,7 +148,7 @@ public final class MatchQuery extends QueryBase implements Query {
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public JsonValue fuzziness() {
+	public String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -179,7 +180,7 @@ public final class MatchQuery extends QueryBase implements Query {
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Number maxExpansions() {
+	public Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
@@ -187,7 +188,7 @@ public final class MatchQuery extends QueryBase implements Query {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public JsonValue minimumShouldMatch() {
+	public String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -203,14 +204,14 @@ public final class MatchQuery extends QueryBase implements Query {
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Number prefixLength() {
+	public Integer prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * API name: {@code query}
 	 */
-	public JsonValue query() {
+	public String query() {
 		return this.query;
 	}
 
@@ -223,8 +224,6 @@ public final class MatchQuery extends QueryBase implements Query {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject(_type());
-
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
@@ -243,7 +242,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		if (this.cutoffFrequency != null) {
 
 			generator.writeKey("cutoff_frequency");
-			generator.write(this.cutoffFrequency.doubleValue());
+			generator.write(this.cutoffFrequency);
 
 		}
 		if (this.fuzziness != null) {
@@ -273,7 +272,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		if (this.maxExpansions != null) {
 
 			generator.writeKey("max_expansions");
-			generator.write(this.maxExpansions.doubleValue());
+			generator.write(this.maxExpansions);
 
 		}
 		if (this.minimumShouldMatch != null) {
@@ -290,7 +289,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		if (this.prefixLength != null) {
 
 			generator.writeKey("prefix_length");
-			generator.write(this.prefixLength.doubleValue());
+			generator.write(this.prefixLength);
 
 		}
 
@@ -304,9 +303,6 @@ public final class MatchQuery extends QueryBase implements Query {
 		}
 
 		generator.writeEnd();
-
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -334,10 +330,10 @@ public final class MatchQuery extends QueryBase implements Query {
 		private Boolean autoGenerateSynonymsPhraseQuery;
 
 		@Nullable
-		private Number cutoffFrequency;
+		private Double cutoffFrequency;
 
 		@Nullable
-		private JsonValue fuzziness;
+		private String fuzziness;
 
 		@Nullable
 		private String fuzzyRewrite;
@@ -349,18 +345,18 @@ public final class MatchQuery extends QueryBase implements Query {
 		private Boolean lenient;
 
 		@Nullable
-		private Number maxExpansions;
+		private Integer maxExpansions;
 
 		@Nullable
-		private JsonValue minimumShouldMatch;
+		private String minimumShouldMatch;
 
 		@Nullable
 		private Operator operator;
 
 		@Nullable
-		private Number prefixLength;
+		private Integer prefixLength;
 
-		private JsonValue query;
+		private String query;
 
 		@Nullable
 		private ZeroTermsQuery zeroTermsQuery;
@@ -384,7 +380,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code cutoff_frequency}
 		 */
-		public Builder cutoffFrequency(@Nullable Number value) {
+		public Builder cutoffFrequency(@Nullable Double value) {
 			this.cutoffFrequency = value;
 			return this;
 		}
@@ -392,7 +388,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable JsonValue value) {
+		public Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -424,7 +420,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Number value) {
+		public Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -432,7 +428,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+		public Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -448,7 +444,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Number value) {
+		public Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -456,7 +452,7 @@ public final class MatchQuery extends QueryBase implements Query {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(JsonValue value) {
+		public Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -488,26 +484,28 @@ public final class MatchQuery extends QueryBase implements Query {
 
 	// ---------------------------------------------------------------------------------------------
 
-	// Internal - Deserializer for variant builder
-	public static final InstanceDeserializer<MatchQuery.Builder, MatchQuery.Builder> $BUILDER_DESERIALIZER = ObjectBuilderDeserializer
-			.createForBuilder(MatchQuery::setupMatchQueryDeserializer);
+	/**
+	 * Json deserializer for {@link MatchQuery}
+	 */
+	public static final JsonpDeserializer<MatchQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MatchQuery::setupMatchQueryDeserializer, Builder::build);
 
 	protected static void setupMatchQueryDeserializer(DelegatingDeserializer<MatchQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
-		op.add(Builder::cutoffFrequency, JsonpDeserializer.numberDeserializer(), "cutoff_frequency");
-		op.add(Builder::fuzziness, JsonpDeserializer.jsonValueDeserializer(), "fuzziness");
+		op.add(Builder::cutoffFrequency, JsonpDeserializer.doubleDeserializer(), "cutoff_frequency");
+		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");
 		op.add(Builder::fuzzyRewrite, JsonpDeserializer.stringDeserializer(), "fuzzy_rewrite");
 		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
-		op.add(Builder::maxExpansions, JsonpDeserializer.numberDeserializer(), "max_expansions");
-		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
-		op.add(Builder::operator, Operator.DESERIALIZER, "operator");
-		op.add(Builder::prefixLength, JsonpDeserializer.numberDeserializer(), "prefix_length");
-		op.add(Builder::query, JsonpDeserializer.jsonValueDeserializer(), "query");
-		op.add(Builder::zeroTermsQuery, ZeroTermsQuery.DESERIALIZER, "zero_terms_query");
+		op.add(Builder::maxExpansions, JsonpDeserializer.integerDeserializer(), "max_expansions");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
+		op.add(Builder::operator, Operator._DESERIALIZER, "operator");
+		op.add(Builder::prefixLength, JsonpDeserializer.integerDeserializer(), "prefix_length");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::zeroTermsQuery, ZeroTermsQuery._DESERIALIZER, "zero_terms_query");
 
 		op.setKey(Builder::field);
 

@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -42,6 +43,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Request
+
 public final class ClearCachedRealmsRequest extends RequestBase {
 	private final List<String> realms;
 
@@ -203,5 +205,5 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedRealmsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, ClearCachedRealmsResponse._DESERIALIZER);
 }

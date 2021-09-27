@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +38,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsOutlierDetection
-public final class DataframeAnalyticsStatsOutlierDetection implements JsonpSerializable {
+@JsonpDeserializable
+public final class DataframeAnalyticsStatsOutlierDetection
+		implements
+			DataframeAnalyticsStatsVariant,
+			JsonpSerializable {
 	private final OutlierDetectionParameters parameters;
 
 	private final String timestamp;
@@ -52,6 +57,14 @@ public final class DataframeAnalyticsStatsOutlierDetection implements JsonpSeria
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
 
+	}
+
+	/**
+	 * {@link DataframeAnalyticsStats} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "outlier_detection_stats";
 	}
 
 	/**
@@ -165,16 +178,17 @@ public final class DataframeAnalyticsStatsOutlierDetection implements JsonpSeria
 	/**
 	 * Json deserializer for {@link DataframeAnalyticsStatsOutlierDetection}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsOutlierDetection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsOutlierDetection::setupDataframeAnalyticsStatsOutlierDetectionDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsOutlierDetection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalyticsStatsOutlierDetection::setupDataframeAnalyticsStatsOutlierDetectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsOutlierDetection.Builder> op) {
 
-		op.add(Builder::parameters, OutlierDetectionParameters.DESERIALIZER, "parameters");
+		op.add(Builder::parameters, OutlierDetectionParameters._DESERIALIZER, "parameters");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::timingStats, TimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::timingStats, TimingStats._DESERIALIZER, "timing_stats");
 
 	}
 

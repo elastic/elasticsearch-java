@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationDecision
+@JsonpDeserializable
 public final class AllocationDecision implements JsonpSerializable {
 	private final String decider;
 
@@ -149,13 +151,13 @@ public final class AllocationDecision implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AllocationDecision}
 	 */
-	public static final JsonpDeserializer<AllocationDecision> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer);
+	public static final JsonpDeserializer<AllocationDecision> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer, Builder::build);
 
 	protected static void setupAllocationDecisionDeserializer(DelegatingDeserializer<AllocationDecision.Builder> op) {
 
 		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
-		op.add(Builder::decision, AllocationExplainDecision.DESERIALIZER, "decision");
+		op.add(Builder::decision, AllocationExplainDecision._DESERIALIZER, "decision");
 		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
 
 	}

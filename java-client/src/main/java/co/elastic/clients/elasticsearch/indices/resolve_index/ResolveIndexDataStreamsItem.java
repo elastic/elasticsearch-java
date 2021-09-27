@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexDataStreamsItem
+@JsonpDeserializable
 public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	private final String name;
 
@@ -176,8 +178,8 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ResolveIndexDataStreamsItem}
 	 */
-	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer);
+	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer, Builder::build);
 
 	protected static void setupResolveIndexDataStreamsItemDeserializer(
 			DelegatingDeserializer<ResolveIndexDataStreamsItem.Builder> op) {

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup.delete_job;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailureReason
+@JsonpDeserializable
 public final class TaskFailureReason implements JsonpSerializable {
 	private final String type;
 
@@ -126,8 +128,8 @@ public final class TaskFailureReason implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TaskFailureReason}
 	 */
-	public static final JsonpDeserializer<TaskFailureReason> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TaskFailureReason::setupTaskFailureReasonDeserializer);
+	public static final JsonpDeserializer<TaskFailureReason> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TaskFailureReason::setupTaskFailureReasonDeserializer, Builder::build);
 
 	protected static void setupTaskFailureReasonDeserializer(DelegatingDeserializer<TaskFailureReason.Builder> op) {
 

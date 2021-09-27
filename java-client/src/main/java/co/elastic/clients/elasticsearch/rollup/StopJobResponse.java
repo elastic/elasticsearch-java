@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: rollup.stop_job.Response
+@JsonpDeserializable
 public final class StopJobResponse implements JsonpSerializable {
 	private final Boolean stopped;
 
@@ -103,8 +105,8 @@ public final class StopJobResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link StopJobResponse}
 	 */
-	public static final JsonpDeserializer<StopJobResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StopJobResponse::setupStopJobResponseDeserializer);
+	public static final JsonpDeserializer<StopJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StopJobResponse::setupStopJobResponseDeserializer, Builder::build);
 
 	protected static void setupStopJobResponseDeserializer(DelegatingDeserializer<StopJobResponse.Builder> op) {
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,6 +38,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelPlotConfig
+@JsonpDeserializable
 public final class ModelPlotConfig implements JsonpSerializable {
 	@Nullable
 	private final Boolean annotationsEnabled;
@@ -191,8 +193,8 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ModelPlotConfig}
 	 */
-	public static final JsonpDeserializer<ModelPlotConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ModelPlotConfig::setupModelPlotConfigDeserializer);
+	public static final JsonpDeserializer<ModelPlotConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ModelPlotConfig::setupModelPlotConfigDeserializer, Builder::build);
 
 	protected static void setupModelPlotConfigDeserializer(DelegatingDeserializer<ModelPlotConfig.Builder> op) {
 

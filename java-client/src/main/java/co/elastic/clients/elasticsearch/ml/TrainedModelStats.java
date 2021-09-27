@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,10 +42,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelStats
+@JsonpDeserializable
 public final class TrainedModelStats implements JsonpSerializable {
 	private final String modelId;
 
-	private final Number pipelineCount;
+	private final Integer pipelineCount;
 
 	@Nullable
 	private final TrainedModelInferenceStats inferenceStats;
@@ -77,7 +79,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code pipeline_count}
 	 */
-	public Number pipelineCount() {
+	public Integer pipelineCount() {
 		return this.pipelineCount;
 	}
 
@@ -118,7 +120,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		generator.write(this.modelId);
 
 		generator.writeKey("pipeline_count");
-		generator.write(this.pipelineCount.doubleValue());
+		generator.write(this.pipelineCount);
 
 		if (this.inferenceStats != null) {
 
@@ -149,7 +151,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	public static class Builder implements ObjectBuilder<TrainedModelStats> {
 		private String modelId;
 
-		private Number pipelineCount;
+		private Integer pipelineCount;
 
 		@Nullable
 		private TrainedModelInferenceStats inferenceStats;
@@ -172,7 +174,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pipeline_count}
 		 */
-		public Builder pipelineCount(Number value) {
+		public Builder pipelineCount(Integer value) {
 			this.pipelineCount = value;
 			return this;
 		}
@@ -237,15 +239,15 @@ public final class TrainedModelStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelStats}
 	 */
-	public static final JsonpDeserializer<TrainedModelStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelStats::setupTrainedModelStatsDeserializer);
+	public static final JsonpDeserializer<TrainedModelStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelStats::setupTrainedModelStatsDeserializer, Builder::build);
 
 	protected static void setupTrainedModelStatsDeserializer(DelegatingDeserializer<TrainedModelStats.Builder> op) {
 
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::pipelineCount, JsonpDeserializer.numberDeserializer(), "pipeline_count");
-		op.add(Builder::inferenceStats, TrainedModelInferenceStats.DESERIALIZER, "inference_stats");
-		op.add(Builder::ingest, JsonpDeserializer.stringMapDeserializer(JsonData.DESERIALIZER), "ingest");
+		op.add(Builder::pipelineCount, JsonpDeserializer.integerDeserializer(), "pipeline_count");
+		op.add(Builder::inferenceStats, TrainedModelInferenceStats._DESERIALIZER, "inference_stats");
+		op.add(Builder::ingest, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ingest");
 
 	}
 

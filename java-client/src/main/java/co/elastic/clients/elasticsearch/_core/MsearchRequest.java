@@ -25,9 +25,11 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -37,7 +39,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,6 +51,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.Request
+@JsonpDeserializable
 public final class MsearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
@@ -60,7 +63,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	private final Boolean ccsMinimizeRoundtrips;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -69,13 +72,13 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Number maxConcurrentSearches;
+	private final Long maxConcurrentSearches;
 
 	@Nullable
-	private final Number maxConcurrentShardRequests;
+	private final Long maxConcurrentShardRequests;
 
 	@Nullable
-	private final Number preFilterShardSize;
+	private final Long preFilterShardSize;
 
 	@Nullable
 	private final SearchType searchType;
@@ -86,7 +89,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Boolean typedKeys;
 
-	private final List<JsonValue> value;
+	private final List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -151,7 +154,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -181,7 +184,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
-	public Number maxConcurrentSearches() {
+	public Long maxConcurrentSearches() {
 		return this.maxConcurrentSearches;
 	}
 
@@ -192,7 +195,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
-	public Number maxConcurrentShardRequests() {
+	public Long maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
 	}
 
@@ -207,7 +210,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code pre_filter_shard_size}
 	 */
 	@Nullable
-	public Number preFilterShardSize() {
+	public Long preFilterShardSize() {
 		return this.preFilterShardSize;
 	}
 
@@ -249,7 +252,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code value}
 	 */
-	public List<JsonValue> value() {
+	public List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value() {
 		return this.value;
 	}
 
@@ -258,7 +261,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue item0 : this.value) {
+		for (JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ item0 : this.value) {
 			generator.write(item0);
 
 		}
@@ -282,7 +285,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -291,13 +294,13 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Number maxConcurrentSearches;
+		private Long maxConcurrentSearches;
 
 		@Nullable
-		private Number maxConcurrentShardRequests;
+		private Long maxConcurrentShardRequests;
 
 		@Nullable
-		private Number preFilterShardSize;
+		private Long preFilterShardSize;
 
 		@Nullable
 		private SearchType searchType;
@@ -308,7 +311,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean typedKeys;
 
-		private List<JsonValue> value;
+		private List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value;
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases to search.
@@ -373,8 +376,31 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard expressions can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -403,7 +429,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
-		public Builder maxConcurrentSearches(@Nullable Number value) {
+		public Builder maxConcurrentSearches(@Nullable Long value) {
 			this.maxConcurrentSearches = value;
 			return this;
 		}
@@ -414,7 +440,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
-		public Builder maxConcurrentShardRequests(@Nullable Number value) {
+		public Builder maxConcurrentShardRequests(@Nullable Long value) {
 			this.maxConcurrentShardRequests = value;
 			return this;
 		}
@@ -429,7 +455,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
-		public Builder preFilterShardSize(@Nullable Number value) {
+		public Builder preFilterShardSize(@Nullable Long value) {
 			this.preFilterShardSize = value;
 			return this;
 		}
@@ -472,7 +498,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(List<JsonValue> value) {
+		public Builder value(List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value) {
 			this.value = value;
 			return this;
 		}
@@ -482,7 +508,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue... value) {
+		public Builder value(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */... value) {
 			this.value = Arrays.asList(value);
 			return this;
 		}
@@ -490,7 +516,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * Add a value to {@link #value(List)}, creating the list if needed.
 		 */
-		public Builder addValue(JsonValue value) {
+		public Builder addValue(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ value) {
 			if (this.value == null) {
 				this.value = new ArrayList<>();
 			}
@@ -515,8 +541,8 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link MsearchRequest}
 	 */
-	public static final JsonpDeserializer<MsearchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MsearchRequest::setupMsearchRequestDeserializer);
+	public static final JsonpDeserializer<MsearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MsearchRequest::setupMsearchRequestDeserializer, Builder::build);
 
 	protected static void setupMsearchRequestDeserializer(DelegatingDeserializer<MsearchRequest.Builder> op) {
 
@@ -571,7 +597,8 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreThrottled != null) {
 					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
@@ -580,13 +607,13 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.maxConcurrentSearches != null) {
-					params.put("max_concurrent_searches", request.maxConcurrentSearches.toString());
+					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
 				}
 				if (request.maxConcurrentShardRequests != null) {
-					params.put("max_concurrent_shard_requests", request.maxConcurrentShardRequests.toString());
+					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
 				}
 				if (request.preFilterShardSize != null) {
-					params.put("pre_filter_shard_size", request.preFilterShardSize.toString());
+					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());

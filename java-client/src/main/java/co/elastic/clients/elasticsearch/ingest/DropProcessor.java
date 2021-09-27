@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: ingest._types.DropProcessor
-public final class DropProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public DropProcessor(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "drop";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,8 +78,8 @@ public final class DropProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link DropProcessor}
 	 */
-	public static final JsonpDeserializer<DropProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DropProcessor::setupDropProcessorDeserializer);
+	public static final JsonpDeserializer<DropProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DropProcessor::setupDropProcessorDeserializer, Builder::build);
 
 	protected static void setupDropProcessorDeserializer(DelegatingDeserializer<DropProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

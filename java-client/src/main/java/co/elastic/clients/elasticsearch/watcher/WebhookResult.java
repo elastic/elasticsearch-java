@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WebhookResult
+@JsonpDeserializable
 public final class WebhookResult implements JsonpSerializable {
 	private final HttpInputRequestResult request;
 
@@ -147,13 +149,13 @@ public final class WebhookResult implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link WebhookResult}
 	 */
-	public static final JsonpDeserializer<WebhookResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WebhookResult::setupWebhookResultDeserializer);
+	public static final JsonpDeserializer<WebhookResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WebhookResult::setupWebhookResultDeserializer, Builder::build);
 
 	protected static void setupWebhookResultDeserializer(DelegatingDeserializer<WebhookResult.Builder> op) {
 
-		op.add(Builder::request, HttpInputRequestResult.DESERIALIZER, "request");
-		op.add(Builder::response, HttpInputResponseResult.DESERIALIZER, "response");
+		op.add(Builder::request, HttpInputRequestResult._DESERIALIZER, "request");
+		op.add(Builder::response, HttpInputResponseResult._DESERIALIZER, "response");
 
 	}
 

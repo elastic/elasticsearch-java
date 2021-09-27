@@ -23,135 +23,175 @@
 
 package co.elastic.clients.elasticsearch._core.bulk;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonParser;
-import java.util.EnumSet;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.ResponseItemContainer
-public interface ResponseItem extends JsonpSerializable {
+@JsonpDeserializable
+public class ResponseItem implements TaggedUnion<Object>, JsonpSerializable {
 
-	String INDEX = "index";
-	String CREATE = "create";
-	String UPDATE = "update";
-	String DELETE = "delete";
+	public static final String INDEX = "index";
+	public static final String CREATE = "create";
+	public static final String UPDATE = "update";
+	public static final String DELETE = "delete";
+
+	// Tagged union implementation
+
+	private final String _type;
+	private final Object _value;
+
+	@Override
+	public String _type() {
+		return _type;
+	}
+
+	@Override
+	public Object _get() {
+		return _value;
+	}
+
+	public ResponseItem(ResponseItemVariant value) {
+
+		this._type = Objects.requireNonNull(value._variantType(), "variant type");
+		this._value = Objects.requireNonNull(value, "variant value");
+
+	}
+
+	private ResponseItem(Builder builder) {
+
+		this._type = Objects.requireNonNull(builder._type, "variant type");
+		this._value = Objects.requireNonNull(builder._value, "variant value");
+
+	}
 
 	/**
-	 * The type of this {@code ResponseItemContainer}.
+	 * Get the {@code index} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code index} kind.
 	 */
-	String _type();
+	public IndexResponseItem index() {
+		return TaggedUnionUtils.get(this, INDEX);
+	}
 
-	class Builder {
-		/**
-		 * API name: {@code index}
-		 */
-		public ObjectBuilder<ResponseItem> index(IndexResponseItem value) {
-			return ObjectBuilder.constant(value);
+	/**
+	 * Get the {@code create} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code create} kind.
+	 */
+	public CreateResponseItem create() {
+		return TaggedUnionUtils.get(this, CREATE);
+	}
+
+	/**
+	 * Get the {@code update} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code update} kind.
+	 */
+	public UpdateResponseItem update() {
+		return TaggedUnionUtils.get(this, UPDATE);
+	}
+
+	/**
+	 * Get the {@code delete} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code delete} kind.
+	 */
+	public DeleteResponseItem delete() {
+		return TaggedUnionUtils.get(this, DELETE);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+
+		generator.writeKey(_type);
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
-		/**
-		 * API name: {@code index}
-		 */
+		generator.writeEnd();
+	}
+
+	public static class Builder {
+		private String _type;
+		private Object _value;
+
+		public ObjectBuilder<ResponseItem> index(IndexResponseItem v) {
+			this._type = INDEX;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
+		}
+
 		public ObjectBuilder<ResponseItem> index(
-				Function<IndexResponseItem.Builder, ObjectBuilder<IndexResponseItem>> fn) {
-			return this.index(fn.apply(new IndexResponseItem.Builder()).build());
+				Function<IndexResponseItem.Builder, ObjectBuilder<IndexResponseItem>> f) {
+			return this.index(f.apply(new IndexResponseItem.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code create}
-		 */
-		public ObjectBuilder<ResponseItem> create(CreateResponseItem value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<ResponseItem> create(CreateResponseItem v) {
+			this._type = CREATE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code create}
-		 */
 		public ObjectBuilder<ResponseItem> create(
-				Function<CreateResponseItem.Builder, ObjectBuilder<CreateResponseItem>> fn) {
-			return this.create(fn.apply(new CreateResponseItem.Builder()).build());
+				Function<CreateResponseItem.Builder, ObjectBuilder<CreateResponseItem>> f) {
+			return this.create(f.apply(new CreateResponseItem.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code update}
-		 */
-		public ObjectBuilder<ResponseItem> update(UpdateResponseItem value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<ResponseItem> update(UpdateResponseItem v) {
+			this._type = UPDATE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code update}
-		 */
 		public ObjectBuilder<ResponseItem> update(
-				Function<UpdateResponseItem.Builder, ObjectBuilder<UpdateResponseItem>> fn) {
-			return this.update(fn.apply(new UpdateResponseItem.Builder()).build());
+				Function<UpdateResponseItem.Builder, ObjectBuilder<UpdateResponseItem>> f) {
+			return this.update(f.apply(new UpdateResponseItem.Builder()).build());
 		}
 
-		/**
-		 * API name: {@code delete}
-		 */
-		public ObjectBuilder<ResponseItem> delete(DeleteResponseItem value) {
-			return ObjectBuilder.constant(value);
+		public ObjectBuilder<ResponseItem> delete(DeleteResponseItem v) {
+			this._type = DELETE;
+			this._value = v;
+			return ObjectBuilder.constant(this.build());
 		}
 
-		/**
-		 * API name: {@code delete}
-		 */
 		public ObjectBuilder<ResponseItem> delete(
-				Function<DeleteResponseItem.Builder, ObjectBuilder<DeleteResponseItem>> fn) {
-			return this.delete(fn.apply(new DeleteResponseItem.Builder()).build());
+				Function<DeleteResponseItem.Builder, ObjectBuilder<DeleteResponseItem>> f) {
+			return this.delete(f.apply(new DeleteResponseItem.Builder()).build());
+		}
+
+		protected ResponseItem build() {
+			return new ResponseItem(this);
 		}
 
 	}
 
-	class $Helper {
-		private static ResponseItem deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+	protected static void setupResponseItemDeserializer(DelegatingDeserializer<Builder> op) {
 
-			ObjectBuilder<? extends ResponseItem> builder = null;
-			String variant = null;
+		op.add(Builder::index, IndexResponseItem._DESERIALIZER, "index");
+		op.add(Builder::create, CreateResponseItem._DESERIALIZER, "create");
+		op.add(Builder::update, UpdateResponseItem._DESERIALIZER, "update");
+		op.add(Builder::delete, DeleteResponseItem._DESERIALIZER, "delete");
 
-			while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
-				String fieldName = JsonpUtils.expectKeyName(parser, event);
-				switch (fieldName) {
-					case INDEX : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = IndexResponseItem.$BUILDER_DESERIALIZER.deserialize(new IndexResponseItem.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case CREATE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = CreateResponseItem.$BUILDER_DESERIALIZER.deserialize(new CreateResponseItem.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case UPDATE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = UpdateResponseItem.$BUILDER_DESERIALIZER.deserialize(new UpdateResponseItem.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					case DELETE : {
-						variant = JsonpUtils.ensureSingleVariant(parser, variant, fieldName);
-						builder = DeleteResponseItem.$BUILDER_DESERIALIZER.deserialize(new DeleteResponseItem.Builder(),
-								parser, mapper, parser.next());
-						break;
-					}
-					default : {
-						JsonpUtils.unknownKey(parser, fieldName);
-					}
-				}
-			}
-
-			return JsonpUtils.buildVariant(parser, builder);
-		}
 	}
 
-	JsonpDeserializer<ResponseItem> DESERIALIZER = JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT),
-			$Helper::deserialize);
+	public static final JsonpDeserializer<ResponseItem> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+			ResponseItem::setupResponseItemDeserializer, Builder::build);
 }

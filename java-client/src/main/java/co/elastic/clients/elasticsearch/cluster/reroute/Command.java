@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Command
+@JsonpDeserializable
 public final class Command implements JsonpSerializable {
 	@Nullable
 	private final CommandCancelAction cancel;
@@ -366,16 +368,16 @@ public final class Command implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Command}
 	 */
-	public static final JsonpDeserializer<Command> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Command::setupCommandDeserializer);
+	public static final JsonpDeserializer<Command> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Command::setupCommandDeserializer, Builder::build);
 
 	protected static void setupCommandDeserializer(DelegatingDeserializer<Command.Builder> op) {
 
-		op.add(Builder::cancel, CommandCancelAction.DESERIALIZER, "cancel");
-		op.add(Builder::move, CommandMoveAction.DESERIALIZER, "move");
-		op.add(Builder::allocateReplica, CommandAllocateReplicaAction.DESERIALIZER, "allocate_replica");
-		op.add(Builder::allocateStalePrimary, CommandAllocatePrimaryAction.DESERIALIZER, "allocate_stale_primary");
-		op.add(Builder::allocateEmptyPrimary, CommandAllocatePrimaryAction.DESERIALIZER, "allocate_empty_primary");
+		op.add(Builder::cancel, CommandCancelAction._DESERIALIZER, "cancel");
+		op.add(Builder::move, CommandMoveAction._DESERIALIZER, "move");
+		op.add(Builder::allocateReplica, CommandAllocateReplicaAction._DESERIALIZER, "allocate_replica");
+		op.add(Builder::allocateStalePrimary, CommandAllocatePrimaryAction._DESERIALIZER, "allocate_stale_primary");
+		op.add(Builder::allocateEmptyPrimary, CommandAllocatePrimaryAction._DESERIALIZER, "allocate_empty_primary");
 
 	}
 

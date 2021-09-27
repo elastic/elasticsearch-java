@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -31,17 +32,19 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportanceStatistics
+@JsonpDeserializable
 public final class TotalFeatureImportanceStatistics implements JsonpSerializable {
-	private final Number meanMagnitude;
+	private final Double meanMagnitude;
 
-	private final Number max;
+	private final Integer max;
 
-	private final Number min;
+	private final Integer min;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -60,7 +63,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code mean_magnitude}
 	 */
-	public Number meanMagnitude() {
+	public Double meanMagnitude() {
 		return this.meanMagnitude;
 	}
 
@@ -69,7 +72,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code max}
 	 */
-	public Number max() {
+	public Integer max() {
 		return this.max;
 	}
 
@@ -78,7 +81,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * <p>
 	 * API name: {@code min}
 	 */
-	public Number min() {
+	public Integer min() {
 		return this.min;
 	}
 
@@ -94,13 +97,13 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("mean_magnitude");
-		generator.write(this.meanMagnitude.doubleValue());
+		generator.write(this.meanMagnitude);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 	}
 
@@ -110,11 +113,11 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	 * Builder for {@link TotalFeatureImportanceStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<TotalFeatureImportanceStatistics> {
-		private Number meanMagnitude;
+		private Double meanMagnitude;
 
-		private Number max;
+		private Integer max;
 
-		private Number min;
+		private Integer min;
 
 		/**
 		 * The average magnitude of this feature across all the training data. This
@@ -123,7 +126,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code mean_magnitude}
 		 */
-		public Builder meanMagnitude(Number value) {
+		public Builder meanMagnitude(Double value) {
 			this.meanMagnitude = value;
 			return this;
 		}
@@ -133,7 +136,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(Integer value) {
 			this.max = value;
 			return this;
 		}
@@ -143,7 +146,7 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		 * <p>
 		 * API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(Integer value) {
 			this.min = value;
 			return this;
 		}
@@ -165,16 +168,16 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	/**
 	 * Json deserializer for {@link TotalFeatureImportanceStatistics}
 	 */
-	public static final JsonpDeserializer<TotalFeatureImportanceStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					TotalFeatureImportanceStatistics::setupTotalFeatureImportanceStatisticsDeserializer);
+	public static final JsonpDeserializer<TotalFeatureImportanceStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TotalFeatureImportanceStatistics::setupTotalFeatureImportanceStatisticsDeserializer,
+					Builder::build);
 
 	protected static void setupTotalFeatureImportanceStatisticsDeserializer(
 			DelegatingDeserializer<TotalFeatureImportanceStatistics.Builder> op) {
 
-		op.add(Builder::meanMagnitude, JsonpDeserializer.numberDeserializer(), "mean_magnitude");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::meanMagnitude, JsonpDeserializer.doubleDeserializer(), "mean_magnitude");
+		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.integerDeserializer(), "min");
 
 	}
 

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,7 +35,8 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NormalizeAggregation
-public final class NormalizeAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class NormalizeAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final NormalizeMethod method;
 
@@ -45,6 +47,14 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 
 		this.method = builder.method;
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "normalize";
 	}
 
 	/**
@@ -107,13 +117,13 @@ public final class NormalizeAggregation extends PipelineAggregationBase {
 	/**
 	 * Json deserializer for {@link NormalizeAggregation}
 	 */
-	public static final JsonpDeserializer<NormalizeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer);
+	public static final JsonpDeserializer<NormalizeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NormalizeAggregation::setupNormalizeAggregationDeserializer, Builder::build);
 
 	protected static void setupNormalizeAggregationDeserializer(
 			DelegatingDeserializer<NormalizeAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::method, NormalizeMethod.DESERIALIZER, "method");
+		op.add(Builder::method, NormalizeMethod._DESERIALIZER, "method");
 
 	}
 

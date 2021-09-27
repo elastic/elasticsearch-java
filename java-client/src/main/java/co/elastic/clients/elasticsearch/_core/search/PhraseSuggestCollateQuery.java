@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollateQuery
+@JsonpDeserializable
 public final class PhraseSuggestCollateQuery implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -139,8 +141,8 @@ public final class PhraseSuggestCollateQuery implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PhraseSuggestCollateQuery}
 	 */
-	public static final JsonpDeserializer<PhraseSuggestCollateQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PhraseSuggestCollateQuery::setupPhraseSuggestCollateQueryDeserializer);
+	public static final JsonpDeserializer<PhraseSuggestCollateQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PhraseSuggestCollateQuery::setupPhraseSuggestCollateQueryDeserializer, Builder::build);
 
 	protected static void setupPhraseSuggestCollateQueryDeserializer(
 			DelegatingDeserializer<PhraseSuggestCollateQuery.Builder> op) {

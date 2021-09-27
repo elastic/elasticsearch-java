@@ -27,13 +27,15 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,6 +43,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete.Request
+
 public final class DeleteRequest extends RequestBase {
 	private final String id;
 
@@ -50,28 +53,28 @@ public final class DeleteRequest extends RequestBase {
 	private final String type;
 
 	@Nullable
-	private final Number ifPrimaryTerm;
+	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Number ifSeqNo;
+	private final Integer ifSeqNo;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final String routing;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	@Nullable
 	private final VersionType versionType;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -126,7 +129,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Number ifPrimaryTerm() {
+	public Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -137,7 +140,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Number ifSeqNo() {
+	public Integer ifSeqNo() {
 		return this.ifSeqNo;
 	}
 
@@ -150,7 +153,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -170,7 +173,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -180,7 +183,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
@@ -204,7 +207,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -222,28 +225,28 @@ public final class DeleteRequest extends RequestBase {
 		private String type;
 
 		@Nullable
-		private Number ifPrimaryTerm;
+		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Number ifSeqNo;
+		private Integer ifSeqNo;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private String routing;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		@Nullable
 		private VersionType versionType;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		/**
 		 * The document ID
@@ -281,7 +284,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder ifPrimaryTerm(@Nullable Number value) {
+		public Builder ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -292,7 +295,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder ifSeqNo(@Nullable Number value) {
+		public Builder ifSeqNo(@Nullable Integer value) {
 			this.ifSeqNo = value;
 			return this;
 		}
@@ -305,7 +308,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -325,7 +328,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -335,7 +338,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -359,7 +362,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -430,10 +433,10 @@ public final class DeleteRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.ifPrimaryTerm != null) {
-					params.put("if_primary_term", request.ifPrimaryTerm.toString());
+					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
 				if (request.ifSeqNo != null) {
-					params.put("if_seq_no", request.ifSeqNo.toString());
+					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.toString());
@@ -442,10 +445,10 @@ public final class DeleteRequest extends RequestBase {
 					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.version != null) {
-					params.put("version", request.version.toString());
+					params.put("version", String.valueOf(request.version));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.toString());
@@ -455,5 +458,5 @@ public final class DeleteRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, DeleteResponse._DESERIALIZER);
 }

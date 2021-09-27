@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ccr.follow_info;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.StringEnum;
 
+@JsonpDeserializable
 public enum FollowerIndexStatus implements StringEnum {
 	Active("active"), Paused("paused");
 
@@ -39,6 +41,6 @@ public enum FollowerIndexStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<FollowerIndexStatus> DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final StringEnum.Deserializer<FollowerIndexStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
 			FollowerIndexStatus.values());
 }

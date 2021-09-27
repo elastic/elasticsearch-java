@@ -27,13 +27,13 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,11 +41,12 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Request
+@JsonpDeserializable
 public final class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -102,7 +103,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 		private String jobId;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * The ID of the job to open
@@ -117,7 +118,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -139,12 +140,12 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Json deserializer for {@link OpenJobRequest}
 	 */
-	public static final JsonpDeserializer<OpenJobRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OpenJobRequest::setupOpenJobRequestDeserializer);
+	public static final JsonpDeserializer<OpenJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			OpenJobRequest::setupOpenJobRequestDeserializer, Builder::build);
 
 	protected static void setupOpenJobRequestDeserializer(DelegatingDeserializer<OpenJobRequest.Builder> op) {
 
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 
@@ -186,5 +187,5 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, OpenJobResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, OpenJobResponse._DESERIALIZER);
 }

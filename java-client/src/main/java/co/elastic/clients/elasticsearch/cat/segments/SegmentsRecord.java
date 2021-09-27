@@ -24,19 +24,20 @@
 package co.elastic.clients.elasticsearch.cat.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.segments.SegmentsRecord
+@JsonpDeserializable
 public final class SegmentsRecord implements JsonpSerializable {
 	@Nullable
 	private final String index;
@@ -60,16 +61,16 @@ public final class SegmentsRecord implements JsonpSerializable {
 	private final String generation;
 
 	@Nullable
-	private final String docs_count;
+	private final String docsCount;
 
 	@Nullable
-	private final String docs_deleted;
+	private final String docsDeleted;
 
 	@Nullable
-	private final JsonValue size;
+	private final String size;
 
 	@Nullable
-	private final JsonValue size_memory;
+	private final String sizeMemory;
 
 	@Nullable
 	private final String committed;
@@ -94,10 +95,10 @@ public final class SegmentsRecord implements JsonpSerializable {
 		this.id = builder.id;
 		this.segment = builder.segment;
 		this.generation = builder.generation;
-		this.docs_count = builder.docs_count;
-		this.docs_deleted = builder.docs_deleted;
+		this.docsCount = builder.docsCount;
+		this.docsDeleted = builder.docsDeleted;
 		this.size = builder.size;
-		this.size_memory = builder.size_memory;
+		this.sizeMemory = builder.sizeMemory;
 		this.committed = builder.committed;
 		this.searchable = builder.searchable;
 		this.version = builder.version;
@@ -181,8 +182,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code docs.count}
 	 */
 	@Nullable
-	public String docs_count() {
-		return this.docs_count;
+	public String docsCount() {
+		return this.docsCount;
 	}
 
 	/**
@@ -191,8 +192,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code docs.deleted}
 	 */
 	@Nullable
-	public String docs_deleted() {
-		return this.docs_deleted;
+	public String docsDeleted() {
+		return this.docsDeleted;
 	}
 
 	/**
@@ -201,7 +202,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public String size() {
 		return this.size;
 	}
 
@@ -211,8 +212,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 	 * API name: {@code size.memory}
 	 */
 	@Nullable
-	public JsonValue size_memory() {
-		return this.size_memory;
+	public String sizeMemory() {
+		return this.sizeMemory;
 	}
 
 	/**
@@ -308,16 +309,16 @@ public final class SegmentsRecord implements JsonpSerializable {
 			generator.write(this.generation);
 
 		}
-		if (this.docs_count != null) {
+		if (this.docsCount != null) {
 
 			generator.writeKey("docs.count");
-			generator.write(this.docs_count);
+			generator.write(this.docsCount);
 
 		}
-		if (this.docs_deleted != null) {
+		if (this.docsDeleted != null) {
 
 			generator.writeKey("docs.deleted");
-			generator.write(this.docs_deleted);
+			generator.write(this.docsDeleted);
 
 		}
 		if (this.size != null) {
@@ -326,10 +327,10 @@ public final class SegmentsRecord implements JsonpSerializable {
 			generator.write(this.size);
 
 		}
-		if (this.size_memory != null) {
+		if (this.sizeMemory != null) {
 
 			generator.writeKey("size.memory");
-			generator.write(this.size_memory);
+			generator.write(this.sizeMemory);
 
 		}
 		if (this.committed != null) {
@@ -387,16 +388,16 @@ public final class SegmentsRecord implements JsonpSerializable {
 		private String generation;
 
 		@Nullable
-		private String docs_count;
+		private String docsCount;
 
 		@Nullable
-		private String docs_deleted;
+		private String docsDeleted;
 
 		@Nullable
-		private JsonValue size;
+		private String size;
 
 		@Nullable
-		private JsonValue size_memory;
+		private String sizeMemory;
 
 		@Nullable
 		private String committed;
@@ -485,8 +486,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs.count}
 		 */
-		public Builder docs_count(@Nullable String value) {
-			this.docs_count = value;
+		public Builder docsCount(@Nullable String value) {
+			this.docsCount = value;
 			return this;
 		}
 
@@ -495,8 +496,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs.deleted}
 		 */
-		public Builder docs_deleted(@Nullable String value) {
-			this.docs_deleted = value;
+		public Builder docsDeleted(@Nullable String value) {
+			this.docsDeleted = value;
 			return this;
 		}
 
@@ -505,7 +506,7 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -515,8 +516,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code size.memory}
 		 */
-		public Builder size_memory(@Nullable JsonValue value) {
-			this.size_memory = value;
+		public Builder sizeMemory(@Nullable String value) {
+			this.sizeMemory = value;
 			return this;
 		}
 
@@ -577,8 +578,8 @@ public final class SegmentsRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link SegmentsRecord}
 	 */
-	public static final JsonpDeserializer<SegmentsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SegmentsRecord::setupSegmentsRecordDeserializer);
+	public static final JsonpDeserializer<SegmentsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SegmentsRecord::setupSegmentsRecordDeserializer, Builder::build);
 
 	protected static void setupSegmentsRecordDeserializer(DelegatingDeserializer<SegmentsRecord.Builder> op) {
 
@@ -589,10 +590,10 @@ public final class SegmentsRecord implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::segment, JsonpDeserializer.stringDeserializer(), "segment", "seg");
 		op.add(Builder::generation, JsonpDeserializer.stringDeserializer(), "generation", "g", "gen");
-		op.add(Builder::docs_count, JsonpDeserializer.stringDeserializer(), "docs.count", "dc", "docsCount");
-		op.add(Builder::docs_deleted, JsonpDeserializer.stringDeserializer(), "docs.deleted", "dd", "docsDeleted");
-		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size", "si");
-		op.add(Builder::size_memory, JsonpDeserializer.jsonValueDeserializer(), "size.memory", "sm", "sizeMemory");
+		op.add(Builder::docsCount, JsonpDeserializer.stringDeserializer(), "docs.count", "dc", "docsCount");
+		op.add(Builder::docsDeleted, JsonpDeserializer.stringDeserializer(), "docs.deleted", "dd", "docsDeleted");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size", "si");
+		op.add(Builder::sizeMemory, JsonpDeserializer.stringDeserializer(), "size.memory", "sm", "sizeMemory");
 		op.add(Builder::committed, JsonpDeserializer.stringDeserializer(), "committed", "ic", "isCommitted");
 		op.add(Builder::searchable, JsonpDeserializer.stringDeserializer(), "searchable", "is", "isSearchable");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");

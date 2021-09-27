@@ -27,14 +27,14 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ThreadType;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +46,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Request
+
 public final class HotThreadsRequest extends RequestBase {
 	@Nullable
 	private final List<String> nodeId;
@@ -54,19 +55,19 @@ public final class HotThreadsRequest extends RequestBase {
 	private final Boolean ignoreIdleThreads;
 
 	@Nullable
-	private final JsonValue interval;
+	private final String interval;
 
 	@Nullable
-	private final Number snapshots;
+	private final Long snapshots;
 
 	@Nullable
-	private final Number threads;
+	private final Long threads;
 
 	@Nullable
 	private final ThreadType threadType;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -111,7 +112,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public JsonValue interval() {
+	public String interval() {
 		return this.interval;
 	}
 
@@ -121,7 +122,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code snapshots}
 	 */
 	@Nullable
-	public Number snapshots() {
+	public Long snapshots() {
 		return this.snapshots;
 	}
 
@@ -131,7 +132,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code threads}
 	 */
 	@Nullable
-	public Number threads() {
+	public Long threads() {
 		return this.threads;
 	}
 
@@ -149,7 +150,7 @@ public final class HotThreadsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -166,19 +167,19 @@ public final class HotThreadsRequest extends RequestBase {
 		private Boolean ignoreIdleThreads;
 
 		@Nullable
-		private JsonValue interval;
+		private String interval;
 
 		@Nullable
-		private Number snapshots;
+		private Long snapshots;
 
 		@Nullable
-		private Number threads;
+		private Long threads;
 
 		@Nullable
 		private ThreadType threadType;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
@@ -231,7 +232,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code interval}
 		 */
-		public Builder interval(@Nullable JsonValue value) {
+		public Builder interval(@Nullable String value) {
 			this.interval = value;
 			return this;
 		}
@@ -241,7 +242,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshots}
 		 */
-		public Builder snapshots(@Nullable Number value) {
+		public Builder snapshots(@Nullable Long value) {
 			this.snapshots = value;
 			return this;
 		}
@@ -251,7 +252,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code threads}
 		 */
-		public Builder threads(@Nullable Number value) {
+		public Builder threads(@Nullable Long value) {
 			this.threads = value;
 			return this;
 		}
@@ -269,7 +270,7 @@ public final class HotThreadsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -332,21 +333,21 @@ public final class HotThreadsRequest extends RequestBase {
 					params.put("ignore_idle_threads", String.valueOf(request.ignoreIdleThreads));
 				}
 				if (request.interval != null) {
-					params.put("interval", request.interval.toString());
+					params.put("interval", request.interval);
 				}
 				if (request.snapshots != null) {
-					params.put("snapshots", request.snapshots.toString());
+					params.put("snapshots", String.valueOf(request.snapshots));
 				}
 				if (request.threads != null) {
-					params.put("threads", request.threads.toString());
+					params.put("threads", String.valueOf(request.threads));
 				}
 				if (request.threadType != null) {
 					params.put("thread_type", request.threadType.toString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, HotThreadsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), false, HotThreadsResponse._DESERIALIZER);
 }

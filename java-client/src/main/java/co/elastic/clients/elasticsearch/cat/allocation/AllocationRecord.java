@@ -24,37 +24,38 @@
 package co.elastic.clients.elasticsearch.cat.allocation;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
+@JsonpDeserializable
 public final class AllocationRecord implements JsonpSerializable {
 	@Nullable
 	private final String shards;
 
 	@Nullable
-	private final JsonValue disk_indices;
+	private final String diskIndices;
 
 	@Nullable
-	private final JsonValue disk_used;
+	private final String diskUsed;
 
 	@Nullable
-	private final JsonValue disk_avail;
+	private final String diskAvail;
 
 	@Nullable
-	private final JsonValue disk_total;
+	private final String diskTotal;
 
 	@Nullable
-	private final JsonValue disk_percent;
+	private final String diskPercent;
 
 	@Nullable
 	private final String host;
@@ -70,11 +71,11 @@ public final class AllocationRecord implements JsonpSerializable {
 	public AllocationRecord(Builder builder) {
 
 		this.shards = builder.shards;
-		this.disk_indices = builder.disk_indices;
-		this.disk_used = builder.disk_used;
-		this.disk_avail = builder.disk_avail;
-		this.disk_total = builder.disk_total;
-		this.disk_percent = builder.disk_percent;
+		this.diskIndices = builder.diskIndices;
+		this.diskUsed = builder.diskUsed;
+		this.diskAvail = builder.diskAvail;
+		this.diskTotal = builder.diskTotal;
+		this.diskPercent = builder.diskPercent;
 		this.host = builder.host;
 		this.ip = builder.ip;
 		this.node = builder.node;
@@ -97,8 +98,8 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.indices}
 	 */
 	@Nullable
-	public JsonValue disk_indices() {
-		return this.disk_indices;
+	public String diskIndices() {
+		return this.diskIndices;
 	}
 
 	/**
@@ -107,8 +108,8 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.used}
 	 */
 	@Nullable
-	public JsonValue disk_used() {
-		return this.disk_used;
+	public String diskUsed() {
+		return this.diskUsed;
 	}
 
 	/**
@@ -117,8 +118,8 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.avail}
 	 */
 	@Nullable
-	public JsonValue disk_avail() {
-		return this.disk_avail;
+	public String diskAvail() {
+		return this.diskAvail;
 	}
 
 	/**
@@ -127,8 +128,8 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.total}
 	 */
 	@Nullable
-	public JsonValue disk_total() {
-		return this.disk_total;
+	public String diskTotal() {
+		return this.diskTotal;
 	}
 
 	/**
@@ -137,8 +138,8 @@ public final class AllocationRecord implements JsonpSerializable {
 	 * API name: {@code disk.percent}
 	 */
 	@Nullable
-	public JsonValue disk_percent() {
-		return this.disk_percent;
+	public String diskPercent() {
+		return this.diskPercent;
 	}
 
 	/**
@@ -188,34 +189,34 @@ public final class AllocationRecord implements JsonpSerializable {
 			generator.write(this.shards);
 
 		}
-		if (this.disk_indices != null) {
+		if (this.diskIndices != null) {
 
 			generator.writeKey("disk.indices");
-			generator.write(this.disk_indices);
+			generator.write(this.diskIndices);
 
 		}
-		if (this.disk_used != null) {
+		if (this.diskUsed != null) {
 
 			generator.writeKey("disk.used");
-			generator.write(this.disk_used);
+			generator.write(this.diskUsed);
 
 		}
-		if (this.disk_avail != null) {
+		if (this.diskAvail != null) {
 
 			generator.writeKey("disk.avail");
-			generator.write(this.disk_avail);
+			generator.write(this.diskAvail);
 
 		}
-		if (this.disk_total != null) {
+		if (this.diskTotal != null) {
 
 			generator.writeKey("disk.total");
-			generator.write(this.disk_total);
+			generator.write(this.diskTotal);
 
 		}
-		if (this.disk_percent != null) {
+		if (this.diskPercent != null) {
 
 			generator.writeKey("disk.percent");
-			generator.write(this.disk_percent);
+			generator.write(this.diskPercent);
 
 		}
 		if (this.host != null) {
@@ -249,19 +250,19 @@ public final class AllocationRecord implements JsonpSerializable {
 		private String shards;
 
 		@Nullable
-		private JsonValue disk_indices;
+		private String diskIndices;
 
 		@Nullable
-		private JsonValue disk_used;
+		private String diskUsed;
 
 		@Nullable
-		private JsonValue disk_avail;
+		private String diskAvail;
 
 		@Nullable
-		private JsonValue disk_total;
+		private String diskTotal;
 
 		@Nullable
-		private JsonValue disk_percent;
+		private String diskPercent;
 
 		@Nullable
 		private String host;
@@ -287,8 +288,8 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.indices}
 		 */
-		public Builder disk_indices(@Nullable JsonValue value) {
-			this.disk_indices = value;
+		public Builder diskIndices(@Nullable String value) {
+			this.diskIndices = value;
 			return this;
 		}
 
@@ -297,8 +298,8 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.used}
 		 */
-		public Builder disk_used(@Nullable JsonValue value) {
-			this.disk_used = value;
+		public Builder diskUsed(@Nullable String value) {
+			this.diskUsed = value;
 			return this;
 		}
 
@@ -307,8 +308,8 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.avail}
 		 */
-		public Builder disk_avail(@Nullable JsonValue value) {
-			this.disk_avail = value;
+		public Builder diskAvail(@Nullable String value) {
+			this.diskAvail = value;
 			return this;
 		}
 
@@ -317,8 +318,8 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.total}
 		 */
-		public Builder disk_total(@Nullable JsonValue value) {
-			this.disk_total = value;
+		public Builder diskTotal(@Nullable String value) {
+			this.diskTotal = value;
 			return this;
 		}
 
@@ -327,8 +328,8 @@ public final class AllocationRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code disk.percent}
 		 */
-		public Builder disk_percent(@Nullable JsonValue value) {
-			this.disk_percent = value;
+		public Builder diskPercent(@Nullable String value) {
+			this.diskPercent = value;
 			return this;
 		}
 
@@ -379,17 +380,17 @@ public final class AllocationRecord implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link AllocationRecord}
 	 */
-	public static final JsonpDeserializer<AllocationRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationRecord::setupAllocationRecordDeserializer);
+	public static final JsonpDeserializer<AllocationRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AllocationRecord::setupAllocationRecordDeserializer, Builder::build);
 
 	protected static void setupAllocationRecordDeserializer(DelegatingDeserializer<AllocationRecord.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer.stringDeserializer(), "shards", "s");
-		op.add(Builder::disk_indices, JsonpDeserializer.jsonValueDeserializer(), "disk.indices", "di", "diskIndices");
-		op.add(Builder::disk_used, JsonpDeserializer.jsonValueDeserializer(), "disk.used", "du", "diskUsed");
-		op.add(Builder::disk_avail, JsonpDeserializer.jsonValueDeserializer(), "disk.avail", "da", "diskAvail");
-		op.add(Builder::disk_total, JsonpDeserializer.jsonValueDeserializer(), "disk.total", "dt", "diskTotal");
-		op.add(Builder::disk_percent, JsonpDeserializer.jsonValueDeserializer(), "disk.percent", "dp", "diskPercent");
+		op.add(Builder::diskIndices, JsonpDeserializer.stringDeserializer(), "disk.indices", "di", "diskIndices");
+		op.add(Builder::diskUsed, JsonpDeserializer.stringDeserializer(), "disk.used", "du", "diskUsed");
+		op.add(Builder::diskAvail, JsonpDeserializer.stringDeserializer(), "disk.avail", "da", "diskAvail");
+		op.add(Builder::diskTotal, JsonpDeserializer.stringDeserializer(), "disk.total", "dt", "diskTotal");
+		op.add(Builder::diskPercent, JsonpDeserializer.stringDeserializer(), "disk.percent", "dp", "diskPercent");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host", "h");
 		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "n");

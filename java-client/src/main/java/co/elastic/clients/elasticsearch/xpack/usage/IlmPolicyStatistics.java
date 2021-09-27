@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ilm.Phases;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,14 +33,15 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IlmPolicyStatistics
+@JsonpDeserializable
 public final class IlmPolicyStatistics implements JsonpSerializable {
-	private final Number indicesManaged;
+	private final Integer indicesManaged;
 
 	private final Phases phases;
 
@@ -55,7 +57,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	/**
 	 * API name: {@code indices_managed}
 	 */
-	public Number indicesManaged() {
+	public Integer indicesManaged() {
 		return this.indicesManaged;
 	}
 
@@ -78,7 +80,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices_managed");
-		generator.write(this.indicesManaged.doubleValue());
+		generator.write(this.indicesManaged);
 
 		generator.writeKey("phases");
 		this.phases.serialize(generator, mapper);
@@ -91,14 +93,14 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	 * Builder for {@link IlmPolicyStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<IlmPolicyStatistics> {
-		private Number indicesManaged;
+		private Integer indicesManaged;
 
 		private Phases phases;
 
 		/**
 		 * API name: {@code indices_managed}
 		 */
-		public Builder indicesManaged(Number value) {
+		public Builder indicesManaged(Integer value) {
 			this.indicesManaged = value;
 			return this;
 		}
@@ -135,13 +137,13 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IlmPolicyStatistics}
 	 */
-	public static final JsonpDeserializer<IlmPolicyStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer);
+	public static final JsonpDeserializer<IlmPolicyStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer, Builder::build);
 
 	protected static void setupIlmPolicyStatisticsDeserializer(DelegatingDeserializer<IlmPolicyStatistics.Builder> op) {
 
-		op.add(Builder::indicesManaged, JsonpDeserializer.numberDeserializer(), "indices_managed");
-		op.add(Builder::phases, Phases.DESERIALIZER, "phases");
+		op.add(Builder::indicesManaged, JsonpDeserializer.integerDeserializer(), "indices_managed");
+		op.add(Builder::phases, Phases._DESERIALIZER, "phases");
 
 	}
 

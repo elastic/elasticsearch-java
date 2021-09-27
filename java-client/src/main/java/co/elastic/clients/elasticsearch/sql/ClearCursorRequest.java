@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Request
+@JsonpDeserializable
 public final class ClearCursorRequest extends RequestBase implements JsonpSerializable {
 	private final String cursor;
 
@@ -107,8 +109,8 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Json deserializer for {@link ClearCursorRequest}
 	 */
-	public static final JsonpDeserializer<ClearCursorRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer);
+	public static final JsonpDeserializer<ClearCursorRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer, Builder::build);
 
 	protected static void setupClearCursorRequestDeserializer(DelegatingDeserializer<ClearCursorRequest.Builder> op) {
 
@@ -138,5 +140,5 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ClearCursorResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, ClearCursorResponse._DESERIALIZER);
 }

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._core.reindex_rethrottle;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -32,7 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +43,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexTask
+@JsonpDeserializable
 public final class ReindexTask implements JsonpSerializable {
 	private final String action;
 
@@ -49,13 +51,13 @@ public final class ReindexTask implements JsonpSerializable {
 
 	private final String description;
 
-	private final Number id;
+	private final Long id;
 
 	private final String node;
 
-	private final Number runningTimeInNanos;
+	private final Long runningTimeInNanos;
 
-	private final Number startTimeInMillis;
+	private final Long startTimeInMillis;
 
 	private final ReindexStatus status;
 
@@ -104,7 +106,7 @@ public final class ReindexTask implements JsonpSerializable {
 	/**
 	 * API name: {@code id}
 	 */
-	public Number id() {
+	public Long id() {
 		return this.id;
 	}
 
@@ -118,14 +120,14 @@ public final class ReindexTask implements JsonpSerializable {
 	/**
 	 * API name: {@code running_time_in_nanos}
 	 */
-	public Number runningTimeInNanos() {
+	public Long runningTimeInNanos() {
 		return this.runningTimeInNanos;
 	}
 
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Number startTimeInMillis() {
+	public Long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -171,16 +173,16 @@ public final class ReindexTask implements JsonpSerializable {
 		generator.write(this.description);
 
 		generator.writeKey("id");
-		generator.write(this.id.doubleValue());
+		generator.write(this.id);
 
 		generator.writeKey("node");
 		generator.write(this.node);
 
 		generator.writeKey("running_time_in_nanos");
-		generator.write(this.runningTimeInNanos.doubleValue());
+		generator.write(this.runningTimeInNanos);
 
 		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis.doubleValue());
+		generator.write(this.startTimeInMillis);
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
@@ -216,13 +218,13 @@ public final class ReindexTask implements JsonpSerializable {
 
 		private String description;
 
-		private Number id;
+		private Long id;
 
 		private String node;
 
-		private Number runningTimeInNanos;
+		private Long runningTimeInNanos;
 
-		private Number startTimeInMillis;
+		private Long startTimeInMillis;
 
 		private ReindexStatus status;
 
@@ -257,7 +259,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(Number value) {
+		public Builder id(Long value) {
 			this.id = value;
 			return this;
 		}
@@ -273,7 +275,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * API name: {@code running_time_in_nanos}
 		 */
-		public Builder runningTimeInNanos(Number value) {
+		public Builder runningTimeInNanos(Long value) {
 			this.runningTimeInNanos = value;
 			return this;
 		}
@@ -281,7 +283,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Number value) {
+		public Builder startTimeInMillis(Long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -345,19 +347,19 @@ public final class ReindexTask implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ReindexTask}
 	 */
-	public static final JsonpDeserializer<ReindexTask> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReindexTask::setupReindexTaskDeserializer);
+	public static final JsonpDeserializer<ReindexTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReindexTask::setupReindexTaskDeserializer, Builder::build);
 
 	protected static void setupReindexTaskDeserializer(DelegatingDeserializer<ReindexTask.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::runningTimeInNanos, JsonpDeserializer.numberDeserializer(), "running_time_in_nanos");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
-		op.add(Builder::status, ReindexStatus.DESERIALIZER, "status");
+		op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::status, ReindexStatus._DESERIALIZER, "status");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");

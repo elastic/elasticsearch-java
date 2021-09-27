@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RealmInfo
+@JsonpDeserializable
 public final class RealmInfo implements JsonpSerializable {
 	private final String name;
 
@@ -126,8 +128,8 @@ public final class RealmInfo implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RealmInfo}
 	 */
-	public static final JsonpDeserializer<RealmInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RealmInfo::setupRealmInfoDeserializer);
+	public static final JsonpDeserializer<RealmInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RealmInfo::setupRealmInfoDeserializer, Builder::build);
 
 	protected static void setupRealmInfoDeserializer(DelegatingDeserializer<RealmInfo.Builder> op) {
 

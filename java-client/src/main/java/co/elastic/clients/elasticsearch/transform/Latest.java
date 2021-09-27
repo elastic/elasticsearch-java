@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
+@JsonpDeserializable
 public final class Latest implements JsonpSerializable {
 	private final String sort;
 
@@ -163,8 +165,8 @@ public final class Latest implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Latest}
 	 */
-	public static final JsonpDeserializer<Latest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Latest::setupLatestDeserializer);
+	public static final JsonpDeserializer<Latest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Latest::setupLatestDeserializer, Builder::build);
 
 	protected static void setupLatestDeserializer(DelegatingDeserializer<Latest.Builder> op) {
 

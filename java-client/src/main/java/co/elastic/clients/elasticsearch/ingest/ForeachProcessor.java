@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ForeachProcessor
-public final class ForeachProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class ForeachProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -54,6 +56,14 @@ public final class ForeachProcessor extends ProcessorBase {
 		this.ignoreMissing = builder.ignoreMissing;
 		this.processor = Objects.requireNonNull(builder.processor, "processor");
 
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "foreach";
 	}
 
 	/**
@@ -165,14 +175,14 @@ public final class ForeachProcessor extends ProcessorBase {
 	/**
 	 * Json deserializer for {@link ForeachProcessor}
 	 */
-	public static final JsonpDeserializer<ForeachProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ForeachProcessor::setupForeachProcessorDeserializer);
+	public static final JsonpDeserializer<ForeachProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ForeachProcessor::setupForeachProcessorDeserializer, Builder::build);
 
 	protected static void setupForeachProcessorDeserializer(DelegatingDeserializer<ForeachProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
-		op.add(Builder::processor, Processor.DESERIALIZER, "processor");
+		op.add(Builder::processor, Processor._DESERIALIZER, "processor");
 
 	}
 

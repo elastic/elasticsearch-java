@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TotalFeatureImportanceClass
+@JsonpDeserializable
 public final class TotalFeatureImportanceClass implements JsonpSerializable {
 	private final String className;
 
@@ -183,14 +185,14 @@ public final class TotalFeatureImportanceClass implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TotalFeatureImportanceClass}
 	 */
-	public static final JsonpDeserializer<TotalFeatureImportanceClass> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TotalFeatureImportanceClass::setupTotalFeatureImportanceClassDeserializer);
+	public static final JsonpDeserializer<TotalFeatureImportanceClass> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, TotalFeatureImportanceClass::setupTotalFeatureImportanceClassDeserializer, Builder::build);
 
 	protected static void setupTotalFeatureImportanceClassDeserializer(
 			DelegatingDeserializer<TotalFeatureImportanceClass.Builder> op) {
 
 		op.add(Builder::className, JsonpDeserializer.stringDeserializer(), "class_name");
-		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics.DESERIALIZER),
+		op.add(Builder::importance, JsonpDeserializer.arrayDeserializer(TotalFeatureImportanceStatistics._DESERIALIZER),
 				"importance");
 
 	}

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.elasticsearch._types.NodeShard;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -39,6 +40,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RoutingTableIndex
+@JsonpDeserializable
 public final class RoutingTableIndex implements JsonpSerializable {
 	private final Map<String, List<NodeShard>> shards;
 
@@ -128,13 +130,13 @@ public final class RoutingTableIndex implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link RoutingTableIndex}
 	 */
-	public static final JsonpDeserializer<RoutingTableIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RoutingTableIndex::setupRoutingTableIndexDeserializer);
+	public static final JsonpDeserializer<RoutingTableIndex> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RoutingTableIndex::setupRoutingTableIndexDeserializer, Builder::build);
 
 	protected static void setupRoutingTableIndexDeserializer(DelegatingDeserializer<RoutingTableIndex.Builder> op) {
 
 		op.add(Builder::shards,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard.DESERIALIZER)),
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(NodeShard._DESERIALIZER)),
 				"shards");
 
 	}

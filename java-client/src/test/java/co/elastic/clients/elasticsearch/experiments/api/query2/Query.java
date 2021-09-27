@@ -25,7 +25,8 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion2;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.UnionVariant;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -33,9 +34,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Map;
 import java.util.function.Function;
 
-public class Query extends TaggedUnion2<JsonpSerializable, Query.Variant> implements JsonpSerializable {
+public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
 
-    public interface Variant extends UnionVariant {
+    public interface Variant extends UnionVariant, JsonpSerializable {
         default Query _toQuery() {
             return new Query(this);
         }
@@ -44,15 +45,31 @@ public class Query extends TaggedUnion2<JsonpSerializable, Query.Variant> implem
     private static final String BOOL = "bool";
     private static final String TERMS = "terms";
 
+    private final String _variantType;
+    private final Variant _variantValue;
+
+    @Override
+    public String _type() {
+        return _variantType;
+    }
+
+    @Override
+    public Variant _get() {
+        return _variantValue;
+    }
+
     // A container-level property that lives besides the variant, like "meta" and "aggs" in aggregations
     private Map<String, JsonValue> meta;
 
     public Query(Variant value) {
-        super(value);
+        this._variantType = value._variantType();
+        this._variantValue = value;
     }
 
     private Query(Builder builder) {
-        super(builder.$tag, builder.$variant);
+        this._variantType = builder.$tag;
+        this._variantValue = builder.$variant;
+
         this.meta = builder.meta;
     }
 
@@ -62,19 +79,19 @@ public class Query extends TaggedUnion2<JsonpSerializable, Query.Variant> implem
     }
 
     public BoolQuery bool() {
-        return _get(BOOL);
+        return TaggedUnionUtils.get(this, BOOL);
     }
 
     public TermsQuery terms() {
-        return _get(TERMS);
+        return TaggedUnionUtils.get(this, TERMS);
     }
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        generator.writeKey(_type);
-        if (_value instanceof JsonpSerializable) {
-            ((JsonpSerializable)_value).serialize(generator, mapper);
+        generator.writeKey(_variantType);
+        if (_variantValue instanceof JsonpSerializable) {
+            ((JsonpSerializable) _variantValue).serialize(generator, mapper);
         } else {
             // Other serialization
         }
@@ -90,7 +107,7 @@ public class Query extends TaggedUnion2<JsonpSerializable, Query.Variant> implem
 
     public static class Builder {
 
-        private JsonpSerializable $variant;
+        private Variant $variant;
         private String $tag;
         private Map<String, JsonValue> meta;
 
@@ -166,4 +183,6 @@ public class Query extends TaggedUnion2<JsonpSerializable, Query.Variant> implem
 
         return PARSER;
     }
+
+
 }

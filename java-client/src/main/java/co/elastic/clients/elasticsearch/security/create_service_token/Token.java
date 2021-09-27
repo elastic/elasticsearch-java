@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security.create_service_token;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -36,6 +37,7 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Token
+@JsonpDeserializable
 public final class Token implements JsonpSerializable {
 	private final String name;
 
@@ -126,8 +128,8 @@ public final class Token implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link Token}
 	 */
-	public static final JsonpDeserializer<Token> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Token::setupTokenDeserializer);
+	public static final JsonpDeserializer<Token> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Token::setupTokenDeserializer, Builder::build);
 
 	protected static void setupTokenDeserializer(DelegatingDeserializer<Token.Builder> op) {
 

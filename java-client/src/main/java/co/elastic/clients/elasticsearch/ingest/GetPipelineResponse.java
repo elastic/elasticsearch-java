@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,6 +35,7 @@ import java.lang.String;
 import java.util.Objects;
 
 // typedef: ingest.get_pipeline.Response
+@JsonpDeserializable
 public final class GetPipelineResponse extends AdditionalProperties<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,12 +76,12 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 	/**
 	 * Json deserializer for {@link GetPipelineResponse}
 	 */
-	public static final JsonpDeserializer<GetPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
+	public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer, Builder::build);
 
 	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Pipeline.DESERIALIZER);
+				Pipeline._DESERIALIZER);
 
 	}
 

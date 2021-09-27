@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch.nodes.hot_threads.HotThread;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -40,6 +41,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.hot_threads.Response
+@JsonpDeserializable
 public final class HotThreadsResponse implements JsonpSerializable {
 	private final List<HotThread> hotThreads;
 
@@ -145,12 +147,12 @@ public final class HotThreadsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HotThreadsResponse}
 	 */
-	public static final JsonpDeserializer<HotThreadsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer);
+	public static final JsonpDeserializer<HotThreadsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HotThreadsResponse::setupHotThreadsResponseDeserializer, Builder::build);
 
 	protected static void setupHotThreadsResponseDeserializer(DelegatingDeserializer<HotThreadsResponse.Builder> op) {
 
-		op.add(Builder::hotThreads, JsonpDeserializer.arrayDeserializer(HotThread.DESERIALIZER), "hot_threads");
+		op.add(Builder::hotThreads, JsonpDeserializer.arrayDeserializer(HotThread._DESERIALIZER), "hot_threads");
 
 	}
 

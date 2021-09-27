@@ -27,6 +27,7 @@ import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,15 +44,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Request
+@JsonpDeserializable
 public final class GetCalendarsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String calendarId;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final Page page;
@@ -83,7 +85,7 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -93,7 +95,7 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -135,10 +137,10 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		private String calendarId;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private Page page;
@@ -158,7 +160,7 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -168,7 +170,7 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -205,12 +207,12 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Json deserializer for {@link GetCalendarsRequest}
 	 */
-	public static final JsonpDeserializer<GetCalendarsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer);
+	public static final JsonpDeserializer<GetCalendarsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer, Builder::build);
 
 	protected static void setupGetCalendarsRequestDeserializer(DelegatingDeserializer<GetCalendarsRequest.Builder> op) {
 
-		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
 
 	}
 
@@ -257,12 +259,12 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarsResponse.DESERIALIZER);
+			}, Endpoint.Simple.emptyMap(), true, GetCalendarsResponse._DESERIALIZER);
 }

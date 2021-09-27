@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,12 +33,21 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 
 // typedef: _types.aggregations.ValueCountAggregation
-public final class ValueCountAggregation extends FormattableMetricAggregation {
+@JsonpDeserializable
+public final class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	public ValueCountAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "value_count";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +80,8 @@ public final class ValueCountAggregation extends FormattableMetricAggregation {
 	/**
 	 * Json deserializer for {@link ValueCountAggregation}
 	 */
-	public static final JsonpDeserializer<ValueCountAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer);
+	public static final JsonpDeserializer<ValueCountAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer, Builder::build);
 
 	protected static void setupValueCountAggregationDeserializer(
 			DelegatingDeserializer<ValueCountAggregation.Builder> op) {

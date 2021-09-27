@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.base.AdditionalProperties;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,6 +37,7 @@ import java.util.Map;
 import java.util.Objects;
 
 // typedef: security.get_privileges.Response
+@JsonpDeserializable
 public final class GetPrivilegesResponse extends AdditionalProperties<String, Map<String, Actions>> {
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,13 +78,13 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 	/**
 	 * Json deserializer for {@link GetPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<GetPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupGetPrivilegesResponseDeserializer(
 			DelegatingDeserializer<GetPrivilegesResponse.Builder> op) {
 		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				JsonpDeserializer.stringMapDeserializer(Actions.DESERIALIZER));
+				JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER));
 
 	}
 

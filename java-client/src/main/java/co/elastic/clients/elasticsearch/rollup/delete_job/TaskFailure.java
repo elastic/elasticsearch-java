@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.rollup.delete_job;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailure
+@JsonpDeserializable
 public final class TaskFailure implements JsonpSerializable {
-	private final JsonValue taskId;
+	private final String taskId;
 
 	private final String nodeId;
 
@@ -61,7 +62,7 @@ public final class TaskFailure implements JsonpSerializable {
 	/**
 	 * API name: {@code task_id}
 	 */
-	public JsonValue taskId() {
+	public String taskId() {
 		return this.taskId;
 	}
 
@@ -117,7 +118,7 @@ public final class TaskFailure implements JsonpSerializable {
 	 * Builder for {@link TaskFailure}.
 	 */
 	public static class Builder implements ObjectBuilder<TaskFailure> {
-		private JsonValue taskId;
+		private String taskId;
 
 		private String nodeId;
 
@@ -128,7 +129,7 @@ public final class TaskFailure implements JsonpSerializable {
 		/**
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(JsonValue value) {
+		public Builder taskId(String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -181,15 +182,15 @@ public final class TaskFailure implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TaskFailure}
 	 */
-	public static final JsonpDeserializer<TaskFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TaskFailure::setupTaskFailureDeserializer);
+	public static final JsonpDeserializer<TaskFailure> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TaskFailure::setupTaskFailureDeserializer, Builder::build);
 
 	protected static void setupTaskFailureDeserializer(DelegatingDeserializer<TaskFailure.Builder> op) {
 
-		op.add(Builder::taskId, JsonpDeserializer.jsonValueDeserializer(), "task_id");
+		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
-		op.add(Builder::reason, TaskFailureReason.DESERIALIZER, "reason");
+		op.add(Builder::reason, TaskFailureReason._DESERIALIZER, "reason");
 
 	}
 
