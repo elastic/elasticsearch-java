@@ -25,14 +25,19 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,26 +52,27 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Request
-public final class PutRoleRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final List<ApplicationPrivileges> applications;
 
 	@Nullable
-	private final List<String> cluster;
+	private final List<ClusterPrivilege> cluster;
 
 	@Nullable
-	private final Map<String, JsonValue> global;
+	private final Map<String, JsonData> global;
 
 	@Nullable
 	private final List<IndicesPrivileges> indices;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final List<String> runAs;
@@ -76,21 +82,27 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutRoleRequest(Builder builder) {
+	public PutRoleRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.refresh = builder.refresh;
-		this.applications = builder.applications;
-		this.cluster = builder.cluster;
-		this.global = builder.global;
-		this.indices = builder.indices;
-		this.metadata = builder.metadata;
-		this.runAs = builder.runAs;
+		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
+		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
+		this.global = ModelTypeHelper.unmodifiable(builder.global);
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = builder.transientMetadata;
 
 	}
 
+	public PutRoleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Role name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -98,14 +110,21 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
 	/**
+	 * A list of application privilege entries.
+	 * <p>
 	 * API name: {@code applications}
 	 */
 	@Nullable
@@ -114,22 +133,31 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A list of cluster privileges. These privileges define the cluster-level
+	 * actions for users with this role.
+	 * <p>
 	 * API name: {@code cluster}
 	 */
 	@Nullable
-	public List<String> cluster() {
+	public List<ClusterPrivilege> cluster() {
 		return this.cluster;
 	}
 
 	/**
+	 * An object defining global privileges. A global privilege is a form of cluster
+	 * privilege that is request-aware. Support for global privileges is currently
+	 * limited to the management of application privileges.
+	 * <p>
 	 * API name: {@code global}
 	 */
 	@Nullable
-	public Map<String, JsonValue> global() {
+	public Map<String, JsonData> global() {
 		return this.global;
 	}
 
 	/**
+	 * A list of indices permissions entries.
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	@Nullable
@@ -138,14 +166,19 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Optional metadata. Within the metadata object, keys that begin with an
+	 * underscore (<code>_</code>) are reserved for system use.
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
+	 * A list of users that the owners of this role can impersonate.
+	 * <p>
 	 * API name: {@code run_as}
 	 */
 	@Nullable
@@ -154,6 +187,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Indicates roles that might be incompatible with the current cluster license,
+	 * specifically roles with document and field level security. When the cluster
+	 * license doesn’t allow certain features for a given role, this parameter is
+	 * updated dynamically to list the incompatible features. If
+	 * <code>enabled</code> is <code>false</code>, the role is ignored, but is still
+	 * listed in the response from the authenticate API.
+	 * <p>
 	 * API name: {@code transient_metadata}
 	 */
 	@Nullable
@@ -164,20 +204,20 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.applications != null) {
 
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -187,9 +227,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("cluster");
 			generator.writeStartArray();
-			for (String item0 : this.cluster) {
-				generator.write(item0);
-
+			for (ClusterPrivilege item0 : this.cluster) {
+				item0.serialize(generator, mapper);
 			}
 			generator.writeEnd();
 
@@ -198,9 +237,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("global");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.global.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.global.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -211,7 +250,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (IndicesPrivileges item0 : this.indices) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -221,9 +260,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -243,7 +282,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		if (this.transientMetadata != null) {
 
 			generator.writeKey("transient_metadata");
-			this.transientMetadata.toJsonp(generator, mapper);
+			this.transientMetadata.serialize(generator, mapper);
 
 		}
 
@@ -258,22 +297,22 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		private String name;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private List<ApplicationPrivileges> applications;
 
 		@Nullable
-		private List<String> cluster;
+		private List<ClusterPrivilege> cluster;
 
 		@Nullable
-		private Map<String, JsonValue> global;
+		private Map<String, JsonData> global;
 
 		@Nullable
 		private List<IndicesPrivileges> indices;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private List<String> runAs;
@@ -282,6 +321,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		private TransientMetadata transientMetadata;
 
 		/**
+		 * Role name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -290,14 +331,21 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
 
 		/**
+		 * A list of application privilege entries.
+		 * <p>
 		 * API name: {@code applications}
 		 */
 		public Builder applications(@Nullable List<ApplicationPrivileges> value) {
@@ -306,6 +354,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of application privilege entries.
+		 * <p>
 		 * API name: {@code applications}
 		 */
 		public Builder applications(ApplicationPrivileges... value) {
@@ -314,7 +364,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -332,7 +382,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -340,25 +390,31 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of cluster privileges. These privileges define the cluster-level
+		 * actions for users with this role.
+		 * <p>
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(@Nullable List<String> value) {
+		public Builder cluster(@Nullable List<ClusterPrivilege> value) {
 			this.cluster = value;
 			return this;
 		}
 
 		/**
+		 * A list of cluster privileges. These privileges define the cluster-level
+		 * actions for users with this role.
+		 * <p>
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(String... value) {
+		public Builder cluster(ClusterPrivilege... value) {
 			this.cluster = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
-		public Builder addCluster(String value) {
+		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
 				this.cluster = new ArrayList<>();
 			}
@@ -367,9 +423,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * An object defining global privileges. A global privilege is a form of cluster
+		 * privilege that is request-aware. Support for global privileges is currently
+		 * limited to the management of application privileges.
+		 * <p>
 		 * API name: {@code global}
 		 */
-		public Builder global(@Nullable Map<String, JsonValue> value) {
+		public Builder global(@Nullable Map<String, JsonData> value) {
 			this.global = value;
 			return this;
 		}
@@ -377,7 +437,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #global(Map)}, creating the map if needed.
 		 */
-		public Builder putGlobal(String key, JsonValue value) {
+		public Builder putGlobal(String key, JsonData value) {
 			if (this.global == null) {
 				this.global = new HashMap<>();
 			}
@@ -386,6 +446,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of indices permissions entries.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(@Nullable List<IndicesPrivileges> value) {
@@ -394,6 +456,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of indices permissions entries.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(IndicesPrivileges... value) {
@@ -402,7 +466,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -420,16 +484,19 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
+		 * Optional metadata. Within the metadata object, keys that begin with an
+		 * underscore (<code>_</code>) are reserved for system use.
+		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -437,7 +504,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -446,6 +513,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of users that the owners of this role can impersonate.
+		 * <p>
 		 * API name: {@code run_as}
 		 */
 		public Builder runAs(@Nullable List<String> value) {
@@ -454,6 +523,8 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A list of users that the owners of this role can impersonate.
+		 * <p>
 		 * API name: {@code run_as}
 		 */
 		public Builder runAs(String... value) {
@@ -462,7 +533,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -473,6 +544,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates roles that might be incompatible with the current cluster license,
+		 * specifically roles with document and field level security. When the cluster
+		 * license doesn’t allow certain features for a given role, this parameter is
+		 * updated dynamically to list the incompatible features. If
+		 * <code>enabled</code> is <code>false</code>, the role is ignored, but is still
+		 * listed in the response from the authenticate API.
+		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
 		public Builder transientMetadata(@Nullable TransientMetadata value) {
@@ -481,6 +559,13 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Indicates roles that might be incompatible with the current cluster license,
+		 * specifically roles with document and field level security. When the cluster
+		 * license doesn’t allow certain features for a given role, this parameter is
+		 * updated dynamically to list the incompatible features. If
+		 * <code>enabled</code> is <code>false</code>, the role is ignored, but is still
+		 * listed in the response from the authenticate API.
+		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
 		public Builder transientMetadata(Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
@@ -502,24 +587,21 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutRoleRequest
+	 * Json deserializer for {@link PutRoleRequest}
 	 */
-	public static final JsonpDeserializer<PutRoleRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutRoleRequest::setupPutRoleRequestDeserializer);
+	public static final JsonpDeserializer<PutRoleRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutRoleRequest::setupPutRoleRequestDeserializer, Builder::build);
 
 	protected static void setupPutRoleRequestDeserializer(DelegatingDeserializer<PutRoleRequest.Builder> op) {
 
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
-		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"cluster");
-		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"global");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(ClusterPrivilege._DESERIALIZER), "cluster");
+		op.add(Builder::global, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "global");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadata.DESERIALIZER, "transient_metadata");
+		op.add(Builder::transientMetadata, TransientMetadata._DESERIALIZER, "transient_metadata");
 
 	}
 
@@ -528,7 +610,7 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code security.put_role}".
 	 */
-	public static final Endpoint<PutRoleRequest, PutRoleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutRoleRequest, PutRoleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -541,18 +623,17 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/role");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -560,9 +641,9 @@ public final class PutRoleRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutRoleResponse._DESERIALIZER);
 }

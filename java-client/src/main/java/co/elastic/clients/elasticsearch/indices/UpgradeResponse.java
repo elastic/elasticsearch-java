@@ -23,51 +23,29 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: indices.upgrade.Response
-public final class UpgradeResponse implements ToJsonp {
-	private final Number stub;
-
+@JsonpDeserializable
+public final class UpgradeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpgradeResponse(Builder builder) {
-
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+	public UpgradeResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	/**
-	 * API name: {@code stub}
-	 */
-	public Number stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
-
+	public UpgradeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,14 +53,11 @@ public final class UpgradeResponse implements ToJsonp {
 	/**
 	 * Builder for {@link UpgradeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<UpgradeResponse> {
-		private Number stub;
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<UpgradeResponse> {
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
@@ -101,14 +76,13 @@ public final class UpgradeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpgradeResponse
+	 * Json deserializer for {@link UpgradeResponse}
 	 */
-	public static final JsonpDeserializer<UpgradeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpgradeResponse::setupUpgradeResponseDeserializer);
+	public static final JsonpDeserializer<UpgradeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			UpgradeResponse::setupUpgradeResponseDeserializer, Builder::build);
 
 	protected static void setupUpgradeResponseDeserializer(DelegatingDeserializer<UpgradeResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

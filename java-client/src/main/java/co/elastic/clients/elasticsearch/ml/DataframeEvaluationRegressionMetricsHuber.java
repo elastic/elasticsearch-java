@@ -24,56 +24,64 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsHuber
-public final class DataframeEvaluationRegressionMetricsHuber implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationRegressionMetricsHuber implements JsonpSerializable {
 	@Nullable
-	private final Number delta;
+	private final Double delta;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationRegressionMetricsHuber(Builder builder) {
+	public DataframeEvaluationRegressionMetricsHuber(Builder builder) {
 
 		this.delta = builder.delta;
 
+	}
+
+	public DataframeEvaluationRegressionMetricsHuber(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Approximates 1/2 (prediction - actual)2 for values much less than delta and
 	 * approximates a straight line with slope delta for values much larger than
 	 * delta. Defaults to 1. Delta needs to be greater than 0.
-	 *
+	 * <p>
 	 * API name: {@code delta}
 	 */
 	@Nullable
-	public Number delta() {
+	public Double delta() {
 		return this.delta;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.delta != null) {
 
 			generator.writeKey("delta");
-			generator.write(this.delta.doubleValue());
+			generator.write(this.delta);
 
 		}
 
@@ -86,16 +94,16 @@ public final class DataframeEvaluationRegressionMetricsHuber implements ToJsonp 
 	 */
 	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetricsHuber> {
 		@Nullable
-		private Number delta;
+		private Double delta;
 
 		/**
 		 * Approximates 1/2 (prediction - actual)2 for values much less than delta and
 		 * approximates a straight line with slope delta for values much larger than
 		 * delta. Defaults to 1. Delta needs to be greater than 0.
-		 *
+		 * <p>
 		 * API name: {@code delta}
 		 */
-		public Builder delta(@Nullable Number value) {
+		public Builder delta(@Nullable Double value) {
 			this.delta = value;
 			return this;
 		}
@@ -115,16 +123,17 @@ public final class DataframeEvaluationRegressionMetricsHuber implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationRegressionMetricsHuber
+	 * Json deserializer for {@link DataframeEvaluationRegressionMetricsHuber}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsHuber> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetricsHuber::setupDataframeEvaluationRegressionMetricsHuberDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsHuber> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationRegressionMetricsHuber::setupDataframeEvaluationRegressionMetricsHuberDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionMetricsHuberDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegressionMetricsHuber.Builder> op) {
 
-		op.add(Builder::delta, JsonpDeserializer.numberDeserializer(), "delta");
+		op.add(Builder::delta, JsonpDeserializer.doubleDeserializer(), "delta");
 
 	}
 

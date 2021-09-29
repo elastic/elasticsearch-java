@@ -24,23 +24,27 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
-public final class SimpleQueryStringQuery extends QueryBase {
+@JsonpDeserializable
+public final class SimpleQueryStringQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -51,19 +55,19 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	private final Boolean autoGenerateSynonymsPhraseQuery;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final List<String> fields;
 
 	@Nullable
-	private final JsonValue flags;
+	private final SimpleQueryStringFlags flags;
 
 	@Nullable
-	private final Number fuzzyMaxExpansions;
+	private final Integer fuzzyMaxExpansions;
 
 	@Nullable
-	private final Number fuzzyPrefixLength;
+	private final Integer fuzzyPrefixLength;
 
 	@Nullable
 	private final Boolean fuzzyTranspositions;
@@ -72,9 +76,8 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	private final Boolean lenient;
 
 	@Nullable
-	private final JsonValue minimumShouldMatch;
+	private final String minimumShouldMatch;
 
-	@Nullable
 	private final String query;
 
 	@Nullable
@@ -82,22 +85,35 @@ public final class SimpleQueryStringQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimpleQueryStringQuery(Builder builder) {
+	public SimpleQueryStringQuery(Builder builder) {
 		super(builder);
+
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.defaultOperator = builder.defaultOperator;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.flags = builder.flags;
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
 		this.lenient = builder.lenient;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = builder.query;
+		this.query = Objects.requireNonNull(builder.query, "query");
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
+	}
+
+	public SimpleQueryStringQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "simple_query_string";
 	}
 
 	/**
@@ -128,7 +144,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -144,7 +160,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	 * API name: {@code flags}
 	 */
 	@Nullable
-	public JsonValue flags() {
+	public SimpleQueryStringFlags flags() {
 		return this.flags;
 	}
 
@@ -152,7 +168,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	 * API name: {@code fuzzy_max_expansions}
 	 */
 	@Nullable
-	public Number fuzzyMaxExpansions() {
+	public Integer fuzzyMaxExpansions() {
 		return this.fuzzyMaxExpansions;
 	}
 
@@ -160,7 +176,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	 * API name: {@code fuzzy_prefix_length}
 	 */
 	@Nullable
-	public Number fuzzyPrefixLength() {
+	public Integer fuzzyPrefixLength() {
 		return this.fuzzyPrefixLength;
 	}
 
@@ -184,14 +200,13 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public JsonValue minimumShouldMatch() {
+	public String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
 	/**
 	 * API name: {@code query}
 	 */
-	@Nullable
 	public String query() {
 		return this.query;
 	}
@@ -204,8 +219,9 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		return this.quoteFieldSuffix;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
 
 			generator.writeKey("analyzer");
@@ -227,8 +243,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		if (this.defaultOperator != null) {
 
 			generator.writeKey("default_operator");
-			generator.write(this.defaultOperator);
-
+			this.defaultOperator.serialize(generator, mapper);
 		}
 		if (this.fields != null) {
 
@@ -244,19 +259,18 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		if (this.flags != null) {
 
 			generator.writeKey("flags");
-			generator.write(this.flags);
-
+			this.flags.serialize(generator, mapper);
 		}
 		if (this.fuzzyMaxExpansions != null) {
 
 			generator.writeKey("fuzzy_max_expansions");
-			generator.write(this.fuzzyMaxExpansions.doubleValue());
+			generator.write(this.fuzzyMaxExpansions);
 
 		}
 		if (this.fuzzyPrefixLength != null) {
 
 			generator.writeKey("fuzzy_prefix_length");
-			generator.write(this.fuzzyPrefixLength.doubleValue());
+			generator.write(this.fuzzyPrefixLength);
 
 		}
 		if (this.fuzzyTranspositions != null) {
@@ -277,12 +291,10 @@ public final class SimpleQueryStringQuery extends QueryBase {
 			generator.write(this.minimumShouldMatch);
 
 		}
-		if (this.query != null) {
 
-			generator.writeKey("query");
-			generator.write(this.query);
+		generator.writeKey("query");
+		generator.write(this.query);
 
-		}
 		if (this.quoteFieldSuffix != null) {
 
 			generator.writeKey("quote_field_suffix");
@@ -310,19 +322,19 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		private Boolean autoGenerateSynonymsPhraseQuery;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private List<String> fields;
 
 		@Nullable
-		private JsonValue flags;
+		private SimpleQueryStringFlags flags;
 
 		@Nullable
-		private Number fuzzyMaxExpansions;
+		private Integer fuzzyMaxExpansions;
 
 		@Nullable
-		private Number fuzzyPrefixLength;
+		private Integer fuzzyPrefixLength;
 
 		@Nullable
 		private Boolean fuzzyTranspositions;
@@ -331,9 +343,8 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		private Boolean lenient;
 
 		@Nullable
-		private JsonValue minimumShouldMatch;
+		private String minimumShouldMatch;
 
-		@Nullable
 		private String query;
 
 		@Nullable
@@ -366,7 +377,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -388,7 +399,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -401,7 +412,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code flags}
 		 */
-		public Builder flags(@Nullable JsonValue value) {
+		public Builder flags(@Nullable SimpleQueryStringFlags value) {
 			this.flags = value;
 			return this;
 		}
@@ -409,7 +420,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code fuzzy_max_expansions}
 		 */
-		public Builder fuzzyMaxExpansions(@Nullable Number value) {
+		public Builder fuzzyMaxExpansions(@Nullable Integer value) {
 			this.fuzzyMaxExpansions = value;
 			return this;
 		}
@@ -417,7 +428,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code fuzzy_prefix_length}
 		 */
-		public Builder fuzzyPrefixLength(@Nullable Number value) {
+		public Builder fuzzyPrefixLength(@Nullable Integer value) {
 			this.fuzzyPrefixLength = value;
 			return this;
 		}
@@ -441,7 +452,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable JsonValue value) {
+		public Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -449,7 +460,7 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable String value) {
+		public Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -482,10 +493,10 @@ public final class SimpleQueryStringQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimpleQueryStringQuery
+	 * Json deserializer for {@link SimpleQueryStringQuery}
 	 */
-	public static final JsonpDeserializer<SimpleQueryStringQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer);
+	public static final JsonpDeserializer<SimpleQueryStringQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SimpleQueryStringQuery::setupSimpleQueryStringQueryDeserializer, Builder::build);
 
 	protected static void setupSimpleQueryStringQueryDeserializer(
 			DelegatingDeserializer<SimpleQueryStringQuery.Builder> op) {
@@ -494,14 +505,14 @@ public final class SimpleQueryStringQuery extends QueryBase {
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
-		op.add(Builder::defaultOperator, JsonpDeserializer.jsonValueDeserializer(), "default_operator");
+		op.add(Builder::defaultOperator, Operator._DESERIALIZER, "default_operator");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::flags, JsonpDeserializer.jsonValueDeserializer(), "flags");
-		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.numberDeserializer(), "fuzzy_max_expansions");
-		op.add(Builder::fuzzyPrefixLength, JsonpDeserializer.numberDeserializer(), "fuzzy_prefix_length");
+		op.add(Builder::flags, SimpleQueryStringFlags._DESERIALIZER, "flags");
+		op.add(Builder::fuzzyMaxExpansions, JsonpDeserializer.integerDeserializer(), "fuzzy_max_expansions");
+		op.add(Builder::fuzzyPrefixLength, JsonpDeserializer.integerDeserializer(), "fuzzy_prefix_length");
 		op.add(Builder::fuzzyTranspositions, JsonpDeserializer.booleanDeserializer(), "fuzzy_transpositions");
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
-		op.add(Builder::minimumShouldMatch, JsonpDeserializer.jsonValueDeserializer(), "minimum_should_match");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::quoteFieldSuffix, JsonpDeserializer.stringDeserializer(), "quote_field_suffix");
 

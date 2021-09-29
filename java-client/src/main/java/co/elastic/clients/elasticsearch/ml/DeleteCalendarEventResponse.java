@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.delete_calendar_event.Response
+@JsonpDeserializable
 public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteCalendarEventResponse(Builder builder) {
+	public DeleteCalendarEventResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteCalendarEventResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteCalendarEventResponse
+	 * Json deserializer for {@link DeleteCalendarEventResponse}
 	 */
-	public static final JsonpDeserializer<DeleteCalendarEventResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteCalendarEventResponse::setupDeleteCalendarEventResponseDeserializer);
+	public static final JsonpDeserializer<DeleteCalendarEventResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DeleteCalendarEventResponse::setupDeleteCalendarEventResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteCalendarEventResponseDeserializer(
 			DelegatingDeserializer<DeleteCalendarEventResponse.Builder> op) {

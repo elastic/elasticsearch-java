@@ -24,26 +24,35 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql.search.Response
+
 public final class SearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	@Nullable
 	private final JsonpSerializer<TEvent> tEventSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchResponse(Builder<TEvent> builder) {
+	public SearchResponse(Builder<TEvent> builder) {
 		super(builder);
+
 		this.tEventSerializer = builder.tEventSerializer;
 
+	}
+
+	public SearchResponse(Function<Builder<TEvent>, Builder<TEvent>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,7 +69,6 @@ public final class SearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> 
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;

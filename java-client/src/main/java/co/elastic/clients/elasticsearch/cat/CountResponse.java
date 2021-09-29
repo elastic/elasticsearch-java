@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.count.CountRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,33 +41,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.Response
-public final class CountResponse implements ToJsonp {
-	private final List<CountRecord> value;
+@JsonpDeserializable
+public final class CountResponse implements JsonpSerializable {
+	private final List<CountRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CountResponse(Builder builder) {
+	public CountResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public CountResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
-	 *
-	 * API name: {@code value}
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<CountRecord> value() {
-		return this.value;
+	public List<CountRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (CountRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+		for (CountRecord item0 : this.valueBody) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -79,51 +85,51 @@ public final class CountResponse implements ToJsonp {
 	 * Builder for {@link CountResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<CountResponse> {
-		private List<CountRecord> value;
+		private List<CountRecord> valueBody;
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<CountRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<CountRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(CountRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(CountRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(CountRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(CountRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
-			return this.value(fn.apply(new CountRecord.Builder()).build());
+		public Builder valueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
+			return this.valueBody(fn.apply(new CountRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
-			return this.addValue(fn.apply(new CountRecord.Builder()).build());
+		public Builder addValueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
+			return this.addValueBody(fn.apply(new CountRecord.Builder()).build());
 		}
 
 		/**
@@ -138,18 +144,14 @@ public final class CountResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<CountResponse> _DESERIALIZER = createCountResponseDeserializer();
+	protected static JsonpDeserializer<CountResponse> createCountResponseDeserializer() {
 
-	/**
-	 * Json deserializer for CountResponse
-	 */
-	public static final JsonpDeserializer<CountResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CountResponse::setupCountResponseDeserializer);
+		JsonpDeserializer<List<CountRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(CountRecord._DESERIALIZER);
 
-	protected static void setupCountResponseDeserializer(DelegatingDeserializer<CountResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(CountRecord.DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

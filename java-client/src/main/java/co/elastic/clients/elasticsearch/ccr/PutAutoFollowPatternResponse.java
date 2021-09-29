@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ccr.put_auto_follow_pattern.Response
+@JsonpDeserializable
 public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutAutoFollowPatternResponse(Builder builder) {
+	public PutAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutAutoFollowPatternResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutAutoFollowPatternResponse
+	 * Json deserializer for {@link PutAutoFollowPatternResponse}
 	 */
-	public static final JsonpDeserializer<PutAutoFollowPatternResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutAutoFollowPatternResponse::setupPutAutoFollowPatternResponseDeserializer);
+	public static final JsonpDeserializer<PutAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutAutoFollowPatternResponse::setupPutAutoFollowPatternResponseDeserializer, Builder::build);
 
 	protected static void setupPutAutoFollowPatternResponseDeserializer(
 			DelegatingDeserializer<PutAutoFollowPatternResponse.Builder> op) {

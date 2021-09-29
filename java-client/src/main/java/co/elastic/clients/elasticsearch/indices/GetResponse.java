@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get.Response
-public final class GetResponse extends AdditionalProperties<String, IndexState> {
+@JsonpDeserializable
+public final class GetResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder builder) {
+	public GetResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -46,7 +54,7 @@ public final class GetResponse extends AdditionalProperties<String, IndexState> 
 	/**
 	 * Builder for {@link GetResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexState, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetResponse> {
 		@Override
@@ -71,14 +79,14 @@ public final class GetResponse extends AdditionalProperties<String, IndexState> 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetResponse
+	 * Json deserializer for {@link GetResponse}
 	 */
-	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
+	public static final JsonpDeserializer<GetResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexState.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				IndexState._DESERIALIZER);
 
 	}
 

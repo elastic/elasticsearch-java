@@ -23,51 +23,29 @@
 
 package co.elastic.clients.elasticsearch.shutdown;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: shutdown.put_node.Response
-public final class PutNodeResponse implements ToJsonp {
-	private final Boolean stub;
-
+@JsonpDeserializable
+public final class PutNodeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutNodeResponse(Builder builder) {
-
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+	public PutNodeResponse(Builder builder) {
+		super(builder);
 
 	}
 
-	/**
-	 * API name: {@code stub}
-	 */
-	public Boolean stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub);
-
+	public PutNodeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,14 +53,11 @@ public final class PutNodeResponse implements ToJsonp {
 	/**
 	 * Builder for {@link PutNodeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutNodeResponse> {
-		private Boolean stub;
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(Boolean value) {
-			this.stub = value;
+	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PutNodeResponse> {
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
@@ -101,14 +76,13 @@ public final class PutNodeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutNodeResponse
+	 * Json deserializer for {@link PutNodeResponse}
 	 */
-	public static final JsonpDeserializer<PutNodeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutNodeResponse::setupPutNodeResponseDeserializer);
+	public static final JsonpDeserializer<PutNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutNodeResponse::setupPutNodeResponseDeserializer, Builder::build);
 
 	protected static void setupPutNodeResponseDeserializer(DelegatingDeserializer<PutNodeResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.booleanDeserializer(), "stub");
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}
 

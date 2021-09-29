@@ -24,37 +24,52 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleTriggerEvent
-public final class ScheduleTriggerEvent implements ToJsonp {
-	private final JsonValue scheduledTime;
+@JsonpDeserializable
+public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializable {
+	private final String scheduledTime;
 
 	@Nullable
-	private final JsonValue triggeredTime;
+	private final String triggeredTime;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScheduleTriggerEvent(Builder builder) {
+	public ScheduleTriggerEvent(Builder builder) {
 
 		this.scheduledTime = Objects.requireNonNull(builder.scheduledTime, "scheduled_time");
 		this.triggeredTime = builder.triggeredTime;
 
 	}
 
+	public ScheduleTriggerEvent(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link TriggerEvent} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "schedule";
+	}
+
 	/**
 	 * API name: {@code scheduled_time}
 	 */
-	public JsonValue scheduledTime() {
+	public String scheduledTime() {
 		return this.scheduledTime;
 	}
 
@@ -62,20 +77,20 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 	 * API name: {@code triggered_time}
 	 */
 	@Nullable
-	public JsonValue triggeredTime() {
+	public String triggeredTime() {
 		return this.triggeredTime;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("scheduled_time");
 		generator.write(this.scheduledTime);
@@ -95,15 +110,15 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 	 * Builder for {@link ScheduleTriggerEvent}.
 	 */
 	public static class Builder implements ObjectBuilder<ScheduleTriggerEvent> {
-		private JsonValue scheduledTime;
+		private String scheduledTime;
 
 		@Nullable
-		private JsonValue triggeredTime;
+		private String triggeredTime;
 
 		/**
 		 * API name: {@code scheduled_time}
 		 */
-		public Builder scheduledTime(JsonValue value) {
+		public Builder scheduledTime(String value) {
 			this.scheduledTime = value;
 			return this;
 		}
@@ -111,7 +126,7 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 		/**
 		 * API name: {@code triggered_time}
 		 */
-		public Builder triggeredTime(@Nullable JsonValue value) {
+		public Builder triggeredTime(@Nullable String value) {
 			this.triggeredTime = value;
 			return this;
 		}
@@ -131,16 +146,16 @@ public final class ScheduleTriggerEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScheduleTriggerEvent
+	 * Json deserializer for {@link ScheduleTriggerEvent}
 	 */
-	public static final JsonpDeserializer<ScheduleTriggerEvent> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScheduleTriggerEvent::setupScheduleTriggerEventDeserializer);
+	public static final JsonpDeserializer<ScheduleTriggerEvent> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ScheduleTriggerEvent::setupScheduleTriggerEventDeserializer, Builder::build);
 
 	protected static void setupScheduleTriggerEventDeserializer(
 			DelegatingDeserializer<ScheduleTriggerEvent.Builder> op) {
 
-		op.add(Builder::scheduledTime, JsonpDeserializer.jsonValueDeserializer(), "scheduled_time");
-		op.add(Builder::triggeredTime, JsonpDeserializer.jsonValueDeserializer(), "triggered_time");
+		op.add(Builder::scheduledTime, JsonpDeserializer.stringDeserializer(), "scheduled_time");
+		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
 
 	}
 

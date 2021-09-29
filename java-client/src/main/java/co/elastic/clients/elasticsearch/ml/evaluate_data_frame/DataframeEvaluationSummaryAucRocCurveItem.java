@@ -24,28 +24,30 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
-public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp {
-	private final Number tpr;
+@JsonpDeserializable
+public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializable {
+	private final double tpr;
 
-	private final Number fpr;
+	private final double fpr;
 
-	private final Number threshold;
+	private final double threshold;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
+	public DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
 
 		this.tpr = Objects.requireNonNull(builder.tpr, "tpr");
 		this.fpr = Objects.requireNonNull(builder.fpr, "fpr");
@@ -53,46 +55,50 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 
 	}
 
+	public DataframeEvaluationSummaryAucRocCurveItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code tpr}
 	 */
-	public Number tpr() {
+	public double tpr() {
 		return this.tpr;
 	}
 
 	/**
 	 * API name: {@code fpr}
 	 */
-	public Number fpr() {
+	public double fpr() {
 		return this.fpr;
 	}
 
 	/**
 	 * API name: {@code threshold}
 	 */
-	public Number threshold() {
+	public double threshold() {
 		return this.threshold;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("tpr");
-		generator.write(this.tpr.doubleValue());
+		generator.write(this.tpr);
 
 		generator.writeKey("fpr");
-		generator.write(this.fpr.doubleValue());
+		generator.write(this.fpr);
 
 		generator.writeKey("threshold");
-		generator.write(this.threshold.doubleValue());
+		generator.write(this.threshold);
 
 	}
 
@@ -102,16 +108,16 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 	 * Builder for {@link DataframeEvaluationSummaryAucRocCurveItem}.
 	 */
 	public static class Builder implements ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem> {
-		private Number tpr;
+		private Double tpr;
 
-		private Number fpr;
+		private Double fpr;
 
-		private Number threshold;
+		private Double threshold;
 
 		/**
 		 * API name: {@code tpr}
 		 */
-		public Builder tpr(Number value) {
+		public Builder tpr(double value) {
 			this.tpr = value;
 			return this;
 		}
@@ -119,7 +125,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 		/**
 		 * API name: {@code fpr}
 		 */
-		public Builder fpr(Number value) {
+		public Builder fpr(double value) {
 			this.fpr = value;
 			return this;
 		}
@@ -127,7 +133,7 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 		/**
 		 * API name: {@code threshold}
 		 */
-		public Builder threshold(Number value) {
+		public Builder threshold(double value) {
 			this.threshold = value;
 			return this;
 		}
@@ -147,18 +153,19 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationSummaryAucRocCurveItem
+	 * Json deserializer for {@link DataframeEvaluationSummaryAucRocCurveItem}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRocCurveItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationSummaryAucRocCurveItem::setupDataframeEvaluationSummaryAucRocCurveItemDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRocCurveItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationSummaryAucRocCurveItem::setupDataframeEvaluationSummaryAucRocCurveItemDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationSummaryAucRocCurveItemDeserializer(
 			DelegatingDeserializer<DataframeEvaluationSummaryAucRocCurveItem.Builder> op) {
 
-		op.add(Builder::tpr, JsonpDeserializer.numberDeserializer(), "tpr");
-		op.add(Builder::fpr, JsonpDeserializer.numberDeserializer(), "fpr");
-		op.add(Builder::threshold, JsonpDeserializer.numberDeserializer(), "threshold");
+		op.add(Builder::tpr, JsonpDeserializer.doubleDeserializer(), "tpr");
+		op.add(Builder::fpr, JsonpDeserializer.doubleDeserializer(), "fpr");
+		op.add(Builder::threshold, JsonpDeserializer.doubleDeserializer(), "threshold");
 
 	}
 

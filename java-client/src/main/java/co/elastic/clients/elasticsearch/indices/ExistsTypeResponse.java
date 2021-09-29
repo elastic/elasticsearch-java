@@ -23,23 +23,27 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.exists_type.Response
+
 public final class ExistsTypeResponse {
-	protected ExistsTypeResponse() {
+	public ExistsTypeResponse() {
 	}
 
 	/**
 	 * Singleton instance for {@link ExistsTypeResponse}.
 	 */
-	public static final ExistsTypeResponse INSTANCE = new ExistsTypeResponse();
+	public static final ExistsTypeResponse _INSTANCE = new ExistsTypeResponse();
 
-	public static final JsonpDeserializer<ExistsTypeResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExistsTypeResponse.INSTANCE);
+	public static final JsonpDeserializer<ExistsTypeResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(ExistsTypeResponse._INSTANCE);
 
 }

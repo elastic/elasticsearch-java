@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.master;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.master.MasterRecord
-public final class MasterRecord implements ToJsonp {
+@JsonpDeserializable
+public final class MasterRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -50,7 +54,7 @@ public final class MasterRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MasterRecord(Builder builder) {
+	public MasterRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.host = builder.host;
@@ -59,9 +63,13 @@ public final class MasterRecord implements ToJsonp {
 
 	}
 
+	public MasterRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -71,7 +79,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * host name
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -81,7 +89,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -91,7 +99,7 @@ public final class MasterRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -102,13 +110,13 @@ public final class MasterRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -157,7 +165,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -167,7 +175,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * host name
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(@Nullable String value) {
@@ -177,7 +185,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -187,7 +195,7 @@ public final class MasterRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable String value) {
@@ -210,10 +218,10 @@ public final class MasterRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MasterRecord
+	 * Json deserializer for {@link MasterRecord}
 	 */
-	public static final JsonpDeserializer<MasterRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MasterRecord::setupMasterRecordDeserializer);
+	public static final JsonpDeserializer<MasterRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MasterRecord::setupMasterRecordDeserializer, Builder::build);
 
 	protected static void setupMasterRecordDeserializer(DelegatingDeserializer<MasterRecord.Builder> op) {
 

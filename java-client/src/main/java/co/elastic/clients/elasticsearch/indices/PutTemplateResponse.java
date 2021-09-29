@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.put_template.Response
+@JsonpDeserializable
 public final class PutTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTemplateResponse(Builder builder) {
+	public PutTemplateResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class PutTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTemplateResponse
+	 * Json deserializer for {@link PutTemplateResponse}
 	 */
-	public static final JsonpDeserializer<PutTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTemplateResponse::setupPutTemplateResponseDeserializer);
+	public static final JsonpDeserializer<PutTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTemplateResponse::setupPutTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupPutTemplateResponseDeserializer(DelegatingDeserializer<PutTemplateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

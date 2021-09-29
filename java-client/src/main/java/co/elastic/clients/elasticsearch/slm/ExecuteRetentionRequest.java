@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: slm.execute_retention.Request
+
 public final class ExecuteRetentionRequest extends RequestBase {
-	protected ExecuteRetentionRequest() {
+	public ExecuteRetentionRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link ExecuteRetentionRequest}.
 	 */
-	public static final ExecuteRetentionRequest INSTANCE = new ExecuteRetentionRequest();
-
-	public static final JsonpDeserializer<ExecuteRetentionRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ExecuteRetentionRequest.INSTANCE);
+	public static final ExecuteRetentionRequest _INSTANCE = new ExecuteRetentionRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code slm.execute_retention}".
 	 */
-	public static final Endpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExecuteRetentionRequest, ExecuteRetentionResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -68,5 +70,5 @@ public final class ExecuteRetentionRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ExecuteRetentionResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ExecuteRetentionResponse._DESERIALIZER);
 }

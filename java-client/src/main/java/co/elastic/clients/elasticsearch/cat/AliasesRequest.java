@@ -25,11 +25,14 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -37,27 +40,36 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.aliases.Request
+
 public final class AliasesRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> name;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AliasesRequest(Builder builder) {
+	public AliasesRequest(Builder builder) {
 
-		this.name = builder.name;
-		this.expandWildcards = builder.expandWildcards;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 
 	}
 
+	public AliasesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of alias names to return
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -66,10 +78,13 @@ public final class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -83,9 +98,11 @@ public final class AliasesRequest extends CatRequestBase {
 		private List<String> name;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		/**
+		 * A comma-separated list of alias names to return
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable List<String> value) {
@@ -94,6 +111,8 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of alias names to return
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -102,7 +121,7 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -113,10 +132,35 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -137,7 +181,7 @@ public final class AliasesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.aliases}".
 	 */
-	public static final Endpoint<AliasesRequest, AliasesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AliasesRequest, AliasesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -164,10 +208,10 @@ public final class AliasesRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/aliases");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -175,9 +219,10 @@ public final class AliasesRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, AliasesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AliasesResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,27 +35,34 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.split.Response
+@JsonpDeserializable
 public final class SplitResponse extends AcknowledgedResponseBase {
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SplitResponse(Builder builder) {
+	public SplitResponse(Builder builder) {
 		super(builder);
+
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 		this.index = Objects.requireNonNull(builder.index, "index");
 
 	}
 
+	public SplitResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
@@ -65,8 +73,9 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 		return this.index;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
@@ -91,7 +100,7 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -124,10 +133,10 @@ public final class SplitResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SplitResponse
+	 * Json deserializer for {@link SplitResponse}
 	 */
-	public static final JsonpDeserializer<SplitResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SplitResponse::setupSplitResponseDeserializer);
+	public static final JsonpDeserializer<SplitResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SplitResponse::setupSplitResponseDeserializer, Builder::build);
 
 	protected static void setupSplitResponseDeserializer(DelegatingDeserializer<SplitResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

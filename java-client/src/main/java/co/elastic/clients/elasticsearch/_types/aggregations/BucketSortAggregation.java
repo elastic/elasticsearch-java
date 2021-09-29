@@ -24,49 +24,67 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketSortAggregation
-public final class BucketSortAggregation extends Aggregation {
+@JsonpDeserializable
+public final class BucketSortAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final JsonValue gapPolicy;
+	private final GapPolicy gapPolicy;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
-	private final List<JsonValue> sort;
+	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketSortAggregation(Builder builder) {
+	public BucketSortAggregation(Builder builder) {
 		super(builder);
+
 		this.from = builder.from;
 		this.gapPolicy = builder.gapPolicy;
 		this.size = builder.size;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 
+	}
+
+	public BucketSortAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "bucket_sort";
 	}
 
 	/**
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
@@ -74,7 +92,7 @@ public final class BucketSortAggregation extends Aggregation {
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
-	public JsonValue gapPolicy() {
+	public GapPolicy gapPolicy() {
 		return this.gapPolicy;
 	}
 
@@ -82,7 +100,7 @@ public final class BucketSortAggregation extends Aggregation {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -90,35 +108,35 @@ public final class BucketSortAggregation extends Aggregation {
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public List<JsonValue> sort() {
+	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.from != null) {
 
 			generator.writeKey("from");
-			generator.write(this.from.doubleValue());
+			generator.write(this.from);
 
 		}
 		if (this.gapPolicy != null) {
 
 			generator.writeKey("gap_policy");
-			generator.write(this.gapPolicy);
-
+			this.gapPolicy.serialize(generator, mapper);
 		}
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 		if (this.sort != null) {
 
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.sort) {
+			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
 				generator.write(item0);
 
 			}
@@ -133,25 +151,25 @@ public final class BucketSortAggregation extends Aggregation {
 	/**
 	 * Builder for {@link BucketSortAggregation}.
 	 */
-	public static class Builder extends Aggregation.AbstractBuilder<Builder>
+	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BucketSortAggregation> {
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private JsonValue gapPolicy;
+		private GapPolicy gapPolicy;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
-		private List<JsonValue> sort;
+		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -159,7 +177,7 @@ public final class BucketSortAggregation extends Aggregation {
 		/**
 		 * API name: {@code gap_policy}
 		 */
-		public Builder gapPolicy(@Nullable JsonValue value) {
+		public Builder gapPolicy(@Nullable GapPolicy value) {
 			this.gapPolicy = value;
 			return this;
 		}
@@ -167,7 +185,7 @@ public final class BucketSortAggregation extends Aggregation {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -175,7 +193,7 @@ public final class BucketSortAggregation extends Aggregation {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable List<JsonValue> value) {
+		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
 			return this;
 		}
@@ -183,15 +201,15 @@ public final class BucketSortAggregation extends Aggregation {
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(JsonValue... value) {
+		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
-		public Builder addSort(JsonValue value) {
+		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
 				this.sort = new ArrayList<>();
 			}
@@ -219,17 +237,17 @@ public final class BucketSortAggregation extends Aggregation {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketSortAggregation
+	 * Json deserializer for {@link BucketSortAggregation}
 	 */
-	public static final JsonpDeserializer<BucketSortAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer);
+	public static final JsonpDeserializer<BucketSortAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BucketSortAggregation::setupBucketSortAggregationDeserializer, Builder::build);
 
 	protected static void setupBucketSortAggregationDeserializer(
 			DelegatingDeserializer<BucketSortAggregation.Builder> op) {
-		Aggregation.setupAggregationDeserializer(op);
-		op.add(Builder::from, JsonpDeserializer.numberDeserializer(), "from");
-		op.add(Builder::gapPolicy, JsonpDeserializer.jsonValueDeserializer(), "gap_policy");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		AggregationBase.setupAggregationBaseDeserializer(op);
+		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
+		op.add(Builder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 
 	}

@@ -24,62 +24,68 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.WatcherActionTotals
-public final class WatcherActionTotals implements ToJsonp {
-	private final Number total;
+@JsonpDeserializable
+public final class WatcherActionTotals implements JsonpSerializable {
+	private final long total;
 
-	private final Number totalTimeInMs;
+	private final long totalTimeInMs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatcherActionTotals(Builder builder) {
+	public WatcherActionTotals(Builder builder) {
 
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.totalTimeInMs = Objects.requireNonNull(builder.totalTimeInMs, "total_time_in_ms");
 
 	}
 
+	public WatcherActionTotals(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code total_time_in_ms}
 	 */
-	public Number totalTimeInMs() {
+	public long totalTimeInMs() {
 		return this.totalTimeInMs;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("total_time_in_ms");
-		generator.write(this.totalTimeInMs.doubleValue());
+		generator.write(this.totalTimeInMs);
 
 	}
 
@@ -89,14 +95,14 @@ public final class WatcherActionTotals implements ToJsonp {
 	 * Builder for {@link WatcherActionTotals}.
 	 */
 	public static class Builder implements ObjectBuilder<WatcherActionTotals> {
-		private Number total;
+		private Long total;
 
-		private Number totalTimeInMs;
+		private Long totalTimeInMs;
 
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -104,7 +110,7 @@ public final class WatcherActionTotals implements ToJsonp {
 		/**
 		 * API name: {@code total_time_in_ms}
 		 */
-		public Builder totalTimeInMs(Number value) {
+		public Builder totalTimeInMs(long value) {
 			this.totalTimeInMs = value;
 			return this;
 		}
@@ -124,15 +130,15 @@ public final class WatcherActionTotals implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatcherActionTotals
+	 * Json deserializer for {@link WatcherActionTotals}
 	 */
-	public static final JsonpDeserializer<WatcherActionTotals> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherActionTotals::setupWatcherActionTotalsDeserializer);
+	public static final JsonpDeserializer<WatcherActionTotals> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WatcherActionTotals::setupWatcherActionTotalsDeserializer, Builder::build);
 
 	protected static void setupWatcherActionTotalsDeserializer(DelegatingDeserializer<WatcherActionTotals.Builder> op) {
 
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::totalTimeInMs, JsonpDeserializer.numberDeserializer(), "total_time_in_ms");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::totalTimeInMs, JsonpDeserializer.longDeserializer(), "total_time_in_ms");
 
 	}
 

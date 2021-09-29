@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,10 +41,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Request
+
 public final class GetDatafeedStatsRequest extends RequestBase {
 	@Nullable
 	private final List<String> datafeedId;
@@ -51,14 +57,20 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDatafeedStatsRequest(Builder builder) {
+	public GetDatafeedStatsRequest(Builder builder) {
 
-		this.datafeedId = builder.datafeedId;
+		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
 
 	}
 
+	public GetDatafeedStatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the datafeeds stats to fetch
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
@@ -67,6 +79,9 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * <p>
 	 * API name: {@code allow_no_datafeeds}
 	 */
 	@Nullable
@@ -87,6 +102,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		private Boolean allowNoDatafeeds;
 
 		/**
+		 * The ID of the datafeeds stats to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(@Nullable List<String> value) {
@@ -95,6 +112,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the datafeeds stats to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String... value) {
@@ -103,7 +122,7 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
+		 * Add a value to {@link #datafeedId(List)}, creating the list if needed. 4
 		 */
 		public Builder addDatafeedId(String value) {
 			if (this.datafeedId == null) {
@@ -114,6 +133,9 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
 		 * API name: {@code allow_no_datafeeds}
 		 */
 		public Builder allowNoDatafeeds(@Nullable Boolean value) {
@@ -138,7 +160,7 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_datafeed_stats}".
 	 */
-	public static final Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -159,7 +181,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
@@ -170,7 +193,7 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -182,5 +205,5 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetDatafeedStatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDatafeedStatsResponse._DESERIALIZER);
 }

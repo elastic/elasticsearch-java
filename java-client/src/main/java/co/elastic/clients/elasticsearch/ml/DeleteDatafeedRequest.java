@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,9 +38,11 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_datafeed.Request
+
 public final class DeleteDatafeedRequest extends RequestBase {
 	private final String datafeedId;
 
@@ -47,14 +51,20 @@ public final class DeleteDatafeedRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteDatafeedRequest(Builder builder) {
+	public DeleteDatafeedRequest(Builder builder) {
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.force = builder.force;
 
 	}
 
+	public DeleteDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the datafeed to delete
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -62,6 +72,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	}
 
 	/**
+	 * True if the datafeed should be forcefully deleted
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -81,6 +93,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		private Boolean force;
 
 		/**
+		 * The ID of the datafeed to delete
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -89,6 +103,8 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		}
 
 		/**
+		 * True if the datafeed should be forcefully deleted
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -113,7 +129,7 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_datafeed}".
 	 */
-	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -126,18 +142,17 @@ public final class DeleteDatafeedRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
-					propsSet |= _datafeedId;
+				propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -149,5 +164,5 @@ public final class DeleteDatafeedRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteDatafeedResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteDatafeedResponse._DESERIALIZER);
 }

@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +42,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.clear_cache.Request
+
 public final class ClearCacheRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
@@ -51,7 +57,7 @@ public final class ClearCacheRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean fielddata;
@@ -70,20 +76,26 @@ public final class ClearCacheRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCacheRequest(Builder builder) {
+	public ClearCacheRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fielddata = builder.fielddata;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.query = builder.query;
 		this.request = builder.request;
 
 	}
 
+	public ClearCacheRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index name to limit the operation
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -92,6 +104,10 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -100,14 +116,19 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Clear field data
+	 * <p>
 	 * API name: {@code fielddata}
 	 */
 	@Nullable
@@ -116,6 +137,9 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields to clear when using the
+	 * <code>fielddata</code> parameter (default: all)
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -124,6 +148,9 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -132,6 +159,8 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * Clear query caches
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -140,6 +169,8 @@ public final class ClearCacheRequest extends RequestBase {
 	}
 
 	/**
+	 * Clear request cache
+	 * <p>
 	 * API name: {@code request}
 	 */
 	@Nullable
@@ -160,7 +191,7 @@ public final class ClearCacheRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean fielddata;
@@ -178,6 +209,8 @@ public final class ClearCacheRequest extends RequestBase {
 		private Boolean request;
 
 		/**
+		 * A comma-separated list of index name to limit the operation
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -186,6 +219,8 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index name to limit the operation
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -194,7 +229,7 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -205,6 +240,10 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -213,14 +252,41 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Clear field data
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(@Nullable Boolean value) {
@@ -229,6 +295,9 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields to clear when using the
+		 * <code>fielddata</code> parameter (default: all)
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -237,6 +306,9 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields to clear when using the
+		 * <code>fielddata</code> parameter (default: all)
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -245,7 +317,7 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -256,6 +328,9 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -264,6 +339,8 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * Clear query caches
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable Boolean value) {
@@ -272,6 +349,8 @@ public final class ClearCacheRequest extends RequestBase {
 		}
 
 		/**
+		 * Clear request cache
+		 * <p>
 		 * API name: {@code request}
 		 */
 		public Builder request(@Nullable Boolean value) {
@@ -296,7 +375,7 @@ public final class ClearCacheRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.clear_cache}".
 	 */
-	public static final Endpoint<ClearCacheRequest, ClearCacheResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCacheRequest, ClearCacheResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -321,12 +400,12 @@ public final class ClearCacheRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_cache");
 					buf.append("/clear");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -337,7 +416,8 @@ public final class ClearCacheRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.fielddata != null) {
 					params.put("fielddata", String.valueOf(request.fielddata));
@@ -356,5 +436,5 @@ public final class ClearCacheRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCacheResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCacheResponse._DESERIALIZER);
 }

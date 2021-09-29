@@ -24,35 +24,48 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Logging
-public final class Logging implements ToJsonp {
+@JsonpDeserializable
+public final class Logging implements JsonpSerializable {
+	@Nullable
 	private final String level;
 
 	private final String text;
 
+	@Nullable
+	private final String category;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected Logging(Builder builder) {
+	public Logging(Builder builder) {
 
-		this.level = Objects.requireNonNull(builder.level, "level");
+		this.level = builder.level;
 		this.text = Objects.requireNonNull(builder.text, "text");
+		this.category = builder.category;
 
+	}
+
+	public Logging(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code level}
 	 */
+	@Nullable
 	public String level() {
 		return this.level;
 	}
@@ -65,21 +78,40 @@ public final class Logging implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code category}
+	 */
+	@Nullable
+	public String category() {
+		return this.category;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("level");
-		generator.write(this.level);
+		if (this.level != null) {
+
+			generator.writeKey("level");
+			generator.write(this.level);
+
+		}
 
 		generator.writeKey("text");
 		generator.write(this.text);
+
+		if (this.category != null) {
+
+			generator.writeKey("category");
+			generator.write(this.category);
+
+		}
 
 	}
 
@@ -89,14 +121,18 @@ public final class Logging implements ToJsonp {
 	 * Builder for {@link Logging}.
 	 */
 	public static class Builder implements ObjectBuilder<Logging> {
+		@Nullable
 		private String level;
 
 		private String text;
 
+		@Nullable
+		private String category;
+
 		/**
 		 * API name: {@code level}
 		 */
-		public Builder level(String value) {
+		public Builder level(@Nullable String value) {
 			this.level = value;
 			return this;
 		}
@@ -106,6 +142,14 @@ public final class Logging implements ToJsonp {
 		 */
 		public Builder text(String value) {
 			this.text = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code category}
+		 */
+		public Builder category(@Nullable String value) {
+			this.category = value;
 			return this;
 		}
 
@@ -124,15 +168,16 @@ public final class Logging implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Logging
+	 * Json deserializer for {@link Logging}
 	 */
-	public static final JsonpDeserializer<Logging> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Logging::setupLoggingDeserializer);
+	public static final JsonpDeserializer<Logging> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Logging::setupLoggingDeserializer, Builder::build);
 
 	protected static void setupLoggingDeserializer(DelegatingDeserializer<Logging.Builder> op) {
 
 		op.add(Builder::level, JsonpDeserializer.stringDeserializer(), "level");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+		op.add(Builder::category, JsonpDeserializer.stringDeserializer(), "category");
 
 	}
 

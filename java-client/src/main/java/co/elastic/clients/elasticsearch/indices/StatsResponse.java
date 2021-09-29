@@ -26,11 +26,13 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.stats.IndicesStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.Response
-public final class StatsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class StatsResponse implements JsonpSerializable {
 	@Nullable
 	private final Map<String, IndicesStats> indices;
 
@@ -51,12 +54,16 @@ public final class StatsResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsResponse(Builder builder) {
+	public StatsResponse(Builder builder) {
 
-		this.indices = builder.indices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.all = Objects.requireNonNull(builder.all, "_all");
 
+	}
+
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -84,13 +91,13 @@ public final class StatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.indices != null) {
 
@@ -98,7 +105,7 @@ public final class StatsResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, IndicesStats> item0 : this.indices.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -106,10 +113,10 @@ public final class StatsResponse implements ToJsonp {
 		}
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("_all");
-		this.all.toJsonp(generator, mapper);
+		this.all.serialize(generator, mapper);
 
 	}
 
@@ -204,16 +211,16 @@ public final class StatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatsResponse
+	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesStats.DESERIALIZER), "indices");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
-		op.add(Builder::all, IndicesStats.DESERIALIZER, "_all");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndicesStats._DESERIALIZER), "indices");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
+		op.add(Builder::all, IndicesStats._DESERIALIZER, "_all");
 
 	}
 

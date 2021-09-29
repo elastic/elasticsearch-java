@@ -24,31 +24,38 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.SampleDiversity
-public final class SampleDiversity implements ToJsonp {
+@JsonpDeserializable
+public final class SampleDiversity implements JsonpSerializable {
 	private final String field;
 
-	private final Number maxDocsPerValue;
+	private final int maxDocsPerValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SampleDiversity(Builder builder) {
+	public SampleDiversity(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.maxDocsPerValue = Objects.requireNonNull(builder.maxDocsPerValue, "max_docs_per_value");
 
+	}
+
+	public SampleDiversity(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,26 +68,26 @@ public final class SampleDiversity implements ToJsonp {
 	/**
 	 * API name: {@code max_docs_per_value}
 	 */
-	public Number maxDocsPerValue() {
+	public int maxDocsPerValue() {
 		return this.maxDocsPerValue;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("max_docs_per_value");
-		generator.write(this.maxDocsPerValue.doubleValue());
+		generator.write(this.maxDocsPerValue);
 
 	}
 
@@ -92,7 +99,7 @@ public final class SampleDiversity implements ToJsonp {
 	public static class Builder implements ObjectBuilder<SampleDiversity> {
 		private String field;
 
-		private Number maxDocsPerValue;
+		private Integer maxDocsPerValue;
 
 		/**
 		 * API name: {@code field}
@@ -105,7 +112,7 @@ public final class SampleDiversity implements ToJsonp {
 		/**
 		 * API name: {@code max_docs_per_value}
 		 */
-		public Builder maxDocsPerValue(Number value) {
+		public Builder maxDocsPerValue(int value) {
 			this.maxDocsPerValue = value;
 			return this;
 		}
@@ -125,15 +132,15 @@ public final class SampleDiversity implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SampleDiversity
+	 * Json deserializer for {@link SampleDiversity}
 	 */
-	public static final JsonpDeserializer<SampleDiversity> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SampleDiversity::setupSampleDiversityDeserializer);
+	public static final JsonpDeserializer<SampleDiversity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SampleDiversity::setupSampleDiversityDeserializer, Builder::build);
 
 	protected static void setupSampleDiversityDeserializer(DelegatingDeserializer<SampleDiversity.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::maxDocsPerValue, JsonpDeserializer.numberDeserializer(), "max_docs_per_value");
+		op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");
 
 	}
 

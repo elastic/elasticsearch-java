@@ -24,31 +24,38 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoMemory
-public final class NodeInfoMemory implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
 
-	private final Number totalInBytes;
+	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoMemory(Builder builder) {
+	public NodeInfoMemory(Builder builder) {
 
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
 
+	}
+
+	public NodeInfoMemory(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,26 +68,26 @@ public final class NodeInfoMemory implements ToJsonp {
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("total");
 		generator.write(this.total);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 	}
 
@@ -92,7 +99,7 @@ public final class NodeInfoMemory implements ToJsonp {
 	public static class Builder implements ObjectBuilder<NodeInfoMemory> {
 		private String total;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		/**
 		 * API name: {@code total}
@@ -105,7 +112,7 @@ public final class NodeInfoMemory implements ToJsonp {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -125,15 +132,15 @@ public final class NodeInfoMemory implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoMemory
+	 * Json deserializer for {@link NodeInfoMemory}
 	 */
-	public static final JsonpDeserializer<NodeInfoMemory> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoMemory::setupNodeInfoMemoryDeserializer);
+	public static final JsonpDeserializer<NodeInfoMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoMemory::setupNodeInfoMemoryDeserializer, Builder::build);
 
 	protected static void setupNodeInfoMemoryDeserializer(DelegatingDeserializer<NodeInfoMemory.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
 	}
 

@@ -23,25 +23,35 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndicesOptions
-public final class IndicesOptions implements ToJsonp {
+@JsonpDeserializable
+public final class IndicesOptions implements JsonpSerializable {
+	@Nullable
 	private final Boolean allowNoIndices;
 
-	private final JsonValue expandWildcards;
+	@Nullable
+	private final List<ExpandWildcardOptions> expandWildcards;
 
+	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
@@ -49,18 +59,23 @@ public final class IndicesOptions implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesOptions(Builder builder) {
+	public IndicesOptions(Builder builder) {
 
-		this.allowNoIndices = Objects.requireNonNull(builder.allowNoIndices, "allow_no_indices");
-		this.expandWildcards = Objects.requireNonNull(builder.expandWildcards, "expand_wildcards");
-		this.ignoreUnavailable = Objects.requireNonNull(builder.ignoreUnavailable, "ignore_unavailable");
+		this.allowNoIndices = builder.allowNoIndices;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.ignoreThrottled = builder.ignoreThrottled;
 
+	}
+
+	public IndicesOptions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code allow_no_indices}
 	 */
+	@Nullable
 	public Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
@@ -68,13 +83,15 @@ public final class IndicesOptions implements ToJsonp {
 	/**
 	 * API name: {@code expand_wildcards}
 	 */
-	public JsonValue expandWildcards() {
+	@Nullable
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
 	 * API name: {@code ignore_unavailable}
 	 */
+	@Nullable
 	public Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
@@ -90,23 +107,36 @@ public final class IndicesOptions implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("allow_no_indices");
-		generator.write(this.allowNoIndices);
+		if (this.allowNoIndices != null) {
 
-		generator.writeKey("expand_wildcards");
-		generator.write(this.expandWildcards);
+			generator.writeKey("allow_no_indices");
+			generator.write(this.allowNoIndices);
 
-		generator.writeKey("ignore_unavailable");
-		generator.write(this.ignoreUnavailable);
+		}
+		if (this.expandWildcards != null) {
 
+			generator.writeKey("expand_wildcards");
+			generator.writeStartArray();
+			for (ExpandWildcardOptions item0 : this.expandWildcards) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
+		if (this.ignoreUnavailable != null) {
+
+			generator.writeKey("ignore_unavailable");
+			generator.write(this.ignoreUnavailable);
+
+		}
 		if (this.ignoreThrottled != null) {
 
 			generator.writeKey("ignore_throttled");
@@ -122,10 +152,13 @@ public final class IndicesOptions implements ToJsonp {
 	 * Builder for {@link IndicesOptions}.
 	 */
 	public static class Builder implements ObjectBuilder<IndicesOptions> {
+		@Nullable
 		private Boolean allowNoIndices;
 
-		private JsonValue expandWildcards;
+		@Nullable
+		private List<ExpandWildcardOptions> expandWildcards;
 
+		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
@@ -134,7 +167,7 @@ public final class IndicesOptions implements ToJsonp {
 		/**
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(Boolean value) {
+		public Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -142,15 +175,34 @@ public final class IndicesOptions implements ToJsonp {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(Boolean value) {
+		public Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -178,15 +230,16 @@ public final class IndicesOptions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesOptions
+	 * Json deserializer for {@link IndicesOptions}
 	 */
-	public static final JsonpDeserializer<IndicesOptions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesOptions::setupIndicesOptionsDeserializer);
+	public static final JsonpDeserializer<IndicesOptions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndicesOptions::setupIndicesOptionsDeserializer, Builder::build);
 
 	protected static void setupIndicesOptionsDeserializer(DelegatingDeserializer<IndicesOptions.Builder> op) {
 
 		op.add(Builder::allowNoIndices, JsonpDeserializer.booleanDeserializer(), "allow_no_indices");
-		op.add(Builder::expandWildcards, JsonpDeserializer.jsonValueDeserializer(), "expand_wildcards");
+		op.add(Builder::expandWildcards, JsonpDeserializer.arrayDeserializer(ExpandWildcardOptions._DESERIALIZER),
+				"expand_wildcards");
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
 

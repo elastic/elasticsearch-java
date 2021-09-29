@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,30 +42,35 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Response
-public final class GetInfluencersResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetInfluencersResponse implements JsonpSerializable {
+	private final long count;
 
 	private final List<BucketInfluencer> influencers;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetInfluencersResponse(Builder builder) {
+	public GetInfluencersResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
+		this.influencers = ModelTypeHelper.unmodifiableNonNull(builder.influencers, "influencers");
 
+	}
+
+	public GetInfluencersResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * Array of influencer objects
-	 *
+	 * <p>
 	 * API name: {@code influencers}
 	 */
 	public List<BucketInfluencer> influencers() {
@@ -73,21 +80,21 @@ public final class GetInfluencersResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("influencers");
 		generator.writeStartArray();
 		for (BucketInfluencer item0 : this.influencers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -100,21 +107,21 @@ public final class GetInfluencersResponse implements ToJsonp {
 	 * Builder for {@link GetInfluencersResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetInfluencersResponse> {
-		private Number count;
+		private Long count;
 
 		private List<BucketInfluencer> influencers;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
 		 * Array of influencer objects
-		 *
+		 * <p>
 		 * API name: {@code influencers}
 		 */
 		public Builder influencers(List<BucketInfluencer> value) {
@@ -124,7 +131,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 
 		/**
 		 * Array of influencer objects
-		 *
+		 * <p>
 		 * API name: {@code influencers}
 		 */
 		public Builder influencers(BucketInfluencer... value) {
@@ -133,7 +140,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
 		 */
 		public Builder addInfluencers(BucketInfluencer value) {
 			if (this.influencers == null) {
@@ -151,7 +158,7 @@ public final class GetInfluencersResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 5
 		 */
 		public Builder addInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
 			return this.addInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
@@ -172,16 +179,17 @@ public final class GetInfluencersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetInfluencersResponse
+	 * Json deserializer for {@link GetInfluencersResponse}
 	 */
-	public static final JsonpDeserializer<GetInfluencersResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetInfluencersResponse::setupGetInfluencersResponseDeserializer);
+	public static final JsonpDeserializer<GetInfluencersResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetInfluencersResponse::setupGetInfluencersResponseDeserializer, Builder::build);
 
 	protected static void setupGetInfluencersResponseDeserializer(
 			DelegatingDeserializer<GetInfluencersResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer.DESERIALIZER), "influencers");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer._DESERIALIZER),
+				"influencers");
 
 	}
 

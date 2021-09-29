@@ -25,21 +25,25 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Request
+
 public final class GetTransformStatsRequest extends RequestBase {
 	private final String transformId;
 
@@ -47,14 +51,14 @@ public final class GetTransformStatsRequest extends RequestBase {
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Number from;
+	private final Long from;
 
 	@Nullable
-	private final Number size;
+	private final Long size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTransformStatsRequest(Builder builder) {
+	public GetTransformStatsRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;
@@ -63,7 +67,14 @@ public final class GetTransformStatsRequest extends RequestBase {
 
 	}
 
+	public GetTransformStatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The id of the transform for which to get stats. '_all' or '*' implies all
+	 * transforms
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -71,6 +82,9 @@ public final class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no transforms. (This
+	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -79,18 +93,22 @@ public final class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * skips a number of transform stats, defaults to 0
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Long from() {
 		return this.from;
 	}
 
 	/**
+	 * specifies a max number of transform stats to get, defaults to 100
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Long size() {
 		return this.size;
 	}
 
@@ -106,12 +124,15 @@ public final class GetTransformStatsRequest extends RequestBase {
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Number from;
+		private Long from;
 
 		@Nullable
-		private Number size;
+		private Long size;
 
 		/**
+		 * The id of the transform for which to get stats. '_all' or '*' implies all
+		 * transforms
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -120,6 +141,9 @@ public final class GetTransformStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no transforms. (This
+		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -128,17 +152,21 @@ public final class GetTransformStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * skips a number of transform stats, defaults to 0
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Long value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
+		 * specifies a max number of transform stats to get, defaults to 100
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Long value) {
 			this.size = value;
 			return this;
 		}
@@ -160,7 +188,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.get_transform_stats}".
 	 */
-	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -173,18 +201,17 @@ public final class GetTransformStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
-					propsSet |= _transformId;
+				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -195,12 +222,12 @@ public final class GetTransformStatsRequest extends RequestBase {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTransformStatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTransformStatsResponse._DESERIALIZER);
 }

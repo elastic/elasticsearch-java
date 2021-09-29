@@ -25,18 +25,21 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +52,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Request
-public final class UpdateJobRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -59,10 +63,10 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	private final AnalysisMemoryLimit analysisLimits;
 
 	@Nullable
-	private final JsonValue backgroundPersistInterval;
+	private final String backgroundPersistInterval;
 
 	@Nullable
-	private final Map<String, JsonValue> customSettings;
+	private final Map<String, JsonData> customSettings;
 
 	@Nullable
 	private final List<String> categorizationFilters;
@@ -74,16 +78,16 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	private final ModelPlotConfig modelPlotConfig;
 
 	@Nullable
-	private final Number dailyModelSnapshotRetentionAfterDays;
+	private final Long dailyModelSnapshotRetentionAfterDays;
 
 	@Nullable
-	private final Number modelSnapshotRetentionDays;
+	private final Long modelSnapshotRetentionDays;
 
 	@Nullable
-	private final Number renormalizationWindowDays;
+	private final Long renormalizationWindowDays;
 
 	@Nullable
-	private final Number resultsRetentionDays;
+	private final Long resultsRetentionDays;
 
 	@Nullable
 	private final List<String> groups;
@@ -96,29 +100,33 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateJobRequest(Builder builder) {
+	public UpdateJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.customSettings = builder.customSettings;
-		this.categorizationFilters = builder.categorizationFilters;
+		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
+		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
 		this.description = builder.description;
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
 		this.resultsRetentionDays = builder.resultsRetentionDays;
-		this.groups = builder.groups;
-		this.detectors = builder.detectors;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.detectors = ModelTypeHelper.unmodifiable(builder.detectors);
 		this.perPartitionCategorization = builder.perPartitionCategorization;
 
 	}
 
+	public UpdateJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Identifier for the job
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -143,12 +151,17 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Advanced configuration option. The time between each periodic persistence of
-	 * the model. See Job resources.
-	 *
+	 * the model. The default value is a randomized value between 3 to 4 hours,
+	 * which avoids all jobs persisting at exactly the same time. The smallest
+	 * allowed value is 1 hour. For very large models (several GB), persistence
+	 * could take 10-20 minutes, so do not set the value too low. If the job is open
+	 * when you make the update, you must stop the datafeed, close the job, then
+	 * reopen the job and restart the datafeed for the changes to take effect.
+	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
-	public JsonValue backgroundPersistInterval() {
+	public String backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -156,11 +169,11 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * Advanced configuration option. Contains custom meta data about the job. For
 	 * example, it can contain custom URL information as shown in Adding custom URLs
 	 * to machine learning results.
-	 *
+	 * <p>
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> customSettings() {
+	public Map<String, JsonData> customSettings() {
 		return this.customSettings;
 	}
 
@@ -173,8 +186,8 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * A description of the job. See Job resources.
-	 *
+	 * A description of the job.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -194,7 +207,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	@Nullable
-	public Number dailyModelSnapshotRetentionAfterDays() {
+	public Long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -203,22 +216,22 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * model snapshots for this job. It specifies the maximum period of time (in
 	 * days) that snapshots are retained. This period is relative to the timestamp
 	 * of the most recent snapshot for this job.
-	 *
+	 * <p>
 	 * API name: {@code model_snapshot_retention_days}
 	 */
 	@Nullable
-	public Number modelSnapshotRetentionDays() {
+	public Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
 	/**
 	 * Advanced configuration option. The period over which adjustments to the score
 	 * are applied, as new data is seen.
-	 *
+	 * <p>
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
-	public Number renormalizationWindowDays() {
+	public Long renormalizationWindowDays() {
 		return this.renormalizationWindowDays;
 	}
 
@@ -229,17 +242,17 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	 * time), results that are the specified number of days older than the latest
 	 * bucket result are deleted from Elasticsearch. The default value is null,
 	 * which means all results are retained.
-	 *
+	 * <p>
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
-	public Number resultsRetentionDays() {
+	public Long resultsRetentionDays() {
 		return this.resultsRetentionDays;
 	}
 
 	/**
 	 * A list of job groups. A job can belong to no groups or many.
-	 *
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	@Nullable
@@ -249,7 +262,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * An array of detector update objects.
-	 *
+	 * <p>
 	 * API name: {@code detectors}
 	 */
 	@Nullable
@@ -259,7 +272,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Settings related to how categorization interacts with partition fields.
-	 *
+	 * <p>
 	 * API name: {@code per_partition_categorization}
 	 */
 	@Nullable
@@ -270,13 +283,13 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyOpen != null) {
 
@@ -287,7 +300,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		if (this.analysisLimits != null) {
 
 			generator.writeKey("analysis_limits");
-			this.analysisLimits.toJsonp(generator, mapper);
+			this.analysisLimits.serialize(generator, mapper);
 
 		}
 		if (this.backgroundPersistInterval != null) {
@@ -300,9 +313,9 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("custom_settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.customSettings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.customSettings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -328,31 +341,31 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		if (this.modelPlotConfig != null) {
 
 			generator.writeKey("model_plot_config");
-			this.modelPlotConfig.toJsonp(generator, mapper);
+			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.dailyModelSnapshotRetentionAfterDays != null) {
 
 			generator.writeKey("daily_model_snapshot_retention_after_days");
-			generator.write(this.dailyModelSnapshotRetentionAfterDays.doubleValue());
+			generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
 		}
 		if (this.modelSnapshotRetentionDays != null) {
 
 			generator.writeKey("model_snapshot_retention_days");
-			generator.write(this.modelSnapshotRetentionDays.doubleValue());
+			generator.write(this.modelSnapshotRetentionDays);
 
 		}
 		if (this.renormalizationWindowDays != null) {
 
 			generator.writeKey("renormalization_window_days");
-			generator.write(this.renormalizationWindowDays.doubleValue());
+			generator.write(this.renormalizationWindowDays);
 
 		}
 		if (this.resultsRetentionDays != null) {
 
 			generator.writeKey("results_retention_days");
-			generator.write(this.resultsRetentionDays.doubleValue());
+			generator.write(this.resultsRetentionDays);
 
 		}
 		if (this.groups != null) {
@@ -371,7 +384,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
 			for (Detector item0 : this.detectors) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -380,7 +393,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		if (this.perPartitionCategorization != null) {
 
 			generator.writeKey("per_partition_categorization");
-			this.perPartitionCategorization.toJsonp(generator, mapper);
+			this.perPartitionCategorization.serialize(generator, mapper);
 
 		}
 
@@ -401,10 +414,10 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		private AnalysisMemoryLimit analysisLimits;
 
 		@Nullable
-		private JsonValue backgroundPersistInterval;
+		private String backgroundPersistInterval;
 
 		@Nullable
-		private Map<String, JsonValue> customSettings;
+		private Map<String, JsonData> customSettings;
 
 		@Nullable
 		private List<String> categorizationFilters;
@@ -416,16 +429,16 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		private ModelPlotConfig modelPlotConfig;
 
 		@Nullable
-		private Number dailyModelSnapshotRetentionAfterDays;
+		private Long dailyModelSnapshotRetentionAfterDays;
 
 		@Nullable
-		private Number modelSnapshotRetentionDays;
+		private Long modelSnapshotRetentionDays;
 
 		@Nullable
-		private Number renormalizationWindowDays;
+		private Long renormalizationWindowDays;
 
 		@Nullable
-		private Number resultsRetentionDays;
+		private Long resultsRetentionDays;
 
 		@Nullable
 		private List<String> groups;
@@ -438,7 +451,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Identifier for the job
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -471,11 +484,16 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Advanced configuration option. The time between each periodic persistence of
-		 * the model. See Job resources.
-		 *
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour. For very large models (several GB), persistence
+		 * could take 10-20 minutes, so do not set the value too low. If the job is open
+		 * when you make the update, you must stop the datafeed, close the job, then
+		 * reopen the job and restart the datafeed for the changes to take effect.
+		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public Builder backgroundPersistInterval(@Nullable JsonValue value) {
+		public Builder backgroundPersistInterval(@Nullable String value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
@@ -484,10 +502,10 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * Advanced configuration option. Contains custom meta data about the job. For
 		 * example, it can contain custom URL information as shown in Adding custom URLs
 		 * to machine learning results.
-		 *
+		 * <p>
 		 * API name: {@code custom_settings}
 		 */
-		public Builder customSettings(@Nullable Map<String, JsonValue> value) {
+		public Builder customSettings(@Nullable Map<String, JsonData> value) {
 			this.customSettings = value;
 			return this;
 		}
@@ -495,7 +513,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #customSettings(Map)}, creating the map if needed.
 		 */
-		public Builder putCustomSettings(String key, JsonValue value) {
+		public Builder putCustomSettings(String key, JsonData value) {
 			if (this.customSettings == null) {
 				this.customSettings = new HashMap<>();
 			}
@@ -521,7 +539,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #categorizationFilters(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addCategorizationFilters(String value) {
 			if (this.categorizationFilters == null) {
@@ -532,8 +550,8 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * A description of the job. See Job resources.
-		 *
+		 * A description of the job.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -559,7 +577,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(@Nullable Number value) {
+		public Builder dailyModelSnapshotRetentionAfterDays(@Nullable Long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -569,10 +587,10 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * model snapshots for this job. It specifies the maximum period of time (in
 		 * days) that snapshots are retained. This period is relative to the timestamp
 		 * of the most recent snapshot for this job.
-		 *
+		 * <p>
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Number value) {
+		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -580,10 +598,10 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Advanced configuration option. The period over which adjustments to the score
 		 * are applied, as new data is seen.
-		 *
+		 * <p>
 		 * API name: {@code renormalization_window_days}
 		 */
-		public Builder renormalizationWindowDays(@Nullable Number value) {
+		public Builder renormalizationWindowDays(@Nullable Long value) {
 			this.renormalizationWindowDays = value;
 			return this;
 		}
@@ -595,17 +613,17 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		 * time), results that are the specified number of days older than the latest
 		 * bucket result are deleted from Elasticsearch. The default value is null,
 		 * which means all results are retained.
-		 *
+		 * <p>
 		 * API name: {@code results_retention_days}
 		 */
-		public Builder resultsRetentionDays(@Nullable Number value) {
+		public Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
 			return this;
 		}
 
 		/**
 		 * A list of job groups. A job can belong to no groups or many.
-		 *
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(@Nullable List<String> value) {
@@ -615,7 +633,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * A list of job groups. A job can belong to no groups or many.
-		 *
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(String... value) {
@@ -624,7 +642,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -636,7 +654,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * An array of detector update objects.
-		 *
+		 * <p>
 		 * API name: {@code detectors}
 		 */
 		public Builder detectors(@Nullable List<Detector> value) {
@@ -646,7 +664,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * An array of detector update objects.
-		 *
+		 * <p>
 		 * API name: {@code detectors}
 		 */
 		public Builder detectors(Detector... value) {
@@ -655,7 +673,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Add a value to {@link #detectors(List)}, creating the list if needed. 4
 		 */
 		public Builder addDetectors(Detector value) {
 			if (this.detectors == null) {
@@ -673,7 +691,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Add a value to {@link #detectors(List)}, creating the list if needed. 5
 		 */
 		public Builder addDetectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.addDetectors(fn.apply(new Detector.Builder()).build());
@@ -681,7 +699,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Settings related to how categorization interacts with partition fields.
-		 *
+		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
 		public Builder perPartitionCategorization(@Nullable PerPartitionCategorization value) {
@@ -691,7 +709,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Settings related to how categorization interacts with partition fields.
-		 *
+		 * <p>
 		 * API name: {@code per_partition_categorization}
 		 */
 		public Builder perPartitionCategorization(
@@ -714,33 +732,32 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateJobRequest
+	 * Json deserializer for {@link UpdateJobRequest}
 	 */
-	public static final JsonpDeserializer<UpdateJobRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateJobRequest::setupUpdateJobRequestDeserializer);
+	public static final JsonpDeserializer<UpdateJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			UpdateJobRequest::setupUpdateJobRequestDeserializer, Builder::build);
 
 	protected static void setupUpdateJobRequestDeserializer(DelegatingDeserializer<UpdateJobRequest.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
-		op.add(Builder::analysisLimits, AnalysisMemoryLimit.DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::analysisLimits, AnalysisMemoryLimit._DESERIALIZER, "analysis_limits");
+		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
 				"background_persist_interval");
-		op.add(Builder::customSettings,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "custom_settings");
+		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
+				"custom_settings");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::modelPlotConfig, ModelPlotConfig.DESERIALIZER, "model_plot_config");
-		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::modelPlotConfig, ModelPlotConfig._DESERIALIZER, "model_plot_config");
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
-		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.numberDeserializer(),
-				"renormalization_window_days");
-		op.add(Builder::resultsRetentionDays, JsonpDeserializer.numberDeserializer(), "results_retention_days");
+		op.add(Builder::renormalizationWindowDays, JsonpDeserializer.longDeserializer(), "renormalization_window_days");
+		op.add(Builder::resultsRetentionDays, JsonpDeserializer.longDeserializer(), "results_retention_days");
 		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
-		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector.DESERIALIZER), "detectors");
-		op.add(Builder::perPartitionCategorization, PerPartitionCategorization.DESERIALIZER,
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
+		op.add(Builder::perPartitionCategorization, PerPartitionCategorization._DESERIALIZER,
 				"per_partition_categorization");
 
 	}
@@ -750,7 +767,7 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.update_job}".
 	 */
-	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -763,19 +780,18 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -783,5 +799,5 @@ public final class UpdateJobRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateJobResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateJobResponse._DESERIALIZER);
 }

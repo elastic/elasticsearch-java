@@ -24,30 +24,37 @@
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemIndex
-public final class IndicesGetDataStreamItemIndex implements ToJsonp {
+@JsonpDeserializable
+public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 	private final String indexName;
 
 	private final String indexUuid;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesGetDataStreamItemIndex(Builder builder) {
+	public IndicesGetDataStreamItemIndex(Builder builder) {
 
 		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
 		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 
+	}
+
+	public IndicesGetDataStreamItemIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,13 +74,13 @@ public final class IndicesGetDataStreamItemIndex implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_name");
 		generator.write(this.indexName);
@@ -124,11 +131,11 @@ public final class IndicesGetDataStreamItemIndex implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesGetDataStreamItemIndex
+	 * Json deserializer for {@link IndicesGetDataStreamItemIndex}
 	 */
-	public static final JsonpDeserializer<IndicesGetDataStreamItemIndex> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					IndicesGetDataStreamItemIndex::setupIndicesGetDataStreamItemIndexDeserializer);
+	public static final JsonpDeserializer<IndicesGetDataStreamItemIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, IndicesGetDataStreamItemIndex::setupIndicesGetDataStreamItemIndexDeserializer,
+			Builder::build);
 
 	protected static void setupIndicesGetDataStreamItemIndexDeserializer(
 			DelegatingDeserializer<IndicesGetDataStreamItemIndex.Builder> op) {

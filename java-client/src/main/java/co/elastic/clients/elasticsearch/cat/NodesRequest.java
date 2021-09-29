@@ -25,46 +25,60 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
+
 public final class NodesRequest extends CatRequestBase {
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	@Nullable
-	private final JsonValue fullId;
+	private final Boolean fullId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodesRequest(Builder builder) {
+	public NodesRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
 		this.fullId = builder.fullId;
 
 	}
 
+	public NodesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
 	/**
+	 * Return the full node ID instead of the shortened version (default: false)
+	 * <p>
 	 * API name: {@code full_id}
 	 */
 	@Nullable
-	public JsonValue fullId() {
+	public Boolean fullId() {
 		return this.fullId;
 	}
 
@@ -75,23 +89,27 @@ public final class NodesRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<NodesRequest> {
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		@Nullable
-		private JsonValue fullId;
+		private Boolean fullId;
 
 		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
 
 		/**
+		 * Return the full node ID instead of the shortened version (default: false)
+		 * <p>
 		 * API name: {@code full_id}
 		 */
-		public Builder fullId(@Nullable JsonValue value) {
+		public Builder fullId(@Nullable Boolean value) {
 			this.fullId = value;
 			return this;
 		}
@@ -113,7 +131,7 @@ public final class NodesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodes}".
 	 */
-	public static final Endpoint<NodesRequest, NodesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<NodesRequest, NodesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -133,9 +151,9 @@ public final class NodesRequest extends CatRequestBase {
 					params.put("bytes", request.bytes.toString());
 				}
 				if (request.fullId != null) {
-					params.put("full_id", request.fullId.toString());
+					params.put("full_id", String.valueOf(request.fullId));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, NodesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER);
 }

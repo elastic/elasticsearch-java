@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.delete_calendar.Response
+@JsonpDeserializable
 public final class DeleteCalendarResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteCalendarResponse(Builder builder) {
+	public DeleteCalendarResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteCalendarResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteCalendarResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteCalendarResponse
+	 * Json deserializer for {@link DeleteCalendarResponse}
 	 */
-	public static final JsonpDeserializer<DeleteCalendarResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteCalendarResponse::setupDeleteCalendarResponseDeserializer);
+	public static final JsonpDeserializer<DeleteCalendarResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteCalendarResponse::setupDeleteCalendarResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteCalendarResponseDeserializer(
 			DelegatingDeserializer<DeleteCalendarResponse.Builder> op) {

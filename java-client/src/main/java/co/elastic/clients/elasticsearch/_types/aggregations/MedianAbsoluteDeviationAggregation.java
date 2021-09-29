@@ -24,42 +24,62 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
-public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase
+		implements
+			AggregationVariant {
 	@Nullable
-	private final Number compression;
+	private final Double compression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MedianAbsoluteDeviationAggregation(Builder builder) {
+	public MedianAbsoluteDeviationAggregation(Builder builder) {
 		super(builder);
+
 		this.compression = builder.compression;
 
+	}
+
+	public MedianAbsoluteDeviationAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "median_absolute_deviation";
 	}
 
 	/**
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Number compression() {
+	public Double compression() {
 		return this.compression;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.compression != null) {
 
 			generator.writeKey("compression");
-			generator.write(this.compression.doubleValue());
+			generator.write(this.compression);
 
 		}
 
@@ -74,12 +94,12 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 			implements
 				ObjectBuilder<MedianAbsoluteDeviationAggregation> {
 		@Nullable
-		private Number compression;
+		private Double compression;
 
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Number value) {
+		public Builder compression(@Nullable Double value) {
 			this.compression = value;
 			return this;
 		}
@@ -104,16 +124,16 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MedianAbsoluteDeviationAggregation
+	 * Json deserializer for {@link MedianAbsoluteDeviationAggregation}
 	 */
-	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer);
+	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer,
+					Builder::build);
 
 	protected static void setupMedianAbsoluteDeviationAggregationDeserializer(
 			DelegatingDeserializer<MedianAbsoluteDeviationAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::compression, JsonpDeserializer.numberDeserializer(), "compression");
+		op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
 
 	}
 

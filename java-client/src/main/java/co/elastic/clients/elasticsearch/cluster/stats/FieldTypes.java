@@ -24,38 +24,45 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypes
-public final class FieldTypes implements ToJsonp {
+@JsonpDeserializable
+public final class FieldTypes implements JsonpSerializable {
 	private final String name;
 
-	private final Number count;
+	private final int count;
 
-	private final Number indexCount;
+	private final int indexCount;
 
 	@Nullable
-	private final Number scriptCount;
+	private final Integer scriptCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldTypes(Builder builder) {
+	public FieldTypes(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
 		this.scriptCount = builder.scriptCount;
 
+	}
+
+	public FieldTypes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -68,14 +75,14 @@ public final class FieldTypes implements ToJsonp {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Number indexCount() {
+	public int indexCount() {
 		return this.indexCount;
 	}
 
@@ -83,34 +90,34 @@ public final class FieldTypes implements ToJsonp {
 	 * API name: {@code script_count}
 	 */
 	@Nullable
-	public Number scriptCount() {
+	public Integer scriptCount() {
 		return this.scriptCount;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("index_count");
-		generator.write(this.indexCount.doubleValue());
+		generator.write(this.indexCount);
 
 		if (this.scriptCount != null) {
 
 			generator.writeKey("script_count");
-			generator.write(this.scriptCount.doubleValue());
+			generator.write(this.scriptCount);
 
 		}
 
@@ -124,12 +131,12 @@ public final class FieldTypes implements ToJsonp {
 	public static class Builder implements ObjectBuilder<FieldTypes> {
 		private String name;
 
-		private Number count;
+		private Integer count;
 
-		private Number indexCount;
+		private Integer indexCount;
 
 		@Nullable
-		private Number scriptCount;
+		private Integer scriptCount;
 
 		/**
 		 * API name: {@code name}
@@ -142,7 +149,7 @@ public final class FieldTypes implements ToJsonp {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -150,7 +157,7 @@ public final class FieldTypes implements ToJsonp {
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Number value) {
+		public Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -158,7 +165,7 @@ public final class FieldTypes implements ToJsonp {
 		/**
 		 * API name: {@code script_count}
 		 */
-		public Builder scriptCount(@Nullable Number value) {
+		public Builder scriptCount(@Nullable Integer value) {
 			this.scriptCount = value;
 			return this;
 		}
@@ -178,17 +185,17 @@ public final class FieldTypes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldTypes
+	 * Json deserializer for {@link FieldTypes}
 	 */
-	public static final JsonpDeserializer<FieldTypes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldTypes::setupFieldTypesDeserializer);
+	public static final JsonpDeserializer<FieldTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldTypes::setupFieldTypesDeserializer, Builder::build);
 
 	protected static void setupFieldTypesDeserializer(DelegatingDeserializer<FieldTypes.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
-		op.add(Builder::scriptCount, JsonpDeserializer.numberDeserializer(), "script_count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+		op.add(Builder::scriptCount, JsonpDeserializer.integerDeserializer(), "script_count");
 
 	}
 

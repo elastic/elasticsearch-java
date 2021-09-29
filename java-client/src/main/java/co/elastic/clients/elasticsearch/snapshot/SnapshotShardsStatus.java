@@ -24,37 +24,42 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardsStatus
-public final class SnapshotShardsStatus implements ToJsonp {
-	private final JsonValue stage;
+@JsonpDeserializable
+public final class SnapshotShardsStatus implements JsonpSerializable {
+	private final ShardsStatsStage stage;
 
 	private final ShardsStatsSummary stats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotShardsStatus(Builder builder) {
+	public SnapshotShardsStatus(Builder builder) {
 
 		this.stage = Objects.requireNonNull(builder.stage, "stage");
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
 
 	}
 
+	public SnapshotShardsStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code stage}
 	 */
-	public JsonValue stage() {
+	public ShardsStatsStage stage() {
 		return this.stage;
 	}
 
@@ -68,19 +73,19 @@ public final class SnapshotShardsStatus implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("stage");
-		generator.write(this.stage);
+		this.stage.serialize(generator, mapper);
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 	}
 
@@ -90,14 +95,14 @@ public final class SnapshotShardsStatus implements ToJsonp {
 	 * Builder for {@link SnapshotShardsStatus}.
 	 */
 	public static class Builder implements ObjectBuilder<SnapshotShardsStatus> {
-		private JsonValue stage;
+		private ShardsStatsStage stage;
 
 		private ShardsStatsSummary stats;
 
 		/**
 		 * API name: {@code stage}
 		 */
-		public Builder stage(JsonValue value) {
+		public Builder stage(ShardsStatsStage value) {
 			this.stage = value;
 			return this;
 		}
@@ -132,16 +137,16 @@ public final class SnapshotShardsStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotShardsStatus
+	 * Json deserializer for {@link SnapshotShardsStatus}
 	 */
-	public static final JsonpDeserializer<SnapshotShardsStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotShardsStatus::setupSnapshotShardsStatusDeserializer);
+	public static final JsonpDeserializer<SnapshotShardsStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotShardsStatus::setupSnapshotShardsStatusDeserializer, Builder::build);
 
 	protected static void setupSnapshotShardsStatusDeserializer(
 			DelegatingDeserializer<SnapshotShardsStatus.Builder> op) {
 
-		op.add(Builder::stage, JsonpDeserializer.jsonValueDeserializer(), "stage");
-		op.add(Builder::stats, ShardsStatsSummary.DESERIALIZER, "stats");
+		op.add(Builder::stage, ShardsStatsStage._DESERIALIZER, "stage");
+		op.add(Builder::stats, ShardsStatsSummary._DESERIALIZER, "stats");
 
 	}
 

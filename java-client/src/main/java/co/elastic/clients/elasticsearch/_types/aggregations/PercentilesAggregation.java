@@ -24,27 +24,31 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesAggregation
-public final class PercentilesAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class PercentilesAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean keyed;
 
 	@Nullable
-	private final List<Number> percents;
+	private final List<Double> percents;
 
 	@Nullable
 	private final HdrMethod hdr;
@@ -54,13 +58,26 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PercentilesAggregation(Builder builder) {
+	public PercentilesAggregation(Builder builder) {
 		super(builder);
+
 		this.keyed = builder.keyed;
-		this.percents = builder.percents;
+		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
 		this.hdr = builder.hdr;
 		this.tdigest = builder.tdigest;
 
+	}
+
+	public PercentilesAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "percentiles";
 	}
 
 	/**
@@ -75,7 +92,7 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 	 * API name: {@code percents}
 	 */
 	@Nullable
-	public List<Number> percents() {
+	public List<Double> percents() {
 		return this.percents;
 	}
 
@@ -95,8 +112,9 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 		return this.tdigest;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.keyed != null) {
 
 			generator.writeKey("keyed");
@@ -107,8 +125,8 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 
 			generator.writeKey("percents");
 			generator.writeStartArray();
-			for (Number item0 : this.percents) {
-				generator.write(item0.doubleValue());
+			for (Double item0 : this.percents) {
+				generator.write(item0);
 
 			}
 			generator.writeEnd();
@@ -117,13 +135,13 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 		if (this.hdr != null) {
 
 			generator.writeKey("hdr");
-			this.hdr.toJsonp(generator, mapper);
+			this.hdr.serialize(generator, mapper);
 
 		}
 		if (this.tdigest != null) {
 
 			generator.writeKey("tdigest");
-			this.tdigest.toJsonp(generator, mapper);
+			this.tdigest.serialize(generator, mapper);
 
 		}
 
@@ -141,7 +159,7 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 		private Boolean keyed;
 
 		@Nullable
-		private List<Number> percents;
+		private List<Double> percents;
 
 		@Nullable
 		private HdrMethod hdr;
@@ -160,7 +178,7 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 		/**
 		 * API name: {@code percents}
 		 */
-		public Builder percents(@Nullable List<Number> value) {
+		public Builder percents(@Nullable List<Double> value) {
 			this.percents = value;
 			return this;
 		}
@@ -168,15 +186,15 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 		/**
 		 * API name: {@code percents}
 		 */
-		public Builder percents(Number... value) {
+		public Builder percents(Double... value) {
 			this.percents = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #percents(List)}, creating the list if needed.
+		 * Add a value to {@link #percents(List)}, creating the list if needed. 4
 		 */
-		public Builder addPercents(Number value) {
+		public Builder addPercents(Double value) {
 			if (this.percents == null) {
 				this.percents = new ArrayList<>();
 			}
@@ -234,19 +252,19 @@ public final class PercentilesAggregation extends FormatMetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PercentilesAggregation
+	 * Json deserializer for {@link PercentilesAggregation}
 	 */
-	public static final JsonpDeserializer<PercentilesAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PercentilesAggregation::setupPercentilesAggregationDeserializer);
+	public static final JsonpDeserializer<PercentilesAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PercentilesAggregation::setupPercentilesAggregationDeserializer, Builder::build);
 
 	protected static void setupPercentilesAggregationDeserializer(
 			DelegatingDeserializer<PercentilesAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
-		op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::percents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"percents");
-		op.add(Builder::hdr, HdrMethod.DESERIALIZER, "hdr");
-		op.add(Builder::tdigest, TDigest.DESERIALIZER, "tdigest");
+		op.add(Builder::hdr, HdrMethod._DESERIALIZER, "hdr");
+		op.add(Builder::tdigest, TDigest._DESERIALIZER, "tdigest");
 
 	}
 

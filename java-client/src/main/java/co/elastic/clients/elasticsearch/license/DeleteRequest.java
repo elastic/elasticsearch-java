@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: license.delete.Request
+
 public final class DeleteRequest extends RequestBase {
-	protected DeleteRequest() {
+	public DeleteRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link DeleteRequest}.
 	 */
-	public static final DeleteRequest INSTANCE = new DeleteRequest();
-
-	public static final JsonpDeserializer<DeleteRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(DeleteRequest.INSTANCE);
+	public static final DeleteRequest _INSTANCE = new DeleteRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code license.delete}".
 	 */
-	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -68,5 +70,5 @@ public final class DeleteRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER);
 }

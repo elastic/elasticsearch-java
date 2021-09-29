@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteExplanation
-public final class RerouteExplanation implements ToJsonp {
+@JsonpDeserializable
+public final class RerouteExplanation implements JsonpSerializable {
 	private final String command;
 
 	private final List<RerouteDecision> decisions;
@@ -49,12 +52,16 @@ public final class RerouteExplanation implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RerouteExplanation(Builder builder) {
+	public RerouteExplanation(Builder builder) {
 
 		this.command = Objects.requireNonNull(builder.command, "command");
-		this.decisions = Objects.requireNonNull(builder.decisions, "decisions");
+		this.decisions = ModelTypeHelper.unmodifiableNonNull(builder.decisions, "decisions");
 		this.parameters = Objects.requireNonNull(builder.parameters, "parameters");
 
+	}
+
+	public RerouteExplanation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -81,13 +88,13 @@ public final class RerouteExplanation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("command");
 		generator.write(this.command);
@@ -95,13 +102,13 @@ public final class RerouteExplanation implements ToJsonp {
 		generator.writeKey("decisions");
 		generator.writeStartArray();
 		for (RerouteDecision item0 : this.decisions) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("parameters");
-		this.parameters.toJsonp(generator, mapper);
+		this.parameters.serialize(generator, mapper);
 
 	}
 
@@ -142,7 +149,7 @@ public final class RerouteExplanation implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #decisions(List)}, creating the list if needed.
+		 * Add a value to {@link #decisions(List)}, creating the list if needed. 4
 		 */
 		public Builder addDecisions(RerouteDecision value) {
 			if (this.decisions == null) {
@@ -160,7 +167,7 @@ public final class RerouteExplanation implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #decisions(List)}, creating the list if needed.
+		 * Add a value to {@link #decisions(List)}, creating the list if needed. 5
 		 */
 		public Builder addDecisions(Function<RerouteDecision.Builder, ObjectBuilder<RerouteDecision>> fn) {
 			return this.addDecisions(fn.apply(new RerouteDecision.Builder()).build());
@@ -196,16 +203,16 @@ public final class RerouteExplanation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RerouteExplanation
+	 * Json deserializer for {@link RerouteExplanation}
 	 */
-	public static final JsonpDeserializer<RerouteExplanation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer);
+	public static final JsonpDeserializer<RerouteExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RerouteExplanation::setupRerouteExplanationDeserializer, Builder::build);
 
 	protected static void setupRerouteExplanationDeserializer(DelegatingDeserializer<RerouteExplanation.Builder> op) {
 
 		op.add(Builder::command, JsonpDeserializer.stringDeserializer(), "command");
-		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision.DESERIALIZER), "decisions");
-		op.add(Builder::parameters, RerouteParameters.DESERIALIZER, "parameters");
+		op.add(Builder::decisions, JsonpDeserializer.arrayDeserializer(RerouteDecision._DESERIALIZER), "decisions");
+		op.add(Builder::parameters, RerouteParameters._DESERIALIZER, "parameters");
 
 	}
 

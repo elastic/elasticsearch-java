@@ -25,35 +25,41 @@ package co.elastic.clients.elasticsearch.ilm.get_lifecycle;
 
 import co.elastic.clients.elasticsearch.ilm.Policy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Lifecycle
-public final class Lifecycle implements ToJsonp {
+@JsonpDeserializable
+public final class Lifecycle implements JsonpSerializable {
 	private final String modifiedDate;
 
 	private final Policy policy;
 
-	private final Number version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Lifecycle(Builder builder) {
+	public Lifecycle(Builder builder) {
 
 		this.modifiedDate = Objects.requireNonNull(builder.modifiedDate, "modified_date");
 		this.policy = Objects.requireNonNull(builder.policy, "policy");
 		this.version = Objects.requireNonNull(builder.version, "version");
 
+	}
+
+	public Lifecycle(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -73,29 +79,29 @@ public final class Lifecycle implements ToJsonp {
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public long version() {
 		return this.version;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("modified_date");
 		generator.write(this.modifiedDate);
 
 		generator.writeKey("policy");
-		this.policy.toJsonp(generator, mapper);
+		this.policy.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -109,7 +115,7 @@ public final class Lifecycle implements ToJsonp {
 
 		private Policy policy;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code modified_date}
@@ -137,7 +143,7 @@ public final class Lifecycle implements ToJsonp {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -157,16 +163,16 @@ public final class Lifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Lifecycle
+	 * Json deserializer for {@link Lifecycle}
 	 */
-	public static final JsonpDeserializer<Lifecycle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Lifecycle::setupLifecycleDeserializer);
+	public static final JsonpDeserializer<Lifecycle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Lifecycle::setupLifecycleDeserializer, Builder::build);
 
 	protected static void setupLifecycleDeserializer(DelegatingDeserializer<Lifecycle.Builder> op) {
 
 		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
-		op.add(Builder::policy, Policy.DESERIALIZER, "policy");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::policy, Policy._DESERIALIZER, "policy");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

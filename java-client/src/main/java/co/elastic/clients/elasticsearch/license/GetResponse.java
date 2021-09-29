@@ -25,11 +25,12 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.get.LicenseInformation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,15 +38,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.get.Response
-public final class GetResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetResponse implements JsonpSerializable {
 	private final LicenseInformation license;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder builder) {
+	public GetResponse(Builder builder) {
 
 		this.license = Objects.requireNonNull(builder.license, "license");
 
+	}
+
+	public GetResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -58,16 +64,16 @@ public final class GetResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("license");
-		this.license.toJsonp(generator, mapper);
+		this.license.serialize(generator, mapper);
 
 	}
 
@@ -109,14 +115,14 @@ public final class GetResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetResponse
+	 * Json deserializer for {@link GetResponse}
 	 */
-	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
+	public static final JsonpDeserializer<GetResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
-		op.add(Builder::license, LicenseInformation.DESERIALIZER, "license");
+		op.add(Builder::license, LicenseInformation._DESERIALIZER, "license");
 
 	}
 

@@ -24,37 +24,44 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexInclude
-public final class VertexInclude implements ToJsonp {
-	private final Number boost;
+@JsonpDeserializable
+public final class VertexInclude implements JsonpSerializable {
+	private final double boost;
 
 	private final String term;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected VertexInclude(Builder builder) {
+	public VertexInclude(Builder builder) {
 
 		this.boost = Objects.requireNonNull(builder.boost, "boost");
 		this.term = Objects.requireNonNull(builder.term, "term");
 
 	}
 
+	public VertexInclude(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code boost}
 	 */
-	public Number boost() {
+	public double boost() {
 		return this.boost;
 	}
 
@@ -68,16 +75,16 @@ public final class VertexInclude implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("boost");
-		generator.write(this.boost.doubleValue());
+		generator.write(this.boost);
 
 		generator.writeKey("term");
 		generator.write(this.term);
@@ -90,14 +97,14 @@ public final class VertexInclude implements ToJsonp {
 	 * Builder for {@link VertexInclude}.
 	 */
 	public static class Builder implements ObjectBuilder<VertexInclude> {
-		private Number boost;
+		private Double boost;
 
 		private String term;
 
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(Number value) {
+		public Builder boost(double value) {
 			this.boost = value;
 			return this;
 		}
@@ -125,14 +132,14 @@ public final class VertexInclude implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for VertexInclude
+	 * Json deserializer for {@link VertexInclude}
 	 */
-	public static final JsonpDeserializer<VertexInclude> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, VertexInclude::setupVertexIncludeDeserializer);
+	public static final JsonpDeserializer<VertexInclude> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			VertexInclude::setupVertexIncludeDeserializer, Builder::build);
 
 	protected static void setupVertexIncludeDeserializer(DelegatingDeserializer<VertexInclude.Builder> op) {
 
-		op.add(Builder::boost, JsonpDeserializer.numberDeserializer(), "boost");
+		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");
 
 	}

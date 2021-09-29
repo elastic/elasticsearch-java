@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,19 +32,35 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
-public final class ParentAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ParentAggregation(Builder builder) {
+	public ParentAggregation(Builder builder) {
 		super(builder);
+
 		this.type = builder.type;
 
+	}
+
+	public ParentAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "parent";
 	}
 
 	/**
@@ -54,8 +71,9 @@ public final class ParentAggregation extends BucketAggregationBase {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
 
 			generator.writeKey("type");
@@ -104,10 +122,10 @@ public final class ParentAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ParentAggregation
+	 * Json deserializer for {@link ParentAggregation}
 	 */
-	public static final JsonpDeserializer<ParentAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ParentAggregation::setupParentAggregationDeserializer);
+	public static final JsonpDeserializer<ParentAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ParentAggregation::setupParentAggregationDeserializer, Builder::build);
 
 	protected static void setupParentAggregationDeserializer(DelegatingDeserializer<ParentAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);

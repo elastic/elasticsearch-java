@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.DataTiers
+@JsonpDeserializable
 public final class DataTiers extends Base {
 	private final DataTierPhaseStatistics dataWarm;
 
@@ -49,14 +51,19 @@ public final class DataTiers extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataTiers(Builder builder) {
+	public DataTiers(Builder builder) {
 		super(builder);
+
 		this.dataWarm = Objects.requireNonNull(builder.dataWarm, "data_warm");
 		this.dataFrozen = builder.dataFrozen;
 		this.dataCold = Objects.requireNonNull(builder.dataCold, "data_cold");
 		this.dataContent = Objects.requireNonNull(builder.dataContent, "data_content");
 		this.dataHot = Objects.requireNonNull(builder.dataHot, "data_hot");
 
+	}
+
+	public DataTiers(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -95,27 +102,28 @@ public final class DataTiers extends Base {
 		return this.dataHot;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("data_warm");
-		this.dataWarm.toJsonp(generator, mapper);
+		this.dataWarm.serialize(generator, mapper);
 
 		if (this.dataFrozen != null) {
 
 			generator.writeKey("data_frozen");
-			this.dataFrozen.toJsonp(generator, mapper);
+			this.dataFrozen.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("data_cold");
-		this.dataCold.toJsonp(generator, mapper);
+		this.dataCold.serialize(generator, mapper);
 
 		generator.writeKey("data_content");
-		this.dataContent.toJsonp(generator, mapper);
+		this.dataContent.serialize(generator, mapper);
 
 		generator.writeKey("data_hot");
-		this.dataHot.toJsonp(generator, mapper);
+		this.dataHot.serialize(generator, mapper);
 
 	}
 
@@ -233,18 +241,18 @@ public final class DataTiers extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataTiers
+	 * Json deserializer for {@link DataTiers}
 	 */
-	public static final JsonpDeserializer<DataTiers> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataTiers::setupDataTiersDeserializer);
+	public static final JsonpDeserializer<DataTiers> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataTiers::setupDataTiersDeserializer, Builder::build);
 
 	protected static void setupDataTiersDeserializer(DelegatingDeserializer<DataTiers.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::dataWarm, DataTierPhaseStatistics.DESERIALIZER, "data_warm");
-		op.add(Builder::dataFrozen, DataTierPhaseStatistics.DESERIALIZER, "data_frozen");
-		op.add(Builder::dataCold, DataTierPhaseStatistics.DESERIALIZER, "data_cold");
-		op.add(Builder::dataContent, DataTierPhaseStatistics.DESERIALIZER, "data_content");
-		op.add(Builder::dataHot, DataTierPhaseStatistics.DESERIALIZER, "data_hot");
+		op.add(Builder::dataWarm, DataTierPhaseStatistics._DESERIALIZER, "data_warm");
+		op.add(Builder::dataFrozen, DataTierPhaseStatistics._DESERIALIZER, "data_frozen");
+		op.add(Builder::dataCold, DataTierPhaseStatistics._DESERIALIZER, "data_cold");
+		op.add(Builder::dataContent, DataTierPhaseStatistics._DESERIALIZER, "data_content");
+		op.add(Builder::dataHot, DataTierPhaseStatistics._DESERIALIZER, "data_hot");
 
 	}
 

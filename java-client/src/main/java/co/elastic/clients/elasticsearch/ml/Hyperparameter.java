@@ -24,36 +24,39 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameter
-public final class Hyperparameter implements ToJsonp {
+@JsonpDeserializable
+public final class Hyperparameter implements JsonpSerializable {
 	@Nullable
-	private final Number absoluteImportance;
+	private final Double absoluteImportance;
 
 	private final String name;
 
 	@Nullable
-	private final Number relativeImportance;
+	private final Double relativeImportance;
 
-	private final Boolean supplied;
+	private final boolean supplied;
 
-	private final Number value;
+	private final double value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Hyperparameter(Builder builder) {
+	public Hyperparameter(Builder builder) {
 
 		this.absoluteImportance = builder.absoluteImportance;
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -63,21 +66,25 @@ public final class Hyperparameter implements ToJsonp {
 
 	}
 
+	public Hyperparameter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * A positive number showing how much the parameter influences the variation of
 	 * the loss function. For hyperparameters with values that are not specified by
 	 * the user but tuned during hyperparameter optimization.
-	 *
+	 * <p>
 	 * API name: {@code absolute_importance}
 	 */
 	@Nullable
-	public Number absoluteImportance() {
+	public Double absoluteImportance() {
 		return this.absoluteImportance;
 	}
 
 	/**
 	 * Name of the hyperparameter.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -89,48 +96,48 @@ public final class Hyperparameter implements ToJsonp {
 	 * of the loss function among all tuned hyperparameters. For hyperparameters
 	 * with values that are not specified by the user but tuned during
 	 * hyperparameter optimization.
-	 *
+	 * <p>
 	 * API name: {@code relative_importance}
 	 */
 	@Nullable
-	public Number relativeImportance() {
+	public Double relativeImportance() {
 		return this.relativeImportance;
 	}
 
 	/**
 	 * Indicates if the hyperparameter is specified by the user (true) or optimized
 	 * (false).
-	 *
+	 * <p>
 	 * API name: {@code supplied}
 	 */
-	public Boolean supplied() {
+	public boolean supplied() {
 		return this.supplied;
 	}
 
 	/**
 	 * The value of the hyperparameter, either optimized or specified by the user.
-	 *
+	 * <p>
 	 * API name: {@code value}
 	 */
-	public Number value() {
+	public double value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.absoluteImportance != null) {
 
 			generator.writeKey("absolute_importance");
-			generator.write(this.absoluteImportance.doubleValue());
+			generator.write(this.absoluteImportance);
 
 		}
 
@@ -140,7 +147,7 @@ public final class Hyperparameter implements ToJsonp {
 		if (this.relativeImportance != null) {
 
 			generator.writeKey("relative_importance");
-			generator.write(this.relativeImportance.doubleValue());
+			generator.write(this.relativeImportance);
 
 		}
 
@@ -148,7 +155,7 @@ public final class Hyperparameter implements ToJsonp {
 		generator.write(this.supplied);
 
 		generator.writeKey("value");
-		generator.write(this.value.doubleValue());
+		generator.write(this.value);
 
 	}
 
@@ -159,32 +166,32 @@ public final class Hyperparameter implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Hyperparameter> {
 		@Nullable
-		private Number absoluteImportance;
+		private Double absoluteImportance;
 
 		private String name;
 
 		@Nullable
-		private Number relativeImportance;
+		private Double relativeImportance;
 
 		private Boolean supplied;
 
-		private Number value;
+		private Double value;
 
 		/**
 		 * A positive number showing how much the parameter influences the variation of
 		 * the loss function. For hyperparameters with values that are not specified by
 		 * the user but tuned during hyperparameter optimization.
-		 *
+		 * <p>
 		 * API name: {@code absolute_importance}
 		 */
-		public Builder absoluteImportance(@Nullable Number value) {
+		public Builder absoluteImportance(@Nullable Double value) {
 			this.absoluteImportance = value;
 			return this;
 		}
 
 		/**
 		 * Name of the hyperparameter.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -197,10 +204,10 @@ public final class Hyperparameter implements ToJsonp {
 		 * of the loss function among all tuned hyperparameters. For hyperparameters
 		 * with values that are not specified by the user but tuned during
 		 * hyperparameter optimization.
-		 *
+		 * <p>
 		 * API name: {@code relative_importance}
 		 */
-		public Builder relativeImportance(@Nullable Number value) {
+		public Builder relativeImportance(@Nullable Double value) {
 			this.relativeImportance = value;
 			return this;
 		}
@@ -208,20 +215,20 @@ public final class Hyperparameter implements ToJsonp {
 		/**
 		 * Indicates if the hyperparameter is specified by the user (true) or optimized
 		 * (false).
-		 *
+		 * <p>
 		 * API name: {@code supplied}
 		 */
-		public Builder supplied(Boolean value) {
+		public Builder supplied(boolean value) {
 			this.supplied = value;
 			return this;
 		}
 
 		/**
 		 * The value of the hyperparameter, either optimized or specified by the user.
-		 *
+		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(Number value) {
+		public Builder value(double value) {
 			this.value = value;
 			return this;
 		}
@@ -241,18 +248,18 @@ public final class Hyperparameter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Hyperparameter
+	 * Json deserializer for {@link Hyperparameter}
 	 */
-	public static final JsonpDeserializer<Hyperparameter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Hyperparameter::setupHyperparameterDeserializer);
+	public static final JsonpDeserializer<Hyperparameter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Hyperparameter::setupHyperparameterDeserializer, Builder::build);
 
 	protected static void setupHyperparameterDeserializer(DelegatingDeserializer<Hyperparameter.Builder> op) {
 
-		op.add(Builder::absoluteImportance, JsonpDeserializer.numberDeserializer(), "absolute_importance");
+		op.add(Builder::absoluteImportance, JsonpDeserializer.doubleDeserializer(), "absolute_importance");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::relativeImportance, JsonpDeserializer.numberDeserializer(), "relative_importance");
+		op.add(Builder::relativeImportance, JsonpDeserializer.doubleDeserializer(), "relative_importance");
 		op.add(Builder::supplied, JsonpDeserializer.booleanDeserializer(), "supplied");
-		op.add(Builder::value, JsonpDeserializer.numberDeserializer(), "value");
+		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 
 	}
 

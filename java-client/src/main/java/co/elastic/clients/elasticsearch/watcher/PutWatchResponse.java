@@ -24,34 +24,38 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Response
-public final class PutWatchResponse implements ToJsonp {
-	private final Boolean created;
+@JsonpDeserializable
+public final class PutWatchResponse implements JsonpSerializable {
+	private final boolean created;
 
 	private final String id;
 
-	private final Number primaryTerm;
+	private final long primaryTerm;
 
-	private final Number seqNo;
+	private final int seqNo;
 
-	private final Number version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutWatchResponse(Builder builder) {
+	public PutWatchResponse(Builder builder) {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 		this.id = Objects.requireNonNull(builder.id, "_id");
@@ -61,10 +65,14 @@ public final class PutWatchResponse implements ToJsonp {
 
 	}
 
+	public PutWatchResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code created}
 	 */
-	public Boolean created() {
+	public boolean created() {
 		return this.created;
 	}
 
@@ -78,34 +86,34 @@ public final class PutWatchResponse implements ToJsonp {
 	/**
 	 * API name: {@code _primary_term}
 	 */
-	public Number primaryTerm() {
+	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * API name: {@code _seq_no}
 	 */
-	public Number seqNo() {
+	public int seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * API name: {@code _version}
 	 */
-	public Number version() {
+	public long version() {
 		return this.version;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("created");
 		generator.write(this.created);
@@ -114,13 +122,13 @@ public final class PutWatchResponse implements ToJsonp {
 		generator.write(this.id);
 
 		generator.writeKey("_primary_term");
-		generator.write(this.primaryTerm.doubleValue());
+		generator.write(this.primaryTerm);
 
 		generator.writeKey("_seq_no");
-		generator.write(this.seqNo.doubleValue());
+		generator.write(this.seqNo);
 
 		generator.writeKey("_version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -134,16 +142,16 @@ public final class PutWatchResponse implements ToJsonp {
 
 		private String id;
 
-		private Number primaryTerm;
+		private Long primaryTerm;
 
-		private Number seqNo;
+		private Integer seqNo;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code created}
 		 */
-		public Builder created(Boolean value) {
+		public Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -159,7 +167,7 @@ public final class PutWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(Number value) {
+		public Builder primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -167,7 +175,7 @@ public final class PutWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder seqNo(Number value) {
+		public Builder seqNo(int value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -175,7 +183,7 @@ public final class PutWatchResponse implements ToJsonp {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -195,18 +203,18 @@ public final class PutWatchResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutWatchResponse
+	 * Json deserializer for {@link PutWatchResponse}
 	 */
-	public static final JsonpDeserializer<PutWatchResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutWatchResponse::setupPutWatchResponseDeserializer);
+	public static final JsonpDeserializer<PutWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutWatchResponse::setupPutWatchResponseDeserializer, Builder::build);
 
 	protected static void setupPutWatchResponseDeserializer(DelegatingDeserializer<PutWatchResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::primaryTerm, JsonpDeserializer.numberDeserializer(), "_primary_term");
-		op.add(Builder::seqNo, JsonpDeserializer.numberDeserializer(), "_seq_no");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "_version");
+		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
+		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}
 

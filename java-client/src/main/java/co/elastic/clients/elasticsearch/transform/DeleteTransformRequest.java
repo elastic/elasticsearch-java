@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,9 +38,11 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.delete_transform.Request
+
 public final class DeleteTransformRequest extends RequestBase {
 	private final String transformId;
 
@@ -47,14 +51,20 @@ public final class DeleteTransformRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTransformRequest(Builder builder) {
+	public DeleteTransformRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.force = builder.force;
 
 	}
 
+	public DeleteTransformRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The id of the transform to delete
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -62,6 +72,10 @@ public final class DeleteTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * When <code>true</code>, the transform is deleted regardless of its current
+	 * state. The default value is <code>false</code>, meaning that the transform
+	 * must be <code>stopped</code> before it can be deleted.
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -81,6 +95,8 @@ public final class DeleteTransformRequest extends RequestBase {
 		private Boolean force;
 
 		/**
+		 * The id of the transform to delete
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -89,6 +105,10 @@ public final class DeleteTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * When <code>true</code>, the transform is deleted regardless of its current
+		 * state. The default value is <code>false</code>, meaning that the transform
+		 * must be <code>stopped</code> before it can be deleted.
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -113,7 +133,7 @@ public final class DeleteTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.delete_transform}".
 	 */
-	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -126,17 +146,16 @@ public final class DeleteTransformRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
-					propsSet |= _transformId;
+				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -148,5 +167,5 @@ public final class DeleteTransformRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteTransformResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteTransformResponse._DESERIALIZER);
 }

@@ -24,54 +24,50 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelPlotConfig
-public final class ModelPlotConfig implements ToJsonp {
-	@Nullable
-	private final String terms;
-
-	private final Boolean enabled;
-
+@JsonpDeserializable
+public final class ModelPlotConfig implements JsonpSerializable {
 	@Nullable
 	private final Boolean annotationsEnabled;
 
+	@Nullable
+	private final Boolean enabled;
+
+	@Nullable
+	private final String terms;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected ModelPlotConfig(Builder builder) {
+	public ModelPlotConfig(Builder builder) {
 
-		this.terms = builder.terms;
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 		this.annotationsEnabled = builder.annotationsEnabled;
+		this.enabled = builder.enabled;
+		this.terms = builder.terms;
 
 	}
 
-	/**
-	 * API name: {@code terms}
-	 */
-	@Nullable
-	public String terms() {
-		return this.terms;
+	public ModelPlotConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code enabled}
-	 */
-	public Boolean enabled() {
-		return this.enabled;
-	}
-
-	/**
+	 * If true, enables calculation and storage of the model change annotations for
+	 * each entity that is being analyzed.
+	 * <p>
 	 * API name: {@code annotations_enabled}
 	 */
 	@Nullable
@@ -80,30 +76,56 @@ public final class ModelPlotConfig implements ToJsonp {
 	}
 
 	/**
+	 * If true, enables calculation and storage of the model bounds for each entity
+	 * that is being analyzed.
+	 * <p>
+	 * API name: {@code enabled}
+	 */
+	@Nullable
+	public Boolean enabled() {
+		return this.enabled;
+	}
+
+	/**
+	 * Limits data collection to this comma separated list of partition or by field
+	 * values. If terms are not specified or it is an empty string, no filtering is
+	 * applied. Wildcards are not supported. Only the specified terms can be viewed
+	 * when using the Single Metric Viewer.
+	 * <p>
+	 * API name: {@code terms}
+	 */
+	@Nullable
+	public String terms() {
+		return this.terms;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.terms != null) {
-
-			generator.writeKey("terms");
-			generator.write(this.terms);
-
-		}
-
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.annotationsEnabled != null) {
 
 			generator.writeKey("annotations_enabled");
 			generator.write(this.annotationsEnabled);
+
+		}
+		if (this.enabled != null) {
+
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
+
+		}
+		if (this.terms != null) {
+
+			generator.writeKey("terms");
+			generator.write(this.terms);
 
 		}
 
@@ -116,34 +138,46 @@ public final class ModelPlotConfig implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<ModelPlotConfig> {
 		@Nullable
-		private String terms;
+		private Boolean annotationsEnabled;
 
+		@Nullable
 		private Boolean enabled;
 
 		@Nullable
-		private Boolean annotationsEnabled;
+		private String terms;
 
 		/**
-		 * API name: {@code terms}
+		 * If true, enables calculation and storage of the model change annotations for
+		 * each entity that is being analyzed.
+		 * <p>
+		 * API name: {@code annotations_enabled}
 		 */
-		public Builder terms(@Nullable String value) {
-			this.terms = value;
+		public Builder annotationsEnabled(@Nullable Boolean value) {
+			this.annotationsEnabled = value;
 			return this;
 		}
 
 		/**
+		 * If true, enables calculation and storage of the model bounds for each entity
+		 * that is being analyzed.
+		 * <p>
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code annotations_enabled}
+		 * Limits data collection to this comma separated list of partition or by field
+		 * values. If terms are not specified or it is an empty string, no filtering is
+		 * applied. Wildcards are not supported. Only the specified terms can be viewed
+		 * when using the Single Metric Viewer.
+		 * <p>
+		 * API name: {@code terms}
 		 */
-		public Builder annotationsEnabled(@Nullable Boolean value) {
-			this.annotationsEnabled = value;
+		public Builder terms(@Nullable String value) {
+			this.terms = value;
 			return this;
 		}
 
@@ -162,16 +196,16 @@ public final class ModelPlotConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ModelPlotConfig
+	 * Json deserializer for {@link ModelPlotConfig}
 	 */
-	public static final JsonpDeserializer<ModelPlotConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ModelPlotConfig::setupModelPlotConfigDeserializer);
+	public static final JsonpDeserializer<ModelPlotConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ModelPlotConfig::setupModelPlotConfigDeserializer, Builder::build);
 
 	protected static void setupModelPlotConfigDeserializer(DelegatingDeserializer<ModelPlotConfig.Builder> op) {
 
-		op.add(Builder::terms, JsonpDeserializer.stringDeserializer(), "terms");
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::annotationsEnabled, JsonpDeserializer.booleanDeserializer(), "annotations_enabled");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::terms, JsonpDeserializer.stringDeserializer(), "terms");
 
 	}
 

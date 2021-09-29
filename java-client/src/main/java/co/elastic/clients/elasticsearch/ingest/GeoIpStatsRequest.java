@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.Request
+
 public final class GeoIpStatsRequest extends RequestBase {
-	protected GeoIpStatsRequest() {
+	public GeoIpStatsRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link GeoIpStatsRequest}.
 	 */
-	public static final GeoIpStatsRequest INSTANCE = new GeoIpStatsRequest();
-
-	public static final JsonpDeserializer<GeoIpStatsRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GeoIpStatsRequest.INSTANCE);
+	public static final GeoIpStatsRequest _INSTANCE = new GeoIpStatsRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code ingest.geo_ip_stats}".
 	 */
-	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class GeoIpStatsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GeoIpStatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GeoIpStatsResponse._DESERIALIZER);
 }

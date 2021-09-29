@@ -24,23 +24,27 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetrics
-public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	@Nullable
-	private final Map<String, JsonValue> mse;
+	private final Map<String, JsonData> mse;
 
 	@Nullable
 	private final DataframeEvaluationRegressionMetricsMsle msle;
@@ -49,34 +53,38 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	private final DataframeEvaluationRegressionMetricsHuber huber;
 
 	@Nullable
-	private final Map<String, JsonValue> rSquared;
+	private final Map<String, JsonData> rSquared;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationRegressionMetrics(Builder builder) {
+	public DataframeEvaluationRegressionMetrics(Builder builder) {
 
-		this.mse = builder.mse;
+		this.mse = ModelTypeHelper.unmodifiable(builder.mse);
 		this.msle = builder.msle;
 		this.huber = builder.huber;
-		this.rSquared = builder.rSquared;
+		this.rSquared = ModelTypeHelper.unmodifiable(builder.rSquared);
 
+	}
+
+	public DataframeEvaluationRegressionMetrics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Average squared difference between the predicted values and the actual
 	 * (ground truth) value. For more information, read this wiki article.
-	 *
+	 * <p>
 	 * API name: {@code mse}
 	 */
 	@Nullable
-	public Map<String, JsonValue> mse() {
+	public Map<String, JsonData> mse() {
 		return this.mse;
 	}
 
 	/**
 	 * Average squared difference between the logarithm of the predicted values and
 	 * the logarithm of the actual (ground truth) value.
-	 *
+	 * <p>
 	 * API name: {@code msle}
 	 */
 	@Nullable
@@ -86,7 +94,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 
 	/**
 	 * Pseudo Huber loss function.
-	 *
+	 * <p>
 	 * API name: {@code huber}
 	 */
 	@Nullable
@@ -97,32 +105,32 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	/**
 	 * Proportion of the variance in the dependent variable that is predictable from
 	 * the independent variables.
-	 *
+	 * <p>
 	 * API name: {@code r_squared}
 	 */
 	@Nullable
-	public Map<String, JsonValue> rSquared() {
+	public Map<String, JsonData> rSquared() {
 		return this.rSquared;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.mse != null) {
 
 			generator.writeKey("mse");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.mse.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.mse.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -131,22 +139,22 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		if (this.msle != null) {
 
 			generator.writeKey("msle");
-			this.msle.toJsonp(generator, mapper);
+			this.msle.serialize(generator, mapper);
 
 		}
 		if (this.huber != null) {
 
 			generator.writeKey("huber");
-			this.huber.toJsonp(generator, mapper);
+			this.huber.serialize(generator, mapper);
 
 		}
 		if (this.rSquared != null) {
 
 			generator.writeKey("r_squared");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.rSquared.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.rSquared.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -162,7 +170,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetrics> {
 		@Nullable
-		private Map<String, JsonValue> mse;
+		private Map<String, JsonData> mse;
 
 		@Nullable
 		private DataframeEvaluationRegressionMetricsMsle msle;
@@ -171,15 +179,15 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		private DataframeEvaluationRegressionMetricsHuber huber;
 
 		@Nullable
-		private Map<String, JsonValue> rSquared;
+		private Map<String, JsonData> rSquared;
 
 		/**
 		 * Average squared difference between the predicted values and the actual
 		 * (ground truth) value. For more information, read this wiki article.
-		 *
+		 * <p>
 		 * API name: {@code mse}
 		 */
-		public Builder mse(@Nullable Map<String, JsonValue> value) {
+		public Builder mse(@Nullable Map<String, JsonData> value) {
 			this.mse = value;
 			return this;
 		}
@@ -187,7 +195,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #mse(Map)}, creating the map if needed.
 		 */
-		public Builder putMse(String key, JsonValue value) {
+		public Builder putMse(String key, JsonData value) {
 			if (this.mse == null) {
 				this.mse = new HashMap<>();
 			}
@@ -198,7 +206,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Average squared difference between the logarithm of the predicted values and
 		 * the logarithm of the actual (ground truth) value.
-		 *
+		 * <p>
 		 * API name: {@code msle}
 		 */
 		public Builder msle(@Nullable DataframeEvaluationRegressionMetricsMsle value) {
@@ -209,7 +217,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Average squared difference between the logarithm of the predicted values and
 		 * the logarithm of the actual (ground truth) value.
-		 *
+		 * <p>
 		 * API name: {@code msle}
 		 */
 		public Builder msle(
@@ -219,7 +227,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 
 		/**
 		 * Pseudo Huber loss function.
-		 *
+		 * <p>
 		 * API name: {@code huber}
 		 */
 		public Builder huber(@Nullable DataframeEvaluationRegressionMetricsHuber value) {
@@ -229,7 +237,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 
 		/**
 		 * Pseudo Huber loss function.
-		 *
+		 * <p>
 		 * API name: {@code huber}
 		 */
 		public Builder huber(
@@ -240,10 +248,10 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Proportion of the variance in the dependent variable that is predictable from
 		 * the independent variables.
-		 *
+		 * <p>
 		 * API name: {@code r_squared}
 		 */
-		public Builder rSquared(@Nullable Map<String, JsonValue> value) {
+		public Builder rSquared(@Nullable Map<String, JsonData> value) {
 			this.rSquared = value;
 			return this;
 		}
@@ -251,7 +259,7 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #rSquared(Map)}, creating the map if needed.
 		 */
-		public Builder putRSquared(String key, JsonValue value) {
+		public Builder putRSquared(String key, JsonData value) {
 			if (this.rSquared == null) {
 				this.rSquared = new HashMap<>();
 			}
@@ -274,20 +282,20 @@ public final class DataframeEvaluationRegressionMetrics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationRegressionMetrics
+	 * Json deserializer for {@link DataframeEvaluationRegressionMetrics}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegressionMetrics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetrics::setupDataframeEvaluationRegressionMetricsDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetrics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationRegressionMetrics::setupDataframeEvaluationRegressionMetricsDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionMetricsDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegressionMetrics.Builder> op) {
 
-		op.add(Builder::mse, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "mse");
-		op.add(Builder::msle, DataframeEvaluationRegressionMetricsMsle.DESERIALIZER, "msle");
-		op.add(Builder::huber, DataframeEvaluationRegressionMetricsHuber.DESERIALIZER, "huber");
-		op.add(Builder::rSquared, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"r_squared");
+		op.add(Builder::mse, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "mse");
+		op.add(Builder::msle, DataframeEvaluationRegressionMetricsMsle._DESERIALIZER, "msle");
+		op.add(Builder::huber, DataframeEvaluationRegressionMetricsHuber._DESERIALIZER, "huber");
+		op.add(Builder::rSquared, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "r_squared");
 
 	}
 

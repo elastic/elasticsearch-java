@@ -25,16 +25,20 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.DefaultOperator;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,12 +47,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Request
-public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class ValidateQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final List<String> index;
 
@@ -68,13 +74,13 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	private final Boolean analyzeWildcard;
 
 	@Nullable
-	private final JsonValue defaultOperator;
+	private final DefaultOperator defaultOperator;
 
 	@Nullable
 	private final String df;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean explain;
@@ -86,41 +92,44 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	private final Boolean lenient;
 
 	@Nullable
-	private final String queryOnQueryString;
-
-	@Nullable
 	private final Boolean rewrite;
 
 	@Nullable
 	private final String q;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidateQueryRequest(Builder builder) {
+	public ValidateQueryRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.type = builder.type;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allShards = builder.allShards;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.lenient = builder.lenient;
-		this.queryOnQueryString = builder.queryOnQueryString;
 		this.rewrite = builder.rewrite;
 		this.q = builder.q;
 		this.query = builder.query;
 
 	}
 
+	public ValidateQueryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names to restrict the operation; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -129,6 +138,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * A comma-separated list of document types to restrict the operation; leave
+	 * empty to perform the operation on all types
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -137,6 +149,10 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -145,6 +161,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Execute validation on all shards instead of one random shard per index
+	 * <p>
 	 * API name: {@code all_shards}
 	 */
 	@Nullable
@@ -153,6 +171,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The analyzer to use for the query string
+	 * <p>
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
@@ -161,6 +181,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether wildcard and prefix queries should be analyzed (default:
+	 * false)
+	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
@@ -169,14 +192,19 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The default operator for query string query (AND or OR)
+	 * <p>
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public JsonValue defaultOperator() {
+	public DefaultOperator defaultOperator() {
 		return this.defaultOperator;
 	}
 
 	/**
+	 * The field to use as default where no field prefix is given in the query
+	 * string
+	 * <p>
 	 * API name: {@code df}
 	 */
 	@Nullable
@@ -185,14 +213,19 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Return detailed information about the error
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -201,6 +234,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -209,6 +245,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify whether format-based query failures (such as providing text to a
+	 * numeric field) should be ignored
+	 * <p>
 	 * API name: {@code lenient}
 	 */
 	@Nullable
@@ -217,14 +256,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code query_on_query_string}
-	 */
-	@Nullable
-	public String queryOnQueryString() {
-		return this.queryOnQueryString;
-	}
-
-	/**
+	 * Provide a more detailed explanation showing the actual Lucene query that will
+	 * be executed.
+	 * <p>
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
@@ -233,6 +267,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
 	 * API name: {@code q}
 	 */
 	@Nullable
@@ -244,25 +280,25 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 
@@ -293,13 +329,13 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		private Boolean analyzeWildcard;
 
 		@Nullable
-		private JsonValue defaultOperator;
+		private DefaultOperator defaultOperator;
 
 		@Nullable
 		private String df;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean explain;
@@ -311,18 +347,18 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		private Boolean lenient;
 
 		@Nullable
-		private String queryOnQueryString;
-
-		@Nullable
 		private Boolean rewrite;
 
 		@Nullable
 		private String q;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		/**
+		 * A comma-separated list of index names to restrict the operation; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -331,6 +367,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of index names to restrict the operation; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -339,7 +378,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -350,6 +389,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of document types to restrict the operation; leave
+		 * empty to perform the operation on all types
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable List<String> value) {
@@ -358,6 +400,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * A comma-separated list of document types to restrict the operation; leave
+		 * empty to perform the operation on all types
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(String... value) {
@@ -366,7 +411,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
+		 * Add a value to {@link #type(List)}, creating the list if needed. 4
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -377,6 +422,10 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -385,6 +434,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Execute validation on all shards instead of one random shard per index
+		 * <p>
 		 * API name: {@code all_shards}
 		 */
 		public Builder allShards(@Nullable Boolean value) {
@@ -393,6 +444,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The analyzer to use for the query string
+		 * <p>
 		 * API name: {@code analyzer}
 		 */
 		public Builder analyzer(@Nullable String value) {
@@ -401,6 +454,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether wildcard and prefix queries should be analyzed (default:
+		 * false)
+		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
 		public Builder analyzeWildcard(@Nullable Boolean value) {
@@ -409,14 +465,19 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The default operator for query string query (AND or OR)
+		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable JsonValue value) {
+		public Builder defaultOperator(@Nullable DefaultOperator value) {
 			this.defaultOperator = value;
 			return this;
 		}
 
 		/**
+		 * The field to use as default where no field prefix is given in the query
+		 * string
+		 * <p>
 		 * API name: {@code df}
 		 */
 		public Builder df(@Nullable String value) {
@@ -425,14 +486,41 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Return detailed information about the error
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public Builder explain(@Nullable Boolean value) {
@@ -441,6 +529,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -449,6 +540,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify whether format-based query failures (such as providing text to a
+		 * numeric field) should be ignored
+		 * <p>
 		 * API name: {@code lenient}
 		 */
 		public Builder lenient(@Nullable Boolean value) {
@@ -457,14 +551,9 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code query_on_query_string}
-		 */
-		public Builder queryOnQueryString(@Nullable String value) {
-			this.queryOnQueryString = value;
-			return this;
-		}
-
-		/**
+		 * Provide a more detailed explanation showing the actual Lucene query that will
+		 * be executed.
+		 * <p>
 		 * API name: {@code rewrite}
 		 */
 		public Builder rewrite(@Nullable Boolean value) {
@@ -473,6 +562,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
 		 * API name: {@code q}
 		 */
 		public Builder q(@Nullable String value) {
@@ -483,7 +574,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -491,8 +582,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -510,15 +601,15 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidateQueryRequest
+	 * Json deserializer for {@link ValidateQueryRequest}
 	 */
-	public static final JsonpDeserializer<ValidateQueryRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer);
+	public static final JsonpDeserializer<ValidateQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer, Builder::build);
 
 	protected static void setupValidateQueryRequestDeserializer(
 			DelegatingDeserializer<ValidateQueryRequest.Builder> op) {
 
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 
 	}
 
@@ -527,7 +618,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code indices.validate_query}".
 	 */
-	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -555,7 +646,7 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_validate");
 					buf.append("/query");
 					return buf.toString();
@@ -563,14 +654,14 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_validate");
 					buf.append("/query");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -596,7 +687,8 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 					params.put("df", request.df);
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.explain != null) {
 					params.put("explain", String.valueOf(request.explain));
@@ -607,9 +699,6 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
-				if (request.queryOnQueryString != null) {
-					params.put("query_on_query_string", request.queryOnQueryString);
-				}
 				if (request.rewrite != null) {
 					params.put("rewrite", String.valueOf(request.rewrite));
 				}
@@ -618,5 +707,5 @@ public final class ValidateQueryRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateQueryResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ValidateQueryResponse._DESERIALIZER);
 }

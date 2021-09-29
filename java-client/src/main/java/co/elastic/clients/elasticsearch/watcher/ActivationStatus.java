@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,21 +42,26 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActivationStatus
-public final class ActivationStatus implements ToJsonp {
+@JsonpDeserializable
+public final class ActivationStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
 
 	private final ActivationState state;
 
-	private final Number version;
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ActivationStatus(Builder builder) {
+	public ActivationStatus(Builder builder) {
 
-		this.actions = Objects.requireNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.version = Objects.requireNonNull(builder.version, "version");
 
+	}
+
+	public ActivationStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -74,35 +81,35 @@ public final class ActivationStatus implements ToJsonp {
 	/**
 	 * API name: {@code version}
 	 */
-	public Number version() {
+	public long version() {
 		return this.version;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actions");
 		generator.writeStartObject();
 		for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("state");
-		this.state.toJsonp(generator, mapper);
+		this.state.serialize(generator, mapper);
 
 		generator.writeKey("version");
-		generator.write(this.version.doubleValue());
+		generator.write(this.version);
 
 	}
 
@@ -116,7 +123,7 @@ public final class ActivationStatus implements ToJsonp {
 
 		private ActivationState state;
 
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code actions}
@@ -169,7 +176,7 @@ public final class ActivationStatus implements ToJsonp {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(Number value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -189,16 +196,16 @@ public final class ActivationStatus implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ActivationStatus
+	 * Json deserializer for {@link ActivationStatus}
 	 */
-	public static final JsonpDeserializer<ActivationStatus> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ActivationStatus::setupActivationStatusDeserializer);
+	public static final JsonpDeserializer<ActivationStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ActivationStatus::setupActivationStatusDeserializer, Builder::build);
 
 	protected static void setupActivationStatusDeserializer(DelegatingDeserializer<ActivationStatus.Builder> op) {
 
-		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus.DESERIALIZER), "actions");
-		op.add(Builder::state, ActivationState.DESERIALIZER, "state");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus._DESERIALIZER), "actions");
+		op.add(Builder::state, ActivationState._DESERIALIZER, "state");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

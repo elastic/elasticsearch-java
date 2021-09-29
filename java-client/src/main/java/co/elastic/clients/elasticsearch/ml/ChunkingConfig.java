@@ -24,62 +24,77 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ChunkingConfig
-public final class ChunkingConfig implements ToJsonp {
-	private final JsonValue mode;
+@JsonpDeserializable
+public final class ChunkingConfig implements JsonpSerializable {
+	private final ChunkingMode mode;
 
 	@Nullable
-	private final JsonValue timeSpan;
+	private final String timeSpan;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ChunkingConfig(Builder builder) {
+	public ChunkingConfig(Builder builder) {
 
 		this.mode = Objects.requireNonNull(builder.mode, "mode");
 		this.timeSpan = builder.timeSpan;
 
 	}
 
+	public ChunkingConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
+	 * this is the recommended value when the datafeed does not use aggregations. If
+	 * the mode is <code>manual</code>, chunking is applied according to the
+	 * specified <code>time_span</code>; use this mode when the datafeed uses
+	 * aggregations. If the mode is <code>off</code>, no chunking is applied.
+	 * <p>
 	 * API name: {@code mode}
 	 */
-	public JsonValue mode() {
+	public ChunkingMode mode() {
 		return this.mode;
 	}
 
 	/**
+	 * The time span that each search will be querying. This setting is only
+	 * applicable when the <code>mode</code> is set to <code>manual</code>.
+	 * <p>
 	 * API name: {@code time_span}
 	 */
 	@Nullable
-	public JsonValue timeSpan() {
+	public String timeSpan() {
 		return this.timeSpan;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("mode");
-		generator.write(this.mode);
-
+		this.mode.serialize(generator, mapper);
 		if (this.timeSpan != null) {
 
 			generator.writeKey("time_span");
@@ -95,23 +110,32 @@ public final class ChunkingConfig implements ToJsonp {
 	 * Builder for {@link ChunkingConfig}.
 	 */
 	public static class Builder implements ObjectBuilder<ChunkingConfig> {
-		private JsonValue mode;
+		private ChunkingMode mode;
 
 		@Nullable
-		private JsonValue timeSpan;
+		private String timeSpan;
 
 		/**
+		 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
+		 * this is the recommended value when the datafeed does not use aggregations. If
+		 * the mode is <code>manual</code>, chunking is applied according to the
+		 * specified <code>time_span</code>; use this mode when the datafeed uses
+		 * aggregations. If the mode is <code>off</code>, no chunking is applied.
+		 * <p>
 		 * API name: {@code mode}
 		 */
-		public Builder mode(JsonValue value) {
+		public Builder mode(ChunkingMode value) {
 			this.mode = value;
 			return this;
 		}
 
 		/**
+		 * The time span that each search will be querying. This setting is only
+		 * applicable when the <code>mode</code> is set to <code>manual</code>.
+		 * <p>
 		 * API name: {@code time_span}
 		 */
-		public Builder timeSpan(@Nullable JsonValue value) {
+		public Builder timeSpan(@Nullable String value) {
 			this.timeSpan = value;
 			return this;
 		}
@@ -131,15 +155,15 @@ public final class ChunkingConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ChunkingConfig
+	 * Json deserializer for {@link ChunkingConfig}
 	 */
-	public static final JsonpDeserializer<ChunkingConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ChunkingConfig::setupChunkingConfigDeserializer);
+	public static final JsonpDeserializer<ChunkingConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ChunkingConfig::setupChunkingConfigDeserializer, Builder::build);
 
 	protected static void setupChunkingConfigDeserializer(DelegatingDeserializer<ChunkingConfig.Builder> op) {
 
-		op.add(Builder::mode, JsonpDeserializer.jsonValueDeserializer(), "mode");
-		op.add(Builder::timeSpan, JsonpDeserializer.jsonValueDeserializer(), "time_span");
+		op.add(Builder::mode, ChunkingMode._DESERIALIZER, "mode");
+		op.add(Builder::timeSpan, JsonpDeserializer.stringDeserializer(), "time_span");
 
 	}
 

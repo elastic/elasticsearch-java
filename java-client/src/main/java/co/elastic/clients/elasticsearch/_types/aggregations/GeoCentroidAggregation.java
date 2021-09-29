@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,31 +32,47 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregation
-public final class GeoCentroidAggregation extends MetricAggregationBase {
+@JsonpDeserializable
+public final class GeoCentroidAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number count;
+	private final Long count;
 
 	@Nullable
-	private final JsonValue location;
+	private final JsonValue /* _types.query_dsl.GeoLocation */ location;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoCentroidAggregation(Builder builder) {
+	public GeoCentroidAggregation(Builder builder) {
 		super(builder);
+
 		this.count = builder.count;
 		this.location = builder.location;
 
+	}
+
+	public GeoCentroidAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "geo_centroid";
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public Number count() {
+	public Long count() {
 		return this.count;
 	}
 
@@ -63,16 +80,17 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 	 * API name: {@code location}
 	 */
 	@Nullable
-	public JsonValue location() {
+	public JsonValue /* _types.query_dsl.GeoLocation */ location() {
 		return this.location;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.count != null) {
 
 			generator.writeKey("count");
-			generator.write(this.count.doubleValue());
+			generator.write(this.count);
 
 		}
 		if (this.location != null) {
@@ -93,15 +111,15 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 			implements
 				ObjectBuilder<GeoCentroidAggregation> {
 		@Nullable
-		private Number count;
+		private Long count;
 
 		@Nullable
-		private JsonValue location;
+		private JsonValue /* _types.query_dsl.GeoLocation */ location;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable Number value) {
+		public Builder count(@Nullable Long value) {
 			this.count = value;
 			return this;
 		}
@@ -109,7 +127,7 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code location}
 		 */
-		public Builder location(@Nullable JsonValue value) {
+		public Builder location(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.location = value;
 			return this;
 		}
@@ -134,15 +152,15 @@ public final class GeoCentroidAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoCentroidAggregation
+	 * Json deserializer for {@link GeoCentroidAggregation}
 	 */
-	public static final JsonpDeserializer<GeoCentroidAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationDeserializer);
+	public static final JsonpDeserializer<GeoCentroidAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoCentroidAggregation::setupGeoCentroidAggregationDeserializer, Builder::build);
 
 	protected static void setupGeoCentroidAggregationDeserializer(
 			DelegatingDeserializer<GeoCentroidAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::location, JsonpDeserializer.jsonValueDeserializer(), "location");
 
 	}

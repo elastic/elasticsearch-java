@@ -24,23 +24,26 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandMoveAction
-public final class CommandMoveAction implements ToJsonp {
+@JsonpDeserializable
+public final class CommandMoveAction implements JsonpSerializable {
 	private final String index;
 
-	private final Number shard;
+	private final int shard;
 
 	private final String fromNode;
 
@@ -48,13 +51,17 @@ public final class CommandMoveAction implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CommandMoveAction(Builder builder) {
+	public CommandMoveAction(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.shard = Objects.requireNonNull(builder.shard, "shard");
 		this.fromNode = Objects.requireNonNull(builder.fromNode, "from_node");
 		this.toNode = Objects.requireNonNull(builder.toNode, "to_node");
 
+	}
+
+	public CommandMoveAction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,13 +74,13 @@ public final class CommandMoveAction implements ToJsonp {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public int shard() {
 		return this.shard;
 	}
 
 	/**
 	 * The node to move the shard from
-	 *
+	 * <p>
 	 * API name: {@code from_node}
 	 */
 	public String fromNode() {
@@ -82,7 +89,7 @@ public final class CommandMoveAction implements ToJsonp {
 
 	/**
 	 * The node to move the shard to
-	 *
+	 * <p>
 	 * API name: {@code to_node}
 	 */
 	public String toNode() {
@@ -92,19 +99,19 @@ public final class CommandMoveAction implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		generator.writeKey("from_node");
 		generator.write(this.fromNode);
@@ -122,7 +129,7 @@ public final class CommandMoveAction implements ToJsonp {
 	public static class Builder implements ObjectBuilder<CommandMoveAction> {
 		private String index;
 
-		private Number shard;
+		private Integer shard;
 
 		private String fromNode;
 
@@ -139,14 +146,14 @@ public final class CommandMoveAction implements ToJsonp {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
 
 		/**
 		 * The node to move the shard from
-		 *
+		 * <p>
 		 * API name: {@code from_node}
 		 */
 		public Builder fromNode(String value) {
@@ -156,7 +163,7 @@ public final class CommandMoveAction implements ToJsonp {
 
 		/**
 		 * The node to move the shard to
-		 *
+		 * <p>
 		 * API name: {@code to_node}
 		 */
 		public Builder toNode(String value) {
@@ -179,15 +186,15 @@ public final class CommandMoveAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CommandMoveAction
+	 * Json deserializer for {@link CommandMoveAction}
 	 */
-	public static final JsonpDeserializer<CommandMoveAction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CommandMoveAction::setupCommandMoveActionDeserializer);
+	public static final JsonpDeserializer<CommandMoveAction> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CommandMoveAction::setupCommandMoveActionDeserializer, Builder::build);
 
 	protected static void setupCommandMoveActionDeserializer(DelegatingDeserializer<CommandMoveAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::fromNode, JsonpDeserializer.stringDeserializer(), "from_node");
 		op.add(Builder::toNode, JsonpDeserializer.stringDeserializer(), "to_node");
 

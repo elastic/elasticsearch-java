@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_user.Response
-public final class GetUserResponse extends AdditionalProperties<String, User> {
+@JsonpDeserializable
+public final class GetUserResponse extends DictionaryResponse<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserResponse(Builder builder) {
+	public GetUserResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetUserResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -46,7 +54,7 @@ public final class GetUserResponse extends AdditionalProperties<String, User> {
 	/**
 	 * Builder for {@link GetUserResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, User, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, User, Builder>
 			implements
 				ObjectBuilder<GetUserResponse> {
 		@Override
@@ -71,14 +79,14 @@ public final class GetUserResponse extends AdditionalProperties<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetUserResponse
+	 * Json deserializer for {@link GetUserResponse}
 	 */
-	public static final JsonpDeserializer<GetUserResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetUserResponse::setupGetUserResponseDeserializer);
+	public static final JsonpDeserializer<GetUserResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetUserResponse::setupGetUserResponseDeserializer, Builder::build);
 
 	protected static void setupGetUserResponseDeserializer(DelegatingDeserializer<GetUserResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				User.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				User._DESERIALIZER);
 
 	}
 

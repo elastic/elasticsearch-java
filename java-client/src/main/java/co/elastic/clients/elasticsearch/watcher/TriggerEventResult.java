@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,8 +38,9 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TriggerEventResult
-public final class TriggerEventResult implements ToJsonp {
-	private final TriggerEventContainer manual;
+@JsonpDeserializable
+public final class TriggerEventResult implements JsonpSerializable {
+	private final TriggerEvent manual;
 
 	private final String triggeredTime;
 
@@ -46,7 +48,7 @@ public final class TriggerEventResult implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TriggerEventResult(Builder builder) {
+	public TriggerEventResult(Builder builder) {
 
 		this.manual = Objects.requireNonNull(builder.manual, "manual");
 		this.triggeredTime = Objects.requireNonNull(builder.triggeredTime, "triggered_time");
@@ -54,10 +56,14 @@ public final class TriggerEventResult implements ToJsonp {
 
 	}
 
+	public TriggerEventResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code manual}
 	 */
-	public TriggerEventContainer manual() {
+	public TriggerEvent manual() {
 		return this.manual;
 	}
 
@@ -78,16 +84,16 @@ public final class TriggerEventResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("manual");
-		this.manual.toJsonp(generator, mapper);
+		this.manual.serialize(generator, mapper);
 
 		generator.writeKey("triggered_time");
 		generator.write(this.triggeredTime);
@@ -103,7 +109,7 @@ public final class TriggerEventResult implements ToJsonp {
 	 * Builder for {@link TriggerEventResult}.
 	 */
 	public static class Builder implements ObjectBuilder<TriggerEventResult> {
-		private TriggerEventContainer manual;
+		private TriggerEvent manual;
 
 		private String triggeredTime;
 
@@ -112,7 +118,7 @@ public final class TriggerEventResult implements ToJsonp {
 		/**
 		 * API name: {@code manual}
 		 */
-		public Builder manual(TriggerEventContainer value) {
+		public Builder manual(TriggerEvent value) {
 			this.manual = value;
 			return this;
 		}
@@ -120,8 +126,8 @@ public final class TriggerEventResult implements ToJsonp {
 		/**
 		 * API name: {@code manual}
 		 */
-		public Builder manual(Function<TriggerEventContainer.Builder, ObjectBuilder<TriggerEventContainer>> fn) {
-			return this.manual(fn.apply(new TriggerEventContainer.Builder()).build());
+		public Builder manual(Function<TriggerEvent.Builder, ObjectBuilder<TriggerEvent>> fn) {
+			return this.manual(fn.apply(new TriggerEvent.Builder()).build());
 		}
 
 		/**
@@ -155,14 +161,14 @@ public final class TriggerEventResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TriggerEventResult
+	 * Json deserializer for {@link TriggerEventResult}
 	 */
-	public static final JsonpDeserializer<TriggerEventResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer);
+	public static final JsonpDeserializer<TriggerEventResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TriggerEventResult::setupTriggerEventResultDeserializer, Builder::build);
 
 	protected static void setupTriggerEventResultDeserializer(DelegatingDeserializer<TriggerEventResult.Builder> op) {
 
-		op.add(Builder::manual, TriggerEventContainer.DESERIALIZER, "manual");
+		op.add(Builder::manual, TriggerEvent._DESERIALIZER, "manual");
 		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

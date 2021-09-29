@@ -25,19 +25,23 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +54,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_template.Request
-public final class PutTemplateRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -63,10 +68,10 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final Map<String, Alias> aliases;
@@ -78,17 +83,17 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	private final TypeMapping mappings;
 
 	@Nullable
-	private final Number order;
+	private final Integer order;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Map<String, JsonData> settings;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTemplateRequest(Builder builder) {
+	public PutTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.create = builder.create;
@@ -96,16 +101,22 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		this.includeTypeName = builder.includeTypeName;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.aliases = builder.aliases;
-		this.indexPatterns = builder.indexPatterns;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.order = builder.order;
-		this.settings = builder.settings;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.version = builder.version;
 
 	}
 
+	public PutTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The name of the template
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -113,6 +124,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If true, this request cannot replace or update existing index templates.
+	 * <p>
 	 * API name: {@code create}
 	 */
 	@Nullable
@@ -129,6 +142,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether a type should be returned in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -137,10 +152,13 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -148,11 +166,13 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
+	 * Aliases for the index.
+	 * <p>
 	 * API name: {@code aliases}
 	 */
 	@Nullable
@@ -161,6 +181,9 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Array of wildcard expressions used to match the names of indices during
+	 * creation.
+	 * <p>
 	 * API name: {@code index_patterns}
 	 */
 	@Nullable
@@ -169,6 +192,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Mapping for fields in the index.
+	 * <p>
 	 * API name: {@code mappings}
 	 */
 	@Nullable
@@ -177,39 +202,50 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Order in which Elasticsearch applies this template if index matches multiple
+	 * templates.
+	 * <p>
+	 * Templates with lower 'order' values are merged first. Templates with higher
+	 * 'order' values are merged later, overriding templates with lower values.
+	 * <p>
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public Number order() {
+	public Integer order() {
 		return this.order;
 	}
 
 	/**
+	 * Configuration options for the index.
+	 * <p>
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
+	 * Version number used to manage index templates externally. This number is not
+	 * automatically generated by Elasticsearch.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -217,7 +253,7 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -237,22 +273,22 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		if (this.mappings != null) {
 
 			generator.writeKey("mappings");
-			this.mappings.toJsonp(generator, mapper);
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.order != null) {
 
 			generator.writeKey("order");
-			generator.write(this.order.doubleValue());
+			generator.write(this.order);
 
 		}
 		if (this.settings != null) {
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -261,7 +297,7 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -285,10 +321,10 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		private Boolean includeTypeName;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private Map<String, Alias> aliases;
@@ -300,15 +336,17 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		private TypeMapping mappings;
 
 		@Nullable
-		private Number order;
+		private Integer order;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Map<String, JsonData> settings;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		/**
+		 * The name of the template
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -317,6 +355,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If true, this request cannot replace or update existing index templates.
+		 * <p>
 		 * API name: {@code create}
 		 */
 		public Builder create(@Nullable Boolean value) {
@@ -333,6 +373,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether a type should be returned in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -341,9 +383,12 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -351,12 +396,14 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
+		 * Aliases for the index.
+		 * <p>
 		 * API name: {@code aliases}
 		 */
 		public Builder aliases(@Nullable Map<String, Alias> value) {
@@ -390,6 +437,9 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Array of wildcard expressions used to match the names of indices during
+		 * creation.
+		 * <p>
 		 * API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(@Nullable List<String> value) {
@@ -398,6 +448,9 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Array of wildcard expressions used to match the names of indices during
+		 * creation.
+		 * <p>
 		 * API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(String... value) {
@@ -406,7 +459,7 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -417,6 +470,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Mapping for fields in the index.
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(@Nullable TypeMapping value) {
@@ -425,6 +480,8 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Mapping for fields in the index.
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
@@ -432,17 +489,25 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Order in which Elasticsearch applies this template if index matches multiple
+		 * templates.
+		 * <p>
+		 * Templates with lower 'order' values are merged first. Templates with higher
+		 * 'order' values are merged later, overriding templates with lower values.
+		 * <p>
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable Number value) {
+		public Builder order(@Nullable Integer value) {
 			this.order = value;
 			return this;
 		}
 
 		/**
+		 * Configuration options for the index.
+		 * <p>
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -450,7 +515,7 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -459,9 +524,12 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Version number used to manage index templates externally. This number is not
+		 * automatically generated by Elasticsearch.
+		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -481,21 +549,20 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTemplateRequest
+	 * Json deserializer for {@link PutTemplateRequest}
 	 */
-	public static final JsonpDeserializer<PutTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTemplateRequest::setupPutTemplateRequestDeserializer);
+	public static final JsonpDeserializer<PutTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTemplateRequest::setupPutTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupPutTemplateRequestDeserializer(DelegatingDeserializer<PutTemplateRequest.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
-		op.add(Builder::order, JsonpDeserializer.numberDeserializer(), "order");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::order, JsonpDeserializer.integerDeserializer(), "order");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 
@@ -504,7 +571,7 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code indices.put_template}".
 	 */
-	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -517,17 +584,16 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -544,12 +610,12 @@ public final class PutTemplateRequest extends RequestBase implements ToJsonp {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTemplateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutTemplateResponse._DESERIALIZER);
 }

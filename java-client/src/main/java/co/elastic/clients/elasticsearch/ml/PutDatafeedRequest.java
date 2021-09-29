@@ -25,22 +25,25 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,17 +53,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_datafeed.Request
-public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -69,7 +74,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Map<String, AggregationContainer> aggregations;
+	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
 	private final ChunkingConfig chunkingConfig;
@@ -78,13 +83,10 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	private final DelayedDataCheckConfig delayedDataCheckConfig;
 
 	@Nullable
-	private final JsonValue frequency;
+	private final String frequency;
 
 	@Nullable
 	private final List<String> indices;
-
-	@Nullable
-	private final List<String> indexes;
 
 	@Nullable
 	private final DatafeedIndicesOptions indicesOptions;
@@ -93,13 +95,13 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	private final String jobId;
 
 	@Nullable
-	private final Number maxEmptySearches;
+	private final Integer maxEmptySearches;
 
 	@Nullable
-	private final QueryContainer query;
+	private final Query query;
 
 	@Nullable
-	private final JsonValue queryDelay;
+	private final String queryDelay;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -108,35 +110,40 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
-	private final Number scrollSize;
+	private final Integer scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutDatafeedRequest(Builder builder) {
+	public PutDatafeedRequest(Builder builder) {
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.chunkingConfig = builder.chunkingConfig;
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.frequency = builder.frequency;
-		this.indices = builder.indices;
-		this.indexes = builder.indexes;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
-		this.runtimeMappings = builder.runtimeMappings;
-		this.scriptFields = builder.scriptFields;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 
 	}
 
+	public PutDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the datafeed to create
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
@@ -144,6 +151,9 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Ignore if the source indices expressions resolves to no concrete indices
+	 * (default: true)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -152,14 +162,19 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether source index expressions should get expanded to open or closed
+	 * indices (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Ignore indices that are marked as throttled (default: true)
+	 * <p>
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
@@ -168,6 +183,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Ignore unavailable indexes (default: false)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -179,7 +196,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code aggregations}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggregations() {
+	public Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
@@ -203,7 +220,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public JsonValue frequency() {
+	public String frequency() {
 		return this.frequency;
 	}
 
@@ -213,14 +230,6 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	@Nullable
 	public List<String> indices() {
 		return this.indices;
-	}
-
-	/**
-	 * API name: {@code indexes}
-	 */
-	@Nullable
-	public List<String> indexes() {
-		return this.indexes;
 	}
 
 	/**
@@ -243,7 +252,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code max_empty_searches}
 	 */
 	@Nullable
-	public Number maxEmptySearches() {
+	public Integer maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
@@ -251,7 +260,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public QueryContainer query() {
+	public Query query() {
 		return this.query;
 	}
 
@@ -259,7 +268,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code query_delay}
 	 */
 	@Nullable
-	public JsonValue queryDelay() {
+	public String queryDelay() {
 		return this.queryDelay;
 	}
 
@@ -283,28 +292,28 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Number scrollSize() {
+	public Integer scrollSize() {
 		return this.scrollSize;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aggregations != null) {
 
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggregations.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -313,13 +322,13 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		if (this.chunkingConfig != null) {
 
 			generator.writeKey("chunking_config");
-			this.chunkingConfig.toJsonp(generator, mapper);
+			this.chunkingConfig.serialize(generator, mapper);
 
 		}
 		if (this.delayedDataCheckConfig != null) {
 
 			generator.writeKey("delayed_data_check_config");
-			this.delayedDataCheckConfig.toJsonp(generator, mapper);
+			this.delayedDataCheckConfig.serialize(generator, mapper);
 
 		}
 		if (this.frequency != null) {
@@ -339,21 +348,10 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 			generator.writeEnd();
 
 		}
-		if (this.indexes != null) {
-
-			generator.writeKey("indexes");
-			generator.writeStartArray();
-			for (String item0 : this.indexes) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.indicesOptions != null) {
 
 			generator.writeKey("indices_options");
-			this.indicesOptions.toJsonp(generator, mapper);
+			this.indicesOptions.serialize(generator, mapper);
 
 		}
 		if (this.jobId != null) {
@@ -365,13 +363,13 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		if (this.maxEmptySearches != null) {
 
 			generator.writeKey("max_empty_searches");
-			generator.write(this.maxEmptySearches.doubleValue());
+			generator.write(this.maxEmptySearches);
 
 		}
 		if (this.query != null) {
 
 			generator.writeKey("query");
-			this.query.toJsonp(generator, mapper);
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.queryDelay != null) {
@@ -386,7 +384,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -398,7 +396,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -407,7 +405,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		if (this.scrollSize != null) {
 
 			generator.writeKey("scroll_size");
-			generator.write(this.scrollSize.doubleValue());
+			generator.write(this.scrollSize);
 
 		}
 
@@ -425,7 +423,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -434,7 +432,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Map<String, AggregationContainer> aggregations;
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
 		private ChunkingConfig chunkingConfig;
@@ -443,13 +441,10 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		private DelayedDataCheckConfig delayedDataCheckConfig;
 
 		@Nullable
-		private JsonValue frequency;
+		private String frequency;
 
 		@Nullable
 		private List<String> indices;
-
-		@Nullable
-		private List<String> indexes;
 
 		@Nullable
 		private DatafeedIndicesOptions indicesOptions;
@@ -458,13 +453,13 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		private String jobId;
 
 		@Nullable
-		private Number maxEmptySearches;
+		private Integer maxEmptySearches;
 
 		@Nullable
-		private QueryContainer query;
+		private Query query;
 
 		@Nullable
-		private JsonValue queryDelay;
+		private String queryDelay;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -473,9 +468,11 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
-		private Number scrollSize;
+		private Integer scrollSize;
 
 		/**
+		 * The ID of the datafeed to create
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
@@ -484,6 +481,9 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Ignore if the source indices expressions resolves to no concrete indices
+		 * (default: true)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -492,14 +492,41 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether source index expressions should get expanded to open or closed
+		 * indices (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether source index expressions should get expanded to open or closed
+		 * indices (default: open)
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Ignore indices that are marked as throttled (default: true)
+		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
 		public Builder ignoreThrottled(@Nullable Boolean value) {
@@ -508,6 +535,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Ignore unavailable indexes (default: false)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -518,7 +547,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder aggregations(@Nullable Map<String, AggregationContainer> value) {
+		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -526,7 +555,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key, AggregationContainer value) {
+		public Builder putAggregations(String key, Aggregation value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -537,18 +566,15 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder aggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this
-					.aggregations(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggregations(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -585,7 +611,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(@Nullable JsonValue value) {
+		public Builder frequency(@Nullable String value) {
 			this.frequency = value;
 			return this;
 		}
@@ -607,40 +633,13 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
 				this.indices = new ArrayList<>();
 			}
 			this.indices.add(value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code indexes}
-		 */
-		public Builder indexes(@Nullable List<String> value) {
-			this.indexes = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code indexes}
-		 */
-		public Builder indexes(String... value) {
-			this.indexes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexes(List)}, creating the list if needed.
-		 */
-		public Builder addIndexes(String value) {
-			if (this.indexes == null) {
-				this.indexes = new ArrayList<>();
-			}
-			this.indexes.add(value);
 			return this;
 		}
 
@@ -671,7 +670,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(@Nullable Number value) {
+		public Builder maxEmptySearches(@Nullable Integer value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
@@ -679,7 +678,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable QueryContainer value) {
+		public Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -687,14 +686,14 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.query(fn.apply(new QueryContainer.Builder()).build());
+		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code query_delay}
 		 */
-		public Builder queryDelay(@Nullable JsonValue value) {
+		public Builder queryDelay(@Nullable String value) {
 			this.queryDelay = value;
 			return this;
 		}
@@ -768,7 +767,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Number value) {
+		public Builder scrollSize(@Nullable Integer value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -788,32 +787,30 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutDatafeedRequest
+	 * Json deserializer for {@link PutDatafeedRequest}
 	 */
-	public static final JsonpDeserializer<PutDatafeedRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer);
+	public static final JsonpDeserializer<PutDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer, Builder::build);
 
 	protected static void setupPutDatafeedRequestDeserializer(DelegatingDeserializer<PutDatafeedRequest.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
-		op.add(Builder::chunkingConfig, ChunkingConfig.DESERIALIZER, "chunking_config");
-		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig.DESERIALIZER, "delayed_data_check_config");
-		op.add(Builder::frequency, JsonpDeserializer.jsonValueDeserializer(), "frequency");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"indices");
-		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
+		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
+		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions.DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::maxEmptySearches, JsonpDeserializer.numberDeserializer(), "max_empty_searches");
-		op.add(Builder::query, QueryContainer.DESERIALIZER, "query");
-		op.add(Builder::queryDelay, JsonpDeserializer.jsonValueDeserializer(), "query_delay");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField.DESERIALIZER),
+		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
-		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField.DESERIALIZER),
+		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
-		op.add(Builder::scrollSize, JsonpDeserializer.numberDeserializer(), "scroll_size");
+		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
 
 	}
 
@@ -822,7 +819,7 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.put_datafeed}".
 	 */
-	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -835,18 +832,17 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
-					propsSet |= _datafeedId;
+				propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -857,7 +853,8 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreThrottled != null) {
 					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
@@ -867,5 +864,5 @@ public final class PutDatafeedRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutDatafeedResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutDatafeedResponse._DESERIALIZER);
 }

@@ -24,34 +24,41 @@
 package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardPath
-public final class ShardPath implements ToJsonp {
+@JsonpDeserializable
+public final class ShardPath implements JsonpSerializable {
 	private final String dataPath;
 
-	private final Boolean isCustomDataPath;
+	private final boolean isCustomDataPath;
 
 	private final String statePath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardPath(Builder builder) {
+	public ShardPath(Builder builder) {
 
 		this.dataPath = Objects.requireNonNull(builder.dataPath, "data_path");
 		this.isCustomDataPath = Objects.requireNonNull(builder.isCustomDataPath, "is_custom_data_path");
 		this.statePath = Objects.requireNonNull(builder.statePath, "state_path");
 
+	}
+
+	public ShardPath(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,7 +71,7 @@ public final class ShardPath implements ToJsonp {
 	/**
 	 * API name: {@code is_custom_data_path}
 	 */
-	public Boolean isCustomDataPath() {
+	public boolean isCustomDataPath() {
 		return this.isCustomDataPath;
 	}
 
@@ -78,13 +85,13 @@ public final class ShardPath implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("data_path");
 		generator.write(this.dataPath);
@@ -120,7 +127,7 @@ public final class ShardPath implements ToJsonp {
 		/**
 		 * API name: {@code is_custom_data_path}
 		 */
-		public Builder isCustomDataPath(Boolean value) {
+		public Builder isCustomDataPath(boolean value) {
 			this.isCustomDataPath = value;
 			return this;
 		}
@@ -148,10 +155,10 @@ public final class ShardPath implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardPath
+	 * Json deserializer for {@link ShardPath}
 	 */
-	public static final JsonpDeserializer<ShardPath> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardPath::setupShardPathDeserializer);
+	public static final JsonpDeserializer<ShardPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardPath::setupShardPathDeserializer, Builder::build);
 
 	protected static void setupShardPathDeserializer(DelegatingDeserializer<ShardPath.Builder> op) {
 

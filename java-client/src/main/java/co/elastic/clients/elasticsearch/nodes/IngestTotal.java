@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,47 +42,52 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.IngestTotal
-public final class IngestTotal implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class IngestTotal implements JsonpSerializable {
+	private final long count;
 
-	private final Number current;
+	private final long current;
 
-	private final Number failed;
+	private final long failed;
 
 	private final List<KeyedProcessor> processors;
 
-	private final Number timeInMillis;
+	private final long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IngestTotal(Builder builder) {
+	public IngestTotal(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.current = Objects.requireNonNull(builder.current, "current");
 		this.failed = Objects.requireNonNull(builder.failed, "failed");
-		this.processors = Objects.requireNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
 		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
 
+	}
+
+	public IngestTotal(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code current}
 	 */
-	public Number current() {
+	public long current() {
 		return this.current;
 	}
 
 	/**
 	 * API name: {@code failed}
 	 */
-	public Number failed() {
+	public long failed() {
 		return this.failed;
 	}
 
@@ -94,40 +101,40 @@ public final class IngestTotal implements ToJsonp {
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Number timeInMillis() {
+	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("current");
-		generator.write(this.current.doubleValue());
+		generator.write(this.current);
 
 		generator.writeKey("failed");
-		generator.write(this.failed.doubleValue());
+		generator.write(this.failed);
 
 		generator.writeKey("processors");
 		generator.writeStartArray();
 		for (KeyedProcessor item0 : this.processors) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis.doubleValue());
+		generator.write(this.timeInMillis);
 
 	}
 
@@ -137,20 +144,20 @@ public final class IngestTotal implements ToJsonp {
 	 * Builder for {@link IngestTotal}.
 	 */
 	public static class Builder implements ObjectBuilder<IngestTotal> {
-		private Number count;
+		private Long count;
 
-		private Number current;
+		private Long current;
 
-		private Number failed;
+		private Long failed;
 
 		private List<KeyedProcessor> processors;
 
-		private Number timeInMillis;
+		private Long timeInMillis;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -158,7 +165,7 @@ public final class IngestTotal implements ToJsonp {
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Number value) {
+		public Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -166,7 +173,7 @@ public final class IngestTotal implements ToJsonp {
 		/**
 		 * API name: {@code failed}
 		 */
-		public Builder failed(Number value) {
+		public Builder failed(long value) {
 			this.failed = value;
 			return this;
 		}
@@ -188,7 +195,7 @@ public final class IngestTotal implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
 		public Builder addProcessors(KeyedProcessor value) {
 			if (this.processors == null) {
@@ -206,7 +213,7 @@ public final class IngestTotal implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
 		 */
 		public Builder addProcessors(Function<KeyedProcessor.Builder, ObjectBuilder<KeyedProcessor>> fn) {
 			return this.addProcessors(fn.apply(new KeyedProcessor.Builder()).build());
@@ -215,7 +222,7 @@ public final class IngestTotal implements ToJsonp {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Number value) {
+		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -235,18 +242,18 @@ public final class IngestTotal implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IngestTotal
+	 * Json deserializer for {@link IngestTotal}
 	 */
-	public static final JsonpDeserializer<IngestTotal> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IngestTotal::setupIngestTotalDeserializer);
+	public static final JsonpDeserializer<IngestTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IngestTotal::setupIngestTotalDeserializer, Builder::build);
 
 	protected static void setupIngestTotalDeserializer(DelegatingDeserializer<IngestTotal.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
-		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(KeyedProcessor.DESERIALIZER), "processors");
-		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
+		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(KeyedProcessor._DESERIALIZER), "processors");
+		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}
 

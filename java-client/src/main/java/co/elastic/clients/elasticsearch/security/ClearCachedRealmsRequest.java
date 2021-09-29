@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,10 +41,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_realms.Request
+
 public final class ClearCachedRealmsRequest extends RequestBase {
 	private final List<String> realms;
 
@@ -50,14 +55,20 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedRealmsRequest(Builder builder) {
+	public ClearCachedRealmsRequest(Builder builder) {
 
-		this.realms = Objects.requireNonNull(builder.realms, "realms");
-		this.usernames = builder.usernames;
+		this.realms = ModelTypeHelper.unmodifiableNonNull(builder.realms, "realms");
+		this.usernames = ModelTypeHelper.unmodifiable(builder.usernames);
 
 	}
 
+	public ClearCachedRealmsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Comma-separated list of realms to clear
+	 * <p>
 	 * API name: {@code realms}
 	 */
 	public List<String> realms() {
@@ -65,6 +76,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	}
 
 	/**
+	 * Comma-separated list of usernames to clear from the cache
+	 * <p>
 	 * API name: {@code usernames}
 	 */
 	@Nullable
@@ -84,6 +97,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		private List<String> usernames;
 
 		/**
+		 * Comma-separated list of realms to clear
+		 * <p>
 		 * API name: {@code realms}
 		 */
 		public Builder realms(List<String> value) {
@@ -92,6 +107,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of realms to clear
+		 * <p>
 		 * API name: {@code realms}
 		 */
 		public Builder realms(String... value) {
@@ -100,7 +117,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #realms(List)}, creating the list if needed.
+		 * Add a value to {@link #realms(List)}, creating the list if needed. 4
 		 */
 		public Builder addRealms(String value) {
 			if (this.realms == null) {
@@ -111,6 +128,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of usernames to clear from the cache
+		 * <p>
 		 * API name: {@code usernames}
 		 */
 		public Builder usernames(@Nullable List<String> value) {
@@ -119,6 +138,8 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
+		 * Comma-separated list of usernames to clear from the cache
+		 * <p>
 		 * API name: {@code usernames}
 		 */
 		public Builder usernames(String... value) {
@@ -127,7 +148,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #usernames(List)}, creating the list if needed.
+		 * Add a value to {@link #usernames(List)}, creating the list if needed. 4
 		 */
 		public Builder addUsernames(String value) {
 			if (this.usernames == null) {
@@ -154,7 +175,7 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_realms}".
 	 */
-	public static final Endpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -167,19 +188,19 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.realms() != null)
-					propsSet |= _realms;
+				propsSet |= _realms;
 
 				if (propsSet == (_realms)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/realm");
 					buf.append("/");
-					buf.append(request.realms.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.realms.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -191,5 +212,5 @@ public final class ClearCachedRealmsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedRealmsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedRealmsResponse._DESERIALIZER);
 }

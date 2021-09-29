@@ -24,14 +24,17 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +42,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobForecastStatistics
-public final class JobForecastStatistics implements ToJsonp {
+@JsonpDeserializable
+public final class JobForecastStatistics implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics memoryBytes;
 
@@ -50,23 +54,27 @@ public final class JobForecastStatistics implements ToJsonp {
 	private final JobStatistics records;
 
 	@Nullable
-	private final Map<String, Number> status;
+	private final Map<String, Long> status;
 
-	private final Number total;
+	private final long total;
 
-	private final Number forecastedJobs;
+	private final int forecastedJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JobForecastStatistics(Builder builder) {
+	public JobForecastStatistics(Builder builder) {
 
 		this.memoryBytes = builder.memoryBytes;
 		this.processingTimeMs = builder.processingTimeMs;
 		this.records = builder.records;
-		this.status = builder.status;
+		this.status = ModelTypeHelper.unmodifiable(builder.status);
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.forecastedJobs = Objects.requireNonNull(builder.forecastedJobs, "forecasted_jobs");
 
+	}
+
+	public JobForecastStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -97,60 +105,60 @@ public final class JobForecastStatistics implements ToJsonp {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public Map<String, Number> status() {
+	public Map<String, Long> status() {
 		return this.status;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code forecasted_jobs}
 	 */
-	public Number forecastedJobs() {
+	public int forecastedJobs() {
 		return this.forecastedJobs;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memoryBytes != null) {
 
 			generator.writeKey("memory_bytes");
-			this.memoryBytes.toJsonp(generator, mapper);
+			this.memoryBytes.serialize(generator, mapper);
 
 		}
 		if (this.processingTimeMs != null) {
 
 			generator.writeKey("processing_time_ms");
-			this.processingTimeMs.toJsonp(generator, mapper);
+			this.processingTimeMs.serialize(generator, mapper);
 
 		}
 		if (this.records != null) {
 
 			generator.writeKey("records");
-			this.records.toJsonp(generator, mapper);
+			this.records.serialize(generator, mapper);
 
 		}
 		if (this.status != null) {
 
 			generator.writeKey("status");
 			generator.writeStartObject();
-			for (Map.Entry<String, Number> item0 : this.status.entrySet()) {
+			for (Map.Entry<String, Long> item0 : this.status.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue().doubleValue());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -158,10 +166,10 @@ public final class JobForecastStatistics implements ToJsonp {
 		}
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("forecasted_jobs");
-		generator.write(this.forecastedJobs.doubleValue());
+		generator.write(this.forecastedJobs);
 
 	}
 
@@ -181,11 +189,11 @@ public final class JobForecastStatistics implements ToJsonp {
 		private JobStatistics records;
 
 		@Nullable
-		private Map<String, Number> status;
+		private Map<String, Long> status;
 
-		private Number total;
+		private Long total;
 
-		private Number forecastedJobs;
+		private Integer forecastedJobs;
 
 		/**
 		 * API name: {@code memory_bytes}
@@ -235,7 +243,7 @@ public final class JobForecastStatistics implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable Map<String, Number> value) {
+		public Builder status(@Nullable Map<String, Long> value) {
 			this.status = value;
 			return this;
 		}
@@ -243,7 +251,7 @@ public final class JobForecastStatistics implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #status(Map)}, creating the map if needed.
 		 */
-		public Builder putStatus(String key, Number value) {
+		public Builder putStatus(String key, Long value) {
 			if (this.status == null) {
 				this.status = new HashMap<>();
 			}
@@ -254,7 +262,7 @@ public final class JobForecastStatistics implements ToJsonp {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -262,7 +270,7 @@ public final class JobForecastStatistics implements ToJsonp {
 		/**
 		 * API name: {@code forecasted_jobs}
 		 */
-		public Builder forecastedJobs(Number value) {
+		public Builder forecastedJobs(int value) {
 			this.forecastedJobs = value;
 			return this;
 		}
@@ -282,21 +290,21 @@ public final class JobForecastStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JobForecastStatistics
+	 * Json deserializer for {@link JobForecastStatistics}
 	 */
-	public static final JsonpDeserializer<JobForecastStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer);
+	public static final JsonpDeserializer<JobForecastStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer, Builder::build);
 
 	protected static void setupJobForecastStatisticsDeserializer(
 			DelegatingDeserializer<JobForecastStatistics.Builder> op) {
 
-		op.add(Builder::memoryBytes, JobStatistics.DESERIALIZER, "memory_bytes");
-		op.add(Builder::processingTimeMs, JobStatistics.DESERIALIZER, "processing_time_ms");
-		op.add(Builder::records, JobStatistics.DESERIALIZER, "records");
-		op.add(Builder::status, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::memoryBytes, JobStatistics._DESERIALIZER, "memory_bytes");
+		op.add(Builder::processingTimeMs, JobStatistics._DESERIALIZER, "processing_time_ms");
+		op.add(Builder::records, JobStatistics._DESERIALIZER, "records");
+		op.add(Builder::status, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
 				"status");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
-		op.add(Builder::forecastedJobs, JsonpDeserializer.numberDeserializer(), "forecasted_jobs");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
+		op.add(Builder::forecastedJobs, JsonpDeserializer.integerDeserializer(), "forecasted_jobs");
 
 	}
 

@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,23 +36,29 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.delete.Request
+
 public final class DeleteRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRequest(Builder builder) {
+	public DeleteRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
 	}
 
+	public DeleteRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Identifier for the search to delete.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -67,7 +75,7 @@ public final class DeleteRequest extends RequestBase {
 
 		/**
 		 * Identifier for the search to delete.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -92,7 +100,7 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code eql.delete}".
 	 */
-	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -105,18 +113,17 @@ public final class DeleteRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_eql");
 					buf.append("/search");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -124,5 +131,5 @@ public final class DeleteRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER);
 }

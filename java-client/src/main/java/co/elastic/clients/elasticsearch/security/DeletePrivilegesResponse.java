@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.security.delete_privileges.FoundStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,14 +34,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.delete_privileges.Response
-public final class DeletePrivilegesResponse extends AdditionalProperties<String, Map<String, FoundStatus>> {
+@JsonpDeserializable
+public final class DeletePrivilegesResponse extends DictionaryResponse<String, Map<String, FoundStatus>> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePrivilegesResponse(Builder builder) {
+	public DeletePrivilegesResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeletePrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -48,7 +56,7 @@ public final class DeletePrivilegesResponse extends AdditionalProperties<String,
 	/**
 	 * Builder for {@link DeletePrivilegesResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Map<String, FoundStatus>, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, FoundStatus>, Builder>
 			implements
 				ObjectBuilder<DeletePrivilegesResponse> {
 		@Override
@@ -73,15 +81,15 @@ public final class DeletePrivilegesResponse extends AdditionalProperties<String,
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeletePrivilegesResponse
+	 * Json deserializer for {@link DeletePrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<DeletePrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<DeletePrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeletePrivilegesResponse::setupDeletePrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupDeletePrivilegesResponseDeserializer(
 			DelegatingDeserializer<DeletePrivilegesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				JsonpDeserializer.stringMapDeserializer(FoundStatus.DESERIALIZER));
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				JsonpDeserializer.stringMapDeserializer(FoundStatus._DESERIALIZER));
 
 	}
 

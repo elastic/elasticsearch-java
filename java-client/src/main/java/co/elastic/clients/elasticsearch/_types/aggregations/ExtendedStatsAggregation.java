@@ -24,42 +24,60 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
-public final class ExtendedStatsAggregation extends FormatMetricAggregationBase {
+@JsonpDeserializable
+public final class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number sigma;
+	private final Double sigma;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExtendedStatsAggregation(Builder builder) {
+	public ExtendedStatsAggregation(Builder builder) {
 		super(builder);
+
 		this.sigma = builder.sigma;
 
+	}
+
+	public ExtendedStatsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "extended_stats";
 	}
 
 	/**
 	 * API name: {@code sigma}
 	 */
 	@Nullable
-	public Number sigma() {
+	public Double sigma() {
 		return this.sigma;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.sigma != null) {
 
 			generator.writeKey("sigma");
-			generator.write(this.sigma.doubleValue());
+			generator.write(this.sigma);
 
 		}
 
@@ -74,12 +92,12 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 			implements
 				ObjectBuilder<ExtendedStatsAggregation> {
 		@Nullable
-		private Number sigma;
+		private Double sigma;
 
 		/**
 		 * API name: {@code sigma}
 		 */
-		public Builder sigma(@Nullable Number value) {
+		public Builder sigma(@Nullable Double value) {
 			this.sigma = value;
 			return this;
 		}
@@ -104,15 +122,15 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExtendedStatsAggregation
+	 * Json deserializer for {@link ExtendedStatsAggregation}
 	 */
-	public static final JsonpDeserializer<ExtendedStatsAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer);
+	public static final JsonpDeserializer<ExtendedStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer, Builder::build);
 
 	protected static void setupExtendedStatsAggregationDeserializer(
 			DelegatingDeserializer<ExtendedStatsAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::sigma, JsonpDeserializer.numberDeserializer(), "sigma");
+		op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
 
 	}
 

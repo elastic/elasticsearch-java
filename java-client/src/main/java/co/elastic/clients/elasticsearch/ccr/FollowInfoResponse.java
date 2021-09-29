@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch.ccr.follow_info.FollowerIndex;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,15 +42,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.Response
-public final class FollowInfoResponse implements ToJsonp {
+@JsonpDeserializable
+public final class FollowInfoResponse implements JsonpSerializable {
 	private final List<FollowerIndex> followerIndices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FollowInfoResponse(Builder builder) {
+	public FollowInfoResponse(Builder builder) {
 
-		this.followerIndices = Objects.requireNonNull(builder.followerIndices, "follower_indices");
+		this.followerIndices = ModelTypeHelper.unmodifiableNonNull(builder.followerIndices, "follower_indices");
 
+	}
+
+	public FollowInfoResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,18 +68,18 @@ public final class FollowInfoResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("follower_indices");
 		generator.writeStartArray();
 		for (FollowerIndex item0 : this.followerIndices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -104,7 +111,7 @@ public final class FollowInfoResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #followerIndices(List)}, creating the list if needed.
+		 * Add a value to {@link #followerIndices(List)}, creating the list if needed. 4
 		 */
 		public Builder addFollowerIndices(FollowerIndex value) {
 			if (this.followerIndices == null) {
@@ -122,7 +129,7 @@ public final class FollowInfoResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #followerIndices(List)}, creating the list if needed.
+		 * Add a value to {@link #followerIndices(List)}, creating the list if needed. 5
 		 */
 		public Builder addFollowerIndices(Function<FollowerIndex.Builder, ObjectBuilder<FollowerIndex>> fn) {
 			return this.addFollowerIndices(fn.apply(new FollowerIndex.Builder()).build());
@@ -143,14 +150,14 @@ public final class FollowInfoResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FollowInfoResponse
+	 * Json deserializer for {@link FollowInfoResponse}
 	 */
-	public static final JsonpDeserializer<FollowInfoResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FollowInfoResponse::setupFollowInfoResponseDeserializer);
+	public static final JsonpDeserializer<FollowInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FollowInfoResponse::setupFollowInfoResponseDeserializer, Builder::build);
 
 	protected static void setupFollowInfoResponseDeserializer(DelegatingDeserializer<FollowInfoResponse.Builder> op) {
 
-		op.add(Builder::followerIndices, JsonpDeserializer.arrayDeserializer(FollowerIndex.DESERIALIZER),
+		op.add(Builder::followerIndices, JsonpDeserializer.arrayDeserializer(FollowerIndex._DESERIALIZER),
 				"follower_indices");
 
 	}

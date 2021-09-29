@@ -24,43 +24,76 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoundingBox
-public final class BoundingBox implements ToJsonp {
+@JsonpDeserializable
+public final class BoundingBox implements JsonpSerializable {
 	@Nullable
-	private final JsonValue bottomRight;
+	private final JsonValue /* _types.query_dsl.GeoLocation */ bottomRight;
 
 	@Nullable
-	private final JsonValue topLeft;
+	private final JsonValue /* _types.query_dsl.GeoLocation */ topLeft;
+
+	@Nullable
+	private final JsonValue /* _types.query_dsl.GeoLocation */ topRight;
+
+	@Nullable
+	private final JsonValue /* _types.query_dsl.GeoLocation */ bottomLeft;
+
+	@Nullable
+	private final Double top;
+
+	@Nullable
+	private final Double left;
+
+	@Nullable
+	private final Double right;
+
+	@Nullable
+	private final Double bottom;
 
 	@Nullable
 	private final String wkt;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BoundingBox(Builder builder) {
+	public BoundingBox(Builder builder) {
 
 		this.bottomRight = builder.bottomRight;
 		this.topLeft = builder.topLeft;
+		this.topRight = builder.topRight;
+		this.bottomLeft = builder.bottomLeft;
+		this.top = builder.top;
+		this.left = builder.left;
+		this.right = builder.right;
+		this.bottom = builder.bottom;
 		this.wkt = builder.wkt;
 
+	}
+
+	public BoundingBox(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code bottom_right}
 	 */
 	@Nullable
-	public JsonValue bottomRight() {
+	public JsonValue /* _types.query_dsl.GeoLocation */ bottomRight() {
 		return this.bottomRight;
 	}
 
@@ -68,8 +101,56 @@ public final class BoundingBox implements ToJsonp {
 	 * API name: {@code top_left}
 	 */
 	@Nullable
-	public JsonValue topLeft() {
+	public JsonValue /* _types.query_dsl.GeoLocation */ topLeft() {
 		return this.topLeft;
+	}
+
+	/**
+	 * API name: {@code top_right}
+	 */
+	@Nullable
+	public JsonValue /* _types.query_dsl.GeoLocation */ topRight() {
+		return this.topRight;
+	}
+
+	/**
+	 * API name: {@code bottom_left}
+	 */
+	@Nullable
+	public JsonValue /* _types.query_dsl.GeoLocation */ bottomLeft() {
+		return this.bottomLeft;
+	}
+
+	/**
+	 * API name: {@code top}
+	 */
+	@Nullable
+	public Double top() {
+		return this.top;
+	}
+
+	/**
+	 * API name: {@code left}
+	 */
+	@Nullable
+	public Double left() {
+		return this.left;
+	}
+
+	/**
+	 * API name: {@code right}
+	 */
+	@Nullable
+	public Double right() {
+		return this.right;
+	}
+
+	/**
+	 * API name: {@code bottom}
+	 */
+	@Nullable
+	public Double bottom() {
+		return this.bottom;
 	}
 
 	/**
@@ -83,13 +164,13 @@ public final class BoundingBox implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.bottomRight != null) {
 
@@ -101,6 +182,42 @@ public final class BoundingBox implements ToJsonp {
 
 			generator.writeKey("top_left");
 			generator.write(this.topLeft);
+
+		}
+		if (this.topRight != null) {
+
+			generator.writeKey("top_right");
+			generator.write(this.topRight);
+
+		}
+		if (this.bottomLeft != null) {
+
+			generator.writeKey("bottom_left");
+			generator.write(this.bottomLeft);
+
+		}
+		if (this.top != null) {
+
+			generator.writeKey("top");
+			generator.write(this.top);
+
+		}
+		if (this.left != null) {
+
+			generator.writeKey("left");
+			generator.write(this.left);
+
+		}
+		if (this.right != null) {
+
+			generator.writeKey("right");
+			generator.write(this.right);
+
+		}
+		if (this.bottom != null) {
+
+			generator.writeKey("bottom");
+			generator.write(this.bottom);
 
 		}
 		if (this.wkt != null) {
@@ -119,10 +236,28 @@ public final class BoundingBox implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<BoundingBox> {
 		@Nullable
-		private JsonValue bottomRight;
+		private JsonValue /* _types.query_dsl.GeoLocation */ bottomRight;
 
 		@Nullable
-		private JsonValue topLeft;
+		private JsonValue /* _types.query_dsl.GeoLocation */ topLeft;
+
+		@Nullable
+		private JsonValue /* _types.query_dsl.GeoLocation */ topRight;
+
+		@Nullable
+		private JsonValue /* _types.query_dsl.GeoLocation */ bottomLeft;
+
+		@Nullable
+		private Double top;
+
+		@Nullable
+		private Double left;
+
+		@Nullable
+		private Double right;
+
+		@Nullable
+		private Double bottom;
 
 		@Nullable
 		private String wkt;
@@ -130,7 +265,7 @@ public final class BoundingBox implements ToJsonp {
 		/**
 		 * API name: {@code bottom_right}
 		 */
-		public Builder bottomRight(@Nullable JsonValue value) {
+		public Builder bottomRight(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.bottomRight = value;
 			return this;
 		}
@@ -138,8 +273,56 @@ public final class BoundingBox implements ToJsonp {
 		/**
 		 * API name: {@code top_left}
 		 */
-		public Builder topLeft(@Nullable JsonValue value) {
+		public Builder topLeft(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.topLeft = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code top_right}
+		 */
+		public Builder topRight(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+			this.topRight = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code bottom_left}
+		 */
+		public Builder bottomLeft(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+			this.bottomLeft = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code top}
+		 */
+		public Builder top(@Nullable Double value) {
+			this.top = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code left}
+		 */
+		public Builder left(@Nullable Double value) {
+			this.left = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code right}
+		 */
+		public Builder right(@Nullable Double value) {
+			this.right = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code bottom}
+		 */
+		public Builder bottom(@Nullable Double value) {
+			this.bottom = value;
 			return this;
 		}
 
@@ -166,15 +349,21 @@ public final class BoundingBox implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BoundingBox
+	 * Json deserializer for {@link BoundingBox}
 	 */
-	public static final JsonpDeserializer<BoundingBox> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BoundingBox::setupBoundingBoxDeserializer);
+	public static final JsonpDeserializer<BoundingBox> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BoundingBox::setupBoundingBoxDeserializer, Builder::build);
 
 	protected static void setupBoundingBoxDeserializer(DelegatingDeserializer<BoundingBox.Builder> op) {
 
 		op.add(Builder::bottomRight, JsonpDeserializer.jsonValueDeserializer(), "bottom_right");
 		op.add(Builder::topLeft, JsonpDeserializer.jsonValueDeserializer(), "top_left");
+		op.add(Builder::topRight, JsonpDeserializer.jsonValueDeserializer(), "top_right");
+		op.add(Builder::bottomLeft, JsonpDeserializer.jsonValueDeserializer(), "bottom_left");
+		op.add(Builder::top, JsonpDeserializer.doubleDeserializer(), "top");
+		op.add(Builder::left, JsonpDeserializer.doubleDeserializer(), "left");
+		op.add(Builder::right, JsonpDeserializer.doubleDeserializer(), "right");
+		op.add(Builder::bottom, JsonpDeserializer.doubleDeserializer(), "bottom");
 		op.add(Builder::wkt, JsonpDeserializer.stringDeserializer(), "wkt");
 
 	}

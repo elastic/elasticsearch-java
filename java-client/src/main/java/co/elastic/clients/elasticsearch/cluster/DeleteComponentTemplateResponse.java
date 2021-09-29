@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.delete_component_template.Response
+@JsonpDeserializable
 public final class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteComponentTemplateResponse(Builder builder) {
+	public DeleteComponentTemplateResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteComponentTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,11 +76,11 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteComponentTemplateResponse
+	 * Json deserializer for {@link DeleteComponentTemplateResponse}
 	 */
-	public static final JsonpDeserializer<DeleteComponentTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer);
+	public static final JsonpDeserializer<DeleteComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer,
+					Builder::build);
 
 	protected static void setupDeleteComponentTemplateResponseDeserializer(
 			DelegatingDeserializer<DeleteComponentTemplateResponse.Builder> op) {
