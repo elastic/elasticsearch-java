@@ -26,7 +26,11 @@ public class ApiException extends IOException {
   // Subclasses of java.lang.Throwable cannot have generic parameters
   // https://docs.oracle.com/javase/specs/jls/se10/html/jls-8.html#jls-8.1.2-310
 
-  public final Object error;
+  private final Object error;
+
+  public Object error() {
+    return this.error;
+  }
 
   public ApiException(Object error) {
     this.error = error;

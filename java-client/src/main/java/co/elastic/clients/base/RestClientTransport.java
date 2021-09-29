@@ -167,7 +167,8 @@ public class RestClientTransport implements Transport {
 
             clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), ContentType.APPLICATION_JSON));
         }
-
+        // Request parameter intercepted by LLRC
+        clientReq.addParameter("ignore", "400,401,403,404,405");
         return clientReq;
     }
 

@@ -19,50 +19,120 @@
 
 package co.elastic.clients.base;
 
+import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
+import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
-public class ElasticsearchError {
+@JsonpDeserializable
+public final class ElasticsearchError implements JsonpSerializable {
+  private final int status;
 
-  // TODO: add fields for the detailed representation of errors
-  // See org.elasticsearch.rest.BytesRestResponse.build() and ElasticsearchException
+  private final JsonValue error;
 
-  private int status;
-  private String error;
+  // ---------------------------------------------------------------------------------------------
 
-  private ElasticsearchError() {}
+  public ElasticsearchError(ElasticsearchError.Builder builder) {
 
-  public ElasticsearchError(int status, String error) {
-    this.status = status;
-    this.error = error;
+    this.status = Objects.requireNonNull(builder.status, "status");
+    this.error = Objects.requireNonNull(builder.error, "error");
+
   }
 
+  public ElasticsearchError(Function<ElasticsearchError.Builder, ElasticsearchError.Builder> fn) {
+    this(fn.apply(new ElasticsearchError.Builder()));
+  }
+
+  /**
+   * API name: {@code status}
+   */
   public int status() {
     return this.status;
   }
 
-  private void status(int status) {
-    this.status = status;
-  }
-
-  public String error() {
+  /**
+   * API name: {@code error}
+   */
+  public JsonValue error() {
     return this.error;
   }
 
-  private void error(String error) {
-    this.error = error;
+  /**
+   * Serialize this object to JSON.
+   */
+  public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+    generator.writeStartObject();
+    serializeInternal(generator, mapper);
+    generator.writeEnd();
   }
 
-  public static final JsonpDeserializer<ElasticsearchError> PARSER;
+  protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-  static {
-    ObjectDeserializer<ElasticsearchError> op = new ObjectDeserializer<>(
-        ElasticsearchError::new
-    );
+    generator.writeKey("status");
+    generator.write(this.status);
 
-    op.add(ElasticsearchError::status, "status");
-    op.add(ElasticsearchError::error, JsonpDeserializer.stringDeserializer(), "error");
+    generator.writeKey("error");
+    generator.write(this.error);
 
-    PARSER = op;
+  }
+
+  // ---------------------------------------------------------------------------------------------
+
+  /**
+   * Builder for {@link ElasticsearchError}.
+   */
+  public static class Builder implements ObjectBuilder<ElasticsearchError> {
+    private Integer status;
+
+    private JsonValue error;
+
+    /**
+     * API name: {@code status}
+     */
+    public ElasticsearchError.Builder status(int value) {
+      this.status = value;
+      return this;
+    }
+
+    /**
+     * API name: {@code error}
+     */
+    public ElasticsearchError.Builder error(JsonValue value) {
+      this.error = value;
+      return this;
+    }
+
+    /**
+     * Builds a {@link ElasticsearchError}.
+     *
+     * @throws NullPointerException
+     *             if some of the required fields are null.
+     */
+    public ElasticsearchError build() {
+
+      return new ElasticsearchError(this);
+    }
+  }
+
+  // ---------------------------------------------------------------------------------------------
+
+  /**
+   * Json deserializer for {@link ElasticsearchError}
+   */
+  public static final JsonpDeserializer<ElasticsearchError> _DESERIALIZER = ObjectBuilderDeserializer
+      .lazy(ElasticsearchError.Builder::new, ElasticsearchError::setupElasticsearchErrorDeserializer, ElasticsearchError.Builder::build);
+
+  protected static void setupElasticsearchErrorDeserializer(DelegatingDeserializer<ElasticsearchError.Builder> op) {
+
+    op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
+    op.add(ElasticsearchError.Builder::error, JsonpDeserializer.jsonValueDeserializer(), "error");
+
   }
 }
