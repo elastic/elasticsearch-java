@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.flush.Response
+@JsonpDeserializable
 public final class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected FlushResponse(Builder builder) {
+	public FlushResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public FlushResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FlushResponse
+	 * Json deserializer for {@link FlushResponse}
 	 */
-	public static final JsonpDeserializer<FlushResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FlushResponse::setupFlushResponseDeserializer);
+	public static final JsonpDeserializer<FlushResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FlushResponse::setupFlushResponseDeserializer, Builder::build);
 
 	protected static void setupFlushResponseDeserializer(DelegatingDeserializer<FlushResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);

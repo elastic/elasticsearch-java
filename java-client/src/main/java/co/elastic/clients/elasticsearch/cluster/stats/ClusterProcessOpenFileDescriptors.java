@@ -24,28 +24,30 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessOpenFileDescriptors
-public final class ClusterProcessOpenFileDescriptors implements ToJsonp {
-	private final Number avg;
+@JsonpDeserializable
+public final class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
+	private final long avg;
 
-	private final Number max;
+	private final long max;
 
-	private final Number min;
+	private final long min;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterProcessOpenFileDescriptors(Builder builder) {
+	public ClusterProcessOpenFileDescriptors(Builder builder) {
 
 		this.avg = Objects.requireNonNull(builder.avg, "avg");
 		this.max = Objects.requireNonNull(builder.max, "max");
@@ -53,46 +55,50 @@ public final class ClusterProcessOpenFileDescriptors implements ToJsonp {
 
 	}
 
+	public ClusterProcessOpenFileDescriptors(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code avg}
 	 */
-	public Number avg() {
+	public long avg() {
 		return this.avg;
 	}
 
 	/**
 	 * API name: {@code max}
 	 */
-	public Number max() {
+	public long max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code min}
 	 */
-	public Number min() {
+	public long min() {
 		return this.min;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("avg");
-		generator.write(this.avg.doubleValue());
+		generator.write(this.avg);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 	}
 
@@ -102,16 +108,16 @@ public final class ClusterProcessOpenFileDescriptors implements ToJsonp {
 	 * Builder for {@link ClusterProcessOpenFileDescriptors}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterProcessOpenFileDescriptors> {
-		private Number avg;
+		private Long avg;
 
-		private Number max;
+		private Long max;
 
-		private Number min;
+		private Long min;
 
 		/**
 		 * API name: {@code avg}
 		 */
-		public Builder avg(Number value) {
+		public Builder avg(long value) {
 			this.avg = value;
 			return this;
 		}
@@ -119,7 +125,7 @@ public final class ClusterProcessOpenFileDescriptors implements ToJsonp {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(long value) {
 			this.max = value;
 			return this;
 		}
@@ -127,7 +133,7 @@ public final class ClusterProcessOpenFileDescriptors implements ToJsonp {
 		/**
 		 * API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(long value) {
 			this.min = value;
 			return this;
 		}
@@ -147,18 +153,18 @@ public final class ClusterProcessOpenFileDescriptors implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterProcessOpenFileDescriptors
+	 * Json deserializer for {@link ClusterProcessOpenFileDescriptors}
 	 */
-	public static final JsonpDeserializer<ClusterProcessOpenFileDescriptors> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClusterProcessOpenFileDescriptors::setupClusterProcessOpenFileDescriptorsDeserializer);
+	public static final JsonpDeserializer<ClusterProcessOpenFileDescriptors> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterProcessOpenFileDescriptors::setupClusterProcessOpenFileDescriptorsDeserializer,
+					Builder::build);
 
 	protected static void setupClusterProcessOpenFileDescriptorsDeserializer(
 			DelegatingDeserializer<ClusterProcessOpenFileDescriptors.Builder> op) {
 
-		op.add(Builder::avg, JsonpDeserializer.numberDeserializer(), "avg");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::avg, JsonpDeserializer.longDeserializer(), "avg");
+		op.add(Builder::max, JsonpDeserializer.longDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.longDeserializer(), "min");
 
 	}
 

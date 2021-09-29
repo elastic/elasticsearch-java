@@ -25,38 +25,47 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Request
-public final class OpenJobRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected OpenJobRequest(Builder builder) {
+	public OpenJobRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.timeout = builder.timeout;
 
 	}
 
+	public OpenJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the job to open
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -67,20 +76,20 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.timeout != null) {
 
@@ -100,9 +109,11 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 		private String jobId;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * The ID of the job to open
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -113,7 +124,7 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -133,14 +144,14 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for OpenJobRequest
+	 * Json deserializer for {@link OpenJobRequest}
 	 */
-	public static final JsonpDeserializer<OpenJobRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OpenJobRequest::setupOpenJobRequestDeserializer);
+	public static final JsonpDeserializer<OpenJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			OpenJobRequest::setupOpenJobRequestDeserializer, Builder::build);
 
 	protected static void setupOpenJobRequestDeserializer(DelegatingDeserializer<OpenJobRequest.Builder> op) {
 
-		op.add(Builder::timeout, JsonpDeserializer.jsonValueDeserializer(), "timeout");
+		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 
 	}
 
@@ -149,7 +160,7 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.open_job}".
 	 */
-	public static final Endpoint<OpenJobRequest, OpenJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<OpenJobRequest, OpenJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -162,19 +173,18 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_open");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -182,5 +192,5 @@ public final class OpenJobRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, OpenJobResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, OpenJobResponse._DESERIALIZER);
 }

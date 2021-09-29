@@ -19,16 +19,15 @@
 
 package co.elastic.clients.elasticsearch.experiments.api.query;
 
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-
 import jakarta.json.stream.JsonGenerator;
 
-public class TermsQuery implements ToJsonp {
+public class TermsQuery implements JsonpSerializable {
 
     private final String field;
     private final String term;
@@ -47,7 +46,7 @@ public class TermsQuery implements ToJsonp {
     }
 
     @Override
-    public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
+    public void serialize(JsonGenerator builder, JsonpMapper mapper) {
         // We only serialize our content. It's the enclosing class responsibility to output the variant's discriminant.
         // This allows using this class in non-variant contexts.
         builder.writeStartObject();

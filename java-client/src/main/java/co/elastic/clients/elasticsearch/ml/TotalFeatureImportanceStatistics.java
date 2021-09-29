@@ -24,28 +24,31 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml._types.TotalFeatureImportanceStatistics
-public final class TotalFeatureImportanceStatistics implements ToJsonp {
-	private final Number meanMagnitude;
+@JsonpDeserializable
+public final class TotalFeatureImportanceStatistics implements JsonpSerializable {
+	private final double meanMagnitude;
 
-	private final Number max;
+	private final int max;
 
-	private final Number min;
+	private final int min;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TotalFeatureImportanceStatistics(Builder builder) {
+	public TotalFeatureImportanceStatistics(Builder builder) {
 
 		this.meanMagnitude = Objects.requireNonNull(builder.meanMagnitude, "mean_magnitude");
 		this.max = Objects.requireNonNull(builder.max, "max");
@@ -53,54 +56,58 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 
 	}
 
+	public TotalFeatureImportanceStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The average magnitude of this feature across all the training data. This
 	 * value is the average of the absolute values of the importance for this
 	 * feature.
-	 *
+	 * <p>
 	 * API name: {@code mean_magnitude}
 	 */
-	public Number meanMagnitude() {
+	public double meanMagnitude() {
 		return this.meanMagnitude;
 	}
 
 	/**
 	 * The maximum importance value across all the training data for this feature.
-	 *
+	 * <p>
 	 * API name: {@code max}
 	 */
-	public Number max() {
+	public int max() {
 		return this.max;
 	}
 
 	/**
 	 * The minimum importance value across all the training data for this feature.
-	 *
+	 * <p>
 	 * API name: {@code min}
 	 */
-	public Number min() {
+	public int min() {
 		return this.min;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("mean_magnitude");
-		generator.write(this.meanMagnitude.doubleValue());
+		generator.write(this.meanMagnitude);
 
 		generator.writeKey("max");
-		generator.write(this.max.doubleValue());
+		generator.write(this.max);
 
 		generator.writeKey("min");
-		generator.write(this.min.doubleValue());
+		generator.write(this.min);
 
 	}
 
@@ -110,40 +117,40 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 	 * Builder for {@link TotalFeatureImportanceStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<TotalFeatureImportanceStatistics> {
-		private Number meanMagnitude;
+		private Double meanMagnitude;
 
-		private Number max;
+		private Integer max;
 
-		private Number min;
+		private Integer min;
 
 		/**
 		 * The average magnitude of this feature across all the training data. This
 		 * value is the average of the absolute values of the importance for this
 		 * feature.
-		 *
+		 * <p>
 		 * API name: {@code mean_magnitude}
 		 */
-		public Builder meanMagnitude(Number value) {
+		public Builder meanMagnitude(double value) {
 			this.meanMagnitude = value;
 			return this;
 		}
 
 		/**
 		 * The maximum importance value across all the training data for this feature.
-		 *
+		 * <p>
 		 * API name: {@code max}
 		 */
-		public Builder max(Number value) {
+		public Builder max(int value) {
 			this.max = value;
 			return this;
 		}
 
 		/**
 		 * The minimum importance value across all the training data for this feature.
-		 *
+		 * <p>
 		 * API name: {@code min}
 		 */
-		public Builder min(Number value) {
+		public Builder min(int value) {
 			this.min = value;
 			return this;
 		}
@@ -163,18 +170,18 @@ public final class TotalFeatureImportanceStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TotalFeatureImportanceStatistics
+	 * Json deserializer for {@link TotalFeatureImportanceStatistics}
 	 */
-	public static final JsonpDeserializer<TotalFeatureImportanceStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					TotalFeatureImportanceStatistics::setupTotalFeatureImportanceStatisticsDeserializer);
+	public static final JsonpDeserializer<TotalFeatureImportanceStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TotalFeatureImportanceStatistics::setupTotalFeatureImportanceStatisticsDeserializer,
+					Builder::build);
 
 	protected static void setupTotalFeatureImportanceStatisticsDeserializer(
 			DelegatingDeserializer<TotalFeatureImportanceStatistics.Builder> op) {
 
-		op.add(Builder::meanMagnitude, JsonpDeserializer.numberDeserializer(), "mean_magnitude");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::min, JsonpDeserializer.numberDeserializer(), "min");
+		op.add(Builder::meanMagnitude, JsonpDeserializer.doubleDeserializer(), "mean_magnitude");
+		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
+		op.add(Builder::min, JsonpDeserializer.integerDeserializer(), "min");
 
 	}
 

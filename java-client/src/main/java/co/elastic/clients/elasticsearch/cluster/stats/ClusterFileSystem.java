@@ -24,28 +24,30 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
-public final class ClusterFileSystem implements ToJsonp {
-	private final Number availableInBytes;
+@JsonpDeserializable
+public final class ClusterFileSystem implements JsonpSerializable {
+	private final long availableInBytes;
 
-	private final Number freeInBytes;
+	private final long freeInBytes;
 
-	private final Number totalInBytes;
+	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterFileSystem(Builder builder) {
+	public ClusterFileSystem(Builder builder) {
 
 		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
 		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
@@ -53,46 +55,50 @@ public final class ClusterFileSystem implements ToJsonp {
 
 	}
 
+	public ClusterFileSystem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code available_in_bytes}
 	 */
-	public Number availableInBytes() {
+	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
 	 * API name: {@code free_in_bytes}
 	 */
-	public Number freeInBytes() {
+	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * API name: {@code total_in_bytes}
 	 */
-	public Number totalInBytes() {
+	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes.doubleValue());
+		generator.write(this.availableInBytes);
 
 		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes.doubleValue());
+		generator.write(this.freeInBytes);
 
 		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes.doubleValue());
+		generator.write(this.totalInBytes);
 
 	}
 
@@ -102,16 +108,16 @@ public final class ClusterFileSystem implements ToJsonp {
 	 * Builder for {@link ClusterFileSystem}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterFileSystem> {
-		private Number availableInBytes;
+		private Long availableInBytes;
 
-		private Number freeInBytes;
+		private Long freeInBytes;
 
-		private Number totalInBytes;
+		private Long totalInBytes;
 
 		/**
 		 * API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(Number value) {
+		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -119,7 +125,7 @@ public final class ClusterFileSystem implements ToJsonp {
 		/**
 		 * API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(Number value) {
+		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -127,7 +133,7 @@ public final class ClusterFileSystem implements ToJsonp {
 		/**
 		 * API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(Number value) {
+		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -147,16 +153,16 @@ public final class ClusterFileSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterFileSystem
+	 * Json deserializer for {@link ClusterFileSystem}
 	 */
-	public static final JsonpDeserializer<ClusterFileSystem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer);
+	public static final JsonpDeserializer<ClusterFileSystem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer, Builder::build);
 
 	protected static void setupClusterFileSystemDeserializer(DelegatingDeserializer<ClusterFileSystem.Builder> op) {
 
-		op.add(Builder::availableInBytes, JsonpDeserializer.numberDeserializer(), "available_in_bytes");
-		op.add(Builder::freeInBytes, JsonpDeserializer.numberDeserializer(), "free_in_bytes");
-		op.add(Builder::totalInBytes, JsonpDeserializer.numberDeserializer(), "total_in_bytes");
+		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
+		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
+		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 
 	}
 

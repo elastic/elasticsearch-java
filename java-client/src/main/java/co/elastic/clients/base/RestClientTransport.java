@@ -19,9 +19,11 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.NdJsonpSerializable;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
 import org.elasticsearch.client.Cancellable;
@@ -30,23 +32,50 @@ import org.elasticsearch.client.Response;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
 
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
+import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 public class RestClientTransport implements Transport {
 
     private final RestClient restClient;
     private final JsonpMapper mapper;
+    private RequestOptions requestOptions;
 
-    public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
+    public RestClientTransport(RestClient restClient, JsonpMapper mapper, @Nullable RequestOptions options) {
         this.restClient = restClient;
         this.mapper = mapper;
+        this.requestOptions = options;
+    }
+
+    public RestClientTransport(RestClient restClient, JsonpMapper mapper) {
+        this(restClient, mapper, null);
+    }
+
+    /**
+     * Creates a new {@link #RestClientTransport} with specific request options.
+     */
+    public RestClientTransport withRequestOptions(@Nullable RequestOptions options) {
+        return new RestClientTransport(this.restClient, this.mapper, options);
+    }
+
+    /**
+     * Creates a new {@link #RestClientTransport} with specific request options, inheriting existing options.
+     *
+     * @param fn a function taking an options builder initialized with the current request options, or initialized
+     *           with default values.
+     */
+    public RestClientTransport withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
+        RequestOptions.Builder builder = requestOptions == null ?
+            RequestOptions.DEFAULT.toBuilder() :
+            requestOptions.toBuilder();
+
+        return withRequestOptions(fn.apply(builder).build());
     }
 
     @Override
@@ -56,21 +85,19 @@ public class RestClientTransport implements Transport {
 
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-        RequestOptions options
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint
     ) throws IOException {
 
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
+        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint);
         org.elasticsearch.client.Response clientResp = restClient.performRequest(clientReq);
         return getHighLevelResponse(clientResp, endpoint);
     }
 
     public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(
         RequestT request,
-        Endpoint<RequestT, ResponseT, ErrorT> endpoint,
-        RequestOptions options
+        Endpoint<RequestT, ResponseT, ErrorT> endpoint
     ) {
-        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint, options);
+        org.elasticsearch.client.Request clientReq = prepareLowLevelRequest(request, endpoint);
 
         RequestFuture<ResponseT> future = new RequestFuture<>();
 
@@ -109,30 +136,58 @@ public class RestClientTransport implements Transport {
 
     private <RequestT> org.elasticsearch.client.Request prepareLowLevelRequest(
         RequestT request,
-        Endpoint<RequestT, ?, ?> endpoint,
-        RequestOptions options
-    ) {
+        Endpoint<RequestT, ?, ?> endpoint) {
         String method = endpoint.method(request);
         String path = endpoint.requestUrl(request);
         Map<String, String> params = endpoint.queryParameters(request);
 
         org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(method, path);
         clientReq.addParameters(params);
-        if (options != null) {
-            clientReq.setOptions(options);
+        if (requestOptions != null) {
+            clientReq.setOptions(requestOptions);
+        }
+
+        // Request-type specific parameters.
+        if (request instanceof ElasticsearchCatRequest) {
+            // Format responses as json (default is plain text)
+            clientReq.addParameter("format", "json");
         }
 
         if (endpoint.hasRequestBody()) {
-            // Request has a body and must implement ToJsonp
+            // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            JsonGenerator generator = mapper.jsonpProvider().createGenerator(baos);
-            ((ToJsonp) request).toJsonp(generator, mapper);
-            generator.close();
+
+            if (request instanceof NdJsonpSerializable<?>) {
+                writeNdJson((NdJsonpSerializable<?>) request, baos);
+            } else {
+                JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
+                mapper.serialize(request, generator);
+                generator.close();
+            }
 
             clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), ContentType.APPLICATION_JSON));
         }
 
         return clientReq;
+    }
+
+    /**
+     * Write an nd-json value by serializing each of its items on a separate line.
+     * <p>
+     * If an item itself implements {@link NdJsonpSerializable}, it is output as nd-json. This allows flattening
+     * nested structures.
+     */
+    private void writeNdJson(NdJsonpSerializable<?> value, ByteArrayOutputStream baos) {
+        for (Object item: value) {
+            if (item instanceof NdJsonpSerializable<?>) {
+                writeNdJson((NdJsonpSerializable<?>) item, baos);
+            } else {
+                JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
+                mapper.serialize(item, generator);
+                generator.close();
+                baos.write('\n');
+            }
+        }
     }
 
     private <ResponseT, ErrorT> ResponseT getHighLevelResponse(
@@ -150,14 +205,14 @@ public class RestClientTransport implements Transport {
                 // Expecting a body
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 clientResp.getEntity().writeTo(baos);
-                JsonParser parser = mapper.jsonpProvider().createParser(new ByteArrayInputStream(baos.toByteArray()));
+                JsonParser parser = mapper.jsonProvider().createParser(new ByteArrayInputStream(baos.toByteArray()));
                 error = errorParser.deserialize(parser, mapper);
             }
 
             throw new ApiException(error);
 
-        } else if (endpoint instanceof Endpoint.Boolean) {
-            Endpoint.Boolean<?> bep = (Endpoint.Boolean<?>)endpoint;
+        } else if (endpoint instanceof BooleanEndpoint) {
+            BooleanEndpoint<?> bep = (BooleanEndpoint<?>)endpoint;
 
             @SuppressWarnings("unchecked")
             ResponseT response = (ResponseT)new BooleanResponse(bep.getResult(statusCode));
@@ -171,7 +226,7 @@ public class RestClientTransport implements Transport {
             if (responseParser != null) {
                 // Expecting a body
                 InputStream content = clientResp.getEntity().getContent();
-                JsonParser parser = mapper.jsonpProvider().createParser(content);
+                JsonParser parser = mapper.jsonProvider().createParser(content);
                 response = responseParser.deserialize(parser, mapper);
             }
             return response;

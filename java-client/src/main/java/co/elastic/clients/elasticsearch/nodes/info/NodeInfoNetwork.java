@@ -24,31 +24,37 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetwork
-public final class NodeInfoNetwork implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoNetwork implements JsonpSerializable {
 	private final NodeInfoNetworkInterface primaryInterface;
 
-	private final Number refreshInterval;
+	private final int refreshInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoNetwork(Builder builder) {
+	public NodeInfoNetwork(Builder builder) {
 
 		this.primaryInterface = Objects.requireNonNull(builder.primaryInterface, "primary_interface");
 		this.refreshInterval = Objects.requireNonNull(builder.refreshInterval, "refresh_interval");
 
+	}
+
+	public NodeInfoNetwork(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,26 +67,26 @@ public final class NodeInfoNetwork implements ToJsonp {
 	/**
 	 * API name: {@code refresh_interval}
 	 */
-	public Number refreshInterval() {
+	public int refreshInterval() {
 		return this.refreshInterval;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("primary_interface");
-		this.primaryInterface.toJsonp(generator, mapper);
+		this.primaryInterface.serialize(generator, mapper);
 
 		generator.writeKey("refresh_interval");
-		generator.write(this.refreshInterval.doubleValue());
+		generator.write(this.refreshInterval);
 
 	}
 
@@ -92,7 +98,7 @@ public final class NodeInfoNetwork implements ToJsonp {
 	public static class Builder implements ObjectBuilder<NodeInfoNetwork> {
 		private NodeInfoNetworkInterface primaryInterface;
 
-		private Number refreshInterval;
+		private Integer refreshInterval;
 
 		/**
 		 * API name: {@code primary_interface}
@@ -113,7 +119,7 @@ public final class NodeInfoNetwork implements ToJsonp {
 		/**
 		 * API name: {@code refresh_interval}
 		 */
-		public Builder refreshInterval(Number value) {
+		public Builder refreshInterval(int value) {
 			this.refreshInterval = value;
 			return this;
 		}
@@ -133,15 +139,15 @@ public final class NodeInfoNetwork implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoNetwork
+	 * Json deserializer for {@link NodeInfoNetwork}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetwork> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoNetwork::setupNodeInfoNetworkDeserializer);
+	public static final JsonpDeserializer<NodeInfoNetwork> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoNetwork::setupNodeInfoNetworkDeserializer, Builder::build);
 
 	protected static void setupNodeInfoNetworkDeserializer(DelegatingDeserializer<NodeInfoNetwork.Builder> op) {
 
-		op.add(Builder::primaryInterface, NodeInfoNetworkInterface.DESERIALIZER, "primary_interface");
-		op.add(Builder::refreshInterval, JsonpDeserializer.numberDeserializer(), "refresh_interval");
+		op.add(Builder::primaryInterface, NodeInfoNetworkInterface._DESERIALIZER, "primary_interface");
+		op.add(Builder::refreshInterval, JsonpDeserializer.integerDeserializer(), "refresh_interval");
 
 	}
 

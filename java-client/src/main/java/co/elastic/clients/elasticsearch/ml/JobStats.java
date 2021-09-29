@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,7 +39,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobStats
-public final class JobStats implements ToJsonp {
+@JsonpDeserializable
+public final class JobStats implements JsonpSerializable {
 	private final String assignmentExplanation;
 
 	private final DataCounts dataCounts;
@@ -55,7 +56,7 @@ public final class JobStats implements ToJsonp {
 	@Nullable
 	private final String openTime;
 
-	private final JsonValue state;
+	private final JobState state;
 
 	private final JobTimingStats timingStats;
 
@@ -64,7 +65,7 @@ public final class JobStats implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected JobStats(Builder builder) {
+	public JobStats(Builder builder) {
 
 		this.assignmentExplanation = Objects.requireNonNull(builder.assignmentExplanation, "assignment_explanation");
 		this.dataCounts = Objects.requireNonNull(builder.dataCounts, "data_counts");
@@ -77,6 +78,10 @@ public final class JobStats implements ToJsonp {
 		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
 		this.deleting = builder.deleting;
 
+	}
+
+	public JobStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -132,7 +137,7 @@ public final class JobStats implements ToJsonp {
 	/**
 	 * API name: {@code state}
 	 */
-	public JsonValue state() {
+	public JobState state() {
 		return this.state;
 	}
 
@@ -154,31 +159,31 @@ public final class JobStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("assignment_explanation");
 		generator.write(this.assignmentExplanation);
 
 		generator.writeKey("data_counts");
-		this.dataCounts.toJsonp(generator, mapper);
+		this.dataCounts.serialize(generator, mapper);
 
 		generator.writeKey("forecasts_stats");
-		this.forecastsStats.toJsonp(generator, mapper);
+		this.forecastsStats.serialize(generator, mapper);
 
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
 		generator.writeKey("model_size_stats");
-		this.modelSizeStats.toJsonp(generator, mapper);
+		this.modelSizeStats.serialize(generator, mapper);
 
 		generator.writeKey("node");
-		this.node.toJsonp(generator, mapper);
+		this.node.serialize(generator, mapper);
 
 		if (this.openTime != null) {
 
@@ -188,10 +193,10 @@ public final class JobStats implements ToJsonp {
 		}
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 		generator.writeKey("timing_stats");
-		this.timingStats.toJsonp(generator, mapper);
+		this.timingStats.serialize(generator, mapper);
 
 		if (this.deleting != null) {
 
@@ -223,7 +228,7 @@ public final class JobStats implements ToJsonp {
 		@Nullable
 		private String openTime;
 
-		private JsonValue state;
+		private JobState state;
 
 		private JobTimingStats timingStats;
 
@@ -318,7 +323,7 @@ public final class JobStats implements ToJsonp {
 		/**
 		 * API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(JobState value) {
 			this.state = value;
 			return this;
 		}
@@ -361,22 +366,22 @@ public final class JobStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for JobStats
+	 * Json deserializer for {@link JobStats}
 	 */
-	public static final JsonpDeserializer<JobStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, JobStats::setupJobStatsDeserializer);
+	public static final JsonpDeserializer<JobStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			JobStats::setupJobStatsDeserializer, Builder::build);
 
 	protected static void setupJobStatsDeserializer(DelegatingDeserializer<JobStats.Builder> op) {
 
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
-		op.add(Builder::dataCounts, DataCounts.DESERIALIZER, "data_counts");
-		op.add(Builder::forecastsStats, JobForecastStatistics.DESERIALIZER, "forecasts_stats");
+		op.add(Builder::dataCounts, DataCounts._DESERIALIZER, "data_counts");
+		op.add(Builder::forecastsStats, JobForecastStatistics._DESERIALIZER, "forecasts_stats");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::modelSizeStats, ModelSizeStats.DESERIALIZER, "model_size_stats");
-		op.add(Builder::node, DiscoveryNode.DESERIALIZER, "node");
+		op.add(Builder::modelSizeStats, ModelSizeStats._DESERIALIZER, "model_size_stats");
+		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
 		op.add(Builder::openTime, JsonpDeserializer.stringDeserializer(), "open_time");
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
-		op.add(Builder::timingStats, JobTimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::state, JobState._DESERIALIZER, "state");
+		op.add(Builder::timingStats, JobTimingStats._DESERIALIZER, "timing_stats");
 		op.add(Builder::deleting, JsonpDeserializer.booleanDeserializer(), "deleting");
 
 	}

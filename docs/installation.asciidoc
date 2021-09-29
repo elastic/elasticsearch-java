@@ -9,7 +9,7 @@ Requirements:
 
 * Java 8 or later. The library provides high-level type-safe classes 
   and methods for all {es} APIs. It sits on top of the 
-  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html[Low Level Rest Client] 
+  https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html[Low Level Rest Client]
   that manages all http communications.
  
 * The JSON implementation used by the Java client is pluggable and you must add 
@@ -90,5 +90,5 @@ from the {es} Specification that is also still a work in progress.
 
 The {es} Java client is forward compatible; meaning that the client supports 
 communicating with greater or equal minor versions of {es}. {es} language 
-clients are only backwards compatible with default distributions and without 
+clients are only backwards compatible with default distributions and without
 guarantees made. 

@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: snapshot.create_repository.Response
+@JsonpDeserializable
 public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateRepositoryResponse(Builder builder) {
+	public CreateRepositoryResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public CreateRepositoryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateRepositoryResponse
+	 * Json deserializer for {@link CreateRepositoryResponse}
 	 */
-	public static final JsonpDeserializer<CreateRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer);
+	public static final JsonpDeserializer<CreateRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer, Builder::build);
 
 	protected static void setupCreateRepositoryResponseDeserializer(
 			DelegatingDeserializer<CreateRepositoryResponse.Builder> op) {

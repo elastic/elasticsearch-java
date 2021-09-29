@@ -25,54 +25,70 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.upgrade.Request
-public final class UpgradeRequest extends RequestBase implements ToJsonp {
-	private final Number stubB;
 
+public final class UpgradeRequest extends RequestBase {
 	@Nullable
 	private final String index;
 
-	private final Number stubA;
+	@Nullable
+	private final Boolean allowNoIndices;
 
-	private final Number stubC;
+	@Nullable
+	private final List<ExpandWildcardOptions> expandWildcards;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
+
+	@Nullable
+	private final Boolean waitForCompletion;
+
+	@Nullable
+	private final Boolean onlyAncientSegments;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpgradeRequest(Builder builder) {
+	public UpgradeRequest(Builder builder) {
 
-		this.stubB = Objects.requireNonNull(builder.stubB, "stub_b");
 		this.index = builder.index;
-		this.stubA = Objects.requireNonNull(builder.stubA, "stub_a");
-		this.stubC = Objects.requireNonNull(builder.stubC, "stub_c");
+		this.allowNoIndices = builder.allowNoIndices;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.waitForCompletion = builder.waitForCompletion;
+		this.onlyAncientSegments = builder.onlyAncientSegments;
 
 	}
 
-	/**
-	 * API name: {@code stub_b}
-	 */
-	public Number stubB() {
-		return this.stubB;
+	public UpgradeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
-	 *
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -81,33 +97,59 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * API name: {@code stub_a}
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
+	 * API name: {@code allow_no_indices}
 	 */
-	public Number stubA() {
-		return this.stubA;
+	@Nullable
+	public Boolean allowNoIndices() {
+		return this.allowNoIndices;
 	}
 
 	/**
-	 * API name: {@code stub_c}
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
+	 * API name: {@code expand_wildcards}
 	 */
-	public Number stubC() {
-		return this.stubC;
+	@Nullable
+	public List<ExpandWildcardOptions> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
+	 * API name: {@code ignore_unavailable}
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
+	@Nullable
+	public Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	/**
+	 * Specify whether the request should block until the all segments are upgraded
+	 * (default: false)
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
 
-		generator.writeKey("stub_c");
-		generator.write(this.stubC.doubleValue());
-
+	/**
+	 * If true, only ancient (an older Lucene major release) segments will be
+	 * upgraded
+	 * <p>
+	 * API name: {@code only_ancient_segments}
+	 */
+	@Nullable
+	public Boolean onlyAncientSegments() {
+		return this.onlyAncientSegments;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -116,26 +158,28 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link UpgradeRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<UpgradeRequest> {
-		private Number stubB;
-
 		@Nullable
 		private String index;
 
-		private Number stubA;
+		@Nullable
+		private Boolean allowNoIndices;
 
-		private Number stubC;
+		@Nullable
+		private List<ExpandWildcardOptions> expandWildcards;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private Boolean waitForCompletion;
+
+		@Nullable
+		private Boolean onlyAncientSegments;
 
 		/**
-		 * API name: {@code stub_b}
-		 */
-		public Builder stubB(Number value) {
-			this.stubB = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
-		 *
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -144,18 +188,80 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * API name: {@code stub_a}
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
+		 * API name: {@code allow_no_indices}
 		 */
-		public Builder stubA(Number value) {
-			this.stubA = value;
+		public Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stub_c}
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
 		 */
-		public Builder stubC(Number value) {
-			this.stubC = value;
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
+			this.expandWildcards = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether the request should block until the all segments are upgraded
+		 * (default: false)
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
+			return this;
+		}
+
+		/**
+		 * If true, only ancient (an older Lucene major release) segments will be
+		 * upgraded
+		 * <p>
+		 * API name: {@code only_ancient_segments}
+		 */
+		public Builder onlyAncientSegments(@Nullable Boolean value) {
+			this.onlyAncientSegments = value;
 			return this;
 		}
 
@@ -174,23 +280,9 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpgradeRequest
-	 */
-	public static final JsonpDeserializer<UpgradeRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpgradeRequest::setupUpgradeRequestDeserializer);
-
-	protected static void setupUpgradeRequestDeserializer(DelegatingDeserializer<UpgradeRequest.Builder> op) {
-
-		op.add(Builder::stubC, JsonpDeserializer.numberDeserializer(), "stub_c");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code indices.upgrade}".
 	 */
-	public static final Endpoint<UpgradeRequest, UpgradeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpgradeRequest, UpgradeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -199,13 +291,10 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 
 			// Request path
 			request -> {
-				final int _stubB = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.stubB() != null)
-					propsSet |= _stubB;
 				if (request.index() != null)
 					propsSet |= _index;
 
@@ -217,19 +306,34 @@ public final class UpgradeRequest extends RequestBase implements ToJsonp {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_upgrade");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("stub_a", request.stubA.toString());
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.expandWildcards != null) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.onlyAncientSegments != null) {
+					params.put("only_ancient_segments", String.valueOf(request.onlyAncientSegments));
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, UpgradeResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, UpgradeResponse._DESERIALIZER);
 }

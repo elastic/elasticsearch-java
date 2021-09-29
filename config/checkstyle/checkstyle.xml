@@ -39,12 +39,14 @@
     <!-- Checks Java files and forbids empty Javadoc comments. -->
     <!-- Although you can use the "JavadocStyle" rule for this, it considers Javadoc -->
     <!-- that only contains a "@return" line to be empty. -->
+    <!--
     <module name="RegexpMultiline">
         <property name="id" value="EmptyJavadoc" />
         <property name="format" value="\/\*[\s\*]*\*\/" />
         <property name="fileExtensions" value="java" />
         <property name="message" value="Empty javadoc comments are forbidden" />
     </module>
+    -->
 
     <!-- Its our official line length! See checkstyle_suppressions.xml for the files that don't pass this. For now we
       suppress the check there but enforce it everywhere else. This prevents the list from getting longer even if it is

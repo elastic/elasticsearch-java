@@ -25,21 +25,24 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_forecast.Request
+
 public final class DeleteForecastRequest extends RequestBase {
 	private final String jobId;
 
@@ -50,11 +53,11 @@ public final class DeleteForecastRequest extends RequestBase {
 	private final Boolean allowNoForecasts;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteForecastRequest(Builder builder) {
+	public DeleteForecastRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.forecastId = builder.forecastId;
@@ -63,7 +66,13 @@ public final class DeleteForecastRequest extends RequestBase {
 
 	}
 
+	public DeleteForecastRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the job from which to delete forecasts
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -71,6 +80,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
+	 * implies <code>_all</code>
+	 * <p>
 	 * API name: {@code forecast_id}
 	 */
 	@Nullable
@@ -79,6 +91,8 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if <code>_all</code> matches no forecasts
+	 * <p>
 	 * API name: {@code allow_no_forecasts}
 	 */
 	@Nullable
@@ -87,10 +101,13 @@ public final class DeleteForecastRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait until the forecast(s) are deleted. Default to 30
+	 * seconds
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -109,9 +126,11 @@ public final class DeleteForecastRequest extends RequestBase {
 		private Boolean allowNoForecasts;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * The ID of the job from which to delete forecasts
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -120,6 +139,9 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
+		 * implies <code>_all</code>
+		 * <p>
 		 * API name: {@code forecast_id}
 		 */
 		public Builder forecastId(@Nullable String value) {
@@ -128,6 +150,8 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if <code>_all</code> matches no forecasts
+		 * <p>
 		 * API name: {@code allow_no_forecasts}
 		 */
 		public Builder allowNoForecasts(@Nullable Boolean value) {
@@ -136,9 +160,12 @@ public final class DeleteForecastRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait until the forecast(s) are deleted. Default to 30
+		 * seconds
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -160,7 +187,7 @@ public final class DeleteForecastRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_forecast}".
 	 */
-	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -174,8 +201,7 @@ public final class DeleteForecastRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.forecastId() != null)
 					propsSet |= _forecastId;
 
@@ -184,7 +210,7 @@ public final class DeleteForecastRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_forecast");
 					return buf.toString();
 				}
@@ -193,13 +219,13 @@ public final class DeleteForecastRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_forecast");
 					buf.append("/");
-					buf.append(request.forecastId);
+					SimpleEndpoint.pathEncode(request.forecastId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -210,9 +236,9 @@ public final class DeleteForecastRequest extends RequestBase {
 					params.put("allow_no_forecasts", String.valueOf(request.allowNoForecasts));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteForecastResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteForecastResponse._DESERIALIZER);
 }

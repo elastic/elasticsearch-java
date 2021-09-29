@@ -24,32 +24,35 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FlushStats
-public final class FlushStats implements ToJsonp {
-	private final Number periodic;
+@JsonpDeserializable
+public final class FlushStats implements JsonpSerializable {
+	private final long periodic;
 
-	private final Number total;
+	private final long total;
 
 	@Nullable
 	private final String totalTime;
 
-	private final Number totalTimeInMillis;
+	private final long totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FlushStats(Builder builder) {
+	public FlushStats(Builder builder) {
 
 		this.periodic = Objects.requireNonNull(builder.periodic, "periodic");
 		this.total = Objects.requireNonNull(builder.total, "total");
@@ -58,17 +61,21 @@ public final class FlushStats implements ToJsonp {
 
 	}
 
+	public FlushStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code periodic}
 	 */
-	public Number periodic() {
+	public long periodic() {
 		return this.periodic;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -83,26 +90,26 @@ public final class FlushStats implements ToJsonp {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public Number totalTimeInMillis() {
+	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("periodic");
-		generator.write(this.periodic.doubleValue());
+		generator.write(this.periodic);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		if (this.totalTime != null) {
 
@@ -112,7 +119,7 @@ public final class FlushStats implements ToJsonp {
 		}
 
 		generator.writeKey("total_time_in_millis");
-		generator.write(this.totalTimeInMillis.doubleValue());
+		generator.write(this.totalTimeInMillis);
 
 	}
 
@@ -122,19 +129,19 @@ public final class FlushStats implements ToJsonp {
 	 * Builder for {@link FlushStats}.
 	 */
 	public static class Builder implements ObjectBuilder<FlushStats> {
-		private Number periodic;
+		private Long periodic;
 
-		private Number total;
+		private Long total;
 
 		@Nullable
 		private String totalTime;
 
-		private Number totalTimeInMillis;
+		private Long totalTimeInMillis;
 
 		/**
 		 * API name: {@code periodic}
 		 */
-		public Builder periodic(Number value) {
+		public Builder periodic(long value) {
 			this.periodic = value;
 			return this;
 		}
@@ -142,7 +149,7 @@ public final class FlushStats implements ToJsonp {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -158,7 +165,7 @@ public final class FlushStats implements ToJsonp {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(Number value) {
+		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -178,17 +185,17 @@ public final class FlushStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FlushStats
+	 * Json deserializer for {@link FlushStats}
 	 */
-	public static final JsonpDeserializer<FlushStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FlushStats::setupFlushStatsDeserializer);
+	public static final JsonpDeserializer<FlushStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FlushStats::setupFlushStatsDeserializer, Builder::build);
 
 	protected static void setupFlushStatsDeserializer(DelegatingDeserializer<FlushStats.Builder> op) {
 
-		op.add(Builder::periodic, JsonpDeserializer.numberDeserializer(), "periodic");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::periodic, JsonpDeserializer.longDeserializer(), "periodic");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}
 

@@ -24,30 +24,37 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RealmInfo
-public final class RealmInfo implements ToJsonp {
+@JsonpDeserializable
+public final class RealmInfo implements JsonpSerializable {
 	private final String name;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RealmInfo(Builder builder) {
+	public RealmInfo(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public RealmInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,13 +74,13 @@ public final class RealmInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -124,10 +131,10 @@ public final class RealmInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RealmInfo
+	 * Json deserializer for {@link RealmInfo}
 	 */
-	public static final JsonpDeserializer<RealmInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RealmInfo::setupRealmInfoDeserializer);
+	public static final JsonpDeserializer<RealmInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RealmInfo::setupRealmInfoDeserializer, Builder::build);
 
 	protected static void setupRealmInfoDeserializer(DelegatingDeserializer<RealmInfo.Builder> op) {
 

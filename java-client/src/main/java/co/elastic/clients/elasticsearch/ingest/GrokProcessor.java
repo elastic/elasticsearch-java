@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,10 +40,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
-public final class GrokProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -56,14 +60,28 @@ public final class GrokProcessor extends ProcessorBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GrokProcessor(Builder builder) {
+	public GrokProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.patternDefinitions = Objects.requireNonNull(builder.patternDefinitions, "pattern_definitions");
-		this.patterns = Objects.requireNonNull(builder.patterns, "patterns");
+		this.patternDefinitions = ModelTypeHelper.unmodifiableNonNull(builder.patternDefinitions,
+				"pattern_definitions");
+		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
 		this.traceMatch = builder.traceMatch;
 
+	}
+
+	public GrokProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "grok";
 	}
 
 	/**
@@ -103,8 +121,9 @@ public final class GrokProcessor extends ProcessorBase {
 		return this.traceMatch;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -213,7 +232,7 @@ public final class GrokProcessor extends ProcessorBase {
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
+		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addPatterns(String value) {
 			if (this.patterns == null) {
@@ -251,10 +270,10 @@ public final class GrokProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GrokProcessor
+	 * Json deserializer for {@link GrokProcessor}
 	 */
-	public static final JsonpDeserializer<GrokProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GrokProcessor::setupGrokProcessorDeserializer);
+	public static final JsonpDeserializer<GrokProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GrokProcessor::setupGrokProcessorDeserializer, Builder::build);
 
 	protected static void setupGrokProcessorDeserializer(DelegatingDeserializer<GrokProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

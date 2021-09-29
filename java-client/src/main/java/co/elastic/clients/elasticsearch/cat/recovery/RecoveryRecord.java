@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.RecoveryRecord
-public final class RecoveryRecord implements ToJsonp {
+@JsonpDeserializable
+public final class RecoveryRecord implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -89,7 +92,7 @@ public final class RecoveryRecord implements ToJsonp {
 	private final String filesRecovered;
 
 	@Nullable
-	private final JsonValue filesPercent;
+	private final String filesPercent;
 
 	@Nullable
 	private final String filesTotal;
@@ -101,7 +104,7 @@ public final class RecoveryRecord implements ToJsonp {
 	private final String bytesRecovered;
 
 	@Nullable
-	private final JsonValue bytesPercent;
+	private final String bytesPercent;
 
 	@Nullable
 	private final String bytesTotal;
@@ -113,11 +116,11 @@ public final class RecoveryRecord implements ToJsonp {
 	private final String translogOpsRecovered;
 
 	@Nullable
-	private final JsonValue translogOpsPercent;
+	private final String translogOpsPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryRecord(Builder builder) {
+	public RecoveryRecord(Builder builder) {
 
 		this.index = builder.index;
 		this.shard = builder.shard;
@@ -148,9 +151,13 @@ public final class RecoveryRecord implements ToJsonp {
 
 	}
 
+	public RecoveryRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * index name
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -160,7 +167,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * shard name
-	 *
+	 * <p>
 	 * API name: {@code shard}
 	 */
 	@Nullable
@@ -170,7 +177,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery start time
-	 *
+	 * <p>
 	 * API name: {@code start_time}
 	 */
 	@Nullable
@@ -180,7 +187,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery start time in epoch milliseconds
-	 *
+	 * <p>
 	 * API name: {@code start_time_millis}
 	 */
 	@Nullable
@@ -190,7 +197,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery stop time
-	 *
+	 * <p>
 	 * API name: {@code stop_time}
 	 */
 	@Nullable
@@ -200,7 +207,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery stop time in epoch milliseconds
-	 *
+	 * <p>
 	 * API name: {@code stop_time_millis}
 	 */
 	@Nullable
@@ -210,7 +217,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery time
-	 *
+	 * <p>
 	 * API name: {@code time}
 	 */
 	@Nullable
@@ -220,7 +227,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -230,7 +237,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * recovery stage
-	 *
+	 * <p>
 	 * API name: {@code stage}
 	 */
 	@Nullable
@@ -240,7 +247,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * source host
-	 *
+	 * <p>
 	 * API name: {@code source_host}
 	 */
 	@Nullable
@@ -250,7 +257,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * source node name
-	 *
+	 * <p>
 	 * API name: {@code source_node}
 	 */
 	@Nullable
@@ -260,7 +267,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * target host
-	 *
+	 * <p>
 	 * API name: {@code target_host}
 	 */
 	@Nullable
@@ -270,7 +277,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * target node name
-	 *
+	 * <p>
 	 * API name: {@code target_node}
 	 */
 	@Nullable
@@ -280,7 +287,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * repository
-	 *
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -290,7 +297,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * snapshot
-	 *
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	@Nullable
@@ -300,7 +307,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * number of files to recover
-	 *
+	 * <p>
 	 * API name: {@code files}
 	 */
 	@Nullable
@@ -310,7 +317,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * files recovered
-	 *
+	 * <p>
 	 * API name: {@code files_recovered}
 	 */
 	@Nullable
@@ -320,17 +327,17 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * percent of files recovered
-	 *
+	 * <p>
 	 * API name: {@code files_percent}
 	 */
 	@Nullable
-	public JsonValue filesPercent() {
+	public String filesPercent() {
 		return this.filesPercent;
 	}
 
 	/**
 	 * total number of files
-	 *
+	 * <p>
 	 * API name: {@code files_total}
 	 */
 	@Nullable
@@ -340,7 +347,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * number of bytes to recover
-	 *
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
@@ -350,7 +357,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * bytes recovered
-	 *
+	 * <p>
 	 * API name: {@code bytes_recovered}
 	 */
 	@Nullable
@@ -360,17 +367,17 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * percent of bytes recovered
-	 *
+	 * <p>
 	 * API name: {@code bytes_percent}
 	 */
 	@Nullable
-	public JsonValue bytesPercent() {
+	public String bytesPercent() {
 		return this.bytesPercent;
 	}
 
 	/**
 	 * total number of bytes
-	 *
+	 * <p>
 	 * API name: {@code bytes_total}
 	 */
 	@Nullable
@@ -380,7 +387,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * number of translog ops to recover
-	 *
+	 * <p>
 	 * API name: {@code translog_ops}
 	 */
 	@Nullable
@@ -390,7 +397,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * translog ops recovered
-	 *
+	 * <p>
 	 * API name: {@code translog_ops_recovered}
 	 */
 	@Nullable
@@ -400,24 +407,24 @@ public final class RecoveryRecord implements ToJsonp {
 
 	/**
 	 * percent of translog ops recovered
-	 *
+	 * <p>
 	 * API name: {@code translog_ops_percent}
 	 */
 	@Nullable
-	public JsonValue translogOpsPercent() {
+	public String translogOpsPercent() {
 		return this.translogOpsPercent;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
 
@@ -636,7 +643,7 @@ public final class RecoveryRecord implements ToJsonp {
 		private String filesRecovered;
 
 		@Nullable
-		private JsonValue filesPercent;
+		private String filesPercent;
 
 		@Nullable
 		private String filesTotal;
@@ -648,7 +655,7 @@ public final class RecoveryRecord implements ToJsonp {
 		private String bytesRecovered;
 
 		@Nullable
-		private JsonValue bytesPercent;
+		private String bytesPercent;
 
 		@Nullable
 		private String bytesTotal;
@@ -660,11 +667,11 @@ public final class RecoveryRecord implements ToJsonp {
 		private String translogOpsRecovered;
 
 		@Nullable
-		private JsonValue translogOpsPercent;
+		private String translogOpsPercent;
 
 		/**
 		 * index name
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -674,7 +681,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * shard name
-		 *
+		 * <p>
 		 * API name: {@code shard}
 		 */
 		public Builder shard(@Nullable String value) {
@@ -684,7 +691,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery start time
-		 *
+		 * <p>
 		 * API name: {@code start_time}
 		 */
 		public Builder startTime(@Nullable String value) {
@@ -694,7 +701,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery start time in epoch milliseconds
-		 *
+		 * <p>
 		 * API name: {@code start_time_millis}
 		 */
 		public Builder startTimeMillis(@Nullable String value) {
@@ -704,7 +711,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery stop time
-		 *
+		 * <p>
 		 * API name: {@code stop_time}
 		 */
 		public Builder stopTime(@Nullable String value) {
@@ -714,7 +721,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery stop time in epoch milliseconds
-		 *
+		 * <p>
 		 * API name: {@code stop_time_millis}
 		 */
 		public Builder stopTimeMillis(@Nullable String value) {
@@ -724,7 +731,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery time
-		 *
+		 * <p>
 		 * API name: {@code time}
 		 */
 		public Builder time(@Nullable String value) {
@@ -734,7 +741,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -744,7 +751,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * recovery stage
-		 *
+		 * <p>
 		 * API name: {@code stage}
 		 */
 		public Builder stage(@Nullable String value) {
@@ -754,7 +761,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * source host
-		 *
+		 * <p>
 		 * API name: {@code source_host}
 		 */
 		public Builder sourceHost(@Nullable String value) {
@@ -764,7 +771,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * source node name
-		 *
+		 * <p>
 		 * API name: {@code source_node}
 		 */
 		public Builder sourceNode(@Nullable String value) {
@@ -774,7 +781,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * target host
-		 *
+		 * <p>
 		 * API name: {@code target_host}
 		 */
 		public Builder targetHost(@Nullable String value) {
@@ -784,7 +791,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * target node name
-		 *
+		 * <p>
 		 * API name: {@code target_node}
 		 */
 		public Builder targetNode(@Nullable String value) {
@@ -794,7 +801,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * repository
-		 *
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {
@@ -804,7 +811,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * snapshot
-		 *
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(@Nullable String value) {
@@ -814,7 +821,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * number of files to recover
-		 *
+		 * <p>
 		 * API name: {@code files}
 		 */
 		public Builder files(@Nullable String value) {
@@ -824,7 +831,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * files recovered
-		 *
+		 * <p>
 		 * API name: {@code files_recovered}
 		 */
 		public Builder filesRecovered(@Nullable String value) {
@@ -834,17 +841,17 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * percent of files recovered
-		 *
+		 * <p>
 		 * API name: {@code files_percent}
 		 */
-		public Builder filesPercent(@Nullable JsonValue value) {
+		public Builder filesPercent(@Nullable String value) {
 			this.filesPercent = value;
 			return this;
 		}
 
 		/**
 		 * total number of files
-		 *
+		 * <p>
 		 * API name: {@code files_total}
 		 */
 		public Builder filesTotal(@Nullable String value) {
@@ -854,7 +861,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * number of bytes to recover
-		 *
+		 * <p>
 		 * API name: {@code bytes}
 		 */
 		public Builder bytes(@Nullable String value) {
@@ -864,7 +871,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * bytes recovered
-		 *
+		 * <p>
 		 * API name: {@code bytes_recovered}
 		 */
 		public Builder bytesRecovered(@Nullable String value) {
@@ -874,17 +881,17 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * percent of bytes recovered
-		 *
+		 * <p>
 		 * API name: {@code bytes_percent}
 		 */
-		public Builder bytesPercent(@Nullable JsonValue value) {
+		public Builder bytesPercent(@Nullable String value) {
 			this.bytesPercent = value;
 			return this;
 		}
 
 		/**
 		 * total number of bytes
-		 *
+		 * <p>
 		 * API name: {@code bytes_total}
 		 */
 		public Builder bytesTotal(@Nullable String value) {
@@ -894,7 +901,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * number of translog ops to recover
-		 *
+		 * <p>
 		 * API name: {@code translog_ops}
 		 */
 		public Builder translogOps(@Nullable String value) {
@@ -904,7 +911,7 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * translog ops recovered
-		 *
+		 * <p>
 		 * API name: {@code translog_ops_recovered}
 		 */
 		public Builder translogOpsRecovered(@Nullable String value) {
@@ -914,10 +921,10 @@ public final class RecoveryRecord implements ToJsonp {
 
 		/**
 		 * percent of translog ops recovered
-		 *
+		 * <p>
 		 * API name: {@code translog_ops_percent}
 		 */
-		public Builder translogOpsPercent(@Nullable JsonValue value) {
+		public Builder translogOpsPercent(@Nullable String value) {
 			this.translogOpsPercent = value;
 			return this;
 		}
@@ -937,10 +944,10 @@ public final class RecoveryRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryRecord
+	 * Json deserializer for {@link RecoveryRecord}
 	 */
-	public static final JsonpDeserializer<RecoveryRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryRecord::setupRecoveryRecordDeserializer);
+	public static final JsonpDeserializer<RecoveryRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryRecord::setupRecoveryRecordDeserializer, Builder::build);
 
 	protected static void setupRecoveryRecordDeserializer(DelegatingDeserializer<RecoveryRecord.Builder> op) {
 
@@ -961,15 +968,15 @@ public final class RecoveryRecord implements ToJsonp {
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot", "snap");
 		op.add(Builder::files, JsonpDeserializer.stringDeserializer(), "files", "f");
 		op.add(Builder::filesRecovered, JsonpDeserializer.stringDeserializer(), "files_recovered", "fr");
-		op.add(Builder::filesPercent, JsonpDeserializer.jsonValueDeserializer(), "files_percent", "fp");
+		op.add(Builder::filesPercent, JsonpDeserializer.stringDeserializer(), "files_percent", "fp");
 		op.add(Builder::filesTotal, JsonpDeserializer.stringDeserializer(), "files_total", "tf");
 		op.add(Builder::bytes, JsonpDeserializer.stringDeserializer(), "bytes", "b");
 		op.add(Builder::bytesRecovered, JsonpDeserializer.stringDeserializer(), "bytes_recovered", "br");
-		op.add(Builder::bytesPercent, JsonpDeserializer.jsonValueDeserializer(), "bytes_percent", "bp");
+		op.add(Builder::bytesPercent, JsonpDeserializer.stringDeserializer(), "bytes_percent", "bp");
 		op.add(Builder::bytesTotal, JsonpDeserializer.stringDeserializer(), "bytes_total", "tb");
 		op.add(Builder::translogOps, JsonpDeserializer.stringDeserializer(), "translog_ops", "to");
 		op.add(Builder::translogOpsRecovered, JsonpDeserializer.stringDeserializer(), "translog_ops_recovered", "tor");
-		op.add(Builder::translogOpsPercent, JsonpDeserializer.jsonValueDeserializer(), "translog_ops_percent", "top");
+		op.add(Builder::translogOpsPercent, JsonpDeserializer.stringDeserializer(), "translog_ops_percent", "top");
 
 	}
 

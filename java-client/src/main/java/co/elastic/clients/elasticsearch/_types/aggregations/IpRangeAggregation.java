@@ -24,21 +24,25 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.IpRangeAggregation
-public final class IpRangeAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class IpRangeAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String field;
 
@@ -47,11 +51,24 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IpRangeAggregation(Builder builder) {
+	public IpRangeAggregation(Builder builder) {
 		super(builder);
-		this.field = builder.field;
-		this.ranges = builder.ranges;
 
+		this.field = builder.field;
+		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
+
+	}
+
+	public IpRangeAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "ip_range";
 	}
 
 	/**
@@ -70,8 +87,9 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 		return this.ranges;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 
 			generator.writeKey("field");
@@ -83,7 +101,7 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (IpRangeAggregationRange item0 : this.ranges) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -131,7 +149,7 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
 		 */
 		public Builder addRanges(IpRangeAggregationRange value) {
 			if (this.ranges == null) {
@@ -149,7 +167,7 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
 		 */
 		public Builder addRanges(Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
 			return this.addRanges(fn.apply(new IpRangeAggregationRange.Builder()).build());
@@ -175,15 +193,15 @@ public final class IpRangeAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IpRangeAggregation
+	 * Json deserializer for {@link IpRangeAggregation}
 	 */
-	public static final JsonpDeserializer<IpRangeAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IpRangeAggregation::setupIpRangeAggregationDeserializer);
+	public static final JsonpDeserializer<IpRangeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IpRangeAggregation::setupIpRangeAggregationDeserializer, Builder::build);
 
 	protected static void setupIpRangeAggregationDeserializer(DelegatingDeserializer<IpRangeAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(IpRangeAggregationRange.DESERIALIZER), "ranges");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(IpRangeAggregationRange._DESERIALIZER), "ranges");
 
 	}
 

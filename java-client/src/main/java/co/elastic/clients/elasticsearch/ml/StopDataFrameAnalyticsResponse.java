@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml.stop_data_frame_analytics.Response
-public final class StopDataFrameAnalyticsResponse implements ToJsonp {
-	private final Boolean stopped;
+@JsonpDeserializable
+public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
+	private final boolean stopped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopDataFrameAnalyticsResponse(Builder builder) {
+	public StopDataFrameAnalyticsResponse(Builder builder) {
 
 		this.stopped = Objects.requireNonNull(builder.stopped, "stopped");
 
 	}
 
+	public StopDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code stopped}
 	 */
-	public Boolean stopped() {
+	public boolean stopped() {
 		return this.stopped;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("stopped");
 		generator.write(this.stopped);
@@ -81,7 +87,7 @@ public final class StopDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * API name: {@code stopped}
 		 */
-		public Builder stopped(Boolean value) {
+		public Builder stopped(boolean value) {
 			this.stopped = value;
 			return this;
 		}
@@ -101,11 +107,11 @@ public final class StopDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StopDataFrameAnalyticsResponse
+	 * Json deserializer for {@link StopDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<StopDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<StopDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupStopDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<StopDataFrameAnalyticsResponse.Builder> op) {

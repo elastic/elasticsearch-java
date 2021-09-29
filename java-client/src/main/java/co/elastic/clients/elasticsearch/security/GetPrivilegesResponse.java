@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,14 +34,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_privileges.Response
-public final class GetPrivilegesResponse extends AdditionalProperties<String, Map<String, Actions>> {
+@JsonpDeserializable
+public final class GetPrivilegesResponse extends DictionaryResponse<String, Map<String, Actions>> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPrivilegesResponse(Builder builder) {
+	public GetPrivilegesResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -48,7 +56,7 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 	/**
 	 * Builder for {@link GetPrivilegesResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Map<String, Actions>, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, Actions>, Builder>
 			implements
 				ObjectBuilder<GetPrivilegesResponse> {
 		@Override
@@ -73,15 +81,15 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetPrivilegesResponse
+	 * Json deserializer for {@link GetPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<GetPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetPrivilegesResponse::setupGetPrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupGetPrivilegesResponseDeserializer(
 			DelegatingDeserializer<GetPrivilegesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				JsonpDeserializer.stringMapDeserializer(Actions.DESERIALIZER));
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER));
 
 	}
 

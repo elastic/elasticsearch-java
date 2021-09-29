@@ -25,16 +25,18 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
+import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,10 +45,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.Request
-public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class GrantApiKeyRequest extends RequestBase implements JsonpSerializable {
 	private final ApiKey apiKey;
 
-	private final JsonValue grantType;
+	private final ApiKeyGrantType grantType;
 
 	@Nullable
 	private final String accessToken;
@@ -59,7 +62,7 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GrantApiKeyRequest(Builder builder) {
+	public GrantApiKeyRequest(Builder builder) {
 
 		this.apiKey = Objects.requireNonNull(builder.apiKey, "api_key");
 		this.grantType = Objects.requireNonNull(builder.grantType, "grant_type");
@@ -67,6 +70,10 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 		this.username = builder.username;
 		this.password = builder.password;
 
+	}
+
+	public GrantApiKeyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -79,7 +86,7 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	/**
 	 * API name: {@code grant_type}
 	 */
-	public JsonValue grantType() {
+	public ApiKeyGrantType grantType() {
 		return this.grantType;
 	}
 
@@ -110,20 +117,19 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("api_key");
-		this.apiKey.toJsonp(generator, mapper);
+		this.apiKey.serialize(generator, mapper);
 
 		generator.writeKey("grant_type");
-		generator.write(this.grantType);
-
+		this.grantType.serialize(generator, mapper);
 		if (this.accessToken != null) {
 
 			generator.writeKey("access_token");
@@ -153,7 +159,7 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	public static class Builder implements ObjectBuilder<GrantApiKeyRequest> {
 		private ApiKey apiKey;
 
-		private JsonValue grantType;
+		private ApiKeyGrantType grantType;
 
 		@Nullable
 		private String accessToken;
@@ -182,7 +188,7 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code grant_type}
 		 */
-		public Builder grantType(JsonValue value) {
+		public Builder grantType(ApiKeyGrantType value) {
 			this.grantType = value;
 			return this;
 		}
@@ -226,15 +232,15 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GrantApiKeyRequest
+	 * Json deserializer for {@link GrantApiKeyRequest}
 	 */
-	public static final JsonpDeserializer<GrantApiKeyRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer);
+	public static final JsonpDeserializer<GrantApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GrantApiKeyRequest::setupGrantApiKeyRequestDeserializer, Builder::build);
 
 	protected static void setupGrantApiKeyRequestDeserializer(DelegatingDeserializer<GrantApiKeyRequest.Builder> op) {
 
-		op.add(Builder::apiKey, ApiKey.DESERIALIZER, "api_key");
-		op.add(Builder::grantType, JsonpDeserializer.jsonValueDeserializer(), "grant_type");
+		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
+		op.add(Builder::grantType, ApiKeyGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
@@ -246,7 +252,7 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code security.grant_api_key}".
 	 */
-	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -263,5 +269,5 @@ public final class GrantApiKeyRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GrantApiKeyResponse._DESERIALIZER);
 }

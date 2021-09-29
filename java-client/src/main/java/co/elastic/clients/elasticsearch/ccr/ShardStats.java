@@ -25,15 +25,17 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,69 +45,70 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.ShardStats
-public final class ShardStats implements ToJsonp {
-	private final Number bytesRead;
+@JsonpDeserializable
+public final class ShardStats implements JsonpSerializable {
+	private final long bytesRead;
 
-	private final Number failedReadRequests;
+	private final long failedReadRequests;
 
-	private final Number failedWriteRequests;
+	private final long failedWriteRequests;
 
 	@Nullable
 	private final ErrorCause fatalException;
 
-	private final Number followerAliasesVersion;
+	private final long followerAliasesVersion;
 
-	private final Number followerGlobalCheckpoint;
+	private final long followerGlobalCheckpoint;
 
 	private final String followerIndex;
 
-	private final Number followerMappingVersion;
+	private final long followerMappingVersion;
 
-	private final Number followerMaxSeqNo;
+	private final int followerMaxSeqNo;
 
-	private final Number followerSettingsVersion;
+	private final long followerSettingsVersion;
 
-	private final Number lastRequestedSeqNo;
+	private final int lastRequestedSeqNo;
 
-	private final Number leaderGlobalCheckpoint;
+	private final long leaderGlobalCheckpoint;
 
 	private final String leaderIndex;
 
-	private final Number leaderMaxSeqNo;
+	private final int leaderMaxSeqNo;
 
-	private final Number operationsRead;
+	private final long operationsRead;
 
-	private final Number operationsWritten;
+	private final long operationsWritten;
 
-	private final Number outstandingReadRequests;
+	private final int outstandingReadRequests;
 
-	private final Number outstandingWriteRequests;
+	private final int outstandingWriteRequests;
 
 	private final List<ReadException> readExceptions;
 
 	private final String remoteCluster;
 
-	private final Number shardId;
+	private final int shardId;
 
-	private final Number successfulReadRequests;
+	private final long successfulReadRequests;
 
-	private final Number successfulWriteRequests;
+	private final long successfulWriteRequests;
 
-	private final JsonValue timeSinceLastReadMillis;
+	private final String timeSinceLastReadMillis;
 
-	private final JsonValue totalReadRemoteExecTimeMillis;
+	private final String totalReadRemoteExecTimeMillis;
 
-	private final JsonValue totalReadTimeMillis;
+	private final String totalReadTimeMillis;
 
-	private final JsonValue totalWriteTimeMillis;
+	private final String totalWriteTimeMillis;
 
-	private final Number writeBufferOperationCount;
+	private final long writeBufferOperationCount;
 
-	private final JsonValue writeBufferSizeInBytes;
+	private final String writeBufferSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStats(Builder builder) {
+	public ShardStats(Builder builder) {
 
 		this.bytesRead = Objects.requireNonNull(builder.bytesRead, "bytes_read");
 		this.failedReadRequests = Objects.requireNonNull(builder.failedReadRequests, "failed_read_requests");
@@ -132,7 +135,7 @@ public final class ShardStats implements ToJsonp {
 				"outstanding_read_requests");
 		this.outstandingWriteRequests = Objects.requireNonNull(builder.outstandingWriteRequests,
 				"outstanding_write_requests");
-		this.readExceptions = Objects.requireNonNull(builder.readExceptions, "read_exceptions");
+		this.readExceptions = ModelTypeHelper.unmodifiableNonNull(builder.readExceptions, "read_exceptions");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.shardId = Objects.requireNonNull(builder.shardId, "shard_id");
 		this.successfulReadRequests = Objects.requireNonNull(builder.successfulReadRequests,
@@ -152,24 +155,28 @@ public final class ShardStats implements ToJsonp {
 
 	}
 
+	public ShardStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code bytes_read}
 	 */
-	public Number bytesRead() {
+	public long bytesRead() {
 		return this.bytesRead;
 	}
 
 	/**
 	 * API name: {@code failed_read_requests}
 	 */
-	public Number failedReadRequests() {
+	public long failedReadRequests() {
 		return this.failedReadRequests;
 	}
 
 	/**
 	 * API name: {@code failed_write_requests}
 	 */
-	public Number failedWriteRequests() {
+	public long failedWriteRequests() {
 		return this.failedWriteRequests;
 	}
 
@@ -184,14 +191,14 @@ public final class ShardStats implements ToJsonp {
 	/**
 	 * API name: {@code follower_aliases_version}
 	 */
-	public Number followerAliasesVersion() {
+	public long followerAliasesVersion() {
 		return this.followerAliasesVersion;
 	}
 
 	/**
 	 * API name: {@code follower_global_checkpoint}
 	 */
-	public Number followerGlobalCheckpoint() {
+	public long followerGlobalCheckpoint() {
 		return this.followerGlobalCheckpoint;
 	}
 
@@ -205,35 +212,35 @@ public final class ShardStats implements ToJsonp {
 	/**
 	 * API name: {@code follower_mapping_version}
 	 */
-	public Number followerMappingVersion() {
+	public long followerMappingVersion() {
 		return this.followerMappingVersion;
 	}
 
 	/**
 	 * API name: {@code follower_max_seq_no}
 	 */
-	public Number followerMaxSeqNo() {
+	public int followerMaxSeqNo() {
 		return this.followerMaxSeqNo;
 	}
 
 	/**
 	 * API name: {@code follower_settings_version}
 	 */
-	public Number followerSettingsVersion() {
+	public long followerSettingsVersion() {
 		return this.followerSettingsVersion;
 	}
 
 	/**
 	 * API name: {@code last_requested_seq_no}
 	 */
-	public Number lastRequestedSeqNo() {
+	public int lastRequestedSeqNo() {
 		return this.lastRequestedSeqNo;
 	}
 
 	/**
 	 * API name: {@code leader_global_checkpoint}
 	 */
-	public Number leaderGlobalCheckpoint() {
+	public long leaderGlobalCheckpoint() {
 		return this.leaderGlobalCheckpoint;
 	}
 
@@ -247,35 +254,35 @@ public final class ShardStats implements ToJsonp {
 	/**
 	 * API name: {@code leader_max_seq_no}
 	 */
-	public Number leaderMaxSeqNo() {
+	public int leaderMaxSeqNo() {
 		return this.leaderMaxSeqNo;
 	}
 
 	/**
 	 * API name: {@code operations_read}
 	 */
-	public Number operationsRead() {
+	public long operationsRead() {
 		return this.operationsRead;
 	}
 
 	/**
 	 * API name: {@code operations_written}
 	 */
-	public Number operationsWritten() {
+	public long operationsWritten() {
 		return this.operationsWritten;
 	}
 
 	/**
 	 * API name: {@code outstanding_read_requests}
 	 */
-	public Number outstandingReadRequests() {
+	public int outstandingReadRequests() {
 		return this.outstandingReadRequests;
 	}
 
 	/**
 	 * API name: {@code outstanding_write_requests}
 	 */
-	public Number outstandingWriteRequests() {
+	public int outstandingWriteRequests() {
 		return this.outstandingWriteRequests;
 	}
 
@@ -296,139 +303,139 @@ public final class ShardStats implements ToJsonp {
 	/**
 	 * API name: {@code shard_id}
 	 */
-	public Number shardId() {
+	public int shardId() {
 		return this.shardId;
 	}
 
 	/**
 	 * API name: {@code successful_read_requests}
 	 */
-	public Number successfulReadRequests() {
+	public long successfulReadRequests() {
 		return this.successfulReadRequests;
 	}
 
 	/**
 	 * API name: {@code successful_write_requests}
 	 */
-	public Number successfulWriteRequests() {
+	public long successfulWriteRequests() {
 		return this.successfulWriteRequests;
 	}
 
 	/**
 	 * API name: {@code time_since_last_read_millis}
 	 */
-	public JsonValue timeSinceLastReadMillis() {
+	public String timeSinceLastReadMillis() {
 		return this.timeSinceLastReadMillis;
 	}
 
 	/**
 	 * API name: {@code total_read_remote_exec_time_millis}
 	 */
-	public JsonValue totalReadRemoteExecTimeMillis() {
+	public String totalReadRemoteExecTimeMillis() {
 		return this.totalReadRemoteExecTimeMillis;
 	}
 
 	/**
 	 * API name: {@code total_read_time_millis}
 	 */
-	public JsonValue totalReadTimeMillis() {
+	public String totalReadTimeMillis() {
 		return this.totalReadTimeMillis;
 	}
 
 	/**
 	 * API name: {@code total_write_time_millis}
 	 */
-	public JsonValue totalWriteTimeMillis() {
+	public String totalWriteTimeMillis() {
 		return this.totalWriteTimeMillis;
 	}
 
 	/**
 	 * API name: {@code write_buffer_operation_count}
 	 */
-	public Number writeBufferOperationCount() {
+	public long writeBufferOperationCount() {
 		return this.writeBufferOperationCount;
 	}
 
 	/**
 	 * API name: {@code write_buffer_size_in_bytes}
 	 */
-	public JsonValue writeBufferSizeInBytes() {
+	public String writeBufferSizeInBytes() {
 		return this.writeBufferSizeInBytes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bytes_read");
-		generator.write(this.bytesRead.doubleValue());
+		generator.write(this.bytesRead);
 
 		generator.writeKey("failed_read_requests");
-		generator.write(this.failedReadRequests.doubleValue());
+		generator.write(this.failedReadRequests);
 
 		generator.writeKey("failed_write_requests");
-		generator.write(this.failedWriteRequests.doubleValue());
+		generator.write(this.failedWriteRequests);
 
 		if (this.fatalException != null) {
 
 			generator.writeKey("fatal_exception");
-			this.fatalException.toJsonp(generator, mapper);
+			this.fatalException.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("follower_aliases_version");
-		generator.write(this.followerAliasesVersion.doubleValue());
+		generator.write(this.followerAliasesVersion);
 
 		generator.writeKey("follower_global_checkpoint");
-		generator.write(this.followerGlobalCheckpoint.doubleValue());
+		generator.write(this.followerGlobalCheckpoint);
 
 		generator.writeKey("follower_index");
 		generator.write(this.followerIndex);
 
 		generator.writeKey("follower_mapping_version");
-		generator.write(this.followerMappingVersion.doubleValue());
+		generator.write(this.followerMappingVersion);
 
 		generator.writeKey("follower_max_seq_no");
-		generator.write(this.followerMaxSeqNo.doubleValue());
+		generator.write(this.followerMaxSeqNo);
 
 		generator.writeKey("follower_settings_version");
-		generator.write(this.followerSettingsVersion.doubleValue());
+		generator.write(this.followerSettingsVersion);
 
 		generator.writeKey("last_requested_seq_no");
-		generator.write(this.lastRequestedSeqNo.doubleValue());
+		generator.write(this.lastRequestedSeqNo);
 
 		generator.writeKey("leader_global_checkpoint");
-		generator.write(this.leaderGlobalCheckpoint.doubleValue());
+		generator.write(this.leaderGlobalCheckpoint);
 
 		generator.writeKey("leader_index");
 		generator.write(this.leaderIndex);
 
 		generator.writeKey("leader_max_seq_no");
-		generator.write(this.leaderMaxSeqNo.doubleValue());
+		generator.write(this.leaderMaxSeqNo);
 
 		generator.writeKey("operations_read");
-		generator.write(this.operationsRead.doubleValue());
+		generator.write(this.operationsRead);
 
 		generator.writeKey("operations_written");
-		generator.write(this.operationsWritten.doubleValue());
+		generator.write(this.operationsWritten);
 
 		generator.writeKey("outstanding_read_requests");
-		generator.write(this.outstandingReadRequests.doubleValue());
+		generator.write(this.outstandingReadRequests);
 
 		generator.writeKey("outstanding_write_requests");
-		generator.write(this.outstandingWriteRequests.doubleValue());
+		generator.write(this.outstandingWriteRequests);
 
 		generator.writeKey("read_exceptions");
 		generator.writeStartArray();
 		for (ReadException item0 : this.readExceptions) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -437,13 +444,13 @@ public final class ShardStats implements ToJsonp {
 		generator.write(this.remoteCluster);
 
 		generator.writeKey("shard_id");
-		generator.write(this.shardId.doubleValue());
+		generator.write(this.shardId);
 
 		generator.writeKey("successful_read_requests");
-		generator.write(this.successfulReadRequests.doubleValue());
+		generator.write(this.successfulReadRequests);
 
 		generator.writeKey("successful_write_requests");
-		generator.write(this.successfulWriteRequests.doubleValue());
+		generator.write(this.successfulWriteRequests);
 
 		generator.writeKey("time_since_last_read_millis");
 		generator.write(this.timeSinceLastReadMillis);
@@ -458,7 +465,7 @@ public final class ShardStats implements ToJsonp {
 		generator.write(this.totalWriteTimeMillis);
 
 		generator.writeKey("write_buffer_operation_count");
-		generator.write(this.writeBufferOperationCount.doubleValue());
+		generator.write(this.writeBufferOperationCount);
 
 		generator.writeKey("write_buffer_size_in_bytes");
 		generator.write(this.writeBufferSizeInBytes);
@@ -471,69 +478,69 @@ public final class ShardStats implements ToJsonp {
 	 * Builder for {@link ShardStats}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardStats> {
-		private Number bytesRead;
+		private Long bytesRead;
 
-		private Number failedReadRequests;
+		private Long failedReadRequests;
 
-		private Number failedWriteRequests;
+		private Long failedWriteRequests;
 
 		@Nullable
 		private ErrorCause fatalException;
 
-		private Number followerAliasesVersion;
+		private Long followerAliasesVersion;
 
-		private Number followerGlobalCheckpoint;
+		private Long followerGlobalCheckpoint;
 
 		private String followerIndex;
 
-		private Number followerMappingVersion;
+		private Long followerMappingVersion;
 
-		private Number followerMaxSeqNo;
+		private Integer followerMaxSeqNo;
 
-		private Number followerSettingsVersion;
+		private Long followerSettingsVersion;
 
-		private Number lastRequestedSeqNo;
+		private Integer lastRequestedSeqNo;
 
-		private Number leaderGlobalCheckpoint;
+		private Long leaderGlobalCheckpoint;
 
 		private String leaderIndex;
 
-		private Number leaderMaxSeqNo;
+		private Integer leaderMaxSeqNo;
 
-		private Number operationsRead;
+		private Long operationsRead;
 
-		private Number operationsWritten;
+		private Long operationsWritten;
 
-		private Number outstandingReadRequests;
+		private Integer outstandingReadRequests;
 
-		private Number outstandingWriteRequests;
+		private Integer outstandingWriteRequests;
 
 		private List<ReadException> readExceptions;
 
 		private String remoteCluster;
 
-		private Number shardId;
+		private Integer shardId;
 
-		private Number successfulReadRequests;
+		private Long successfulReadRequests;
 
-		private Number successfulWriteRequests;
+		private Long successfulWriteRequests;
 
-		private JsonValue timeSinceLastReadMillis;
+		private String timeSinceLastReadMillis;
 
-		private JsonValue totalReadRemoteExecTimeMillis;
+		private String totalReadRemoteExecTimeMillis;
 
-		private JsonValue totalReadTimeMillis;
+		private String totalReadTimeMillis;
 
-		private JsonValue totalWriteTimeMillis;
+		private String totalWriteTimeMillis;
 
-		private Number writeBufferOperationCount;
+		private Long writeBufferOperationCount;
 
-		private JsonValue writeBufferSizeInBytes;
+		private String writeBufferSizeInBytes;
 
 		/**
 		 * API name: {@code bytes_read}
 		 */
-		public Builder bytesRead(Number value) {
+		public Builder bytesRead(long value) {
 			this.bytesRead = value;
 			return this;
 		}
@@ -541,7 +548,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code failed_read_requests}
 		 */
-		public Builder failedReadRequests(Number value) {
+		public Builder failedReadRequests(long value) {
 			this.failedReadRequests = value;
 			return this;
 		}
@@ -549,7 +556,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code failed_write_requests}
 		 */
-		public Builder failedWriteRequests(Number value) {
+		public Builder failedWriteRequests(long value) {
 			this.failedWriteRequests = value;
 			return this;
 		}
@@ -572,7 +579,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code follower_aliases_version}
 		 */
-		public Builder followerAliasesVersion(Number value) {
+		public Builder followerAliasesVersion(long value) {
 			this.followerAliasesVersion = value;
 			return this;
 		}
@@ -580,7 +587,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code follower_global_checkpoint}
 		 */
-		public Builder followerGlobalCheckpoint(Number value) {
+		public Builder followerGlobalCheckpoint(long value) {
 			this.followerGlobalCheckpoint = value;
 			return this;
 		}
@@ -596,7 +603,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code follower_mapping_version}
 		 */
-		public Builder followerMappingVersion(Number value) {
+		public Builder followerMappingVersion(long value) {
 			this.followerMappingVersion = value;
 			return this;
 		}
@@ -604,7 +611,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code follower_max_seq_no}
 		 */
-		public Builder followerMaxSeqNo(Number value) {
+		public Builder followerMaxSeqNo(int value) {
 			this.followerMaxSeqNo = value;
 			return this;
 		}
@@ -612,7 +619,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code follower_settings_version}
 		 */
-		public Builder followerSettingsVersion(Number value) {
+		public Builder followerSettingsVersion(long value) {
 			this.followerSettingsVersion = value;
 			return this;
 		}
@@ -620,7 +627,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code last_requested_seq_no}
 		 */
-		public Builder lastRequestedSeqNo(Number value) {
+		public Builder lastRequestedSeqNo(int value) {
 			this.lastRequestedSeqNo = value;
 			return this;
 		}
@@ -628,7 +635,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code leader_global_checkpoint}
 		 */
-		public Builder leaderGlobalCheckpoint(Number value) {
+		public Builder leaderGlobalCheckpoint(long value) {
 			this.leaderGlobalCheckpoint = value;
 			return this;
 		}
@@ -644,7 +651,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code leader_max_seq_no}
 		 */
-		public Builder leaderMaxSeqNo(Number value) {
+		public Builder leaderMaxSeqNo(int value) {
 			this.leaderMaxSeqNo = value;
 			return this;
 		}
@@ -652,7 +659,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code operations_read}
 		 */
-		public Builder operationsRead(Number value) {
+		public Builder operationsRead(long value) {
 			this.operationsRead = value;
 			return this;
 		}
@@ -660,7 +667,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code operations_written}
 		 */
-		public Builder operationsWritten(Number value) {
+		public Builder operationsWritten(long value) {
 			this.operationsWritten = value;
 			return this;
 		}
@@ -668,7 +675,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code outstanding_read_requests}
 		 */
-		public Builder outstandingReadRequests(Number value) {
+		public Builder outstandingReadRequests(int value) {
 			this.outstandingReadRequests = value;
 			return this;
 		}
@@ -676,7 +683,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code outstanding_write_requests}
 		 */
-		public Builder outstandingWriteRequests(Number value) {
+		public Builder outstandingWriteRequests(int value) {
 			this.outstandingWriteRequests = value;
 			return this;
 		}
@@ -698,7 +705,7 @@ public final class ShardStats implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #readExceptions(List)}, creating the list if needed.
+		 * Add a value to {@link #readExceptions(List)}, creating the list if needed. 4
 		 */
 		public Builder addReadExceptions(ReadException value) {
 			if (this.readExceptions == null) {
@@ -716,7 +723,7 @@ public final class ShardStats implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #readExceptions(List)}, creating the list if needed.
+		 * Add a value to {@link #readExceptions(List)}, creating the list if needed. 5
 		 */
 		public Builder addReadExceptions(Function<ReadException.Builder, ObjectBuilder<ReadException>> fn) {
 			return this.addReadExceptions(fn.apply(new ReadException.Builder()).build());
@@ -733,7 +740,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code shard_id}
 		 */
-		public Builder shardId(Number value) {
+		public Builder shardId(int value) {
 			this.shardId = value;
 			return this;
 		}
@@ -741,7 +748,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code successful_read_requests}
 		 */
-		public Builder successfulReadRequests(Number value) {
+		public Builder successfulReadRequests(long value) {
 			this.successfulReadRequests = value;
 			return this;
 		}
@@ -749,7 +756,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code successful_write_requests}
 		 */
-		public Builder successfulWriteRequests(Number value) {
+		public Builder successfulWriteRequests(long value) {
 			this.successfulWriteRequests = value;
 			return this;
 		}
@@ -757,7 +764,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code time_since_last_read_millis}
 		 */
-		public Builder timeSinceLastReadMillis(JsonValue value) {
+		public Builder timeSinceLastReadMillis(String value) {
 			this.timeSinceLastReadMillis = value;
 			return this;
 		}
@@ -765,7 +772,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code total_read_remote_exec_time_millis}
 		 */
-		public Builder totalReadRemoteExecTimeMillis(JsonValue value) {
+		public Builder totalReadRemoteExecTimeMillis(String value) {
 			this.totalReadRemoteExecTimeMillis = value;
 			return this;
 		}
@@ -773,7 +780,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code total_read_time_millis}
 		 */
-		public Builder totalReadTimeMillis(JsonValue value) {
+		public Builder totalReadTimeMillis(String value) {
 			this.totalReadTimeMillis = value;
 			return this;
 		}
@@ -781,7 +788,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code total_write_time_millis}
 		 */
-		public Builder totalWriteTimeMillis(JsonValue value) {
+		public Builder totalWriteTimeMillis(String value) {
 			this.totalWriteTimeMillis = value;
 			return this;
 		}
@@ -789,7 +796,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code write_buffer_operation_count}
 		 */
-		public Builder writeBufferOperationCount(Number value) {
+		public Builder writeBufferOperationCount(long value) {
 			this.writeBufferOperationCount = value;
 			return this;
 		}
@@ -797,7 +804,7 @@ public final class ShardStats implements ToJsonp {
 		/**
 		 * API name: {@code write_buffer_size_in_bytes}
 		 */
-		public Builder writeBufferSizeInBytes(JsonValue value) {
+		public Builder writeBufferSizeInBytes(String value) {
 			this.writeBufferSizeInBytes = value;
 			return this;
 		}
@@ -817,47 +824,46 @@ public final class ShardStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStats
+	 * Json deserializer for {@link ShardStats}
 	 */
-	public static final JsonpDeserializer<ShardStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStats::setupShardStatsDeserializer);
+	public static final JsonpDeserializer<ShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStats::setupShardStatsDeserializer, Builder::build);
 
 	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
 
-		op.add(Builder::bytesRead, JsonpDeserializer.numberDeserializer(), "bytes_read");
-		op.add(Builder::failedReadRequests, JsonpDeserializer.numberDeserializer(), "failed_read_requests");
-		op.add(Builder::failedWriteRequests, JsonpDeserializer.numberDeserializer(), "failed_write_requests");
-		op.add(Builder::fatalException, ErrorCause.DESERIALIZER, "fatal_exception");
-		op.add(Builder::followerAliasesVersion, JsonpDeserializer.numberDeserializer(), "follower_aliases_version");
-		op.add(Builder::followerGlobalCheckpoint, JsonpDeserializer.numberDeserializer(), "follower_global_checkpoint");
+		op.add(Builder::bytesRead, JsonpDeserializer.longDeserializer(), "bytes_read");
+		op.add(Builder::failedReadRequests, JsonpDeserializer.longDeserializer(), "failed_read_requests");
+		op.add(Builder::failedWriteRequests, JsonpDeserializer.longDeserializer(), "failed_write_requests");
+		op.add(Builder::fatalException, ErrorCause._DESERIALIZER, "fatal_exception");
+		op.add(Builder::followerAliasesVersion, JsonpDeserializer.longDeserializer(), "follower_aliases_version");
+		op.add(Builder::followerGlobalCheckpoint, JsonpDeserializer.longDeserializer(), "follower_global_checkpoint");
 		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
-		op.add(Builder::followerMappingVersion, JsonpDeserializer.numberDeserializer(), "follower_mapping_version");
-		op.add(Builder::followerMaxSeqNo, JsonpDeserializer.numberDeserializer(), "follower_max_seq_no");
-		op.add(Builder::followerSettingsVersion, JsonpDeserializer.numberDeserializer(), "follower_settings_version");
-		op.add(Builder::lastRequestedSeqNo, JsonpDeserializer.numberDeserializer(), "last_requested_seq_no");
-		op.add(Builder::leaderGlobalCheckpoint, JsonpDeserializer.numberDeserializer(), "leader_global_checkpoint");
+		op.add(Builder::followerMappingVersion, JsonpDeserializer.longDeserializer(), "follower_mapping_version");
+		op.add(Builder::followerMaxSeqNo, JsonpDeserializer.integerDeserializer(), "follower_max_seq_no");
+		op.add(Builder::followerSettingsVersion, JsonpDeserializer.longDeserializer(), "follower_settings_version");
+		op.add(Builder::lastRequestedSeqNo, JsonpDeserializer.integerDeserializer(), "last_requested_seq_no");
+		op.add(Builder::leaderGlobalCheckpoint, JsonpDeserializer.longDeserializer(), "leader_global_checkpoint");
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
-		op.add(Builder::leaderMaxSeqNo, JsonpDeserializer.numberDeserializer(), "leader_max_seq_no");
-		op.add(Builder::operationsRead, JsonpDeserializer.numberDeserializer(), "operations_read");
-		op.add(Builder::operationsWritten, JsonpDeserializer.numberDeserializer(), "operations_written");
-		op.add(Builder::outstandingReadRequests, JsonpDeserializer.numberDeserializer(), "outstanding_read_requests");
-		op.add(Builder::outstandingWriteRequests, JsonpDeserializer.numberDeserializer(), "outstanding_write_requests");
-		op.add(Builder::readExceptions, JsonpDeserializer.arrayDeserializer(ReadException.DESERIALIZER),
+		op.add(Builder::leaderMaxSeqNo, JsonpDeserializer.integerDeserializer(), "leader_max_seq_no");
+		op.add(Builder::operationsRead, JsonpDeserializer.longDeserializer(), "operations_read");
+		op.add(Builder::operationsWritten, JsonpDeserializer.longDeserializer(), "operations_written");
+		op.add(Builder::outstandingReadRequests, JsonpDeserializer.integerDeserializer(), "outstanding_read_requests");
+		op.add(Builder::outstandingWriteRequests, JsonpDeserializer.integerDeserializer(),
+				"outstanding_write_requests");
+		op.add(Builder::readExceptions, JsonpDeserializer.arrayDeserializer(ReadException._DESERIALIZER),
 				"read_exceptions");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
-		op.add(Builder::shardId, JsonpDeserializer.numberDeserializer(), "shard_id");
-		op.add(Builder::successfulReadRequests, JsonpDeserializer.numberDeserializer(), "successful_read_requests");
-		op.add(Builder::successfulWriteRequests, JsonpDeserializer.numberDeserializer(), "successful_write_requests");
-		op.add(Builder::timeSinceLastReadMillis, JsonpDeserializer.jsonValueDeserializer(),
-				"time_since_last_read_millis");
-		op.add(Builder::totalReadRemoteExecTimeMillis, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
+		op.add(Builder::successfulReadRequests, JsonpDeserializer.longDeserializer(), "successful_read_requests");
+		op.add(Builder::successfulWriteRequests, JsonpDeserializer.longDeserializer(), "successful_write_requests");
+		op.add(Builder::timeSinceLastReadMillis, JsonpDeserializer.stringDeserializer(), "time_since_last_read_millis");
+		op.add(Builder::totalReadRemoteExecTimeMillis, JsonpDeserializer.stringDeserializer(),
 				"total_read_remote_exec_time_millis");
-		op.add(Builder::totalReadTimeMillis, JsonpDeserializer.jsonValueDeserializer(), "total_read_time_millis");
-		op.add(Builder::totalWriteTimeMillis, JsonpDeserializer.jsonValueDeserializer(), "total_write_time_millis");
-		op.add(Builder::writeBufferOperationCount, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::totalReadTimeMillis, JsonpDeserializer.stringDeserializer(), "total_read_time_millis");
+		op.add(Builder::totalWriteTimeMillis, JsonpDeserializer.stringDeserializer(), "total_write_time_millis");
+		op.add(Builder::writeBufferOperationCount, JsonpDeserializer.longDeserializer(),
 				"write_buffer_operation_count");
-		op.add(Builder::writeBufferSizeInBytes, JsonpDeserializer.jsonValueDeserializer(),
-				"write_buffer_size_in_bytes");
+		op.add(Builder::writeBufferSizeInBytes, JsonpDeserializer.stringDeserializer(), "write_buffer_size_in_bytes");
 
 	}
 

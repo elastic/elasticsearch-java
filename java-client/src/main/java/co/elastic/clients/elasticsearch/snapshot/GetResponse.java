@@ -25,34 +25,49 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.get.SnapshotResponseItem;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Response
-public final class GetResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetResponse implements JsonpSerializable {
 	@Nullable
 	private final List<SnapshotResponseItem> responses;
 
 	@Nullable
 	private final List<SnapshotInfo> snapshots;
 
+	private final int total;
+
+	private final int remaining;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder builder) {
+	public GetResponse(Builder builder) {
 
-		this.responses = builder.responses;
-		this.snapshots = builder.snapshots;
+		this.responses = ModelTypeHelper.unmodifiable(builder.responses);
+		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
+		this.total = Objects.requireNonNull(builder.total, "total");
+		this.remaining = Objects.requireNonNull(builder.remaining, "remaining");
 
+	}
+
+	public GetResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -72,22 +87,42 @@ public final class GetResponse implements ToJsonp {
 	}
 
 	/**
+	 * The total number of snapshots that match the request when ignoring size limit
+	 * or after query parameter.
+	 * <p>
+	 * API name: {@code total}
+	 */
+	public int total() {
+		return this.total;
+	}
+
+	/**
+	 * The number of remaining snapshots that were not returned due to size limits
+	 * and that can be fetched by additional requests using the next field value.
+	 * <p>
+	 * API name: {@code remaining}
+	 */
+	public int remaining() {
+		return this.remaining;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.responses != null) {
 
 			generator.writeKey("responses");
 			generator.writeStartArray();
 			for (SnapshotResponseItem item0 : this.responses) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -98,12 +133,18 @@ public final class GetResponse implements ToJsonp {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
+
+		generator.writeKey("total");
+		generator.write(this.total);
+
+		generator.writeKey("remaining");
+		generator.write(this.remaining);
 
 	}
 
@@ -118,6 +159,10 @@ public final class GetResponse implements ToJsonp {
 
 		@Nullable
 		private List<SnapshotInfo> snapshots;
+
+		private Integer total;
+
+		private Integer remaining;
 
 		/**
 		 * API name: {@code responses}
@@ -136,7 +181,7 @@ public final class GetResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
 		 */
 		public Builder addResponses(SnapshotResponseItem value) {
 			if (this.responses == null) {
@@ -154,7 +199,7 @@ public final class GetResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * Add a value to {@link #responses(List)}, creating the list if needed. 5
 		 */
 		public Builder addResponses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
 			return this.addResponses(fn.apply(new SnapshotResponseItem.Builder()).build());
@@ -177,7 +222,7 @@ public final class GetResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
 		 */
 		public Builder addSnapshots(SnapshotInfo value) {
 			if (this.snapshots == null) {
@@ -195,10 +240,32 @@ public final class GetResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
 		 */
 		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());
+		}
+
+		/**
+		 * The total number of snapshots that match the request when ignoring size limit
+		 * or after query parameter.
+		 * <p>
+		 * API name: {@code total}
+		 */
+		public Builder total(int value) {
+			this.total = value;
+			return this;
+		}
+
+		/**
+		 * The number of remaining snapshots that were not returned due to size limits
+		 * and that can be fetched by additional requests using the next field value.
+		 * <p>
+		 * API name: {@code remaining}
+		 */
+		public Builder remaining(int value) {
+			this.remaining = value;
+			return this;
 		}
 
 		/**
@@ -216,15 +283,18 @@ public final class GetResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetResponse
+	 * Json deserializer for {@link GetResponse}
 	 */
-	public static final JsonpDeserializer<GetResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetResponse::setupGetResponseDeserializer);
+	public static final JsonpDeserializer<GetResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
 
-		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem.DESERIALIZER), "responses");
-		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo.DESERIALIZER), "snapshots");
+		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem._DESERIALIZER),
+				"responses");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(SnapshotInfo._DESERIALIZER), "snapshots");
+		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
+		op.add(Builder::remaining, JsonpDeserializer.integerDeserializer(), "remaining");
 
 	}
 

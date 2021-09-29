@@ -24,33 +24,35 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
-public final class NodeOperatingSystemInfo implements ToJsonp {
+@JsonpDeserializable
+public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	private final String arch;
 
-	private final Number availableProcessors;
+	private final int availableProcessors;
 
 	@Nullable
-	private final Number allocatedProcessors;
+	private final Integer allocatedProcessors;
 
 	private final String name;
 
 	private final String prettyName;
 
-	private final Number refreshIntervalInMillis;
+	private final int refreshIntervalInMillis;
 
 	private final String version;
 
@@ -65,7 +67,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeOperatingSystemInfo(Builder builder) {
+	public NodeOperatingSystemInfo(Builder builder) {
 
 		this.arch = Objects.requireNonNull(builder.arch, "arch");
 		this.availableProcessors = Objects.requireNonNull(builder.availableProcessors, "available_processors");
@@ -81,9 +83,13 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	}
 
+	public NodeOperatingSystemInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Name of the JVM architecture (ex: amd64, x86)
-	 *
+	 * <p>
 	 * API name: {@code arch}
 	 */
 	public String arch() {
@@ -92,10 +98,10 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Number of processors available to the Java virtual machine
-	 *
+	 * <p>
 	 * API name: {@code available_processors}
 	 */
-	public Number availableProcessors() {
+	public int availableProcessors() {
 		return this.availableProcessors;
 	}
 
@@ -103,17 +109,17 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 	 * The number of processors actually used to calculate thread pool size. This
 	 * number can be set with the node.processors setting of a node and defaults to
 	 * the number of processors reported by the OS.
-	 *
+	 * <p>
 	 * API name: {@code allocated_processors}
 	 */
 	@Nullable
-	public Number allocatedProcessors() {
+	public Integer allocatedProcessors() {
 		return this.allocatedProcessors;
 	}
 
 	/**
 	 * Name of the operating system (ex: Linux, Windows, Mac OS X)
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -129,16 +135,16 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 	/**
 	 * Refresh interval for the OS statistics
-	 *
+	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public Number refreshIntervalInMillis() {
+	public int refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
 	/**
 	 * Version of the operating system
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	public String version() {
@@ -172,24 +178,24 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("arch");
 		generator.write(this.arch);
 
 		generator.writeKey("available_processors");
-		generator.write(this.availableProcessors.doubleValue());
+		generator.write(this.availableProcessors);
 
 		if (this.allocatedProcessors != null) {
 
 			generator.writeKey("allocated_processors");
-			generator.write(this.allocatedProcessors.doubleValue());
+			generator.write(this.allocatedProcessors);
 
 		}
 
@@ -200,7 +206,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 		generator.write(this.prettyName);
 
 		generator.writeKey("refresh_interval_in_millis");
-		generator.write(this.refreshIntervalInMillis.doubleValue());
+		generator.write(this.refreshIntervalInMillis);
 
 		generator.writeKey("version");
 		generator.write(this.version);
@@ -208,19 +214,19 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 		if (this.cpu != null) {
 
 			generator.writeKey("cpu");
-			this.cpu.toJsonp(generator, mapper);
+			this.cpu.serialize(generator, mapper);
 
 		}
 		if (this.mem != null) {
 
 			generator.writeKey("mem");
-			this.mem.toJsonp(generator, mapper);
+			this.mem.serialize(generator, mapper);
 
 		}
 		if (this.swap != null) {
 
 			generator.writeKey("swap");
-			this.swap.toJsonp(generator, mapper);
+			this.swap.serialize(generator, mapper);
 
 		}
 
@@ -234,16 +240,16 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 	public static class Builder implements ObjectBuilder<NodeOperatingSystemInfo> {
 		private String arch;
 
-		private Number availableProcessors;
+		private Integer availableProcessors;
 
 		@Nullable
-		private Number allocatedProcessors;
+		private Integer allocatedProcessors;
 
 		private String name;
 
 		private String prettyName;
 
-		private Number refreshIntervalInMillis;
+		private Integer refreshIntervalInMillis;
 
 		private String version;
 
@@ -258,7 +264,7 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Name of the JVM architecture (ex: amd64, x86)
-		 *
+		 * <p>
 		 * API name: {@code arch}
 		 */
 		public Builder arch(String value) {
@@ -268,10 +274,10 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Number of processors available to the Java virtual machine
-		 *
+		 * <p>
 		 * API name: {@code available_processors}
 		 */
-		public Builder availableProcessors(Number value) {
+		public Builder availableProcessors(int value) {
 			this.availableProcessors = value;
 			return this;
 		}
@@ -280,17 +286,17 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 		 * The number of processors actually used to calculate thread pool size. This
 		 * number can be set with the node.processors setting of a node and defaults to
 		 * the number of processors reported by the OS.
-		 *
+		 * <p>
 		 * API name: {@code allocated_processors}
 		 */
-		public Builder allocatedProcessors(@Nullable Number value) {
+		public Builder allocatedProcessors(@Nullable Integer value) {
 			this.allocatedProcessors = value;
 			return this;
 		}
 
 		/**
 		 * Name of the operating system (ex: Linux, Windows, Mac OS X)
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -308,17 +314,17 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 
 		/**
 		 * Refresh interval for the OS statistics
-		 *
+		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(Number value) {
+		public Builder refreshIntervalInMillis(int value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
 
 		/**
 		 * Version of the operating system
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(String value) {
@@ -386,24 +392,24 @@ public final class NodeOperatingSystemInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeOperatingSystemInfo
+	 * Json deserializer for {@link NodeOperatingSystemInfo}
 	 */
-	public static final JsonpDeserializer<NodeOperatingSystemInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer);
+	public static final JsonpDeserializer<NodeOperatingSystemInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer, Builder::build);
 
 	protected static void setupNodeOperatingSystemInfoDeserializer(
 			DelegatingDeserializer<NodeOperatingSystemInfo.Builder> op) {
 
 		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
-		op.add(Builder::availableProcessors, JsonpDeserializer.numberDeserializer(), "available_processors");
-		op.add(Builder::allocatedProcessors, JsonpDeserializer.numberDeserializer(), "allocated_processors");
+		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");
+		op.add(Builder::allocatedProcessors, JsonpDeserializer.integerDeserializer(), "allocated_processors");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
-		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.numberDeserializer(), "refresh_interval_in_millis");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.integerDeserializer(), "refresh_interval_in_millis");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::cpu, NodeInfoOSCPU.DESERIALIZER, "cpu");
-		op.add(Builder::mem, NodeInfoMemory.DESERIALIZER, "mem");
-		op.add(Builder::swap, NodeInfoMemory.DESERIALIZER, "swap");
+		op.add(Builder::cpu, NodeInfoOSCPU._DESERIALIZER, "cpu");
+		op.add(Builder::mem, NodeInfoMemory._DESERIALIZER, "mem");
+		op.add(Builder::swap, NodeInfoMemory._DESERIALIZER, "swap");
 
 	}
 

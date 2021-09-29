@@ -24,19 +24,23 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetricsAucRoc
-public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSerializable {
 	@Nullable
 	private final String className;
 
@@ -45,19 +49,23 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationClassificationMetricsAucRoc(Builder builder) {
+	public DataframeEvaluationClassificationMetricsAucRoc(Builder builder) {
 
 		this.className = builder.className;
 		this.includeCurve = builder.includeCurve;
 
 	}
 
+	public DataframeEvaluationClassificationMetricsAucRoc(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Name of the only class that is treated as positive during AUC ROC
-	 * calculation. Other classes are treated as negative ("one-vs-all" strategy).
-	 * All the evaluated documents must have class_name in the list of their top
-	 * classes.
-	 *
+	 * calculation. Other classes are treated as negative (&quot;one-vs-all&quot;
+	 * strategy). All the evaluated documents must have class_name in the list of
+	 * their top classes.
+	 * <p>
 	 * API name: {@code class_name}
 	 */
 	@Nullable
@@ -68,7 +76,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 	/**
 	 * Whether or not the curve should be returned in addition to the score. Default
 	 * value is false.
-	 *
+	 * <p>
 	 * API name: {@code include_curve}
 	 */
 	@Nullable
@@ -79,13 +87,13 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.className != null) {
 
@@ -116,10 +124,10 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 
 		/**
 		 * Name of the only class that is treated as positive during AUC ROC
-		 * calculation. Other classes are treated as negative ("one-vs-all" strategy).
-		 * All the evaluated documents must have class_name in the list of their top
-		 * classes.
-		 *
+		 * calculation. Other classes are treated as negative (&quot;one-vs-all&quot;
+		 * strategy). All the evaluated documents must have class_name in the list of
+		 * their top classes.
+		 * <p>
 		 * API name: {@code class_name}
 		 */
 		public Builder className(@Nullable String value) {
@@ -130,7 +138,7 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 		/**
 		 * Whether or not the curve should be returned in addition to the score. Default
 		 * value is false.
-		 *
+		 * <p>
 		 * API name: {@code include_curve}
 		 */
 		public Builder includeCurve(@Nullable Boolean value) {
@@ -153,11 +161,12 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationClassificationMetricsAucRoc
+	 * Json deserializer for {@link DataframeEvaluationClassificationMetricsAucRoc}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationClassificationMetricsAucRoc> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationClassificationMetricsAucRoc::setupDataframeEvaluationClassificationMetricsAucRocDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationClassificationMetricsAucRoc> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationClassificationMetricsAucRoc::setupDataframeEvaluationClassificationMetricsAucRocDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationClassificationMetricsAucRocDeserializer(
 			DelegatingDeserializer<DataframeEvaluationClassificationMetricsAucRoc.Builder> op) {

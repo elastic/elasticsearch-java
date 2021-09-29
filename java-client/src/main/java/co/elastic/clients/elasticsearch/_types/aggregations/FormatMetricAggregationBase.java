@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,17 +32,21 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FormatMetricAggregationBase
+
 public abstract class FormatMetricAggregationBase extends MetricAggregationBase {
 	@Nullable
 	private final String format;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FormatMetricAggregationBase(AbstractBuilder<?> builder) {
+	public FormatMetricAggregationBase(AbstractBuilder<?> builder) {
 		super(builder);
+
 		this.format = builder.format;
 
 	}
@@ -54,8 +59,9 @@ public abstract class FormatMetricAggregationBase extends MetricAggregationBase 
 		return this.format;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
 
 			generator.writeKey("format");

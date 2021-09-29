@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,11 +38,13 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ProcessorBase
-public abstract class ProcessorBase implements ToJsonp {
+
+public abstract class ProcessorBase implements JsonpSerializable {
 	@Nullable
 	private final String if_;
 
@@ -48,18 +52,18 @@ public abstract class ProcessorBase implements ToJsonp {
 	private final Boolean ignoreFailure;
 
 	@Nullable
-	private final List<ProcessorContainer> onFailure;
+	private final List<Processor> onFailure;
 
 	@Nullable
 	private final String tag;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ProcessorBase(AbstractBuilder<?> builder) {
+	public ProcessorBase(AbstractBuilder<?> builder) {
 
 		this.if_ = builder.if_;
 		this.ignoreFailure = builder.ignoreFailure;
-		this.onFailure = builder.onFailure;
+		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
 		this.tag = builder.tag;
 
 	}
@@ -84,7 +88,7 @@ public abstract class ProcessorBase implements ToJsonp {
 	 * API name: {@code on_failure}
 	 */
 	@Nullable
-	public List<ProcessorContainer> onFailure() {
+	public List<Processor> onFailure() {
 		return this.onFailure;
 	}
 
@@ -99,13 +103,13 @@ public abstract class ProcessorBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.if_ != null) {
 
@@ -123,8 +127,8 @@ public abstract class ProcessorBase implements ToJsonp {
 
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
-			for (ProcessorContainer item0 : this.onFailure) {
-				item0.toJsonp(generator, mapper);
+			for (Processor item0 : this.onFailure) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -147,7 +151,7 @@ public abstract class ProcessorBase implements ToJsonp {
 		private Boolean ignoreFailure;
 
 		@Nullable
-		private List<ProcessorContainer> onFailure;
+		private List<Processor> onFailure;
 
 		@Nullable
 		private String tag;
@@ -171,7 +175,7 @@ public abstract class ProcessorBase implements ToJsonp {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public BuilderT onFailure(@Nullable List<ProcessorContainer> value) {
+		public BuilderT onFailure(@Nullable List<Processor> value) {
 			this.onFailure = value;
 			return self();
 		}
@@ -179,15 +183,15 @@ public abstract class ProcessorBase implements ToJsonp {
 		/**
 		 * API name: {@code on_failure}
 		 */
-		public BuilderT onFailure(ProcessorContainer... value) {
+		public BuilderT onFailure(Processor... value) {
 			this.onFailure = Arrays.asList(value);
 			return self();
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 4
 		 */
-		public BuilderT addOnFailure(ProcessorContainer value) {
+		public BuilderT addOnFailure(Processor value) {
 			if (this.onFailure == null) {
 				this.onFailure = new ArrayList<>();
 			}
@@ -198,15 +202,15 @@ public abstract class ProcessorBase implements ToJsonp {
 		/**
 		 * Set {@link #onFailure(List)} to a singleton list.
 		 */
-		public BuilderT onFailure(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.onFailure(fn.apply(new ProcessorContainer.Builder()).build());
+		public BuilderT onFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.onFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 5
 		 */
-		public BuilderT addOnFailure(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addOnFailure(fn.apply(new ProcessorContainer.Builder()).build());
+		public BuilderT addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -227,8 +231,7 @@ public abstract class ProcessorBase implements ToJsonp {
 
 		op.add(AbstractBuilder::if_, JsonpDeserializer.stringDeserializer(), "if");
 		op.add(AbstractBuilder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
-		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER),
-				"on_failure");
+		op.add(AbstractBuilder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
 		op.add(AbstractBuilder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 
 	}

@@ -24,34 +24,40 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationDecision
-public final class AllocationDecision implements ToJsonp {
+@JsonpDeserializable
+public final class AllocationDecision implements JsonpSerializable {
 	private final String decider;
 
-	private final JsonValue decision;
+	private final AllocationExplainDecision decision;
 
 	private final String explanation;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationDecision(Builder builder) {
+	public AllocationDecision(Builder builder) {
 
 		this.decider = Objects.requireNonNull(builder.decider, "decider");
 		this.decision = Objects.requireNonNull(builder.decision, "decision");
 		this.explanation = Objects.requireNonNull(builder.explanation, "explanation");
 
+	}
+
+	public AllocationDecision(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,7 +70,7 @@ public final class AllocationDecision implements ToJsonp {
 	/**
 	 * API name: {@code decision}
 	 */
-	public JsonValue decision() {
+	public AllocationExplainDecision decision() {
 		return this.decision;
 	}
 
@@ -78,19 +84,19 @@ public final class AllocationDecision implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("decider");
 		generator.write(this.decider);
 
 		generator.writeKey("decision");
-		generator.write(this.decision);
+		this.decision.serialize(generator, mapper);
 
 		generator.writeKey("explanation");
 		generator.write(this.explanation);
@@ -105,7 +111,7 @@ public final class AllocationDecision implements ToJsonp {
 	public static class Builder implements ObjectBuilder<AllocationDecision> {
 		private String decider;
 
-		private JsonValue decision;
+		private AllocationExplainDecision decision;
 
 		private String explanation;
 
@@ -120,7 +126,7 @@ public final class AllocationDecision implements ToJsonp {
 		/**
 		 * API name: {@code decision}
 		 */
-		public Builder decision(JsonValue value) {
+		public Builder decision(AllocationExplainDecision value) {
 			this.decision = value;
 			return this;
 		}
@@ -148,15 +154,15 @@ public final class AllocationDecision implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllocationDecision
+	 * Json deserializer for {@link AllocationDecision}
 	 */
-	public static final JsonpDeserializer<AllocationDecision> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer);
+	public static final JsonpDeserializer<AllocationDecision> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer, Builder::build);
 
 	protected static void setupAllocationDecisionDeserializer(DelegatingDeserializer<AllocationDecision.Builder> op) {
 
 		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
-		op.add(Builder::decision, JsonpDeserializer.jsonValueDeserializer(), "decision");
+		op.add(Builder::decision, AllocationExplainDecision._DESERIALIZER, "decision");
 		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
 
 	}

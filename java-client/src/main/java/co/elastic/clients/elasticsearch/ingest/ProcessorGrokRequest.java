@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ingest.processor_grok.Request
+
 public final class ProcessorGrokRequest extends RequestBase {
-	protected ProcessorGrokRequest() {
+	public ProcessorGrokRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link ProcessorGrokRequest}.
 	 */
-	public static final ProcessorGrokRequest INSTANCE = new ProcessorGrokRequest();
-
-	public static final JsonpDeserializer<ProcessorGrokRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(ProcessorGrokRequest.INSTANCE);
+	public static final ProcessorGrokRequest _INSTANCE = new ProcessorGrokRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code ingest.processor_grok}".
 	 */
-	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class ProcessorGrokRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ProcessorGrokResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ProcessorGrokResponse._DESERIALIZER);
 }

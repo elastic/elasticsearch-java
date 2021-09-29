@@ -24,35 +24,37 @@
 package co.elastic.clients.elasticsearch.indices.data_streams_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
-public final class DataStreamsStatsItem implements ToJsonp {
-	private final Number backingIndices;
+@JsonpDeserializable
+public final class DataStreamsStatsItem implements JsonpSerializable {
+	private final int backingIndices;
 
 	private final String dataStream;
 
 	@Nullable
-	private final JsonValue storeSize;
+	private final String storeSize;
 
-	private final Number storeSizeBytes;
+	private final int storeSizeBytes;
 
-	private final Number maximumTimestamp;
+	private final int maximumTimestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreamsStatsItem(Builder builder) {
+	public DataStreamsStatsItem(Builder builder) {
 
 		this.backingIndices = Objects.requireNonNull(builder.backingIndices, "backing_indices");
 		this.dataStream = Objects.requireNonNull(builder.dataStream, "data_stream");
@@ -62,10 +64,14 @@ public final class DataStreamsStatsItem implements ToJsonp {
 
 	}
 
+	public DataStreamsStatsItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code backing_indices}
 	 */
-	public Number backingIndices() {
+	public int backingIndices() {
 		return this.backingIndices;
 	}
 
@@ -80,37 +86,37 @@ public final class DataStreamsStatsItem implements ToJsonp {
 	 * API name: {@code store_size}
 	 */
 	@Nullable
-	public JsonValue storeSize() {
+	public String storeSize() {
 		return this.storeSize;
 	}
 
 	/**
 	 * API name: {@code store_size_bytes}
 	 */
-	public Number storeSizeBytes() {
+	public int storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
 	/**
 	 * API name: {@code maximum_timestamp}
 	 */
-	public Number maximumTimestamp() {
+	public int maximumTimestamp() {
 		return this.maximumTimestamp;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("backing_indices");
-		generator.write(this.backingIndices.doubleValue());
+		generator.write(this.backingIndices);
 
 		generator.writeKey("data_stream");
 		generator.write(this.dataStream);
@@ -123,10 +129,10 @@ public final class DataStreamsStatsItem implements ToJsonp {
 		}
 
 		generator.writeKey("store_size_bytes");
-		generator.write(this.storeSizeBytes.doubleValue());
+		generator.write(this.storeSizeBytes);
 
 		generator.writeKey("maximum_timestamp");
-		generator.write(this.maximumTimestamp.doubleValue());
+		generator.write(this.maximumTimestamp);
 
 	}
 
@@ -136,21 +142,21 @@ public final class DataStreamsStatsItem implements ToJsonp {
 	 * Builder for {@link DataStreamsStatsItem}.
 	 */
 	public static class Builder implements ObjectBuilder<DataStreamsStatsItem> {
-		private Number backingIndices;
+		private Integer backingIndices;
 
 		private String dataStream;
 
 		@Nullable
-		private JsonValue storeSize;
+		private String storeSize;
 
-		private Number storeSizeBytes;
+		private Integer storeSizeBytes;
 
-		private Number maximumTimestamp;
+		private Integer maximumTimestamp;
 
 		/**
 		 * API name: {@code backing_indices}
 		 */
-		public Builder backingIndices(Number value) {
+		public Builder backingIndices(int value) {
 			this.backingIndices = value;
 			return this;
 		}
@@ -166,7 +172,7 @@ public final class DataStreamsStatsItem implements ToJsonp {
 		/**
 		 * API name: {@code store_size}
 		 */
-		public Builder storeSize(@Nullable JsonValue value) {
+		public Builder storeSize(@Nullable String value) {
 			this.storeSize = value;
 			return this;
 		}
@@ -174,7 +180,7 @@ public final class DataStreamsStatsItem implements ToJsonp {
 		/**
 		 * API name: {@code store_size_bytes}
 		 */
-		public Builder storeSizeBytes(Number value) {
+		public Builder storeSizeBytes(int value) {
 			this.storeSizeBytes = value;
 			return this;
 		}
@@ -182,7 +188,7 @@ public final class DataStreamsStatsItem implements ToJsonp {
 		/**
 		 * API name: {@code maximum_timestamp}
 		 */
-		public Builder maximumTimestamp(Number value) {
+		public Builder maximumTimestamp(int value) {
 			this.maximumTimestamp = value;
 			return this;
 		}
@@ -202,19 +208,19 @@ public final class DataStreamsStatsItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataStreamsStatsItem
+	 * Json deserializer for {@link DataStreamsStatsItem}
 	 */
-	public static final JsonpDeserializer<DataStreamsStatsItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer);
+	public static final JsonpDeserializer<DataStreamsStatsItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataStreamsStatsItem::setupDataStreamsStatsItemDeserializer, Builder::build);
 
 	protected static void setupDataStreamsStatsItemDeserializer(
 			DelegatingDeserializer<DataStreamsStatsItem.Builder> op) {
 
-		op.add(Builder::backingIndices, JsonpDeserializer.numberDeserializer(), "backing_indices");
+		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
-		op.add(Builder::storeSize, JsonpDeserializer.jsonValueDeserializer(), "store_size");
-		op.add(Builder::storeSizeBytes, JsonpDeserializer.numberDeserializer(), "store_size_bytes");
-		op.add(Builder::maximumTimestamp, JsonpDeserializer.numberDeserializer(), "maximum_timestamp");
+		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store_size");
+		op.add(Builder::storeSizeBytes, JsonpDeserializer.integerDeserializer(), "store_size_bytes");
+		op.add(Builder::maximumTimestamp, JsonpDeserializer.integerDeserializer(), "maximum_timestamp");
 
 	}
 

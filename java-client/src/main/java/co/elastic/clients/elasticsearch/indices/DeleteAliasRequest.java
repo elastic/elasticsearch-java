@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -39,33 +41,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_alias.Request
+
 public final class DeleteAliasRequest extends RequestBase {
 	private final List<String> index;
 
 	private final List<String> name;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteAliasRequest(Builder builder) {
+	public DeleteAliasRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
+	public DeleteAliasRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names (supports wildcards); use
+	 * <code>_all</code> for all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -73,6 +84,9 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of aliases to delete (supports wildcards); use
+	 * <code>_all</code> to delete all aliases for the specified indices.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -80,18 +94,22 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Explicit timestamp for the document
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -106,12 +124,15 @@ public final class DeleteAliasRequest extends RequestBase {
 		private List<String> name;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * A comma-separated list of index names (supports wildcards); use
+		 * <code>_all</code> for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -120,6 +141,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names (supports wildcards); use
+		 * <code>_all</code> for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -128,7 +152,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -139,6 +163,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of aliases to delete (supports wildcards); use
+		 * <code>_all</code> to delete all aliases for the specified indices.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -147,6 +174,9 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of aliases to delete (supports wildcards); use
+		 * <code>_all</code> to delete all aliases for the specified indices.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -155,7 +185,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -166,17 +196,21 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Explicit timestamp for the document
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -198,7 +232,7 @@ public final class DeleteAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_alias}".
 	 */
-	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -212,30 +246,28 @@ public final class DeleteAliasRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _index;
+				propsSet |= _name;
 
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_alias");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_aliases");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -243,12 +275,12 @@ public final class DeleteAliasRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteAliasResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteAliasResponse._DESERIALIZER);
 }

@@ -23,23 +23,27 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.enable_user.Response
+
 public final class EnableUserResponse {
-	protected EnableUserResponse() {
+	public EnableUserResponse() {
 	}
 
 	/**
 	 * Singleton instance for {@link EnableUserResponse}.
 	 */
-	public static final EnableUserResponse INSTANCE = new EnableUserResponse();
+	public static final EnableUserResponse _INSTANCE = new EnableUserResponse();
 
-	public static final JsonpDeserializer<EnableUserResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(EnableUserResponse.INSTANCE);
+	public static final JsonpDeserializer<EnableUserResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(EnableUserResponse._INSTANCE);
 
 }

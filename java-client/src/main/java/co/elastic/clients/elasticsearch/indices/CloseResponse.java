@@ -26,10 +26,12 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.indices.close.CloseIndexResult;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,18 +43,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.Response
+@JsonpDeserializable
 public final class CloseResponse extends AcknowledgedResponseBase {
 	private final Map<String, CloseIndexResult> indices;
 
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseResponse(Builder builder) {
+	public CloseResponse(Builder builder) {
 		super(builder);
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
+	}
+
+	public CloseResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -65,18 +73,19 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("indices");
 		generator.writeStartObject();
 		for (Map.Entry<String, CloseIndexResult> item0 : this.indices.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -134,7 +143,7 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -159,14 +168,14 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloseResponse
+	 * Json deserializer for {@link CloseResponse}
 	 */
-	public static final JsonpDeserializer<CloseResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloseResponse::setupCloseResponseDeserializer);
+	public static final JsonpDeserializer<CloseResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseResponse::setupCloseResponseDeserializer, Builder::build);
 
 	protected static void setupCloseResponseDeserializer(DelegatingDeserializer<CloseResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(CloseIndexResult.DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(CloseIndexResult._DESERIALIZER), "indices");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 
 	}

@@ -24,41 +24,56 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
-public final class DisMaxQuery extends QueryBase {
-	@Nullable
-	private final List<QueryContainer> queries;
+@JsonpDeserializable
+public final class DisMaxQuery extends QueryBase implements QueryVariant {
+	private final List<Query> queries;
 
 	@Nullable
-	private final Number tieBreaker;
+	private final Double tieBreaker;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DisMaxQuery(Builder builder) {
+	public DisMaxQuery(Builder builder) {
 		super(builder);
-		this.queries = builder.queries;
+
+		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
 		this.tieBreaker = builder.tieBreaker;
 
+	}
+
+	public DisMaxQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "dis_max";
 	}
 
 	/**
 	 * API name: {@code queries}
 	 */
-	@Nullable
-	public List<QueryContainer> queries() {
+	public List<Query> queries() {
 		return this.queries;
 	}
 
@@ -66,27 +81,26 @@ public final class DisMaxQuery extends QueryBase {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Number tieBreaker() {
+	public Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.queries != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("queries");
-			generator.writeStartArray();
-			for (QueryContainer item0 : this.queries) {
-				item0.toJsonp(generator, mapper);
+		super.serializeInternal(generator, mapper);
 
-			}
-			generator.writeEnd();
+		generator.writeKey("queries");
+		generator.writeStartArray();
+		for (Query item0 : this.queries) {
+			item0.serialize(generator, mapper);
 
 		}
+		generator.writeEnd();
+
 		if (this.tieBreaker != null) {
 
 			generator.writeKey("tie_breaker");
-			generator.write(this.tieBreaker.doubleValue());
+			generator.write(this.tieBreaker);
 
 		}
 
@@ -98,16 +112,15 @@ public final class DisMaxQuery extends QueryBase {
 	 * Builder for {@link DisMaxQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<DisMaxQuery> {
-		@Nullable
-		private List<QueryContainer> queries;
+		private List<Query> queries;
 
 		@Nullable
-		private Number tieBreaker;
+		private Double tieBreaker;
 
 		/**
 		 * API name: {@code queries}
 		 */
-		public Builder queries(@Nullable List<QueryContainer> value) {
+		public Builder queries(List<Query> value) {
 			this.queries = value;
 			return this;
 		}
@@ -115,15 +128,15 @@ public final class DisMaxQuery extends QueryBase {
 		/**
 		 * API name: {@code queries}
 		 */
-		public Builder queries(QueryContainer... value) {
+		public Builder queries(Query... value) {
 			this.queries = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
+		 * Add a value to {@link #queries(List)}, creating the list if needed. 4
 		 */
-		public Builder addQueries(QueryContainer value) {
+		public Builder addQueries(Query value) {
 			if (this.queries == null) {
 				this.queries = new ArrayList<>();
 			}
@@ -134,21 +147,21 @@ public final class DisMaxQuery extends QueryBase {
 		/**
 		 * Set {@link #queries(List)} to a singleton list.
 		 */
-		public Builder queries(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.queries(fn.apply(new QueryContainer.Builder()).build());
+		public Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.queries(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
+		 * Add a value to {@link #queries(List)}, creating the list if needed. 5
 		 */
-		public Builder addQueries(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.addQueries(fn.apply(new QueryContainer.Builder()).build());
+		public Builder addQueries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.addQueries(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Number value) {
+		public Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -173,15 +186,15 @@ public final class DisMaxQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DisMaxQuery
+	 * Json deserializer for {@link DisMaxQuery}
 	 */
-	public static final JsonpDeserializer<DisMaxQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DisMaxQuery::setupDisMaxQueryDeserializer);
+	public static final JsonpDeserializer<DisMaxQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DisMaxQuery::setupDisMaxQueryDeserializer, Builder::build);
 
 	protected static void setupDisMaxQueryDeserializer(DelegatingDeserializer<DisMaxQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(QueryContainer.DESERIALIZER), "queries");
-		op.add(Builder::tieBreaker, JsonpDeserializer.numberDeserializer(), "tie_breaker");
+		op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "queries");
+		op.add(Builder::tieBreaker, JsonpDeserializer.doubleDeserializer(), "tie_breaker");
 
 	}
 

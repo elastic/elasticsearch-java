@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,34 +36,31 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Request
-public final class GetUpgradeRequest extends RequestBase {
-	private final String stub;
 
+public final class GetUpgradeRequest extends RequestBase {
 	@Nullable
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUpgradeRequest(Builder builder) {
+	public GetUpgradeRequest(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
 		this.index = builder.index;
 
 	}
 
-	/**
-	 * API name: {@code stub}
-	 */
-	public String stub() {
-		return this.stub;
+	public GetUpgradeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
-	 *
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -75,22 +74,13 @@ public final class GetUpgradeRequest extends RequestBase {
 	 * Builder for {@link GetUpgradeRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetUpgradeRequest> {
-		private String stub;
-
 		@Nullable
 		private String index;
 
 		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(String value) {
-			this.stub = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
-		 *
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable String value) {
@@ -115,7 +105,7 @@ public final class GetUpgradeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_upgrade}".
 	 */
-	public static final Endpoint<GetUpgradeRequest, GetUpgradeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetUpgradeRequest, GetUpgradeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -124,13 +114,10 @@ public final class GetUpgradeRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _stub = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.stub() != null)
-					propsSet |= _stub;
 				if (request.index() != null)
 					propsSet |= _index;
 
@@ -142,11 +129,11 @@ public final class GetUpgradeRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_upgrade");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -154,5 +141,5 @@ public final class GetUpgradeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetUpgradeResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetUpgradeResponse._DESERIALIZER);
 }

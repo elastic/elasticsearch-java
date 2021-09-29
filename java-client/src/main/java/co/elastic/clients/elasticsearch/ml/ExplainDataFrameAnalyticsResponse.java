@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,24 +41,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Response
-public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<DataframeAnalyticsFieldSelection> fieldSelection;
 
 	private final DataframeAnalyticsMemoryEstimation memoryEstimation;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainDataFrameAnalyticsResponse(Builder builder) {
+	public ExplainDataFrameAnalyticsResponse(Builder builder) {
 
-		this.fieldSelection = Objects.requireNonNull(builder.fieldSelection, "field_selection");
+		this.fieldSelection = ModelTypeHelper.unmodifiableNonNull(builder.fieldSelection, "field_selection");
 		this.memoryEstimation = Objects.requireNonNull(builder.memoryEstimation, "memory_estimation");
 
+	}
+
+	public ExplainDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * An array of objects that explain selection for each field, sorted by the
 	 * field names.
-	 *
+	 * <p>
 	 * API name: {@code field_selection}
 	 */
 	public List<DataframeAnalyticsFieldSelection> fieldSelection() {
@@ -66,7 +73,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * An array of objects that explain selection for each field, sorted by the
 	 * field names.
-	 *
+	 * <p>
 	 * API name: {@code memory_estimation}
 	 */
 	public DataframeAnalyticsMemoryEstimation memoryEstimation() {
@@ -76,24 +83,24 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field_selection");
 		generator.writeStartArray();
 		for (DataframeAnalyticsFieldSelection item0 : this.fieldSelection) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("memory_estimation");
-		this.memoryEstimation.toJsonp(generator, mapper);
+		this.memoryEstimation.serialize(generator, mapper);
 
 	}
 
@@ -110,7 +117,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code field_selection}
 		 */
 		public Builder fieldSelection(List<DataframeAnalyticsFieldSelection> value) {
@@ -121,7 +128,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code field_selection}
 		 */
 		public Builder fieldSelection(DataframeAnalyticsFieldSelection... value) {
@@ -130,7 +137,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed. 4
 		 */
 		public Builder addFieldSelection(DataframeAnalyticsFieldSelection value) {
 			if (this.fieldSelection == null) {
@@ -149,7 +156,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed. 5
 		 */
 		public Builder addFieldSelection(
 				Function<DataframeAnalyticsFieldSelection.Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
@@ -159,7 +166,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
 		public Builder memoryEstimation(DataframeAnalyticsMemoryEstimation value) {
@@ -170,7 +177,7 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that explain selection for each field, sorted by the
 		 * field names.
-		 *
+		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
 		public Builder memoryEstimation(
@@ -193,18 +200,18 @@ public final class ExplainDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExplainDataFrameAnalyticsResponse
+	 * Json deserializer for {@link ExplainDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<ExplainDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ExplainDataFrameAnalyticsResponse::setupExplainDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<ExplainDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplainDataFrameAnalyticsResponse::setupExplainDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupExplainDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<ExplainDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::fieldSelection,
-				JsonpDeserializer.arrayDeserializer(DataframeAnalyticsFieldSelection.DESERIALIZER), "field_selection");
-		op.add(Builder::memoryEstimation, DataframeAnalyticsMemoryEstimation.DESERIALIZER, "memory_estimation");
+				JsonpDeserializer.arrayDeserializer(DataframeAnalyticsFieldSelection._DESERIALIZER), "field_selection");
+		op.add(Builder::memoryEstimation, DataframeAnalyticsMemoryEstimation._DESERIALIZER, "memory_estimation");
 
 	}
 

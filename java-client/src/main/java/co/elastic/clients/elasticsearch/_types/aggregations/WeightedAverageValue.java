@@ -24,37 +24,45 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageValue
-public final class WeightedAverageValue implements ToJsonp {
+@JsonpDeserializable
+public final class WeightedAverageValue implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final Number missing;
+	private final Double missing;
 
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WeightedAverageValue(Builder builder) {
+	public WeightedAverageValue(Builder builder) {
 
 		this.field = builder.field;
 		this.missing = builder.missing;
 		this.script = builder.script;
 
+	}
+
+	public WeightedAverageValue(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -69,7 +77,7 @@ public final class WeightedAverageValue implements ToJsonp {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Number missing() {
+	public Double missing() {
 		return this.missing;
 	}
 
@@ -77,20 +85,20 @@ public final class WeightedAverageValue implements ToJsonp {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
 
@@ -101,7 +109,7 @@ public final class WeightedAverageValue implements ToJsonp {
 		if (this.missing != null) {
 
 			generator.writeKey("missing");
-			generator.write(this.missing.doubleValue());
+			generator.write(this.missing);
 
 		}
 		if (this.script != null) {
@@ -123,10 +131,10 @@ public final class WeightedAverageValue implements ToJsonp {
 		private String field;
 
 		@Nullable
-		private Number missing;
+		private Double missing;
 
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code field}
@@ -139,7 +147,7 @@ public final class WeightedAverageValue implements ToJsonp {
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable Number value) {
+		public Builder missing(@Nullable Double value) {
 			this.missing = value;
 			return this;
 		}
@@ -147,7 +155,7 @@ public final class WeightedAverageValue implements ToJsonp {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -167,16 +175,16 @@ public final class WeightedAverageValue implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WeightedAverageValue
+	 * Json deserializer for {@link WeightedAverageValue}
 	 */
-	public static final JsonpDeserializer<WeightedAverageValue> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WeightedAverageValue::setupWeightedAverageValueDeserializer);
+	public static final JsonpDeserializer<WeightedAverageValue> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WeightedAverageValue::setupWeightedAverageValueDeserializer, Builder::build);
 
 	protected static void setupWeightedAverageValueDeserializer(
 			DelegatingDeserializer<WeightedAverageValue.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::missing, JsonpDeserializer.numberDeserializer(), "missing");
+		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
 		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
 
 	}

@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,18 +36,24 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.find_file_structure.Request
+
 public final class FindFileStructureRequest extends RequestBase {
 	private final String stub;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FindFileStructureRequest(Builder builder) {
+	public FindFileStructureRequest(Builder builder) {
 
 		this.stub = Objects.requireNonNull(builder.stub, "stub");
 
+	}
+
+	public FindFileStructureRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -88,7 +96,7 @@ public final class FindFileStructureRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.find_file_structure}".
 	 */
-	public static final Endpoint<FindFileStructureRequest, FindFileStructureResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FindFileStructureRequest, FindFileStructureResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -105,5 +113,5 @@ public final class FindFileStructureRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, FindFileStructureResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, FindFileStructureResponse._DESERIALIZER);
 }

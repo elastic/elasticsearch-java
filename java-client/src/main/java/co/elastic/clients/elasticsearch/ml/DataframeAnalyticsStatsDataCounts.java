@@ -24,33 +24,39 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: ml._types.DataframeAnalyticsStatsDataCounts
-public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
-	private final Number skippedDocsCount;
+@JsonpDeserializable
+public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
+	private final int skippedDocsCount;
 
-	private final Number testDocsCount;
+	private final int testDocsCount;
 
-	private final Number trainingDocsCount;
+	private final int trainingDocsCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsStatsDataCounts(Builder builder) {
+	public DataframeAnalyticsStatsDataCounts(Builder builder) {
 
 		this.skippedDocsCount = Objects.requireNonNull(builder.skippedDocsCount, "skipped_docs_count");
 		this.testDocsCount = Objects.requireNonNull(builder.testDocsCount, "test_docs_count");
 		this.trainingDocsCount = Objects.requireNonNull(builder.trainingDocsCount, "training_docs_count");
 
+	}
+
+	public DataframeAnalyticsStatsDataCounts(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -59,51 +65,51 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 	 * detection does not support missing fields so it skips documents with missing
 	 * fields. Likewise, all types of analysis skip documents that contain arrays
 	 * with more than one element.
-	 *
+	 * <p>
 	 * API name: {@code skipped_docs_count}
 	 */
-	public Number skippedDocsCount() {
+	public int skippedDocsCount() {
 		return this.skippedDocsCount;
 	}
 
 	/**
 	 * The number of documents that are not used for training the model and can be
 	 * used for testing.
-	 *
+	 * <p>
 	 * API name: {@code test_docs_count}
 	 */
-	public Number testDocsCount() {
+	public int testDocsCount() {
 		return this.testDocsCount;
 	}
 
 	/**
 	 * The number of documents that are used for training the model.
-	 *
+	 * <p>
 	 * API name: {@code training_docs_count}
 	 */
-	public Number trainingDocsCount() {
+	public int trainingDocsCount() {
 		return this.trainingDocsCount;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("skipped_docs_count");
-		generator.write(this.skippedDocsCount.doubleValue());
+		generator.write(this.skippedDocsCount);
 
 		generator.writeKey("test_docs_count");
-		generator.write(this.testDocsCount.doubleValue());
+		generator.write(this.testDocsCount);
 
 		generator.writeKey("training_docs_count");
-		generator.write(this.trainingDocsCount.doubleValue());
+		generator.write(this.trainingDocsCount);
 
 	}
 
@@ -113,11 +119,11 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 	 * Builder for {@link DataframeAnalyticsStatsDataCounts}.
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsDataCounts> {
-		private Number skippedDocsCount;
+		private Integer skippedDocsCount;
 
-		private Number testDocsCount;
+		private Integer testDocsCount;
 
-		private Number trainingDocsCount;
+		private Integer trainingDocsCount;
 
 		/**
 		 * The number of documents that are skipped during the analysis because they
@@ -125,10 +131,10 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 		 * detection does not support missing fields so it skips documents with missing
 		 * fields. Likewise, all types of analysis skip documents that contain arrays
 		 * with more than one element.
-		 *
+		 * <p>
 		 * API name: {@code skipped_docs_count}
 		 */
-		public Builder skippedDocsCount(Number value) {
+		public Builder skippedDocsCount(int value) {
 			this.skippedDocsCount = value;
 			return this;
 		}
@@ -136,20 +142,20 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 		/**
 		 * The number of documents that are not used for training the model and can be
 		 * used for testing.
-		 *
+		 * <p>
 		 * API name: {@code test_docs_count}
 		 */
-		public Builder testDocsCount(Number value) {
+		public Builder testDocsCount(int value) {
 			this.testDocsCount = value;
 			return this;
 		}
 
 		/**
 		 * The number of documents that are used for training the model.
-		 *
+		 * <p>
 		 * API name: {@code training_docs_count}
 		 */
-		public Builder trainingDocsCount(Number value) {
+		public Builder trainingDocsCount(int value) {
 			this.trainingDocsCount = value;
 			return this;
 		}
@@ -169,18 +175,18 @@ public final class DataframeAnalyticsStatsDataCounts implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsStatsDataCounts
+	 * Json deserializer for {@link DataframeAnalyticsStatsDataCounts}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsDataCountsDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
 
-		op.add(Builder::skippedDocsCount, JsonpDeserializer.numberDeserializer(), "skipped_docs_count");
-		op.add(Builder::testDocsCount, JsonpDeserializer.numberDeserializer(), "test_docs_count");
-		op.add(Builder::trainingDocsCount, JsonpDeserializer.numberDeserializer(), "training_docs_count");
+		op.add(Builder::skippedDocsCount, JsonpDeserializer.integerDeserializer(), "skipped_docs_count");
+		op.add(Builder::testDocsCount, JsonpDeserializer.integerDeserializer(), "test_docs_count");
+		op.add(Builder::trainingDocsCount, JsonpDeserializer.integerDeserializer(), "training_docs_count");
 
 	}
 

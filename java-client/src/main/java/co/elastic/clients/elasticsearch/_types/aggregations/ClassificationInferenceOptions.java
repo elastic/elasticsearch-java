@@ -24,24 +24,28 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ClassificationInferenceOptions
-public final class ClassificationInferenceOptions implements ToJsonp {
+@JsonpDeserializable
+public final class ClassificationInferenceOptions implements JsonpSerializable {
 	@Nullable
-	private final Number numTopClasses;
+	private final Integer numTopClasses;
 
 	@Nullable
-	private final Number numTopFeatureImportanceValues;
+	private final Integer numTopFeatureImportanceValues;
 
 	@Nullable
 	private final String predictionFieldType;
@@ -54,7 +58,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClassificationInferenceOptions(Builder builder) {
+	public ClassificationInferenceOptions(Builder builder) {
 
 		this.numTopClasses = builder.numTopClasses;
 		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
@@ -64,24 +68,28 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 
 	}
 
+	public ClassificationInferenceOptions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Specifies the number of top class predictions to return. Defaults to 0.
-	 *
+	 * <p>
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
-	public Number numTopClasses() {
+	public Integer numTopClasses() {
 		return this.numTopClasses;
 	}
 
 	/**
 	 * Specifies the maximum number of feature importance values per document. By
 	 * default, it is zero and no feature importance calculation occurs.
-	 *
+	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Number numTopFeatureImportanceValues() {
+	public Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
@@ -89,7 +97,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	 * Specifies the type of the predicted field to write. Acceptable values are:
 	 * string, number, boolean. When boolean is provided 1.0 is transformed to true
 	 * and 0.0 to false.
-	 *
+	 * <p>
 	 * API name: {@code prediction_field_type}
 	 */
 	@Nullable
@@ -100,7 +108,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	/**
 	 * The field that is added to incoming documents to contain the inference
 	 * prediction. Defaults to predicted_value.
-	 *
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	@Nullable
@@ -111,7 +119,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	/**
 	 * Specifies the field to which the top classes are written. Defaults to
 	 * top_classes.
-	 *
+	 * <p>
 	 * API name: {@code top_classes_results_field}
 	 */
 	@Nullable
@@ -122,24 +130,24 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.numTopClasses != null) {
 
 			generator.writeKey("num_top_classes");
-			generator.write(this.numTopClasses.doubleValue());
+			generator.write(this.numTopClasses);
 
 		}
 		if (this.numTopFeatureImportanceValues != null) {
 
 			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues.doubleValue());
+			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 		if (this.predictionFieldType != null) {
@@ -170,10 +178,10 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<ClassificationInferenceOptions> {
 		@Nullable
-		private Number numTopClasses;
+		private Integer numTopClasses;
 
 		@Nullable
-		private Number numTopFeatureImportanceValues;
+		private Integer numTopFeatureImportanceValues;
 
 		@Nullable
 		private String predictionFieldType;
@@ -186,10 +194,10 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
-		 *
+		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
-		public Builder numTopClasses(@Nullable Number value) {
+		public Builder numTopClasses(@Nullable Integer value) {
 			this.numTopClasses = value;
 			return this;
 		}
@@ -197,10 +205,10 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		/**
 		 * Specifies the maximum number of feature importance values per document. By
 		 * default, it is zero and no feature importance calculation occurs.
-		 *
+		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public Builder numTopFeatureImportanceValues(@Nullable Number value) {
+		public Builder numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
@@ -209,7 +217,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		 * Specifies the type of the predicted field to write. Acceptable values are:
 		 * string, number, boolean. When boolean is provided 1.0 is transformed to true
 		 * and 0.0 to false.
-		 *
+		 * <p>
 		 * API name: {@code prediction_field_type}
 		 */
 		public Builder predictionFieldType(@Nullable String value) {
@@ -220,7 +228,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction. Defaults to predicted_value.
-		 *
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public Builder resultsField(@Nullable String value) {
@@ -231,7 +239,7 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 		/**
 		 * Specifies the field to which the top classes are written. Defaults to
 		 * top_classes.
-		 *
+		 * <p>
 		 * API name: {@code top_classes_results_field}
 		 */
 		public Builder topClassesResultsField(@Nullable String value) {
@@ -254,17 +262,17 @@ public final class ClassificationInferenceOptions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClassificationInferenceOptions
+	 * Json deserializer for {@link ClassificationInferenceOptions}
 	 */
-	public static final JsonpDeserializer<ClassificationInferenceOptions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClassificationInferenceOptions::setupClassificationInferenceOptionsDeserializer);
+	public static final JsonpDeserializer<ClassificationInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClassificationInferenceOptions::setupClassificationInferenceOptionsDeserializer,
+					Builder::build);
 
 	protected static void setupClassificationInferenceOptionsDeserializer(
 			DelegatingDeserializer<ClassificationInferenceOptions.Builder> op) {
 
-		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
 				"num_top_feature_importance_values");
 		op.add(Builder::predictionFieldType, JsonpDeserializer.stringDeserializer(), "prediction_field_type");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");

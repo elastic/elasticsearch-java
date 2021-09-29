@@ -24,36 +24,49 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanWithinQuery
-public final class SpanWithinQuery extends QueryBase {
-	@Nullable
+@JsonpDeserializable
+public final class SpanWithinQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final SpanQuery big;
 
-	@Nullable
 	private final SpanQuery little;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanWithinQuery(Builder builder) {
+	public SpanWithinQuery(Builder builder) {
 		super(builder);
-		this.big = builder.big;
-		this.little = builder.little;
 
+		this.big = Objects.requireNonNull(builder.big, "big");
+		this.little = Objects.requireNonNull(builder.little, "little");
+
+	}
+
+	public SpanWithinQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "span_within";
 	}
 
 	/**
 	 * API name: {@code big}
 	 */
-	@Nullable
 	public SpanQuery big() {
 		return this.big;
 	}
@@ -61,25 +74,19 @@ public final class SpanWithinQuery extends QueryBase {
 	/**
 	 * API name: {@code little}
 	 */
-	@Nullable
 	public SpanQuery little() {
 		return this.little;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.big != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("big");
-			this.big.toJsonp(generator, mapper);
+		super.serializeInternal(generator, mapper);
 
-		}
-		if (this.little != null) {
+		generator.writeKey("big");
+		this.big.serialize(generator, mapper);
 
-			generator.writeKey("little");
-			this.little.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("little");
+		this.little.serialize(generator, mapper);
 
 	}
 
@@ -89,16 +96,14 @@ public final class SpanWithinQuery extends QueryBase {
 	 * Builder for {@link SpanWithinQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanWithinQuery> {
-		@Nullable
 		private SpanQuery big;
 
-		@Nullable
 		private SpanQuery little;
 
 		/**
 		 * API name: {@code big}
 		 */
-		public Builder big(@Nullable SpanQuery value) {
+		public Builder big(SpanQuery value) {
 			this.big = value;
 			return this;
 		}
@@ -113,7 +118,7 @@ public final class SpanWithinQuery extends QueryBase {
 		/**
 		 * API name: {@code little}
 		 */
-		public Builder little(@Nullable SpanQuery value) {
+		public Builder little(SpanQuery value) {
 			this.little = value;
 			return this;
 		}
@@ -145,15 +150,15 @@ public final class SpanWithinQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SpanWithinQuery
+	 * Json deserializer for {@link SpanWithinQuery}
 	 */
-	public static final JsonpDeserializer<SpanWithinQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanWithinQuery::setupSpanWithinQueryDeserializer);
+	public static final JsonpDeserializer<SpanWithinQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SpanWithinQuery::setupSpanWithinQueryDeserializer, Builder::build);
 
 	protected static void setupSpanWithinQueryDeserializer(DelegatingDeserializer<SpanWithinQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::big, SpanQuery.DESERIALIZER, "big");
-		op.add(Builder::little, SpanQuery.DESERIALIZER, "little");
+		op.add(Builder::big, SpanQuery._DESERIALIZER, "big");
+		op.add(Builder::little, SpanQuery._DESERIALIZER, "little");
 
 	}
 

@@ -25,36 +25,47 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.set_upgrade_mode.Request
+
 public final class SetUpgradeModeRequest extends RequestBase {
 	@Nullable
 	private final Boolean enabled;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SetUpgradeModeRequest(Builder builder) {
+	public SetUpgradeModeRequest(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.timeout = builder.timeout;
 
 	}
 
+	public SetUpgradeModeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
+	 * <p>
 	 * API name: {@code enabled}
 	 */
 	@Nullable
@@ -63,10 +74,12 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait before action times out. Defaults to 30 seconds
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -80,9 +93,11 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		private Boolean enabled;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * Whether to enable upgrade_mode ML setting or not. Defaults to false.
+		 * <p>
 		 * API name: {@code enabled}
 		 */
 		public Builder enabled(@Nullable Boolean value) {
@@ -91,9 +106,11 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait before action times out. Defaults to 30 seconds
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -115,7 +132,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.set_upgrade_mode}".
 	 */
-	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -135,9 +152,9 @@ public final class SetUpgradeModeRequest extends RequestBase {
 					params.put("enabled", String.valueOf(request.enabled));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, SetUpgradeModeResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SetUpgradeModeResponse._DESERIALIZER);
 }

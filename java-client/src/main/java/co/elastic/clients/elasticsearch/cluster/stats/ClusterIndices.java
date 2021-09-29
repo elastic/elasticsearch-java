@@ -30,14 +30,16 @@ import co.elastic.clients.elasticsearch._types.QueryCacheStats;
 import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,10 +48,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndices
-public final class ClusterIndices implements ToJsonp {
+@JsonpDeserializable
+public final class ClusterIndices implements JsonpSerializable {
 	private final CompletionStats completion;
 
-	private final Number count;
+	private final long count;
 
 	private final DocStats docs;
 
@@ -72,7 +75,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterIndices(Builder builder) {
+	public ClusterIndices(Builder builder) {
 
 		this.completion = Objects.requireNonNull(builder.completion, "completion");
 		this.count = Objects.requireNonNull(builder.count, "count");
@@ -84,13 +87,17 @@ public final class ClusterIndices implements ToJsonp {
 		this.store = Objects.requireNonNull(builder.store, "store");
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
 		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
-		this.versions = builder.versions;
+		this.versions = ModelTypeHelper.unmodifiable(builder.versions);
 
+	}
+
+	public ClusterIndices(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Contains statistics about memory used for completion in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code completion}
 	 */
 	public CompletionStats completion() {
@@ -99,16 +106,16 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Total number of indices with shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * Contains counts for documents in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	public DocStats docs() {
@@ -117,7 +124,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about the field data cache of selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code fielddata}
 	 */
 	public FielddataStats fielddata() {
@@ -126,7 +133,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about the query cache of selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code query_cache}
 	 */
 	public QueryCacheStats queryCache() {
@@ -135,7 +142,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about segments in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code segments}
 	 */
 	public SegmentsStats segments() {
@@ -144,7 +151,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about indices with shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code shards}
 	 */
 	public ClusterIndicesShards shards() {
@@ -153,7 +160,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about the size of shards assigned to selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code store}
 	 */
 	public StoreStats store() {
@@ -162,7 +169,7 @@ public final class ClusterIndices implements ToJsonp {
 
 	/**
 	 * Contains statistics about field mappings in selected nodes.
-	 *
+	 * <p>
 	 * API name: {@code mappings}
 	 */
 	public FieldTypesMappings mappings() {
@@ -172,7 +179,7 @@ public final class ClusterIndices implements ToJsonp {
 	/**
 	 * Contains statistics about analyzers and analyzer components used in selected
 	 * nodes.
-	 *
+	 * <p>
 	 * API name: {@code analysis}
 	 */
 	public CharFilterTypes analysis() {
@@ -190,50 +197,50 @@ public final class ClusterIndices implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("completion");
-		this.completion.toJsonp(generator, mapper);
+		this.completion.serialize(generator, mapper);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("docs");
-		this.docs.toJsonp(generator, mapper);
+		this.docs.serialize(generator, mapper);
 
 		generator.writeKey("fielddata");
-		this.fielddata.toJsonp(generator, mapper);
+		this.fielddata.serialize(generator, mapper);
 
 		generator.writeKey("query_cache");
-		this.queryCache.toJsonp(generator, mapper);
+		this.queryCache.serialize(generator, mapper);
 
 		generator.writeKey("segments");
-		this.segments.toJsonp(generator, mapper);
+		this.segments.serialize(generator, mapper);
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("store");
-		this.store.toJsonp(generator, mapper);
+		this.store.serialize(generator, mapper);
 
 		generator.writeKey("mappings");
-		this.mappings.toJsonp(generator, mapper);
+		this.mappings.serialize(generator, mapper);
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.versions != null) {
 
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (IndicesVersions item0 : this.versions) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -250,7 +257,7 @@ public final class ClusterIndices implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ClusterIndices> {
 		private CompletionStats completion;
 
-		private Number count;
+		private Long count;
 
 		private DocStats docs;
 
@@ -273,7 +280,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about memory used for completion in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code completion}
 		 */
 		public Builder completion(CompletionStats value) {
@@ -283,7 +290,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about memory used for completion in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code completion}
 		 */
 		public Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
@@ -292,17 +299,17 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Total number of indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
 		 * Contains counts for documents in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(DocStats value) {
@@ -312,7 +319,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains counts for documents in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code docs}
 		 */
 		public Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
@@ -321,7 +328,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the field data cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(FielddataStats value) {
@@ -331,7 +338,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the field data cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code fielddata}
 		 */
 		public Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
@@ -340,7 +347,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the query cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code query_cache}
 		 */
 		public Builder queryCache(QueryCacheStats value) {
@@ -350,7 +357,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the query cache of selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code query_cache}
 		 */
 		public Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
@@ -359,7 +366,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about segments in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code segments}
 		 */
 		public Builder segments(SegmentsStats value) {
@@ -369,7 +376,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about segments in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code segments}
 		 */
 		public Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
@@ -378,7 +385,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(ClusterIndicesShards value) {
@@ -388,7 +395,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about indices with shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code shards}
 		 */
 		public Builder shards(Function<ClusterIndicesShards.Builder, ObjectBuilder<ClusterIndicesShards>> fn) {
@@ -397,7 +404,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the size of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(StoreStats value) {
@@ -407,7 +414,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about the size of shards assigned to selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code store}
 		 */
 		public Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
@@ -416,7 +423,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about field mappings in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(FieldTypesMappings value) {
@@ -426,7 +433,7 @@ public final class ClusterIndices implements ToJsonp {
 
 		/**
 		 * Contains statistics about field mappings in selected nodes.
-		 *
+		 * <p>
 		 * API name: {@code mappings}
 		 */
 		public Builder mappings(Function<FieldTypesMappings.Builder, ObjectBuilder<FieldTypesMappings>> fn) {
@@ -436,7 +443,7 @@ public final class ClusterIndices implements ToJsonp {
 		/**
 		 * Contains statistics about analyzers and analyzer components used in selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
 		public Builder analysis(CharFilterTypes value) {
@@ -447,7 +454,7 @@ public final class ClusterIndices implements ToJsonp {
 		/**
 		 * Contains statistics about analyzers and analyzer components used in selected
 		 * nodes.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
 		public Builder analysis(Function<CharFilterTypes.Builder, ObjectBuilder<CharFilterTypes>> fn) {
@@ -471,7 +478,7 @@ public final class ClusterIndices implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
 		 */
 		public Builder addVersions(IndicesVersions value) {
 			if (this.versions == null) {
@@ -489,7 +496,7 @@ public final class ClusterIndices implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 5
 		 */
 		public Builder addVersions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
 			return this.addVersions(fn.apply(new IndicesVersions.Builder()).build());
@@ -510,24 +517,24 @@ public final class ClusterIndices implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterIndices
+	 * Json deserializer for {@link ClusterIndices}
 	 */
-	public static final JsonpDeserializer<ClusterIndices> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterIndices::setupClusterIndicesDeserializer);
+	public static final JsonpDeserializer<ClusterIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterIndices::setupClusterIndicesDeserializer, Builder::build);
 
 	protected static void setupClusterIndicesDeserializer(DelegatingDeserializer<ClusterIndices.Builder> op) {
 
-		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
-		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
-		op.add(Builder::queryCache, QueryCacheStats.DESERIALIZER, "query_cache");
-		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
-		op.add(Builder::shards, ClusterIndicesShards.DESERIALIZER, "shards");
-		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
-		op.add(Builder::mappings, FieldTypesMappings.DESERIALIZER, "mappings");
-		op.add(Builder::analysis, CharFilterTypes.DESERIALIZER, "analysis");
-		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(IndicesVersions.DESERIALIZER), "versions");
+		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
+		op.add(Builder::queryCache, QueryCacheStats._DESERIALIZER, "query_cache");
+		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
+		op.add(Builder::shards, ClusterIndicesShards._DESERIALIZER, "shards");
+		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
+		op.add(Builder::mappings, FieldTypesMappings._DESERIALIZER, "mappings");
+		op.add(Builder::analysis, CharFilterTypes._DESERIALIZER, "analysis");
+		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(IndicesVersions._DESERIALIZER), "versions");
 
 	}
 

@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -41,10 +44,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.exists_template.Request
+
 public final class ExistsTemplateRequest extends RequestBase {
 	private final List<String> name;
 
@@ -55,20 +60,26 @@ public final class ExistsTemplateRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsTemplateRequest(Builder builder) {
+	public ExistsTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 		this.flatSettings = builder.flatSettings;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
 	}
 
+	public ExistsTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The comma separated names of the index templates
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -76,6 +87,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -84,6 +97,9 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -92,10 +108,12 @@ public final class ExistsTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -114,9 +132,11 @@ public final class ExistsTemplateRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
+		 * The comma separated names of the index templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -125,6 +145,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * The comma separated names of the index templates
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -133,7 +155,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -144,6 +166,8 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -152,6 +176,9 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -160,9 +187,11 @@ public final class ExistsTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -184,7 +213,7 @@ public final class ExistsTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_template}".
 	 */
-	public static final Endpoint<ExistsTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<ExistsTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -197,17 +226,16 @@ public final class ExistsTemplateRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_template");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -221,9 +249,9 @@ public final class ExistsTemplateRequest extends RequestBase {
 					params.put("local", String.valueOf(request.local));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

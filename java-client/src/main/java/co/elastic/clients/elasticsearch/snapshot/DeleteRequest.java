@@ -25,31 +25,34 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.delete.Request
+
 public final class DeleteRequest extends RequestBase {
 	private final String repository;
 
 	private final String snapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteRequest(Builder builder) {
+	public DeleteRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -57,7 +60,13 @@ public final class DeleteRequest extends RequestBase {
 
 	}
 
+	public DeleteRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -65,6 +74,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * A snapshot name
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public String snapshot() {
@@ -72,10 +83,12 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -90,9 +103,11 @@ public final class DeleteRequest extends RequestBase {
 		private String snapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
+		 * A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -101,6 +116,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * A snapshot name
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
@@ -109,9 +126,11 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -133,7 +152,7 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.delete}".
 	 */
-	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -147,21 +166,19 @@ public final class DeleteRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
 
 				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -169,9 +186,9 @@ public final class DeleteRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER);
 }

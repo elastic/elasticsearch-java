@@ -24,32 +24,35 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RecoveryStats
-public final class RecoveryStats implements ToJsonp {
-	private final Number currentAsSource;
+@JsonpDeserializable
+public final class RecoveryStats implements JsonpSerializable {
+	private final long currentAsSource;
 
-	private final Number currentAsTarget;
+	private final long currentAsTarget;
 
 	@Nullable
 	private final String throttleTime;
 
-	private final Number throttleTimeInMillis;
+	private final long throttleTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryStats(Builder builder) {
+	public RecoveryStats(Builder builder) {
 
 		this.currentAsSource = Objects.requireNonNull(builder.currentAsSource, "current_as_source");
 		this.currentAsTarget = Objects.requireNonNull(builder.currentAsTarget, "current_as_target");
@@ -58,17 +61,21 @@ public final class RecoveryStats implements ToJsonp {
 
 	}
 
+	public RecoveryStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code current_as_source}
 	 */
-	public Number currentAsSource() {
+	public long currentAsSource() {
 		return this.currentAsSource;
 	}
 
 	/**
 	 * API name: {@code current_as_target}
 	 */
-	public Number currentAsTarget() {
+	public long currentAsTarget() {
 		return this.currentAsTarget;
 	}
 
@@ -83,26 +90,26 @@ public final class RecoveryStats implements ToJsonp {
 	/**
 	 * API name: {@code throttle_time_in_millis}
 	 */
-	public Number throttleTimeInMillis() {
+	public long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current_as_source");
-		generator.write(this.currentAsSource.doubleValue());
+		generator.write(this.currentAsSource);
 
 		generator.writeKey("current_as_target");
-		generator.write(this.currentAsTarget.doubleValue());
+		generator.write(this.currentAsTarget);
 
 		if (this.throttleTime != null) {
 
@@ -112,7 +119,7 @@ public final class RecoveryStats implements ToJsonp {
 		}
 
 		generator.writeKey("throttle_time_in_millis");
-		generator.write(this.throttleTimeInMillis.doubleValue());
+		generator.write(this.throttleTimeInMillis);
 
 	}
 
@@ -122,19 +129,19 @@ public final class RecoveryStats implements ToJsonp {
 	 * Builder for {@link RecoveryStats}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryStats> {
-		private Number currentAsSource;
+		private Long currentAsSource;
 
-		private Number currentAsTarget;
+		private Long currentAsTarget;
 
 		@Nullable
 		private String throttleTime;
 
-		private Number throttleTimeInMillis;
+		private Long throttleTimeInMillis;
 
 		/**
 		 * API name: {@code current_as_source}
 		 */
-		public Builder currentAsSource(Number value) {
+		public Builder currentAsSource(long value) {
 			this.currentAsSource = value;
 			return this;
 		}
@@ -142,7 +149,7 @@ public final class RecoveryStats implements ToJsonp {
 		/**
 		 * API name: {@code current_as_target}
 		 */
-		public Builder currentAsTarget(Number value) {
+		public Builder currentAsTarget(long value) {
 			this.currentAsTarget = value;
 			return this;
 		}
@@ -158,7 +165,7 @@ public final class RecoveryStats implements ToJsonp {
 		/**
 		 * API name: {@code throttle_time_in_millis}
 		 */
-		public Builder throttleTimeInMillis(Number value) {
+		public Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;
 			return this;
 		}
@@ -178,17 +185,17 @@ public final class RecoveryStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryStats
+	 * Json deserializer for {@link RecoveryStats}
 	 */
-	public static final JsonpDeserializer<RecoveryStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryStats::setupRecoveryStatsDeserializer);
+	public static final JsonpDeserializer<RecoveryStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryStats::setupRecoveryStatsDeserializer, Builder::build);
 
 	protected static void setupRecoveryStatsDeserializer(DelegatingDeserializer<RecoveryStats.Builder> op) {
 
-		op.add(Builder::currentAsSource, JsonpDeserializer.numberDeserializer(), "current_as_source");
-		op.add(Builder::currentAsTarget, JsonpDeserializer.numberDeserializer(), "current_as_target");
+		op.add(Builder::currentAsSource, JsonpDeserializer.longDeserializer(), "current_as_source");
+		op.add(Builder::currentAsTarget, JsonpDeserializer.longDeserializer(), "current_as_target");
 		op.add(Builder::throttleTime, JsonpDeserializer.stringDeserializer(), "throttle_time");
-		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.numberDeserializer(), "throttle_time_in_millis");
+		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.longDeserializer(), "throttle_time_in_millis");
 
 	}
 

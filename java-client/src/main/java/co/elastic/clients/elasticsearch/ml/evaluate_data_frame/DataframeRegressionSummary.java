@@ -24,18 +24,21 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeRegressionSummary
-public final class DataframeRegressionSummary implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeRegressionSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationValue huber;
 
@@ -50,13 +53,17 @@ public final class DataframeRegressionSummary implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeRegressionSummary(Builder builder) {
+	public DataframeRegressionSummary(Builder builder) {
 
 		this.huber = builder.huber;
 		this.mse = builder.mse;
 		this.msle = builder.msle;
 		this.rSquared = builder.rSquared;
 
+	}
+
+	public DataframeRegressionSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,36 +101,36 @@ public final class DataframeRegressionSummary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.huber != null) {
 
 			generator.writeKey("huber");
-			this.huber.toJsonp(generator, mapper);
+			this.huber.serialize(generator, mapper);
 
 		}
 		if (this.mse != null) {
 
 			generator.writeKey("mse");
-			this.mse.toJsonp(generator, mapper);
+			this.mse.serialize(generator, mapper);
 
 		}
 		if (this.msle != null) {
 
 			generator.writeKey("msle");
-			this.msle.toJsonp(generator, mapper);
+			this.msle.serialize(generator, mapper);
 
 		}
 		if (this.rSquared != null) {
 
 			generator.writeKey("r_squared");
-			this.rSquared.toJsonp(generator, mapper);
+			this.rSquared.serialize(generator, mapper);
 
 		}
 
@@ -223,18 +230,18 @@ public final class DataframeRegressionSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeRegressionSummary
+	 * Json deserializer for {@link DataframeRegressionSummary}
 	 */
-	public static final JsonpDeserializer<DataframeRegressionSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer);
+	public static final JsonpDeserializer<DataframeRegressionSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeRegressionSummary::setupDataframeRegressionSummaryDeserializer, Builder::build);
 
 	protected static void setupDataframeRegressionSummaryDeserializer(
 			DelegatingDeserializer<DataframeRegressionSummary.Builder> op) {
 
-		op.add(Builder::huber, DataframeEvaluationValue.DESERIALIZER, "huber");
-		op.add(Builder::mse, DataframeEvaluationValue.DESERIALIZER, "mse");
-		op.add(Builder::msle, DataframeEvaluationValue.DESERIALIZER, "msle");
-		op.add(Builder::rSquared, DataframeEvaluationValue.DESERIALIZER, "r_squared");
+		op.add(Builder::huber, DataframeEvaluationValue._DESERIALIZER, "huber");
+		op.add(Builder::mse, DataframeEvaluationValue._DESERIALIZER, "mse");
+		op.add(Builder::msle, DataframeEvaluationValue._DESERIALIZER, "msle");
+		op.add(Builder::rSquared, DataframeEvaluationValue._DESERIALIZER, "r_squared");
 
 	}
 

@@ -19,8 +19,11 @@
 
 package co.elastic.clients.json.jsonb;
 
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpMapperBase;
+import co.elastic.clients.json.JsonpSerializable;
+import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -31,14 +34,18 @@ import java.io.CharArrayReader;
 import java.io.CharArrayWriter;
 import java.util.EnumSet;
 
-public class JsonbJsonpMapper implements JsonpMapper {
+public class JsonbJsonpMapper extends JsonpMapperBase {
 
     private final JsonProvider jsonProvider;
-    private final JsonbProvider jsonbProvider;
+    private final Jsonb jsonb;
+
+    public JsonbJsonpMapper(JsonProvider jsonProvider, Jsonb jsonb) {
+        this.jsonProvider = jsonProvider;
+        this.jsonb = jsonb;
+    }
 
     public JsonbJsonpMapper(JsonProvider jsonProvider, JsonbProvider jsonbProvider) {
-        this.jsonProvider = jsonProvider;
-        this.jsonbProvider = jsonbProvider;
+        this(jsonProvider, jsonbProvider.create().build());
     }
 
     public JsonbJsonpMapper() {
@@ -46,15 +53,20 @@ public class JsonbJsonpMapper implements JsonpMapper {
     }
 
     @Override
-    public <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz) {
+    protected <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz) {
         return new Deserializer<>(clazz);
     }
 
     @Override
     public <T> void serialize(T value, JsonGenerator generator) {
+        if (value instanceof JsonpSerializable) {
+            ((JsonpSerializable)value).serialize(generator, this);
+            return;
+        }
+
         // Jsonb doesn't offer a way to serialize to a json generator, so we have to roundtrip via a string representation.
         CharArrayWriter caw = new CharArrayWriter();
-        jsonbProvider.create().withProvider(jsonProvider).build().toJson(value, caw);
+        jsonb.toJson(value, caw);
 
         CharArrayReader car = new CharArrayReader(caw.toCharArray());
         JsonParser parser = jsonProvider.createParser(car);
@@ -62,7 +74,7 @@ public class JsonbJsonpMapper implements JsonpMapper {
     }
 
     @Override
-    public JsonProvider jsonpProvider() {
+    public JsonProvider jsonProvider() {
         return jsonProvider;
     }
 
@@ -83,7 +95,7 @@ public class JsonbJsonpMapper implements JsonpMapper {
             generator.close();
 
             CharArrayReader car = new CharArrayReader(caw.toCharArray());
-            return jsonbProvider.create().withProvider(jsonProvider).build().fromJson(car, clazz);
+            return jsonb.fromJson(car, clazz);
         }
     }
 

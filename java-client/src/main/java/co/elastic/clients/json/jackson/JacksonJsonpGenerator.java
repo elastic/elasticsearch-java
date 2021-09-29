@@ -20,13 +20,16 @@
 package co.elastic.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonStreamContext;
-
+import jakarta.json.JsonNumber;
+import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonGenerator;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Map;
 
 /**
  * A JSONP generator implementation on top of Jackson.
@@ -98,12 +101,11 @@ public class JacksonJsonpGenerator implements JsonGenerator {
         return this;
     }
 
-    // Assumes the jackson-datatype-jsr353 module has been added to the generator
-    // see https://github.com/FasterXML/jackson-datatypes-misc/tree/master/jsr-353
     @Override
     public JsonGenerator write(String name, JsonValue value) {
         try {
-            generator.writeObject(value);
+            generator.writeFieldName(name);
+            writeValue(value);
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);
         }
@@ -190,6 +192,7 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator writeNull(String name) {
         try {
+            generator.writeFieldName(name);
             generator.writeNull();
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);
@@ -214,12 +217,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
         return this;
     }
 
-    // Assumes the jackson-datatype-jsr353 module has been added to the generator
-    // see https://github.com/FasterXML/jackson-datatypes-misc/tree/master/jsr-353
     @Override
     public JsonGenerator write(JsonValue value) {
         try {
-            generator.writeObject(value);
+            writeValue(value);
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);
         }
@@ -321,6 +322,52 @@ public class JacksonJsonpGenerator implements JsonGenerator {
             generator.flush();
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);
+        }
+    }
+
+    private void writeValue(JsonValue value) throws IOException {
+        switch(value.getValueType()) {
+            case OBJECT:
+                generator.writeStartObject();
+                for (Map.Entry<String, JsonValue> entry: value.asJsonObject().entrySet()) {
+                    generator.writeFieldName(entry.getKey());
+                    writeValue(entry.getValue());
+                }
+                generator.writeEndObject();
+                break;
+
+            case ARRAY:
+                generator.writeStartArray();
+                for (JsonValue item: value.asJsonArray()) {
+                    writeValue(item);
+                }
+                generator.writeEndArray();
+                break;
+
+            case STRING:
+                generator.writeString(((JsonString)value).getString());
+                break;
+
+            case FALSE:
+                generator.writeBoolean(false);
+                break;
+
+            case TRUE:
+                generator.writeBoolean(true);
+                break;
+
+            case NULL:
+                generator.writeNull();
+                break;
+
+            case NUMBER:
+                JsonNumber n = (JsonNumber) value;
+                if (n.isIntegral()) {
+                    generator.writeNumber(n.longValue());
+                } else {
+                    generator.writeNumber(n.doubleValue());
+                }
+                break;
         }
     }
 }

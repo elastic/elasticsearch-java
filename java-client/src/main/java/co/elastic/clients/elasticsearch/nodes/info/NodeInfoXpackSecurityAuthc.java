@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,18 +37,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthc
-public final class NodeInfoXpackSecurityAuthc implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	private final NodeInfoXpackSecurityAuthcRealms realms;
 
 	private final NodeInfoXpackSecurityAuthcToken token;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackSecurityAuthc(Builder builder) {
+	public NodeInfoXpackSecurityAuthc(Builder builder) {
 
 		this.realms = Objects.requireNonNull(builder.realms, "realms");
 		this.token = Objects.requireNonNull(builder.token, "token");
 
+	}
+
+	public NodeInfoXpackSecurityAuthc(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,19 +73,19 @@ public final class NodeInfoXpackSecurityAuthc implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("realms");
-		this.realms.toJsonp(generator, mapper);
+		this.realms.serialize(generator, mapper);
 
 		generator.writeKey("token");
-		this.token.toJsonp(generator, mapper);
+		this.token.serialize(generator, mapper);
 
 	}
 
@@ -140,16 +146,16 @@ public final class NodeInfoXpackSecurityAuthc implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackSecurityAuthc
+	 * Json deserializer for {@link NodeInfoXpackSecurityAuthc}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthc> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoXpackSecurityAuthc::setupNodeInfoXpackSecurityAuthcDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthc> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, NodeInfoXpackSecurityAuthc::setupNodeInfoXpackSecurityAuthcDeserializer, Builder::build);
 
 	protected static void setupNodeInfoXpackSecurityAuthcDeserializer(
 			DelegatingDeserializer<NodeInfoXpackSecurityAuthc.Builder> op) {
 
-		op.add(Builder::realms, NodeInfoXpackSecurityAuthcRealms.DESERIALIZER, "realms");
-		op.add(Builder::token, NodeInfoXpackSecurityAuthcToken.DESERIALIZER, "token");
+		op.add(Builder::realms, NodeInfoXpackSecurityAuthcRealms._DESERIALIZER, "realms");
+		op.add(Builder::token, NodeInfoXpackSecurityAuthcToken._DESERIALIZER, "token");
 
 	}
 

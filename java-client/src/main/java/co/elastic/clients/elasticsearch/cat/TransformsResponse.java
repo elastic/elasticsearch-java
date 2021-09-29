@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.transforms.TransformsRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,33 +41,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Response
-public final class TransformsResponse implements ToJsonp {
-	private final List<TransformsRecord> value;
+@JsonpDeserializable
+public final class TransformsResponse implements JsonpSerializable {
+	private final List<TransformsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TransformsResponse(Builder builder) {
+	public TransformsResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public TransformsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
-	 *
-	 * API name: {@code value}
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<TransformsRecord> value() {
-		return this.value;
+	public List<TransformsRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TransformsRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+		for (TransformsRecord item0 : this.valueBody) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -79,51 +85,51 @@ public final class TransformsResponse implements ToJsonp {
 	 * Builder for {@link TransformsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<TransformsResponse> {
-		private List<TransformsRecord> value;
+		private List<TransformsRecord> valueBody;
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<TransformsRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<TransformsRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(TransformsRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(TransformsRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(TransformsRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(TransformsRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return this.value(fn.apply(new TransformsRecord.Builder()).build());
+		public Builder valueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
+			return this.valueBody(fn.apply(new TransformsRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return this.addValue(fn.apply(new TransformsRecord.Builder()).build());
+		public Builder addValueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
+			return this.addValueBody(fn.apply(new TransformsRecord.Builder()).build());
 		}
 
 		/**
@@ -138,18 +144,14 @@ public final class TransformsResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<TransformsResponse> _DESERIALIZER = createTransformsResponseDeserializer();
+	protected static JsonpDeserializer<TransformsResponse> createTransformsResponseDeserializer() {
 
-	/**
-	 * Json deserializer for TransformsResponse
-	 */
-	public static final JsonpDeserializer<TransformsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TransformsResponse::setupTransformsResponseDeserializer);
+		JsonpDeserializer<List<TransformsRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(TransformsRecord._DESERIALIZER);
 
-	protected static void setupTransformsResponseDeserializer(DelegatingDeserializer<TransformsResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TransformsRecord.DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

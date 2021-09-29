@@ -24,31 +24,48 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisClassification
-public final class DataframeAnalysisClassification extends DataframeAnalysis {
+@JsonpDeserializable
+public final class DataframeAnalysisClassification extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
 	private final String classAssignmentObjective;
 
 	@Nullable
-	private final Number numTopClasses;
+	private final Integer numTopClasses;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisClassification(Builder builder) {
+	public DataframeAnalysisClassification(Builder builder) {
 		super(builder);
+
 		this.classAssignmentObjective = builder.classAssignmentObjective;
 		this.numTopClasses = builder.numTopClasses;
 
+	}
+
+	public DataframeAnalysisClassification(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link DataframeAnalysis} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "classification";
 	}
 
 	/**
@@ -60,15 +77,24 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 	}
 
 	/**
+	 * Defines the number of categories for which the predicted probabilities are
+	 * reported. It must be non-negative or -1. If it is -1 or greater than the
+	 * total number of categories, probabilities are reported for all categories; if
+	 * you have a large number of categories, there could be a significant effect on
+	 * the size of your destination index. NOTE: To use the AUC ROC evaluation
+	 * method, <code>num_top_classes</code> must be set to -1 or a value greater
+	 * than or equal to the total number of categories.
+	 * <p>
 	 * API name: {@code num_top_classes}
 	 */
 	@Nullable
-	public Number numTopClasses() {
+	public Integer numTopClasses() {
 		return this.numTopClasses;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.classAssignmentObjective != null) {
 
 			generator.writeKey("class_assignment_objective");
@@ -78,7 +104,7 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 		if (this.numTopClasses != null) {
 
 			generator.writeKey("num_top_classes");
-			generator.write(this.numTopClasses.doubleValue());
+			generator.write(this.numTopClasses);
 
 		}
 
@@ -89,14 +115,14 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 	/**
 	 * Builder for {@link DataframeAnalysisClassification}.
 	 */
-	public static class Builder extends DataframeAnalysis.AbstractBuilder<Builder>
+	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisClassification> {
 		@Nullable
 		private String classAssignmentObjective;
 
 		@Nullable
-		private Number numTopClasses;
+		private Integer numTopClasses;
 
 		/**
 		 * API name: {@code class_assignment_objective}
@@ -107,9 +133,17 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 		}
 
 		/**
+		 * Defines the number of categories for which the predicted probabilities are
+		 * reported. It must be non-negative or -1. If it is -1 or greater than the
+		 * total number of categories, probabilities are reported for all categories; if
+		 * you have a large number of categories, there could be a significant effect on
+		 * the size of your destination index. NOTE: To use the AUC ROC evaluation
+		 * method, <code>num_top_classes</code> must be set to -1 or a value greater
+		 * than or equal to the total number of categories.
+		 * <p>
 		 * API name: {@code num_top_classes}
 		 */
-		public Builder numTopClasses(@Nullable Number value) {
+		public Builder numTopClasses(@Nullable Integer value) {
 			this.numTopClasses = value;
 			return this;
 		}
@@ -134,17 +168,17 @@ public final class DataframeAnalysisClassification extends DataframeAnalysis {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalysisClassification
+	 * Json deserializer for {@link DataframeAnalysisClassification}
 	 */
-	public static final JsonpDeserializer<DataframeAnalysisClassification> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer);
+	public static final JsonpDeserializer<DataframeAnalysisClassification> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalysisClassification::setupDataframeAnalysisClassificationDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisClassificationDeserializer(
 			DelegatingDeserializer<DataframeAnalysisClassification.Builder> op) {
-		DataframeAnalysis.setupDataframeAnalysisDeserializer(op);
+		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::classAssignmentObjective, JsonpDeserializer.stringDeserializer(), "class_assignment_objective");
-		op.add(Builder::numTopClasses, JsonpDeserializer.numberDeserializer(), "num_top_classes");
+		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");
 
 	}
 

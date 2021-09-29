@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,15 +41,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreWrapper
-public final class ShardStoreWrapper implements ToJsonp {
+@JsonpDeserializable
+public final class ShardStoreWrapper implements JsonpSerializable {
 	private final List<ShardStore> stores;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStoreWrapper(Builder builder) {
+	public ShardStoreWrapper(Builder builder) {
 
-		this.stores = Objects.requireNonNull(builder.stores, "stores");
+		this.stores = ModelTypeHelper.unmodifiableNonNull(builder.stores, "stores");
 
+	}
+
+	public ShardStoreWrapper(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -60,18 +67,18 @@ public final class ShardStoreWrapper implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("stores");
 		generator.writeStartArray();
 		for (ShardStore item0 : this.stores) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -103,7 +110,7 @@ public final class ShardStoreWrapper implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
+		 * Add a value to {@link #stores(List)}, creating the list if needed. 4
 		 */
 		public Builder addStores(ShardStore value) {
 			if (this.stores == null) {
@@ -121,7 +128,7 @@ public final class ShardStoreWrapper implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
+		 * Add a value to {@link #stores(List)}, creating the list if needed. 5
 		 */
 		public Builder addStores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
 			return this.addStores(fn.apply(new ShardStore.Builder()).build());
@@ -142,14 +149,14 @@ public final class ShardStoreWrapper implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStoreWrapper
+	 * Json deserializer for {@link ShardStoreWrapper}
 	 */
-	public static final JsonpDeserializer<ShardStoreWrapper> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer);
+	public static final JsonpDeserializer<ShardStoreWrapper> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer, Builder::build);
 
 	protected static void setupShardStoreWrapperDeserializer(DelegatingDeserializer<ShardStoreWrapper.Builder> op) {
 
-		op.add(Builder::stores, JsonpDeserializer.arrayDeserializer(ShardStore.DESERIALIZER), "stores");
+		op.add(Builder::stores, JsonpDeserializer.arrayDeserializer(ShardStore._DESERIALIZER), "stores");
 
 	}
 

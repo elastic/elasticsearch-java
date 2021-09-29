@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.set_upgrade_mode.Response
+@JsonpDeserializable
 public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected SetUpgradeModeResponse(Builder builder) {
+	public SetUpgradeModeResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public SetUpgradeModeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SetUpgradeModeResponse
+	 * Json deserializer for {@link SetUpgradeModeResponse}
 	 */
-	public static final JsonpDeserializer<SetUpgradeModeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SetUpgradeModeResponse::setupSetUpgradeModeResponseDeserializer);
+	public static final JsonpDeserializer<SetUpgradeModeResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SetUpgradeModeResponse::setupSetUpgradeModeResponseDeserializer, Builder::build);
 
 	protected static void setupSetUpgradeModeResponseDeserializer(
 			DelegatingDeserializer<SetUpgradeModeResponse.Builder> op) {

@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.thread_pool;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.ThreadPoolRecord
-public final class ThreadPoolRecord implements ToJsonp {
+@JsonpDeserializable
+public final class ThreadPoolRecord implements JsonpSerializable {
 	@Nullable
 	private final String nodeName;
 
@@ -98,7 +102,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ThreadPoolRecord(Builder builder) {
+	public ThreadPoolRecord(Builder builder) {
 
 		this.nodeName = builder.nodeName;
 		this.nodeId = builder.nodeId;
@@ -123,9 +127,13 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	}
 
+	public ThreadPoolRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code node_name}
 	 */
 	@Nullable
@@ -135,7 +143,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * persistent node id
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
@@ -145,7 +153,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * ephemeral node id
-	 *
+	 * <p>
 	 * API name: {@code ephemeral_node_id}
 	 */
 	@Nullable
@@ -155,7 +163,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * process id
-	 *
+	 * <p>
 	 * API name: {@code pid}
 	 */
 	@Nullable
@@ -165,7 +173,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * host name
-	 *
+	 * <p>
 	 * API name: {@code host}
 	 */
 	@Nullable
@@ -175,7 +183,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -185,7 +193,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * bound transport port
-	 *
+	 * <p>
 	 * API name: {@code port}
 	 */
 	@Nullable
@@ -195,7 +203,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * thread pool name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -205,7 +213,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * thread pool type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -215,7 +223,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * number of active threads
-	 *
+	 * <p>
 	 * API name: {@code active}
 	 */
 	@Nullable
@@ -225,7 +233,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * number of threads
-	 *
+	 * <p>
 	 * API name: {@code pool_size}
 	 */
 	@Nullable
@@ -235,7 +243,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * number of tasks currently in queue
-	 *
+	 * <p>
 	 * API name: {@code queue}
 	 */
 	@Nullable
@@ -245,7 +253,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * maximum number of tasks permitted in queue
-	 *
+	 * <p>
 	 * API name: {@code queue_size}
 	 */
 	@Nullable
@@ -255,7 +263,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * number of rejected tasks
-	 *
+	 * <p>
 	 * API name: {@code rejected}
 	 */
 	@Nullable
@@ -265,7 +273,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * highest number of seen active threads
-	 *
+	 * <p>
 	 * API name: {@code largest}
 	 */
 	@Nullable
@@ -275,7 +283,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * number of completed tasks
-	 *
+	 * <p>
 	 * API name: {@code completed}
 	 */
 	@Nullable
@@ -285,7 +293,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * core number of threads in a scaling thread pool
-	 *
+	 * <p>
 	 * API name: {@code core}
 	 */
 	@Nullable
@@ -295,7 +303,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * maximum number of threads in a scaling thread pool
-	 *
+	 * <p>
 	 * API name: {@code max}
 	 */
 	@Nullable
@@ -305,7 +313,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * number of threads in a fixed thread pool
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -315,7 +323,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 	/**
 	 * thread keep alive time
-	 *
+	 * <p>
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
@@ -326,13 +334,13 @@ public final class ThreadPoolRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.nodeName != null) {
 
@@ -525,7 +533,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code node_name}
 		 */
 		public Builder nodeName(@Nullable String value) {
@@ -535,7 +543,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * persistent node id
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
 		public Builder nodeId(@Nullable String value) {
@@ -545,7 +553,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * ephemeral node id
-		 *
+		 * <p>
 		 * API name: {@code ephemeral_node_id}
 		 */
 		public Builder ephemeralNodeId(@Nullable String value) {
@@ -555,7 +563,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * process id
-		 *
+		 * <p>
 		 * API name: {@code pid}
 		 */
 		public Builder pid(@Nullable String value) {
@@ -565,7 +573,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * host name
-		 *
+		 * <p>
 		 * API name: {@code host}
 		 */
 		public Builder host(@Nullable String value) {
@@ -575,7 +583,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -585,7 +593,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * bound transport port
-		 *
+		 * <p>
 		 * API name: {@code port}
 		 */
 		public Builder port(@Nullable String value) {
@@ -595,7 +603,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * thread pool name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -605,7 +613,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * thread pool type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -615,7 +623,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * number of active threads
-		 *
+		 * <p>
 		 * API name: {@code active}
 		 */
 		public Builder active(@Nullable String value) {
@@ -625,7 +633,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * number of threads
-		 *
+		 * <p>
 		 * API name: {@code pool_size}
 		 */
 		public Builder poolSize(@Nullable String value) {
@@ -635,7 +643,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * number of tasks currently in queue
-		 *
+		 * <p>
 		 * API name: {@code queue}
 		 */
 		public Builder queue(@Nullable String value) {
@@ -645,7 +653,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * maximum number of tasks permitted in queue
-		 *
+		 * <p>
 		 * API name: {@code queue_size}
 		 */
 		public Builder queueSize(@Nullable String value) {
@@ -655,7 +663,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * number of rejected tasks
-		 *
+		 * <p>
 		 * API name: {@code rejected}
 		 */
 		public Builder rejected(@Nullable String value) {
@@ -665,7 +673,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * highest number of seen active threads
-		 *
+		 * <p>
 		 * API name: {@code largest}
 		 */
 		public Builder largest(@Nullable String value) {
@@ -675,7 +683,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * number of completed tasks
-		 *
+		 * <p>
 		 * API name: {@code completed}
 		 */
 		public Builder completed(@Nullable String value) {
@@ -685,7 +693,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * core number of threads in a scaling thread pool
-		 *
+		 * <p>
 		 * API name: {@code core}
 		 */
 		public Builder core(@Nullable String value) {
@@ -695,7 +703,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * maximum number of threads in a scaling thread pool
-		 *
+		 * <p>
 		 * API name: {@code max}
 		 */
 		public Builder max(@Nullable String value) {
@@ -705,7 +713,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * number of threads in a fixed thread pool
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable String value) {
@@ -715,7 +723,7 @@ public final class ThreadPoolRecord implements ToJsonp {
 
 		/**
 		 * thread keep alive time
-		 *
+		 * <p>
 		 * API name: {@code keep_alive}
 		 */
 		public Builder keepAlive(@Nullable String value) {
@@ -738,10 +746,10 @@ public final class ThreadPoolRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ThreadPoolRecord
+	 * Json deserializer for {@link ThreadPoolRecord}
 	 */
-	public static final JsonpDeserializer<ThreadPoolRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ThreadPoolRecord::setupThreadPoolRecordDeserializer);
+	public static final JsonpDeserializer<ThreadPoolRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ThreadPoolRecord::setupThreadPoolRecordDeserializer, Builder::build);
 
 	protected static void setupThreadPoolRecordDeserializer(DelegatingDeserializer<ThreadPoolRecord.Builder> op) {
 

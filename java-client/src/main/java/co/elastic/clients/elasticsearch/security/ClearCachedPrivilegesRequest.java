@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,21 +36,29 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Request
+
 public final class ClearCachedPrivilegesRequest extends RequestBase {
 	private final String application;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedPrivilegesRequest(Builder builder) {
+	public ClearCachedPrivilegesRequest(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
 
 	}
 
+	public ClearCachedPrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of application names
+	 * <p>
 	 * API name: {@code application}
 	 */
 	public String application() {
@@ -64,6 +74,8 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 		private String application;
 
 		/**
+		 * A comma-separated list of application names
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(String value) {
@@ -88,7 +100,7 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_privileges}".
 	 */
-	public static final Endpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -101,19 +113,18 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.application() != null)
-					propsSet |= _application;
+				propsSet |= _application;
 
 				if (propsSet == (_application)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					buf.append(request.application);
+					SimpleEndpoint.pathEncode(request.application, buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -121,5 +132,5 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedPrivilegesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedPrivilegesResponse._DESERIALIZER);
 }

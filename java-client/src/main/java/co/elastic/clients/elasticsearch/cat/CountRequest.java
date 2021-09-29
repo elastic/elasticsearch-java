@@ -25,9 +25,12 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -35,23 +38,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.Request
+
 public final class CountRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CountRequest(Builder builder) {
+	public CountRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
 	}
 
+	public CountRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -69,6 +81,8 @@ public final class CountRequest extends CatRequestBase {
 		private List<String> index;
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -77,6 +91,8 @@ public final class CountRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -85,7 +101,7 @@ public final class CountRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -112,7 +128,7 @@ public final class CountRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.count}".
 	 */
-	public static final Endpoint<CountRequest, CountResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CountRequest, CountResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -139,10 +155,10 @@ public final class CountRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/count");
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -150,5 +166,5 @@ public final class CountRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, CountResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
 }

@@ -24,42 +24,69 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IdsQuery
-public final class IdsQuery extends QueryBase {
+@JsonpDeserializable
+public final class IdsQuery extends QueryBase implements QueryVariant {
 	@Nullable
-	private final JsonValue values;
+	private final List<String> values;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IdsQuery(Builder builder) {
+	public IdsQuery(Builder builder) {
 		super(builder);
-		this.values = builder.values;
 
+		this.values = ModelTypeHelper.unmodifiable(builder.values);
+
+	}
+
+	public IdsQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "ids";
 	}
 
 	/**
 	 * API name: {@code values}
 	 */
 	@Nullable
-	public JsonValue values() {
+	public List<String> values() {
 		return this.values;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.values != null) {
 
 			generator.writeKey("values");
-			generator.write(this.values);
+			generator.writeStartArray();
+			for (String item0 : this.values) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -72,13 +99,32 @@ public final class IdsQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IdsQuery> {
 		@Nullable
-		private JsonValue values;
+		private List<String> values;
 
 		/**
 		 * API name: {@code values}
 		 */
-		public Builder values(@Nullable JsonValue value) {
+		public Builder values(@Nullable List<String> value) {
 			this.values = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code values}
+		 */
+		public Builder values(String... value) {
+			this.values = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #values(List)}, creating the list if needed. 4
+		 */
+		public Builder addValues(String value) {
+			if (this.values == null) {
+				this.values = new ArrayList<>();
+			}
+			this.values.add(value);
 			return this;
 		}
 
@@ -102,14 +148,14 @@ public final class IdsQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IdsQuery
+	 * Json deserializer for {@link IdsQuery}
 	 */
-	public static final JsonpDeserializer<IdsQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IdsQuery::setupIdsQueryDeserializer);
+	public static final JsonpDeserializer<IdsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IdsQuery::setupIdsQueryDeserializer, Builder::build);
 
 	protected static void setupIdsQueryDeserializer(DelegatingDeserializer<IdsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::values, JsonpDeserializer.jsonValueDeserializer(), "values");
+		op.add(Builder::values, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "values");
 
 	}
 

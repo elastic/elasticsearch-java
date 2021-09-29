@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,35 +42,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Response
-public final class GetTrainedModelsStatsResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
+	private final int count;
 
 	private final List<TrainedModelStats> trainedModelStats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTrainedModelsStatsResponse(Builder builder) {
+	public GetTrainedModelsStatsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.trainedModelStats = Objects.requireNonNull(builder.trainedModelStats, "trained_model_stats");
+		this.trainedModelStats = ModelTypeHelper.unmodifiableNonNull(builder.trainedModelStats, "trained_model_stats");
 
+	}
+
+	public GetTrainedModelsStatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * The total number of trained model statistics that matched the requested ID
 	 * patterns. Could be higher than the number of items in the trained_model_stats
 	 * array as the size of the array is restricted by the supplied size parameter.
-	 *
+	 * <p>
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * An array of trained model statistics, which are sorted by the model_id value
 	 * in ascending order.
-	 *
+	 * <p>
 	 * API name: {@code trained_model_stats}
 	 */
 	public List<TrainedModelStats> trainedModelStats() {
@@ -78,21 +85,21 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("trained_model_stats");
 		generator.writeStartArray();
 		for (TrainedModelStats item0 : this.trainedModelStats) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -105,7 +112,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 	 * Builder for {@link GetTrainedModelsStatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetTrainedModelsStatsResponse> {
-		private Number count;
+		private Integer count;
 
 		private List<TrainedModelStats> trainedModelStats;
 
@@ -113,10 +120,10 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 		 * The total number of trained model statistics that matched the requested ID
 		 * patterns. Could be higher than the number of items in the trained_model_stats
 		 * array as the size of the array is restricted by the supplied size parameter.
-		 *
+		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -124,7 +131,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 		/**
 		 * An array of trained model statistics, which are sorted by the model_id value
 		 * in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code trained_model_stats}
 		 */
 		public Builder trainedModelStats(List<TrainedModelStats> value) {
@@ -135,7 +142,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 		/**
 		 * An array of trained model statistics, which are sorted by the model_id value
 		 * in ascending order.
-		 *
+		 * <p>
 		 * API name: {@code trained_model_stats}
 		 */
 		public Builder trainedModelStats(TrainedModelStats... value) {
@@ -145,6 +152,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #trainedModelStats(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addTrainedModelStats(TrainedModelStats value) {
 			if (this.trainedModelStats == null) {
@@ -163,6 +171,7 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #trainedModelStats(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addTrainedModelStats(Function<TrainedModelStats.Builder, ObjectBuilder<TrainedModelStats>> fn) {
 			return this.addTrainedModelStats(fn.apply(new TrainedModelStats.Builder()).build());
@@ -183,17 +192,17 @@ public final class GetTrainedModelsStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetTrainedModelsStatsResponse
+	 * Json deserializer for {@link GetTrainedModelsStatsResponse}
 	 */
-	public static final JsonpDeserializer<GetTrainedModelsStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					GetTrainedModelsStatsResponse::setupGetTrainedModelsStatsResponseDeserializer);
+	public static final JsonpDeserializer<GetTrainedModelsStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetTrainedModelsStatsResponse::setupGetTrainedModelsStatsResponseDeserializer,
+			Builder::build);
 
 	protected static void setupGetTrainedModelsStatsResponseDeserializer(
 			DelegatingDeserializer<GetTrainedModelsStatsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::trainedModelStats, JsonpDeserializer.arrayDeserializer(TrainedModelStats.DESERIALIZER),
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::trainedModelStats, JsonpDeserializer.arrayDeserializer(TrainedModelStats._DESERIALIZER),
 				"trained_model_stats");
 
 	}

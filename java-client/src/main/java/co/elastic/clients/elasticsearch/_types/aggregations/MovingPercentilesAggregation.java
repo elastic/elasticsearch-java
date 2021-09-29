@@ -24,37 +24,59 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
-public final class MovingPercentilesAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
-	private final Number window;
+	private final Integer window;
 
 	@Nullable
-	private final Number shift;
+	private final Integer shift;
+
+	@Nullable
+	private final Boolean keyed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MovingPercentilesAggregation(Builder builder) {
+	public MovingPercentilesAggregation(Builder builder) {
 		super(builder);
+
 		this.window = builder.window;
 		this.shift = builder.shift;
+		this.keyed = builder.keyed;
 
+	}
+
+	public MovingPercentilesAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "moving_percentiles";
 	}
 
 	/**
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Number window() {
+	public Integer window() {
 		return this.window;
 	}
 
@@ -62,22 +84,37 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	 * API name: {@code shift}
 	 */
 	@Nullable
-	public Number shift() {
+	public Integer shift() {
 		return this.shift;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	/**
+	 * API name: {@code keyed}
+	 */
+	@Nullable
+	public Boolean keyed() {
+		return this.keyed;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.window != null) {
 
 			generator.writeKey("window");
-			generator.write(this.window.doubleValue());
+			generator.write(this.window);
 
 		}
 		if (this.shift != null) {
 
 			generator.writeKey("shift");
-			generator.write(this.shift.doubleValue());
+			generator.write(this.shift);
+
+		}
+		if (this.keyed != null) {
+
+			generator.writeKey("keyed");
+			generator.write(this.keyed);
 
 		}
 
@@ -92,15 +129,18 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 			implements
 				ObjectBuilder<MovingPercentilesAggregation> {
 		@Nullable
-		private Number window;
+		private Integer window;
 
 		@Nullable
-		private Number shift;
+		private Integer shift;
+
+		@Nullable
+		private Boolean keyed;
 
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Number value) {
+		public Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -108,8 +148,16 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code shift}
 		 */
-		public Builder shift(@Nullable Number value) {
+		public Builder shift(@Nullable Integer value) {
 			this.shift = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code keyed}
+		 */
+		public Builder keyed(@Nullable Boolean value) {
+			this.keyed = value;
 			return this;
 		}
 
@@ -133,16 +181,17 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MovingPercentilesAggregation
+	 * Json deserializer for {@link MovingPercentilesAggregation}
 	 */
-	public static final JsonpDeserializer<MovingPercentilesAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer);
+	public static final JsonpDeserializer<MovingPercentilesAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer, Builder::build);
 
 	protected static void setupMovingPercentilesAggregationDeserializer(
 			DelegatingDeserializer<MovingPercentilesAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::window, JsonpDeserializer.numberDeserializer(), "window");
-		op.add(Builder::shift, JsonpDeserializer.numberDeserializer(), "shift");
+		op.add(Builder::window, JsonpDeserializer.integerDeserializer(), "window");
+		op.add(Builder::shift, JsonpDeserializer.integerDeserializer(), "shift");
+		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 
 	}
 

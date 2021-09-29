@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.indices.IndicesRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,33 +41,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.Response
-public final class IndicesResponse implements ToJsonp {
-	private final List<IndicesRecord> value;
+@JsonpDeserializable
+public final class IndicesResponse implements JsonpSerializable {
+	private final List<IndicesRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesResponse(Builder builder) {
+	public IndicesResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public IndicesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
-	 *
-	 * API name: {@code value}
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<IndicesRecord> value() {
-		return this.value;
+	public List<IndicesRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (IndicesRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+		for (IndicesRecord item0 : this.valueBody) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -79,51 +85,51 @@ public final class IndicesResponse implements ToJsonp {
 	 * Builder for {@link IndicesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<IndicesResponse> {
-		private List<IndicesRecord> value;
+		private List<IndicesRecord> valueBody;
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<IndicesRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<IndicesRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(IndicesRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(IndicesRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(IndicesRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(IndicesRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
-			return this.value(fn.apply(new IndicesRecord.Builder()).build());
+		public Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
+			return this.valueBody(fn.apply(new IndicesRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
-			return this.addValue(fn.apply(new IndicesRecord.Builder()).build());
+		public Builder addValueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
+			return this.addValueBody(fn.apply(new IndicesRecord.Builder()).build());
 		}
 
 		/**
@@ -138,18 +144,14 @@ public final class IndicesResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<IndicesResponse> _DESERIALIZER = createIndicesResponseDeserializer();
+	protected static JsonpDeserializer<IndicesResponse> createIndicesResponseDeserializer() {
 
-	/**
-	 * Json deserializer for IndicesResponse
-	 */
-	public static final JsonpDeserializer<IndicesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesResponse::setupIndicesResponseDeserializer);
+		JsonpDeserializer<List<IndicesRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(IndicesRecord._DESERIALIZER);
 
-	protected static void setupIndicesResponseDeserializer(DelegatingDeserializer<IndicesResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(IndicesRecord.DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

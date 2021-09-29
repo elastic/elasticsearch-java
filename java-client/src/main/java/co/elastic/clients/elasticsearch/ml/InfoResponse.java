@@ -27,11 +27,12 @@ import co.elastic.clients.elasticsearch.ml.info.Defaults;
 import co.elastic.clients.elasticsearch.ml.info.Limits;
 import co.elastic.clients.elasticsearch.ml.info.NativeCode;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,24 +41,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
-public final class InfoResponse implements ToJsonp {
+@JsonpDeserializable
+public final class InfoResponse implements JsonpSerializable {
 	private final Defaults defaults;
 
 	private final Limits limits;
 
-	private final Boolean upgradeMode;
+	private final boolean upgradeMode;
 
 	private final NativeCode nativeCode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected InfoResponse(Builder builder) {
+	public InfoResponse(Builder builder) {
 
 		this.defaults = Objects.requireNonNull(builder.defaults, "defaults");
 		this.limits = Objects.requireNonNull(builder.limits, "limits");
 		this.upgradeMode = Objects.requireNonNull(builder.upgradeMode, "upgrade_mode");
 		this.nativeCode = Objects.requireNonNull(builder.nativeCode, "native_code");
 
+	}
+
+	public InfoResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -77,7 +83,7 @@ public final class InfoResponse implements ToJsonp {
 	/**
 	 * API name: {@code upgrade_mode}
 	 */
-	public Boolean upgradeMode() {
+	public boolean upgradeMode() {
 		return this.upgradeMode;
 	}
 
@@ -91,25 +97,25 @@ public final class InfoResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("defaults");
-		this.defaults.toJsonp(generator, mapper);
+		this.defaults.serialize(generator, mapper);
 
 		generator.writeKey("limits");
-		this.limits.toJsonp(generator, mapper);
+		this.limits.serialize(generator, mapper);
 
 		generator.writeKey("upgrade_mode");
 		generator.write(this.upgradeMode);
 
 		generator.writeKey("native_code");
-		this.nativeCode.toJsonp(generator, mapper);
+		this.nativeCode.serialize(generator, mapper);
 
 	}
 
@@ -160,7 +166,7 @@ public final class InfoResponse implements ToJsonp {
 		/**
 		 * API name: {@code upgrade_mode}
 		 */
-		public Builder upgradeMode(Boolean value) {
+		public Builder upgradeMode(boolean value) {
 			this.upgradeMode = value;
 			return this;
 		}
@@ -195,17 +201,17 @@ public final class InfoResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for InfoResponse
+	 * Json deserializer for {@link InfoResponse}
 	 */
-	public static final JsonpDeserializer<InfoResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, InfoResponse::setupInfoResponseDeserializer);
+	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InfoResponse::setupInfoResponseDeserializer, Builder::build);
 
 	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
 
-		op.add(Builder::defaults, Defaults.DESERIALIZER, "defaults");
-		op.add(Builder::limits, Limits.DESERIALIZER, "limits");
+		op.add(Builder::defaults, Defaults._DESERIALIZER, "defaults");
+		op.add(Builder::limits, Limits._DESERIALIZER, "limits");
 		op.add(Builder::upgradeMode, JsonpDeserializer.booleanDeserializer(), "upgrade_mode");
-		op.add(Builder::nativeCode, NativeCode.DESERIALIZER, "native_code");
+		op.add(Builder::nativeCode, NativeCode._DESERIALIZER, "native_code");
 
 	}
 

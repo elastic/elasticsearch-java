@@ -23,23 +23,31 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.recovery.RecoveryStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.recovery.Response
-public final class RecoveryResponse extends AdditionalProperties<String, RecoveryStatus> {
+@JsonpDeserializable
+public final class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected RecoveryResponse(Builder builder) {
+	public RecoveryResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public RecoveryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -47,7 +55,7 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 	/**
 	 * Builder for {@link RecoveryResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, RecoveryStatus, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
 			implements
 				ObjectBuilder<RecoveryResponse> {
 		@Override
@@ -72,14 +80,14 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RecoveryResponse
+	 * Json deserializer for {@link RecoveryResponse}
 	 */
-	public static final JsonpDeserializer<RecoveryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RecoveryResponse::setupRecoveryResponseDeserializer);
+	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
 
 	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RecoveryStatus.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				RecoveryStatus._DESERIALIZER);
 
 	}
 

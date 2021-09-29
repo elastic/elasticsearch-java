@@ -25,16 +25,17 @@ package co.elastic.clients.elasticsearch.text_structure;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -45,11 +46,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Request
-public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
+
+public final class FindStructureRequest<TJsonDocument> implements JsonpSerializable {
 	@Nullable
 	private final String charset;
 
@@ -84,7 +86,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	private final Boolean shouldTrimFields;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final String timestampField;
@@ -92,14 +94,14 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	@Nullable
 	private final String timestampFormat;
 
-	private final List<TJsonDocument> value;
+	private final List<TJsonDocument> textFiles;
 
 	@Nullable
 	private final JsonpSerializer<TJsonDocument> tJsonDocumentSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FindStructureRequest(Builder<TJsonDocument> builder) {
+	public FindStructureRequest(Builder<TJsonDocument> builder) {
 
 		this.charset = builder.charset;
 		this.columnNames = builder.columnNames;
@@ -115,9 +117,13 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		this.timeout = builder.timeout;
 		this.timestampField = builder.timestampField;
 		this.timestampFormat = builder.timestampFormat;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.textFiles = ModelTypeHelper.unmodifiableNonNull(builder.textFiles, "_value_body");
 		this.tJsonDocumentSerializer = builder.tJsonDocumentSerializer;
 
+	}
+
+	public FindStructureRequest(Function<Builder<TJsonDocument>, Builder<TJsonDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -125,7 +131,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * JVM that Elasticsearch uses. For example, UTF-8, UTF-16LE, windows-1252, or
 	 * EUC-JP. If this parameter is not specified, the structure finder chooses an
 	 * appropriate character set.
-	 *
+	 * <p>
 	 * API name: {@code charset}
 	 */
 	@Nullable
@@ -137,9 +143,9 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * If you have set format to delimited, you can specify the column names in a
 	 * comma-separated list. If this parameter is not specified, the structure
 	 * finder uses the column names from the header row of the text. If the text
-	 * does not have a header role, columns are named "column1", "column2",
-	 * "column3", etc.
-	 *
+	 * does not have a header role, columns are named &quot;column1&quot;,
+	 * &quot;column2&quot;, &quot;column3&quot;, etc.
+	 * <p>
 	 * API name: {@code column_names}
 	 */
 	@Nullable
@@ -155,7 +161,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * default scenario, all rows must have the same number of fields for the
 	 * delimited format to be detected. If you specify a delimiter, up to 10% of the
 	 * rows can have a different number of columns than the first row.
-	 *
+	 * <p>
 	 * API name: {@code delimiter}
 	 */
 	@Nullable
@@ -167,7 +173,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * If this parameter is set to true, the response includes a field named
 	 * explanation, which is an array of strings that indicate how the structure
 	 * finder produced its result.
-	 *
+	 * <p>
 	 * API name: {@code explain}
 	 */
 	@Nullable
@@ -182,7 +188,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * delimited format to be detected. If the format is set to delimited and the
 	 * delimiter is not set, however, the API tolerates up to 5% of rows that have a
 	 * different number of columns than the first row.
-	 *
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -195,9 +201,10 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * pattern that is used to extract fields from every message in the text. The
 	 * name of the timestamp field in the Grok pattern must match what is specified
 	 * in the timestamp_field parameter. If that parameter is not specified, the
-	 * name of the timestamp field in the Grok pattern must match "timestamp". If
-	 * grok_pattern is not specified, the structure finder creates a Grok pattern.
-	 *
+	 * name of the timestamp field in the Grok pattern must match
+	 * &quot;timestamp&quot;. If grok_pattern is not specified, the structure finder
+	 * creates a Grok pattern.
+	 * <p>
 	 * API name: {@code grok_pattern}
 	 */
 	@Nullable
@@ -210,7 +217,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * whether the column names are in the first row of the text. If this parameter
 	 * is not specified, the structure finder guesses based on the similarity of the
 	 * first row of the text to other rows.
-	 *
+	 * <p>
 	 * API name: {@code has_header_row}
 	 */
 	@Nullable
@@ -224,7 +231,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * messages you may need to increase this, but be aware that this may lead to
 	 * very long processing times if the way to group lines into messages is
 	 * misdetected.
-	 *
+	 * <p>
 	 * API name: {@code line_merge_size_limit}
 	 */
 	@Nullable
@@ -237,7 +244,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * beginning of the text. The minimum is 2; If the value of this parameter is
 	 * greater than the number of lines in the text, the analysis proceeds (as long
 	 * as there are at least two lines in the text) for all of the lines.
-	 *
+	 * <p>
 	 * API name: {@code lines_to_sample}
 	 */
 	@Nullable
@@ -249,10 +256,10 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * If you have set format to delimited, you can specify the character used to
 	 * quote the values in each row if they contain newlines or the delimiter
 	 * character. Only a single character is supported. If this parameter is not
-	 * specified, the default value is a double quote ("). If your delimited text
-	 * format does not use quoting, a workaround is to set this argument to a
+	 * specified, the default value is a double quote (&quot;). If your delimited
+	 * text format does not use quoting, a workaround is to set this argument to a
 	 * character that does not appear anywhere in the sample.
-	 *
+	 * <p>
 	 * API name: {@code quote}
 	 */
 	@Nullable
@@ -265,7 +272,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	 * delimiters should have whitespace trimmed from them. If this parameter is not
 	 * specified and the delimiter is pipe (|), the default value is true.
 	 * Otherwise, the default value is false.
-	 *
+	 * <p>
 	 * API name: {@code should_trim_fields}
 	 */
 	@Nullable
@@ -276,15 +283,17 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	/**
 	 * Sets the maximum amount of time that the structure analysis make take. If the
 	 * analysis is still running when the timeout expires then it will be aborted.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
+	 * Optional parameter to specify the timestamp field in the file
+	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
@@ -294,7 +303,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 
 	/**
 	 * The Java time format of the timestamp field in the text.
-	 *
+	 * <p>
 	 * API name: {@code timestamp_format}
 	 */
 	@Nullable
@@ -304,19 +313,19 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 
 	/**
 	 * Request body.
-	 *
-	 * API name: {@code value}
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<TJsonDocument> value() {
-		return this.value;
+	public List<TJsonDocument> textFiles() {
+		return this.textFiles;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TJsonDocument item0 : this.value) {
+		for (TJsonDocument item0 : this.textFiles) {
 			JsonpUtils.serialize(item0, generator, tJsonDocumentSerializer, mapper);
 
 		}
@@ -364,7 +373,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		private Boolean shouldTrimFields;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private String timestampField;
@@ -372,7 +381,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		@Nullable
 		private String timestampFormat;
 
-		private List<TJsonDocument> value;
+		private List<TJsonDocument> textFiles;
 
 		@Nullable
 		private JsonpSerializer<TJsonDocument> tJsonDocumentSerializer;
@@ -382,7 +391,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * JVM that Elasticsearch uses. For example, UTF-8, UTF-16LE, windows-1252, or
 		 * EUC-JP. If this parameter is not specified, the structure finder chooses an
 		 * appropriate character set.
-		 *
+		 * <p>
 		 * API name: {@code charset}
 		 */
 		public Builder<TJsonDocument> charset(@Nullable String value) {
@@ -394,9 +403,9 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * If you have set format to delimited, you can specify the column names in a
 		 * comma-separated list. If this parameter is not specified, the structure
 		 * finder uses the column names from the header row of the text. If the text
-		 * does not have a header role, columns are named "column1", "column2",
-		 * "column3", etc.
-		 *
+		 * does not have a header role, columns are named &quot;column1&quot;,
+		 * &quot;column2&quot;, &quot;column3&quot;, etc.
+		 * <p>
 		 * API name: {@code column_names}
 		 */
 		public Builder<TJsonDocument> columnNames(@Nullable String value) {
@@ -412,7 +421,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * default scenario, all rows must have the same number of fields for the
 		 * delimited format to be detected. If you specify a delimiter, up to 10% of the
 		 * rows can have a different number of columns than the first row.
-		 *
+		 * <p>
 		 * API name: {@code delimiter}
 		 */
 		public Builder<TJsonDocument> delimiter(@Nullable String value) {
@@ -424,7 +433,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * If this parameter is set to true, the response includes a field named
 		 * explanation, which is an array of strings that indicate how the structure
 		 * finder produced its result.
-		 *
+		 * <p>
 		 * API name: {@code explain}
 		 */
 		public Builder<TJsonDocument> explain(@Nullable Boolean value) {
@@ -439,7 +448,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * delimited format to be detected. If the format is set to delimited and the
 		 * delimiter is not set, however, the API tolerates up to 5% of rows that have a
 		 * different number of columns than the first row.
-		 *
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public Builder<TJsonDocument> format(@Nullable String value) {
@@ -452,9 +461,10 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * pattern that is used to extract fields from every message in the text. The
 		 * name of the timestamp field in the Grok pattern must match what is specified
 		 * in the timestamp_field parameter. If that parameter is not specified, the
-		 * name of the timestamp field in the Grok pattern must match "timestamp". If
-		 * grok_pattern is not specified, the structure finder creates a Grok pattern.
-		 *
+		 * name of the timestamp field in the Grok pattern must match
+		 * &quot;timestamp&quot;. If grok_pattern is not specified, the structure finder
+		 * creates a Grok pattern.
+		 * <p>
 		 * API name: {@code grok_pattern}
 		 */
 		public Builder<TJsonDocument> grokPattern(@Nullable String value) {
@@ -467,7 +477,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * whether the column names are in the first row of the text. If this parameter
 		 * is not specified, the structure finder guesses based on the similarity of the
 		 * first row of the text to other rows.
-		 *
+		 * <p>
 		 * API name: {@code has_header_row}
 		 */
 		public Builder<TJsonDocument> hasHeaderRow(@Nullable Boolean value) {
@@ -481,7 +491,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * messages you may need to increase this, but be aware that this may lead to
 		 * very long processing times if the way to group lines into messages is
 		 * misdetected.
-		 *
+		 * <p>
 		 * API name: {@code line_merge_size_limit}
 		 */
 		public Builder<TJsonDocument> lineMergeSizeLimit(@Nullable Number value) {
@@ -494,7 +504,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * beginning of the text. The minimum is 2; If the value of this parameter is
 		 * greater than the number of lines in the text, the analysis proceeds (as long
 		 * as there are at least two lines in the text) for all of the lines.
-		 *
+		 * <p>
 		 * API name: {@code lines_to_sample}
 		 */
 		public Builder<TJsonDocument> linesToSample(@Nullable Number value) {
@@ -506,10 +516,10 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * If you have set format to delimited, you can specify the character used to
 		 * quote the values in each row if they contain newlines or the delimiter
 		 * character. Only a single character is supported. If this parameter is not
-		 * specified, the default value is a double quote ("). If your delimited text
-		 * format does not use quoting, a workaround is to set this argument to a
+		 * specified, the default value is a double quote (&quot;). If your delimited
+		 * text format does not use quoting, a workaround is to set this argument to a
 		 * character that does not appear anywhere in the sample.
-		 *
+		 * <p>
 		 * API name: {@code quote}
 		 */
 		public Builder<TJsonDocument> quote(@Nullable String value) {
@@ -522,7 +532,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		 * delimiters should have whitespace trimmed from them. If this parameter is not
 		 * specified and the delimiter is pipe (|), the default value is true.
 		 * Otherwise, the default value is false.
-		 *
+		 * <p>
 		 * API name: {@code should_trim_fields}
 		 */
 		public Builder<TJsonDocument> shouldTrimFields(@Nullable Boolean value) {
@@ -533,15 +543,17 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		/**
 		 * Sets the maximum amount of time that the structure analysis make take. If the
 		 * analysis is still running when the timeout expires then it will be aborted.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder<TJsonDocument> timeout(@Nullable JsonValue value) {
+		public Builder<TJsonDocument> timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
+		 * Optional parameter to specify the timestamp field in the file
+		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
 		public Builder<TJsonDocument> timestampField(@Nullable String value) {
@@ -551,7 +563,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 
 		/**
 		 * The Java time format of the timestamp field in the text.
-		 *
+		 * <p>
 		 * API name: {@code timestamp_format}
 		 */
 		public Builder<TJsonDocument> timestampFormat(@Nullable String value) {
@@ -561,39 +573,38 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 
 		/**
 		 * Request body.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TJsonDocument> value(List<TJsonDocument> value) {
-			this.value = value;
+		public Builder<TJsonDocument> textFiles(List<TJsonDocument> value) {
+			this.textFiles = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TJsonDocument> value(TJsonDocument... value) {
-			this.value = Arrays.asList(value);
+		public Builder<TJsonDocument> textFiles(TJsonDocument... value) {
+			this.textFiles = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #textFiles(List)}, creating the list if needed. 4
 		 */
-		public Builder<TJsonDocument> addValue(TJsonDocument value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder<TJsonDocument> addTextFiles(TJsonDocument value) {
+			if (this.textFiles == null) {
+				this.textFiles = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.textFiles.add(value);
 			return this;
 		}
 
 		/**
 		 * Serializer for TJsonDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TJsonDocument> tJsonDocumentSerializer(@Nullable JsonpSerializer<TJsonDocument> value) {
 			this.tJsonDocumentSerializer = value;
@@ -612,23 +623,15 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Create a json deserializer for FindStructureRequest
-	 */
 	public static <TJsonDocument> JsonpDeserializer<FindStructureRequest<TJsonDocument>> createFindStructureRequestDeserializer(
 			JsonpDeserializer<TJsonDocument> tJsonDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TJsonDocument>>) Builder::new,
-				op -> FindStructureRequest.setupFindStructureRequestDeserializer(op, tJsonDocumentDeserializer));
-	};
 
-	protected static <TJsonDocument> void setupFindStructureRequestDeserializer(
-			DelegatingDeserializer<FindStructureRequest.Builder<TJsonDocument>> op,
-			JsonpDeserializer<TJsonDocument> tJsonDocumentDeserializer) {
+		JsonpDeserializer<List<TJsonDocument>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(tJsonDocumentDeserializer);
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(tJsonDocumentDeserializer), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper, event) -> new Builder<TJsonDocument>()
+						.textFiles(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -636,7 +639,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 	/**
 	 * Endpoint "{@code text_structure.find_structure}".
 	 */
-	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -686,7 +689,7 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 					params.put("should_trim_fields", String.valueOf(request.shouldTrimFields));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.timestampField != null) {
 					params.put("timestamp_field", request.timestampField);
@@ -696,5 +699,5 @@ public final class FindStructureRequest<TJsonDocument> implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FindStructureResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, FindStructureResponse._DESERIALIZER);
 }

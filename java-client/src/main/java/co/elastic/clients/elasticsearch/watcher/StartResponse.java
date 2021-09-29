@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: watcher.start.Response
+@JsonpDeserializable
 public final class StartResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartResponse(Builder builder) {
+	public StartResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public StartResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class StartResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StartResponse
+	 * Json deserializer for {@link StartResponse}
 	 */
-	public static final JsonpDeserializer<StartResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StartResponse::setupStartResponseDeserializer);
+	public static final JsonpDeserializer<StartResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StartResponse::setupStartResponseDeserializer, Builder::build);
 
 	protected static void setupStartResponseDeserializer(DelegatingDeserializer<StartResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,9 +36,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Request
+
 public final class GetUserPrivilegesRequest extends RequestBase {
 	@Nullable
 	private final String application;
@@ -46,18 +51,22 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserPrivilegesRequest(Builder builder) {
+	public GetUserPrivilegesRequest(Builder builder) {
 
 		this.application = builder.application;
 		this.priviledge = builder.priviledge;
 
 	}
 
+	public GetUserPrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The name of the application. Application privileges are always associated
 	 * with exactly one application. If you do not specify this parameter, the API
 	 * returns information about all privileges for all applications.
-	 *
+	 * <p>
 	 * API name: {@code application}
 	 */
 	@Nullable
@@ -68,7 +77,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * The name of the privilege. If you do not specify this parameter, the API
 	 * returns information about all privileges for the requested application.
-	 *
+	 * <p>
 	 * API name: {@code priviledge}
 	 */
 	@Nullable
@@ -92,7 +101,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		 * The name of the application. Application privileges are always associated
 		 * with exactly one application. If you do not specify this parameter, the API
 		 * returns information about all privileges for all applications.
-		 *
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(@Nullable String value) {
@@ -103,7 +112,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		/**
 		 * The name of the privilege. If you do not specify this parameter, the API
 		 * returns information about all privileges for the requested application.
-		 *
+		 * <p>
 		 * API name: {@code priviledge}
 		 */
 		public Builder priviledge(@Nullable String value) {
@@ -128,7 +137,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user_privileges}".
 	 */
-	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -152,5 +161,5 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetUserPrivilegesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetUserPrivilegesResponse._DESERIALIZER);
 }

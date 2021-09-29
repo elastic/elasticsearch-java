@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,9 +35,12 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.Request
+
 public final class GetServiceAccountsRequest extends RequestBase {
 	@Nullable
 	private final String namespace;
@@ -45,14 +50,20 @@ public final class GetServiceAccountsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetServiceAccountsRequest(Builder builder) {
+	public GetServiceAccountsRequest(Builder builder) {
 
 		this.namespace = builder.namespace;
 		this.service = builder.service;
 
 	}
 
+	public GetServiceAccountsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * An identifier for the namespace
+	 * <p>
 	 * API name: {@code namespace}
 	 */
 	@Nullable
@@ -61,6 +72,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	}
 
 	/**
+	 * An identifier for the service name
+	 * <p>
 	 * API name: {@code service}
 	 */
 	@Nullable
@@ -81,6 +94,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		private String service;
 
 		/**
+		 * An identifier for the namespace
+		 * <p>
 		 * API name: {@code namespace}
 		 */
 		public Builder namespace(@Nullable String value) {
@@ -89,6 +104,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		}
 
 		/**
+		 * An identifier for the service name
+		 * <p>
 		 * API name: {@code service}
 		 */
 		public Builder service(@Nullable String value) {
@@ -113,7 +130,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_service_accounts}".
 	 */
-	public static final Endpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -137,9 +154,9 @@ public final class GetServiceAccountsRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_namespace)) {
@@ -147,7 +164,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -156,7 +173,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 					buf.append("/service");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -164,5 +181,5 @@ public final class GetServiceAccountsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetServiceAccountsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetServiceAccountsResponse._DESERIALIZER);
 }

@@ -24,55 +24,63 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationRegressionMetricsMsle
-public final class DataframeEvaluationRegressionMetricsMsle implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializable {
 	@Nullable
-	private final Number offset;
+	private final Double offset;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationRegressionMetricsMsle(Builder builder) {
+	public DataframeEvaluationRegressionMetricsMsle(Builder builder) {
 
 		this.offset = builder.offset;
 
 	}
 
+	public DataframeEvaluationRegressionMetricsMsle(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Defines the transition point at which you switch from minimizing quadratic
 	 * error to minimizing quadratic log error. Defaults to 1.
-	 *
+	 * <p>
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public Number offset() {
+	public Double offset() {
 		return this.offset;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.offset != null) {
 
 			generator.writeKey("offset");
-			generator.write(this.offset.doubleValue());
+			generator.write(this.offset);
 
 		}
 
@@ -85,15 +93,15 @@ public final class DataframeEvaluationRegressionMetricsMsle implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<DataframeEvaluationRegressionMetricsMsle> {
 		@Nullable
-		private Number offset;
+		private Double offset;
 
 		/**
 		 * Defines the transition point at which you switch from minimizing quadratic
 		 * error to minimizing quadratic log error. Defaults to 1.
-		 *
+		 * <p>
 		 * API name: {@code offset}
 		 */
-		public Builder offset(@Nullable Number value) {
+		public Builder offset(@Nullable Double value) {
 			this.offset = value;
 			return this;
 		}
@@ -113,16 +121,17 @@ public final class DataframeEvaluationRegressionMetricsMsle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationRegressionMetricsMsle
+	 * Json deserializer for {@link DataframeEvaluationRegressionMetricsMsle}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsMsle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationRegressionMetricsMsle::setupDataframeEvaluationRegressionMetricsMsleDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationRegressionMetricsMsle> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeEvaluationRegressionMetricsMsle::setupDataframeEvaluationRegressionMetricsMsleDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationRegressionMetricsMsleDeserializer(
 			DelegatingDeserializer<DataframeEvaluationRegressionMetricsMsle.Builder> op) {
 
-		op.add(Builder::offset, JsonpDeserializer.numberDeserializer(), "offset");
+		op.add(Builder::offset, JsonpDeserializer.doubleDeserializer(), "offset");
 
 	}
 

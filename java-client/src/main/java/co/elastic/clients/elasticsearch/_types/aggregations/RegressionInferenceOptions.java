@@ -24,40 +24,49 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RegressionInferenceOptions
-public final class RegressionInferenceOptions implements ToJsonp {
+@JsonpDeserializable
+public final class RegressionInferenceOptions implements JsonpSerializable {
+	@Nullable
 	private final String resultsField;
 
 	@Nullable
-	private final Number numTopFeatureImportanceValues;
+	private final Integer numTopFeatureImportanceValues;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RegressionInferenceOptions(Builder builder) {
+	public RegressionInferenceOptions(Builder builder) {
 
-		this.resultsField = Objects.requireNonNull(builder.resultsField, "results_field");
+		this.resultsField = builder.resultsField;
 		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
+	}
+
+	public RegressionInferenceOptions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * The field that is added to incoming documents to contain the inference
 	 * prediction. Defaults to predicted_value.
-	 *
+	 * <p>
 	 * API name: {@code results_field}
 	 */
+	@Nullable
 	public String resultsField() {
 		return this.resultsField;
 	}
@@ -65,32 +74,35 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	/**
 	 * Specifies the maximum number of feature importance values per document. By
 	 * default, it is zero and no feature importance calculation occurs.
-	 *
+	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
 	@Nullable
-	public Number numTopFeatureImportanceValues() {
+	public Integer numTopFeatureImportanceValues() {
 		return this.numTopFeatureImportanceValues;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("results_field");
-		generator.write(this.resultsField);
+		if (this.resultsField != null) {
 
+			generator.writeKey("results_field");
+			generator.write(this.resultsField);
+
+		}
 		if (this.numTopFeatureImportanceValues != null) {
 
 			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues.doubleValue());
+			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 
@@ -102,18 +114,19 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	 * Builder for {@link RegressionInferenceOptions}.
 	 */
 	public static class Builder implements ObjectBuilder<RegressionInferenceOptions> {
+		@Nullable
 		private String resultsField;
 
 		@Nullable
-		private Number numTopFeatureImportanceValues;
+		private Integer numTopFeatureImportanceValues;
 
 		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction. Defaults to predicted_value.
-		 *
+		 * <p>
 		 * API name: {@code results_field}
 		 */
-		public Builder resultsField(String value) {
+		public Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
 			return this;
 		}
@@ -121,10 +134,10 @@ public final class RegressionInferenceOptions implements ToJsonp {
 		/**
 		 * Specifies the maximum number of feature importance values per document. By
 		 * default, it is zero and no feature importance calculation occurs.
-		 *
+		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */
-		public Builder numTopFeatureImportanceValues(@Nullable Number value) {
+		public Builder numTopFeatureImportanceValues(@Nullable Integer value) {
 			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
@@ -144,16 +157,16 @@ public final class RegressionInferenceOptions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RegressionInferenceOptions
+	 * Json deserializer for {@link RegressionInferenceOptions}
 	 */
-	public static final JsonpDeserializer<RegressionInferenceOptions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer);
+	public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer, Builder::build);
 
 	protected static void setupRegressionInferenceOptionsDeserializer(
 			DelegatingDeserializer<RegressionInferenceOptions.Builder> op) {
 
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
 				"num_top_feature_importance_values");
 
 	}

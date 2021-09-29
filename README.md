@@ -49,7 +49,7 @@ In the `pom.xml` for your project add the following repository definition and de
 
 ```xml
 <project>
-    
+
   <repositories>
     <repository>
       <id>Elastic-Snapshots</id>
@@ -59,7 +59,7 @@ In the `pom.xml` for your project add the following repository definition and de
       </snapshots>
       </repository>
   </repositories>
-    
+
   <dependencies>
     <dependency>
       <groupId>co.elastic.clients</groupId>
@@ -72,7 +72,7 @@ In the `pom.xml` for your project add the following repository definition and de
       <version>2.12.3</version>
     </dependency>
   </dependencies>
-    
+
 </project>
 ```
 
@@ -107,10 +107,12 @@ if (search.hits().hits().isEmpty()) {
 
 The `main` branch targets the next major release (8.0) and the `7.x` branch targets the next minor release. Support is still incomplete as the API code is generated from the [Elasticsearch Specification](https://github.com/elastic/elasticsearch-specification) that is also still a work in progress.
 
+The Elasticsearch Java client is forward compatible; meaning that the client supports communicating with greater minor versions of Elasticsearch. Elastic language clients are also backwards compatible with lesser supported minor Elasticsearch versions.
+
 ## Current status
 
 While not complete, this library is already fairly usable. What's missing falls in two main categories, related to the [Elasticsearch specification](https://github.com/elastic/elasticsearch-specification):
-* incomplete support for some data types used in specification (e.g. unions). Until they have been implemented in the code generator, they are represented as raw `JsonValue` objects. 
+* incomplete support for some data types used in specification (e.g. unions). Until they have been implemented in the code generator, they are represented as raw `JsonValue` objects.
 * incomplete APIs: as the API specification is still incomplete, so are their implementations in this library since their code is entirely generated from the spec.
 
 ## Contributing

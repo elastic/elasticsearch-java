@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,21 +36,30 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.retry.Request
+
 public final class RetryRequest extends RequestBase {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RetryRequest(Builder builder) {
+	public RetryRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 
 	}
 
+	public RetryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The name of the indices (comma-separated) whose failed lifecycle step is to
+	 * be retry
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -64,6 +75,9 @@ public final class RetryRequest extends RequestBase {
 		private String index;
 
 		/**
+		 * The name of the indices (comma-separated) whose failed lifecycle step is to
+		 * be retry
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -88,7 +102,7 @@ public final class RetryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.retry}".
 	 */
-	public static final Endpoint<RetryRequest, RetryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RetryRequest, RetryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -101,18 +115,17 @@ public final class RetryRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_ilm");
 					buf.append("/retry");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -120,5 +133,5 @@ public final class RetryRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, RetryResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RetryResponse._DESERIALIZER);
 }

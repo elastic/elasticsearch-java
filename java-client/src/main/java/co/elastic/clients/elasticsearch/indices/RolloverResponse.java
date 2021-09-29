@@ -25,10 +25,12 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,33 +38,40 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.Response
+@JsonpDeserializable
 public final class RolloverResponse extends AcknowledgedResponseBase {
 	private final Map<String, Boolean> conditions;
 
-	private final Boolean dryRun;
+	private final boolean dryRun;
 
 	private final String newIndex;
 
 	private final String oldIndex;
 
-	private final Boolean rolledOver;
+	private final boolean rolledOver;
 
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RolloverResponse(Builder builder) {
+	public RolloverResponse(Builder builder) {
 		super(builder);
-		this.conditions = Objects.requireNonNull(builder.conditions, "conditions");
+
+		this.conditions = ModelTypeHelper.unmodifiableNonNull(builder.conditions, "conditions");
 		this.dryRun = Objects.requireNonNull(builder.dryRun, "dry_run");
 		this.newIndex = Objects.requireNonNull(builder.newIndex, "new_index");
 		this.oldIndex = Objects.requireNonNull(builder.oldIndex, "old_index");
 		this.rolledOver = Objects.requireNonNull(builder.rolledOver, "rolled_over");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
+	}
+
+	public RolloverResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -75,7 +84,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code dry_run}
 	 */
-	public Boolean dryRun() {
+	public boolean dryRun() {
 		return this.dryRun;
 	}
 
@@ -96,19 +105,20 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code rolled_over}
 	 */
-	public Boolean rolledOver() {
+	public boolean rolledOver() {
 		return this.rolledOver;
 	}
 
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("conditions");
 		generator.writeStartObject();
@@ -178,7 +188,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code dry_run}
 		 */
-		public Builder dryRun(Boolean value) {
+		public Builder dryRun(boolean value) {
 			this.dryRun = value;
 			return this;
 		}
@@ -202,7 +212,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code rolled_over}
 		 */
-		public Builder rolledOver(Boolean value) {
+		public Builder rolledOver(boolean value) {
 			this.rolledOver = value;
 			return this;
 		}
@@ -210,7 +220,7 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -235,10 +245,10 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RolloverResponse
+	 * Json deserializer for {@link RolloverResponse}
 	 */
-	public static final JsonpDeserializer<RolloverResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RolloverResponse::setupRolloverResponseDeserializer);
+	public static final JsonpDeserializer<RolloverResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RolloverResponse::setupRolloverResponseDeserializer, Builder::build);
 
 	protected static void setupRolloverResponseDeserializer(DelegatingDeserializer<RolloverResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

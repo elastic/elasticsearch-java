@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: watcher.stop.Request
+
 public final class StopRequest extends RequestBase {
-	protected StopRequest() {
+	public StopRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link StopRequest}.
 	 */
-	public static final StopRequest INSTANCE = new StopRequest();
-
-	public static final JsonpDeserializer<StopRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(StopRequest.INSTANCE);
+	public static final StopRequest _INSTANCE = new StopRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code watcher.stop}".
 	 */
-	public static final Endpoint<StopRequest, StopResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StopRequest, StopResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -68,5 +70,5 @@ public final class StopRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, StopResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StopResponse._DESERIALIZER);
 }

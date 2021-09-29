@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,21 +36,29 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.delete_watch.Request
+
 public final class DeleteWatchRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteWatchRequest(Builder builder) {
+	public DeleteWatchRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
 	}
 
+	public DeleteWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Watch ID
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -64,6 +74,8 @@ public final class DeleteWatchRequest extends RequestBase {
 		private String id;
 
 		/**
+		 * Watch ID
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -88,7 +100,7 @@ public final class DeleteWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.delete_watch}".
 	 */
-	public static final Endpoint<DeleteWatchRequest, DeleteWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteWatchRequest, DeleteWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -101,18 +113,17 @@ public final class DeleteWatchRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -120,5 +131,5 @@ public final class DeleteWatchRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteWatchResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteWatchResponse._DESERIALIZER);
 }

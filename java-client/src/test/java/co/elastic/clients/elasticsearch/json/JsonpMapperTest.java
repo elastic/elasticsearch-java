@@ -37,13 +37,12 @@ import java.util.List;
 
 public class JsonpMapperTest extends Assert {
 
+    String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
+        "\"stringValue\":\"foo\"}";
+
     @Test
     public void testJsonb() {
-
         JsonpMapper mapper = new JsonbJsonpMapper();
-        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
-            "\"stringValue\":\"foo\"}";
-
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
     }
@@ -51,11 +50,6 @@ public class JsonpMapperTest extends Assert {
     @Test
     public void testJackson() {
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
-
-        // With the default settings Jackson will serialize null values
-        String json = "{\"children\":[{\"children\":null,\"doubleValue\":3.2,\"intValue\":2,\"stringValue\":null}]," +
-            "\"doubleValue\":2.1,\"intValue\":1,\"stringValue\":\"foo\"}";
-
         testSerialize(new JacksonJsonpMapper(), json);
         testDeserialize(new JacksonJsonpMapper(), json);
     }
@@ -88,7 +82,7 @@ public class JsonpMapperTest extends Assert {
         something.setChildren(Collections.singletonList(other));
 
         StringWriter strw = new StringWriter();
-        JsonGenerator generator = mapper.jsonpProvider().createGenerator(strw);
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(strw);
 
         mapper.serialize(something, generator);
 
@@ -99,8 +93,8 @@ public class JsonpMapperTest extends Assert {
 
     private void testDeserialize(JsonpMapper mapper, String json) {
 
-        JsonParser parser = mapper.jsonpProvider().createParser(new StringReader(json));
-        SomeClass parsed = mapper.getDeserializer(SomeClass.class).deserialize(parser, mapper);
+        JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+        SomeClass parsed = mapper.deserialize(parser, SomeClass.class);
 
         assertEquals(1, parsed.getIntValue());
         assertEquals(2.1, parsed.getDoubleValue(), 0.0);

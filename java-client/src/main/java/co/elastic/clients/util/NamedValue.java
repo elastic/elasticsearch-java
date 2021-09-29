@@ -19,11 +19,11 @@
 
 package co.elastic.clients.util;
 
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpDeserializer;
-
 import jakarta.json.stream.JsonParser;
+
 import java.util.EnumSet;
 import java.util.function.Supplier;
 

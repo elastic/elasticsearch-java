@@ -24,36 +24,39 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RefreshStats
-public final class RefreshStats implements ToJsonp {
-	private final Number externalTotal;
+@JsonpDeserializable
+public final class RefreshStats implements JsonpSerializable {
+	private final long externalTotal;
 
-	private final Number externalTotalTimeInMillis;
+	private final long externalTotalTimeInMillis;
 
-	private final Number listeners;
+	private final long listeners;
 
-	private final Number total;
+	private final long total;
 
 	@Nullable
 	private final String totalTime;
 
-	private final Number totalTimeInMillis;
+	private final long totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RefreshStats(Builder builder) {
+	public RefreshStats(Builder builder) {
 
 		this.externalTotal = Objects.requireNonNull(builder.externalTotal, "external_total");
 		this.externalTotalTimeInMillis = Objects.requireNonNull(builder.externalTotalTimeInMillis,
@@ -65,31 +68,35 @@ public final class RefreshStats implements ToJsonp {
 
 	}
 
+	public RefreshStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code external_total}
 	 */
-	public Number externalTotal() {
+	public long externalTotal() {
 		return this.externalTotal;
 	}
 
 	/**
 	 * API name: {@code external_total_time_in_millis}
 	 */
-	public Number externalTotalTimeInMillis() {
+	public long externalTotalTimeInMillis() {
 		return this.externalTotalTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code listeners}
 	 */
-	public Number listeners() {
+	public long listeners() {
 		return this.listeners;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -104,32 +111,32 @@ public final class RefreshStats implements ToJsonp {
 	/**
 	 * API name: {@code total_time_in_millis}
 	 */
-	public Number totalTimeInMillis() {
+	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("external_total");
-		generator.write(this.externalTotal.doubleValue());
+		generator.write(this.externalTotal);
 
 		generator.writeKey("external_total_time_in_millis");
-		generator.write(this.externalTotalTimeInMillis.doubleValue());
+		generator.write(this.externalTotalTimeInMillis);
 
 		generator.writeKey("listeners");
-		generator.write(this.listeners.doubleValue());
+		generator.write(this.listeners);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		if (this.totalTime != null) {
 
@@ -139,7 +146,7 @@ public final class RefreshStats implements ToJsonp {
 		}
 
 		generator.writeKey("total_time_in_millis");
-		generator.write(this.totalTimeInMillis.doubleValue());
+		generator.write(this.totalTimeInMillis);
 
 	}
 
@@ -149,23 +156,23 @@ public final class RefreshStats implements ToJsonp {
 	 * Builder for {@link RefreshStats}.
 	 */
 	public static class Builder implements ObjectBuilder<RefreshStats> {
-		private Number externalTotal;
+		private Long externalTotal;
 
-		private Number externalTotalTimeInMillis;
+		private Long externalTotalTimeInMillis;
 
-		private Number listeners;
+		private Long listeners;
 
-		private Number total;
+		private Long total;
 
 		@Nullable
 		private String totalTime;
 
-		private Number totalTimeInMillis;
+		private Long totalTimeInMillis;
 
 		/**
 		 * API name: {@code external_total}
 		 */
-		public Builder externalTotal(Number value) {
+		public Builder externalTotal(long value) {
 			this.externalTotal = value;
 			return this;
 		}
@@ -173,7 +180,7 @@ public final class RefreshStats implements ToJsonp {
 		/**
 		 * API name: {@code external_total_time_in_millis}
 		 */
-		public Builder externalTotalTimeInMillis(Number value) {
+		public Builder externalTotalTimeInMillis(long value) {
 			this.externalTotalTimeInMillis = value;
 			return this;
 		}
@@ -181,7 +188,7 @@ public final class RefreshStats implements ToJsonp {
 		/**
 		 * API name: {@code listeners}
 		 */
-		public Builder listeners(Number value) {
+		public Builder listeners(long value) {
 			this.listeners = value;
 			return this;
 		}
@@ -189,7 +196,7 @@ public final class RefreshStats implements ToJsonp {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -205,7 +212,7 @@ public final class RefreshStats implements ToJsonp {
 		/**
 		 * API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(Number value) {
+		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -225,20 +232,20 @@ public final class RefreshStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RefreshStats
+	 * Json deserializer for {@link RefreshStats}
 	 */
-	public static final JsonpDeserializer<RefreshStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RefreshStats::setupRefreshStatsDeserializer);
+	public static final JsonpDeserializer<RefreshStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RefreshStats::setupRefreshStatsDeserializer, Builder::build);
 
 	protected static void setupRefreshStatsDeserializer(DelegatingDeserializer<RefreshStats.Builder> op) {
 
-		op.add(Builder::externalTotal, JsonpDeserializer.numberDeserializer(), "external_total");
-		op.add(Builder::externalTotalTimeInMillis, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::externalTotal, JsonpDeserializer.longDeserializer(), "external_total");
+		op.add(Builder::externalTotalTimeInMillis, JsonpDeserializer.longDeserializer(),
 				"external_total_time_in_millis");
-		op.add(Builder::listeners, JsonpDeserializer.numberDeserializer(), "listeners");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::listeners, JsonpDeserializer.longDeserializer(), "listeners");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.numberDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}
 

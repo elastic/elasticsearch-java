@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,21 +38,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_builtin_privileges.Response
-public final class GetBuiltinPrivilegesResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetBuiltinPrivilegesResponse(Builder builder) {
+	public GetBuiltinPrivilegesResponse(Builder builder) {
 
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 
+	}
+
+	public GetBuiltinPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -70,13 +78,13 @@ public final class GetBuiltinPrivilegesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster");
 		generator.writeStartArray();
@@ -123,7 +131,7 @@ public final class GetBuiltinPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(String value) {
 			if (this.cluster == null) {
@@ -150,7 +158,7 @@ public final class GetBuiltinPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -175,10 +183,10 @@ public final class GetBuiltinPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetBuiltinPrivilegesResponse
+	 * Json deserializer for {@link GetBuiltinPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupGetBuiltinPrivilegesResponseDeserializer(
 			DelegatingDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {

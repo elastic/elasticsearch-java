@@ -24,48 +24,51 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketInfluencer
-public final class BucketInfluencer implements ToJsonp {
-	private final Number bucketSpan;
+@JsonpDeserializable
+public final class BucketInfluencer implements JsonpSerializable {
+	private final long bucketSpan;
 
-	private final Number influencerScore;
+	private final double influencerScore;
 
 	private final String influencerFieldName;
 
 	private final String influencerFieldValue;
 
-	private final Number initialInfluencerScore;
+	private final double initialInfluencerScore;
 
-	private final Boolean isInterim;
+	private final boolean isInterim;
 
 	private final String jobId;
 
-	private final Number probability;
+	private final double probability;
 
 	private final String resultType;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	@Nullable
 	private final String foo;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketInfluencer(Builder builder) {
+	public BucketInfluencer(Builder builder) {
 
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.influencerScore = Objects.requireNonNull(builder.influencerScore, "influencer_score");
@@ -82,13 +85,17 @@ public final class BucketInfluencer implements ToJsonp {
 
 	}
 
+	public BucketInfluencer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The length of the bucket in seconds. This value matches the bucket_span that
 	 * is specified in the job.
-	 *
+	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public Number bucketSpan() {
+	public long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -97,16 +104,16 @@ public final class BucketInfluencer implements ToJsonp {
 	 * influencer in this bucket aggregated across detectors. Unlike
 	 * initial_influencer_score, this value will be updated by a re-normalization
 	 * process as new data is analyzed.
-	 *
+	 * <p>
 	 * API name: {@code influencer_score}
 	 */
-	public Number influencerScore() {
+	public double influencerScore() {
 		return this.influencerScore;
 	}
 
 	/**
 	 * The field name of the influencer.
-	 *
+	 * <p>
 	 * API name: {@code influencer_field_name}
 	 */
 	public String influencerFieldName() {
@@ -115,7 +122,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * The entity that influenced, contributed to, or was to blame for the anomaly.
-	 *
+	 * <p>
 	 * API name: {@code influencer_field_value}
 	 */
 	public String influencerFieldValue() {
@@ -126,26 +133,26 @@ public final class BucketInfluencer implements ToJsonp {
 	 * A normalized score between 0-100, which is based on the probability of the
 	 * influencer aggregated across detectors. This is the initial value that was
 	 * calculated at the time the bucket was processed.
-	 *
+	 * <p>
 	 * API name: {@code initial_influencer_score}
 	 */
-	public Number initialInfluencerScore() {
+	public double initialInfluencerScore() {
 		return this.initialInfluencerScore;
 	}
 
 	/**
 	 * If true, this is an interim result. In other words, the results are
 	 * calculated based on partial input data.
-	 *
+	 * <p>
 	 * API name: {@code is_interim}
 	 */
-	public Boolean isInterim() {
+	public boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -157,16 +164,16 @@ public final class BucketInfluencer implements ToJsonp {
 	 * This value can be held to a high precision of over 300 decimal places, so the
 	 * influencer_score is provided as a human-readable and friendly interpretation
 	 * of this.
-	 *
+	 * <p>
 	 * API name: {@code probability}
 	 */
-	public Number probability() {
+	public double probability() {
 		return this.probability;
 	}
 
 	/**
 	 * Internal. This value is always set to influencer.
-	 *
+	 * <p>
 	 * API name: {@code result_type}
 	 */
 	public String resultType() {
@@ -175,10 +182,10 @@ public final class BucketInfluencer implements ToJsonp {
 
 	/**
 	 * The start time of the bucket for which these results were calculated.
-	 *
+	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
@@ -193,19 +200,19 @@ public final class BucketInfluencer implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan.doubleValue());
+		generator.write(this.bucketSpan);
 
 		generator.writeKey("influencer_score");
-		generator.write(this.influencerScore.doubleValue());
+		generator.write(this.influencerScore);
 
 		generator.writeKey("influencer_field_name");
 		generator.write(this.influencerFieldName);
@@ -214,7 +221,7 @@ public final class BucketInfluencer implements ToJsonp {
 		generator.write(this.influencerFieldValue);
 
 		generator.writeKey("initial_influencer_score");
-		generator.write(this.initialInfluencerScore.doubleValue());
+		generator.write(this.initialInfluencerScore);
 
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
@@ -223,7 +230,7 @@ public final class BucketInfluencer implements ToJsonp {
 		generator.write(this.jobId);
 
 		generator.writeKey("probability");
-		generator.write(this.probability.doubleValue());
+		generator.write(this.probability);
 
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
@@ -246,25 +253,25 @@ public final class BucketInfluencer implements ToJsonp {
 	 * Builder for {@link BucketInfluencer}.
 	 */
 	public static class Builder implements ObjectBuilder<BucketInfluencer> {
-		private Number bucketSpan;
+		private Long bucketSpan;
 
-		private Number influencerScore;
+		private Double influencerScore;
 
 		private String influencerFieldName;
 
 		private String influencerFieldValue;
 
-		private Number initialInfluencerScore;
+		private Double initialInfluencerScore;
 
 		private Boolean isInterim;
 
 		private String jobId;
 
-		private Number probability;
+		private Double probability;
 
 		private String resultType;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		@Nullable
 		private String foo;
@@ -272,10 +279,10 @@ public final class BucketInfluencer implements ToJsonp {
 		/**
 		 * The length of the bucket in seconds. This value matches the bucket_span that
 		 * is specified in the job.
-		 *
+		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(Number value) {
+		public Builder bucketSpan(long value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -285,17 +292,17 @@ public final class BucketInfluencer implements ToJsonp {
 		 * influencer in this bucket aggregated across detectors. Unlike
 		 * initial_influencer_score, this value will be updated by a re-normalization
 		 * process as new data is analyzed.
-		 *
+		 * <p>
 		 * API name: {@code influencer_score}
 		 */
-		public Builder influencerScore(Number value) {
+		public Builder influencerScore(double value) {
 			this.influencerScore = value;
 			return this;
 		}
 
 		/**
 		 * The field name of the influencer.
-		 *
+		 * <p>
 		 * API name: {@code influencer_field_name}
 		 */
 		public Builder influencerFieldName(String value) {
@@ -305,7 +312,7 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * The entity that influenced, contributed to, or was to blame for the anomaly.
-		 *
+		 * <p>
 		 * API name: {@code influencer_field_value}
 		 */
 		public Builder influencerFieldValue(String value) {
@@ -317,10 +324,10 @@ public final class BucketInfluencer implements ToJsonp {
 		 * A normalized score between 0-100, which is based on the probability of the
 		 * influencer aggregated across detectors. This is the initial value that was
 		 * calculated at the time the bucket was processed.
-		 *
+		 * <p>
 		 * API name: {@code initial_influencer_score}
 		 */
-		public Builder initialInfluencerScore(Number value) {
+		public Builder initialInfluencerScore(double value) {
 			this.initialInfluencerScore = value;
 			return this;
 		}
@@ -328,17 +335,17 @@ public final class BucketInfluencer implements ToJsonp {
 		/**
 		 * If true, this is an interim result. In other words, the results are
 		 * calculated based on partial input data.
-		 *
+		 * <p>
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(Boolean value) {
+		public Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -351,17 +358,17 @@ public final class BucketInfluencer implements ToJsonp {
 		 * This value can be held to a high precision of over 300 decimal places, so the
 		 * influencer_score is provided as a human-readable and friendly interpretation
 		 * of this.
-		 *
+		 * <p>
 		 * API name: {@code probability}
 		 */
-		public Builder probability(Number value) {
+		public Builder probability(double value) {
 			this.probability = value;
 			return this;
 		}
 
 		/**
 		 * Internal. This value is always set to influencer.
-		 *
+		 * <p>
 		 * API name: {@code result_type}
 		 */
 		public Builder resultType(String value) {
@@ -371,10 +378,10 @@ public final class BucketInfluencer implements ToJsonp {
 
 		/**
 		 * The start time of the bucket for which these results were calculated.
-		 *
+		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -402,23 +409,23 @@ public final class BucketInfluencer implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketInfluencer
+	 * Json deserializer for {@link BucketInfluencer}
 	 */
-	public static final JsonpDeserializer<BucketInfluencer> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BucketInfluencer::setupBucketInfluencerDeserializer);
+	public static final JsonpDeserializer<BucketInfluencer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BucketInfluencer::setupBucketInfluencerDeserializer, Builder::build);
 
 	protected static void setupBucketInfluencerDeserializer(DelegatingDeserializer<BucketInfluencer.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpDeserializer.numberDeserializer(), "bucket_span");
-		op.add(Builder::influencerScore, JsonpDeserializer.numberDeserializer(), "influencer_score");
+		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
+		op.add(Builder::influencerScore, JsonpDeserializer.doubleDeserializer(), "influencer_score");
 		op.add(Builder::influencerFieldName, JsonpDeserializer.stringDeserializer(), "influencer_field_name");
 		op.add(Builder::influencerFieldValue, JsonpDeserializer.stringDeserializer(), "influencer_field_value");
-		op.add(Builder::initialInfluencerScore, JsonpDeserializer.numberDeserializer(), "initial_influencer_score");
+		op.add(Builder::initialInfluencerScore, JsonpDeserializer.doubleDeserializer(), "initial_influencer_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::probability, JsonpDeserializer.numberDeserializer(), "probability");
+		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 		op.add(Builder::foo, JsonpDeserializer.stringDeserializer(), "foo");
 
 	}

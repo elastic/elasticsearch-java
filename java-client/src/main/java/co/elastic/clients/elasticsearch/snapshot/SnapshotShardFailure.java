@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardFailure
-public final class SnapshotShardFailure implements ToJsonp {
+@JsonpDeserializable
+public final class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;
 
 	private final String nodeId;
@@ -49,7 +52,7 @@ public final class SnapshotShardFailure implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotShardFailure(Builder builder) {
+	public SnapshotShardFailure(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
@@ -57,6 +60,10 @@ public final class SnapshotShardFailure implements ToJsonp {
 		this.shardId = Objects.requireNonNull(builder.shardId, "shard_id");
 		this.status = Objects.requireNonNull(builder.status, "status");
 
+	}
+
+	public SnapshotShardFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -97,13 +104,13 @@ public final class SnapshotShardFailure implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -193,10 +200,10 @@ public final class SnapshotShardFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotShardFailure
+	 * Json deserializer for {@link SnapshotShardFailure}
 	 */
-	public static final JsonpDeserializer<SnapshotShardFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer);
+	public static final JsonpDeserializer<SnapshotShardFailure> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer, Builder::build);
 
 	protected static void setupSnapshotShardFailureDeserializer(
 			DelegatingDeserializer<SnapshotShardFailure.Builder> op) {

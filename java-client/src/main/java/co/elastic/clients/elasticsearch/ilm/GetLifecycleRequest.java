@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,39 +35,36 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Request
+
 public final class GetLifecycleRequest extends RequestBase {
 	@Nullable
 	private final String policy;
 
-	@Nullable
-	private final String policyId;
-
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetLifecycleRequest(Builder builder) {
+	public GetLifecycleRequest(Builder builder) {
 
 		this.policy = builder.policy;
-		this.policyId = builder.policyId;
 
 	}
 
+	public GetLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The name of the index lifecycle policy
+	 * <p>
 	 * API name: {@code policy}
 	 */
 	@Nullable
 	public String policy() {
 		return this.policy;
-	}
-
-	/**
-	 * API name: {@code policy_id}
-	 */
-	@Nullable
-	public String policyId() {
-		return this.policyId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,22 +76,13 @@ public final class GetLifecycleRequest extends RequestBase {
 		@Nullable
 		private String policy;
 
-		@Nullable
-		private String policyId;
-
 		/**
+		 * The name of the index lifecycle policy
+		 * <p>
 		 * API name: {@code policy}
 		 */
 		public Builder policy(@Nullable String value) {
 			this.policy = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(@Nullable String value) {
-			this.policyId = value;
 			return this;
 		}
 
@@ -113,7 +103,7 @@ public final class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.get_lifecycle}".
 	 */
-	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -123,21 +113,18 @@ public final class GetLifecycleRequest extends RequestBase {
 			// Request path
 			request -> {
 				final int _policy = 1 << 0;
-				final int _policyId = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.policy() != null)
 					propsSet |= _policy;
-				if (request.policyId() != null)
-					propsSet |= _policyId;
 
 				if (propsSet == (_policy)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policy);
+					SimpleEndpoint.pathEncode(request.policy, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -146,7 +133,7 @@ public final class GetLifecycleRequest extends RequestBase {
 					buf.append("/policy");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -154,5 +141,5 @@ public final class GetLifecycleRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetLifecycleResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetLifecycleResponse._DESERIALIZER);
 }

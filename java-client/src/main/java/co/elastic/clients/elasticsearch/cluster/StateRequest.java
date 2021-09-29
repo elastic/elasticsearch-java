@@ -25,25 +25,31 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.state.Request
+
 public final class StateRequest extends RequestBase {
 	@Nullable
 	private final List<String> metric;
@@ -55,7 +61,7 @@ public final class StateRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -67,22 +73,22 @@ public final class StateRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final Number waitForMetadataVersion;
+	private final Long waitForMetadataVersion;
 
 	@Nullable
-	private final JsonValue waitForTimeout;
+	private final String waitForTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StateRequest(Builder builder) {
+	public StateRequest(Builder builder) {
 
-		this.metric = builder.metric;
-		this.index = builder.index;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.local = builder.local;
@@ -92,7 +98,13 @@ public final class StateRequest extends RequestBase {
 
 	}
 
+	public StateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Limit the information returned to the specified metrics
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -101,6 +113,9 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -109,6 +124,10 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -117,14 +136,19 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -133,6 +157,9 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -141,6 +168,9 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -149,26 +179,33 @@ public final class StateRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Wait for the metadata version to be equal or greater than the specified
+	 * metadata version
+	 * <p>
 	 * API name: {@code wait_for_metadata_version}
 	 */
 	@Nullable
-	public Number waitForMetadataVersion() {
+	public Long waitForMetadataVersion() {
 		return this.waitForMetadataVersion;
 	}
 
 	/**
+	 * The maximum time to wait for wait_for_metadata_version before timing out
+	 * <p>
 	 * API name: {@code wait_for_timeout}
 	 */
 	@Nullable
-	public JsonValue waitForTimeout() {
+	public String waitForTimeout() {
 		return this.waitForTimeout;
 	}
 
@@ -188,7 +225,7 @@ public final class StateRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -200,15 +237,17 @@ public final class StateRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private Number waitForMetadataVersion;
+		private Long waitForMetadataVersion;
 
 		@Nullable
-		private JsonValue waitForTimeout;
+		private String waitForTimeout;
 
 		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -217,6 +256,8 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -225,7 +266,7 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -236,6 +277,9 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -244,6 +288,9 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -252,7 +299,7 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -263,6 +310,10 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -271,14 +322,41 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -287,6 +365,9 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -295,6 +376,9 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -303,25 +387,32 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Wait for the metadata version to be equal or greater than the specified
+		 * metadata version
+		 * <p>
 		 * API name: {@code wait_for_metadata_version}
 		 */
-		public Builder waitForMetadataVersion(@Nullable Number value) {
+		public Builder waitForMetadataVersion(@Nullable Long value) {
 			this.waitForMetadataVersion = value;
 			return this;
 		}
 
 		/**
+		 * The maximum time to wait for wait_for_metadata_version before timing out
+		 * <p>
 		 * API name: {@code wait_for_timeout}
 		 */
-		public Builder waitForTimeout(@Nullable JsonValue value) {
+		public Builder waitForTimeout(@Nullable String value) {
 			this.waitForTimeout = value;
 			return this;
 		}
@@ -343,7 +434,7 @@ public final class StateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.state}".
 	 */
-	public static final Endpoint<StateRequest, StateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StateRequest, StateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -373,7 +464,8 @@ public final class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _index)) {
@@ -381,12 +473,13 @@ public final class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -397,7 +490,8 @@ public final class StateRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
@@ -409,15 +503,15 @@ public final class StateRequest extends RequestBase {
 					params.put("local", String.valueOf(request.local));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.waitForMetadataVersion != null) {
-					params.put("wait_for_metadata_version", request.waitForMetadataVersion.toString());
+					params.put("wait_for_metadata_version", String.valueOf(request.waitForMetadataVersion));
 				}
 				if (request.waitForTimeout != null) {
-					params.put("wait_for_timeout", request.waitForTimeout.toString());
+					params.put("wait_for_timeout", request.waitForTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StateResponse._DESERIALIZER);
 }

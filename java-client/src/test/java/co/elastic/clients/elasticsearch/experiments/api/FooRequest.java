@@ -19,19 +19,20 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch.experiments.api.query.Query;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -39,7 +40,7 @@ import java.util.function.Function;
 import static java.util.Objects.requireNonNull;
 
 // Implementing ToXContent is optional, only if there's a request body
-public class FooRequest implements ToJsonp {
+public class FooRequest implements JsonpSerializable {
 
   //===========================================
   // Fields and getters
@@ -221,7 +222,7 @@ public class FooRequest implements ToJsonp {
   //===========================================
 
   @Override
-  public void toJsonp(JsonGenerator builder, JsonpMapper mapper) {
+  public void serialize(JsonGenerator builder, JsonpMapper mapper) {
     builder.writeStartObject();
 
     // Classic approach is to use the deserialization field's preferred name:
@@ -256,12 +257,12 @@ public class FooRequest implements ToJsonp {
 
     if (this.bar != null) {
       builder.writeKey("bar");
-      this.bar.toJsonp(builder, mapper);
+      this.bar.serialize(builder, mapper);
     }
 
     if (this.query != null) {
       builder.writeKey("query");
-      this.query.toJsonp(builder, mapper);
+      this.query.serialize(builder, mapper);
     }
 
     builder.writeEnd();
@@ -297,11 +298,11 @@ public class FooRequest implements ToJsonp {
   //===========================================
 
   public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOINT =
-    new Endpoint.Simple<>(
+    new SimpleEndpoint<>(
       r -> "POST",
       r -> "/foo",
-      Endpoint.Simple.emptyMap(),
-      Endpoint.Simple.emptyMap(),
+      SimpleEndpoint.emptyMap(),
+      SimpleEndpoint.emptyMap(),
       true,
       FooResponse.PARSER
     );

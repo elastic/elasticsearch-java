@@ -25,13 +25,18 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -45,46 +50,56 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.create.Request
-public final class CreateRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class CreateRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	@Nullable
 	private final Map<String, Alias> aliases;
 
 	@Nullable
-	private final JsonValue mappings;
+	private final JsonValue /*
+							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+							 * false) | _types.mapping.TypeMapping)
+							 */ mappings;
 
 	@Nullable
-	private final Map<String, JsonValue> settings;
+	private final Map<String, JsonData> settings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateRequest(Builder builder) {
+	public CreateRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.includeTypeName = builder.includeTypeName;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
-		this.settings = builder.settings;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
+	public CreateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The name of the index
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -92,6 +107,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Whether a type should be expected in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -100,26 +117,32 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
+	 * Set the number of active shards to wait for before the operation returns.
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -132,10 +155,20 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Mapping for fields in the index. If specified, this mapping can include:
+	 * <ul>
+	 * <li>Field names</li>
+	 * <li>Field data types</li>
+	 * <li>Mapping parameters</li>
+	 * </ul>
+	 * <p>
 	 * API name: {@code mappings}
 	 */
 	@Nullable
-	public JsonValue mappings() {
+	public JsonValue /*
+						 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+						 * false) | _types.mapping.TypeMapping)
+						 */ mappings() {
 		return this.mappings;
 	}
 
@@ -143,20 +176,20 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonValue> settings() {
+	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -164,7 +197,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -180,9 +213,9 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("settings");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.settings.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -203,24 +236,29 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		private Boolean includeTypeName;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		@Nullable
 		private Map<String, Alias> aliases;
 
 		@Nullable
-		private JsonValue mappings;
+		private JsonValue /*
+							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
+							 * false) | _types.mapping.TypeMapping)
+							 */ mappings;
 
 		@Nullable
-		private Map<String, JsonValue> settings;
+		private Map<String, JsonData> settings;
 
 		/**
+		 * The name of the index
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -229,6 +267,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Whether a type should be expected in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -237,25 +277,31 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
+		 * Set the number of active shards to wait for before the operation returns.
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -294,9 +340,19 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Mapping for fields in the index. If specified, this mapping can include:
+		 * <ul>
+		 * <li>Field names</li>
+		 * <li>Field data types</li>
+		 * <li>Mapping parameters</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(@Nullable JsonValue value) {
+		public Builder mappings(@Nullable JsonValue /*
+													 * Union(Dictionary<internal.string, _types.mapping.TypeMapping>
+													 * (singleKey = false) | _types.mapping.TypeMapping)
+													 */ value) {
 			this.mappings = value;
 			return this;
 		}
@@ -304,7 +360,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonValue> value) {
+		public Builder settings(@Nullable Map<String, JsonData> value) {
 			this.settings = value;
 			return this;
 		}
@@ -312,7 +368,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
 		 */
-		public Builder putSettings(String key, JsonValue value) {
+		public Builder putSettings(String key, JsonData value) {
 			if (this.settings == null) {
 				this.settings = new HashMap<>();
 			}
@@ -335,17 +391,16 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateRequest
+	 * Json deserializer for {@link CreateRequest}
 	 */
-	public static final JsonpDeserializer<CreateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateRequest::setupCreateRequestDeserializer);
+	public static final JsonpDeserializer<CreateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateRequest::setupCreateRequestDeserializer, Builder::build);
 
 	protected static void setupCreateRequestDeserializer(DelegatingDeserializer<CreateRequest.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, JsonpDeserializer.jsonValueDeserializer(), "mappings");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"settings");
+		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
 
 	}
 
@@ -354,7 +409,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code indices.create}".
 	 */
-	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -367,16 +422,15 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -387,15 +441,15 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

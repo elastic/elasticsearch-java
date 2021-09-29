@@ -24,21 +24,25 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_upgrade.Response
-public final class GetUpgradeResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetUpgradeResponse implements JsonpSerializable {
 	@Nullable
 	private final List<OverlappingIndexTemplate> overlapping;
 
@@ -47,16 +51,20 @@ public final class GetUpgradeResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUpgradeResponse(Builder builder) {
+	public GetUpgradeResponse(Builder builder) {
 
-		this.overlapping = builder.overlapping;
+		this.overlapping = ModelTypeHelper.unmodifiable(builder.overlapping);
 		this.template = builder.template;
 
 	}
 
+	public GetUpgradeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Any templates that were superseded by the specified template.
-	 *
+	 * <p>
 	 * API name: {@code overlapping}
 	 */
 	@Nullable
@@ -67,7 +75,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 	/**
 	 * The settings, mappings, and aliases that would be applied to matching
 	 * indices.
-	 *
+	 * <p>
 	 * API name: {@code template}
 	 */
 	@Nullable
@@ -78,20 +86,20 @@ public final class GetUpgradeResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.overlapping != null) {
 
 			generator.writeKey("overlapping");
 			generator.writeStartArray();
 			for (OverlappingIndexTemplate item0 : this.overlapping) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -100,7 +108,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		if (this.template != null) {
 
 			generator.writeKey("template");
-			this.template.toJsonp(generator, mapper);
+			this.template.serialize(generator, mapper);
 
 		}
 
@@ -120,7 +128,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 
 		/**
 		 * Any templates that were superseded by the specified template.
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
@@ -130,7 +138,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 
 		/**
 		 * Any templates that were superseded by the specified template.
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(OverlappingIndexTemplate... value) {
@@ -139,7 +147,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 4
 		 */
 		public Builder addOverlapping(OverlappingIndexTemplate value) {
 			if (this.overlapping == null) {
@@ -158,7 +166,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 5
 		 */
 		public Builder addOverlapping(
 				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {
@@ -168,7 +176,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		/**
 		 * The settings, mappings, and aliases that would be applied to matching
 		 * indices.
-		 *
+		 * <p>
 		 * API name: {@code template}
 		 */
 		public Builder template(@Nullable TemplateMapping value) {
@@ -179,7 +187,7 @@ public final class GetUpgradeResponse implements ToJsonp {
 		/**
 		 * The settings, mappings, and aliases that would be applied to matching
 		 * indices.
-		 *
+		 * <p>
 		 * API name: {@code template}
 		 */
 		public Builder template(Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
@@ -201,16 +209,16 @@ public final class GetUpgradeResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetUpgradeResponse
+	 * Json deserializer for {@link GetUpgradeResponse}
 	 */
-	public static final JsonpDeserializer<GetUpgradeResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetUpgradeResponse::setupGetUpgradeResponseDeserializer);
+	public static final JsonpDeserializer<GetUpgradeResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetUpgradeResponse::setupGetUpgradeResponseDeserializer, Builder::build);
 
 	protected static void setupGetUpgradeResponseDeserializer(DelegatingDeserializer<GetUpgradeResponse.Builder> op) {
 
-		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate.DESERIALIZER),
+		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate._DESERIALIZER),
 				"overlapping");
-		op.add(Builder::template, TemplateMapping.DESERIALIZER, "template");
+		op.add(Builder::template, TemplateMapping._DESERIALIZER, "template");
 
 	}
 

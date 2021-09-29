@@ -24,10 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -38,6 +40,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Eql
+@JsonpDeserializable
 public final class Eql extends Base {
 	private final EqlFeatures features;
 
@@ -45,11 +48,16 @@ public final class Eql extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Eql(Builder builder) {
+	public Eql(Builder builder) {
 		super(builder);
-		this.features = Objects.requireNonNull(builder.features, "features");
-		this.queries = Objects.requireNonNull(builder.queries, "queries");
 
+		this.features = Objects.requireNonNull(builder.features, "features");
+		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
+
+	}
+
+	public Eql(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -66,17 +74,18 @@ public final class Eql extends Base {
 		return this.queries;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("features");
-		this.features.toJsonp(generator, mapper);
+		this.features.serialize(generator, mapper);
 
 		generator.writeKey("queries");
 		generator.writeStartObject();
 		for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -161,15 +170,15 @@ public final class Eql extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Eql
+	 * Json deserializer for {@link Eql}
 	 */
-	public static final JsonpDeserializer<Eql> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Eql::setupEqlDeserializer);
+	public static final JsonpDeserializer<Eql> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Eql::setupEqlDeserializer, Builder::build);
 
 	protected static void setupEqlDeserializer(DelegatingDeserializer<Eql.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::features, EqlFeatures.DESERIALIZER, "features");
-		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query.DESERIALIZER), "queries");
+		op.add(Builder::features, EqlFeatures._DESERIALIZER, "features");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");
 
 	}
 

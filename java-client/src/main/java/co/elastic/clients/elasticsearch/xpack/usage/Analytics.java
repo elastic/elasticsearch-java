@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,15 +36,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Analytics
+@JsonpDeserializable
 public final class Analytics extends Base {
 	private final AnalyticsStatistics stats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Analytics(Builder builder) {
+	public Analytics(Builder builder) {
 		super(builder);
+
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
 
+	}
+
+	public Analytics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -53,11 +60,12 @@ public final class Analytics extends Base {
 		return this.stats;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("stats");
-		this.stats.toJsonp(generator, mapper);
+		this.stats.serialize(generator, mapper);
 
 	}
 
@@ -104,14 +112,14 @@ public final class Analytics extends Base {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Analytics
+	 * Json deserializer for {@link Analytics}
 	 */
-	public static final JsonpDeserializer<Analytics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Analytics::setupAnalyticsDeserializer);
+	public static final JsonpDeserializer<Analytics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Analytics::setupAnalyticsDeserializer, Builder::build);
 
 	protected static void setupAnalyticsDeserializer(DelegatingDeserializer<Analytics.Builder> op) {
 		Base.setupBaseDeserializer(op);
-		op.add(Builder::stats, AnalyticsStatistics.DESERIALIZER, "stats");
+		op.add(Builder::stats, AnalyticsStatistics._DESERIALIZER, "stats");
 
 	}
 

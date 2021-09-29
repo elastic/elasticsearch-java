@@ -24,30 +24,37 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesPipes
-public final class EqlFeaturesPipes implements ToJsonp {
+@JsonpDeserializable
+public final class EqlFeaturesPipes implements JsonpSerializable {
 	private final Number pipeTail;
 
 	private final Number pipeHead;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlFeaturesPipes(Builder builder) {
+	public EqlFeaturesPipes(Builder builder) {
 
 		this.pipeTail = Objects.requireNonNull(builder.pipeTail, "pipe_tail");
 		this.pipeHead = Objects.requireNonNull(builder.pipeHead, "pipe_head");
 
+	}
+
+	public EqlFeaturesPipes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,13 +74,13 @@ public final class EqlFeaturesPipes implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("pipe_tail");
 		generator.write(this.pipeTail.doubleValue());
@@ -124,10 +131,10 @@ public final class EqlFeaturesPipes implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EqlFeaturesPipes
+	 * Json deserializer for {@link EqlFeaturesPipes}
 	 */
-	public static final JsonpDeserializer<EqlFeaturesPipes> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer);
+	public static final JsonpDeserializer<EqlFeaturesPipes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesPipesDeserializer(DelegatingDeserializer<EqlFeaturesPipes.Builder> op) {
 

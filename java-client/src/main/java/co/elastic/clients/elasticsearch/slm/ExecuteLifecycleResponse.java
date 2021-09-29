@@ -24,27 +24,34 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.execute_lifecycle.Response
-public final class ExecuteLifecycleResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	private final String snapshotName;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecuteLifecycleResponse(Builder builder) {
+	public ExecuteLifecycleResponse(Builder builder) {
 
 		this.snapshotName = Objects.requireNonNull(builder.snapshotName, "snapshot_name");
 
+	}
+
+	public ExecuteLifecycleResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,13 +64,13 @@ public final class ExecuteLifecycleResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("snapshot_name");
 		generator.write(this.snapshotName);
@@ -101,10 +108,10 @@ public final class ExecuteLifecycleResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecuteLifecycleResponse
+	 * Json deserializer for {@link ExecuteLifecycleResponse}
 	 */
-	public static final JsonpDeserializer<ExecuteLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecuteLifecycleResponse::setupExecuteLifecycleResponseDeserializer);
+	public static final JsonpDeserializer<ExecuteLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecuteLifecycleResponse::setupExecuteLifecycleResponseDeserializer, Builder::build);
 
 	protected static void setupExecuteLifecycleResponseDeserializer(
 			DelegatingDeserializer<ExecuteLifecycleResponse.Builder> op) {

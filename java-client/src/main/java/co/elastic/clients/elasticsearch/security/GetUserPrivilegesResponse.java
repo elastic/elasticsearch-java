@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,12 +42,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Response
-public final class GetUserPrivilegesResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetUserPrivilegesResponse implements JsonpSerializable {
 	private final List<ApplicationPrivileges> applications;
 
 	private final List<String> cluster;
 
-	private final List<GlobalPrivileges> global;
+	private final List<GlobalPrivilege> global;
 
 	private final List<IndicesPrivileges> indices;
 
@@ -53,14 +56,18 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetUserPrivilegesResponse(Builder builder) {
+	public GetUserPrivilegesResponse(Builder builder) {
 
-		this.applications = Objects.requireNonNull(builder.applications, "applications");
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.global = Objects.requireNonNull(builder.global, "global");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.runAs = Objects.requireNonNull(builder.runAs, "run_as");
+		this.applications = ModelTypeHelper.unmodifiableNonNull(builder.applications, "applications");
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
+		this.global = ModelTypeHelper.unmodifiableNonNull(builder.global, "global");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.runAs = ModelTypeHelper.unmodifiableNonNull(builder.runAs, "run_as");
 
+	}
+
+	public GetUserPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -80,7 +87,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	/**
 	 * API name: {@code global}
 	 */
-	public List<GlobalPrivileges> global() {
+	public List<GlobalPrivilege> global() {
 		return this.global;
 	}
 
@@ -101,18 +108,18 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("applications");
 		generator.writeStartArray();
 		for (ApplicationPrivileges item0 : this.applications) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -127,8 +134,8 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 		generator.writeKey("global");
 		generator.writeStartArray();
-		for (GlobalPrivileges item0 : this.global) {
-			item0.toJsonp(generator, mapper);
+		for (GlobalPrivilege item0 : this.global) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -136,7 +143,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		generator.writeKey("indices");
 		generator.writeStartArray();
 		for (IndicesPrivileges item0 : this.indices) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -161,7 +168,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 
 		private List<String> cluster;
 
-		private List<GlobalPrivileges> global;
+		private List<GlobalPrivilege> global;
 
 		private List<IndicesPrivileges> indices;
 
@@ -184,7 +191,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -202,7 +209,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -226,7 +233,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(String value) {
 			if (this.cluster == null) {
@@ -239,7 +246,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(List<GlobalPrivileges> value) {
+		public Builder global(List<GlobalPrivilege> value) {
 			this.global = value;
 			return this;
 		}
@@ -247,15 +254,15 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * API name: {@code global}
 		 */
-		public Builder global(GlobalPrivileges... value) {
+		public Builder global(GlobalPrivilege... value) {
 			this.global = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #global(List)}, creating the list if needed.
+		 * Add a value to {@link #global(List)}, creating the list if needed. 4
 		 */
-		public Builder addGlobal(GlobalPrivileges value) {
+		public Builder addGlobal(GlobalPrivilege value) {
 			if (this.global == null) {
 				this.global = new ArrayList<>();
 			}
@@ -266,15 +273,15 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		/**
 		 * Set {@link #global(List)} to a singleton list.
 		 */
-		public Builder global(Function<GlobalPrivileges.Builder, ObjectBuilder<GlobalPrivileges>> fn) {
-			return this.global(fn.apply(new GlobalPrivileges.Builder()).build());
+		public Builder global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #global(List)}, creating the list if needed.
+		 * Add a value to {@link #global(List)}, creating the list if needed. 5
 		 */
-		public Builder addGlobal(Function<GlobalPrivileges.Builder, ObjectBuilder<GlobalPrivileges>> fn) {
-			return this.addGlobal(fn.apply(new GlobalPrivileges.Builder()).build());
+		public Builder addGlobal(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+			return this.addGlobal(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
@@ -294,7 +301,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -312,7 +319,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
@@ -335,7 +342,7 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -360,20 +367,20 @@ public final class GetUserPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetUserPrivilegesResponse
+	 * Json deserializer for {@link GetUserPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetUserPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetUserPrivilegesResponse::setupGetUserPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<GetUserPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetUserPrivilegesResponse::setupGetUserPrivilegesResponseDeserializer, Builder::build);
 
 	protected static void setupGetUserPrivilegesResponseDeserializer(
 			DelegatingDeserializer<GetUserPrivilegesResponse.Builder> op) {
 
-		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges.DESERIALIZER),
+		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivileges.DESERIALIZER), "global");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges.DESERIALIZER), "indices");
+		op.add(Builder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}

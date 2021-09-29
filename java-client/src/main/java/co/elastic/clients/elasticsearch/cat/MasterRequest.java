@@ -25,32 +25,34 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cat.master.Request
+
 public final class MasterRequest extends CatRequestBase {
-	protected MasterRequest() {
+	public MasterRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link MasterRequest}.
 	 */
-	public static final MasterRequest INSTANCE = new MasterRequest();
-
-	public static final JsonpDeserializer<MasterRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(MasterRequest.INSTANCE);
+	public static final MasterRequest _INSTANCE = new MasterRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code cat.master}".
 	 */
-	public static final Endpoint<MasterRequest, MasterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MasterRequest, MasterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -67,5 +69,5 @@ public final class MasterRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, MasterResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, MasterResponse._DESERIALIZER);
 }

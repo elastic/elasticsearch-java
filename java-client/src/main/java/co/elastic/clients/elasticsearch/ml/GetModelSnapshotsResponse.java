@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,24 +42,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Response
-public final class GetModelSnapshotsResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetModelSnapshotsResponse implements JsonpSerializable {
+	private final long count;
 
 	private final List<ModelSnapshot> modelSnapshots;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetModelSnapshotsResponse(Builder builder) {
+	public GetModelSnapshotsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.modelSnapshots = Objects.requireNonNull(builder.modelSnapshots, "model_snapshots");
+		this.modelSnapshots = ModelTypeHelper.unmodifiableNonNull(builder.modelSnapshots, "model_snapshots");
 
+	}
+
+	public GetModelSnapshotsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -71,21 +78,21 @@ public final class GetModelSnapshotsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("model_snapshots");
 		generator.writeStartArray();
 		for (ModelSnapshot item0 : this.modelSnapshots) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -98,14 +105,14 @@ public final class GetModelSnapshotsResponse implements ToJsonp {
 	 * Builder for {@link GetModelSnapshotsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetModelSnapshotsResponse> {
-		private Number count;
+		private Long count;
 
 		private List<ModelSnapshot> modelSnapshots;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -127,7 +134,7 @@ public final class GetModelSnapshotsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed. 4
 		 */
 		public Builder addModelSnapshots(ModelSnapshot value) {
 			if (this.modelSnapshots == null) {
@@ -145,7 +152,7 @@ public final class GetModelSnapshotsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed. 5
 		 */
 		public Builder addModelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.addModelSnapshots(fn.apply(new ModelSnapshot.Builder()).build());
@@ -166,16 +173,16 @@ public final class GetModelSnapshotsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetModelSnapshotsResponse
+	 * Json deserializer for {@link GetModelSnapshotsResponse}
 	 */
-	public static final JsonpDeserializer<GetModelSnapshotsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetModelSnapshotsResponse::setupGetModelSnapshotsResponseDeserializer);
+	public static final JsonpDeserializer<GetModelSnapshotsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetModelSnapshotsResponse::setupGetModelSnapshotsResponseDeserializer, Builder::build);
 
 	protected static void setupGetModelSnapshotsResponseDeserializer(
 			DelegatingDeserializer<GetModelSnapshotsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::modelSnapshots, JsonpDeserializer.arrayDeserializer(ModelSnapshot.DESERIALIZER),
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::modelSnapshots, JsonpDeserializer.arrayDeserializer(ModelSnapshot._DESERIALIZER),
 				"model_snapshots");
 
 	}

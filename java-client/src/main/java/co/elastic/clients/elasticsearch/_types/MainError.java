@@ -24,36 +24,38 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.MainError
+@JsonpDeserializable
 public final class MainError extends ErrorCause {
 	@Nullable
 	private final Map<String, String> headers;
 
-	private final List<ErrorCause> rootCause;
-
 	// ---------------------------------------------------------------------------------------------
 
-	protected MainError(Builder builder) {
+	public MainError(Builder builder) {
 		super(builder);
-		this.headers = builder.headers;
-		this.rootCause = Objects.requireNonNull(builder.rootCause, "root_cause");
 
+		this.headers = ModelTypeHelper.unmodifiable(builder.headers);
+
+	}
+
+	public MainError(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,15 +66,9 @@ public final class MainError extends ErrorCause {
 		return this.headers;
 	}
 
-	/**
-	 * API name: {@code root_cause}
-	 */
-	public List<ErrorCause> rootCause() {
-		return this.rootCause;
-	}
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+		super.serializeInternal(generator, mapper);
 		if (this.headers != null) {
 
 			generator.writeKey("headers");
@@ -86,14 +82,6 @@ public final class MainError extends ErrorCause {
 
 		}
 
-		generator.writeKey("root_cause");
-		generator.writeStartArray();
-		for (ErrorCause item0 : this.rootCause) {
-			item0.toJsonp(generator, mapper);
-
-		}
-		generator.writeEnd();
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -104,8 +92,6 @@ public final class MainError extends ErrorCause {
 	public static class Builder extends ErrorCause.AbstractBuilder<Builder> implements ObjectBuilder<MainError> {
 		@Nullable
 		private Map<String, String> headers;
-
-		private List<ErrorCause> rootCause;
 
 		/**
 		 * API name: {@code headers}
@@ -124,47 +110,6 @@ public final class MainError extends ErrorCause {
 			}
 			this.headers.put(key, value);
 			return this;
-		}
-
-		/**
-		 * API name: {@code root_cause}
-		 */
-		public Builder rootCause(List<ErrorCause> value) {
-			this.rootCause = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code root_cause}
-		 */
-		public Builder rootCause(ErrorCause... value) {
-			this.rootCause = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
-		 */
-		public Builder addRootCause(ErrorCause value) {
-			if (this.rootCause == null) {
-				this.rootCause = new ArrayList<>();
-			}
-			this.rootCause.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #rootCause(List)} to a singleton list.
-		 */
-		public Builder rootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.rootCause(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
-		 */
-		public Builder addRootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addRootCause(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		@Override
@@ -187,16 +132,15 @@ public final class MainError extends ErrorCause {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MainError
+	 * Json deserializer for {@link MainError}
 	 */
-	public static final JsonpDeserializer<MainError> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MainError::setupMainErrorDeserializer);
+	public static final JsonpDeserializer<MainError> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MainError::setupMainErrorDeserializer, Builder::build);
 
 	protected static void setupMainErrorDeserializer(DelegatingDeserializer<MainError.Builder> op) {
 		ErrorCause.setupErrorCauseDeserializer(op);
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"headers");
-		op.add(Builder::rootCause, JsonpDeserializer.arrayDeserializer(ErrorCause.DESERIALIZER), "root_cause");
 
 	}
 

@@ -24,20 +24,22 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CalendarEvent
-public final class CalendarEvent implements ToJsonp {
+@JsonpDeserializable
+public final class CalendarEvent implements JsonpSerializable {
 	@Nullable
 	private final String calendarId;
 
@@ -46,13 +48,13 @@ public final class CalendarEvent implements ToJsonp {
 
 	private final String description;
 
-	private final JsonValue endTime;
+	private final String endTime;
 
-	private final JsonValue startTime;
+	private final String startTime;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CalendarEvent(Builder builder) {
+	public CalendarEvent(Builder builder) {
 
 		this.calendarId = builder.calendarId;
 		this.eventId = builder.eventId;
@@ -60,6 +62,10 @@ public final class CalendarEvent implements ToJsonp {
 		this.endTime = Objects.requireNonNull(builder.endTime, "end_time");
 		this.startTime = Objects.requireNonNull(builder.startTime, "start_time");
 
+	}
+
+	public CalendarEvent(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -80,7 +86,7 @@ public final class CalendarEvent implements ToJsonp {
 
 	/**
 	 * A description of the scheduled event.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	public String description() {
@@ -90,33 +96,33 @@ public final class CalendarEvent implements ToJsonp {
 	/**
 	 * The timestamp for the end of the scheduled event in milliseconds since the
 	 * epoch or ISO 8601 format.
-	 *
+	 * <p>
 	 * API name: {@code end_time}
 	 */
-	public JsonValue endTime() {
+	public String endTime() {
 		return this.endTime;
 	}
 
 	/**
 	 * The timestamp for the beginning of the scheduled event in milliseconds since
 	 * the epoch or ISO 8601 format.
-	 *
+	 * <p>
 	 * API name: {@code start_time}
 	 */
-	public JsonValue startTime() {
+	public String startTime() {
 		return this.startTime;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.calendarId != null) {
 
@@ -156,9 +162,9 @@ public final class CalendarEvent implements ToJsonp {
 
 		private String description;
 
-		private JsonValue endTime;
+		private String endTime;
 
-		private JsonValue startTime;
+		private String startTime;
 
 		/**
 		 * API name: {@code calendar_id}
@@ -178,7 +184,7 @@ public final class CalendarEvent implements ToJsonp {
 
 		/**
 		 * A description of the scheduled event.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(String value) {
@@ -189,10 +195,10 @@ public final class CalendarEvent implements ToJsonp {
 		/**
 		 * The timestamp for the end of the scheduled event in milliseconds since the
 		 * epoch or ISO 8601 format.
-		 *
+		 * <p>
 		 * API name: {@code end_time}
 		 */
-		public Builder endTime(JsonValue value) {
+		public Builder endTime(String value) {
 			this.endTime = value;
 			return this;
 		}
@@ -200,10 +206,10 @@ public final class CalendarEvent implements ToJsonp {
 		/**
 		 * The timestamp for the beginning of the scheduled event in milliseconds since
 		 * the epoch or ISO 8601 format.
-		 *
+		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(JsonValue value) {
+		public Builder startTime(String value) {
 			this.startTime = value;
 			return this;
 		}
@@ -223,18 +229,18 @@ public final class CalendarEvent implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CalendarEvent
+	 * Json deserializer for {@link CalendarEvent}
 	 */
-	public static final JsonpDeserializer<CalendarEvent> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CalendarEvent::setupCalendarEventDeserializer);
+	public static final JsonpDeserializer<CalendarEvent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CalendarEvent::setupCalendarEventDeserializer, Builder::build);
 
 	protected static void setupCalendarEventDeserializer(DelegatingDeserializer<CalendarEvent.Builder> op) {
 
 		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
 		op.add(Builder::eventId, JsonpDeserializer.stringDeserializer(), "event_id");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::endTime, JsonpDeserializer.jsonValueDeserializer(), "end_time");
-		op.add(Builder::startTime, JsonpDeserializer.jsonValueDeserializer(), "start_time");
+		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time");
+		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
 
 	}
 

@@ -25,26 +25,29 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Request
-public final class GetModelSnapshotsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
@@ -54,23 +57,23 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	private final Boolean desc;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final String sort;
 
 	@Nullable
-	private final JsonValue start;
+	private final String start;
 
 	@Nullable
-	private final JsonValue end;
+	private final String end;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetModelSnapshotsRequest(Builder builder) {
+	public GetModelSnapshotsRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = builder.snapshotId;
@@ -83,9 +86,13 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	}
 
+	public GetModelSnapshotsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -94,7 +101,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * A numerical character string that uniquely identifies the model snapshot.
-	 *
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	@Nullable
@@ -104,7 +111,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * If true, the results are sorted in descending order.
-	 *
+	 * <p>
 	 * API name: {@code desc}
 	 */
 	@Nullable
@@ -114,28 +121,28 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 	/**
 	 * Skips the specified number of snapshots.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
 	/**
 	 * Specifies the maximum number of snapshots to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * Specifies the sort field for the requested snapshots. By default, the
 	 * snapshots are sorted by their timestamp.
-	 *
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
@@ -147,7 +154,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public JsonValue start() {
+	public String start() {
 		return this.start;
 	}
 
@@ -155,20 +162,20 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public JsonValue end() {
+	public String end() {
 		return this.end;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.start != null) {
 
@@ -200,23 +207,23 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 		private Boolean desc;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private String sort;
 
 		@Nullable
-		private JsonValue start;
+		private String start;
 
 		@Nullable
-		private JsonValue end;
+		private String end;
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -226,7 +233,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * A numerical character string that uniquely identifies the model snapshot.
-		 *
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(@Nullable String value) {
@@ -236,7 +243,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * If true, the results are sorted in descending order.
-		 *
+		 * <p>
 		 * API name: {@code desc}
 		 */
 		public Builder desc(@Nullable Boolean value) {
@@ -246,20 +253,20 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 		/**
 		 * Skips the specified number of snapshots.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
 		 * Specifies the maximum number of snapshots to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -267,7 +274,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 		/**
 		 * Specifies the sort field for the requested snapshots. By default, the
 		 * snapshots are sorted by their timestamp.
-		 *
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(@Nullable String value) {
@@ -278,7 +285,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 		/**
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable JsonValue value) {
+		public Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -286,7 +293,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable JsonValue value) {
+		public Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -306,16 +313,16 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetModelSnapshotsRequest
+	 * Json deserializer for {@link GetModelSnapshotsRequest}
 	 */
-	public static final JsonpDeserializer<GetModelSnapshotsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer);
+	public static final JsonpDeserializer<GetModelSnapshotsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer, Builder::build);
 
 	protected static void setupGetModelSnapshotsRequestDeserializer(
 			DelegatingDeserializer<GetModelSnapshotsRequest.Builder> op) {
 
-		op.add(Builder::start, JsonpDeserializer.jsonValueDeserializer(), "start");
-		op.add(Builder::end, JsonpDeserializer.jsonValueDeserializer(), "end");
+		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -324,7 +331,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 	/**
 	 * Endpoint "{@code ml.get_model_snapshots}".
 	 */
-	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -338,8 +345,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
+				propsSet |= _jobId;
 				if (request.snapshotId() != null)
 					propsSet |= _snapshotId;
 
@@ -348,10 +354,10 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/model_snapshots");
 					buf.append("/");
-					buf.append(request.snapshotId);
+					SimpleEndpoint.pathEncode(request.snapshotId, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_jobId)) {
@@ -359,11 +365,11 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/model_snapshots");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -374,15 +380,15 @@ public final class GetModelSnapshotsRequest extends RequestBase implements ToJso
 					params.put("desc", String.valueOf(request.desc));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.sort != null) {
 					params.put("sort", request.sort);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetModelSnapshotsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetModelSnapshotsResponse._DESERIALIZER);
 }

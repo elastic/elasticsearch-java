@@ -23,50 +23,50 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.clear_cache.Response
-public final class ClearCacheResponse implements ToJsonp {
-	private final Number stub;
+@JsonpDeserializable
+public final class ClearCacheResponse implements JsonpSerializable {
+	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCacheResponse(Builder builder) {
+	public ClearCacheResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public ClearCacheResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Response value.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public Number stub() {
-		return this.stub;
+	public JsonData valueBody() {
+		return this.valueBody;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -76,13 +76,15 @@ public final class ClearCacheResponse implements ToJsonp {
 	 * Builder for {@link ClearCacheResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<ClearCacheResponse> {
-		private Number stub;
+		private JsonData valueBody;
 
 		/**
-		 * API name: {@code stub}
+		 * Response value.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder valueBody(JsonData value) {
+			this.valueBody = value;
 			return this;
 		}
 
@@ -98,18 +100,13 @@ public final class ClearCacheResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<ClearCacheResponse> _DESERIALIZER = createClearCacheResponseDeserializer();
+	protected static JsonpDeserializer<ClearCacheResponse> createClearCacheResponseDeserializer() {
 
-	/**
-	 * Json deserializer for ClearCacheResponse
-	 */
-	public static final JsonpDeserializer<ClearCacheResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupClearCacheResponseDeserializer(DelegatingDeserializer<ClearCacheResponse.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

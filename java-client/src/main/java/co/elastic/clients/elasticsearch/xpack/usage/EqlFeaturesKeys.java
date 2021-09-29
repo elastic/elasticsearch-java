@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesKeys
-public final class EqlFeaturesKeys implements ToJsonp {
+@JsonpDeserializable
+public final class EqlFeaturesKeys implements JsonpSerializable {
 	private final Number joinKeysTwo;
 
 	private final Number joinKeysOne;
@@ -49,7 +52,7 @@ public final class EqlFeaturesKeys implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlFeaturesKeys(Builder builder) {
+	public EqlFeaturesKeys(Builder builder) {
 
 		this.joinKeysTwo = Objects.requireNonNull(builder.joinKeysTwo, "join_keys_two");
 		this.joinKeysOne = Objects.requireNonNull(builder.joinKeysOne, "join_keys_one");
@@ -57,6 +60,10 @@ public final class EqlFeaturesKeys implements ToJsonp {
 		this.joinKeysFiveOrMore = Objects.requireNonNull(builder.joinKeysFiveOrMore, "join_keys_five_or_more");
 		this.joinKeysFour = Objects.requireNonNull(builder.joinKeysFour, "join_keys_four");
 
+	}
+
+	public EqlFeaturesKeys(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -97,13 +104,13 @@ public final class EqlFeaturesKeys implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("join_keys_two");
 		generator.write(this.joinKeysTwo.doubleValue());
@@ -193,10 +200,10 @@ public final class EqlFeaturesKeys implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EqlFeaturesKeys
+	 * Json deserializer for {@link EqlFeaturesKeys}
 	 */
-	public static final JsonpDeserializer<EqlFeaturesKeys> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EqlFeaturesKeys::setupEqlFeaturesKeysDeserializer);
+	public static final JsonpDeserializer<EqlFeaturesKeys> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			EqlFeaturesKeys::setupEqlFeaturesKeysDeserializer, Builder::build);
 
 	protected static void setupEqlFeaturesKeysDeserializer(DelegatingDeserializer<EqlFeaturesKeys.Builder> op) {
 

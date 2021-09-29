@@ -24,18 +24,21 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Command
-public final class Command implements ToJsonp {
+@JsonpDeserializable
+public final class Command implements JsonpSerializable {
 	@Nullable
 	private final CommandCancelAction cancel;
 
@@ -53,7 +56,7 @@ public final class Command implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Command(Builder builder) {
+	public Command(Builder builder) {
 
 		this.cancel = builder.cancel;
 		this.move = builder.move;
@@ -61,6 +64,10 @@ public final class Command implements ToJsonp {
 		this.allocateStalePrimary = builder.allocateStalePrimary;
 		this.allocateEmptyPrimary = builder.allocateEmptyPrimary;
 
+	}
+
+	public Command(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -72,7 +79,7 @@ public final class Command implements ToJsonp {
 	 * allocations can be cancelled. If it is necessary to cancel the allocation of
 	 * a primary shard then the allow_primary flag must also be included in the
 	 * request.
-	 *
+	 * <p>
 	 * API name: {@code cancel}
 	 */
 	@Nullable
@@ -84,7 +91,7 @@ public final class Command implements ToJsonp {
 	 * Move a started shard from one node to another node. Accepts index and shard
 	 * for index name and shard number, from_node for the node to move the shard
 	 * from, and to_node for the node to move the shard to.
-	 *
+	 * <p>
 	 * API name: {@code move}
 	 */
 	@Nullable
@@ -96,7 +103,7 @@ public final class Command implements ToJsonp {
 	 * Allocate an unassigned replica shard to a node. Accepts index and shard for
 	 * index name and shard number, and node to allocate the shard to. Takes
 	 * allocation deciders into account.
-	 *
+	 * <p>
 	 * API name: {@code allocate_replica}
 	 */
 	@Nullable
@@ -113,7 +120,7 @@ public final class Command implements ToJsonp {
 	 * forcefully allocated with this command. To ensure that these implications are
 	 * well-understood, this command requires the flag accept_data_loss to be
 	 * explicitly set to true.
-	 *
+	 * <p>
 	 * API name: {@code allocate_stale_primary}
 	 */
 	@Nullable
@@ -129,7 +136,7 @@ public final class Command implements ToJsonp {
 	 * rejoins the cluster later on, that data will be deleted. To ensure that these
 	 * implications are well-understood, this command requires the flag
 	 * accept_data_loss to be explicitly set to true.
-	 *
+	 * <p>
 	 * API name: {@code allocate_empty_primary}
 	 */
 	@Nullable
@@ -140,42 +147,42 @@ public final class Command implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cancel != null) {
 
 			generator.writeKey("cancel");
-			this.cancel.toJsonp(generator, mapper);
+			this.cancel.serialize(generator, mapper);
 
 		}
 		if (this.move != null) {
 
 			generator.writeKey("move");
-			this.move.toJsonp(generator, mapper);
+			this.move.serialize(generator, mapper);
 
 		}
 		if (this.allocateReplica != null) {
 
 			generator.writeKey("allocate_replica");
-			this.allocateReplica.toJsonp(generator, mapper);
+			this.allocateReplica.serialize(generator, mapper);
 
 		}
 		if (this.allocateStalePrimary != null) {
 
 			generator.writeKey("allocate_stale_primary");
-			this.allocateStalePrimary.toJsonp(generator, mapper);
+			this.allocateStalePrimary.serialize(generator, mapper);
 
 		}
 		if (this.allocateEmptyPrimary != null) {
 
 			generator.writeKey("allocate_empty_primary");
-			this.allocateEmptyPrimary.toJsonp(generator, mapper);
+			this.allocateEmptyPrimary.serialize(generator, mapper);
 
 		}
 
@@ -211,7 +218,7 @@ public final class Command implements ToJsonp {
 		 * allocations can be cancelled. If it is necessary to cancel the allocation of
 		 * a primary shard then the allow_primary flag must also be included in the
 		 * request.
-		 *
+		 * <p>
 		 * API name: {@code cancel}
 		 */
 		public Builder cancel(@Nullable CommandCancelAction value) {
@@ -228,7 +235,7 @@ public final class Command implements ToJsonp {
 		 * allocations can be cancelled. If it is necessary to cancel the allocation of
 		 * a primary shard then the allow_primary flag must also be included in the
 		 * request.
-		 *
+		 * <p>
 		 * API name: {@code cancel}
 		 */
 		public Builder cancel(Function<CommandCancelAction.Builder, ObjectBuilder<CommandCancelAction>> fn) {
@@ -239,7 +246,7 @@ public final class Command implements ToJsonp {
 		 * Move a started shard from one node to another node. Accepts index and shard
 		 * for index name and shard number, from_node for the node to move the shard
 		 * from, and to_node for the node to move the shard to.
-		 *
+		 * <p>
 		 * API name: {@code move}
 		 */
 		public Builder move(@Nullable CommandMoveAction value) {
@@ -251,7 +258,7 @@ public final class Command implements ToJsonp {
 		 * Move a started shard from one node to another node. Accepts index and shard
 		 * for index name and shard number, from_node for the node to move the shard
 		 * from, and to_node for the node to move the shard to.
-		 *
+		 * <p>
 		 * API name: {@code move}
 		 */
 		public Builder move(Function<CommandMoveAction.Builder, ObjectBuilder<CommandMoveAction>> fn) {
@@ -262,7 +269,7 @@ public final class Command implements ToJsonp {
 		 * Allocate an unassigned replica shard to a node. Accepts index and shard for
 		 * index name and shard number, and node to allocate the shard to. Takes
 		 * allocation deciders into account.
-		 *
+		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
 		public Builder allocateReplica(@Nullable CommandAllocateReplicaAction value) {
@@ -274,7 +281,7 @@ public final class Command implements ToJsonp {
 		 * Allocate an unassigned replica shard to a node. Accepts index and shard for
 		 * index name and shard number, and node to allocate the shard to. Takes
 		 * allocation deciders into account.
-		 *
+		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
 		public Builder allocateReplica(
@@ -291,7 +298,7 @@ public final class Command implements ToJsonp {
 		 * forcefully allocated with this command. To ensure that these implications are
 		 * well-understood, this command requires the flag accept_data_loss to be
 		 * explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
 		public Builder allocateStalePrimary(@Nullable CommandAllocatePrimaryAction value) {
@@ -308,7 +315,7 @@ public final class Command implements ToJsonp {
 		 * forcefully allocated with this command. To ensure that these implications are
 		 * well-understood, this command requires the flag accept_data_loss to be
 		 * explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
 		public Builder allocateStalePrimary(
@@ -324,7 +331,7 @@ public final class Command implements ToJsonp {
 		 * rejoins the cluster later on, that data will be deleted. To ensure that these
 		 * implications are well-understood, this command requires the flag
 		 * accept_data_loss to be explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
 		public Builder allocateEmptyPrimary(@Nullable CommandAllocatePrimaryAction value) {
@@ -340,7 +347,7 @@ public final class Command implements ToJsonp {
 		 * rejoins the cluster later on, that data will be deleted. To ensure that these
 		 * implications are well-understood, this command requires the flag
 		 * accept_data_loss to be explicitly set to true.
-		 *
+		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
 		public Builder allocateEmptyPrimary(
@@ -363,18 +370,18 @@ public final class Command implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Command
+	 * Json deserializer for {@link Command}
 	 */
-	public static final JsonpDeserializer<Command> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Command::setupCommandDeserializer);
+	public static final JsonpDeserializer<Command> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Command::setupCommandDeserializer, Builder::build);
 
 	protected static void setupCommandDeserializer(DelegatingDeserializer<Command.Builder> op) {
 
-		op.add(Builder::cancel, CommandCancelAction.DESERIALIZER, "cancel");
-		op.add(Builder::move, CommandMoveAction.DESERIALIZER, "move");
-		op.add(Builder::allocateReplica, CommandAllocateReplicaAction.DESERIALIZER, "allocate_replica");
-		op.add(Builder::allocateStalePrimary, CommandAllocatePrimaryAction.DESERIALIZER, "allocate_stale_primary");
-		op.add(Builder::allocateEmptyPrimary, CommandAllocatePrimaryAction.DESERIALIZER, "allocate_empty_primary");
+		op.add(Builder::cancel, CommandCancelAction._DESERIALIZER, "cancel");
+		op.add(Builder::move, CommandMoveAction._DESERIALIZER, "move");
+		op.add(Builder::allocateReplica, CommandAllocateReplicaAction._DESERIALIZER, "allocate_replica");
+		op.add(Builder::allocateStalePrimary, CommandAllocatePrimaryAction._DESERIALIZER, "allocate_stale_primary");
+		op.add(Builder::allocateEmptyPrimary, CommandAllocatePrimaryAction._DESERIALIZER, "allocate_empty_primary");
 
 	}
 

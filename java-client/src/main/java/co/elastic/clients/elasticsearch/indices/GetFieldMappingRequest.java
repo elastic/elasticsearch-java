@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -40,10 +43,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_field_mapping.Request
+
 public final class GetFieldMappingRequest extends RequestBase {
 	private final List<String> fields;
 
@@ -57,7 +62,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -73,13 +78,13 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetFieldMappingRequest(Builder builder) {
+	public GetFieldMappingRequest(Builder builder) {
 
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
-		this.index = builder.index;
-		this.type = builder.type;
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.includeTypeName = builder.includeTypeName;
@@ -87,7 +92,13 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 	}
 
+	public GetFieldMappingRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of fields
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	public List<String> fields() {
@@ -95,6 +106,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -103,6 +116,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of document types
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -111,6 +126,10 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -119,14 +138,20 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -135,6 +160,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether the default mapping values should be returned as well
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -143,6 +170,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether a type should be returned in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -151,6 +180,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -176,7 +208,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -191,6 +223,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		private Boolean local;
 
 		/**
+		 * A comma-separated list of fields
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(List<String> value) {
@@ -199,6 +233,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -207,7 +243,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -218,6 +254,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -226,6 +264,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -234,7 +274,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -245,6 +285,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of document types
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable List<String> value) {
@@ -253,6 +295,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of document types
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(String... value) {
@@ -261,7 +305,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
+		 * Add a value to {@link #type(List)}, creating the list if needed. 4
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -272,6 +316,10 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -280,14 +328,42 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -296,6 +372,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether the default mapping values should be returned as well
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -304,6 +382,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether a type should be returned in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -312,6 +392,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -336,7 +419,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_field_mapping}".
 	 */
-	public static final Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -351,8 +434,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.fields() != null)
-					propsSet |= _fields;
+				propsSet |= _fields;
 				if (request.index() != null)
 					propsSet |= _index;
 				if (request.type() != null)
@@ -363,42 +445,46 @@ public final class GetFieldMappingRequest extends RequestBase {
 					buf.append("/_mapping");
 					buf.append("/field");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _fields)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
 					buf.append("/field");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_type | _fields)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_mapping");
 					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/field");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type | _fields)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
 					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/field");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -409,7 +495,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -425,5 +512,5 @@ public final class GetFieldMappingRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetFieldMappingResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetFieldMappingResponse._DESERIALIZER);
 }

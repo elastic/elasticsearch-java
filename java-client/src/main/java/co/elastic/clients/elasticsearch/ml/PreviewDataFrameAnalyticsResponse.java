@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,24 +39,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
-public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final List<Map<String, String>> featureValues;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PreviewDataFrameAnalyticsResponse(Builder builder) {
+	public PreviewDataFrameAnalyticsResponse(Builder builder) {
 
-		this.featureValues = Objects.requireNonNull(builder.featureValues, "feature_values");
+		this.featureValues = ModelTypeHelper.unmodifiableNonNull(builder.featureValues, "feature_values");
 
+	}
+
+	public PreviewDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * An array of objects that contain feature name and value pairs. The features
 	 * have been processed and indicate what will be sent to the model for training.
-	 *
+	 * <p>
 	 * API name: {@code feature_values}
 	 */
 	public List<Map<String, String>> featureValues() {
@@ -64,13 +72,13 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("feature_values");
 		generator.writeStartArray();
@@ -99,7 +107,7 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that contain feature name and value pairs. The features
 		 * have been processed and indicate what will be sent to the model for training.
-		 *
+		 * <p>
 		 * API name: {@code feature_values}
 		 */
 		public Builder featureValues(List<Map<String, String>> value) {
@@ -110,7 +118,7 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 		/**
 		 * An array of objects that contain feature name and value pairs. The features
 		 * have been processed and indicate what will be sent to the model for training.
-		 *
+		 * <p>
 		 * API name: {@code feature_values}
 		 */
 		public Builder featureValues(Map<String, String>... value) {
@@ -119,7 +127,7 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #featureValues(List)}, creating the list if needed.
+		 * Add a value to {@link #featureValues(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureValues(Map<String, String> value) {
 			if (this.featureValues == null) {
@@ -144,11 +152,11 @@ public final class PreviewDataFrameAnalyticsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PreviewDataFrameAnalyticsResponse
+	 * Json deserializer for {@link PreviewDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<PreviewDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					PreviewDataFrameAnalyticsResponse::setupPreviewDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<PreviewDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PreviewDataFrameAnalyticsResponse::setupPreviewDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupPreviewDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<PreviewDataFrameAnalyticsResponse.Builder> op) {

@@ -24,32 +24,38 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Response
-public final class CreateResponse implements ToJsonp {
+@JsonpDeserializable
+public final class CreateResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean accepted;
 
-	@Nullable
 	private final SnapshotInfo snapshot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateResponse(Builder builder) {
+	public CreateResponse(Builder builder) {
 
 		this.accepted = builder.accepted;
-		this.snapshot = builder.snapshot;
+		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 
+	}
+
+	public CreateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -63,7 +69,6 @@ public final class CreateResponse implements ToJsonp {
 	/**
 	 * API name: {@code snapshot}
 	 */
-	@Nullable
 	public SnapshotInfo snapshot() {
 		return this.snapshot;
 	}
@@ -71,13 +76,13 @@ public final class CreateResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.accepted != null) {
 
@@ -85,12 +90,9 @@ public final class CreateResponse implements ToJsonp {
 			generator.write(this.accepted);
 
 		}
-		if (this.snapshot != null) {
 
-			generator.writeKey("snapshot");
-			this.snapshot.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("snapshot");
+		this.snapshot.serialize(generator, mapper);
 
 	}
 
@@ -103,7 +105,6 @@ public final class CreateResponse implements ToJsonp {
 		@Nullable
 		private Boolean accepted;
 
-		@Nullable
 		private SnapshotInfo snapshot;
 
 		/**
@@ -117,7 +118,7 @@ public final class CreateResponse implements ToJsonp {
 		/**
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(@Nullable SnapshotInfo value) {
+		public Builder snapshot(SnapshotInfo value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -144,15 +145,15 @@ public final class CreateResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateResponse
+	 * Json deserializer for {@link CreateResponse}
 	 */
-	public static final JsonpDeserializer<CreateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateResponse::setupCreateResponseDeserializer);
+	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateResponse::setupCreateResponseDeserializer, Builder::build);
 
 	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
 
 		op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
-		op.add(Builder::snapshot, SnapshotInfo.DESERIALIZER, "snapshot");
+		op.add(Builder::snapshot, SnapshotInfo._DESERIALIZER, "snapshot");
 
 	}
 

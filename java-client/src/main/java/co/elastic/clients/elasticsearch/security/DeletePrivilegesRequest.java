@@ -25,8 +25,11 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -36,20 +39,22 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_privileges.Request
+
 public final class DeletePrivilegesRequest extends RequestBase {
 	private final String application;
 
 	private final String name;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePrivilegesRequest(Builder builder) {
+	public DeletePrivilegesRequest(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -57,7 +62,13 @@ public final class DeletePrivilegesRequest extends RequestBase {
 
 	}
 
+	public DeletePrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Application name
+	 * <p>
 	 * API name: {@code application}
 	 */
 	public String application() {
@@ -65,6 +76,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * Privilege name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -72,10 +85,15 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -90,9 +108,11 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		private String name;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
+		 * Application name
+		 * <p>
 		 * API name: {@code application}
 		 */
 		public Builder application(String value) {
@@ -101,6 +121,8 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
+		 * Privilege name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -109,9 +131,14 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -133,7 +160,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_privileges}".
 	 */
-	public static final Endpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -147,22 +174,20 @@ public final class DeletePrivilegesRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.application() != null)
-					propsSet |= _application;
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _application;
+				propsSet |= _name;
 
 				if (propsSet == (_application | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					buf.append(request.application);
+					SimpleEndpoint.pathEncode(request.application, buf);
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -170,9 +195,9 @@ public final class DeletePrivilegesRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeletePrivilegesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeletePrivilegesResponse._DESERIALIZER);
 }

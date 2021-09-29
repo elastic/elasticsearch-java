@@ -24,29 +24,32 @@
 package co.elastic.clients.elasticsearch.ccr.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.stats.AutoFollowedCluster
-public final class AutoFollowedCluster implements ToJsonp {
+@JsonpDeserializable
+public final class AutoFollowedCluster implements JsonpSerializable {
 	private final String clusterName;
 
-	private final Number lastSeenMetadataVersion;
+	private final long lastSeenMetadataVersion;
 
 	private final String timeSinceLastCheckMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AutoFollowedCluster(Builder builder) {
+	public AutoFollowedCluster(Builder builder) {
 
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.lastSeenMetadataVersion = Objects.requireNonNull(builder.lastSeenMetadataVersion,
@@ -54,6 +57,10 @@ public final class AutoFollowedCluster implements ToJsonp {
 		this.timeSinceLastCheckMillis = Objects.requireNonNull(builder.timeSinceLastCheckMillis,
 				"time_since_last_check_millis");
 
+	}
+
+	public AutoFollowedCluster(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -66,7 +73,7 @@ public final class AutoFollowedCluster implements ToJsonp {
 	/**
 	 * API name: {@code last_seen_metadata_version}
 	 */
-	public Number lastSeenMetadataVersion() {
+	public long lastSeenMetadataVersion() {
 		return this.lastSeenMetadataVersion;
 	}
 
@@ -80,19 +87,19 @@ public final class AutoFollowedCluster implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
 		generator.writeKey("last_seen_metadata_version");
-		generator.write(this.lastSeenMetadataVersion.doubleValue());
+		generator.write(this.lastSeenMetadataVersion);
 
 		generator.writeKey("time_since_last_check_millis");
 		generator.write(this.timeSinceLastCheckMillis);
@@ -107,7 +114,7 @@ public final class AutoFollowedCluster implements ToJsonp {
 	public static class Builder implements ObjectBuilder<AutoFollowedCluster> {
 		private String clusterName;
 
-		private Number lastSeenMetadataVersion;
+		private Long lastSeenMetadataVersion;
 
 		private String timeSinceLastCheckMillis;
 
@@ -122,7 +129,7 @@ public final class AutoFollowedCluster implements ToJsonp {
 		/**
 		 * API name: {@code last_seen_metadata_version}
 		 */
-		public Builder lastSeenMetadataVersion(Number value) {
+		public Builder lastSeenMetadataVersion(long value) {
 			this.lastSeenMetadataVersion = value;
 			return this;
 		}
@@ -150,15 +157,15 @@ public final class AutoFollowedCluster implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AutoFollowedCluster
+	 * Json deserializer for {@link AutoFollowedCluster}
 	 */
-	public static final JsonpDeserializer<AutoFollowedCluster> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AutoFollowedCluster::setupAutoFollowedClusterDeserializer);
+	public static final JsonpDeserializer<AutoFollowedCluster> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AutoFollowedCluster::setupAutoFollowedClusterDeserializer, Builder::build);
 
 	protected static void setupAutoFollowedClusterDeserializer(DelegatingDeserializer<AutoFollowedCluster.Builder> op) {
 
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::lastSeenMetadataVersion, JsonpDeserializer.numberDeserializer(), "last_seen_metadata_version");
+		op.add(Builder::lastSeenMetadataVersion, JsonpDeserializer.longDeserializer(), "last_seen_metadata_version");
 		op.add(Builder::timeSinceLastCheckMillis, JsonpDeserializer.stringDeserializer(),
 				"time_since_last_check_millis");
 

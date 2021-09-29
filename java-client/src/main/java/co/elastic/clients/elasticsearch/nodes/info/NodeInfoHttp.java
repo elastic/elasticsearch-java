@@ -24,43 +24,50 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoHttp
-public final class NodeInfoHttp implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoHttp implements JsonpSerializable {
 	private final List<String> boundAddress;
 
 	@Nullable
-	private final JsonValue maxContentLength;
+	private final String maxContentLength;
 
-	private final Number maxContentLengthInBytes;
+	private final long maxContentLengthInBytes;
 
 	private final String publishAddress;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoHttp(Builder builder) {
+	public NodeInfoHttp(Builder builder) {
 
-		this.boundAddress = Objects.requireNonNull(builder.boundAddress, "bound_address");
+		this.boundAddress = ModelTypeHelper.unmodifiableNonNull(builder.boundAddress, "bound_address");
 		this.maxContentLength = builder.maxContentLength;
 		this.maxContentLengthInBytes = Objects.requireNonNull(builder.maxContentLengthInBytes,
 				"max_content_length_in_bytes");
 		this.publishAddress = Objects.requireNonNull(builder.publishAddress, "publish_address");
 
+	}
+
+	public NodeInfoHttp(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -74,14 +81,14 @@ public final class NodeInfoHttp implements ToJsonp {
 	 * API name: {@code max_content_length}
 	 */
 	@Nullable
-	public JsonValue maxContentLength() {
+	public String maxContentLength() {
 		return this.maxContentLength;
 	}
 
 	/**
 	 * API name: {@code max_content_length_in_bytes}
 	 */
-	public Number maxContentLengthInBytes() {
+	public long maxContentLengthInBytes() {
 		return this.maxContentLengthInBytes;
 	}
 
@@ -95,13 +102,13 @@ public final class NodeInfoHttp implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bound_address");
 		generator.writeStartArray();
@@ -119,7 +126,7 @@ public final class NodeInfoHttp implements ToJsonp {
 		}
 
 		generator.writeKey("max_content_length_in_bytes");
-		generator.write(this.maxContentLengthInBytes.doubleValue());
+		generator.write(this.maxContentLengthInBytes);
 
 		generator.writeKey("publish_address");
 		generator.write(this.publishAddress);
@@ -135,9 +142,9 @@ public final class NodeInfoHttp implements ToJsonp {
 		private List<String> boundAddress;
 
 		@Nullable
-		private JsonValue maxContentLength;
+		private String maxContentLength;
 
-		private Number maxContentLengthInBytes;
+		private Long maxContentLengthInBytes;
 
 		private String publishAddress;
 
@@ -158,7 +165,7 @@ public final class NodeInfoHttp implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #boundAddress(List)}, creating the list if needed.
+		 * Add a value to {@link #boundAddress(List)}, creating the list if needed. 4
 		 */
 		public Builder addBoundAddress(String value) {
 			if (this.boundAddress == null) {
@@ -171,7 +178,7 @@ public final class NodeInfoHttp implements ToJsonp {
 		/**
 		 * API name: {@code max_content_length}
 		 */
-		public Builder maxContentLength(@Nullable JsonValue value) {
+		public Builder maxContentLength(@Nullable String value) {
 			this.maxContentLength = value;
 			return this;
 		}
@@ -179,7 +186,7 @@ public final class NodeInfoHttp implements ToJsonp {
 		/**
 		 * API name: {@code max_content_length_in_bytes}
 		 */
-		public Builder maxContentLengthInBytes(Number value) {
+		public Builder maxContentLengthInBytes(long value) {
 			this.maxContentLengthInBytes = value;
 			return this;
 		}
@@ -207,17 +214,17 @@ public final class NodeInfoHttp implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoHttp
+	 * Json deserializer for {@link NodeInfoHttp}
 	 */
-	public static final JsonpDeserializer<NodeInfoHttp> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoHttp::setupNodeInfoHttpDeserializer);
+	public static final JsonpDeserializer<NodeInfoHttp> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoHttp::setupNodeInfoHttpDeserializer, Builder::build);
 
 	protected static void setupNodeInfoHttpDeserializer(DelegatingDeserializer<NodeInfoHttp.Builder> op) {
 
 		op.add(Builder::boundAddress, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"bound_address");
-		op.add(Builder::maxContentLength, JsonpDeserializer.jsonValueDeserializer(), "max_content_length");
-		op.add(Builder::maxContentLengthInBytes, JsonpDeserializer.numberDeserializer(), "max_content_length_in_bytes");
+		op.add(Builder::maxContentLength, JsonpDeserializer.stringDeserializer(), "max_content_length");
+		op.add(Builder::maxContentLengthInBytes, JsonpDeserializer.longDeserializer(), "max_content_length_in_bytes");
 		op.add(Builder::publishAddress, JsonpDeserializer.stringDeserializer(), "publish_address");
 
 	}

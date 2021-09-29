@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: security.delete_service_token.Response
-public final class DeleteServiceTokenResponse implements ToJsonp {
-	private final Boolean found;
+@JsonpDeserializable
+public final class DeleteServiceTokenResponse implements JsonpSerializable {
+	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteServiceTokenResponse(Builder builder) {
+	public DeleteServiceTokenResponse(Builder builder) {
 
 		this.found = Objects.requireNonNull(builder.found, "found");
 
 	}
 
+	public DeleteServiceTokenResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code found}
 	 */
-	public Boolean found() {
+	public boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("found");
 		generator.write(this.found);
@@ -81,7 +87,7 @@ public final class DeleteServiceTokenResponse implements ToJsonp {
 		/**
 		 * API name: {@code found}
 		 */
-		public Builder found(Boolean value) {
+		public Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -101,10 +107,10 @@ public final class DeleteServiceTokenResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteServiceTokenResponse
+	 * Json deserializer for {@link DeleteServiceTokenResponse}
 	 */
-	public static final JsonpDeserializer<DeleteServiceTokenResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteServiceTokenResponse::setupDeleteServiceTokenResponseDeserializer);
+	public static final JsonpDeserializer<DeleteServiceTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DeleteServiceTokenResponse::setupDeleteServiceTokenResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteServiceTokenResponseDeserializer(
 			DelegatingDeserializer<DeleteServiceTokenResponse.Builder> op) {

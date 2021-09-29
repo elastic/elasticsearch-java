@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,11 +39,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigMetadata
-public final class TrainedModelConfigMetadata implements ToJsonp {
+@JsonpDeserializable
+public final class TrainedModelConfigMetadata implements JsonpSerializable {
 	@Nullable
 	private final List<String> modelAliases;
 
@@ -56,13 +60,17 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelConfigMetadata(Builder builder) {
+	public TrainedModelConfigMetadata(Builder builder) {
 
-		this.modelAliases = builder.modelAliases;
-		this.featureImportanceBaseline = builder.featureImportanceBaseline;
-		this.hyperparameters = builder.hyperparameters;
-		this.totalFeatureImportance = builder.totalFeatureImportance;
+		this.modelAliases = ModelTypeHelper.unmodifiable(builder.modelAliases);
+		this.featureImportanceBaseline = ModelTypeHelper.unmodifiable(builder.featureImportanceBaseline);
+		this.hyperparameters = ModelTypeHelper.unmodifiable(builder.hyperparameters);
+		this.totalFeatureImportance = ModelTypeHelper.unmodifiable(builder.totalFeatureImportance);
 
+	}
+
+	public TrainedModelConfigMetadata(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -77,7 +85,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	 * An object that contains the baseline for feature importance values. For
 	 * regression analysis, it is a single value. For classification analysis, there
 	 * is a value for each class.
-	 *
+	 * <p>
 	 * API name: {@code feature_importance_baseline}
 	 */
 	@Nullable
@@ -88,7 +96,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	/**
 	 * List of the available hyperparameters optimized during the
 	 * fine_parameter_tuning phase as well as specified by the user.
-	 *
+	 * <p>
 	 * API name: {@code hyperparameters}
 	 */
 	@Nullable
@@ -101,7 +109,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	 * training data set. This array of objects is returned if data frame analytics
 	 * trained the model and the request includes total_feature_importance in the
 	 * include request parameter.
-	 *
+	 * <p>
 	 * API name: {@code total_feature_importance}
 	 */
 	@Nullable
@@ -112,13 +120,13 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.modelAliases != null) {
 
@@ -148,7 +156,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 			generator.writeKey("hyperparameters");
 			generator.writeStartArray();
 			for (Hyperparameter item0 : this.hyperparameters) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -159,7 +167,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 			generator.writeKey("total_feature_importance");
 			generator.writeStartArray();
 			for (TotalFeatureImportance item0 : this.totalFeatureImportance) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -203,7 +211,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #modelAliases(List)}, creating the list if needed.
+		 * Add a value to {@link #modelAliases(List)}, creating the list if needed. 4
 		 */
 		public Builder addModelAliases(String value) {
 			if (this.modelAliases == null) {
@@ -217,7 +225,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		 * An object that contains the baseline for feature importance values. For
 		 * regression analysis, it is a single value. For classification analysis, there
 		 * is a value for each class.
-		 *
+		 * <p>
 		 * API name: {@code feature_importance_baseline}
 		 */
 		public Builder featureImportanceBaseline(@Nullable Map<String, String> value) {
@@ -240,7 +248,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		/**
 		 * List of the available hyperparameters optimized during the
 		 * fine_parameter_tuning phase as well as specified by the user.
-		 *
+		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(@Nullable List<Hyperparameter> value) {
@@ -251,7 +259,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		/**
 		 * List of the available hyperparameters optimized during the
 		 * fine_parameter_tuning phase as well as specified by the user.
-		 *
+		 * <p>
 		 * API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(Hyperparameter... value) {
@@ -260,7 +268,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed.
+		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed. 4
 		 */
 		public Builder addHyperparameters(Hyperparameter value) {
 			if (this.hyperparameters == null) {
@@ -278,7 +286,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed.
+		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed. 5
 		 */
 		public Builder addHyperparameters(Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>> fn) {
 			return this.addHyperparameters(fn.apply(new Hyperparameter.Builder()).build());
@@ -289,7 +297,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		 * training data set. This array of objects is returned if data frame analytics
 		 * trained the model and the request includes total_feature_importance in the
 		 * include request parameter.
-		 *
+		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
 		public Builder totalFeatureImportance(@Nullable List<TotalFeatureImportance> value) {
@@ -302,7 +310,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		 * training data set. This array of objects is returned if data frame analytics
 		 * trained the model and the request includes total_feature_importance in the
 		 * include request parameter.
-		 *
+		 * <p>
 		 * API name: {@code total_feature_importance}
 		 */
 		public Builder totalFeatureImportance(TotalFeatureImportance... value) {
@@ -312,7 +320,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #totalFeatureImportance(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addTotalFeatureImportance(TotalFeatureImportance value) {
 			if (this.totalFeatureImportance == null) {
@@ -332,7 +340,7 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #totalFeatureImportance(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addTotalFeatureImportance(
 				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn) {
@@ -354,10 +362,10 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelConfigMetadata
+	 * Json deserializer for {@link TrainedModelConfigMetadata}
 	 */
-	public static final JsonpDeserializer<TrainedModelConfigMetadata> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataDeserializer);
+	public static final JsonpDeserializer<TrainedModelConfigMetadata> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, TrainedModelConfigMetadata::setupTrainedModelConfigMetadataDeserializer, Builder::build);
 
 	protected static void setupTrainedModelConfigMetadataDeserializer(
 			DelegatingDeserializer<TrainedModelConfigMetadata.Builder> op) {
@@ -367,10 +375,10 @@ public final class TrainedModelConfigMetadata implements ToJsonp {
 		op.add(Builder::featureImportanceBaseline,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"feature_importance_baseline");
-		op.add(Builder::hyperparameters, JsonpDeserializer.arrayDeserializer(Hyperparameter.DESERIALIZER),
+		op.add(Builder::hyperparameters, JsonpDeserializer.arrayDeserializer(Hyperparameter._DESERIALIZER),
 				"hyperparameters");
 		op.add(Builder::totalFeatureImportance,
-				JsonpDeserializer.arrayDeserializer(TotalFeatureImportance.DESERIALIZER), "total_feature_importance");
+				JsonpDeserializer.arrayDeserializer(TotalFeatureImportance._DESERIALIZER), "total_feature_importance");
 
 	}
 

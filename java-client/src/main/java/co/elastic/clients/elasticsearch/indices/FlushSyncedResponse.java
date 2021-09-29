@@ -23,9 +23,10 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,15 +39,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.flush_synced.Response
-public final class FlushSyncedResponse extends AdditionalProperties<String, ShardStatistics> {
+@JsonpDeserializable
+public final class FlushSyncedResponse extends DictionaryResponse<String, ShardStatistics> {
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FlushSyncedResponse(Builder builder) {
+	public FlushSyncedResponse(Builder builder) {
 		super(builder);
+
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
+	}
+
+	public FlushSyncedResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -56,11 +63,12 @@ public final class FlushSyncedResponse extends AdditionalProperties<String, Shar
 		return this.shards;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -69,7 +77,7 @@ public final class FlushSyncedResponse extends AdditionalProperties<String, Shar
 	/**
 	 * Builder for {@link FlushSyncedResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, ShardStatistics, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ShardStatistics, Builder>
 			implements
 				ObjectBuilder<FlushSyncedResponse> {
 		private ShardStatistics shards;
@@ -111,15 +119,15 @@ public final class FlushSyncedResponse extends AdditionalProperties<String, Shar
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FlushSyncedResponse
+	 * Json deserializer for {@link FlushSyncedResponse}
 	 */
-	public static final JsonpDeserializer<FlushSyncedResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FlushSyncedResponse::setupFlushSyncedResponseDeserializer);
+	public static final JsonpDeserializer<FlushSyncedResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FlushSyncedResponse::setupFlushSyncedResponseDeserializer, Builder::build);
 
 	protected static void setupFlushSyncedResponseDeserializer(DelegatingDeserializer<FlushSyncedResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				ShardStatistics.DESERIALIZER);
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				ShardStatistics._DESERIALIZER);
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
 	}
 

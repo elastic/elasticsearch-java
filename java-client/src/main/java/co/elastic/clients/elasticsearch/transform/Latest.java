@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,26 +38,32 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
-public final class Latest implements ToJsonp {
+@JsonpDeserializable
+public final class Latest implements JsonpSerializable {
 	private final String sort;
 
 	private final List<String> uniqueKey;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Latest(Builder builder) {
+	public Latest(Builder builder) {
 
 		this.sort = Objects.requireNonNull(builder.sort, "sort");
-		this.uniqueKey = Objects.requireNonNull(builder.uniqueKey, "unique_key");
+		this.uniqueKey = ModelTypeHelper.unmodifiableNonNull(builder.uniqueKey, "unique_key");
 
+	}
+
+	public Latest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Specifies the date field that is used to identify the latest documents.
-	 *
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	public String sort() {
@@ -64,7 +72,7 @@ public final class Latest implements ToJsonp {
 
 	/**
 	 * Specifies an array of one or more fields that are used to group the data.
-	 *
+	 * <p>
 	 * API name: {@code unique_key}
 	 */
 	public List<String> uniqueKey() {
@@ -74,13 +82,13 @@ public final class Latest implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("sort");
 		generator.write(this.sort);
@@ -107,7 +115,7 @@ public final class Latest implements ToJsonp {
 
 		/**
 		 * Specifies the date field that is used to identify the latest documents.
-		 *
+		 * <p>
 		 * API name: {@code sort}
 		 */
 		public Builder sort(String value) {
@@ -117,7 +125,7 @@ public final class Latest implements ToJsonp {
 
 		/**
 		 * Specifies an array of one or more fields that are used to group the data.
-		 *
+		 * <p>
 		 * API name: {@code unique_key}
 		 */
 		public Builder uniqueKey(List<String> value) {
@@ -127,7 +135,7 @@ public final class Latest implements ToJsonp {
 
 		/**
 		 * Specifies an array of one or more fields that are used to group the data.
-		 *
+		 * <p>
 		 * API name: {@code unique_key}
 		 */
 		public Builder uniqueKey(String... value) {
@@ -136,7 +144,7 @@ public final class Latest implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed.
+		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed. 4
 		 */
 		public Builder addUniqueKey(String value) {
 			if (this.uniqueKey == null) {
@@ -161,10 +169,10 @@ public final class Latest implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Latest
+	 * Json deserializer for {@link Latest}
 	 */
-	public static final JsonpDeserializer<Latest> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Latest::setupLatestDeserializer);
+	public static final JsonpDeserializer<Latest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Latest::setupLatestDeserializer, Builder::build);
 
 	protected static void setupLatestDeserializer(DelegatingDeserializer<Latest.Builder> op) {
 

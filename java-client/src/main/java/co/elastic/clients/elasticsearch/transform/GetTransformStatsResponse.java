@@ -25,14 +25,16 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.transform.get_transform_stats.TransformStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,24 +43,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Response
-public final class GetTransformStatsResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetTransformStatsResponse implements JsonpSerializable {
+	private final long count;
 
 	private final List<TransformStats> transforms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTransformStatsResponse(Builder builder) {
+	public GetTransformStatsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.transforms = Objects.requireNonNull(builder.transforms, "transforms");
+		this.transforms = ModelTypeHelper.unmodifiableNonNull(builder.transforms, "transforms");
 
+	}
+
+	public GetTransformStatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -72,21 +79,21 @@ public final class GetTransformStatsResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("transforms");
 		generator.writeStartArray();
 		for (TransformStats item0 : this.transforms) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -99,14 +106,14 @@ public final class GetTransformStatsResponse implements ToJsonp {
 	 * Builder for {@link GetTransformStatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetTransformStatsResponse> {
-		private Number count;
+		private Long count;
 
 		private List<TransformStats> transforms;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -128,7 +135,7 @@ public final class GetTransformStatsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Add a value to {@link #transforms(List)}, creating the list if needed. 4
 		 */
 		public Builder addTransforms(TransformStats value) {
 			if (this.transforms == null) {
@@ -146,7 +153,7 @@ public final class GetTransformStatsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Add a value to {@link #transforms(List)}, creating the list if needed. 5
 		 */
 		public Builder addTransforms(Function<TransformStats.Builder, ObjectBuilder<TransformStats>> fn) {
 			return this.addTransforms(fn.apply(new TransformStats.Builder()).build());
@@ -167,16 +174,16 @@ public final class GetTransformStatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetTransformStatsResponse
+	 * Json deserializer for {@link GetTransformStatsResponse}
 	 */
-	public static final JsonpDeserializer<GetTransformStatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer);
+	public static final JsonpDeserializer<GetTransformStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetTransformStatsResponse::setupGetTransformStatsResponseDeserializer, Builder::build);
 
 	protected static void setupGetTransformStatsResponseDeserializer(
 			DelegatingDeserializer<GetTransformStatsResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformStats.DESERIALIZER), "transforms");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformStats._DESERIALIZER), "transforms");
 
 	}
 

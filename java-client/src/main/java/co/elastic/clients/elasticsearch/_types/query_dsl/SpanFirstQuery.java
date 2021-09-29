@@ -24,63 +24,70 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanFirstQuery
-public final class SpanFirstQuery extends QueryBase {
-	@Nullable
-	private final Number end;
+@JsonpDeserializable
+public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+	private final int end;
 
-	@Nullable
 	private final SpanQuery match;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanFirstQuery(Builder builder) {
+	public SpanFirstQuery(Builder builder) {
 		super(builder);
-		this.end = builder.end;
-		this.match = builder.match;
 
+		this.end = Objects.requireNonNull(builder.end, "end");
+		this.match = Objects.requireNonNull(builder.match, "match");
+
+	}
+
+	public SpanFirstQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "span_first";
 	}
 
 	/**
 	 * API name: {@code end}
 	 */
-	@Nullable
-	public Number end() {
+	public int end() {
 		return this.end;
 	}
 
 	/**
 	 * API name: {@code match}
 	 */
-	@Nullable
 	public SpanQuery match() {
 		return this.match;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.end != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("end");
-			generator.write(this.end.doubleValue());
+		super.serializeInternal(generator, mapper);
 
-		}
-		if (this.match != null) {
+		generator.writeKey("end");
+		generator.write(this.end);
 
-			generator.writeKey("match");
-			this.match.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("match");
+		this.match.serialize(generator, mapper);
 
 	}
 
@@ -90,16 +97,14 @@ public final class SpanFirstQuery extends QueryBase {
 	 * Builder for {@link SpanFirstQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanFirstQuery> {
-		@Nullable
-		private Number end;
+		private Integer end;
 
-		@Nullable
 		private SpanQuery match;
 
 		/**
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable Number value) {
+		public Builder end(int value) {
 			this.end = value;
 			return this;
 		}
@@ -107,7 +112,7 @@ public final class SpanFirstQuery extends QueryBase {
 		/**
 		 * API name: {@code match}
 		 */
-		public Builder match(@Nullable SpanQuery value) {
+		public Builder match(SpanQuery value) {
 			this.match = value;
 			return this;
 		}
@@ -139,15 +144,15 @@ public final class SpanFirstQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SpanFirstQuery
+	 * Json deserializer for {@link SpanFirstQuery}
 	 */
-	public static final JsonpDeserializer<SpanFirstQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanFirstQuery::setupSpanFirstQueryDeserializer);
+	public static final JsonpDeserializer<SpanFirstQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SpanFirstQuery::setupSpanFirstQueryDeserializer, Builder::build);
 
 	protected static void setupSpanFirstQueryDeserializer(DelegatingDeserializer<SpanFirstQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::end, JsonpDeserializer.numberDeserializer(), "end");
-		op.add(Builder::match, SpanQuery.DESERIALIZER, "match");
+		op.add(Builder::end, JsonpDeserializer.integerDeserializer(), "end");
+		op.add(Builder::match, SpanQuery._DESERIALIZER, "match");
 
 	}
 

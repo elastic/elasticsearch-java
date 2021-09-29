@@ -24,56 +24,75 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
-public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalysisFeatureProcessorNGramEncoding
+		implements
+			DataframeAnalysisFeatureProcessorVariant,
+			JsonpSerializable {
 	@Nullable
 	private final String featurePrefix;
 
 	private final String field;
 
 	@Nullable
-	private final Number length;
+	private final Integer length;
 
-	private final List<Number> nGrams;
+	private final List<Integer> nGrams;
 
 	@Nullable
-	private final Number start;
+	private final Integer start;
 
 	@Nullable
 	private final Boolean custom;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
+	public DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
 
 		this.featurePrefix = builder.featurePrefix;
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.length = builder.length;
-		this.nGrams = Objects.requireNonNull(builder.nGrams, "n_grams");
+		this.nGrams = ModelTypeHelper.unmodifiableNonNull(builder.nGrams, "n_grams");
 		this.start = builder.start;
 		this.custom = builder.custom;
 
 	}
 
+	public DataframeAnalysisFeatureProcessorNGramEncoding(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
-	 *
+	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "n_gram_encoding";
+	}
+
+	/**
+	 * The feature name prefix. Defaults to ngram_<start>_<length>.
+	 * <p>
 	 * API name: {@code feature_prefix}
 	 */
 	@Nullable
@@ -83,7 +102,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 
 	/**
 	 * The name of the text field to encode.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -93,32 +112,32 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	/**
 	 * Specifies the length of the n-gram substring. Defaults to 50. Must be greater
 	 * than 0.
-	 *
+	 * <p>
 	 * API name: {@code length}
 	 */
 	@Nullable
-	public Number length() {
+	public Integer length() {
 		return this.length;
 	}
 
 	/**
 	 * Specifies which n-grams to gather. It’s an array of integer values where the
 	 * minimum value is 1, and a maximum value is 5.
-	 *
+	 * <p>
 	 * API name: {@code n_grams}
 	 */
-	public List<Number> nGrams() {
+	public List<Integer> nGrams() {
 		return this.nGrams;
 	}
 
 	/**
 	 * Specifies the zero-indexed start of the n-gram substring. Negative values are
 	 * allowed for encoding n-grams of string suffixes. Defaults to 0.
-	 *
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public Number start() {
+	public Integer start() {
 		return this.start;
 	}
 
@@ -133,13 +152,13 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.featurePrefix != null) {
 
@@ -154,14 +173,14 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		if (this.length != null) {
 
 			generator.writeKey("length");
-			generator.write(this.length.doubleValue());
+			generator.write(this.length);
 
 		}
 
 		generator.writeKey("n_grams");
 		generator.writeStartArray();
-		for (Number item0 : this.nGrams) {
-			generator.write(item0.doubleValue());
+		for (Integer item0 : this.nGrams) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -169,7 +188,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		if (this.start != null) {
 
 			generator.writeKey("start");
-			generator.write(this.start.doubleValue());
+			generator.write(this.start);
 
 		}
 		if (this.custom != null) {
@@ -193,19 +212,19 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		private String field;
 
 		@Nullable
-		private Number length;
+		private Integer length;
 
-		private List<Number> nGrams;
+		private List<Integer> nGrams;
 
 		@Nullable
-		private Number start;
+		private Integer start;
 
 		@Nullable
 		private Boolean custom;
 
 		/**
-		 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
-		 *
+		 * The feature name prefix. Defaults to ngram_<start>_<length>.
+		 * <p>
 		 * API name: {@code feature_prefix}
 		 */
 		public Builder featurePrefix(@Nullable String value) {
@@ -215,7 +234,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 
 		/**
 		 * The name of the text field to encode.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -226,10 +245,10 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies the length of the n-gram substring. Defaults to 50. Must be greater
 		 * than 0.
-		 *
+		 * <p>
 		 * API name: {@code length}
 		 */
-		public Builder length(@Nullable Number value) {
+		public Builder length(@Nullable Integer value) {
 			this.length = value;
 			return this;
 		}
@@ -237,10 +256,10 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies which n-grams to gather. It’s an array of integer values where the
 		 * minimum value is 1, and a maximum value is 5.
-		 *
+		 * <p>
 		 * API name: {@code n_grams}
 		 */
-		public Builder nGrams(List<Number> value) {
+		public Builder nGrams(List<Integer> value) {
 			this.nGrams = value;
 			return this;
 		}
@@ -248,18 +267,18 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies which n-grams to gather. It’s an array of integer values where the
 		 * minimum value is 1, and a maximum value is 5.
-		 *
+		 * <p>
 		 * API name: {@code n_grams}
 		 */
-		public Builder nGrams(Number... value) {
+		public Builder nGrams(Integer... value) {
 			this.nGrams = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nGrams(List)}, creating the list if needed.
+		 * Add a value to {@link #nGrams(List)}, creating the list if needed. 4
 		 */
-		public Builder addNGrams(Number value) {
+		public Builder addNGrams(Integer value) {
 			if (this.nGrams == null) {
 				this.nGrams = new ArrayList<>();
 			}
@@ -270,10 +289,10 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 		/**
 		 * Specifies the zero-indexed start of the n-gram substring. Negative values are
 		 * allowed for encoding n-grams of string suffixes. Defaults to 0.
-		 *
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable Number value) {
+		public Builder start(@Nullable Integer value) {
 			this.start = value;
 			return this;
 		}
@@ -301,20 +320,22 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalysisFeatureProcessorNGramEncoding
+	 * Json deserializer for {@link DataframeAnalysisFeatureProcessorNGramEncoding}
 	 */
-	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer);
+	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalysisFeatureProcessorNGramEncoding::setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalysisFeatureProcessorNGramEncodingDeserializer(
 			DelegatingDeserializer<DataframeAnalysisFeatureProcessorNGramEncoding.Builder> op) {
 
 		op.add(Builder::featurePrefix, JsonpDeserializer.stringDeserializer(), "feature_prefix");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
-		op.add(Builder::nGrams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()), "n_grams");
-		op.add(Builder::start, JsonpDeserializer.numberDeserializer(), "start");
+		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
+		op.add(Builder::nGrams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()),
+				"n_grams");
+		op.add(Builder::start, JsonpDeserializer.integerDeserializer(), "start");
 		op.add(Builder::custom, JsonpDeserializer.booleanDeserializer(), "custom");
 
 	}
