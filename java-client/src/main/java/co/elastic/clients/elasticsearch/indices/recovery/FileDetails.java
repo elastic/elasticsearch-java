@@ -24,29 +24,32 @@
 package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.FileDetails
-public final class FileDetails implements ToJsonp {
-	private final Number length;
+@JsonpDeserializable
+public final class FileDetails implements JsonpSerializable {
+	private final long length;
 
 	private final String name;
 
-	private final Number recovered;
+	private final long recovered;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FileDetails(Builder builder) {
+	public FileDetails(Builder builder) {
 
 		this.length = Objects.requireNonNull(builder.length, "length");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -54,10 +57,14 @@ public final class FileDetails implements ToJsonp {
 
 	}
 
+	public FileDetails(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code length}
 	 */
-	public Number length() {
+	public long length() {
 		return this.length;
 	}
 
@@ -71,29 +78,29 @@ public final class FileDetails implements ToJsonp {
 	/**
 	 * API name: {@code recovered}
 	 */
-	public Number recovered() {
+	public long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("length");
-		generator.write(this.length.doubleValue());
+		generator.write(this.length);
 
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("recovered");
-		generator.write(this.recovered.doubleValue());
+		generator.write(this.recovered);
 
 	}
 
@@ -103,16 +110,16 @@ public final class FileDetails implements ToJsonp {
 	 * Builder for {@link FileDetails}.
 	 */
 	public static class Builder implements ObjectBuilder<FileDetails> {
-		private Number length;
+		private Long length;
 
 		private String name;
 
-		private Number recovered;
+		private Long recovered;
 
 		/**
 		 * API name: {@code length}
 		 */
-		public Builder length(Number value) {
+		public Builder length(long value) {
 			this.length = value;
 			return this;
 		}
@@ -128,7 +135,7 @@ public final class FileDetails implements ToJsonp {
 		/**
 		 * API name: {@code recovered}
 		 */
-		public Builder recovered(Number value) {
+		public Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -148,16 +155,16 @@ public final class FileDetails implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FileDetails
+	 * Json deserializer for {@link FileDetails}
 	 */
-	public static final JsonpDeserializer<FileDetails> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FileDetails::setupFileDetailsDeserializer);
+	public static final JsonpDeserializer<FileDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FileDetails::setupFileDetailsDeserializer, Builder::build);
 
 	protected static void setupFileDetailsDeserializer(DelegatingDeserializer<FileDetails.Builder> op) {
 
-		op.add(Builder::length, JsonpDeserializer.numberDeserializer(), "length");
+		op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::recovered, JsonpDeserializer.numberDeserializer(), "recovered");
+		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
 
 	}
 

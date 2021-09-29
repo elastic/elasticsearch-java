@@ -24,23 +24,24 @@
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.CheckpointStats
-public final class CheckpointStats implements ToJsonp {
-	private final Number checkpoint;
+@JsonpDeserializable
+public final class CheckpointStats implements JsonpSerializable {
+	private final long checkpoint;
 
 	@Nullable
 	private final TransformProgress checkpointProgress;
@@ -48,17 +49,17 @@ public final class CheckpointStats implements ToJsonp {
 	@Nullable
 	private final String timestamp;
 
-	private final JsonValue timestampMillis;
+	private final String timestampMillis;
 
 	@Nullable
 	private final String timeUpperBound;
 
 	@Nullable
-	private final JsonValue timeUpperBoundMillis;
+	private final String timeUpperBoundMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CheckpointStats(Builder builder) {
+	public CheckpointStats(Builder builder) {
 
 		this.checkpoint = Objects.requireNonNull(builder.checkpoint, "checkpoint");
 		this.checkpointProgress = builder.checkpointProgress;
@@ -69,10 +70,14 @@ public final class CheckpointStats implements ToJsonp {
 
 	}
 
+	public CheckpointStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code checkpoint}
 	 */
-	public Number checkpoint() {
+	public long checkpoint() {
 		return this.checkpoint;
 	}
 
@@ -95,7 +100,7 @@ public final class CheckpointStats implements ToJsonp {
 	/**
 	 * API name: {@code timestamp_millis}
 	 */
-	public JsonValue timestampMillis() {
+	public String timestampMillis() {
 		return this.timestampMillis;
 	}
 
@@ -111,28 +116,28 @@ public final class CheckpointStats implements ToJsonp {
 	 * API name: {@code time_upper_bound_millis}
 	 */
 	@Nullable
-	public JsonValue timeUpperBoundMillis() {
+	public String timeUpperBoundMillis() {
 		return this.timeUpperBoundMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("checkpoint");
-		generator.write(this.checkpoint.doubleValue());
+		generator.write(this.checkpoint);
 
 		if (this.checkpointProgress != null) {
 
 			generator.writeKey("checkpoint_progress");
-			this.checkpointProgress.toJsonp(generator, mapper);
+			this.checkpointProgress.serialize(generator, mapper);
 
 		}
 		if (this.timestamp != null) {
@@ -166,7 +171,7 @@ public final class CheckpointStats implements ToJsonp {
 	 * Builder for {@link CheckpointStats}.
 	 */
 	public static class Builder implements ObjectBuilder<CheckpointStats> {
-		private Number checkpoint;
+		private Long checkpoint;
 
 		@Nullable
 		private TransformProgress checkpointProgress;
@@ -174,18 +179,18 @@ public final class CheckpointStats implements ToJsonp {
 		@Nullable
 		private String timestamp;
 
-		private JsonValue timestampMillis;
+		private String timestampMillis;
 
 		@Nullable
 		private String timeUpperBound;
 
 		@Nullable
-		private JsonValue timeUpperBoundMillis;
+		private String timeUpperBoundMillis;
 
 		/**
 		 * API name: {@code checkpoint}
 		 */
-		public Builder checkpoint(Number value) {
+		public Builder checkpoint(long value) {
 			this.checkpoint = value;
 			return this;
 		}
@@ -216,7 +221,7 @@ public final class CheckpointStats implements ToJsonp {
 		/**
 		 * API name: {@code timestamp_millis}
 		 */
-		public Builder timestampMillis(JsonValue value) {
+		public Builder timestampMillis(String value) {
 			this.timestampMillis = value;
 			return this;
 		}
@@ -232,7 +237,7 @@ public final class CheckpointStats implements ToJsonp {
 		/**
 		 * API name: {@code time_upper_bound_millis}
 		 */
-		public Builder timeUpperBoundMillis(@Nullable JsonValue value) {
+		public Builder timeUpperBoundMillis(@Nullable String value) {
 			this.timeUpperBoundMillis = value;
 			return this;
 		}
@@ -252,19 +257,19 @@ public final class CheckpointStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CheckpointStats
+	 * Json deserializer for {@link CheckpointStats}
 	 */
-	public static final JsonpDeserializer<CheckpointStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CheckpointStats::setupCheckpointStatsDeserializer);
+	public static final JsonpDeserializer<CheckpointStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CheckpointStats::setupCheckpointStatsDeserializer, Builder::build);
 
 	protected static void setupCheckpointStatsDeserializer(DelegatingDeserializer<CheckpointStats.Builder> op) {
 
-		op.add(Builder::checkpoint, JsonpDeserializer.numberDeserializer(), "checkpoint");
-		op.add(Builder::checkpointProgress, TransformProgress.DESERIALIZER, "checkpoint_progress");
+		op.add(Builder::checkpoint, JsonpDeserializer.longDeserializer(), "checkpoint");
+		op.add(Builder::checkpointProgress, TransformProgress._DESERIALIZER, "checkpoint_progress");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::timestampMillis, JsonpDeserializer.jsonValueDeserializer(), "timestamp_millis");
+		op.add(Builder::timestampMillis, JsonpDeserializer.stringDeserializer(), "timestamp_millis");
 		op.add(Builder::timeUpperBound, JsonpDeserializer.stringDeserializer(), "time_upper_bound");
-		op.add(Builder::timeUpperBoundMillis, JsonpDeserializer.jsonValueDeserializer(), "time_upper_bound_millis");
+		op.add(Builder::timeUpperBoundMillis, JsonpDeserializer.stringDeserializer(), "time_upper_bound_millis");
 
 	}
 

@@ -24,49 +24,69 @@
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Response
-public final class StatsResponse implements ToJsonp {
-	private final Number stub;
+@JsonpDeserializable
+public final class StatsResponse implements JsonpSerializable {
+	private final JsonData stats;
+
+	private final JsonData total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsResponse(Builder builder) {
+	public StatsResponse(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.stats = Objects.requireNonNull(builder.stats, "stats");
+		this.total = Objects.requireNonNull(builder.total, "total");
 
 	}
 
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
-	 * API name: {@code stub}
+	 * API name: {@code stats}
 	 */
-	public Number stub() {
-		return this.stub;
+	public JsonData stats() {
+		return this.stats;
+	}
+
+	/**
+	 * API name: {@code total}
+	 */
+	public JsonData total() {
+		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+		generator.writeKey("stats");
+		this.stats.serialize(generator, mapper);
+
+		generator.writeKey("total");
+		this.total.serialize(generator, mapper);
 
 	}
 
@@ -76,13 +96,23 @@ public final class StatsResponse implements ToJsonp {
 	 * Builder for {@link StatsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<StatsResponse> {
-		private Number stub;
+		private JsonData stats;
+
+		private JsonData total;
 
 		/**
-		 * API name: {@code stub}
+		 * API name: {@code stats}
 		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder stats(JsonData value) {
+			this.stats = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total}
+		 */
+		public Builder total(JsonData value) {
+			this.total = value;
 			return this;
 		}
 
@@ -101,14 +131,15 @@ public final class StatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatsResponse
+	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
+		op.add(Builder::stats, JsonData._DESERIALIZER, "stats");
+		op.add(Builder::total, JsonData._DESERIALIZER, "total");
 
 	}
 

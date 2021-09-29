@@ -40,11 +40,12 @@ import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -52,7 +53,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
-public final class ShardStats implements ToJsonp {
+@JsonpDeserializable
+public final class ShardStats implements JsonpSerializable {
 	private final ShardCommit commit;
 
 	private final CompletionStats completion;
@@ -98,9 +100,11 @@ public final class ShardStats implements ToJsonp {
 	@Nullable
 	private final BulkStats bulk;
 
+	private final ShardsTotalStats shards;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardStats(Builder builder) {
+	public ShardStats(Builder builder) {
 
 		this.commit = Objects.requireNonNull(builder.commit, "commit");
 		this.completion = Objects.requireNonNull(builder.completion, "completion");
@@ -124,7 +128,12 @@ public final class ShardStats implements ToJsonp {
 		this.translog = Objects.requireNonNull(builder.translog, "translog");
 		this.warmer = Objects.requireNonNull(builder.warmer, "warmer");
 		this.bulk = builder.bulk;
+		this.shards = Objects.requireNonNull(builder.shards, "shards");
 
+	}
+
+	public ShardStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -283,85 +292,95 @@ public final class ShardStats implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code shards}
+	 */
+	public ShardsTotalStats shards() {
+		return this.shards;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("commit");
-		this.commit.toJsonp(generator, mapper);
+		this.commit.serialize(generator, mapper);
 
 		generator.writeKey("completion");
-		this.completion.toJsonp(generator, mapper);
+		this.completion.serialize(generator, mapper);
 
 		generator.writeKey("docs");
-		this.docs.toJsonp(generator, mapper);
+		this.docs.serialize(generator, mapper);
 
 		generator.writeKey("fielddata");
-		this.fielddata.toJsonp(generator, mapper);
+		this.fielddata.serialize(generator, mapper);
 
 		generator.writeKey("flush");
-		this.flush.toJsonp(generator, mapper);
+		this.flush.serialize(generator, mapper);
 
 		generator.writeKey("get");
-		this.get.toJsonp(generator, mapper);
+		this.get.serialize(generator, mapper);
 
 		generator.writeKey("indexing");
-		this.indexing.toJsonp(generator, mapper);
+		this.indexing.serialize(generator, mapper);
 
 		generator.writeKey("merges");
-		this.merges.toJsonp(generator, mapper);
+		this.merges.serialize(generator, mapper);
 
 		generator.writeKey("shard_path");
-		this.shardPath.toJsonp(generator, mapper);
+		this.shardPath.serialize(generator, mapper);
 
 		generator.writeKey("query_cache");
-		this.queryCache.toJsonp(generator, mapper);
+		this.queryCache.serialize(generator, mapper);
 
 		generator.writeKey("recovery");
-		this.recovery.toJsonp(generator, mapper);
+		this.recovery.serialize(generator, mapper);
 
 		generator.writeKey("refresh");
-		this.refresh.toJsonp(generator, mapper);
+		this.refresh.serialize(generator, mapper);
 
 		generator.writeKey("request_cache");
-		this.requestCache.toJsonp(generator, mapper);
+		this.requestCache.serialize(generator, mapper);
 
 		generator.writeKey("retention_leases");
-		this.retentionLeases.toJsonp(generator, mapper);
+		this.retentionLeases.serialize(generator, mapper);
 
 		generator.writeKey("routing");
-		this.routing.toJsonp(generator, mapper);
+		this.routing.serialize(generator, mapper);
 
 		generator.writeKey("search");
-		this.search.toJsonp(generator, mapper);
+		this.search.serialize(generator, mapper);
 
 		generator.writeKey("segments");
-		this.segments.toJsonp(generator, mapper);
+		this.segments.serialize(generator, mapper);
 
 		generator.writeKey("seq_no");
-		this.seqNo.toJsonp(generator, mapper);
+		this.seqNo.serialize(generator, mapper);
 
 		generator.writeKey("store");
-		this.store.toJsonp(generator, mapper);
+		this.store.serialize(generator, mapper);
 
 		generator.writeKey("translog");
-		this.translog.toJsonp(generator, mapper);
+		this.translog.serialize(generator, mapper);
 
 		generator.writeKey("warmer");
-		this.warmer.toJsonp(generator, mapper);
+		this.warmer.serialize(generator, mapper);
 
 		if (this.bulk != null) {
 
 			generator.writeKey("bulk");
-			this.bulk.toJsonp(generator, mapper);
+			this.bulk.serialize(generator, mapper);
 
 		}
+
+		generator.writeKey("shards");
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -415,6 +434,8 @@ public final class ShardStats implements ToJsonp {
 
 		@Nullable
 		private BulkStats bulk;
+
+		private ShardsTotalStats shards;
 
 		/**
 		 * API name: {@code commit}
@@ -747,6 +768,21 @@ public final class ShardStats implements ToJsonp {
 		}
 
 		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(ShardsTotalStats value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link ShardStats}.
 		 *
 		 * @throws NullPointerException
@@ -761,35 +797,36 @@ public final class ShardStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardStats
+	 * Json deserializer for {@link ShardStats}
 	 */
-	public static final JsonpDeserializer<ShardStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardStats::setupShardStatsDeserializer);
+	public static final JsonpDeserializer<ShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardStats::setupShardStatsDeserializer, Builder::build);
 
 	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
 
-		op.add(Builder::commit, ShardCommit.DESERIALIZER, "commit");
-		op.add(Builder::completion, CompletionStats.DESERIALIZER, "completion");
-		op.add(Builder::docs, DocStats.DESERIALIZER, "docs");
-		op.add(Builder::fielddata, FielddataStats.DESERIALIZER, "fielddata");
-		op.add(Builder::flush, FlushStats.DESERIALIZER, "flush");
-		op.add(Builder::get, GetStats.DESERIALIZER, "get");
-		op.add(Builder::indexing, IndexingStats.DESERIALIZER, "indexing");
-		op.add(Builder::merges, MergesStats.DESERIALIZER, "merges");
-		op.add(Builder::shardPath, ShardPath.DESERIALIZER, "shard_path");
-		op.add(Builder::queryCache, ShardQueryCache.DESERIALIZER, "query_cache");
-		op.add(Builder::recovery, RecoveryStats.DESERIALIZER, "recovery");
-		op.add(Builder::refresh, RefreshStats.DESERIALIZER, "refresh");
-		op.add(Builder::requestCache, RequestCacheStats.DESERIALIZER, "request_cache");
-		op.add(Builder::retentionLeases, ShardRetentionLeases.DESERIALIZER, "retention_leases");
-		op.add(Builder::routing, ShardRouting.DESERIALIZER, "routing");
-		op.add(Builder::search, SearchStats.DESERIALIZER, "search");
-		op.add(Builder::segments, SegmentsStats.DESERIALIZER, "segments");
-		op.add(Builder::seqNo, ShardSequenceNumber.DESERIALIZER, "seq_no");
-		op.add(Builder::store, StoreStats.DESERIALIZER, "store");
-		op.add(Builder::translog, TranslogStats.DESERIALIZER, "translog");
-		op.add(Builder::warmer, WarmerStats.DESERIALIZER, "warmer");
-		op.add(Builder::bulk, BulkStats.DESERIALIZER, "bulk");
+		op.add(Builder::commit, ShardCommit._DESERIALIZER, "commit");
+		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
+		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
+		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
+		op.add(Builder::get, GetStats._DESERIALIZER, "get");
+		op.add(Builder::indexing, IndexingStats._DESERIALIZER, "indexing");
+		op.add(Builder::merges, MergesStats._DESERIALIZER, "merges");
+		op.add(Builder::shardPath, ShardPath._DESERIALIZER, "shard_path");
+		op.add(Builder::queryCache, ShardQueryCache._DESERIALIZER, "query_cache");
+		op.add(Builder::recovery, RecoveryStats._DESERIALIZER, "recovery");
+		op.add(Builder::refresh, RefreshStats._DESERIALIZER, "refresh");
+		op.add(Builder::requestCache, RequestCacheStats._DESERIALIZER, "request_cache");
+		op.add(Builder::retentionLeases, ShardRetentionLeases._DESERIALIZER, "retention_leases");
+		op.add(Builder::routing, ShardRouting._DESERIALIZER, "routing");
+		op.add(Builder::search, SearchStats._DESERIALIZER, "search");
+		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
+		op.add(Builder::seqNo, ShardSequenceNumber._DESERIALIZER, "seq_no");
+		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
+		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
+		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
+		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
+		op.add(Builder::shards, ShardsTotalStats._DESERIALIZER, "shards");
 
 	}
 

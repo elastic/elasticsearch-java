@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,9 +37,12 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Request
+
 public final class GetJobStatsRequest extends RequestBase {
 	@Nullable
 	private final String jobId;
@@ -47,14 +52,20 @@ public final class GetJobStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetJobStatsRequest(Builder builder) {
+	public GetJobStatsRequest(Builder builder) {
 
 		this.jobId = builder.jobId;
 		this.allowNoJobs = builder.allowNoJobs;
 
 	}
 
+	public GetJobStatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the jobs stats to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
@@ -63,6 +74,9 @@ public final class GetJobStatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+	 * <code>_all</code> string or when no jobs have been specified)
+	 * <p>
 	 * API name: {@code allow_no_jobs}
 	 */
 	@Nullable
@@ -83,6 +97,8 @@ public final class GetJobStatsRequest extends RequestBase {
 		private Boolean allowNoJobs;
 
 		/**
+		 * The ID of the jobs stats to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(@Nullable String value) {
@@ -91,6 +107,9 @@ public final class GetJobStatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
+		 * <code>_all</code> string or when no jobs have been specified)
+		 * <p>
 		 * API name: {@code allow_no_jobs}
 		 */
 		public Builder allowNoJobs(@Nullable Boolean value) {
@@ -115,7 +134,7 @@ public final class GetJobStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_job_stats}".
 	 */
-	public static final Endpoint<GetJobStatsRequest, GetJobStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetJobStatsRequest, GetJobStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -143,11 +162,11 @@ public final class GetJobStatsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -159,5 +178,5 @@ public final class GetJobStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetJobStatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetJobStatsResponse._DESERIALIZER);
 }

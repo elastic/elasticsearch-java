@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,18 +33,33 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TypeQuery
-public final class TypeQuery extends QueryBase {
+@JsonpDeserializable
+public final class TypeQuery extends QueryBase implements QueryVariant {
 	private final String value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TypeQuery(Builder builder) {
+	public TypeQuery(Builder builder) {
 		super(builder);
+
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public TypeQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "type";
 	}
 
 	/**
@@ -53,8 +69,9 @@ public final class TypeQuery extends QueryBase {
 		return this.value;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("value");
 		generator.write(this.value);
@@ -97,10 +114,10 @@ public final class TypeQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TypeQuery
+	 * Json deserializer for {@link TypeQuery}
 	 */
-	public static final JsonpDeserializer<TypeQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TypeQuery::setupTypeQueryDeserializer);
+	public static final JsonpDeserializer<TypeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TypeQuery::setupTypeQueryDeserializer, Builder::build);
 
 	protected static void setupTypeQueryDeserializer(DelegatingDeserializer<TypeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

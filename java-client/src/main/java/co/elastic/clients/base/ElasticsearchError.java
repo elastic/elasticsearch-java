@@ -19,8 +19,8 @@
 
 package co.elastic.clients.base;
 
-import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 
 public class ElasticsearchError {
 

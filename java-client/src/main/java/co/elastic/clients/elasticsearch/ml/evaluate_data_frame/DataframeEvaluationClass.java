@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,18 +33,25 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationClass
+@JsonpDeserializable
 public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 	private final String className;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationClass(Builder builder) {
+	public DataframeEvaluationClass(Builder builder) {
 		super(builder);
+
 		this.className = Objects.requireNonNull(builder.className, "class_name");
 
+	}
+
+	public DataframeEvaluationClass(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -53,8 +61,9 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		return this.className;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("class_name");
 		generator.write(this.className);
@@ -99,10 +108,10 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationClass
+	 * Json deserializer for {@link DataframeEvaluationClass}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationClass> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeEvaluationClass::setupDataframeEvaluationClassDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationClass> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeEvaluationClass::setupDataframeEvaluationClassDeserializer, Builder::build);
 
 	protected static void setupDataframeEvaluationClassDeserializer(
 			DelegatingDeserializer<DataframeEvaluationClass.Builder> op) {

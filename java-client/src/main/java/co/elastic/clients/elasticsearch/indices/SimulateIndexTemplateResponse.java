@@ -23,23 +23,27 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.simulate_index_template.Response
+
 public final class SimulateIndexTemplateResponse {
-	protected SimulateIndexTemplateResponse() {
+	public SimulateIndexTemplateResponse() {
 	}
 
 	/**
 	 * Singleton instance for {@link SimulateIndexTemplateResponse}.
 	 */
-	public static final SimulateIndexTemplateResponse INSTANCE = new SimulateIndexTemplateResponse();
+	public static final SimulateIndexTemplateResponse _INSTANCE = new SimulateIndexTemplateResponse();
 
-	public static final JsonpDeserializer<SimulateIndexTemplateResponse> DESERIALIZER = JsonpDeserializer
-			.fixedValue(SimulateIndexTemplateResponse.INSTANCE);
+	public static final JsonpDeserializer<SimulateIndexTemplateResponse> _DESERIALIZER = JsonpDeserializer
+			.fixedValue(SimulateIndexTemplateResponse._INSTANCE);
 
 }

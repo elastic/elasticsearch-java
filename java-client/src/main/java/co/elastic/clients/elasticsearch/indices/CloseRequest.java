@@ -25,10 +25,15 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,10 +45,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.close.Request
+
 public final class CloseRequest extends RequestBase {
 	private final List<String> index;
 
@@ -51,27 +58,27 @@ public final class CloseRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
-	private final JsonValue waitForActiveShards;
+	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloseRequest(Builder builder) {
+	public CloseRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
@@ -79,7 +86,13 @@ public final class CloseRequest extends RequestBase {
 
 	}
 
+	public CloseRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma separated list of indices to close
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -87,6 +100,10 @@ public final class CloseRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -95,14 +112,20 @@ public final class CloseRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -111,26 +134,32 @@ public final class CloseRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * Explicit operation timeout
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
+	 * Sets the number of active shards to wait for before the operation returns.
+	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue waitForActiveShards() {
+	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -146,21 +175,23 @@ public final class CloseRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
-		private JsonValue waitForActiveShards;
+		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
 		/**
+		 * A comma separated list of indices to close
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -169,6 +200,8 @@ public final class CloseRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma separated list of indices to close
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -177,7 +210,7 @@ public final class CloseRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -188,6 +221,10 @@ public final class CloseRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -196,14 +233,42 @@ public final class CloseRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -212,25 +277,31 @@ public final class CloseRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Explicit operation timeout
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
+		 * Sets the number of active shards to wait for before the operation returns.
+		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue value) {
+		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -252,7 +323,7 @@ public final class CloseRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.close}".
 	 */
-	public static final Endpoint<CloseRequest, CloseResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CloseRequest, CloseResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -265,17 +336,16 @@ public final class CloseRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_close");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -286,21 +356,22 @@ public final class CloseRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, CloseResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CloseResponse._DESERIALIZER);
 }

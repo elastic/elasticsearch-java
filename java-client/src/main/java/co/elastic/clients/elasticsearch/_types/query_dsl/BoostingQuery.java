@@ -24,81 +24,83 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoostingQuery
-public final class BoostingQuery extends QueryBase {
-	@Nullable
-	private final Number negativeBoost;
+@JsonpDeserializable
+public final class BoostingQuery extends QueryBase implements QueryVariant {
+	private final double negativeBoost;
 
-	@Nullable
-	private final QueryContainer negative;
+	private final Query negative;
 
-	@Nullable
-	private final QueryContainer positive;
+	private final Query positive;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BoostingQuery(Builder builder) {
+	public BoostingQuery(Builder builder) {
 		super(builder);
-		this.negativeBoost = builder.negativeBoost;
-		this.negative = builder.negative;
-		this.positive = builder.positive;
 
+		this.negativeBoost = Objects.requireNonNull(builder.negativeBoost, "negative_boost");
+		this.negative = Objects.requireNonNull(builder.negative, "negative");
+		this.positive = Objects.requireNonNull(builder.positive, "positive");
+
+	}
+
+	public BoostingQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "boosting";
 	}
 
 	/**
 	 * API name: {@code negative_boost}
 	 */
-	@Nullable
-	public Number negativeBoost() {
+	public double negativeBoost() {
 		return this.negativeBoost;
 	}
 
 	/**
 	 * API name: {@code negative}
 	 */
-	@Nullable
-	public QueryContainer negative() {
+	public Query negative() {
 		return this.negative;
 	}
 
 	/**
 	 * API name: {@code positive}
 	 */
-	@Nullable
-	public QueryContainer positive() {
+	public Query positive() {
 		return this.positive;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.negativeBoost != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("negative_boost");
-			generator.write(this.negativeBoost.doubleValue());
+		super.serializeInternal(generator, mapper);
 
-		}
-		if (this.negative != null) {
+		generator.writeKey("negative_boost");
+		generator.write(this.negativeBoost);
 
-			generator.writeKey("negative");
-			this.negative.toJsonp(generator, mapper);
+		generator.writeKey("negative");
+		this.negative.serialize(generator, mapper);
 
-		}
-		if (this.positive != null) {
-
-			generator.writeKey("positive");
-			this.positive.toJsonp(generator, mapper);
-
-		}
+		generator.writeKey("positive");
+		this.positive.serialize(generator, mapper);
 
 	}
 
@@ -108,19 +110,16 @@ public final class BoostingQuery extends QueryBase {
 	 * Builder for {@link BoostingQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<BoostingQuery> {
-		@Nullable
-		private Number negativeBoost;
+		private Double negativeBoost;
 
-		@Nullable
-		private QueryContainer negative;
+		private Query negative;
 
-		@Nullable
-		private QueryContainer positive;
+		private Query positive;
 
 		/**
 		 * API name: {@code negative_boost}
 		 */
-		public Builder negativeBoost(@Nullable Number value) {
+		public Builder negativeBoost(double value) {
 			this.negativeBoost = value;
 			return this;
 		}
@@ -128,7 +127,7 @@ public final class BoostingQuery extends QueryBase {
 		/**
 		 * API name: {@code negative}
 		 */
-		public Builder negative(@Nullable QueryContainer value) {
+		public Builder negative(Query value) {
 			this.negative = value;
 			return this;
 		}
@@ -136,14 +135,14 @@ public final class BoostingQuery extends QueryBase {
 		/**
 		 * API name: {@code negative}
 		 */
-		public Builder negative(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.negative(fn.apply(new QueryContainer.Builder()).build());
+		public Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.negative(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code positive}
 		 */
-		public Builder positive(@Nullable QueryContainer value) {
+		public Builder positive(Query value) {
 			this.positive = value;
 			return this;
 		}
@@ -151,8 +150,8 @@ public final class BoostingQuery extends QueryBase {
 		/**
 		 * API name: {@code positive}
 		 */
-		public Builder positive(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.positive(fn.apply(new QueryContainer.Builder()).build());
+		public Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.positive(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -175,16 +174,16 @@ public final class BoostingQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BoostingQuery
+	 * Json deserializer for {@link BoostingQuery}
 	 */
-	public static final JsonpDeserializer<BoostingQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BoostingQuery::setupBoostingQueryDeserializer);
+	public static final JsonpDeserializer<BoostingQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BoostingQuery::setupBoostingQueryDeserializer, Builder::build);
 
 	protected static void setupBoostingQueryDeserializer(DelegatingDeserializer<BoostingQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::negativeBoost, JsonpDeserializer.numberDeserializer(), "negative_boost");
-		op.add(Builder::negative, QueryContainer.DESERIALIZER, "negative");
-		op.add(Builder::positive, QueryContainer.DESERIALIZER, "positive");
+		op.add(Builder::negativeBoost, JsonpDeserializer.doubleDeserializer(), "negative_boost");
+		op.add(Builder::negative, Query._DESERIALIZER, "negative");
+		op.add(Builder::positive, Query._DESERIALIZER, "positive");
 
 	}
 

@@ -24,31 +24,38 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
-public final class NodeInfoScript implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoScript implements JsonpSerializable {
 	private final String allowedTypes;
 
 	private final String disableMaxCompilationsRate;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoScript(Builder builder) {
+	public NodeInfoScript(Builder builder) {
 
 		this.allowedTypes = Objects.requireNonNull(builder.allowedTypes, "allowed_types");
 		this.disableMaxCompilationsRate = Objects.requireNonNull(builder.disableMaxCompilationsRate,
 				"disable_max_compilations_rate");
 
+	}
+
+	public NodeInfoScript(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -68,13 +75,13 @@ public final class NodeInfoScript implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("allowed_types");
 		generator.write(this.allowedTypes);
@@ -125,10 +132,10 @@ public final class NodeInfoScript implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoScript
+	 * Json deserializer for {@link NodeInfoScript}
 	 */
-	public static final JsonpDeserializer<NodeInfoScript> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeInfoScript::setupNodeInfoScriptDeserializer);
+	public static final JsonpDeserializer<NodeInfoScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeInfoScript::setupNodeInfoScriptDeserializer, Builder::build);
 
 	protected static void setupNodeInfoScriptDeserializer(DelegatingDeserializer<NodeInfoScript.Builder> op) {
 

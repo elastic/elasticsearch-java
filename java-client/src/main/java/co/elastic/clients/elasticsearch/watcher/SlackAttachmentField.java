@@ -24,21 +24,24 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachmentField
-public final class SlackAttachmentField implements ToJsonp {
-	private final Boolean short_;
+@JsonpDeserializable
+public final class SlackAttachmentField implements JsonpSerializable {
+	private final boolean short_;
 
 	private final String title;
 
@@ -46,7 +49,7 @@ public final class SlackAttachmentField implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SlackAttachmentField(Builder builder) {
+	public SlackAttachmentField(Builder builder) {
 
 		this.short_ = Objects.requireNonNull(builder.short_, "short");
 		this.title = Objects.requireNonNull(builder.title, "title");
@@ -54,10 +57,14 @@ public final class SlackAttachmentField implements ToJsonp {
 
 	}
 
+	public SlackAttachmentField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code short}
 	 */
-	public Boolean short_() {
+	public boolean short_() {
 		return this.short_;
 	}
 
@@ -78,13 +85,13 @@ public final class SlackAttachmentField implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("short");
 		generator.write(this.short_);
@@ -112,7 +119,7 @@ public final class SlackAttachmentField implements ToJsonp {
 		/**
 		 * API name: {@code short}
 		 */
-		public Builder short_(Boolean value) {
+		public Builder short_(boolean value) {
 			this.short_ = value;
 			return this;
 		}
@@ -148,10 +155,10 @@ public final class SlackAttachmentField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SlackAttachmentField
+	 * Json deserializer for {@link SlackAttachmentField}
 	 */
-	public static final JsonpDeserializer<SlackAttachmentField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlackAttachmentField::setupSlackAttachmentFieldDeserializer);
+	public static final JsonpDeserializer<SlackAttachmentField> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SlackAttachmentField::setupSlackAttachmentFieldDeserializer, Builder::build);
 
 	protected static void setupSlackAttachmentFieldDeserializer(
 			DelegatingDeserializer<SlackAttachmentField.Builder> op) {

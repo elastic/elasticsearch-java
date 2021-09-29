@@ -24,46 +24,49 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GetStats
-public final class GetStats implements ToJsonp {
-	private final Number current;
+@JsonpDeserializable
+public final class GetStats implements JsonpSerializable {
+	private final long current;
 
 	@Nullable
 	private final String existsTime;
 
-	private final Number existsTimeInMillis;
+	private final long existsTimeInMillis;
 
-	private final Number existsTotal;
+	private final long existsTotal;
 
 	@Nullable
 	private final String missingTime;
 
-	private final Number missingTimeInMillis;
+	private final long missingTimeInMillis;
 
-	private final Number missingTotal;
+	private final long missingTotal;
 
 	@Nullable
 	private final String time;
 
-	private final Number timeInMillis;
+	private final long timeInMillis;
 
-	private final Number total;
+	private final long total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetStats(Builder builder) {
+	public GetStats(Builder builder) {
 
 		this.current = Objects.requireNonNull(builder.current, "current");
 		this.existsTime = builder.existsTime;
@@ -78,10 +81,14 @@ public final class GetStats implements ToJsonp {
 
 	}
 
+	public GetStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code current}
 	 */
-	public Number current() {
+	public long current() {
 		return this.current;
 	}
 
@@ -96,14 +103,14 @@ public final class GetStats implements ToJsonp {
 	/**
 	 * API name: {@code exists_time_in_millis}
 	 */
-	public Number existsTimeInMillis() {
+	public long existsTimeInMillis() {
 		return this.existsTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code exists_total}
 	 */
-	public Number existsTotal() {
+	public long existsTotal() {
 		return this.existsTotal;
 	}
 
@@ -118,14 +125,14 @@ public final class GetStats implements ToJsonp {
 	/**
 	 * API name: {@code missing_time_in_millis}
 	 */
-	public Number missingTimeInMillis() {
+	public long missingTimeInMillis() {
 		return this.missingTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code missing_total}
 	 */
-	public Number missingTotal() {
+	public long missingTotal() {
 		return this.missingTotal;
 	}
 
@@ -140,30 +147,30 @@ public final class GetStats implements ToJsonp {
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Number timeInMillis() {
+	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("current");
-		generator.write(this.current.doubleValue());
+		generator.write(this.current);
 
 		if (this.existsTime != null) {
 
@@ -173,10 +180,10 @@ public final class GetStats implements ToJsonp {
 		}
 
 		generator.writeKey("exists_time_in_millis");
-		generator.write(this.existsTimeInMillis.doubleValue());
+		generator.write(this.existsTimeInMillis);
 
 		generator.writeKey("exists_total");
-		generator.write(this.existsTotal.doubleValue());
+		generator.write(this.existsTotal);
 
 		if (this.missingTime != null) {
 
@@ -186,10 +193,10 @@ public final class GetStats implements ToJsonp {
 		}
 
 		generator.writeKey("missing_time_in_millis");
-		generator.write(this.missingTimeInMillis.doubleValue());
+		generator.write(this.missingTimeInMillis);
 
 		generator.writeKey("missing_total");
-		generator.write(this.missingTotal.doubleValue());
+		generator.write(this.missingTotal);
 
 		if (this.time != null) {
 
@@ -199,10 +206,10 @@ public final class GetStats implements ToJsonp {
 		}
 
 		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis.doubleValue());
+		generator.write(this.timeInMillis);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 	}
 
@@ -212,33 +219,33 @@ public final class GetStats implements ToJsonp {
 	 * Builder for {@link GetStats}.
 	 */
 	public static class Builder implements ObjectBuilder<GetStats> {
-		private Number current;
+		private Long current;
 
 		@Nullable
 		private String existsTime;
 
-		private Number existsTimeInMillis;
+		private Long existsTimeInMillis;
 
-		private Number existsTotal;
+		private Long existsTotal;
 
 		@Nullable
 		private String missingTime;
 
-		private Number missingTimeInMillis;
+		private Long missingTimeInMillis;
 
-		private Number missingTotal;
+		private Long missingTotal;
 
 		@Nullable
 		private String time;
 
-		private Number timeInMillis;
+		private Long timeInMillis;
 
-		private Number total;
+		private Long total;
 
 		/**
 		 * API name: {@code current}
 		 */
-		public Builder current(Number value) {
+		public Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -254,7 +261,7 @@ public final class GetStats implements ToJsonp {
 		/**
 		 * API name: {@code exists_time_in_millis}
 		 */
-		public Builder existsTimeInMillis(Number value) {
+		public Builder existsTimeInMillis(long value) {
 			this.existsTimeInMillis = value;
 			return this;
 		}
@@ -262,7 +269,7 @@ public final class GetStats implements ToJsonp {
 		/**
 		 * API name: {@code exists_total}
 		 */
-		public Builder existsTotal(Number value) {
+		public Builder existsTotal(long value) {
 			this.existsTotal = value;
 			return this;
 		}
@@ -278,7 +285,7 @@ public final class GetStats implements ToJsonp {
 		/**
 		 * API name: {@code missing_time_in_millis}
 		 */
-		public Builder missingTimeInMillis(Number value) {
+		public Builder missingTimeInMillis(long value) {
 			this.missingTimeInMillis = value;
 			return this;
 		}
@@ -286,7 +293,7 @@ public final class GetStats implements ToJsonp {
 		/**
 		 * API name: {@code missing_total}
 		 */
-		public Builder missingTotal(Number value) {
+		public Builder missingTotal(long value) {
 			this.missingTotal = value;
 			return this;
 		}
@@ -302,7 +309,7 @@ public final class GetStats implements ToJsonp {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Number value) {
+		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -310,7 +317,7 @@ public final class GetStats implements ToJsonp {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -330,23 +337,23 @@ public final class GetStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetStats
+	 * Json deserializer for {@link GetStats}
 	 */
-	public static final JsonpDeserializer<GetStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetStats::setupGetStatsDeserializer);
+	public static final JsonpDeserializer<GetStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetStats::setupGetStatsDeserializer, Builder::build);
 
 	protected static void setupGetStatsDeserializer(DelegatingDeserializer<GetStats.Builder> op) {
 
-		op.add(Builder::current, JsonpDeserializer.numberDeserializer(), "current");
+		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::existsTime, JsonpDeserializer.stringDeserializer(), "exists_time");
-		op.add(Builder::existsTimeInMillis, JsonpDeserializer.numberDeserializer(), "exists_time_in_millis");
-		op.add(Builder::existsTotal, JsonpDeserializer.numberDeserializer(), "exists_total");
+		op.add(Builder::existsTimeInMillis, JsonpDeserializer.longDeserializer(), "exists_time_in_millis");
+		op.add(Builder::existsTotal, JsonpDeserializer.longDeserializer(), "exists_total");
 		op.add(Builder::missingTime, JsonpDeserializer.stringDeserializer(), "missing_time");
-		op.add(Builder::missingTimeInMillis, JsonpDeserializer.numberDeserializer(), "missing_time_in_millis");
-		op.add(Builder::missingTotal, JsonpDeserializer.numberDeserializer(), "missing_total");
+		op.add(Builder::missingTimeInMillis, JsonpDeserializer.longDeserializer(), "missing_time_in_millis");
+		op.add(Builder::missingTotal, JsonpDeserializer.longDeserializer(), "missing_total");
 		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time");
-		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 
 	}
 

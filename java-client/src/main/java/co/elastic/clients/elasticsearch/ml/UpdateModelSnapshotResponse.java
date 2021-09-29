@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,15 +37,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Response
+@JsonpDeserializable
 public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase {
 	private final ModelSnapshot model;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateModelSnapshotResponse(Builder builder) {
+	public UpdateModelSnapshotResponse(Builder builder) {
 		super(builder);
+
 		this.model = Objects.requireNonNull(builder.model, "model");
 
+	}
+
+	public UpdateModelSnapshotResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -54,11 +61,12 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		return this.model;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("model");
-		this.model.toJsonp(generator, mapper);
+		this.model.serialize(generator, mapper);
 
 	}
 
@@ -107,15 +115,15 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateModelSnapshotResponse
+	 * Json deserializer for {@link UpdateModelSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<UpdateModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseDeserializer);
+	public static final JsonpDeserializer<UpdateModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, UpdateModelSnapshotResponse::setupUpdateModelSnapshotResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateModelSnapshotResponseDeserializer(
 			DelegatingDeserializer<UpdateModelSnapshotResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::model, ModelSnapshot.DESERIALIZER, "model");
+		op.add(Builder::model, ModelSnapshot._DESERIALIZER, "model");
 
 	}
 

@@ -24,32 +24,37 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptBase
-public abstract class ScriptBase implements ToJsonp {
+
+public abstract class ScriptBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue lang;
+	private final ScriptLanguage lang;
 
 	@Nullable
-	private final Map<String, JsonValue> params;
+	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptBase(AbstractBuilder<?> builder) {
+	public ScriptBase(AbstractBuilder<?> builder) {
 
 		this.lang = builder.lang;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 
 	}
 
@@ -57,7 +62,7 @@ public abstract class ScriptBase implements ToJsonp {
 	 * API name: {@code lang}
 	 */
 	@Nullable
-	public JsonValue lang() {
+	public ScriptLanguage lang() {
 		return this.lang;
 	}
 
@@ -65,34 +70,33 @@ public abstract class ScriptBase implements ToJsonp {
 	 * API name: {@code params}
 	 */
 	@Nullable
-	public Map<String, JsonValue> params() {
+	public Map<String, JsonData> params() {
 		return this.params;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.lang != null) {
 
 			generator.writeKey("lang");
-			generator.write(this.lang);
-
+			this.lang.serialize(generator, mapper);
 		}
 		if (this.params != null) {
 
 			generator.writeKey("params");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -103,15 +107,15 @@ public abstract class ScriptBase implements ToJsonp {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private JsonValue lang;
+		private ScriptLanguage lang;
 
 		@Nullable
-		private Map<String, JsonValue> params;
+		private Map<String, JsonData> params;
 
 		/**
 		 * API name: {@code lang}
 		 */
-		public BuilderT lang(@Nullable JsonValue value) {
+		public BuilderT lang(@Nullable ScriptLanguage value) {
 			this.lang = value;
 			return self();
 		}
@@ -119,7 +123,7 @@ public abstract class ScriptBase implements ToJsonp {
 		/**
 		 * API name: {@code params}
 		 */
-		public BuilderT params(@Nullable Map<String, JsonValue> value) {
+		public BuilderT params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
 			return self();
 		}
@@ -127,7 +131,7 @@ public abstract class ScriptBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
 		 */
-		public BuilderT putParams(String key, JsonValue value) {
+		public BuilderT putParams(String key, JsonData value) {
 			if (this.params == null) {
 				this.params = new HashMap<>();
 			}
@@ -143,9 +147,8 @@ public abstract class ScriptBase implements ToJsonp {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::lang, JsonpDeserializer.jsonValueDeserializer(), "lang");
-		op.add(AbstractBuilder::params,
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()), "params");
+		op.add(AbstractBuilder::lang, ScriptLanguage._DESERIALIZER, "lang");
+		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}
 

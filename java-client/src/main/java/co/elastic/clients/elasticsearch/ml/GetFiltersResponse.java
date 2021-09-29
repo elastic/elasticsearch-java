@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,24 +42,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Response
-public final class GetFiltersResponse implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class GetFiltersResponse implements JsonpSerializable {
+	private final long count;
 
 	private final List<Filter> filters;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetFiltersResponse(Builder builder) {
+	public GetFiltersResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.filters = Objects.requireNonNull(builder.filters, "filters");
+		this.filters = ModelTypeHelper.unmodifiableNonNull(builder.filters, "filters");
 
+	}
+
+	public GetFiltersResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
@@ -71,21 +78,21 @@ public final class GetFiltersResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("filters");
 		generator.writeStartArray();
 		for (Filter item0 : this.filters) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -98,14 +105,14 @@ public final class GetFiltersResponse implements ToJsonp {
 	 * Builder for {@link GetFiltersResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<GetFiltersResponse> {
-		private Number count;
+		private Long count;
 
 		private List<Filter> filters;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -127,7 +134,7 @@ public final class GetFiltersResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed.
+		 * Add a value to {@link #filters(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilters(Filter value) {
 			if (this.filters == null) {
@@ -145,7 +152,7 @@ public final class GetFiltersResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed.
+		 * Add a value to {@link #filters(List)}, creating the list if needed. 5
 		 */
 		public Builder addFilters(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
 			return this.addFilters(fn.apply(new Filter.Builder()).build());
@@ -166,15 +173,15 @@ public final class GetFiltersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetFiltersResponse
+	 * Json deserializer for {@link GetFiltersResponse}
 	 */
-	public static final JsonpDeserializer<GetFiltersResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetFiltersResponse::setupGetFiltersResponseDeserializer);
+	public static final JsonpDeserializer<GetFiltersResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetFiltersResponse::setupGetFiltersResponseDeserializer, Builder::build);
 
 	protected static void setupGetFiltersResponseDeserializer(DelegatingDeserializer<GetFiltersResponse.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(Filter.DESERIALIZER), "filters");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(Filter._DESERIALIZER), "filters");
 
 	}
 

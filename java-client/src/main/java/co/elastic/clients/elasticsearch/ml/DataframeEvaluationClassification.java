@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassification
-public final class DataframeEvaluationClassification implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeEvaluationClassification implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	@Nullable
@@ -51,7 +53,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeEvaluationClassification(Builder builder) {
+	public DataframeEvaluationClassification(Builder builder) {
 
 		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
 		this.predictedField = builder.predictedField;
@@ -60,11 +62,23 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	}
 
+	public DataframeEvaluationClassification(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link DataframeEvaluation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "classification";
+	}
+
 	/**
 	 * The field of the index which contains the ground truth. The data type of this
 	 * field can be boolean or integer. If the data type is integer, the value has
 	 * to be either 0 (false) or 1 (true).
-	 *
+	 * <p>
 	 * API name: {@code actual_field}
 	 */
 	public String actualField() {
@@ -74,7 +88,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	/**
 	 * The field in the index which contains the predicted value, in other words the
 	 * results of the classification analysis.
-	 *
+	 * <p>
 	 * API name: {@code predicted_field}
 	 */
 	@Nullable
@@ -84,9 +98,9 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	/**
 	 * The field of the index which is an array of documents of the form {
-	 * "class_name": XXX, "class_probability": YYY }. This field must be defined as
-	 * nested in the mappings.
-	 *
+	 * &quot;class_name&quot;: XXX, &quot;class_probability&quot;: YYY }. This field
+	 * must be defined as nested in the mappings.
+	 * <p>
 	 * API name: {@code top_classes_field}
 	 */
 	@Nullable
@@ -96,7 +110,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 	/**
 	 * Specifies the metrics that are used for the evaluation.
-	 *
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	@Nullable
@@ -107,13 +121,13 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actual_field");
 		generator.write(this.actualField);
@@ -133,7 +147,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		if (this.metrics != null) {
 
 			generator.writeKey("metrics");
-			this.metrics.toJsonp(generator, mapper);
+			this.metrics.serialize(generator, mapper);
 
 		}
 
@@ -160,7 +174,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		 * The field of the index which contains the ground truth. The data type of this
 		 * field can be boolean or integer. If the data type is integer, the value has
 		 * to be either 0 (false) or 1 (true).
-		 *
+		 * <p>
 		 * API name: {@code actual_field}
 		 */
 		public Builder actualField(String value) {
@@ -171,7 +185,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		/**
 		 * The field in the index which contains the predicted value, in other words the
 		 * results of the classification analysis.
-		 *
+		 * <p>
 		 * API name: {@code predicted_field}
 		 */
 		public Builder predictedField(@Nullable String value) {
@@ -181,9 +195,9 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 		/**
 		 * The field of the index which is an array of documents of the form {
-		 * "class_name": XXX, "class_probability": YYY }. This field must be defined as
-		 * nested in the mappings.
-		 *
+		 * &quot;class_name&quot;: XXX, &quot;class_probability&quot;: YYY }. This field
+		 * must be defined as nested in the mappings.
+		 * <p>
 		 * API name: {@code top_classes_field}
 		 */
 		public Builder topClassesField(@Nullable String value) {
@@ -193,7 +207,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 		/**
 		 * Specifies the metrics that are used for the evaluation.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(@Nullable DataframeEvaluationClassificationMetrics value) {
@@ -203,7 +217,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 
 		/**
 		 * Specifies the metrics that are used for the evaluation.
-		 *
+		 * <p>
 		 * API name: {@code metrics}
 		 */
 		public Builder metrics(
@@ -226,11 +240,11 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeEvaluationClassification
+	 * Json deserializer for {@link DataframeEvaluationClassification}
 	 */
-	public static final JsonpDeserializer<DataframeEvaluationClassification> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer);
+	public static final JsonpDeserializer<DataframeEvaluationClassification> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeEvaluationClassificationDeserializer(
 			DelegatingDeserializer<DataframeEvaluationClassification.Builder> op) {
@@ -238,7 +252,7 @@ public final class DataframeEvaluationClassification implements ToJsonp {
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedField, JsonpDeserializer.stringDeserializer(), "predicted_field");
 		op.add(Builder::topClassesField, JsonpDeserializer.stringDeserializer(), "top_classes_field");
-		op.add(Builder::metrics, DataframeEvaluationClassificationMetrics.DESERIALIZER, "metrics");
+		op.add(Builder::metrics, DataframeEvaluationClassificationMetrics._DESERIALIZER, "metrics");
 
 	}
 

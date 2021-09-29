@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.delete_data_frame_analytics.Response
+@JsonpDeserializable
 public final class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteDataFrameAnalyticsResponse(Builder builder) {
+	public DeleteDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,11 +76,11 @@ public final class DeleteDataFrameAnalyticsResponse extends AcknowledgedResponse
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteDataFrameAnalyticsResponse
+	 * Json deserializer for {@link DeleteDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<DeleteDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DeleteDataFrameAnalyticsResponse::setupDeleteDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<DeleteDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteDataFrameAnalyticsResponse::setupDeleteDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupDeleteDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<DeleteDataFrameAnalyticsResponse.Builder> op) {

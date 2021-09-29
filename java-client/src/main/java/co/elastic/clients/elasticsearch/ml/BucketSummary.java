@@ -24,16 +24,18 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Double;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,52 +45,57 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketSummary
-public final class BucketSummary implements ToJsonp {
-	private final Number anomalyScore;
+@JsonpDeserializable
+public final class BucketSummary implements JsonpSerializable {
+	private final double anomalyScore;
 
 	private final List<BucketInfluencer> bucketInfluencers;
 
-	private final JsonValue bucketSpan;
+	private final String bucketSpan;
 
-	private final Number eventCount;
+	private final long eventCount;
 
-	private final Number initialAnomalyScore;
+	private final double initialAnomalyScore;
 
-	private final Boolean isInterim;
+	private final boolean isInterim;
 
 	private final String jobId;
 
 	@Nullable
 	private final List<PartitionScore> partitionScores;
 
-	private final Number processingTimeMs;
+	private final double processingTimeMs;
 
 	private final String resultType;
 
-	private final JsonValue timestamp;
+	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketSummary(Builder builder) {
+	public BucketSummary(Builder builder) {
 
 		this.anomalyScore = Objects.requireNonNull(builder.anomalyScore, "anomaly_score");
-		this.bucketInfluencers = Objects.requireNonNull(builder.bucketInfluencers, "bucket_influencers");
+		this.bucketInfluencers = ModelTypeHelper.unmodifiableNonNull(builder.bucketInfluencers, "bucket_influencers");
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.eventCount = Objects.requireNonNull(builder.eventCount, "event_count");
 		this.initialAnomalyScore = Objects.requireNonNull(builder.initialAnomalyScore, "initial_anomaly_score");
 		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.partitionScores = builder.partitionScores;
+		this.partitionScores = ModelTypeHelper.unmodifiable(builder.partitionScores);
 		this.processingTimeMs = Objects.requireNonNull(builder.processingTimeMs, "processing_time_ms");
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
 	}
 
+	public BucketSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code anomaly_score}
 	 */
-	public Number anomalyScore() {
+	public double anomalyScore() {
 		return this.anomalyScore;
 	}
 
@@ -102,28 +109,28 @@ public final class BucketSummary implements ToJsonp {
 	/**
 	 * API name: {@code bucket_span}
 	 */
-	public JsonValue bucketSpan() {
+	public String bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
 	 * API name: {@code event_count}
 	 */
-	public Number eventCount() {
+	public long eventCount() {
 		return this.eventCount;
 	}
 
 	/**
 	 * API name: {@code initial_anomaly_score}
 	 */
-	public Number initialAnomalyScore() {
+	public double initialAnomalyScore() {
 		return this.initialAnomalyScore;
 	}
 
 	/**
 	 * API name: {@code is_interim}
 	 */
-	public Boolean isInterim() {
+	public boolean isInterim() {
 		return this.isInterim;
 	}
 
@@ -145,7 +152,7 @@ public final class BucketSummary implements ToJsonp {
 	/**
 	 * API name: {@code processing_time_ms}
 	 */
-	public Number processingTimeMs() {
+	public double processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
@@ -159,28 +166,28 @@ public final class BucketSummary implements ToJsonp {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public JsonValue timestamp() {
+	public String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("anomaly_score");
-		generator.write(this.anomalyScore.doubleValue());
+		generator.write(this.anomalyScore);
 
 		generator.writeKey("bucket_influencers");
 		generator.writeStartArray();
 		for (BucketInfluencer item0 : this.bucketInfluencers) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -189,10 +196,10 @@ public final class BucketSummary implements ToJsonp {
 		generator.write(this.bucketSpan);
 
 		generator.writeKey("event_count");
-		generator.write(this.eventCount.doubleValue());
+		generator.write(this.eventCount);
 
 		generator.writeKey("initial_anomaly_score");
-		generator.write(this.initialAnomalyScore.doubleValue());
+		generator.write(this.initialAnomalyScore);
 
 		generator.writeKey("is_interim");
 		generator.write(this.isInterim);
@@ -205,7 +212,7 @@ public final class BucketSummary implements ToJsonp {
 			generator.writeKey("partition_scores");
 			generator.writeStartArray();
 			for (PartitionScore item0 : this.partitionScores) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -213,7 +220,7 @@ public final class BucketSummary implements ToJsonp {
 		}
 
 		generator.writeKey("processing_time_ms");
-		generator.write(this.processingTimeMs.doubleValue());
+		generator.write(this.processingTimeMs);
 
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
@@ -229,15 +236,15 @@ public final class BucketSummary implements ToJsonp {
 	 * Builder for {@link BucketSummary}.
 	 */
 	public static class Builder implements ObjectBuilder<BucketSummary> {
-		private Number anomalyScore;
+		private Double anomalyScore;
 
 		private List<BucketInfluencer> bucketInfluencers;
 
-		private JsonValue bucketSpan;
+		private String bucketSpan;
 
-		private Number eventCount;
+		private Long eventCount;
 
-		private Number initialAnomalyScore;
+		private Double initialAnomalyScore;
 
 		private Boolean isInterim;
 
@@ -246,16 +253,16 @@ public final class BucketSummary implements ToJsonp {
 		@Nullable
 		private List<PartitionScore> partitionScores;
 
-		private Number processingTimeMs;
+		private Double processingTimeMs;
 
 		private String resultType;
 
-		private JsonValue timestamp;
+		private String timestamp;
 
 		/**
 		 * API name: {@code anomaly_score}
 		 */
-		public Builder anomalyScore(Number value) {
+		public Builder anomalyScore(double value) {
 			this.anomalyScore = value;
 			return this;
 		}
@@ -278,6 +285,7 @@ public final class BucketSummary implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addBucketInfluencers(BucketInfluencer value) {
 			if (this.bucketInfluencers == null) {
@@ -296,6 +304,7 @@ public final class BucketSummary implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addBucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
 			return this.addBucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
@@ -304,7 +313,7 @@ public final class BucketSummary implements ToJsonp {
 		/**
 		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketSpan(JsonValue value) {
+		public Builder bucketSpan(String value) {
 			this.bucketSpan = value;
 			return this;
 		}
@@ -312,7 +321,7 @@ public final class BucketSummary implements ToJsonp {
 		/**
 		 * API name: {@code event_count}
 		 */
-		public Builder eventCount(Number value) {
+		public Builder eventCount(long value) {
 			this.eventCount = value;
 			return this;
 		}
@@ -320,7 +329,7 @@ public final class BucketSummary implements ToJsonp {
 		/**
 		 * API name: {@code initial_anomaly_score}
 		 */
-		public Builder initialAnomalyScore(Number value) {
+		public Builder initialAnomalyScore(double value) {
 			this.initialAnomalyScore = value;
 			return this;
 		}
@@ -328,7 +337,7 @@ public final class BucketSummary implements ToJsonp {
 		/**
 		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(Boolean value) {
+		public Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
@@ -358,7 +367,7 @@ public final class BucketSummary implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
+		 * Add a value to {@link #partitionScores(List)}, creating the list if needed. 4
 		 */
 		public Builder addPartitionScores(PartitionScore value) {
 			if (this.partitionScores == null) {
@@ -376,7 +385,7 @@ public final class BucketSummary implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
+		 * Add a value to {@link #partitionScores(List)}, creating the list if needed. 5
 		 */
 		public Builder addPartitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
 			return this.addPartitionScores(fn.apply(new PartitionScore.Builder()).build());
@@ -385,7 +394,7 @@ public final class BucketSummary implements ToJsonp {
 		/**
 		 * API name: {@code processing_time_ms}
 		 */
-		public Builder processingTimeMs(Number value) {
+		public Builder processingTimeMs(double value) {
 			this.processingTimeMs = value;
 			return this;
 		}
@@ -401,7 +410,7 @@ public final class BucketSummary implements ToJsonp {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(JsonValue value) {
+		public Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -421,26 +430,26 @@ public final class BucketSummary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketSummary
+	 * Json deserializer for {@link BucketSummary}
 	 */
-	public static final JsonpDeserializer<BucketSummary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BucketSummary::setupBucketSummaryDeserializer);
+	public static final JsonpDeserializer<BucketSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BucketSummary::setupBucketSummaryDeserializer, Builder::build);
 
 	protected static void setupBucketSummaryDeserializer(DelegatingDeserializer<BucketSummary.Builder> op) {
 
-		op.add(Builder::anomalyScore, JsonpDeserializer.numberDeserializer(), "anomaly_score");
-		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer.DESERIALIZER),
+		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
+		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer._DESERIALIZER),
 				"bucket_influencers");
-		op.add(Builder::bucketSpan, JsonpDeserializer.jsonValueDeserializer(), "bucket_span");
-		op.add(Builder::eventCount, JsonpDeserializer.numberDeserializer(), "event_count");
-		op.add(Builder::initialAnomalyScore, JsonpDeserializer.numberDeserializer(), "initial_anomaly_score");
+		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
+		op.add(Builder::eventCount, JsonpDeserializer.longDeserializer(), "event_count");
+		op.add(Builder::initialAnomalyScore, JsonpDeserializer.doubleDeserializer(), "initial_anomaly_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::partitionScores, JsonpDeserializer.arrayDeserializer(PartitionScore.DESERIALIZER),
+		op.add(Builder::partitionScores, JsonpDeserializer.arrayDeserializer(PartitionScore._DESERIALIZER),
 				"partition_scores");
-		op.add(Builder::processingTimeMs, JsonpDeserializer.numberDeserializer(), "processing_time_ms");
+		op.add(Builder::processingTimeMs, JsonpDeserializer.doubleDeserializer(), "processing_time_ms");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.jsonValueDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
 
 	}
 

@@ -24,24 +24,28 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.IndicesResponseBase
+
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	@Nullable
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesResponseBase(AbstractBuilder<?> builder) {
+	public IndicesResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
+
 		this.shards = builder.shards;
 
 	}
@@ -54,12 +58,13 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 		return this.shards;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.shards != null) {
 
 			generator.writeKey("_shards");
-			this.shards.toJsonp(generator, mapper);
+			this.shards.serialize(generator, mapper);
 
 		}
 
@@ -92,7 +97,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesResponseBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(AbstractBuilder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
 	}
 

@@ -24,30 +24,37 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.BuildInformation
-public final class BuildInformation implements ToJsonp {
+@JsonpDeserializable
+public final class BuildInformation implements JsonpSerializable {
 	private final String date;
 
 	private final String hash;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BuildInformation(Builder builder) {
+	public BuildInformation(Builder builder) {
 
 		this.date = Objects.requireNonNull(builder.date, "date");
 		this.hash = Objects.requireNonNull(builder.hash, "hash");
 
+	}
+
+	public BuildInformation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,13 +74,13 @@ public final class BuildInformation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("date");
 		generator.write(this.date);
@@ -124,10 +131,10 @@ public final class BuildInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BuildInformation
+	 * Json deserializer for {@link BuildInformation}
 	 */
-	public static final JsonpDeserializer<BuildInformation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BuildInformation::setupBuildInformationDeserializer);
+	public static final JsonpDeserializer<BuildInformation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			BuildInformation::setupBuildInformationDeserializer, Builder::build);
 
 	protected static void setupBuildInformationDeserializer(DelegatingDeserializer<BuildInformation.Builder> op) {
 

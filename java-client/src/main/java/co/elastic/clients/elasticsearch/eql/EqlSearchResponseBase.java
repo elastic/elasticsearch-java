@@ -24,23 +24,25 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlSearchResponseBase
-public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
+
+public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -51,7 +53,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 	private final Boolean isRunning;
 
 	@Nullable
-	private final Number took;
+	private final Integer took;
 
 	@Nullable
 	private final Boolean timedOut;
@@ -63,7 +65,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EqlSearchResponseBase(AbstractBuilder<TEvent, ?> builder) {
+	public EqlSearchResponseBase(AbstractBuilder<TEvent, ?> builder) {
 
 		this.id = builder.id;
 		this.isPartial = builder.isPartial;
@@ -77,7 +79,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	/**
 	 * Identifier for the search.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -87,7 +89,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	/**
 	 * If true, the response does not contain complete search results.
-	 *
+	 * <p>
 	 * API name: {@code is_partial}
 	 */
 	@Nullable
@@ -97,7 +99,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	/**
 	 * If true, the search request is still executing.
-	 *
+	 * <p>
 	 * API name: {@code is_running}
 	 */
 	@Nullable
@@ -107,17 +109,17 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	/**
 	 * Milliseconds it took Elasticsearch to execute the request.
-	 *
+	 * <p>
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public Number took() {
+	public Integer took() {
 		return this.took;
 	}
 
 	/**
 	 * If true, the request timed out before completion.
-	 *
+	 * <p>
 	 * API name: {@code timed_out}
 	 */
 	@Nullable
@@ -127,7 +129,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 	/**
 	 * Contains matching events and sequences. Also contains related metadata.
-	 *
+	 * <p>
 	 * API name: {@code hits}
 	 */
 	public EqlHits<TEvent> hits() {
@@ -137,13 +139,13 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -166,7 +168,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 		if (this.took != null) {
 
 			generator.writeKey("took");
-			generator.write(this.took.doubleValue());
+			generator.write(this.took);
 
 		}
 		if (this.timedOut != null) {
@@ -177,7 +179,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 		}
 
 		generator.writeKey("hits");
-		this.hits.toJsonp(generator, mapper);
+		this.hits.serialize(generator, mapper);
 
 	}
 
@@ -192,7 +194,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 		private Boolean isRunning;
 
 		@Nullable
-		private Number took;
+		private Integer took;
 
 		@Nullable
 		private Boolean timedOut;
@@ -204,7 +206,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 		/**
 		 * Identifier for the search.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public BuilderT id(@Nullable String value) {
@@ -214,7 +216,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 		/**
 		 * If true, the response does not contain complete search results.
-		 *
+		 * <p>
 		 * API name: {@code is_partial}
 		 */
 		public BuilderT isPartial(@Nullable Boolean value) {
@@ -224,7 +226,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 		/**
 		 * If true, the search request is still executing.
-		 *
+		 * <p>
 		 * API name: {@code is_running}
 		 */
 		public BuilderT isRunning(@Nullable Boolean value) {
@@ -234,17 +236,17 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 		/**
 		 * Milliseconds it took Elasticsearch to execute the request.
-		 *
+		 * <p>
 		 * API name: {@code took}
 		 */
-		public BuilderT took(@Nullable Number value) {
+		public BuilderT took(@Nullable Integer value) {
 			this.took = value;
 			return self();
 		}
 
 		/**
 		 * If true, the request timed out before completion.
-		 *
+		 * <p>
 		 * API name: {@code timed_out}
 		 */
 		public BuilderT timedOut(@Nullable Boolean value) {
@@ -254,7 +256,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 		/**
 		 * Contains matching events and sequences. Also contains related metadata.
-		 *
+		 * <p>
 		 * API name: {@code hits}
 		 */
 		public BuilderT hits(EqlHits<TEvent> value) {
@@ -264,7 +266,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 
 		/**
 		 * Contains matching events and sequences. Also contains related metadata.
-		 *
+		 * <p>
 		 * API name: {@code hits}
 		 */
 		public BuilderT hits(Function<EqlHits.Builder<TEvent>, ObjectBuilder<EqlHits<TEvent>>> fn) {
@@ -274,7 +276,6 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public BuilderT tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;
@@ -292,7 +293,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements ToJsonp {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(AbstractBuilder::took, JsonpDeserializer.numberDeserializer(), "took");
+		op.add(AbstractBuilder::took, JsonpDeserializer.integerDeserializer(), "took");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(AbstractBuilder::hits, EqlHits.createEqlHitsDeserializer(tEventDeserializer), "hits");
 

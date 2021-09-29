@@ -24,39 +24,42 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeThreadPoolInfo
-public final class NodeThreadPoolInfo implements ToJsonp {
+@JsonpDeserializable
+public final class NodeThreadPoolInfo implements JsonpSerializable {
 	@Nullable
-	private final Number core;
+	private final Integer core;
 
 	@Nullable
 	private final String keepAlive;
 
 	@Nullable
-	private final Number max;
+	private final Integer max;
 
-	private final Number queueSize;
+	private final int queueSize;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeThreadPoolInfo(Builder builder) {
+	public NodeThreadPoolInfo(Builder builder) {
 
 		this.core = builder.core;
 		this.keepAlive = builder.keepAlive;
@@ -67,11 +70,15 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 
 	}
 
+	public NodeThreadPoolInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code core}
 	 */
 	@Nullable
-	public Number core() {
+	public Integer core() {
 		return this.core;
 	}
 
@@ -87,14 +94,14 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 	 * API name: {@code max}
 	 */
 	@Nullable
-	public Number max() {
+	public Integer max() {
 		return this.max;
 	}
 
 	/**
 	 * API name: {@code queue_size}
 	 */
-	public Number queueSize() {
+	public int queueSize() {
 		return this.queueSize;
 	}
 
@@ -102,7 +109,7 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -116,18 +123,18 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.core != null) {
 
 			generator.writeKey("core");
-			generator.write(this.core.doubleValue());
+			generator.write(this.core);
 
 		}
 		if (this.keepAlive != null) {
@@ -139,17 +146,17 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 		if (this.max != null) {
 
 			generator.writeKey("max");
-			generator.write(this.max.doubleValue());
+			generator.write(this.max);
 
 		}
 
 		generator.writeKey("queue_size");
-		generator.write(this.queueSize.doubleValue());
+		generator.write(this.queueSize);
 
 		if (this.size != null) {
 
 			generator.writeKey("size");
-			generator.write(this.size.doubleValue());
+			generator.write(this.size);
 
 		}
 
@@ -165,25 +172,25 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<NodeThreadPoolInfo> {
 		@Nullable
-		private Number core;
+		private Integer core;
 
 		@Nullable
 		private String keepAlive;
 
 		@Nullable
-		private Number max;
+		private Integer max;
 
-		private Number queueSize;
+		private Integer queueSize;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		private String type;
 
 		/**
 		 * API name: {@code core}
 		 */
-		public Builder core(@Nullable Number value) {
+		public Builder core(@Nullable Integer value) {
 			this.core = value;
 			return this;
 		}
@@ -199,7 +206,7 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(@Nullable Number value) {
+		public Builder max(@Nullable Integer value) {
 			this.max = value;
 			return this;
 		}
@@ -207,7 +214,7 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 		/**
 		 * API name: {@code queue_size}
 		 */
-		public Builder queueSize(Number value) {
+		public Builder queueSize(int value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -215,7 +222,7 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -243,18 +250,18 @@ public final class NodeThreadPoolInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeThreadPoolInfo
+	 * Json deserializer for {@link NodeThreadPoolInfo}
 	 */
-	public static final JsonpDeserializer<NodeThreadPoolInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer);
+	public static final JsonpDeserializer<NodeThreadPoolInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer, Builder::build);
 
 	protected static void setupNodeThreadPoolInfoDeserializer(DelegatingDeserializer<NodeThreadPoolInfo.Builder> op) {
 
-		op.add(Builder::core, JsonpDeserializer.numberDeserializer(), "core");
+		op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
 		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
-		op.add(Builder::max, JsonpDeserializer.numberDeserializer(), "max");
-		op.add(Builder::queueSize, JsonpDeserializer.numberDeserializer(), "queue_size");
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
+		op.add(Builder::queueSize, JsonpDeserializer.integerDeserializer(), "queue_size");
+		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

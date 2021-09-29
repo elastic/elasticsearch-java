@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -39,7 +41,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatch
-public final class WatcherWatch implements ToJsonp {
+@JsonpDeserializable
+public final class WatcherWatch implements JsonpSerializable {
 	private final Map<String, Counter> input;
 
 	@Nullable
@@ -52,13 +55,17 @@ public final class WatcherWatch implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WatcherWatch(Builder builder) {
+	public WatcherWatch(Builder builder) {
 
-		this.input = Objects.requireNonNull(builder.input, "input");
-		this.condition = builder.condition;
-		this.action = builder.action;
+		this.input = ModelTypeHelper.unmodifiableNonNull(builder.input, "input");
+		this.condition = ModelTypeHelper.unmodifiable(builder.condition);
+		this.action = ModelTypeHelper.unmodifiable(builder.action);
 		this.trigger = Objects.requireNonNull(builder.trigger, "trigger");
 
+	}
+
+	public WatcherWatch(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,19 +101,19 @@ public final class WatcherWatch implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("input");
 		generator.writeStartObject();
 		for (Map.Entry<String, Counter> item0 : this.input.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -117,7 +124,7 @@ public final class WatcherWatch implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.condition.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -129,7 +136,7 @@ public final class WatcherWatch implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.action.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -137,7 +144,7 @@ public final class WatcherWatch implements ToJsonp {
 		}
 
 		generator.writeKey("trigger");
-		this.trigger.toJsonp(generator, mapper);
+		this.trigger.serialize(generator, mapper);
 
 	}
 
@@ -286,17 +293,17 @@ public final class WatcherWatch implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WatcherWatch
+	 * Json deserializer for {@link WatcherWatch}
 	 */
-	public static final JsonpDeserializer<WatcherWatch> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WatcherWatch::setupWatcherWatchDeserializer);
+	public static final JsonpDeserializer<WatcherWatch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WatcherWatch::setupWatcherWatchDeserializer, Builder::build);
 
 	protected static void setupWatcherWatchDeserializer(DelegatingDeserializer<WatcherWatch.Builder> op) {
 
-		op.add(Builder::input, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "input");
-		op.add(Builder::condition, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "condition");
-		op.add(Builder::action, JsonpDeserializer.stringMapDeserializer(Counter.DESERIALIZER), "action");
-		op.add(Builder::trigger, WatcherWatchTrigger.DESERIALIZER, "trigger");
+		op.add(Builder::input, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "input");
+		op.add(Builder::condition, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "condition");
+		op.add(Builder::action, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "action");
+		op.add(Builder::trigger, WatcherWatchTrigger._DESERIALIZER, "trigger");
 
 	}
 

@@ -25,64 +25,209 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
+import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
+import co.elastic.clients.elasticsearch.ml.put_trained_model.Input;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Request
-public final class PutTrainedModelRequest extends RequestBase implements ToJsonp {
-	private final String stub;
+@JsonpDeserializable
+public final class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
+	private final String modelId;
 
 	@Nullable
-	private final String modelId;
+	private final String compressedDefinition;
+
+	@Nullable
+	private final Definition definition;
+
+	@Nullable
+	private final String description;
+
+	private final InferenceConfig inferenceConfig;
+
+	private final Input input;
+
+	@Nullable
+	private final JsonData metadata;
+
+	@Nullable
+	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTrainedModelRequest(Builder builder) {
+	public PutTrainedModelRequest(Builder builder) {
 
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
-		this.modelId = builder.modelId;
+		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.compressedDefinition = builder.compressedDefinition;
+		this.definition = builder.definition;
+		this.description = builder.description;
+		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
+		this.input = Objects.requireNonNull(builder.input, "input");
+		this.metadata = builder.metadata;
+		this.tags = ModelTypeHelper.unmodifiable(builder.tags);
 
 	}
 
-	/**
-	 * API name: {@code stub}
-	 */
-	public String stub() {
-		return this.stub;
+	public PutTrainedModelRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
-	 *
+	 * The unique identifier of the trained model.
+	 * <p>
 	 * API name: {@code model_id}
 	 */
-	@Nullable
 	public String modelId() {
 		return this.modelId;
 	}
 
 	/**
+	 * The compressed (GZipped and Base64 encoded) inference definition of the
+	 * model. If compressed_definition is specified, then definition cannot be
+	 * specified.
+	 * <p>
+	 * API name: {@code compressed_definition}
+	 */
+	@Nullable
+	public String compressedDefinition() {
+		return this.compressedDefinition;
+	}
+
+	/**
+	 * The inference definition for the model. If definition is specified, then
+	 * compressed_definition cannot be specified.
+	 * <p>
+	 * API name: {@code definition}
+	 */
+	@Nullable
+	public Definition definition() {
+		return this.definition;
+	}
+
+	/**
+	 * A human-readable description of the inference trained model.
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public String description() {
+		return this.description;
+	}
+
+	/**
+	 * The default configuration for inference. This can be either a regression or
+	 * classification configuration. It must match the underlying
+	 * definition.trained_model's target_type.
+	 * <p>
+	 * API name: {@code inference_config}
+	 */
+	public InferenceConfig inferenceConfig() {
+		return this.inferenceConfig;
+	}
+
+	/**
+	 * The input field names for the model definition.
+	 * <p>
+	 * API name: {@code input}
+	 */
+	public Input input() {
+		return this.input;
+	}
+
+	/**
+	 * An object map that contains metadata about the model.
+	 * <p>
+	 * API name: {@code metadata}
+	 */
+	@Nullable
+	public JsonData metadata() {
+		return this.metadata;
+	}
+
+	/**
+	 * An array of tags to organize the model.
+	 * <p>
+	 * API name: {@code tags}
+	 */
+	@Nullable
+	public List<String> tags() {
+		return this.tags;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.compressedDefinition != null) {
+
+			generator.writeKey("compressed_definition");
+			generator.write(this.compressedDefinition);
+
+		}
+		if (this.definition != null) {
+
+			generator.writeKey("definition");
+			this.definition.serialize(generator, mapper);
+
+		}
+		if (this.description != null) {
+
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
+
+		generator.writeKey("inference_config");
+		this.inferenceConfig.serialize(generator, mapper);
+
+		generator.writeKey("input");
+		this.input.serialize(generator, mapper);
+
+		if (this.metadata != null) {
+
+			generator.writeKey("metadata");
+			this.metadata.serialize(generator, mapper);
+
+		}
+		if (this.tags != null) {
+
+			generator.writeKey("tags");
+			generator.writeStartArray();
+			for (String item0 : this.tags) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -92,26 +237,160 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	 * Builder for {@link PutTrainedModelRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PutTrainedModelRequest> {
-		private String stub;
-
-		@Nullable
 		private String modelId;
 
+		@Nullable
+		private String compressedDefinition;
+
+		@Nullable
+		private Definition definition;
+
+		@Nullable
+		private String description;
+
+		private InferenceConfig inferenceConfig;
+
+		private Input input;
+
+		@Nullable
+		private JsonData metadata;
+
+		@Nullable
+		private List<String> tags;
+
 		/**
-		 * API name: {@code stub}
+		 * The unique identifier of the trained model.
+		 * <p>
+		 * API name: {@code model_id}
 		 */
-		public Builder stub(String value) {
-			this.stub = value;
+		public Builder modelId(String value) {
+			this.modelId = value;
 			return this;
 		}
 
 		/**
-		 * Auto generated - missing in the input spec
-		 *
-		 * API name: {@code model_id}
+		 * The compressed (GZipped and Base64 encoded) inference definition of the
+		 * model. If compressed_definition is specified, then definition cannot be
+		 * specified.
+		 * <p>
+		 * API name: {@code compressed_definition}
 		 */
-		public Builder modelId(@Nullable String value) {
-			this.modelId = value;
+		public Builder compressedDefinition(@Nullable String value) {
+			this.compressedDefinition = value;
+			return this;
+		}
+
+		/**
+		 * The inference definition for the model. If definition is specified, then
+		 * compressed_definition cannot be specified.
+		 * <p>
+		 * API name: {@code definition}
+		 */
+		public Builder definition(@Nullable Definition value) {
+			this.definition = value;
+			return this;
+		}
+
+		/**
+		 * The inference definition for the model. If definition is specified, then
+		 * compressed_definition cannot be specified.
+		 * <p>
+		 * API name: {@code definition}
+		 */
+		public Builder definition(Function<Definition.Builder, ObjectBuilder<Definition>> fn) {
+			return this.definition(fn.apply(new Definition.Builder()).build());
+		}
+
+		/**
+		 * A human-readable description of the inference trained model.
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
+
+		/**
+		 * The default configuration for inference. This can be either a regression or
+		 * classification configuration. It must match the underlying
+		 * definition.trained_model's target_type.
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public Builder inferenceConfig(InferenceConfig value) {
+			this.inferenceConfig = value;
+			return this;
+		}
+
+		/**
+		 * The default configuration for inference. This can be either a regression or
+		 * classification configuration. It must match the underlying
+		 * definition.trained_model's target_type.
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		}
+
+		/**
+		 * The input field names for the model definition.
+		 * <p>
+		 * API name: {@code input}
+		 */
+		public Builder input(Input value) {
+			this.input = value;
+			return this;
+		}
+
+		/**
+		 * The input field names for the model definition.
+		 * <p>
+		 * API name: {@code input}
+		 */
+		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return this.input(fn.apply(new Input.Builder()).build());
+		}
+
+		/**
+		 * An object map that contains metadata about the model.
+		 * <p>
+		 * API name: {@code metadata}
+		 */
+		public Builder metadata(@Nullable JsonData value) {
+			this.metadata = value;
+			return this;
+		}
+
+		/**
+		 * An array of tags to organize the model.
+		 * <p>
+		 * API name: {@code tags}
+		 */
+		public Builder tags(@Nullable List<String> value) {
+			this.tags = value;
+			return this;
+		}
+
+		/**
+		 * An array of tags to organize the model.
+		 * <p>
+		 * API name: {@code tags}
+		 */
+		public Builder tags(String... value) {
+			this.tags = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #tags(List)}, creating the list if needed. 4
+		 */
+		public Builder addTags(String value) {
+			if (this.tags == null) {
+				this.tags = new ArrayList<>();
+			}
+			this.tags.add(value);
 			return this;
 		}
 
@@ -130,13 +409,21 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTrainedModelRequest
+	 * Json deserializer for {@link PutTrainedModelRequest}
 	 */
-	public static final JsonpDeserializer<PutTrainedModelRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer);
+	public static final JsonpDeserializer<PutTrainedModelRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer, Builder::build);
 
 	protected static void setupPutTrainedModelRequestDeserializer(
 			DelegatingDeserializer<PutTrainedModelRequest.Builder> op) {
+
+		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
+		op.add(Builder::definition, Definition._DESERIALIZER, "definition");
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(Builder::input, Input._DESERIALIZER, "input");
+		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
+		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}
 
@@ -145,7 +432,7 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 	/**
 	 * Endpoint "{@code ml.put_trained_model}".
 	 */
-	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -154,32 +441,27 @@ public final class PutTrainedModelRequest extends RequestBase implements ToJsonp
 
 			// Request path
 			request -> {
-				final int _stub = 1 << 0;
-				final int _modelId = 1 << 1;
+				final int _modelId = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.stub() != null)
-					propsSet |= _stub;
-				if (request.modelId() != null)
-					propsSet |= _modelId;
+				propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					buf.append(request.modelId);
+					SimpleEndpoint.pathEncode(request.modelId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				return params;
+				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutTrainedModelResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutTrainedModelResponse._DESERIALIZER);
 }

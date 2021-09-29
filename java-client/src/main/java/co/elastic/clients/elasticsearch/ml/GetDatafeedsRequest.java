@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,10 +41,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeeds.Request
+
 public final class GetDatafeedsRequest extends RequestBase {
 	@Nullable
 	private final List<String> datafeedId;
@@ -54,15 +60,21 @@ public final class GetDatafeedsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetDatafeedsRequest(Builder builder) {
+	public GetDatafeedsRequest(Builder builder) {
 
-		this.datafeedId = builder.datafeedId;
+		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
 		this.excludeGenerated = builder.excludeGenerated;
 
 	}
 
+	public GetDatafeedsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the datafeeds to fetch
+	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
@@ -71,6 +83,9 @@ public final class GetDatafeedsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * <p>
 	 * API name: {@code allow_no_datafeeds}
 	 */
 	@Nullable
@@ -79,6 +94,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 	}
 
 	/**
+	 * Omits fields that are illegal to set on datafeed PUT
+	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
@@ -102,6 +119,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 		private Boolean excludeGenerated;
 
 		/**
+		 * The ID of the datafeeds to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(@Nullable List<String> value) {
@@ -110,6 +129,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
+		 * The ID of the datafeeds to fetch
+		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String... value) {
@@ -118,7 +139,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
+		 * Add a value to {@link #datafeedId(List)}, creating the list if needed. 4
 		 */
 		public Builder addDatafeedId(String value) {
 			if (this.datafeedId == null) {
@@ -129,6 +150,9 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
+		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * <p>
 		 * API name: {@code allow_no_datafeeds}
 		 */
 		public Builder allowNoDatafeeds(@Nullable Boolean value) {
@@ -137,6 +161,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
+		 * Omits fields that are illegal to set on datafeed PUT
+		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
 		public Builder excludeGenerated(@Nullable Boolean value) {
@@ -161,7 +187,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_datafeeds}".
 	 */
-	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -182,7 +208,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -191,7 +218,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 					buf.append("/datafeeds");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -206,5 +233,5 @@ public final class GetDatafeedsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetDatafeedsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDatafeedsResponse._DESERIALIZER);
 }

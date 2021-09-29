@@ -25,13 +25,18 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,23 +48,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
-public final class PutUserRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutUserRequest extends RequestBase implements JsonpSerializable {
 	private final String username;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
-	private final JsonValue email;
+	private final String email;
 
 	@Nullable
-	private final JsonValue fullName;
+	private final String fullName;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final String password;
@@ -75,21 +82,27 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutUserRequest(Builder builder) {
+	public PutUserRequest(Builder builder) {
 
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = builder.metadata;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.password = builder.password;
 		this.passwordHash = builder.passwordHash;
-		this.roles = builder.roles;
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.enabled = builder.enabled;
 
 	}
 
+	public PutUserRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The username of the User
+	 * <p>
 	 * API name: {@code username}
 	 */
 	public String username() {
@@ -97,10 +110,15 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -108,7 +126,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code email}
 	 */
 	@Nullable
-	public JsonValue email() {
+	public String email() {
 		return this.email;
 	}
 
@@ -116,7 +134,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code full_name}
 	 */
 	@Nullable
-	public JsonValue fullName() {
+	public String fullName() {
 		return this.fullName;
 	}
 
@@ -124,7 +142,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -163,13 +181,13 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
 
@@ -187,9 +205,9 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -236,16 +254,16 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		private String username;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
-		private JsonValue email;
+		private String email;
 
 		@Nullable
-		private JsonValue fullName;
+		private String fullName;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private String password;
@@ -260,6 +278,8 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		private Boolean enabled;
 
 		/**
+		 * The username of the User
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(String value) {
@@ -268,9 +288,14 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -278,7 +303,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code email}
 		 */
-		public Builder email(@Nullable JsonValue value) {
+		public Builder email(@Nullable String value) {
 			this.email = value;
 			return this;
 		}
@@ -286,7 +311,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code full_name}
 		 */
-		public Builder fullName(@Nullable JsonValue value) {
+		public Builder fullName(@Nullable String value) {
 			this.fullName = value;
 			return this;
 		}
@@ -294,7 +319,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -302,7 +327,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -343,7 +368,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -376,17 +401,16 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutUserRequest
+	 * Json deserializer for {@link PutUserRequest}
 	 */
-	public static final JsonpDeserializer<PutUserRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutUserRequest::setupPutUserRequestDeserializer);
+	public static final JsonpDeserializer<PutUserRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PutUserRequest::setupPutUserRequestDeserializer, Builder::build);
 
 	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
 
-		op.add(Builder::email, JsonpDeserializer.jsonValueDeserializer(), "email");
-		op.add(Builder::fullName, JsonpDeserializer.jsonValueDeserializer(), "full_name");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
+		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
@@ -399,7 +423,7 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code security.put_user}".
 	 */
-	public static final Endpoint<PutUserRequest, PutUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutUserRequest, PutUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -412,18 +436,17 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.username() != null)
-					propsSet |= _username;
+				propsSet |= _username;
 
 				if (propsSet == (_username)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.username);
+					SimpleEndpoint.pathEncode(request.username, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -431,9 +454,9 @@ public final class PutUserRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutUserResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutUserResponse._DESERIALIZER);
 }

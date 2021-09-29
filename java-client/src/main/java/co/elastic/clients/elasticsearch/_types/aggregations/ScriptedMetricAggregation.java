@@ -24,51 +24,70 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregation
-public final class ScriptedMetricAggregation extends MetricAggregationBase {
+@JsonpDeserializable
+public final class ScriptedMetricAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue combineScript;
+	private final JsonValue /* _types.Script */ combineScript;
 
 	@Nullable
-	private final JsonValue initScript;
+	private final JsonValue /* _types.Script */ initScript;
 
 	@Nullable
-	private final JsonValue mapScript;
+	private final JsonValue /* _types.Script */ mapScript;
 
 	@Nullable
-	private final Map<String, JsonValue> params;
+	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final JsonValue reduceScript;
+	private final JsonValue /* _types.Script */ reduceScript;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptedMetricAggregation(Builder builder) {
+	public ScriptedMetricAggregation(Builder builder) {
 		super(builder);
+
 		this.combineScript = builder.combineScript;
 		this.initScript = builder.initScript;
 		this.mapScript = builder.mapScript;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.reduceScript = builder.reduceScript;
 
+	}
+
+	public ScriptedMetricAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "scripted_metric";
 	}
 
 	/**
 	 * API name: {@code combine_script}
 	 */
 	@Nullable
-	public JsonValue combineScript() {
+	public JsonValue /* _types.Script */ combineScript() {
 		return this.combineScript;
 	}
 
@@ -76,7 +95,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 	 * API name: {@code init_script}
 	 */
 	@Nullable
-	public JsonValue initScript() {
+	public JsonValue /* _types.Script */ initScript() {
 		return this.initScript;
 	}
 
@@ -84,7 +103,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 	 * API name: {@code map_script}
 	 */
 	@Nullable
-	public JsonValue mapScript() {
+	public JsonValue /* _types.Script */ mapScript() {
 		return this.mapScript;
 	}
 
@@ -92,7 +111,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 	 * API name: {@code params}
 	 */
 	@Nullable
-	public Map<String, JsonValue> params() {
+	public Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -100,12 +119,13 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 	 * API name: {@code reduce_script}
 	 */
 	@Nullable
-	public JsonValue reduceScript() {
+	public JsonValue /* _types.Script */ reduceScript() {
 		return this.reduceScript;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.combineScript != null) {
 
 			generator.writeKey("combine_script");
@@ -128,9 +148,9 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 
 			generator.writeKey("params");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.params.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -154,24 +174,24 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 			implements
 				ObjectBuilder<ScriptedMetricAggregation> {
 		@Nullable
-		private JsonValue combineScript;
+		private JsonValue /* _types.Script */ combineScript;
 
 		@Nullable
-		private JsonValue initScript;
+		private JsonValue /* _types.Script */ initScript;
 
 		@Nullable
-		private JsonValue mapScript;
+		private JsonValue /* _types.Script */ mapScript;
 
 		@Nullable
-		private Map<String, JsonValue> params;
+		private Map<String, JsonData> params;
 
 		@Nullable
-		private JsonValue reduceScript;
+		private JsonValue /* _types.Script */ reduceScript;
 
 		/**
 		 * API name: {@code combine_script}
 		 */
-		public Builder combineScript(@Nullable JsonValue value) {
+		public Builder combineScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.combineScript = value;
 			return this;
 		}
@@ -179,7 +199,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code init_script}
 		 */
-		public Builder initScript(@Nullable JsonValue value) {
+		public Builder initScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.initScript = value;
 			return this;
 		}
@@ -187,7 +207,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code map_script}
 		 */
-		public Builder mapScript(@Nullable JsonValue value) {
+		public Builder mapScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.mapScript = value;
 			return this;
 		}
@@ -195,7 +215,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code params}
 		 */
-		public Builder params(@Nullable Map<String, JsonValue> value) {
+		public Builder params(@Nullable Map<String, JsonData> value) {
 			this.params = value;
 			return this;
 		}
@@ -203,7 +223,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 		/**
 		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
 		 */
-		public Builder putParams(String key, JsonValue value) {
+		public Builder putParams(String key, JsonData value) {
 			if (this.params == null) {
 				this.params = new HashMap<>();
 			}
@@ -214,7 +234,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 		/**
 		 * API name: {@code reduce_script}
 		 */
-		public Builder reduceScript(@Nullable JsonValue value) {
+		public Builder reduceScript(@Nullable JsonValue /* _types.Script */ value) {
 			this.reduceScript = value;
 			return this;
 		}
@@ -239,10 +259,10 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScriptedMetricAggregation
+	 * Json deserializer for {@link ScriptedMetricAggregation}
 	 */
-	public static final JsonpDeserializer<ScriptedMetricAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptedMetricAggregation::setupScriptedMetricAggregationDeserializer);
+	public static final JsonpDeserializer<ScriptedMetricAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ScriptedMetricAggregation::setupScriptedMetricAggregationDeserializer, Builder::build);
 
 	protected static void setupScriptedMetricAggregationDeserializer(
 			DelegatingDeserializer<ScriptedMetricAggregation.Builder> op) {
@@ -250,8 +270,7 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase {
 		op.add(Builder::combineScript, JsonpDeserializer.jsonValueDeserializer(), "combine_script");
 		op.add(Builder::initScript, JsonpDeserializer.jsonValueDeserializer(), "init_script");
 		op.add(Builder::mapScript, JsonpDeserializer.jsonValueDeserializer(), "map_script");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"params");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::reduceScript, JsonpDeserializer.jsonValueDeserializer(), "reduce_script");
 
 	}

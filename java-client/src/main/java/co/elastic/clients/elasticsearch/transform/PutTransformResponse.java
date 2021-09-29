@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: transform.put_transform.Response
+@JsonpDeserializable
 public final class PutTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTransformResponse(Builder builder) {
+	public PutTransformResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutTransformResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class PutTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTransformResponse
+	 * Json deserializer for {@link PutTransformResponse}
 	 */
-	public static final JsonpDeserializer<PutTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTransformResponse::setupPutTransformResponseDeserializer);
+	public static final JsonpDeserializer<PutTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTransformResponse::setupPutTransformResponseDeserializer, Builder::build);
 
 	protected static void setupPutTransformResponseDeserializer(
 			DelegatingDeserializer<PutTransformResponse.Builder> op) {

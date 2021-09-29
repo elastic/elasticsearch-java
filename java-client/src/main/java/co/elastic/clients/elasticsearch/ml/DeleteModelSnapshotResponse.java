@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.delete_model_snapshot.Response
+@JsonpDeserializable
 public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteModelSnapshotResponse(Builder builder) {
+	public DeleteModelSnapshotResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteModelSnapshotResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteModelSnapshotResponse
+	 * Json deserializer for {@link DeleteModelSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<DeleteModelSnapshotResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer);
+	public static final JsonpDeserializer<DeleteModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteModelSnapshotResponseDeserializer(
 			DelegatingDeserializer<DeleteModelSnapshotResponse.Builder> op) {

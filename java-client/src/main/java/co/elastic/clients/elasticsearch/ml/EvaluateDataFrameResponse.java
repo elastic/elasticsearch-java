@@ -27,18 +27,21 @@ import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeClassifi
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeOutlierDetectionSummary;
 import co.elastic.clients.elasticsearch.ml.evaluate_data_frame.DataframeRegressionSummary;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Response
-public final class EvaluateDataFrameResponse implements ToJsonp {
+@JsonpDeserializable
+public final class EvaluateDataFrameResponse implements JsonpSerializable {
 	@Nullable
 	private final DataframeClassificationSummary classification;
 
@@ -50,12 +53,16 @@ public final class EvaluateDataFrameResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EvaluateDataFrameResponse(Builder builder) {
+	public EvaluateDataFrameResponse(Builder builder) {
 
 		this.classification = builder.classification;
 		this.outlierDetection = builder.outlierDetection;
 		this.regression = builder.regression;
 
+	}
+
+	public EvaluateDataFrameResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -85,30 +92,30 @@ public final class EvaluateDataFrameResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.classification != null) {
 
 			generator.writeKey("classification");
-			this.classification.toJsonp(generator, mapper);
+			this.classification.serialize(generator, mapper);
 
 		}
 		if (this.outlierDetection != null) {
 
 			generator.writeKey("outlier_detection");
-			this.outlierDetection.toJsonp(generator, mapper);
+			this.outlierDetection.serialize(generator, mapper);
 
 		}
 		if (this.regression != null) {
 
 			generator.writeKey("regression");
-			this.regression.toJsonp(generator, mapper);
+			this.regression.serialize(generator, mapper);
 
 		}
 
@@ -192,17 +199,17 @@ public final class EvaluateDataFrameResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for EvaluateDataFrameResponse
+	 * Json deserializer for {@link EvaluateDataFrameResponse}
 	 */
-	public static final JsonpDeserializer<EvaluateDataFrameResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, EvaluateDataFrameResponse::setupEvaluateDataFrameResponseDeserializer);
+	public static final JsonpDeserializer<EvaluateDataFrameResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EvaluateDataFrameResponse::setupEvaluateDataFrameResponseDeserializer, Builder::build);
 
 	protected static void setupEvaluateDataFrameResponseDeserializer(
 			DelegatingDeserializer<EvaluateDataFrameResponse.Builder> op) {
 
-		op.add(Builder::classification, DataframeClassificationSummary.DESERIALIZER, "classification");
-		op.add(Builder::outlierDetection, DataframeOutlierDetectionSummary.DESERIALIZER, "outlier_detection");
-		op.add(Builder::regression, DataframeRegressionSummary.DESERIALIZER, "regression");
+		op.add(Builder::classification, DataframeClassificationSummary._DESERIALIZER, "classification");
+		op.add(Builder::outlierDetection, DataframeOutlierDetectionSummary._DESERIALIZER, "outlier_detection");
+		op.add(Builder::regression, DataframeRegressionSummary._DESERIALIZER, "regression");
 
 	}
 

@@ -24,31 +24,34 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationRange
-public final class AggregationRange implements ToJsonp {
+@JsonpDeserializable
+public final class AggregationRange implements JsonpSerializable {
 	@Nullable
-	private final JsonValue from;
+	private final String from;
 
 	@Nullable
 	private final String key;
 
 	@Nullable
-	private final JsonValue to;
+	private final String to;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AggregationRange(Builder builder) {
+	public AggregationRange(Builder builder) {
 
 		this.from = builder.from;
 		this.key = builder.key;
@@ -56,11 +59,15 @@ public final class AggregationRange implements ToJsonp {
 
 	}
 
+	public AggregationRange(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public JsonValue from() {
+	public String from() {
 		return this.from;
 	}
 
@@ -76,20 +83,20 @@ public final class AggregationRange implements ToJsonp {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public JsonValue to() {
+	public String to() {
 		return this.to;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
 
@@ -119,18 +126,18 @@ public final class AggregationRange implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<AggregationRange> {
 		@Nullable
-		private JsonValue from;
+		private String from;
 
 		@Nullable
 		private String key;
 
 		@Nullable
-		private JsonValue to;
+		private String to;
 
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable JsonValue value) {
+		public Builder from(@Nullable String value) {
 			this.from = value;
 			return this;
 		}
@@ -146,7 +153,7 @@ public final class AggregationRange implements ToJsonp {
 		/**
 		 * API name: {@code to}
 		 */
-		public Builder to(@Nullable JsonValue value) {
+		public Builder to(@Nullable String value) {
 			this.to = value;
 			return this;
 		}
@@ -166,16 +173,16 @@ public final class AggregationRange implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AggregationRange
+	 * Json deserializer for {@link AggregationRange}
 	 */
-	public static final JsonpDeserializer<AggregationRange> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AggregationRange::setupAggregationRangeDeserializer);
+	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AggregationRange::setupAggregationRangeDeserializer, Builder::build);
 
 	protected static void setupAggregationRangeDeserializer(DelegatingDeserializer<AggregationRange.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.jsonValueDeserializer(), "from");
+		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::to, JsonpDeserializer.jsonValueDeserializer(), "to");
+		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
 
 	}
 

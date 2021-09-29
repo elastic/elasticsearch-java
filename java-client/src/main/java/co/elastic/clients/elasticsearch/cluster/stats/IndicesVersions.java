@@ -24,31 +24,35 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.IndicesVersions
-public final class IndicesVersions implements ToJsonp {
-	private final Number indexCount;
+@JsonpDeserializable
+public final class IndicesVersions implements JsonpSerializable {
+	private final int indexCount;
 
-	private final Number primaryShardCount;
+	private final int primaryShardCount;
 
-	private final Number totalPrimaryBytes;
+	private final long totalPrimaryBytes;
 
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndicesVersions(Builder builder) {
+	public IndicesVersions(Builder builder) {
 
 		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
 		this.primaryShardCount = Objects.requireNonNull(builder.primaryShardCount, "primary_shard_count");
@@ -57,24 +61,28 @@ public final class IndicesVersions implements ToJsonp {
 
 	}
 
+	public IndicesVersions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code index_count}
 	 */
-	public Number indexCount() {
+	public int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * API name: {@code primary_shard_count}
 	 */
-	public Number primaryShardCount() {
+	public int primaryShardCount() {
 		return this.primaryShardCount;
 	}
 
 	/**
 	 * API name: {@code total_primary_bytes}
 	 */
-	public Number totalPrimaryBytes() {
+	public long totalPrimaryBytes() {
 		return this.totalPrimaryBytes;
 	}
 
@@ -88,22 +96,22 @@ public final class IndicesVersions implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index_count");
-		generator.write(this.indexCount.doubleValue());
+		generator.write(this.indexCount);
 
 		generator.writeKey("primary_shard_count");
-		generator.write(this.primaryShardCount.doubleValue());
+		generator.write(this.primaryShardCount);
 
 		generator.writeKey("total_primary_bytes");
-		generator.write(this.totalPrimaryBytes.doubleValue());
+		generator.write(this.totalPrimaryBytes);
 
 		generator.writeKey("version");
 		generator.write(this.version);
@@ -116,18 +124,18 @@ public final class IndicesVersions implements ToJsonp {
 	 * Builder for {@link IndicesVersions}.
 	 */
 	public static class Builder implements ObjectBuilder<IndicesVersions> {
-		private Number indexCount;
+		private Integer indexCount;
 
-		private Number primaryShardCount;
+		private Integer primaryShardCount;
 
-		private Number totalPrimaryBytes;
+		private Long totalPrimaryBytes;
 
 		private String version;
 
 		/**
 		 * API name: {@code index_count}
 		 */
-		public Builder indexCount(Number value) {
+		public Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -135,7 +143,7 @@ public final class IndicesVersions implements ToJsonp {
 		/**
 		 * API name: {@code primary_shard_count}
 		 */
-		public Builder primaryShardCount(Number value) {
+		public Builder primaryShardCount(int value) {
 			this.primaryShardCount = value;
 			return this;
 		}
@@ -143,7 +151,7 @@ public final class IndicesVersions implements ToJsonp {
 		/**
 		 * API name: {@code total_primary_bytes}
 		 */
-		public Builder totalPrimaryBytes(Number value) {
+		public Builder totalPrimaryBytes(long value) {
 			this.totalPrimaryBytes = value;
 			return this;
 		}
@@ -171,16 +179,16 @@ public final class IndicesVersions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndicesVersions
+	 * Json deserializer for {@link IndicesVersions}
 	 */
-	public static final JsonpDeserializer<IndicesVersions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndicesVersions::setupIndicesVersionsDeserializer);
+	public static final JsonpDeserializer<IndicesVersions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndicesVersions::setupIndicesVersionsDeserializer, Builder::build);
 
 	protected static void setupIndicesVersionsDeserializer(DelegatingDeserializer<IndicesVersions.Builder> op) {
 
-		op.add(Builder::indexCount, JsonpDeserializer.numberDeserializer(), "index_count");
-		op.add(Builder::primaryShardCount, JsonpDeserializer.numberDeserializer(), "primary_shard_count");
-		op.add(Builder::totalPrimaryBytes, JsonpDeserializer.numberDeserializer(), "total_primary_bytes");
+		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
+		op.add(Builder::primaryShardCount, JsonpDeserializer.integerDeserializer(), "primary_shard_count");
+		op.add(Builder::totalPrimaryBytes, JsonpDeserializer.longDeserializer(), "total_primary_bytes");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}

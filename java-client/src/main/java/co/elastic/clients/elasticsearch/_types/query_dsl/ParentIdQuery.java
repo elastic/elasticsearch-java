@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,10 +33,13 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ParentIdQuery
-public final class ParentIdQuery extends QueryBase {
+@JsonpDeserializable
+public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String id;
 
@@ -47,12 +51,25 @@ public final class ParentIdQuery extends QueryBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ParentIdQuery(Builder builder) {
+	public ParentIdQuery(Builder builder) {
 		super(builder);
+
 		this.id = builder.id;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.type = builder.type;
 
+	}
+
+	public ParentIdQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "parent_id";
 	}
 
 	/**
@@ -79,8 +96,9 @@ public final class ParentIdQuery extends QueryBase {
 		return this.type;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.id != null) {
 
 			generator.writeKey("id");
@@ -161,10 +179,10 @@ public final class ParentIdQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ParentIdQuery
+	 * Json deserializer for {@link ParentIdQuery}
 	 */
-	public static final JsonpDeserializer<ParentIdQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ParentIdQuery::setupParentIdQueryDeserializer);
+	public static final JsonpDeserializer<ParentIdQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ParentIdQuery::setupParentIdQueryDeserializer, Builder::build);
 
 	protected static void setupParentIdQueryDeserializer(DelegatingDeserializer<ParentIdQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);

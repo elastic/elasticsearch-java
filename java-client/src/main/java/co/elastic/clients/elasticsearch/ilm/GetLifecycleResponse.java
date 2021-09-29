@@ -23,23 +23,31 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.ilm.get_lifecycle.Lifecycle;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ilm.get_lifecycle.Response
-public final class GetLifecycleResponse extends AdditionalProperties<String, Lifecycle> {
+@JsonpDeserializable
+public final class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetLifecycleResponse(Builder builder) {
+	public GetLifecycleResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetLifecycleResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -47,7 +55,7 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Lif
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Lifecycle, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Lifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {
 		@Override
@@ -72,15 +80,15 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Lif
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetLifecycleResponse
+	 * Json deserializer for {@link GetLifecycleResponse}
 	 */
-	public static final JsonpDeserializer<GetLifecycleResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);
+	public static final JsonpDeserializer<GetLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer, Builder::build);
 
 	protected static void setupGetLifecycleResponseDeserializer(
 			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Lifecycle.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				Lifecycle._DESERIALIZER);
 
 	}
 

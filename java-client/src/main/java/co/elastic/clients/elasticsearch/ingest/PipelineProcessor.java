@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,18 +33,33 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineProcessor
-public final class PipelineProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PipelineProcessor(Builder builder) {
+	public PipelineProcessor(Builder builder) {
 		super(builder);
+
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public PipelineProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "pipeline";
 	}
 
 	/**
@@ -53,8 +69,9 @@ public final class PipelineProcessor extends ProcessorBase {
 		return this.name;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -99,10 +116,10 @@ public final class PipelineProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PipelineProcessor
+	 * Json deserializer for {@link PipelineProcessor}
 	 */
-	public static final JsonpDeserializer<PipelineProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer);
+	public static final JsonpDeserializer<PipelineProcessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer, Builder::build);
 
 	protected static void setupPipelineProcessorDeserializer(DelegatingDeserializer<PipelineProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);

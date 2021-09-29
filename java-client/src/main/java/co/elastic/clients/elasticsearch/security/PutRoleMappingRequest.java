@@ -25,13 +25,18 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,45 +48,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role_mapping.Request
-public final class PutRoleMappingRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutRoleMappingRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	@Nullable
 	private final Boolean enabled;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final List<String> roles;
 
 	@Nullable
-	private final JsonValue rules;
+	private final RoleMappingRule rules;
 
 	@Nullable
 	private final List<String> runAs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutRoleMappingRequest(Builder builder) {
+	public PutRoleMappingRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.refresh = builder.refresh;
 		this.enabled = builder.enabled;
-		this.metadata = builder.metadata;
-		this.roles = builder.roles;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
-		this.runAs = builder.runAs;
+		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
 
 	}
 
+	public PutRoleMappingRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Role-mapping name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public String name() {
@@ -89,10 +102,15 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -108,7 +126,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -124,7 +142,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	 * API name: {@code rules}
 	 */
 	@Nullable
-	public JsonValue rules() {
+	public RoleMappingRule rules() {
 		return this.rules;
 	}
 
@@ -139,13 +157,13 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enabled != null) {
 
@@ -157,9 +175,9 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -179,7 +197,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		if (this.rules != null) {
 
 			generator.writeKey("rules");
-			generator.write(this.rules);
+			this.rules.serialize(generator, mapper);
 
 		}
 		if (this.runAs != null) {
@@ -205,24 +223,26 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		private String name;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		@Nullable
 		private Boolean enabled;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private List<String> roles;
 
 		@Nullable
-		private JsonValue rules;
+		private RoleMappingRule rules;
 
 		@Nullable
 		private List<String> runAs;
 
 		/**
+		 * Role-mapping name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String value) {
@@ -231,9 +251,14 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -249,7 +274,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		/**
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -257,7 +282,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -282,7 +307,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -295,9 +320,16 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		/**
 		 * API name: {@code rules}
 		 */
-		public Builder rules(@Nullable JsonValue value) {
+		public Builder rules(@Nullable RoleMappingRule value) {
 			this.rules = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code rules}
+		 */
+		public Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		/**
@@ -317,7 +349,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -342,19 +374,18 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutRoleMappingRequest
+	 * Json deserializer for {@link PutRoleMappingRequest}
 	 */
-	public static final JsonpDeserializer<PutRoleMappingRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer);
+	public static final JsonpDeserializer<PutRoleMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutRoleMappingRequest::setupPutRoleMappingRequestDeserializer, Builder::build);
 
 	protected static void setupPutRoleMappingRequestDeserializer(
 			DelegatingDeserializer<PutRoleMappingRequest.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::rules, JsonpDeserializer.jsonValueDeserializer(), "rules");
+		op.add(Builder::rules, RoleMappingRule._DESERIALIZER, "rules");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
 
 	}
@@ -364,7 +395,7 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 	/**
 	 * Endpoint "{@code security.put_role_mapping}".
 	 */
-	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -377,18 +408,17 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/role_mapping");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -396,9 +426,9 @@ public final class PutRoleMappingRequest extends RequestBase implements ToJsonp 
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleMappingResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutRoleMappingResponse._DESERIALIZER);
 }

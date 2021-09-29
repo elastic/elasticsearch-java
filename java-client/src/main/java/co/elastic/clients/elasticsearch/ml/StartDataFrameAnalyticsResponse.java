@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -33,33 +34,41 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Response
+@JsonpDeserializable
 public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	private final String node;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartDataFrameAnalyticsResponse(Builder builder) {
+	public StartDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
+
 		this.node = Objects.requireNonNull(builder.node, "node");
 
+	}
+
+	public StartDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * The ID of the node that the job was started on. If the job is allowed to open
 	 * lazily and has not yet been assigned to a node, this value is an empty
 	 * string.
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -80,7 +89,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 		 * The ID of the node that the job was started on. If the job is allowed to open
 		 * lazily and has not yet been assigned to a node, this value is an empty
 		 * string.
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(String value) {
@@ -108,11 +117,11 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StartDataFrameAnalyticsResponse
+	 * Json deserializer for {@link StartDataFrameAnalyticsResponse}
 	 */
-	public static final JsonpDeserializer<StartDataFrameAnalyticsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer);
+	public static final JsonpDeserializer<StartDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer,
+					Builder::build);
 
 	protected static void setupStartDataFrameAnalyticsResponseDeserializer(
 			DelegatingDeserializer<StartDataFrameAnalyticsResponse.Builder> op) {

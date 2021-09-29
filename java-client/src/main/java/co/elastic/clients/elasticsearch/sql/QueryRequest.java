@@ -25,27 +25,30 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
-public final class QueryRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
@@ -56,19 +59,19 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	private final String cursor;
 
 	@Nullable
-	private final Number fetchSize;
+	private final Integer fetchSize;
 
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	@Nullable
 	private final String query;
 
 	@Nullable
-	private final JsonValue requestTimeout;
+	private final String requestTimeout;
 
 	@Nullable
-	private final JsonValue pageTimeout;
+	private final String pageTimeout;
 
 	@Nullable
 	private final String timeZone;
@@ -78,7 +81,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected QueryRequest(Builder builder) {
+	public QueryRequest(Builder builder) {
 
 		this.format = builder.format;
 		this.columnar = builder.columnar;
@@ -93,7 +96,13 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public QueryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * a short version of the Accept header, e.g. json, yaml
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -119,27 +128,27 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The maximum number of rows (or entries) to return in one response
-	 *
+	 * <p>
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Number fetchSize() {
+	public Integer fetchSize() {
 		return this.fetchSize;
 	}
 
 	/**
 	 * Optional Elasticsearch query DSL for additional filtering.
-	 *
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
 	/**
 	 * SQL query to execute
-	 *
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
@@ -149,28 +158,28 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * The timeout before the request fails.
-	 *
+	 * <p>
 	 * API name: {@code request_timeout}
 	 */
 	@Nullable
-	public JsonValue requestTimeout() {
+	public String requestTimeout() {
 		return this.requestTimeout;
 	}
 
 	/**
 	 * The timeout before a pagination request fails.
-	 *
+	 * <p>
 	 * API name: {@code page_timeout}
 	 */
 	@Nullable
-	public JsonValue pageTimeout() {
+	public String pageTimeout() {
 		return this.pageTimeout;
 	}
 
 	/**
 	 * Time-zone in ISO 8601 used for executing the query on the server. More
 	 * information available here.
-	 *
+	 * <p>
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
@@ -182,7 +191,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	 * Throw an exception when encountering multiple values for a field (default) or
 	 * be lenient and return the first value from the list (without any guarantees
 	 * of what that will be - typically the first in natural ascending order).
-	 *
+	 * <p>
 	 * API name: {@code field_multi_value_leniency}
 	 */
 	@Nullable
@@ -193,13 +202,13 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.columnar != null) {
 
@@ -216,13 +225,13 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		if (this.fetchSize != null) {
 
 			generator.writeKey("fetch_size");
-			generator.write(this.fetchSize.doubleValue());
+			generator.write(this.fetchSize);
 
 		}
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.query != null) {
@@ -274,19 +283,19 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		private String cursor;
 
 		@Nullable
-		private Number fetchSize;
+		private Integer fetchSize;
 
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		@Nullable
 		private String query;
 
 		@Nullable
-		private JsonValue requestTimeout;
+		private String requestTimeout;
 
 		@Nullable
-		private JsonValue pageTimeout;
+		private String pageTimeout;
 
 		@Nullable
 		private String timeZone;
@@ -295,6 +304,8 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		private Boolean fieldMultiValueLeniency;
 
 		/**
+		 * a short version of the Accept header, e.g. json, yaml
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public Builder format(@Nullable String value) {
@@ -320,36 +331,36 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The maximum number of rows (or entries) to return in one response
-		 *
+		 * <p>
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Number value) {
+		public Builder fetchSize(@Nullable Integer value) {
 			this.fetchSize = value;
 			return this;
 		}
 
 		/**
 		 * Optional Elasticsearch query DSL for additional filtering.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
 
 		/**
 		 * Optional Elasticsearch query DSL for additional filtering.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * SQL query to execute
-		 *
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(@Nullable String value) {
@@ -359,20 +370,20 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * The timeout before the request fails.
-		 *
+		 * <p>
 		 * API name: {@code request_timeout}
 		 */
-		public Builder requestTimeout(@Nullable JsonValue value) {
+		public Builder requestTimeout(@Nullable String value) {
 			this.requestTimeout = value;
 			return this;
 		}
 
 		/**
 		 * The timeout before a pagination request fails.
-		 *
+		 * <p>
 		 * API name: {@code page_timeout}
 		 */
-		public Builder pageTimeout(@Nullable JsonValue value) {
+		public Builder pageTimeout(@Nullable String value) {
 			this.pageTimeout = value;
 			return this;
 		}
@@ -380,7 +391,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Time-zone in ISO 8601 used for executing the query on the server. More
 		 * information available here.
-		 *
+		 * <p>
 		 * API name: {@code time_zone}
 		 */
 		public Builder timeZone(@Nullable String value) {
@@ -392,7 +403,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 		 * Throw an exception when encountering multiple values for a field (default) or
 		 * be lenient and return the first value from the list (without any guarantees
 		 * of what that will be - typically the first in natural ascending order).
-		 *
+		 * <p>
 		 * API name: {@code field_multi_value_leniency}
 		 */
 		public Builder fieldMultiValueLeniency(@Nullable Boolean value) {
@@ -415,20 +426,20 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for QueryRequest
+	 * Json deserializer for {@link QueryRequest}
 	 */
-	public static final JsonpDeserializer<QueryRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, QueryRequest::setupQueryRequestDeserializer);
+	public static final JsonpDeserializer<QueryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			QueryRequest::setupQueryRequestDeserializer, Builder::build);
 
 	protected static void setupQueryRequestDeserializer(DelegatingDeserializer<QueryRequest.Builder> op) {
 
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
-		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
+		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::requestTimeout, JsonpDeserializer.jsonValueDeserializer(), "request_timeout");
-		op.add(Builder::pageTimeout, JsonpDeserializer.jsonValueDeserializer(), "page_timeout");
+		op.add(Builder::requestTimeout, JsonpDeserializer.stringDeserializer(), "request_timeout");
+		op.add(Builder::pageTimeout, JsonpDeserializer.stringDeserializer(), "page_timeout");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 
@@ -439,7 +450,7 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code sql.query}".
 	 */
-	public static final Endpoint<QueryRequest, QueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<QueryRequest, QueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -460,5 +471,5 @@ public final class QueryRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, QueryResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, QueryResponse._DESERIALIZER);
 }

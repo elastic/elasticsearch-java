@@ -24,49 +24,55 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.RealmCache
-public final class RealmCache implements ToJsonp {
-	private final Number size;
+@JsonpDeserializable
+public final class RealmCache implements JsonpSerializable {
+	private final long size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RealmCache(Builder builder) {
+	public RealmCache(Builder builder) {
 
 		this.size = Objects.requireNonNull(builder.size, "size");
 
 	}
 
+	public RealmCache(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code size}
 	 */
-	public Number size() {
+	public long size() {
 		return this.size;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("size");
-		generator.write(this.size.doubleValue());
+		generator.write(this.size);
 
 	}
 
@@ -76,12 +82,12 @@ public final class RealmCache implements ToJsonp {
 	 * Builder for {@link RealmCache}.
 	 */
 	public static class Builder implements ObjectBuilder<RealmCache> {
-		private Number size;
+		private Long size;
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(Number value) {
+		public Builder size(long value) {
 			this.size = value;
 			return this;
 		}
@@ -101,14 +107,14 @@ public final class RealmCache implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for RealmCache
+	 * Json deserializer for {@link RealmCache}
 	 */
-	public static final JsonpDeserializer<RealmCache> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RealmCache::setupRealmCacheDeserializer);
+	public static final JsonpDeserializer<RealmCache> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			RealmCache::setupRealmCacheDeserializer, Builder::build);
 
 	protected static void setupRealmCacheDeserializer(DelegatingDeserializer<RealmCache.Builder> op) {
 
-		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
+		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 
 	}
 

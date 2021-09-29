@@ -24,46 +24,52 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
-public final class GoogleNormalizedDistanceHeuristic implements ToJsonp {
-	private final Boolean backgroundIsSuperset;
+@JsonpDeserializable
+public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
+	private final boolean backgroundIsSuperset;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GoogleNormalizedDistanceHeuristic(Builder builder) {
+	public GoogleNormalizedDistanceHeuristic(Builder builder) {
 
 		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
 
 	}
 
+	public GoogleNormalizedDistanceHeuristic(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code background_is_superset}
 	 */
-	public Boolean backgroundIsSuperset() {
+	public boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("background_is_superset");
 		generator.write(this.backgroundIsSuperset);
@@ -81,7 +87,7 @@ public final class GoogleNormalizedDistanceHeuristic implements ToJsonp {
 		/**
 		 * API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(Boolean value) {
+		public Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
@@ -101,11 +107,11 @@ public final class GoogleNormalizedDistanceHeuristic implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GoogleNormalizedDistanceHeuristic
+	 * Json deserializer for {@link GoogleNormalizedDistanceHeuristic}
 	 */
-	public static final JsonpDeserializer<GoogleNormalizedDistanceHeuristic> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer);
+	public static final JsonpDeserializer<GoogleNormalizedDistanceHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GoogleNormalizedDistanceHeuristic::setupGoogleNormalizedDistanceHeuristicDeserializer,
+					Builder::build);
 
 	protected static void setupGoogleNormalizedDistanceHeuristicDeserializer(
 			DelegatingDeserializer<GoogleNormalizedDistanceHeuristic.Builder> op) {

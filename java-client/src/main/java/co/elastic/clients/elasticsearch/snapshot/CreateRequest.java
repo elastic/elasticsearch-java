@@ -25,15 +25,18 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,16 +46,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Request
-public final class CreateRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class CreateRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -67,14 +72,17 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	private final List<String> indices;
 
 	@Nullable
-	private final Map<String, JsonValue> metadata;
+	private final List<String> featureStates;
+
+	@Nullable
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final Boolean partial;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CreateRequest(Builder builder) {
+	public CreateRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -82,13 +90,20 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		this.waitForCompletion = builder.waitForCompletion;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeGlobalState = builder.includeGlobalState;
-		this.indices = builder.indices;
-		this.metadata = builder.metadata;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
 
 	}
 
+	public CreateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Repository for the snapshot.
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -96,6 +111,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Name of the snapshot. Must be unique in the repository.
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public String snapshot() {
@@ -103,14 +120,21 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
+	 * If <code>true</code>, the request returns a response when the snapshot is
+	 * complete. If <code>false</code>, the request returns a response when the
+	 * snapshot initializes.
+	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
@@ -119,6 +143,11 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If <code>true</code>, the request ignores data streams and indices in
+	 * <code>indices</code> that are missing or closed. If <code>false</code>, the
+	 * request returns an error for any data stream or index that is missing or
+	 * closed.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -127,6 +156,12 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * If <code>true</code>, the current cluster state is included in the snapshot.
+	 * The cluster state includes persistent cluster settings, composable index
+	 * templates, legacy index templates, ingest pipelines, and ILM policies. It
+	 * also includes data stored in system indices, such as Watches and task records
+	 * (configurable via <code>feature_states</code>).
+	 * <p>
 	 * API name: {@code include_global_state}
 	 */
 	@Nullable
@@ -135,6 +170,9 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Data streams and indices to include in the snapshot. Supports multi-target
+	 * syntax. Includes all data streams and indices by default.
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	@Nullable
@@ -143,14 +181,38 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Feature states to include in the snapshot. Each feature state includes one or
+	 * more system indices containing related data. You can view a list of eligible
+	 * features using the get features API. If <code>include_global_state</code> is
+	 * <code>true</code>, all current feature states are included by default. If
+	 * <code>include_global_state</code> is <code>false</code>, no feature states
+	 * are included by default.
+	 * <p>
+	 * API name: {@code feature_states}
+	 */
+	@Nullable
+	public List<String> featureStates() {
+		return this.featureStates;
+	}
+
+	/**
+	 * Optional metadata for the snapshot. May have any contents. Must be less than
+	 * 1024 bytes. This map is not automatically generated by Elasticsearch.
+	 * <p>
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public Map<String, JsonValue> metadata() {
+	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
+	 * If <code>true</code>, allows restoring a partial snapshot of indices with
+	 * unavailable shards. Only shards that were successfully included in the
+	 * snapshot will be restored. All missing shards will be recreated as empty. If
+	 * <code>false</code>, the entire restore operation will fail if one or more
+	 * indices included in the snapshot do not have all primary shards available.
+	 * <p>
 	 * API name: {@code partial}
 	 */
 	@Nullable
@@ -161,13 +223,13 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.ignoreUnavailable != null) {
 
@@ -192,13 +254,24 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 			generator.writeEnd();
 
 		}
+		if (this.featureStates != null) {
+
+			generator.writeKey("feature_states");
+			generator.writeStartArray();
+			for (String item0 : this.featureStates) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.metadata != null) {
 
 			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -224,7 +297,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		private String snapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -239,12 +312,17 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		private List<String> indices;
 
 		@Nullable
-		private Map<String, JsonValue> metadata;
+		private List<String> featureStates;
+
+		@Nullable
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private Boolean partial;
 
 		/**
+		 * Repository for the snapshot.
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -253,6 +331,8 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Name of the snapshot. Must be unique in the repository.
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
@@ -261,14 +341,21 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
+		 * If <code>true</code>, the request returns a response when the snapshot is
+		 * complete. If <code>false</code>, the request returns a response when the
+		 * snapshot initializes.
+		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
 		public Builder waitForCompletion(@Nullable Boolean value) {
@@ -277,6 +364,11 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code>, the request ignores data streams and indices in
+		 * <code>indices</code> that are missing or closed. If <code>false</code>, the
+		 * request returns an error for any data stream or index that is missing or
+		 * closed.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -285,6 +377,12 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code>, the current cluster state is included in the snapshot.
+		 * The cluster state includes persistent cluster settings, composable index
+		 * templates, legacy index templates, ingest pipelines, and ILM policies. It
+		 * also includes data stored in system indices, such as Watches and task records
+		 * (configurable via <code>feature_states</code>).
+		 * <p>
 		 * API name: {@code include_global_state}
 		 */
 		public Builder includeGlobalState(@Nullable Boolean value) {
@@ -293,6 +391,9 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Data streams and indices to include in the snapshot. Supports multi-target
+		 * syntax. Includes all data streams and indices by default.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(@Nullable List<String> value) {
@@ -301,6 +402,9 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Data streams and indices to include in the snapshot. Supports multi-target
+		 * syntax. Includes all data streams and indices by default.
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
@@ -309,7 +413,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -320,9 +424,53 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Feature states to include in the snapshot. Each feature state includes one or
+		 * more system indices containing related data. You can view a list of eligible
+		 * features using the get features API. If <code>include_global_state</code> is
+		 * <code>true</code>, all current feature states are included by default. If
+		 * <code>include_global_state</code> is <code>false</code>, no feature states
+		 * are included by default.
+		 * <p>
+		 * API name: {@code feature_states}
+		 */
+		public Builder featureStates(@Nullable List<String> value) {
+			this.featureStates = value;
+			return this;
+		}
+
+		/**
+		 * Feature states to include in the snapshot. Each feature state includes one or
+		 * more system indices containing related data. You can view a list of eligible
+		 * features using the get features API. If <code>include_global_state</code> is
+		 * <code>true</code>, all current feature states are included by default. If
+		 * <code>include_global_state</code> is <code>false</code>, no feature states
+		 * are included by default.
+		 * <p>
+		 * API name: {@code feature_states}
+		 */
+		public Builder featureStates(String... value) {
+			this.featureStates = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
+		 */
+		public Builder addFeatureStates(String value) {
+			if (this.featureStates == null) {
+				this.featureStates = new ArrayList<>();
+			}
+			this.featureStates.add(value);
+			return this;
+		}
+
+		/**
+		 * Optional metadata for the snapshot. May have any contents. Must be less than
+		 * 1024 bytes. This map is not automatically generated by Elasticsearch.
+		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable Map<String, JsonValue> value) {
+		public Builder metadata(@Nullable Map<String, JsonData> value) {
 			this.metadata = value;
 			return this;
 		}
@@ -330,7 +478,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
 		 */
-		public Builder putMetadata(String key, JsonValue value) {
+		public Builder putMetadata(String key, JsonData value) {
 			if (this.metadata == null) {
 				this.metadata = new HashMap<>();
 			}
@@ -339,6 +487,12 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * If <code>true</code>, allows restoring a partial snapshot of indices with
+		 * unavailable shards. Only shards that were successfully included in the
+		 * snapshot will be restored. All missing shards will be recreated as empty. If
+		 * <code>false</code>, the entire restore operation will fail if one or more
+		 * indices included in the snapshot do not have all primary shards available.
+		 * <p>
 		 * API name: {@code partial}
 		 */
 		public Builder partial(@Nullable Boolean value) {
@@ -361,10 +515,10 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CreateRequest
+	 * Json deserializer for {@link CreateRequest}
 	 */
-	public static final JsonpDeserializer<CreateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CreateRequest::setupCreateRequestDeserializer);
+	public static final JsonpDeserializer<CreateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CreateRequest::setupCreateRequestDeserializer, Builder::build);
 
 	protected static void setupCreateRequestDeserializer(DelegatingDeserializer<CreateRequest.Builder> op) {
 
@@ -372,8 +526,9 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"metadata");
+		op.add(Builder::featureStates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"feature_states");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");
 
 	}
@@ -383,7 +538,7 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code snapshot.create}".
 	 */
-	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -397,21 +552,19 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
 
 				if (propsSet == (_repository | _snapshot)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -419,12 +572,12 @@ public final class CreateRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

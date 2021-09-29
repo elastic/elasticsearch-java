@@ -25,34 +25,36 @@ package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.elasticsearch.ml.CategorizationAnalyzer;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.AnomalyDetectors
-public final class AnomalyDetectors implements ToJsonp {
+@JsonpDeserializable
+public final class AnomalyDetectors implements JsonpSerializable {
 	private final CategorizationAnalyzer categorizationAnalyzer;
 
-	private final Number categorizationExamplesLimit;
+	private final int categorizationExamplesLimit;
 
 	private final String modelMemoryLimit;
 
-	private final Number modelSnapshotRetentionDays;
+	private final int modelSnapshotRetentionDays;
 
-	private final Number dailyModelSnapshotRetentionAfterDays;
+	private final int dailyModelSnapshotRetentionAfterDays;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnomalyDetectors(Builder builder) {
+	public AnomalyDetectors(Builder builder) {
 
 		this.categorizationAnalyzer = Objects.requireNonNull(builder.categorizationAnalyzer, "categorization_analyzer");
 		this.categorizationExamplesLimit = Objects.requireNonNull(builder.categorizationExamplesLimit,
@@ -65,6 +67,10 @@ public final class AnomalyDetectors implements ToJsonp {
 
 	}
 
+	public AnomalyDetectors(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code categorization_analyzer}
 	 */
@@ -75,7 +81,7 @@ public final class AnomalyDetectors implements ToJsonp {
 	/**
 	 * API name: {@code categorization_examples_limit}
 	 */
-	public Number categorizationExamplesLimit() {
+	public int categorizationExamplesLimit() {
 		return this.categorizationExamplesLimit;
 	}
 
@@ -89,42 +95,42 @@ public final class AnomalyDetectors implements ToJsonp {
 	/**
 	 * API name: {@code model_snapshot_retention_days}
 	 */
-	public Number modelSnapshotRetentionDays() {
+	public int modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
 	/**
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
-	public Number dailyModelSnapshotRetentionAfterDays() {
+	public int dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("categorization_analyzer");
-		this.categorizationAnalyzer.toJsonp(generator, mapper);
+		this.categorizationAnalyzer.serialize(generator, mapper);
 
 		generator.writeKey("categorization_examples_limit");
-		generator.write(this.categorizationExamplesLimit.doubleValue());
+		generator.write(this.categorizationExamplesLimit);
 
 		generator.writeKey("model_memory_limit");
 		generator.write(this.modelMemoryLimit);
 
 		generator.writeKey("model_snapshot_retention_days");
-		generator.write(this.modelSnapshotRetentionDays.doubleValue());
+		generator.write(this.modelSnapshotRetentionDays);
 
 		generator.writeKey("daily_model_snapshot_retention_after_days");
-		generator.write(this.dailyModelSnapshotRetentionAfterDays.doubleValue());
+		generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
 	}
 
@@ -136,13 +142,13 @@ public final class AnomalyDetectors implements ToJsonp {
 	public static class Builder implements ObjectBuilder<AnomalyDetectors> {
 		private CategorizationAnalyzer categorizationAnalyzer;
 
-		private Number categorizationExamplesLimit;
+		private Integer categorizationExamplesLimit;
 
 		private String modelMemoryLimit;
 
-		private Number modelSnapshotRetentionDays;
+		private Integer modelSnapshotRetentionDays;
 
-		private Number dailyModelSnapshotRetentionAfterDays;
+		private Integer dailyModelSnapshotRetentionAfterDays;
 
 		/**
 		 * API name: {@code categorization_analyzer}
@@ -163,7 +169,7 @@ public final class AnomalyDetectors implements ToJsonp {
 		/**
 		 * API name: {@code categorization_examples_limit}
 		 */
-		public Builder categorizationExamplesLimit(Number value) {
+		public Builder categorizationExamplesLimit(int value) {
 			this.categorizationExamplesLimit = value;
 			return this;
 		}
@@ -179,7 +185,7 @@ public final class AnomalyDetectors implements ToJsonp {
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(Number value) {
+		public Builder modelSnapshotRetentionDays(int value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -187,7 +193,7 @@ public final class AnomalyDetectors implements ToJsonp {
 		/**
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(Number value) {
+		public Builder dailyModelSnapshotRetentionAfterDays(int value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -207,20 +213,20 @@ public final class AnomalyDetectors implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnomalyDetectors
+	 * Json deserializer for {@link AnomalyDetectors}
 	 */
-	public static final JsonpDeserializer<AnomalyDetectors> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnomalyDetectors::setupAnomalyDetectorsDeserializer);
+	public static final JsonpDeserializer<AnomalyDetectors> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnomalyDetectors::setupAnomalyDetectorsDeserializer, Builder::build);
 
 	protected static void setupAnomalyDetectorsDeserializer(DelegatingDeserializer<AnomalyDetectors.Builder> op) {
 
-		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer.DESERIALIZER, "categorization_analyzer");
-		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");
+		op.add(Builder::categorizationExamplesLimit, JsonpDeserializer.integerDeserializer(),
 				"categorization_examples_limit");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.integerDeserializer(),
 				"model_snapshot_retention_days");
-		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.integerDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 
 	}

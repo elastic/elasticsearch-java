@@ -23,23 +23,31 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.get_alias.IndexAliases;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
-public final class GetAliasResponse extends AdditionalProperties<String, IndexAliases> {
+@JsonpDeserializable
+public final class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAliasResponse(Builder builder) {
+	public GetAliasResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetAliasResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -47,7 +55,7 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 	/**
 	 * Builder for {@link GetAliasResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexAliases, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexAliases, Builder>
 			implements
 				ObjectBuilder<GetAliasResponse> {
 		@Override
@@ -72,14 +80,14 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetAliasResponse
+	 * Json deserializer for {@link GetAliasResponse}
 	 */
-	public static final JsonpDeserializer<GetAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetAliasResponse::setupGetAliasResponseDeserializer);
+	public static final JsonpDeserializer<GetAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetAliasResponse::setupGetAliasResponseDeserializer, Builder::build);
 
 	protected static void setupGetAliasResponseDeserializer(DelegatingDeserializer<GetAliasResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexAliases.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				IndexAliases._DESERIALIZER);
 
 	}
 

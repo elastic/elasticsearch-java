@@ -25,47 +25,65 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Request
+
 public final class AllocationRequest extends CatRequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
-	private final JsonValue bytes;
+	private final Bytes bytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllocationRequest(Builder builder) {
+	public AllocationRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.bytes = builder.bytes;
 
 	}
 
+	public AllocationRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of node IDs or names to limit the returned information
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * The unit in which to display byte values
+	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public JsonValue bytes() {
+	public Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -76,23 +94,48 @@ public final class AllocationRequest extends CatRequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<AllocationRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
-		private JsonValue bytes;
+		private Bytes bytes;
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned information
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of node IDs or names to limit the returned information
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * The unit in which to display byte values
+		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable JsonValue value) {
+		public Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -114,7 +157,7 @@ public final class AllocationRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.allocation}".
 	 */
-	public static final Endpoint<AllocationRequest, AllocationResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AllocationRequest, AllocationResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -141,10 +184,11 @@ public final class AllocationRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/allocation");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -156,5 +200,5 @@ public final class AllocationRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, AllocationResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AllocationResponse._DESERIALIZER);
 }

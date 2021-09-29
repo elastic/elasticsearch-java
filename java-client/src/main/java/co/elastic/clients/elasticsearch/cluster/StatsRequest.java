@@ -25,52 +25,67 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Request
+
 public final class StatsRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final Boolean flatSettings;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.flatSettings = builder.flatSettings;
 		this.timeout = builder.timeout;
 
 	}
 
+	public StatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Comma-separated list of node filters used to limit returned information.
 	 * Defaults to all nodes in the cluster.
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -83,11 +98,11 @@ public final class StatsRequest extends RequestBase {
 	 * its timeout expires, the response does not include its stats. However, timed
 	 * out nodes are included in the response’s _nodes.failed property. Defaults to
 	 * no timeout.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -98,26 +113,50 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StatsRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private Boolean flatSettings;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
 		 * Comma-separated list of node filters used to limit returned information.
 		 * Defaults to all nodes in the cluster.
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * Comma-separated list of node filters used to limit returned information.
+		 * Defaults to all nodes in the cluster.
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -130,10 +169,10 @@ public final class StatsRequest extends RequestBase {
 		 * its timeout expires, the response does not include its stats. However, timed
 		 * out nodes are included in the response’s _nodes.failed property. Defaults to
 		 * no timeout.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -155,7 +194,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.stats}".
 	 */
-	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -183,10 +222,11 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/stats");
 					buf.append("/nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -197,9 +237,9 @@ public final class StatsRequest extends RequestBase {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatsResponse._DESERIALIZER);
 }

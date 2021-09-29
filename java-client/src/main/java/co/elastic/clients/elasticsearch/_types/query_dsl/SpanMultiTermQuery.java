@@ -24,44 +24,59 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
-public final class SpanMultiTermQuery extends QueryBase {
-	@Nullable
-	private final QueryContainer match;
+@JsonpDeserializable
+public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+	private final Query match;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SpanMultiTermQuery(Builder builder) {
+	public SpanMultiTermQuery(Builder builder) {
 		super(builder);
-		this.match = builder.match;
 
+		this.match = Objects.requireNonNull(builder.match, "match");
+
+	}
+
+	public SpanMultiTermQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
+	 * {@link SpanQuery}, {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "span_multi";
+	}
+
+	/**
+	 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
+	 * query)
+	 * <p>
 	 * API name: {@code match}
 	 */
-	@Nullable
-	public QueryContainer match() {
+	public Query match() {
 		return this.match;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.match != null) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-			generator.writeKey("match");
-			this.match.toJsonp(generator, mapper);
+		super.serializeInternal(generator, mapper);
 
-		}
+		generator.writeKey("match");
+		this.match.serialize(generator, mapper);
 
 	}
 
@@ -73,22 +88,27 @@ public final class SpanMultiTermQuery extends QueryBase {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanMultiTermQuery> {
-		@Nullable
-		private QueryContainer match;
+		private Query match;
 
 		/**
+		 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
+		 * query)
+		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(@Nullable QueryContainer value) {
+		public Builder match(Query value) {
 			this.match = value;
 			return this;
 		}
 
 		/**
+		 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
+		 * query)
+		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.match(fn.apply(new QueryContainer.Builder()).build());
+		public Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.match(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -111,14 +131,14 @@ public final class SpanMultiTermQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SpanMultiTermQuery
+	 * Json deserializer for {@link SpanMultiTermQuery}
 	 */
-	public static final JsonpDeserializer<SpanMultiTermQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SpanMultiTermQuery::setupSpanMultiTermQueryDeserializer);
+	public static final JsonpDeserializer<SpanMultiTermQuery> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SpanMultiTermQuery::setupSpanMultiTermQueryDeserializer, Builder::build);
 
 	protected static void setupSpanMultiTermQueryDeserializer(DelegatingDeserializer<SpanMultiTermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::match, QueryContainer.DESERIALIZER, "match");
+		op.add(Builder::match, Query._DESERIALIZER, "match");
 
 	}
 

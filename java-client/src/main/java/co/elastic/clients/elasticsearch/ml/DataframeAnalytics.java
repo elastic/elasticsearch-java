@@ -25,13 +25,14 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
@@ -42,9 +43,10 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalytics
-public final class DataframeAnalytics implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalytics implements JsonpSerializable {
 	@Nullable
-	private final DataframeAnalyticsStatsContainer analysisStats;
+	private final DataframeAnalyticsStats analysisStats;
 
 	@Nullable
 	private final String assignmentExplanation;
@@ -60,11 +62,11 @@ public final class DataframeAnalytics implements ToJsonp {
 
 	private final List<DataframeAnalyticsStatsProgress> progress;
 
-	private final JsonValue state;
+	private final DataframeState state;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalytics(Builder builder) {
+	public DataframeAnalytics(Builder builder) {
 
 		this.analysisStats = builder.analysisStats;
 		this.assignmentExplanation = builder.assignmentExplanation;
@@ -72,25 +74,29 @@ public final class DataframeAnalytics implements ToJsonp {
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.memoryUsage = Objects.requireNonNull(builder.memoryUsage, "memory_usage");
 		this.node = builder.node;
-		this.progress = Objects.requireNonNull(builder.progress, "progress");
+		this.progress = ModelTypeHelper.unmodifiableNonNull(builder.progress, "progress");
 		this.state = Objects.requireNonNull(builder.state, "state");
 
 	}
 
+	public DataframeAnalytics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * An object containing information about the analysis job.
-	 *
+	 * <p>
 	 * API name: {@code analysis_stats}
 	 */
 	@Nullable
-	public DataframeAnalyticsStatsContainer analysisStats() {
+	public DataframeAnalyticsStats analysisStats() {
 		return this.analysisStats;
 	}
 
 	/**
 	 * For running jobs only, contains messages relating to the selection of a node
 	 * to run the job.
-	 *
+	 * <p>
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
@@ -101,7 +107,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * An object that provides counts for the quantity of documents skipped, used in
 	 * training, or available for testing.
-	 *
+	 * <p>
 	 * API name: {@code data_counts}
 	 */
 	public DataframeAnalyticsStatsDataCounts dataCounts() {
@@ -110,7 +116,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 	/**
 	 * The unique identifier of the data frame analytics job.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -120,7 +126,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * An object describing memory usage of the analytics. It is present only after
 	 * the job is started and memory usage is reported.
-	 *
+	 * <p>
 	 * API name: {@code memory_usage}
 	 */
 	public DataframeAnalyticsStatsMemoryUsage memoryUsage() {
@@ -130,7 +136,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * Contains properties for the node that runs the job. This information is
 	 * available only for running jobs.
-	 *
+	 * <p>
 	 * API name: {@code node}
 	 */
 	@Nullable
@@ -140,7 +146,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 	/**
 	 * The progress report of the data frame analytics job by phase.
-	 *
+	 * <p>
 	 * API name: {@code progress}
 	 */
 	public List<DataframeAnalyticsStatsProgress> progress() {
@@ -150,28 +156,28 @@ public final class DataframeAnalytics implements ToJsonp {
 	/**
 	 * The status of the data frame analytics job, which can be one of the following
 	 * values: failed, started, starting, stopping, stopped.
-	 *
+	 * <p>
 	 * API name: {@code state}
 	 */
-	public JsonValue state() {
+	public DataframeState state() {
 		return this.state;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analysisStats != null) {
 
 			generator.writeKey("analysis_stats");
-			this.analysisStats.toJsonp(generator, mapper);
+			this.analysisStats.serialize(generator, mapper);
 
 		}
 		if (this.assignmentExplanation != null) {
@@ -182,31 +188,31 @@ public final class DataframeAnalytics implements ToJsonp {
 		}
 
 		generator.writeKey("data_counts");
-		this.dataCounts.toJsonp(generator, mapper);
+		this.dataCounts.serialize(generator, mapper);
 
 		generator.writeKey("id");
 		generator.write(this.id);
 
 		generator.writeKey("memory_usage");
-		this.memoryUsage.toJsonp(generator, mapper);
+		this.memoryUsage.serialize(generator, mapper);
 
 		if (this.node != null) {
 
 			generator.writeKey("node");
-			this.node.toJsonp(generator, mapper);
+			this.node.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("progress");
 		generator.writeStartArray();
 		for (DataframeAnalyticsStatsProgress item0 : this.progress) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("state");
-		generator.write(this.state);
+		this.state.serialize(generator, mapper);
 
 	}
 
@@ -217,7 +223,7 @@ public final class DataframeAnalytics implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<DataframeAnalytics> {
 		@Nullable
-		private DataframeAnalyticsStatsContainer analysisStats;
+		private DataframeAnalyticsStats analysisStats;
 
 		@Nullable
 		private String assignmentExplanation;
@@ -233,32 +239,32 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		private List<DataframeAnalyticsStatsProgress> progress;
 
-		private JsonValue state;
+		private DataframeState state;
 
 		/**
 		 * An object containing information about the analysis job.
-		 *
+		 * <p>
 		 * API name: {@code analysis_stats}
 		 */
-		public Builder analysisStats(@Nullable DataframeAnalyticsStatsContainer value) {
+		public Builder analysisStats(@Nullable DataframeAnalyticsStats value) {
 			this.analysisStats = value;
 			return this;
 		}
 
 		/**
 		 * An object containing information about the analysis job.
-		 *
+		 * <p>
 		 * API name: {@code analysis_stats}
 		 */
 		public Builder analysisStats(
-				Function<DataframeAnalyticsStatsContainer.Builder, ObjectBuilder<DataframeAnalyticsStatsContainer>> fn) {
-			return this.analysisStats(fn.apply(new DataframeAnalyticsStatsContainer.Builder()).build());
+				Function<DataframeAnalyticsStats.Builder, ObjectBuilder<DataframeAnalyticsStats>> fn) {
+			return this.analysisStats(fn.apply(new DataframeAnalyticsStats.Builder()).build());
 		}
 
 		/**
 		 * For running jobs only, contains messages relating to the selection of a node
 		 * to run the job.
-		 *
+		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(@Nullable String value) {
@@ -269,7 +275,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object that provides counts for the quantity of documents skipped, used in
 		 * training, or available for testing.
-		 *
+		 * <p>
 		 * API name: {@code data_counts}
 		 */
 		public Builder dataCounts(DataframeAnalyticsStatsDataCounts value) {
@@ -280,7 +286,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object that provides counts for the quantity of documents skipped, used in
 		 * training, or available for testing.
-		 *
+		 * <p>
 		 * API name: {@code data_counts}
 		 */
 		public Builder dataCounts(
@@ -290,7 +296,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * The unique identifier of the data frame analytics job.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -301,7 +307,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object describing memory usage of the analytics. It is present only after
 		 * the job is started and memory usage is reported.
-		 *
+		 * <p>
 		 * API name: {@code memory_usage}
 		 */
 		public Builder memoryUsage(DataframeAnalyticsStatsMemoryUsage value) {
@@ -312,7 +318,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * An object describing memory usage of the analytics. It is present only after
 		 * the job is started and memory usage is reported.
-		 *
+		 * <p>
 		 * API name: {@code memory_usage}
 		 */
 		public Builder memoryUsage(
@@ -323,7 +329,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * Contains properties for the node that runs the job. This information is
 		 * available only for running jobs.
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(@Nullable NodeAttributes value) {
@@ -334,7 +340,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * Contains properties for the node that runs the job. This information is
 		 * available only for running jobs.
-		 *
+		 * <p>
 		 * API name: {@code node}
 		 */
 		public Builder node(Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
@@ -343,7 +349,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * The progress report of the data frame analytics job by phase.
-		 *
+		 * <p>
 		 * API name: {@code progress}
 		 */
 		public Builder progress(List<DataframeAnalyticsStatsProgress> value) {
@@ -353,7 +359,7 @@ public final class DataframeAnalytics implements ToJsonp {
 
 		/**
 		 * The progress report of the data frame analytics job by phase.
-		 *
+		 * <p>
 		 * API name: {@code progress}
 		 */
 		public Builder progress(DataframeAnalyticsStatsProgress... value) {
@@ -362,7 +368,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #progress(List)}, creating the list if needed.
+		 * Add a value to {@link #progress(List)}, creating the list if needed. 4
 		 */
 		public Builder addProgress(DataframeAnalyticsStatsProgress value) {
 			if (this.progress == null) {
@@ -381,7 +387,7 @@ public final class DataframeAnalytics implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #progress(List)}, creating the list if needed.
+		 * Add a value to {@link #progress(List)}, creating the list if needed. 5
 		 */
 		public Builder addProgress(
 				Function<DataframeAnalyticsStatsProgress.Builder, ObjectBuilder<DataframeAnalyticsStatsProgress>> fn) {
@@ -391,10 +397,10 @@ public final class DataframeAnalytics implements ToJsonp {
 		/**
 		 * The status of the data frame analytics job, which can be one of the following
 		 * values: failed, started, starting, stopping, stopped.
-		 *
+		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(JsonValue value) {
+		public Builder state(DataframeState value) {
 			this.state = value;
 			return this;
 		}
@@ -414,22 +420,22 @@ public final class DataframeAnalytics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalytics
+	 * Json deserializer for {@link DataframeAnalytics}
 	 */
-	public static final JsonpDeserializer<DataframeAnalytics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeAnalytics::setupDataframeAnalyticsDeserializer);
+	public static final JsonpDeserializer<DataframeAnalytics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalytics::setupDataframeAnalyticsDeserializer, Builder::build);
 
 	protected static void setupDataframeAnalyticsDeserializer(DelegatingDeserializer<DataframeAnalytics.Builder> op) {
 
-		op.add(Builder::analysisStats, DataframeAnalyticsStatsContainer.DESERIALIZER, "analysis_stats");
+		op.add(Builder::analysisStats, DataframeAnalyticsStats._DESERIALIZER, "analysis_stats");
 		op.add(Builder::assignmentExplanation, JsonpDeserializer.stringDeserializer(), "assignment_explanation");
-		op.add(Builder::dataCounts, DataframeAnalyticsStatsDataCounts.DESERIALIZER, "data_counts");
+		op.add(Builder::dataCounts, DataframeAnalyticsStatsDataCounts._DESERIALIZER, "data_counts");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::memoryUsage, DataframeAnalyticsStatsMemoryUsage.DESERIALIZER, "memory_usage");
-		op.add(Builder::node, NodeAttributes.DESERIALIZER, "node");
-		op.add(Builder::progress, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsStatsProgress.DESERIALIZER),
+		op.add(Builder::memoryUsage, DataframeAnalyticsStatsMemoryUsage._DESERIALIZER, "memory_usage");
+		op.add(Builder::node, NodeAttributes._DESERIALIZER, "node");
+		op.add(Builder::progress, JsonpDeserializer.arrayDeserializer(DataframeAnalyticsStatsProgress._DESERIALIZER),
 				"progress");
-		op.add(Builder::state, JsonpDeserializer.jsonValueDeserializer(), "state");
+		op.add(Builder::state, DataframeState._DESERIALIZER, "state");
 
 	}
 

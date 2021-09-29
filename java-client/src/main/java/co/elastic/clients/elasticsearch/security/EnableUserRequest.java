@@ -25,8 +25,11 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -36,25 +39,33 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.enable_user.Request
+
 public final class EnableUserRequest extends RequestBase {
 	private final String username;
 
 	@Nullable
-	private final JsonValue refresh;
+	private final JsonValue /* _types.Refresh */ refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected EnableUserRequest(Builder builder) {
+	public EnableUserRequest(Builder builder) {
 
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;
 
 	}
 
+	public EnableUserRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The username of the user to enable
+	 * <p>
 	 * API name: {@code username}
 	 */
 	public String username() {
@@ -62,10 +73,15 @@ public final class EnableUserRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue refresh() {
+	public JsonValue /* _types.Refresh */ refresh() {
 		return this.refresh;
 	}
 
@@ -78,9 +94,11 @@ public final class EnableUserRequest extends RequestBase {
 		private String username;
 
 		@Nullable
-		private JsonValue refresh;
+		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
+		 * The username of the user to enable
+		 * <p>
 		 * API name: {@code username}
 		 */
 		public Builder username(String value) {
@@ -89,9 +107,14 @@ public final class EnableUserRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue value) {
+		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
 			this.refresh = value;
 			return this;
 		}
@@ -113,7 +136,7 @@ public final class EnableUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.enable_user}".
 	 */
-	public static final Endpoint<EnableUserRequest, EnableUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<EnableUserRequest, EnableUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -126,19 +149,18 @@ public final class EnableUserRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.username() != null)
-					propsSet |= _username;
+				propsSet |= _username;
 
 				if (propsSet == (_username)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.username);
+					SimpleEndpoint.pathEncode(request.username, buf);
 					buf.append("/_enable");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -146,9 +168,9 @@ public final class EnableUserRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, EnableUserResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, EnableUserResponse._DESERIALIZER);
 }

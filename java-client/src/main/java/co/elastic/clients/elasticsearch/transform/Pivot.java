@@ -23,16 +23,18 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.elasticsearch._types.aggregations.AggregationContainer;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,37 +43,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Pivot
-public final class Pivot implements ToJsonp {
+@JsonpDeserializable
+public final class Pivot implements JsonpSerializable {
 	@Nullable
-	private final Map<String, AggregationContainer> aggregations;
-
-	private final Map<String, PivotGroupByContainer> groupBy;
+	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
-	private final Number maxPageSearchSize;
+	private final Map<String, PivotGroupBy> groupBy;
+
+	@Nullable
+	private final Integer maxPageSearchSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Pivot(Builder builder) {
+	public Pivot(Builder builder) {
 
-		this.aggregations = builder.aggregations;
-		this.groupBy = Objects.requireNonNull(builder.groupBy, "group_by");
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.groupBy = ModelTypeHelper.unmodifiable(builder.groupBy);
 		this.maxPageSearchSize = builder.maxPageSearchSize;
 
+	}
+
+	public Pivot(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code aggregations}
 	 */
 	@Nullable
-	public Map<String, AggregationContainer> aggregations() {
+	public Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
 	 * API name: {@code group_by}
 	 */
-	public Map<String, PivotGroupByContainer> groupBy() {
+	@Nullable
+	public Map<String, PivotGroupBy> groupBy() {
 		return this.groupBy;
 	}
 
@@ -79,47 +88,49 @@ public final class Pivot implements ToJsonp {
 	 * API name: {@code max_page_search_size}
 	 */
 	@Nullable
-	public Number maxPageSearchSize() {
+	public Integer maxPageSearchSize() {
 		return this.maxPageSearchSize;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aggregations != null) {
 
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, AggregationContainer> item0 : this.aggregations.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
+		if (this.groupBy != null) {
 
-		generator.writeKey("group_by");
-		generator.writeStartObject();
-		for (Map.Entry<String, PivotGroupByContainer> item0 : this.groupBy.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			generator.writeKey("group_by");
+			generator.writeStartObject();
+			for (Map.Entry<String, PivotGroupBy> item0 : this.groupBy.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.maxPageSearchSize != null) {
 
 			generator.writeKey("max_page_search_size");
-			generator.write(this.maxPageSearchSize.doubleValue());
+			generator.write(this.maxPageSearchSize);
 
 		}
 
@@ -132,17 +143,18 @@ public final class Pivot implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Pivot> {
 		@Nullable
-		private Map<String, AggregationContainer> aggregations;
-
-		private Map<String, PivotGroupByContainer> groupBy;
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
-		private Number maxPageSearchSize;
+		private Map<String, PivotGroupBy> groupBy;
+
+		@Nullable
+		private Integer maxPageSearchSize;
 
 		/**
 		 * API name: {@code aggregations}
 		 */
-		public Builder aggregations(@Nullable Map<String, AggregationContainer> value) {
+		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
 			this.aggregations = value;
 			return this;
 		}
@@ -150,7 +162,7 @@ public final class Pivot implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key, AggregationContainer value) {
+		public Builder putAggregations(String key, Aggregation value) {
 			if (this.aggregations == null) {
 				this.aggregations = new HashMap<>();
 			}
@@ -161,24 +173,21 @@ public final class Pivot implements ToJsonp {
 		/**
 		 * Set {@link #aggregations(Map)} to a singleton map.
 		 */
-		public Builder aggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this
-					.aggregations(Collections.singletonMap(key, fn.apply(new AggregationContainer.Builder()).build()));
+		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
 		 */
-		public Builder putAggregations(String key,
-				Function<AggregationContainer.Builder, ObjectBuilder<AggregationContainer>> fn) {
-			return this.putAggregations(key, fn.apply(new AggregationContainer.Builder()).build());
+		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code group_by}
 		 */
-		public Builder groupBy(Map<String, PivotGroupByContainer> value) {
+		public Builder groupBy(@Nullable Map<String, PivotGroupBy> value) {
 			this.groupBy = value;
 			return this;
 		}
@@ -186,7 +195,7 @@ public final class Pivot implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #groupBy(Map)}, creating the map if needed.
 		 */
-		public Builder putGroupBy(String key, PivotGroupByContainer value) {
+		public Builder putGroupBy(String key, PivotGroupBy value) {
 			if (this.groupBy == null) {
 				this.groupBy = new HashMap<>();
 			}
@@ -197,23 +206,21 @@ public final class Pivot implements ToJsonp {
 		/**
 		 * Set {@link #groupBy(Map)} to a singleton map.
 		 */
-		public Builder groupBy(String key,
-				Function<PivotGroupByContainer.Builder, ObjectBuilder<PivotGroupByContainer>> fn) {
-			return this.groupBy(Collections.singletonMap(key, fn.apply(new PivotGroupByContainer.Builder()).build()));
+		public Builder groupBy(String key, Function<PivotGroupBy.Builder, ObjectBuilder<PivotGroupBy>> fn) {
+			return this.groupBy(Collections.singletonMap(key, fn.apply(new PivotGroupBy.Builder()).build()));
 		}
 
 		/**
 		 * Add a key/value to {@link #groupBy(Map)}, creating the map if needed.
 		 */
-		public Builder putGroupBy(String key,
-				Function<PivotGroupByContainer.Builder, ObjectBuilder<PivotGroupByContainer>> fn) {
-			return this.putGroupBy(key, fn.apply(new PivotGroupByContainer.Builder()).build());
+		public Builder putGroupBy(String key, Function<PivotGroupBy.Builder, ObjectBuilder<PivotGroupBy>> fn) {
+			return this.putGroupBy(key, fn.apply(new PivotGroupBy.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_page_search_size}
 		 */
-		public Builder maxPageSearchSize(@Nullable Number value) {
+		public Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
 			return this;
 		}
@@ -233,18 +240,17 @@ public final class Pivot implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Pivot
+	 * Json deserializer for {@link Pivot}
 	 */
-	public static final JsonpDeserializer<Pivot> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Pivot::setupPivotDeserializer);
+	public static final JsonpDeserializer<Pivot> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Pivot::setupPivotDeserializer, Builder::build);
 
 	protected static void setupPivotDeserializer(DelegatingDeserializer<Pivot.Builder> op) {
 
-		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(AggregationContainer.DESERIALIZER),
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");
-		op.add(Builder::groupBy, JsonpDeserializer.stringMapDeserializer(PivotGroupByContainer.DESERIALIZER),
-				"group_by");
-		op.add(Builder::maxPageSearchSize, JsonpDeserializer.numberDeserializer(), "max_page_search_size");
+		op.add(Builder::groupBy, JsonpDeserializer.stringMapDeserializer(PivotGroupBy._DESERIALIZER), "group_by");
+		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
 
 	}
 

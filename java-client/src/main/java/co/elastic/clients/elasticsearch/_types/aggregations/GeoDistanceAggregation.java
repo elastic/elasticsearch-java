@@ -23,11 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.DistanceUnit;
+import co.elastic.clients.elasticsearch._types.GeoDistanceType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -35,43 +39,58 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoDistanceAggregation
-public final class GeoDistanceAggregation extends BucketAggregationBase {
+@JsonpDeserializable
+public final class GeoDistanceAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue distanceType;
+	private final GeoDistanceType distanceType;
 
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final JsonValue origin;
+	private final JsonValue /* _types.query_dsl.GeoLocation */ origin;
 
 	@Nullable
 	private final List<AggregationRange> ranges;
 
 	@Nullable
-	private final JsonValue unit;
+	private final DistanceUnit unit;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GeoDistanceAggregation(Builder builder) {
+	public GeoDistanceAggregation(Builder builder) {
 		super(builder);
+
 		this.distanceType = builder.distanceType;
 		this.field = builder.field;
 		this.origin = builder.origin;
-		this.ranges = builder.ranges;
+		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
 		this.unit = builder.unit;
 
+	}
+
+	public GeoDistanceAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "geo_distance";
 	}
 
 	/**
 	 * API name: {@code distance_type}
 	 */
 	@Nullable
-	public JsonValue distanceType() {
+	public GeoDistanceType distanceType() {
 		return this.distanceType;
 	}
 
@@ -87,7 +106,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 	 * API name: {@code origin}
 	 */
 	@Nullable
-	public JsonValue origin() {
+	public JsonValue /* _types.query_dsl.GeoLocation */ origin() {
 		return this.origin;
 	}
 
@@ -103,17 +122,17 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 	 * API name: {@code unit}
 	 */
 	@Nullable
-	public JsonValue unit() {
+	public DistanceUnit unit() {
 		return this.unit;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.distanceType != null) {
 
 			generator.writeKey("distance_type");
-			generator.write(this.distanceType);
-
+			this.distanceType.serialize(generator, mapper);
 		}
 		if (this.field != null) {
 
@@ -132,7 +151,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
 			for (AggregationRange item0 : this.ranges) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -141,8 +160,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 		if (this.unit != null) {
 
 			generator.writeKey("unit");
-			generator.write(this.unit);
-
+			this.unit.serialize(generator, mapper);
 		}
 
 	}
@@ -156,24 +174,24 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 			implements
 				ObjectBuilder<GeoDistanceAggregation> {
 		@Nullable
-		private JsonValue distanceType;
+		private GeoDistanceType distanceType;
 
 		@Nullable
 		private String field;
 
 		@Nullable
-		private JsonValue origin;
+		private JsonValue /* _types.query_dsl.GeoLocation */ origin;
 
 		@Nullable
 		private List<AggregationRange> ranges;
 
 		@Nullable
-		private JsonValue unit;
+		private DistanceUnit unit;
 
 		/**
 		 * API name: {@code distance_type}
 		 */
-		public Builder distanceType(@Nullable JsonValue value) {
+		public Builder distanceType(@Nullable GeoDistanceType value) {
 			this.distanceType = value;
 			return this;
 		}
@@ -189,7 +207,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code origin}
 		 */
-		public Builder origin(@Nullable JsonValue value) {
+		public Builder origin(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.origin = value;
 			return this;
 		}
@@ -211,7 +229,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
 		 */
 		public Builder addRanges(AggregationRange value) {
 			if (this.ranges == null) {
@@ -229,7 +247,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
 		 */
 		public Builder addRanges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
 			return this.addRanges(fn.apply(new AggregationRange.Builder()).build());
@@ -238,7 +256,7 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 		/**
 		 * API name: {@code unit}
 		 */
-		public Builder unit(@Nullable JsonValue value) {
+		public Builder unit(@Nullable DistanceUnit value) {
 			this.unit = value;
 			return this;
 		}
@@ -263,19 +281,19 @@ public final class GeoDistanceAggregation extends BucketAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GeoDistanceAggregation
+	 * Json deserializer for {@link GeoDistanceAggregation}
 	 */
-	public static final JsonpDeserializer<GeoDistanceAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GeoDistanceAggregation::setupGeoDistanceAggregationDeserializer);
+	public static final JsonpDeserializer<GeoDistanceAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GeoDistanceAggregation::setupGeoDistanceAggregationDeserializer, Builder::build);
 
 	protected static void setupGeoDistanceAggregationDeserializer(
 			DelegatingDeserializer<GeoDistanceAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::distanceType, JsonpDeserializer.jsonValueDeserializer(), "distance_type");
+		op.add(Builder::distanceType, GeoDistanceType._DESERIALIZER, "distance_type");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::origin, JsonpDeserializer.jsonValueDeserializer(), "origin");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange.DESERIALIZER), "ranges");
-		op.add(Builder::unit, JsonpDeserializer.jsonValueDeserializer(), "unit");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
+		op.add(Builder::unit, DistanceUnit._DESERIALIZER, "unit");
 
 	}
 

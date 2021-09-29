@@ -24,46 +24,53 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedHeuristic
-public final class ScriptedHeuristic implements ToJsonp {
-	private final JsonValue script;
+@JsonpDeserializable
+public final class ScriptedHeuristic implements JsonpSerializable {
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScriptedHeuristic(Builder builder) {
+	public ScriptedHeuristic(Builder builder) {
 
 		this.script = Objects.requireNonNull(builder.script, "script");
 
 	}
 
+	public ScriptedHeuristic(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code script}
 	 */
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("script");
 		generator.write(this.script);
@@ -76,12 +83,12 @@ public final class ScriptedHeuristic implements ToJsonp {
 	 * Builder for {@link ScriptedHeuristic}.
 	 */
 	public static class Builder implements ObjectBuilder<ScriptedHeuristic> {
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(JsonValue value) {
+		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -101,10 +108,10 @@ public final class ScriptedHeuristic implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ScriptedHeuristic
+	 * Json deserializer for {@link ScriptedHeuristic}
 	 */
-	public static final JsonpDeserializer<ScriptedHeuristic> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer);
+	public static final JsonpDeserializer<ScriptedHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer, Builder::build);
 
 	protected static void setupScriptedHeuristicDeserializer(DelegatingDeserializer<ScriptedHeuristic.Builder> op) {
 

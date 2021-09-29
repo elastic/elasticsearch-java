@@ -26,11 +26,13 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.reload_search_analyzers.ReloadDetails;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -41,18 +43,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.Response
-public final class ReloadSearchAnalyzersResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	private final List<ReloadDetails> reloadDetails;
 
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReloadSearchAnalyzersResponse(Builder builder) {
+	public ReloadSearchAnalyzersResponse(Builder builder) {
 
-		this.reloadDetails = Objects.requireNonNull(builder.reloadDetails, "reload_details");
+		this.reloadDetails = ModelTypeHelper.unmodifiableNonNull(builder.reloadDetails, "reload_details");
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
+	}
+
+	public ReloadSearchAnalyzersResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -72,24 +79,24 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("reload_details");
 		generator.writeStartArray();
 		for (ReloadDetails item0 : this.reloadDetails) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -120,7 +127,7 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed.
+		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed. 4
 		 */
 		public Builder addReloadDetails(ReloadDetails value) {
 			if (this.reloadDetails == null) {
@@ -138,7 +145,7 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed.
+		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed. 5
 		 */
 		public Builder addReloadDetails(Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>> fn) {
 			return this.addReloadDetails(fn.apply(new ReloadDetails.Builder()).build());
@@ -174,18 +181,18 @@ public final class ReloadSearchAnalyzersResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReloadSearchAnalyzersResponse
+	 * Json deserializer for {@link ReloadSearchAnalyzersResponse}
 	 */
-	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer);
+	public static final JsonpDeserializer<ReloadSearchAnalyzersResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ReloadSearchAnalyzersResponse::setupReloadSearchAnalyzersResponseDeserializer,
+			Builder::build);
 
 	protected static void setupReloadSearchAnalyzersResponseDeserializer(
 			DelegatingDeserializer<ReloadSearchAnalyzersResponse.Builder> op) {
 
-		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails.DESERIALIZER),
+		op.add(Builder::reloadDetails, JsonpDeserializer.arrayDeserializer(ReloadDetails._DESERIALIZER),
 				"reload_details");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 
 	}
 

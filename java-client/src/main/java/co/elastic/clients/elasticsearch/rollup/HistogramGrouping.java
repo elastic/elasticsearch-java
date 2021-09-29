@@ -24,34 +24,42 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.HistogramGrouping
-public final class HistogramGrouping implements ToJsonp {
+@JsonpDeserializable
+public final class HistogramGrouping implements JsonpSerializable {
 	private final List<String> fields;
 
-	private final Number interval;
+	private final long interval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HistogramGrouping(Builder builder) {
+	public HistogramGrouping(Builder builder) {
 
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
 		this.interval = Objects.requireNonNull(builder.interval, "interval");
 
+	}
+
+	public HistogramGrouping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,20 +72,20 @@ public final class HistogramGrouping implements ToJsonp {
 	/**
 	 * API name: {@code interval}
 	 */
-	public Number interval() {
+	public long interval() {
 		return this.interval;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fields");
 		generator.writeStartArray();
@@ -88,7 +96,7 @@ public final class HistogramGrouping implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("interval");
-		generator.write(this.interval.doubleValue());
+		generator.write(this.interval);
 
 	}
 
@@ -100,7 +108,7 @@ public final class HistogramGrouping implements ToJsonp {
 	public static class Builder implements ObjectBuilder<HistogramGrouping> {
 		private List<String> fields;
 
-		private Number interval;
+		private Long interval;
 
 		/**
 		 * API name: {@code fields}
@@ -119,7 +127,7 @@ public final class HistogramGrouping implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -132,7 +140,7 @@ public final class HistogramGrouping implements ToJsonp {
 		/**
 		 * API name: {@code interval}
 		 */
-		public Builder interval(Number value) {
+		public Builder interval(long value) {
 			this.interval = value;
 			return this;
 		}
@@ -152,15 +160,15 @@ public final class HistogramGrouping implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HistogramGrouping
+	 * Json deserializer for {@link HistogramGrouping}
 	 */
-	public static final JsonpDeserializer<HistogramGrouping> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HistogramGrouping::setupHistogramGroupingDeserializer);
+	public static final JsonpDeserializer<HistogramGrouping> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HistogramGrouping::setupHistogramGroupingDeserializer, Builder::build);
 
 	protected static void setupHistogramGroupingDeserializer(DelegatingDeserializer<HistogramGrouping.Builder> op) {
 
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::interval, JsonpDeserializer.numberDeserializer(), "interval");
+		op.add(Builder::interval, JsonpDeserializer.longDeserializer(), "interval");
 
 	}
 

@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.NodesRecord
-public final class NodesRecord implements ToJsonp {
+@JsonpDeserializable
+public final class NodesRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -68,43 +71,43 @@ public final class NodesRecord implements ToJsonp {
 	private final String jdk;
 
 	@Nullable
-	private final JsonValue disk_total;
+	private final String diskTotal;
 
 	@Nullable
-	private final JsonValue disk_used;
+	private final String diskUsed;
 
 	@Nullable
-	private final JsonValue disk_avail;
+	private final String diskAvail;
 
 	@Nullable
-	private final JsonValue disk_usedPercent;
+	private final String diskUsedPercent;
 
 	@Nullable
-	private final String heap_current;
+	private final String heapCurrent;
 
 	@Nullable
-	private final JsonValue heap_percent;
+	private final String heapPercent;
 
 	@Nullable
-	private final String heap_max;
+	private final String heapMax;
 
 	@Nullable
-	private final String ram_current;
+	private final String ramCurrent;
 
 	@Nullable
-	private final JsonValue ram_percent;
+	private final String ramPercent;
 
 	@Nullable
-	private final String ram_max;
+	private final String ramMax;
 
 	@Nullable
-	private final String fileDesc_current;
+	private final String fileDescCurrent;
 
 	@Nullable
-	private final JsonValue fileDesc_percent;
+	private final String fileDescPercent;
 
 	@Nullable
-	private final String fileDesc_max;
+	private final String fileDescMax;
 
 	@Nullable
 	private final String cpu;
@@ -122,7 +125,7 @@ public final class NodesRecord implements ToJsonp {
 	private final String uptime;
 
 	@Nullable
-	private final String node_role;
+	private final String nodeRole;
 
 	@Nullable
 	private final String master;
@@ -131,203 +134,203 @@ public final class NodesRecord implements ToJsonp {
 	private final String name;
 
 	@Nullable
-	private final String completion_size;
+	private final String completionSize;
 
 	@Nullable
-	private final String fielddata_memorySize;
+	private final String fielddataMemorySize;
 
 	@Nullable
-	private final String fielddata_evictions;
+	private final String fielddataEvictions;
 
 	@Nullable
-	private final String queryCache_memorySize;
+	private final String queryCacheMemorySize;
 
 	@Nullable
-	private final String queryCache_evictions;
+	private final String queryCacheEvictions;
 
 	@Nullable
-	private final String queryCache_hitCount;
+	private final String queryCacheHitCount;
 
 	@Nullable
-	private final String queryCache_missCount;
+	private final String queryCacheMissCount;
 
 	@Nullable
-	private final String requestCache_memorySize;
+	private final String requestCacheMemorySize;
 
 	@Nullable
-	private final String requestCache_evictions;
+	private final String requestCacheEvictions;
 
 	@Nullable
-	private final String requestCache_hitCount;
+	private final String requestCacheHitCount;
 
 	@Nullable
-	private final String requestCache_missCount;
+	private final String requestCacheMissCount;
 
 	@Nullable
-	private final String flush_total;
+	private final String flushTotal;
 
 	@Nullable
-	private final String flush_totalTime;
+	private final String flushTotalTime;
 
 	@Nullable
-	private final String get_current;
+	private final String getCurrent;
 
 	@Nullable
-	private final String get_time;
+	private final String getTime;
 
 	@Nullable
-	private final String get_total;
+	private final String getTotal;
 
 	@Nullable
-	private final String get_existsTime;
+	private final String getExistsTime;
 
 	@Nullable
-	private final String get_existsTotal;
+	private final String getExistsTotal;
 
 	@Nullable
-	private final String get_missingTime;
+	private final String getMissingTime;
 
 	@Nullable
-	private final String get_missingTotal;
+	private final String getMissingTotal;
 
 	@Nullable
-	private final String indexing_deleteCurrent;
+	private final String indexingDeleteCurrent;
 
 	@Nullable
-	private final String indexing_deleteTime;
+	private final String indexingDeleteTime;
 
 	@Nullable
-	private final String indexing_deleteTotal;
+	private final String indexingDeleteTotal;
 
 	@Nullable
-	private final String indexing_indexCurrent;
+	private final String indexingIndexCurrent;
 
 	@Nullable
-	private final String indexing_indexTime;
+	private final String indexingIndexTime;
 
 	@Nullable
-	private final String indexing_indexTotal;
+	private final String indexingIndexTotal;
 
 	@Nullable
-	private final String indexing_indexFailed;
+	private final String indexingIndexFailed;
 
 	@Nullable
-	private final String merges_current;
+	private final String mergesCurrent;
 
 	@Nullable
-	private final String merges_currentDocs;
+	private final String mergesCurrentDocs;
 
 	@Nullable
-	private final String merges_currentSize;
+	private final String mergesCurrentSize;
 
 	@Nullable
-	private final String merges_total;
+	private final String mergesTotal;
 
 	@Nullable
-	private final String merges_totalDocs;
+	private final String mergesTotalDocs;
 
 	@Nullable
-	private final String merges_totalSize;
+	private final String mergesTotalSize;
 
 	@Nullable
-	private final String merges_totalTime;
+	private final String mergesTotalTime;
 
 	@Nullable
-	private final String refresh_total;
+	private final String refreshTotal;
 
 	@Nullable
-	private final String refresh_time;
+	private final String refreshTime;
 
 	@Nullable
-	private final String refresh_externalTotal;
+	private final String refreshExternalTotal;
 
 	@Nullable
-	private final String refresh_externalTime;
+	private final String refreshExternalTime;
 
 	@Nullable
-	private final String refresh_listeners;
+	private final String refreshListeners;
 
 	@Nullable
-	private final String script_compilations;
+	private final String scriptCompilations;
 
 	@Nullable
-	private final String script_cacheEvictions;
+	private final String scriptCacheEvictions;
 
 	@Nullable
-	private final String script_compilationLimitTriggered;
+	private final String scriptCompilationLimitTriggered;
 
 	@Nullable
-	private final String search_fetchCurrent;
+	private final String searchFetchCurrent;
 
 	@Nullable
-	private final String search_fetchTime;
+	private final String searchFetchTime;
 
 	@Nullable
-	private final String search_fetchTotal;
+	private final String searchFetchTotal;
 
 	@Nullable
-	private final String search_openContexts;
+	private final String searchOpenContexts;
 
 	@Nullable
-	private final String search_queryCurrent;
+	private final String searchQueryCurrent;
 
 	@Nullable
-	private final String search_queryTime;
+	private final String searchQueryTime;
 
 	@Nullable
-	private final String search_queryTotal;
+	private final String searchQueryTotal;
 
 	@Nullable
-	private final String search_scrollCurrent;
+	private final String searchScrollCurrent;
 
 	@Nullable
-	private final String search_scrollTime;
+	private final String searchScrollTime;
 
 	@Nullable
-	private final String search_scrollTotal;
+	private final String searchScrollTotal;
 
 	@Nullable
-	private final String segments_count;
+	private final String segmentsCount;
 
 	@Nullable
-	private final String segments_memory;
+	private final String segmentsMemory;
 
 	@Nullable
-	private final String segments_indexWriterMemory;
+	private final String segmentsIndexWriterMemory;
 
 	@Nullable
-	private final String segments_versionMapMemory;
+	private final String segmentsVersionMapMemory;
 
 	@Nullable
-	private final String segments_fixedBitsetMemory;
+	private final String segmentsFixedBitsetMemory;
 
 	@Nullable
-	private final String suggest_current;
+	private final String suggestCurrent;
 
 	@Nullable
-	private final String suggest_time;
+	private final String suggestTime;
 
 	@Nullable
-	private final String suggest_total;
+	private final String suggestTotal;
 
 	@Nullable
-	private final String bulk_totalOperations;
+	private final String bulkTotalOperations;
 
 	@Nullable
-	private final String bulk_totalTime;
+	private final String bulkTotalTime;
 
 	@Nullable
-	private final String bulk_totalSizeInBytes;
+	private final String bulkTotalSizeInBytes;
 
 	@Nullable
-	private final String bulk_avgTime;
+	private final String bulkAvgTime;
 
 	@Nullable
-	private final String bulk_avgSizeInBytes;
+	private final String bulkAvgSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodesRecord(Builder builder) {
+	public NodesRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.pid = builder.pid;
@@ -339,98 +342,102 @@ public final class NodesRecord implements ToJsonp {
 		this.type = builder.type;
 		this.build = builder.build;
 		this.jdk = builder.jdk;
-		this.disk_total = builder.disk_total;
-		this.disk_used = builder.disk_used;
-		this.disk_avail = builder.disk_avail;
-		this.disk_usedPercent = builder.disk_usedPercent;
-		this.heap_current = builder.heap_current;
-		this.heap_percent = builder.heap_percent;
-		this.heap_max = builder.heap_max;
-		this.ram_current = builder.ram_current;
-		this.ram_percent = builder.ram_percent;
-		this.ram_max = builder.ram_max;
-		this.fileDesc_current = builder.fileDesc_current;
-		this.fileDesc_percent = builder.fileDesc_percent;
-		this.fileDesc_max = builder.fileDesc_max;
+		this.diskTotal = builder.diskTotal;
+		this.diskUsed = builder.diskUsed;
+		this.diskAvail = builder.diskAvail;
+		this.diskUsedPercent = builder.diskUsedPercent;
+		this.heapCurrent = builder.heapCurrent;
+		this.heapPercent = builder.heapPercent;
+		this.heapMax = builder.heapMax;
+		this.ramCurrent = builder.ramCurrent;
+		this.ramPercent = builder.ramPercent;
+		this.ramMax = builder.ramMax;
+		this.fileDescCurrent = builder.fileDescCurrent;
+		this.fileDescPercent = builder.fileDescPercent;
+		this.fileDescMax = builder.fileDescMax;
 		this.cpu = builder.cpu;
 		this.load1m = builder.load1m;
 		this.load5m = builder.load5m;
 		this.load15m = builder.load15m;
 		this.uptime = builder.uptime;
-		this.node_role = builder.node_role;
+		this.nodeRole = builder.nodeRole;
 		this.master = builder.master;
 		this.name = builder.name;
-		this.completion_size = builder.completion_size;
-		this.fielddata_memorySize = builder.fielddata_memorySize;
-		this.fielddata_evictions = builder.fielddata_evictions;
-		this.queryCache_memorySize = builder.queryCache_memorySize;
-		this.queryCache_evictions = builder.queryCache_evictions;
-		this.queryCache_hitCount = builder.queryCache_hitCount;
-		this.queryCache_missCount = builder.queryCache_missCount;
-		this.requestCache_memorySize = builder.requestCache_memorySize;
-		this.requestCache_evictions = builder.requestCache_evictions;
-		this.requestCache_hitCount = builder.requestCache_hitCount;
-		this.requestCache_missCount = builder.requestCache_missCount;
-		this.flush_total = builder.flush_total;
-		this.flush_totalTime = builder.flush_totalTime;
-		this.get_current = builder.get_current;
-		this.get_time = builder.get_time;
-		this.get_total = builder.get_total;
-		this.get_existsTime = builder.get_existsTime;
-		this.get_existsTotal = builder.get_existsTotal;
-		this.get_missingTime = builder.get_missingTime;
-		this.get_missingTotal = builder.get_missingTotal;
-		this.indexing_deleteCurrent = builder.indexing_deleteCurrent;
-		this.indexing_deleteTime = builder.indexing_deleteTime;
-		this.indexing_deleteTotal = builder.indexing_deleteTotal;
-		this.indexing_indexCurrent = builder.indexing_indexCurrent;
-		this.indexing_indexTime = builder.indexing_indexTime;
-		this.indexing_indexTotal = builder.indexing_indexTotal;
-		this.indexing_indexFailed = builder.indexing_indexFailed;
-		this.merges_current = builder.merges_current;
-		this.merges_currentDocs = builder.merges_currentDocs;
-		this.merges_currentSize = builder.merges_currentSize;
-		this.merges_total = builder.merges_total;
-		this.merges_totalDocs = builder.merges_totalDocs;
-		this.merges_totalSize = builder.merges_totalSize;
-		this.merges_totalTime = builder.merges_totalTime;
-		this.refresh_total = builder.refresh_total;
-		this.refresh_time = builder.refresh_time;
-		this.refresh_externalTotal = builder.refresh_externalTotal;
-		this.refresh_externalTime = builder.refresh_externalTime;
-		this.refresh_listeners = builder.refresh_listeners;
-		this.script_compilations = builder.script_compilations;
-		this.script_cacheEvictions = builder.script_cacheEvictions;
-		this.script_compilationLimitTriggered = builder.script_compilationLimitTriggered;
-		this.search_fetchCurrent = builder.search_fetchCurrent;
-		this.search_fetchTime = builder.search_fetchTime;
-		this.search_fetchTotal = builder.search_fetchTotal;
-		this.search_openContexts = builder.search_openContexts;
-		this.search_queryCurrent = builder.search_queryCurrent;
-		this.search_queryTime = builder.search_queryTime;
-		this.search_queryTotal = builder.search_queryTotal;
-		this.search_scrollCurrent = builder.search_scrollCurrent;
-		this.search_scrollTime = builder.search_scrollTime;
-		this.search_scrollTotal = builder.search_scrollTotal;
-		this.segments_count = builder.segments_count;
-		this.segments_memory = builder.segments_memory;
-		this.segments_indexWriterMemory = builder.segments_indexWriterMemory;
-		this.segments_versionMapMemory = builder.segments_versionMapMemory;
-		this.segments_fixedBitsetMemory = builder.segments_fixedBitsetMemory;
-		this.suggest_current = builder.suggest_current;
-		this.suggest_time = builder.suggest_time;
-		this.suggest_total = builder.suggest_total;
-		this.bulk_totalOperations = builder.bulk_totalOperations;
-		this.bulk_totalTime = builder.bulk_totalTime;
-		this.bulk_totalSizeInBytes = builder.bulk_totalSizeInBytes;
-		this.bulk_avgTime = builder.bulk_avgTime;
-		this.bulk_avgSizeInBytes = builder.bulk_avgSizeInBytes;
+		this.completionSize = builder.completionSize;
+		this.fielddataMemorySize = builder.fielddataMemorySize;
+		this.fielddataEvictions = builder.fielddataEvictions;
+		this.queryCacheMemorySize = builder.queryCacheMemorySize;
+		this.queryCacheEvictions = builder.queryCacheEvictions;
+		this.queryCacheHitCount = builder.queryCacheHitCount;
+		this.queryCacheMissCount = builder.queryCacheMissCount;
+		this.requestCacheMemorySize = builder.requestCacheMemorySize;
+		this.requestCacheEvictions = builder.requestCacheEvictions;
+		this.requestCacheHitCount = builder.requestCacheHitCount;
+		this.requestCacheMissCount = builder.requestCacheMissCount;
+		this.flushTotal = builder.flushTotal;
+		this.flushTotalTime = builder.flushTotalTime;
+		this.getCurrent = builder.getCurrent;
+		this.getTime = builder.getTime;
+		this.getTotal = builder.getTotal;
+		this.getExistsTime = builder.getExistsTime;
+		this.getExistsTotal = builder.getExistsTotal;
+		this.getMissingTime = builder.getMissingTime;
+		this.getMissingTotal = builder.getMissingTotal;
+		this.indexingDeleteCurrent = builder.indexingDeleteCurrent;
+		this.indexingDeleteTime = builder.indexingDeleteTime;
+		this.indexingDeleteTotal = builder.indexingDeleteTotal;
+		this.indexingIndexCurrent = builder.indexingIndexCurrent;
+		this.indexingIndexTime = builder.indexingIndexTime;
+		this.indexingIndexTotal = builder.indexingIndexTotal;
+		this.indexingIndexFailed = builder.indexingIndexFailed;
+		this.mergesCurrent = builder.mergesCurrent;
+		this.mergesCurrentDocs = builder.mergesCurrentDocs;
+		this.mergesCurrentSize = builder.mergesCurrentSize;
+		this.mergesTotal = builder.mergesTotal;
+		this.mergesTotalDocs = builder.mergesTotalDocs;
+		this.mergesTotalSize = builder.mergesTotalSize;
+		this.mergesTotalTime = builder.mergesTotalTime;
+		this.refreshTotal = builder.refreshTotal;
+		this.refreshTime = builder.refreshTime;
+		this.refreshExternalTotal = builder.refreshExternalTotal;
+		this.refreshExternalTime = builder.refreshExternalTime;
+		this.refreshListeners = builder.refreshListeners;
+		this.scriptCompilations = builder.scriptCompilations;
+		this.scriptCacheEvictions = builder.scriptCacheEvictions;
+		this.scriptCompilationLimitTriggered = builder.scriptCompilationLimitTriggered;
+		this.searchFetchCurrent = builder.searchFetchCurrent;
+		this.searchFetchTime = builder.searchFetchTime;
+		this.searchFetchTotal = builder.searchFetchTotal;
+		this.searchOpenContexts = builder.searchOpenContexts;
+		this.searchQueryCurrent = builder.searchQueryCurrent;
+		this.searchQueryTime = builder.searchQueryTime;
+		this.searchQueryTotal = builder.searchQueryTotal;
+		this.searchScrollCurrent = builder.searchScrollCurrent;
+		this.searchScrollTime = builder.searchScrollTime;
+		this.searchScrollTotal = builder.searchScrollTotal;
+		this.segmentsCount = builder.segmentsCount;
+		this.segmentsMemory = builder.segmentsMemory;
+		this.segmentsIndexWriterMemory = builder.segmentsIndexWriterMemory;
+		this.segmentsVersionMapMemory = builder.segmentsVersionMapMemory;
+		this.segmentsFixedBitsetMemory = builder.segmentsFixedBitsetMemory;
+		this.suggestCurrent = builder.suggestCurrent;
+		this.suggestTime = builder.suggestTime;
+		this.suggestTotal = builder.suggestTotal;
+		this.bulkTotalOperations = builder.bulkTotalOperations;
+		this.bulkTotalTime = builder.bulkTotalTime;
+		this.bulkTotalSizeInBytes = builder.bulkTotalSizeInBytes;
+		this.bulkAvgTime = builder.bulkAvgTime;
+		this.bulkAvgSizeInBytes = builder.bulkAvgSizeInBytes;
 
+	}
+
+	public NodesRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * unique node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -440,7 +447,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * process id
-	 *
+	 * <p>
 	 * API name: {@code pid}
 	 */
 	@Nullable
@@ -450,7 +457,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * ip address
-	 *
+	 * <p>
 	 * API name: {@code ip}
 	 */
 	@Nullable
@@ -460,7 +467,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * bound transport port
-	 *
+	 * <p>
 	 * API name: {@code port}
 	 */
 	@Nullable
@@ -470,7 +477,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * bound http address
-	 *
+	 * <p>
 	 * API name: {@code http_address}
 	 */
 	@Nullable
@@ -480,7 +487,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * es version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -490,7 +497,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * es distribution flavor
-	 *
+	 * <p>
 	 * API name: {@code flavor}
 	 */
 	@Nullable
@@ -500,7 +507,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * es distribution type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -510,7 +517,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * es build hash
-	 *
+	 * <p>
 	 * API name: {@code build}
 	 */
 	@Nullable
@@ -520,7 +527,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * jdk version
-	 *
+	 * <p>
 	 * API name: {@code jdk}
 	 */
 	@Nullable
@@ -530,137 +537,137 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * total disk space
-	 *
+	 * <p>
 	 * API name: {@code disk.total}
 	 */
 	@Nullable
-	public JsonValue disk_total() {
-		return this.disk_total;
+	public String diskTotal() {
+		return this.diskTotal;
 	}
 
 	/**
 	 * used disk space
-	 *
+	 * <p>
 	 * API name: {@code disk.used}
 	 */
 	@Nullable
-	public JsonValue disk_used() {
-		return this.disk_used;
+	public String diskUsed() {
+		return this.diskUsed;
 	}
 
 	/**
 	 * available disk space
-	 *
+	 * <p>
 	 * API name: {@code disk.avail}
 	 */
 	@Nullable
-	public JsonValue disk_avail() {
-		return this.disk_avail;
+	public String diskAvail() {
+		return this.diskAvail;
 	}
 
 	/**
 	 * used disk space percentage
-	 *
+	 * <p>
 	 * API name: {@code disk.used_percent}
 	 */
 	@Nullable
-	public JsonValue disk_usedPercent() {
-		return this.disk_usedPercent;
+	public String diskUsedPercent() {
+		return this.diskUsedPercent;
 	}
 
 	/**
 	 * used heap
-	 *
+	 * <p>
 	 * API name: {@code heap.current}
 	 */
 	@Nullable
-	public String heap_current() {
-		return this.heap_current;
+	public String heapCurrent() {
+		return this.heapCurrent;
 	}
 
 	/**
 	 * used heap ratio
-	 *
+	 * <p>
 	 * API name: {@code heap.percent}
 	 */
 	@Nullable
-	public JsonValue heap_percent() {
-		return this.heap_percent;
+	public String heapPercent() {
+		return this.heapPercent;
 	}
 
 	/**
 	 * max configured heap
-	 *
+	 * <p>
 	 * API name: {@code heap.max}
 	 */
 	@Nullable
-	public String heap_max() {
-		return this.heap_max;
+	public String heapMax() {
+		return this.heapMax;
 	}
 
 	/**
 	 * used machine memory
-	 *
+	 * <p>
 	 * API name: {@code ram.current}
 	 */
 	@Nullable
-	public String ram_current() {
-		return this.ram_current;
+	public String ramCurrent() {
+		return this.ramCurrent;
 	}
 
 	/**
 	 * used machine memory ratio
-	 *
+	 * <p>
 	 * API name: {@code ram.percent}
 	 */
 	@Nullable
-	public JsonValue ram_percent() {
-		return this.ram_percent;
+	public String ramPercent() {
+		return this.ramPercent;
 	}
 
 	/**
 	 * total machine memory
-	 *
+	 * <p>
 	 * API name: {@code ram.max}
 	 */
 	@Nullable
-	public String ram_max() {
-		return this.ram_max;
+	public String ramMax() {
+		return this.ramMax;
 	}
 
 	/**
 	 * used file descriptors
-	 *
+	 * <p>
 	 * API name: {@code file_desc.current}
 	 */
 	@Nullable
-	public String fileDesc_current() {
-		return this.fileDesc_current;
+	public String fileDescCurrent() {
+		return this.fileDescCurrent;
 	}
 
 	/**
 	 * used file descriptor ratio
-	 *
+	 * <p>
 	 * API name: {@code file_desc.percent}
 	 */
 	@Nullable
-	public JsonValue fileDesc_percent() {
-		return this.fileDesc_percent;
+	public String fileDescPercent() {
+		return this.fileDescPercent;
 	}
 
 	/**
 	 * max file descriptors
-	 *
+	 * <p>
 	 * API name: {@code file_desc.max}
 	 */
 	@Nullable
-	public String fileDesc_max() {
-		return this.fileDesc_max;
+	public String fileDescMax() {
+		return this.fileDescMax;
 	}
 
 	/**
 	 * recent cpu usage
-	 *
+	 * <p>
 	 * API name: {@code cpu}
 	 */
 	@Nullable
@@ -670,7 +677,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * 1m load avg
-	 *
+	 * <p>
 	 * API name: {@code load_1m}
 	 */
 	@Nullable
@@ -680,7 +687,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * 5m load avg
-	 *
+	 * <p>
 	 * API name: {@code load_5m}
 	 */
 	@Nullable
@@ -690,7 +697,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * 15m load avg
-	 *
+	 * <p>
 	 * API name: {@code load_15m}
 	 */
 	@Nullable
@@ -700,7 +707,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * node uptime
-	 *
+	 * <p>
 	 * API name: {@code uptime}
 	 */
 	@Nullable
@@ -710,17 +717,17 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * m:master eligible node, d:data node, i:ingest node, -:coordinating node only
-	 *
+	 * <p>
 	 * API name: {@code node.role}
 	 */
 	@Nullable
-	public String node_role() {
-		return this.node_role;
+	public String nodeRole() {
+		return this.nodeRole;
 	}
 
 	/**
 	 * *:current master
-	 *
+	 * <p>
 	 * API name: {@code master}
 	 */
 	@Nullable
@@ -730,7 +737,7 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -740,665 +747,665 @@ public final class NodesRecord implements ToJsonp {
 
 	/**
 	 * size of completion
-	 *
+	 * <p>
 	 * API name: {@code completion.size}
 	 */
 	@Nullable
-	public String completion_size() {
-		return this.completion_size;
+	public String completionSize() {
+		return this.completionSize;
 	}
 
 	/**
 	 * used fielddata cache
-	 *
+	 * <p>
 	 * API name: {@code fielddata.memory_size}
 	 */
 	@Nullable
-	public String fielddata_memorySize() {
-		return this.fielddata_memorySize;
+	public String fielddataMemorySize() {
+		return this.fielddataMemorySize;
 	}
 
 	/**
 	 * fielddata evictions
-	 *
+	 * <p>
 	 * API name: {@code fielddata.evictions}
 	 */
 	@Nullable
-	public String fielddata_evictions() {
-		return this.fielddata_evictions;
+	public String fielddataEvictions() {
+		return this.fielddataEvictions;
 	}
 
 	/**
 	 * used query cache
-	 *
+	 * <p>
 	 * API name: {@code query_cache.memory_size}
 	 */
 	@Nullable
-	public String queryCache_memorySize() {
-		return this.queryCache_memorySize;
+	public String queryCacheMemorySize() {
+		return this.queryCacheMemorySize;
 	}
 
 	/**
 	 * query cache evictions
-	 *
+	 * <p>
 	 * API name: {@code query_cache.evictions}
 	 */
 	@Nullable
-	public String queryCache_evictions() {
-		return this.queryCache_evictions;
+	public String queryCacheEvictions() {
+		return this.queryCacheEvictions;
 	}
 
 	/**
 	 * query cache hit counts
-	 *
+	 * <p>
 	 * API name: {@code query_cache.hit_count}
 	 */
 	@Nullable
-	public String queryCache_hitCount() {
-		return this.queryCache_hitCount;
+	public String queryCacheHitCount() {
+		return this.queryCacheHitCount;
 	}
 
 	/**
 	 * query cache miss counts
-	 *
+	 * <p>
 	 * API name: {@code query_cache.miss_count}
 	 */
 	@Nullable
-	public String queryCache_missCount() {
-		return this.queryCache_missCount;
+	public String queryCacheMissCount() {
+		return this.queryCacheMissCount;
 	}
 
 	/**
 	 * used request cache
-	 *
+	 * <p>
 	 * API name: {@code request_cache.memory_size}
 	 */
 	@Nullable
-	public String requestCache_memorySize() {
-		return this.requestCache_memorySize;
+	public String requestCacheMemorySize() {
+		return this.requestCacheMemorySize;
 	}
 
 	/**
 	 * request cache evictions
-	 *
+	 * <p>
 	 * API name: {@code request_cache.evictions}
 	 */
 	@Nullable
-	public String requestCache_evictions() {
-		return this.requestCache_evictions;
+	public String requestCacheEvictions() {
+		return this.requestCacheEvictions;
 	}
 
 	/**
 	 * request cache hit counts
-	 *
+	 * <p>
 	 * API name: {@code request_cache.hit_count}
 	 */
 	@Nullable
-	public String requestCache_hitCount() {
-		return this.requestCache_hitCount;
+	public String requestCacheHitCount() {
+		return this.requestCacheHitCount;
 	}
 
 	/**
 	 * request cache miss counts
-	 *
+	 * <p>
 	 * API name: {@code request_cache.miss_count}
 	 */
 	@Nullable
-	public String requestCache_missCount() {
-		return this.requestCache_missCount;
+	public String requestCacheMissCount() {
+		return this.requestCacheMissCount;
 	}
 
 	/**
 	 * number of flushes
-	 *
+	 * <p>
 	 * API name: {@code flush.total}
 	 */
 	@Nullable
-	public String flush_total() {
-		return this.flush_total;
+	public String flushTotal() {
+		return this.flushTotal;
 	}
 
 	/**
 	 * time spent in flush
-	 *
+	 * <p>
 	 * API name: {@code flush.total_time}
 	 */
 	@Nullable
-	public String flush_totalTime() {
-		return this.flush_totalTime;
+	public String flushTotalTime() {
+		return this.flushTotalTime;
 	}
 
 	/**
 	 * number of current get ops
-	 *
+	 * <p>
 	 * API name: {@code get.current}
 	 */
 	@Nullable
-	public String get_current() {
-		return this.get_current;
+	public String getCurrent() {
+		return this.getCurrent;
 	}
 
 	/**
 	 * time spent in get
-	 *
+	 * <p>
 	 * API name: {@code get.time}
 	 */
 	@Nullable
-	public String get_time() {
-		return this.get_time;
+	public String getTime() {
+		return this.getTime;
 	}
 
 	/**
 	 * number of get ops
-	 *
+	 * <p>
 	 * API name: {@code get.total}
 	 */
 	@Nullable
-	public String get_total() {
-		return this.get_total;
+	public String getTotal() {
+		return this.getTotal;
 	}
 
 	/**
 	 * time spent in successful gets
-	 *
+	 * <p>
 	 * API name: {@code get.exists_time}
 	 */
 	@Nullable
-	public String get_existsTime() {
-		return this.get_existsTime;
+	public String getExistsTime() {
+		return this.getExistsTime;
 	}
 
 	/**
 	 * number of successful gets
-	 *
+	 * <p>
 	 * API name: {@code get.exists_total}
 	 */
 	@Nullable
-	public String get_existsTotal() {
-		return this.get_existsTotal;
+	public String getExistsTotal() {
+		return this.getExistsTotal;
 	}
 
 	/**
 	 * time spent in failed gets
-	 *
+	 * <p>
 	 * API name: {@code get.missing_time}
 	 */
 	@Nullable
-	public String get_missingTime() {
-		return this.get_missingTime;
+	public String getMissingTime() {
+		return this.getMissingTime;
 	}
 
 	/**
 	 * number of failed gets
-	 *
+	 * <p>
 	 * API name: {@code get.missing_total}
 	 */
 	@Nullable
-	public String get_missingTotal() {
-		return this.get_missingTotal;
+	public String getMissingTotal() {
+		return this.getMissingTotal;
 	}
 
 	/**
 	 * number of current deletions
-	 *
+	 * <p>
 	 * API name: {@code indexing.delete_current}
 	 */
 	@Nullable
-	public String indexing_deleteCurrent() {
-		return this.indexing_deleteCurrent;
+	public String indexingDeleteCurrent() {
+		return this.indexingDeleteCurrent;
 	}
 
 	/**
 	 * time spent in deletions
-	 *
+	 * <p>
 	 * API name: {@code indexing.delete_time}
 	 */
 	@Nullable
-	public String indexing_deleteTime() {
-		return this.indexing_deleteTime;
+	public String indexingDeleteTime() {
+		return this.indexingDeleteTime;
 	}
 
 	/**
 	 * number of delete ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.delete_total}
 	 */
 	@Nullable
-	public String indexing_deleteTotal() {
-		return this.indexing_deleteTotal;
+	public String indexingDeleteTotal() {
+		return this.indexingDeleteTotal;
 	}
 
 	/**
 	 * number of current indexing ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_current}
 	 */
 	@Nullable
-	public String indexing_indexCurrent() {
-		return this.indexing_indexCurrent;
+	public String indexingIndexCurrent() {
+		return this.indexingIndexCurrent;
 	}
 
 	/**
 	 * time spent in indexing
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_time}
 	 */
 	@Nullable
-	public String indexing_indexTime() {
-		return this.indexing_indexTime;
+	public String indexingIndexTime() {
+		return this.indexingIndexTime;
 	}
 
 	/**
 	 * number of indexing ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_total}
 	 */
 	@Nullable
-	public String indexing_indexTotal() {
-		return this.indexing_indexTotal;
+	public String indexingIndexTotal() {
+		return this.indexingIndexTotal;
 	}
 
 	/**
 	 * number of failed indexing ops
-	 *
+	 * <p>
 	 * API name: {@code indexing.index_failed}
 	 */
 	@Nullable
-	public String indexing_indexFailed() {
-		return this.indexing_indexFailed;
+	public String indexingIndexFailed() {
+		return this.indexingIndexFailed;
 	}
 
 	/**
 	 * number of current merges
-	 *
+	 * <p>
 	 * API name: {@code merges.current}
 	 */
 	@Nullable
-	public String merges_current() {
-		return this.merges_current;
+	public String mergesCurrent() {
+		return this.mergesCurrent;
 	}
 
 	/**
 	 * number of current merging docs
-	 *
+	 * <p>
 	 * API name: {@code merges.current_docs}
 	 */
 	@Nullable
-	public String merges_currentDocs() {
-		return this.merges_currentDocs;
+	public String mergesCurrentDocs() {
+		return this.mergesCurrentDocs;
 	}
 
 	/**
 	 * size of current merges
-	 *
+	 * <p>
 	 * API name: {@code merges.current_size}
 	 */
 	@Nullable
-	public String merges_currentSize() {
-		return this.merges_currentSize;
+	public String mergesCurrentSize() {
+		return this.mergesCurrentSize;
 	}
 
 	/**
 	 * number of completed merge ops
-	 *
+	 * <p>
 	 * API name: {@code merges.total}
 	 */
 	@Nullable
-	public String merges_total() {
-		return this.merges_total;
+	public String mergesTotal() {
+		return this.mergesTotal;
 	}
 
 	/**
 	 * docs merged
-	 *
+	 * <p>
 	 * API name: {@code merges.total_docs}
 	 */
 	@Nullable
-	public String merges_totalDocs() {
-		return this.merges_totalDocs;
+	public String mergesTotalDocs() {
+		return this.mergesTotalDocs;
 	}
 
 	/**
 	 * size merged
-	 *
+	 * <p>
 	 * API name: {@code merges.total_size}
 	 */
 	@Nullable
-	public String merges_totalSize() {
-		return this.merges_totalSize;
+	public String mergesTotalSize() {
+		return this.mergesTotalSize;
 	}
 
 	/**
 	 * time spent in merges
-	 *
+	 * <p>
 	 * API name: {@code merges.total_time}
 	 */
 	@Nullable
-	public String merges_totalTime() {
-		return this.merges_totalTime;
+	public String mergesTotalTime() {
+		return this.mergesTotalTime;
 	}
 
 	/**
 	 * total refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.total}
 	 */
 	@Nullable
-	public String refresh_total() {
-		return this.refresh_total;
+	public String refreshTotal() {
+		return this.refreshTotal;
 	}
 
 	/**
 	 * time spent in refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.time}
 	 */
 	@Nullable
-	public String refresh_time() {
-		return this.refresh_time;
+	public String refreshTime() {
+		return this.refreshTime;
 	}
 
 	/**
 	 * total external refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.external_total}
 	 */
 	@Nullable
-	public String refresh_externalTotal() {
-		return this.refresh_externalTotal;
+	public String refreshExternalTotal() {
+		return this.refreshExternalTotal;
 	}
 
 	/**
 	 * time spent in external refreshes
-	 *
+	 * <p>
 	 * API name: {@code refresh.external_time}
 	 */
 	@Nullable
-	public String refresh_externalTime() {
-		return this.refresh_externalTime;
+	public String refreshExternalTime() {
+		return this.refreshExternalTime;
 	}
 
 	/**
 	 * number of pending refresh listeners
-	 *
+	 * <p>
 	 * API name: {@code refresh.listeners}
 	 */
 	@Nullable
-	public String refresh_listeners() {
-		return this.refresh_listeners;
+	public String refreshListeners() {
+		return this.refreshListeners;
 	}
 
 	/**
 	 * script compilations
-	 *
+	 * <p>
 	 * API name: {@code script.compilations}
 	 */
 	@Nullable
-	public String script_compilations() {
-		return this.script_compilations;
+	public String scriptCompilations() {
+		return this.scriptCompilations;
 	}
 
 	/**
 	 * script cache evictions
-	 *
+	 * <p>
 	 * API name: {@code script.cache_evictions}
 	 */
 	@Nullable
-	public String script_cacheEvictions() {
-		return this.script_cacheEvictions;
+	public String scriptCacheEvictions() {
+		return this.scriptCacheEvictions;
 	}
 
 	/**
 	 * script cache compilation limit triggered
-	 *
+	 * <p>
 	 * API name: {@code script.compilation_limit_triggered}
 	 */
 	@Nullable
-	public String script_compilationLimitTriggered() {
-		return this.script_compilationLimitTriggered;
+	public String scriptCompilationLimitTriggered() {
+		return this.scriptCompilationLimitTriggered;
 	}
 
 	/**
 	 * current fetch phase ops
-	 *
+	 * <p>
 	 * API name: {@code search.fetch_current}
 	 */
 	@Nullable
-	public String search_fetchCurrent() {
-		return this.search_fetchCurrent;
+	public String searchFetchCurrent() {
+		return this.searchFetchCurrent;
 	}
 
 	/**
 	 * time spent in fetch phase
-	 *
+	 * <p>
 	 * API name: {@code search.fetch_time}
 	 */
 	@Nullable
-	public String search_fetchTime() {
-		return this.search_fetchTime;
+	public String searchFetchTime() {
+		return this.searchFetchTime;
 	}
 
 	/**
 	 * total fetch ops
-	 *
+	 * <p>
 	 * API name: {@code search.fetch_total}
 	 */
 	@Nullable
-	public String search_fetchTotal() {
-		return this.search_fetchTotal;
+	public String searchFetchTotal() {
+		return this.searchFetchTotal;
 	}
 
 	/**
 	 * open search contexts
-	 *
+	 * <p>
 	 * API name: {@code search.open_contexts}
 	 */
 	@Nullable
-	public String search_openContexts() {
-		return this.search_openContexts;
+	public String searchOpenContexts() {
+		return this.searchOpenContexts;
 	}
 
 	/**
 	 * current query phase ops
-	 *
+	 * <p>
 	 * API name: {@code search.query_current}
 	 */
 	@Nullable
-	public String search_queryCurrent() {
-		return this.search_queryCurrent;
+	public String searchQueryCurrent() {
+		return this.searchQueryCurrent;
 	}
 
 	/**
 	 * time spent in query phase
-	 *
+	 * <p>
 	 * API name: {@code search.query_time}
 	 */
 	@Nullable
-	public String search_queryTime() {
-		return this.search_queryTime;
+	public String searchQueryTime() {
+		return this.searchQueryTime;
 	}
 
 	/**
 	 * total query phase ops
-	 *
+	 * <p>
 	 * API name: {@code search.query_total}
 	 */
 	@Nullable
-	public String search_queryTotal() {
-		return this.search_queryTotal;
+	public String searchQueryTotal() {
+		return this.searchQueryTotal;
 	}
 
 	/**
 	 * open scroll contexts
-	 *
+	 * <p>
 	 * API name: {@code search.scroll_current}
 	 */
 	@Nullable
-	public String search_scrollCurrent() {
-		return this.search_scrollCurrent;
+	public String searchScrollCurrent() {
+		return this.searchScrollCurrent;
 	}
 
 	/**
 	 * time scroll contexts held open
-	 *
+	 * <p>
 	 * API name: {@code search.scroll_time}
 	 */
 	@Nullable
-	public String search_scrollTime() {
-		return this.search_scrollTime;
+	public String searchScrollTime() {
+		return this.searchScrollTime;
 	}
 
 	/**
 	 * completed scroll contexts
-	 *
+	 * <p>
 	 * API name: {@code search.scroll_total}
 	 */
 	@Nullable
-	public String search_scrollTotal() {
-		return this.search_scrollTotal;
+	public String searchScrollTotal() {
+		return this.searchScrollTotal;
 	}
 
 	/**
 	 * number of segments
-	 *
+	 * <p>
 	 * API name: {@code segments.count}
 	 */
 	@Nullable
-	public String segments_count() {
-		return this.segments_count;
+	public String segmentsCount() {
+		return this.segmentsCount;
 	}
 
 	/**
 	 * memory used by segments
-	 *
+	 * <p>
 	 * API name: {@code segments.memory}
 	 */
 	@Nullable
-	public String segments_memory() {
-		return this.segments_memory;
+	public String segmentsMemory() {
+		return this.segmentsMemory;
 	}
 
 	/**
 	 * memory used by index writer
-	 *
+	 * <p>
 	 * API name: {@code segments.index_writer_memory}
 	 */
 	@Nullable
-	public String segments_indexWriterMemory() {
-		return this.segments_indexWriterMemory;
+	public String segmentsIndexWriterMemory() {
+		return this.segmentsIndexWriterMemory;
 	}
 
 	/**
 	 * memory used by version map
-	 *
+	 * <p>
 	 * API name: {@code segments.version_map_memory}
 	 */
 	@Nullable
-	public String segments_versionMapMemory() {
-		return this.segments_versionMapMemory;
+	public String segmentsVersionMapMemory() {
+		return this.segmentsVersionMapMemory;
 	}
 
 	/**
 	 * memory used by fixed bit sets for nested object field types and export type
 	 * filters for types referred in _parent fields
-	 *
+	 * <p>
 	 * API name: {@code segments.fixed_bitset_memory}
 	 */
 	@Nullable
-	public String segments_fixedBitsetMemory() {
-		return this.segments_fixedBitsetMemory;
+	public String segmentsFixedBitsetMemory() {
+		return this.segmentsFixedBitsetMemory;
 	}
 
 	/**
 	 * number of current suggest ops
-	 *
+	 * <p>
 	 * API name: {@code suggest.current}
 	 */
 	@Nullable
-	public String suggest_current() {
-		return this.suggest_current;
+	public String suggestCurrent() {
+		return this.suggestCurrent;
 	}
 
 	/**
 	 * time spend in suggest
-	 *
+	 * <p>
 	 * API name: {@code suggest.time}
 	 */
 	@Nullable
-	public String suggest_time() {
-		return this.suggest_time;
+	public String suggestTime() {
+		return this.suggestTime;
 	}
 
 	/**
 	 * number of suggest ops
-	 *
+	 * <p>
 	 * API name: {@code suggest.total}
 	 */
 	@Nullable
-	public String suggest_total() {
-		return this.suggest_total;
+	public String suggestTotal() {
+		return this.suggestTotal;
 	}
 
 	/**
 	 * number of bulk shard ops
-	 *
+	 * <p>
 	 * API name: {@code bulk.total_operations}
 	 */
 	@Nullable
-	public String bulk_totalOperations() {
-		return this.bulk_totalOperations;
+	public String bulkTotalOperations() {
+		return this.bulkTotalOperations;
 	}
 
 	/**
 	 * time spend in shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.total_time}
 	 */
 	@Nullable
-	public String bulk_totalTime() {
-		return this.bulk_totalTime;
+	public String bulkTotalTime() {
+		return this.bulkTotalTime;
 	}
 
 	/**
 	 * total size in bytes of shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.total_size_in_bytes}
 	 */
 	@Nullable
-	public String bulk_totalSizeInBytes() {
-		return this.bulk_totalSizeInBytes;
+	public String bulkTotalSizeInBytes() {
+		return this.bulkTotalSizeInBytes;
 	}
 
 	/**
 	 * average time spend in shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.avg_time}
 	 */
 	@Nullable
-	public String bulk_avgTime() {
-		return this.bulk_avgTime;
+	public String bulkAvgTime() {
+		return this.bulkAvgTime;
 	}
 
 	/**
 	 * average size in bytes of shard bulk
-	 *
+	 * <p>
 	 * API name: {@code bulk.avg_size_in_bytes}
 	 */
 	@Nullable
-	public String bulk_avgSizeInBytes() {
-		return this.bulk_avgSizeInBytes;
+	public String bulkAvgSizeInBytes() {
+		return this.bulkAvgSizeInBytes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -1460,82 +1467,82 @@ public final class NodesRecord implements ToJsonp {
 			generator.write(this.jdk);
 
 		}
-		if (this.disk_total != null) {
+		if (this.diskTotal != null) {
 
 			generator.writeKey("disk.total");
-			generator.write(this.disk_total);
+			generator.write(this.diskTotal);
 
 		}
-		if (this.disk_used != null) {
+		if (this.diskUsed != null) {
 
 			generator.writeKey("disk.used");
-			generator.write(this.disk_used);
+			generator.write(this.diskUsed);
 
 		}
-		if (this.disk_avail != null) {
+		if (this.diskAvail != null) {
 
 			generator.writeKey("disk.avail");
-			generator.write(this.disk_avail);
+			generator.write(this.diskAvail);
 
 		}
-		if (this.disk_usedPercent != null) {
+		if (this.diskUsedPercent != null) {
 
 			generator.writeKey("disk.used_percent");
-			generator.write(this.disk_usedPercent);
+			generator.write(this.diskUsedPercent);
 
 		}
-		if (this.heap_current != null) {
+		if (this.heapCurrent != null) {
 
 			generator.writeKey("heap.current");
-			generator.write(this.heap_current);
+			generator.write(this.heapCurrent);
 
 		}
-		if (this.heap_percent != null) {
+		if (this.heapPercent != null) {
 
 			generator.writeKey("heap.percent");
-			generator.write(this.heap_percent);
+			generator.write(this.heapPercent);
 
 		}
-		if (this.heap_max != null) {
+		if (this.heapMax != null) {
 
 			generator.writeKey("heap.max");
-			generator.write(this.heap_max);
+			generator.write(this.heapMax);
 
 		}
-		if (this.ram_current != null) {
+		if (this.ramCurrent != null) {
 
 			generator.writeKey("ram.current");
-			generator.write(this.ram_current);
+			generator.write(this.ramCurrent);
 
 		}
-		if (this.ram_percent != null) {
+		if (this.ramPercent != null) {
 
 			generator.writeKey("ram.percent");
-			generator.write(this.ram_percent);
+			generator.write(this.ramPercent);
 
 		}
-		if (this.ram_max != null) {
+		if (this.ramMax != null) {
 
 			generator.writeKey("ram.max");
-			generator.write(this.ram_max);
+			generator.write(this.ramMax);
 
 		}
-		if (this.fileDesc_current != null) {
+		if (this.fileDescCurrent != null) {
 
 			generator.writeKey("file_desc.current");
-			generator.write(this.fileDesc_current);
+			generator.write(this.fileDescCurrent);
 
 		}
-		if (this.fileDesc_percent != null) {
+		if (this.fileDescPercent != null) {
 
 			generator.writeKey("file_desc.percent");
-			generator.write(this.fileDesc_percent);
+			generator.write(this.fileDescPercent);
 
 		}
-		if (this.fileDesc_max != null) {
+		if (this.fileDescMax != null) {
 
 			generator.writeKey("file_desc.max");
-			generator.write(this.fileDesc_max);
+			generator.write(this.fileDescMax);
 
 		}
 		if (this.cpu != null) {
@@ -1568,10 +1575,10 @@ public final class NodesRecord implements ToJsonp {
 			generator.write(this.uptime);
 
 		}
-		if (this.node_role != null) {
+		if (this.nodeRole != null) {
 
 			generator.writeKey("node.role");
-			generator.write(this.node_role);
+			generator.write(this.nodeRole);
 
 		}
 		if (this.master != null) {
@@ -1586,394 +1593,394 @@ public final class NodesRecord implements ToJsonp {
 			generator.write(this.name);
 
 		}
-		if (this.completion_size != null) {
+		if (this.completionSize != null) {
 
 			generator.writeKey("completion.size");
-			generator.write(this.completion_size);
+			generator.write(this.completionSize);
 
 		}
-		if (this.fielddata_memorySize != null) {
+		if (this.fielddataMemorySize != null) {
 
 			generator.writeKey("fielddata.memory_size");
-			generator.write(this.fielddata_memorySize);
+			generator.write(this.fielddataMemorySize);
 
 		}
-		if (this.fielddata_evictions != null) {
+		if (this.fielddataEvictions != null) {
 
 			generator.writeKey("fielddata.evictions");
-			generator.write(this.fielddata_evictions);
+			generator.write(this.fielddataEvictions);
 
 		}
-		if (this.queryCache_memorySize != null) {
+		if (this.queryCacheMemorySize != null) {
 
 			generator.writeKey("query_cache.memory_size");
-			generator.write(this.queryCache_memorySize);
+			generator.write(this.queryCacheMemorySize);
 
 		}
-		if (this.queryCache_evictions != null) {
+		if (this.queryCacheEvictions != null) {
 
 			generator.writeKey("query_cache.evictions");
-			generator.write(this.queryCache_evictions);
+			generator.write(this.queryCacheEvictions);
 
 		}
-		if (this.queryCache_hitCount != null) {
+		if (this.queryCacheHitCount != null) {
 
 			generator.writeKey("query_cache.hit_count");
-			generator.write(this.queryCache_hitCount);
+			generator.write(this.queryCacheHitCount);
 
 		}
-		if (this.queryCache_missCount != null) {
+		if (this.queryCacheMissCount != null) {
 
 			generator.writeKey("query_cache.miss_count");
-			generator.write(this.queryCache_missCount);
+			generator.write(this.queryCacheMissCount);
 
 		}
-		if (this.requestCache_memorySize != null) {
+		if (this.requestCacheMemorySize != null) {
 
 			generator.writeKey("request_cache.memory_size");
-			generator.write(this.requestCache_memorySize);
+			generator.write(this.requestCacheMemorySize);
 
 		}
-		if (this.requestCache_evictions != null) {
+		if (this.requestCacheEvictions != null) {
 
 			generator.writeKey("request_cache.evictions");
-			generator.write(this.requestCache_evictions);
+			generator.write(this.requestCacheEvictions);
 
 		}
-		if (this.requestCache_hitCount != null) {
+		if (this.requestCacheHitCount != null) {
 
 			generator.writeKey("request_cache.hit_count");
-			generator.write(this.requestCache_hitCount);
+			generator.write(this.requestCacheHitCount);
 
 		}
-		if (this.requestCache_missCount != null) {
+		if (this.requestCacheMissCount != null) {
 
 			generator.writeKey("request_cache.miss_count");
-			generator.write(this.requestCache_missCount);
+			generator.write(this.requestCacheMissCount);
 
 		}
-		if (this.flush_total != null) {
+		if (this.flushTotal != null) {
 
 			generator.writeKey("flush.total");
-			generator.write(this.flush_total);
+			generator.write(this.flushTotal);
 
 		}
-		if (this.flush_totalTime != null) {
+		if (this.flushTotalTime != null) {
 
 			generator.writeKey("flush.total_time");
-			generator.write(this.flush_totalTime);
+			generator.write(this.flushTotalTime);
 
 		}
-		if (this.get_current != null) {
+		if (this.getCurrent != null) {
 
 			generator.writeKey("get.current");
-			generator.write(this.get_current);
+			generator.write(this.getCurrent);
 
 		}
-		if (this.get_time != null) {
+		if (this.getTime != null) {
 
 			generator.writeKey("get.time");
-			generator.write(this.get_time);
+			generator.write(this.getTime);
 
 		}
-		if (this.get_total != null) {
+		if (this.getTotal != null) {
 
 			generator.writeKey("get.total");
-			generator.write(this.get_total);
+			generator.write(this.getTotal);
 
 		}
-		if (this.get_existsTime != null) {
+		if (this.getExistsTime != null) {
 
 			generator.writeKey("get.exists_time");
-			generator.write(this.get_existsTime);
+			generator.write(this.getExistsTime);
 
 		}
-		if (this.get_existsTotal != null) {
+		if (this.getExistsTotal != null) {
 
 			generator.writeKey("get.exists_total");
-			generator.write(this.get_existsTotal);
+			generator.write(this.getExistsTotal);
 
 		}
-		if (this.get_missingTime != null) {
+		if (this.getMissingTime != null) {
 
 			generator.writeKey("get.missing_time");
-			generator.write(this.get_missingTime);
+			generator.write(this.getMissingTime);
 
 		}
-		if (this.get_missingTotal != null) {
+		if (this.getMissingTotal != null) {
 
 			generator.writeKey("get.missing_total");
-			generator.write(this.get_missingTotal);
+			generator.write(this.getMissingTotal);
 
 		}
-		if (this.indexing_deleteCurrent != null) {
+		if (this.indexingDeleteCurrent != null) {
 
 			generator.writeKey("indexing.delete_current");
-			generator.write(this.indexing_deleteCurrent);
+			generator.write(this.indexingDeleteCurrent);
 
 		}
-		if (this.indexing_deleteTime != null) {
+		if (this.indexingDeleteTime != null) {
 
 			generator.writeKey("indexing.delete_time");
-			generator.write(this.indexing_deleteTime);
+			generator.write(this.indexingDeleteTime);
 
 		}
-		if (this.indexing_deleteTotal != null) {
+		if (this.indexingDeleteTotal != null) {
 
 			generator.writeKey("indexing.delete_total");
-			generator.write(this.indexing_deleteTotal);
+			generator.write(this.indexingDeleteTotal);
 
 		}
-		if (this.indexing_indexCurrent != null) {
+		if (this.indexingIndexCurrent != null) {
 
 			generator.writeKey("indexing.index_current");
-			generator.write(this.indexing_indexCurrent);
+			generator.write(this.indexingIndexCurrent);
 
 		}
-		if (this.indexing_indexTime != null) {
+		if (this.indexingIndexTime != null) {
 
 			generator.writeKey("indexing.index_time");
-			generator.write(this.indexing_indexTime);
+			generator.write(this.indexingIndexTime);
 
 		}
-		if (this.indexing_indexTotal != null) {
+		if (this.indexingIndexTotal != null) {
 
 			generator.writeKey("indexing.index_total");
-			generator.write(this.indexing_indexTotal);
+			generator.write(this.indexingIndexTotal);
 
 		}
-		if (this.indexing_indexFailed != null) {
+		if (this.indexingIndexFailed != null) {
 
 			generator.writeKey("indexing.index_failed");
-			generator.write(this.indexing_indexFailed);
+			generator.write(this.indexingIndexFailed);
 
 		}
-		if (this.merges_current != null) {
+		if (this.mergesCurrent != null) {
 
 			generator.writeKey("merges.current");
-			generator.write(this.merges_current);
+			generator.write(this.mergesCurrent);
 
 		}
-		if (this.merges_currentDocs != null) {
+		if (this.mergesCurrentDocs != null) {
 
 			generator.writeKey("merges.current_docs");
-			generator.write(this.merges_currentDocs);
+			generator.write(this.mergesCurrentDocs);
 
 		}
-		if (this.merges_currentSize != null) {
+		if (this.mergesCurrentSize != null) {
 
 			generator.writeKey("merges.current_size");
-			generator.write(this.merges_currentSize);
+			generator.write(this.mergesCurrentSize);
 
 		}
-		if (this.merges_total != null) {
+		if (this.mergesTotal != null) {
 
 			generator.writeKey("merges.total");
-			generator.write(this.merges_total);
+			generator.write(this.mergesTotal);
 
 		}
-		if (this.merges_totalDocs != null) {
+		if (this.mergesTotalDocs != null) {
 
 			generator.writeKey("merges.total_docs");
-			generator.write(this.merges_totalDocs);
+			generator.write(this.mergesTotalDocs);
 
 		}
-		if (this.merges_totalSize != null) {
+		if (this.mergesTotalSize != null) {
 
 			generator.writeKey("merges.total_size");
-			generator.write(this.merges_totalSize);
+			generator.write(this.mergesTotalSize);
 
 		}
-		if (this.merges_totalTime != null) {
+		if (this.mergesTotalTime != null) {
 
 			generator.writeKey("merges.total_time");
-			generator.write(this.merges_totalTime);
+			generator.write(this.mergesTotalTime);
 
 		}
-		if (this.refresh_total != null) {
+		if (this.refreshTotal != null) {
 
 			generator.writeKey("refresh.total");
-			generator.write(this.refresh_total);
+			generator.write(this.refreshTotal);
 
 		}
-		if (this.refresh_time != null) {
+		if (this.refreshTime != null) {
 
 			generator.writeKey("refresh.time");
-			generator.write(this.refresh_time);
+			generator.write(this.refreshTime);
 
 		}
-		if (this.refresh_externalTotal != null) {
+		if (this.refreshExternalTotal != null) {
 
 			generator.writeKey("refresh.external_total");
-			generator.write(this.refresh_externalTotal);
+			generator.write(this.refreshExternalTotal);
 
 		}
-		if (this.refresh_externalTime != null) {
+		if (this.refreshExternalTime != null) {
 
 			generator.writeKey("refresh.external_time");
-			generator.write(this.refresh_externalTime);
+			generator.write(this.refreshExternalTime);
 
 		}
-		if (this.refresh_listeners != null) {
+		if (this.refreshListeners != null) {
 
 			generator.writeKey("refresh.listeners");
-			generator.write(this.refresh_listeners);
+			generator.write(this.refreshListeners);
 
 		}
-		if (this.script_compilations != null) {
+		if (this.scriptCompilations != null) {
 
 			generator.writeKey("script.compilations");
-			generator.write(this.script_compilations);
+			generator.write(this.scriptCompilations);
 
 		}
-		if (this.script_cacheEvictions != null) {
+		if (this.scriptCacheEvictions != null) {
 
 			generator.writeKey("script.cache_evictions");
-			generator.write(this.script_cacheEvictions);
+			generator.write(this.scriptCacheEvictions);
 
 		}
-		if (this.script_compilationLimitTriggered != null) {
+		if (this.scriptCompilationLimitTriggered != null) {
 
 			generator.writeKey("script.compilation_limit_triggered");
-			generator.write(this.script_compilationLimitTriggered);
+			generator.write(this.scriptCompilationLimitTriggered);
 
 		}
-		if (this.search_fetchCurrent != null) {
+		if (this.searchFetchCurrent != null) {
 
 			generator.writeKey("search.fetch_current");
-			generator.write(this.search_fetchCurrent);
+			generator.write(this.searchFetchCurrent);
 
 		}
-		if (this.search_fetchTime != null) {
+		if (this.searchFetchTime != null) {
 
 			generator.writeKey("search.fetch_time");
-			generator.write(this.search_fetchTime);
+			generator.write(this.searchFetchTime);
 
 		}
-		if (this.search_fetchTotal != null) {
+		if (this.searchFetchTotal != null) {
 
 			generator.writeKey("search.fetch_total");
-			generator.write(this.search_fetchTotal);
+			generator.write(this.searchFetchTotal);
 
 		}
-		if (this.search_openContexts != null) {
+		if (this.searchOpenContexts != null) {
 
 			generator.writeKey("search.open_contexts");
-			generator.write(this.search_openContexts);
+			generator.write(this.searchOpenContexts);
 
 		}
-		if (this.search_queryCurrent != null) {
+		if (this.searchQueryCurrent != null) {
 
 			generator.writeKey("search.query_current");
-			generator.write(this.search_queryCurrent);
+			generator.write(this.searchQueryCurrent);
 
 		}
-		if (this.search_queryTime != null) {
+		if (this.searchQueryTime != null) {
 
 			generator.writeKey("search.query_time");
-			generator.write(this.search_queryTime);
+			generator.write(this.searchQueryTime);
 
 		}
-		if (this.search_queryTotal != null) {
+		if (this.searchQueryTotal != null) {
 
 			generator.writeKey("search.query_total");
-			generator.write(this.search_queryTotal);
+			generator.write(this.searchQueryTotal);
 
 		}
-		if (this.search_scrollCurrent != null) {
+		if (this.searchScrollCurrent != null) {
 
 			generator.writeKey("search.scroll_current");
-			generator.write(this.search_scrollCurrent);
+			generator.write(this.searchScrollCurrent);
 
 		}
-		if (this.search_scrollTime != null) {
+		if (this.searchScrollTime != null) {
 
 			generator.writeKey("search.scroll_time");
-			generator.write(this.search_scrollTime);
+			generator.write(this.searchScrollTime);
 
 		}
-		if (this.search_scrollTotal != null) {
+		if (this.searchScrollTotal != null) {
 
 			generator.writeKey("search.scroll_total");
-			generator.write(this.search_scrollTotal);
+			generator.write(this.searchScrollTotal);
 
 		}
-		if (this.segments_count != null) {
+		if (this.segmentsCount != null) {
 
 			generator.writeKey("segments.count");
-			generator.write(this.segments_count);
+			generator.write(this.segmentsCount);
 
 		}
-		if (this.segments_memory != null) {
+		if (this.segmentsMemory != null) {
 
 			generator.writeKey("segments.memory");
-			generator.write(this.segments_memory);
+			generator.write(this.segmentsMemory);
 
 		}
-		if (this.segments_indexWriterMemory != null) {
+		if (this.segmentsIndexWriterMemory != null) {
 
 			generator.writeKey("segments.index_writer_memory");
-			generator.write(this.segments_indexWriterMemory);
+			generator.write(this.segmentsIndexWriterMemory);
 
 		}
-		if (this.segments_versionMapMemory != null) {
+		if (this.segmentsVersionMapMemory != null) {
 
 			generator.writeKey("segments.version_map_memory");
-			generator.write(this.segments_versionMapMemory);
+			generator.write(this.segmentsVersionMapMemory);
 
 		}
-		if (this.segments_fixedBitsetMemory != null) {
+		if (this.segmentsFixedBitsetMemory != null) {
 
 			generator.writeKey("segments.fixed_bitset_memory");
-			generator.write(this.segments_fixedBitsetMemory);
+			generator.write(this.segmentsFixedBitsetMemory);
 
 		}
-		if (this.suggest_current != null) {
+		if (this.suggestCurrent != null) {
 
 			generator.writeKey("suggest.current");
-			generator.write(this.suggest_current);
+			generator.write(this.suggestCurrent);
 
 		}
-		if (this.suggest_time != null) {
+		if (this.suggestTime != null) {
 
 			generator.writeKey("suggest.time");
-			generator.write(this.suggest_time);
+			generator.write(this.suggestTime);
 
 		}
-		if (this.suggest_total != null) {
+		if (this.suggestTotal != null) {
 
 			generator.writeKey("suggest.total");
-			generator.write(this.suggest_total);
+			generator.write(this.suggestTotal);
 
 		}
-		if (this.bulk_totalOperations != null) {
+		if (this.bulkTotalOperations != null) {
 
 			generator.writeKey("bulk.total_operations");
-			generator.write(this.bulk_totalOperations);
+			generator.write(this.bulkTotalOperations);
 
 		}
-		if (this.bulk_totalTime != null) {
+		if (this.bulkTotalTime != null) {
 
 			generator.writeKey("bulk.total_time");
-			generator.write(this.bulk_totalTime);
+			generator.write(this.bulkTotalTime);
 
 		}
-		if (this.bulk_totalSizeInBytes != null) {
+		if (this.bulkTotalSizeInBytes != null) {
 
 			generator.writeKey("bulk.total_size_in_bytes");
-			generator.write(this.bulk_totalSizeInBytes);
+			generator.write(this.bulkTotalSizeInBytes);
 
 		}
-		if (this.bulk_avgTime != null) {
+		if (this.bulkAvgTime != null) {
 
 			generator.writeKey("bulk.avg_time");
-			generator.write(this.bulk_avgTime);
+			generator.write(this.bulkAvgTime);
 
 		}
-		if (this.bulk_avgSizeInBytes != null) {
+		if (this.bulkAvgSizeInBytes != null) {
 
 			generator.writeKey("bulk.avg_size_in_bytes");
-			generator.write(this.bulk_avgSizeInBytes);
+			generator.write(this.bulkAvgSizeInBytes);
 
 		}
 
@@ -2016,43 +2023,43 @@ public final class NodesRecord implements ToJsonp {
 		private String jdk;
 
 		@Nullable
-		private JsonValue disk_total;
+		private String diskTotal;
 
 		@Nullable
-		private JsonValue disk_used;
+		private String diskUsed;
 
 		@Nullable
-		private JsonValue disk_avail;
+		private String diskAvail;
 
 		@Nullable
-		private JsonValue disk_usedPercent;
+		private String diskUsedPercent;
 
 		@Nullable
-		private String heap_current;
+		private String heapCurrent;
 
 		@Nullable
-		private JsonValue heap_percent;
+		private String heapPercent;
 
 		@Nullable
-		private String heap_max;
+		private String heapMax;
 
 		@Nullable
-		private String ram_current;
+		private String ramCurrent;
 
 		@Nullable
-		private JsonValue ram_percent;
+		private String ramPercent;
 
 		@Nullable
-		private String ram_max;
+		private String ramMax;
 
 		@Nullable
-		private String fileDesc_current;
+		private String fileDescCurrent;
 
 		@Nullable
-		private JsonValue fileDesc_percent;
+		private String fileDescPercent;
 
 		@Nullable
-		private String fileDesc_max;
+		private String fileDescMax;
 
 		@Nullable
 		private String cpu;
@@ -2070,7 +2077,7 @@ public final class NodesRecord implements ToJsonp {
 		private String uptime;
 
 		@Nullable
-		private String node_role;
+		private String nodeRole;
 
 		@Nullable
 		private String master;
@@ -2079,203 +2086,203 @@ public final class NodesRecord implements ToJsonp {
 		private String name;
 
 		@Nullable
-		private String completion_size;
+		private String completionSize;
 
 		@Nullable
-		private String fielddata_memorySize;
+		private String fielddataMemorySize;
 
 		@Nullable
-		private String fielddata_evictions;
+		private String fielddataEvictions;
 
 		@Nullable
-		private String queryCache_memorySize;
+		private String queryCacheMemorySize;
 
 		@Nullable
-		private String queryCache_evictions;
+		private String queryCacheEvictions;
 
 		@Nullable
-		private String queryCache_hitCount;
+		private String queryCacheHitCount;
 
 		@Nullable
-		private String queryCache_missCount;
+		private String queryCacheMissCount;
 
 		@Nullable
-		private String requestCache_memorySize;
+		private String requestCacheMemorySize;
 
 		@Nullable
-		private String requestCache_evictions;
+		private String requestCacheEvictions;
 
 		@Nullable
-		private String requestCache_hitCount;
+		private String requestCacheHitCount;
 
 		@Nullable
-		private String requestCache_missCount;
+		private String requestCacheMissCount;
 
 		@Nullable
-		private String flush_total;
+		private String flushTotal;
 
 		@Nullable
-		private String flush_totalTime;
+		private String flushTotalTime;
 
 		@Nullable
-		private String get_current;
+		private String getCurrent;
 
 		@Nullable
-		private String get_time;
+		private String getTime;
 
 		@Nullable
-		private String get_total;
+		private String getTotal;
 
 		@Nullable
-		private String get_existsTime;
+		private String getExistsTime;
 
 		@Nullable
-		private String get_existsTotal;
+		private String getExistsTotal;
 
 		@Nullable
-		private String get_missingTime;
+		private String getMissingTime;
 
 		@Nullable
-		private String get_missingTotal;
+		private String getMissingTotal;
 
 		@Nullable
-		private String indexing_deleteCurrent;
+		private String indexingDeleteCurrent;
 
 		@Nullable
-		private String indexing_deleteTime;
+		private String indexingDeleteTime;
 
 		@Nullable
-		private String indexing_deleteTotal;
+		private String indexingDeleteTotal;
 
 		@Nullable
-		private String indexing_indexCurrent;
+		private String indexingIndexCurrent;
 
 		@Nullable
-		private String indexing_indexTime;
+		private String indexingIndexTime;
 
 		@Nullable
-		private String indexing_indexTotal;
+		private String indexingIndexTotal;
 
 		@Nullable
-		private String indexing_indexFailed;
+		private String indexingIndexFailed;
 
 		@Nullable
-		private String merges_current;
+		private String mergesCurrent;
 
 		@Nullable
-		private String merges_currentDocs;
+		private String mergesCurrentDocs;
 
 		@Nullable
-		private String merges_currentSize;
+		private String mergesCurrentSize;
 
 		@Nullable
-		private String merges_total;
+		private String mergesTotal;
 
 		@Nullable
-		private String merges_totalDocs;
+		private String mergesTotalDocs;
 
 		@Nullable
-		private String merges_totalSize;
+		private String mergesTotalSize;
 
 		@Nullable
-		private String merges_totalTime;
+		private String mergesTotalTime;
 
 		@Nullable
-		private String refresh_total;
+		private String refreshTotal;
 
 		@Nullable
-		private String refresh_time;
+		private String refreshTime;
 
 		@Nullable
-		private String refresh_externalTotal;
+		private String refreshExternalTotal;
 
 		@Nullable
-		private String refresh_externalTime;
+		private String refreshExternalTime;
 
 		@Nullable
-		private String refresh_listeners;
+		private String refreshListeners;
 
 		@Nullable
-		private String script_compilations;
+		private String scriptCompilations;
 
 		@Nullable
-		private String script_cacheEvictions;
+		private String scriptCacheEvictions;
 
 		@Nullable
-		private String script_compilationLimitTriggered;
+		private String scriptCompilationLimitTriggered;
 
 		@Nullable
-		private String search_fetchCurrent;
+		private String searchFetchCurrent;
 
 		@Nullable
-		private String search_fetchTime;
+		private String searchFetchTime;
 
 		@Nullable
-		private String search_fetchTotal;
+		private String searchFetchTotal;
 
 		@Nullable
-		private String search_openContexts;
+		private String searchOpenContexts;
 
 		@Nullable
-		private String search_queryCurrent;
+		private String searchQueryCurrent;
 
 		@Nullable
-		private String search_queryTime;
+		private String searchQueryTime;
 
 		@Nullable
-		private String search_queryTotal;
+		private String searchQueryTotal;
 
 		@Nullable
-		private String search_scrollCurrent;
+		private String searchScrollCurrent;
 
 		@Nullable
-		private String search_scrollTime;
+		private String searchScrollTime;
 
 		@Nullable
-		private String search_scrollTotal;
+		private String searchScrollTotal;
 
 		@Nullable
-		private String segments_count;
+		private String segmentsCount;
 
 		@Nullable
-		private String segments_memory;
+		private String segmentsMemory;
 
 		@Nullable
-		private String segments_indexWriterMemory;
+		private String segmentsIndexWriterMemory;
 
 		@Nullable
-		private String segments_versionMapMemory;
+		private String segmentsVersionMapMemory;
 
 		@Nullable
-		private String segments_fixedBitsetMemory;
+		private String segmentsFixedBitsetMemory;
 
 		@Nullable
-		private String suggest_current;
+		private String suggestCurrent;
 
 		@Nullable
-		private String suggest_time;
+		private String suggestTime;
 
 		@Nullable
-		private String suggest_total;
+		private String suggestTotal;
 
 		@Nullable
-		private String bulk_totalOperations;
+		private String bulkTotalOperations;
 
 		@Nullable
-		private String bulk_totalTime;
+		private String bulkTotalTime;
 
 		@Nullable
-		private String bulk_totalSizeInBytes;
+		private String bulkTotalSizeInBytes;
 
 		@Nullable
-		private String bulk_avgTime;
+		private String bulkAvgTime;
 
 		@Nullable
-		private String bulk_avgSizeInBytes;
+		private String bulkAvgSizeInBytes;
 
 		/**
 		 * unique node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -2285,7 +2292,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * process id
-		 *
+		 * <p>
 		 * API name: {@code pid}
 		 */
 		public Builder pid(@Nullable String value) {
@@ -2295,7 +2302,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * ip address
-		 *
+		 * <p>
 		 * API name: {@code ip}
 		 */
 		public Builder ip(@Nullable String value) {
@@ -2305,7 +2312,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * bound transport port
-		 *
+		 * <p>
 		 * API name: {@code port}
 		 */
 		public Builder port(@Nullable String value) {
@@ -2315,7 +2322,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * bound http address
-		 *
+		 * <p>
 		 * API name: {@code http_address}
 		 */
 		public Builder httpAddress(@Nullable String value) {
@@ -2325,7 +2332,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * es version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -2335,7 +2342,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * es distribution flavor
-		 *
+		 * <p>
 		 * API name: {@code flavor}
 		 */
 		public Builder flavor(@Nullable String value) {
@@ -2345,7 +2352,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * es distribution type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -2355,7 +2362,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * es build hash
-		 *
+		 * <p>
 		 * API name: {@code build}
 		 */
 		public Builder build(@Nullable String value) {
@@ -2365,7 +2372,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * jdk version
-		 *
+		 * <p>
 		 * API name: {@code jdk}
 		 */
 		public Builder jdk(@Nullable String value) {
@@ -2375,137 +2382,137 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * total disk space
-		 *
+		 * <p>
 		 * API name: {@code disk.total}
 		 */
-		public Builder disk_total(@Nullable JsonValue value) {
-			this.disk_total = value;
+		public Builder diskTotal(@Nullable String value) {
+			this.diskTotal = value;
 			return this;
 		}
 
 		/**
 		 * used disk space
-		 *
+		 * <p>
 		 * API name: {@code disk.used}
 		 */
-		public Builder disk_used(@Nullable JsonValue value) {
-			this.disk_used = value;
+		public Builder diskUsed(@Nullable String value) {
+			this.diskUsed = value;
 			return this;
 		}
 
 		/**
 		 * available disk space
-		 *
+		 * <p>
 		 * API name: {@code disk.avail}
 		 */
-		public Builder disk_avail(@Nullable JsonValue value) {
-			this.disk_avail = value;
+		public Builder diskAvail(@Nullable String value) {
+			this.diskAvail = value;
 			return this;
 		}
 
 		/**
 		 * used disk space percentage
-		 *
+		 * <p>
 		 * API name: {@code disk.used_percent}
 		 */
-		public Builder disk_usedPercent(@Nullable JsonValue value) {
-			this.disk_usedPercent = value;
+		public Builder diskUsedPercent(@Nullable String value) {
+			this.diskUsedPercent = value;
 			return this;
 		}
 
 		/**
 		 * used heap
-		 *
+		 * <p>
 		 * API name: {@code heap.current}
 		 */
-		public Builder heap_current(@Nullable String value) {
-			this.heap_current = value;
+		public Builder heapCurrent(@Nullable String value) {
+			this.heapCurrent = value;
 			return this;
 		}
 
 		/**
 		 * used heap ratio
-		 *
+		 * <p>
 		 * API name: {@code heap.percent}
 		 */
-		public Builder heap_percent(@Nullable JsonValue value) {
-			this.heap_percent = value;
+		public Builder heapPercent(@Nullable String value) {
+			this.heapPercent = value;
 			return this;
 		}
 
 		/**
 		 * max configured heap
-		 *
+		 * <p>
 		 * API name: {@code heap.max}
 		 */
-		public Builder heap_max(@Nullable String value) {
-			this.heap_max = value;
+		public Builder heapMax(@Nullable String value) {
+			this.heapMax = value;
 			return this;
 		}
 
 		/**
 		 * used machine memory
-		 *
+		 * <p>
 		 * API name: {@code ram.current}
 		 */
-		public Builder ram_current(@Nullable String value) {
-			this.ram_current = value;
+		public Builder ramCurrent(@Nullable String value) {
+			this.ramCurrent = value;
 			return this;
 		}
 
 		/**
 		 * used machine memory ratio
-		 *
+		 * <p>
 		 * API name: {@code ram.percent}
 		 */
-		public Builder ram_percent(@Nullable JsonValue value) {
-			this.ram_percent = value;
+		public Builder ramPercent(@Nullable String value) {
+			this.ramPercent = value;
 			return this;
 		}
 
 		/**
 		 * total machine memory
-		 *
+		 * <p>
 		 * API name: {@code ram.max}
 		 */
-		public Builder ram_max(@Nullable String value) {
-			this.ram_max = value;
+		public Builder ramMax(@Nullable String value) {
+			this.ramMax = value;
 			return this;
 		}
 
 		/**
 		 * used file descriptors
-		 *
+		 * <p>
 		 * API name: {@code file_desc.current}
 		 */
-		public Builder fileDesc_current(@Nullable String value) {
-			this.fileDesc_current = value;
+		public Builder fileDescCurrent(@Nullable String value) {
+			this.fileDescCurrent = value;
 			return this;
 		}
 
 		/**
 		 * used file descriptor ratio
-		 *
+		 * <p>
 		 * API name: {@code file_desc.percent}
 		 */
-		public Builder fileDesc_percent(@Nullable JsonValue value) {
-			this.fileDesc_percent = value;
+		public Builder fileDescPercent(@Nullable String value) {
+			this.fileDescPercent = value;
 			return this;
 		}
 
 		/**
 		 * max file descriptors
-		 *
+		 * <p>
 		 * API name: {@code file_desc.max}
 		 */
-		public Builder fileDesc_max(@Nullable String value) {
-			this.fileDesc_max = value;
+		public Builder fileDescMax(@Nullable String value) {
+			this.fileDescMax = value;
 			return this;
 		}
 
 		/**
 		 * recent cpu usage
-		 *
+		 * <p>
 		 * API name: {@code cpu}
 		 */
 		public Builder cpu(@Nullable String value) {
@@ -2515,7 +2522,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * 1m load avg
-		 *
+		 * <p>
 		 * API name: {@code load_1m}
 		 */
 		public Builder load1m(@Nullable String value) {
@@ -2525,7 +2532,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * 5m load avg
-		 *
+		 * <p>
 		 * API name: {@code load_5m}
 		 */
 		public Builder load5m(@Nullable String value) {
@@ -2535,7 +2542,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * 15m load avg
-		 *
+		 * <p>
 		 * API name: {@code load_15m}
 		 */
 		public Builder load15m(@Nullable String value) {
@@ -2545,7 +2552,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * node uptime
-		 *
+		 * <p>
 		 * API name: {@code uptime}
 		 */
 		public Builder uptime(@Nullable String value) {
@@ -2555,17 +2562,17 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * m:master eligible node, d:data node, i:ingest node, -:coordinating node only
-		 *
+		 * <p>
 		 * API name: {@code node.role}
 		 */
-		public Builder node_role(@Nullable String value) {
-			this.node_role = value;
+		public Builder nodeRole(@Nullable String value) {
+			this.nodeRole = value;
 			return this;
 		}
 
 		/**
 		 * *:current master
-		 *
+		 * <p>
 		 * API name: {@code master}
 		 */
 		public Builder master(@Nullable String value) {
@@ -2575,7 +2582,7 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -2585,652 +2592,652 @@ public final class NodesRecord implements ToJsonp {
 
 		/**
 		 * size of completion
-		 *
+		 * <p>
 		 * API name: {@code completion.size}
 		 */
-		public Builder completion_size(@Nullable String value) {
-			this.completion_size = value;
+		public Builder completionSize(@Nullable String value) {
+			this.completionSize = value;
 			return this;
 		}
 
 		/**
 		 * used fielddata cache
-		 *
+		 * <p>
 		 * API name: {@code fielddata.memory_size}
 		 */
-		public Builder fielddata_memorySize(@Nullable String value) {
-			this.fielddata_memorySize = value;
+		public Builder fielddataMemorySize(@Nullable String value) {
+			this.fielddataMemorySize = value;
 			return this;
 		}
 
 		/**
 		 * fielddata evictions
-		 *
+		 * <p>
 		 * API name: {@code fielddata.evictions}
 		 */
-		public Builder fielddata_evictions(@Nullable String value) {
-			this.fielddata_evictions = value;
+		public Builder fielddataEvictions(@Nullable String value) {
+			this.fielddataEvictions = value;
 			return this;
 		}
 
 		/**
 		 * used query cache
-		 *
+		 * <p>
 		 * API name: {@code query_cache.memory_size}
 		 */
-		public Builder queryCache_memorySize(@Nullable String value) {
-			this.queryCache_memorySize = value;
+		public Builder queryCacheMemorySize(@Nullable String value) {
+			this.queryCacheMemorySize = value;
 			return this;
 		}
 
 		/**
 		 * query cache evictions
-		 *
+		 * <p>
 		 * API name: {@code query_cache.evictions}
 		 */
-		public Builder queryCache_evictions(@Nullable String value) {
-			this.queryCache_evictions = value;
+		public Builder queryCacheEvictions(@Nullable String value) {
+			this.queryCacheEvictions = value;
 			return this;
 		}
 
 		/**
 		 * query cache hit counts
-		 *
+		 * <p>
 		 * API name: {@code query_cache.hit_count}
 		 */
-		public Builder queryCache_hitCount(@Nullable String value) {
-			this.queryCache_hitCount = value;
+		public Builder queryCacheHitCount(@Nullable String value) {
+			this.queryCacheHitCount = value;
 			return this;
 		}
 
 		/**
 		 * query cache miss counts
-		 *
+		 * <p>
 		 * API name: {@code query_cache.miss_count}
 		 */
-		public Builder queryCache_missCount(@Nullable String value) {
-			this.queryCache_missCount = value;
+		public Builder queryCacheMissCount(@Nullable String value) {
+			this.queryCacheMissCount = value;
 			return this;
 		}
 
 		/**
 		 * used request cache
-		 *
+		 * <p>
 		 * API name: {@code request_cache.memory_size}
 		 */
-		public Builder requestCache_memorySize(@Nullable String value) {
-			this.requestCache_memorySize = value;
+		public Builder requestCacheMemorySize(@Nullable String value) {
+			this.requestCacheMemorySize = value;
 			return this;
 		}
 
 		/**
 		 * request cache evictions
-		 *
+		 * <p>
 		 * API name: {@code request_cache.evictions}
 		 */
-		public Builder requestCache_evictions(@Nullable String value) {
-			this.requestCache_evictions = value;
+		public Builder requestCacheEvictions(@Nullable String value) {
+			this.requestCacheEvictions = value;
 			return this;
 		}
 
 		/**
 		 * request cache hit counts
-		 *
+		 * <p>
 		 * API name: {@code request_cache.hit_count}
 		 */
-		public Builder requestCache_hitCount(@Nullable String value) {
-			this.requestCache_hitCount = value;
+		public Builder requestCacheHitCount(@Nullable String value) {
+			this.requestCacheHitCount = value;
 			return this;
 		}
 
 		/**
 		 * request cache miss counts
-		 *
+		 * <p>
 		 * API name: {@code request_cache.miss_count}
 		 */
-		public Builder requestCache_missCount(@Nullable String value) {
-			this.requestCache_missCount = value;
+		public Builder requestCacheMissCount(@Nullable String value) {
+			this.requestCacheMissCount = value;
 			return this;
 		}
 
 		/**
 		 * number of flushes
-		 *
+		 * <p>
 		 * API name: {@code flush.total}
 		 */
-		public Builder flush_total(@Nullable String value) {
-			this.flush_total = value;
+		public Builder flushTotal(@Nullable String value) {
+			this.flushTotal = value;
 			return this;
 		}
 
 		/**
 		 * time spent in flush
-		 *
+		 * <p>
 		 * API name: {@code flush.total_time}
 		 */
-		public Builder flush_totalTime(@Nullable String value) {
-			this.flush_totalTime = value;
+		public Builder flushTotalTime(@Nullable String value) {
+			this.flushTotalTime = value;
 			return this;
 		}
 
 		/**
 		 * number of current get ops
-		 *
+		 * <p>
 		 * API name: {@code get.current}
 		 */
-		public Builder get_current(@Nullable String value) {
-			this.get_current = value;
+		public Builder getCurrent(@Nullable String value) {
+			this.getCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time spent in get
-		 *
+		 * <p>
 		 * API name: {@code get.time}
 		 */
-		public Builder get_time(@Nullable String value) {
-			this.get_time = value;
+		public Builder getTime(@Nullable String value) {
+			this.getTime = value;
 			return this;
 		}
 
 		/**
 		 * number of get ops
-		 *
+		 * <p>
 		 * API name: {@code get.total}
 		 */
-		public Builder get_total(@Nullable String value) {
-			this.get_total = value;
+		public Builder getTotal(@Nullable String value) {
+			this.getTotal = value;
 			return this;
 		}
 
 		/**
 		 * time spent in successful gets
-		 *
+		 * <p>
 		 * API name: {@code get.exists_time}
 		 */
-		public Builder get_existsTime(@Nullable String value) {
-			this.get_existsTime = value;
+		public Builder getExistsTime(@Nullable String value) {
+			this.getExistsTime = value;
 			return this;
 		}
 
 		/**
 		 * number of successful gets
-		 *
+		 * <p>
 		 * API name: {@code get.exists_total}
 		 */
-		public Builder get_existsTotal(@Nullable String value) {
-			this.get_existsTotal = value;
+		public Builder getExistsTotal(@Nullable String value) {
+			this.getExistsTotal = value;
 			return this;
 		}
 
 		/**
 		 * time spent in failed gets
-		 *
+		 * <p>
 		 * API name: {@code get.missing_time}
 		 */
-		public Builder get_missingTime(@Nullable String value) {
-			this.get_missingTime = value;
+		public Builder getMissingTime(@Nullable String value) {
+			this.getMissingTime = value;
 			return this;
 		}
 
 		/**
 		 * number of failed gets
-		 *
+		 * <p>
 		 * API name: {@code get.missing_total}
 		 */
-		public Builder get_missingTotal(@Nullable String value) {
-			this.get_missingTotal = value;
+		public Builder getMissingTotal(@Nullable String value) {
+			this.getMissingTotal = value;
 			return this;
 		}
 
 		/**
 		 * number of current deletions
-		 *
+		 * <p>
 		 * API name: {@code indexing.delete_current}
 		 */
-		public Builder indexing_deleteCurrent(@Nullable String value) {
-			this.indexing_deleteCurrent = value;
+		public Builder indexingDeleteCurrent(@Nullable String value) {
+			this.indexingDeleteCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time spent in deletions
-		 *
+		 * <p>
 		 * API name: {@code indexing.delete_time}
 		 */
-		public Builder indexing_deleteTime(@Nullable String value) {
-			this.indexing_deleteTime = value;
+		public Builder indexingDeleteTime(@Nullable String value) {
+			this.indexingDeleteTime = value;
 			return this;
 		}
 
 		/**
 		 * number of delete ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.delete_total}
 		 */
-		public Builder indexing_deleteTotal(@Nullable String value) {
-			this.indexing_deleteTotal = value;
+		public Builder indexingDeleteTotal(@Nullable String value) {
+			this.indexingDeleteTotal = value;
 			return this;
 		}
 
 		/**
 		 * number of current indexing ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_current}
 		 */
-		public Builder indexing_indexCurrent(@Nullable String value) {
-			this.indexing_indexCurrent = value;
+		public Builder indexingIndexCurrent(@Nullable String value) {
+			this.indexingIndexCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time spent in indexing
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_time}
 		 */
-		public Builder indexing_indexTime(@Nullable String value) {
-			this.indexing_indexTime = value;
+		public Builder indexingIndexTime(@Nullable String value) {
+			this.indexingIndexTime = value;
 			return this;
 		}
 
 		/**
 		 * number of indexing ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_total}
 		 */
-		public Builder indexing_indexTotal(@Nullable String value) {
-			this.indexing_indexTotal = value;
+		public Builder indexingIndexTotal(@Nullable String value) {
+			this.indexingIndexTotal = value;
 			return this;
 		}
 
 		/**
 		 * number of failed indexing ops
-		 *
+		 * <p>
 		 * API name: {@code indexing.index_failed}
 		 */
-		public Builder indexing_indexFailed(@Nullable String value) {
-			this.indexing_indexFailed = value;
+		public Builder indexingIndexFailed(@Nullable String value) {
+			this.indexingIndexFailed = value;
 			return this;
 		}
 
 		/**
 		 * number of current merges
-		 *
+		 * <p>
 		 * API name: {@code merges.current}
 		 */
-		public Builder merges_current(@Nullable String value) {
-			this.merges_current = value;
+		public Builder mergesCurrent(@Nullable String value) {
+			this.mergesCurrent = value;
 			return this;
 		}
 
 		/**
 		 * number of current merging docs
-		 *
+		 * <p>
 		 * API name: {@code merges.current_docs}
 		 */
-		public Builder merges_currentDocs(@Nullable String value) {
-			this.merges_currentDocs = value;
+		public Builder mergesCurrentDocs(@Nullable String value) {
+			this.mergesCurrentDocs = value;
 			return this;
 		}
 
 		/**
 		 * size of current merges
-		 *
+		 * <p>
 		 * API name: {@code merges.current_size}
 		 */
-		public Builder merges_currentSize(@Nullable String value) {
-			this.merges_currentSize = value;
+		public Builder mergesCurrentSize(@Nullable String value) {
+			this.mergesCurrentSize = value;
 			return this;
 		}
 
 		/**
 		 * number of completed merge ops
-		 *
+		 * <p>
 		 * API name: {@code merges.total}
 		 */
-		public Builder merges_total(@Nullable String value) {
-			this.merges_total = value;
+		public Builder mergesTotal(@Nullable String value) {
+			this.mergesTotal = value;
 			return this;
 		}
 
 		/**
 		 * docs merged
-		 *
+		 * <p>
 		 * API name: {@code merges.total_docs}
 		 */
-		public Builder merges_totalDocs(@Nullable String value) {
-			this.merges_totalDocs = value;
+		public Builder mergesTotalDocs(@Nullable String value) {
+			this.mergesTotalDocs = value;
 			return this;
 		}
 
 		/**
 		 * size merged
-		 *
+		 * <p>
 		 * API name: {@code merges.total_size}
 		 */
-		public Builder merges_totalSize(@Nullable String value) {
-			this.merges_totalSize = value;
+		public Builder mergesTotalSize(@Nullable String value) {
+			this.mergesTotalSize = value;
 			return this;
 		}
 
 		/**
 		 * time spent in merges
-		 *
+		 * <p>
 		 * API name: {@code merges.total_time}
 		 */
-		public Builder merges_totalTime(@Nullable String value) {
-			this.merges_totalTime = value;
+		public Builder mergesTotalTime(@Nullable String value) {
+			this.mergesTotalTime = value;
 			return this;
 		}
 
 		/**
 		 * total refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.total}
 		 */
-		public Builder refresh_total(@Nullable String value) {
-			this.refresh_total = value;
+		public Builder refreshTotal(@Nullable String value) {
+			this.refreshTotal = value;
 			return this;
 		}
 
 		/**
 		 * time spent in refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.time}
 		 */
-		public Builder refresh_time(@Nullable String value) {
-			this.refresh_time = value;
+		public Builder refreshTime(@Nullable String value) {
+			this.refreshTime = value;
 			return this;
 		}
 
 		/**
 		 * total external refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.external_total}
 		 */
-		public Builder refresh_externalTotal(@Nullable String value) {
-			this.refresh_externalTotal = value;
+		public Builder refreshExternalTotal(@Nullable String value) {
+			this.refreshExternalTotal = value;
 			return this;
 		}
 
 		/**
 		 * time spent in external refreshes
-		 *
+		 * <p>
 		 * API name: {@code refresh.external_time}
 		 */
-		public Builder refresh_externalTime(@Nullable String value) {
-			this.refresh_externalTime = value;
+		public Builder refreshExternalTime(@Nullable String value) {
+			this.refreshExternalTime = value;
 			return this;
 		}
 
 		/**
 		 * number of pending refresh listeners
-		 *
+		 * <p>
 		 * API name: {@code refresh.listeners}
 		 */
-		public Builder refresh_listeners(@Nullable String value) {
-			this.refresh_listeners = value;
+		public Builder refreshListeners(@Nullable String value) {
+			this.refreshListeners = value;
 			return this;
 		}
 
 		/**
 		 * script compilations
-		 *
+		 * <p>
 		 * API name: {@code script.compilations}
 		 */
-		public Builder script_compilations(@Nullable String value) {
-			this.script_compilations = value;
+		public Builder scriptCompilations(@Nullable String value) {
+			this.scriptCompilations = value;
 			return this;
 		}
 
 		/**
 		 * script cache evictions
-		 *
+		 * <p>
 		 * API name: {@code script.cache_evictions}
 		 */
-		public Builder script_cacheEvictions(@Nullable String value) {
-			this.script_cacheEvictions = value;
+		public Builder scriptCacheEvictions(@Nullable String value) {
+			this.scriptCacheEvictions = value;
 			return this;
 		}
 
 		/**
 		 * script cache compilation limit triggered
-		 *
+		 * <p>
 		 * API name: {@code script.compilation_limit_triggered}
 		 */
-		public Builder script_compilationLimitTriggered(@Nullable String value) {
-			this.script_compilationLimitTriggered = value;
+		public Builder scriptCompilationLimitTriggered(@Nullable String value) {
+			this.scriptCompilationLimitTriggered = value;
 			return this;
 		}
 
 		/**
 		 * current fetch phase ops
-		 *
+		 * <p>
 		 * API name: {@code search.fetch_current}
 		 */
-		public Builder search_fetchCurrent(@Nullable String value) {
-			this.search_fetchCurrent = value;
+		public Builder searchFetchCurrent(@Nullable String value) {
+			this.searchFetchCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time spent in fetch phase
-		 *
+		 * <p>
 		 * API name: {@code search.fetch_time}
 		 */
-		public Builder search_fetchTime(@Nullable String value) {
-			this.search_fetchTime = value;
+		public Builder searchFetchTime(@Nullable String value) {
+			this.searchFetchTime = value;
 			return this;
 		}
 
 		/**
 		 * total fetch ops
-		 *
+		 * <p>
 		 * API name: {@code search.fetch_total}
 		 */
-		public Builder search_fetchTotal(@Nullable String value) {
-			this.search_fetchTotal = value;
+		public Builder searchFetchTotal(@Nullable String value) {
+			this.searchFetchTotal = value;
 			return this;
 		}
 
 		/**
 		 * open search contexts
-		 *
+		 * <p>
 		 * API name: {@code search.open_contexts}
 		 */
-		public Builder search_openContexts(@Nullable String value) {
-			this.search_openContexts = value;
+		public Builder searchOpenContexts(@Nullable String value) {
+			this.searchOpenContexts = value;
 			return this;
 		}
 
 		/**
 		 * current query phase ops
-		 *
+		 * <p>
 		 * API name: {@code search.query_current}
 		 */
-		public Builder search_queryCurrent(@Nullable String value) {
-			this.search_queryCurrent = value;
+		public Builder searchQueryCurrent(@Nullable String value) {
+			this.searchQueryCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time spent in query phase
-		 *
+		 * <p>
 		 * API name: {@code search.query_time}
 		 */
-		public Builder search_queryTime(@Nullable String value) {
-			this.search_queryTime = value;
+		public Builder searchQueryTime(@Nullable String value) {
+			this.searchQueryTime = value;
 			return this;
 		}
 
 		/**
 		 * total query phase ops
-		 *
+		 * <p>
 		 * API name: {@code search.query_total}
 		 */
-		public Builder search_queryTotal(@Nullable String value) {
-			this.search_queryTotal = value;
+		public Builder searchQueryTotal(@Nullable String value) {
+			this.searchQueryTotal = value;
 			return this;
 		}
 
 		/**
 		 * open scroll contexts
-		 *
+		 * <p>
 		 * API name: {@code search.scroll_current}
 		 */
-		public Builder search_scrollCurrent(@Nullable String value) {
-			this.search_scrollCurrent = value;
+		public Builder searchScrollCurrent(@Nullable String value) {
+			this.searchScrollCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time scroll contexts held open
-		 *
+		 * <p>
 		 * API name: {@code search.scroll_time}
 		 */
-		public Builder search_scrollTime(@Nullable String value) {
-			this.search_scrollTime = value;
+		public Builder searchScrollTime(@Nullable String value) {
+			this.searchScrollTime = value;
 			return this;
 		}
 
 		/**
 		 * completed scroll contexts
-		 *
+		 * <p>
 		 * API name: {@code search.scroll_total}
 		 */
-		public Builder search_scrollTotal(@Nullable String value) {
-			this.search_scrollTotal = value;
+		public Builder searchScrollTotal(@Nullable String value) {
+			this.searchScrollTotal = value;
 			return this;
 		}
 
 		/**
 		 * number of segments
-		 *
+		 * <p>
 		 * API name: {@code segments.count}
 		 */
-		public Builder segments_count(@Nullable String value) {
-			this.segments_count = value;
+		public Builder segmentsCount(@Nullable String value) {
+			this.segmentsCount = value;
 			return this;
 		}
 
 		/**
 		 * memory used by segments
-		 *
+		 * <p>
 		 * API name: {@code segments.memory}
 		 */
-		public Builder segments_memory(@Nullable String value) {
-			this.segments_memory = value;
+		public Builder segmentsMemory(@Nullable String value) {
+			this.segmentsMemory = value;
 			return this;
 		}
 
 		/**
 		 * memory used by index writer
-		 *
+		 * <p>
 		 * API name: {@code segments.index_writer_memory}
 		 */
-		public Builder segments_indexWriterMemory(@Nullable String value) {
-			this.segments_indexWriterMemory = value;
+		public Builder segmentsIndexWriterMemory(@Nullable String value) {
+			this.segmentsIndexWriterMemory = value;
 			return this;
 		}
 
 		/**
 		 * memory used by version map
-		 *
+		 * <p>
 		 * API name: {@code segments.version_map_memory}
 		 */
-		public Builder segments_versionMapMemory(@Nullable String value) {
-			this.segments_versionMapMemory = value;
+		public Builder segmentsVersionMapMemory(@Nullable String value) {
+			this.segmentsVersionMapMemory = value;
 			return this;
 		}
 
 		/**
 		 * memory used by fixed bit sets for nested object field types and export type
 		 * filters for types referred in _parent fields
-		 *
+		 * <p>
 		 * API name: {@code segments.fixed_bitset_memory}
 		 */
-		public Builder segments_fixedBitsetMemory(@Nullable String value) {
-			this.segments_fixedBitsetMemory = value;
+		public Builder segmentsFixedBitsetMemory(@Nullable String value) {
+			this.segmentsFixedBitsetMemory = value;
 			return this;
 		}
 
 		/**
 		 * number of current suggest ops
-		 *
+		 * <p>
 		 * API name: {@code suggest.current}
 		 */
-		public Builder suggest_current(@Nullable String value) {
-			this.suggest_current = value;
+		public Builder suggestCurrent(@Nullable String value) {
+			this.suggestCurrent = value;
 			return this;
 		}
 
 		/**
 		 * time spend in suggest
-		 *
+		 * <p>
 		 * API name: {@code suggest.time}
 		 */
-		public Builder suggest_time(@Nullable String value) {
-			this.suggest_time = value;
+		public Builder suggestTime(@Nullable String value) {
+			this.suggestTime = value;
 			return this;
 		}
 
 		/**
 		 * number of suggest ops
-		 *
+		 * <p>
 		 * API name: {@code suggest.total}
 		 */
-		public Builder suggest_total(@Nullable String value) {
-			this.suggest_total = value;
+		public Builder suggestTotal(@Nullable String value) {
+			this.suggestTotal = value;
 			return this;
 		}
 
 		/**
 		 * number of bulk shard ops
-		 *
+		 * <p>
 		 * API name: {@code bulk.total_operations}
 		 */
-		public Builder bulk_totalOperations(@Nullable String value) {
-			this.bulk_totalOperations = value;
+		public Builder bulkTotalOperations(@Nullable String value) {
+			this.bulkTotalOperations = value;
 			return this;
 		}
 
 		/**
 		 * time spend in shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.total_time}
 		 */
-		public Builder bulk_totalTime(@Nullable String value) {
-			this.bulk_totalTime = value;
+		public Builder bulkTotalTime(@Nullable String value) {
+			this.bulkTotalTime = value;
 			return this;
 		}
 
 		/**
 		 * total size in bytes of shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.total_size_in_bytes}
 		 */
-		public Builder bulk_totalSizeInBytes(@Nullable String value) {
-			this.bulk_totalSizeInBytes = value;
+		public Builder bulkTotalSizeInBytes(@Nullable String value) {
+			this.bulkTotalSizeInBytes = value;
 			return this;
 		}
 
 		/**
 		 * average time spend in shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.avg_time}
 		 */
-		public Builder bulk_avgTime(@Nullable String value) {
-			this.bulk_avgTime = value;
+		public Builder bulkAvgTime(@Nullable String value) {
+			this.bulkAvgTime = value;
 			return this;
 		}
 
 		/**
 		 * average size in bytes of shard bulk
-		 *
+		 * <p>
 		 * API name: {@code bulk.avg_size_in_bytes}
 		 */
-		public Builder bulk_avgSizeInBytes(@Nullable String value) {
-			this.bulk_avgSizeInBytes = value;
+		public Builder bulkAvgSizeInBytes(@Nullable String value) {
+			this.bulkAvgSizeInBytes = value;
 			return this;
 		}
 
@@ -3249,10 +3256,10 @@ public final class NodesRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodesRecord
+	 * Json deserializer for {@link NodesRecord}
 	 */
-	public static final JsonpDeserializer<NodesRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodesRecord::setupNodesRecordDeserializer);
+	public static final JsonpDeserializer<NodesRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodesRecord::setupNodesRecordDeserializer, Builder::build);
 
 	protected static void setupNodesRecordDeserializer(DelegatingDeserializer<NodesRecord.Builder> op) {
 
@@ -3266,151 +3273,149 @@ public final class NodesRecord implements ToJsonp {
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");
 		op.add(Builder::build, JsonpDeserializer.stringDeserializer(), "build", "b");
 		op.add(Builder::jdk, JsonpDeserializer.stringDeserializer(), "jdk", "j");
-		op.add(Builder::disk_total, JsonpDeserializer.jsonValueDeserializer(), "disk.total", "dt", "diskTotal");
-		op.add(Builder::disk_used, JsonpDeserializer.jsonValueDeserializer(), "disk.used", "du", "diskUsed");
-		op.add(Builder::disk_avail, JsonpDeserializer.jsonValueDeserializer(), "disk.avail", "d", "da", "disk",
+		op.add(Builder::diskTotal, JsonpDeserializer.stringDeserializer(), "disk.total", "dt", "diskTotal");
+		op.add(Builder::diskUsed, JsonpDeserializer.stringDeserializer(), "disk.used", "du", "diskUsed");
+		op.add(Builder::diskAvail, JsonpDeserializer.stringDeserializer(), "disk.avail", "d", "da", "disk",
 				"diskAvail");
-		op.add(Builder::disk_usedPercent, JsonpDeserializer.jsonValueDeserializer(), "disk.used_percent", "dup",
+		op.add(Builder::diskUsedPercent, JsonpDeserializer.stringDeserializer(), "disk.used_percent", "dup",
 				"diskUsedPercent");
-		op.add(Builder::heap_current, JsonpDeserializer.stringDeserializer(), "heap.current", "hc", "heapCurrent");
-		op.add(Builder::heap_percent, JsonpDeserializer.jsonValueDeserializer(), "heap.percent", "hp", "heapPercent");
-		op.add(Builder::heap_max, JsonpDeserializer.stringDeserializer(), "heap.max", "hm", "heapMax");
-		op.add(Builder::ram_current, JsonpDeserializer.stringDeserializer(), "ram.current", "rc", "ramCurrent");
-		op.add(Builder::ram_percent, JsonpDeserializer.jsonValueDeserializer(), "ram.percent", "rp", "ramPercent");
-		op.add(Builder::ram_max, JsonpDeserializer.stringDeserializer(), "ram.max", "rn", "ramMax");
-		op.add(Builder::fileDesc_current, JsonpDeserializer.stringDeserializer(), "file_desc.current", "fdc",
+		op.add(Builder::heapCurrent, JsonpDeserializer.stringDeserializer(), "heap.current", "hc", "heapCurrent");
+		op.add(Builder::heapPercent, JsonpDeserializer.stringDeserializer(), "heap.percent", "hp", "heapPercent");
+		op.add(Builder::heapMax, JsonpDeserializer.stringDeserializer(), "heap.max", "hm", "heapMax");
+		op.add(Builder::ramCurrent, JsonpDeserializer.stringDeserializer(), "ram.current", "rc", "ramCurrent");
+		op.add(Builder::ramPercent, JsonpDeserializer.stringDeserializer(), "ram.percent", "rp", "ramPercent");
+		op.add(Builder::ramMax, JsonpDeserializer.stringDeserializer(), "ram.max", "rn", "ramMax");
+		op.add(Builder::fileDescCurrent, JsonpDeserializer.stringDeserializer(), "file_desc.current", "fdc",
 				"fileDescriptorCurrent");
-		op.add(Builder::fileDesc_percent, JsonpDeserializer.jsonValueDeserializer(), "file_desc.percent", "fdp",
+		op.add(Builder::fileDescPercent, JsonpDeserializer.stringDeserializer(), "file_desc.percent", "fdp",
 				"fileDescriptorPercent");
-		op.add(Builder::fileDesc_max, JsonpDeserializer.stringDeserializer(), "file_desc.max", "fdm",
+		op.add(Builder::fileDescMax, JsonpDeserializer.stringDeserializer(), "file_desc.max", "fdm",
 				"fileDescriptorMax");
 		op.add(Builder::cpu, JsonpDeserializer.stringDeserializer(), "cpu");
 		op.add(Builder::load1m, JsonpDeserializer.stringDeserializer(), "load_1m");
 		op.add(Builder::load5m, JsonpDeserializer.stringDeserializer(), "load_5m");
 		op.add(Builder::load15m, JsonpDeserializer.stringDeserializer(), "load_15m", "l");
 		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime", "u");
-		op.add(Builder::node_role, JsonpDeserializer.stringDeserializer(), "node.role", "r", "role", "nodeRole");
+		op.add(Builder::nodeRole, JsonpDeserializer.stringDeserializer(), "node.role", "r", "role", "nodeRole");
 		op.add(Builder::master, JsonpDeserializer.stringDeserializer(), "master", "m");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");
-		op.add(Builder::completion_size, JsonpDeserializer.stringDeserializer(), "completion.size", "cs",
+		op.add(Builder::completionSize, JsonpDeserializer.stringDeserializer(), "completion.size", "cs",
 				"completionSize");
-		op.add(Builder::fielddata_memorySize, JsonpDeserializer.stringDeserializer(), "fielddata.memory_size", "fm",
+		op.add(Builder::fielddataMemorySize, JsonpDeserializer.stringDeserializer(), "fielddata.memory_size", "fm",
 				"fielddataMemory");
-		op.add(Builder::fielddata_evictions, JsonpDeserializer.stringDeserializer(), "fielddata.evictions", "fe",
+		op.add(Builder::fielddataEvictions, JsonpDeserializer.stringDeserializer(), "fielddata.evictions", "fe",
 				"fielddataEvictions");
-		op.add(Builder::queryCache_memorySize, JsonpDeserializer.stringDeserializer(), "query_cache.memory_size", "qcm",
+		op.add(Builder::queryCacheMemorySize, JsonpDeserializer.stringDeserializer(), "query_cache.memory_size", "qcm",
 				"queryCacheMemory");
-		op.add(Builder::queryCache_evictions, JsonpDeserializer.stringDeserializer(), "query_cache.evictions", "qce",
+		op.add(Builder::queryCacheEvictions, JsonpDeserializer.stringDeserializer(), "query_cache.evictions", "qce",
 				"queryCacheEvictions");
-		op.add(Builder::queryCache_hitCount, JsonpDeserializer.stringDeserializer(), "query_cache.hit_count", "qchc",
+		op.add(Builder::queryCacheHitCount, JsonpDeserializer.stringDeserializer(), "query_cache.hit_count", "qchc",
 				"queryCacheHitCount");
-		op.add(Builder::queryCache_missCount, JsonpDeserializer.stringDeserializer(), "query_cache.miss_count", "qcmc",
+		op.add(Builder::queryCacheMissCount, JsonpDeserializer.stringDeserializer(), "query_cache.miss_count", "qcmc",
 				"queryCacheMissCount");
-		op.add(Builder::requestCache_memorySize, JsonpDeserializer.stringDeserializer(), "request_cache.memory_size",
+		op.add(Builder::requestCacheMemorySize, JsonpDeserializer.stringDeserializer(), "request_cache.memory_size",
 				"rcm", "requestCacheMemory");
-		op.add(Builder::requestCache_evictions, JsonpDeserializer.stringDeserializer(), "request_cache.evictions",
-				"rce", "requestCacheEvictions");
-		op.add(Builder::requestCache_hitCount, JsonpDeserializer.stringDeserializer(), "request_cache.hit_count",
-				"rchc", "requestCacheHitCount");
-		op.add(Builder::requestCache_missCount, JsonpDeserializer.stringDeserializer(), "request_cache.miss_count",
+		op.add(Builder::requestCacheEvictions, JsonpDeserializer.stringDeserializer(), "request_cache.evictions", "rce",
+				"requestCacheEvictions");
+		op.add(Builder::requestCacheHitCount, JsonpDeserializer.stringDeserializer(), "request_cache.hit_count", "rchc",
+				"requestCacheHitCount");
+		op.add(Builder::requestCacheMissCount, JsonpDeserializer.stringDeserializer(), "request_cache.miss_count",
 				"rcmc", "requestCacheMissCount");
-		op.add(Builder::flush_total, JsonpDeserializer.stringDeserializer(), "flush.total", "ft", "flushTotal");
-		op.add(Builder::flush_totalTime, JsonpDeserializer.stringDeserializer(), "flush.total_time", "ftt",
+		op.add(Builder::flushTotal, JsonpDeserializer.stringDeserializer(), "flush.total", "ft", "flushTotal");
+		op.add(Builder::flushTotalTime, JsonpDeserializer.stringDeserializer(), "flush.total_time", "ftt",
 				"flushTotalTime");
-		op.add(Builder::get_current, JsonpDeserializer.stringDeserializer(), "get.current", "gc", "getCurrent");
-		op.add(Builder::get_time, JsonpDeserializer.stringDeserializer(), "get.time", "gti", "getTime");
-		op.add(Builder::get_total, JsonpDeserializer.stringDeserializer(), "get.total", "gto", "getTotal");
-		op.add(Builder::get_existsTime, JsonpDeserializer.stringDeserializer(), "get.exists_time", "geti",
+		op.add(Builder::getCurrent, JsonpDeserializer.stringDeserializer(), "get.current", "gc", "getCurrent");
+		op.add(Builder::getTime, JsonpDeserializer.stringDeserializer(), "get.time", "gti", "getTime");
+		op.add(Builder::getTotal, JsonpDeserializer.stringDeserializer(), "get.total", "gto", "getTotal");
+		op.add(Builder::getExistsTime, JsonpDeserializer.stringDeserializer(), "get.exists_time", "geti",
 				"getExistsTime");
-		op.add(Builder::get_existsTotal, JsonpDeserializer.stringDeserializer(), "get.exists_total", "geto",
+		op.add(Builder::getExistsTotal, JsonpDeserializer.stringDeserializer(), "get.exists_total", "geto",
 				"getExistsTotal");
-		op.add(Builder::get_missingTime, JsonpDeserializer.stringDeserializer(), "get.missing_time", "gmti",
+		op.add(Builder::getMissingTime, JsonpDeserializer.stringDeserializer(), "get.missing_time", "gmti",
 				"getMissingTime");
-		op.add(Builder::get_missingTotal, JsonpDeserializer.stringDeserializer(), "get.missing_total", "gmto",
+		op.add(Builder::getMissingTotal, JsonpDeserializer.stringDeserializer(), "get.missing_total", "gmto",
 				"getMissingTotal");
-		op.add(Builder::indexing_deleteCurrent, JsonpDeserializer.stringDeserializer(), "indexing.delete_current",
-				"idc", "indexingDeleteCurrent");
-		op.add(Builder::indexing_deleteTime, JsonpDeserializer.stringDeserializer(), "indexing.delete_time", "idti",
+		op.add(Builder::indexingDeleteCurrent, JsonpDeserializer.stringDeserializer(), "indexing.delete_current", "idc",
+				"indexingDeleteCurrent");
+		op.add(Builder::indexingDeleteTime, JsonpDeserializer.stringDeserializer(), "indexing.delete_time", "idti",
 				"indexingDeleteTime");
-		op.add(Builder::indexing_deleteTotal, JsonpDeserializer.stringDeserializer(), "indexing.delete_total", "idto",
+		op.add(Builder::indexingDeleteTotal, JsonpDeserializer.stringDeserializer(), "indexing.delete_total", "idto",
 				"indexingDeleteTotal");
-		op.add(Builder::indexing_indexCurrent, JsonpDeserializer.stringDeserializer(), "indexing.index_current", "iic",
+		op.add(Builder::indexingIndexCurrent, JsonpDeserializer.stringDeserializer(), "indexing.index_current", "iic",
 				"indexingIndexCurrent");
-		op.add(Builder::indexing_indexTime, JsonpDeserializer.stringDeserializer(), "indexing.index_time", "iiti",
+		op.add(Builder::indexingIndexTime, JsonpDeserializer.stringDeserializer(), "indexing.index_time", "iiti",
 				"indexingIndexTime");
-		op.add(Builder::indexing_indexTotal, JsonpDeserializer.stringDeserializer(), "indexing.index_total", "iito",
+		op.add(Builder::indexingIndexTotal, JsonpDeserializer.stringDeserializer(), "indexing.index_total", "iito",
 				"indexingIndexTotal");
-		op.add(Builder::indexing_indexFailed, JsonpDeserializer.stringDeserializer(), "indexing.index_failed", "iif",
+		op.add(Builder::indexingIndexFailed, JsonpDeserializer.stringDeserializer(), "indexing.index_failed", "iif",
 				"indexingIndexFailed");
-		op.add(Builder::merges_current, JsonpDeserializer.stringDeserializer(), "merges.current", "mc",
-				"mergesCurrent");
-		op.add(Builder::merges_currentDocs, JsonpDeserializer.stringDeserializer(), "merges.current_docs", "mcd",
+		op.add(Builder::mergesCurrent, JsonpDeserializer.stringDeserializer(), "merges.current", "mc", "mergesCurrent");
+		op.add(Builder::mergesCurrentDocs, JsonpDeserializer.stringDeserializer(), "merges.current_docs", "mcd",
 				"mergesCurrentDocs");
-		op.add(Builder::merges_currentSize, JsonpDeserializer.stringDeserializer(), "merges.current_size", "mcs",
+		op.add(Builder::mergesCurrentSize, JsonpDeserializer.stringDeserializer(), "merges.current_size", "mcs",
 				"mergesCurrentSize");
-		op.add(Builder::merges_total, JsonpDeserializer.stringDeserializer(), "merges.total", "mt", "mergesTotal");
-		op.add(Builder::merges_totalDocs, JsonpDeserializer.stringDeserializer(), "merges.total_docs", "mtd",
+		op.add(Builder::mergesTotal, JsonpDeserializer.stringDeserializer(), "merges.total", "mt", "mergesTotal");
+		op.add(Builder::mergesTotalDocs, JsonpDeserializer.stringDeserializer(), "merges.total_docs", "mtd",
 				"mergesTotalDocs");
-		op.add(Builder::merges_totalSize, JsonpDeserializer.stringDeserializer(), "merges.total_size", "mts",
+		op.add(Builder::mergesTotalSize, JsonpDeserializer.stringDeserializer(), "merges.total_size", "mts",
 				"mergesTotalSize");
-		op.add(Builder::merges_totalTime, JsonpDeserializer.stringDeserializer(), "merges.total_time", "mtt",
+		op.add(Builder::mergesTotalTime, JsonpDeserializer.stringDeserializer(), "merges.total_time", "mtt",
 				"mergesTotalTime");
-		op.add(Builder::refresh_total, JsonpDeserializer.stringDeserializer(), "refresh.total");
-		op.add(Builder::refresh_time, JsonpDeserializer.stringDeserializer(), "refresh.time");
-		op.add(Builder::refresh_externalTotal, JsonpDeserializer.stringDeserializer(), "refresh.external_total", "rto",
+		op.add(Builder::refreshTotal, JsonpDeserializer.stringDeserializer(), "refresh.total");
+		op.add(Builder::refreshTime, JsonpDeserializer.stringDeserializer(), "refresh.time");
+		op.add(Builder::refreshExternalTotal, JsonpDeserializer.stringDeserializer(), "refresh.external_total", "rto",
 				"refreshTotal");
-		op.add(Builder::refresh_externalTime, JsonpDeserializer.stringDeserializer(), "refresh.external_time", "rti",
+		op.add(Builder::refreshExternalTime, JsonpDeserializer.stringDeserializer(), "refresh.external_time", "rti",
 				"refreshTime");
-		op.add(Builder::refresh_listeners, JsonpDeserializer.stringDeserializer(), "refresh.listeners", "rli",
+		op.add(Builder::refreshListeners, JsonpDeserializer.stringDeserializer(), "refresh.listeners", "rli",
 				"refreshListeners");
-		op.add(Builder::script_compilations, JsonpDeserializer.stringDeserializer(), "script.compilations", "scrcc",
+		op.add(Builder::scriptCompilations, JsonpDeserializer.stringDeserializer(), "script.compilations", "scrcc",
 				"scriptCompilations");
-		op.add(Builder::script_cacheEvictions, JsonpDeserializer.stringDeserializer(), "script.cache_evictions",
-				"scrce", "scriptCacheEvictions");
-		op.add(Builder::script_compilationLimitTriggered, JsonpDeserializer.stringDeserializer(),
+		op.add(Builder::scriptCacheEvictions, JsonpDeserializer.stringDeserializer(), "script.cache_evictions", "scrce",
+				"scriptCacheEvictions");
+		op.add(Builder::scriptCompilationLimitTriggered, JsonpDeserializer.stringDeserializer(),
 				"script.compilation_limit_triggered", "scrclt", "scriptCacheCompilationLimitTriggered");
-		op.add(Builder::search_fetchCurrent, JsonpDeserializer.stringDeserializer(), "search.fetch_current", "sfc",
+		op.add(Builder::searchFetchCurrent, JsonpDeserializer.stringDeserializer(), "search.fetch_current", "sfc",
 				"searchFetchCurrent");
-		op.add(Builder::search_fetchTime, JsonpDeserializer.stringDeserializer(), "search.fetch_time", "sfti",
+		op.add(Builder::searchFetchTime, JsonpDeserializer.stringDeserializer(), "search.fetch_time", "sfti",
 				"searchFetchTime");
-		op.add(Builder::search_fetchTotal, JsonpDeserializer.stringDeserializer(), "search.fetch_total", "sfto",
+		op.add(Builder::searchFetchTotal, JsonpDeserializer.stringDeserializer(), "search.fetch_total", "sfto",
 				"searchFetchTotal");
-		op.add(Builder::search_openContexts, JsonpDeserializer.stringDeserializer(), "search.open_contexts", "so",
+		op.add(Builder::searchOpenContexts, JsonpDeserializer.stringDeserializer(), "search.open_contexts", "so",
 				"searchOpenContexts");
-		op.add(Builder::search_queryCurrent, JsonpDeserializer.stringDeserializer(), "search.query_current", "sqc",
+		op.add(Builder::searchQueryCurrent, JsonpDeserializer.stringDeserializer(), "search.query_current", "sqc",
 				"searchQueryCurrent");
-		op.add(Builder::search_queryTime, JsonpDeserializer.stringDeserializer(), "search.query_time", "sqti",
+		op.add(Builder::searchQueryTime, JsonpDeserializer.stringDeserializer(), "search.query_time", "sqti",
 				"searchQueryTime");
-		op.add(Builder::search_queryTotal, JsonpDeserializer.stringDeserializer(), "search.query_total", "sqto",
+		op.add(Builder::searchQueryTotal, JsonpDeserializer.stringDeserializer(), "search.query_total", "sqto",
 				"searchQueryTotal");
-		op.add(Builder::search_scrollCurrent, JsonpDeserializer.stringDeserializer(), "search.scroll_current", "scc",
+		op.add(Builder::searchScrollCurrent, JsonpDeserializer.stringDeserializer(), "search.scroll_current", "scc",
 				"searchScrollCurrent");
-		op.add(Builder::search_scrollTime, JsonpDeserializer.stringDeserializer(), "search.scroll_time", "scti",
+		op.add(Builder::searchScrollTime, JsonpDeserializer.stringDeserializer(), "search.scroll_time", "scti",
 				"searchScrollTime");
-		op.add(Builder::search_scrollTotal, JsonpDeserializer.stringDeserializer(), "search.scroll_total", "scto",
+		op.add(Builder::searchScrollTotal, JsonpDeserializer.stringDeserializer(), "search.scroll_total", "scto",
 				"searchScrollTotal");
-		op.add(Builder::segments_count, JsonpDeserializer.stringDeserializer(), "segments.count", "sc",
-				"segmentsCount");
-		op.add(Builder::segments_memory, JsonpDeserializer.stringDeserializer(), "segments.memory", "sm",
+		op.add(Builder::segmentsCount, JsonpDeserializer.stringDeserializer(), "segments.count", "sc", "segmentsCount");
+		op.add(Builder::segmentsMemory, JsonpDeserializer.stringDeserializer(), "segments.memory", "sm",
 				"segmentsMemory");
-		op.add(Builder::segments_indexWriterMemory, JsonpDeserializer.stringDeserializer(),
+		op.add(Builder::segmentsIndexWriterMemory, JsonpDeserializer.stringDeserializer(),
 				"segments.index_writer_memory", "siwm", "segmentsIndexWriterMemory");
-		op.add(Builder::segments_versionMapMemory, JsonpDeserializer.stringDeserializer(),
-				"segments.version_map_memory", "svmm", "segmentsVersionMapMemory");
-		op.add(Builder::segments_fixedBitsetMemory, JsonpDeserializer.stringDeserializer(),
+		op.add(Builder::segmentsVersionMapMemory, JsonpDeserializer.stringDeserializer(), "segments.version_map_memory",
+				"svmm", "segmentsVersionMapMemory");
+		op.add(Builder::segmentsFixedBitsetMemory, JsonpDeserializer.stringDeserializer(),
 				"segments.fixed_bitset_memory", "sfbm", "fixedBitsetMemory");
-		op.add(Builder::suggest_current, JsonpDeserializer.stringDeserializer(), "suggest.current", "suc",
+		op.add(Builder::suggestCurrent, JsonpDeserializer.stringDeserializer(), "suggest.current", "suc",
 				"suggestCurrent");
-		op.add(Builder::suggest_time, JsonpDeserializer.stringDeserializer(), "suggest.time", "suti", "suggestTime");
-		op.add(Builder::suggest_total, JsonpDeserializer.stringDeserializer(), "suggest.total", "suto", "suggestTotal");
-		op.add(Builder::bulk_totalOperations, JsonpDeserializer.stringDeserializer(), "bulk.total_operations", "bto",
+		op.add(Builder::suggestTime, JsonpDeserializer.stringDeserializer(), "suggest.time", "suti", "suggestTime");
+		op.add(Builder::suggestTotal, JsonpDeserializer.stringDeserializer(), "suggest.total", "suto", "suggestTotal");
+		op.add(Builder::bulkTotalOperations, JsonpDeserializer.stringDeserializer(), "bulk.total_operations", "bto",
 				"bulkTotalOperations");
-		op.add(Builder::bulk_totalTime, JsonpDeserializer.stringDeserializer(), "bulk.total_time", "btti",
+		op.add(Builder::bulkTotalTime, JsonpDeserializer.stringDeserializer(), "bulk.total_time", "btti",
 				"bulkTotalTime");
-		op.add(Builder::bulk_totalSizeInBytes, JsonpDeserializer.stringDeserializer(), "bulk.total_size_in_bytes",
+		op.add(Builder::bulkTotalSizeInBytes, JsonpDeserializer.stringDeserializer(), "bulk.total_size_in_bytes",
 				"btsi", "bulkTotalSizeInBytes");
-		op.add(Builder::bulk_avgTime, JsonpDeserializer.stringDeserializer(), "bulk.avg_time", "bati", "bulkAvgTime");
-		op.add(Builder::bulk_avgSizeInBytes, JsonpDeserializer.stringDeserializer(), "bulk.avg_size_in_bytes", "basi",
+		op.add(Builder::bulkAvgTime, JsonpDeserializer.stringDeserializer(), "bulk.avg_time", "bati", "bulkAvgTime");
+		op.add(Builder::bulkAvgSizeInBytes, JsonpDeserializer.stringDeserializer(), "bulk.avg_size_in_bytes", "basi",
 				"bulkAvgSizeInBytes");
 
 	}

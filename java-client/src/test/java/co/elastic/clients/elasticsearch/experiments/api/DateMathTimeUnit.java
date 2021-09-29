@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.util.StringEnum;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.StringEnum;
 
 public enum DateMathTimeUnit implements StringEnum {
 

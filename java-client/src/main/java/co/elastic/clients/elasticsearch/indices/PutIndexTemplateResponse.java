@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.put_index_template.Response
+@JsonpDeserializable
 public final class PutIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutIndexTemplateResponse(Builder builder) {
+	public PutIndexTemplateResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutIndexTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class PutIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutIndexTemplateResponse
+	 * Json deserializer for {@link PutIndexTemplateResponse}
 	 */
-	public static final JsonpDeserializer<PutIndexTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutIndexTemplateResponse::setupPutIndexTemplateResponseDeserializer);
+	public static final JsonpDeserializer<PutIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutIndexTemplateResponse::setupPutIndexTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupPutIndexTemplateResponseDeserializer(
 			DelegatingDeserializer<PutIndexTemplateResponse.Builder> op) {

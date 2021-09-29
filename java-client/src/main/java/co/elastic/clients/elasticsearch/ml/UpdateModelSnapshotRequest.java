@@ -25,23 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Request
-public final class UpdateModelSnapshotRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class UpdateModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	private final String snapshotId;
@@ -54,7 +58,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateModelSnapshotRequest(Builder builder) {
+	public UpdateModelSnapshotRequest(Builder builder) {
 
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
@@ -63,7 +67,13 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 
 	}
 
+	public UpdateModelSnapshotRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the job to fetch
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -71,6 +81,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	}
 
 	/**
+	 * The ID of the snapshot to update
+	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
 	public String snapshotId() {
@@ -96,13 +108,13 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -136,6 +148,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 		private Boolean retain;
 
 		/**
+		 * The ID of the job to fetch
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -144,6 +158,8 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 		}
 
 		/**
+		 * The ID of the snapshot to update
+		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
 		public Builder snapshotId(String value) {
@@ -182,10 +198,10 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateModelSnapshotRequest
+	 * Json deserializer for {@link UpdateModelSnapshotRequest}
 	 */
-	public static final JsonpDeserializer<UpdateModelSnapshotRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer);
+	public static final JsonpDeserializer<UpdateModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer, Builder::build);
 
 	protected static void setupUpdateModelSnapshotRequestDeserializer(
 			DelegatingDeserializer<UpdateModelSnapshotRequest.Builder> op) {
@@ -200,7 +216,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 	/**
 	 * Endpoint "{@code ml.update_model_snapshot}".
 	 */
-	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -214,24 +230,22 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 
 				int propsSet = 0;
 
-				if (request.jobId() != null)
-					propsSet |= _jobId;
-				if (request.snapshotId() != null)
-					propsSet |= _snapshotId;
+				propsSet |= _jobId;
+				propsSet |= _snapshotId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/model_snapshots");
 					buf.append("/");
-					buf.append(request.snapshotId);
+					SimpleEndpoint.pathEncode(request.snapshotId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -239,5 +253,5 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements ToJ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateModelSnapshotResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateModelSnapshotResponse._DESERIALIZER);
 }

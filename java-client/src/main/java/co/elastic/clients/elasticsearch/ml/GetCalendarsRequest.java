@@ -25,39 +25,43 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Request
-public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class GetCalendarsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String calendarId;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	@Nullable
 	private final Page page;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetCalendarsRequest(Builder builder) {
+	public GetCalendarsRequest(Builder builder) {
 
 		this.calendarId = builder.calendarId;
 		this.from = builder.from;
@@ -66,9 +70,13 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public GetCalendarsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * A string that uniquely identifies a calendar.
-	 *
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	@Nullable
@@ -78,21 +86,21 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Skips the specified number of calendars.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
 	/**
 	 * Specifies the maximum number of calendars to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -107,18 +115,18 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.page != null) {
 
 			generator.writeKey("page");
-			this.page.toJsonp(generator, mapper);
+			this.page.serialize(generator, mapper);
 
 		}
 
@@ -134,17 +142,17 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 		private String calendarId;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		@Nullable
 		private Page page;
 
 		/**
 		 * A string that uniquely identifies a calendar.
-		 *
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(@Nullable String value) {
@@ -154,20 +162,20 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Skips the specified number of calendars.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
 		 * Specifies the maximum number of calendars to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -202,14 +210,14 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetCalendarsRequest
+	 * Json deserializer for {@link GetCalendarsRequest}
 	 */
-	public static final JsonpDeserializer<GetCalendarsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer);
+	public static final JsonpDeserializer<GetCalendarsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer, Builder::build);
 
 	protected static void setupGetCalendarsRequestDeserializer(DelegatingDeserializer<GetCalendarsRequest.Builder> op) {
 
-		op.add(Builder::page, Page.DESERIALIZER, "page");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
 
 	}
 
@@ -218,7 +226,7 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.get_calendars}".
 	 */
-	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -245,10 +253,10 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -256,12 +264,12 @@ public final class GetCalendarsRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetCalendarsResponse._DESERIALIZER);
 }

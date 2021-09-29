@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.delete_index_template.Response
+@JsonpDeserializable
 public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteIndexTemplateResponse(Builder builder) {
+	public DeleteIndexTemplateResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteIndexTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteIndexTemplateResponse
+	 * Json deserializer for {@link DeleteIndexTemplateResponse}
 	 */
-	public static final JsonpDeserializer<DeleteIndexTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer);
+	public static final JsonpDeserializer<DeleteIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteIndexTemplateResponseDeserializer(
 			DelegatingDeserializer<DeleteIndexTemplateResponse.Builder> op) {

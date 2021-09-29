@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: enrich.delete_policy.Response
+@JsonpDeserializable
 public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeletePolicyResponse(Builder builder) {
+	public DeletePolicyResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeletePolicyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeletePolicyResponse
+	 * Json deserializer for {@link DeletePolicyResponse}
 	 */
-	public static final JsonpDeserializer<DeletePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeletePolicyResponse::setupDeletePolicyResponseDeserializer);
+	public static final JsonpDeserializer<DeletePolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeletePolicyResponse::setupDeletePolicyResponseDeserializer, Builder::build);
 
 	protected static void setupDeletePolicyResponseDeserializer(
 			DelegatingDeserializer<DeletePolicyResponse.Builder> op) {

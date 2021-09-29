@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,13 +42,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: nodes.stats.Request
+
 public final class StatsRequest extends RequestBase {
 	@Nullable
-	private final String nodeId;
+	private final List<String> nodeId;
 
 	@Nullable
 	private final List<String> metric;
@@ -69,13 +75,13 @@ public final class StatsRequest extends RequestBase {
 	private final Boolean includeSegmentFileSizes;
 
 	@Nullable
-	private final JsonValue level;
+	private final Level level;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	@Nullable
 	private final List<String> types;
@@ -85,35 +91,41 @@ public final class StatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
-		this.metric = builder.metric;
-		this.indexMetric = builder.indexMetric;
-		this.completionFields = builder.completionFields;
-		this.fielddataFields = builder.fielddataFields;
-		this.fields = builder.fields;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.indexMetric = ModelTypeHelper.unmodifiable(builder.indexMetric);
+		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
+		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.groups = builder.groups;
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.level = builder.level;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.types = builder.types;
+		this.types = ModelTypeHelper.unmodifiable(builder.types);
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 
 	}
 
+	public StatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Comma-separated list of node IDs or names used to limit returned information.
-	 *
+	 * <p>
 	 * API name: {@code node_id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public List<String> nodeId() {
 		return this.nodeId;
 	}
 
 	/**
+	 * Limit the information returned to the specified metrics
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -124,7 +136,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Limit the information returned for indices metric to the specific index
 	 * metrics. It can be used only if indices (or all) metric is specified.
-	 *
+	 * <p>
 	 * API name: {@code index_metric}
 	 */
 	@Nullable
@@ -135,7 +147,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list or wildcard expressions of fields to include in
 	 * fielddata and suggest statistics.
-	 *
+	 * <p>
 	 * API name: {@code completion_fields}
 	 */
 	@Nullable
@@ -146,7 +158,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list or wildcard expressions of fields to include in
 	 * fielddata statistics.
-	 *
+	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
 	@Nullable
@@ -157,7 +169,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Comma-separated list or wildcard expressions of fields to include in the
 	 * statistics.
-	 *
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -167,7 +179,7 @@ public final class StatsRequest extends RequestBase {
 
 	/**
 	 * Comma-separated list of search groups to include in the search statistics.
-	 *
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	@Nullable
@@ -178,7 +190,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * If true, the call reports the aggregated disk usage of each one of the Lucene
 	 * index files (only applies if segment stats are requested).
-	 *
+	 * <p>
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
@@ -189,39 +201,39 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Indicates whether statistics are aggregated at the cluster, index, or shard
 	 * level.
-	 *
+	 * <p>
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public JsonValue level() {
+	public Level level() {
 		return this.level;
 	}
 
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
 	 * Period to wait for a response. If no response is received before the timeout
 	 * expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
 	/**
 	 * A comma-separated list of document types for the indexing index metric.
-	 *
+	 * <p>
 	 * API name: {@code types}
 	 */
 	@Nullable
@@ -230,6 +242,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to true segment stats will include stats for segments that are not
+	 * currently loaded into memory
+	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
@@ -244,7 +259,7 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StatsRequest> {
 		@Nullable
-		private String nodeId;
+		private List<String> nodeId;
 
 		@Nullable
 		private List<String> metric;
@@ -268,13 +283,13 @@ public final class StatsRequest extends RequestBase {
 		private Boolean includeSegmentFileSizes;
 
 		@Nullable
-		private JsonValue level;
+		private Level level;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		@Nullable
 		private List<String> types;
@@ -284,15 +299,38 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of node IDs or names used to limit returned information.
-		 *
+		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
 
 		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 */
+		public Builder nodeId(String... value) {
+			this.nodeId = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
+		 */
+		public Builder addNodeId(String value) {
+			if (this.nodeId == null) {
+				this.nodeId = new ArrayList<>();
+			}
+			this.nodeId.add(value);
+			return this;
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -301,6 +339,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -309,7 +349,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -322,7 +362,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Limit the information returned for indices metric to the specific index
 		 * metrics. It can be used only if indices (or all) metric is specified.
-		 *
+		 * <p>
 		 * API name: {@code index_metric}
 		 */
 		public Builder indexMetric(@Nullable List<String> value) {
@@ -333,7 +373,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Limit the information returned for indices metric to the specific index
 		 * metrics. It can be used only if indices (or all) metric is specified.
-		 *
+		 * <p>
 		 * API name: {@code index_metric}
 		 */
 		public Builder indexMetric(String... value) {
@@ -342,7 +382,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #indexMetric(List)}, creating the list if needed.
+		 * Add a value to {@link #indexMetric(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexMetric(String value) {
 			if (this.indexMetric == null) {
@@ -355,7 +395,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata and suggest statistics.
-		 *
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(@Nullable List<String> value) {
@@ -366,7 +406,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata and suggest statistics.
-		 *
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(String... value) {
@@ -376,6 +416,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addCompletionFields(String value) {
 			if (this.completionFields == null) {
@@ -388,7 +429,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata statistics.
-		 *
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(@Nullable List<String> value) {
@@ -399,7 +440,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata statistics.
-		 *
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(String... value) {
@@ -408,7 +449,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
+		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFielddataFields(String value) {
 			if (this.fielddataFields == null) {
@@ -421,7 +462,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in the
 		 * statistics.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -432,7 +473,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in the
 		 * statistics.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -441,7 +482,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -453,7 +494,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Comma-separated list of search groups to include in the search statistics.
-		 *
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(@Nullable Boolean value) {
@@ -464,7 +505,7 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * If true, the call reports the aggregated disk usage of each one of the Lucene
 		 * index files (only applies if segment stats are requested).
-		 *
+		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
 		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
@@ -475,10 +516,10 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Indicates whether statistics are aggregated at the cluster, index, or shard
 		 * level.
-		 *
+		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable JsonValue value) {
+		public Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
@@ -486,10 +527,10 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -497,17 +538,17 @@ public final class StatsRequest extends RequestBase {
 		/**
 		 * Period to wait for a response. If no response is received before the timeout
 		 * expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
 		 * A comma-separated list of document types for the indexing index metric.
-		 *
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(@Nullable List<String> value) {
@@ -517,7 +558,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of document types for the indexing index metric.
-		 *
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(String... value) {
@@ -526,7 +567,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
+		 * Add a value to {@link #types(List)}, creating the list if needed. 4
 		 */
 		public Builder addTypes(String value) {
 			if (this.types == null) {
@@ -537,6 +578,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to true segment stats will include stats for segments that are not
+		 * currently loaded into memory
+		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
 		public Builder includeUnloadedSegments(@Nullable Boolean value) {
@@ -561,7 +605,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.stats}".
 	 */
-	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -593,7 +637,8 @@ public final class StatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/stats");
 					return buf.toString();
 				}
@@ -602,17 +647,20 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _indexMetric)) {
@@ -620,24 +668,29 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/");
-					buf.append(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric | _indexMetric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/");
-					buf.append(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -665,10 +718,10 @@ public final class StatsRequest extends RequestBase {
 					params.put("level", request.level.toString());
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				if (request.types != null) {
 					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -678,5 +731,5 @@ public final class StatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatsResponse._DESERIALIZER);
 }

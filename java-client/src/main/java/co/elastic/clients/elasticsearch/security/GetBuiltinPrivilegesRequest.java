@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_builtin_privileges.Request
+
 public final class GetBuiltinPrivilegesRequest extends RequestBase {
-	protected GetBuiltinPrivilegesRequest() {
+	public GetBuiltinPrivilegesRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link GetBuiltinPrivilegesRequest}.
 	 */
-	public static final GetBuiltinPrivilegesRequest INSTANCE = new GetBuiltinPrivilegesRequest();
-
-	public static final JsonpDeserializer<GetBuiltinPrivilegesRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetBuiltinPrivilegesRequest.INSTANCE);
+	public static final GetBuiltinPrivilegesRequest _INSTANCE = new GetBuiltinPrivilegesRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code security.get_builtin_privileges}".
 	 */
-	public static final Endpoint<GetBuiltinPrivilegesRequest, GetBuiltinPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetBuiltinPrivilegesRequest, GetBuiltinPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class GetBuiltinPrivilegesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetBuiltinPrivilegesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetBuiltinPrivilegesResponse._DESERIALIZER);
 }

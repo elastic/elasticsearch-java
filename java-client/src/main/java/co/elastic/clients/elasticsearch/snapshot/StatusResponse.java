@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -39,15 +41,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.status.Response
-public final class StatusResponse implements ToJsonp {
+@JsonpDeserializable
+public final class StatusResponse implements JsonpSerializable {
 	private final List<Status> snapshots;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatusResponse(Builder builder) {
+	public StatusResponse(Builder builder) {
 
-		this.snapshots = Objects.requireNonNull(builder.snapshots, "snapshots");
+		this.snapshots = ModelTypeHelper.unmodifiableNonNull(builder.snapshots, "snapshots");
 
+	}
+
+	public StatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -60,18 +67,18 @@ public final class StatusResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("snapshots");
 		generator.writeStartArray();
 		for (Status item0 : this.snapshots) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -103,7 +110,7 @@ public final class StatusResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
 		 */
 		public Builder addSnapshots(Status value) {
 			if (this.snapshots == null) {
@@ -121,7 +128,7 @@ public final class StatusResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
 		 */
 		public Builder addSnapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
 			return this.addSnapshots(fn.apply(new Status.Builder()).build());
@@ -142,14 +149,14 @@ public final class StatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatusResponse
+	 * Json deserializer for {@link StatusResponse}
 	 */
-	public static final JsonpDeserializer<StatusResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatusResponse::setupStatusResponseDeserializer);
+	public static final JsonpDeserializer<StatusResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatusResponse::setupStatusResponseDeserializer, Builder::build);
 
 	protected static void setupStatusResponseDeserializer(DelegatingDeserializer<StatusResponse.Builder> op) {
 
-		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status.DESERIALIZER), "snapshots");
+		op.add(Builder::snapshots, JsonpDeserializer.arrayDeserializer(Status._DESERIALIZER), "snapshots");
 
 	}
 

@@ -24,37 +24,40 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.AdaptiveSelection
-public final class AdaptiveSelection implements ToJsonp {
-	private final Number avgQueueSize;
+@JsonpDeserializable
+public final class AdaptiveSelection implements JsonpSerializable {
+	private final long avgQueueSize;
 
-	private final Number avgResponseTime;
+	private final long avgResponseTime;
 
-	private final Number avgResponseTimeNs;
+	private final long avgResponseTimeNs;
 
 	private final String avgServiceTime;
 
-	private final Number avgServiceTimeNs;
+	private final long avgServiceTimeNs;
 
-	private final Number outgoingSearches;
+	private final long outgoingSearches;
 
 	private final String rank;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AdaptiveSelection(Builder builder) {
+	public AdaptiveSelection(Builder builder) {
 
 		this.avgQueueSize = Objects.requireNonNull(builder.avgQueueSize, "avg_queue_size");
 		this.avgResponseTime = Objects.requireNonNull(builder.avgResponseTime, "avg_response_time");
@@ -66,24 +69,28 @@ public final class AdaptiveSelection implements ToJsonp {
 
 	}
 
+	public AdaptiveSelection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code avg_queue_size}
 	 */
-	public Number avgQueueSize() {
+	public long avgQueueSize() {
 		return this.avgQueueSize;
 	}
 
 	/**
 	 * API name: {@code avg_response_time}
 	 */
-	public Number avgResponseTime() {
+	public long avgResponseTime() {
 		return this.avgResponseTime;
 	}
 
 	/**
 	 * API name: {@code avg_response_time_ns}
 	 */
-	public Number avgResponseTimeNs() {
+	public long avgResponseTimeNs() {
 		return this.avgResponseTimeNs;
 	}
 
@@ -97,14 +104,14 @@ public final class AdaptiveSelection implements ToJsonp {
 	/**
 	 * API name: {@code avg_service_time_ns}
 	 */
-	public Number avgServiceTimeNs() {
+	public long avgServiceTimeNs() {
 		return this.avgServiceTimeNs;
 	}
 
 	/**
 	 * API name: {@code outgoing_searches}
 	 */
-	public Number outgoingSearches() {
+	public long outgoingSearches() {
 		return this.outgoingSearches;
 	}
 
@@ -118,31 +125,31 @@ public final class AdaptiveSelection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("avg_queue_size");
-		generator.write(this.avgQueueSize.doubleValue());
+		generator.write(this.avgQueueSize);
 
 		generator.writeKey("avg_response_time");
-		generator.write(this.avgResponseTime.doubleValue());
+		generator.write(this.avgResponseTime);
 
 		generator.writeKey("avg_response_time_ns");
-		generator.write(this.avgResponseTimeNs.doubleValue());
+		generator.write(this.avgResponseTimeNs);
 
 		generator.writeKey("avg_service_time");
 		generator.write(this.avgServiceTime);
 
 		generator.writeKey("avg_service_time_ns");
-		generator.write(this.avgServiceTimeNs.doubleValue());
+		generator.write(this.avgServiceTimeNs);
 
 		generator.writeKey("outgoing_searches");
-		generator.write(this.outgoingSearches.doubleValue());
+		generator.write(this.outgoingSearches);
 
 		generator.writeKey("rank");
 		generator.write(this.rank);
@@ -155,24 +162,24 @@ public final class AdaptiveSelection implements ToJsonp {
 	 * Builder for {@link AdaptiveSelection}.
 	 */
 	public static class Builder implements ObjectBuilder<AdaptiveSelection> {
-		private Number avgQueueSize;
+		private Long avgQueueSize;
 
-		private Number avgResponseTime;
+		private Long avgResponseTime;
 
-		private Number avgResponseTimeNs;
+		private Long avgResponseTimeNs;
 
 		private String avgServiceTime;
 
-		private Number avgServiceTimeNs;
+		private Long avgServiceTimeNs;
 
-		private Number outgoingSearches;
+		private Long outgoingSearches;
 
 		private String rank;
 
 		/**
 		 * API name: {@code avg_queue_size}
 		 */
-		public Builder avgQueueSize(Number value) {
+		public Builder avgQueueSize(long value) {
 			this.avgQueueSize = value;
 			return this;
 		}
@@ -180,7 +187,7 @@ public final class AdaptiveSelection implements ToJsonp {
 		/**
 		 * API name: {@code avg_response_time}
 		 */
-		public Builder avgResponseTime(Number value) {
+		public Builder avgResponseTime(long value) {
 			this.avgResponseTime = value;
 			return this;
 		}
@@ -188,7 +195,7 @@ public final class AdaptiveSelection implements ToJsonp {
 		/**
 		 * API name: {@code avg_response_time_ns}
 		 */
-		public Builder avgResponseTimeNs(Number value) {
+		public Builder avgResponseTimeNs(long value) {
 			this.avgResponseTimeNs = value;
 			return this;
 		}
@@ -204,7 +211,7 @@ public final class AdaptiveSelection implements ToJsonp {
 		/**
 		 * API name: {@code avg_service_time_ns}
 		 */
-		public Builder avgServiceTimeNs(Number value) {
+		public Builder avgServiceTimeNs(long value) {
 			this.avgServiceTimeNs = value;
 			return this;
 		}
@@ -212,7 +219,7 @@ public final class AdaptiveSelection implements ToJsonp {
 		/**
 		 * API name: {@code outgoing_searches}
 		 */
-		public Builder outgoingSearches(Number value) {
+		public Builder outgoingSearches(long value) {
 			this.outgoingSearches = value;
 			return this;
 		}
@@ -240,19 +247,19 @@ public final class AdaptiveSelection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AdaptiveSelection
+	 * Json deserializer for {@link AdaptiveSelection}
 	 */
-	public static final JsonpDeserializer<AdaptiveSelection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AdaptiveSelection::setupAdaptiveSelectionDeserializer);
+	public static final JsonpDeserializer<AdaptiveSelection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AdaptiveSelection::setupAdaptiveSelectionDeserializer, Builder::build);
 
 	protected static void setupAdaptiveSelectionDeserializer(DelegatingDeserializer<AdaptiveSelection.Builder> op) {
 
-		op.add(Builder::avgQueueSize, JsonpDeserializer.numberDeserializer(), "avg_queue_size");
-		op.add(Builder::avgResponseTime, JsonpDeserializer.numberDeserializer(), "avg_response_time");
-		op.add(Builder::avgResponseTimeNs, JsonpDeserializer.numberDeserializer(), "avg_response_time_ns");
+		op.add(Builder::avgQueueSize, JsonpDeserializer.longDeserializer(), "avg_queue_size");
+		op.add(Builder::avgResponseTime, JsonpDeserializer.longDeserializer(), "avg_response_time");
+		op.add(Builder::avgResponseTimeNs, JsonpDeserializer.longDeserializer(), "avg_response_time_ns");
 		op.add(Builder::avgServiceTime, JsonpDeserializer.stringDeserializer(), "avg_service_time");
-		op.add(Builder::avgServiceTimeNs, JsonpDeserializer.numberDeserializer(), "avg_service_time_ns");
-		op.add(Builder::outgoingSearches, JsonpDeserializer.numberDeserializer(), "outgoing_searches");
+		op.add(Builder::avgServiceTimeNs, JsonpDeserializer.longDeserializer(), "avg_service_time_ns");
+		op.add(Builder::outgoingSearches, JsonpDeserializer.longDeserializer(), "outgoing_searches");
 		op.add(Builder::rank, JsonpDeserializer.stringDeserializer(), "rank");
 
 	}

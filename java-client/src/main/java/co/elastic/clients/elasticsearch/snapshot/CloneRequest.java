@@ -25,24 +25,27 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.clone.Request
-public final class CloneRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class CloneRequest extends RequestBase implements JsonpSerializable {
 	private final String repository;
 
 	private final String snapshot;
@@ -50,16 +53,16 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	private final String targetSnapshot;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	private final String indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloneRequest(Builder builder) {
+	public CloneRequest(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -70,7 +73,13 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public CloneRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A repository name
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	public String repository() {
@@ -78,6 +87,8 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the snapshot to clone from
+	 * <p>
 	 * API name: {@code snapshot}
 	 */
 	public String snapshot() {
@@ -85,6 +96,8 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * The name of the cloned snapshot to create
+	 * <p>
 	 * API name: {@code target_snapshot}
 	 */
 	public String targetSnapshot() {
@@ -92,10 +105,12 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Explicit operation timeout for connection to master node
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -103,7 +118,7 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -117,13 +132,13 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices");
 		generator.write(this.indices);
@@ -143,14 +158,16 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 		private String targetSnapshot;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		private String indices;
 
 		/**
+		 * A repository name
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String value) {
@@ -159,6 +176,8 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The name of the snapshot to clone from
+		 * <p>
 		 * API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
@@ -167,6 +186,8 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * The name of the cloned snapshot to create
+		 * <p>
 		 * API name: {@code target_snapshot}
 		 */
 		public Builder targetSnapshot(String value) {
@@ -175,9 +196,11 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -185,7 +208,7 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -213,10 +236,10 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloneRequest
+	 * Json deserializer for {@link CloneRequest}
 	 */
-	public static final JsonpDeserializer<CloneRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloneRequest::setupCloneRequestDeserializer);
+	public static final JsonpDeserializer<CloneRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloneRequest::setupCloneRequestDeserializer, Builder::build);
 
 	protected static void setupCloneRequestDeserializer(DelegatingDeserializer<CloneRequest.Builder> op) {
 
@@ -229,7 +252,7 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code snapshot.clone}".
 	 */
-	public static final Endpoint<CloneRequest, CloneResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CloneRequest, CloneResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -244,26 +267,23 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
-				if (request.snapshot() != null)
-					propsSet |= _snapshot;
-				if (request.targetSnapshot() != null)
-					propsSet |= _targetSnapshot;
+				propsSet |= _repository;
+				propsSet |= _snapshot;
+				propsSet |= _targetSnapshot;
 
 				if (propsSet == (_repository | _snapshot | _targetSnapshot)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					buf.append("/_clone");
 					buf.append("/");
-					buf.append(request.targetSnapshot);
+					SimpleEndpoint.pathEncode(request.targetSnapshot, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -271,12 +291,12 @@ public final class CloneRequest extends RequestBase implements ToJsonp {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CloneResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CloneResponse._DESERIALIZER);
 }

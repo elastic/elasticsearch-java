@@ -24,28 +24,31 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScoreFunctionBase
-public abstract class ScoreFunctionBase implements ToJsonp {
+
+public abstract class ScoreFunctionBase implements JsonpSerializable {
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	@Nullable
-	private final Number weight;
+	private final Double weight;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ScoreFunctionBase(AbstractBuilder<?> builder) {
+	public ScoreFunctionBase(AbstractBuilder<?> builder) {
 
 		this.filter = builder.filter;
 		this.weight = builder.weight;
@@ -56,7 +59,7 @@ public abstract class ScoreFunctionBase implements ToJsonp {
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
@@ -64,31 +67,31 @@ public abstract class ScoreFunctionBase implements ToJsonp {
 	 * API name: {@code weight}
 	 */
 	@Nullable
-	public Number weight() {
+	public Double weight() {
 		return this.weight;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.weight != null) {
 
 			generator.writeKey("weight");
-			generator.write(this.weight.doubleValue());
+			generator.write(this.weight);
 
 		}
 
@@ -96,15 +99,15 @@ public abstract class ScoreFunctionBase implements ToJsonp {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		@Nullable
-		private Number weight;
+		private Double weight;
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public BuilderT filter(@Nullable QueryContainer value) {
+		public BuilderT filter(@Nullable Query value) {
 			this.filter = value;
 			return self();
 		}
@@ -112,14 +115,14 @@ public abstract class ScoreFunctionBase implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public BuilderT filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public BuilderT filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code weight}
 		 */
-		public BuilderT weight(@Nullable Number value) {
+		public BuilderT weight(@Nullable Double value) {
 			this.weight = value;
 			return self();
 		}
@@ -132,8 +135,8 @@ public abstract class ScoreFunctionBase implements ToJsonp {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScoreFunctionBaseDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::filter, QueryContainer.DESERIALIZER, "filter");
-		op.add(AbstractBuilder::weight, JsonpDeserializer.numberDeserializer(), "weight");
+		op.add(AbstractBuilder::filter, Query._DESERIALIZER, "filter");
+		op.add(AbstractBuilder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
 
 	}
 

@@ -42,11 +42,12 @@ import co.elastic.clients.elasticsearch.xpack.usage.Sql;
 import co.elastic.clients.elasticsearch.xpack.usage.Vector;
 import co.elastic.clients.elasticsearch.xpack.usage.Watcher;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -54,7 +55,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Response
-public final class UsageResponse implements ToJsonp {
+@JsonpDeserializable
+public final class UsageResponse implements JsonpSerializable {
 	private final Base aggregateMetric;
 
 	private final Analytics analytics;
@@ -117,7 +119,7 @@ public final class UsageResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UsageResponse(Builder builder) {
+	public UsageResponse(Builder builder) {
 
 		this.aggregateMetric = Objects.requireNonNull(builder.aggregateMetric, "aggregate_metric");
 		this.analytics = Objects.requireNonNull(builder.analytics, "analytics");
@@ -147,6 +149,10 @@ public final class UsageResponse implements ToJsonp {
 		this.vectors = Objects.requireNonNull(builder.vectors, "vectors");
 		this.votingOnly = Objects.requireNonNull(builder.votingOnly, "voting_only");
 
+	}
+
+	public UsageResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -347,116 +353,116 @@ public final class UsageResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("aggregate_metric");
-		this.aggregateMetric.toJsonp(generator, mapper);
+		this.aggregateMetric.serialize(generator, mapper);
 
 		generator.writeKey("analytics");
-		this.analytics.toJsonp(generator, mapper);
+		this.analytics.serialize(generator, mapper);
 
 		generator.writeKey("watcher");
-		this.watcher.toJsonp(generator, mapper);
+		this.watcher.serialize(generator, mapper);
 
 		generator.writeKey("ccr");
-		this.ccr.toJsonp(generator, mapper);
+		this.ccr.serialize(generator, mapper);
 
 		if (this.dataFrame != null) {
 
 			generator.writeKey("data_frame");
-			this.dataFrame.toJsonp(generator, mapper);
+			this.dataFrame.serialize(generator, mapper);
 
 		}
 		if (this.dataScience != null) {
 
 			generator.writeKey("data_science");
-			this.dataScience.toJsonp(generator, mapper);
+			this.dataScience.serialize(generator, mapper);
 
 		}
 		if (this.dataStreams != null) {
 
 			generator.writeKey("data_streams");
-			this.dataStreams.toJsonp(generator, mapper);
+			this.dataStreams.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("data_tiers");
-		this.dataTiers.toJsonp(generator, mapper);
+		this.dataTiers.serialize(generator, mapper);
 
 		if (this.enrich != null) {
 
 			generator.writeKey("enrich");
-			this.enrich.toJsonp(generator, mapper);
+			this.enrich.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("eql");
-		this.eql.toJsonp(generator, mapper);
+		this.eql.serialize(generator, mapper);
 
 		if (this.flattened != null) {
 
 			generator.writeKey("flattened");
-			this.flattened.toJsonp(generator, mapper);
+			this.flattened.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("frozen_indices");
-		this.frozenIndices.toJsonp(generator, mapper);
+		this.frozenIndices.serialize(generator, mapper);
 
 		generator.writeKey("graph");
-		this.graph.toJsonp(generator, mapper);
+		this.graph.serialize(generator, mapper);
 
 		generator.writeKey("ilm");
-		this.ilm.toJsonp(generator, mapper);
+		this.ilm.serialize(generator, mapper);
 
 		generator.writeKey("logstash");
-		this.logstash.toJsonp(generator, mapper);
+		this.logstash.serialize(generator, mapper);
 
 		generator.writeKey("ml");
-		this.ml.toJsonp(generator, mapper);
+		this.ml.serialize(generator, mapper);
 
 		generator.writeKey("monitoring");
-		this.monitoring.toJsonp(generator, mapper);
+		this.monitoring.serialize(generator, mapper);
 
 		generator.writeKey("rollup");
-		this.rollup.toJsonp(generator, mapper);
+		this.rollup.serialize(generator, mapper);
 
 		if (this.runtimeFields != null) {
 
 			generator.writeKey("runtime_fields");
-			this.runtimeFields.toJsonp(generator, mapper);
+			this.runtimeFields.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("spatial");
-		this.spatial.toJsonp(generator, mapper);
+		this.spatial.serialize(generator, mapper);
 
 		generator.writeKey("searchable_snapshots");
-		this.searchableSnapshots.toJsonp(generator, mapper);
+		this.searchableSnapshots.serialize(generator, mapper);
 
 		generator.writeKey("security");
-		this.security.toJsonp(generator, mapper);
+		this.security.serialize(generator, mapper);
 
 		generator.writeKey("slm");
-		this.slm.toJsonp(generator, mapper);
+		this.slm.serialize(generator, mapper);
 
 		generator.writeKey("sql");
-		this.sql.toJsonp(generator, mapper);
+		this.sql.serialize(generator, mapper);
 
 		generator.writeKey("transform");
-		this.transform.toJsonp(generator, mapper);
+		this.transform.serialize(generator, mapper);
 
 		generator.writeKey("vectors");
-		this.vectors.toJsonp(generator, mapper);
+		this.vectors.serialize(generator, mapper);
 
 		generator.writeKey("voting_only");
-		this.votingOnly.toJsonp(generator, mapper);
+		this.votingOnly.serialize(generator, mapper);
 
 	}
 
@@ -947,40 +953,40 @@ public final class UsageResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UsageResponse
+	 * Json deserializer for {@link UsageResponse}
 	 */
-	public static final JsonpDeserializer<UsageResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UsageResponse::setupUsageResponseDeserializer);
+	public static final JsonpDeserializer<UsageResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			UsageResponse::setupUsageResponseDeserializer, Builder::build);
 
 	protected static void setupUsageResponseDeserializer(DelegatingDeserializer<UsageResponse.Builder> op) {
 
-		op.add(Builder::aggregateMetric, Base.DESERIALIZER, "aggregate_metric");
-		op.add(Builder::analytics, Analytics.DESERIALIZER, "analytics");
-		op.add(Builder::watcher, Watcher.DESERIALIZER, "watcher");
-		op.add(Builder::ccr, Ccr.DESERIALIZER, "ccr");
-		op.add(Builder::dataFrame, Base.DESERIALIZER, "data_frame");
-		op.add(Builder::dataScience, Base.DESERIALIZER, "data_science");
-		op.add(Builder::dataStreams, DataStreams.DESERIALIZER, "data_streams");
-		op.add(Builder::dataTiers, DataTiers.DESERIALIZER, "data_tiers");
-		op.add(Builder::enrich, Base.DESERIALIZER, "enrich");
-		op.add(Builder::eql, Eql.DESERIALIZER, "eql");
-		op.add(Builder::flattened, Flattened.DESERIALIZER, "flattened");
-		op.add(Builder::frozenIndices, FrozenIndices.DESERIALIZER, "frozen_indices");
-		op.add(Builder::graph, Base.DESERIALIZER, "graph");
-		op.add(Builder::ilm, Ilm.DESERIALIZER, "ilm");
-		op.add(Builder::logstash, Base.DESERIALIZER, "logstash");
-		op.add(Builder::ml, MachineLearning.DESERIALIZER, "ml");
-		op.add(Builder::monitoring, Monitoring.DESERIALIZER, "monitoring");
-		op.add(Builder::rollup, Base.DESERIALIZER, "rollup");
-		op.add(Builder::runtimeFields, RuntimeFieldTypes.DESERIALIZER, "runtime_fields");
-		op.add(Builder::spatial, Base.DESERIALIZER, "spatial");
-		op.add(Builder::searchableSnapshots, SearchableSnapshots.DESERIALIZER, "searchable_snapshots");
-		op.add(Builder::security, Security.DESERIALIZER, "security");
-		op.add(Builder::slm, Slm.DESERIALIZER, "slm");
-		op.add(Builder::sql, Sql.DESERIALIZER, "sql");
-		op.add(Builder::transform, Base.DESERIALIZER, "transform");
-		op.add(Builder::vectors, Vector.DESERIALIZER, "vectors");
-		op.add(Builder::votingOnly, Base.DESERIALIZER, "voting_only");
+		op.add(Builder::aggregateMetric, Base._DESERIALIZER, "aggregate_metric");
+		op.add(Builder::analytics, Analytics._DESERIALIZER, "analytics");
+		op.add(Builder::watcher, Watcher._DESERIALIZER, "watcher");
+		op.add(Builder::ccr, Ccr._DESERIALIZER, "ccr");
+		op.add(Builder::dataFrame, Base._DESERIALIZER, "data_frame");
+		op.add(Builder::dataScience, Base._DESERIALIZER, "data_science");
+		op.add(Builder::dataStreams, DataStreams._DESERIALIZER, "data_streams");
+		op.add(Builder::dataTiers, DataTiers._DESERIALIZER, "data_tiers");
+		op.add(Builder::enrich, Base._DESERIALIZER, "enrich");
+		op.add(Builder::eql, Eql._DESERIALIZER, "eql");
+		op.add(Builder::flattened, Flattened._DESERIALIZER, "flattened");
+		op.add(Builder::frozenIndices, FrozenIndices._DESERIALIZER, "frozen_indices");
+		op.add(Builder::graph, Base._DESERIALIZER, "graph");
+		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");
+		op.add(Builder::logstash, Base._DESERIALIZER, "logstash");
+		op.add(Builder::ml, MachineLearning._DESERIALIZER, "ml");
+		op.add(Builder::monitoring, Monitoring._DESERIALIZER, "monitoring");
+		op.add(Builder::rollup, Base._DESERIALIZER, "rollup");
+		op.add(Builder::runtimeFields, RuntimeFieldTypes._DESERIALIZER, "runtime_fields");
+		op.add(Builder::spatial, Base._DESERIALIZER, "spatial");
+		op.add(Builder::searchableSnapshots, SearchableSnapshots._DESERIALIZER, "searchable_snapshots");
+		op.add(Builder::security, Security._DESERIALIZER, "security");
+		op.add(Builder::slm, Slm._DESERIALIZER, "slm");
+		op.add(Builder::sql, Sql._DESERIALIZER, "sql");
+		op.add(Builder::transform, Base._DESERIALIZER, "transform");
+		op.add(Builder::vectors, Vector._DESERIALIZER, "vectors");
+		op.add(Builder::votingOnly, Base._DESERIALIZER, "voting_only");
 
 	}
 

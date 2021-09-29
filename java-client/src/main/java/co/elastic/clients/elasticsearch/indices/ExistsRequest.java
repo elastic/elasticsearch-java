@@ -23,15 +23,19 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -41,10 +45,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.exists.Request
+
 public final class ExistsRequest extends RequestBase {
 	private final List<String> index;
 
@@ -52,7 +58,7 @@ public final class ExistsRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -68,11 +74,11 @@ public final class ExistsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExistsRequest(Builder builder) {
+	public ExistsRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
@@ -80,7 +86,13 @@ public final class ExistsRequest extends RequestBase {
 
 	}
 
+	public ExistsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public List<String> index() {
@@ -88,6 +100,9 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore if a wildcard expression resolves to no concrete indices (default:
+	 * false)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -96,14 +111,19 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * (default: open)
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -112,6 +132,8 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Ignore unavailable indexes (default: false)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -120,6 +142,8 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to return all default setting for each of the indices.
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -128,6 +152,9 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -147,7 +174,7 @@ public final class ExistsRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -162,6 +189,8 @@ public final class ExistsRequest extends RequestBase {
 		private Boolean local;
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
@@ -170,6 +199,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -178,7 +209,7 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -189,6 +220,9 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore if a wildcard expression resolves to no concrete indices (default:
+		 * false)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -197,14 +231,41 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * (default: open)
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -213,6 +274,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Ignore unavailable indexes (default: false)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -221,6 +284,8 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to return all default setting for each of the indices.
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -229,6 +294,9 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -253,7 +321,7 @@ public final class ExistsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists}".
 	 */
-	public static final Endpoint<ExistsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<ExistsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -266,16 +334,15 @@ public final class ExistsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -286,7 +353,8 @@ public final class ExistsRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
@@ -302,5 +370,5 @@ public final class ExistsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

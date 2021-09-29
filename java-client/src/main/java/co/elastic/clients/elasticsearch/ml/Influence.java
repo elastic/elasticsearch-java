@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,21 +38,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influence
-public final class Influence implements ToJsonp {
+@JsonpDeserializable
+public final class Influence implements JsonpSerializable {
 	private final String influencerFieldName;
 
 	private final List<String> influencerFieldValues;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Influence(Builder builder) {
+	public Influence(Builder builder) {
 
 		this.influencerFieldName = Objects.requireNonNull(builder.influencerFieldName, "influencer_field_name");
-		this.influencerFieldValues = Objects.requireNonNull(builder.influencerFieldValues, "influencer_field_values");
+		this.influencerFieldValues = ModelTypeHelper.unmodifiableNonNull(builder.influencerFieldValues,
+				"influencer_field_values");
 
+	}
+
+	public Influence(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -70,13 +79,13 @@ public final class Influence implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("influencer_field_name");
 		generator.write(this.influencerFieldName);
@@ -127,7 +136,7 @@ public final class Influence implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #influencerFieldValues(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addInfluencerFieldValues(String value) {
 			if (this.influencerFieldValues == null) {
@@ -152,10 +161,10 @@ public final class Influence implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Influence
+	 * Json deserializer for {@link Influence}
 	 */
-	public static final JsonpDeserializer<Influence> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Influence::setupInfluenceDeserializer);
+	public static final JsonpDeserializer<Influence> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Influence::setupInfluenceDeserializer, Builder::build);
 
 	protected static void setupInfluenceDeserializer(DelegatingDeserializer<Influence.Builder> op) {
 

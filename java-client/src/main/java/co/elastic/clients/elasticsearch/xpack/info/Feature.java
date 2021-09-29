@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,20 +39,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Feature
-public final class Feature implements ToJsonp {
-	private final Boolean available;
+@JsonpDeserializable
+public final class Feature implements JsonpSerializable {
+	private final boolean available;
 
 	@Nullable
 	private final String description;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
 	@Nullable
 	private final NativeCodeInformation nativeCodeInfo;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Feature(Builder builder) {
+	public Feature(Builder builder) {
 
 		this.available = Objects.requireNonNull(builder.available, "available");
 		this.description = builder.description;
@@ -60,10 +62,14 @@ public final class Feature implements ToJsonp {
 
 	}
 
+	public Feature(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code available}
 	 */
-	public Boolean available() {
+	public boolean available() {
 		return this.available;
 	}
 
@@ -78,7 +84,7 @@ public final class Feature implements ToJsonp {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
@@ -93,13 +99,13 @@ public final class Feature implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("available");
 		generator.write(this.available);
@@ -117,7 +123,7 @@ public final class Feature implements ToJsonp {
 		if (this.nativeCodeInfo != null) {
 
 			generator.writeKey("native_code_info");
-			this.nativeCodeInfo.toJsonp(generator, mapper);
+			this.nativeCodeInfo.serialize(generator, mapper);
 
 		}
 
@@ -142,7 +148,7 @@ public final class Feature implements ToJsonp {
 		/**
 		 * API name: {@code available}
 		 */
-		public Builder available(Boolean value) {
+		public Builder available(boolean value) {
 			this.available = value;
 			return this;
 		}
@@ -158,7 +164,7 @@ public final class Feature implements ToJsonp {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -194,17 +200,17 @@ public final class Feature implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Feature
+	 * Json deserializer for {@link Feature}
 	 */
-	public static final JsonpDeserializer<Feature> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Feature::setupFeatureDeserializer);
+	public static final JsonpDeserializer<Feature> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Feature::setupFeatureDeserializer, Builder::build);
 
 	protected static void setupFeatureDeserializer(DelegatingDeserializer<Feature.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.booleanDeserializer(), "available");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::nativeCodeInfo, NativeCodeInformation.DESERIALIZER, "native_code_info");
+		op.add(Builder::nativeCodeInfo, NativeCodeInformation._DESERIALIZER, "native_code_info");
 
 	}
 

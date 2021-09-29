@@ -23,27 +23,30 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.Alias
-public final class Alias implements ToJsonp {
+@JsonpDeserializable
+public final class Alias implements JsonpSerializable {
 	@Nullable
-	private final QueryContainer filter;
+	private final Query filter;
 
 	@Nullable
-	private final JsonValue indexRouting;
+	private final String indexRouting;
 
 	@Nullable
 	private final Boolean isHidden;
@@ -52,14 +55,14 @@ public final class Alias implements ToJsonp {
 	private final Boolean isWriteIndex;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
-	private final JsonValue searchRouting;
+	private final String searchRouting;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Alias(Builder builder) {
+	public Alias(Builder builder) {
 
 		this.filter = builder.filter;
 		this.indexRouting = builder.indexRouting;
@@ -70,11 +73,15 @@ public final class Alias implements ToJsonp {
 
 	}
 
+	public Alias(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public QueryContainer filter() {
+	public Query filter() {
 		return this.filter;
 	}
 
@@ -82,7 +89,7 @@ public final class Alias implements ToJsonp {
 	 * API name: {@code index_routing}
 	 */
 	@Nullable
-	public JsonValue indexRouting() {
+	public String indexRouting() {
 		return this.indexRouting;
 	}
 
@@ -106,7 +113,7 @@ public final class Alias implements ToJsonp {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -114,25 +121,25 @@ public final class Alias implements ToJsonp {
 	 * API name: {@code search_routing}
 	 */
 	@Nullable
-	public JsonValue searchRouting() {
+	public String searchRouting() {
 		return this.searchRouting;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.filter != null) {
 
 			generator.writeKey("filter");
-			this.filter.toJsonp(generator, mapper);
+			this.filter.serialize(generator, mapper);
 
 		}
 		if (this.indexRouting != null) {
@@ -175,10 +182,10 @@ public final class Alias implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Alias> {
 		@Nullable
-		private QueryContainer filter;
+		private Query filter;
 
 		@Nullable
-		private JsonValue indexRouting;
+		private String indexRouting;
 
 		@Nullable
 		private Boolean isHidden;
@@ -187,15 +194,15 @@ public final class Alias implements ToJsonp {
 		private Boolean isWriteIndex;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
-		private JsonValue searchRouting;
+		private String searchRouting;
 
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable QueryContainer value) {
+		public Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -203,14 +210,14 @@ public final class Alias implements ToJsonp {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code index_routing}
 		 */
-		public Builder indexRouting(@Nullable JsonValue value) {
+		public Builder indexRouting(@Nullable String value) {
 			this.indexRouting = value;
 			return this;
 		}
@@ -234,7 +241,7 @@ public final class Alias implements ToJsonp {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -242,7 +249,7 @@ public final class Alias implements ToJsonp {
 		/**
 		 * API name: {@code search_routing}
 		 */
-		public Builder searchRouting(@Nullable JsonValue value) {
+		public Builder searchRouting(@Nullable String value) {
 			this.searchRouting = value;
 			return this;
 		}
@@ -262,19 +269,19 @@ public final class Alias implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Alias
+	 * Json deserializer for {@link Alias}
 	 */
-	public static final JsonpDeserializer<Alias> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Alias::setupAliasDeserializer);
+	public static final JsonpDeserializer<Alias> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Alias::setupAliasDeserializer, Builder::build);
 
 	protected static void setupAliasDeserializer(DelegatingDeserializer<Alias.Builder> op) {
 
-		op.add(Builder::filter, QueryContainer.DESERIALIZER, "filter");
-		op.add(Builder::indexRouting, JsonpDeserializer.jsonValueDeserializer(), "index_routing");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
 		op.add(Builder::isHidden, JsonpDeserializer.booleanDeserializer(), "is_hidden");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
-		op.add(Builder::searchRouting, JsonpDeserializer.jsonValueDeserializer(), "search_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
 
 	}
 

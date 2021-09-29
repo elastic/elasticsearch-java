@@ -24,40 +24,42 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Response
-public final class GetStatusResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetStatusResponse implements JsonpSerializable {
 	private final String id;
 
-	private final Boolean isPartial;
+	private final boolean isPartial;
 
-	private final Boolean isRunning;
-
-	@Nullable
-	private final JsonValue startTimeInMillis;
+	private final boolean isRunning;
 
 	@Nullable
-	private final JsonValue expirationTimeInMillis;
+	private final String startTimeInMillis;
 
 	@Nullable
-	private final Number completionStatus;
+	private final String expirationTimeInMillis;
+
+	@Nullable
+	private final Integer completionStatus;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetStatusResponse(Builder builder) {
+	public GetStatusResponse(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.isPartial = Objects.requireNonNull(builder.isPartial, "is_partial");
@@ -68,9 +70,13 @@ public final class GetStatusResponse implements ToJsonp {
 
 	}
 
+	public GetStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Identifier for the search.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -80,10 +86,10 @@ public final class GetStatusResponse implements ToJsonp {
 	/**
 	 * If true, the search request is still executing. If false, the search is
 	 * completed.
-	 *
+	 * <p>
 	 * API name: {@code is_partial}
 	 */
-	public Boolean isPartial() {
+	public boolean isPartial() {
 		return this.isPartial;
 	}
 
@@ -92,21 +98,21 @@ public final class GetStatusResponse implements ToJsonp {
 	 * because either the search is still running (is_running status is false), or
 	 * because it is already completed (is_running status is true) and results are
 	 * partial due to failures or timeouts.
-	 *
+	 * <p>
 	 * API name: {@code is_running}
 	 */
-	public Boolean isRunning() {
+	public boolean isRunning() {
 		return this.isRunning;
 	}
 
 	/**
 	 * For a running search shows a timestamp when the eql search started, in
 	 * milliseconds since the Unix epoch.
-	 *
+	 * <p>
 	 * API name: {@code start_time_in_millis}
 	 */
 	@Nullable
-	public JsonValue startTimeInMillis() {
+	public String startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -114,34 +120,34 @@ public final class GetStatusResponse implements ToJsonp {
 	 * Shows a timestamp when the eql search will be expired, in milliseconds since
 	 * the Unix epoch. When this time is reached, the search and its results are
 	 * deleted, even if the search is still ongoing.
-	 *
+	 * <p>
 	 * API name: {@code expiration_time_in_millis}
 	 */
 	@Nullable
-	public JsonValue expirationTimeInMillis() {
+	public String expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
 	/**
 	 * For a completed search shows the http status code of the completed search.
-	 *
+	 * <p>
 	 * API name: {@code completion_status}
 	 */
 	@Nullable
-	public Number completionStatus() {
+	public Integer completionStatus() {
 		return this.completionStatus;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -167,7 +173,7 @@ public final class GetStatusResponse implements ToJsonp {
 		if (this.completionStatus != null) {
 
 			generator.writeKey("completion_status");
-			generator.write(this.completionStatus.doubleValue());
+			generator.write(this.completionStatus);
 
 		}
 
@@ -186,17 +192,17 @@ public final class GetStatusResponse implements ToJsonp {
 		private Boolean isRunning;
 
 		@Nullable
-		private JsonValue startTimeInMillis;
+		private String startTimeInMillis;
 
 		@Nullable
-		private JsonValue expirationTimeInMillis;
+		private String expirationTimeInMillis;
 
 		@Nullable
-		private Number completionStatus;
+		private Integer completionStatus;
 
 		/**
 		 * Identifier for the search.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -207,10 +213,10 @@ public final class GetStatusResponse implements ToJsonp {
 		/**
 		 * If true, the search request is still executing. If false, the search is
 		 * completed.
-		 *
+		 * <p>
 		 * API name: {@code is_partial}
 		 */
-		public Builder isPartial(Boolean value) {
+		public Builder isPartial(boolean value) {
 			this.isPartial = value;
 			return this;
 		}
@@ -220,10 +226,10 @@ public final class GetStatusResponse implements ToJsonp {
 		 * because either the search is still running (is_running status is false), or
 		 * because it is already completed (is_running status is true) and results are
 		 * partial due to failures or timeouts.
-		 *
+		 * <p>
 		 * API name: {@code is_running}
 		 */
-		public Builder isRunning(Boolean value) {
+		public Builder isRunning(boolean value) {
 			this.isRunning = value;
 			return this;
 		}
@@ -231,10 +237,10 @@ public final class GetStatusResponse implements ToJsonp {
 		/**
 		 * For a running search shows a timestamp when the eql search started, in
 		 * milliseconds since the Unix epoch.
-		 *
+		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(@Nullable JsonValue value) {
+		public Builder startTimeInMillis(@Nullable String value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -243,20 +249,20 @@ public final class GetStatusResponse implements ToJsonp {
 		 * Shows a timestamp when the eql search will be expired, in milliseconds since
 		 * the Unix epoch. When this time is reached, the search and its results are
 		 * deleted, even if the search is still ongoing.
-		 *
+		 * <p>
 		 * API name: {@code expiration_time_in_millis}
 		 */
-		public Builder expirationTimeInMillis(@Nullable JsonValue value) {
+		public Builder expirationTimeInMillis(@Nullable String value) {
 			this.expirationTimeInMillis = value;
 			return this;
 		}
 
 		/**
 		 * For a completed search shows the http status code of the completed search.
-		 *
+		 * <p>
 		 * API name: {@code completion_status}
 		 */
-		public Builder completionStatus(@Nullable Number value) {
+		public Builder completionStatus(@Nullable Integer value) {
 			this.completionStatus = value;
 			return this;
 		}
@@ -276,19 +282,19 @@ public final class GetStatusResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetStatusResponse
+	 * Json deserializer for {@link GetStatusResponse}
 	 */
-	public static final JsonpDeserializer<GetStatusResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer);
+	public static final JsonpDeserializer<GetStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetStatusResponse::setupGetStatusResponseDeserializer, Builder::build);
 
 	protected static void setupGetStatusResponseDeserializer(DelegatingDeserializer<GetStatusResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(Builder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "start_time_in_millis");
-		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.jsonValueDeserializer(), "expiration_time_in_millis");
-		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
+		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.stringDeserializer(), "expiration_time_in_millis");
+		op.add(Builder::completionStatus, JsonpDeserializer.integerDeserializer(), "completion_status");
 
 	}
 

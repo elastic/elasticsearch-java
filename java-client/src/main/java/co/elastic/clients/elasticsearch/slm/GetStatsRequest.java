@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: slm.get_stats.Request
+
 public final class GetStatsRequest extends RequestBase {
-	protected GetStatsRequest() {
+	public GetStatsRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link GetStatsRequest}.
 	 */
-	public static final GetStatsRequest INSTANCE = new GetStatsRequest();
-
-	public static final JsonpDeserializer<GetStatsRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetStatsRequest.INSTANCE);
+	public static final GetStatsRequest _INSTANCE = new GetStatsRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code slm.get_stats}".
 	 */
-	public static final Endpoint<GetStatsRequest, GetStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetStatsRequest, GetStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class GetStatsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetStatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetStatsResponse._DESERIALIZER);
 }

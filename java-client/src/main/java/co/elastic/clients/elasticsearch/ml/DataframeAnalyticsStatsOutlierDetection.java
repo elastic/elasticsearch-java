@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,7 +38,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsOutlierDetection
-public final class DataframeAnalyticsStatsOutlierDetection implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalyticsStatsOutlierDetection
+		implements
+			DataframeAnalyticsStatsVariant,
+			JsonpSerializable {
 	private final OutlierDetectionParameters parameters;
 
 	private final String timestamp;
@@ -46,12 +51,24 @@ public final class DataframeAnalyticsStatsOutlierDetection implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsStatsOutlierDetection(Builder builder) {
+	public DataframeAnalyticsStatsOutlierDetection(Builder builder) {
 
 		this.parameters = Objects.requireNonNull(builder.parameters, "parameters");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
 
+	}
+
+	public DataframeAnalyticsStatsOutlierDetection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link DataframeAnalyticsStats} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "outlier_detection_stats";
 	}
 
 	/**
@@ -78,22 +95,22 @@ public final class DataframeAnalyticsStatsOutlierDetection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("parameters");
-		this.parameters.toJsonp(generator, mapper);
+		this.parameters.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
 		generator.writeKey("timing_stats");
-		this.timingStats.toJsonp(generator, mapper);
+		this.timingStats.serialize(generator, mapper);
 
 	}
 
@@ -163,18 +180,19 @@ public final class DataframeAnalyticsStatsOutlierDetection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsStatsOutlierDetection
+	 * Json deserializer for {@link DataframeAnalyticsStatsOutlierDetection}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsOutlierDetection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsOutlierDetection::setupDataframeAnalyticsStatsOutlierDetectionDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsOutlierDetection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeAnalyticsStatsOutlierDetection::setupDataframeAnalyticsStatsOutlierDetectionDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsOutlierDetectionDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsOutlierDetection.Builder> op) {
 
-		op.add(Builder::parameters, OutlierDetectionParameters.DESERIALIZER, "parameters");
+		op.add(Builder::parameters, OutlierDetectionParameters._DESERIALIZER, "parameters");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
-		op.add(Builder::timingStats, TimingStats.DESERIALIZER, "timing_stats");
+		op.add(Builder::timingStats, TimingStats._DESERIALIZER, "timing_stats");
 
 	}
 

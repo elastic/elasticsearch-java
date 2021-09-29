@@ -24,27 +24,34 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcToken
-public final class NodeInfoXpackSecurityAuthcToken implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable {
 	private final String enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoXpackSecurityAuthcToken(Builder builder) {
+	public NodeInfoXpackSecurityAuthcToken(Builder builder) {
 
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 
+	}
+
+	public NodeInfoXpackSecurityAuthcToken(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,13 +64,13 @@ public final class NodeInfoXpackSecurityAuthcToken implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
@@ -101,11 +108,11 @@ public final class NodeInfoXpackSecurityAuthcToken implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoXpackSecurityAuthcToken
+	 * Json deserializer for {@link NodeInfoXpackSecurityAuthcToken}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcToken> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					NodeInfoXpackSecurityAuthcToken::setupNodeInfoXpackSecurityAuthcTokenDeserializer);
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcToken> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackSecurityAuthcToken::setupNodeInfoXpackSecurityAuthcTokenDeserializer,
+					Builder::build);
 
 	protected static void setupNodeInfoXpackSecurityAuthcTokenDeserializer(
 			DelegatingDeserializer<NodeInfoXpackSecurityAuthcToken.Builder> op) {

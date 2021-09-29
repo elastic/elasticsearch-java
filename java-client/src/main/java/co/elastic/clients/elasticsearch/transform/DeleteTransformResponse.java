@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: transform.delete_transform.Response
+@JsonpDeserializable
 public final class DeleteTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTransformResponse(Builder builder) {
+	public DeleteTransformResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteTransformResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteTransformResponse
+	 * Json deserializer for {@link DeleteTransformResponse}
 	 */
-	public static final JsonpDeserializer<DeleteTransformResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteTransformResponse::setupDeleteTransformResponseDeserializer);
+	public static final JsonpDeserializer<DeleteTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteTransformResponse::setupDeleteTransformResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteTransformResponseDeserializer(
 			DelegatingDeserializer<DeleteTransformResponse.Builder> op) {

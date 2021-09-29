@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,9 +36,12 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.get.Request
+
 public final class GetRequest extends RequestBase {
 	@Nullable
 	private final Boolean acceptEnterprise;
@@ -46,14 +51,21 @@ public final class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetRequest(Builder builder) {
+	public GetRequest(Builder builder) {
 
 		this.acceptEnterprise = builder.acceptEnterprise;
 		this.local = builder.local;
 
 	}
 
+	public GetRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Supported for backwards compatibility with 7.x. If this param is used it must
+	 * be set to true
+	 * <p>
 	 * API name: {@code accept_enterprise}
 	 */
 	@Nullable
@@ -62,6 +74,9 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -82,6 +97,9 @@ public final class GetRequest extends RequestBase {
 		private Boolean local;
 
 		/**
+		 * Supported for backwards compatibility with 7.x. If this param is used it must
+		 * be set to true
+		 * <p>
 		 * API name: {@code accept_enterprise}
 		 */
 		public Builder acceptEnterprise(@Nullable Boolean value) {
@@ -90,6 +108,9 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -114,7 +135,7 @@ public final class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.get}".
 	 */
-	public static final Endpoint<GetRequest, GetResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetRequest, GetResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -138,5 +159,5 @@ public final class GetRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER);
 }

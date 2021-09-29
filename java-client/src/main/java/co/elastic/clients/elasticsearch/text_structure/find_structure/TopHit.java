@@ -24,63 +24,70 @@
 package co.elastic.clients.elasticsearch.text_structure.find_structure;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.TopHit
-public final class TopHit implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class TopHit implements JsonpSerializable {
+	private final long count;
 
-	private final JsonValue value;
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TopHit(Builder builder) {
+	public TopHit(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
 	}
 
+	public TopHit(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code value}
 	 */
-	public JsonValue value() {
+	public JsonData value() {
 		return this.value;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -90,14 +97,14 @@ public final class TopHit implements ToJsonp {
 	 * Builder for {@link TopHit}.
 	 */
 	public static class Builder implements ObjectBuilder<TopHit> {
-		private Number count;
+		private Long count;
 
-		private JsonValue value;
+		private JsonData value;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -105,7 +112,7 @@ public final class TopHit implements ToJsonp {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue value) {
+		public Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -125,15 +132,15 @@ public final class TopHit implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TopHit
+	 * Json deserializer for {@link TopHit}
 	 */
-	public static final JsonpDeserializer<TopHit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			TopHit::setupTopHitDeserializer);
+	public static final JsonpDeserializer<TopHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TopHit::setupTopHitDeserializer, Builder::build);
 
 	protected static void setupTopHitDeserializer(DelegatingDeserializer<TopHit.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

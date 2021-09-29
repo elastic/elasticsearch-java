@@ -23,14 +23,17 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
+import co.elastic.clients.elasticsearch.enrich.stats.CacheStats;
 import co.elastic.clients.elasticsearch.enrich.stats.CoordinatorStats;
 import co.elastic.clients.elasticsearch.enrich.stats.ExecutingPolicy;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -41,18 +44,27 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.Response
-public final class StatsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class StatsResponse implements JsonpSerializable {
 	private final List<CoordinatorStats> coordinatorStats;
 
 	private final List<ExecutingPolicy> executingPolicies;
 
+	@Nullable
+	private final List<CacheStats> cacheStats;
+
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsResponse(Builder builder) {
+	public StatsResponse(Builder builder) {
 
-		this.coordinatorStats = Objects.requireNonNull(builder.coordinatorStats, "coordinator_stats");
-		this.executingPolicies = Objects.requireNonNull(builder.executingPolicies, "executing_policies");
+		this.coordinatorStats = ModelTypeHelper.unmodifiableNonNull(builder.coordinatorStats, "coordinator_stats");
+		this.executingPolicies = ModelTypeHelper.unmodifiableNonNull(builder.executingPolicies, "executing_policies");
+		this.cacheStats = ModelTypeHelper.unmodifiable(builder.cacheStats);
 
+	}
+
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -70,20 +82,28 @@ public final class StatsResponse implements ToJsonp {
 	}
 
 	/**
+	 * API name: {@code cache_stats}
+	 */
+	@Nullable
+	public List<CacheStats> cacheStats() {
+		return this.cacheStats;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("coordinator_stats");
 		generator.writeStartArray();
 		for (CoordinatorStats item0 : this.coordinatorStats) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -91,10 +111,22 @@ public final class StatsResponse implements ToJsonp {
 		generator.writeKey("executing_policies");
 		generator.writeStartArray();
 		for (ExecutingPolicy item0 : this.executingPolicies) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
+
+		if (this.cacheStats != null) {
+
+			generator.writeKey("cache_stats");
+			generator.writeStartArray();
+			for (CacheStats item0 : this.cacheStats) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -107,6 +139,9 @@ public final class StatsResponse implements ToJsonp {
 		private List<CoordinatorStats> coordinatorStats;
 
 		private List<ExecutingPolicy> executingPolicies;
+
+		@Nullable
+		private List<CacheStats> cacheStats;
 
 		/**
 		 * API name: {@code coordinator_stats}
@@ -126,6 +161,7 @@ public final class StatsResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #coordinatorStats(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addCoordinatorStats(CoordinatorStats value) {
 			if (this.coordinatorStats == null) {
@@ -144,6 +180,7 @@ public final class StatsResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #coordinatorStats(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addCoordinatorStats(Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn) {
 			return this.addCoordinatorStats(fn.apply(new CoordinatorStats.Builder()).build());
@@ -167,6 +204,7 @@ public final class StatsResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #executingPolicies(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addExecutingPolicies(ExecutingPolicy value) {
 			if (this.executingPolicies == null) {
@@ -185,9 +223,51 @@ public final class StatsResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #executingPolicies(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addExecutingPolicies(Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn) {
 			return this.addExecutingPolicies(fn.apply(new ExecutingPolicy.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code cache_stats}
+		 */
+		public Builder cacheStats(@Nullable List<CacheStats> value) {
+			this.cacheStats = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code cache_stats}
+		 */
+		public Builder cacheStats(CacheStats... value) {
+			this.cacheStats = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #cacheStats(List)}, creating the list if needed. 4
+		 */
+		public Builder addCacheStats(CacheStats value) {
+			if (this.cacheStats == null) {
+				this.cacheStats = new ArrayList<>();
+			}
+			this.cacheStats.add(value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #cacheStats(List)} to a singleton list.
+		 */
+		public Builder cacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
+			return this.cacheStats(fn.apply(new CacheStats.Builder()).build());
+		}
+
+		/**
+		 * Add a value to {@link #cacheStats(List)}, creating the list if needed. 5
+		 */
+		public Builder addCacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
+			return this.addCacheStats(fn.apply(new CacheStats.Builder()).build());
 		}
 
 		/**
@@ -205,17 +285,18 @@ public final class StatsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StatsResponse
+	 * Json deserializer for {@link StatsResponse}
 	 */
-	public static final JsonpDeserializer<StatsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StatsResponse::setupStatsResponseDeserializer);
+	public static final JsonpDeserializer<StatsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StatsResponse::setupStatsResponseDeserializer, Builder::build);
 
 	protected static void setupStatsResponseDeserializer(DelegatingDeserializer<StatsResponse.Builder> op) {
 
-		op.add(Builder::coordinatorStats, JsonpDeserializer.arrayDeserializer(CoordinatorStats.DESERIALIZER),
+		op.add(Builder::coordinatorStats, JsonpDeserializer.arrayDeserializer(CoordinatorStats._DESERIALIZER),
 				"coordinator_stats");
-		op.add(Builder::executingPolicies, JsonpDeserializer.arrayDeserializer(ExecutingPolicy.DESERIALIZER),
+		op.add(Builder::executingPolicies, JsonpDeserializer.arrayDeserializer(ExecutingPolicy._DESERIALIZER),
 				"executing_policies");
+		op.add(Builder::cacheStats, JsonpDeserializer.arrayDeserializer(CacheStats._DESERIALIZER), "cache_stats");
 
 	}
 

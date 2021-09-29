@@ -25,24 +25,29 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.security.get_token.AccessTokenGrantType;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Request
-public final class GetTokenRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue grantType;
+	private final AccessTokenGrantType grantType;
 
 	@Nullable
 	private final String scope;
@@ -61,7 +66,7 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTokenRequest(Builder builder) {
+	public GetTokenRequest(Builder builder) {
 
 		this.grantType = builder.grantType;
 		this.scope = builder.scope;
@@ -72,11 +77,15 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public GetTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code grant_type}
 	 */
 	@Nullable
-	public JsonValue grantType() {
+	public AccessTokenGrantType grantType() {
 		return this.grantType;
 	}
 
@@ -123,19 +132,18 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.grantType != null) {
 
 			generator.writeKey("grant_type");
-			generator.write(this.grantType);
-
+			this.grantType.serialize(generator, mapper);
 		}
 		if (this.scope != null) {
 
@@ -177,7 +185,7 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<GetTokenRequest> {
 		@Nullable
-		private JsonValue grantType;
+		private AccessTokenGrantType grantType;
 
 		@Nullable
 		private String scope;
@@ -197,7 +205,7 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code grant_type}
 		 */
-		public Builder grantType(@Nullable JsonValue value) {
+		public Builder grantType(@Nullable AccessTokenGrantType value) {
 			this.grantType = value;
 			return this;
 		}
@@ -257,14 +265,14 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetTokenRequest
+	 * Json deserializer for {@link GetTokenRequest}
 	 */
-	public static final JsonpDeserializer<GetTokenRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetTokenRequest::setupGetTokenRequestDeserializer);
+	public static final JsonpDeserializer<GetTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GetTokenRequest::setupGetTokenRequestDeserializer, Builder::build);
 
 	protected static void setupGetTokenRequestDeserializer(DelegatingDeserializer<GetTokenRequest.Builder> op) {
 
-		op.add(Builder::grantType, JsonpDeserializer.jsonValueDeserializer(), "grant_type");
+		op.add(Builder::grantType, AccessTokenGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::kerberosTicket, JsonpDeserializer.stringDeserializer(), "kerberos_ticket");
@@ -278,7 +286,7 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code security.get_token}".
 	 */
-	public static final Endpoint<GetTokenRequest, GetTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTokenRequest, GetTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -295,5 +303,5 @@ public final class GetTokenRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GetTokenResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetTokenResponse._DESERIALIZER);
 }

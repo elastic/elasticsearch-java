@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,23 +38,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigInput
-public final class TrainedModelConfigInput implements ToJsonp {
+@JsonpDeserializable
+public final class TrainedModelConfigInput implements JsonpSerializable {
 	private final List<String> fieldNames;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TrainedModelConfigInput(Builder builder) {
+	public TrainedModelConfigInput(Builder builder) {
 
-		this.fieldNames = Objects.requireNonNull(builder.fieldNames, "field_names");
+		this.fieldNames = ModelTypeHelper.unmodifiableNonNull(builder.fieldNames, "field_names");
 
+	}
+
+	public TrainedModelConfigInput(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * An array of input field names for the model.
-	 *
+	 * <p>
 	 * API name: {@code field_names}
 	 */
 	public List<String> fieldNames() {
@@ -62,13 +70,13 @@ public final class TrainedModelConfigInput implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("field_names");
 		generator.writeStartArray();
@@ -90,7 +98,7 @@ public final class TrainedModelConfigInput implements ToJsonp {
 
 		/**
 		 * An array of input field names for the model.
-		 *
+		 * <p>
 		 * API name: {@code field_names}
 		 */
 		public Builder fieldNames(List<String> value) {
@@ -100,7 +108,7 @@ public final class TrainedModelConfigInput implements ToJsonp {
 
 		/**
 		 * An array of input field names for the model.
-		 *
+		 * <p>
 		 * API name: {@code field_names}
 		 */
 		public Builder fieldNames(String... value) {
@@ -109,7 +117,7 @@ public final class TrainedModelConfigInput implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addFieldNames(String value) {
 			if (this.fieldNames == null) {
@@ -134,10 +142,10 @@ public final class TrainedModelConfigInput implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TrainedModelConfigInput
+	 * Json deserializer for {@link TrainedModelConfigInput}
 	 */
-	public static final JsonpDeserializer<TrainedModelConfigInput> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TrainedModelConfigInput::setupTrainedModelConfigInputDeserializer);
+	public static final JsonpDeserializer<TrainedModelConfigInput> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelConfigInput::setupTrainedModelConfigInputDeserializer, Builder::build);
 
 	protected static void setupTrainedModelConfigInputDeserializer(
 			DelegatingDeserializer<TrainedModelConfigInput.Builder> op) {

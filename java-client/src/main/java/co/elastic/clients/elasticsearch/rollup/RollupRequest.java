@@ -25,102 +25,78 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
-public final class RollupRequest extends RequestBase implements ToJsonp {
-	private final Number stubb;
-
-	@Nullable
+@JsonpDeserializable
+public final class RollupRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
-	@Nullable
 	private final String rollupIndex;
 
-	private final Number stuba;
-
-	private final Number stub;
+	private final JsonData config;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected RollupRequest(Builder builder) {
+	public RollupRequest(Builder builder) {
 
-		this.stubb = Objects.requireNonNull(builder.stubb, "stubb");
-		this.index = builder.index;
-		this.rollupIndex = builder.rollupIndex;
-		this.stuba = Objects.requireNonNull(builder.stuba, "stuba");
-		this.stub = Objects.requireNonNull(builder.stub, "stub");
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
+		this.config = Objects.requireNonNull(builder.config, "_value_body");
 
 	}
 
-	/**
-	 * API name: {@code stubb}
-	 */
-	public Number stubb() {
-		return this.stubb;
+	public RollupRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
-	 *
+	 * The index to roll up
+	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
-	 *
+	 * The name of the rollup index to create
+	 * <p>
 	 * API name: {@code rollup_index}
 	 */
-	@Nullable
 	public String rollupIndex() {
 		return this.rollupIndex;
 	}
 
 	/**
-	 * API name: {@code stuba}
+	 * Request body.
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public Number stuba() {
-		return this.stuba;
+	public JsonData config() {
+		return this.config;
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Serialize this value to JSON.
 	 */
-	public Number stub() {
-		return this.stub;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("stub");
-		generator.write(this.stub.doubleValue());
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.config.serialize(generator, mapper);
 
 	}
 
@@ -130,59 +106,39 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	 * Builder for {@link RollupRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<RollupRequest> {
-		private Number stubb;
-
-		@Nullable
 		private String index;
 
-		@Nullable
 		private String rollupIndex;
 
-		private Number stuba;
-
-		private Number stub;
+		private JsonData config;
 
 		/**
-		 * API name: {@code stubb}
-		 */
-		public Builder stubb(Number value) {
-			this.stubb = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
-		 *
+		 * The index to roll up
+		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public Builder index(String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
-		 * Auto generated - missing in the input spec
-		 *
+		 * The name of the rollup index to create
+		 * <p>
 		 * API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(@Nullable String value) {
+		public Builder rollupIndex(String value) {
 			this.rollupIndex = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code stuba}
+		 * Request body.
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder stuba(Number value) {
-			this.stuba = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code stub}
-		 */
-		public Builder stub(Number value) {
-			this.stub = value;
+		public Builder config(JsonData value) {
+			this.config = value;
 			return this;
 		}
 
@@ -198,18 +154,13 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<RollupRequest> _DESERIALIZER = createRollupRequestDeserializer();
+	protected static JsonpDeserializer<RollupRequest> createRollupRequestDeserializer() {
 
-	/**
-	 * Json deserializer for RollupRequest
-	 */
-	public static final JsonpDeserializer<RollupRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, RollupRequest::setupRollupRequestDeserializer);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupRollupRequestDeserializer(DelegatingDeserializer<RollupRequest.Builder> op) {
-
-		op.add(Builder::stub, JsonpDeserializer.numberDeserializer(), "stub");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.config(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -217,7 +168,7 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code rollup.rollup}".
 	 */
-	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -226,37 +177,30 @@ public final class RollupRequest extends RequestBase implements ToJsonp {
 
 			// Request path
 			request -> {
-				final int _stubb = 1 << 0;
-				final int _index = 1 << 1;
-				final int _rollupIndex = 1 << 2;
+				final int _index = 1 << 0;
+				final int _rollupIndex = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.stubb() != null)
-					propsSet |= _stubb;
-				if (request.index() != null)
-					propsSet |= _index;
-				if (request.rollupIndex() != null)
-					propsSet |= _rollupIndex;
+				propsSet |= _index;
+				propsSet |= _rollupIndex;
 
 				if (propsSet == (_index | _rollupIndex)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_rollup");
 					buf.append("/");
-					buf.append(request.rollupIndex);
+					SimpleEndpoint.pathEncode(request.rollupIndex, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				params.put("stuba", request.stuba.toString());
-				return params;
+				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RollupResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RollupResponse._DESERIALIZER);
 }

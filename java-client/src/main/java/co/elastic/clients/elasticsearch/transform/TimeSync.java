@@ -24,47 +24,61 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
-public final class TimeSync implements ToJsonp {
+@JsonpDeserializable
+public final class TimeSync implements SyncVariant, JsonpSerializable {
 	@Nullable
-	private final JsonValue delay;
+	private final String delay;
 
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TimeSync(Builder builder) {
+	public TimeSync(Builder builder) {
 
 		this.delay = builder.delay;
 		this.field = Objects.requireNonNull(builder.field, "field");
 
 	}
 
+	public TimeSync(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Sync} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "time";
+	}
+
 	/**
 	 * The time delay between the current time and the latest input data time.
-	 *
+	 * <p>
 	 * API name: {@code delay}
 	 */
 	@Nullable
-	public JsonValue delay() {
+	public String delay() {
 		return this.delay;
 	}
 
 	/**
 	 * The date field that is used to identify new documents in the source.
-	 *
+	 * <p>
 	 * API name: {@code field}
 	 */
 	public String field() {
@@ -74,13 +88,13 @@ public final class TimeSync implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.delay != null) {
 
@@ -101,23 +115,23 @@ public final class TimeSync implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<TimeSync> {
 		@Nullable
-		private JsonValue delay;
+		private String delay;
 
 		private String field;
 
 		/**
 		 * The time delay between the current time and the latest input data time.
-		 *
+		 * <p>
 		 * API name: {@code delay}
 		 */
-		public Builder delay(@Nullable JsonValue value) {
+		public Builder delay(@Nullable String value) {
 			this.delay = value;
 			return this;
 		}
 
 		/**
 		 * The date field that is used to identify new documents in the source.
-		 *
+		 * <p>
 		 * API name: {@code field}
 		 */
 		public Builder field(String value) {
@@ -140,14 +154,14 @@ public final class TimeSync implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TimeSync
+	 * Json deserializer for {@link TimeSync}
 	 */
-	public static final JsonpDeserializer<TimeSync> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TimeSync::setupTimeSyncDeserializer);
+	public static final JsonpDeserializer<TimeSync> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TimeSync::setupTimeSyncDeserializer, Builder::build);
 
 	protected static void setupTimeSyncDeserializer(DelegatingDeserializer<TimeSync.Builder> op) {
 
-		op.add(Builder::delay, JsonpDeserializer.jsonValueDeserializer(), "delay");
+		op.add(Builder::delay, JsonpDeserializer.stringDeserializer(), "delay");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 
 	}

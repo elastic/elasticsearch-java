@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.Features
-public final class Features implements ToJsonp {
+@JsonpDeserializable
+public final class Features implements JsonpSerializable {
 	private final Feature aggregateMetric;
 
 	private final Feature analytics;
@@ -97,7 +99,7 @@ public final class Features implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Features(Builder builder) {
+	public Features(Builder builder) {
 
 		this.aggregateMetric = Objects.requireNonNull(builder.aggregateMetric, "aggregate_metric");
 		this.analytics = Objects.requireNonNull(builder.analytics, "analytics");
@@ -127,6 +129,10 @@ public final class Features implements ToJsonp {
 		this.votingOnly = Objects.requireNonNull(builder.votingOnly, "voting_only");
 		this.watcher = Objects.requireNonNull(builder.watcher, "watcher");
 
+	}
+
+	public Features(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -325,109 +331,109 @@ public final class Features implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("aggregate_metric");
-		this.aggregateMetric.toJsonp(generator, mapper);
+		this.aggregateMetric.serialize(generator, mapper);
 
 		generator.writeKey("analytics");
-		this.analytics.toJsonp(generator, mapper);
+		this.analytics.serialize(generator, mapper);
 
 		generator.writeKey("ccr");
-		this.ccr.toJsonp(generator, mapper);
+		this.ccr.serialize(generator, mapper);
 
 		if (this.dataFrame != null) {
 
 			generator.writeKey("data_frame");
-			this.dataFrame.toJsonp(generator, mapper);
+			this.dataFrame.serialize(generator, mapper);
 
 		}
 		if (this.dataScience != null) {
 
 			generator.writeKey("data_science");
-			this.dataScience.toJsonp(generator, mapper);
+			this.dataScience.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("data_streams");
-		this.dataStreams.toJsonp(generator, mapper);
+		this.dataStreams.serialize(generator, mapper);
 
 		generator.writeKey("data_tiers");
-		this.dataTiers.toJsonp(generator, mapper);
+		this.dataTiers.serialize(generator, mapper);
 
 		generator.writeKey("enrich");
-		this.enrich.toJsonp(generator, mapper);
+		this.enrich.serialize(generator, mapper);
 
 		generator.writeKey("eql");
-		this.eql.toJsonp(generator, mapper);
+		this.eql.serialize(generator, mapper);
 
 		if (this.flattened != null) {
 
 			generator.writeKey("flattened");
-			this.flattened.toJsonp(generator, mapper);
+			this.flattened.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("frozen_indices");
-		this.frozenIndices.toJsonp(generator, mapper);
+		this.frozenIndices.serialize(generator, mapper);
 
 		generator.writeKey("graph");
-		this.graph.toJsonp(generator, mapper);
+		this.graph.serialize(generator, mapper);
 
 		generator.writeKey("ilm");
-		this.ilm.toJsonp(generator, mapper);
+		this.ilm.serialize(generator, mapper);
 
 		generator.writeKey("logstash");
-		this.logstash.toJsonp(generator, mapper);
+		this.logstash.serialize(generator, mapper);
 
 		generator.writeKey("ml");
-		this.ml.toJsonp(generator, mapper);
+		this.ml.serialize(generator, mapper);
 
 		generator.writeKey("monitoring");
-		this.monitoring.toJsonp(generator, mapper);
+		this.monitoring.serialize(generator, mapper);
 
 		generator.writeKey("rollup");
-		this.rollup.toJsonp(generator, mapper);
+		this.rollup.serialize(generator, mapper);
 
 		if (this.runtimeFields != null) {
 
 			generator.writeKey("runtime_fields");
-			this.runtimeFields.toJsonp(generator, mapper);
+			this.runtimeFields.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("searchable_snapshots");
-		this.searchableSnapshots.toJsonp(generator, mapper);
+		this.searchableSnapshots.serialize(generator, mapper);
 
 		generator.writeKey("security");
-		this.security.toJsonp(generator, mapper);
+		this.security.serialize(generator, mapper);
 
 		generator.writeKey("slm");
-		this.slm.toJsonp(generator, mapper);
+		this.slm.serialize(generator, mapper);
 
 		generator.writeKey("spatial");
-		this.spatial.toJsonp(generator, mapper);
+		this.spatial.serialize(generator, mapper);
 
 		generator.writeKey("sql");
-		this.sql.toJsonp(generator, mapper);
+		this.sql.serialize(generator, mapper);
 
 		generator.writeKey("transform");
-		this.transform.toJsonp(generator, mapper);
+		this.transform.serialize(generator, mapper);
 
 		generator.writeKey("vectors");
-		this.vectors.toJsonp(generator, mapper);
+		this.vectors.serialize(generator, mapper);
 
 		generator.writeKey("voting_only");
-		this.votingOnly.toJsonp(generator, mapper);
+		this.votingOnly.serialize(generator, mapper);
 
 		generator.writeKey("watcher");
-		this.watcher.toJsonp(generator, mapper);
+		this.watcher.serialize(generator, mapper);
 
 	}
 
@@ -915,40 +921,40 @@ public final class Features implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Features
+	 * Json deserializer for {@link Features}
 	 */
-	public static final JsonpDeserializer<Features> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Features::setupFeaturesDeserializer);
+	public static final JsonpDeserializer<Features> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Features::setupFeaturesDeserializer, Builder::build);
 
 	protected static void setupFeaturesDeserializer(DelegatingDeserializer<Features.Builder> op) {
 
-		op.add(Builder::aggregateMetric, Feature.DESERIALIZER, "aggregate_metric");
-		op.add(Builder::analytics, Feature.DESERIALIZER, "analytics");
-		op.add(Builder::ccr, Feature.DESERIALIZER, "ccr");
-		op.add(Builder::dataFrame, Feature.DESERIALIZER, "data_frame");
-		op.add(Builder::dataScience, Feature.DESERIALIZER, "data_science");
-		op.add(Builder::dataStreams, Feature.DESERIALIZER, "data_streams");
-		op.add(Builder::dataTiers, Feature.DESERIALIZER, "data_tiers");
-		op.add(Builder::enrich, Feature.DESERIALIZER, "enrich");
-		op.add(Builder::eql, Feature.DESERIALIZER, "eql");
-		op.add(Builder::flattened, Feature.DESERIALIZER, "flattened");
-		op.add(Builder::frozenIndices, Feature.DESERIALIZER, "frozen_indices");
-		op.add(Builder::graph, Feature.DESERIALIZER, "graph");
-		op.add(Builder::ilm, Feature.DESERIALIZER, "ilm");
-		op.add(Builder::logstash, Feature.DESERIALIZER, "logstash");
-		op.add(Builder::ml, Feature.DESERIALIZER, "ml");
-		op.add(Builder::monitoring, Feature.DESERIALIZER, "monitoring");
-		op.add(Builder::rollup, Feature.DESERIALIZER, "rollup");
-		op.add(Builder::runtimeFields, Feature.DESERIALIZER, "runtime_fields");
-		op.add(Builder::searchableSnapshots, Feature.DESERIALIZER, "searchable_snapshots");
-		op.add(Builder::security, Feature.DESERIALIZER, "security");
-		op.add(Builder::slm, Feature.DESERIALIZER, "slm");
-		op.add(Builder::spatial, Feature.DESERIALIZER, "spatial");
-		op.add(Builder::sql, Feature.DESERIALIZER, "sql");
-		op.add(Builder::transform, Feature.DESERIALIZER, "transform");
-		op.add(Builder::vectors, Feature.DESERIALIZER, "vectors");
-		op.add(Builder::votingOnly, Feature.DESERIALIZER, "voting_only");
-		op.add(Builder::watcher, Feature.DESERIALIZER, "watcher");
+		op.add(Builder::aggregateMetric, Feature._DESERIALIZER, "aggregate_metric");
+		op.add(Builder::analytics, Feature._DESERIALIZER, "analytics");
+		op.add(Builder::ccr, Feature._DESERIALIZER, "ccr");
+		op.add(Builder::dataFrame, Feature._DESERIALIZER, "data_frame");
+		op.add(Builder::dataScience, Feature._DESERIALIZER, "data_science");
+		op.add(Builder::dataStreams, Feature._DESERIALIZER, "data_streams");
+		op.add(Builder::dataTiers, Feature._DESERIALIZER, "data_tiers");
+		op.add(Builder::enrich, Feature._DESERIALIZER, "enrich");
+		op.add(Builder::eql, Feature._DESERIALIZER, "eql");
+		op.add(Builder::flattened, Feature._DESERIALIZER, "flattened");
+		op.add(Builder::frozenIndices, Feature._DESERIALIZER, "frozen_indices");
+		op.add(Builder::graph, Feature._DESERIALIZER, "graph");
+		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
+		op.add(Builder::logstash, Feature._DESERIALIZER, "logstash");
+		op.add(Builder::ml, Feature._DESERIALIZER, "ml");
+		op.add(Builder::monitoring, Feature._DESERIALIZER, "monitoring");
+		op.add(Builder::rollup, Feature._DESERIALIZER, "rollup");
+		op.add(Builder::runtimeFields, Feature._DESERIALIZER, "runtime_fields");
+		op.add(Builder::searchableSnapshots, Feature._DESERIALIZER, "searchable_snapshots");
+		op.add(Builder::security, Feature._DESERIALIZER, "security");
+		op.add(Builder::slm, Feature._DESERIALIZER, "slm");
+		op.add(Builder::spatial, Feature._DESERIALIZER, "spatial");
+		op.add(Builder::sql, Feature._DESERIALIZER, "sql");
+		op.add(Builder::transform, Feature._DESERIALIZER, "transform");
+		op.add(Builder::vectors, Feature._DESERIALIZER, "vectors");
+		op.add(Builder::votingOnly, Feature._DESERIALIZER, "voting_only");
+		op.add(Builder::watcher, Feature._DESERIALIZER, "watcher");
 
 	}
 

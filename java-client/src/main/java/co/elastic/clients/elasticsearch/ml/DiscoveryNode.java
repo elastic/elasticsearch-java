@@ -24,21 +24,25 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DiscoveryNode
-public final class DiscoveryNode implements ToJsonp {
+@JsonpDeserializable
+public final class DiscoveryNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String ephemeralId;
@@ -51,14 +55,18 @@ public final class DiscoveryNode implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DiscoveryNode(Builder builder) {
+	public DiscoveryNode(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 
+	}
+
+	public DiscoveryNode(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -99,13 +107,13 @@ public final class DiscoveryNode implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attributes");
 		generator.writeStartObject();
@@ -212,10 +220,10 @@ public final class DiscoveryNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DiscoveryNode
+	 * Json deserializer for {@link DiscoveryNode}
 	 */
-	public static final JsonpDeserializer<DiscoveryNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DiscoveryNode::setupDiscoveryNodeDeserializer);
+	public static final JsonpDeserializer<DiscoveryNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DiscoveryNode::setupDiscoveryNodeDeserializer, Builder::build);
 
 	protected static void setupDiscoveryNodeDeserializer(DelegatingDeserializer<DiscoveryNode.Builder> op) {
 

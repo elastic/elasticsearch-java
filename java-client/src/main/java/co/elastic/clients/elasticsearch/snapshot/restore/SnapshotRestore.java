@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.snapshot.restore;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.SnapshotRestore
-public final class SnapshotRestore implements ToJsonp {
+@JsonpDeserializable
+public final class SnapshotRestore implements JsonpSerializable {
 	private final List<String> indices;
 
 	private final String snapshot;
@@ -50,12 +53,16 @@ public final class SnapshotRestore implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotRestore(Builder builder) {
+	public SnapshotRestore(Builder builder) {
 
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.shards = Objects.requireNonNull(builder.shards, "shards");
 
+	}
+
+	public SnapshotRestore(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -82,13 +89,13 @@ public final class SnapshotRestore implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices");
 		generator.writeStartArray();
@@ -102,7 +109,7 @@ public final class SnapshotRestore implements ToJsonp {
 		generator.write(this.snapshot);
 
 		generator.writeKey("shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 	}
 
@@ -135,7 +142,7 @@ public final class SnapshotRestore implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -183,17 +190,17 @@ public final class SnapshotRestore implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotRestore
+	 * Json deserializer for {@link SnapshotRestore}
 	 */
-	public static final JsonpDeserializer<SnapshotRestore> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotRestore::setupSnapshotRestoreDeserializer);
+	public static final JsonpDeserializer<SnapshotRestore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SnapshotRestore::setupSnapshotRestoreDeserializer, Builder::build);
 
 	protected static void setupSnapshotRestoreDeserializer(DelegatingDeserializer<SnapshotRestore.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "shards");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
 
 	}
 

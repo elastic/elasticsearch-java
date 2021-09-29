@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,18 +42,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryMulticlassConfusionMatrix
-public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeClassificationSummaryMulticlassConfusionMatrix implements JsonpSerializable {
 	private final List<ConfusionMatrixItem> confusionMatrix;
 
-	private final Number otherActualClassCount;
+	private final int otherActualClassCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
+	public DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
 
-		this.confusionMatrix = Objects.requireNonNull(builder.confusionMatrix, "confusion_matrix");
+		this.confusionMatrix = ModelTypeHelper.unmodifiableNonNull(builder.confusionMatrix, "confusion_matrix");
 		this.otherActualClassCount = Objects.requireNonNull(builder.otherActualClassCount, "other_actual_class_count");
 
+	}
+
+	public DataframeClassificationSummaryMulticlassConfusionMatrix(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,31 +71,31 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	/**
 	 * API name: {@code other_actual_class_count}
 	 */
-	public Number otherActualClassCount() {
+	public int otherActualClassCount() {
 		return this.otherActualClassCount;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("confusion_matrix");
 		generator.writeStartArray();
 		for (ConfusionMatrixItem item0 : this.confusionMatrix) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("other_actual_class_count");
-		generator.write(this.otherActualClassCount.doubleValue());
+		generator.write(this.otherActualClassCount);
 
 	}
 
@@ -100,7 +107,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
 		private List<ConfusionMatrixItem> confusionMatrix;
 
-		private Number otherActualClassCount;
+		private Integer otherActualClassCount;
 
 		/**
 		 * API name: {@code confusion_matrix}
@@ -119,7 +126,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
+		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed. 4
 		 */
 		public Builder addConfusionMatrix(ConfusionMatrixItem value) {
 			if (this.confusionMatrix == null) {
@@ -137,7 +144,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
+		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed. 5
 		 */
 		public Builder addConfusionMatrix(
 				Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {
@@ -147,7 +154,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		/**
 		 * API name: {@code other_actual_class_count}
 		 */
-		public Builder otherActualClassCount(Number value) {
+		public Builder otherActualClassCount(int value) {
 			this.otherActualClassCount = value;
 			return this;
 		}
@@ -167,18 +174,20 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeClassificationSummaryMulticlassConfusionMatrix
+	 * Json deserializer for
+	 * {@link DataframeClassificationSummaryMulticlassConfusionMatrix}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummaryMulticlassConfusionMatrix::setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeClassificationSummaryMulticlassConfusionMatrix::setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryMulticlassConfusionMatrixDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummaryMulticlassConfusionMatrix.Builder> op) {
 
-		op.add(Builder::confusionMatrix, JsonpDeserializer.arrayDeserializer(ConfusionMatrixItem.DESERIALIZER),
+		op.add(Builder::confusionMatrix, JsonpDeserializer.arrayDeserializer(ConfusionMatrixItem._DESERIALIZER),
 				"confusion_matrix");
-		op.add(Builder::otherActualClassCount, JsonpDeserializer.numberDeserializer(), "other_actual_class_count");
+		op.add(Builder::otherActualClassCount, JsonpDeserializer.integerDeserializer(), "other_actual_class_count");
 
 	}
 

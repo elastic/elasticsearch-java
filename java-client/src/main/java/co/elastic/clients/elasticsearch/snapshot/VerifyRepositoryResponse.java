@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.verify_repository.CompactNodeInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -40,15 +42,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.Response
-public final class VerifyRepositoryResponse implements ToJsonp {
+@JsonpDeserializable
+public final class VerifyRepositoryResponse implements JsonpSerializable {
 	private final Map<String, CompactNodeInfo> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected VerifyRepositoryResponse(Builder builder) {
+	public VerifyRepositoryResponse(Builder builder) {
 
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
 
+	}
+
+	public VerifyRepositoryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,19 +68,19 @@ public final class VerifyRepositoryResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("nodes");
 		generator.writeStartObject();
 		for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -136,15 +143,15 @@ public final class VerifyRepositoryResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for VerifyRepositoryResponse
+	 * Json deserializer for {@link VerifyRepositoryResponse}
 	 */
-	public static final JsonpDeserializer<VerifyRepositoryResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer);
+	public static final JsonpDeserializer<VerifyRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer, Builder::build);
 
 	protected static void setupVerifyRepositoryResponseDeserializer(
 			DelegatingDeserializer<VerifyRepositoryResponse.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
 
 	}
 

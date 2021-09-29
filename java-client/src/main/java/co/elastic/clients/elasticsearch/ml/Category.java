@@ -24,23 +24,28 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
-public final class Category implements ToJsonp {
+@JsonpDeserializable
+public final class Category implements JsonpSerializable {
 	private final Number categoryId;
 
 	private final List<String> examples;
@@ -63,7 +68,7 @@ public final class Category implements ToJsonp {
 	private final String terms;
 
 	@Nullable
-	private final Number numMatches;
+	private final Long numMatches;
 
 	@Nullable
 	private final List<String> preferredToCategories;
@@ -77,10 +82,10 @@ public final class Category implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Category(Builder builder) {
+	public Category(Builder builder) {
 
 		this.categoryId = Objects.requireNonNull(builder.categoryId, "category_id");
-		this.examples = Objects.requireNonNull(builder.examples, "examples");
+		this.examples = ModelTypeHelper.unmodifiableNonNull(builder.examples, "examples");
 		this.grokPattern = builder.grokPattern;
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.maxMatchingLength = Objects.requireNonNull(builder.maxMatchingLength, "max_matching_length");
@@ -89,17 +94,21 @@ public final class Category implements ToJsonp {
 		this.regex = Objects.requireNonNull(builder.regex, "regex");
 		this.terms = Objects.requireNonNull(builder.terms, "terms");
 		this.numMatches = builder.numMatches;
-		this.preferredToCategories = builder.preferredToCategories;
+		this.preferredToCategories = ModelTypeHelper.unmodifiable(builder.preferredToCategories);
 		this.p = builder.p;
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.mlcategory = Objects.requireNonNull(builder.mlcategory, "mlcategory");
 
 	}
 
+	public Category(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * A unique identifier for the category. category_id is unique at the job level,
 	 * even when per-partition categorization is enabled.
-	 *
+	 * <p>
 	 * API name: {@code category_id}
 	 */
 	public Number categoryId() {
@@ -108,7 +117,7 @@ public final class Category implements ToJsonp {
 
 	/**
 	 * A list of examples of actual values that matched the category.
-	 *
+	 * <p>
 	 * API name: {@code examples}
 	 */
 	public List<String> examples() {
@@ -121,7 +130,7 @@ public final class Category implements ToJsonp {
 	 * is experimental and may be changed or removed in a future release. The Grok
 	 * patterns that are found are not optimal, but are often a good starting point
 	 * for manual tweaking.
-	 *
+	 * <p>
 	 * API name: {@code grok_pattern}
 	 */
 	@Nullable
@@ -131,7 +140,7 @@ public final class Category implements ToJsonp {
 
 	/**
 	 * Identifier for the anomaly detection job.
-	 *
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	public String jobId() {
@@ -142,7 +151,7 @@ public final class Category implements ToJsonp {
 	 * The maximum length of the fields that matched the category. The value is
 	 * increased by 10% to enable matching for similar fields that have not been
 	 * analyzed.
-	 *
+	 * <p>
 	 * API name: {@code max_matching_length}
 	 */
 	public Number maxMatchingLength() {
@@ -153,7 +162,7 @@ public final class Category implements ToJsonp {
 	 * If per-partition categorization is enabled, this property identifies the
 	 * field used to segment the categorization. It is not present when
 	 * per-partition categorization is disabled.
-	 *
+	 * <p>
 	 * API name: {@code partition_field_name}
 	 */
 	@Nullable
@@ -165,7 +174,7 @@ public final class Category implements ToJsonp {
 	 * If per-partition categorization is enabled, this property identifies the
 	 * value of the partition_field_name for the category. It is not present when
 	 * per-partition categorization is disabled.
-	 *
+	 * <p>
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
@@ -176,7 +185,7 @@ public final class Category implements ToJsonp {
 	/**
 	 * A regular expression that is used to search for values that match the
 	 * category.
-	 *
+	 * <p>
 	 * API name: {@code regex}
 	 */
 	public String regex() {
@@ -186,7 +195,7 @@ public final class Category implements ToJsonp {
 	/**
 	 * A space separated list of the common tokens that are matched in values of the
 	 * category.
-	 *
+	 * <p>
 	 * API name: {@code terms}
 	 */
 	public String terms() {
@@ -196,11 +205,11 @@ public final class Category implements ToJsonp {
 	/**
 	 * The number of messages that have been matched by this category. This is only
 	 * guaranteed to have the latest accurate count after a job _flush or _close
-	 *
+	 * <p>
 	 * API name: {@code num_matches}
 	 */
 	@Nullable
-	public Number numMatches() {
+	public Long numMatches() {
 		return this.numMatches;
 	}
 
@@ -209,7 +218,7 @@ public final class Category implements ToJsonp {
 	 * message that is processed by the categorizer will match against this category
 	 * and not any of the categories in this list. This is only guaranteed to have
 	 * the latest accurate list of categories after a job _flush or _close
-	 *
+	 * <p>
 	 * API name: {@code preferred_to_categories}
 	 */
 	@Nullable
@@ -242,13 +251,13 @@ public final class Category implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("category_id");
 		generator.write(this.categoryId.doubleValue());
@@ -296,7 +305,7 @@ public final class Category implements ToJsonp {
 		if (this.numMatches != null) {
 
 			generator.writeKey("num_matches");
-			generator.write(this.numMatches.doubleValue());
+			generator.write(this.numMatches);
 
 		}
 		if (this.preferredToCategories != null) {
@@ -353,7 +362,7 @@ public final class Category implements ToJsonp {
 		private String terms;
 
 		@Nullable
-		private Number numMatches;
+		private Long numMatches;
 
 		@Nullable
 		private List<String> preferredToCategories;
@@ -368,7 +377,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * A unique identifier for the category. category_id is unique at the job level,
 		 * even when per-partition categorization is enabled.
-		 *
+		 * <p>
 		 * API name: {@code category_id}
 		 */
 		public Builder categoryId(Number value) {
@@ -378,7 +387,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * A list of examples of actual values that matched the category.
-		 *
+		 * <p>
 		 * API name: {@code examples}
 		 */
 		public Builder examples(List<String> value) {
@@ -388,7 +397,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * A list of examples of actual values that matched the category.
-		 *
+		 * <p>
 		 * API name: {@code examples}
 		 */
 		public Builder examples(String... value) {
@@ -397,7 +406,7 @@ public final class Category implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #examples(List)}, creating the list if needed.
+		 * Add a value to {@link #examples(List)}, creating the list if needed. 4
 		 */
 		public Builder addExamples(String value) {
 			if (this.examples == null) {
@@ -413,7 +422,7 @@ public final class Category implements ToJsonp {
 		 * is experimental and may be changed or removed in a future release. The Grok
 		 * patterns that are found are not optimal, but are often a good starting point
 		 * for manual tweaking.
-		 *
+		 * <p>
 		 * API name: {@code grok_pattern}
 		 */
 		public Builder grokPattern(@Nullable String value) {
@@ -423,7 +432,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * Identifier for the anomaly detection job.
-		 *
+		 * <p>
 		 * API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
@@ -435,7 +444,7 @@ public final class Category implements ToJsonp {
 		 * The maximum length of the fields that matched the category. The value is
 		 * increased by 10% to enable matching for similar fields that have not been
 		 * analyzed.
-		 *
+		 * <p>
 		 * API name: {@code max_matching_length}
 		 */
 		public Builder maxMatchingLength(Number value) {
@@ -447,7 +456,7 @@ public final class Category implements ToJsonp {
 		 * If per-partition categorization is enabled, this property identifies the
 		 * field used to segment the categorization. It is not present when
 		 * per-partition categorization is disabled.
-		 *
+		 * <p>
 		 * API name: {@code partition_field_name}
 		 */
 		public Builder partitionFieldName(@Nullable String value) {
@@ -459,7 +468,7 @@ public final class Category implements ToJsonp {
 		 * If per-partition categorization is enabled, this property identifies the
 		 * value of the partition_field_name for the category. It is not present when
 		 * per-partition categorization is disabled.
-		 *
+		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
 		public Builder partitionFieldValue(@Nullable String value) {
@@ -470,7 +479,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * A regular expression that is used to search for values that match the
 		 * category.
-		 *
+		 * <p>
 		 * API name: {@code regex}
 		 */
 		public Builder regex(String value) {
@@ -481,7 +490,7 @@ public final class Category implements ToJsonp {
 		/**
 		 * A space separated list of the common tokens that are matched in values of the
 		 * category.
-		 *
+		 * <p>
 		 * API name: {@code terms}
 		 */
 		public Builder terms(String value) {
@@ -492,10 +501,10 @@ public final class Category implements ToJsonp {
 		/**
 		 * The number of messages that have been matched by this category. This is only
 		 * guaranteed to have the latest accurate count after a job _flush or _close
-		 *
+		 * <p>
 		 * API name: {@code num_matches}
 		 */
-		public Builder numMatches(@Nullable Number value) {
+		public Builder numMatches(@Nullable Long value) {
 			this.numMatches = value;
 			return this;
 		}
@@ -505,7 +514,7 @@ public final class Category implements ToJsonp {
 		 * message that is processed by the categorizer will match against this category
 		 * and not any of the categories in this list. This is only guaranteed to have
 		 * the latest accurate list of categories after a job _flush or _close
-		 *
+		 * <p>
 		 * API name: {@code preferred_to_categories}
 		 */
 		public Builder preferredToCategories(@Nullable List<String> value) {
@@ -518,7 +527,7 @@ public final class Category implements ToJsonp {
 		 * message that is processed by the categorizer will match against this category
 		 * and not any of the categories in this list. This is only guaranteed to have
 		 * the latest accurate list of categories after a job _flush or _close
-		 *
+		 * <p>
 		 * API name: {@code preferred_to_categories}
 		 */
 		public Builder preferredToCategories(String... value) {
@@ -528,7 +537,7 @@ public final class Category implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #preferredToCategories(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addPreferredToCategories(String value) {
 			if (this.preferredToCategories == null) {
@@ -577,10 +586,10 @@ public final class Category implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Category
+	 * Json deserializer for {@link Category}
 	 */
-	public static final JsonpDeserializer<Category> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Category::setupCategoryDeserializer);
+	public static final JsonpDeserializer<Category> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Category::setupCategoryDeserializer, Builder::build);
 
 	protected static void setupCategoryDeserializer(DelegatingDeserializer<Category.Builder> op) {
 
@@ -594,7 +603,7 @@ public final class Category implements ToJsonp {
 		op.add(Builder::partitionFieldValue, JsonpDeserializer.stringDeserializer(), "partition_field_value");
 		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
 		op.add(Builder::terms, JsonpDeserializer.stringDeserializer(), "terms");
-		op.add(Builder::numMatches, JsonpDeserializer.numberDeserializer(), "num_matches");
+		op.add(Builder::numMatches, JsonpDeserializer.longDeserializer(), "num_matches");
 		op.add(Builder::preferredToCategories,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "preferred_to_categories");
 		op.add(Builder::p, JsonpDeserializer.stringDeserializer(), "p");

@@ -24,12 +24,14 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -37,25 +39,40 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
-public final class AppendProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
-	private final List<JsonValue> value;
+	private final List<JsonData> value;
 
 	@Nullable
 	private final Boolean allowDuplicates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AppendProcessor(Builder builder) {
+	public AppendProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.unmodifiableNonNull(builder.value, "value");
 		this.allowDuplicates = builder.allowDuplicates;
 
+	}
+
+	public AppendProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "append";
 	}
 
 	/**
@@ -68,7 +85,7 @@ public final class AppendProcessor extends ProcessorBase {
 	/**
 	 * API name: {@code value}
 	 */
-	public List<JsonValue> value() {
+	public List<JsonData> value() {
 		return this.value;
 	}
 
@@ -80,16 +97,17 @@ public final class AppendProcessor extends ProcessorBase {
 		return this.allowDuplicates;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("value");
 		generator.writeStartArray();
-		for (JsonValue item0 : this.value) {
-			generator.write(item0);
+		for (JsonData item0 : this.value) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -113,7 +131,7 @@ public final class AppendProcessor extends ProcessorBase {
 				ObjectBuilder<AppendProcessor> {
 		private String field;
 
-		private List<JsonValue> value;
+		private List<JsonData> value;
 
 		@Nullable
 		private Boolean allowDuplicates;
@@ -129,7 +147,7 @@ public final class AppendProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(List<JsonValue> value) {
+		public Builder value(List<JsonData> value) {
 			this.value = value;
 			return this;
 		}
@@ -137,15 +155,15 @@ public final class AppendProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue... value) {
+		public Builder value(JsonData... value) {
 			this.value = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #value(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(JsonValue value) {
+		public Builder addValue(JsonData value) {
 			if (this.value == null) {
 				this.value = new ArrayList<>();
 			}
@@ -181,15 +199,15 @@ public final class AppendProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AppendProcessor
+	 * Json deserializer for {@link AppendProcessor}
 	 */
-	public static final JsonpDeserializer<AppendProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AppendProcessor::setupAppendProcessorDeserializer);
+	public static final JsonpDeserializer<AppendProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AppendProcessor::setupAppendProcessorDeserializer, Builder::build);
 
 	protected static void setupAppendProcessorDeserializer(DelegatingDeserializer<AppendProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "value");
+		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "value");
 		op.add(Builder::allowDuplicates, JsonpDeserializer.booleanDeserializer(), "allow_duplicates");
 
 	}

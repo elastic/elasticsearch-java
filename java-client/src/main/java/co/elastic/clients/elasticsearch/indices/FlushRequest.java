@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +42,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.flush.Request
+
 public final class FlushRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
@@ -51,7 +57,7 @@ public final class FlushRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean force;
@@ -64,18 +70,25 @@ public final class FlushRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FlushRequest(Builder builder) {
+	public FlushRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.force = builder.force;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.waitIfOngoing = builder.waitIfOngoing;
 
 	}
 
+	public FlushRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * for all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -84,6 +97,10 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -92,14 +109,22 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Whether a flush should be forced even if it is not necessarily needed ie. if
+	 * no changes will be committed to the index. This is useful if transaction log
+	 * IDs should be incremented even if no uncommitted changes are present. (This
+	 * setting can be considered as internal)
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
@@ -108,6 +133,9 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -116,6 +144,11 @@ public final class FlushRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to true the flush operation will block until the flush can be executed
+	 * if another flush operation is already executing. The default is true. If set
+	 * to false the flush will be skipped iff if another flush operation is already
+	 * running.
+	 * <p>
 	 * API name: {@code wait_if_ongoing}
 	 */
 	@Nullable
@@ -136,7 +169,7 @@ public final class FlushRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean force;
@@ -148,6 +181,9 @@ public final class FlushRequest extends RequestBase {
 		private Boolean waitIfOngoing;
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -156,6 +192,9 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -164,7 +203,7 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -175,6 +214,10 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -183,14 +226,44 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Whether a flush should be forced even if it is not necessarily needed ie. if
+		 * no changes will be committed to the index. This is useful if transaction log
+		 * IDs should be incremented even if no uncommitted changes are present. (This
+		 * setting can be considered as internal)
+		 * <p>
 		 * API name: {@code force}
 		 */
 		public Builder force(@Nullable Boolean value) {
@@ -199,6 +272,9 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -207,6 +283,11 @@ public final class FlushRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to true the flush operation will block until the flush can be executed
+		 * if another flush operation is already executing. The default is true. If set
+		 * to false the flush will be skipped iff if another flush operation is already
+		 * running.
+		 * <p>
 		 * API name: {@code wait_if_ongoing}
 		 */
 		public Builder waitIfOngoing(@Nullable Boolean value) {
@@ -231,7 +312,7 @@ public final class FlushRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.flush}".
 	 */
-	public static final Endpoint<FlushRequest, FlushResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FlushRequest, FlushResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -255,11 +336,11 @@ public final class FlushRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_flush");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -270,7 +351,8 @@ public final class FlushRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
@@ -283,5 +365,5 @@ public final class FlushRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, FlushResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, FlushResponse._DESERIALIZER);
 }

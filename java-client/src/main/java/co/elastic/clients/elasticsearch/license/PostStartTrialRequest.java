@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -35,9 +37,12 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Request
+
 public final class PostStartTrialRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
@@ -47,14 +52,20 @@ public final class PostStartTrialRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostStartTrialRequest(Builder builder) {
+	public PostStartTrialRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 		this.typeQueryString = builder.typeQueryString;
 
 	}
 
+	public PostStartTrialRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * <p>
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
@@ -83,6 +94,8 @@ public final class PostStartTrialRequest extends RequestBase {
 		private String typeQueryString;
 
 		/**
+		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * <p>
 		 * API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(@Nullable Boolean value) {
@@ -115,7 +128,7 @@ public final class PostStartTrialRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.post_start_trial}".
 	 */
-	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -139,5 +152,5 @@ public final class PostStartTrialRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, PostStartTrialResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PostStartTrialResponse._DESERIALIZER);
 }

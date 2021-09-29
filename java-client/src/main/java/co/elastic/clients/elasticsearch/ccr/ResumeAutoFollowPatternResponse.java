@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ccr.resume_auto_follow_pattern.Response
+@JsonpDeserializable
 public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResumeAutoFollowPatternResponse(Builder builder) {
+	public ResumeAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public ResumeAutoFollowPatternResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,11 +76,11 @@ public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseB
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResumeAutoFollowPatternResponse
+	 * Json deserializer for {@link ResumeAutoFollowPatternResponse}
 	 */
-	public static final JsonpDeserializer<ResumeAutoFollowPatternResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ResumeAutoFollowPatternResponse::setupResumeAutoFollowPatternResponseDeserializer);
+	public static final JsonpDeserializer<ResumeAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResumeAutoFollowPatternResponse::setupResumeAutoFollowPatternResponseDeserializer,
+					Builder::build);
 
 	protected static void setupResumeAutoFollowPatternResponseDeserializer(
 			DelegatingDeserializer<ResumeAutoFollowPatternResponse.Builder> op) {
