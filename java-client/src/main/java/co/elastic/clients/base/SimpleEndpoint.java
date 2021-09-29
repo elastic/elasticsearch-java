@@ -100,7 +100,7 @@ public class SimpleEndpoint<RequestT, ResponseT> implements Endpoint<RequestT, R
 
     @Override
     public JsonpDeserializer<ElasticsearchError> errorParser(int statusCode) {
-        return ElasticsearchError.PARSER;
+        return ElasticsearchError._DESERIALIZER;
     }
 
     public <NewResponseT> SimpleEndpoint<RequestT, NewResponseT> withResponseDeserializer(
