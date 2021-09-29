@@ -19,14 +19,33 @@
 
 package co.elastic.clients.util;
 
-public class TaggedUnionUtils {
-    public static <V, U extends TaggedUnion<?>> V get(U union, String type) {
-        if (union._is(type)) {
-            @SuppressWarnings("unchecked")
-            V result = (V) union._get();
-            return result;
-        } else {
-            throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + union._type() + "'.");
-        }
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+/**
+ * Utility functions for API model types
+ */
+
+public class ModelTypeHelper {
+
+    private ModelTypeHelper() {}
+
+    public static <T> List<T> unmodifiable(List<T> list) {
+        return list == null ? list : Collections.unmodifiableList(list);
     }
+
+    public static <K, V> Map<K, V> unmodifiable(Map<K, V> map) {
+        return map == null ? map : Collections.unmodifiableMap(map);
+    }
+
+    public static <T> List<T> unmodifiableNonNull(List<T> list, String message) {
+        return Collections.unmodifiableList(Objects.requireNonNull(list, message));
+    }
+
+    public static <K, V> Map<K, V> unmodifiableNonNull(Map<K, V> map, String message) {
+        return Collections.unmodifiableMap(Objects.requireNonNull(map, message));
+    }
+
 }

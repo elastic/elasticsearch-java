@@ -19,15 +19,16 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -257,11 +258,11 @@ public class FooOptRequest implements JsonpSerializable {
 //  }
 
   public static final Endpoint<FooOptRequest, FooResponse, ElasticsearchError> ENDPOINT =
-    new Endpoint.Simple<FooOptRequest, FooResponse>(
+    new SimpleEndpoint<FooOptRequest, FooResponse>(
       r -> "POST",
       r -> "/foo",
-      Endpoint.Simple.emptyMap(),
-      Endpoint.Simple.emptyMap(),
+      SimpleEndpoint.emptyMap(),
+      SimpleEndpoint.emptyMap(),
       true,
       FooResponse.PARSER
     ) {

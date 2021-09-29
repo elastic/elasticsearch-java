@@ -17,33 +17,33 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api;
+package co.elastic.clients.base;
 
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
-public enum DateMathTimeUnit implements StringEnum {
+import java.util.Map;
+import java.util.function.Function;
 
-    Year("Y"),
-    Month("M"),
-    Day("D"),
-    Hour("h"),
-    Minute("m"),
-    Second("s");
+public class BooleanEndpoint<RequestT> extends SimpleEndpoint<RequestT, BooleanResponse> {
 
-    private final String jsonValue;
-
-    DateMathTimeUnit(String jsonValue) {
-        this.jsonValue = jsonValue;
+    public BooleanEndpoint(
+        Function<RequestT, String> method,
+        Function<RequestT, String> requestUrl,
+        Function<RequestT,
+            Map<String, String>> queryParameters,
+        Function<RequestT, Map<String, String>> headers,
+        boolean hasRequestBody, // always true
+        JsonpDeserializer<BooleanResponse> responseParser // always null
+    ) {
+        super(method, requestUrl, queryParameters, headers, hasRequestBody, responseParser);
     }
 
-    public String jsonValue() {
-        return this.jsonValue;
+    @Override
+    public boolean isError(int statusCode) {
+        return statusCode >= 500;
     }
 
-    public static final JsonpDeserializer<DateMathTimeUnit> PARSER;
-
-    static {
-        PARSER = new Deserializer<>(DateMathTimeUnit.values());
+    public boolean getResult(int statusCode) {
+        return statusCode < 400;
     }
 }

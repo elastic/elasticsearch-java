@@ -19,21 +19,23 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.elasticsearch._core.GetSourceResponse;
+import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
+import co.elastic.clients.json.JsonpUtils;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
+import jakarta.json.Json;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 import org.junit.Test;
 
 import java.io.StringReader;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class SerializationTest extends ModelTestCase {
 
@@ -72,5 +74,59 @@ public class SerializationTest extends ModelTestCase {
 //
 //        assertFalse("Some classes with the field but not the annotation: " + withFieldNames, !withFieldNames.isEmpty());
 
+    }
+
+    @Test
+    public void testArrayValueBody() {
+
+        NodesResponse nr = new NodesResponse(_0 -> _0
+            .addValueBody(_1 -> _1
+                .bulkTotalOperations("1")
+            )
+            .addValueBody(_1 -> _1
+                .bulkTotalOperations("2")
+            )
+        );
+
+        checkJsonRoundtrip(nr, "[{\"bulk.total_operations\":\"1\"},{\"bulk.total_operations\":\"2\"}]");
+
+        assertEquals(2, nr.valueBody().size());
+        assertEquals("1", nr.valueBody().get(0).bulkTotalOperations());
+        assertEquals("2", nr.valueBody().get(1).bulkTotalOperations());
+    }
+
+    @Test
+    public void testGenericValueBody() {
+
+        GetSourceResponse<String> r = new GetSourceResponse<>(_0 -> _0
+            .valueBody("The value")
+        );
+
+        String json = toJson(r);
+        assertEquals("\"The value\"", json);
+
+        JsonpDeserializer<GetSourceResponse<String>> deserializer =
+            GetSourceResponse.createGetSourceResponseDeserializer(JsonpDeserializer.stringDeserializer());
+
+        r = deserializer.deserialize(mapper.jsonProvider().createParser(new StringReader(json)), mapper);
+
+        assertEquals("The value", r.valueBody());
+
+    }
+
+    @Test
+    public void testJsonpValuesToString() {
+
+        assertEquals("foo", JsonpUtils.toString(Json.createValue("foo")));
+        assertEquals("42", JsonpUtils.toString(Json.createValue(42)));
+        assertEquals("42.1337", JsonpUtils.toString(Json.createValue(42.1337)));
+        assertEquals("true", JsonpUtils.toString(JsonValue.TRUE));
+        assertEquals("false", JsonpUtils.toString(JsonValue.FALSE));
+        assertEquals("null", JsonpUtils.toString(JsonValue.NULL));
+        assertEquals("a,b,c", JsonpUtils.toString(Json.createArrayBuilder().add("a").add("b").add("c").build()));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            JsonpUtils.toString(Json.createObjectBuilder().build());
+        });
     }
 }

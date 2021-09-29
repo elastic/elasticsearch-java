@@ -31,20 +31,20 @@ public class VariantsTest extends ModelTestCase {
         // intervals is a single key dictionary
         // query has container properties
 
-        Query q = new Query.Builder()
-            .intervals(_0 -> _0
+        Query q = new Query(_0 -> _0
+            .intervals(_1 -> _1
                 .queryName("my-query")
                 .field("a_field")
-                .anyOf(_1 -> _1
-                    .addIntervals(_2 -> _2
-                        .match(_3 -> _3
+                .anyOf(_2 -> _2
+                    .addIntervals(_3 -> _3
+                        .match(_4 -> _4
                             .query("match-query")
                             .analyzer("lowercase")
                         )
                     )
                 )
             )
-            .build();
+        );
 
         assertEquals(Query.INTERVALS, q._type());
         assertNotNull(q.intervals());
@@ -73,16 +73,17 @@ public class VariantsTest extends ModelTestCase {
         String expected = "{\"type\":\"ip\",\"fields\":{\"a-field\":{\"type\":\"float\",\"coerce\":true}},\"boost\":1" +
             ".0,\"index\":true}";
 
-        Property p = new Property.Builder()
-            .ip(_0 -> _0
+        Property p = new Property(_0 -> _0
+            .ip(_1 -> _1
                 .index(true)
                 .boost(1.0)
-                .fields("a-field", _1 -> _1
-                    .float_(_2 -> _2
+                .fields("a-field", _2 -> _2
+                    .float_(_3 -> _3
                         .coerce(true)
                     )
                 )
-            ).build();
+            )
+        );
 
         assertEquals(expected, toJson(p));
 

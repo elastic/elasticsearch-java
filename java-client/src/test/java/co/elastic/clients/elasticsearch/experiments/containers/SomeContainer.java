@@ -23,8 +23,8 @@ import co.elastic.clients.elasticsearch.experiments.containers.container_members
 import co.elastic.clients.elasticsearch.experiments.containers.container_members.VariantB;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonParser;
 

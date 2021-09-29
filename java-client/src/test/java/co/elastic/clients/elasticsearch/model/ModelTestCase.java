@@ -35,7 +35,7 @@ import java.util.Random;
 /**
  * Base class for tests that encode/decode json
  */
-abstract public class ModelTestCase extends Assert {
+public abstract class ModelTestCase extends Assert {
 
     // Same value for all tests in a test run
     private static final int RAND = new Random().nextInt(100);
@@ -45,7 +45,7 @@ abstract public class ModelTestCase extends Assert {
     private JsonpMapper setupMapper(int rand) {
         // Randomly choose json-b or jackson
         if (rand % 2 == 0) {;
-            System.out.println("Using a Json-b mapper (rand = " + rand + ").");
+            System.out.println("Using a JsonB mapper (rand = " + rand + ").");
             return new JsonbJsonpMapper() {
                 @Override
                 public boolean ignoreUnknownFields() {

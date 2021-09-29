@@ -37,13 +37,12 @@ import java.util.List;
 
 public class JsonpMapperTest extends Assert {
 
+    String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
+        "\"stringValue\":\"foo\"}";
+
     @Test
     public void testJsonb() {
-
         JsonpMapper mapper = new JsonbJsonpMapper();
-        String json = "{\"children\":[{\"doubleValue\":3.2,\"intValue\":2}],\"doubleValue\":2.1,\"intValue\":1," +
-            "\"stringValue\":\"foo\"}";
-
         testSerialize(mapper, json);
         testDeserialize(mapper, json);
     }
@@ -51,11 +50,6 @@ public class JsonpMapperTest extends Assert {
     @Test
     public void testJackson() {
         JacksonJsonpMapper mapper = new JacksonJsonpMapper();
-
-        // With the default settings Jackson will serialize null values
-        String json = "{\"children\":[{\"children\":null,\"doubleValue\":3.2,\"intValue\":2,\"stringValue\":null}]," +
-            "\"doubleValue\":2.1,\"intValue\":1,\"stringValue\":\"foo\"}";
-
         testSerialize(new JacksonJsonpMapper(), json);
         testDeserialize(new JacksonJsonpMapper(), json);
     }

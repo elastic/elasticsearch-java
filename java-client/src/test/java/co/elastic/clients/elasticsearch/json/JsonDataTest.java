@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.json;
 
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;

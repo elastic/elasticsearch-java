@@ -19,19 +19,20 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch.experiments.api.query.Query;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import jakarta.json.stream.JsonGenerator;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -297,11 +298,11 @@ public class FooRequest implements JsonpSerializable {
   //===========================================
 
   public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOINT =
-    new Endpoint.Simple<>(
+    new SimpleEndpoint<>(
       r -> "POST",
       r -> "/foo",
-      Endpoint.Simple.emptyMap(),
-      Endpoint.Simple.emptyMap(),
+      SimpleEndpoint.emptyMap(),
+      SimpleEndpoint.emptyMap(),
       true,
       FooResponse.PARSER
     );

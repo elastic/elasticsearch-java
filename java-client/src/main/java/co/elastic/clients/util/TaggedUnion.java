@@ -26,9 +26,9 @@ public interface TaggedUnion<BaseType> {
      *
      * @return the variant type
      */
-    public String _type();
+    String _type();
 
-    public BaseType _get();
+    BaseType _get();
 
     /**
      * Checks if this object is of a given variant type.

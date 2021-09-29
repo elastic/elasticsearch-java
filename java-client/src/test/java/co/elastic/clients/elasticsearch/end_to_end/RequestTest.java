@@ -23,12 +23,20 @@ package co.elastic.clients.elasticsearch.end_to_end;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.RestClientTransport;
 import co.elastic.clients.base.Transport;
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._core.BulkResponse;
+import co.elastic.clients.elasticsearch._core.IndexResponse;
 import co.elastic.clients.elasticsearch._core.SearchResponse;
+import co.elastic.clients.elasticsearch._core.bulk.ResponseItem;
+import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.indices.CreateResponse;
+import co.elastic.clients.elasticsearch.indices.GetResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
+import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
@@ -42,6 +50,8 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 public class RequestTest extends Assert {
 
@@ -65,10 +75,11 @@ public class RequestTest extends Assert {
     }
 
     @Test
-    public void testIndexCreation() throws IOException {
+    public void testIndexCreation() throws Exception {
         RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
         Transport transport = new RestClientTransport(restClient, mapper);
         ElasticsearchClient client = new ElasticsearchClient(transport);
+        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(transport);
 
         // Ping the server
         assertTrue(client.ping().value());
@@ -78,10 +89,13 @@ public class RequestTest extends Assert {
         assertTrue(createResponse.acknowledged());
         assertTrue(createResponse.shardsAcknowledged());
 
-        //
-        final Map<String, IndexState> indices = client.indices().get(b -> b.index("my-index")).value();
-        assertEquals(1, indices.size());
+        // Find info about it, using the async client
+        CompletableFuture<GetResponse> futureResponse = asyncClient.indices().get(b -> b.index("my-index"));
+        GetResponse response = futureResponse.get(10, TimeUnit.SECONDS);
 
+        Map<String, IndexState> indices = response.result();
+
+        assertEquals(1, indices.size());
         assertNotNull(indices.get("my-index"));
     }
 
@@ -94,15 +108,17 @@ public class RequestTest extends Assert {
         Transport transport = new RestClientTransport(restClient, mapper);
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
+        String index = "ingest-test";
+
         // Create an index
         CreateResponse createIndexResponse = client.indices().create(b -> b
-            .index("test")
+            .index(index)
         );
 
-        assertEquals("test", createIndexResponse.index());
+        assertEquals(index, createIndexResponse.index());
 
         // Check that it actually exists. Example of a boolean response
-        BooleanResponse existsResponse = client.indices().exists(b -> b.index("test"));
+        BooleanResponse existsResponse = client.indices().exists(b -> b.index(index));
         assertTrue(existsResponse.value());
 
         // Ingest some data
@@ -111,15 +127,17 @@ public class RequestTest extends Assert {
         appData.setMsg("foo");
 
         String docId = client.index(b -> b
-            .index("test")
-            .id("myId")
-            .value(appData)
+            .index(index)
+            .id("my/Id") // test with url-unsafe string
+            .document(appData)
             .refresh(JsonValue.TRUE) // Make it visible for search
         ).id();
 
+        assertEquals("my/Id", docId);
+
         // Query by id
         AppData esData = client.get(b -> b
-                .index("test")
+                .index(index)
                 .id(docId)
             , AppData.class
         ).source();
@@ -136,7 +154,7 @@ public class RequestTest extends Assert {
             ((RestClientTransport) client._transport()).withRequestOptions(options)
         )
             .search(b -> b
-                .index("test")
+                .index(index)
                 , AppData.class
         );
 
@@ -146,6 +164,71 @@ public class RequestTest extends Assert {
         esData = search.hits().hits().get(0).source();
         assertEquals(1337, esData.getIntValue());
         assertEquals("foo", esData.getMsg());
+    }
+
+    @Test
+    public void testCatRequest() throws IOException {
+        // Cat requests should have the "format=json" added by the transport
+
+        // Create the low-level client
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        // Build the high-level client
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        NodesResponse nodes = client.cat().nodes(_0 -> _0);
+        System.out.println(ModelTestCase.toJson(nodes, mapper));
+
+        assertEquals(1, nodes.valueBody().size());
+        assertEquals("*", nodes.valueBody().get(0).master());
+
+    }
+
+    @Test
+    public void testBulkRequest() throws IOException {
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        AppData appData = new AppData();
+        appData.setIntValue(42);
+        appData.setMsg("Some message");
+
+        BulkResponse bulk = client.bulk(_0 -> _0
+            .addOperation(_1 -> _1
+                .create(_2 -> _2
+                    .index("foo")
+                    .id("abc")
+                )
+            )
+            .addDocument(appData)
+        );
+
+        assertFalse(bulk.errors());
+        assertEquals(1, bulk.items().size());
+        assertEquals(ResponseItem.CREATE, bulk.items().get(0)._type());
+        assertEquals("foo", bulk.items().get(0).create().index());
+        assertEquals(1L, bulk.items().get(0).create().version().longValue());
+    }
+
+    @Test
+    public void testRefresh() throws IOException {
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        AppData appData = new AppData();
+        appData.setIntValue(42);
+        appData.setMsg("Some message");
+
+        IndexResponse ir = client.index(_0 -> _0
+            .index("test")
+            .id("1")
+            .document(appData)
+            .refresh(Json.createValue("wait_for"))
+        );
+
+        assertEquals("1", ir.id());
     }
 
     public static class AppData {

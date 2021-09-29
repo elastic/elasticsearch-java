@@ -19,22 +19,56 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.base.ElasticsearchCatRequest;
+import co.elastic.clients.base.ElasticsearchCommonRequest;
+import co.elastic.clients.elasticsearch._core.IndexRequest;
+import co.elastic.clients.elasticsearch._types.ShapeRelation;
+import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
-import jakarta.json.JsonValue;
+import co.elastic.clients.elasticsearch.cat.ShardsRequest;
 import org.junit.Test;
 
 public class BehaviorsTest extends ModelTestCase {
 
     @Test
     public void testSingleKeyDictionary() {
-        // Term query is used as a single key dict with a field key
-        TermQuery tq = new TermQuery.Builder()
+        TermQuery q = new TermQuery.Builder()
+            .queryName("query-name")
             .field("field-name")
-            .value("some-value") // required field
+            .value("some-value")
             .build();
 
-        tq = checkJsonRoundtrip(tq, "{\"field-name\":{\"value\":\"some-value\"}}");
+        q = checkJsonRoundtrip(q, "{\"field-name\":{\"_name\":\"query-name\",\"value\":\"some-value\"}}");
 
-        assertEquals("field-name", tq.field());
+        assertEquals("query-name", q.queryName());
+        assertEquals("field-name", q.field());
+        assertEquals("some-value", q.value());
+    }
+
+    @Test
+    public void testAdditionalProperty() {
+        ShapeQuery q = new ShapeQuery.Builder()
+            .queryName("query-name")
+            .field("field-name")
+            .shape(_0 -> _0
+                .ignoreUnmapped(true)
+                .relation(ShapeRelation.Disjoint)
+            )
+            .build();
+
+        q = checkJsonRoundtrip(q,
+            "{\"field-name\":{\"ignore_unmapped\":true,\"relation\":\"disjoint\"},\"_name\":\"query-name\"}"
+        );
+
+        assertEquals("query-name", q.queryName());
+        assertTrue(q.shape().ignoreUnmapped());
+        assertEquals(ShapeRelation.Disjoint, q.shape().relation());
+        System.out.println(toJson(q));
+    }
+
+    @Test
+    public void testRequestMarkers() {
+        assertTrue(ElasticsearchCommonRequest.class.isAssignableFrom(IndexRequest.class));
+        assertTrue(ElasticsearchCatRequest.class.isAssignableFrom(ShardsRequest.class));
     }
 }

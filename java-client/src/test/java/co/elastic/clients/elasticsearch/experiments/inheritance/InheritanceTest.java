@@ -22,12 +22,12 @@ package co.elastic.clients.elasticsearch.experiments.inheritance;
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
 import co.elastic.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import org.junit.Assert;
-import org.junit.Test;
-
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 

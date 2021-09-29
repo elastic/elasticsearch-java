@@ -17,16 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package co.elastic.clients.json;
 
-public class TaggedUnionUtils {
-    public static <V, U extends TaggedUnion<?>> V get(U union, String type) {
-        if (union._is(type)) {
-            @SuppressWarnings("unchecked")
-            V result = (V) union._get();
-            return result;
-        } else {
-            throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + union._type() + "'.");
-        }
-    }
+/**
+ * Marks a class a being serialized as nd-json (e.g. bulk requests).
+ */
+public interface NdJsonpSerializable<T> extends Iterable<T> {
 }

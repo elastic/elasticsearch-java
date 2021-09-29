@@ -21,6 +21,8 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonObject;
+import jakarta.json.JsonString;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -30,6 +32,7 @@ import javax.annotation.Nullable;
 import java.io.StringReader;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class JsonpUtils {
 
@@ -138,5 +141,35 @@ public class JsonpUtils {
         String strObject = object.toString();
         JsonParser newParser = mapper.jsonProvider().createParser(new StringReader(strObject));
         return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+    }
+
+    public static String toString(JsonValue value) {
+        switch(value.getValueType()) {
+            case OBJECT:
+                throw new IllegalArgumentException("Json objects cannot be used as string");
+
+            case ARRAY:
+                return value.asJsonArray().stream()
+                    .map(JsonpUtils::toString)
+                    .collect(Collectors.joining(","));
+
+            case STRING:
+                return ((JsonString)value).getString();
+
+            case TRUE:
+                return "true";
+
+            case FALSE:
+                return "false";
+
+            case NULL:
+                return "null";
+
+            case NUMBER:
+                return value.toString();
+
+            default:
+                throw new IllegalArgumentException("Unknown json value type: " + value);
+        }
     }
 }

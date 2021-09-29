@@ -107,13 +107,15 @@ publishing {
 }
 
 dependencies {
-    val elasticsearchVersion = "7.12.0"
+    val elasticsearchVersion = "7.15.0"
     val jacksonVersion = "2.12.0"
 
     // Apache 2.0
+    // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
     implementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
 
     // Apache 2.0
+    // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     implementation("com.google.code.findbugs:jsr305:3.0.2")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
@@ -131,20 +133,26 @@ dependencies {
     testImplementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
 
     // Apache 2.0
+    // https://github.com/FasterXML/jackson
     compileOnly("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
     testImplementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     testImplementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
-    testImplementation("io.github.classgraph:classgraph:4.8.116")
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
     testImplementation("org.eclipse", "yasson", "2.0.2")
 
-    // Eclipse 1.0
+    // EPL-1.0
+    // https://junit.org/junit4/
     testImplementation("junit", "junit" , "4.12")
 
     // MIT
+    // https://github.com/classgraph/classgraph
+    testImplementation("io.github.classgraph:classgraph:4.8.116")
+
+    // MIT
+    // https://www.testcontainers.org/
     testImplementation("org.testcontainers", "testcontainers", "1.15.3")
     testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
 }

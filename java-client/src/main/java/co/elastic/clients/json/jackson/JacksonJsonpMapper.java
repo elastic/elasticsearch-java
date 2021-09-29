@@ -23,7 +23,9 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -38,7 +40,9 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
 
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
         this.provider = new JacksonJsonProvider();
-        this.objectMapper = objectMapper;
+        this.objectMapper = objectMapper
+            .configure(SerializationFeature.INDENT_OUTPUT, false)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     public JacksonJsonpMapper() {

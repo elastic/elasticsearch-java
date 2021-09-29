@@ -21,16 +21,17 @@ package co.elastic.clients.elasticsearch.experiments.generics;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-
 import jakarta.json.stream.JsonGenerator;
+
 import java.util.function.Supplier;
 
 public class GenericClass<GenParam> implements JsonpSerializable {
@@ -102,7 +103,7 @@ public class GenericClass<GenParam> implements JsonpSerializable {
     public static <GenParam> Endpoint<Boolean, GenericClass<GenParam>, ElasticsearchError> endpoint(
         JsonpDeserializer<GenParam> genParamDeserializer
     ) {
-        return new Endpoint.Simple<>(
+        return new SimpleEndpoint<>(
             // Request method
             request -> "GET",
 
@@ -110,8 +111,8 @@ public class GenericClass<GenParam> implements JsonpSerializable {
             request -> "/genclass",
 
             // Request parameters
-            Endpoint.Simple.emptyMap(),
-            Endpoint.Simple.emptyMap(),
+            SimpleEndpoint.emptyMap(),
+            SimpleEndpoint.emptyMap(),
             true,
             GenericClass.parser(genParamDeserializer)
         );

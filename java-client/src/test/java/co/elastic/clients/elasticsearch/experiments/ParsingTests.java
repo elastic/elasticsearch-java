@@ -22,14 +22,14 @@ package co.elastic.clients.elasticsearch.experiments;
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
 import co.elastic.clients.elasticsearch.experiments.api.query.TermsQuery;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Test;
-
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;

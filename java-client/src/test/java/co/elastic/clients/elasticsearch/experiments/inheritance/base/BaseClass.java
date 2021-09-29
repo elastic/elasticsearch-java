@@ -20,11 +20,11 @@
 package co.elastic.clients.elasticsearch.experiments.inheritance.base;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-
 import jakarta.json.stream.JsonGenerator;
+
 import java.util.Objects;
 
 /**

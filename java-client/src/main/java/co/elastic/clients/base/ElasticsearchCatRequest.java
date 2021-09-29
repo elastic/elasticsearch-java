@@ -17,16 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package co.elastic.clients.base;
 
-public class TaggedUnionUtils {
-    public static <V, U extends TaggedUnion<?>> V get(U union, String type) {
-        if (union._is(type)) {
-            @SuppressWarnings("unchecked")
-            V result = (V) union._get();
-            return result;
-        } else {
-            throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + union._type() + "'.");
-        }
-    }
+/**
+ * Marker interface for Elasticsearch cat requests.
+ */
+public interface ElasticsearchCatRequest {
 }

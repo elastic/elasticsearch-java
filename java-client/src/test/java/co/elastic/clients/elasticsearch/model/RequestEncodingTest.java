@@ -22,15 +22,7 @@ package co.elastic.clients.elasticsearch.model;
 import co.elastic.clients.elasticsearch._core.SearchRequest;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import org.junit.Assert;
 import org.junit.Test;
-
-import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 
 public class RequestEncodingTest extends ModelTestCase {
 

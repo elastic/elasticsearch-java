@@ -21,7 +21,7 @@ package co.elastic.clients.base;
 
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.NdJsonpSerializable;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import org.apache.http.entity.ByteArrayEntity;
@@ -147,17 +147,47 @@ public class RestClientTransport implements Transport {
             clientReq.setOptions(requestOptions);
         }
 
+        // Request-type specific parameters.
+        if (request instanceof ElasticsearchCatRequest) {
+            // Format responses as json (default is plain text)
+            clientReq.addParameter("format", "json");
+        }
+
         if (endpoint.hasRequestBody()) {
-            // Request has a body and must implement JsonpSerializable
+            // Request has a body and must implement JsonpSerializable or NdJsonpSerializable
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
-            ((JsonpSerializable) request).serialize(generator, mapper);
-            generator.close();
+
+            if (request instanceof NdJsonpSerializable<?>) {
+                writeNdJson((NdJsonpSerializable<?>) request, baos);
+            } else {
+                JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
+                mapper.serialize(request, generator);
+                generator.close();
+            }
 
             clientReq.setEntity(new ByteArrayEntity(baos.toByteArray(), ContentType.APPLICATION_JSON));
         }
 
         return clientReq;
+    }
+
+    /**
+     * Write an nd-json value by serializing each of its items on a separate line.
+     * <p>
+     * If an item itself implements {@link NdJsonpSerializable}, it is output as nd-json. This allows flattening
+     * nested structures.
+     */
+    private void writeNdJson(NdJsonpSerializable<?> value, ByteArrayOutputStream baos) {
+        for (Object item: value) {
+            if (item instanceof NdJsonpSerializable<?>) {
+                writeNdJson((NdJsonpSerializable<?>) item, baos);
+            } else {
+                JsonGenerator generator = mapper.jsonProvider().createGenerator(baos);
+                mapper.serialize(item, generator);
+                generator.close();
+                baos.write('\n');
+            }
+        }
     }
 
     private <ResponseT, ErrorT> ResponseT getHighLevelResponse(
@@ -181,8 +211,8 @@ public class RestClientTransport implements Transport {
 
             throw new ApiException(error);
 
-        } else if (endpoint instanceof Endpoint.Boolean) {
-            Endpoint.Boolean<?> bep = (Endpoint.Boolean<?>)endpoint;
+        } else if (endpoint instanceof BooleanEndpoint) {
+            BooleanEndpoint<?> bep = (BooleanEndpoint<?>)endpoint;
 
             @SuppressWarnings("unchecked")
             ResponseT response = (ResponseT)new BooleanResponse(bep.getResult(statusCode));

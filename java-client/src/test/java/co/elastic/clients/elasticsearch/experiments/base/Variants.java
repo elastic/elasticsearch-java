@@ -19,14 +19,14 @@
 
 package co.elastic.clients.elasticsearch.experiments.base;
 
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-
+import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.QuadConsumer;
 import jakarta.json.stream.JsonParser;
 
 import java.util.EnumSet;
@@ -57,6 +58,10 @@ public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializ
      * @param name
      */
     public void ignore(String name) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler) {
         throw new UnsupportedOperationException();
     }
 }
