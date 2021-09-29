@@ -19,32 +19,13 @@
 
 package co.elastic.clients.util;
 
-import java.util.function.Function;
-
 /**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
+ * An implementation of a variant type.
  */
-public interface ObjectBuilder<T> {
-  T build();
+public interface UnionVariant {
 
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
-
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+    /**
+     * Get the type of this object when used as a variant
+     */
+    String _variantType();
 }

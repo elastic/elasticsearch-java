@@ -22,5 +22,5 @@ package co.elastic.clients.json;
 import jakarta.json.stream.JsonGenerator;
 
 public interface JsonpSerializer<T> {
-    void toJsonp(T value, JsonGenerator generator, JsonpMapper mapper);
+    void serialize(T value, JsonGenerator generator, JsonpMapper mapper);
 }

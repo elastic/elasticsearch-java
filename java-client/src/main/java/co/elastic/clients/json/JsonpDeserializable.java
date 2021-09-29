@@ -17,34 +17,26 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package co.elastic.clients.json;
 
-import java.util.function.Function;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
+ * Indicates that a class has a {@link JsonpDeserializer} as a static field.
  */
-public interface ObjectBuilder<T> {
-  T build();
-
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
-
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface JsonpDeserializable {
+    /**
+     * The name of the public static field of the class of type {@link JsonpDeserializer} that can be used to
+     * deserialize JSON to an instance of this class.
+     *
+     * @return the deserializer field name
+     */
+    String field() default "_DESERIALIZER";
 }

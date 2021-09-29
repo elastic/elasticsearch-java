@@ -19,32 +19,18 @@
 
 package co.elastic.clients.util;
 
-import java.util.function.Function;
-
 /**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
+ * An object builder that always returns the same value.
  */
-public interface ObjectBuilder<T> {
-  T build();
+public class ConstantBuilder<V> implements ObjectBuilder<V> {
+    private final V value;
 
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
+    public ConstantBuilder(V value) {
+        this.value = value;
+    }
+
+    @Override
+    public V build() {
         return value;
-      }
-    };
-  }
-
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+    }
 }

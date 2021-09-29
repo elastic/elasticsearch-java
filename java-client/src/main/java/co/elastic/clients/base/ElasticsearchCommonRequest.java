@@ -17,34 +17,12 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
-
-import java.util.function.Function;
+package co.elastic.clients.base;
 
 /**
- * Base interface for all object builders.
+ * Marker interface for Elasticsearch standard requests that accept common parameters.
  *
- * @param <T> the type that will be built.
+ * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/common-options.html">Documentation</a>
  */
-public interface ObjectBuilder<T> {
-  T build();
-
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
-
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+public interface ElasticsearchCommonRequest {
 }

@@ -19,32 +19,27 @@
 
 package co.elastic.clients.util;
 
-import java.util.function.Function;
+public class TaggedUnion2<Tag extends Enum<Tag> & StringEnum, Value> {
 
-/**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
- */
-public interface ObjectBuilder<T> {
-  T build();
+    protected final Tag tag;
+    protected final Value value;
 
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
+    protected TaggedUnion2(Tag tag, Value value) {
+        this.tag = tag;
+        this.value = value;
+    }
 
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+    protected boolean is(Tag tag) {
+        return tag == this.tag;
+    }
+
+    protected <V extends Value> V get(Tag tag) {
+        if (tag == this.tag) {
+            @SuppressWarnings("unchecked")
+            V result = (V) this.value;
+            return result;
+        } else {
+            throw new IllegalStateException("Cannot get '" + tag + "' variant. Current variant is '" + this.tag + "'");
+        }
+    }
 }

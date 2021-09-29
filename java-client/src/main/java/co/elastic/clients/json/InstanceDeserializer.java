@@ -19,27 +19,25 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.QuadFunction;
 import jakarta.json.stream.JsonParser;
 
-import java.util.function.Function;
-
 /**
- * An object deserializer based on a builder object deserializer and a build function
+ * A deserializer that populates an existing class instance.
+ * <p>
+ * The instance and result types may be different to handle cases like variant builders where the instance isn't
+ * a builder until we have selected a variant.
  */
-public class BuildFunctionDeserializer<B, T> extends JsonpDeserializer<T> {
+public interface InstanceDeserializer<InstanceType, ResultType> {
 
-    private final JsonpDeserializer<B> builderDeserializer;
-    private final Function<B, T> build;
+    ResultType deserialize(InstanceType instance, JsonParser parser, JsonpMapper mapper, JsonParser.Event event);
 
-    public BuildFunctionDeserializer(JsonpDeserializer<B> builderDeserializer, Function<B, T> build) {
-        super(builderDeserializer.acceptedEvents());
-        this.builderDeserializer = builderDeserializer;
-        this.build = build;
-    }
-
-    @Override
-    public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        B builder = builderDeserializer.deserialize(parser, mapper, event);
-        return build.apply(builder);
+    static <I, R> InstanceDeserializer<I, R> of(QuadFunction<I, JsonParser, JsonpMapper, JsonParser.Event, R> fn) {
+        return new InstanceDeserializer<I, R>() {
+            @Override
+            public R deserialize(I instance, JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+                return fn.apply(instance, parser, mapper, event);
+            }
+        };
     }
 }

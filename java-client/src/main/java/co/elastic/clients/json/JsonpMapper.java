@@ -21,6 +21,7 @@ package co.elastic.clients.json;
 
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 
 /**
  * A {@code JsonpMapper} combines a jsonp provider and object serialization/deserialization based on jsonp events.
@@ -36,12 +37,12 @@ public interface JsonpMapper {
     /**
      * Return the jsonp provider, to create JSON parsers and generators.
      */
-    JsonProvider jsonpProvider();
+    JsonProvider jsonProvider();
 
     /**
-     * Get the deserializer for a class.
+     * Deserialize an object, given its class.
      */
-    <T> JsonpDeserializer<T> getDeserializer(Class<T> clazz);
+    <T> T deserialize(JsonParser parser, Class<T> clazz);
 
     /**
      * Serialize an object.

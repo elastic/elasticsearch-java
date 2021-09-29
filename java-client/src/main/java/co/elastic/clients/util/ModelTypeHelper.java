@@ -19,32 +19,33 @@
 
 package co.elastic.clients.util;
 
-import java.util.function.Function;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
+ * Utility functions for API model types
  */
-public interface ObjectBuilder<T> {
-  T build();
 
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
+public class ModelTypeHelper {
 
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+    private ModelTypeHelper() {}
+
+    public static <T> List<T> unmodifiable(List<T> list) {
+        return list == null ? list : Collections.unmodifiableList(list);
+    }
+
+    public static <K, V> Map<K, V> unmodifiable(Map<K, V> map) {
+        return map == null ? map : Collections.unmodifiableMap(map);
+    }
+
+    public static <T> List<T> unmodifiableNonNull(List<T> list, String message) {
+        return Collections.unmodifiableList(Objects.requireNonNull(list, message));
+    }
+
+    public static <K, V> Map<K, V> unmodifiableNonNull(Map<K, V> map, String message) {
+        return Collections.unmodifiableMap(Objects.requireNonNull(map, message));
+    }
+
 }

@@ -19,13 +19,13 @@
 
 package co.elastic.clients.util;
 
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
-
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,10 +34,11 @@ import java.util.NoSuchElementException;
 /**
  * Base interface for enumerations.
  */
-public interface StringEnum extends ToJsonp {
+public interface StringEnum extends JsonpSerializable {
     String jsonValue();
 
-    default void toJsonp(JsonGenerator generator, JsonpMapper params) {
+    @Override
+    default void serialize(JsonGenerator generator, JsonpMapper params) {
         generator.write(jsonValue());
     }
 

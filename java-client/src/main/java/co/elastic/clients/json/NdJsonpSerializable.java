@@ -17,34 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
-
-import java.util.function.Function;
+package co.elastic.clients.json;
 
 /**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
+ * Marks a class a being serialized as nd-json (e.g. bulk requests).
  */
-public interface ObjectBuilder<T> {
-  T build();
-
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
-
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+public interface NdJsonpSerializable<T> extends Iterable<T> {
 }

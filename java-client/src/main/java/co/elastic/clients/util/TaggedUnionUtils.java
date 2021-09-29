@@ -17,14 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.json;
+package co.elastic.clients.util;
 
-import jakarta.json.stream.JsonGenerator;
-
-/**
- * An object that is its own JsonP serializer
- */
-public interface ToJsonp {
-
-    void toJsonp(JsonGenerator generator, JsonpMapper mapper);
+public class TaggedUnionUtils {
+    public static <V, U extends TaggedUnion<?>> V get(U union, String type) {
+        if (union._is(type)) {
+            @SuppressWarnings("unchecked")
+            V result = (V) union._get();
+            return result;
+        } else {
+            throw new IllegalStateException("Cannot get '" + type + "' variant: current variant is '" + union._type() + "'.");
+        }
+    }
 }

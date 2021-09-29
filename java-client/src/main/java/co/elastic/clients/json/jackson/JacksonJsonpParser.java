@@ -20,13 +20,13 @@
 package co.elastic.clients.json.jackson;
 
 import com.fasterxml.jackson.core.JsonToken;
-
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.EnumMap;

@@ -20,21 +20,24 @@
 package co.elastic.clients.base;
 
 import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.json.ObjectDeserializer;
+import jakarta.json.stream.JsonGenerator;
 
 import javax.annotation.Nullable;
-import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AdditionalProperties<TKey, TValue> implements ToJsonp {
-    private final Map<String, TValue> value;
+/**
+ * Base class for dictionary responses, i.e. a series of key/value pairs.
+ */
+public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializable {
+    private final Map<String, TValue> result;
 
     @Nullable
     private final JsonpSerializer<TKey> tKeySerializer;
@@ -44,39 +47,46 @@ public abstract class AdditionalProperties<TKey, TValue> implements ToJsonp {
 
     // ---------------------------------------------------------------------------------------------
 
-    protected AdditionalProperties(AbstractBuilder<TKey, TValue, ?> builder) {
+    protected DictionaryResponse(AbstractBuilder<TKey, TValue, ?> builder) {
 
-        this.value = builder.value;
+        this.result = builder.result;
         this.tKeySerializer = builder.tKeySerializer;
         this.tValueSerializer = builder.tValueSerializer;
 
     }
 
     /**
-     * Returns the map of additional properties.
+     * Returns the response as a map.
      */
-    public Map<String, TValue> value() {
-        return this.value != null ? value : Collections.emptyMap();
+    public Map<String, TValue> result() {
+        return this.result == null ? Collections.emptyMap() : result;
+    }
+
+    /**
+     *
+     */
+    public TValue get(String key) {
+        return this.result == null ? null : result.get(key);
     }
 
     /**
      * Serialize this value to JSON.
      */
-    public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        this.toJsonpInternal(generator, mapper);
+        this.serializeInternal(generator, mapper);
         generator.writeEnd();
     }
 
-    protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-        for (Map.Entry<String, TValue> item0 : this.value.entrySet()) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+        for (Map.Entry<String, TValue> item0 : this.result.entrySet()) {
             generator.writeKey(item0.getKey());
             JsonpUtils.serialize(item0.getValue(), generator, tValueSerializer, mapper);
         }
     }
 
     protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> {
-        private Map<String, TValue> value;
+        private Map<String, TValue> result;
 
         @Nullable
         private JsonpSerializer<TKey> tKeySerializer;
@@ -85,23 +95,21 @@ public abstract class AdditionalProperties<TKey, TValue> implements ToJsonp {
         private JsonpSerializer<TValue> tValueSerializer;
 
         /**
-         * Response value.
-         *
-         * API name: {@code value}
+         * Response result.
          */
-        public BuilderT value(Map<String, TValue> value) {
-            this.value = value;
+        public BuilderT result(Map<String, TValue> value) {
+            this.result = value;
             return self();
         }
 
         /**
-         * Add a key/value to {@link #value(Map)}, creating the map if needed.
+         * Add a key/value to {@link #result(Map)}, creating the map if needed.
          */
-        public BuilderT putValue(String key, TValue value) {
-            if (this.value == null) {
-                this.value = new HashMap<>();
+        public BuilderT putResult(String key, TValue value) {
+            if (this.result == null) {
+                this.result = new HashMap<>();
             }
-            this.value.put(key, value);
+            this.result.put(key, value);
             return self();
         }
 
@@ -130,14 +138,14 @@ public abstract class AdditionalProperties<TKey, TValue> implements ToJsonp {
     }
 
     // ---------------------------------------------------------------------------------------------
-    protected static <TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> void setupAdditionalPropertiesDeserializer(
+    protected static <TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>> void setupDictionaryResponseDeserializer(
         DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TKey> tKeyParser,
         JsonpDeserializer<TValue> tValueParser) {
 
         @SuppressWarnings("unckecked")
         ObjectDeserializer<BuilderT> op1 = (ObjectDeserializer<BuilderT>)op;
         op1.setUnknownFieldHandler((builder, name, parser, params) -> {
-            builder.putValue(name, tValueParser.deserialize(parser, params));
+            builder.putResult(name, tValueParser.deserialize(parser, params));
         });
     }
 }

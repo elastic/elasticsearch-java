@@ -19,27 +19,27 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonParser;
 
 import java.util.function.Function;
 
 /**
- * An object deserializer based on a builder object deserializer and a build function
+ * An instance deserializer based on a builder object deserializer and a build function
  */
-public class BuildFunctionDeserializer<B, T> extends JsonpDeserializer<T> {
+public class BuildFunctionInstanceDeserializer<B, T> implements InstanceDeserializer<B, ObjectBuilder<T>> {
 
-    private final JsonpDeserializer<B> builderDeserializer;
+    private final InstanceDeserializer<B, B> builderDeserializer;
     private final Function<B, T> build;
 
-    public BuildFunctionDeserializer(JsonpDeserializer<B> builderDeserializer, Function<B, T> build) {
-        super(builderDeserializer.acceptedEvents());
+    public BuildFunctionInstanceDeserializer(InstanceDeserializer<B, B> builderDeserializer, Function<B, T> buildFn) {
         this.builderDeserializer = builderDeserializer;
-        this.build = build;
+        this.build = buildFn;
     }
 
     @Override
-    public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        B builder = builderDeserializer.deserialize(parser, mapper, event);
-        return build.apply(builder);
+    public ObjectBuilder<T> deserialize(B builder, JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        builderDeserializer.deserialize(builder, parser, mapper, event);
+        return () -> build.apply(builder);
     }
 }

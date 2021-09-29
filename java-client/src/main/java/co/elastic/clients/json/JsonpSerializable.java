@@ -17,34 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.util;
+package co.elastic.clients.json;
 
-import java.util.function.Function;
+import jakarta.json.stream.JsonGenerator;
 
 /**
- * Base interface for all object builders.
- *
- * @param <T> the type that will be built.
+ * An object that is its own JsonP serializer
  */
-public interface ObjectBuilder<T> {
-  T build();
+public interface JsonpSerializable {
 
-  /**
-   * Creates an object builder that always returns the same value.
-   */
-  static <T> ObjectBuilder<T> constant(T value) {
-    return new ObjectBuilder<T>() {
-      @Override
-      public T build() {
-        return value;
-      }
-    };
-  }
-
-  /**
-   * Creates an {@code ObjectBuilder} from a builder object and a build function
-   */
-  static <B, U> ObjectBuilder<U> of(B builder, Function<B, U> buildFn) {
-    return () -> buildFn.apply(builder);
-  }
+    void serialize(JsonGenerator generator, JsonpMapper mapper);
 }
