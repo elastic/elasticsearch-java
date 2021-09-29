@@ -74,11 +74,11 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
      */
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        this.toJsonpInternal(generator, mapper);
+        this.serializeInternal(generator, mapper);
         generator.writeEnd();
     }
 
-    protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+    protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
         for (Map.Entry<String, TValue> item0 : this.result.entrySet()) {
             generator.writeKey(item0.getKey());
             JsonpUtils.serialize(item0.getValue(), generator, tValueSerializer, mapper);
