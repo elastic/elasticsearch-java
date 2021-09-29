@@ -47,14 +47,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
-// typedef: indices.get_mapping.Request
+// typedef: indices.upgrade.Request
 
-public final class GetMappingRequest extends RequestBase {
+public final class UpgradeRequest extends RequestBase {
 	@Nullable
-	private final List<String> index;
-
-	@Nullable
-	private final List<String> type;
+	private final String index;
 
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -66,51 +63,37 @@ public final class GetMappingRequest extends RequestBase {
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
-	private final Boolean includeTypeName;
+	private final Boolean waitForCompletion;
 
 	@Nullable
-	private final Boolean local;
-
-	@Nullable
-	private final String masterTimeout;
+	private final Boolean onlyAncientSegments;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetMappingRequest(Builder builder) {
+	public UpgradeRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
+		this.index = builder.index;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.includeTypeName = builder.includeTypeName;
-		this.local = builder.local;
-		this.masterTimeout = builder.masterTimeout;
+		this.waitForCompletion = builder.waitForCompletion;
+		this.onlyAncientSegments = builder.onlyAncientSegments;
 
 	}
 
-	public GetMappingRequest(Function<Builder, Builder> fn) {
+	public UpgradeRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * A comma-separated list of index names
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public List<String> index() {
+	public String index() {
 		return this.index;
-	}
-
-	/**
-	 * A comma-separated list of document types
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
 	}
 
 	/**
@@ -148,47 +131,35 @@ public final class GetMappingRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to add the type name to the response (default: false)
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
-	 * Return local information, do not retrieve the state from master node
+	 * Specify whether the request should block until the all segments are upgraded
 	 * (default: false)
 	 * <p>
-	 * API name: {@code local}
+	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean local() {
-		return this.local;
+	public Boolean waitForCompletion() {
+		return this.waitForCompletion;
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * If true, only ancient (an older Lucene major release) segments will be
+	 * upgraded
 	 * <p>
-	 * API name: {@code master_timeout}
+	 * API name: {@code only_ancient_segments}
 	 */
 	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
+	public Boolean onlyAncientSegments() {
+		return this.onlyAncientSegments;
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetMappingRequest}.
+	 * Builder for {@link UpgradeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetMappingRequest> {
+	public static class Builder implements ObjectBuilder<UpgradeRequest> {
 		@Nullable
-		private List<String> index;
-
-		@Nullable
-		private List<String> type;
+		private String index;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -200,73 +171,19 @@ public final class GetMappingRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Boolean includeTypeName;
+		private Boolean waitForCompletion;
 
 		@Nullable
-		private Boolean local;
-
-		@Nullable
-		private String masterTimeout;
+		private Boolean onlyAncientSegments;
 
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable List<String> value) {
+		public Builder index(@Nullable String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed. 4
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
 			return this;
 		}
 
@@ -327,98 +244,70 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to add the type name to the response (default: false)
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Return local information, do not retrieve the state from master node
+		 * Specify whether the request should block until the all segments are upgraded
 		 * (default: false)
 		 * <p>
-		 * API name: {@code local}
+		 * API name: {@code wait_for_completion}
 		 */
-		public Builder local(@Nullable Boolean value) {
-			this.local = value;
+		public Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * If true, only ancient (an older Lucene major release) segments will be
+		 * upgraded
 		 * <p>
-		 * API name: {@code master_timeout}
+		 * API name: {@code only_ancient_segments}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
+		public Builder onlyAncientSegments(@Nullable Boolean value) {
+			this.onlyAncientSegments = value;
 			return this;
 		}
 
 		/**
-		 * Builds a {@link GetMappingRequest}.
+		 * Builds a {@link UpgradeRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetMappingRequest build() {
+		public UpgradeRequest build() {
 
-			return new GetMappingRequest(this);
+			return new UpgradeRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.get_mapping}".
+	 * Endpoint "{@code indices.upgrade}".
 	 */
-	public static final Endpoint<GetMappingRequest, GetMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpgradeRequest, UpgradeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
-				return "GET";
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
+					buf.append("/_upgrade");
 					return buf.toString();
 				}
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_upgrade");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -438,16 +327,13 @@ public final class GetMappingRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.onlyAncientSegments != null) {
+					params.put("only_ancient_segments", String.valueOf(request.onlyAncientSegments));
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, UpgradeResponse._DESERIALIZER);
 }

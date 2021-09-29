@@ -47,14 +47,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
-// typedef: indices.get_mapping.Request
+// typedef: indices.flush_synced.Request
 
-public final class GetMappingRequest extends RequestBase {
+public final class FlushSyncedRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
-
-	@Nullable
-	private final List<String> type;
 
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -65,52 +62,30 @@ public final class GetMappingRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
-	private final Boolean includeTypeName;
-
-	@Nullable
-	private final Boolean local;
-
-	@Nullable
-	private final String masterTimeout;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public GetMappingRequest(Builder builder) {
+	public FlushSyncedRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.includeTypeName = builder.includeTypeName;
-		this.local = builder.local;
-		this.masterTimeout = builder.masterTimeout;
 
 	}
 
-	public GetMappingRequest(Function<Builder, Builder> fn) {
+	public FlushSyncedRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * A comma-separated list of index names
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * for all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
 	public List<String> index() {
 		return this.index;
-	}
-
-	/**
-	 * A comma-separated list of document types
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public List<String> type() {
-		return this.type;
 	}
 
 	/**
@@ -147,48 +122,14 @@ public final class GetMappingRequest extends RequestBase {
 		return this.ignoreUnavailable;
 	}
 
-	/**
-	 * Whether to add the type name to the response (default: false)
-	 * <p>
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public Boolean local() {
-		return this.local;
-	}
-
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetMappingRequest}.
+	 * Builder for {@link FlushSyncedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetMappingRequest> {
+	public static class Builder implements ObjectBuilder<FlushSyncedRequest> {
 		@Nullable
 		private List<String> index;
-
-		@Nullable
-		private List<String> type;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -199,17 +140,9 @@ public final class GetMappingRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
-		private Boolean local;
-
-		@Nullable
-		private String masterTimeout;
-
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -219,7 +152,8 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * for all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -236,37 +170,6 @@ public final class GetMappingRequest extends RequestBase {
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed. 4
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
 			return this;
 		}
 
@@ -327,98 +230,50 @@ public final class GetMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to add the type name to the response (default: false)
-		 * <p>
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public Builder local(@Nullable Boolean value) {
-			this.local = value;
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link GetMappingRequest}.
+		 * Builds a {@link FlushSyncedRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetMappingRequest build() {
+		public FlushSyncedRequest build() {
 
-			return new GetMappingRequest(this);
+			return new FlushSyncedRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.get_mapping}".
+	 * Endpoint "{@code indices.flush_synced}".
 	 */
-	public static final Endpoint<GetMappingRequest, GetMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FlushSyncedRequest, FlushSyncedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
-				return "GET";
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
+					buf.append("/_flush");
+					buf.append("/synced");
 					return buf.toString();
 				}
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_mapping");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_flush");
+					buf.append("/synced");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -438,16 +293,7 @@ public final class GetMappingRequest extends RequestBase {
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
-				}
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, FlushSyncedResponse._DESERIALIZER);
 }

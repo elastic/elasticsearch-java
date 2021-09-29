@@ -80,6 +80,8 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
+	 * The multiplier in which to display values
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
@@ -134,6 +136,8 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
+		 * The multiplier in which to display values
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {

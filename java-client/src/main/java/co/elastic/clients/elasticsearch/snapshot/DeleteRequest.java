@@ -74,7 +74,7 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of snapshot names
+	 * A snapshot name
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -116,7 +116,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of snapshot names
+		 * A snapshot name
 		 * <p>
 		 * API name: {@code snapshot}
 		 */

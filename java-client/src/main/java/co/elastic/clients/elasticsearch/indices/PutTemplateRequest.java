@@ -142,6 +142,8 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * Whether a type should be returned in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -371,6 +373,8 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
+		 * Whether a type should be returned in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {

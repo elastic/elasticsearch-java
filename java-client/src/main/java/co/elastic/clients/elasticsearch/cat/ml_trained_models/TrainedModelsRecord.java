@@ -91,9 +91,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	@Nullable
 	private final String dataFrameAnalysis;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	public TrainedModelsRecord(Builder builder) {
@@ -115,7 +112,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		this.dataFrameCreateTime = builder.dataFrameCreateTime;
 		this.dataFrameSourceIndex = builder.dataFrameSourceIndex;
 		this.dataFrameAnalysis = builder.dataFrameAnalysis;
-		this.type = builder.type;
 
 	}
 
@@ -295,14 +291,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -415,12 +403,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 			generator.write(this.dataFrameAnalysis);
 
 		}
-		if (this.type != null) {
-
-			generator.writeKey("type");
-			generator.write(this.type);
-
-		}
 
 	}
 
@@ -480,9 +462,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 
 		@Nullable
 		private String dataFrameAnalysis;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * the trained model id
@@ -656,14 +635,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link TrainedModelsRecord}.
 		 *
 		 * @throws NullPointerException
@@ -708,7 +679,6 @@ public final class TrainedModelsRecord implements JsonpSerializable {
 				"dataFrameAnalyticsSrcIndex");
 		op.add(Builder::dataFrameAnalysis, JsonpDeserializer.stringDeserializer(), "data_frame.analysis", "dfa",
 				"dataFrameAnalyticsAnalysis");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

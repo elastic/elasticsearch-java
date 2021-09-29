@@ -107,6 +107,8 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Whether a type should be expected in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -265,6 +267,8 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Whether a type should be expected in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {

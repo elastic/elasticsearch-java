@@ -21,11 +21,12 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._core;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -38,35 +39,27 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _global.get_source.Request
+// typedef: indices.get_upgrade.Request
 
-public final class GetSourceRequest extends GetRequest {
+public final class GetUpgradeRequest extends RequestBase {
 	@Nullable
 	private final String index;
 
-	@Nullable
-	private final String id;
-
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSourceRequest(Builder builder) {
-		super(builder);
+	public GetUpgradeRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.id = builder.id;
-		this.type = builder.type;
 
 	}
 
-	public GetSourceRequest(Function<Builder, Builder> fn) {
+	public GetUpgradeRequest(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * Auto generated - missing in the input spec
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -75,43 +68,18 @@ public final class GetSourceRequest extends GetRequest {
 		return this.index;
 	}
 
-	/**
-	 * Auto generated - missing in the input spec
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
-	}
-
-	/**
-	 * Auto generated - missing in the input spec
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetSourceRequest}.
+	 * Builder for {@link GetUpgradeRequest}.
 	 */
-	public static class Builder extends GetRequest.AbstractBuilder<Builder> implements ObjectBuilder<GetSourceRequest> {
+	public static class Builder implements ObjectBuilder<GetUpgradeRequest> {
 		@Nullable
 		private String index;
 
-		@Nullable
-		private String id;
-
-		@Nullable
-		private String type;
-
 		/**
-		 * Auto generated - missing in the input spec
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -121,48 +89,23 @@ public final class GetSourceRequest extends GetRequest {
 		}
 
 		/**
-		 * Auto generated - missing in the input spec
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Auto generated - missing in the input spec
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link GetSourceRequest}.
+		 * Builds a {@link GetUpgradeRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetSourceRequest build() {
+		public GetUpgradeRequest build() {
 
-			return new GetSourceRequest(this);
+			return new GetUpgradeRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code get_source}".
+	 * Endpoint "{@code indices.get_upgrade}".
 	 */
-	private static final SimpleEndpoint<GetSourceRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetUpgradeRequest, GetUpgradeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -172,36 +115,22 @@ public final class GetSourceRequest extends GetRequest {
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _id = 1 << 1;
-				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.id() != null)
-					propsSet |= _id;
-				if (request.type() != null)
-					propsSet |= _type;
 
-				if (propsSet == (_index | _id)) {
+				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/_source");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
+					buf.append("/_upgrade");
 					return buf.toString();
 				}
-				if (propsSet == (_index | _type | _id)) {
+				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id, buf);
-					buf.append("/_source");
+					buf.append("/_upgrade");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -212,14 +141,5 @@ public final class GetSourceRequest extends GetRequest {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, null);
-
-	/**
-	 * Create an "{@code get_source}" endpoint.
-	 */
-	public static <TDocument> Endpoint<GetSourceRequest, GetSourceResponse<TDocument>, ElasticsearchError> createGetSourceEndpoint(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
-				.withResponseDeserializer(GetSourceResponse.createGetSourceResponseDeserializer(tDocumentDeserializer));
-	}
+			}, SimpleEndpoint.emptyMap(), false, GetUpgradeResponse._DESERIALIZER);
 }

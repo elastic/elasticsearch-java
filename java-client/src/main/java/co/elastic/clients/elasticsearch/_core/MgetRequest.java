@@ -59,6 +59,9 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	private final String index;
 
 	@Nullable
+	private final String type;
+
+	@Nullable
 	private final String preference;
 
 	@Nullable
@@ -93,6 +96,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	public MgetRequest(Builder builder) {
 
 		this.index = builder.index;
+		this.type = builder.type;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
@@ -118,6 +122,16 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	@Nullable
 	public String index() {
 		return this.index;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -264,6 +278,9 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		private String index;
 
 		@Nullable
+		private String type;
+
+		@Nullable
 		private String preference;
 
 		@Nullable
@@ -300,6 +317,16 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public Builder index(@Nullable String value) {
 			this.index = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -558,11 +585,14 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -573,6 +603,15 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_mget");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_mget");
 					return buf.toString();
 				}

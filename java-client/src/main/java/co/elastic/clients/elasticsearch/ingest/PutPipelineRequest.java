@@ -95,7 +95,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * ID of the ingest pipeline to create or update.
+	 * Pipeline ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -115,8 +115,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * Explicit operation timeout
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -147,13 +146,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Processors to run immediately after a processor failure. Each processor
-	 * supports a processor-level <code>on_failure</code> value. If a processor
-	 * without an <code>on_failure</code> value fails, Elasticsearch uses this
-	 * pipeline-level parameter as a fallback. The processors in this parameter run
-	 * sequentially in the order specified. Elasticsearch will not attempt to run
-	 * the pipeline's remaining processors.
-	 * <p>
 	 * API name: {@code on_failure}
 	 */
 	@Nullable
@@ -162,9 +154,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Processors used to perform transformations on documents before indexing.
-	 * Processors run sequentially in the order specified.
-	 * <p>
 	 * API name: {@code processors}
 	 */
 	@Nullable
@@ -173,10 +162,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Version number used by external systems to track ingest pipelines. This
-	 * parameter is intended for external systems only. Elasticsearch does not use
-	 * or validate pipeline version numbers.
-	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -274,7 +259,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		private Long version;
 
 		/**
-		 * ID of the ingest pipeline to create or update.
+		 * Pipeline ID
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -295,8 +280,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * Explicit operation timeout
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -338,13 +322,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Processors to run immediately after a processor failure. Each processor
-		 * supports a processor-level <code>on_failure</code> value. If a processor
-		 * without an <code>on_failure</code> value fails, Elasticsearch uses this
-		 * pipeline-level parameter as a fallback. The processors in this parameter run
-		 * sequentially in the order specified. Elasticsearch will not attempt to run
-		 * the pipeline's remaining processors.
-		 * <p>
 		 * API name: {@code on_failure}
 		 */
 		public Builder onFailure(@Nullable List<Processor> value) {
@@ -353,13 +330,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Processors to run immediately after a processor failure. Each processor
-		 * supports a processor-level <code>on_failure</code> value. If a processor
-		 * without an <code>on_failure</code> value fails, Elasticsearch uses this
-		 * pipeline-level parameter as a fallback. The processors in this parameter run
-		 * sequentially in the order specified. Elasticsearch will not attempt to run
-		 * the pipeline's remaining processors.
-		 * <p>
 		 * API name: {@code on_failure}
 		 */
 		public Builder onFailure(Processor... value) {
@@ -393,9 +363,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Processors used to perform transformations on documents before indexing.
-		 * Processors run sequentially in the order specified.
-		 * <p>
 		 * API name: {@code processors}
 		 */
 		public Builder processors(@Nullable List<Processor> value) {
@@ -404,9 +371,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Processors used to perform transformations on documents before indexing.
-		 * Processors run sequentially in the order specified.
-		 * <p>
 		 * API name: {@code processors}
 		 */
 		public Builder processors(Processor... value) {
@@ -440,10 +404,6 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Version number used by external systems to track ingest pipelines. This
-		 * parameter is intended for external systems only. Elasticsearch does not use
-		 * or validate pipeline version numbers.
-		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Long value) {

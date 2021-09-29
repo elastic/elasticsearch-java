@@ -61,6 +61,9 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	private final String index;
 
 	@Nullable
+	private final String type;
+
+	@Nullable
 	private final String analyzer;
 
 	@Nullable
@@ -105,6 +108,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.index = Objects.requireNonNull(builder.index, "index");
+		this.type = builder.type;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.defaultOperator = builder.defaultOperator;
@@ -141,6 +145,16 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	 */
 	public String index() {
 		return this.index;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -306,6 +320,9 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		private String index;
 
 		@Nullable
+		private String type;
+
+		@Nullable
 		private String analyzer;
 
 		@Nullable
@@ -361,6 +378,16 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		 */
 		public Builder index(String value) {
 			this.index = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -608,11 +635,14 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
+				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _id;
 				propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -621,6 +651,17 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 					buf.append("/_explain");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.id, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type | _id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.id, buf);
+					buf.append("/_explain");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

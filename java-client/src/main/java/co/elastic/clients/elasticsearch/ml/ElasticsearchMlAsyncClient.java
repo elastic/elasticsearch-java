@@ -525,6 +525,40 @@ public class ElasticsearchMlAsyncClient extends ApiClient {
 		return explainDataFrameAnalytics(fn.apply(new ExplainDataFrameAnalyticsRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: ml.find_file_structure
+
+	/**
+	 * Finds the structure of a text file. The text file must contain data that is
+	 * suitable to be ingested into Elasticsearch.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FindFileStructureResponse> findFileStructure(FindFileStructureRequest request)
+			throws IOException {
+		return this.transport.performRequestAsync(request, FindFileStructureRequest.ENDPOINT);
+	}
+
+	/**
+	 * Finds the structure of a text file. The text file must contain data that is
+	 * suitable to be ingested into Elasticsearch.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/find-structure.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<FindFileStructureResponse> findFileStructure(
+			Function<FindFileStructureRequest.Builder, ObjectBuilder<FindFileStructureRequest>> fn) throws IOException {
+		return findFileStructure(fn.apply(new FindFileStructureRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.flush_job
 
 	/**

@@ -672,6 +672,39 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.flush_synced
+
+	/**
+	 * Performs a synced flush operation on one or more indices. Synced flush is
+	 * deprecated and will be removed in 8.0. Use flush instead
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<FlushSyncedResponse> flushSynced(FlushSyncedRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, FlushSyncedRequest.ENDPOINT);
+	}
+
+	/**
+	 * Performs a synced flush operation on one or more indices. Synced flush is
+	 * deprecated and will be removed in 8.0. Use flush instead
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-synced-flush-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<FlushSyncedResponse> flushSynced(
+			Function<FlushSyncedRequest.Builder, ObjectBuilder<FlushSyncedRequest>> fn) throws IOException {
+		return flushSynced(fn.apply(new FlushSyncedRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.forcemerge
 
 	/**
@@ -984,6 +1017,37 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<GetTemplateResponse> getTemplate(
 			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) throws IOException {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.get_upgrade
+
+	/**
+	 * DEPRECATED Returns a progress status of current upgrade.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetUpgradeResponse> getUpgrade(GetUpgradeRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, GetUpgradeRequest.ENDPOINT);
+	}
+
+	/**
+	 * DEPRECATED Returns a progress status of current upgrade.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetUpgradeResponse> getUpgrade(
+			Function<GetUpgradeRequest.Builder, ObjectBuilder<GetUpgradeRequest>> fn) throws IOException {
+		return getUpgrade(fn.apply(new GetUpgradeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.migrate_to_data_stream
@@ -1685,6 +1749,37 @@ public class ElasticsearchIndicesAsyncClient extends ApiClient {
 	public final CompletableFuture<UpdateAliasesResponse> updateAliases(
 			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn) throws IOException {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.upgrade
+
+	/**
+	 * DEPRECATED Upgrades to the current version of Lucene.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpgradeResponse> upgrade(UpgradeRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, UpgradeRequest.ENDPOINT);
+	}
+
+	/**
+	 * DEPRECATED Upgrades to the current version of Lucene.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-upgrade.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<UpgradeResponse> upgrade(
+			Function<UpgradeRequest.Builder, ObjectBuilder<UpgradeRequest>> fn) throws IOException {
+		return upgrade(fn.apply(new UpgradeRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.validate_query

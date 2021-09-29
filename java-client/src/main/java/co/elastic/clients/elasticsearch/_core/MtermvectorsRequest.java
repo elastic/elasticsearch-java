@@ -59,6 +59,9 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	private final String index;
 
 	@Nullable
+	private final String type;
+
+	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -102,6 +105,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	public MtermvectorsRequest(Builder builder) {
 
 		this.index = builder.index;
+		this.type = builder.type;
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.offsets = builder.offsets;
@@ -130,6 +134,16 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public String index() {
 		return this.index;
+	}
+
+	/**
+	 * The type of the document.
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -319,6 +333,9 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		private String index;
 
 		@Nullable
+		private String type;
+
+		@Nullable
 		private List<String> fields;
 
 		@Nullable
@@ -364,6 +381,16 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder index(@Nullable String value) {
 			this.index = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document.
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -624,11 +651,14 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -639,6 +669,15 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_mtermvectors");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_mtermvectors");
 					return buf.toString();
 				}

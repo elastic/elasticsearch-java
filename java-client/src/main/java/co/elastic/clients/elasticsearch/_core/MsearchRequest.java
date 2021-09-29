@@ -59,6 +59,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	private final List<String> index;
 
 	@Nullable
+	private final List<String> type;
+
+	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -95,6 +98,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	public MsearchRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
@@ -121,6 +125,16 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	public List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * A comma-separated list of document types to use as default
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public List<String> type() {
+		return this.type;
 	}
 
 	/**
@@ -270,6 +284,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private List<String> index;
 
 		@Nullable
+		private List<String> type;
+
+		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -329,6 +346,37 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types to use as default
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable List<String> value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types to use as default
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(String... value) {
+			this.type = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #type(List)}, creating the list if needed. 4
+		 */
+		public Builder addType(String value) {
+			if (this.type == null) {
+				this.type = new ArrayList<>();
+			}
+			this.type.add(value);
 			return this;
 		}
 
@@ -538,11 +586,14 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -553,6 +604,15 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_msearch");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_msearch");
 					return buf.toString();
 				}

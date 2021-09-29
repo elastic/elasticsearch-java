@@ -65,6 +65,9 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	private final List<String> index;
 
 	@Nullable
+	private final String type;
+
+	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -123,6 +126,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	public PutMappingRequest(Builder builder) {
 
 		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.type = builder.type;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -160,6 +164,16 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * The name of the document type
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
+	}
+
+	/**
 	 * Whether to ignore if a wildcard indices expression resolves into no concrete
 	 * indices. (This includes <code>_all</code> string or when no indices have been
 	 * specified)
@@ -194,6 +208,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * Whether a type should be expected in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -474,6 +490,9 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		private List<String> index;
 
 		@Nullable
+		private String type;
+
+		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -563,6 +582,16 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * The name of the document type
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable String value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
 		 * specified)
@@ -619,6 +648,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * Whether a type should be expected in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -964,16 +995,76 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
+				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					buf.append("/_mapping");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_mapping");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					buf.append("/_mappings");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_mappings");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mappings");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_mappings");
+					return buf.toString();
+				}
+				if (propsSet == (_type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

@@ -330,6 +330,55 @@ public final class HotThreadsRequest extends RequestBase {
 					buf.append("/hot_threads");
 					return buf.toString();
 				}
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/nodes");
+					buf.append("/hotthreads");
+					return buf.toString();
+				}
+				if (propsSet == (_nodeId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/nodes");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
+					buf.append("/hotthreads");
+					return buf.toString();
+				}
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/hotthreads");
+					return buf.toString();
+				}
+				if (propsSet == (_nodeId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
+					buf.append("/hotthreads");
+					return buf.toString();
+				}
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/nodes");
+					buf.append("/hot_threads");
+					return buf.toString();
+				}
+				if (propsSet == (_nodeId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_cluster");
+					buf.append("/nodes");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
+					buf.append("/hot_threads");
+					return buf.toString();
+				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._core.mtermvectors;
 
 import co.elastic.clients.elasticsearch._core.termvectors.TermVector;
-import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -48,36 +47,28 @@ import javax.annotation.Nullable;
 // typedef: _global.mtermvectors.TermVectorsResult
 @JsonpDeserializable
 public final class TermVectorsResult implements JsonpSerializable {
+	private final boolean found;
+
 	private final String id;
 
 	private final String index;
 
-	@Nullable
-	private final Long version;
-
-	@Nullable
-	private final Long took;
-
-	@Nullable
-	private final Boolean found;
-
-	@Nullable
 	private final Map<String, TermVector> termVectors;
 
-	@Nullable
-	private final ErrorCause error;
+	private final long took;
+
+	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public TermVectorsResult(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.version = builder.version;
-		this.took = builder.took;
-		this.found = builder.found;
-		this.termVectors = ModelTypeHelper.unmodifiable(builder.termVectors);
-		this.error = builder.error;
+		this.found = Objects.requireNonNull(builder.found, "found");
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.index = Objects.requireNonNull(builder.index, "index");
+		this.termVectors = ModelTypeHelper.unmodifiableNonNull(builder.termVectors, "term_vectors");
+		this.took = Objects.requireNonNull(builder.took, "took");
+		this.version = Objects.requireNonNull(builder.version, "version");
 
 	}
 
@@ -86,57 +77,45 @@ public final class TermVectorsResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * API name: {@code found}
+	 */
+	public boolean found() {
+		return this.found;
+	}
+
+	/**
+	 * API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code _version}
-	 */
-	@Nullable
-	public Long version() {
-		return this.version;
-	}
-
-	/**
-	 * API name: {@code took}
-	 */
-	@Nullable
-	public Long took() {
-		return this.took;
-	}
-
-	/**
-	 * API name: {@code found}
-	 */
-	@Nullable
-	public Boolean found() {
-		return this.found;
-	}
-
-	/**
 	 * API name: {@code term_vectors}
 	 */
-	@Nullable
 	public Map<String, TermVector> termVectors() {
 		return this.termVectors;
 	}
 
 	/**
-	 * API name: {@code error}
+	 * API name: {@code took}
 	 */
-	@Nullable
-	public ErrorCause error() {
-		return this.error;
+	public long took() {
+		return this.took;
+	}
+
+	/**
+	 * API name: {@code version}
+	 */
+	public long version() {
+		return this.version;
 	}
 
 	/**
@@ -150,48 +129,29 @@ public final class TermVectorsResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_id");
+		generator.writeKey("found");
+		generator.write(this.found);
+
+		generator.writeKey("id");
 		generator.write(this.id);
 
-		generator.writeKey("_index");
+		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (this.version != null) {
-
-			generator.writeKey("_version");
-			generator.write(this.version);
-
-		}
-		if (this.took != null) {
-
-			generator.writeKey("took");
-			generator.write(this.took);
+		generator.writeKey("term_vectors");
+		generator.writeStartObject();
+		for (Map.Entry<String, TermVector> item0 : this.termVectors.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
 
 		}
-		if (this.found != null) {
+		generator.writeEnd();
 
-			generator.writeKey("found");
-			generator.write(this.found);
+		generator.writeKey("took");
+		generator.write(this.took);
 
-		}
-		if (this.termVectors != null) {
-
-			generator.writeKey("term_vectors");
-			generator.writeStartObject();
-			for (Map.Entry<String, TermVector> item0 : this.termVectors.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.error != null) {
-
-			generator.writeKey("error");
-			this.error.serialize(generator, mapper);
-
-		}
+		generator.writeKey("version");
+		generator.write(this.version);
 
 	}
 
@@ -201,27 +161,28 @@ public final class TermVectorsResult implements JsonpSerializable {
 	 * Builder for {@link TermVectorsResult}.
 	 */
 	public static class Builder implements ObjectBuilder<TermVectorsResult> {
+		private Boolean found;
+
 		private String id;
 
 		private String index;
 
-		@Nullable
-		private Long version;
-
-		@Nullable
-		private Long took;
-
-		@Nullable
-		private Boolean found;
-
-		@Nullable
 		private Map<String, TermVector> termVectors;
 
-		@Nullable
-		private ErrorCause error;
+		private Long took;
+
+		private Long version;
 
 		/**
-		 * API name: {@code _id}
+		 * API name: {@code found}
+		 */
+		public Builder found(boolean value) {
+			this.found = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -229,7 +190,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -237,33 +198,9 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _version}
-		 */
-		public Builder version(@Nullable Long value) {
-			this.version = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code took}
-		 */
-		public Builder took(@Nullable Long value) {
-			this.took = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code found}
-		 */
-		public Builder found(@Nullable Boolean value) {
-			this.found = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code term_vectors}
 		 */
-		public Builder termVectors(@Nullable Map<String, TermVector> value) {
+		public Builder termVectors(Map<String, TermVector> value) {
 			this.termVectors = value;
 			return this;
 		}
@@ -294,18 +231,19 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code error}
+		 * API name: {@code took}
 		 */
-		public Builder error(@Nullable ErrorCause value) {
-			this.error = value;
+		public Builder took(long value) {
+			this.took = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code error}
+		 * API name: {@code version}
 		 */
-		public Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		public Builder version(long value) {
+			this.version = value;
+			return this;
 		}
 
 		/**
@@ -330,13 +268,12 @@ public final class TermVectorsResult implements JsonpSerializable {
 
 	protected static void setupTermVectorsResultDeserializer(DelegatingDeserializer<TermVectorsResult.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
-		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::termVectors, JsonpDeserializer.stringMapDeserializer(TermVector._DESERIALIZER), "term_vectors");
-		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

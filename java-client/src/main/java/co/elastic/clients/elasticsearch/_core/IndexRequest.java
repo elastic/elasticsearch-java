@@ -59,6 +59,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	private final String index;
 
 	@Nullable
+	private final String type;
+
+	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
@@ -102,6 +105,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 
 		this.id = builder.id;
 		this.index = Objects.requireNonNull(builder.index, "index");
+		this.type = builder.type;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.opType = builder.opType;
@@ -139,6 +143,16 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	 */
 	public String index() {
 		return this.index;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -291,6 +305,9 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		private String index;
 
 		@Nullable
+		private String type;
+
+		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
@@ -345,6 +362,16 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		 */
 		public Builder<TDocument> index(String value) {
 			this.index = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder<TDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -520,17 +547,24 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
+				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
 					propsSet |= _id;
 				propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == (_index | _id))
 					return "PUT";
 				if (propsSet == (_index))
 					return "POST";
+				if (propsSet == (_index | _type))
+					return "POST";
+				if (propsSet == (_index | _type | _id))
+					return "PUT";
 				throw SimpleEndpoint.noPathTemplateFound("method");
 
 			},
@@ -539,12 +573,15 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 			request -> {
 				final int _id = 1 << 0;
 				final int _index = 1 << 1;
+				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				if (request.id() != null)
 					propsSet |= _id;
 				propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -560,6 +597,24 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_doc");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type | _id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

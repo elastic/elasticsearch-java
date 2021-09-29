@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security.get_service_credentials;
+package co.elastic.clients.elasticsearch._core.reindex;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -30,39 +30,47 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: security.get_service_credentials.NodesCredentialsFileToken
+// typedef: _global.reindex.SourceRuntimeMapping
 @JsonpDeserializable
-public final class NodesCredentialsFileToken implements JsonpSerializable {
-	private final List<String> nodes;
+public final class SourceRuntimeMapping implements JsonpSerializable {
+	private final String type;
+
+	@Nullable
+	private final String script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesCredentialsFileToken(Builder builder) {
+	public SourceRuntimeMapping(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.type = Objects.requireNonNull(builder.type, "type");
+		this.script = builder.script;
 
 	}
 
-	public NodesCredentialsFileToken(Function<Builder, Builder> fn) {
+	public SourceRuntimeMapping(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * API name: {@code type}
 	 */
-	public List<String> nodes() {
-		return this.nodes;
+	public String type() {
+		return this.type;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public String script() {
+		return this.script;
 	}
 
 	/**
@@ -76,75 +84,70 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartArray();
-		for (String item0 : this.nodes) {
-			generator.write(item0);
+		generator.writeKey("type");
+		generator.write(this.type);
+
+		if (this.script != null) {
+
+			generator.writeKey("script");
+			generator.write(this.script);
 
 		}
-		generator.writeEnd();
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodesCredentialsFileToken}.
+	 * Builder for {@link SourceRuntimeMapping}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesCredentialsFileToken> {
-		private List<String> nodes;
+	public static class Builder implements ObjectBuilder<SourceRuntimeMapping> {
+		private String type;
+
+		@Nullable
+		private String script;
 
 		/**
-		 * API name: {@code nodes}
+		 * API name: {@code type}
 		 */
-		public Builder nodes(List<String> value) {
-			this.nodes = value;
+		public Builder type(String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * API name: {@code script}
 		 */
-		public Builder nodes(String... value) {
-			this.nodes = Arrays.asList(value);
+		public Builder script(@Nullable String value) {
+			this.script = value;
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed. 4
-		 */
-		public Builder addNodes(String value) {
-			if (this.nodes == null) {
-				this.nodes = new ArrayList<>();
-			}
-			this.nodes.add(value);
-			return this;
-		}
-
-		/**
-		 * Builds a {@link NodesCredentialsFileToken}.
+		 * Builds a {@link SourceRuntimeMapping}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodesCredentialsFileToken build() {
+		public SourceRuntimeMapping build() {
 
-			return new NodesCredentialsFileToken(this);
+			return new SourceRuntimeMapping(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodesCredentialsFileToken}
+	 * Json deserializer for {@link SourceRuntimeMapping}
 	 */
-	public static final JsonpDeserializer<NodesCredentialsFileToken> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodesCredentialsFileToken::setupNodesCredentialsFileTokenDeserializer, Builder::build);
+	public static final JsonpDeserializer<SourceRuntimeMapping> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SourceRuntimeMapping::setupSourceRuntimeMappingDeserializer, Builder::build);
 
-	protected static void setupNodesCredentialsFileTokenDeserializer(
-			DelegatingDeserializer<NodesCredentialsFileToken.Builder> op) {
+	protected static void setupSourceRuntimeMappingDeserializer(
+			DelegatingDeserializer<SourceRuntimeMapping.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "nodes");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::script, JsonpDeserializer.stringDeserializer(), "script");
 
 	}
 

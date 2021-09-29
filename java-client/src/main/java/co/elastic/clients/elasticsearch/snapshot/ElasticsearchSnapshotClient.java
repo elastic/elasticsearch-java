@@ -168,7 +168,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	// ----- Endpoint: snapshot.delete
 
 	/**
-	 * Deletes one or more snapshots.
+	 * Deletes a snapshot.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
@@ -180,7 +180,7 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	}
 
 	/**
-	 * Deletes one or more snapshots.
+	 * Deletes a snapshot.
 	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This

@@ -64,6 +64,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	private final String id;
 
 	@Nullable
+	private final String type;
+
+	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -114,6 +117,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.id = builder.id;
+		this.type = builder.type;
 		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.offsets = builder.offsets;
@@ -153,6 +157,16 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	@Nullable
 	public String id() {
 		return this.id;
+	}
+
+	/**
+	 * The type of the document.
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public String type() {
+		return this.type;
 	}
 
 	/**
@@ -342,6 +356,9 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		private String id;
 
 		@Nullable
+		private String type;
+
+		@Nullable
 		private List<String> fields;
 
 		@Nullable
@@ -403,6 +420,16 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		 */
 		public Builder<TDocument> id(@Nullable String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document.
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder<TDocument> type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -642,12 +669,15 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 			request -> {
 				final int _index = 1 << 0;
 				final int _id = 1 << 1;
+				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
 				if (request.id() != null)
 					propsSet |= _id;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -662,6 +692,26 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/_termvectors");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type | _id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.id, buf);
+					buf.append("/_termvectors");
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index, buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_termvectors");
 					return buf.toString();
 				}

@@ -45,7 +45,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 * Clear the cache of searchable snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -61,7 +61,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -76,7 +76,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 * Mount a snapshot as a searchable index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-api-mount-snapshot.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -92,7 +92,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-api-mount-snapshot.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-api-mount-snapshot.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -107,7 +107,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 * Retrieve shard-level statistics about searchable snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -123,7 +123,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

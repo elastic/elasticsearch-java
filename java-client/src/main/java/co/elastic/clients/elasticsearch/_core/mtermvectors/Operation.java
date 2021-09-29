@@ -49,66 +49,82 @@ import javax.annotation.Nullable;
 // typedef: _global.mtermvectors.Operation
 @JsonpDeserializable
 public final class Operation implements JsonpSerializable {
-	private final String id;
-
-	@Nullable
-	private final String index;
-
-	@Nullable
 	private final JsonValue doc;
 
-	@Nullable
 	private final List<String> fields;
 
-	@Nullable
-	private final Boolean fieldStatistics;
+	private final boolean fieldStatistics;
 
-	@Nullable
 	private final Filter filter;
 
-	@Nullable
-	private final Boolean offsets;
+	private final String id;
 
-	@Nullable
-	private final Boolean payloads;
+	private final String index;
 
-	@Nullable
-	private final Boolean positions;
+	private final boolean offsets;
 
-	@Nullable
+	private final boolean payloads;
+
+	private final boolean positions;
+
 	private final String routing;
 
-	@Nullable
-	private final Boolean termStatistics;
+	private final boolean termStatistics;
 
-	@Nullable
-	private final Long version;
+	private final long version;
 
-	@Nullable
 	private final VersionType versionType;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public Operation(Builder builder) {
 
+		this.doc = Objects.requireNonNull(builder.doc, "doc");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.fieldStatistics = Objects.requireNonNull(builder.fieldStatistics, "field_statistics");
+		this.filter = Objects.requireNonNull(builder.filter, "filter");
 		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = builder.index;
-		this.doc = builder.doc;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.fieldStatistics = builder.fieldStatistics;
-		this.filter = builder.filter;
-		this.offsets = builder.offsets;
-		this.payloads = builder.payloads;
-		this.positions = builder.positions;
-		this.routing = builder.routing;
-		this.termStatistics = builder.termStatistics;
-		this.version = builder.version;
-		this.versionType = builder.versionType;
+		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.offsets = Objects.requireNonNull(builder.offsets, "offsets");
+		this.payloads = Objects.requireNonNull(builder.payloads, "payloads");
+		this.positions = Objects.requireNonNull(builder.positions, "positions");
+		this.routing = Objects.requireNonNull(builder.routing, "routing");
+		this.termStatistics = Objects.requireNonNull(builder.termStatistics, "term_statistics");
+		this.version = Objects.requireNonNull(builder.version, "version");
+		this.versionType = Objects.requireNonNull(builder.versionType, "version_type");
 
 	}
 
 	public Operation(Function<Builder, Builder> fn) {
 		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code doc}
+	 */
+	public JsonValue doc() {
+		return this.doc;
+	}
+
+	/**
+	 * API name: {@code fields}
+	 */
+	public List<String> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * API name: {@code field_statistics}
+	 */
+	public boolean fieldStatistics() {
+		return this.fieldStatistics;
+	}
+
+	/**
+	 * API name: {@code filter}
+	 */
+	public Filter filter() {
+		return this.filter;
 	}
 
 	/**
@@ -121,71 +137,34 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * API name: {@code _index}
 	 */
-	@Nullable
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code doc}
-	 */
-	@Nullable
-	public JsonValue doc() {
-		return this.doc;
-	}
-
-	/**
-	 * API name: {@code fields}
-	 */
-	@Nullable
-	public List<String> fields() {
-		return this.fields;
-	}
-
-	/**
-	 * API name: {@code field_statistics}
-	 */
-	@Nullable
-	public Boolean fieldStatistics() {
-		return this.fieldStatistics;
-	}
-
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public Filter filter() {
-		return this.filter;
-	}
-
-	/**
 	 * API name: {@code offsets}
 	 */
-	@Nullable
-	public Boolean offsets() {
+	public boolean offsets() {
 		return this.offsets;
 	}
 
 	/**
 	 * API name: {@code payloads}
 	 */
-	@Nullable
-	public Boolean payloads() {
+	public boolean payloads() {
 		return this.payloads;
 	}
 
 	/**
 	 * API name: {@code positions}
 	 */
-	@Nullable
-	public Boolean positions() {
+	public boolean positions() {
 		return this.positions;
 	}
 
 	/**
 	 * API name: {@code routing}
 	 */
-	@Nullable
 	public String routing() {
 		return this.routing;
 	}
@@ -193,23 +172,20 @@ public final class Operation implements JsonpSerializable {
 	/**
 	 * API name: {@code term_statistics}
 	 */
-	@Nullable
-	public Boolean termStatistics() {
+	public boolean termStatistics() {
 		return this.termStatistics;
 	}
 
 	/**
 	 * API name: {@code version}
 	 */
-	@Nullable
-	public Long version() {
+	public long version() {
 		return this.version;
 	}
 
 	/**
 	 * API name: {@code version_type}
 	 */
-	@Nullable
 	public VersionType versionType() {
 		return this.versionType;
 	}
@@ -225,85 +201,49 @@ public final class Operation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("doc");
+		generator.write(this.doc);
+
+		generator.writeKey("fields");
+		generator.writeStartArray();
+		for (String item0 : this.fields) {
+			generator.write(item0);
+
+		}
+		generator.writeEnd();
+
+		generator.writeKey("field_statistics");
+		generator.write(this.fieldStatistics);
+
+		generator.writeKey("filter");
+		this.filter.serialize(generator, mapper);
+
 		generator.writeKey("_id");
 		generator.write(this.id);
 
-		if (this.index != null) {
+		generator.writeKey("_index");
+		generator.write(this.index);
 
-			generator.writeKey("_index");
-			generator.write(this.index);
+		generator.writeKey("offsets");
+		generator.write(this.offsets);
 
-		}
-		if (this.doc != null) {
+		generator.writeKey("payloads");
+		generator.write(this.payloads);
 
-			generator.writeKey("doc");
-			generator.write(this.doc);
+		generator.writeKey("positions");
+		generator.write(this.positions);
 
-		}
-		if (this.fields != null) {
+		generator.writeKey("routing");
+		generator.write(this.routing);
 
-			generator.writeKey("fields");
-			generator.writeStartArray();
-			for (String item0 : this.fields) {
-				generator.write(item0);
+		generator.writeKey("term_statistics");
+		generator.write(this.termStatistics);
 
-			}
-			generator.writeEnd();
+		generator.writeKey("version");
+		generator.write(this.version);
 
-		}
-		if (this.fieldStatistics != null) {
-
-			generator.writeKey("field_statistics");
-			generator.write(this.fieldStatistics);
-
-		}
-		if (this.filter != null) {
-
-			generator.writeKey("filter");
-			this.filter.serialize(generator, mapper);
-
-		}
-		if (this.offsets != null) {
-
-			generator.writeKey("offsets");
-			generator.write(this.offsets);
-
-		}
-		if (this.payloads != null) {
-
-			generator.writeKey("payloads");
-			generator.write(this.payloads);
-
-		}
-		if (this.positions != null) {
-
-			generator.writeKey("positions");
-			generator.write(this.positions);
-
-		}
-		if (this.routing != null) {
-
-			generator.writeKey("routing");
-			generator.write(this.routing);
-
-		}
-		if (this.termStatistics != null) {
-
-			generator.writeKey("term_statistics");
-			generator.write(this.termStatistics);
-
-		}
-		if (this.version != null) {
-
-			generator.writeKey("version");
-			generator.write(this.version);
-
-		}
-		if (this.versionType != null) {
-
-			generator.writeKey("version_type");
-			this.versionType.serialize(generator, mapper);
-		}
+		generator.writeKey("version_type");
+		this.versionType.serialize(generator, mapper);
 
 	}
 
@@ -313,64 +253,36 @@ public final class Operation implements JsonpSerializable {
 	 * Builder for {@link Operation}.
 	 */
 	public static class Builder implements ObjectBuilder<Operation> {
-		private String id;
-
-		@Nullable
-		private String index;
-
-		@Nullable
 		private JsonValue doc;
 
-		@Nullable
 		private List<String> fields;
 
-		@Nullable
 		private Boolean fieldStatistics;
 
-		@Nullable
 		private Filter filter;
 
-		@Nullable
+		private String id;
+
+		private String index;
+
 		private Boolean offsets;
 
-		@Nullable
 		private Boolean payloads;
 
-		@Nullable
 		private Boolean positions;
 
-		@Nullable
 		private String routing;
 
-		@Nullable
 		private Boolean termStatistics;
 
-		@Nullable
 		private Long version;
 
-		@Nullable
 		private VersionType versionType;
-
-		/**
-		 * API name: {@code _id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _index}
-		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
 
 		/**
 		 * API name: {@code doc}
 		 */
-		public Builder doc(@Nullable JsonValue value) {
+		public Builder doc(JsonValue value) {
 			this.doc = value;
 			return this;
 		}
@@ -378,7 +290,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<String> value) {
+		public Builder fields(List<String> value) {
 			this.fields = value;
 			return this;
 		}
@@ -405,7 +317,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code field_statistics}
 		 */
-		public Builder fieldStatistics(@Nullable Boolean value) {
+		public Builder fieldStatistics(boolean value) {
 			this.fieldStatistics = value;
 			return this;
 		}
@@ -413,7 +325,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Filter value) {
+		public Builder filter(Filter value) {
 			this.filter = value;
 			return this;
 		}
@@ -426,9 +338,25 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code _id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _index}
+		 */
+		public Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code offsets}
 		 */
-		public Builder offsets(@Nullable Boolean value) {
+		public Builder offsets(boolean value) {
 			this.offsets = value;
 			return this;
 		}
@@ -436,7 +364,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code payloads}
 		 */
-		public Builder payloads(@Nullable Boolean value) {
+		public Builder payloads(boolean value) {
 			this.payloads = value;
 			return this;
 		}
@@ -444,7 +372,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code positions}
 		 */
-		public Builder positions(@Nullable Boolean value) {
+		public Builder positions(boolean value) {
 			this.positions = value;
 			return this;
 		}
@@ -452,7 +380,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public Builder routing(String value) {
 			this.routing = value;
 			return this;
 		}
@@ -460,7 +388,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code term_statistics}
 		 */
-		public Builder termStatistics(@Nullable Boolean value) {
+		public Builder termStatistics(boolean value) {
 			this.termStatistics = value;
 			return this;
 		}
@@ -468,7 +396,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -476,7 +404,7 @@ public final class Operation implements JsonpSerializable {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public Builder versionType(VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -503,12 +431,12 @@ public final class Operation implements JsonpSerializable {
 
 	protected static void setupOperationDeserializer(DelegatingDeserializer<Operation.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::doc, JsonpDeserializer.jsonValueDeserializer(), "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::fieldStatistics, JsonpDeserializer.booleanDeserializer(), "field_statistics");
 		op.add(Builder::filter, Filter._DESERIALIZER, "filter");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
 		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");

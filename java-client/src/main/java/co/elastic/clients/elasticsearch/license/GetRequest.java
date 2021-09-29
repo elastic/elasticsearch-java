@@ -63,8 +63,8 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Supported for backwards compatibility with 7.x. If this param is used it must
-	 * be set to true
+	 * If the active license is an enterprise license, return type as 'enterprise'
+	 * (default: false)
 	 * <p>
 	 * API name: {@code accept_enterprise}
 	 */
@@ -97,8 +97,8 @@ public final class GetRequest extends RequestBase {
 		private Boolean local;
 
 		/**
-		 * Supported for backwards compatibility with 7.x. If this param is used it must
-		 * be set to true
+		 * If the active license is an enterprise license, return type as 'enterprise'
+		 * (default: false)
 		 * <p>
 		 * API name: {@code accept_enterprise}
 		 */

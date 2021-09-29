@@ -40,7 +40,10 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,6 +71,9 @@ public final class Source implements JsonpSerializable {
 	@Nullable
 	private final List<String> sourceFields;
 
+	@Nullable
+	private final Map<String, SourceRuntimeMapping> runtimeMappings;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public Source(Builder builder) {
@@ -79,6 +85,7 @@ public final class Source implements JsonpSerializable {
 		this.slice = builder.slice;
 		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.sourceFields = ModelTypeHelper.unmodifiable(builder.sourceFields);
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 
 	}
 
@@ -139,6 +146,18 @@ public final class Source implements JsonpSerializable {
 	@Nullable
 	public List<String> sourceFields() {
 		return this.sourceFields;
+	}
+
+	/**
+	 * Definitions of search-time runtime fields that can be used by the transform.
+	 * For search runtime fields all data nodes, including remote nodes, must be
+	 * 7.12 or later.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	@Nullable
+	public Map<String, SourceRuntimeMapping> runtimeMappings() {
+		return this.runtimeMappings;
 	}
 
 	/**
@@ -206,6 +225,18 @@ public final class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.runtimeMappings != null) {
+
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, SourceRuntimeMapping> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -234,6 +265,9 @@ public final class Source implements JsonpSerializable {
 
 		@Nullable
 		private List<String> sourceFields;
+
+		@Nullable
+		private Map<String, SourceRuntimeMapping> runtimeMappings;
 
 		/**
 		 * API name: {@code index}
@@ -370,6 +404,46 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
+		 * Definitions of search-time runtime fields that can be used by the transform.
+		 * For search runtime fields all data nodes, including remote nodes, must be
+		 * 7.12 or later.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 */
+		public Builder runtimeMappings(@Nullable Map<String, SourceRuntimeMapping> value) {
+			this.runtimeMappings = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 */
+		public Builder putRuntimeMappings(String key, SourceRuntimeMapping value) {
+			if (this.runtimeMappings == null) {
+				this.runtimeMappings = new HashMap<>();
+			}
+			this.runtimeMappings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #runtimeMappings(Map)} to a singleton map.
+		 */
+		public Builder runtimeMappings(String key,
+				Function<SourceRuntimeMapping.Builder, ObjectBuilder<SourceRuntimeMapping>> fn) {
+			return this.runtimeMappings(
+					Collections.singletonMap(key, fn.apply(new SourceRuntimeMapping.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 */
+		public Builder putRuntimeMappings(String key,
+				Function<SourceRuntimeMapping.Builder, ObjectBuilder<SourceRuntimeMapping>> fn) {
+			return this.putRuntimeMappings(key, fn.apply(new SourceRuntimeMapping.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link Source}.
 		 *
 		 * @throws NullPointerException
@@ -399,6 +473,8 @@ public final class Source implements JsonpSerializable {
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
 		op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_source");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(SourceRuntimeMapping._DESERIALIZER),
+				"runtime_mappings");
 
 	}
 

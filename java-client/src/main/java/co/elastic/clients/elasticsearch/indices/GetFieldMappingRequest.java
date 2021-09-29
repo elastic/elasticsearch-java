@@ -56,6 +56,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
+	private final List<String> type;
+
+	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -79,6 +82,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
 		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -109,6 +113,16 @@ public final class GetFieldMappingRequest extends RequestBase {
 	@Nullable
 	public List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * A comma-separated list of document types
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public List<String> type() {
+		return this.type;
 	}
 
 	/**
@@ -156,6 +170,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether a type should be returned in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -184,6 +200,9 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private List<String> type;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -266,6 +285,37 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of document types
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(@Nullable List<String> value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public Builder type(String... value) {
+			this.type = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #type(List)}, creating the list if needed. 4
+		 */
+		public Builder addType(String value) {
+			if (this.type == null) {
+				this.type = new ArrayList<>();
+			}
+			this.type.add(value);
+			return this;
+		}
+
+		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
 		 * specified)
@@ -332,6 +382,8 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether a type should be returned in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -378,12 +430,15 @@ public final class GetFieldMappingRequest extends RequestBase {
 			request -> {
 				final int _fields = 1 << 0;
 				final int _index = 1 << 1;
+				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
 				propsSet |= _fields;
 				if (request.index() != null)
 					propsSet |= _index;
+				if (request.type() != null)
+					propsSet |= _type;
 
 				if (propsSet == (_fields)) {
 					StringBuilder buf = new StringBuilder();
@@ -399,6 +454,30 @@ public final class GetFieldMappingRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
+					buf.append("/field");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
+					return buf.toString();
+				}
+				if (propsSet == (_type | _fields)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_mapping");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/field");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
+					return buf.toString();
+				}
+				if (propsSet == (_index | _type | _fields)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_mapping");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/field");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),

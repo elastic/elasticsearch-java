@@ -132,8 +132,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields for the <code>completion</code> index metric
-	 * (supports wildcards)
+	 * A comma-separated list of fields for <code>fielddata</code> and
+	 * <code>suggest</code> index metric (supports wildcards)
 	 * <p>
 	 * API name: {@code completion_fields}
 	 */
@@ -154,7 +154,7 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields for the <code>fielddata</code> index metric
+	 * A comma-separated list of fields for <code>fielddata</code> index metric
 	 * (supports wildcards)
 	 * <p>
 	 * API name: {@code fielddata_fields}
@@ -346,8 +346,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>completion</code> index metric
-		 * (supports wildcards)
+		 * A comma-separated list of fields for <code>fielddata</code> and
+		 * <code>suggest</code> index metric (supports wildcards)
 		 * <p>
 		 * API name: {@code completion_fields}
 		 */
@@ -357,8 +357,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>completion</code> index metric
-		 * (supports wildcards)
+		 * A comma-separated list of fields for <code>fielddata</code> and
+		 * <code>suggest</code> index metric (supports wildcards)
 		 * <p>
 		 * API name: {@code completion_fields}
 		 */
@@ -413,7 +413,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>fielddata</code> index metric
+		 * A comma-separated list of fields for <code>fielddata</code> index metric
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code fielddata_fields}
@@ -424,7 +424,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>fielddata</code> index metric
+		 * A comma-separated list of fields for <code>fielddata</code> index metric
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code fielddata_fields}

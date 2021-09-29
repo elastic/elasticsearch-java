@@ -155,6 +155,9 @@ public final class CloseRequest extends RequestBase {
 
 	/**
 	 * Sets the number of active shards to wait for before the operation returns.
+	 * Set to <code>index-setting</code> to wait according to the index setting
+	 * <code>index.write.wait_for_active_shards</code>, or <code>all</code> to wait
+	 * for all shards, or an integer. Defaults to <code>0</code>.
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -298,6 +301,9 @@ public final class CloseRequest extends RequestBase {
 
 		/**
 		 * Sets the number of active shards to wait for before the operation returns.
+		 * Set to <code>index-setting</code> to wait according to the index setting
+		 * <code>index.write.wait_for_active_shards</code>, or <code>all</code> to wait
+		 * for all shards, or an integer. Defaults to <code>0</code>.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */

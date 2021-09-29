@@ -101,6 +101,8 @@ public final class GetTemplateRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether a type should be returned in the body of the mappings.
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -192,6 +194,8 @@ public final class GetTemplateRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether a type should be returned in the body of the mappings.
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {

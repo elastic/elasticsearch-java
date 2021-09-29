@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
 // typedef: _global.reindex.Destination
 @JsonpDeserializable
 public final class Destination implements JsonpSerializable {
+	@Nullable
 	private final String index;
 
 	@Nullable
@@ -60,7 +61,7 @@ public final class Destination implements JsonpSerializable {
 
 	public Destination(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = builder.index;
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.routing = builder.routing;
@@ -73,8 +74,14 @@ public final class Destination implements JsonpSerializable {
 	}
 
 	/**
+	 * The destination index for the transform. The mappings of the destination
+	 * index are deduced based on the source fields when possible. If alternate
+	 * mappings are required, use the Create index API prior to starting the
+	 * transform.
+	 * <p>
 	 * API name: {@code index}
 	 */
+	@Nullable
 	public String index() {
 		return this.index;
 	}
@@ -88,6 +95,8 @@ public final class Destination implements JsonpSerializable {
 	}
 
 	/**
+	 * The unique identifier for an ingest pipeline.
+	 * <p>
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
@@ -122,9 +131,12 @@ public final class Destination implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
+		if (this.index != null) {
 
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
 		if (this.opType != null) {
 
 			generator.writeKey("op_type");
@@ -156,6 +168,7 @@ public final class Destination implements JsonpSerializable {
 	 * Builder for {@link Destination}.
 	 */
 	public static class Builder implements ObjectBuilder<Destination> {
+		@Nullable
 		private String index;
 
 		@Nullable
@@ -171,9 +184,14 @@ public final class Destination implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
+		 * The destination index for the transform. The mappings of the destination
+		 * index are deduced based on the source fields when possible. If alternate
+		 * mappings are required, use the Create index API prior to starting the
+		 * transform.
+		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -187,6 +205,8 @@ public final class Destination implements JsonpSerializable {
 		}
 
 		/**
+		 * The unique identifier for an ingest pipeline.
+		 * <p>
 		 * API name: {@code pipeline}
 		 */
 		public Builder pipeline(@Nullable String value) {
