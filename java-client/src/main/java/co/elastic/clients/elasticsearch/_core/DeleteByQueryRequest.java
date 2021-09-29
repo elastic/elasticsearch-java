@@ -456,7 +456,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * A comma-separated list of <field>:<direction> pairs
+	 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -1017,7 +1017,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * A comma-separated list of <field>:<direction> pairs
+		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 		 * <p>
 		 * API name: {@code sort}
 		 */
@@ -1027,7 +1027,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * A comma-separated list of <field>:<direction> pairs
+		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 		 * <p>
 		 * API name: {@code sort}
 		 */
