@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api.query;
+package co.elastic.clients.elasticsearch.experiments.api.query2;
 
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,7 +27,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
-public class TermsQuery implements JsonpSerializable {
+public class TermsQuery implements JsonpSerializable, Query.Variant {
 
     private final String field;
     private final String term;
@@ -35,6 +35,11 @@ public class TermsQuery implements JsonpSerializable {
     public TermsQuery(TermsQuery.Builder builder) {
         this.field = builder.field;
         this.term = builder.term;
+    }
+
+    @Override
+    public String _variantType() {
+        return "terms";
     }
 
     public String field() {

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api.query;
+package co.elastic.clients.elasticsearch.experiments.api.query2;
 
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Function;
 
-public class BoolQuery implements JsonpSerializable {
+public class BoolQuery implements Query.Variant, JsonpSerializable {
 
     private final Collection<Query> should;
     private final Collection<Query> must;
@@ -43,6 +43,23 @@ public class BoolQuery implements JsonpSerializable {
         this.should = builder.should;
         this.must = builder.must;
         this.minimumShouldMatch = builder.minimumShouldMatch;
+    }
+
+    @Override
+    public String _variantType() {
+        return "bool";
+    }
+
+    public Collection<Query> should() {
+        return should;
+    }
+
+    public Collection<Query> must() {
+        return must;
+    }
+
+    public Union2<Integer, String> minimumShouldMatch() {
+        return minimumShouldMatch;
     }
 
     @Override

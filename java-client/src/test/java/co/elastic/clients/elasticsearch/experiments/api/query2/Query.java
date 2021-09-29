@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api.query;
+package co.elastic.clients.elasticsearch.experiments.api.query2;
 
 import co.elastic.clients.json.BuildFunctionDeserializer;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -25,42 +25,51 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.StringEnum;
-import co.elastic.clients.util.TaggedUnion2;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.UnionVariant;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 
 import java.util.Map;
 import java.util.function.Function;
 
-// TODO: add a generic parameter that constrains the variant type? Allows e.g. to restrict sub aggregations
-// to bucket and metric aggregations
-public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements JsonpSerializable {
+public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
 
-    public enum Tag implements StringEnum {
-        bool("bool"),
-        terms("terms"),
-        ;
-
-        private final String jsonValue;
-
-        Tag(String jsonValue) {
-            this.jsonValue = jsonValue;
+    public interface Variant extends UnionVariant, JsonpSerializable {
+        default Query _toQuery() {
+            return new Query(this);
         }
+    }
 
-        public String jsonValue() {
-            return this.jsonValue;
-        }
+    private static final String BOOL = "bool";
+    private static final String TERMS = "terms";
 
-        public static Deserializer<Tag> PARSER =
-            new Deserializer<>(Tag.values());
+    private final String _variantType;
+    private final Variant _variantValue;
+
+    @Override
+    public String _type() {
+        return _variantType;
+    }
+
+    @Override
+    public Variant _get() {
+        return _variantValue;
     }
 
     // A container-level property that lives besides the variant, like "meta" and "aggs" in aggregations
     private Map<String, JsonValue> meta;
 
+    public Query(Variant value) {
+        this._variantType = value._variantType();
+        this._variantValue = value;
+    }
+
     private Query(Builder builder) {
-        super(builder.$tag, builder.$variant);
+        this._variantType = builder.$tag;
+        this._variantValue = builder.$variant;
+
         this.meta = builder.meta;
     }
 
@@ -69,28 +78,23 @@ public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements
         return this.meta;
     }
 
-    // Accessors to variants
-    public boolean isBool() {
-        return is(Tag.bool);
-    }
-
     public BoolQuery bool() {
-        return get(Tag.bool);
-    }
-
-    public boolean isTerms() {
-        return is(Tag.terms);
+        return TaggedUnionUtils.get(this, BOOL);
     }
 
     public TermsQuery terms() {
-        return get(Tag.terms);
+        return TaggedUnionUtils.get(this, TERMS);
     }
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        generator.writeKey(tag.jsonValue);
-        value.serialize(generator, mapper);
+        generator.writeKey(_variantType);
+        if (_variantValue instanceof JsonpSerializable) {
+            ((JsonpSerializable) _variantValue).serialize(generator, mapper);
+        } else {
+            // Other serialization
+        }
         if (meta != null) {
             generator.writeStartObject("meta");
             for (Map.Entry<String, JsonValue> e: meta.entrySet()) {
@@ -103,8 +107,8 @@ public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements
 
     public static class Builder {
 
-        private JsonpSerializable $variant;
-        private Tag $tag;
+        private Variant $variant;
+        private String $tag;
         private Map<String, JsonValue> meta;
 
         // Container properties
@@ -120,8 +124,13 @@ public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements
 
         public ContainerBuilder bool(BoolQuery v) {
             this.$variant = v;
-            this.$tag = Tag.bool;
+            this.$tag = "bool";
             return new ContainerBuilder();
+        }
+
+        // If we don't have container properties, the container builder is not necessary
+        public ObjectBuilder<Query> foo() {
+            return ObjectBuilder.of(this, Builder::build);
         }
 
         public ContainerBuilder bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {
@@ -130,7 +139,7 @@ public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements
 
         public ContainerBuilder terms(TermsQuery v) {
             this.$variant = v;
-            this.$tag = Tag.terms;
+            this.$tag = "terms";
             return new ContainerBuilder();
         }
 
@@ -174,4 +183,6 @@ public class Query extends TaggedUnion2<Query.Tag, JsonpSerializable> implements
 
         return PARSER;
     }
+
+
 }

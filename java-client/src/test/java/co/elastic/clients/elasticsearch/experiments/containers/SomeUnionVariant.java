@@ -17,35 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch;
+package co.elastic.clients.elasticsearch.experiments.containers;
 
-import org.junit.Test;
+import co.elastic.clients.util.UnionVariant;
 
-public class ScratchPad {
-
-    @Test
-    public void testConstants() {
-
-        final int a = 1 << 0;
-        final int b = 1 << 1;
-
-        int x = (int)System.currentTimeMillis();
-
-        int y;
-
-        switch(x) {
-            case a+b:
-                y = 1;
-                break;
-
-            case a:
-                y = 2;
-                break;
-
-            default:
-                y = 3;
-        }
-
-    }
-
+public interface SomeUnionVariant extends UnionVariant {
 }

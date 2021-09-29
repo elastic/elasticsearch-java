@@ -17,33 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api;
-
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
-
-public enum DateMathTimeUnit implements StringEnum {
-
-    Year("Y"),
-    Month("M"),
-    Day("D"),
-    Hour("h"),
-    Minute("m"),
-    Second("s");
-
-    private final String jsonValue;
-
-    DateMathTimeUnit(String jsonValue) {
-        this.jsonValue = jsonValue;
-    }
-
-    public String jsonValue() {
-        return this.jsonValue;
-    }
-
-    public static final JsonpDeserializer<DateMathTimeUnit> PARSER;
-
-    static {
-        PARSER = new Deserializer<>(DateMathTimeUnit.values());
-    }
-}
+/**
+ * Tests that verify correct types and serialization/deserialization of the API specification model using API
+ * structures that cover the various model features
+ */
+package co.elastic.clients.elasticsearch.model;

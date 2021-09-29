@@ -17,33 +17,30 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.experiments.api;
+package co.elastic.clients.elasticsearch.experiments.api.query2;
 
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
+import co.elastic.clients.json.JsonpSerializable;
+import org.junit.Assert;
+import org.junit.Test;
 
-public enum DateMathTimeUnit implements StringEnum {
+import java.util.Collection;
 
-    Year("Y"),
-    Month("M"),
-    Day("D"),
-    Hour("h"),
-    Minute("m"),
-    Second("s");
+public class QueryTest extends Assert {
+    @Test
+    public void testQuery() {
+        BoolQuery bq = new BoolQuery.Builder().build();
 
-    private final String jsonValue;
+        Query q = new Query(bq);
 
-    DateMathTimeUnit(String jsonValue) {
-        this.jsonValue = jsonValue;
-    }
+        assertTrue(q._is("bool"));
+        assertEquals("bool", q._type());
 
-    public String jsonValue() {
-        return this.jsonValue;
-    }
+        JsonpSerializable v = q._get();
+        assertEquals("bool", ((Query.Variant)v)._variantType());
 
-    public static final JsonpDeserializer<DateMathTimeUnit> PARSER;
+        Query q1 = ((Query.Variant)v)._toQuery();
 
-    static {
-        PARSER = new Deserializer<>(DateMathTimeUnit.values());
+        Collection<Query> must = q.bool().must();
+
     }
 }
