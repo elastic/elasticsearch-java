@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license._types.License
@@ -77,6 +78,10 @@ public final class License implements JsonpSerializable {
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.uid = Objects.requireNonNull(builder.uid, "uid");
 
+	}
+
+	public License(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

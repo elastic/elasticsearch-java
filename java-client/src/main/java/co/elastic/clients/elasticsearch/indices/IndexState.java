@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -51,6 +52,7 @@ public final class IndexState implements JsonpSerializable {
 	@Nullable
 	private final TypeMapping mappings;
 
+	@Nullable
 	private final JsonValue /*
 							 * Union(indices._types.IndexSettings |
 							 * indices._types.IndexStatePrefixedSettings)
@@ -63,11 +65,15 @@ public final class IndexState implements JsonpSerializable {
 
 	public IndexState(Builder builder) {
 
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = builder.settings;
 		this.dataStream = builder.dataStream;
 
+	}
+
+	public IndexState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -89,6 +95,7 @@ public final class IndexState implements JsonpSerializable {
 	/**
 	 * API name: {@code settings}
 	 */
+	@Nullable
 	public JsonValue /*
 						 * Union(indices._types.IndexSettings |
 						 * indices._types.IndexStatePrefixedSettings)
@@ -133,10 +140,12 @@ public final class IndexState implements JsonpSerializable {
 			this.mappings.serialize(generator, mapper);
 
 		}
+		if (this.settings != null) {
 
-		generator.writeKey("settings");
-		generator.write(this.settings);
+			generator.writeKey("settings");
+			generator.write(this.settings);
 
+		}
 		if (this.dataStream != null) {
 
 			generator.writeKey("data_stream");
@@ -158,6 +167,7 @@ public final class IndexState implements JsonpSerializable {
 		@Nullable
 		private TypeMapping mappings;
 
+		@Nullable
 		private JsonValue /*
 							 * Union(indices._types.IndexSettings |
 							 * indices._types.IndexStatePrefixedSettings)
@@ -217,10 +227,10 @@ public final class IndexState implements JsonpSerializable {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(JsonValue /*
-											 * Union(indices._types.IndexSettings |
-											 * indices._types.IndexStatePrefixedSettings)
-											 */ value) {
+		public Builder settings(@Nullable JsonValue /*
+													 * Union(indices._types.IndexSettings |
+													 * indices._types.IndexStatePrefixedSettings)
+													 */ value) {
 			this.settings = value;
 			return this;
 		}

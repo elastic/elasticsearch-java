@@ -63,6 +63,10 @@ public final class FollowerIndex implements JsonpSerializable {
 
 	}
 
+	public FollowerIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code follower_index}
 	 */

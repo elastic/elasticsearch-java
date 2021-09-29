@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LowercaseTokenFilter
@@ -47,6 +48,10 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 
 		this.language = Objects.requireNonNull(builder.language, "language");
 
+	}
+
+	public LowercaseTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

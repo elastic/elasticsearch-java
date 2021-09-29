@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteSniffInfo
@@ -67,8 +69,12 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		this.numNodesConnected = Objects.requireNonNull(builder.numNodesConnected, "num_nodes_connected");
 		this.initialConnectTimeout = Objects.requireNonNull(builder.initialConnectTimeout, "initial_connect_timeout");
 		this.skipUnavailable = Objects.requireNonNull(builder.skipUnavailable, "skip_unavailable");
-		this.seeds = Objects.requireNonNull(builder.seeds, "seeds");
+		this.seeds = ModelTypeHelper.unmodifiableNonNull(builder.seeds, "seeds");
 
+	}
+
+	public ClusterRemoteSniffInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -234,7 +240,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		}
 
 		/**
-		 * Add a value to {@link #seeds(List)}, creating the list if needed.
+		 * Add a value to {@link #seeds(List)}, creating the list if needed. 4
 		 */
 		public Builder addSeeds(String value) {
 			if (this.seeds == null) {

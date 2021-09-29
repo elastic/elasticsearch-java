@@ -55,6 +55,10 @@ public final class SecurityRoles implements JsonpSerializable {
 
 	}
 
+	public SecurityRoles(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code native}
 	 */

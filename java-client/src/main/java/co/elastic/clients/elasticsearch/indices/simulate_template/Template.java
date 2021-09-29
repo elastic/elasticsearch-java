@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -60,11 +61,15 @@ public final class Template implements JsonpSerializable {
 
 	public Template(Builder builder) {
 
-		this.aliases = Objects.requireNonNull(builder.aliases, "aliases");
+		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
-		this.overlapping = Objects.requireNonNull(builder.overlapping, "overlapping");
+		this.settings = ModelTypeHelper.unmodifiableNonNull(builder.settings, "settings");
+		this.overlapping = ModelTypeHelper.unmodifiableNonNull(builder.overlapping, "overlapping");
 
+	}
+
+	public Template(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -235,7 +240,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 4
 		 */
 		public Builder addOverlapping(Overlapping value) {
 			if (this.overlapping == null) {
@@ -253,7 +258,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 5
 		 */
 		public Builder addOverlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
 			return this.addOverlapping(fn.apply(new Overlapping.Builder()).build());

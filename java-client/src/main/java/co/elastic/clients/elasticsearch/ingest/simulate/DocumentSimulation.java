@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -69,9 +70,13 @@ public final class DocumentSimulation implements JsonpSerializable {
 		this.ingest = Objects.requireNonNull(builder.ingest, "_ingest");
 		this.parent = builder.parent;
 		this.routing = builder.routing;
-		this.source = Objects.requireNonNull(builder.source, "_source");
+		this.source = ModelTypeHelper.unmodifiableNonNull(builder.source, "_source");
 		this.type = builder.type;
 
+	}
+
+	public DocumentSimulation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -258,7 +263,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #source(Map)}, creating the map if needed.
 		 */
-		public Builder put_source(String key, JsonData value) {
+		public Builder putSource(String key, JsonData value) {
 			if (this.source == null) {
 				this.source = new HashMap<>();
 			}

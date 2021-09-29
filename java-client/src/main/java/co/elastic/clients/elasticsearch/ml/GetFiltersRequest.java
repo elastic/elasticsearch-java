@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_filters.Request
@@ -59,6 +61,10 @@ public final class GetFiltersRequest extends RequestBase {
 		this.from = builder.from;
 		this.size = builder.size;
 
+	}
+
+	public GetFiltersRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -153,7 +159,7 @@ public final class GetFiltersRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_filters}".
 	 */
-	public static final Endpoint<GetFiltersRequest, GetFiltersResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetFiltersRequest, GetFiltersResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -180,10 +186,10 @@ public final class GetFiltersRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/filters");
 					buf.append("/");
-					buf.append(request.filterId);
+					SimpleEndpoint.pathEncode(request.filterId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -198,5 +204,5 @@ public final class GetFiltersRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetFiltersResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetFiltersResponse._DESERIALIZER);
 }

@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhraseQuery
@@ -63,6 +64,10 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		this.slop = builder.slop;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	public MatchPhraseQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

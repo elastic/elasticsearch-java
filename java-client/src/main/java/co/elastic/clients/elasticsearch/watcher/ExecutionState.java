@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionState
@@ -51,6 +52,10 @@ public final class ExecutionState implements JsonpSerializable {
 		this.successful = Objects.requireNonNull(builder.successful, "successful");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
+	}
+
+	public ExecutionState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.HealthRecord
@@ -100,6 +101,10 @@ public final class HealthRecord implements JsonpSerializable {
 		this.maxTaskWaitTime = builder.maxTaskWaitTime;
 		this.activeShardsPercent = builder.activeShardsPercent;
 
+	}
+
+	public HealthRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

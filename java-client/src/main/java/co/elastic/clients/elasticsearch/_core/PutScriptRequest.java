@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.StoredScript;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -70,6 +71,10 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		this.timeout = builder.timeout;
 		this.script = builder.script;
 
+	}
+
+	public PutScriptRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -245,7 +250,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code put_script}".
 	 */
-	public static final Endpoint<PutScriptRequest, PutScriptResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutScriptRequest, PutScriptResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -267,19 +272,19 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_scripts");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_id | _context)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_scripts");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/");
-					buf.append(request.context);
+					SimpleEndpoint.pathEncode(request.context, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -294,5 +299,5 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutScriptResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutScriptResponse._DESERIALIZER);
 }

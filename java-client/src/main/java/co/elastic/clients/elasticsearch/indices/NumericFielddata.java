@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.NumericFielddata
@@ -46,6 +47,10 @@ public final class NumericFielddata implements JsonpSerializable {
 
 		this.format = Objects.requireNonNull(builder.format, "format");
 
+	}
+
+	public NumericFielddata(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

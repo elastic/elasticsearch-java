@@ -36,6 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FlattenedProperty
@@ -83,6 +84,10 @@ public final class FlattenedProperty extends PropertyBase implements PropertyVar
 		this.similarity = builder.similarity;
 		this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
 
+	}
+
+	public FlattenedProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _global.clear_scroll.Response
 @JsonpDeserializable
@@ -50,6 +51,10 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		this.succeeded = Objects.requireNonNull(builder.succeeded, "succeeded");
 		this.numFreed = Objects.requireNonNull(builder.numFreed, "num_freed");
 
+	}
+
+	public ClearScrollResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

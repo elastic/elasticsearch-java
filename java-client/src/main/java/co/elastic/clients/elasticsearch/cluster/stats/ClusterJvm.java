@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -58,8 +59,12 @@ public final class ClusterJvm implements JsonpSerializable {
 		this.maxUptimeInMillis = Objects.requireNonNull(builder.maxUptimeInMillis, "max_uptime_in_millis");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
 		this.threads = Objects.requireNonNull(builder.threads, "threads");
-		this.versions = Objects.requireNonNull(builder.versions, "versions");
+		this.versions = ModelTypeHelper.unmodifiableNonNull(builder.versions, "versions");
 
+	}
+
+	public ClusterJvm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -182,7 +187,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
 		 */
 		public Builder addVersions(ClusterJvmVersion value) {
 			if (this.versions == null) {
@@ -200,7 +205,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 5
 		 */
 		public Builder addVersions(Function<ClusterJvmVersion.Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
 			return this.addVersions(fn.apply(new ClusterJvmVersion.Builder()).build());

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.DataFrameAnalyticsRecord
@@ -108,6 +109,10 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		this.nodeEphemeralId = builder.nodeEphemeralId;
 		this.nodeAddress = builder.nodeAddress;
 
+	}
+
+	public DataFrameAnalyticsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

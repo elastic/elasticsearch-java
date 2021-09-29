@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.AnalysisMemoryLimit
@@ -47,6 +48,10 @@ public final class AnalysisMemoryLimit implements JsonpSerializable {
 
 		this.modelMemoryLimit = Objects.requireNonNull(builder.modelMemoryLimit, "model_memory_limit");
 
+	}
+
+	public AnalysisMemoryLimit(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

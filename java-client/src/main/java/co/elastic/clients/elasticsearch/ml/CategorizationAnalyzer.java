@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -58,10 +59,14 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 
 	public CategorizationAnalyzer(Builder builder) {
 
-		this.charFilter = builder.charFilter;
-		this.filter = builder.filter;
+		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.tokenizer = builder.tokenizer;
 
+	}
+
+	public CategorizationAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -174,7 +179,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
 		 */
 		public Builder addCharFilter(CharFilter value) {
 			if (this.charFilter == null) {
@@ -192,7 +197,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 5
 		 */
 		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
 			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
@@ -231,7 +236,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilter(TokenFilter value) {
 			if (this.filter == null) {
@@ -249,7 +254,7 @@ public final class CategorizationAnalyzer implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
 		 */
 		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
 			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());

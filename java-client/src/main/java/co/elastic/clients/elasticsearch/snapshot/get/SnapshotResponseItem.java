@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -58,9 +59,13 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 	public SnapshotResponseItem(Builder builder) {
 
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshots = builder.snapshots;
+		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
 		this.error = builder.error;
 
+	}
+
+	public SnapshotResponseItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -159,7 +164,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
 		 */
 		public Builder addSnapshots(SnapshotInfo value) {
 			if (this.snapshots == null) {
@@ -177,7 +182,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
 		 */
 		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());

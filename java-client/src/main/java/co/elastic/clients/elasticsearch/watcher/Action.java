@@ -93,6 +93,10 @@ public final class Action implements JsonpSerializable {
 
 	}
 
+	public Action(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code action_type}
 	 */

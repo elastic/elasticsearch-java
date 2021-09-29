@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorNGramEncoding
@@ -70,10 +72,14 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		this.featurePrefix = builder.featurePrefix;
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.length = builder.length;
-		this.nGrams = Objects.requireNonNull(builder.nGrams, "n_grams");
+		this.nGrams = ModelTypeHelper.unmodifiableNonNull(builder.nGrams, "n_grams");
 		this.start = builder.start;
 		this.custom = builder.custom;
 
+	}
+
+	public DataframeAnalysisFeatureProcessorNGramEncoding(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -270,7 +276,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		}
 
 		/**
-		 * Add a value to {@link #nGrams(List)}, creating the list if needed.
+		 * Add a value to {@link #nGrams(List)}, creating the list if needed. 4
 		 */
 		public Builder addNGrams(Integer value) {
 			if (this.nGrams == null) {

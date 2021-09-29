@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -51,9 +52,13 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 
 	public GeoIpNodeDatabases(Builder builder) {
 
-		this.databases = Objects.requireNonNull(builder.databases, "databases");
-		this.filesInTemp = Objects.requireNonNull(builder.filesInTemp, "files_in_temp");
+		this.databases = ModelTypeHelper.unmodifiableNonNull(builder.databases, "databases");
+		this.filesInTemp = ModelTypeHelper.unmodifiableNonNull(builder.filesInTemp, "files_in_temp");
 
+	}
+
+	public GeoIpNodeDatabases(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -136,7 +141,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #databases(List)}, creating the list if needed.
+		 * Add a value to {@link #databases(List)}, creating the list if needed. 4
 		 */
 		public Builder addDatabases(GeoIpNodeDatabaseName value) {
 			if (this.databases == null) {
@@ -154,7 +159,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #databases(List)}, creating the list if needed.
+		 * Add a value to {@link #databases(List)}, creating the list if needed. 5
 		 */
 		public Builder addDatabases(Function<GeoIpNodeDatabaseName.Builder, ObjectBuilder<GeoIpNodeDatabaseName>> fn) {
 			return this.addDatabases(fn.apply(new GeoIpNodeDatabaseName.Builder()).build());
@@ -185,7 +190,7 @@ public final class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filesInTemp(List)}, creating the list if needed.
+		 * Add a value to {@link #filesInTemp(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilesInTemp(String value) {
 			if (this.filesInTemp == null) {

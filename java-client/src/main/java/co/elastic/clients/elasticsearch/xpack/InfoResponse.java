@@ -62,6 +62,10 @@ public final class InfoResponse implements JsonpSerializable {
 
 	}
 
+	public InfoResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code build}
 	 */

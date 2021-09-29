@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class RuntimeFieldTypes extends Base {
 	public RuntimeFieldTypes(Builder builder) {
 		super(builder);
 
-		this.fieldTypes = Objects.requireNonNull(builder.fieldTypes, "field_types");
+		this.fieldTypes = ModelTypeHelper.unmodifiableNonNull(builder.fieldTypes, "field_types");
 
+	}
+
+	public RuntimeFieldTypes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -98,7 +103,7 @@ public final class RuntimeFieldTypes extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed. 4
 		 */
 		public Builder addFieldTypes(RuntimeFieldsType value) {
 			if (this.fieldTypes == null) {
@@ -116,7 +121,7 @@ public final class RuntimeFieldTypes extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed. 5
 		 */
 		public Builder addFieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
 			return this.addFieldTypes(fn.apply(new RuntimeFieldsType.Builder()).build());

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
@@ -38,6 +39,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -87,9 +89,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	private final List<String> indices;
 
 	@Nullable
-	private final List<String> indexes;
-
-	@Nullable
 	private final DatafeedIndicesOptions indicesOptions;
 
 	@Nullable
@@ -119,24 +118,27 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.chunkingConfig = builder.chunkingConfig;
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.frequency = builder.frequency;
-		this.indices = builder.indices;
-		this.indexes = builder.indexes;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
-		this.runtimeMappings = builder.runtimeMappings;
-		this.scriptFields = builder.scriptFields;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 
+	}
+
+	public PutDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -228,14 +230,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	public List<String> indices() {
 		return this.indices;
-	}
-
-	/**
-	 * API name: {@code indexes}
-	 */
-	@Nullable
-	public List<String> indexes() {
-		return this.indexes;
 	}
 
 	/**
@@ -354,17 +348,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 			generator.writeEnd();
 
 		}
-		if (this.indexes != null) {
-
-			generator.writeKey("indexes");
-			generator.writeStartArray();
-			for (String item0 : this.indexes) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.indicesOptions != null) {
 
 			generator.writeKey("indices_options");
@@ -464,9 +447,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private List<String> indices;
 
 		@Nullable
-		private List<String> indexes;
-
-		@Nullable
 		private DatafeedIndicesOptions indicesOptions;
 
 		@Nullable
@@ -534,7 +514,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -653,40 +633,13 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
 				this.indices = new ArrayList<>();
 			}
 			this.indices.add(value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code indexes}
-		 */
-		public Builder indexes(@Nullable List<String> value) {
-			this.indexes = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code indexes}
-		 */
-		public Builder indexes(String... value) {
-			this.indexes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexes(List)}, creating the list if needed.
-		 */
-		public Builder addIndexes(String value) {
-			if (this.indexes == null) {
-				this.indexes = new ArrayList<>();
-			}
-			this.indexes.add(value);
 			return this;
 		}
 
@@ -846,9 +799,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"indices");
-		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
 		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
@@ -868,7 +819,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.put_datafeed}".
 	 */
-	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -888,10 +839,10 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -913,5 +864,5 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutDatafeedResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutDatafeedResponse._DESERIALIZER);
 }

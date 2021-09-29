@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -112,7 +113,7 @@ public final class SegmentsStats implements JsonpSerializable {
 		this.docValuesMemory = builder.docValuesMemory;
 		this.docValuesMemoryInBytes = Objects.requireNonNull(builder.docValuesMemoryInBytes,
 				"doc_values_memory_in_bytes");
-		this.fileSizes = Objects.requireNonNull(builder.fileSizes, "file_sizes");
+		this.fileSizes = ModelTypeHelper.unmodifiableNonNull(builder.fileSizes, "file_sizes");
 		this.fixedBitSet = builder.fixedBitSet;
 		this.fixedBitSetMemoryInBytes = Objects.requireNonNull(builder.fixedBitSetMemoryInBytes,
 				"fixed_bit_set_memory_in_bytes");
@@ -140,6 +141,10 @@ public final class SegmentsStats implements JsonpSerializable {
 		this.versionMapMemoryInBytes = Objects.requireNonNull(builder.versionMapMemoryInBytes,
 				"version_map_memory_in_bytes");
 
+	}
+
+	public SegmentsStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

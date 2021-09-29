@@ -32,12 +32,14 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -53,9 +55,13 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 
 	public PreviewDatafeedResponse(Builder<TDocument> builder) {
 
-		this.data = Objects.requireNonNull(builder.data, "data");
+		this.data = ModelTypeHelper.unmodifiableNonNull(builder.data, "data");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public PreviewDatafeedResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -114,7 +120,7 @@ public final class PreviewDatafeedResponse<TDocument> implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
+		 * Add a value to {@link #data(List)}, creating the list if needed. 4
 		 */
 		public Builder<TDocument> addData(TDocument value) {
 			if (this.data == null) {

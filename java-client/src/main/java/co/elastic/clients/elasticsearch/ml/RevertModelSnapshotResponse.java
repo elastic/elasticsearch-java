@@ -49,6 +49,10 @@ public final class RevertModelSnapshotResponse implements JsonpSerializable {
 
 	}
 
+	public RevertModelSnapshotResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code model}
 	 */

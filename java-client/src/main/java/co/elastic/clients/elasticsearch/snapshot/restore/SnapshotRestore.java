@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -54,10 +55,14 @@ public final class SnapshotRestore implements JsonpSerializable {
 
 	public SnapshotRestore(Builder builder) {
 
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.shards = Objects.requireNonNull(builder.shards, "shards");
 
+	}
+
+	public SnapshotRestore(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -137,7 +142,7 @@ public final class SnapshotRestore implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

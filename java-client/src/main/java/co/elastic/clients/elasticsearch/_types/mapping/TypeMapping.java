@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -98,18 +99,22 @@ public final class TypeMapping implements JsonpSerializable {
 		this.allField = builder.allField;
 		this.dateDetection = builder.dateDetection;
 		this.dynamic = builder.dynamic;
-		this.dynamicDateFormats = builder.dynamicDateFormats;
-		this.dynamicTemplates = builder.dynamicTemplates;
+		this.dynamicDateFormats = ModelTypeHelper.unmodifiable(builder.dynamicDateFormats);
+		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.fieldNames = builder.fieldNames;
 		this.indexField = builder.indexField;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.numericDetection = builder.numericDetection;
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 		this.routing = builder.routing;
 		this.size = builder.size;
 		this.source = builder.source;
-		this.runtime = builder.runtime;
+		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
 
+	}
+
+	public TypeMapping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -454,7 +459,7 @@ public final class TypeMapping implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dynamicDateFormats(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addDynamicDateFormats(String value) {
 			if (this.dynamicDateFormats == null) {
@@ -482,6 +487,7 @@ public final class TypeMapping implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dynamicTemplates(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addDynamicTemplates(Map<String, DynamicTemplate> value) {
 			if (this.dynamicTemplates == null) {
@@ -532,7 +538,7 @@ public final class TypeMapping implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}

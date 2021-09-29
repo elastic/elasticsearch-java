@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.mget.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -32,8 +33,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -95,12 +98,16 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
-		this.storedFields = builder.storedFields;
-		this.docs = builder.docs;
-		this.ids = builder.ids;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
+		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
 
+	}
+
+	public MgetRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -369,9 +376,9 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceExcludes(String value) {
+		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -400,9 +407,9 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceIncludes(String value) {
+		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -431,7 +438,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -458,7 +465,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocs(Operation value) {
 			if (this.docs == null) {
@@ -476,7 +483,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
 		 */
 		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
 			return this.addDocs(fn.apply(new Operation.Builder()).build());
@@ -499,7 +506,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
+		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {
@@ -541,7 +548,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code mget}".
 	 */
-	private static final Endpoint.Simple<MgetRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<MgetRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -565,11 +572,11 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_mget");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -589,7 +596,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
-					params.put("_source", request.source.toString());
+					params.put("_source", JsonpUtils.toString(request.source));
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -605,7 +612,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code mget}" endpoint.

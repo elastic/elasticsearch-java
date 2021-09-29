@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -61,8 +62,12 @@ public final class StatsResponse implements JsonpSerializable {
 		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.manuallyStopped = Objects.requireNonNull(builder.manuallyStopped, "manually_stopped");
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
+		this.stats = ModelTypeHelper.unmodifiableNonNull(builder.stats, "stats");
 
+	}
+
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -185,7 +190,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
+		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
 		 */
 		public Builder addStats(WatcherNodeStats value) {
 			if (this.stats == null) {
@@ -203,7 +208,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
+		 * Add a value to {@link #stats(List)}, creating the list if needed. 5
 		 */
 		public Builder addStats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
 			return this.addStats(fn.apply(new WatcherNodeStats.Builder()).build());

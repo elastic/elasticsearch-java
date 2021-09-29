@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.reindex.Destination;
 import co.elastic.clients.elasticsearch._core.reindex.Source;
 import co.elastic.clients.elasticsearch._types.Conflicts;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -112,6 +114,10 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 		this.size = builder.size;
 		this.source = builder.source;
 
+	}
+
+	public ReindexRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -527,7 +533,7 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code reindex}".
 	 */
-	public static final Endpoint<ReindexRequest, ReindexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ReindexRequest, ReindexResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -559,7 +565,7 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
@@ -569,5 +575,5 @@ public final class ReindexRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ReindexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ReindexResponse._DESERIALIZER);
 }

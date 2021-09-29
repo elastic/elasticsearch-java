@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -50,8 +51,12 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 	public AdjacencyMatrixAggregation(Builder builder) {
 		super(builder);
 
-		this.filters = builder.filters;
+		this.filters = ModelTypeHelper.unmodifiable(builder.filters);
 
+	}
+
+	public AdjacencyMatrixAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

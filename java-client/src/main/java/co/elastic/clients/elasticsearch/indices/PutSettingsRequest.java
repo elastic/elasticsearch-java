@@ -25,16 +25,16 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.indices.put_settings.IndexSettingsBody;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -76,22 +76,26 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	private final String timeout;
 
-	private final IndexSettingsBody value;
+	private final IndexSettings settings;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutSettingsRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.preserveExisting = builder.preserveExisting;
 		this.timeout = builder.timeout;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.settings = Objects.requireNonNull(builder.settings, "_value_body");
 
+	}
+
+	public PutSettingsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -183,17 +187,17 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public IndexSettingsBody value() {
-		return this.value;
+	public IndexSettings settings() {
+		return this.settings;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.settings.serialize(generator, mapper);
 
 	}
 
@@ -227,7 +231,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private String timeout;
 
-		private IndexSettingsBody value;
+		private IndexSettings settings;
 
 		/**
 		 * A comma-separated list of index names; use <code>_all</code> or empty string
@@ -252,7 +256,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -297,7 +301,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -362,20 +366,20 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(IndexSettingsBody value) {
-			this.value = value;
+		public Builder settings(IndexSettings value) {
+			this.settings = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<IndexSettingsBody.Builder, ObjectBuilder<IndexSettingsBody>> fn) {
-			return this.value(fn.apply(new IndexSettingsBody.Builder()).build());
+		public Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -390,18 +394,13 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutSettingsRequest> _DESERIALIZER = createPutSettingsRequestDeserializer();
+	protected static JsonpDeserializer<PutSettingsRequest> createPutSettingsRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PutSettingsRequest}
-	 */
-	public static final JsonpDeserializer<PutSettingsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutSettingsRequest::setupPutSettingsRequestDeserializer, Builder::build);
+		JsonpDeserializer<IndexSettings> valueDeserializer = IndexSettings._DESERIALIZER;
 
-	protected static void setupPutSettingsRequestDeserializer(DelegatingDeserializer<PutSettingsRequest.Builder> op) {
-
-		op.add(Builder::value, IndexSettingsBody._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.settings(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -409,7 +408,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code indices.put_settings}".
 	 */
-	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -433,11 +432,11 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_settings");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -468,5 +467,5 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutSettingsResponse._DESERIALIZER);
 }

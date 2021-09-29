@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -32,8 +33,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -76,9 +79,13 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = builder.aliases;
-		this.settings = builder.settings;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
+	}
+
+	public SplitRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -344,7 +351,7 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code indices.split}".
 	 */
-	public static final Endpoint<SplitRequest, SplitResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SplitRequest, SplitResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -364,13 +371,13 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 				if (propsSet == (_index | _target)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_split");
 					buf.append("/");
-					buf.append(request.target);
+					SimpleEndpoint.pathEncode(request.target, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -384,9 +391,9 @@ public final class SplitRequest extends RequestBase implements JsonpSerializable
 					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SplitResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SplitResponse._DESERIALIZER);
 }

@@ -49,6 +49,10 @@ public final class AckWatchResponse implements JsonpSerializable {
 
 	}
 
+	public AckWatchResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code status}
 	 */

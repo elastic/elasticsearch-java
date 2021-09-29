@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -51,9 +52,13 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 
 	public GetCategoriesResponse(Builder builder) {
 
-		this.categories = Objects.requireNonNull(builder.categories, "categories");
+		this.categories = ModelTypeHelper.unmodifiableNonNull(builder.categories, "categories");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
+	}
+
+	public GetCategoriesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -121,7 +126,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed.
+		 * Add a value to {@link #categories(List)}, creating the list if needed. 4
 		 */
 		public Builder addCategories(Category value) {
 			if (this.categories == null) {
@@ -139,7 +144,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed.
+		 * Add a value to {@link #categories(List)}, creating the list if needed. 5
 		 */
 		public Builder addCategories(Function<Category.Builder, ObjectBuilder<Category>> fn) {
 			return this.addCategories(fn.apply(new Category.Builder()).build());

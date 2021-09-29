@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.info.Datafeeds
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class Datafeeds implements JsonpSerializable {
 
 		this.scrollSize = Objects.requireNonNull(builder.scrollSize, "scroll_size");
 
+	}
+
+	public Datafeeds(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

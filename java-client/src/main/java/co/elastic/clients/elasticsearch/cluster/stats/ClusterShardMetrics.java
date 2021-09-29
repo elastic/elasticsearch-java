@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterShardMetrics
 @JsonpDeserializable
@@ -52,6 +53,10 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		this.max = Objects.requireNonNull(builder.max, "max");
 		this.min = Objects.requireNonNull(builder.min, "min");
 
+	}
+
+	public ClusterShardMetrics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

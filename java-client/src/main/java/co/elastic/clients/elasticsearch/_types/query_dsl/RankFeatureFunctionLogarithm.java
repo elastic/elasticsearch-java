@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionLogarithm
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class RankFeatureFunctionLogarithm extends RankFeatureFunction impl
 
 		this.scalingFactor = Objects.requireNonNull(builder.scalingFactor, "scaling_factor");
 
+	}
+
+	public RankFeatureFunctionLogarithm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

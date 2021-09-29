@@ -36,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -86,8 +87,12 @@ public final class ClusterIndices implements JsonpSerializable {
 		this.store = Objects.requireNonNull(builder.store, "store");
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
 		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
-		this.versions = builder.versions;
+		this.versions = ModelTypeHelper.unmodifiable(builder.versions);
 
+	}
+
+	public ClusterIndices(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -473,7 +478,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
 		 */
 		public Builder addVersions(IndicesVersions value) {
 			if (this.versions == null) {
@@ -491,7 +496,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 5
 		 */
 		public Builder addVersions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
 			return this.addVersions(fn.apply(new IndicesVersions.Builder()).build());

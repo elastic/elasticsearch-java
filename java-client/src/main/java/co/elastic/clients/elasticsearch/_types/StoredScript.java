@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoredScript
@@ -51,6 +52,10 @@ public final class StoredScript implements JsonpSerializable {
 		this.lang = builder.lang;
 		this.source = Objects.requireNonNull(builder.source, "source");
 
+	}
+
+	public StoredScript(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

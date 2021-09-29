@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -109,7 +110,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = builder.groups;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.jobType = Objects.requireNonNull(builder.jobType, "job_type");
 		this.jobVersion = Objects.requireNonNull(builder.jobVersion, "job_version");
@@ -121,6 +122,10 @@ public final class PutJobResponse implements JsonpSerializable {
 		this.resultsIndexName = Objects.requireNonNull(builder.resultsIndexName, "results_index_name");
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
+	}
+
+	public PutJobResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -570,7 +575,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -59,10 +60,14 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	public RankEvalMetricDetail(Builder builder) {
 
 		this.metricScore = Objects.requireNonNull(builder.metricScore, "metric_score");
-		this.unratedDocs = Objects.requireNonNull(builder.unratedDocs, "unrated_docs");
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
-		this.metricDetails = Objects.requireNonNull(builder.metricDetails, "metric_details");
+		this.unratedDocs = ModelTypeHelper.unmodifiableNonNull(builder.unratedDocs, "unrated_docs");
+		this.hits = ModelTypeHelper.unmodifiableNonNull(builder.hits, "hits");
+		this.metricDetails = ModelTypeHelper.unmodifiableNonNull(builder.metricDetails, "metric_details");
 
+	}
+
+	public RankEvalMetricDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -204,7 +209,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed.
+		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed. 4
 		 */
 		public Builder addUnratedDocs(UnratedDocument value) {
 			if (this.unratedDocs == null) {
@@ -222,7 +227,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed.
+		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed. 5
 		 */
 		public Builder addUnratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn) {
 			return this.addUnratedDocs(fn.apply(new UnratedDocument.Builder()).build());
@@ -251,7 +256,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Add a value to {@link #hits(List)}, creating the list if needed. 4
 		 */
 		public Builder addHits(RankEvalHitItem value) {
 			if (this.hits == null) {
@@ -269,7 +274,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Add a value to {@link #hits(List)}, creating the list if needed. 5
 		 */
 		public Builder addHits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn) {
 			return this.addHits(fn.apply(new RankEvalHitItem.Builder()).build());

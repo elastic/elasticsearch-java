@@ -107,6 +107,10 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Processor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code attachment} variant value.
 	 *
@@ -469,357 +473,349 @@ public class Processor implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Processor> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Processor> attachment(AttachmentProcessor v) {
+		public Builder attachment(AttachmentProcessor v) {
 			this._type = ATTACHMENT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> attachment(
-				Function<AttachmentProcessor.Builder, ObjectBuilder<AttachmentProcessor>> f) {
+		public Builder attachment(Function<AttachmentProcessor.Builder, ObjectBuilder<AttachmentProcessor>> f) {
 			return this.attachment(f.apply(new AttachmentProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> append(AppendProcessor v) {
+		public Builder append(AppendProcessor v) {
 			this._type = APPEND;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> append(Function<AppendProcessor.Builder, ObjectBuilder<AppendProcessor>> f) {
+		public Builder append(Function<AppendProcessor.Builder, ObjectBuilder<AppendProcessor>> f) {
 			return this.append(f.apply(new AppendProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> csv(CsvProcessor v) {
+		public Builder csv(CsvProcessor v) {
 			this._type = CSV;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> csv(Function<CsvProcessor.Builder, ObjectBuilder<CsvProcessor>> f) {
+		public Builder csv(Function<CsvProcessor.Builder, ObjectBuilder<CsvProcessor>> f) {
 			return this.csv(f.apply(new CsvProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> convert(ConvertProcessor v) {
+		public Builder convert(ConvertProcessor v) {
 			this._type = CONVERT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> convert(Function<ConvertProcessor.Builder, ObjectBuilder<ConvertProcessor>> f) {
+		public Builder convert(Function<ConvertProcessor.Builder, ObjectBuilder<ConvertProcessor>> f) {
 			return this.convert(f.apply(new ConvertProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> date(DateProcessor v) {
+		public Builder date(DateProcessor v) {
 			this._type = DATE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> date(Function<DateProcessor.Builder, ObjectBuilder<DateProcessor>> f) {
+		public Builder date(Function<DateProcessor.Builder, ObjectBuilder<DateProcessor>> f) {
 			return this.date(f.apply(new DateProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> dateIndexName(DateIndexNameProcessor v) {
+		public Builder dateIndexName(DateIndexNameProcessor v) {
 			this._type = DATE_INDEX_NAME;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> dateIndexName(
+		public Builder dateIndexName(
 				Function<DateIndexNameProcessor.Builder, ObjectBuilder<DateIndexNameProcessor>> f) {
 			return this.dateIndexName(f.apply(new DateIndexNameProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> dotExpander(DotExpanderProcessor v) {
+		public Builder dotExpander(DotExpanderProcessor v) {
 			this._type = DOT_EXPANDER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> dotExpander(
-				Function<DotExpanderProcessor.Builder, ObjectBuilder<DotExpanderProcessor>> f) {
+		public Builder dotExpander(Function<DotExpanderProcessor.Builder, ObjectBuilder<DotExpanderProcessor>> f) {
 			return this.dotExpander(f.apply(new DotExpanderProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> enrich(EnrichProcessor v) {
+		public Builder enrich(EnrichProcessor v) {
 			this._type = ENRICH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> enrich(Function<EnrichProcessor.Builder, ObjectBuilder<EnrichProcessor>> f) {
+		public Builder enrich(Function<EnrichProcessor.Builder, ObjectBuilder<EnrichProcessor>> f) {
 			return this.enrich(f.apply(new EnrichProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> fail(FailProcessor v) {
+		public Builder fail(FailProcessor v) {
 			this._type = FAIL;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> fail(Function<FailProcessor.Builder, ObjectBuilder<FailProcessor>> f) {
+		public Builder fail(Function<FailProcessor.Builder, ObjectBuilder<FailProcessor>> f) {
 			return this.fail(f.apply(new FailProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> foreach(ForeachProcessor v) {
+		public Builder foreach(ForeachProcessor v) {
 			this._type = FOREACH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> foreach(Function<ForeachProcessor.Builder, ObjectBuilder<ForeachProcessor>> f) {
+		public Builder foreach(Function<ForeachProcessor.Builder, ObjectBuilder<ForeachProcessor>> f) {
 			return this.foreach(f.apply(new ForeachProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> json(JsonProcessor v) {
+		public Builder json(JsonProcessor v) {
 			this._type = JSON;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> json(Function<JsonProcessor.Builder, ObjectBuilder<JsonProcessor>> f) {
+		public Builder json(Function<JsonProcessor.Builder, ObjectBuilder<JsonProcessor>> f) {
 			return this.json(f.apply(new JsonProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> userAgent(UserAgentProcessor v) {
+		public Builder userAgent(UserAgentProcessor v) {
 			this._type = USER_AGENT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> userAgent(
-				Function<UserAgentProcessor.Builder, ObjectBuilder<UserAgentProcessor>> f) {
+		public Builder userAgent(Function<UserAgentProcessor.Builder, ObjectBuilder<UserAgentProcessor>> f) {
 			return this.userAgent(f.apply(new UserAgentProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> kv(KeyValueProcessor v) {
+		public Builder kv(KeyValueProcessor v) {
 			this._type = KV;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> kv(Function<KeyValueProcessor.Builder, ObjectBuilder<KeyValueProcessor>> f) {
+		public Builder kv(Function<KeyValueProcessor.Builder, ObjectBuilder<KeyValueProcessor>> f) {
 			return this.kv(f.apply(new KeyValueProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> geoip(GeoIpProcessor v) {
+		public Builder geoip(GeoIpProcessor v) {
 			this._type = GEOIP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> geoip(Function<GeoIpProcessor.Builder, ObjectBuilder<GeoIpProcessor>> f) {
+		public Builder geoip(Function<GeoIpProcessor.Builder, ObjectBuilder<GeoIpProcessor>> f) {
 			return this.geoip(f.apply(new GeoIpProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> grok(GrokProcessor v) {
+		public Builder grok(GrokProcessor v) {
 			this._type = GROK;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> grok(Function<GrokProcessor.Builder, ObjectBuilder<GrokProcessor>> f) {
+		public Builder grok(Function<GrokProcessor.Builder, ObjectBuilder<GrokProcessor>> f) {
 			return this.grok(f.apply(new GrokProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> gsub(GsubProcessor v) {
+		public Builder gsub(GsubProcessor v) {
 			this._type = GSUB;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> gsub(Function<GsubProcessor.Builder, ObjectBuilder<GsubProcessor>> f) {
+		public Builder gsub(Function<GsubProcessor.Builder, ObjectBuilder<GsubProcessor>> f) {
 			return this.gsub(f.apply(new GsubProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> join(JoinProcessor v) {
+		public Builder join(JoinProcessor v) {
 			this._type = JOIN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> join(Function<JoinProcessor.Builder, ObjectBuilder<JoinProcessor>> f) {
+		public Builder join(Function<JoinProcessor.Builder, ObjectBuilder<JoinProcessor>> f) {
 			return this.join(f.apply(new JoinProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> lowercase(LowercaseProcessor v) {
+		public Builder lowercase(LowercaseProcessor v) {
 			this._type = LOWERCASE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> lowercase(
-				Function<LowercaseProcessor.Builder, ObjectBuilder<LowercaseProcessor>> f) {
+		public Builder lowercase(Function<LowercaseProcessor.Builder, ObjectBuilder<LowercaseProcessor>> f) {
 			return this.lowercase(f.apply(new LowercaseProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> remove(RemoveProcessor v) {
+		public Builder remove(RemoveProcessor v) {
 			this._type = REMOVE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> remove(Function<RemoveProcessor.Builder, ObjectBuilder<RemoveProcessor>> f) {
+		public Builder remove(Function<RemoveProcessor.Builder, ObjectBuilder<RemoveProcessor>> f) {
 			return this.remove(f.apply(new RemoveProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> rename(RenameProcessor v) {
+		public Builder rename(RenameProcessor v) {
 			this._type = RENAME;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> rename(Function<RenameProcessor.Builder, ObjectBuilder<RenameProcessor>> f) {
+		public Builder rename(Function<RenameProcessor.Builder, ObjectBuilder<RenameProcessor>> f) {
 			return this.rename(f.apply(new RenameProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> script(JsonValue /* _types.Script */ v) {
+		public Builder script(JsonValue /* _types.Script */ v) {
 			this._type = SCRIPT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> set(SetProcessor v) {
+		public Builder set(SetProcessor v) {
 			this._type = SET;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> set(Function<SetProcessor.Builder, ObjectBuilder<SetProcessor>> f) {
+		public Builder set(Function<SetProcessor.Builder, ObjectBuilder<SetProcessor>> f) {
 			return this.set(f.apply(new SetProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> sort(SortProcessor v) {
+		public Builder sort(SortProcessor v) {
 			this._type = SORT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> sort(Function<SortProcessor.Builder, ObjectBuilder<SortProcessor>> f) {
+		public Builder sort(Function<SortProcessor.Builder, ObjectBuilder<SortProcessor>> f) {
 			return this.sort(f.apply(new SortProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> split(SplitProcessor v) {
+		public Builder split(SplitProcessor v) {
 			this._type = SPLIT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> split(Function<SplitProcessor.Builder, ObjectBuilder<SplitProcessor>> f) {
+		public Builder split(Function<SplitProcessor.Builder, ObjectBuilder<SplitProcessor>> f) {
 			return this.split(f.apply(new SplitProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> trim(TrimProcessor v) {
+		public Builder trim(TrimProcessor v) {
 			this._type = TRIM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> trim(Function<TrimProcessor.Builder, ObjectBuilder<TrimProcessor>> f) {
+		public Builder trim(Function<TrimProcessor.Builder, ObjectBuilder<TrimProcessor>> f) {
 			return this.trim(f.apply(new TrimProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> uppercase(UppercaseProcessor v) {
+		public Builder uppercase(UppercaseProcessor v) {
 			this._type = UPPERCASE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> uppercase(
-				Function<UppercaseProcessor.Builder, ObjectBuilder<UppercaseProcessor>> f) {
+		public Builder uppercase(Function<UppercaseProcessor.Builder, ObjectBuilder<UppercaseProcessor>> f) {
 			return this.uppercase(f.apply(new UppercaseProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> urldecode(UrlDecodeProcessor v) {
+		public Builder urldecode(UrlDecodeProcessor v) {
 			this._type = URLDECODE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> urldecode(
-				Function<UrlDecodeProcessor.Builder, ObjectBuilder<UrlDecodeProcessor>> f) {
+		public Builder urldecode(Function<UrlDecodeProcessor.Builder, ObjectBuilder<UrlDecodeProcessor>> f) {
 			return this.urldecode(f.apply(new UrlDecodeProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> bytes(BytesProcessor v) {
+		public Builder bytes(BytesProcessor v) {
 			this._type = BYTES;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> bytes(Function<BytesProcessor.Builder, ObjectBuilder<BytesProcessor>> f) {
+		public Builder bytes(Function<BytesProcessor.Builder, ObjectBuilder<BytesProcessor>> f) {
 			return this.bytes(f.apply(new BytesProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> dissect(DissectProcessor v) {
+		public Builder dissect(DissectProcessor v) {
 			this._type = DISSECT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> dissect(Function<DissectProcessor.Builder, ObjectBuilder<DissectProcessor>> f) {
+		public Builder dissect(Function<DissectProcessor.Builder, ObjectBuilder<DissectProcessor>> f) {
 			return this.dissect(f.apply(new DissectProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> setSecurityUser(SetSecurityUserProcessor v) {
+		public Builder setSecurityUser(SetSecurityUserProcessor v) {
 			this._type = SET_SECURITY_USER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> setSecurityUser(
+		public Builder setSecurityUser(
 				Function<SetSecurityUserProcessor.Builder, ObjectBuilder<SetSecurityUserProcessor>> f) {
 			return this.setSecurityUser(f.apply(new SetSecurityUserProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> pipeline(PipelineProcessor v) {
+		public Builder pipeline(PipelineProcessor v) {
 			this._type = PIPELINE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> pipeline(
-				Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> f) {
+		public Builder pipeline(Function<PipelineProcessor.Builder, ObjectBuilder<PipelineProcessor>> f) {
 			return this.pipeline(f.apply(new PipelineProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> drop(DropProcessor v) {
+		public Builder drop(DropProcessor v) {
 			this._type = DROP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> drop(Function<DropProcessor.Builder, ObjectBuilder<DropProcessor>> f) {
+		public Builder drop(Function<DropProcessor.Builder, ObjectBuilder<DropProcessor>> f) {
 			return this.drop(f.apply(new DropProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> circle(CircleProcessor v) {
+		public Builder circle(CircleProcessor v) {
 			this._type = CIRCLE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> circle(Function<CircleProcessor.Builder, ObjectBuilder<CircleProcessor>> f) {
+		public Builder circle(Function<CircleProcessor.Builder, ObjectBuilder<CircleProcessor>> f) {
 			return this.circle(f.apply(new CircleProcessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Processor> inference(InferenceProcessor v) {
+		public Builder inference(InferenceProcessor v) {
 			this._type = INFERENCE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Processor> inference(
-				Function<InferenceProcessor.Builder, ObjectBuilder<InferenceProcessor>> f) {
+		public Builder inference(Function<InferenceProcessor.Builder, ObjectBuilder<InferenceProcessor>> f) {
 			return this.inference(f.apply(new InferenceProcessor.Builder()).build());
 		}
 
-		protected Processor build() {
+		public Processor build() {
 			return new Processor(this);
 		}
 

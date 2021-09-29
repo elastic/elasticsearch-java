@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainUnmanaged
@@ -47,6 +48,10 @@ public final class LifecycleExplainUnmanaged implements LifecycleExplainVariant,
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 
+	}
+
+	public LifecycleExplainUnmanaged(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

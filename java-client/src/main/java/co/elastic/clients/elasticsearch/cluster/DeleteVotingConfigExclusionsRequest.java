@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +39,7 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
@@ -51,6 +54,10 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 
 		this.waitForRemoval = builder.waitForRemoval;
 
+	}
+
+	public DeleteVotingConfigExclusionsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -109,7 +116,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.delete_voting_config_exclusions}".
 	 */
-	public static final Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -130,5 +137,5 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

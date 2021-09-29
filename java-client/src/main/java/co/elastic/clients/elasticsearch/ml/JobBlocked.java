@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobBlocked
@@ -51,6 +52,10 @@ public final class JobBlocked implements JsonpSerializable {
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 		this.taskId = builder.taskId;
 
+	}
+
+	public JobBlocked(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

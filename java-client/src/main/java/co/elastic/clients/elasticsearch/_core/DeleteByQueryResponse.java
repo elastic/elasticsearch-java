@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -97,7 +98,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 
 		this.batches = builder.batches;
 		this.deleted = builder.deleted;
-		this.failures = builder.failures;
+		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
 		this.noops = builder.noops;
 		this.requestsPerSecond = builder.requestsPerSecond;
 		this.retries = builder.retries;
@@ -110,6 +111,10 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		this.total = builder.total;
 		this.versionConflicts = builder.versionConflicts;
 
+	}
+
+	public DeleteByQueryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -408,7 +413,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
 		 */
 		public Builder addFailures(BulkIndexByScrollFailure value) {
 			if (this.failures == null) {
@@ -427,7 +432,7 @@ public final class DeleteByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
 		 */
 		public Builder addFailures(
 				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {

@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CommonTermsQuery
@@ -71,6 +72,10 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.query = Objects.requireNonNull(builder.query, "query");
 
+	}
+
+	public CommonTermsQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

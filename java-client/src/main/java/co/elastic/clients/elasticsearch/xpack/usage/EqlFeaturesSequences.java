@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesSequences
@@ -63,6 +64,10 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 				"sequence_queries_five_or_more");
 		this.sequenceMaxspan = Objects.requireNonNull(builder.sequenceMaxspan, "sequence_maxspan");
 
+	}
+
+	public EqlFeaturesSequences(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

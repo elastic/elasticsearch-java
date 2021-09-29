@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -74,14 +76,18 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 
 	public ExploreRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
 		this.connections = builder.connections;
 		this.controls = builder.controls;
 		this.query = builder.query;
-		this.vertices = builder.vertices;
+		this.vertices = ModelTypeHelper.unmodifiable(builder.vertices);
 
+	}
+
+	public ExploreRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -238,7 +244,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -330,7 +336,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Add a value to {@link #vertices(List)}, creating the list if needed. 4
 		 */
 		public Builder addVertices(VertexDefinition value) {
 			if (this.vertices == null) {
@@ -348,7 +354,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Add a value to {@link #vertices(List)}, creating the list if needed. 5
 		 */
 		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
 			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());
@@ -388,7 +394,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code graph.explore}".
 	 */
-	public static final Endpoint<ExploreRequest, ExploreResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExploreRequest, ExploreResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -406,12 +412,12 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_graph");
 					buf.append("/explore");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -426,5 +432,5 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ExploreResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ExploreResponse._DESERIALIZER);
 }

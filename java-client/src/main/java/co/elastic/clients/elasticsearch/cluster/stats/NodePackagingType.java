@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.NodePackagingType
@@ -54,6 +55,10 @@ public final class NodePackagingType implements JsonpSerializable {
 		this.flavor = Objects.requireNonNull(builder.flavor, "flavor");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public NodePackagingType(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -23,14 +23,17 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -59,10 +63,14 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 
 	public PostVotingConfigExclusionsRequest(Builder builder) {
 
-		this.nodeNames = builder.nodeNames;
-		this.nodeIds = builder.nodeIds;
+		this.nodeNames = ModelTypeHelper.unmodifiable(builder.nodeNames);
+		this.nodeIds = ModelTypeHelper.unmodifiable(builder.nodeIds);
 		this.timeout = builder.timeout;
 
+	}
+
+	public PostVotingConfigExclusionsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -138,7 +146,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeNames(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeNames(String value) {
 			if (this.nodeNames == null) {
@@ -171,7 +179,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeIds(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeIds(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeIds(String value) {
 			if (this.nodeIds == null) {
@@ -211,7 +219,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.post_voting_config_exclusions}".
 	 */
-	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -238,5 +246,5 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

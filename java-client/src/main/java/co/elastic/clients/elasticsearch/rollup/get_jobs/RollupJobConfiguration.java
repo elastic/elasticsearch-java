@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -70,11 +71,15 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		this.groups = Objects.requireNonNull(builder.groups, "groups");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.indexPattern = Objects.requireNonNull(builder.indexPattern, "index_pattern");
-		this.metrics = Objects.requireNonNull(builder.metrics, "metrics");
+		this.metrics = ModelTypeHelper.unmodifiableNonNull(builder.metrics, "metrics");
 		this.pageSize = Objects.requireNonNull(builder.pageSize, "page_size");
 		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
 		this.timeout = Objects.requireNonNull(builder.timeout, "timeout");
 
+	}
+
+	public RollupJobConfiguration(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -253,7 +258,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetrics(FieldMetric value) {
 			if (this.metrics == null) {
@@ -271,7 +276,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 5
 		 */
 		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
 			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());

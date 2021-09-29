@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.count.CountRecord
@@ -56,6 +57,10 @@ public final class CountRecord implements JsonpSerializable {
 		this.timestamp = builder.timestamp;
 		this.count = builder.count;
 
+	}
+
+	public CountRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

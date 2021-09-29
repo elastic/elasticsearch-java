@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardAnalyzer
@@ -52,8 +54,12 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	public StandardAnalyzer(Builder builder) {
 
 		this.maxTokenLength = Objects.requireNonNull(builder.maxTokenLength, "max_token_length");
-		this.stopwords = Objects.requireNonNull(builder.stopwords, "stopwords");
+		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
 
+	}
+
+	public StandardAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -139,7 +145,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {

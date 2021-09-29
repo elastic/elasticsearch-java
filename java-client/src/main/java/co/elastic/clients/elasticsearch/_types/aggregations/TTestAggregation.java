@@ -58,6 +58,10 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 
 	}
 
+	public TTestAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation} variant type
 	 */

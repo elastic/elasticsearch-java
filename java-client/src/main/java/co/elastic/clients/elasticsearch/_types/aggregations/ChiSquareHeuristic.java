@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
 		this.includeNegatives = Objects.requireNonNull(builder.includeNegatives, "include_negatives");
 
+	}
+
+	public ChiSquareHeuristic(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

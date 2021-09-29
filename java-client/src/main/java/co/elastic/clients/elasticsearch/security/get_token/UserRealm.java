@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.UserRealm
@@ -50,6 +51,10 @@ public final class UserRealm implements JsonpSerializable {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public UserRealm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

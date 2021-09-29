@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -52,8 +53,12 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 	public GetOverallBucketsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.overallBuckets = Objects.requireNonNull(builder.overallBuckets, "overall_buckets");
+		this.overallBuckets = ModelTypeHelper.unmodifiableNonNull(builder.overallBuckets, "overall_buckets");
 
+	}
+
+	public GetOverallBucketsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -135,7 +140,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed.
+		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed. 4
 		 */
 		public Builder addOverallBuckets(OverallBucket value) {
 			if (this.overallBuckets == null) {
@@ -153,7 +158,7 @@ public final class GetOverallBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed.
+		 * Add a value to {@link #overallBuckets(List)}, creating the list if needed. 5
 		 */
 		public Builder addOverallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
 			return this.addOverallBuckets(fn.apply(new OverallBucket.Builder()).build());

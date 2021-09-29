@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _spec_utils.BaseNode
@@ -61,11 +63,11 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	public BaseNode(AbstractBuilder<?> builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.host = Objects.requireNonNull(builder.host, "host");
 		this.ip = Objects.requireNonNull(builder.ip, "ip");
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.roles = builder.roles;
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 
 	}
@@ -232,7 +234,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addRoles(NodeRole value) {
 			if (this.roles == null) {

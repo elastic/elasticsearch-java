@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SourceField
@@ -65,9 +67,13 @@ public final class SourceField implements JsonpSerializable {
 		this.compress = builder.compress;
 		this.compressThreshold = builder.compressThreshold;
 		this.enabled = builder.enabled;
-		this.excludes = builder.excludes;
-		this.includes = builder.includes;
+		this.excludes = ModelTypeHelper.unmodifiable(builder.excludes);
+		this.includes = ModelTypeHelper.unmodifiable(builder.includes);
 
+	}
+
+	public SourceField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -226,7 +232,7 @@ public final class SourceField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #excludes(List)}, creating the list if needed.
+		 * Add a value to {@link #excludes(List)}, creating the list if needed. 4
 		 */
 		public Builder addExcludes(String value) {
 			if (this.excludes == null) {
@@ -253,7 +259,7 @@ public final class SourceField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #includes(List)}, creating the list if needed.
+		 * Add a value to {@link #includes(List)}, creating the list if needed. 4
 		 */
 		public Builder addIncludes(String value) {
 			if (this.includes == null) {

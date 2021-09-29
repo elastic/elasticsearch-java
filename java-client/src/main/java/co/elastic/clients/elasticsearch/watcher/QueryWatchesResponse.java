@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -52,8 +53,12 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	public QueryWatchesResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.watches = Objects.requireNonNull(builder.watches, "watches");
+		this.watches = ModelTypeHelper.unmodifiableNonNull(builder.watches, "watches");
 
+	}
+
+	public QueryWatchesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +134,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #watches(List)}, creating the list if needed.
+		 * Add a value to {@link #watches(List)}, creating the list if needed. 4
 		 */
 		public Builder addWatches(QueryWatch value) {
 			if (this.watches == null) {
@@ -147,7 +152,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #watches(List)}, creating the list if needed.
+		 * Add a value to {@link #watches(List)}, creating the list if needed. 5
 		 */
 		public Builder addWatches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
 			return this.addWatches(fn.apply(new QueryWatch.Builder()).build());

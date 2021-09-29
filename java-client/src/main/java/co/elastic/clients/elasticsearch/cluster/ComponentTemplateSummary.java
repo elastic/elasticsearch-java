@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -65,12 +66,16 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 
 	public ComponentTemplateSummary(Builder builder) {
 
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.version = builder.version;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = ModelTypeHelper.unmodifiableNonNull(builder.settings, "settings");
 		this.mappings = builder.mappings;
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 
+	}
+
+	public ComponentTemplateSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -203,7 +208,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}

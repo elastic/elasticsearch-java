@@ -71,6 +71,10 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 
 	}
 
+	public NodeShutdownStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code node_id}
 	 */

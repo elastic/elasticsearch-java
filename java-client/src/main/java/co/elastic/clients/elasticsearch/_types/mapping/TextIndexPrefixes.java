@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.mapping.TextIndexPrefixes
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		this.maxChars = Objects.requireNonNull(builder.maxChars, "max_chars");
 		this.minChars = Objects.requireNonNull(builder.minChars, "min_chars");
 
+	}
+
+	public TextIndexPrefixes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

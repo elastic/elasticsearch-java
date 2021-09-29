@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.security.get_service_accounts.RoleDescriptorWrapper;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_service_accounts.Response
 @JsonpDeserializable
-public final class GetServiceAccountsResponse extends AdditionalProperties<String, RoleDescriptorWrapper> {
+public final class GetServiceAccountsResponse extends DictionaryResponse<String, RoleDescriptorWrapper> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetServiceAccountsResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class GetServiceAccountsResponse extends AdditionalProperties<Strin
 
 	}
 
+	public GetServiceAccountsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetServiceAccountsResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, RoleDescriptorWrapper, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleDescriptorWrapper, Builder>
 			implements
 				ObjectBuilder<GetServiceAccountsResponse> {
 		@Override
@@ -82,7 +87,7 @@ public final class GetServiceAccountsResponse extends AdditionalProperties<Strin
 
 	protected static void setupGetServiceAccountsResponseDeserializer(
 			DelegatingDeserializer<GetServiceAccountsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RoleDescriptorWrapper._DESERIALIZER);
 
 	}

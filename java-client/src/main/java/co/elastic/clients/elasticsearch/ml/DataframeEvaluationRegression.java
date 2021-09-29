@@ -57,6 +57,10 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 
 	}
 
+	public DataframeEvaluationRegression(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link DataframeEvaluation} variant type
 	 */

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Ingest
@@ -51,6 +52,10 @@ public final class Ingest implements JsonpSerializable {
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.pipeline = builder.pipeline;
 
+	}
+
+	public Ingest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

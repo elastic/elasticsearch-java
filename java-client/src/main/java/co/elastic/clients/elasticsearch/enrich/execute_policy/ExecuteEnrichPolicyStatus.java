@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.ExecuteEnrichPolicyStatus
@@ -46,6 +47,10 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 
 		this.phase = Objects.requireNonNull(builder.phase, "phase");
 
+	}
+
+	public ExecuteEnrichPolicyStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

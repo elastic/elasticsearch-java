@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -76,7 +77,7 @@ public final class AnomalyCause implements JsonpSerializable {
 
 	public AnomalyCause(Builder builder) {
 
-		this.actual = Objects.requireNonNull(builder.actual, "actual");
+		this.actual = ModelTypeHelper.unmodifiableNonNull(builder.actual, "actual");
 		this.byFieldName = Objects.requireNonNull(builder.byFieldName, "by_field_name");
 		this.byFieldValue = Objects.requireNonNull(builder.byFieldValue, "by_field_value");
 		this.correlatedByFieldValue = Objects.requireNonNull(builder.correlatedByFieldValue,
@@ -84,14 +85,18 @@ public final class AnomalyCause implements JsonpSerializable {
 		this.fieldName = Objects.requireNonNull(builder.fieldName, "field_name");
 		this.function = Objects.requireNonNull(builder.function, "function");
 		this.functionDescription = Objects.requireNonNull(builder.functionDescription, "function_description");
-		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
+		this.influencers = ModelTypeHelper.unmodifiableNonNull(builder.influencers, "influencers");
 		this.overFieldName = Objects.requireNonNull(builder.overFieldName, "over_field_name");
 		this.overFieldValue = Objects.requireNonNull(builder.overFieldValue, "over_field_value");
 		this.partitionFieldName = Objects.requireNonNull(builder.partitionFieldName, "partition_field_name");
 		this.partitionFieldValue = Objects.requireNonNull(builder.partitionFieldValue, "partition_field_value");
 		this.probability = Objects.requireNonNull(builder.probability, "probability");
-		this.typical = Objects.requireNonNull(builder.typical, "typical");
+		this.typical = ModelTypeHelper.unmodifiableNonNull(builder.typical, "typical");
 
+	}
+
+	public AnomalyCause(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -313,7 +318,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actual(List)}, creating the list if needed.
+		 * Add a value to {@link #actual(List)}, creating the list if needed. 4
 		 */
 		public Builder addActual(Double value) {
 			if (this.actual == null) {
@@ -388,7 +393,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
 		 */
 		public Builder addInfluencers(Influence value) {
 			if (this.influencers == null) {
@@ -406,7 +411,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 5
 		 */
 		public Builder addInfluencers(Function<Influence.Builder, ObjectBuilder<Influence>> fn) {
 			return this.addInfluencers(fn.apply(new Influence.Builder()).build());
@@ -469,7 +474,7 @@ public final class AnomalyCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #typical(List)}, creating the list if needed.
+		 * Add a value to {@link #typical(List)}, creating the list if needed. 4
 		 */
 		public Builder addTypical(Double value) {
 			if (this.typical == null) {

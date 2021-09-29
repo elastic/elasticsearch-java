@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Request
@@ -63,6 +65,10 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
+	}
+
+	public GetComponentTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -178,7 +184,7 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.get_component_template}".
 	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -203,10 +209,10 @@ public final class GetComponentTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -224,5 +230,5 @@ public final class GetComponentTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetComponentTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetComponentTemplateResponse._DESERIALIZER);
 }

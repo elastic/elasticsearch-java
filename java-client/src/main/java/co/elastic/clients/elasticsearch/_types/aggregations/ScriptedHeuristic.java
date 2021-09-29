@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedHeuristic
@@ -47,6 +48,10 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 
 		this.script = Objects.requireNonNull(builder.script, "script");
 
+	}
+
+	public ScriptedHeuristic(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

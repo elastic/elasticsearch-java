@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -68,13 +71,17 @@ public final class DeleteRequest extends RequestBase {
 
 	public DeleteRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
+	}
+
+	public DeleteRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -185,7 +192,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -229,7 +236,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -286,7 +293,7 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete}".
 	 */
-	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -304,10 +311,10 @@ public final class DeleteRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -332,5 +339,5 @@ public final class DeleteRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER);
 }

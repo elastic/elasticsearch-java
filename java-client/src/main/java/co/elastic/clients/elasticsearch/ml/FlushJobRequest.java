@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,6 +41,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Request
@@ -73,6 +75,10 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		this.end = builder.end;
 		this.start = builder.start;
 
+	}
+
+	public FlushJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -275,7 +281,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ml.flush_job}".
 	 */
-	public static final Endpoint<FlushJobRequest, FlushJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FlushJobRequest, FlushJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -295,11 +301,11 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_flush");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -311,5 +317,5 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FlushJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, FlushJobResponse._DESERIALIZER);
 }

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -39,6 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Cpu
@@ -78,8 +80,12 @@ public final class Cpu implements JsonpSerializable {
 		this.totalInMillis = builder.totalInMillis;
 		this.user = builder.user;
 		this.userInMillis = builder.userInMillis;
-		this.loadAverage = builder.loadAverage;
+		this.loadAverage = ModelTypeHelper.unmodifiable(builder.loadAverage);
 
+	}
+
+	public Cpu(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

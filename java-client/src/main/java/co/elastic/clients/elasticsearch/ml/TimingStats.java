@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TimingStats
@@ -51,6 +52,10 @@ public final class TimingStats implements JsonpSerializable {
 		this.elapsedTime = Objects.requireNonNull(builder.elapsedTime, "elapsed_time");
 		this.iterationTime = builder.iterationTime;
 
+	}
+
+	public TimingStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

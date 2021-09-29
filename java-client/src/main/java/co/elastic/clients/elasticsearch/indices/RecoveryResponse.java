@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.recovery.RecoveryStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.recovery.Response
 @JsonpDeserializable
-public final class RecoveryResponse extends AdditionalProperties<String, RecoveryStatus> {
+public final class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
 
 	public RecoveryResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 
 	}
 
+	public RecoveryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link RecoveryResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, RecoveryStatus, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
 			implements
 				ObjectBuilder<RecoveryResponse> {
 		@Override
@@ -81,7 +86,7 @@ public final class RecoveryResponse extends AdditionalProperties<String, Recover
 			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
 
 	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RecoveryStatus._DESERIALIZER);
 
 	}

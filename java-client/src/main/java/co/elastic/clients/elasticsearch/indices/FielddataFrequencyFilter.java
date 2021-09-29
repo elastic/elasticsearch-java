@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices._types.FielddataFrequencyFilter
 @JsonpDeserializable
@@ -53,6 +54,10 @@ public final class FielddataFrequencyFilter implements JsonpSerializable {
 		this.min = Objects.requireNonNull(builder.min, "min");
 		this.minSegmentSize = Objects.requireNonNull(builder.minSegmentSize, "min_segment_size");
 
+	}
+
+	public FielddataFrequencyFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

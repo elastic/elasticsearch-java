@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 
 	public GetApiKeyResponse(Builder builder) {
 
-		this.apiKeys = Objects.requireNonNull(builder.apiKeys, "api_keys");
+		this.apiKeys = ModelTypeHelper.unmodifiableNonNull(builder.apiKeys, "api_keys");
 
+	}
+
+	public GetApiKeyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
+		 * Add a value to {@link #apiKeys(List)}, creating the list if needed. 4
 		 */
 		public Builder addApiKeys(ApiKey value) {
 			if (this.apiKeys == null) {
@@ -124,7 +129,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
+		 * Add a value to {@link #apiKeys(List)}, creating the list if needed. 5
 		 */
 		public Builder addApiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
 			return this.addApiKeys(fn.apply(new ApiKey.Builder()).build());

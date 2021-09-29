@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -89,7 +90,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	public Hit(Builder<TDocument> builder) {
 
 		this.error = builder.error;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.found = builder.found;
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.index = Objects.requireNonNull(builder.index, "_index");
@@ -101,6 +102,10 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		this.version = builder.version;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public Hit(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

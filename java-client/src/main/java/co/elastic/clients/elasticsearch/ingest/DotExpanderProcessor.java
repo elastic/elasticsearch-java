@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DotExpanderProcessor
@@ -51,6 +52,10 @@ public final class DotExpanderProcessor extends ProcessorBase implements Process
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.path = builder.path;
 
+	}
+
+	public DotExpanderProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

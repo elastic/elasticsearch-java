@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.mapping.DenseVectorProperty
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 
 		this.dims = Objects.requireNonNull(builder.dims, "dims");
 
+	}
+
+	public DenseVectorProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

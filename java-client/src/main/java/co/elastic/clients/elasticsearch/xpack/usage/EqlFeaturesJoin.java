@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesJoin
@@ -59,6 +60,10 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 		this.joinQueriesFiveOrMore = Objects.requireNonNull(builder.joinQueriesFiveOrMore, "join_queries_five_or_more");
 		this.joinQueriesFour = Objects.requireNonNull(builder.joinQueriesFour, "join_queries_four");
 
+	}
+
+	public EqlFeaturesJoin(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -54,6 +54,10 @@ public final class SlackResult implements JsonpSerializable {
 
 	}
 
+	public SlackResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code account}
 	 */

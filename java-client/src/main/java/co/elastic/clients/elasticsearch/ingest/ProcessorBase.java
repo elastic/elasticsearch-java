@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -62,7 +63,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 
 		this.if_ = builder.if_;
 		this.ignoreFailure = builder.ignoreFailure;
-		this.onFailure = builder.onFailure;
+		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
 		this.tag = builder.tag;
 
 	}
@@ -188,7 +189,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addOnFailure(Processor value) {
 			if (this.onFailure == null) {
@@ -206,7 +207,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 5
 		 */
 		public BuilderT addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addOnFailure(fn.apply(new Processor.Builder()).build());

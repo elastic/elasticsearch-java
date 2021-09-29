@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: transform.put_transform.Response
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class PutTransformResponse extends AcknowledgedResponseBase {
 	public PutTransformResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutTransformResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

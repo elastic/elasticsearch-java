@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.delete_calendar.Response
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class DeleteCalendarResponse extends AcknowledgedResponseBase {
 	public DeleteCalendarResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteCalendarResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GsubProcessor
@@ -62,6 +63,10 @@ public final class GsubProcessor extends ProcessorBase implements ProcessorVaria
 		this.replacement = Objects.requireNonNull(builder.replacement, "replacement");
 		this.targetField = builder.targetField;
 
+	}
+
+	public GsubProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

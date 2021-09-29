@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
@@ -50,9 +52,13 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	public MappingCharFilter(Builder builder) {
 		super(builder);
 
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
+		this.mappings = ModelTypeHelper.unmodifiableNonNull(builder.mappings, "mappings");
 		this.mappingsPath = Objects.requireNonNull(builder.mappingsPath, "mappings_path");
 
+	}
+
+	public MappingCharFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -124,7 +130,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		}
 
 		/**
-		 * Add a value to {@link #mappings(List)}, creating the list if needed.
+		 * Add a value to {@link #mappings(List)}, creating the list if needed. 4
 		 */
 		public Builder addMappings(String value) {
 			if (this.mappings == null) {

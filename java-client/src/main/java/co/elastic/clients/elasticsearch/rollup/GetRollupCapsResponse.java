@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_caps.RollupCapabilities;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: rollup.get_rollup_caps.Response
 @JsonpDeserializable
-public final class GetRollupCapsResponse extends AdditionalProperties<String, RollupCapabilities> {
+public final class GetRollupCapsResponse extends DictionaryResponse<String, RollupCapabilities> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetRollupCapsResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class GetRollupCapsResponse extends AdditionalProperties<String, Ro
 
 	}
 
+	public GetRollupCapsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetRollupCapsResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, RollupCapabilities, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RollupCapabilities, Builder>
 			implements
 				ObjectBuilder<GetRollupCapsResponse> {
 		@Override
@@ -82,7 +87,7 @@ public final class GetRollupCapsResponse extends AdditionalProperties<String, Ro
 
 	protected static void setupGetRollupCapsResponseDeserializer(
 			DelegatingDeserializer<GetRollupCapsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RollupCapabilities._DESERIALIZER);
 
 	}

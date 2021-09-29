@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RequestCacheStats
@@ -61,6 +62,10 @@ public final class RequestCacheStats implements JsonpSerializable {
 		this.memorySizeInBytes = Objects.requireNonNull(builder.memorySizeInBytes, "memory_size_in_bytes");
 		this.missCount = Objects.requireNonNull(builder.missCount, "miss_count");
 
+	}
+
+	public RequestCacheStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

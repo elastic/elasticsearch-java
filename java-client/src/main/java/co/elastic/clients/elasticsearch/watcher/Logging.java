@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Logging
@@ -55,6 +56,10 @@ public final class Logging implements JsonpSerializable {
 		this.text = Objects.requireNonNull(builder.text, "text");
 		this.category = builder.category;
 
+	}
+
+	public Logging(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

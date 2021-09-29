@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.xpack;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -52,8 +55,12 @@ public final class InfoRequest extends RequestBase {
 
 	public InfoRequest(Builder builder) {
 
-		this.categories = builder.categories;
+		this.categories = ModelTypeHelper.unmodifiable(builder.categories);
 
+	}
+
+	public InfoRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -99,7 +106,7 @@ public final class InfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed.
+		 * Add a value to {@link #categories(List)}, creating the list if needed. 4
 		 */
 		public Builder addCategories(String value) {
 			if (this.categories == null) {
@@ -126,7 +133,7 @@ public final class InfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code xpack.info}".
 	 */
-	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -147,5 +154,5 @@ public final class InfoRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, InfoResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, InfoResponse._DESERIALIZER);
 }

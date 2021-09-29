@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
 @JsonpDeserializable
@@ -54,6 +55,10 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		this.refreshIntervalInMillis = Objects.requireNonNull(builder.refreshIntervalInMillis,
 				"refresh_interval_in_millis");
 
+	}
+
+	public NodeProcessInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

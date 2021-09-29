@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -93,6 +94,10 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		this.timeZone = builder.timeZone;
 		this.fieldMultiValueLeniency = builder.fieldMultiValueLeniency;
 
+	}
+
+	public QueryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -445,7 +450,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code sql.query}".
 	 */
-	public static final Endpoint<QueryRequest, QueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<QueryRequest, QueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -466,5 +471,5 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, QueryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, QueryResponse._DESERIALIZER);
 }

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopAnalyzer
@@ -53,9 +55,13 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	public StopAnalyzer(Builder builder) {
 
 		this.version = Objects.requireNonNull(builder.version, "version");
-		this.stopwords = Objects.requireNonNull(builder.stopwords, "stopwords");
+		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
 		this.stopwordsPath = Objects.requireNonNull(builder.stopwordsPath, "stopwords_path");
 
+	}
+
+	public StopAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -153,7 +159,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {

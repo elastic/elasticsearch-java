@@ -75,6 +75,10 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Transform(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code chain} variant value.
 	 *
@@ -118,41 +122,41 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Transform> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Transform> chain(ChainTransform v) {
+		public Builder chain(ChainTransform v) {
 			this._type = CHAIN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> f) {
+		public Builder chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> f) {
 			return this.chain(f.apply(new ChainTransform.Builder()).build());
 		}
 
-		public ObjectBuilder<Transform> script(ScriptTransform v) {
+		public Builder script(ScriptTransform v) {
 			this._type = SCRIPT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Transform> script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> f) {
+		public Builder script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> f) {
 			return this.script(f.apply(new ScriptTransform.Builder()).build());
 		}
 
-		public ObjectBuilder<Transform> search(SearchTransform v) {
+		public Builder search(SearchTransform v) {
 			this._type = SEARCH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Transform> search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> f) {
+		public Builder search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> f) {
 			return this.search(f.apply(new SearchTransform.Builder()).build());
 		}
 
-		protected Transform build() {
+		public Transform build() {
 			return new Transform(this);
 		}
 

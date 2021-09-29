@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.GlobalAggregation
 @JsonpDeserializable
@@ -40,6 +41,10 @@ public final class GlobalAggregation extends BucketAggregationBase implements Ag
 	public GlobalAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	public GlobalAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

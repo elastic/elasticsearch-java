@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInitialRecovery
@@ -48,6 +49,10 @@ public final class IndexRoutingAllocationInitialRecovery implements JsonpSeriali
 
 		this.id = builder.id;
 
+	}
+
+	public IndexRoutingAllocationInitialRecovery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

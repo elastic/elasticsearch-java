@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Filter
@@ -72,6 +73,10 @@ public final class Filter implements JsonpSerializable {
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
 
+	}
+
+	public Filter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

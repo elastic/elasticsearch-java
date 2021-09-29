@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingBlocks
@@ -64,6 +65,10 @@ public final class IndexSettingBlocks implements JsonpSerializable {
 		this.write = builder.write;
 		this.metadata = builder.metadata;
 
+	}
+
+	public IndexSettingBlocks(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

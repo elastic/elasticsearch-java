@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_model_snapshot.Request
@@ -51,6 +53,10 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
 
+	}
+
+	public DeleteModelSnapshotRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -118,7 +124,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_model_snapshot}".
 	 */
-	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -140,13 +146,13 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/model_snapshots");
 					buf.append("/");
-					buf.append(request.snapshotId);
+					SimpleEndpoint.pathEncode(request.snapshotId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -154,5 +160,5 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteModelSnapshotResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteModelSnapshotResponse._DESERIALIZER);
 }

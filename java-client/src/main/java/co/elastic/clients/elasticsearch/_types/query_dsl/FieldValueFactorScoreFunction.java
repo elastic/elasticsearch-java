@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FieldValueFactorScoreFunction
@@ -60,6 +61,10 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		this.missing = builder.missing;
 		this.modifier = builder.modifier;
 
+	}
+
+	public FieldValueFactorScoreFunction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

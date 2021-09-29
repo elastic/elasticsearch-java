@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SortProcessor
@@ -54,6 +55,10 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		this.order = Objects.requireNonNull(builder.order, "order");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	public SortProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

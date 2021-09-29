@@ -49,6 +49,10 @@ public final class HttpInputAuthentication implements JsonpSerializable {
 
 	}
 
+	public HttpInputAuthentication(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code basic}
 	 */

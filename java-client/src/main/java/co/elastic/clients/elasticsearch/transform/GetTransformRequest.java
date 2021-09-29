@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Request
@@ -68,6 +70,10 @@ public final class GetTransformRequest extends RequestBase {
 		this.size = builder.size;
 		this.excludeGenerated = builder.excludeGenerated;
 
+	}
+
+	public GetTransformRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -212,7 +218,7 @@ public final class GetTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.get_transform}".
 	 */
-	public static final Endpoint<GetTransformRequest, GetTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTransformRequest, GetTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -232,7 +238,7 @@ public final class GetTransformRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -240,7 +246,7 @@ public final class GetTransformRequest extends RequestBase {
 					buf.append("/_transform");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -261,5 +267,5 @@ public final class GetTransformRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTransformResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTransformResponse._DESERIALIZER);
 }

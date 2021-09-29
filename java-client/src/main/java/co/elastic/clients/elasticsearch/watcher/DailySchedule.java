@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.DailySchedule
@@ -47,6 +48,10 @@ public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 		this.at = Objects.requireNonNull(builder.at, "at");
 
+	}
+
+	public DailySchedule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

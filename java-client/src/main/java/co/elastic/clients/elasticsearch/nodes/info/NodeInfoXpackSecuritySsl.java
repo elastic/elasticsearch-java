@@ -30,12 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecuritySsl
@@ -47,8 +49,12 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 
 	public NodeInfoXpackSecuritySsl(Builder builder) {
 
-		this.ssl = Objects.requireNonNull(builder.ssl, "ssl");
+		this.ssl = ModelTypeHelper.unmodifiableNonNull(builder.ssl, "ssl");
 
+	}
+
+	public NodeInfoXpackSecuritySsl(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

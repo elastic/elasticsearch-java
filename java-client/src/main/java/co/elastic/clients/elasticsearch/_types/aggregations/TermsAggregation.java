@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -41,6 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TermsAggregation
@@ -98,7 +100,7 @@ public final class TermsAggregation extends BucketAggregationBase
 		super(builder);
 
 		this.collectMode = builder.collectMode;
-		this.exclude = builder.exclude;
+		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.include = builder.include;
@@ -112,6 +114,10 @@ public final class TermsAggregation extends BucketAggregationBase
 		this.showTermDocCountError = builder.showTermDocCountError;
 		this.size = builder.size;
 
+	}
+
+	public TermsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -403,7 +409,7 @@ public final class TermsAggregation extends BucketAggregationBase
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
+		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {

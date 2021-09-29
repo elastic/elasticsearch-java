@@ -182,6 +182,10 @@ public final class NodeInfoSettingsIngest implements JsonpSerializable {
 
 	}
 
+	public NodeInfoSettingsIngest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code attachment}
 	 */

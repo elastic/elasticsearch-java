@@ -62,6 +62,10 @@ public final class AggregateOutput implements JsonpSerializable {
 
 	}
 
+	public AggregateOutput(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code logistic_regression}
 	 */

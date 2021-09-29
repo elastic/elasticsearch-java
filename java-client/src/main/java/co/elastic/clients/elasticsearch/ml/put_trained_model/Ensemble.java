@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -62,11 +63,15 @@ public final class Ensemble implements JsonpSerializable {
 	public Ensemble(Builder builder) {
 
 		this.aggregateOutput = builder.aggregateOutput;
-		this.classificationLabels = builder.classificationLabels;
-		this.featureNames = builder.featureNames;
+		this.classificationLabels = ModelTypeHelper.unmodifiable(builder.classificationLabels);
+		this.featureNames = ModelTypeHelper.unmodifiable(builder.featureNames);
 		this.targetType = builder.targetType;
-		this.trainedModels = Objects.requireNonNull(builder.trainedModels, "trained_models");
+		this.trainedModels = ModelTypeHelper.unmodifiableNonNull(builder.trainedModels, "trained_models");
 
+	}
+
+	public Ensemble(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -217,7 +222,7 @@ public final class Ensemble implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #classificationLabels(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addClassificationLabels(String value) {
 			if (this.classificationLabels == null) {
@@ -244,7 +249,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureNames(List)}, creating the list if needed.
+		 * Add a value to {@link #featureNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureNames(String value) {
 			if (this.featureNames == null) {
@@ -279,7 +284,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #trainedModels(List)}, creating the list if needed.
+		 * Add a value to {@link #trainedModels(List)}, creating the list if needed. 4
 		 */
 		public Builder addTrainedModels(TrainedModel value) {
 			if (this.trainedModels == null) {
@@ -297,7 +302,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #trainedModels(List)}, creating the list if needed.
+		 * Add a value to {@link #trainedModels(List)}, creating the list if needed. 5
 		 */
 		public Builder addTrainedModels(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
 			return this.addTrainedModels(fn.apply(new TrainedModel.Builder()).build());

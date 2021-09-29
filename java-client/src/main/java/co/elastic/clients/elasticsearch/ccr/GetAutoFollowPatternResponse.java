@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 
 	public GetAutoFollowPatternResponse(Builder builder) {
 
-		this.patterns = Objects.requireNonNull(builder.patterns, "patterns");
+		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
 
+	}
+
+	public GetAutoFollowPatternResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
+		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addPatterns(AutoFollowPattern value) {
 			if (this.patterns == null) {
@@ -124,7 +129,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
+		 * Add a value to {@link #patterns(List)}, creating the list if needed. 5
 		 */
 		public Builder addPatterns(Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>> fn) {
 			return this.addPatterns(fn.apply(new AutoFollowPattern.Builder()).build());

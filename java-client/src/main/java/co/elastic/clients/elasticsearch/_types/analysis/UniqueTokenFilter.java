@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.UniqueTokenFilter
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 
 		this.onlyOnSamePosition = Objects.requireNonNull(builder.onlyOnSamePosition, "only_on_same_position");
 
+	}
+
+	public UniqueTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

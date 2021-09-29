@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -55,10 +56,14 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 
 	public NodeInfoXpackSecurityAuthcRealms(Builder builder) {
 
-		this.file = builder.file;
-		this.native_ = builder.native_;
-		this.pki = builder.pki;
+		this.file = ModelTypeHelper.unmodifiable(builder.file);
+		this.native_ = ModelTypeHelper.unmodifiable(builder.native_);
+		this.pki = ModelTypeHelper.unmodifiable(builder.pki);
 
+	}
+
+	public NodeInfoXpackSecurityAuthcRealms(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

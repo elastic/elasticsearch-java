@@ -49,6 +49,10 @@ public final class PagerDutyResult implements JsonpSerializable {
 
 	}
 
+	public PagerDutyResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code sent_event}
 	 */

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 
 	public GetFeaturesResponse(Builder builder) {
 
-		this.features = Objects.requireNonNull(builder.features, "features");
+		this.features = ModelTypeHelper.unmodifiableNonNull(builder.features, "features");
 
+	}
+
+	public GetFeaturesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 * Add a value to {@link #features(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatures(Feature value) {
 			if (this.features == null) {
@@ -123,7 +128,7 @@ public final class GetFeaturesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 * Add a value to {@link #features(List)}, creating the list if needed. 5
 		 */
 		public Builder addFeatures(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.addFeatures(fn.apply(new Feature.Builder()).build());

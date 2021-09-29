@@ -78,6 +78,10 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Input(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code chain} variant value.
 	 *
@@ -144,47 +148,47 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Input> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Input> chain(ChainInput v) {
+		public Builder chain(ChainInput v) {
 			this._type = CHAIN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Input> chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> f) {
+		public Builder chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> f) {
 			return this.chain(f.apply(new ChainInput.Builder()).build());
 		}
 
-		public ObjectBuilder<Input> http(HttpInput v) {
+		public Builder http(HttpInput v) {
 			this._type = HTTP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Input> http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> f) {
+		public Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> f) {
 			return this.http(f.apply(new HttpInput.Builder()).build());
 		}
 
-		public ObjectBuilder<Input> search(SearchInput v) {
+		public Builder search(SearchInput v) {
 			this._type = SEARCH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Input> search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> f) {
+		public Builder search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> f) {
 			return this.search(f.apply(new SearchInput.Builder()).build());
 		}
 
-		public ObjectBuilder<Input> simple(Map<String, JsonData> v) {
+		public Builder simple(Map<String, JsonData> v) {
 			this._type = SIMPLE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		protected Input build() {
+		public Input build() {
 			return new Input(this);
 		}
 

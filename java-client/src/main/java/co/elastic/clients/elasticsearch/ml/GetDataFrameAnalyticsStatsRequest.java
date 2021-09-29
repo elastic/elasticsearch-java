@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Request
@@ -68,6 +70,10 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		this.size = builder.size;
 		this.verbose = builder.verbose;
 
+	}
+
+	public GetDataFrameAnalyticsStatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -216,7 +222,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_data_frame_analytics_stats}".
 	 */
-	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -246,11 +252,11 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -271,5 +277,5 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetDataFrameAnalyticsStatsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDataFrameAnalyticsStatsResponse._DESERIALIZER);
 }

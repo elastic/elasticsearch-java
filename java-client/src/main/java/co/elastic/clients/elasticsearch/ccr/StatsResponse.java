@@ -54,6 +54,10 @@ public final class StatsResponse implements JsonpSerializable {
 
 	}
 
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code auto_follow_stats}
 	 */

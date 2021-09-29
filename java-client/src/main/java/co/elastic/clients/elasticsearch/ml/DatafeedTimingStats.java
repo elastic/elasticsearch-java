@@ -37,6 +37,7 @@ import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedTimingStats
@@ -67,6 +68,10 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		this.averageSearchTimePerBucketMs = Objects.requireNonNull(builder.averageSearchTimePerBucketMs,
 				"average_search_time_per_bucket_ms");
 
+	}
+
+	public DatafeedTimingStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

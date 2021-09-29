@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -58,12 +59,16 @@ public final class ExecutionResult implements JsonpSerializable {
 
 	public ExecutionResult(Builder builder) {
 
-		this.actions = Objects.requireNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
 		this.condition = Objects.requireNonNull(builder.condition, "condition");
 		this.executionDuration = Objects.requireNonNull(builder.executionDuration, "execution_duration");
 		this.executionTime = Objects.requireNonNull(builder.executionTime, "execution_time");
 		this.input = Objects.requireNonNull(builder.input, "input");
 
+	}
+
+	public ExecutionResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -167,7 +172,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(ExecutionResultAction value) {
 			if (this.actions == null) {
@@ -185,7 +190,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 5
 		 */
 		public Builder addActions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
 			return this.addActions(fn.apply(new ExecutionResultAction.Builder()).build());

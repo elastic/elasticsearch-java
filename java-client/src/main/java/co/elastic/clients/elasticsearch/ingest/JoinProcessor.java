@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JoinProcessor
@@ -54,6 +55,10 @@ public final class JoinProcessor extends ProcessorBase implements ProcessorVaria
 		this.separator = Objects.requireNonNull(builder.separator, "separator");
 		this.targetField = builder.targetField;
 
+	}
+
+	public JoinProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

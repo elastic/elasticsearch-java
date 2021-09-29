@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.get_alias.IndexAliases;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get_alias.Response
 @JsonpDeserializable
-public final class GetAliasResponse extends AdditionalProperties<String, IndexAliases> {
+public final class GetAliasResponse extends DictionaryResponse<String, IndexAliases> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetAliasResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 
 	}
 
+	public GetAliasResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetAliasResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexAliases, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexAliases, Builder>
 			implements
 				ObjectBuilder<GetAliasResponse> {
 		@Override
@@ -81,7 +86,7 @@ public final class GetAliasResponse extends AdditionalProperties<String, IndexAl
 			GetAliasResponse::setupGetAliasResponseDeserializer, Builder::build);
 
 	protected static void setupGetAliasResponseDeserializer(DelegatingDeserializer<GetAliasResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexAliases._DESERIALIZER);
 
 	}

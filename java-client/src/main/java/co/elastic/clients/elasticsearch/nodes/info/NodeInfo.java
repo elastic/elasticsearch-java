@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -115,7 +116,7 @@ public final class NodeInfo implements JsonpSerializable {
 
 	public NodeInfo(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
 		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
 		this.buildType = Objects.requireNonNull(builder.buildType, "build_type");
@@ -126,20 +127,24 @@ public final class NodeInfo implements JsonpSerializable {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.network = builder.network;
 		this.os = builder.os;
-		this.plugins = builder.plugins;
+		this.plugins = ModelTypeHelper.unmodifiable(builder.plugins);
 		this.process = builder.process;
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.settings = builder.settings;
-		this.threadPool = builder.threadPool;
+		this.threadPool = ModelTypeHelper.unmodifiable(builder.threadPool);
 		this.totalIndexingBuffer = builder.totalIndexingBuffer;
 		this.totalIndexingBufferInBytes = builder.totalIndexingBufferInBytes;
 		this.transport = builder.transport;
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 		this.version = Objects.requireNonNull(builder.version, "version");
-		this.modules = builder.modules;
+		this.modules = ModelTypeHelper.unmodifiable(builder.modules);
 		this.ingest = builder.ingest;
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 
+	}
+
+	public NodeInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -726,7 +731,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed.
+		 * Add a value to {@link #plugins(List)}, creating the list if needed. 4
 		 */
 		public Builder addPlugins(PluginStats value) {
 			if (this.plugins == null) {
@@ -744,7 +749,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed.
+		 * Add a value to {@link #plugins(List)}, creating the list if needed. 5
 		 */
 		public Builder addPlugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
 			return this.addPlugins(fn.apply(new PluginStats.Builder()).build());
@@ -782,7 +787,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
@@ -916,7 +921,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modules(List)}, creating the list if needed.
+		 * Add a value to {@link #modules(List)}, creating the list if needed. 4
 		 */
 		public Builder addModules(PluginStats value) {
 			if (this.modules == null) {
@@ -934,7 +939,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modules(List)}, creating the list if needed.
+		 * Add a value to {@link #modules(List)}, creating the list if needed. 5
 		 */
 		public Builder addModules(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
 			return this.addModules(fn.apply(new PluginStats.Builder()).build());

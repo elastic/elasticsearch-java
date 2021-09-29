@@ -67,6 +67,10 @@ public final class HasParentQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	public HasParentQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Query} variant type
 	 */

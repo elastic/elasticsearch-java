@@ -36,6 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateNanosProperty
@@ -71,6 +72,10 @@ public final class DateNanosProperty extends DocValuesPropertyBase implements Pr
 		this.nullValue = builder.nullValue;
 		this.precisionStep = builder.precisionStep;
 
+	}
+
+	public DateNanosProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

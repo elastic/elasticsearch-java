@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoOSCPU
@@ -69,6 +70,10 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		this.totalSockets = Objects.requireNonNull(builder.totalSockets, "total_sockets");
 		this.vendor = Objects.requireNonNull(builder.vendor, "vendor");
 
+	}
+
+	public NodeInfoOSCPU(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

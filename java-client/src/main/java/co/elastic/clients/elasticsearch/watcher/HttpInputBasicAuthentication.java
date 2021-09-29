@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputBasicAuthentication
@@ -50,6 +51,10 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		this.password = Objects.requireNonNull(builder.password, "password");
 		this.username = Objects.requireNonNull(builder.username, "username");
 
+	}
+
+	public HttpInputBasicAuthentication(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_user.Response
 @JsonpDeserializable
-public final class GetUserResponse extends AdditionalProperties<String, User> {
+public final class GetUserResponse extends DictionaryResponse<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetUserResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetUserResponse extends AdditionalProperties<String, User> {
 
 	}
 
+	public GetUserResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetUserResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, User, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, User, Builder>
 			implements
 				ObjectBuilder<GetUserResponse> {
 		@Override
@@ -80,7 +85,7 @@ public final class GetUserResponse extends AdditionalProperties<String, User> {
 			GetUserResponse::setupGetUserResponseDeserializer, Builder::build);
 
 	protected static void setupGetUserResponseDeserializer(DelegatingDeserializer<GetUserResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				User._DESERIALIZER);
 
 	}

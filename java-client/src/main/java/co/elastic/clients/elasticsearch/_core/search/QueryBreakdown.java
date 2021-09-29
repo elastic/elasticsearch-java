@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _global.search._types.QueryBreakdown
 @JsonpDeserializable
@@ -99,6 +100,10 @@ public final class QueryBreakdown implements JsonpSerializable {
 		this.setMinCompetitiveScoreCount = Objects.requireNonNull(builder.setMinCompetitiveScoreCount,
 				"set_min_competitive_score_count");
 
+	}
+
+	public QueryBreakdown(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

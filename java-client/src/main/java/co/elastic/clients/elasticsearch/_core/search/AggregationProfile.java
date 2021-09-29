@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -67,8 +68,12 @@ public final class AggregationProfile implements JsonpSerializable {
 		this.timeInNanos = Objects.requireNonNull(builder.timeInNanos, "time_in_nanos");
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.debug = builder.debug;
-		this.children = builder.children;
+		this.children = ModelTypeHelper.unmodifiable(builder.children);
 
+	}
+
+	public AggregationProfile(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -249,7 +254,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * Add a value to {@link #children(List)}, creating the list if needed. 4
 		 */
 		public Builder addChildren(AggregationProfileDebug value) {
 			if (this.children == null) {
@@ -267,7 +272,7 @@ public final class AggregationProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * Add a value to {@link #children(List)}, creating the list if needed. 5
 		 */
 		public Builder addChildren(
 				Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -82,6 +83,10 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.resultsIndexName = builder.resultsIndexName;
 
+	}
+
+	public ValidateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -371,7 +376,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ml.validate}".
 	 */
-	public static final Endpoint<ValidateRequest, ValidateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ValidateRequest, ValidateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -388,5 +393,5 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ValidateResponse._DESERIALIZER);
 }

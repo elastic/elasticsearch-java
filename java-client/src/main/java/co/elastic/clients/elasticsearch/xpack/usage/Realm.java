@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -73,15 +74,19 @@ public final class Realm extends Base {
 	public Realm(Builder builder) {
 		super(builder);
 
-		this.name = builder.name;
-		this.order = builder.order;
-		this.size = builder.size;
-		this.cache = builder.cache;
-		this.hasAuthorizationRealms = builder.hasAuthorizationRealms;
-		this.hasDefaultUsernamePattern = builder.hasDefaultUsernamePattern;
-		this.hasTruststore = builder.hasTruststore;
-		this.isAuthenticationDelegated = builder.isAuthenticationDelegated;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.order = ModelTypeHelper.unmodifiable(builder.order);
+		this.size = ModelTypeHelper.unmodifiable(builder.size);
+		this.cache = ModelTypeHelper.unmodifiable(builder.cache);
+		this.hasAuthorizationRealms = ModelTypeHelper.unmodifiable(builder.hasAuthorizationRealms);
+		this.hasDefaultUsernamePattern = ModelTypeHelper.unmodifiable(builder.hasDefaultUsernamePattern);
+		this.hasTruststore = ModelTypeHelper.unmodifiable(builder.hasTruststore);
+		this.isAuthenticationDelegated = ModelTypeHelper.unmodifiable(builder.isAuthenticationDelegated);
 
+	}
+
+	public Realm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -289,7 +294,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -316,7 +321,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #order(List)}, creating the list if needed.
+		 * Add a value to {@link #order(List)}, creating the list if needed. 4
 		 */
 		public Builder addOrder(Long value) {
 			if (this.order == null) {
@@ -343,7 +348,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #size(List)}, creating the list if needed.
+		 * Add a value to {@link #size(List)}, creating the list if needed. 4
 		 */
 		public Builder addSize(Long value) {
 			if (this.size == null) {
@@ -370,7 +375,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #cache(List)}, creating the list if needed.
+		 * Add a value to {@link #cache(List)}, creating the list if needed. 4
 		 */
 		public Builder addCache(RealmCache value) {
 			if (this.cache == null) {
@@ -388,7 +393,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #cache(List)}, creating the list if needed.
+		 * Add a value to {@link #cache(List)}, creating the list if needed. 5
 		 */
 		public Builder addCache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn) {
 			return this.addCache(fn.apply(new RealmCache.Builder()).build());
@@ -412,7 +417,7 @@ public final class Realm extends Base {
 
 		/**
 		 * Add a value to {@link #hasAuthorizationRealms(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addHasAuthorizationRealms(Boolean value) {
 			if (this.hasAuthorizationRealms == null) {
@@ -440,7 +445,7 @@ public final class Realm extends Base {
 
 		/**
 		 * Add a value to {@link #hasDefaultUsernamePattern(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addHasDefaultUsernamePattern(Boolean value) {
 			if (this.hasDefaultUsernamePattern == null) {
@@ -467,7 +472,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #hasTruststore(List)}, creating the list if needed.
+		 * Add a value to {@link #hasTruststore(List)}, creating the list if needed. 4
 		 */
 		public Builder addHasTruststore(Boolean value) {
 			if (this.hasTruststore == null) {
@@ -495,7 +500,7 @@ public final class Realm extends Base {
 
 		/**
 		 * Add a value to {@link #isAuthenticationDelegated(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addIsAuthenticationDelegated(Boolean value) {
 			if (this.isAuthenticationDelegated == null) {

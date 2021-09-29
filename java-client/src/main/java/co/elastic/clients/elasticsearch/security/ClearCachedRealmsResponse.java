@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -56,8 +57,12 @@ public final class ClearCachedRealmsResponse implements JsonpSerializable {
 
 		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
 
+	}
+
+	public ClearCachedRealmsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -48,8 +49,12 @@ public final class WatcherActions implements JsonpSerializable {
 
 	public WatcherActions(Builder builder) {
 
-		this.actions = Objects.requireNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
 
+	}
+
+	public WatcherActions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

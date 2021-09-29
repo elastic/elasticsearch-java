@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -59,11 +60,15 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 
 	public IntervalsAllOf(Builder builder) {
 
-		this.intervals = Objects.requireNonNull(builder.intervals, "intervals");
+		this.intervals = ModelTypeHelper.unmodifiableNonNull(builder.intervals, "intervals");
 		this.maxGaps = builder.maxGaps;
 		this.ordered = builder.ordered;
 		this.filter = builder.filter;
 
+	}
+
+	public IntervalsAllOf(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -179,7 +184,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 		}
 
 		/**
-		 * Add a value to {@link #intervals(List)}, creating the list if needed.
+		 * Add a value to {@link #intervals(List)}, creating the list if needed. 4
 		 */
 		public Builder addIntervals(Intervals value) {
 			if (this.intervals == null) {
@@ -197,7 +202,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 		}
 
 		/**
-		 * Add a value to {@link #intervals(List)}, creating the list if needed.
+		 * Add a value to {@link #intervals(List)}, creating the list if needed. 5
 		 */
 		public Builder addIntervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
 			return this.addIntervals(fn.apply(new Intervals.Builder()).build());

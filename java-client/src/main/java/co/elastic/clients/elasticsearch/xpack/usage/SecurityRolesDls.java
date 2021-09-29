@@ -49,6 +49,10 @@ public final class SecurityRolesDls implements JsonpSerializable {
 
 	}
 
+	public SecurityRolesDls(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code bit_set_cache}
 	 */

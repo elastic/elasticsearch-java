@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteParameters
@@ -66,6 +67,10 @@ public final class RerouteParameters implements JsonpSerializable {
 		this.fromNode = builder.fromNode;
 		this.toNode = builder.toNode;
 
+	}
+
+	public RerouteParameters(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

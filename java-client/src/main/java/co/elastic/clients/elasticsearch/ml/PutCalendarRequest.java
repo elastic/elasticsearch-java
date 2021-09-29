@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,6 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
@@ -55,6 +57,10 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.description = builder.description;
 
+	}
+
+	public PutCalendarRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -154,7 +160,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.put_calendar}".
 	 */
-	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -174,10 +180,10 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -185,5 +191,5 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutCalendarResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutCalendarResponse._DESERIALIZER);
 }

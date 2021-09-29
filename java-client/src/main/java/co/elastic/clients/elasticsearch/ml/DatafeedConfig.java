@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -101,23 +102,27 @@ public final class DatafeedConfig implements JsonpSerializable {
 
 	public DatafeedConfig(Builder builder) {
 
-		this.aggregations = builder.aggregations;
-		this.aggs = builder.aggs;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.chunkingConfig = builder.chunkingConfig;
 		this.datafeedId = builder.datafeedId;
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.frequency = builder.frequency;
-		this.indexes = builder.indexes;
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indexes = ModelTypeHelper.unmodifiable(builder.indexes);
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.queryDelay = builder.queryDelay;
-		this.runtimeMappings = builder.runtimeMappings;
-		this.scriptFields = builder.scriptFields;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 
+	}
+
+	public DatafeedConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -676,7 +681,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexes(List)}, creating the list if needed.
+		 * Add a value to {@link #indexes(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexes(String value) {
 			if (this.indexes == null) {
@@ -707,7 +712,7 @@ public final class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

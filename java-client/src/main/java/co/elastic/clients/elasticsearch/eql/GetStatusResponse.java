@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Response
@@ -67,6 +68,10 @@ public final class GetStatusResponse implements JsonpSerializable {
 		this.expirationTimeInMillis = builder.expirationTimeInMillis;
 		this.completionStatus = builder.completionStatus;
 
+	}
+
+	public GetStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

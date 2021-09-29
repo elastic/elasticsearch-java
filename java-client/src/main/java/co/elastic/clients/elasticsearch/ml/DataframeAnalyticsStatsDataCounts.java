@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml._types.DataframeAnalyticsStatsDataCounts
 @JsonpDeserializable
@@ -52,6 +53,10 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		this.testDocsCount = Objects.requireNonNull(builder.testDocsCount, "test_docs_count");
 		this.trainingDocsCount = Objects.requireNonNull(builder.trainingDocsCount, "training_docs_count");
 
+	}
+
+	public DataframeAnalyticsStatsDataCounts(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

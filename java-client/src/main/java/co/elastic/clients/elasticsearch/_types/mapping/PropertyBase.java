@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -71,13 +72,13 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	public PropertyBase(AbstractBuilder<?> builder) {
 
-		this.localMetadata = builder.localMetadata;
-		this.meta = builder.meta;
+		this.localMetadata = ModelTypeHelper.unmodifiable(builder.localMetadata);
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.name = builder.name;
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 		this.ignoreAbove = builder.ignoreAbove;
 		this.dynamic = builder.dynamic;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
 	}
 

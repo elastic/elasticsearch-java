@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ClassificationInferenceOptions
@@ -65,6 +66,10 @@ public final class ClassificationInferenceOptions implements JsonpSerializable {
 		this.resultsField = builder.resultsField;
 		this.topClassesResultsField = builder.topClassesResultsField;
 
+	}
+
+	public ClassificationInferenceOptions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

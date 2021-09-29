@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Request
@@ -49,6 +51,10 @@ public final class DeprecationsRequest extends RequestBase {
 
 		this.index = builder.index;
 
+	}
+
+	public DeprecationsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -99,7 +105,7 @@ public final class DeprecationsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code migration.deprecations}".
 	 */
-	public static final Endpoint<DeprecationsRequest, DeprecationsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeprecationsRequest, DeprecationsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -124,12 +130,12 @@ public final class DeprecationsRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_migration");
 					buf.append("/deprecations");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -137,5 +143,5 @@ public final class DeprecationsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeprecationsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeprecationsResponse._DESERIALIZER);
 }

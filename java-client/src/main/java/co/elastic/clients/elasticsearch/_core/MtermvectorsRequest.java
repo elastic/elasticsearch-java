@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.mtermvectors.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
@@ -35,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -100,7 +102,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	public MtermvectorsRequest(Builder builder) {
 
 		this.index = builder.index;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
@@ -111,9 +113,13 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
-		this.docs = builder.docs;
-		this.ids = builder.ids;
+		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
+		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
 
+	}
+
+	public MtermvectorsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -384,7 +390,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -525,7 +531,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocs(Operation value) {
 			if (this.docs == null) {
@@ -543,7 +549,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
 		 */
 		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
 			return this.addDocs(fn.apply(new Operation.Builder()).build());
@@ -566,7 +572,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
+		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {
@@ -608,7 +614,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code mtermvectors}".
 	 */
-	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -632,11 +638,11 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_mtermvectors");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -678,5 +684,5 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, MtermvectorsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MtermvectorsResponse._DESERIALIZER);
 }

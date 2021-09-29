@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class GetPolicyResponse implements JsonpSerializable {
 
 	public GetPolicyResponse(Builder builder) {
 
-		this.policies = Objects.requireNonNull(builder.policies, "policies");
+		this.policies = ModelTypeHelper.unmodifiableNonNull(builder.policies, "policies");
 
+	}
+
+	public GetPolicyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed.
+		 * Add a value to {@link #policies(List)}, creating the list if needed. 4
 		 */
 		public Builder addPolicies(Summary value) {
 			if (this.policies == null) {
@@ -123,7 +128,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed.
+		 * Add a value to {@link #policies(List)}, creating the list if needed. 5
 		 */
 		public Builder addPolicies(Function<Summary.Builder, ObjectBuilder<Summary>> fn) {
 			return this.addPolicies(fn.apply(new Summary.Builder()).build());

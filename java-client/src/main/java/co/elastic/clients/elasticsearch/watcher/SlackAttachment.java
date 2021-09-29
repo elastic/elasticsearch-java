@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -95,7 +96,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		this.authorName = Objects.requireNonNull(builder.authorName, "author_name");
 		this.color = builder.color;
 		this.fallback = builder.fallback;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.footer = builder.footer;
 		this.footerIcon = builder.footerIcon;
 		this.imageUrl = builder.imageUrl;
@@ -106,6 +107,10 @@ public final class SlackAttachment implements JsonpSerializable {
 		this.titleLink = builder.titleLink;
 		this.ts = builder.ts;
 
+	}
+
+	public SlackAttachment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -437,7 +442,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(SlackAttachmentField value) {
 			if (this.fields == null) {
@@ -455,7 +460,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 5
 		 */
 		public Builder addFields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
 			return this.addFields(fn.apply(new SlackAttachmentField.Builder()).build());

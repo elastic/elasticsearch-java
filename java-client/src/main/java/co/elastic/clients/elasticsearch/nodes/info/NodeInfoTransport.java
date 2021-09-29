@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoTransport
@@ -54,10 +56,14 @@ public final class NodeInfoTransport implements JsonpSerializable {
 
 	public NodeInfoTransport(Builder builder) {
 
-		this.boundAddress = Objects.requireNonNull(builder.boundAddress, "bound_address");
+		this.boundAddress = ModelTypeHelper.unmodifiableNonNull(builder.boundAddress, "bound_address");
 		this.publishAddress = Objects.requireNonNull(builder.publishAddress, "publish_address");
-		this.profiles = Objects.requireNonNull(builder.profiles, "profiles");
+		this.profiles = ModelTypeHelper.unmodifiableNonNull(builder.profiles, "profiles");
 
+	}
+
+	public NodeInfoTransport(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -143,7 +149,7 @@ public final class NodeInfoTransport implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #boundAddress(List)}, creating the list if needed.
+		 * Add a value to {@link #boundAddress(List)}, creating the list if needed. 4
 		 */
 		public Builder addBoundAddress(String value) {
 			if (this.boundAddress == null) {

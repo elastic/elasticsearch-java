@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessor
 @JsonpDeserializable
@@ -55,6 +56,10 @@ public final class ClusterProcessor implements JsonpSerializable {
 		this.failed = Objects.requireNonNull(builder.failed, "failed");
 		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
 
+	}
+
+	public ClusterProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

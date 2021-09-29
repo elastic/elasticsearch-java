@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -76,10 +78,14 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		this.cron = builder.cron;
 		this.groups = builder.groups;
 		this.indexPattern = builder.indexPattern;
-		this.metrics = builder.metrics;
+		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
 		this.pageSize = builder.pageSize;
 		this.rollupIndex = builder.rollupIndex;
 
+	}
+
+	public PutJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -278,7 +284,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetrics(FieldMetric value) {
 			if (this.metrics == null) {
@@ -296,7 +302,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 5
 		 */
 		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
 			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());
@@ -354,7 +360,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code rollup.put_job}".
 	 */
-	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -374,10 +380,10 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 					buf.append("/_rollup");
 					buf.append("/job");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -385,5 +391,5 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutJobResponse._DESERIALIZER);
 }

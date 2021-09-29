@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps.IndexCapabilities;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: rollup.get_rollup_index_caps.Response
 @JsonpDeserializable
-public final class GetRollupIndexCapsResponse extends AdditionalProperties<String, IndexCapabilities> {
+public final class GetRollupIndexCapsResponse extends DictionaryResponse<String, IndexCapabilities> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetRollupIndexCapsResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class GetRollupIndexCapsResponse extends AdditionalProperties<Strin
 
 	}
 
+	public GetRollupIndexCapsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetRollupIndexCapsResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexCapabilities, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexCapabilities, Builder>
 			implements
 				ObjectBuilder<GetRollupIndexCapsResponse> {
 		@Override
@@ -82,7 +87,7 @@ public final class GetRollupIndexCapsResponse extends AdditionalProperties<Strin
 
 	protected static void setupGetRollupIndexCapsResponseDeserializer(
 			DelegatingDeserializer<GetRollupIndexCapsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexCapabilities._DESERIALIZER);
 
 	}

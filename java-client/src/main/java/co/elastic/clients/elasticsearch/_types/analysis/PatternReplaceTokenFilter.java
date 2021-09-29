@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternReplaceTokenFilter
@@ -53,6 +54,10 @@ public final class PatternReplaceTokenFilter extends TokenFilterBase implements 
 		this.pattern = Objects.requireNonNull(builder.pattern, "pattern");
 		this.replacement = Objects.requireNonNull(builder.replacement, "replacement");
 
+	}
+
+	public PatternReplaceTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

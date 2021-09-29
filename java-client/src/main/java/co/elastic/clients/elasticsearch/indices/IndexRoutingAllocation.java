@@ -62,6 +62,10 @@ public final class IndexRoutingAllocation implements JsonpSerializable {
 
 	}
 
+	public IndexRoutingAllocation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code enable}
 	 */

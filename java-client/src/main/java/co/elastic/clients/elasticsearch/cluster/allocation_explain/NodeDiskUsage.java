@@ -56,6 +56,10 @@ public final class NodeDiskUsage implements JsonpSerializable {
 
 	}
 
+	public NodeDiskUsage(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code node_name}
 	 */

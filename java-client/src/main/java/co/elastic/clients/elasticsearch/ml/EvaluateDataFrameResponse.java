@@ -61,6 +61,10 @@ public final class EvaluateDataFrameResponse implements JsonpSerializable {
 
 	}
 
+	public EvaluateDataFrameResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code classification}
 	 */

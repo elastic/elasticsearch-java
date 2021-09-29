@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -67,6 +68,10 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		this.size = builder.size;
 		this.page = builder.page;
 
+	}
+
+	public GetCalendarsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -221,7 +226,7 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ml.get_calendars}".
 	 */
-	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -248,10 +253,10 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -266,5 +271,5 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetCalendarsResponse._DESERIALIZER);
 }

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
@@ -56,8 +57,8 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	public DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = builder.precision;
-		this.recall = builder.recall;
+		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
+		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
 
 	}
 

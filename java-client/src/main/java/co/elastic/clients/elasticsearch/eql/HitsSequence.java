@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -56,10 +57,14 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 
 	public HitsSequence(Builder<TEvent> builder) {
 
-		this.events = Objects.requireNonNull(builder.events, "events");
-		this.joinKeys = Objects.requireNonNull(builder.joinKeys, "join_keys");
+		this.events = ModelTypeHelper.unmodifiableNonNull(builder.events, "events");
+		this.joinKeys = ModelTypeHelper.unmodifiableNonNull(builder.joinKeys, "join_keys");
 		this.tEventSerializer = builder.tEventSerializer;
 
+	}
+
+	public HitsSequence(Function<Builder<TEvent>, Builder<TEvent>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -144,7 +149,7 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 4
 		 */
 		public Builder<TEvent> addEvents(HitsEvent<TEvent> value) {
 			if (this.events == null) {
@@ -162,7 +167,7 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 5
 		 */
 		public Builder<TEvent> addEvents(Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn) {
 			return this.addEvents(fn.apply(new HitsEvent.Builder<TEvent>()).build());
@@ -191,7 +196,7 @@ public final class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #joinKeys(List)}, creating the list if needed.
+		 * Add a value to {@link #joinKeys(List)}, creating the list if needed. 4
 		 */
 		public Builder<TEvent> addJoinKeys(JsonData value) {
 			if (this.joinKeys == null) {

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -59,10 +60,14 @@ public final class BulkResponse implements JsonpSerializable {
 	public BulkResponse(Builder builder) {
 
 		this.errors = Objects.requireNonNull(builder.errors, "errors");
-		this.items = Objects.requireNonNull(builder.items, "items");
+		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
 		this.took = Objects.requireNonNull(builder.took, "took");
 		this.ingestTook = builder.ingestTook;
 
+	}
+
+	public BulkResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -168,7 +173,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
+		 * Add a value to {@link #items(List)}, creating the list if needed. 4
 		 */
 		public Builder addItems(ResponseItem value) {
 			if (this.items == null) {
@@ -186,7 +191,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
+		 * Add a value to {@link #items(List)}, creating the list if needed. 5
 		 */
 		public Builder addItems(Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>> fn) {
 			return this.addItems(fn.apply(new ResponseItem.Builder()).build());

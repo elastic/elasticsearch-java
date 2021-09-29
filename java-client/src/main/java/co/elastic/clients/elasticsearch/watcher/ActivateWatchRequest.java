@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Request
@@ -48,6 +50,10 @@ public final class ActivateWatchRequest extends RequestBase {
 
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 
+	}
+
+	public ActivateWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class ActivateWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.activate_watch}".
 	 */
-	public static final Endpoint<ActivateWatchRequest, ActivateWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ActivateWatchRequest, ActivateWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -114,11 +120,11 @@ public final class ActivateWatchRequest extends RequestBase {
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.watchId);
+					SimpleEndpoint.pathEncode(request.watchId, buf);
 					buf.append("/_activate");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -126,5 +132,5 @@ public final class ActivateWatchRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ActivateWatchResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ActivateWatchResponse._DESERIALIZER);
 }

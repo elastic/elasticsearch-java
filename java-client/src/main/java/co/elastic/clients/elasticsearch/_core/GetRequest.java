@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -43,6 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -94,9 +98,9 @@ public class GetRequest extends RequestBase {
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
-		this.storedFields = builder.storedFields;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -376,9 +380,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public BuilderT add_sourceExcludes(String value) {
+		public BuilderT addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -407,9 +411,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public BuilderT add_sourceIncludes(String value) {
+		public BuilderT addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -438,7 +442,7 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -478,7 +482,7 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get}".
 	 */
-	private static final Endpoint.Simple<GetRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<GetRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -498,13 +502,13 @@ public class GetRequest extends RequestBase {
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_doc");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -524,7 +528,7 @@ public class GetRequest extends RequestBase {
 					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
-					params.put("_source", request.source.toString());
+					params.put("_source", JsonpUtils.toString(request.source));
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -546,7 +550,7 @@ public class GetRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 
 	/**
 	 * Create an "{@code get}" endpoint.

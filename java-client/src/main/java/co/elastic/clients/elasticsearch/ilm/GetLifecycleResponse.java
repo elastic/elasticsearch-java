@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.ilm.get_lifecycle.Lifecycle;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ilm.get_lifecycle.Response
 @JsonpDeserializable
-public final class GetLifecycleResponse extends AdditionalProperties<String, Lifecycle> {
+public final class GetLifecycleResponse extends DictionaryResponse<String, Lifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetLifecycleResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Lif
 
 	}
 
+	public GetLifecycleResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Lifecycle, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Lifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {
 		@Override
@@ -82,7 +87,7 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Lif
 
 	protected static void setupGetLifecycleResponseDeserializer(
 			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Lifecycle._DESERIALIZER);
 
 	}

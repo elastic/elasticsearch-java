@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Deprecation
@@ -56,6 +57,10 @@ public final class Deprecation implements JsonpSerializable {
 		this.message = Objects.requireNonNull(builder.message, "message");
 		this.url = Objects.requireNonNull(builder.url, "url");
 
+	}
+
+	public Deprecation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

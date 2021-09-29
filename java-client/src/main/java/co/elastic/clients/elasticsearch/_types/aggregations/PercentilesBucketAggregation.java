@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PercentilesBucketAggregation
@@ -49,8 +51,12 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 	public PercentilesBucketAggregation(Builder builder) {
 		super(builder);
 
-		this.percents = builder.percents;
+		this.percents = ModelTypeHelper.unmodifiable(builder.percents);
 
+	}
+
+	public PercentilesBucketAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -114,7 +120,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		}
 
 		/**
-		 * Add a value to {@link #percents(List)}, creating the list if needed.
+		 * Add a value to {@link #percents(List)}, creating the list if needed. 4
 		 */
 		public Builder addPercents(Double value) {
 			if (this.percents == null) {

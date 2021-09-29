@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_token.AccessTokenGrantType;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -39,6 +40,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Request
@@ -73,6 +75,10 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 		this.refreshToken = builder.refreshToken;
 		this.username = builder.username;
 
+	}
+
+	public GetTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -280,7 +286,7 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code security.get_token}".
 	 */
-	public static final Endpoint<GetTokenRequest, GetTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTokenRequest, GetTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -297,5 +303,5 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GetTokenResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetTokenResponse._DESERIALIZER);
 }

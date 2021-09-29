@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorMultiEncoding
@@ -51,8 +53,12 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 
 	public DataframeAnalysisFeatureProcessorMultiEncoding(Builder builder) {
 
-		this.processors = Objects.requireNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
 
+	}
+
+	public DataframeAnalysisFeatureProcessorMultiEncoding(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -122,7 +128,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
 		public Builder addProcessors(Integer value) {
 			if (this.processors == null) {

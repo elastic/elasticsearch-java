@@ -63,6 +63,10 @@ public final class BulkIndexByScrollFailure implements JsonpSerializable {
 
 	}
 
+	public BulkIndexByScrollFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cause}
 	 */

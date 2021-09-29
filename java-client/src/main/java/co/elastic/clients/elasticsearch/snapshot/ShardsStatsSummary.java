@@ -59,6 +59,10 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 
 	}
 
+	public ShardsStatsSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code incremental}
 	 */

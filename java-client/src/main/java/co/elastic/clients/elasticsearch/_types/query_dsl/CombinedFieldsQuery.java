@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CombinedFieldsQuery
@@ -63,13 +65,17 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 	public CombinedFieldsQuery(Builder builder) {
 		super(builder);
 
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.operator = builder.operator;
 		this.mimimumShouldMatch = builder.mimimumShouldMatch;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	public CombinedFieldsQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -207,7 +213,7 @@ public final class CombinedFieldsQuery extends QueryBase implements QueryVariant
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

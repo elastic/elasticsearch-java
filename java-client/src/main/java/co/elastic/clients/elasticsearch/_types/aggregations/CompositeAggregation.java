@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CompositeAggregation
@@ -58,10 +60,14 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 	public CompositeAggregation(Builder builder) {
 		super(builder);
 
-		this.after = builder.after;
+		this.after = ModelTypeHelper.unmodifiable(builder.after);
 		this.size = builder.size;
-		this.sources = builder.sources;
+		this.sources = ModelTypeHelper.unmodifiable(builder.sources);
 
+	}
+
+	public CompositeAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -198,7 +204,7 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #sources(List)}, creating the list if needed.
+		 * Add a value to {@link #sources(List)}, creating the list if needed. 4
 		 */
 		public Builder addSources(Map<String, CompositeAggregationSource> value) {
 			if (this.sources == null) {

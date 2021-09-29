@@ -75,6 +75,10 @@ public final class GeoTileGridAggregation extends BucketAggregationBase
 
 	}
 
+	public GeoTileGridAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
 	 * variant type

@@ -55,6 +55,10 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 
 	}
 
+	public ClusterIndicesShardsIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Contains statistics about the number of primary shards assigned to selected
 	 * nodes.

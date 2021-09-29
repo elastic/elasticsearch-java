@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -52,9 +53,13 @@ public final class SegmentsResponse implements JsonpSerializable {
 
 	public SegmentsResponse(Builder builder) {
 
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 
+	}
+
+	public SegmentsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

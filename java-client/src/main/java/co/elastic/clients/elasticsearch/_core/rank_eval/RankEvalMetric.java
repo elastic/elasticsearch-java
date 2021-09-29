@@ -66,6 +66,10 @@ public final class RankEvalMetric implements JsonpSerializable {
 
 	}
 
+	public RankEvalMetric(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code precision}
 	 */

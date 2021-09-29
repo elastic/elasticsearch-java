@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -58,10 +59,14 @@ public final class IndicesStats implements JsonpSerializable {
 	public IndicesStats(Builder builder) {
 
 		this.primaries = Objects.requireNonNull(builder.primaries, "primaries");
-		this.shards = builder.shards;
+		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.uuid = builder.uuid;
 
+	}
+
+	public IndicesStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

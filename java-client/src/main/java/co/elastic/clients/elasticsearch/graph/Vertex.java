@@ -36,6 +36,7 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.Vertex
@@ -58,6 +59,10 @@ public final class Vertex implements JsonpSerializable {
 		this.term = Objects.requireNonNull(builder.term, "term");
 		this.weight = Objects.requireNonNull(builder.weight, "weight");
 
+	}
+
+	public Vertex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

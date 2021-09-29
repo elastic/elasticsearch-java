@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.AnalyticsStatistics
@@ -74,6 +75,10 @@ public final class AnalyticsStatistics implements JsonpSerializable {
 		this.rateUsage = Objects.requireNonNull(builder.rateUsage, "rate_usage");
 		this.multiTermsUsage = builder.multiTermsUsage;
 
+	}
+
+	public AnalyticsStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -73,6 +73,10 @@ public class Trigger implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Trigger(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code schedule} variant value.
 	 *
@@ -96,21 +100,21 @@ public class Trigger implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Trigger> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Trigger> schedule(Schedule v) {
+		public Builder schedule(Schedule v) {
 			this._type = SCHEDULE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Trigger> schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> f) {
+		public Builder schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> f) {
 			return this.schedule(f.apply(new Schedule.Builder()).build());
 		}
 
-		protected Trigger build() {
+		public Trigger build() {
 			return new Trigger(this);
 		}
 

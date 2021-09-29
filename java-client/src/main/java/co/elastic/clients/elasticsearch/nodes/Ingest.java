@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -50,9 +51,13 @@ public final class Ingest implements JsonpSerializable {
 
 	public Ingest(Builder builder) {
 
-		this.pipelines = Objects.requireNonNull(builder.pipelines, "pipelines");
+		this.pipelines = ModelTypeHelper.unmodifiableNonNull(builder.pipelines, "pipelines");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public Ingest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

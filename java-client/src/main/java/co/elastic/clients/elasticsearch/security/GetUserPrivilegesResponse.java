@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -57,12 +58,16 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 
 	public GetUserPrivilegesResponse(Builder builder) {
 
-		this.applications = Objects.requireNonNull(builder.applications, "applications");
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.global = Objects.requireNonNull(builder.global, "global");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.runAs = Objects.requireNonNull(builder.runAs, "run_as");
+		this.applications = ModelTypeHelper.unmodifiableNonNull(builder.applications, "applications");
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
+		this.global = ModelTypeHelper.unmodifiableNonNull(builder.global, "global");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.runAs = ModelTypeHelper.unmodifiableNonNull(builder.runAs, "run_as");
 
+	}
+
+	public GetUserPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -186,7 +191,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -204,7 +209,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -228,7 +233,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(String value) {
 			if (this.cluster == null) {
@@ -255,7 +260,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #global(List)}, creating the list if needed.
+		 * Add a value to {@link #global(List)}, creating the list if needed. 4
 		 */
 		public Builder addGlobal(GlobalPrivilege value) {
 			if (this.global == null) {
@@ -273,7 +278,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #global(List)}, creating the list if needed.
+		 * Add a value to {@link #global(List)}, creating the list if needed. 5
 		 */
 		public Builder addGlobal(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
 			return this.addGlobal(fn.apply(new GlobalPrivilege.Builder()).build());
@@ -296,7 +301,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -314,7 +319,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
@@ -337,7 +342,7 @@ public final class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {

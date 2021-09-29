@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.get_watch.Request
@@ -48,6 +50,10 @@ public final class GetWatchRequest extends RequestBase {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
+	}
+
+	public GetWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class GetWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.get_watch}".
 	 */
-	public static final Endpoint<GetWatchRequest, GetWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetWatchRequest, GetWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -114,10 +120,10 @@ public final class GetWatchRequest extends RequestBase {
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -125,5 +131,5 @@ public final class GetWatchRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetWatchResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetWatchResponse._DESERIALIZER);
 }

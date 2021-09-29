@@ -68,6 +68,10 @@ public final class EqlFeatures implements JsonpSerializable {
 
 	}
 
+	public EqlFeatures(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code join}
 	 */

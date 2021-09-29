@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 
 	public GetDataStreamResponse(Builder builder) {
 
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
+		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
 
+	}
+
+	public GetDataStreamResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
 		 */
 		public Builder addDataStreams(IndicesGetDataStreamItem value) {
 			if (this.dataStreams == null) {
@@ -125,7 +130,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 5
 		 */
 		public Builder addDataStreams(
 				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {

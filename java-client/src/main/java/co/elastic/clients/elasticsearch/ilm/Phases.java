@@ -62,6 +62,10 @@ public final class Phases implements JsonpSerializable {
 
 	}
 
+	public Phases(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cold}
 	 */

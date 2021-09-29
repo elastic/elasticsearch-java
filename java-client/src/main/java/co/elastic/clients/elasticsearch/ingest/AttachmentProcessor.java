@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AttachmentProcessor
@@ -72,10 +74,14 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		this.ignoreMissing = builder.ignoreMissing;
 		this.indexedChars = builder.indexedChars;
 		this.indexedCharsField = builder.indexedCharsField;
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 		this.targetField = builder.targetField;
 		this.resourceName = builder.resourceName;
 
+	}
+
+	public AttachmentProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -269,7 +275,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		}
 
 		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
+		 * Add a value to {@link #properties(List)}, creating the list if needed. 4
 		 */
 		public Builder addProperties(String value) {
 			if (this.properties == null) {

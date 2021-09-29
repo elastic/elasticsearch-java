@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -73,10 +74,14 @@ public final class IndexHealthStats implements JsonpSerializable {
 		this.numberOfReplicas = Objects.requireNonNull(builder.numberOfReplicas, "number_of_replicas");
 		this.numberOfShards = Objects.requireNonNull(builder.numberOfShards, "number_of_shards");
 		this.relocatingShards = Objects.requireNonNull(builder.relocatingShards, "relocating_shards");
-		this.shards = builder.shards;
+		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.unassignedShards = Objects.requireNonNull(builder.unassignedShards, "unassigned_shards");
 
+	}
+
+	public IndexHealthStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

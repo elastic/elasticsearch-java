@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_privileges.Request
@@ -53,6 +55,10 @@ public final class GetPrivilegesRequest extends RequestBase {
 		this.application = builder.application;
 		this.name = builder.name;
 
+	}
+
+	public GetPrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -124,7 +130,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_privileges}".
 	 */
-	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -154,7 +160,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					buf.append(request.application);
+					SimpleEndpoint.pathEncode(request.application, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_application | _name)) {
@@ -162,12 +168,12 @@ public final class GetPrivilegesRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					buf.append(request.application);
+					SimpleEndpoint.pathEncode(request.application, buf);
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -175,5 +181,5 @@ public final class GetPrivilegesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetPrivilegesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetPrivilegesResponse._DESERIALIZER);
 }

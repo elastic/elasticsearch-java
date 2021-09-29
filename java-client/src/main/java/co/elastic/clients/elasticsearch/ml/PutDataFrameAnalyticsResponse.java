@@ -86,6 +86,10 @@ public final class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	}
 
+	public PutDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code id}
 	 */

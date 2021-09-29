@@ -54,6 +54,10 @@ public final class InferenceConfig implements JsonpSerializable {
 
 	}
 
+	public InferenceConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Regression configuration for inference.
 	 * <p>

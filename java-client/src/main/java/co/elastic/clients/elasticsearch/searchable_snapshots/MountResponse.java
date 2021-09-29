@@ -50,6 +50,10 @@ public final class MountResponse implements JsonpSerializable {
 
 	}
 
+	public MountResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code snapshot}
 	 */

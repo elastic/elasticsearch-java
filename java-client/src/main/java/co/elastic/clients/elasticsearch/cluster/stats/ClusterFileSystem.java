@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
 @JsonpDeserializable
@@ -52,6 +53,10 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
 		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
 
+	}
+
+	public ClusterFileSystem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

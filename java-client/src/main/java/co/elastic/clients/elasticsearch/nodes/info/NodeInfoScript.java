@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
@@ -51,6 +52,10 @@ public final class NodeInfoScript implements JsonpSerializable {
 		this.disableMaxCompilationsRate = Objects.requireNonNull(builder.disableMaxCompilationsRate,
 				"disable_max_compilations_rate");
 
+	}
+
+	public NodeInfoScript(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -108,13 +110,17 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = builder.groups;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
 		this.resultsIndexName = builder.resultsIndexName;
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
+	}
+
+	public PutJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -671,7 +677,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -816,7 +822,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ml.put_job}".
 	 */
-	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -836,10 +842,10 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -847,5 +853,5 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutJobResponse._DESERIALIZER);
 }

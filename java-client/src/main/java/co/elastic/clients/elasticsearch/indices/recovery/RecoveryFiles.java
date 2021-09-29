@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -59,12 +60,16 @@ public final class RecoveryFiles implements JsonpSerializable {
 
 	public RecoveryFiles(Builder builder) {
 
-		this.details = builder.details;
+		this.details = ModelTypeHelper.unmodifiable(builder.details);
 		this.percent = Objects.requireNonNull(builder.percent, "percent");
 		this.recovered = Objects.requireNonNull(builder.recovered, "recovered");
 		this.reused = Objects.requireNonNull(builder.reused, "reused");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public RecoveryFiles(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -174,7 +179,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * Add a value to {@link #details(List)}, creating the list if needed. 4
 		 */
 		public Builder addDetails(FileDetails value) {
 			if (this.details == null) {
@@ -192,7 +197,7 @@ public final class RecoveryFiles implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * Add a value to {@link #details(List)}, creating the list if needed. 5
 		 */
 		public Builder addDetails(Function<FileDetails.Builder, ObjectBuilder<FileDetails>> fn) {
 			return this.addDetails(fn.apply(new FileDetails.Builder()).build());

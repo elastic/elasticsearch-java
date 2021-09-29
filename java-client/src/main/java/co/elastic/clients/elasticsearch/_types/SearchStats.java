@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -90,8 +91,12 @@ public final class SearchStats implements JsonpSerializable {
 		this.suggestCurrent = Objects.requireNonNull(builder.suggestCurrent, "suggest_current");
 		this.suggestTimeInMillis = Objects.requireNonNull(builder.suggestTimeInMillis, "suggest_time_in_millis");
 		this.suggestTotal = Objects.requireNonNull(builder.suggestTotal, "suggest_total");
-		this.groups = builder.groups;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 
+	}
+
+	public SearchStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriTokenizer
@@ -58,8 +60,13 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		this.decompoundMode = Objects.requireNonNull(builder.decompoundMode, "decompound_mode");
 		this.discardPunctuation = Objects.requireNonNull(builder.discardPunctuation, "discard_punctuation");
 		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
-		this.userDictionaryRules = Objects.requireNonNull(builder.userDictionaryRules, "user_dictionary_rules");
+		this.userDictionaryRules = ModelTypeHelper.unmodifiableNonNull(builder.userDictionaryRules,
+				"user_dictionary_rules");
 
+	}
+
+	public NoriTokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -178,7 +185,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 
 		/**
 		 * Add a value to {@link #userDictionaryRules(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addUserDictionaryRules(String value) {
 			if (this.userDictionaryRules == null) {

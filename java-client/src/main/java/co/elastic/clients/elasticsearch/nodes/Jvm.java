@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -64,7 +65,7 @@ public final class Jvm implements JsonpSerializable {
 
 	public Jvm(Builder builder) {
 
-		this.bufferPools = Objects.requireNonNull(builder.bufferPools, "buffer_pools");
+		this.bufferPools = ModelTypeHelper.unmodifiableNonNull(builder.bufferPools, "buffer_pools");
 		this.classes = Objects.requireNonNull(builder.classes, "classes");
 		this.gc = Objects.requireNonNull(builder.gc, "gc");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
@@ -73,6 +74,10 @@ public final class Jvm implements JsonpSerializable {
 		this.uptime = Objects.requireNonNull(builder.uptime, "uptime");
 		this.uptimeInMillis = Objects.requireNonNull(builder.uptimeInMillis, "uptime_in_millis");
 
+	}
+
+	public Jvm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

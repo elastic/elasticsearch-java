@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -67,8 +68,8 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 
 	public NodeAllocationExplanation(Builder builder) {
 
-		this.deciders = Objects.requireNonNull(builder.deciders, "deciders");
-		this.nodeAttributes = Objects.requireNonNull(builder.nodeAttributes, "node_attributes");
+		this.deciders = ModelTypeHelper.unmodifiableNonNull(builder.deciders, "deciders");
+		this.nodeAttributes = ModelTypeHelper.unmodifiableNonNull(builder.nodeAttributes, "node_attributes");
 		this.nodeDecision = Objects.requireNonNull(builder.nodeDecision, "node_decision");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
@@ -76,6 +77,10 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 		this.weightRanking = Objects.requireNonNull(builder.weightRanking, "weight_ranking");
 
+	}
+
+	public NodeAllocationExplanation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -227,7 +232,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #deciders(List)}, creating the list if needed.
+		 * Add a value to {@link #deciders(List)}, creating the list if needed. 4
 		 */
 		public Builder addDeciders(AllocationDecision value) {
 			if (this.deciders == null) {
@@ -245,7 +250,7 @@ public final class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #deciders(List)}, creating the list if needed.
+		 * Add a value to {@link #deciders(List)}, creating the list if needed. 5
 		 */
 		public Builder addDeciders(Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
 			return this.addDeciders(fn.apply(new AllocationDecision.Builder()).build());

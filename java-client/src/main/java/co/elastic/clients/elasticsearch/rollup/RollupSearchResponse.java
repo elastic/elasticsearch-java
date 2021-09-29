@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -74,9 +75,13 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		this.terminatedEarly = builder.terminatedEarly;
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.hits = Objects.requireNonNull(builder.hits, "hits");
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public RollupSearchResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

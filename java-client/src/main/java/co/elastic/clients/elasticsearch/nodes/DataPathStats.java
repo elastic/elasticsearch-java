@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.DataPathStats
@@ -93,6 +94,10 @@ public final class DataPathStats implements JsonpSerializable {
 		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public DataPathStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

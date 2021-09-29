@@ -53,6 +53,10 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 
 	}
 
+	public SlackDynamicAttachment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code attachment_template}
 	 */

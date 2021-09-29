@@ -65,6 +65,10 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 
 	}
 
+	public SpanNotQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */

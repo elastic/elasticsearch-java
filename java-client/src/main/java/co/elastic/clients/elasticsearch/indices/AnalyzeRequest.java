@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -87,15 +89,19 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		this.index = builder.index;
 		this.analyzer = builder.analyzer;
-		this.attributes = builder.attributes;
-		this.charFilter = builder.charFilter;
+		this.attributes = ModelTypeHelper.unmodifiable(builder.attributes);
+		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
 		this.explain = builder.explain;
 		this.field = builder.field;
-		this.filter = builder.filter;
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.normalizer = builder.normalizer;
-		this.text = builder.text;
+		this.text = ModelTypeHelper.unmodifiable(builder.text);
 		this.tokenizer = builder.tokenizer;
 
+	}
+
+	public AnalyzeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -339,7 +345,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #attributes(List)}, creating the list if needed.
+		 * Add a value to {@link #attributes(List)}, creating the list if needed. 4
 		 */
 		public Builder addAttributes(String value) {
 			if (this.attributes == null) {
@@ -366,7 +372,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
 		 */
 		public Builder addCharFilter(CharFilter value) {
 			if (this.charFilter == null) {
@@ -384,7 +390,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 5
 		 */
 		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
 			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
@@ -423,7 +429,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilter(TokenFilter value) {
 			if (this.filter == null) {
@@ -441,7 +447,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
 		 */
 		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
 			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
@@ -472,7 +478,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #text(List)}, creating the list if needed.
+		 * Add a value to {@link #text(List)}, creating the list if needed. 4
 		 */
 		public Builder addText(String value) {
 			if (this.text == null) {
@@ -537,7 +543,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code indices.analyze}".
 	 */
-	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -561,11 +567,11 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_analyze");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -573,5 +579,5 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, AnalyzeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, AnalyzeResponse._DESERIALIZER);
 }

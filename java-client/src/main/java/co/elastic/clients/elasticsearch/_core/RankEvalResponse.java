@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -56,9 +57,13 @@ public final class RankEvalResponse implements JsonpSerializable {
 	public RankEvalResponse(Builder builder) {
 
 		this.metricScore = Objects.requireNonNull(builder.metricScore, "metric_score");
-		this.details = Objects.requireNonNull(builder.details, "details");
-		this.failures = Objects.requireNonNull(builder.failures, "failures");
+		this.details = ModelTypeHelper.unmodifiableNonNull(builder.details, "details");
+		this.failures = ModelTypeHelper.unmodifiableNonNull(builder.failures, "failures");
 
+	}
+
+	public RankEvalResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

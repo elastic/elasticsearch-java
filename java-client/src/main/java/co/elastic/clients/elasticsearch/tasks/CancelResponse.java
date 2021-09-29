@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -55,9 +56,13 @@ public final class CancelResponse implements JsonpSerializable {
 
 	public CancelResponse(Builder builder) {
 
-		this.nodeFailures = builder.nodeFailures;
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
+		this.nodeFailures = ModelTypeHelper.unmodifiable(builder.nodeFailures);
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
 
+	}
+
+	public CancelResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -137,7 +142,7 @@ public final class CancelResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeFailures(ErrorCause value) {
 			if (this.nodeFailures == null) {
@@ -155,7 +160,7 @@ public final class CancelResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed. 5
 		 */
 		public Builder addNodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addNodeFailures(fn.apply(new ErrorCause.Builder()).build());

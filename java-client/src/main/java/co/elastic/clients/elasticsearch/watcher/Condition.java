@@ -77,6 +77,10 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Condition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code always} variant value.
 	 *
@@ -140,62 +144,61 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Condition> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Condition> always(AlwaysCondition v) {
+		public Builder always(AlwaysCondition v) {
 			this._type = ALWAYS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Condition> always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> f) {
+		public Builder always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> f) {
 			return this.always(f.apply(new AlwaysCondition.Builder()).build());
 		}
 
-		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition v) {
+		public Builder arrayCompare(ArrayCompareCondition v) {
 			this._type = ARRAY_COMPARE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Condition> arrayCompare(
-				Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> f) {
+		public Builder arrayCompare(Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> f) {
 			return this.arrayCompare(f.apply(new ArrayCompareCondition.Builder()).build());
 		}
 
-		public ObjectBuilder<Condition> compare(CompareCondition v) {
+		public Builder compare(CompareCondition v) {
 			this._type = COMPARE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Condition> compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> f) {
+		public Builder compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> f) {
 			return this.compare(f.apply(new CompareCondition.Builder()).build());
 		}
 
-		public ObjectBuilder<Condition> never(NeverCondition v) {
+		public Builder never(NeverCondition v) {
 			this._type = NEVER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Condition> never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> f) {
+		public Builder never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> f) {
 			return this.never(f.apply(new NeverCondition.Builder()).build());
 		}
 
-		public ObjectBuilder<Condition> script(ScriptCondition v) {
+		public Builder script(ScriptCondition v) {
 			this._type = SCRIPT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Condition> script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> f) {
+		public Builder script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> f) {
 			return this.script(f.apply(new ScriptCondition.Builder()).build());
 		}
 
-		protected Condition build() {
+		public Condition build() {
 			return new Condition(this);
 		}
 

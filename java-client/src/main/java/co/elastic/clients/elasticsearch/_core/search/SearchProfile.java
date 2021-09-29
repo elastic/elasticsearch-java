@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -53,10 +54,14 @@ public final class SearchProfile implements JsonpSerializable {
 
 	public SearchProfile(Builder builder) {
 
-		this.collector = Objects.requireNonNull(builder.collector, "collector");
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.collector = ModelTypeHelper.unmodifiableNonNull(builder.collector, "collector");
+		this.query = ModelTypeHelper.unmodifiableNonNull(builder.query, "query");
 		this.rewriteTime = Objects.requireNonNull(builder.rewriteTime, "rewrite_time");
 
+	}
+
+	public SearchProfile(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -141,7 +146,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed.
+		 * Add a value to {@link #collector(List)}, creating the list if needed. 4
 		 */
 		public Builder addCollector(Collector value) {
 			if (this.collector == null) {
@@ -159,7 +164,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed.
+		 * Add a value to {@link #collector(List)}, creating the list if needed. 5
 		 */
 		public Builder addCollector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
 			return this.addCollector(fn.apply(new Collector.Builder()).build());
@@ -182,7 +187,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed.
+		 * Add a value to {@link #query(List)}, creating the list if needed. 4
 		 */
 		public Builder addQuery(QueryProfile value) {
 			if (this.query == null) {
@@ -200,7 +205,7 @@ public final class SearchProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed.
+		 * Add a value to {@link #query(List)}, creating the list if needed. 5
 		 */
 		public Builder addQuery(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
 			return this.addQuery(fn.apply(new QueryProfile.Builder()).build());

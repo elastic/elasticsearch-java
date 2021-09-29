@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -106,19 +107,23 @@ public final class InnerHits implements JsonpSerializable {
 		this.size = builder.size;
 		this.from = builder.from;
 		this.collapse = builder.collapse;
-		this.docvalueFields = builder.docvalueFields;
+		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
 		this.explain = builder.explain;
 		this.highlight = builder.highlight;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
-		this.scriptFields = builder.scriptFields;
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
-		this.fields = builder.fields;
-		this.sort = builder.sort;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.storedField = builder.storedField;
+		this.storedField = ModelTypeHelper.unmodifiable(builder.storedField);
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 
+	}
+
+	public InnerHits(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -495,7 +500,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocvalueFields(FieldAndFormat value) {
 			if (this.docvalueFields == null) {
@@ -513,7 +518,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 5
 		 */
 		public Builder addDocvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
 			return this.addDocvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
@@ -608,7 +613,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -635,7 +640,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -671,7 +676,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #storedField(List)}, creating the list if needed.
+		 * Add a value to {@link #storedField(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredField(String value) {
 			if (this.storedField == null) {

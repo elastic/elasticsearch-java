@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHit
@@ -58,6 +59,10 @@ public final class RankEvalHit implements JsonpSerializable {
 		this.type = builder.type;
 		this.score = Objects.requireNonNull(builder.score, "_score");
 
+	}
+
+	public RankEvalHit(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

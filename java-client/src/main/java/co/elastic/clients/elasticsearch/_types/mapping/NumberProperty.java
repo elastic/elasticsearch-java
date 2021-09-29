@@ -77,6 +77,10 @@ public final class NumberProperty extends DocValuesPropertyBase implements Prope
 
 	}
 
+	public NumberProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Property} variant type
 	 */

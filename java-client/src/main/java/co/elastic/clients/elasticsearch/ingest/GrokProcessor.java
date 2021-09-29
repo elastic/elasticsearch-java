@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GrokProcessor
@@ -63,10 +65,15 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.patternDefinitions = Objects.requireNonNull(builder.patternDefinitions, "pattern_definitions");
-		this.patterns = Objects.requireNonNull(builder.patterns, "patterns");
+		this.patternDefinitions = ModelTypeHelper.unmodifiableNonNull(builder.patternDefinitions,
+				"pattern_definitions");
+		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
 		this.traceMatch = builder.traceMatch;
 
+	}
+
+	public GrokProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -225,7 +232,7 @@ public final class GrokProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
+		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addPatterns(String value) {
 			if (this.patterns == null) {

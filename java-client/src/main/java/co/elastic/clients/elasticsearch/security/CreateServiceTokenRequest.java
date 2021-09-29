@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Request
@@ -54,6 +56,10 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		this.service = Objects.requireNonNull(builder.service, "service");
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public CreateServiceTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -142,7 +148,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.create_service_token}".
 	 */
-	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				final int _namespace = 1 << 0;
@@ -159,7 +165,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 					return "PUT";
 				if (propsSet == (_namespace | _service))
 					return "POST";
-				throw Endpoint.Simple.noPathTemplateFound("method");
+				throw SimpleEndpoint.noPathTemplateFound("method");
 
 			},
 
@@ -180,13 +186,13 @@ public final class CreateServiceTokenRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_namespace | _service)) {
@@ -194,14 +200,14 @@ public final class CreateServiceTokenRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -209,5 +215,5 @@ public final class CreateServiceTokenRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, CreateServiceTokenResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CreateServiceTokenResponse._DESERIALIZER);
 }

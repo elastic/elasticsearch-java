@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Response
@@ -50,6 +51,10 @@ public final class StatsResponse implements JsonpSerializable {
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

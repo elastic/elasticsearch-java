@@ -62,6 +62,10 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 
 	}
 
+	public DataframeEvaluationClassification(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link DataframeEvaluation} variant type
 	 */

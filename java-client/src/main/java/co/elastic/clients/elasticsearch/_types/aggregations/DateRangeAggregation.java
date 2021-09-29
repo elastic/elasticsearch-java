@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -69,10 +70,14 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		this.field = builder.field;
 		this.format = builder.format;
 		this.missing = builder.missing;
-		this.ranges = builder.ranges;
+		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
 		this.timeZone = builder.timeZone;
 		this.keyed = builder.keyed;
 
+	}
+
+	public DateRangeAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -245,7 +250,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
 		 */
 		public Builder addRanges(DateRangeExpression value) {
 			if (this.ranges == null) {
@@ -263,7 +268,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
 		 */
 		public Builder addRanges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn) {
 			return this.addRanges(fn.apply(new DateRangeExpression.Builder()).build());

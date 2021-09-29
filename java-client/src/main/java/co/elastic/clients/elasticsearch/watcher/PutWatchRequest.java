@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -35,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -94,14 +96,18 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSequenceNumber = builder.ifSequenceNumber;
 		this.version = builder.version;
-		this.actions = builder.actions;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.condition = builder.condition;
 		this.input = builder.input;
-		this.metadata = builder.metadata;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.throttlePeriod = builder.throttlePeriod;
 		this.transform = builder.transform;
 		this.trigger = builder.trigger;
 
+	}
+
+	public PutWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -523,7 +529,7 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code watcher.put_watch}".
 	 */
-	public static final Endpoint<PutWatchRequest, PutWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutWatchRequest, PutWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -543,10 +549,10 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -567,5 +573,5 @@ public final class PutWatchRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutWatchResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutWatchResponse._DESERIALIZER);
 }

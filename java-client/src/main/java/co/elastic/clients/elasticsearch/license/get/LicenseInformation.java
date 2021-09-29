@@ -38,6 +38,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.get.LicenseInformation
@@ -85,6 +86,10 @@ public final class LicenseInformation implements JsonpSerializable {
 		this.uid = Objects.requireNonNull(builder.uid, "uid");
 		this.startDateInMillis = Objects.requireNonNull(builder.startDateInMillis, "start_date_in_millis");
 
+	}
+
+	public LicenseInformation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

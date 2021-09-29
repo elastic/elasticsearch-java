@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,9 +58,13 @@ public final class ShardsRequest extends CatRequestBase {
 
 	public ShardsRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.bytes = builder.bytes;
 
+	}
+
+	public ShardsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -113,7 +120,7 @@ public final class ShardsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -150,7 +157,7 @@ public final class ShardsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.shards}".
 	 */
-	public static final Endpoint<ShardsRequest, ShardsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ShardsRequest, ShardsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -177,10 +184,10 @@ public final class ShardsRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/shards");
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -192,5 +199,5 @@ public final class ShardsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ShardsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ShardsResponse._DESERIALIZER);
 }

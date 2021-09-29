@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRocCurveItem
 @JsonpDeserializable
@@ -52,6 +53,10 @@ public final class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSer
 		this.fpr = Objects.requireNonNull(builder.fpr, "fpr");
 		this.threshold = Objects.requireNonNull(builder.threshold, "threshold");
 
+	}
+
+	public DataframeEvaluationSummaryAucRocCurveItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

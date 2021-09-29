@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixThreshold
 @JsonpDeserializable
@@ -55,6 +56,10 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		this.trueNegative = Objects.requireNonNull(builder.trueNegative, "tn");
 		this.falseNegative = Objects.requireNonNull(builder.falseNegative, "fn");
 
+	}
+
+	public ConfusionMatrixThreshold(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

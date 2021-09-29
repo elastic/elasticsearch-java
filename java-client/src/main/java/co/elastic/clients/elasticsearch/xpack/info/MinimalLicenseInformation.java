@@ -36,6 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.MinimalLicenseInformation
@@ -61,6 +62,10 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.uid = Objects.requireNonNull(builder.uid, "uid");
 
+	}
+
+	public MinimalLicenseInformation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

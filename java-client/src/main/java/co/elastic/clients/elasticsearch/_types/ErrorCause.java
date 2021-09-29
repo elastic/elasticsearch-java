@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -140,12 +141,12 @@ public class ErrorCause implements JsonpSerializable {
 		this.causedBy = builder.causedBy;
 		this.shard = builder.shard;
 		this.stackTrace = builder.stackTrace;
-		this.rootCause = builder.rootCause;
+		this.rootCause = ModelTypeHelper.unmodifiable(builder.rootCause);
 		this.bytesLimit = builder.bytesLimit;
 		this.bytesWanted = builder.bytesWanted;
 		this.column = builder.column;
 		this.col = builder.col;
-		this.failedShards = builder.failedShards;
+		this.failedShards = ModelTypeHelper.unmodifiable(builder.failedShards);
 		this.grouped = builder.grouped;
 		this.index = builder.index;
 		this.indexUuid = builder.indexUuid;
@@ -156,11 +157,11 @@ public class ErrorCause implements JsonpSerializable {
 		this.phase = builder.phase;
 		this.propertyName = builder.propertyName;
 		this.processorType = builder.processorType;
-		this.resourceId = builder.resourceId;
+		this.resourceId = ModelTypeHelper.unmodifiable(builder.resourceId);
 		this.resourceType = builder.resourceType;
 		this.script = builder.script;
-		this.scriptStack = builder.scriptStack;
-		this.header = builder.header;
+		this.scriptStack = ModelTypeHelper.unmodifiable(builder.scriptStack);
+		this.header = ModelTypeHelper.unmodifiable(builder.header);
 		this.lang = builder.lang;
 		this.position = builder.position;
 
@@ -769,7 +770,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
+		 * Add a value to {@link #rootCause(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addRootCause(ErrorCause value) {
 			if (this.rootCause == null) {
@@ -787,7 +788,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
+		 * Add a value to {@link #rootCause(List)}, creating the list if needed. 5
 		 */
 		public BuilderT addRootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addRootCause(fn.apply(new ErrorCause.Builder()).build());
@@ -842,7 +843,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failedShards(List)}, creating the list if needed.
+		 * Add a value to {@link #failedShards(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addFailedShards(ShardFailure value) {
 			if (this.failedShards == null) {
@@ -860,7 +861,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failedShards(List)}, creating the list if needed.
+		 * Add a value to {@link #failedShards(List)}, creating the list if needed. 5
 		 */
 		public BuilderT addFailedShards(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return this.addFailedShards(fn.apply(new ShardFailure.Builder()).build());
@@ -967,7 +968,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #resourceId(List)}, creating the list if needed.
+		 * Add a value to {@link #resourceId(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addResourceId(String value) {
 			if (this.resourceId == null) {
@@ -1012,7 +1013,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #scriptStack(List)}, creating the list if needed.
+		 * Add a value to {@link #scriptStack(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addScriptStack(String value) {
 			if (this.scriptStack == null) {

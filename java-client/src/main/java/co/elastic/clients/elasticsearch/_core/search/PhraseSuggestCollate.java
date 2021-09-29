@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -55,10 +56,14 @@ public final class PhraseSuggestCollate implements JsonpSerializable {
 
 	public PhraseSuggestCollate(Builder builder) {
 
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.prune = builder.prune;
 		this.query = Objects.requireNonNull(builder.query, "query");
 
+	}
+
+	public PhraseSuggestCollate(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

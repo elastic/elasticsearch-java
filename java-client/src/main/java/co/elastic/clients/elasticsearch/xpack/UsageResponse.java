@@ -151,6 +151,10 @@ public final class UsageResponse implements JsonpSerializable {
 
 	}
 
+	public UsageResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code aggregate_metric}
 	 */

@@ -78,6 +78,10 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Intervals(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code all_of} variant value.
 	 *
@@ -151,72 +155,71 @@ public class Intervals implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Intervals> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Intervals> allOf(IntervalsAllOf v) {
+		public Builder allOf(IntervalsAllOf v) {
 			this._type = ALL_OF;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Intervals> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> f) {
+		public Builder allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> f) {
 			return this.allOf(f.apply(new IntervalsAllOf.Builder()).build());
 		}
 
-		public ObjectBuilder<Intervals> anyOf(IntervalsAnyOf v) {
+		public Builder anyOf(IntervalsAnyOf v) {
 			this._type = ANY_OF;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Intervals> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> f) {
+		public Builder anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> f) {
 			return this.anyOf(f.apply(new IntervalsAnyOf.Builder()).build());
 		}
 
-		public ObjectBuilder<Intervals> fuzzy(IntervalsFuzzy v) {
+		public Builder fuzzy(IntervalsFuzzy v) {
 			this._type = FUZZY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Intervals> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> f) {
+		public Builder fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> f) {
 			return this.fuzzy(f.apply(new IntervalsFuzzy.Builder()).build());
 		}
 
-		public ObjectBuilder<Intervals> match(IntervalsMatch v) {
+		public Builder match(IntervalsMatch v) {
 			this._type = MATCH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Intervals> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> f) {
+		public Builder match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> f) {
 			return this.match(f.apply(new IntervalsMatch.Builder()).build());
 		}
 
-		public ObjectBuilder<Intervals> prefix(IntervalsPrefix v) {
+		public Builder prefix(IntervalsPrefix v) {
 			this._type = PREFIX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Intervals> prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> f) {
+		public Builder prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> f) {
 			return this.prefix(f.apply(new IntervalsPrefix.Builder()).build());
 		}
 
-		public ObjectBuilder<Intervals> wildcard(IntervalsWildcard v) {
+		public Builder wildcard(IntervalsWildcard v) {
 			this._type = WILDCARD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Intervals> wildcard(
-				Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> f) {
+		public Builder wildcard(Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> f) {
 			return this.wildcard(f.apply(new IntervalsWildcard.Builder()).build());
 		}
 
-		protected Intervals build() {
+		public Intervals build() {
 			return new Intervals(this);
 		}
 

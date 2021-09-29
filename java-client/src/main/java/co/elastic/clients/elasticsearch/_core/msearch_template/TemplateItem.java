@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.TemplateItem
@@ -62,10 +64,14 @@ public final class TemplateItem implements JsonpSerializable {
 	public TemplateItem(Builder builder) {
 
 		this.id = builder.id;
-		this.index = builder.index;
-		this.params = builder.params;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.source = builder.source;
 
+	}
+
+	public TemplateItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -192,7 +198,7 @@ public final class TemplateItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {

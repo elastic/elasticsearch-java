@@ -75,6 +75,10 @@ public class SmoothingModel implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public SmoothingModel(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code laplace} variant value.
 	 *
@@ -119,44 +123,43 @@ public class SmoothingModel implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<SmoothingModel> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
+		public Builder laplace(LaplaceSmoothingModel v) {
 			this._type = LAPLACE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<SmoothingModel> laplace(
-				Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> f) {
+		public Builder laplace(Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> f) {
 			return this.laplace(f.apply(new LaplaceSmoothingModel.Builder()).build());
 		}
 
-		public ObjectBuilder<SmoothingModel> linearInterpolation(LinearInterpolationSmoothingModel v) {
+		public Builder linearInterpolation(LinearInterpolationSmoothingModel v) {
 			this._type = LINEAR_INTERPOLATION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<SmoothingModel> linearInterpolation(
+		public Builder linearInterpolation(
 				Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> f) {
 			return this.linearInterpolation(f.apply(new LinearInterpolationSmoothingModel.Builder()).build());
 		}
 
-		public ObjectBuilder<SmoothingModel> stupidBackoff(StupidBackoffSmoothingModel v) {
+		public Builder stupidBackoff(StupidBackoffSmoothingModel v) {
 			this._type = STUPID_BACKOFF;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<SmoothingModel> stupidBackoff(
+		public Builder stupidBackoff(
 				Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> f) {
 			return this.stupidBackoff(f.apply(new StupidBackoffSmoothingModel.Builder()).build());
 		}
 
-		protected SmoothingModel build() {
+		public SmoothingModel build() {
 			return new SmoothingModel(this);
 		}
 

@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get.Response
 @JsonpDeserializable
-public final class GetResponse extends AdditionalProperties<String, IndexState> {
+public final class GetResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetResponse extends AdditionalProperties<String, IndexState> 
 
 	}
 
+	public GetResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexState, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetResponse> {
 		@Override
@@ -80,7 +85,7 @@ public final class GetResponse extends AdditionalProperties<String, IndexState> 
 			GetResponse::setupGetResponseDeserializer, Builder::build);
 
 	protected static void setupGetResponseDeserializer(DelegatingDeserializer<GetResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexState._DESERIALIZER);
 
 	}

@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: graph._types.Connection
 @JsonpDeserializable
@@ -56,6 +57,10 @@ public final class Connection implements JsonpSerializable {
 		this.target = Objects.requireNonNull(builder.target, "target");
 		this.weight = Objects.requireNonNull(builder.weight, "weight");
 
+	}
+
+	public Connection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -54,6 +54,10 @@ public final class ExecutingPolicy implements JsonpSerializable {
 
 	}
 
+	public ExecutingPolicy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code name}
 	 */

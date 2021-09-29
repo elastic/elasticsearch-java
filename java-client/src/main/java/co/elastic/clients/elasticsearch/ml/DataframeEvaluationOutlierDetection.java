@@ -58,6 +58,10 @@ public final class DataframeEvaluationOutlierDetection implements DataframeEvalu
 
 	}
 
+	public DataframeEvaluationOutlierDetection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link DataframeEvaluation} variant type
 	 */

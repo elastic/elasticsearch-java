@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -94,8 +95,12 @@ public final class IndexingStats implements JsonpSerializable {
 		this.indexTimeInMillis = Objects.requireNonNull(builder.indexTimeInMillis, "index_time_in_millis");
 		this.indexTotal = Objects.requireNonNull(builder.indexTotal, "index_total");
 		this.indexFailed = Objects.requireNonNull(builder.indexFailed, "index_failed");
-		this.types = builder.types;
+		this.types = ModelTypeHelper.unmodifiable(builder.types);
 
+	}
+
+	public IndexingStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

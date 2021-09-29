@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class RecoveryStatus implements JsonpSerializable {
 
 	public RecoveryStatus(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
 
+	}
+
+	public RecoveryStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
 		 */
 		public Builder addShards(ShardRecovery value) {
 			if (this.shards == null) {
@@ -123,7 +128,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Add a value to {@link #shards(List)}, creating the list if needed. 5
 		 */
 		public Builder addShards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
 			return this.addShards(fn.apply(new ShardRecovery.Builder()).build());

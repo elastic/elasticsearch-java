@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -48,8 +49,12 @@ public final class GarbageCollector implements JsonpSerializable {
 
 	public GarbageCollector(Builder builder) {
 
-		this.collectors = Objects.requireNonNull(builder.collectors, "collectors");
+		this.collectors = ModelTypeHelper.unmodifiableNonNull(builder.collectors, "collectors");
 
+	}
+
+	public GarbageCollector(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

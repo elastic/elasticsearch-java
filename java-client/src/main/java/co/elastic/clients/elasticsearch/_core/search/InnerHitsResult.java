@@ -49,6 +49,10 @@ public final class InnerHitsResult implements JsonpSerializable {
 
 	}
 
+	public InnerHitsResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code hits}
 	 */

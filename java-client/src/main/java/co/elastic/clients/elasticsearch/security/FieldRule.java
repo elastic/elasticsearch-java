@@ -88,6 +88,10 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 
 	}
 
+	public FieldRule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code username} variant value.
 	 *
@@ -180,45 +184,45 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<FieldRule> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<FieldRule> username(String v) {
+		public Builder username(String v) {
 			this._type = USERNAME;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<FieldRule> dn(List<String> v) {
+		public Builder dn(List<String> v) {
 			this._type = DN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<FieldRule> groups(List<String> v) {
+		public Builder groups(List<String> v) {
 			this._type = GROUPS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<FieldRule> metadata(JsonData v) {
+		public Builder metadata(JsonData v) {
 			this._type = METADATA;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<FieldRule> realm(Realm v) {
+		public Builder realm(Realm v) {
 			this._type = REALM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<FieldRule> realm(Function<Realm.Builder, ObjectBuilder<Realm>> f) {
+		public Builder realm(Function<Realm.Builder, ObjectBuilder<Realm>> f) {
 			return this.realm(f.apply(new Realm.Builder()).build());
 		}
 
-		protected FieldRule build() {
+		public FieldRule build() {
 			return new FieldRule(this);
 		}
 

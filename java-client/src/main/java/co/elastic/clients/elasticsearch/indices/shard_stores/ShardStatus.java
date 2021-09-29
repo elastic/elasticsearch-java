@@ -21,39 +21,41 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch.indices.shard_stores;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+import co.elastic.clients.util.StringEnum;
 
 @JsonpDeserializable
-public class ClusterStateMetadataTemplate implements JsonpSerializable {
+public enum ShardStatus implements StringEnum {
+	/**
+	 * The primary shard and all replica shards are assigned.
+	 */
+	Green("green"),
+	/**
+	 * One or more replica shards are unassigned.
+	 */
+	Yellow("yellow"),
+	/**
+	 * The primary shard is unassigned.
+	 */
+	Red("red"),
+	/**
+	 * Return all shards, regardless of health status.
+	 */
+	All("all");
 
-	public static final class Builder implements ObjectBuilder<ClusterStateMetadataTemplate> {
-		@Override
-		public ClusterStateMetadataTemplate build() {
-			return ClusterStateMetadataTemplate._INSTANCE;
-		}
+	private final String jsonValue;
+
+	ShardStatus(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		generator.writeEnd();
+	public String jsonValue() {
+		return this.jsonValue;
 	}
 
-	/**
-	 * Singleton instance for empty class {@link ClusterStateMetadataTemplate}.
-	 */
-	public static final ClusterStateMetadataTemplate _INSTANCE = new ClusterStateMetadataTemplate();
-
-	public static final JsonpDeserializer<ClusterStateMetadataTemplate> _DESERIALIZER = JsonpDeserializer
-			.emptyObject(ClusterStateMetadataTemplate._INSTANCE);
-
+	public static final StringEnum.Deserializer<ShardStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+			ShardStatus.values());
 }

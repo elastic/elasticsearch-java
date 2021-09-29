@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -84,6 +85,10 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.source = Objects.requireNonNull(builder.source, "source");
 
+	}
+
+	public PutDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -507,7 +512,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	/**
 	 * Endpoint "{@code ml.put_data_frame_analytics}".
 	 */
-	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -528,10 +533,10 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -539,5 +544,5 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutDataFrameAnalyticsResponse._DESERIALIZER);
 }

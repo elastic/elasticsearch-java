@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -63,10 +66,14 @@ public final class StatusRequest extends RequestBase {
 	public StatusRequest(Builder builder) {
 
 		this.repository = builder.repository;
-		this.snapshot = builder.snapshot;
+		this.snapshot = ModelTypeHelper.unmodifiable(builder.snapshot);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.masterTimeout = builder.masterTimeout;
 
+	}
+
+	public StatusRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -159,7 +166,7 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #snapshot(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshot(List)}, creating the list if needed. 4
 		 */
 		public Builder addSnapshot(String value) {
 			if (this.snapshot == null) {
@@ -207,7 +214,7 @@ public final class StatusRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.status}".
 	 */
-	public static final Endpoint<StatusRequest, StatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatusRequest, StatusResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -236,7 +243,7 @@ public final class StatusRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/_status");
 					return buf.toString();
 				}
@@ -244,13 +251,14 @@ public final class StatusRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_status");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -265,5 +273,5 @@ public final class StatusRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatusResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatusResponse._DESERIALIZER);
 }

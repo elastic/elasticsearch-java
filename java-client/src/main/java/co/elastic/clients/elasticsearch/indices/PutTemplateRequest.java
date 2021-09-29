@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -35,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -99,13 +101,17 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		this.includeTypeName = builder.includeTypeName;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.aliases = builder.aliases;
-		this.indexPatterns = builder.indexPatterns;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
+		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.order = builder.order;
-		this.settings = builder.settings;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.version = builder.version;
 
+	}
+
+	public PutTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -449,7 +455,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -561,7 +567,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code indices.put_template}".
 	 */
-	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutTemplateRequest, PutTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -580,10 +586,10 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -607,5 +613,5 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutTemplateResponse._DESERIALIZER);
 }

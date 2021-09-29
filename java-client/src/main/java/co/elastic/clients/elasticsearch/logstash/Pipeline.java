@@ -65,6 +65,10 @@ public final class Pipeline implements JsonpSerializable {
 
 	}
 
+	public Pipeline(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code description}
 	 */

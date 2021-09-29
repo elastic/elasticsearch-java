@@ -62,6 +62,10 @@ public final class DataTiers extends Base {
 
 	}
 
+	public DataTiers(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code data_warm}
 	 */

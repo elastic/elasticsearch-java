@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -58,8 +59,12 @@ public final class CompletionStats implements JsonpSerializable {
 
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
 		this.size = builder.size;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 
+	}
+
+	public CompletionStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

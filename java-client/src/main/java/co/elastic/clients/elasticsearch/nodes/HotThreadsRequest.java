@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ThreadType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -73,7 +76,7 @@ public final class HotThreadsRequest extends RequestBase {
 
 	public HotThreadsRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.ignoreIdleThreads = builder.ignoreIdleThreads;
 		this.interval = builder.interval;
 		this.snapshots = builder.snapshots;
@@ -81,6 +84,10 @@ public final class HotThreadsRequest extends RequestBase {
 		this.threadType = builder.threadType;
 		this.timeout = builder.timeout;
 
+	}
+
+	public HotThreadsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -206,7 +213,7 @@ public final class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {
@@ -292,7 +299,7 @@ public final class HotThreadsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.hot_threads}".
 	 */
-	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -318,11 +325,12 @@ public final class HotThreadsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/hot_threads");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -349,5 +357,5 @@ public final class HotThreadsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, HotThreadsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HotThreadsResponse._DESERIALIZER);
 }

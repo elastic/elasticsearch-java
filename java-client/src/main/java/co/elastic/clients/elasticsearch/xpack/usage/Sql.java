@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -51,9 +52,13 @@ public final class Sql extends Base {
 	public Sql(Builder builder) {
 		super(builder);
 
-		this.features = Objects.requireNonNull(builder.features, "features");
-		this.queries = Objects.requireNonNull(builder.queries, "queries");
+		this.features = ModelTypeHelper.unmodifiableNonNull(builder.features, "features");
+		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
 
+	}
+
+	public Sql(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

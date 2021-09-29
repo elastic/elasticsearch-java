@@ -30,12 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.IndexSegment
@@ -47,8 +49,12 @@ public final class IndexSegment implements JsonpSerializable {
 
 	public IndexSegment(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
 
+	}
+
+	public IndexSegment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

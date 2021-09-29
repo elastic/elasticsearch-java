@@ -136,6 +136,10 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 
 	}
 
+	public Query(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code bool} variant value.
 	 *
@@ -698,544 +702,536 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Query> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Query> bool(BoolQuery v) {
+		public Builder bool(BoolQuery v) {
 			this._type = BOOL;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {
+		public Builder bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {
 			return this.bool(f.apply(new BoolQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> boosting(BoostingQuery v) {
+		public Builder boosting(BoostingQuery v) {
 			this._type = BOOSTING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> f) {
+		public Builder boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> f) {
 			return this.boosting(f.apply(new BoostingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> common(CommonTermsQuery v) {
+		public Builder common(CommonTermsQuery v) {
 			this._type = COMMON;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> f) {
+		public Builder common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> f) {
 			return this.common(f.apply(new CommonTermsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery v) {
+		public Builder combinedFields(CombinedFieldsQuery v) {
 			this._type = COMBINED_FIELDS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> combinedFields(
-				Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> f) {
+		public Builder combinedFields(Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> f) {
 			return this.combinedFields(f.apply(new CombinedFieldsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> constantScore(ConstantScoreQuery v) {
+		public Builder constantScore(ConstantScoreQuery v) {
 			this._type = CONSTANT_SCORE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> constantScore(
-				Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> f) {
+		public Builder constantScore(Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> f) {
 			return this.constantScore(f.apply(new ConstantScoreQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> disMax(DisMaxQuery v) {
+		public Builder disMax(DisMaxQuery v) {
 			this._type = DIS_MAX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> f) {
+		public Builder disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> f) {
 			return this.disMax(f.apply(new DisMaxQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> distanceFeature(JsonValue /* _types.query_dsl.DistanceFeatureQuery */ v) {
+		public Builder distanceFeature(JsonValue /* _types.query_dsl.DistanceFeatureQuery */ v) {
 			this._type = DISTANCE_FEATURE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> exists(ExistsQuery v) {
+		public Builder exists(ExistsQuery v) {
 			this._type = EXISTS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> f) {
+		public Builder exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> f) {
 			return this.exists(f.apply(new ExistsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> functionScore(FunctionScoreQuery v) {
+		public Builder functionScore(FunctionScoreQuery v) {
 			this._type = FUNCTION_SCORE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> functionScore(
-				Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> f) {
+		public Builder functionScore(Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> f) {
 			return this.functionScore(f.apply(new FunctionScoreQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> fuzzy(FuzzyQuery v) {
+		public Builder fuzzy(FuzzyQuery v) {
 			this._type = FUZZY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> f) {
+		public Builder fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> f) {
 			return this.fuzzy(f.apply(new FuzzyQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> geoBoundingBox(GeoBoundingBoxQuery v) {
+		public Builder geoBoundingBox(GeoBoundingBoxQuery v) {
 			this._type = GEO_BOUNDING_BOX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> geoBoundingBox(
-				Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> f) {
+		public Builder geoBoundingBox(Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> f) {
 			return this.geoBoundingBox(f.apply(new GeoBoundingBoxQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> geoDistance(GeoDistanceQuery v) {
+		public Builder geoDistance(GeoDistanceQuery v) {
 			this._type = GEO_DISTANCE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> geoDistance(Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> f) {
+		public Builder geoDistance(Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> f) {
 			return this.geoDistance(f.apply(new GeoDistanceQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery v) {
+		public Builder geoPolygon(GeoPolygonQuery v) {
 			this._type = GEO_POLYGON;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> f) {
+		public Builder geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> f) {
 			return this.geoPolygon(f.apply(new GeoPolygonQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> geoShape(GeoShapeQuery v) {
+		public Builder geoShape(GeoShapeQuery v) {
 			this._type = GEO_SHAPE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> f) {
+		public Builder geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> f) {
 			return this.geoShape(f.apply(new GeoShapeQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> hasChild(HasChildQuery v) {
+		public Builder hasChild(HasChildQuery v) {
 			this._type = HAS_CHILD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> f) {
+		public Builder hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> f) {
 			return this.hasChild(f.apply(new HasChildQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> hasParent(HasParentQuery v) {
+		public Builder hasParent(HasParentQuery v) {
 			this._type = HAS_PARENT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> f) {
+		public Builder hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> f) {
 			return this.hasParent(f.apply(new HasParentQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> ids(IdsQuery v) {
+		public Builder ids(IdsQuery v) {
 			this._type = IDS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> f) {
+		public Builder ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> f) {
 			return this.ids(f.apply(new IdsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> intervals(IntervalsQuery v) {
+		public Builder intervals(IntervalsQuery v) {
 			this._type = INTERVALS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> f) {
+		public Builder intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> f) {
 			return this.intervals(f.apply(new IntervalsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> match(MatchQuery v) {
+		public Builder match(MatchQuery v) {
 			this._type = MATCH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> f) {
+		public Builder match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> f) {
 			return this.match(f.apply(new MatchQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> matchAll(MatchAllQuery v) {
+		public Builder matchAll(MatchAllQuery v) {
 			this._type = MATCH_ALL;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> f) {
+		public Builder matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> f) {
 			return this.matchAll(f.apply(new MatchAllQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> matchBoolPrefix(MatchBoolPrefixQuery v) {
+		public Builder matchBoolPrefix(MatchBoolPrefixQuery v) {
 			this._type = MATCH_BOOL_PREFIX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> matchBoolPrefix(
-				Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> f) {
+		public Builder matchBoolPrefix(Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> f) {
 			return this.matchBoolPrefix(f.apply(new MatchBoolPrefixQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> matchNone(MatchNoneQuery v) {
+		public Builder matchNone(MatchNoneQuery v) {
 			this._type = MATCH_NONE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> f) {
+		public Builder matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> f) {
 			return this.matchNone(f.apply(new MatchNoneQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> matchPhrase(MatchPhraseQuery v) {
+		public Builder matchPhrase(MatchPhraseQuery v) {
 			this._type = MATCH_PHRASE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> matchPhrase(Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> f) {
+		public Builder matchPhrase(Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> f) {
 			return this.matchPhrase(f.apply(new MatchPhraseQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> matchPhrasePrefix(MatchPhrasePrefixQuery v) {
+		public Builder matchPhrasePrefix(MatchPhrasePrefixQuery v) {
 			this._type = MATCH_PHRASE_PREFIX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> matchPhrasePrefix(
+		public Builder matchPhrasePrefix(
 				Function<MatchPhrasePrefixQuery.Builder, ObjectBuilder<MatchPhrasePrefixQuery>> f) {
 			return this.matchPhrasePrefix(f.apply(new MatchPhrasePrefixQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> moreLikeThis(MoreLikeThisQuery v) {
+		public Builder moreLikeThis(MoreLikeThisQuery v) {
 			this._type = MORE_LIKE_THIS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> moreLikeThis(
-				Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> f) {
+		public Builder moreLikeThis(Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> f) {
 			return this.moreLikeThis(f.apply(new MoreLikeThisQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> multiMatch(MultiMatchQuery v) {
+		public Builder multiMatch(MultiMatchQuery v) {
 			this._type = MULTI_MATCH;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> f) {
+		public Builder multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> f) {
 			return this.multiMatch(f.apply(new MultiMatchQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> nested(NestedQuery v) {
+		public Builder nested(NestedQuery v) {
 			this._type = NESTED;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> f) {
+		public Builder nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> f) {
 			return this.nested(f.apply(new NestedQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> parentId(ParentIdQuery v) {
+		public Builder parentId(ParentIdQuery v) {
 			this._type = PARENT_ID;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> f) {
+		public Builder parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> f) {
 			return this.parentId(f.apply(new ParentIdQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> percolate(PercolateQuery v) {
+		public Builder percolate(PercolateQuery v) {
 			this._type = PERCOLATE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> f) {
+		public Builder percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> f) {
 			return this.percolate(f.apply(new PercolateQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> pinned(PinnedQuery v) {
+		public Builder pinned(PinnedQuery v) {
 			this._type = PINNED;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> f) {
+		public Builder pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> f) {
 			return this.pinned(f.apply(new PinnedQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> prefix(PrefixQuery v) {
+		public Builder prefix(PrefixQuery v) {
 			this._type = PREFIX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> f) {
+		public Builder prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> f) {
 			return this.prefix(f.apply(new PrefixQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> queryString(QueryStringQuery v) {
+		public Builder queryString(QueryStringQuery v) {
 			this._type = QUERY_STRING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> queryString(Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> f) {
+		public Builder queryString(Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> f) {
 			return this.queryString(f.apply(new QueryStringQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> range(JsonValue /* _types.query_dsl.RangeQuery */ v) {
+		public Builder range(JsonValue /* _types.query_dsl.RangeQuery */ v) {
 			this._type = RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> rankFeature(RankFeatureQuery v) {
+		public Builder rankFeature(RankFeatureQuery v) {
 			this._type = RANK_FEATURE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> rankFeature(Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> f) {
+		public Builder rankFeature(Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> f) {
 			return this.rankFeature(f.apply(new RankFeatureQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> regexp(RegexpQuery v) {
+		public Builder regexp(RegexpQuery v) {
 			this._type = REGEXP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> f) {
+		public Builder regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> f) {
 			return this.regexp(f.apply(new RegexpQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> script(ScriptQuery v) {
+		public Builder script(ScriptQuery v) {
 			this._type = SCRIPT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> f) {
+		public Builder script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> f) {
 			return this.script(f.apply(new ScriptQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> scriptScore(ScriptScoreQuery v) {
+		public Builder scriptScore(ScriptScoreQuery v) {
 			this._type = SCRIPT_SCORE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> scriptScore(Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> f) {
+		public Builder scriptScore(Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> f) {
 			return this.scriptScore(f.apply(new ScriptScoreQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> shape(ShapeQuery v) {
+		public Builder shape(ShapeQuery v) {
 			this._type = SHAPE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> f) {
+		public Builder shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> f) {
 			return this.shape(f.apply(new ShapeQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
+		public Builder simpleQueryString(SimpleQueryStringQuery v) {
 			this._type = SIMPLE_QUERY_STRING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> simpleQueryString(
+		public Builder simpleQueryString(
 				Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> f) {
 			return this.simpleQueryString(f.apply(new SimpleQueryStringQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanContaining(SpanContainingQuery v) {
+		public Builder spanContaining(SpanContainingQuery v) {
 			this._type = SPAN_CONTAINING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanContaining(
-				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> f) {
+		public Builder spanContaining(Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> f) {
 			return this.spanContaining(f.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
+		public Builder fieldMaskingSpan(SpanFieldMaskingQuery v) {
 			this._type = FIELD_MASKING_SPAN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> fieldMaskingSpan(
+		public Builder fieldMaskingSpan(
 				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> f) {
 			return this.fieldMaskingSpan(f.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
+		public Builder spanFirst(SpanFirstQuery v) {
 			this._type = SPAN_FIRST;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> f) {
+		public Builder spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> f) {
 			return this.spanFirst(f.apply(new SpanFirstQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanMulti(SpanMultiTermQuery v) {
+		public Builder spanMulti(SpanMultiTermQuery v) {
 			this._type = SPAN_MULTI;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanMulti(
-				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> f) {
+		public Builder spanMulti(Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> f) {
 			return this.spanMulti(f.apply(new SpanMultiTermQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanNear(SpanNearQuery v) {
+		public Builder spanNear(SpanNearQuery v) {
 			this._type = SPAN_NEAR;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> f) {
+		public Builder spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> f) {
 			return this.spanNear(f.apply(new SpanNearQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanNot(SpanNotQuery v) {
+		public Builder spanNot(SpanNotQuery v) {
 			this._type = SPAN_NOT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> f) {
+		public Builder spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> f) {
 			return this.spanNot(f.apply(new SpanNotQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanOr(SpanOrQuery v) {
+		public Builder spanOr(SpanOrQuery v) {
 			this._type = SPAN_OR;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> f) {
+		public Builder spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> f) {
 			return this.spanOr(f.apply(new SpanOrQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanTerm(SpanTermQuery v) {
+		public Builder spanTerm(SpanTermQuery v) {
 			this._type = SPAN_TERM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> f) {
+		public Builder spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> f) {
 			return this.spanTerm(f.apply(new SpanTermQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> spanWithin(SpanWithinQuery v) {
+		public Builder spanWithin(SpanWithinQuery v) {
 			this._type = SPAN_WITHIN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> f) {
+		public Builder spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> f) {
 			return this.spanWithin(f.apply(new SpanWithinQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> term(TermQuery v) {
+		public Builder term(TermQuery v) {
 			this._type = TERM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> f) {
+		public Builder term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> f) {
 			return this.term(f.apply(new TermQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> terms(TermsQuery v) {
+		public Builder terms(TermsQuery v) {
 			this._type = TERMS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> f) {
+		public Builder terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> f) {
 			return this.terms(f.apply(new TermsQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> termsSet(TermsSetQuery v) {
+		public Builder termsSet(TermsSetQuery v) {
 			this._type = TERMS_SET;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> f) {
+		public Builder termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> f) {
 			return this.termsSet(f.apply(new TermsSetQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
+		public Builder wildcard(WildcardQuery v) {
 			this._type = WILDCARD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> f) {
+		public Builder wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> f) {
 			return this.wildcard(f.apply(new WildcardQuery.Builder()).build());
 		}
 
-		public ObjectBuilder<Query> type(TypeQuery v) {
+		public Builder type(TypeQuery v) {
 			this._type = TYPE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> f) {
+		public Builder type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> f) {
 			return this.type(f.apply(new TypeQuery.Builder()).build());
 		}
 
-		protected Query build() {
+		public Query build() {
 			return new Query(this);
 		}
 

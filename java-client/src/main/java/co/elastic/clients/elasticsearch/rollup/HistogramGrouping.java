@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.HistogramGrouping
@@ -51,9 +53,13 @@ public final class HistogramGrouping implements JsonpSerializable {
 
 	public HistogramGrouping(Builder builder) {
 
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
 		this.interval = Objects.requireNonNull(builder.interval, "interval");
 
+	}
+
+	public HistogramGrouping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -121,7 +127,7 @@ public final class HistogramGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

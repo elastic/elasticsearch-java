@@ -25,15 +25,19 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._core.bulk.Operation;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -42,16 +46,17 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.bulk.Request
 
-public final class BulkRequest<TSource> extends RequestBase implements JsonpSerializable {
+public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSerializable<Object>, JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -85,7 +90,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	@Nullable
 	private final Boolean requireAlias;
 
-	private final List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value;
+	private final List<Object> operations;
 
 	@Nullable
 	private final JsonpSerializer<TSource> tSourceSerializer;
@@ -100,14 +105,18 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.requireAlias = builder.requireAlias;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.operations = ModelTypeHelper.unmodifiableNonNull(builder.operations, "_value_body");
 		this.tSourceSerializer = builder.tSourceSerializer;
 
+	}
+
+	public BulkRequest(Function<Builder<TSource>, Builder<TSource>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -233,10 +242,15 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value() {
-		return this.value;
+	public List<Object> operations() {
+		return this.operations;
+	}
+
+	@Override
+	public Iterator<Object> iterator() {
+		return this.operations.iterator();
 	}
 
 	/**
@@ -244,9 +258,8 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */ item0 : this.value) {
-			generator.write(item0);
-
+		for (Object item0 : this.operations) {
+			mapper.serialize(item0, generator);
 		}
 		generator.writeEnd();
 
@@ -291,7 +304,7 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		@Nullable
 		private Boolean requireAlias;
 
-		private List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value;
+		private List<Object> operations;
 
 		@Nullable
 		private JsonpSerializer<TSource> tSourceSerializer;
@@ -383,9 +396,9 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public Builder<TSource> add_sourceExcludes(String value) {
+		public Builder<TSource> addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -416,9 +429,9 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public Builder<TSource> add_sourceIncludes(String value) {
+		public Builder<TSource> addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -463,35 +476,50 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> value(
-				List<JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */> value) {
-			this.value = value;
+		public Builder<TSource> operations(List<Object> value) {
+			this.operations = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TSource> value(
-				JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */... value) {
-			this.value = Arrays.asList(value);
+		public Builder<TSource> operations(Object... value) {
+			this.operations = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add an Operation to {@link #operations(List)}, creating the list if needed. 1
 		 */
-		public Builder<TSource> addValue(
-				JsonValue /* Union(_global.bulk.OperationContainer | _global.bulk.TSource) */ value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder<TSource> addOperation(Operation value) {
+			if (this.operations == null) {
+				this.operations = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.operations.add(value);
 			return this;
+		}
+
+		/**
+		 * Add a document to {@link #operations(List)}, creating the list if needed. 2
+		 */
+		public Builder<TSource> addDocument(TSource value) {
+			if (this.operations == null) {
+				this.operations = new ArrayList<>();
+			}
+			this.operations.add(value);
+			return this;
+		}
+
+		/**
+		 * Add an Operation to {@link #operations(List)}, creating the list if needed. 3
+		 */
+		public Builder<TSource> addOperation(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
+			return this.addOperation(fn.apply(new Operation.Builder()).build());
 		}
 
 		/**
@@ -518,27 +546,9 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for BulkRequest
-	 */
-	public static <TSource> JsonpDeserializer<BulkRequest<TSource>> createBulkRequestDeserializer(
-			JsonpDeserializer<TSource> tSourceDeserializer) {
-		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TSource>>) Builder::new,
-				op -> BulkRequest.setupBulkRequestDeserializer(op, tSourceDeserializer));
-	};
-
-	protected static <TSource> void setupBulkRequestDeserializer(
-			DelegatingDeserializer<BulkRequest.Builder<TSource>> op, JsonpDeserializer<TSource> tSourceDeserializer) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "value");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code bulk}".
 	 */
-	public static final Endpoint<BulkRequest<?>, BulkResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<BulkRequest<?>, BulkResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -565,20 +575,20 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_bulk");
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/");
-					buf.append(request.type);
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_bulk");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -589,13 +599,13 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 					params.put("pipeline", request.pipeline);
 				}
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
-					params.put("_source", request.source.toString());
+					params.put("_source", JsonpUtils.toString(request.source));
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -609,12 +619,12 @@ public final class BulkRequest<TSource> extends RequestBase implements JsonpSeri
 					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, BulkResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, BulkResponse._DESERIALIZER);
 }

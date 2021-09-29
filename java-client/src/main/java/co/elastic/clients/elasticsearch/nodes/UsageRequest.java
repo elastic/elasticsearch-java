@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -58,10 +61,14 @@ public final class UsageRequest extends RequestBase {
 
 	public UsageRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
-		this.metric = builder.metric;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.timeout = builder.timeout;
 
+	}
+
+	public UsageRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -136,7 +143,7 @@ public final class UsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {
@@ -167,7 +174,7 @@ public final class UsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -204,7 +211,7 @@ public final class UsageRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.usage}".
 	 */
-	public static final Endpoint<UsageRequest, UsageResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UsageRequest, UsageResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -233,7 +240,8 @@ public final class UsageRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/usage");
 					return buf.toString();
 				}
@@ -242,20 +250,23 @@ public final class UsageRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/usage");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/usage");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -267,5 +278,5 @@ public final class UsageRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, UsageResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, UsageResponse._DESERIALIZER);
 }

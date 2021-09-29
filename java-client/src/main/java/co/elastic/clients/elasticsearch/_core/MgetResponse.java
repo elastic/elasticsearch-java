@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -54,9 +55,13 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 
 	public MgetResponse(Builder<TDocument> builder) {
 
-		this.docs = Objects.requireNonNull(builder.docs, "docs");
+		this.docs = ModelTypeHelper.unmodifiableNonNull(builder.docs, "docs");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public MgetResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -115,7 +120,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
 		 */
 		public Builder<TDocument> addDocs(Hit<TDocument> value) {
 			if (this.docs == null) {
@@ -133,7 +138,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
 		 */
 		public Builder<TDocument> addDocs(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
 			return this.addDocs(fn.apply(new Hit.Builder<TDocument>()).build());

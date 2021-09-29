@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql.get_status.Request
@@ -48,6 +50,10 @@ public final class GetStatusRequest extends RequestBase {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
+	}
+
+	public GetStatusRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class GetStatusRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code eql.get_status}".
 	 */
-	public static final Endpoint<GetStatusRequest, GetStatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetStatusRequest, GetStatusResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -115,10 +121,10 @@ public final class GetStatusRequest extends RequestBase {
 					buf.append("/search");
 					buf.append("/status");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -126,5 +132,5 @@ public final class GetStatusRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetStatusResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetStatusResponse._DESERIALIZER);
 }

@@ -55,6 +55,10 @@ public final class RankEvalQuery implements JsonpSerializable {
 
 	}
 
+	public RankEvalQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code query}
 	 */

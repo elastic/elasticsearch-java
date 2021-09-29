@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.cluster.remote_info.ClusterRemoteInfo;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.remote_info.Response
 @JsonpDeserializable
-public final class RemoteInfoResponse extends AdditionalProperties<String, ClusterRemoteInfo> {
+public final class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
 	// ---------------------------------------------------------------------------------------------
 
 	public RemoteInfoResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class RemoteInfoResponse extends AdditionalProperties<String, Clust
 
 	}
 
+	public RemoteInfoResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link RemoteInfoResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, ClusterRemoteInfo, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
 			implements
 				ObjectBuilder<RemoteInfoResponse> {
 		@Override
@@ -81,7 +86,7 @@ public final class RemoteInfoResponse extends AdditionalProperties<String, Clust
 			.lazy(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseDeserializer, Builder::build);
 
 	protected static void setupRemoteInfoResponseDeserializer(DelegatingDeserializer<RemoteInfoResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				ClusterRemoteInfo._DESERIALIZER);
 
 	}

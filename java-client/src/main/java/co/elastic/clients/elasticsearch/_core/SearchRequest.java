@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch._core.search.Highlight;
 import co.elastic.clients.elasticsearch._core.search.PointInTimeReference;
@@ -46,6 +47,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -145,9 +147,6 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 	@Nullable
 	private final Boolean typedKeys;
-
-	@Nullable
-	private final Boolean restTotalHitsAsInt;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -263,7 +262,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 	public SearchRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.analyzer = builder.analyzer;
@@ -272,7 +271,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.lenient = builder.lenient;
@@ -289,42 +288,45 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		this.suggestSize = builder.suggestSize;
 		this.suggestText = builder.suggestText;
 		this.typedKeys = builder.typedKeys;
-		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.q = builder.q;
-		this.aggs = builder.aggs;
-		this.aggregations = builder.aggregations;
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.collapse = builder.collapse;
 		this.explain = builder.explain;
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.trackTotalHits = builder.trackTotalHits;
-		this.indicesBoost = builder.indicesBoost;
+		this.indicesBoost = ModelTypeHelper.unmodifiable(builder.indicesBoost);
 		this.docvalueFields = builder.docvalueFields;
 		this.minScore = builder.minScore;
 		this.postFilter = builder.postFilter;
 		this.profile = builder.profile;
 		this.query = builder.query;
-		this.rescore = builder.rescore;
-		this.scriptFields = builder.scriptFields;
-		this.searchAfter = builder.searchAfter;
+		this.rescore = ModelTypeHelper.unmodifiable(builder.rescore);
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
 		this.size = builder.size;
 		this.slice = builder.slice;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.suggest = builder.suggest;
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
-		this.storedFields = builder.storedFields;
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.pit = builder.pit;
-		this.runtimeMappings = builder.runtimeMappings;
-		this.stats = builder.stats;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
 
+	}
+
+	public SearchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -611,17 +613,6 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public Boolean typedKeys() {
 		return this.typedKeys;
-	}
-
-	/**
-	 * Indicates whether hits.total should be rendered as an integer or an object in
-	 * the rest search response
-	 * <p>
-	 * API name: {@code rest_total_hits_as_int}
-	 */
-	@Nullable
-	public Boolean restTotalHitsAsInt() {
-		return this.restTotalHitsAsInt;
 	}
 
 	/**
@@ -1326,9 +1317,6 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private Boolean typedKeys;
 
 		@Nullable
-		private Boolean restTotalHitsAsInt;
-
-		@Nullable
 		private List<String> sourceExcludes;
 
 		@Nullable
@@ -1461,7 +1449,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -1583,7 +1571,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -1769,17 +1757,6 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Indicates whether hits.total should be rendered as an integer or an object in
-		 * the rest search response
-		 * <p>
-		 * API name: {@code rest_total_hits_as_int}
-		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
-			this.restTotalHitsAsInt = value;
-			return this;
-		}
-
-		/**
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
@@ -1800,9 +1777,9 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceExcludes(String value) {
+		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -1831,9 +1808,9 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceIncludes(String value) {
+		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -2004,7 +1981,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed.
+		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndicesBoost(Map<String, Double> value) {
 			if (this.indicesBoost == null) {
@@ -2099,7 +2076,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed.
+		 * Add a value to {@link #rescore(List)}, creating the list if needed. 4
 		 */
 		public Builder addRescore(Rescore value) {
 			if (this.rescore == null) {
@@ -2117,7 +2094,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed.
+		 * Add a value to {@link #rescore(List)}, creating the list if needed. 5
 		 */
 		public Builder addRescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
 			return this.addRescore(fn.apply(new Rescore.Builder()).build());
@@ -2175,7 +2152,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed. 4
 		 */
 		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {
@@ -2229,7 +2206,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -2276,7 +2253,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(JsonValue /* Union(_types.Field | _types.DateField) */ value) {
 			if (this.fields == null) {
@@ -2382,7 +2359,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -2474,7 +2451,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
+		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
 		 */
 		public Builder addStats(String value) {
 			if (this.stats == null) {
@@ -2554,7 +2531,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code search}".
 	 */
-	private static final Endpoint.Simple<SearchRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<SearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -2578,11 +2555,11 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_search");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -2665,9 +2642,6 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
-				if (request.restTotalHitsAsInt != null) {
-					params.put("rest_total_hits_as_int", String.valueOf(request.restTotalHitsAsInt));
-				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
@@ -2681,7 +2655,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code search}" endpoint.

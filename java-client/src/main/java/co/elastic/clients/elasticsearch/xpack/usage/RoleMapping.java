@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.RoleMapping
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class RoleMapping implements JsonpSerializable {
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 		this.size = Objects.requireNonNull(builder.size, "size");
 
+	}
+
+	public RoleMapping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

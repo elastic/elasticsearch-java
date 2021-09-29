@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.GroupBy;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -72,14 +75,18 @@ public final class ListRequest extends RequestBase {
 
 	public ListRequest(Builder builder) {
 
-		this.actions = builder.actions;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
 		this.groupBy = builder.groupBy;
-		this.nodes = builder.nodes;
+		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
+	}
+
+	public ListRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -206,7 +213,7 @@ public final class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {
@@ -261,7 +268,7 @@ public final class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
+		 * Add a value to {@link #nodes(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodes(String value) {
 			if (this.nodes == null) {
@@ -319,7 +326,7 @@ public final class ListRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.list}".
 	 */
-	public static final Endpoint<ListRequest, ListResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ListRequest, ListResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -358,5 +365,5 @@ public final class ListRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ListResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ListResponse._DESERIALIZER);
 }

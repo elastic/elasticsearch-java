@@ -25,9 +25,11 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -37,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.enable_user.Request
@@ -54,6 +57,10 @@ public final class EnableUserRequest extends RequestBase {
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;
 
+	}
+
+	public EnableUserRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +136,7 @@ public final class EnableUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.enable_user}".
 	 */
-	public static final Endpoint<EnableUserRequest, EnableUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<EnableUserRequest, EnableUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -149,11 +156,11 @@ public final class EnableUserRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.username);
+					SimpleEndpoint.pathEncode(request.username, buf);
 					buf.append("/_enable");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -161,9 +168,9 @@ public final class EnableUserRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, EnableUserResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, EnableUserResponse._DESERIALIZER);
 }

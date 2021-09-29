@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -74,15 +77,19 @@ public final class GetFieldMappingRequest extends RequestBase {
 
 	public GetFieldMappingRequest(Builder builder) {
 
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
-		this.index = builder.index;
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.includeTypeName = builder.includeTypeName;
 		this.local = builder.local;
 
+	}
+
+	public GetFieldMappingRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -217,7 +224,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -248,7 +255,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -293,7 +300,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -360,7 +367,7 @@ public final class GetFieldMappingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_field_mapping}".
 	 */
-	public static final Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetFieldMappingRequest, GetFieldMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -383,20 +390,22 @@ public final class GetFieldMappingRequest extends RequestBase {
 					buf.append("/_mapping");
 					buf.append("/field");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _fields)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
 					buf.append("/field");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -424,5 +433,5 @@ public final class GetFieldMappingRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetFieldMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetFieldMappingResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,6 +40,7 @@ import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.resume_follow.Request
@@ -92,6 +94,10 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
 		this.readPollTimeout = builder.readPollTimeout;
 
+	}
+
+	public ResumeFollowRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -429,7 +435,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ccr.resume_follow}".
 	 */
-	public static final Endpoint<ResumeFollowRequest, ResumeFollowResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ResumeFollowRequest, ResumeFollowResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -447,12 +453,12 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_ccr");
 					buf.append("/resume_follow");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -460,5 +466,5 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ResumeFollowResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ResumeFollowResponse._DESERIALIZER);
 }

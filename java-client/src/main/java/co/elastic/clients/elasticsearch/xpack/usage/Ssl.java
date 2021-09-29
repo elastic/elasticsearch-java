@@ -52,6 +52,10 @@ public final class Ssl implements JsonpSerializable {
 
 	}
 
+	public Ssl(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code http}
 	 */

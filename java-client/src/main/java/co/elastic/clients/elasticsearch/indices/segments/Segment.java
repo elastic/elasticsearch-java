@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +41,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.Segment
@@ -69,7 +71,7 @@ public final class Segment implements JsonpSerializable {
 
 	public Segment(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.committed = Objects.requireNonNull(builder.committed, "committed");
 		this.compound = Objects.requireNonNull(builder.compound, "compound");
 		this.deletedDocs = Objects.requireNonNull(builder.deletedDocs, "deleted_docs");
@@ -80,6 +82,10 @@ public final class Segment implements JsonpSerializable {
 		this.numDocs = Objects.requireNonNull(builder.numDocs, "num_docs");
 		this.version = Objects.requireNonNull(builder.version, "version");
 
+	}
+
+	public Segment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

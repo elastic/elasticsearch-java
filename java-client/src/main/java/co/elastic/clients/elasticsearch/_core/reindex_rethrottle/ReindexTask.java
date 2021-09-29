@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -78,8 +79,12 @@ public final class ReindexTask implements JsonpSerializable {
 		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.type = Objects.requireNonNull(builder.type, "type");
-		this.headers = Objects.requireNonNull(builder.headers, "headers");
+		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
 
+	}
+
+	public ReindexTask(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

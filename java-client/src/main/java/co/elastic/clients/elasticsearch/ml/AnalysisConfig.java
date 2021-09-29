@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -82,15 +83,19 @@ public final class AnalysisConfig implements JsonpSerializable {
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
-		this.categorizationFilters = builder.categorizationFilters;
-		this.detectors = Objects.requireNonNull(builder.detectors, "detectors");
-		this.influencers = builder.influencers;
+		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
+		this.detectors = ModelTypeHelper.unmodifiableNonNull(builder.detectors, "detectors");
+		this.influencers = ModelTypeHelper.unmodifiable(builder.influencers);
 		this.modelPruneWindow = builder.modelPruneWindow;
 		this.latency = builder.latency;
 		this.multivariateByFields = builder.multivariateByFields;
 		this.perPartitionCategorization = builder.perPartitionCategorization;
 		this.summaryCountFieldName = builder.summaryCountFieldName;
 
+	}
+
+	public AnalysisConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -497,7 +502,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #categorizationFilters(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addCategorizationFilters(String value) {
 			if (this.categorizationFilters == null) {
@@ -534,7 +539,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Add a value to {@link #detectors(List)}, creating the list if needed. 4
 		 */
 		public Builder addDetectors(Detector value) {
 			if (this.detectors == null) {
@@ -552,7 +557,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Add a value to {@link #detectors(List)}, creating the list if needed. 5
 		 */
 		public Builder addDetectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.addDetectors(fn.apply(new Detector.Builder()).build());
@@ -589,7 +594,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
 		 */
 		public Builder addInfluencers(String value) {
 			if (this.influencers == null) {

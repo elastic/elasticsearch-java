@@ -59,6 +59,10 @@ public final class AutoscalingDecider implements JsonpSerializable {
 
 	}
 
+	public AutoscalingDecider(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code required_capacity}
 	 */

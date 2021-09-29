@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.clear_cache.Response
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class ClearCacheResponse extends ShardsOperationResponseBase {
 	public ClearCacheResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public ClearCacheResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

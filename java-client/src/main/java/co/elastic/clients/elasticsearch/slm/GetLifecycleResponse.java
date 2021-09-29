@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: slm.get_lifecycle.Response
 @JsonpDeserializable
-public final class GetLifecycleResponse extends AdditionalProperties<String, SnapshotLifecycle> {
+public final class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetLifecycleResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Sna
 
 	}
 
+	public GetLifecycleResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, SnapshotLifecycle, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, SnapshotLifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {
 		@Override
@@ -81,7 +86,7 @@ public final class GetLifecycleResponse extends AdditionalProperties<String, Sna
 
 	protected static void setupGetLifecycleResponseDeserializer(
 			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				SnapshotLifecycle._DESERIALIZER);
 
 	}

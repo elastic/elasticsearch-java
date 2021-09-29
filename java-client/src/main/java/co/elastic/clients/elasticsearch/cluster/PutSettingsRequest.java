@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Request
@@ -68,9 +71,13 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.persistent = builder.persistent;
-		this.transient_ = builder.transient_;
+		this.persistent = ModelTypeHelper.unmodifiable(builder.persistent);
+		this.transient_ = ModelTypeHelper.unmodifiable(builder.transient_);
 
+	}
+
+	public PutSettingsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -278,7 +285,7 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code cluster.put_settings}".
 	 */
-	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutSettingsRequest, PutSettingsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -305,5 +312,5 @@ public final class PutSettingsRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutSettingsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutSettingsResponse._DESERIALIZER);
 }

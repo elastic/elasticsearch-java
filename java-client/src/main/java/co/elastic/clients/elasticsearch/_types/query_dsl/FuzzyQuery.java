@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FuzzyQuery
@@ -72,6 +73,10 @@ public final class FuzzyQuery extends QueryBase implements QueryVariant {
 		this.fuzziness = builder.fuzziness;
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public FuzzyQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

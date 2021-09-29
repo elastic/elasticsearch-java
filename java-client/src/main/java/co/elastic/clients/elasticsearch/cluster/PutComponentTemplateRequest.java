@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
@@ -38,6 +39,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -86,12 +88,16 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		this.create = builder.create;
 		this.masterTimeout = builder.masterTimeout;
 		this.template = Objects.requireNonNull(builder.template, "template");
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
 		this.version = builder.version;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
+	}
+
+	public PutComponentTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -389,7 +395,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -434,7 +440,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	/**
 	 * Endpoint "{@code cluster.put_component_template}".
 	 */
-	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutComponentTemplateRequest, PutComponentTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -453,10 +459,10 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -471,5 +477,5 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutComponentTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutComponentTemplateResponse._DESERIALIZER);
 }

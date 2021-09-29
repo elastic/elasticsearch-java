@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class HtmlStripCharFilter extends CharFilterBase implements CharFil
 	public HtmlStripCharFilter(Builder builder) {
 		super(builder);
 
+	}
+
+	public HtmlStripCharFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

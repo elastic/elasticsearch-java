@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.retry.Request
@@ -48,6 +50,10 @@ public final class RetryRequest extends RequestBase {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 
+	}
+
+	public RetryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -96,7 +102,7 @@ public final class RetryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.retry}".
 	 */
-	public static final Endpoint<RetryRequest, RetryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RetryRequest, RetryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -114,12 +120,12 @@ public final class RetryRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_ilm");
 					buf.append("/retry");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -127,5 +133,5 @@ public final class RetryRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, RetryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, RetryResponse._DESERIALIZER);
 }

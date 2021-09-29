@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -46,6 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -83,9 +86,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	private final SearchType searchType;
 
 	@Nullable
-	private final Boolean restTotalHitsAsInt;
-
-	@Nullable
 	private final Boolean typedKeys;
 
 	@Nullable
@@ -107,24 +107,27 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 
 	public SearchTemplateRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 		this.scroll = builder.scroll;
 		this.searchType = builder.searchType;
-		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
 		this.typedKeys = builder.typedKeys;
 		this.explain = builder.explain;
 		this.id = builder.id;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
 		this.source = builder.source;
 
+	}
+
+	public SearchTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -234,16 +237,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	@Nullable
 	public SearchType searchType() {
 		return this.searchType;
-	}
-
-	/**
-	 * If true, hits.total are rendered as an integer in the response.
-	 * <p>
-	 * API name: {@code rest_total_hits_as_int}
-	 */
-	@Nullable
-	public Boolean restTotalHitsAsInt() {
-		return this.restTotalHitsAsInt;
 	}
 
 	/**
@@ -391,9 +384,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		private SearchType searchType;
 
 		@Nullable
-		private Boolean restTotalHitsAsInt;
-
-		@Nullable
 		private Boolean typedKeys;
 
 		@Nullable
@@ -434,7 +424,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -490,7 +480,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -561,16 +551,6 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 		 */
 		public Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
-			return this;
-		}
-
-		/**
-		 * If true, hits.total are rendered as an integer in the response.
-		 * <p>
-		 * API name: {@code rest_total_hits_as_int}
-		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
-			this.restTotalHitsAsInt = value;
 			return this;
 		}
 
@@ -679,7 +659,7 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code search_template}".
 	 */
-	private static final Endpoint.Simple<SearchTemplateRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<SearchTemplateRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -704,12 +684,12 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_search");
 					buf.append("/template");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -744,15 +724,12 @@ public final class SearchTemplateRequest extends RequestBase implements JsonpSer
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.restTotalHitsAsInt != null) {
-					params.put("rest_total_hits_as_int", String.valueOf(request.restTotalHitsAsInt));
-				}
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code search_template}" endpoint.

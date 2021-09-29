@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TokenCountProperty
@@ -66,6 +67,10 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		this.nullValue = builder.nullValue;
 		this.enablePositionIncrements = builder.enablePositionIncrements;
 
+	}
+
+	public TokenCountProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

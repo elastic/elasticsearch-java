@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.SlicedScroll
@@ -55,6 +56,10 @@ public final class SlicedScroll implements JsonpSerializable {
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.max = Objects.requireNonNull(builder.max, "max");
 
+	}
+
+	public SlicedScroll(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

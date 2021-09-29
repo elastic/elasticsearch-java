@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: license.get_basic_status.Response
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 
 		this.eligibleToStartBasic = Objects.requireNonNull(builder.eligibleToStartBasic, "eligible_to_start_basic");
 
+	}
+
+	public GetBasicStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

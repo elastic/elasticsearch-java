@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -33,8 +34,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -83,14 +86,18 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.refresh = builder.refresh;
-		this.applications = builder.applications;
-		this.cluster = builder.cluster;
-		this.global = builder.global;
-		this.indices = builder.indices;
-		this.metadata = builder.metadata;
-		this.runAs = builder.runAs;
+		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
+		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
+		this.global = ModelTypeHelper.unmodifiable(builder.global);
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
 		this.transientMetadata = builder.transientMetadata;
 
+	}
+
+	public PutRoleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -357,7 +364,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -375,7 +382,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -405,7 +412,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
@@ -459,7 +466,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -477,7 +484,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
@@ -526,7 +533,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -603,7 +610,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code security.put_role}".
 	 */
-	public static final Endpoint<PutRoleRequest, PutRoleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutRoleRequest, PutRoleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -623,10 +630,10 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 					buf.append("/_security");
 					buf.append("/role");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -634,9 +641,9 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutRoleResponse._DESERIALIZER);
 }

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.ml_trained_models.TrainedModelsRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.ml_trained_models.Response
 @JsonpDeserializable
 public final class MlTrainedModelsResponse implements JsonpSerializable {
-	private final List<TrainedModelsRecord> value;
+	private final List<TrainedModelsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MlTrainedModelsResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public MlTrainedModelsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<TrainedModelsRecord> value() {
-		return this.value;
+	public List<TrainedModelsRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TrainedModelsRecord item0 : this.value) {
+		for (TrainedModelsRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 	 * Builder for {@link MlTrainedModelsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<MlTrainedModelsResponse> {
-		private List<TrainedModelsRecord> value;
+		private List<TrainedModelsRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<TrainedModelsRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<TrainedModelsRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(TrainedModelsRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(TrainedModelsRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(TrainedModelsRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(TrainedModelsRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
-			return this.value(fn.apply(new TrainedModelsRecord.Builder()).build());
+		public Builder valueBody(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
+			return this.valueBody(fn.apply(new TrainedModelsRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
-			return this.addValue(fn.apply(new TrainedModelsRecord.Builder()).build());
+		public Builder addValueBody(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
+			return this.addValueBody(fn.apply(new TrainedModelsRecord.Builder()).build());
 		}
 
 		/**
@@ -140,19 +144,14 @@ public final class MlTrainedModelsResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<MlTrainedModelsResponse> _DESERIALIZER = createMlTrainedModelsResponseDeserializer();
+	protected static JsonpDeserializer<MlTrainedModelsResponse> createMlTrainedModelsResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link MlTrainedModelsResponse}
-	 */
-	public static final JsonpDeserializer<MlTrainedModelsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MlTrainedModelsResponse::setupMlTrainedModelsResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<TrainedModelsRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(TrainedModelsRecord._DESERIALIZER);
 
-	protected static void setupMlTrainedModelsResponseDeserializer(
-			DelegatingDeserializer<MlTrainedModelsResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TrainedModelsRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

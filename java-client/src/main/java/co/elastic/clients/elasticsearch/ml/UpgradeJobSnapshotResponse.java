@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Response
@@ -51,6 +52,10 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.completed = Objects.requireNonNull(builder.completed, "completed");
 
+	}
+
+	public UpgradeJobSnapshotResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

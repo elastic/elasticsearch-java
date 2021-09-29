@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mget.Operation
@@ -78,11 +80,15 @@ public final class Operation implements JsonpSerializable {
 		this.index = builder.index;
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.storedFields = builder.storedFields;
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public Operation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -296,7 +302,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {

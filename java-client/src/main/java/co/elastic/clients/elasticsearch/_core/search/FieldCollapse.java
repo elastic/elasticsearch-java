@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -57,9 +58,13 @@ public final class FieldCollapse implements JsonpSerializable {
 	public FieldCollapse(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.innerHits = builder.innerHits;
+		this.innerHits = ModelTypeHelper.unmodifiable(builder.innerHits);
 		this.maxConcurrentGroupSearches = builder.maxConcurrentGroupSearches;
 
+	}
+
+	public FieldCollapse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -158,7 +163,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #innerHits(List)}, creating the list if needed.
+		 * Add a value to {@link #innerHits(List)}, creating the list if needed. 4
 		 */
 		public Builder addInnerHits(InnerHits value) {
 			if (this.innerHits == null) {
@@ -176,7 +181,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #innerHits(List)}, creating the list if needed.
+		 * Add a value to {@link #innerHits(List)}, creating the list if needed. 5
 		 */
 		public Builder addInnerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
 			return this.addInnerHits(fn.apply(new InnerHits.Builder()).build());

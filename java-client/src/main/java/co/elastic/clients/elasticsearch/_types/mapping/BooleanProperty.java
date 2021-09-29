@@ -65,6 +65,10 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 
 	}
 
+	public BooleanProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Property} variant type
 	 */

@@ -63,6 +63,10 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 
 	}
 
+	public WeightedAverageAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation} variant type
 	 */

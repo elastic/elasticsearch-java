@@ -54,6 +54,10 @@ public final class CreateResponse implements JsonpSerializable {
 
 	}
 
+	public CreateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code accepted}
 	 */

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.Request
@@ -49,6 +51,10 @@ public final class GetJobsRequest extends RequestBase {
 
 		this.id = builder.id;
 
+	}
+
+	public GetJobsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -99,7 +105,7 @@ public final class GetJobsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.get_jobs}".
 	 */
-	public static final Endpoint<GetJobsRequest, GetJobsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetJobsRequest, GetJobsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -120,7 +126,7 @@ public final class GetJobsRequest extends RequestBase {
 					buf.append("/_rollup");
 					buf.append("/job");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -129,7 +135,7 @@ public final class GetJobsRequest extends RequestBase {
 					buf.append("/job");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -137,5 +143,5 @@ public final class GetJobsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetJobsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetJobsResponse._DESERIALIZER);
 }

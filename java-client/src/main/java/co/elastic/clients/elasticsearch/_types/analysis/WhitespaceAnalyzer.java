@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WhitespaceAnalyzer
@@ -47,6 +48,10 @@ public final class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializa
 
 		this.version = Objects.requireNonNull(builder.version, "version");
 
+	}
+
+	public WhitespaceAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

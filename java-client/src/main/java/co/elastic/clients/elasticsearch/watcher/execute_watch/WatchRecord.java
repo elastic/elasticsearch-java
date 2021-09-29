@@ -36,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -77,8 +78,8 @@ public final class WatchRecord implements JsonpSerializable {
 
 		this.condition = Objects.requireNonNull(builder.condition, "condition");
 		this.input = Objects.requireNonNull(builder.input, "input");
-		this.messages = Objects.requireNonNull(builder.messages, "messages");
-		this.metadata = Objects.requireNonNull(builder.metadata, "metadata");
+		this.messages = ModelTypeHelper.unmodifiableNonNull(builder.messages, "messages");
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.result = Objects.requireNonNull(builder.result, "result");
 		this.state = Objects.requireNonNull(builder.state, "state");
@@ -86,6 +87,10 @@ public final class WatchRecord implements JsonpSerializable {
 		this.user = Objects.requireNonNull(builder.user, "user");
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 
+	}
+
+	public WatchRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -285,7 +290,7 @@ public final class WatchRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #messages(List)}, creating the list if needed.
+		 * Add a value to {@link #messages(List)}, creating the list if needed. 4
 		 */
 		public Builder addMessages(String value) {
 			if (this.messages == null) {

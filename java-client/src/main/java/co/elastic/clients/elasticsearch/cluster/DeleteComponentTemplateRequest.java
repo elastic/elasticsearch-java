@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_component_template.Request
@@ -57,6 +59,10 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
+	}
+
+	public DeleteComponentTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -149,7 +155,7 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.delete_component_template}".
 	 */
-	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteComponentTemplateRequest, DeleteComponentTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -168,10 +174,10 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -186,5 +192,5 @@ public final class DeleteComponentTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteComponentTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteComponentTemplateResponse._DESERIALIZER);
 }

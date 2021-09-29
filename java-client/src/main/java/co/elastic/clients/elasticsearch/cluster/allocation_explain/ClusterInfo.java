@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -62,12 +63,16 @@ public final class ClusterInfo implements JsonpSerializable {
 
 	public ClusterInfo(Builder builder) {
 
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
-		this.shardSizes = Objects.requireNonNull(builder.shardSizes, "shard_sizes");
-		this.shardDataSetSizes = builder.shardDataSetSizes;
-		this.shardPaths = Objects.requireNonNull(builder.shardPaths, "shard_paths");
-		this.reservedSizes = Objects.requireNonNull(builder.reservedSizes, "reserved_sizes");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.shardSizes = ModelTypeHelper.unmodifiableNonNull(builder.shardSizes, "shard_sizes");
+		this.shardDataSetSizes = ModelTypeHelper.unmodifiable(builder.shardDataSetSizes);
+		this.shardPaths = ModelTypeHelper.unmodifiableNonNull(builder.shardPaths, "shard_paths");
+		this.reservedSizes = ModelTypeHelper.unmodifiableNonNull(builder.reservedSizes, "reserved_sizes");
 
+	}
+
+	public ClusterInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -292,7 +297,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed.
+		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed. 4
 		 */
 		public Builder addReservedSizes(ReservedSize value) {
 			if (this.reservedSizes == null) {
@@ -310,7 +315,7 @@ public final class ClusterInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed.
+		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed. 5
 		 */
 		public Builder addReservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {
 			return this.addReservedSizes(fn.apply(new ReservedSize.Builder()).build());

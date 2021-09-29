@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateIndexNameProcessor
@@ -60,7 +62,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 	public DateIndexNameProcessor(Builder builder) {
 		super(builder);
 
-		this.dateFormats = Objects.requireNonNull(builder.dateFormats, "date_formats");
+		this.dateFormats = ModelTypeHelper.unmodifiableNonNull(builder.dateFormats, "date_formats");
 		this.dateRounding = Objects.requireNonNull(builder.dateRounding, "date_rounding");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.indexNameFormat = Objects.requireNonNull(builder.indexNameFormat, "index_name_format");
@@ -68,6 +70,10 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		this.locale = Objects.requireNonNull(builder.locale, "locale");
 		this.timezone = Objects.requireNonNull(builder.timezone, "timezone");
 
+	}
+
+	public DateIndexNameProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -198,7 +204,7 @@ public final class DateIndexNameProcessor extends ProcessorBase implements Proce
 		}
 
 		/**
-		 * Add a value to {@link #dateFormats(List)}, creating the list if needed.
+		 * Add a value to {@link #dateFormats(List)}, creating the list if needed. 4
 		 */
 		public Builder addDateFormats(String value) {
 			if (this.dateFormats == null) {

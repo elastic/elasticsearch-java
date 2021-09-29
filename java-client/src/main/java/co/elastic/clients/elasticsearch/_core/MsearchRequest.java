@@ -25,16 +25,17 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -47,6 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -84,31 +86,31 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	private final SearchType searchType;
 
 	@Nullable
-	private final Boolean restTotalHitsAsInt;
-
-	@Nullable
 	private final Boolean typedKeys;
 
-	private final List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value;
+	private final List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> searches;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MsearchRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.searchType = builder.searchType;
-		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
 		this.typedKeys = builder.typedKeys;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.searches = ModelTypeHelper.unmodifiableNonNull(builder.searches, "_value_body");
 
+	}
+
+	public MsearchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -226,17 +228,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * If true, hits.total are returned as an integer in the response. Defaults to
-	 * false, which returns an object.
-	 * <p>
-	 * API name: {@code rest_total_hits_as_int}
-	 */
-	@Nullable
-	public Boolean restTotalHitsAsInt() {
-		return this.restTotalHitsAsInt;
-	}
-
-	/**
 	 * Specifies whether aggregation and suggester names should be prefixed by their
 	 * respective types in the response.
 	 * <p>
@@ -250,10 +241,10 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value() {
-		return this.value;
+	public List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> searches() {
+		return this.searches;
 	}
 
 	/**
@@ -261,7 +252,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ item0 : this.value) {
+		for (JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ item0 : this.searches) {
 			generator.write(item0);
 
 		}
@@ -306,12 +297,9 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private SearchType searchType;
 
 		@Nullable
-		private Boolean restTotalHitsAsInt;
-
-		@Nullable
 		private Boolean typedKeys;
 
-		private List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value;
+		private List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> searches;
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases to search.
@@ -334,7 +322,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -394,7 +382,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -472,17 +460,6 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * If true, hits.total are returned as an integer in the response. Defaults to
-		 * false, which returns an object.
-		 * <p>
-		 * API name: {@code rest_total_hits_as_int}
-		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
-			this.restTotalHitsAsInt = value;
-			return this;
-		}
-
-		/**
 		 * Specifies whether aggregation and suggester names should be prefixed by their
 		 * respective types in the response.
 		 * <p>
@@ -496,31 +473,31 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value) {
-			this.value = value;
+		public Builder searches(List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value) {
+			this.searches = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */... value) {
-			this.value = Arrays.asList(value);
+		public Builder searches(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */... value) {
+			this.searches = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #searches(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addSearches(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ value) {
+			if (this.searches == null) {
+				this.searches = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.searches.add(value);
 			return this;
 		}
 
@@ -536,18 +513,14 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<MsearchRequest> _DESERIALIZER = createMsearchRequestDeserializer();
+	protected static JsonpDeserializer<MsearchRequest> createMsearchRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link MsearchRequest}
-	 */
-	public static final JsonpDeserializer<MsearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MsearchRequest::setupMsearchRequestDeserializer, Builder::build);
+		JsonpDeserializer<List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer());
 
-	protected static void setupMsearchRequestDeserializer(DelegatingDeserializer<MsearchRequest.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.searches(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -555,7 +528,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code msearch}".
 	 */
-	private static final Endpoint.Simple<MsearchRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<MsearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -579,11 +552,11 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_msearch");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -618,15 +591,12 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.restTotalHitsAsInt != null) {
-					params.put("rest_total_hits_as_int", String.valueOf(request.restTotalHitsAsInt));
-				}
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code msearch}" endpoint.

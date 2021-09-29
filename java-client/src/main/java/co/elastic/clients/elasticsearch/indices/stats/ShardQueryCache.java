@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardQueryCache
 @JsonpDeserializable
@@ -64,6 +65,10 @@ public final class ShardQueryCache implements JsonpSerializable {
 		this.missCount = Objects.requireNonNull(builder.missCount, "miss_count");
 		this.totalCount = Objects.requireNonNull(builder.totalCount, "total_count");
 
+	}
+
+	public ShardQueryCache(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

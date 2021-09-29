@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.scripts_painless_execute.PainlessContextSetup;
 import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -63,6 +64,10 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		this.contextSetup = builder.contextSetup;
 		this.script = builder.script;
 
+	}
+
+	public ScriptsPainlessExecuteRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -209,7 +214,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Endpoint "{@code scripts_painless_execute}".
 	 */
-	private static final Endpoint.Simple<ScriptsPainlessExecuteRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<ScriptsPainlessExecuteRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -226,7 +231,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.

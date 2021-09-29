@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -74,17 +75,21 @@ public final class ClusterNodes implements JsonpSerializable {
 	public ClusterNodes(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.discoveryTypes = Objects.requireNonNull(builder.discoveryTypes, "discovery_types");
+		this.discoveryTypes = ModelTypeHelper.unmodifiableNonNull(builder.discoveryTypes, "discovery_types");
 		this.fs = Objects.requireNonNull(builder.fs, "fs");
 		this.ingest = Objects.requireNonNull(builder.ingest, "ingest");
 		this.jvm = Objects.requireNonNull(builder.jvm, "jvm");
 		this.networkTypes = Objects.requireNonNull(builder.networkTypes, "network_types");
 		this.os = Objects.requireNonNull(builder.os, "os");
-		this.packagingTypes = Objects.requireNonNull(builder.packagingTypes, "packaging_types");
-		this.plugins = Objects.requireNonNull(builder.plugins, "plugins");
+		this.packagingTypes = ModelTypeHelper.unmodifiableNonNull(builder.packagingTypes, "packaging_types");
+		this.plugins = ModelTypeHelper.unmodifiableNonNull(builder.plugins, "plugins");
 		this.process = Objects.requireNonNull(builder.process, "process");
-		this.versions = Objects.requireNonNull(builder.versions, "versions");
+		this.versions = ModelTypeHelper.unmodifiableNonNull(builder.versions, "versions");
 
+	}
+
+	public ClusterNodes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -440,7 +445,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed.
+		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed. 4
 		 */
 		public Builder addPackagingTypes(NodePackagingType value) {
 			if (this.packagingTypes == null) {
@@ -458,7 +463,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed.
+		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed. 5
 		 */
 		public Builder addPackagingTypes(Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn) {
 			return this.addPackagingTypes(fn.apply(new NodePackagingType.Builder()).build());
@@ -485,7 +490,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed.
+		 * Add a value to {@link #plugins(List)}, creating the list if needed. 4
 		 */
 		public Builder addPlugins(PluginStats value) {
 			if (this.plugins == null) {
@@ -503,7 +508,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed.
+		 * Add a value to {@link #plugins(List)}, creating the list if needed. 5
 		 */
 		public Builder addPlugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
 			return this.addPlugins(fn.apply(new PluginStats.Builder()).build());
@@ -549,7 +554,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
 		 */
 		public Builder addVersions(String value) {
 			if (this.versions == null) {

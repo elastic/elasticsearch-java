@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.NodeBufferPool
@@ -60,6 +61,10 @@ public final class NodeBufferPool implements JsonpSerializable {
 		this.used = Objects.requireNonNull(builder.used, "used");
 		this.usedInBytes = Objects.requireNonNull(builder.usedInBytes, "used_in_bytes");
 
+	}
+
+	public NodeBufferPool(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

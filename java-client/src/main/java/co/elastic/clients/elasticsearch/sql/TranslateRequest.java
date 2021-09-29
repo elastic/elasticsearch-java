@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -66,6 +67,10 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.timeZone = builder.timeZone;
 
+	}
+
+	public TranslateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -225,7 +230,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code sql.translate}".
 	 */
-	public static final Endpoint<TranslateRequest, TranslateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TranslateRequest, TranslateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -242,5 +247,5 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, TranslateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TranslateResponse._DESERIALIZER);
 }

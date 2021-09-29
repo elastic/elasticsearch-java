@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HistogramProperty
@@ -48,6 +49,10 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 
 		this.ignoreMalformed = builder.ignoreMalformed;
 
+	}
+
+	public HistogramProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -66,6 +66,10 @@ public final class Checkpointing implements JsonpSerializable {
 
 	}
 
+	public Checkpointing(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code changes_last_detected_at}
 	 */

@@ -62,6 +62,10 @@ public final class DataframeRegressionSummary implements JsonpSerializable {
 
 	}
 
+	public DataframeRegressionSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code huber}
 	 */

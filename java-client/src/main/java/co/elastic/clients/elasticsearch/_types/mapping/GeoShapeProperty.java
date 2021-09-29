@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.GeoShapeProperty
@@ -64,6 +65,10 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		this.orientation = builder.orientation;
 		this.strategy = builder.strategy;
 
+	}
+
+	public GeoShapeProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -60,6 +60,10 @@ public final class Process implements JsonpSerializable {
 
 	}
 
+	public Process(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cpu}
 	 */

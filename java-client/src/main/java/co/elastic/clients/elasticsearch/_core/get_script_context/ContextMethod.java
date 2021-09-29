@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -55,8 +56,12 @@ public final class ContextMethod implements JsonpSerializable {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.returnType = Objects.requireNonNull(builder.returnType, "return_type");
-		this.params = Objects.requireNonNull(builder.params, "params");
+		this.params = ModelTypeHelper.unmodifiableNonNull(builder.params, "params");
 
+	}
+
+	public ContextMethod(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -152,7 +157,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #params(List)}, creating the list if needed.
+		 * Add a value to {@link #params(List)}, creating the list if needed. 4
 		 */
 		public Builder addParams(ContextMethodParam value) {
 			if (this.params == null) {
@@ -170,7 +175,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #params(List)}, creating the list if needed.
+		 * Add a value to {@link #params(List)}, creating the list if needed. 5
 		 */
 		public Builder addParams(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
 			return this.addParams(fn.apply(new ContextMethodParam.Builder()).build());

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.nodes.NodesRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.nodes.Response
 @JsonpDeserializable
 public final class NodesResponse implements JsonpSerializable {
-	private final List<NodesRecord> value;
+	private final List<NodesRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public NodesResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public NodesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<NodesRecord> value() {
-		return this.value;
+	public List<NodesRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class NodesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (NodesRecord item0 : this.value) {
+		for (NodesRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class NodesResponse implements JsonpSerializable {
 	 * Builder for {@link NodesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<NodesResponse> {
-		private List<NodesRecord> value;
+		private List<NodesRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<NodesRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<NodesRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(NodesRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(NodesRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(NodesRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(NodesRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
-			return this.value(fn.apply(new NodesRecord.Builder()).build());
+		public Builder valueBody(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
+			return this.valueBody(fn.apply(new NodesRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
-			return this.addValue(fn.apply(new NodesRecord.Builder()).build());
+		public Builder addValueBody(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
+			return this.addValueBody(fn.apply(new NodesRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class NodesResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<NodesResponse> _DESERIALIZER = createNodesResponseDeserializer();
+	protected static JsonpDeserializer<NodesResponse> createNodesResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link NodesResponse}
-	 */
-	public static final JsonpDeserializer<NodesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodesResponse::setupNodesResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<NodesRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(NodesRecord._DESERIALIZER);
 
-	protected static void setupNodesResponseDeserializer(DelegatingDeserializer<NodesResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(NodesRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

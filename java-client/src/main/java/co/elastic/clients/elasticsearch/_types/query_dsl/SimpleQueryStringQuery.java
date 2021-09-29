@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SimpleQueryStringQuery
@@ -90,7 +92,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.defaultOperator = builder.defaultOperator;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.flags = builder.flags;
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
@@ -100,6 +102,10 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
+	}
+
+	public SimpleQueryStringQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -393,7 +399,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -57,10 +58,14 @@ public final class Pivot implements JsonpSerializable {
 
 	public Pivot(Builder builder) {
 
-		this.aggregations = builder.aggregations;
-		this.groupBy = builder.groupBy;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
+		this.groupBy = ModelTypeHelper.unmodifiable(builder.groupBy);
 		this.maxPageSearchSize = builder.maxPageSearchSize;
 
+	}
+
+	public Pivot(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -51,8 +52,12 @@ public final class Eql extends Base {
 		super(builder);
 
 		this.features = Objects.requireNonNull(builder.features, "features");
-		this.queries = Objects.requireNonNull(builder.queries, "queries");
+		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
 
+	}
+
+	public Eql(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

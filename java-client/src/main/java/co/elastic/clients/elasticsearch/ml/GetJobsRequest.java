@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -62,11 +65,15 @@ public final class GetJobsRequest extends RequestBase {
 
 	public GetJobsRequest(Builder builder) {
 
-		this.jobId = builder.jobId;
+		this.jobId = ModelTypeHelper.unmodifiable(builder.jobId);
 		this.allowNoMatch = builder.allowNoMatch;
 		this.allowNoJobs = builder.allowNoJobs;
 		this.excludeGenerated = builder.excludeGenerated;
 
+	}
+
+	public GetJobsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -150,7 +157,7 @@ public final class GetJobsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #jobId(List)}, creating the list if needed.
+		 * Add a value to {@link #jobId(List)}, creating the list if needed. 4
 		 */
 		public Builder addJobId(String value) {
 			if (this.jobId == null) {
@@ -209,7 +216,7 @@ public final class GetJobsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_jobs}".
 	 */
-	public static final Endpoint<GetJobsRequest, GetJobsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetJobsRequest, GetJobsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -230,7 +237,7 @@ public final class GetJobsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.jobId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -239,7 +246,7 @@ public final class GetJobsRequest extends RequestBase {
 					buf.append("/anomaly_detectors");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -257,5 +264,5 @@ public final class GetJobsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetJobsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetJobsResponse._DESERIALIZER);
 }

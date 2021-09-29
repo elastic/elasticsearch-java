@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShapeProperty
@@ -60,6 +61,10 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		this.ignoreZValue = builder.ignoreZValue;
 		this.orientation = builder.orientation;
 
+	}
+
+	public ShapeProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -49,6 +49,10 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 
 	}
 
+	public NodeInfoXpackLicense(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code self_generated}
 	 */

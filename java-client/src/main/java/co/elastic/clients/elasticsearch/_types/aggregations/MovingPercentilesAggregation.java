@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
@@ -57,6 +58,10 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		this.shift = builder.shift;
 		this.keyed = builder.keyed;
 
+	}
+
+	public MovingPercentilesAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

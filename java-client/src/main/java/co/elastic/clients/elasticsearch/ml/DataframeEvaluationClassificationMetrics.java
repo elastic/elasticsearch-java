@@ -30,11 +30,13 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetrics
@@ -51,9 +53,13 @@ public final class DataframeEvaluationClassificationMetrics extends DataframeEva
 	public DataframeEvaluationClassificationMetrics(Builder builder) {
 		super(builder);
 
-		this.accuracy = builder.accuracy;
-		this.multiclassConfusionMatrix = builder.multiclassConfusionMatrix;
+		this.accuracy = ModelTypeHelper.unmodifiable(builder.accuracy);
+		this.multiclassConfusionMatrix = ModelTypeHelper.unmodifiable(builder.multiclassConfusionMatrix);
 
+	}
+
+	public DataframeEvaluationClassificationMetrics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

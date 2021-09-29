@@ -83,6 +83,10 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	}
 
+	public Analyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code custom} variant value.
 	 *
@@ -210,133 +214,131 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Analyzer> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<Analyzer> custom(CustomAnalyzer v) {
+		public Builder custom(CustomAnalyzer v) {
 			this._type = CUSTOM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> custom(Function<CustomAnalyzer.Builder, ObjectBuilder<CustomAnalyzer>> f) {
+		public Builder custom(Function<CustomAnalyzer.Builder, ObjectBuilder<CustomAnalyzer>> f) {
 			return this.custom(f.apply(new CustomAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> fingerprint(FingerprintAnalyzer v) {
+		public Builder fingerprint(FingerprintAnalyzer v) {
 			this._type = FINGERPRINT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> fingerprint(
-				Function<FingerprintAnalyzer.Builder, ObjectBuilder<FingerprintAnalyzer>> f) {
+		public Builder fingerprint(Function<FingerprintAnalyzer.Builder, ObjectBuilder<FingerprintAnalyzer>> f) {
 			return this.fingerprint(f.apply(new FingerprintAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> keyword(KeywordAnalyzer v) {
+		public Builder keyword(KeywordAnalyzer v) {
 			this._type = KEYWORD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> keyword(Function<KeywordAnalyzer.Builder, ObjectBuilder<KeywordAnalyzer>> f) {
+		public Builder keyword(Function<KeywordAnalyzer.Builder, ObjectBuilder<KeywordAnalyzer>> f) {
 			return this.keyword(f.apply(new KeywordAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> language(LanguageAnalyzer v) {
+		public Builder language(LanguageAnalyzer v) {
 			this._type = LANGUAGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> language(Function<LanguageAnalyzer.Builder, ObjectBuilder<LanguageAnalyzer>> f) {
+		public Builder language(Function<LanguageAnalyzer.Builder, ObjectBuilder<LanguageAnalyzer>> f) {
 			return this.language(f.apply(new LanguageAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> nori(NoriAnalyzer v) {
+		public Builder nori(NoriAnalyzer v) {
 			this._type = NORI;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> nori(Function<NoriAnalyzer.Builder, ObjectBuilder<NoriAnalyzer>> f) {
+		public Builder nori(Function<NoriAnalyzer.Builder, ObjectBuilder<NoriAnalyzer>> f) {
 			return this.nori(f.apply(new NoriAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> pattern(PatternAnalyzer v) {
+		public Builder pattern(PatternAnalyzer v) {
 			this._type = PATTERN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> pattern(Function<PatternAnalyzer.Builder, ObjectBuilder<PatternAnalyzer>> f) {
+		public Builder pattern(Function<PatternAnalyzer.Builder, ObjectBuilder<PatternAnalyzer>> f) {
 			return this.pattern(f.apply(new PatternAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> simple(SimpleAnalyzer v) {
+		public Builder simple(SimpleAnalyzer v) {
 			this._type = SIMPLE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> simple(Function<SimpleAnalyzer.Builder, ObjectBuilder<SimpleAnalyzer>> f) {
+		public Builder simple(Function<SimpleAnalyzer.Builder, ObjectBuilder<SimpleAnalyzer>> f) {
 			return this.simple(f.apply(new SimpleAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> standard(StandardAnalyzer v) {
+		public Builder standard(StandardAnalyzer v) {
 			this._type = STANDARD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> standard(Function<StandardAnalyzer.Builder, ObjectBuilder<StandardAnalyzer>> f) {
+		public Builder standard(Function<StandardAnalyzer.Builder, ObjectBuilder<StandardAnalyzer>> f) {
 			return this.standard(f.apply(new StandardAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> stop(StopAnalyzer v) {
+		public Builder stop(StopAnalyzer v) {
 			this._type = STOP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> stop(Function<StopAnalyzer.Builder, ObjectBuilder<StopAnalyzer>> f) {
+		public Builder stop(Function<StopAnalyzer.Builder, ObjectBuilder<StopAnalyzer>> f) {
 			return this.stop(f.apply(new StopAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> whitespace(WhitespaceAnalyzer v) {
+		public Builder whitespace(WhitespaceAnalyzer v) {
 			this._type = WHITESPACE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> whitespace(
-				Function<WhitespaceAnalyzer.Builder, ObjectBuilder<WhitespaceAnalyzer>> f) {
+		public Builder whitespace(Function<WhitespaceAnalyzer.Builder, ObjectBuilder<WhitespaceAnalyzer>> f) {
 			return this.whitespace(f.apply(new WhitespaceAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> icuAnalyzer(IcuAnalyzer v) {
+		public Builder icuAnalyzer(IcuAnalyzer v) {
 			this._type = ICU_ANALYZER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> icuAnalyzer(Function<IcuAnalyzer.Builder, ObjectBuilder<IcuAnalyzer>> f) {
+		public Builder icuAnalyzer(Function<IcuAnalyzer.Builder, ObjectBuilder<IcuAnalyzer>> f) {
 			return this.icuAnalyzer(f.apply(new IcuAnalyzer.Builder()).build());
 		}
 
-		public ObjectBuilder<Analyzer> kuromoji(KuromojiAnalyzer v) {
+		public Builder kuromoji(KuromojiAnalyzer v) {
 			this._type = KUROMOJI;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Analyzer> kuromoji(Function<KuromojiAnalyzer.Builder, ObjectBuilder<KuromojiAnalyzer>> f) {
+		public Builder kuromoji(Function<KuromojiAnalyzer.Builder, ObjectBuilder<KuromojiAnalyzer>> f) {
 			return this.kuromoji(f.apply(new KuromojiAnalyzer.Builder()).build());
 		}
 
-		protected Analyzer build() {
+		public Analyzer build() {
 			return new Analyzer(this);
 		}
 
@@ -358,6 +360,7 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		op.add(Builder::kuromoji, KuromojiAnalyzer._DESERIALIZER, "kuromoji");
 
 		op.setTypeProperty("type");
+
 	}
 
 	public static final JsonpDeserializer<Analyzer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

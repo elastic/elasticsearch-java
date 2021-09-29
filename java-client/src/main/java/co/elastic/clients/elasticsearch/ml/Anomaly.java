@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -107,16 +108,16 @@ public final class Anomaly implements JsonpSerializable {
 
 	public Anomaly(Builder builder) {
 
-		this.actual = builder.actual;
+		this.actual = ModelTypeHelper.unmodifiable(builder.actual);
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.byFieldName = builder.byFieldName;
 		this.byFieldValue = builder.byFieldValue;
-		this.causes = builder.causes;
+		this.causes = ModelTypeHelper.unmodifiable(builder.causes);
 		this.detectorIndex = Objects.requireNonNull(builder.detectorIndex, "detector_index");
 		this.fieldName = builder.fieldName;
 		this.function = builder.function;
 		this.functionDescription = builder.functionDescription;
-		this.influencers = builder.influencers;
+		this.influencers = ModelTypeHelper.unmodifiable(builder.influencers);
 		this.initialRecordScore = Objects.requireNonNull(builder.initialRecordScore, "initial_record_score");
 		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
@@ -128,8 +129,12 @@ public final class Anomaly implements JsonpSerializable {
 		this.recordScore = Objects.requireNonNull(builder.recordScore, "record_score");
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
-		this.typical = builder.typical;
+		this.typical = ModelTypeHelper.unmodifiable(builder.typical);
 
+	}
+
+	public Anomaly(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -522,7 +527,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actual(List)}, creating the list if needed.
+		 * Add a value to {@link #actual(List)}, creating the list if needed. 4
 		 */
 		public Builder addActual(Double value) {
 			if (this.actual == null) {
@@ -573,7 +578,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #causes(List)}, creating the list if needed.
+		 * Add a value to {@link #causes(List)}, creating the list if needed. 4
 		 */
 		public Builder addCauses(AnomalyCause value) {
 			if (this.causes == null) {
@@ -591,7 +596,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #causes(List)}, creating the list if needed.
+		 * Add a value to {@link #causes(List)}, creating the list if needed. 5
 		 */
 		public Builder addCauses(Function<AnomalyCause.Builder, ObjectBuilder<AnomalyCause>> fn) {
 			return this.addCauses(fn.apply(new AnomalyCause.Builder()).build());
@@ -646,7 +651,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
 		 */
 		public Builder addInfluencers(Influence value) {
 			if (this.influencers == null) {
@@ -664,7 +669,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 5
 		 */
 		public Builder addInfluencers(Function<Influence.Builder, ObjectBuilder<Influence>> fn) {
 			return this.addInfluencers(fn.apply(new Influence.Builder()).build());
@@ -775,7 +780,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #typical(List)}, creating the list if needed.
+		 * Add a value to {@link #typical(List)}, creating the list if needed. 4
 		 */
 		public Builder addTypical(Double value) {
 			if (this.typical == null) {

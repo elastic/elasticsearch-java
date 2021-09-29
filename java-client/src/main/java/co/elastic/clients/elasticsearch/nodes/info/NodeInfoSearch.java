@@ -49,6 +49,10 @@ public final class NodeInfoSearch implements JsonpSerializable {
 
 	}
 
+	public NodeInfoSearch(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code remote}
 	 */

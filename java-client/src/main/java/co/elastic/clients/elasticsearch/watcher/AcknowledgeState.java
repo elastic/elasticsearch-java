@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.AcknowledgeState
@@ -50,6 +51,10 @@ public final class AcknowledgeState implements JsonpSerializable {
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
+	}
+
+	public AcknowledgeState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

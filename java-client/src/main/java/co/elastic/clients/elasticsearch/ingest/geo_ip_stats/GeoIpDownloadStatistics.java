@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.GeoIpDownloadStatistics
 @JsonpDeserializable
@@ -58,6 +59,10 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		this.databaseCount = Objects.requireNonNull(builder.databaseCount, "database_count");
 		this.skippedUpdates = Objects.requireNonNull(builder.skippedUpdates, "skipped_updates");
 
+	}
+
+	public GeoIpDownloadStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

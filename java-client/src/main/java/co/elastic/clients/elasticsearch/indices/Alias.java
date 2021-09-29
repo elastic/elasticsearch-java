@@ -73,6 +73,10 @@ public final class Alias implements JsonpSerializable {
 
 	}
 
+	public Alias(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code filter}
 	 */

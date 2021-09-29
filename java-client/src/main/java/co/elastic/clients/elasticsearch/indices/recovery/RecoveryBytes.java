@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryBytes
@@ -76,6 +77,10 @@ public final class RecoveryBytes implements JsonpSerializable {
 		this.total = builder.total;
 		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
 
+	}
+
+	public RecoveryBytes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

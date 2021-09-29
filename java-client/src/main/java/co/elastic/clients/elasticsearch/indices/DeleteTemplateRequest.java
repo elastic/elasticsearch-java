@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_template.Request
@@ -57,6 +59,10 @@ public final class DeleteTemplateRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
+	}
+
+	public DeleteTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -149,7 +155,7 @@ public final class DeleteTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_template}".
 	 */
-	public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteTemplateRequest, DeleteTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -168,10 +174,10 @@ public final class DeleteTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -186,5 +192,5 @@ public final class DeleteTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteTemplateResponse._DESERIALIZER);
 }

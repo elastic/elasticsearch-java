@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandMoveAction
@@ -57,6 +58,10 @@ public final class CommandMoveAction implements JsonpSerializable {
 		this.fromNode = Objects.requireNonNull(builder.fromNode, "from_node");
 		this.toNode = Objects.requireNonNull(builder.toNode, "to_node");
 
+	}
+
+	public CommandMoveAction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

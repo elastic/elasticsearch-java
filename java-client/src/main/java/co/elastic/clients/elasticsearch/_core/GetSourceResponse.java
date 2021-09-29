@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,13 +34,13 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Response
 
 public final class GetSourceResponse<TDocument> implements JsonpSerializable {
-	private final TDocument value;
+	private final TDocument valueBody;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -50,25 +49,29 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	public GetSourceResponse(Builder<TDocument> builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public GetSourceResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public TDocument value() {
-		return this.value;
+	public TDocument valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		JsonpUtils.serialize(this.value, generator, tDocumentSerializer, mapper);
+		JsonpUtils.serialize(this.valueBody, generator, tDocumentSerializer, mapper);
 
 	}
 
@@ -78,7 +81,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link GetSourceResponse}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<GetSourceResponse<TDocument>> {
-		private TDocument value;
+		private TDocument valueBody;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -86,10 +89,10 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TDocument> value(TDocument value) {
-			this.value = value;
+		public Builder<TDocument> valueBody(TDocument value) {
+			this.valueBody = value;
 			return this;
 		}
 
@@ -114,23 +117,14 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Create a json deserializer for GetSourceResponse
-	 */
 	public static <TDocument> JsonpDeserializer<GetSourceResponse<TDocument>> createGetSourceResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TDocument>>) Builder::new,
-				op -> GetSourceResponse.setupGetSourceResponseDeserializer(op, tDocumentDeserializer));
-	};
 
-	protected static <TDocument> void setupGetSourceResponseDeserializer(
-			DelegatingDeserializer<GetSourceResponse.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		JsonpDeserializer<TDocument> valueDeserializer = tDocumentDeserializer;
 
-		op.add(Builder::value, tDocumentDeserializer, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper, event) -> new Builder<TDocument>()
+						.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

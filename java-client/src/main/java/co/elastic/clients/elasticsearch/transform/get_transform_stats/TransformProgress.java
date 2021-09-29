@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: transform.get_transform_stats.TransformProgress
 @JsonpDeserializable
@@ -59,6 +60,10 @@ public final class TransformProgress implements JsonpSerializable {
 		this.percentComplete = Objects.requireNonNull(builder.percentComplete, "percent_complete");
 		this.totalDocs = Objects.requireNonNull(builder.totalDocs, "total_docs");
 
+	}
+
+	public TransformProgress(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

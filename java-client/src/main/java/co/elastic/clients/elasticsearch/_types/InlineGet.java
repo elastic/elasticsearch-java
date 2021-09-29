@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,6 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -69,7 +71,7 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 
 	public InlineGet(Builder<TDocument> builder) {
 
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.found = Objects.requireNonNull(builder.found, "found");
 		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
 		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
@@ -77,6 +79,10 @@ public final class InlineGet<TDocument> implements JsonpSerializable {
 		this.source = Objects.requireNonNull(builder.source, "_source");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public InlineGet(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

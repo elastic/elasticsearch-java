@@ -73,6 +73,10 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 
 	}
 
+	public LifecycleExplain(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code true} variant value.
 	 *
@@ -100,33 +104,31 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<LifecycleExplain> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<LifecycleExplain> true_(LifecycleExplainManaged v) {
+		public Builder true_(LifecycleExplainManaged v) {
 			this._type = TRUE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<LifecycleExplain> true_(
-				Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> f) {
+		public Builder true_(Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> f) {
 			return this.true_(f.apply(new LifecycleExplainManaged.Builder()).build());
 		}
 
-		public ObjectBuilder<LifecycleExplain> false_(LifecycleExplainUnmanaged v) {
+		public Builder false_(LifecycleExplainUnmanaged v) {
 			this._type = FALSE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<LifecycleExplain> false_(
-				Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> f) {
+		public Builder false_(Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> f) {
 			return this.false_(f.apply(new LifecycleExplainUnmanaged.Builder()).build());
 		}
 
-		protected LifecycleExplain build() {
+		public LifecycleExplain build() {
 			return new LifecycleExplain(this);
 		}
 
@@ -138,6 +140,7 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 		op.add(Builder::false_, LifecycleExplainUnmanaged._DESERIALIZER, "false");
 
 		op.setTypeProperty("managed");
+
 	}
 
 	public static final JsonpDeserializer<LifecycleExplain> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

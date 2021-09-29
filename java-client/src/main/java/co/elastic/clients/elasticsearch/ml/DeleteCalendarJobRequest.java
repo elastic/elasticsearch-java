@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar_job.Request
@@ -51,6 +53,10 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 
+	}
+
+	public DeleteCalendarJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -118,7 +124,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_calendar_job}".
 	 */
-	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -140,13 +146,13 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/jobs");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -154,5 +160,5 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteCalendarJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteCalendarJobResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.update_aliases.IndicesUpdateAliasBulk;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -64,8 +66,12 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.actions = builder.actions;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
 
+	}
+
+	public UpdateAliasesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -173,7 +179,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(IndicesUpdateAliasBulk value) {
 			if (this.actions == null) {
@@ -191,7 +197,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 5
 		 */
 		public Builder addActions(Function<IndicesUpdateAliasBulk.Builder, ObjectBuilder<IndicesUpdateAliasBulk>> fn) {
 			return this.addActions(fn.apply(new IndicesUpdateAliasBulk.Builder()).build());
@@ -229,7 +235,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code indices.update_aliases}".
 	 */
-	public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateAliasesRequest, UpdateAliasesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -253,5 +259,5 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateAliasesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateAliasesResponse._DESERIALIZER);
 }

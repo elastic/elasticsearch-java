@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.mapping.RoutingField
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class RoutingField implements JsonpSerializable {
 
 		this.required = Objects.requireNonNull(builder.required, "required");
 
+	}
+
+	public RoutingField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

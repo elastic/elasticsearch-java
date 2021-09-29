@@ -57,6 +57,10 @@ public final class ReadException implements JsonpSerializable {
 
 	}
 
+	public ReadException(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code exception}
 	 */

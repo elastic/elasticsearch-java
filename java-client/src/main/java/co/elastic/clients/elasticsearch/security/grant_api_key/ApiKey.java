@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +40,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
@@ -58,8 +60,12 @@ public final class ApiKey implements JsonpSerializable {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.expiration = builder.expiration;
-		this.roleDescriptors = builder.roleDescriptors;
+		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
 
+	}
+
+	public ApiKey(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -172,7 +178,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roleDescriptors(List)}, creating the list if needed.
+		 * Add a value to {@link #roleDescriptors(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoleDescriptors(Map<String, JsonData> value) {
 			if (this.roleDescriptors == null) {

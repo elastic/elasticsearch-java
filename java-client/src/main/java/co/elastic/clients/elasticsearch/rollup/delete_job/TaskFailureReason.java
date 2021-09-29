@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailureReason
@@ -50,6 +51,10 @@ public final class TaskFailureReason implements JsonpSerializable {
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 
+	}
+
+	public TaskFailureReason(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

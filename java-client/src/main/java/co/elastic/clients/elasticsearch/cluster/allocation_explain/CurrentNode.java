@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.CurrentNode
@@ -58,10 +60,14 @@ public final class CurrentNode implements JsonpSerializable {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 		this.weightRanking = Objects.requireNonNull(builder.weightRanking, "weight_ranking");
 
+	}
+
+	public CurrentNode(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

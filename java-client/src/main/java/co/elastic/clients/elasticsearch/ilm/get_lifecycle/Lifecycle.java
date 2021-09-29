@@ -58,6 +58,10 @@ public final class Lifecycle implements JsonpSerializable {
 
 	}
 
+	public Lifecycle(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code modified_date}
 	 */

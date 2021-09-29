@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteProxyInfo
@@ -69,6 +70,10 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		this.maxProxySocketConnections = Objects.requireNonNull(builder.maxProxySocketConnections,
 				"max_proxy_socket_connections");
 
+	}
+
+	public ClusterRemoteProxyInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -49,6 +49,10 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 
 	}
 
+	public NodeInfoRepositories(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code url}
 	 */

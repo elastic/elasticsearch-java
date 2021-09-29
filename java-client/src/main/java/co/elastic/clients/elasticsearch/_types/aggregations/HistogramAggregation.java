@@ -101,6 +101,10 @@ public final class HistogramAggregation extends BucketAggregationBase
 
 	}
 
+	public HistogramAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
 	 * variant type

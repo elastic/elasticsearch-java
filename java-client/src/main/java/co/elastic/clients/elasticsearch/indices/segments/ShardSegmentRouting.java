@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardSegmentRouting
@@ -54,6 +55,10 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		this.primary = Objects.requireNonNull(builder.primary, "primary");
 		this.state = Objects.requireNonNull(builder.state, "state");
 
+	}
+
+	public ShardSegmentRouting(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Response
@@ -48,6 +49,10 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 
 		this.node = Objects.requireNonNull(builder.node, "node");
 
+	}
+
+	public StartDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

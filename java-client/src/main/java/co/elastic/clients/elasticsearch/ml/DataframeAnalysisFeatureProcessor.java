@@ -77,6 +77,10 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 
 	}
 
+	public DataframeAnalysisFeatureProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code frequency_encoding} variant value.
 	 *
@@ -144,73 +148,68 @@ public class DataframeAnalysisFeatureProcessor implements TaggedUnion<Object>, J
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessor> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> frequencyEncoding(
-				DataframeAnalysisFeatureProcessorFrequencyEncoding v) {
+		public Builder frequencyEncoding(DataframeAnalysisFeatureProcessorFrequencyEncoding v) {
 			this._type = FREQUENCY_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> frequencyEncoding(
+		public Builder frequencyEncoding(
 				Function<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> f) {
 			return this.frequencyEncoding(
 					f.apply(new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> multiEncoding(
-				DataframeAnalysisFeatureProcessorMultiEncoding v) {
+		public Builder multiEncoding(DataframeAnalysisFeatureProcessorMultiEncoding v) {
 			this._type = MULTI_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> multiEncoding(
+		public Builder multiEncoding(
 				Function<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> f) {
 			return this.multiEncoding(f.apply(new DataframeAnalysisFeatureProcessorMultiEncoding.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> nGramEncoding(
-				DataframeAnalysisFeatureProcessorNGramEncoding v) {
+		public Builder nGramEncoding(DataframeAnalysisFeatureProcessorNGramEncoding v) {
 			this._type = N_GRAM_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> nGramEncoding(
+		public Builder nGramEncoding(
 				Function<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> f) {
 			return this.nGramEncoding(f.apply(new DataframeAnalysisFeatureProcessorNGramEncoding.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> oneHotEncoding(
-				DataframeAnalysisFeatureProcessorOneHotEncoding v) {
+		public Builder oneHotEncoding(DataframeAnalysisFeatureProcessorOneHotEncoding v) {
 			this._type = ONE_HOT_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> oneHotEncoding(
+		public Builder oneHotEncoding(
 				Function<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> f) {
 			return this.oneHotEncoding(f.apply(new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> targetMeanEncoding(
-				DataframeAnalysisFeatureProcessorTargetMeanEncoding v) {
+		public Builder targetMeanEncoding(DataframeAnalysisFeatureProcessorTargetMeanEncoding v) {
 			this._type = TARGET_MEAN_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysisFeatureProcessor> targetMeanEncoding(
+		public Builder targetMeanEncoding(
 				Function<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> f) {
 			return this.targetMeanEncoding(
 					f.apply(new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder()).build());
 		}
 
-		protected DataframeAnalysisFeatureProcessor build() {
+		public DataframeAnalysisFeatureProcessor build() {
 			return new DataframeAnalysisFeatureProcessor(this);
 		}
 

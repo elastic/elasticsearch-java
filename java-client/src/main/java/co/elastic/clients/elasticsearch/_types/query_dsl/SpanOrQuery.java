@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 	public SpanOrQuery(Builder builder) {
 		super(builder);
 
-		this.clauses = Objects.requireNonNull(builder.clauses, "clauses");
+		this.clauses = ModelTypeHelper.unmodifiableNonNull(builder.clauses, "clauses");
 
+	}
+
+	public SpanOrQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 		}
 
 		/**
-		 * Add a value to {@link #clauses(List)}, creating the list if needed.
+		 * Add a value to {@link #clauses(List)}, creating the list if needed. 4
 		 */
 		public Builder addClauses(SpanQuery value) {
 			if (this.clauses == null) {
@@ -124,7 +129,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 		}
 
 		/**
-		 * Add a value to {@link #clauses(List)}, creating the list if needed.
+		 * Add a value to {@link #clauses(List)}, creating the list if needed. 5
 		 */
 		public Builder addClauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.addClauses(fn.apply(new SpanQuery.Builder()).build());

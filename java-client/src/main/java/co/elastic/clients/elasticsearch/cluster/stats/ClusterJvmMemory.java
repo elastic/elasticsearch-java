@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterJvmMemory
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class ClusterJvmMemory implements JsonpSerializable {
 		this.heapMaxInBytes = Objects.requireNonNull(builder.heapMaxInBytes, "heap_max_in_bytes");
 		this.heapUsedInBytes = Objects.requireNonNull(builder.heapUsedInBytes, "heap_used_in_bytes");
 
+	}
+
+	public ClusterJvmMemory(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

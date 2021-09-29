@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.shards.ShardsRecord
@@ -348,6 +349,10 @@ public final class ShardsRecord implements JsonpSerializable {
 		this.bulkAvgTime = builder.bulkAvgTime;
 		this.bulkAvgSizeInBytes = builder.bulkAvgSizeInBytes;
 
+	}
+
+	public ShardsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

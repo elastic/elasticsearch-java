@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.KuromojiReadingFormTokenFilter
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class KuromojiReadingFormTokenFilter extends TokenFilterBase implem
 
 		this.useRomaji = Objects.requireNonNull(builder.useRomaji, "use_romaji");
 
+	}
+
+	public KuromojiReadingFormTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		this.max = Objects.requireNonNull(builder.max, "max");
 		this.min = Objects.requireNonNull(builder.min, "min");
 
+	}
+
+	public LengthTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

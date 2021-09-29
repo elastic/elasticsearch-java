@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 
 	public ShardStoreWrapper(Builder builder) {
 
-		this.stores = Objects.requireNonNull(builder.stores, "stores");
+		this.stores = ModelTypeHelper.unmodifiableNonNull(builder.stores, "stores");
 
+	}
+
+	public ShardStoreWrapper(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
+		 * Add a value to {@link #stores(List)}, creating the list if needed. 4
 		 */
 		public Builder addStores(ShardStore value) {
 			if (this.stores == null) {
@@ -123,7 +128,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
+		 * Add a value to {@link #stores(List)}, creating the list if needed. 5
 		 */
 		public Builder addStores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
 			return this.addStores(fn.apply(new ShardStore.Builder()).build());

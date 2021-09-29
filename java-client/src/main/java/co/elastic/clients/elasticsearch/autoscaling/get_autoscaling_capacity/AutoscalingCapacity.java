@@ -52,6 +52,10 @@ public final class AutoscalingCapacity implements JsonpSerializable {
 
 	}
 
+	public AutoscalingCapacity(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code node}
 	 */

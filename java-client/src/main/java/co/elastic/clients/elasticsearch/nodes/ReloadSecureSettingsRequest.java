@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -42,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -61,10 +64,14 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 
 	public ReloadSecureSettingsRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 		this.secureSettingsPassword = builder.secureSettingsPassword;
 
+	}
+
+	public ReloadSecureSettingsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -154,7 +161,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {
@@ -214,7 +221,7 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 	/**
 	 * Endpoint "{@code nodes.reload_secure_settings}".
 	 */
-	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -240,11 +247,12 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/reload_secure_settings");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -256,5 +264,5 @@ public final class ReloadSecureSettingsRequest extends RequestBase implements Js
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ReloadSecureSettingsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ReloadSecureSettingsResponse._DESERIALIZER);
 }

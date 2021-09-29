@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -64,11 +65,15 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 
 	public DataframeAnalyticsSource(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.query = builder.query;
-		this.runtimeMappings = builder.runtimeMappings;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.source = builder.source;
 
+	}
+
+	public DataframeAnalyticsSource(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -210,7 +215,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {

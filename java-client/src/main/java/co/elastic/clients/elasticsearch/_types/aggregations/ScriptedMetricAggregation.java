@@ -30,12 +30,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedMetricAggregation
@@ -64,9 +66,13 @@ public final class ScriptedMetricAggregation extends MetricAggregationBase imple
 		this.combineScript = builder.combineScript;
 		this.initScript = builder.initScript;
 		this.mapScript = builder.mapScript;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.reduceScript = builder.reduceScript;
 
+	}
+
+	public ScriptedMetricAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

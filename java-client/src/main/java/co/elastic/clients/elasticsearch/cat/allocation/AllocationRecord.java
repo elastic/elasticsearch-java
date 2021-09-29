@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.allocation.AllocationRecord
@@ -80,6 +81,10 @@ public final class AllocationRecord implements JsonpSerializable {
 		this.ip = builder.ip;
 		this.node = builder.node;
 
+	}
+
+	public AllocationRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

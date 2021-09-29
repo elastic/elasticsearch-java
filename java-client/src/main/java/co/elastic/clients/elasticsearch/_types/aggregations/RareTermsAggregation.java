@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RareTermsAggregation
@@ -70,7 +72,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 	public RareTermsAggregation(Builder builder) {
 		super(builder);
 
-		this.exclude = builder.exclude;
+		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
 		this.field = builder.field;
 		this.include = builder.include;
 		this.maxDocCount = builder.maxDocCount;
@@ -78,6 +80,10 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		this.precision = builder.precision;
 		this.valueType = builder.valueType;
 
+	}
+
+	public RareTermsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -243,7 +249,7 @@ public final class RareTermsAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
+		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {

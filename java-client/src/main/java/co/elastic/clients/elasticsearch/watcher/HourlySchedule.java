@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HourlySchedule
@@ -48,8 +50,12 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 
 	public HourlySchedule(Builder builder) {
 
-		this.minute = Objects.requireNonNull(builder.minute, "minute");
+		this.minute = ModelTypeHelper.unmodifiableNonNull(builder.minute, "minute");
 
+	}
+
+	public HourlySchedule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -113,7 +119,7 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #minute(List)}, creating the list if needed.
+		 * Add a value to {@link #minute(List)}, creating the list if needed. 4
 		 */
 		public Builder addMinute(Integer value) {
 			if (this.minute == null) {

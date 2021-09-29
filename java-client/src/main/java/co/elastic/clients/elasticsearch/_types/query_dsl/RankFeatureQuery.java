@@ -66,6 +66,10 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	public RankFeatureQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Query} variant type
 	 */

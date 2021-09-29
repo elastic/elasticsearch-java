@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _global.termvectors.FieldStatistics
 @JsonpDeserializable
@@ -53,6 +54,10 @@ public final class FieldStatistics implements JsonpSerializable {
 		this.sumDocFreq = Objects.requireNonNull(builder.sumDocFreq, "sum_doc_freq");
 		this.sumTtf = Objects.requireNonNull(builder.sumTtf, "sum_ttf");
 
+	}
+
+	public FieldStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -85,6 +85,10 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 
 	}
 
+	public RoleMappingRule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code any} variant value.
 	 *
@@ -159,44 +163,43 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<RoleMappingRule> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<RoleMappingRule> any(List<RoleMappingRule> v) {
+		public Builder any(List<RoleMappingRule> v) {
 			this._type = ANY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> all(List<RoleMappingRule> v) {
+		public Builder all(List<RoleMappingRule> v) {
 			this._type = ALL;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> field(FieldRule v) {
+		public Builder field(FieldRule v) {
 			this._type = FIELD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> f) {
+		public Builder field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> f) {
 			return this.field(f.apply(new FieldRule.Builder()).build());
 		}
 
-		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
+		public Builder except(RoleMappingRule v) {
 			this._type = EXCEPT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<RoleMappingRule> except(
-				Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> f) {
+		public Builder except(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> f) {
 			return this.except(f.apply(new RoleMappingRule.Builder()).build());
 		}
 
-		protected RoleMappingRule build() {
+		public RoleMappingRule build() {
 			return new RoleMappingRule(this);
 		}
 

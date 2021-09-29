@@ -52,6 +52,10 @@ public final class Defaults implements JsonpSerializable {
 
 	}
 
+	public Defaults(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code anomaly_detectors}
 	 */

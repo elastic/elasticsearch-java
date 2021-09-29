@@ -34,6 +34,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoCentroidAggregation
@@ -53,6 +54,10 @@ public final class GeoCentroidAggregation extends MetricAggregationBase implemen
 		this.count = builder.count;
 		this.location = builder.location;
 
+	}
+
+	public GeoCentroidAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

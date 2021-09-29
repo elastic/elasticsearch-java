@@ -63,6 +63,10 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 
 	}
 
+	public NodeInfoSettingsHttp(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code type}
 	 */

@@ -58,6 +58,10 @@ public final class Groupings implements JsonpSerializable {
 
 	}
 
+	public Groupings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code date_histogram}
 	 */

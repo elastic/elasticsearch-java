@@ -55,6 +55,10 @@ public final class RollupJob implements JsonpSerializable {
 
 	}
 
+	public RollupJob(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code config}
 	 */

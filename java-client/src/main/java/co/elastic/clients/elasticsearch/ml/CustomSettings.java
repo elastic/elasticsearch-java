@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CustomSettings
@@ -58,10 +60,14 @@ public final class CustomSettings implements JsonpSerializable {
 
 	public CustomSettings(Builder builder) {
 
-		this.customUrls = builder.customUrls;
+		this.customUrls = ModelTypeHelper.unmodifiable(builder.customUrls);
 		this.createdBy = builder.createdBy;
-		this.jobTags = builder.jobTags;
+		this.jobTags = ModelTypeHelper.unmodifiable(builder.jobTags);
 
+	}
+
+	public CustomSettings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -163,7 +169,7 @@ public final class CustomSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #customUrls(List)}, creating the list if needed.
+		 * Add a value to {@link #customUrls(List)}, creating the list if needed. 4
 		 */
 		public Builder addCustomUrls(JsonValue /* xpack.usage.UrlConfig */ value) {
 			if (this.customUrls == null) {

@@ -50,6 +50,10 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 
 	}
 
+	public UpdateModelSnapshotResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code model}
 	 */

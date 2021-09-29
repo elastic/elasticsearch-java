@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -71,14 +72,18 @@ public final class Source implements JsonpSerializable {
 
 	public Source(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.query = builder.query;
 		this.remote = builder.remote;
 		this.size = builder.size;
 		this.slice = builder.slice;
-		this.sort = builder.sort;
-		this.sourceFields = builder.sourceFields;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sourceFields = ModelTypeHelper.unmodifiable(builder.sourceFields);
 
+	}
+
+	public Source(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -247,7 +252,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -327,7 +332,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -354,7 +359,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sourceFields(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addSourceFields(String value) {
 			if (this.sourceFields == null) {

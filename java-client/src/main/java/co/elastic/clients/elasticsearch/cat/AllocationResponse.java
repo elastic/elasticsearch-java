@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.allocation.AllocationRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.allocation.Response
 @JsonpDeserializable
 public final class AllocationResponse implements JsonpSerializable {
-	private final List<AllocationRecord> value;
+	private final List<AllocationRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public AllocationResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public AllocationResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<AllocationRecord> value() {
-		return this.value;
+	public List<AllocationRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class AllocationResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (AllocationRecord item0 : this.value) {
+		for (AllocationRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class AllocationResponse implements JsonpSerializable {
 	 * Builder for {@link AllocationResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<AllocationResponse> {
-		private List<AllocationRecord> value;
+		private List<AllocationRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<AllocationRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<AllocationRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(AllocationRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(AllocationRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(AllocationRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(AllocationRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
-			return this.value(fn.apply(new AllocationRecord.Builder()).build());
+		public Builder valueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
+			return this.valueBody(fn.apply(new AllocationRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
-			return this.addValue(fn.apply(new AllocationRecord.Builder()).build());
+		public Builder addValueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
+			return this.addValueBody(fn.apply(new AllocationRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class AllocationResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<AllocationResponse> _DESERIALIZER = createAllocationResponseDeserializer();
+	protected static JsonpDeserializer<AllocationResponse> createAllocationResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link AllocationResponse}
-	 */
-	public static final JsonpDeserializer<AllocationResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AllocationResponse::setupAllocationResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<AllocationRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(AllocationRecord._DESERIALIZER);
 
-	protected static void setupAllocationResponseDeserializer(DelegatingDeserializer<AllocationResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(AllocationRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

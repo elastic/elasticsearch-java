@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesKeys
@@ -59,6 +60,10 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		this.joinKeysFiveOrMore = Objects.requireNonNull(builder.joinKeysFiveOrMore, "join_keys_five_or_more");
 		this.joinKeysFour = Objects.requireNonNull(builder.joinKeysFour, "join_keys_four");
 
+	}
+
+	public EqlFeaturesKeys(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

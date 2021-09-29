@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -50,8 +51,12 @@ public final class UpdateByQueryRethrottleNode extends BaseNode {
 	public UpdateByQueryRethrottleNode(Builder builder) {
 		super(builder);
 
-		this.tasks = Objects.requireNonNull(builder.tasks, "tasks");
+		this.tasks = ModelTypeHelper.unmodifiableNonNull(builder.tasks, "tasks");
 
+	}
+
+	public UpdateByQueryRethrottleNode(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

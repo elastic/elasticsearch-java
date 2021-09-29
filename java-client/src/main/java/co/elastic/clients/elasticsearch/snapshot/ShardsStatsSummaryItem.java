@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: snapshot._types.ShardsStatsSummaryItem
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class ShardsStatsSummaryItem implements JsonpSerializable {
 		this.fileCount = Objects.requireNonNull(builder.fileCount, "file_count");
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
 
+	}
+
+	public ShardsStatsSummaryItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

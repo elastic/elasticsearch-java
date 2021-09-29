@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -77,9 +78,9 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 	public NodeJvmInfo(Builder builder) {
 
-		this.gcCollectors = Objects.requireNonNull(builder.gcCollectors, "gc_collectors");
+		this.gcCollectors = ModelTypeHelper.unmodifiableNonNull(builder.gcCollectors, "gc_collectors");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
-		this.memoryPools = Objects.requireNonNull(builder.memoryPools, "memory_pools");
+		this.memoryPools = ModelTypeHelper.unmodifiableNonNull(builder.memoryPools, "memory_pools");
 		this.pid = Objects.requireNonNull(builder.pid, "pid");
 		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
 		this.version = Objects.requireNonNull(builder.version, "version");
@@ -89,8 +90,12 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		this.bundledJdk = Objects.requireNonNull(builder.bundledJdk, "bundled_jdk");
 		this.usingBundledJdk = Objects.requireNonNull(builder.usingBundledJdk, "using_bundled_jdk");
 		this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
-		this.inputArguments = Objects.requireNonNull(builder.inputArguments, "input_arguments");
+		this.inputArguments = ModelTypeHelper.unmodifiableNonNull(builder.inputArguments, "input_arguments");
 
+	}
+
+	public NodeJvmInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -306,7 +311,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #gcCollectors(List)}, creating the list if needed.
+		 * Add a value to {@link #gcCollectors(List)}, creating the list if needed. 4
 		 */
 		public Builder addGcCollectors(String value) {
 			if (this.gcCollectors == null) {
@@ -348,7 +353,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #memoryPools(List)}, creating the list if needed.
+		 * Add a value to {@link #memoryPools(List)}, creating the list if needed. 4
 		 */
 		public Builder addMemoryPools(String value) {
 			if (this.memoryPools == null) {
@@ -447,7 +452,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #inputArguments(List)}, creating the list if needed.
+		 * Add a value to {@link #inputArguments(List)}, creating the list if needed. 4
 		 */
 		public Builder addInputArguments(String value) {
 			if (this.inputArguments == null) {

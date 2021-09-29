@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.GoogleNormalizedDistanceHeuristic
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 
 		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
 
+	}
+
+	public GoogleNormalizedDistanceHeuristic(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

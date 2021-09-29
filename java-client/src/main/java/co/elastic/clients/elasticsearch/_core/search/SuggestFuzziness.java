@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestFuzziness
@@ -61,6 +62,10 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		this.transpositions = Objects.requireNonNull(builder.transpositions, "transpositions");
 		this.unicodeAware = Objects.requireNonNull(builder.unicodeAware, "unicode_aware");
 
+	}
+
+	public SuggestFuzziness(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -64,11 +65,15 @@ public final class RoleMapping implements JsonpSerializable {
 	public RoleMapping(Builder builder) {
 
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
-		this.metadata = Objects.requireNonNull(builder.metadata, "metadata");
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.rules = Objects.requireNonNull(builder.rules, "rules");
-		this.roleTemplates = builder.roleTemplates;
+		this.roleTemplates = ModelTypeHelper.unmodifiable(builder.roleTemplates);
 
+	}
+
+	public RoleMapping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -216,7 +221,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -258,7 +263,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
+		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
 			if (this.roleTemplates == null) {

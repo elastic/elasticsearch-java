@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,6 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.clone.Request
@@ -69,6 +71,10 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 		this.timeout = builder.timeout;
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 
+	}
+
+	public CloneRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -246,7 +252,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code snapshot.clone}".
 	 */
-	public static final Endpoint<CloneRequest, CloneResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CloneRequest, CloneResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -269,15 +275,15 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					buf.append("/_clone");
 					buf.append("/");
-					buf.append(request.targetSnapshot);
+					SimpleEndpoint.pathEncode(request.targetSnapshot, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -292,5 +298,5 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CloneResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CloneResponse._DESERIALIZER);
 }

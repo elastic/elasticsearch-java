@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DelayedDataCheckConfig
@@ -52,6 +53,10 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 		this.checkWindow = builder.checkWindow;
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 
+	}
+
+	public DelayedDataCheckConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

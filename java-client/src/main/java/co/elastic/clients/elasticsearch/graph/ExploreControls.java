@@ -64,6 +64,10 @@ public final class ExploreControls implements JsonpSerializable {
 
 	}
 
+	public ExploreControls(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code sample_diversity}
 	 */

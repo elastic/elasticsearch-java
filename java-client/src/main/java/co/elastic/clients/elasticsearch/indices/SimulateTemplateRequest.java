@@ -25,9 +25,9 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -56,7 +56,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	@Nullable
 	private final String masterTimeout;
 
-	private final IndexTemplate value;
+	private final IndexTemplate template;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,8 +65,12 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		this.name = builder.name;
 		this.create = builder.create;
 		this.masterTimeout = builder.masterTimeout;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.template = Objects.requireNonNull(builder.template, "_value_body");
 
+	}
+
+	public SimulateTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -108,17 +112,17 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public IndexTemplate value() {
-		return this.value;
+	public IndexTemplate template() {
+		return this.template;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.template.serialize(generator, mapper);
 
 	}
 
@@ -137,7 +141,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		@Nullable
 		private String masterTimeout;
 
-		private IndexTemplate value;
+		private IndexTemplate template;
 
 		/**
 		 * Name of the index template to simulate. To test a template configuration
@@ -178,20 +182,20 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(IndexTemplate value) {
-			this.value = value;
+		public Builder template(IndexTemplate value) {
+			this.template = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
-			return this.value(fn.apply(new IndexTemplate.Builder()).build());
+		public Builder template(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
+			return this.template(fn.apply(new IndexTemplate.Builder()).build());
 		}
 
 		/**
@@ -206,19 +210,13 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<SimulateTemplateRequest> _DESERIALIZER = createSimulateTemplateRequestDeserializer();
+	protected static JsonpDeserializer<SimulateTemplateRequest> createSimulateTemplateRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link SimulateTemplateRequest}
-	 */
-	public static final JsonpDeserializer<SimulateTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SimulateTemplateRequest::setupSimulateTemplateRequestDeserializer, Builder::build);
+		JsonpDeserializer<IndexTemplate> valueDeserializer = IndexTemplate._DESERIALIZER;
 
-	protected static void setupSimulateTemplateRequestDeserializer(
-			DelegatingDeserializer<SimulateTemplateRequest.Builder> op) {
-
-		op.add(Builder::value, IndexTemplate._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.template(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -226,7 +224,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code indices.simulate_template}".
 	 */
-	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SimulateTemplateRequest, SimulateTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -253,10 +251,10 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 					buf.append("/_index_template");
 					buf.append("/_simulate");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -271,5 +269,5 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateTemplateResponse._DESERIALIZER);
 }

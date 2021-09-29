@@ -100,6 +100,10 @@ public final class NodeInfoSettings implements JsonpSerializable {
 
 	}
 
+	public NodeInfoSettings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cluster}
 	 */

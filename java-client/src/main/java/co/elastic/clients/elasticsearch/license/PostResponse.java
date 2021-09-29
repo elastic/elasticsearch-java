@@ -58,6 +58,10 @@ public final class PostResponse implements JsonpSerializable {
 
 	}
 
+	public PostResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code acknowledge}
 	 */

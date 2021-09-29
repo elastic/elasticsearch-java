@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,20 +40,26 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Request
 
 public final class GetNodeRequest extends RequestBase {
+	@Nullable
 	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public GetNodeRequest(Builder builder) {
 
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 
+	}
+
+	public GetNodeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -59,6 +67,7 @@ public final class GetNodeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
+	@Nullable
 	public List<String> nodeId() {
 		return this.nodeId;
 	}
@@ -69,6 +78,7 @@ public final class GetNodeRequest extends RequestBase {
 	 * Builder for {@link GetNodeRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<GetNodeRequest> {
+		@Nullable
 		private List<String> nodeId;
 
 		/**
@@ -76,7 +86,7 @@ public final class GetNodeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(List<String> value) {
+		public Builder nodeId(@Nullable List<String> value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -92,7 +102,7 @@ public final class GetNodeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {
@@ -119,7 +129,7 @@ public final class GetNodeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code shutdown.get_node}".
 	 */
-	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -132,7 +142,8 @@ public final class GetNodeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				propsSet |= _nodeId;
+				if (request.nodeId() != null)
+					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -144,11 +155,12 @@ public final class GetNodeRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/shutdown");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -156,5 +168,5 @@ public final class GetNodeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetNodeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetNodeResponse._DESERIALIZER);
 }

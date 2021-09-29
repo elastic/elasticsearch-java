@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.translate.Response
@@ -61,9 +63,13 @@ public final class TranslateResponse implements JsonpSerializable {
 
 		this.size = Objects.requireNonNull(builder.size, "size");
 		this.source = Objects.requireNonNull(builder.source, "_source");
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
-		this.sort = Objects.requireNonNull(builder.sort, "sort");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
+		this.sort = ModelTypeHelper.unmodifiableNonNull(builder.sort, "sort");
 
+	}
+
+	public TranslateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -188,7 +194,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(Map<String, String> value) {
 			if (this.fields == null) {
@@ -215,7 +221,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {

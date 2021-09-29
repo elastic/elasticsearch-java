@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -61,8 +62,12 @@ public final class TrainedModelStats implements JsonpSerializable {
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.pipelineCount = Objects.requireNonNull(builder.pipelineCount, "pipeline_count");
 		this.inferenceStats = builder.inferenceStats;
-		this.ingest = builder.ingest;
+		this.ingest = ModelTypeHelper.unmodifiable(builder.ingest);
 
+	}
+
+	public TrainedModelStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

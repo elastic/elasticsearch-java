@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -59,9 +60,13 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
-		this.fieldMap = builder.fieldMap;
+		this.fieldMap = ModelTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
 
+	}
+
+	public InferenceProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

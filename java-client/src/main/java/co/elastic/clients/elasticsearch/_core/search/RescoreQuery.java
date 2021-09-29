@@ -63,6 +63,10 @@ public final class RescoreQuery implements JsonpSerializable {
 
 	}
 
+	public RescoreQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code rescore_query}
 	 */

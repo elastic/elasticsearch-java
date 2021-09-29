@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -52,8 +53,12 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 	public GetDatafeedStatsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
+		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
 
+	}
+
+	public GetDatafeedStatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +134,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
+		 * Add a value to {@link #datafeeds(List)}, creating the list if needed. 4
 		 */
 		public Builder addDatafeeds(DatafeedStats value) {
 			if (this.datafeeds == null) {
@@ -147,7 +152,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
+		 * Add a value to {@link #datafeeds(List)}, creating the list if needed. 5
 		 */
 		public Builder addDatafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
 			return this.addDatafeeds(fn.apply(new DatafeedStats.Builder()).build());

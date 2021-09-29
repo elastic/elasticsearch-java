@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_template.Overlapping
@@ -51,8 +53,12 @@ public final class Overlapping implements JsonpSerializable {
 	public Overlapping(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.indexPatterns = Objects.requireNonNull(builder.indexPatterns, "index_patterns");
+		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
 
+	}
+
+	public Overlapping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -128,7 +134,7 @@ public final class Overlapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PatternCaptureTokenFilter
@@ -51,9 +53,13 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 	public PatternCaptureTokenFilter(Builder builder) {
 		super(builder);
 
-		this.patterns = Objects.requireNonNull(builder.patterns, "patterns");
+		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
 		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
 
+	}
+
+	public PatternCaptureTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -125,7 +131,7 @@ public final class PatternCaptureTokenFilter extends TokenFilterBase implements 
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed.
+		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addPatterns(String value) {
 			if (this.patterns == null) {

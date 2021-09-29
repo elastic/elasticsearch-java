@@ -54,6 +54,10 @@ public final class CountResponse implements JsonpSerializable {
 
 	}
 
+	public CountResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code count}
 	 */

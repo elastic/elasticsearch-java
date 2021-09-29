@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ccr.follow.Response
 @JsonpDeserializable
@@ -53,6 +54,10 @@ public final class FollowResponse implements JsonpSerializable {
 				"follow_index_shards_acked");
 		this.indexFollowingStarted = Objects.requireNonNull(builder.indexFollowingStarted, "index_following_started");
 
+	}
+
+	public FollowResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

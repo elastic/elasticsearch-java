@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
@@ -66,8 +68,8 @@ public class User implements JsonpSerializable {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = Objects.requireNonNull(builder.metadata, "metadata");
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 
@@ -256,7 +258,7 @@ public class User implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addRoles(String value) {
 			if (this.roles == null) {

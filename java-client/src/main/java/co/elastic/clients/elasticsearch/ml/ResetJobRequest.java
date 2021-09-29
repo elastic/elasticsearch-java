@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.reset_job.Request
@@ -54,6 +56,10 @@ public final class ResetJobRequest extends RequestBase {
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.waitForCompletion = builder.waitForCompletion;
 
+	}
+
+	public ResetJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -123,7 +129,7 @@ public final class ResetJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.reset_job}".
 	 */
-	public static final Endpoint<ResetJobRequest, ResetJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ResetJobRequest, ResetJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -143,11 +149,11 @@ public final class ResetJobRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_reset");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -159,5 +165,5 @@ public final class ResetJobRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ResetJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ResetJobResponse._DESERIALIZER);
 }

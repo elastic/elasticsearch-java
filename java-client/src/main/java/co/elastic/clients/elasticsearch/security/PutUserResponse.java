@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.put_user.Response
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class PutUserResponse implements JsonpSerializable {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 
+	}
+
+	public PutUserResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

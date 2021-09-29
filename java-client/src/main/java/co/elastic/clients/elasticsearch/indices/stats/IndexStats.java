@@ -107,6 +107,9 @@ public final class IndexStats implements JsonpSerializable {
 	@Nullable
 	private final BulkStats bulk;
 
+	@Nullable
+	private final ShardsTotalStats shards;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public IndexStats(Builder builder) {
@@ -128,7 +131,12 @@ public final class IndexStats implements JsonpSerializable {
 		this.translog = builder.translog;
 		this.warmer = builder.warmer;
 		this.bulk = builder.bulk;
+		this.shards = builder.shards;
 
+	}
+
+	public IndexStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -304,6 +312,14 @@ public final class IndexStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code shards}
+	 */
+	@Nullable
+	public ShardsTotalStats shards() {
+		return this.shards;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -416,6 +432,12 @@ public final class IndexStats implements JsonpSerializable {
 			this.bulk.serialize(generator, mapper);
 
 		}
+		if (this.shards != null) {
+
+			generator.writeKey("shards");
+			this.shards.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -475,6 +497,9 @@ public final class IndexStats implements JsonpSerializable {
 
 		@Nullable
 		private BulkStats bulk;
+
+		@Nullable
+		private ShardsTotalStats shards;
 
 		/**
 		 * Contains statistics about completions across all shards assigned to the node.
@@ -804,6 +829,21 @@ public final class IndexStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(@Nullable ShardsTotalStats value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link IndexStats}.
 		 *
 		 * @throws NullPointerException
@@ -842,6 +882,7 @@ public final class IndexStats implements JsonpSerializable {
 		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
 		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
 		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
+		op.add(Builder::shards, ShardsTotalStats._DESERIALIZER, "shards");
 
 	}
 

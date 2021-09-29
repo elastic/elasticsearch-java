@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: tasks.get.Request
@@ -58,6 +60,10 @@ public final class GetRequest extends RequestBase {
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
+	}
+
+	public GetRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -150,7 +156,7 @@ public final class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.get}".
 	 */
-	public static final Endpoint<GetRequest, GetResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetRequest, GetResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -169,10 +175,10 @@ public final class GetRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_tasks");
 					buf.append("/");
-					buf.append(request.taskId);
+					SimpleEndpoint.pathEncode(request.taskId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -187,5 +193,5 @@ public final class GetRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER);
 }

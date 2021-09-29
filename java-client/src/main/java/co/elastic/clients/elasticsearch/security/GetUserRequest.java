@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -51,8 +54,12 @@ public final class GetUserRequest extends RequestBase {
 
 	public GetUserRequest(Builder builder) {
 
-		this.username = builder.username;
+		this.username = ModelTypeHelper.unmodifiable(builder.username);
 
+	}
+
+	public GetUserRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -101,7 +108,7 @@ public final class GetUserRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #username(List)}, creating the list if needed.
+		 * Add a value to {@link #username(List)}, creating the list if needed. 4
 		 */
 		public Builder addUsername(String value) {
 			if (this.username == null) {
@@ -128,7 +135,7 @@ public final class GetUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user}".
 	 */
-	public static final Endpoint<GetUserRequest, GetUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetUserRequest, GetUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -149,7 +156,8 @@ public final class GetUserRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.username.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.username.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -158,7 +166,7 @@ public final class GetUserRequest extends RequestBase {
 					buf.append("/user");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -166,5 +174,5 @@ public final class GetUserRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetUserResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetUserResponse._DESERIALIZER);
 }

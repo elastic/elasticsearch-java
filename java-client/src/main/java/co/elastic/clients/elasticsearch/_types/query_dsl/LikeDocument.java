@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -42,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.LikeDocument
@@ -79,15 +81,19 @@ public final class LikeDocument implements JsonpSerializable {
 	public LikeDocument(Builder builder) {
 
 		this.doc = builder.doc;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.id = builder.id;
 		this.type = builder.type;
 		this.index = builder.index;
-		this.perFieldAnalyzer = builder.perFieldAnalyzer;
+		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public LikeDocument(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -298,7 +304,7 @@ public final class LikeDocument implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

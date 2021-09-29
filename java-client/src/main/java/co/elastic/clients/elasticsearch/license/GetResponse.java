@@ -50,6 +50,10 @@ public final class GetResponse implements JsonpSerializable {
 
 	}
 
+	public GetResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code license}
 	 */

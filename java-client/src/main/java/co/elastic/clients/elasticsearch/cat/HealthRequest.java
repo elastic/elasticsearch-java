@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,6 +36,7 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Request
@@ -53,6 +55,10 @@ public final class HealthRequest extends CatRequestBase {
 		this.includeTimestamp = builder.includeTimestamp;
 		this.ts = builder.ts;
 
+	}
+
+	public HealthRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -120,7 +126,7 @@ public final class HealthRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.health}".
 	 */
-	public static final Endpoint<HealthRequest, HealthResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HealthRequest, HealthResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -144,5 +150,5 @@ public final class HealthRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, HealthResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HealthResponse._DESERIALIZER);
 }

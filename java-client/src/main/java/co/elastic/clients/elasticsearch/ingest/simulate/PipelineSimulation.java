@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -64,11 +65,15 @@ public final class PipelineSimulation implements JsonpSerializable {
 	public PipelineSimulation(Builder builder) {
 
 		this.doc = builder.doc;
-		this.processorResults = builder.processorResults;
+		this.processorResults = ModelTypeHelper.unmodifiable(builder.processorResults);
 		this.tag = builder.tag;
 		this.processorType = builder.processorType;
 		this.status = builder.status;
 
+	}
+
+	public PipelineSimulation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -213,6 +218,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addProcessorResults(PipelineSimulation value) {
 			if (this.processorResults == null) {
@@ -231,6 +237,7 @@ public final class PipelineSimulation implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #processorResults(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addProcessorResults(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
 			return this.addProcessorResults(fn.apply(new PipelineSimulation.Builder()).build());

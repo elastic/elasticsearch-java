@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,13 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 
 	public GetComponentTemplateResponse(Builder builder) {
 
-		this.componentTemplates = Objects.requireNonNull(builder.componentTemplates, "component_templates");
+		this.componentTemplates = ModelTypeHelper.unmodifiableNonNull(builder.componentTemplates,
+				"component_templates");
 
+	}
+
+	public GetComponentTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +112,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #componentTemplates(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addComponentTemplates(ComponentTemplate value) {
 			if (this.componentTemplates == null) {
@@ -125,7 +131,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #componentTemplates(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addComponentTemplates(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
 			return this.addComponentTemplates(fn.apply(new ComponentTemplate.Builder()).build());

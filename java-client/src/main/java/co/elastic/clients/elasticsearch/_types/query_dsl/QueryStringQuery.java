@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryStringQuery
@@ -131,7 +133,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		this.defaultOperator = builder.defaultOperator;
 		this.enablePositionIncrements = builder.enablePositionIncrements;
 		this.escape = builder.escape;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyMaxExpansions = builder.fuzzyMaxExpansions;
 		this.fuzzyPrefixLength = builder.fuzzyPrefixLength;
@@ -149,6 +151,10 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		this.timeZone = builder.timeZone;
 		this.type = builder.type;
 
+	}
+
+	public QueryStringQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -676,7 +682,7 @@ public final class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

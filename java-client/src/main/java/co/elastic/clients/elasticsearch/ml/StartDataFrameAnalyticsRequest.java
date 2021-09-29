@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Request
@@ -53,6 +55,10 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.timeout = builder.timeout;
 
+	}
+
+	public StartDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -124,7 +130,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.start_data_frame_analytics}".
 	 */
-	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -145,11 +151,11 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_start");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -161,5 +167,5 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StartDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StartDataFrameAnalyticsResponse._DESERIALIZER);
 }

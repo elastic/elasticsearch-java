@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SerialDifferencingAggregation
@@ -48,6 +49,10 @@ public final class SerialDifferencingAggregation extends PipelineAggregationBase
 
 		this.lag = builder.lag;
 
+	}
+
+	public SerialDifferencingAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IpProperty
@@ -58,6 +59,10 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		this.index = builder.index;
 		this.nullValue = builder.nullValue;
 
+	}
+
+	public IpProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -57,6 +57,10 @@ public final class Repository implements JsonpSerializable {
 
 	}
 
+	public Repository(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code type}
 	 */

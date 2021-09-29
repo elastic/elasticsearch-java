@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -54,9 +55,13 @@ public final class ShardStoreIndex implements JsonpSerializable {
 
 	public ShardStoreIndex(Builder builder) {
 
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.filter = builder.filter;
 
+	}
+
+	public ShardStoreIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -135,7 +140,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
+		 * Add a value to {@link #aliases(List)}, creating the list if needed. 4
 		 */
 		public Builder addAliases(String value) {
 			if (this.aliases == null) {

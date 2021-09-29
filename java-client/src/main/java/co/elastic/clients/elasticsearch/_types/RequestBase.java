@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.base.ElasticsearchCommonRequest;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -30,10 +31,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.RequestBase
 
-public abstract class RequestBase {
+public abstract class RequestBase implements ElasticsearchCommonRequest {
 	public RequestBase() {
 	}
 

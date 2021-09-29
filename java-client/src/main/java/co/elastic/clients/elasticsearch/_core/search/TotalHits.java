@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TotalHits
@@ -50,6 +51,10 @@ public final class TotalHits implements JsonpSerializable {
 		this.relation = Objects.requireNonNull(builder.relation, "relation");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public TotalHits(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

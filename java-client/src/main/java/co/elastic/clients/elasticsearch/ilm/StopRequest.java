@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.stop.Request
@@ -54,6 +56,10 @@ public final class StopRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
+	}
+
+	public StopRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -117,7 +123,7 @@ public final class StopRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.stop}".
 	 */
-	public static final Endpoint<StopRequest, StopResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StopRequest, StopResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -141,5 +147,5 @@ public final class StopRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StopResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StopResponse._DESERIALIZER);
 }

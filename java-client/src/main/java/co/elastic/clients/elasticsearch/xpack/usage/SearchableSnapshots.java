@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SearchableSnapshots
@@ -55,6 +56,10 @@ public final class SearchableSnapshots extends Base {
 		this.fullCopyIndicesCount = builder.fullCopyIndicesCount;
 		this.sharedCacheIndicesCount = builder.sharedCacheIndicesCount;
 
+	}
+
+	public SearchableSnapshots(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

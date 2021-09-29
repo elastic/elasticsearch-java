@@ -53,6 +53,10 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 
 	}
 
+	public WatcherWatchTrigger(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code schedule}
 	 */

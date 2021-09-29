@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ValidationLoss
@@ -50,9 +52,13 @@ public final class ValidationLoss implements JsonpSerializable {
 
 	public ValidationLoss(Builder builder) {
 
-		this.foldValues = Objects.requireNonNull(builder.foldValues, "fold_values");
+		this.foldValues = ModelTypeHelper.unmodifiableNonNull(builder.foldValues, "fold_values");
 		this.lossType = Objects.requireNonNull(builder.lossType, "loss_type");
 
+	}
+
+	public ValidationLoss(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -131,7 +137,7 @@ public final class ValidationLoss implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #foldValues(List)}, creating the list if needed.
+		 * Add a value to {@link #foldValues(List)}, creating the list if needed. 4
 		 */
 		public Builder addFoldValues(String value) {
 			if (this.foldValues == null) {

@@ -62,6 +62,10 @@ public final class Feature implements JsonpSerializable {
 
 	}
 
+	public Feature(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code available}
 	 */

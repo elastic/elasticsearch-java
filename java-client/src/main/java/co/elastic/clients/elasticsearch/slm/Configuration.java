@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Configuration
@@ -68,12 +70,16 @@ public final class Configuration implements JsonpSerializable {
 	public Configuration(Builder builder) {
 
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.includeGlobalState = builder.includeGlobalState;
-		this.featureStates = builder.featureStates;
-		this.metadata = builder.metadata;
+		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
 
+	}
+
+	public Configuration(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -276,7 +282,7 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -331,7 +337,7 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureStates(String value) {
 			if (this.featureStates == null) {

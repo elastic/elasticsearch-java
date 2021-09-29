@@ -25,10 +25,12 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,6 +42,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete.Request
@@ -92,6 +95,10 @@ public final class DeleteRequest extends RequestBase {
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
+	}
+
+	public DeleteRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -384,7 +391,7 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code delete}".
 	 */
-	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -407,23 +414,23 @@ public final class DeleteRequest extends RequestBase {
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_doc");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/");
-					buf.append(request.type);
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -437,7 +444,7 @@ public final class DeleteRequest extends RequestBase {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
@@ -452,9 +459,9 @@ public final class DeleteRequest extends RequestBase {
 					params.put("version_type", request.versionType.toString());
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteResponse._DESERIALIZER);
 }

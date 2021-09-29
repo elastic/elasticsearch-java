@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.delete_node.Request
@@ -48,6 +50,10 @@ public final class DeleteNodeRequest extends RequestBase {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 
+	}
+
+	public DeleteNodeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class DeleteNodeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code shutdown.delete_node}".
 	 */
-	public static final Endpoint<DeleteNodeRequest, DeleteNodeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteNodeRequest, DeleteNodeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -113,11 +119,11 @@ public final class DeleteNodeRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId);
+					SimpleEndpoint.pathEncode(request.nodeId, buf);
 					buf.append("/shutdown");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -125,5 +131,5 @@ public final class DeleteNodeRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteNodeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteNodeResponse._DESERIALIZER);
 }

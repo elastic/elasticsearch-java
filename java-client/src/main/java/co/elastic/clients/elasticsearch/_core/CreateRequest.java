@@ -25,9 +25,9 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,7 +44,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.create.Request
@@ -78,7 +78,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	@Nullable
 	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
-	private final TDocument value;
+	private final TDocument document;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
@@ -97,9 +97,13 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.document = Objects.requireNonNull(builder.document, "_value_body");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public CreateRequest(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -210,17 +214,17 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public TDocument value() {
-		return this.value;
+	public TDocument document() {
+		return this.document;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		JsonpUtils.serialize(this.value, generator, tDocumentSerializer, mapper);
+		JsonpUtils.serialize(this.document, generator, tDocumentSerializer, mapper);
 
 	}
 
@@ -258,7 +262,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		@Nullable
 		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
 
-		private TDocument value;
+		private TDocument document;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -373,10 +377,10 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TDocument> value(TDocument value) {
-			this.value = value;
+		public Builder<TDocument> document(TDocument value) {
+			this.document = value;
 			return this;
 		}
 
@@ -401,23 +405,14 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Create a json deserializer for CreateRequest
-	 */
 	public static <TDocument> JsonpDeserializer<CreateRequest<TDocument>> createCreateRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TDocument>>) Builder::new,
-				op -> CreateRequest.setupCreateRequestDeserializer(op, tDocumentDeserializer));
-	};
 
-	protected static <TDocument> void setupCreateRequestDeserializer(
-			DelegatingDeserializer<CreateRequest.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		JsonpDeserializer<TDocument> valueDeserializer = tDocumentDeserializer;
 
-		op.add(Builder::value, tDocumentDeserializer, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper, event) -> new Builder<TDocument>()
+						.document(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -425,7 +420,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code create}".
 	 */
-	public static final Endpoint<CreateRequest<?>, CreateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateRequest<?>, CreateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -448,24 +443,24 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_create");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/");
-					buf.append(request.type);
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_create");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -476,7 +471,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 					params.put("pipeline", request.pipeline);
 				}
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
@@ -491,9 +486,9 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 					params.put("version_type", request.versionType.toString());
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

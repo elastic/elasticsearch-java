@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.aliases.AliasesRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.aliases.Response
 @JsonpDeserializable
 public final class AliasesResponse implements JsonpSerializable {
-	private final List<AliasesRecord> value;
+	private final List<AliasesRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public AliasesResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public AliasesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<AliasesRecord> value() {
-		return this.value;
+	public List<AliasesRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class AliasesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (AliasesRecord item0 : this.value) {
+		for (AliasesRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class AliasesResponse implements JsonpSerializable {
 	 * Builder for {@link AliasesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<AliasesResponse> {
-		private List<AliasesRecord> value;
+		private List<AliasesRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<AliasesRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<AliasesRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(AliasesRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(AliasesRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(AliasesRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(AliasesRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
-			return this.value(fn.apply(new AliasesRecord.Builder()).build());
+		public Builder valueBody(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
+			return this.valueBody(fn.apply(new AliasesRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
-			return this.addValue(fn.apply(new AliasesRecord.Builder()).build());
+		public Builder addValueBody(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
+			return this.addValueBody(fn.apply(new AliasesRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class AliasesResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<AliasesResponse> _DESERIALIZER = createAliasesResponseDeserializer();
+	protected static JsonpDeserializer<AliasesResponse> createAliasesResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link AliasesResponse}
-	 */
-	public static final JsonpDeserializer<AliasesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AliasesResponse::setupAliasesResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<AliasesRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(AliasesRecord._DESERIALIZER);
 
-	protected static void setupAliasesResponseDeserializer(DelegatingDeserializer<AliasesResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(AliasesRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

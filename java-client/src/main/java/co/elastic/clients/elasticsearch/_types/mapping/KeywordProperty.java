@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.KeywordProperty
@@ -78,6 +79,10 @@ public final class KeywordProperty extends DocValuesPropertyBase implements Prop
 		this.nullValue = builder.nullValue;
 		this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
 
+	}
+
+	public KeywordProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.segments.SegmentsRecord
@@ -104,6 +105,10 @@ public final class SegmentsRecord implements JsonpSerializable {
 		this.version = builder.version;
 		this.compound = builder.compound;
 
+	}
+
+	public SegmentsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

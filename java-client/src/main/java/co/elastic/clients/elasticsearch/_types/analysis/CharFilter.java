@@ -74,6 +74,10 @@ public class CharFilter implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
+	public CharFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code html_strip} variant value.
 	 *
@@ -112,44 +116,42 @@ public class CharFilter implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<CharFilter> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<CharFilter> htmlStrip(HtmlStripCharFilter v) {
+		public Builder htmlStrip(HtmlStripCharFilter v) {
 			this._type = HTML_STRIP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CharFilter> htmlStrip(
-				Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> f) {
+		public Builder htmlStrip(Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> f) {
 			return this.htmlStrip(f.apply(new HtmlStripCharFilter.Builder()).build());
 		}
 
-		public ObjectBuilder<CharFilter> mapping(MappingCharFilter v) {
+		public Builder mapping(MappingCharFilter v) {
 			this._type = MAPPING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CharFilter> mapping(
-				Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> f) {
+		public Builder mapping(Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> f) {
 			return this.mapping(f.apply(new MappingCharFilter.Builder()).build());
 		}
 
-		public ObjectBuilder<CharFilter> patternReplace(PatternReplaceTokenFilter v) {
+		public Builder patternReplace(PatternReplaceTokenFilter v) {
 			this._type = PATTERN_REPLACE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CharFilter> patternReplace(
+		public Builder patternReplace(
 				Function<PatternReplaceTokenFilter.Builder, ObjectBuilder<PatternReplaceTokenFilter>> f) {
 			return this.patternReplace(f.apply(new PatternReplaceTokenFilter.Builder()).build());
 		}
 
-		protected CharFilter build() {
+		public CharFilter build() {
 			return new CharFilter(this);
 		}
 
@@ -162,6 +164,7 @@ public class CharFilter implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 		op.add(Builder::patternReplace, PatternReplaceTokenFilter._DESERIALIZER, "pattern_replace");
 
 		op.setTypeProperty("type");
+
 	}
 
 	public static final JsonpDeserializer<CharFilter> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

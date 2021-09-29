@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.TopHit
@@ -51,6 +52,10 @@ public final class TopHit implements JsonpSerializable {
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public TopHit(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

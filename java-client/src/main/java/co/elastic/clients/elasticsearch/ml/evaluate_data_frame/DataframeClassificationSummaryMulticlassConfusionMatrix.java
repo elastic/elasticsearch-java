@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -51,9 +52,13 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 
 	public DataframeClassificationSummaryMulticlassConfusionMatrix(Builder builder) {
 
-		this.confusionMatrix = Objects.requireNonNull(builder.confusionMatrix, "confusion_matrix");
+		this.confusionMatrix = ModelTypeHelper.unmodifiableNonNull(builder.confusionMatrix, "confusion_matrix");
 		this.otherActualClassCount = Objects.requireNonNull(builder.otherActualClassCount, "other_actual_class_count");
 
+	}
+
+	public DataframeClassificationSummaryMulticlassConfusionMatrix(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -121,7 +126,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
+		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed. 4
 		 */
 		public Builder addConfusionMatrix(ConfusionMatrixItem value) {
 			if (this.confusionMatrix == null) {
@@ -139,7 +144,7 @@ public final class DataframeClassificationSummaryMulticlassConfusionMatrix imple
 		}
 
 		/**
-		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed.
+		 * Add a value to {@link #confusionMatrix(List)}, creating the list if needed. 5
 		 */
 		public Builder addConfusionMatrix(
 				Function<ConfusionMatrixItem.Builder, ObjectBuilder<ConfusionMatrixItem>> fn) {

@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: nodes._types.ExtendedMemoryStats
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		this.freePercent = Objects.requireNonNull(builder.freePercent, "free_percent");
 		this.usedPercent = Objects.requireNonNull(builder.usedPercent, "used_percent");
 
+	}
+
+	public ExtendedMemoryStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetworkInterface
@@ -53,6 +54,10 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		this.macAddress = Objects.requireNonNull(builder.macAddress, "mac_address");
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public NodeInfoNetworkInterface(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

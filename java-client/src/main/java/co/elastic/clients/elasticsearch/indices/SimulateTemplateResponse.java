@@ -50,6 +50,10 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 
 	}
 
+	public SimulateTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code template}
 	 */

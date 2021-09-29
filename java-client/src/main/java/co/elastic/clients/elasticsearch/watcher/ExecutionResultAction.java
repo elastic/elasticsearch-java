@@ -84,6 +84,10 @@ public final class ExecutionResultAction implements JsonpSerializable {
 
 	}
 
+	public ExecutionResultAction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code email}
 	 */

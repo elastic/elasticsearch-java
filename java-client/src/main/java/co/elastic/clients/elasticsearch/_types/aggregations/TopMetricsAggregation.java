@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -57,10 +58,14 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 	public TopMetricsAggregation(Builder builder) {
 		super(builder);
 
-		this.metrics = builder.metrics;
+		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
 		this.size = builder.size;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 
+	}
+
+	public TopMetricsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -163,7 +168,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetrics(TopMetricsValue value) {
 			if (this.metrics == null) {
@@ -181,7 +186,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 5
 		 */
 		public Builder addMetrics(Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>> fn) {
 			return this.addMetrics(fn.apply(new TopMetricsValue.Builder()).build());
@@ -212,7 +217,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {

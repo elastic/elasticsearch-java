@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -121,12 +122,12 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		this.score = builder.score;
 		this.type = builder.type;
 		this.explanation = builder.explanation;
-		this.fields = builder.fields;
-		this.highlight = builder.highlight;
-		this.innerHits = builder.innerHits;
-		this.matchedQueries = builder.matchedQueries;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.highlight = ModelTypeHelper.unmodifiable(builder.highlight);
+		this.innerHits = ModelTypeHelper.unmodifiable(builder.innerHits);
+		this.matchedQueries = ModelTypeHelper.unmodifiable(builder.matchedQueries);
 		this.nested = builder.nested;
-		this.ignored = builder.ignored;
+		this.ignored = ModelTypeHelper.unmodifiable(builder.ignored);
 		this.shard = builder.shard;
 		this.node = builder.node;
 		this.routing = builder.routing;
@@ -134,9 +135,13 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.version = builder.version;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public Hit(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -650,7 +655,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #matchedQueries(List)}, creating the list if needed.
+		 * Add a value to {@link #matchedQueries(List)}, creating the list if needed. 4
 		 */
 		public Builder<TDocument> addMatchedQueries(String value) {
 			if (this.matchedQueries == null) {
@@ -692,9 +697,9 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #ignored(List)}, creating the list if needed.
+		 * Add a value to {@link #ignored(List)}, creating the list if needed. 4
 		 */
-		public Builder<TDocument> add_ignored(String value) {
+		public Builder<TDocument> addIgnored(String value) {
 			if (this.ignored == null) {
 				this.ignored = new ArrayList<>();
 			}
@@ -775,7 +780,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder<TDocument> addSort(String value) {
 			if (this.sort == null) {

@@ -37,6 +37,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -100,9 +101,9 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 
 	public AsyncSearch(Builder<TDocument> builder) {
 
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.clusters = builder.clusters;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.hits = Objects.requireNonNull(builder.hits, "hits");
 		this.maxScore = builder.maxScore;
 		this.numReducePhases = builder.numReducePhases;
@@ -110,12 +111,16 @@ public final class AsyncSearch<TDocument> implements JsonpSerializable {
 		this.pitId = builder.pitId;
 		this.scrollId = builder.scrollId;
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.suggest = builder.suggest;
+		this.suggest = ModelTypeHelper.unmodifiable(builder.suggest);
 		this.terminatedEarly = builder.terminatedEarly;
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.took = Objects.requireNonNull(builder.took, "took");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public AsyncSearch(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

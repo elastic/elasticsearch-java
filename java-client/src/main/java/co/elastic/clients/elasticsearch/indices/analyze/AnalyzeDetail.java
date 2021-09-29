@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -62,11 +63,15 @@ public final class AnalyzeDetail implements JsonpSerializable {
 	public AnalyzeDetail(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.charfilters = builder.charfilters;
+		this.charfilters = ModelTypeHelper.unmodifiable(builder.charfilters);
 		this.customAnalyzer = Objects.requireNonNull(builder.customAnalyzer, "custom_analyzer");
-		this.tokenfilters = builder.tokenfilters;
+		this.tokenfilters = ModelTypeHelper.unmodifiable(builder.tokenfilters);
 		this.tokenizer = builder.tokenizer;
 
+	}
+
+	public AnalyzeDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -212,7 +217,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charfilters(List)}, creating the list if needed.
+		 * Add a value to {@link #charfilters(List)}, creating the list if needed. 4
 		 */
 		public Builder addCharfilters(CharFilterDetail value) {
 			if (this.charfilters == null) {
@@ -230,7 +235,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #charfilters(List)}, creating the list if needed.
+		 * Add a value to {@link #charfilters(List)}, creating the list if needed. 5
 		 */
 		public Builder addCharfilters(Function<CharFilterDetail.Builder, ObjectBuilder<CharFilterDetail>> fn) {
 			return this.addCharfilters(fn.apply(new CharFilterDetail.Builder()).build());
@@ -261,7 +266,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed.
+		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed. 4
 		 */
 		public Builder addTokenfilters(TokenDetail value) {
 			if (this.tokenfilters == null) {
@@ -279,7 +284,7 @@ public final class AnalyzeDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed.
+		 * Add a value to {@link #tokenfilters(List)}, creating the list if needed. 5
 		 */
 		public Builder addTokenfilters(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
 			return this.addTokenfilters(fn.apply(new TokenDetail.Builder()).build());

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.set_upgrade_mode.Request
@@ -55,6 +57,10 @@ public final class SetUpgradeModeRequest extends RequestBase {
 		this.enabled = builder.enabled;
 		this.timeout = builder.timeout;
 
+	}
+
+	public SetUpgradeModeRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -126,7 +132,7 @@ public final class SetUpgradeModeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.set_upgrade_mode}".
 	 */
-	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -150,5 +156,5 @@ public final class SetUpgradeModeRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, SetUpgradeModeResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SetUpgradeModeResponse._DESERIALIZER);
 }

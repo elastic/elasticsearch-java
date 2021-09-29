@@ -82,6 +82,10 @@ public final class ReindexStatus implements JsonpSerializable {
 
 	}
 
+	public ReindexStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code batches}
 	 */

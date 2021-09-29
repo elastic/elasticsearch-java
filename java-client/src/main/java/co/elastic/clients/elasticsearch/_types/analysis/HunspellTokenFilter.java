@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.HunspellTokenFilter
@@ -57,6 +58,10 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		this.locale = Objects.requireNonNull(builder.locale, "locale");
 		this.longestOnly = Objects.requireNonNull(builder.longestOnly, "longest_only");
 
+	}
+
+	public HunspellTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

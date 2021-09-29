@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -80,12 +82,16 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.description = builder.description;
-		this.onFailure = builder.onFailure;
-		this.processors = builder.processors;
+		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
+		this.processors = ModelTypeHelper.unmodifiable(builder.processors);
 		this.version = builder.version;
 
+	}
+
+	public PutPipelineRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -313,7 +319,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -362,7 +368,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 4
 		 */
 		public Builder addOnFailure(Processor value) {
 			if (this.onFailure == null) {
@@ -380,7 +386,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 5
 		 */
 		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
@@ -409,7 +415,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
 		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
@@ -427,7 +433,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
 		 */
 		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addProcessors(fn.apply(new Processor.Builder()).build());
@@ -480,7 +486,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ingest.put_pipeline}".
 	 */
-	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutPipelineRequest, PutPipelineResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -500,10 +506,10 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 					buf.append("/_ingest");
 					buf.append("/pipeline");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -518,5 +524,5 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutPipelineResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutPipelineResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -60,9 +62,13 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	public EstimateModelMemoryRequest(Builder builder) {
 
 		this.analysisConfig = builder.analysisConfig;
-		this.maxBucketCardinality = builder.maxBucketCardinality;
-		this.overallCardinality = builder.overallCardinality;
+		this.maxBucketCardinality = ModelTypeHelper.unmodifiable(builder.maxBucketCardinality);
+		this.overallCardinality = ModelTypeHelper.unmodifiable(builder.overallCardinality);
 
+	}
+
+	public EstimateModelMemoryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -240,7 +246,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.estimate_model_memory}".
 	 */
-	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -257,5 +263,5 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, EstimateModelMemoryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, EstimateModelMemoryResponse._DESERIALIZER);
 }

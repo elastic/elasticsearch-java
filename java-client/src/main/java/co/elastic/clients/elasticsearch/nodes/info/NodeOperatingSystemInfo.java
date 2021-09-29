@@ -83,6 +83,10 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	}
 
+	public NodeOperatingSystemInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Name of the JVM architecture (ex: amd64, x86)
 	 * <p>

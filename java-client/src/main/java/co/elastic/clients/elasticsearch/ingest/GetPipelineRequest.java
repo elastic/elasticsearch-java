@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.get_pipeline.Request
@@ -59,6 +61,10 @@ public final class GetPipelineRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.summary = builder.summary;
 
+	}
+
+	public GetPipelineRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -153,7 +159,7 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.get_pipeline}".
 	 */
-	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -180,10 +186,10 @@ public final class GetPipelineRequest extends RequestBase {
 					buf.append("/_ingest");
 					buf.append("/pipeline");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -198,5 +204,5 @@ public final class GetPipelineRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
 }

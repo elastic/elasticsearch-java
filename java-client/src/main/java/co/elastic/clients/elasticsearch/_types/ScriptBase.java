@@ -31,11 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptBase
@@ -52,7 +54,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 	public ScriptBase(AbstractBuilder<?> builder) {
 
 		this.lang = builder.lang;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 
 	}
 

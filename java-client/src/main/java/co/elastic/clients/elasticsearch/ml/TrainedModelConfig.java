@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -90,12 +91,12 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	public TrainedModelConfig(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
-		this.tags = Objects.requireNonNull(builder.tags, "tags");
+		this.tags = ModelTypeHelper.unmodifiableNonNull(builder.tags, "tags");
 		this.version = builder.version;
 		this.compressedDefinition = builder.compressedDefinition;
 		this.createdBy = builder.createdBy;
 		this.createTime = builder.createTime;
-		this.defaultFieldMap = builder.defaultFieldMap;
+		this.defaultFieldMap = ModelTypeHelper.unmodifiable(builder.defaultFieldMap);
 		this.description = builder.description;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
@@ -104,6 +105,10 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
 
+	}
+
+	public TrainedModelConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -419,7 +424,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tags(List)}, creating the list if needed.
+		 * Add a value to {@link #tags(List)}, creating the list if needed. 4
 		 */
 		public Builder addTags(String value) {
 			if (this.tags == null) {

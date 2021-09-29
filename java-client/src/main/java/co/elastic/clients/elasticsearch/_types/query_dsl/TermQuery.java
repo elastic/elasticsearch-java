@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermQuery
@@ -55,6 +56,10 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		this.value = Objects.requireNonNull(builder.value, "value");
 		this.caseInsensitive = builder.caseInsensitive;
 
+	}
+
+	public TermQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

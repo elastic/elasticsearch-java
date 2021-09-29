@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shrink.Response
@@ -52,6 +53,10 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 		this.index = Objects.requireNonNull(builder.index, "index");
 
+	}
+
+	public ShrinkResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -74,17 +75,21 @@ public final class BucketSummary implements JsonpSerializable {
 	public BucketSummary(Builder builder) {
 
 		this.anomalyScore = Objects.requireNonNull(builder.anomalyScore, "anomaly_score");
-		this.bucketInfluencers = Objects.requireNonNull(builder.bucketInfluencers, "bucket_influencers");
+		this.bucketInfluencers = ModelTypeHelper.unmodifiableNonNull(builder.bucketInfluencers, "bucket_influencers");
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.eventCount = Objects.requireNonNull(builder.eventCount, "event_count");
 		this.initialAnomalyScore = Objects.requireNonNull(builder.initialAnomalyScore, "initial_anomaly_score");
 		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.partitionScores = builder.partitionScores;
+		this.partitionScores = ModelTypeHelper.unmodifiable(builder.partitionScores);
 		this.processingTimeMs = Objects.requireNonNull(builder.processingTimeMs, "processing_time_ms");
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
+	}
+
+	public BucketSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -280,6 +285,7 @@ public final class BucketSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addBucketInfluencers(BucketInfluencer value) {
 			if (this.bucketInfluencers == null) {
@@ -298,6 +304,7 @@ public final class BucketSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addBucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
 			return this.addBucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
@@ -360,7 +367,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
+		 * Add a value to {@link #partitionScores(List)}, creating the list if needed. 4
 		 */
 		public Builder addPartitionScores(PartitionScore value) {
 			if (this.partitionScores == null) {
@@ -378,7 +385,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
+		 * Add a value to {@link #partitionScores(List)}, creating the list if needed. 5
 		 */
 		public Builder addPartitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
 			return this.addPartitionScores(fn.apply(new PartitionScore.Builder()).build());

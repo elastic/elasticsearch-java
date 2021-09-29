@@ -35,6 +35,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phase
@@ -55,6 +56,10 @@ public final class Phase implements JsonpSerializable {
 		this.actions = Objects.requireNonNull(builder.actions, "actions");
 		this.minAge = builder.minAge;
 
+	}
+
+	public Phase(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

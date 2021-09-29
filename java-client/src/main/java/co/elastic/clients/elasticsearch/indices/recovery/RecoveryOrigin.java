@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryOrigin
@@ -93,6 +94,10 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		this.restoreuuid = builder.restoreuuid;
 		this.index = builder.index;
 
+	}
+
+	public RecoveryOrigin(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

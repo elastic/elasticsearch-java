@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -56,11 +57,15 @@ public final class WatcherWatch implements JsonpSerializable {
 
 	public WatcherWatch(Builder builder) {
 
-		this.input = Objects.requireNonNull(builder.input, "input");
-		this.condition = builder.condition;
-		this.action = builder.action;
+		this.input = ModelTypeHelper.unmodifiableNonNull(builder.input, "input");
+		this.condition = ModelTypeHelper.unmodifiable(builder.condition);
+		this.action = ModelTypeHelper.unmodifiable(builder.action);
 		this.trigger = Objects.requireNonNull(builder.trigger, "trigger");
 
+	}
+
+	public WatcherWatch(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

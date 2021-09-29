@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -50,9 +51,13 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 
 	public ExplainDataFrameAnalyticsResponse(Builder builder) {
 
-		this.fieldSelection = Objects.requireNonNull(builder.fieldSelection, "field_selection");
+		this.fieldSelection = ModelTypeHelper.unmodifiableNonNull(builder.fieldSelection, "field_selection");
 		this.memoryEstimation = Objects.requireNonNull(builder.memoryEstimation, "memory_estimation");
 
+	}
+
+	public ExplainDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -132,7 +137,7 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed. 4
 		 */
 		public Builder addFieldSelection(DataframeAnalyticsFieldSelection value) {
 			if (this.fieldSelection == null) {
@@ -151,7 +156,7 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed. 5
 		 */
 		public Builder addFieldSelection(
 				Function<DataframeAnalyticsFieldSelection.Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {

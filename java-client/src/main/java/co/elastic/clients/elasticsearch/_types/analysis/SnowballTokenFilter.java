@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SnowballTokenFilter
@@ -46,6 +47,10 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 
 		this.language = Objects.requireNonNull(builder.language, "language");
 
+	}
+
+	public SnowballTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

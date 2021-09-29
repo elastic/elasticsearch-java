@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -56,8 +58,12 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 	public PostCalendarEventsRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
-		this.events = Objects.requireNonNull(builder.events, "events");
+		this.events = ModelTypeHelper.unmodifiableNonNull(builder.events, "events");
 
+	}
+
+	public PostCalendarEventsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -146,7 +152,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 4
 		 */
 		public Builder addEvents(CalendarEvent value) {
 			if (this.events == null) {
@@ -164,7 +170,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 5
 		 */
 		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
 			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());
@@ -202,7 +208,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 	/**
 	 * Endpoint "{@code ml.post_calendar_events}".
 	 */
-	public static final Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -222,11 +228,11 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/events");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -234,5 +240,5 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PostCalendarEventsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PostCalendarEventsResponse._DESERIALIZER);
 }

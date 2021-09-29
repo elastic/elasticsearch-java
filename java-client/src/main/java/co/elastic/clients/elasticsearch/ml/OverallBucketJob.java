@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.OverallBucketJob
@@ -51,6 +52,10 @@ public final class OverallBucketJob implements JsonpSerializable {
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.maxAnomalyScore = Objects.requireNonNull(builder.maxAnomalyScore, "max_anomaly_score");
 
+	}
+
+	public OverallBucketJob(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

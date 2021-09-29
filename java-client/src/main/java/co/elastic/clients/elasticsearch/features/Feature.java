@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features._types.Feature
@@ -50,6 +51,10 @@ public final class Feature implements JsonpSerializable {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.description = Objects.requireNonNull(builder.description, "description");
 
+	}
+
+	public Feature(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

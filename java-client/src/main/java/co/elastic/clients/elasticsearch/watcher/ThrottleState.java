@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ThrottleState
@@ -50,6 +51,10 @@ public final class ThrottleState implements JsonpSerializable {
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
+	}
+
+	public ThrottleState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

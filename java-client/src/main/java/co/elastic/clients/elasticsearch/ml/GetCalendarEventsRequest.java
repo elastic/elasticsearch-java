@@ -25,12 +25,10 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,11 +38,12 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Request
-@JsonpDeserializable
-public final class GetCalendarEventsRequest extends RequestBase implements JsonpSerializable {
+
+public final class GetCalendarEventsRequest extends RequestBase {
 	private final String calendarId;
 
 	@Nullable
@@ -75,6 +74,10 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 
 	}
 
+	public GetCalendarEventsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The ID of the calendar containing the events
 	 * <p>
@@ -95,6 +98,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Get events before this time
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
@@ -103,6 +108,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Skips a number of events
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
@@ -111,6 +118,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Get events after this time
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -119,49 +128,13 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
+	 * Specifies a max number of events to get
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
 	public Integer size() {
 		return this.size;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.end != null) {
-
-			generator.writeKey("end");
-			generator.write(this.end);
-
-		}
-		if (this.from != null) {
-
-			generator.writeKey("from");
-			generator.write(this.from);
-
-		}
-		if (this.start != null) {
-
-			generator.writeKey("start");
-			generator.write(this.start);
-
-		}
-		if (this.size != null) {
-
-			generator.writeKey("size");
-			generator.write(this.size);
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -208,6 +181,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Get events before this time
+		 * <p>
 		 * API name: {@code end}
 		 */
 		public Builder end(@Nullable String value) {
@@ -216,6 +191,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Skips a number of events
+		 * <p>
 		 * API name: {@code from}
 		 */
 		public Builder from(@Nullable Integer value) {
@@ -224,6 +201,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Get events after this time
+		 * <p>
 		 * API name: {@code start}
 		 */
 		public Builder start(@Nullable String value) {
@@ -232,6 +211,8 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 		}
 
 		/**
+		 * Specifies a max number of events to get
+		 * <p>
 		 * API name: {@code size}
 		 */
 		public Builder size(@Nullable Integer value) {
@@ -254,27 +235,9 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GetCalendarEventsRequest}
-	 */
-	public static final JsonpDeserializer<GetCalendarEventsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetCalendarEventsRequest::setupGetCalendarEventsRequestDeserializer, Builder::build);
-
-	protected static void setupGetCalendarEventsRequestDeserializer(
-			DelegatingDeserializer<GetCalendarEventsRequest.Builder> op) {
-
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code ml.get_calendar_events}".
 	 */
-	public static final Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -294,11 +257,11 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/events");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -308,7 +271,19 @@ public final class GetCalendarEventsRequest extends RequestBase implements Jsonp
 				if (request.jobId != null) {
 					params.put("job_id", request.jobId);
 				}
+				if (request.end != null) {
+					params.put("end", request.end);
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
+				}
+				if (request.start != null) {
+					params.put("start", request.start);
+				}
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetCalendarEventsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetCalendarEventsResponse._DESERIALIZER);
 }

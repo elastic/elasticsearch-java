@@ -36,6 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
@@ -65,6 +66,10 @@ public final class Destination implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.versionType = builder.versionType;
 
+	}
+
+	public Destination(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

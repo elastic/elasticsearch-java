@@ -61,6 +61,10 @@ public final class AuthenticatedUser extends User {
 
 	}
 
+	public AuthenticatedUser(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code authentication_realm}
 	 */

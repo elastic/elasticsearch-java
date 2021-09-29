@@ -37,6 +37,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.JobsRecord
@@ -287,6 +288,10 @@ public final class JobsRecord implements JsonpSerializable {
 		this.bucketsTimeExpAvg = builder.bucketsTimeExpAvg;
 		this.bucketsTimeExpAvgHour = builder.bucketsTimeExpAvgHour;
 
+	}
+
+	public JobsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

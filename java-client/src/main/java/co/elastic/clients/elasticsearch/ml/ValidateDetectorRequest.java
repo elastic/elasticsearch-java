@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,30 +43,34 @@ import javax.annotation.Nullable;
 // typedef: ml.validate_detector.Request
 @JsonpDeserializable
 public final class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
-	private final Detector value;
+	private final Detector detector;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public ValidateDetectorRequest(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.detector = Objects.requireNonNull(builder.detector, "_value_body");
 
+	}
+
+	public ValidateDetectorRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public Detector value() {
-		return this.value;
+	public Detector detector() {
+		return this.detector;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.detector.serialize(generator, mapper);
 
 	}
 
@@ -76,25 +80,25 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	 * Builder for {@link ValidateDetectorRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<ValidateDetectorRequest> {
-		private Detector value;
+		private Detector detector;
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Detector value) {
-			this.value = value;
+		public Builder detector(Detector value) {
+			this.detector = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
-			return this.value(fn.apply(new Detector.Builder()).build());
+		public Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
+			return this.detector(fn.apply(new Detector.Builder()).build());
 		}
 
 		/**
@@ -109,19 +113,13 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<ValidateDetectorRequest> _DESERIALIZER = createValidateDetectorRequestDeserializer();
+	protected static JsonpDeserializer<ValidateDetectorRequest> createValidateDetectorRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link ValidateDetectorRequest}
-	 */
-	public static final JsonpDeserializer<ValidateDetectorRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValidateDetectorRequest::setupValidateDetectorRequestDeserializer, Builder::build);
+		JsonpDeserializer<Detector> valueDeserializer = Detector._DESERIALIZER;
 
-	protected static void setupValidateDetectorRequestDeserializer(
-			DelegatingDeserializer<ValidateDetectorRequest.Builder> op) {
-
-		op.add(Builder::value, Detector._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.detector(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -129,7 +127,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code ml.validate_detector}".
 	 */
-	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -146,5 +144,5 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateDetectorResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ValidateDetectorResponse._DESERIALIZER);
 }

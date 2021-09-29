@@ -36,6 +36,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Transport
@@ -67,6 +68,10 @@ public final class Transport implements JsonpSerializable {
 		this.txSize = Objects.requireNonNull(builder.txSize, "tx_size");
 		this.txSizeInBytes = Objects.requireNonNull(builder.txSizeInBytes, "tx_size_in_bytes");
 
+	}
+
+	public Transport(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

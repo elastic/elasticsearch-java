@@ -82,6 +82,10 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public IntervalsFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code after} variant value.
 	 *
@@ -194,97 +198,97 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<IntervalsFilter> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<IntervalsFilter> after(Intervals v) {
+		public Builder after(Intervals v) {
 			this._type = AFTER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> after(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder after(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.after(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> before(Intervals v) {
+		public Builder before(Intervals v) {
 			this._type = BEFORE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> before(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder before(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.before(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> containedBy(Intervals v) {
+		public Builder containedBy(Intervals v) {
 			this._type = CONTAINED_BY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> containedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder containedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.containedBy(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> containing(Intervals v) {
+		public Builder containing(Intervals v) {
 			this._type = CONTAINING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> containing(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder containing(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.containing(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> notContainedBy(Intervals v) {
+		public Builder notContainedBy(Intervals v) {
 			this._type = NOT_CONTAINED_BY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> notContainedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder notContainedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.notContainedBy(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> notContaining(Intervals v) {
+		public Builder notContaining(Intervals v) {
 			this._type = NOT_CONTAINING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> notContaining(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder notContaining(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.notContaining(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> notOverlapping(Intervals v) {
+		public Builder notOverlapping(Intervals v) {
 			this._type = NOT_OVERLAPPING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> notOverlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder notOverlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.notOverlapping(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> overlapping(Intervals v) {
+		public Builder overlapping(Intervals v) {
 			this._type = OVERLAPPING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<IntervalsFilter> overlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
+		public Builder overlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> f) {
 			return this.overlapping(f.apply(new Intervals.Builder()).build());
 		}
 
-		public ObjectBuilder<IntervalsFilter> script(JsonValue /* _types.Script */ v) {
+		public Builder script(JsonValue /* _types.Script */ v) {
 			this._type = SCRIPT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		protected IntervalsFilter build() {
+		public IntervalsFilter build() {
 			return new IntervalsFilter(this);
 		}
 

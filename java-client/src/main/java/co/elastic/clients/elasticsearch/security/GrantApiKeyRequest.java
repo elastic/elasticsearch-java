@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
@@ -69,6 +70,10 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		this.username = builder.username;
 		this.password = builder.password;
 
+	}
+
+	public GrantApiKeyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -247,7 +252,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code security.grant_api_key}".
 	 */
-	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GrantApiKeyRequest, GrantApiKeyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -264,5 +269,5 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, GrantApiKeyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GrantApiKeyResponse._DESERIALIZER);
 }

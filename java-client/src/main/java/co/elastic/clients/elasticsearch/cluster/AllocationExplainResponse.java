@@ -36,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -133,9 +134,9 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		this.canAllocate = builder.canAllocate;
 		this.canMoveToOtherNode = builder.canMoveToOtherNode;
 		this.canRebalanceCluster = builder.canRebalanceCluster;
-		this.canRebalanceClusterDecisions = builder.canRebalanceClusterDecisions;
+		this.canRebalanceClusterDecisions = ModelTypeHelper.unmodifiable(builder.canRebalanceClusterDecisions);
 		this.canRebalanceToOtherNode = builder.canRebalanceToOtherNode;
-		this.canRemainDecisions = builder.canRemainDecisions;
+		this.canRemainDecisions = ModelTypeHelper.unmodifiable(builder.canRemainDecisions);
 		this.canRemainOnCurrentNode = builder.canRemainOnCurrentNode;
 		this.clusterInfo = builder.clusterInfo;
 		this.configuredDelay = builder.configuredDelay;
@@ -144,7 +145,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		this.currentState = Objects.requireNonNull(builder.currentState, "current_state");
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.moveExplanation = builder.moveExplanation;
-		this.nodeAllocationDecisions = builder.nodeAllocationDecisions;
+		this.nodeAllocationDecisions = ModelTypeHelper.unmodifiable(builder.nodeAllocationDecisions);
 		this.primary = Objects.requireNonNull(builder.primary, "primary");
 		this.rebalanceExplanation = builder.rebalanceExplanation;
 		this.remainingDelay = builder.remainingDelay;
@@ -153,6 +154,10 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		this.unassignedInfo = builder.unassignedInfo;
 		this.note = builder.note;
 
+	}
+
+	public AllocationExplainResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -659,7 +664,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRebalanceClusterDecisions(List)}, creating the list
-		 * if needed.
+		 * if needed. 4
 		 */
 		public Builder addCanRebalanceClusterDecisions(AllocationDecision value) {
 			if (this.canRebalanceClusterDecisions == null) {
@@ -679,7 +684,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRebalanceClusterDecisions(List)}, creating the list
-		 * if needed.
+		 * if needed. 5
 		 */
 		public Builder addCanRebalanceClusterDecisions(
 				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
@@ -712,7 +717,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRemainDecisions(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addCanRemainDecisions(AllocationDecision value) {
 			if (this.canRemainDecisions == null) {
@@ -731,7 +736,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRemainDecisions(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addCanRemainDecisions(
 				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
@@ -834,7 +839,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nodeAllocationDecisions(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addNodeAllocationDecisions(NodeAllocationExplanation value) {
 			if (this.nodeAllocationDecisions == null) {
@@ -854,7 +859,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nodeAllocationDecisions(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addNodeAllocationDecisions(
 				Function<NodeAllocationExplanation.Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {

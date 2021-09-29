@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollectorTotal
@@ -55,6 +56,10 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		this.collectionTimeInMillis = Objects.requireNonNull(builder.collectionTimeInMillis,
 				"collection_time_in_millis");
 
+	}
+
+	public GarbageCollectorTotal(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

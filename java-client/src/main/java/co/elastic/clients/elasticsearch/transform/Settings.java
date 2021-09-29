@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Settings
@@ -58,6 +59,10 @@ public final class Settings implements JsonpSerializable {
 		this.docsPerSecond = builder.docsPerSecond;
 		this.maxPageSearchSize = builder.maxPageSearchSize;
 
+	}
+
+	public Settings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

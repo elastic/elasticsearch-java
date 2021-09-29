@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -81,9 +82,9 @@ public final class Info implements JsonpSerializable {
 
 		this.action = Objects.requireNonNull(builder.action, "action");
 		this.cancellable = Objects.requireNonNull(builder.cancellable, "cancellable");
-		this.children = builder.children;
+		this.children = ModelTypeHelper.unmodifiable(builder.children);
 		this.description = builder.description;
-		this.headers = Objects.requireNonNull(builder.headers, "headers");
+		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.runningTimeInNanos = Objects.requireNonNull(builder.runningTimeInNanos, "running_time_in_nanos");
@@ -92,6 +93,10 @@ public final class Info implements JsonpSerializable {
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.parentTaskId = builder.parentTaskId;
 
+	}
+
+	public Info(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -329,7 +334,7 @@ public final class Info implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * Add a value to {@link #children(List)}, creating the list if needed. 4
 		 */
 		public Builder addChildren(Info value) {
 			if (this.children == null) {
@@ -347,7 +352,7 @@ public final class Info implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * Add a value to {@link #children(List)}, creating the list if needed. 5
 		 */
 		public Builder addChildren(Function<Info.Builder, ObjectBuilder<Info>> fn) {
 			return this.addChildren(fn.apply(new Info.Builder()).build());

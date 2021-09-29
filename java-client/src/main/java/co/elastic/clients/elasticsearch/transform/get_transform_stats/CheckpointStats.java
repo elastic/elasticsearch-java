@@ -70,6 +70,10 @@ public final class CheckpointStats implements JsonpSerializable {
 
 	}
 
+	public CheckpointStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code checkpoint}
 	 */

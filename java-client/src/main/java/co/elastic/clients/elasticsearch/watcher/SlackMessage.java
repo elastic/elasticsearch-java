@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -61,13 +62,17 @@ public final class SlackMessage implements JsonpSerializable {
 
 	public SlackMessage(Builder builder) {
 
-		this.attachments = Objects.requireNonNull(builder.attachments, "attachments");
+		this.attachments = ModelTypeHelper.unmodifiableNonNull(builder.attachments, "attachments");
 		this.dynamicAttachments = builder.dynamicAttachments;
 		this.from = Objects.requireNonNull(builder.from, "from");
 		this.icon = builder.icon;
 		this.text = Objects.requireNonNull(builder.text, "text");
-		this.to = Objects.requireNonNull(builder.to, "to");
+		this.to = ModelTypeHelper.unmodifiableNonNull(builder.to, "to");
 
+	}
+
+	public SlackMessage(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -200,7 +205,7 @@ public final class SlackMessage implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #attachments(List)}, creating the list if needed.
+		 * Add a value to {@link #attachments(List)}, creating the list if needed. 4
 		 */
 		public Builder addAttachments(SlackAttachment value) {
 			if (this.attachments == null) {
@@ -218,7 +223,7 @@ public final class SlackMessage implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #attachments(List)}, creating the list if needed.
+		 * Add a value to {@link #attachments(List)}, creating the list if needed. 5
 		 */
 		public Builder addAttachments(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
 			return this.addAttachments(fn.apply(new SlackAttachment.Builder()).build());
@@ -281,7 +286,7 @@ public final class SlackMessage implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #to(List)}, creating the list if needed.
+		 * Add a value to {@link #to(List)}, creating the list if needed. 4
 		 */
 		public Builder addTo(String value) {
 			if (this.to == null) {

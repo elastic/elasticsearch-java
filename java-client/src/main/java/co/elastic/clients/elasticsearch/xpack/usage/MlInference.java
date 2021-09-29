@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -50,9 +51,13 @@ public final class MlInference implements JsonpSerializable {
 
 	public MlInference(Builder builder) {
 
-		this.ingestProcessors = Objects.requireNonNull(builder.ingestProcessors, "ingest_processors");
+		this.ingestProcessors = ModelTypeHelper.unmodifiableNonNull(builder.ingestProcessors, "ingest_processors");
 		this.trainedModels = Objects.requireNonNull(builder.trainedModels, "trained_models");
 
+	}
+
+	public MlInference(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -54,9 +55,13 @@ public final class RerouteExplanation implements JsonpSerializable {
 	public RerouteExplanation(Builder builder) {
 
 		this.command = Objects.requireNonNull(builder.command, "command");
-		this.decisions = Objects.requireNonNull(builder.decisions, "decisions");
+		this.decisions = ModelTypeHelper.unmodifiableNonNull(builder.decisions, "decisions");
 		this.parameters = Objects.requireNonNull(builder.parameters, "parameters");
 
+	}
+
+	public RerouteExplanation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -144,7 +149,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #decisions(List)}, creating the list if needed.
+		 * Add a value to {@link #decisions(List)}, creating the list if needed. 4
 		 */
 		public Builder addDecisions(RerouteDecision value) {
 			if (this.decisions == null) {
@@ -162,7 +167,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #decisions(List)}, creating the list if needed.
+		 * Add a value to {@link #decisions(List)}, creating the list if needed. 5
 		 */
 		public Builder addDecisions(Function<RerouteDecision.Builder, ObjectBuilder<RerouteDecision>> fn) {
 			return this.addDecisions(fn.apply(new RerouteDecision.Builder()).build());

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldsType
@@ -81,7 +83,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		this.docMax = Objects.requireNonNull(builder.docMax, "doc_max");
 		this.docTotal = Objects.requireNonNull(builder.docTotal, "doc_total");
 		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
-		this.lang = Objects.requireNonNull(builder.lang, "lang");
+		this.lang = ModelTypeHelper.unmodifiableNonNull(builder.lang, "lang");
 		this.linesMax = Objects.requireNonNull(builder.linesMax, "lines_max");
 		this.linesTotal = Objects.requireNonNull(builder.linesTotal, "lines_total");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -90,6 +92,10 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		this.sourceMax = Objects.requireNonNull(builder.sourceMax, "source_max");
 		this.sourceTotal = Objects.requireNonNull(builder.sourceTotal, "source_total");
 
+	}
+
+	public RuntimeFieldsType(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -349,7 +355,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #lang(List)}, creating the list if needed.
+		 * Add a value to {@link #lang(List)}, creating the list if needed. 4
 		 */
 		public Builder addLang(String value) {
 			if (this.lang == null) {

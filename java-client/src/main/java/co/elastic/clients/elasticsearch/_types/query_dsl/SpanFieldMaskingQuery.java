@@ -53,6 +53,10 @@ public final class SpanFieldMaskingQuery extends QueryBase implements SpanQueryV
 
 	}
 
+	public SpanFieldMaskingQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */

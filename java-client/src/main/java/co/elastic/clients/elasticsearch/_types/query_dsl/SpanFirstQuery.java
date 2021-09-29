@@ -53,6 +53,10 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 
 	}
 
+	public SpanFirstQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */

@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -65,9 +67,13 @@ public final class HitsEvent<TEvent> implements JsonpSerializable {
 		this.index = Objects.requireNonNull(builder.index, "_index");
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.source = Objects.requireNonNull(builder.source, "_source");
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.tEventSerializer = builder.tEventSerializer;
 
+	}
+
+	public HitsEvent(Function<Builder<TEvent>, Builder<TEvent>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

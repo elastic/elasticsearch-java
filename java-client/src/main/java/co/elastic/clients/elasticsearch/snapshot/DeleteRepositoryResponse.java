@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: snapshot.delete_repository.Response
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class DeleteRepositoryResponse extends AcknowledgedResponseBase {
 	public DeleteRepositoryResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteRepositoryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

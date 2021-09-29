@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintTokenFilter
@@ -51,6 +52,10 @@ public final class FingerprintTokenFilter extends TokenFilterBase implements Tok
 		this.maxOutputSize = Objects.requireNonNull(builder.maxOutputSize, "max_output_size");
 		this.separator = Objects.requireNonNull(builder.separator, "separator");
 
+	}
+
+	public FingerprintTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

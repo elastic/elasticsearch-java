@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup._types.FieldMetric
@@ -51,8 +53,12 @@ public final class FieldMetric implements JsonpSerializable {
 	public FieldMetric(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.metrics = Objects.requireNonNull(builder.metrics, "metrics");
+		this.metrics = ModelTypeHelper.unmodifiableNonNull(builder.metrics, "metrics");
 
+	}
+
+	public FieldMetric(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -127,7 +133,7 @@ public final class FieldMetric implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetrics(Metric value) {
 			if (this.metrics == null) {

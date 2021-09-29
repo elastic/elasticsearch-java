@@ -35,6 +35,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RuntimeField
@@ -56,6 +57,10 @@ public final class RuntimeField implements JsonpSerializable {
 		this.script = builder.script;
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public RuntimeField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

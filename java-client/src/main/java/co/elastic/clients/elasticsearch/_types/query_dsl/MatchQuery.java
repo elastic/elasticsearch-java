@@ -36,6 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchQuery
@@ -101,6 +102,10 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	public MatchQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

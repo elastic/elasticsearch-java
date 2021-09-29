@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeToken
@@ -64,6 +65,10 @@ public final class AnalyzeToken implements JsonpSerializable {
 		this.token = Objects.requireNonNull(builder.token, "token");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public AnalyzeToken(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

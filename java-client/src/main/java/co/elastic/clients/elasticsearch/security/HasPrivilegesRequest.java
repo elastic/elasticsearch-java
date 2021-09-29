@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.has_privileges.ApplicationPrivilegesCheck;
 import co.elastic.clients.elasticsearch.security.has_privileges.IndexPrivilegesCheck;
@@ -35,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -66,10 +68,14 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	public HasPrivilegesRequest(Builder builder) {
 
 		this.user = builder.user;
-		this.application = builder.application;
-		this.cluster = builder.cluster;
-		this.index = builder.index;
+		this.application = ModelTypeHelper.unmodifiable(builder.application);
+		this.cluster = ModelTypeHelper.unmodifiable(builder.cluster);
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 
+	}
+
+	public HasPrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -197,7 +203,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #application(List)}, creating the list if needed.
+		 * Add a value to {@link #application(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplication(ApplicationPrivilegesCheck value) {
 			if (this.application == null) {
@@ -216,7 +222,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #application(List)}, creating the list if needed.
+		 * Add a value to {@link #application(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplication(
 				Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
@@ -240,7 +246,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
@@ -267,7 +273,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(IndexPrivilegesCheck value) {
 			if (this.index == null) {
@@ -285,7 +291,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndex(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn) {
 			return this.addIndex(fn.apply(new IndexPrivilegesCheck.Builder()).build());
@@ -326,7 +332,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code security.has_privileges}".
 	 */
-	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HasPrivilegesRequest, HasPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -354,11 +360,11 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.user);
+					SimpleEndpoint.pathEncode(request.user, buf);
 					buf.append("/_has_privileges");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -366,5 +372,5 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, HasPrivilegesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, HasPrivilegesResponse._DESERIALIZER);
 }

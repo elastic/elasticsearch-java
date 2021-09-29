@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.stop_transform.Request
@@ -70,6 +72,10 @@ public final class StopTransformRequest extends RequestBase {
 		this.waitForCheckpoint = builder.waitForCheckpoint;
 		this.waitForCompletion = builder.waitForCompletion;
 
+	}
+
+	public StopTransformRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -239,7 +245,7 @@ public final class StopTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.stop_transform}".
 	 */
-	public static final Endpoint<StopTransformRequest, StopTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StopTransformRequest, StopTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -258,11 +264,11 @@ public final class StopTransformRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_stop");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -286,5 +292,5 @@ public final class StopTransformRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StopTransformResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StopTransformResponse._DESERIALIZER);
 }

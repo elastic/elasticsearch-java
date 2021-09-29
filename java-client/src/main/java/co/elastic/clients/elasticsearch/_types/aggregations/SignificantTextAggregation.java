@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -101,12 +102,12 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 
 		this.backgroundFilter = builder.backgroundFilter;
 		this.chiSquare = builder.chiSquare;
-		this.exclude = builder.exclude;
+		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.filterDuplicateText = builder.filterDuplicateText;
 		this.gnd = builder.gnd;
-		this.include = builder.include;
+		this.include = ModelTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -114,8 +115,12 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		this.shardMinDocCount = builder.shardMinDocCount;
 		this.shardSize = builder.shardSize;
 		this.size = builder.size;
-		this.sourceFields = builder.sourceFields;
+		this.sourceFields = ModelTypeHelper.unmodifiable(builder.sourceFields);
 
+	}
+
+	public SignificantTextAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -473,7 +478,7 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
+		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {
@@ -540,7 +545,7 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
+		 * Add a value to {@link #include(List)}, creating the list if needed. 4
 		 */
 		public Builder addInclude(String value) {
 			if (this.include == null) {
@@ -646,7 +651,7 @@ public final class SignificantTextAggregation extends BucketAggregationBase impl
 		}
 
 		/**
-		 * Add a value to {@link #sourceFields(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addSourceFields(String value) {
 			if (this.sourceFields == null) {

@@ -107,6 +107,10 @@ public final class TextProperty extends CorePropertyBase implements PropertyVari
 
 	}
 
+	public TextProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Property} variant type
 	 */

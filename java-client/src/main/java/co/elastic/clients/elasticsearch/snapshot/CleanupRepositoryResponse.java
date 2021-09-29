@@ -50,6 +50,10 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 
 	}
 
+	public CleanupRepositoryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code results}
 	 */

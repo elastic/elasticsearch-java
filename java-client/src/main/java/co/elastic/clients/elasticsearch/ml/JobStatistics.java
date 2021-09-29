@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml._types.JobStatistics
 @JsonpDeserializable
@@ -55,6 +56,10 @@ public final class JobStatistics implements JsonpSerializable {
 		this.min = Objects.requireNonNull(builder.min, "min");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public JobStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

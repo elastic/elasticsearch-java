@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.ThreadPoolRecord
@@ -124,6 +125,10 @@ public final class ThreadPoolRecord implements JsonpSerializable {
 		this.size = builder.size;
 		this.keepAlive = builder.keepAlive;
 
+	}
+
+	public ThreadPoolRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

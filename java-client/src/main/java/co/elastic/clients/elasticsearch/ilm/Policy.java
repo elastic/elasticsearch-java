@@ -54,6 +54,10 @@ public final class Policy implements JsonpSerializable {
 
 	}
 
+	public Policy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code phases}
 	 */

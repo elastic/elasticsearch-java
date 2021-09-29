@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -50,8 +53,12 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 
 	public ClearApiKeyCacheRequest(Builder builder) {
 
-		this.ids = Objects.requireNonNull(builder.ids, "ids");
+		this.ids = ModelTypeHelper.unmodifiableNonNull(builder.ids, "ids");
 
+	}
+
+	public ClearApiKeyCacheRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -92,7 +99,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
+		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {
@@ -119,7 +126,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_api_key_cache}".
 	 */
-	public static final Endpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -139,11 +146,11 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/api_key");
 					buf.append("/");
-					buf.append(request.ids.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.ids.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -151,5 +158,5 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearApiKeyCacheResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearApiKeyCacheResponse._DESERIALIZER);
 }

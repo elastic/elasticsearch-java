@@ -58,6 +58,10 @@ public final class NestedIdentity implements JsonpSerializable {
 
 	}
 
+	public NestedIdentity(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code field}
 	 */

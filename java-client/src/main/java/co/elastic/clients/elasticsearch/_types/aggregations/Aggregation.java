@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -153,9 +154,13 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		this._type = Objects.requireNonNull(builder._type, "variant type");
 		this._value = Objects.requireNonNull(builder._value, "variant value");
 
-		this.aggs = builder.aggs;
-		this.meta = builder.meta;
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
+	}
+
+	public Aggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

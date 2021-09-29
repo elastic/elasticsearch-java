@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.ExplainAnalyzeToken
@@ -74,6 +75,10 @@ public final class ExplainAnalyzeToken implements JsonpSerializable {
 		this.token = Objects.requireNonNull(builder.token, "token");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public ExplainAnalyzeToken(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

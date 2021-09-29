@@ -49,6 +49,10 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 
 	}
 
+	public RoleDescriptorWrapper(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code role_descriptor}
 	 */

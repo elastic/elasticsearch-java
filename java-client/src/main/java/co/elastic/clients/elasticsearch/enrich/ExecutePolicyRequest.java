@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Request
@@ -54,6 +56,10 @@ public final class ExecutePolicyRequest extends RequestBase {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.waitForCompletion = builder.waitForCompletion;
 
+	}
+
+	public ExecutePolicyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -123,7 +129,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.execute_policy}".
 	 */
-	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -143,11 +149,11 @@ public final class ExecutePolicyRequest extends RequestBase {
 					buf.append("/_enrich");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					buf.append("/_execute");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -159,5 +165,5 @@ public final class ExecutePolicyRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ExecutePolicyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ExecutePolicyResponse._DESERIALIZER);
 }

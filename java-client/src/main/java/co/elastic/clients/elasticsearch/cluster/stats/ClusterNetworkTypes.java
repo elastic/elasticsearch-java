@@ -30,12 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterNetworkTypes
@@ -49,9 +51,13 @@ public final class ClusterNetworkTypes implements JsonpSerializable {
 
 	public ClusterNetworkTypes(Builder builder) {
 
-		this.httpTypes = Objects.requireNonNull(builder.httpTypes, "http_types");
-		this.transportTypes = Objects.requireNonNull(builder.transportTypes, "transport_types");
+		this.httpTypes = ModelTypeHelper.unmodifiableNonNull(builder.httpTypes, "http_types");
+		this.transportTypes = ModelTypeHelper.unmodifiableNonNull(builder.transportTypes, "transport_types");
 
+	}
+
+	public ClusterNetworkTypes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

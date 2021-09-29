@@ -54,6 +54,10 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 
 	}
 
+	public InferenceAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation} variant type
 	 */

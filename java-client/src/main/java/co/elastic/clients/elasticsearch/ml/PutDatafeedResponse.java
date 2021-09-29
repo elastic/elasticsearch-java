@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -87,21 +88,25 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 
 	public PutDatafeedResponse(Builder builder) {
 
-		this.aggregations = Objects.requireNonNull(builder.aggregations, "aggregations");
+		this.aggregations = ModelTypeHelper.unmodifiableNonNull(builder.aggregations, "aggregations");
 		this.chunkingConfig = Objects.requireNonNull(builder.chunkingConfig, "chunking_config");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.frequency = Objects.requireNonNull(builder.frequency, "frequency");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.indicesOptions = builder.indicesOptions;
 		this.maxEmptySearches = Objects.requireNonNull(builder.maxEmptySearches, "max_empty_searches");
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.queryDelay = Objects.requireNonNull(builder.queryDelay, "query_delay");
-		this.runtimeMappings = builder.runtimeMappings;
-		this.scriptFields = builder.scriptFields;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = Objects.requireNonNull(builder.scrollSize, "scroll_size");
 
+	}
+
+	public PutDatafeedResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -434,7 +439,7 @@ public final class PutDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash.delete_pipeline.Request
@@ -49,6 +52,10 @@ public final class DeletePipelineRequest extends RequestBase {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
+	}
+
+	public DeletePipelineRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -95,7 +102,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code logstash.delete_pipeline}".
 	 */
-	public static final Endpoint<DeletePipelineRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<DeletePipelineRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -115,10 +122,10 @@ public final class DeletePipelineRequest extends RequestBase {
 					buf.append("/_logstash");
 					buf.append("/pipeline");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -126,5 +133,5 @@ public final class DeletePipelineRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

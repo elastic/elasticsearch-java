@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -33,8 +34,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -96,11 +99,15 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.conditions = builder.conditions;
 		this.mappings = builder.mappings;
-		this.settings = builder.settings;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
+	}
+
+	public RolloverRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -480,7 +487,7 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code indices.rollover}".
 	 */
-	public static final Endpoint<RolloverRequest, RolloverResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RolloverRequest, RolloverResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -501,20 +508,20 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 				if (propsSet == (_alias)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.alias);
+					SimpleEndpoint.pathEncode(request.alias, buf);
 					buf.append("/_rollover");
 					return buf.toString();
 				}
 				if (propsSet == (_alias | _newIndex)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.alias);
+					SimpleEndpoint.pathEncode(request.alias, buf);
 					buf.append("/_rollover");
 					buf.append("/");
-					buf.append(request.newIndex);
+					SimpleEndpoint.pathEncode(request.newIndex, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -534,9 +541,9 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RolloverResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RolloverResponse._DESERIALIZER);
 }

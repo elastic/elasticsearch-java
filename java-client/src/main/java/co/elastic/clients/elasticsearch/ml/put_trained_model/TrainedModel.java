@@ -58,6 +58,10 @@ public final class TrainedModel implements JsonpSerializable {
 
 	}
 
+	public TrainedModel(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The definition for a binary decision tree.
 	 * <p>

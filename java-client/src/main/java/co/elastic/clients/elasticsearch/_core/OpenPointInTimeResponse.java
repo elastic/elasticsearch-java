@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Response
@@ -47,6 +48,10 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
+	}
+
+	public OpenPointInTimeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.tasks.TasksRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.tasks.Response
 @JsonpDeserializable
 public final class TasksResponse implements JsonpSerializable {
-	private final List<TasksRecord> value;
+	private final List<TasksRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public TasksResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public TasksResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<TasksRecord> value() {
-		return this.value;
+	public List<TasksRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class TasksResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TasksRecord item0 : this.value) {
+		for (TasksRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class TasksResponse implements JsonpSerializable {
 	 * Builder for {@link TasksResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<TasksResponse> {
-		private List<TasksRecord> value;
+		private List<TasksRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<TasksRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<TasksRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(TasksRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(TasksRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(TasksRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(TasksRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
-			return this.value(fn.apply(new TasksRecord.Builder()).build());
+		public Builder valueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
+			return this.valueBody(fn.apply(new TasksRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
-			return this.addValue(fn.apply(new TasksRecord.Builder()).build());
+		public Builder addValueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
+			return this.addValueBody(fn.apply(new TasksRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class TasksResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<TasksResponse> _DESERIALIZER = createTasksResponseDeserializer();
+	protected static JsonpDeserializer<TasksResponse> createTasksResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link TasksResponse}
-	 */
-	public static final JsonpDeserializer<TasksResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TasksResponse::setupTasksResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<TasksRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(TasksRecord._DESERIALIZER);
 
-	protected static void setupTasksResponseDeserializer(DelegatingDeserializer<TasksResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TasksRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

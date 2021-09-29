@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,6 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Request
@@ -64,6 +66,10 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		this.realmName = builder.realmName;
 		this.username = builder.username;
 
+	}
+
+	public InvalidateTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -221,7 +227,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code security.invalidate_token}".
 	 */
-	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -238,5 +244,5 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, InvalidateTokenResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, InvalidateTokenResponse._DESERIALIZER);
 }

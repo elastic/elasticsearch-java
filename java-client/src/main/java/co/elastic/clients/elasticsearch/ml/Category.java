@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
@@ -83,7 +85,7 @@ public final class Category implements JsonpSerializable {
 	public Category(Builder builder) {
 
 		this.categoryId = Objects.requireNonNull(builder.categoryId, "category_id");
-		this.examples = Objects.requireNonNull(builder.examples, "examples");
+		this.examples = ModelTypeHelper.unmodifiableNonNull(builder.examples, "examples");
 		this.grokPattern = builder.grokPattern;
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.maxMatchingLength = Objects.requireNonNull(builder.maxMatchingLength, "max_matching_length");
@@ -92,11 +94,15 @@ public final class Category implements JsonpSerializable {
 		this.regex = Objects.requireNonNull(builder.regex, "regex");
 		this.terms = Objects.requireNonNull(builder.terms, "terms");
 		this.numMatches = builder.numMatches;
-		this.preferredToCategories = builder.preferredToCategories;
+		this.preferredToCategories = ModelTypeHelper.unmodifiable(builder.preferredToCategories);
 		this.p = builder.p;
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.mlcategory = Objects.requireNonNull(builder.mlcategory, "mlcategory");
 
+	}
+
+	public Category(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -400,7 +406,7 @@ public final class Category implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #examples(List)}, creating the list if needed.
+		 * Add a value to {@link #examples(List)}, creating the list if needed. 4
 		 */
 		public Builder addExamples(String value) {
 			if (this.examples == null) {
@@ -531,7 +537,7 @@ public final class Category implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #preferredToCategories(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addPreferredToCategories(String value) {
 			if (this.preferredToCategories == null) {

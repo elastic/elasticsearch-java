@@ -49,6 +49,10 @@ public final class ConstantScoreQuery extends QueryBase implements QueryVariant 
 
 	}
 
+	public ConstantScoreQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Query} variant type
 	 */

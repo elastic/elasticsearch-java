@@ -75,6 +75,10 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 
 	}
 
+	public DataframeAnalysis(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code classification} variant value.
 	 *
@@ -119,44 +123,44 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<DataframeAnalysis> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<DataframeAnalysis> classification(DataframeAnalysisClassification v) {
+		public Builder classification(DataframeAnalysisClassification v) {
 			this._type = CLASSIFICATION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysis> classification(
+		public Builder classification(
 				Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> f) {
 			return this.classification(f.apply(new DataframeAnalysisClassification.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysis> outlierDetection(DataframeAnalysisOutlierDetection v) {
+		public Builder outlierDetection(DataframeAnalysisOutlierDetection v) {
 			this._type = OUTLIER_DETECTION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysis> outlierDetection(
+		public Builder outlierDetection(
 				Function<DataframeAnalysisOutlierDetection.Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> f) {
 			return this.outlierDetection(f.apply(new DataframeAnalysisOutlierDetection.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalysis> regression(DataframeAnalysisRegression v) {
+		public Builder regression(DataframeAnalysisRegression v) {
 			this._type = REGRESSION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalysis> regression(
+		public Builder regression(
 				Function<DataframeAnalysisRegression.Builder, ObjectBuilder<DataframeAnalysisRegression>> f) {
 			return this.regression(f.apply(new DataframeAnalysisRegression.Builder()).build());
 		}
 
-		protected DataframeAnalysis build() {
+		public DataframeAnalysis build() {
 			return new DataframeAnalysis(this);
 		}
 

@@ -37,6 +37,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResultSummary
@@ -66,6 +67,10 @@ public final class IndexResultSummary implements JsonpSerializable {
 		this.version = Objects.requireNonNull(builder.version, "version");
 		this.type = builder.type;
 
+	}
+
+	public IndexResultSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

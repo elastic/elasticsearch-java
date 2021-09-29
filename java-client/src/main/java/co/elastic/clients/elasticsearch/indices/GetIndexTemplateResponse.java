@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 
 	public GetIndexTemplateResponse(Builder builder) {
 
-		this.indexTemplates = Objects.requireNonNull(builder.indexTemplates, "index_templates");
+		this.indexTemplates = ModelTypeHelper.unmodifiableNonNull(builder.indexTemplates, "index_templates");
 
+	}
+
+	public GetIndexTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexTemplates(List)}, creating the list if needed.
+		 * Add a value to {@link #indexTemplates(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexTemplates(IndexTemplateItem value) {
 			if (this.indexTemplates == null) {
@@ -124,7 +129,7 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexTemplates(List)}, creating the list if needed.
+		 * Add a value to {@link #indexTemplates(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
 			return this.addIndexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicy
@@ -50,6 +51,10 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.maxAge = Objects.requireNonNull(builder.maxAge, "max_age");
 
+	}
+
+	public TimeRetentionPolicy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

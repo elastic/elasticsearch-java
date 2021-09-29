@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -58,16 +59,21 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 	public AutoFollowStats(Builder builder) {
 
-		this.autoFollowedClusters = Objects.requireNonNull(builder.autoFollowedClusters, "auto_followed_clusters");
+		this.autoFollowedClusters = ModelTypeHelper.unmodifiableNonNull(builder.autoFollowedClusters,
+				"auto_followed_clusters");
 		this.numberOfFailedFollowIndices = Objects.requireNonNull(builder.numberOfFailedFollowIndices,
 				"number_of_failed_follow_indices");
 		this.numberOfFailedRemoteClusterStateRequests = Objects.requireNonNull(
 				builder.numberOfFailedRemoteClusterStateRequests, "number_of_failed_remote_cluster_state_requests");
 		this.numberOfSuccessfulFollowIndices = Objects.requireNonNull(builder.numberOfSuccessfulFollowIndices,
 				"number_of_successful_follow_indices");
-		this.recentAutoFollowErrors = Objects.requireNonNull(builder.recentAutoFollowErrors,
+		this.recentAutoFollowErrors = ModelTypeHelper.unmodifiableNonNull(builder.recentAutoFollowErrors,
 				"recent_auto_follow_errors");
 
+	}
+
+	public AutoFollowStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -177,7 +183,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #autoFollowedClusters(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addAutoFollowedClusters(AutoFollowedCluster value) {
 			if (this.autoFollowedClusters == null) {
@@ -197,7 +203,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #autoFollowedClusters(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addAutoFollowedClusters(
 				Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>> fn) {
@@ -246,7 +252,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #recentAutoFollowErrors(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addRecentAutoFollowErrors(ErrorCause value) {
 			if (this.recentAutoFollowErrors == null) {
@@ -265,7 +271,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #recentAutoFollowErrors(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addRecentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addRecentAutoFollowErrors(fn.apply(new ErrorCause.Builder()).build());

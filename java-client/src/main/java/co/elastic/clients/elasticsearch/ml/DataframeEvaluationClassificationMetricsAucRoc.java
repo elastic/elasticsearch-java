@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassificationMetricsAucRoc
@@ -53,6 +54,10 @@ public final class DataframeEvaluationClassificationMetricsAucRoc implements Jso
 		this.className = builder.className;
 		this.includeCurve = builder.includeCurve;
 
+	}
+
+	public DataframeEvaluationClassificationMetricsAucRoc(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

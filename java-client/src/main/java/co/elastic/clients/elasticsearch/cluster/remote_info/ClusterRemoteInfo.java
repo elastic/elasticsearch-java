@@ -73,6 +73,10 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 
 	}
 
+	public ClusterRemoteInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code sniff} variant value.
 	 *
@@ -100,33 +104,31 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<ClusterRemoteInfo> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<ClusterRemoteInfo> sniff(ClusterRemoteSniffInfo v) {
+		public Builder sniff(ClusterRemoteSniffInfo v) {
 			this._type = SNIFF;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> sniff(
-				Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> f) {
+		public Builder sniff(Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> f) {
 			return this.sniff(f.apply(new ClusterRemoteSniffInfo.Builder()).build());
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> proxy(ClusterRemoteProxyInfo v) {
+		public Builder proxy(ClusterRemoteProxyInfo v) {
 			this._type = PROXY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<ClusterRemoteInfo> proxy(
-				Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> f) {
+		public Builder proxy(Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> f) {
 			return this.proxy(f.apply(new ClusterRemoteProxyInfo.Builder()).build());
 		}
 
-		protected ClusterRemoteInfo build() {
+		public ClusterRemoteInfo build() {
 			return new ClusterRemoteInfo(this);
 		}
 
@@ -138,6 +140,7 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 		op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
 
 		op.setTypeProperty("mode");
+
 	}
 
 	public static final JsonpDeserializer<ClusterRemoteInfo> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

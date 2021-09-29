@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -52,8 +53,12 @@ public final class GetRecordsResponse implements JsonpSerializable {
 	public GetRecordsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.records = Objects.requireNonNull(builder.records, "records");
+		this.records = ModelTypeHelper.unmodifiableNonNull(builder.records, "records");
 
+	}
+
+	public GetRecordsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +134,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed.
+		 * Add a value to {@link #records(List)}, creating the list if needed. 4
 		 */
 		public Builder addRecords(Anomaly value) {
 			if (this.records == null) {
@@ -147,7 +152,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed.
+		 * Add a value to {@link #records(List)}, creating the list if needed. 5
 		 */
 		public Builder addRecords(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
 			return this.addRecords(fn.apply(new Anomaly.Builder()).build());

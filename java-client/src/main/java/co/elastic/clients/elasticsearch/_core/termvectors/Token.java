@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Token
@@ -60,6 +61,10 @@ public final class Token implements JsonpSerializable {
 		this.position = Objects.requireNonNull(builder.position, "position");
 		this.startOffset = builder.startOffset;
 
+	}
+
+	public Token(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

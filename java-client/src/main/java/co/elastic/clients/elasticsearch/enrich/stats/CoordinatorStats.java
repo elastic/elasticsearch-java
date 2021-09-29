@@ -36,6 +36,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CoordinatorStats
@@ -61,6 +62,10 @@ public final class CoordinatorStats implements JsonpSerializable {
 		this.remoteRequestsCurrent = Objects.requireNonNull(builder.remoteRequestsCurrent, "remote_requests_current");
 		this.remoteRequestsTotal = Objects.requireNonNull(builder.remoteRequestsTotal, "remote_requests_total");
 
+	}
+
+	public CoordinatorStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

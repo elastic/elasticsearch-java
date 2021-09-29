@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -35,10 +35,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_privileges.Response
 @JsonpDeserializable
-public final class GetPrivilegesResponse extends AdditionalProperties<String, Map<String, Actions>> {
+public final class GetPrivilegesResponse extends DictionaryResponse<String, Map<String, Actions>> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetPrivilegesResponse(Builder builder) {
@@ -46,12 +47,16 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 
 	}
 
+	public GetPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetPrivilegesResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Map<String, Actions>, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, Actions>, Builder>
 			implements
 				ObjectBuilder<GetPrivilegesResponse> {
 		@Override
@@ -83,7 +88,7 @@ public final class GetPrivilegesResponse extends AdditionalProperties<String, Ma
 
 	protected static void setupGetPrivilegesResponseDeserializer(
 			DelegatingDeserializer<GetPrivilegesResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER));
 
 	}

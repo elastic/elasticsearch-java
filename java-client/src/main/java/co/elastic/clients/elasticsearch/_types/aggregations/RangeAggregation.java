@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -62,10 +63,14 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		super(builder);
 
 		this.field = builder.field;
-		this.ranges = builder.ranges;
+		this.ranges = ModelTypeHelper.unmodifiable(builder.ranges);
 		this.script = builder.script;
 		this.keyed = builder.keyed;
 
+	}
+
+	public RangeAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -188,7 +193,7 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
 		 */
 		public Builder addRanges(AggregationRange value) {
 			if (this.ranges == null) {
@@ -206,7 +211,7 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed.
+		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
 		 */
 		public Builder addRanges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
 			return this.addRanges(fn.apply(new AggregationRange.Builder()).build());

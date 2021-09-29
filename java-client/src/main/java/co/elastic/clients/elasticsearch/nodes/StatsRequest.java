@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -90,20 +93,24 @@ public final class StatsRequest extends RequestBase {
 
 	public StatsRequest(Builder builder) {
 
-		this.nodeId = builder.nodeId;
-		this.metric = builder.metric;
-		this.indexMetric = builder.indexMetric;
-		this.completionFields = builder.completionFields;
-		this.fielddataFields = builder.fielddataFields;
-		this.fields = builder.fields;
+		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.indexMetric = ModelTypeHelper.unmodifiable(builder.indexMetric);
+		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
+		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.groups = builder.groups;
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.level = builder.level;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.types = builder.types;
+		this.types = ModelTypeHelper.unmodifiable(builder.types);
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 
+	}
+
+	public StatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -311,7 +318,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {
@@ -342,7 +349,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -375,7 +382,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #indexMetric(List)}, creating the list if needed.
+		 * Add a value to {@link #indexMetric(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexMetric(String value) {
 			if (this.indexMetric == null) {
@@ -409,6 +416,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addCompletionFields(String value) {
 			if (this.completionFields == null) {
@@ -441,7 +449,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
+		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFielddataFields(String value) {
 			if (this.fielddataFields == null) {
@@ -474,7 +482,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -559,7 +567,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
+		 * Add a value to {@link #types(List)}, creating the list if needed. 4
 		 */
 		public Builder addTypes(String value) {
 			if (this.types == null) {
@@ -597,7 +605,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.stats}".
 	 */
-	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -629,7 +637,8 @@ public final class StatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/stats");
 					return buf.toString();
 				}
@@ -638,17 +647,20 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _indexMetric)) {
@@ -656,24 +668,29 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/");
-					buf.append(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric | _indexMetric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					buf.append(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/");
-					buf.append(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -714,5 +731,5 @@ public final class StatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatsResponse._DESERIALIZER);
 }

@@ -49,6 +49,10 @@ public final class GlobalPrivilege implements JsonpSerializable {
 
 	}
 
+	public GlobalPrivilege(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code application}
 	 */

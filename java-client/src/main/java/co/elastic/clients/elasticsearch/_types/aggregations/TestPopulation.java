@@ -60,6 +60,10 @@ public final class TestPopulation implements JsonpSerializable {
 
 	}
 
+	public TestPopulation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code field}
 	 */

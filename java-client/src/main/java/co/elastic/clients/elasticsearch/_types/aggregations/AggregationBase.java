@@ -31,12 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregation
@@ -52,7 +54,7 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 	public AggregationBase(AbstractBuilder<?> builder) {
 
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.name = builder.name;
 
 	}

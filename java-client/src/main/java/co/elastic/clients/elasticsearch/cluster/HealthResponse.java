@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -91,7 +92,7 @@ public final class HealthResponse implements JsonpSerializable {
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.delayedUnassignedShards = Objects.requireNonNull(builder.delayedUnassignedShards,
 				"delayed_unassigned_shards");
-		this.indices = builder.indices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.initializingShards = Objects.requireNonNull(builder.initializingShards, "initializing_shards");
 		this.numberOfDataNodes = Objects.requireNonNull(builder.numberOfDataNodes, "number_of_data_nodes");
 		this.numberOfInFlightFetch = Objects.requireNonNull(builder.numberOfInFlightFetch, "number_of_in_flight_fetch");
@@ -104,6 +105,10 @@ public final class HealthResponse implements JsonpSerializable {
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.unassignedShards = Objects.requireNonNull(builder.unassignedShards, "unassigned_shards");
 
+	}
+
+	public HealthResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

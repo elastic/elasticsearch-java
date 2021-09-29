@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.import_dangling_index.Request
@@ -61,6 +63,10 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
+	}
+
+	public ImportDanglingIndexRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -174,7 +180,7 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code dangling_indices.import_dangling_index}".
 	 */
-	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -193,10 +199,10 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_dangling");
 					buf.append("/");
-					buf.append(request.indexUuid);
+					SimpleEndpoint.pathEncode(request.indexUuid, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -212,5 +218,5 @@ public final class ImportDanglingIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ImportDanglingIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ImportDanglingIndexResponse._DESERIALIZER);
 }

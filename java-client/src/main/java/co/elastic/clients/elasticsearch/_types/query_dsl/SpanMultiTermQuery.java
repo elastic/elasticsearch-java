@@ -49,6 +49,10 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 
 	}
 
+	public SpanMultiTermQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */

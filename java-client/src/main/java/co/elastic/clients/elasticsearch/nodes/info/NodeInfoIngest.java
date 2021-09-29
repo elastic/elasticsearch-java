@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class NodeInfoIngest implements JsonpSerializable {
 
 	public NodeInfoIngest(Builder builder) {
 
-		this.processors = Objects.requireNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
 
+	}
+
+	public NodeInfoIngest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
 		public Builder addProcessors(NodeInfoIngestProcessor value) {
 			if (this.processors == null) {
@@ -124,7 +129,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
 		 */
 		public Builder addProcessors(
 				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {

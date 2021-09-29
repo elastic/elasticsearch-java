@@ -76,6 +76,10 @@ public class ResponseItem implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public ResponseItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code index} variant value.
 	 *
@@ -129,55 +133,51 @@ public class ResponseItem implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<ResponseItem> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<ResponseItem> index(IndexResponseItem v) {
+		public Builder index(IndexResponseItem v) {
 			this._type = INDEX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<ResponseItem> index(
-				Function<IndexResponseItem.Builder, ObjectBuilder<IndexResponseItem>> f) {
+		public Builder index(Function<IndexResponseItem.Builder, ObjectBuilder<IndexResponseItem>> f) {
 			return this.index(f.apply(new IndexResponseItem.Builder()).build());
 		}
 
-		public ObjectBuilder<ResponseItem> create(CreateResponseItem v) {
+		public Builder create(CreateResponseItem v) {
 			this._type = CREATE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<ResponseItem> create(
-				Function<CreateResponseItem.Builder, ObjectBuilder<CreateResponseItem>> f) {
+		public Builder create(Function<CreateResponseItem.Builder, ObjectBuilder<CreateResponseItem>> f) {
 			return this.create(f.apply(new CreateResponseItem.Builder()).build());
 		}
 
-		public ObjectBuilder<ResponseItem> update(UpdateResponseItem v) {
+		public Builder update(UpdateResponseItem v) {
 			this._type = UPDATE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<ResponseItem> update(
-				Function<UpdateResponseItem.Builder, ObjectBuilder<UpdateResponseItem>> f) {
+		public Builder update(Function<UpdateResponseItem.Builder, ObjectBuilder<UpdateResponseItem>> f) {
 			return this.update(f.apply(new UpdateResponseItem.Builder()).build());
 		}
 
-		public ObjectBuilder<ResponseItem> delete(DeleteResponseItem v) {
+		public Builder delete(DeleteResponseItem v) {
 			this._type = DELETE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<ResponseItem> delete(
-				Function<DeleteResponseItem.Builder, ObjectBuilder<DeleteResponseItem>> f) {
+		public Builder delete(Function<DeleteResponseItem.Builder, ObjectBuilder<DeleteResponseItem>> f) {
 			return this.delete(f.apply(new DeleteResponseItem.Builder()).build());
 		}
 
-		protected ResponseItem build() {
+		public ResponseItem build() {
 			return new ResponseItem(this);
 		}
 

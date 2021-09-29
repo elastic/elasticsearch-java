@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiAnalyzer
@@ -50,6 +51,10 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		this.mode = Objects.requireNonNull(builder.mode, "mode");
 		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
 
+	}
+
+	public KuromojiAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

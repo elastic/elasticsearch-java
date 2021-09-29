@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -55,10 +56,14 @@ public final class RoleDescriptor implements JsonpSerializable {
 
 	public RoleDescriptor(Builder builder) {
 
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.applications = builder.applications;
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
 
+	}
+
+	public RoleDescriptor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -154,7 +159,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(String value) {
 			if (this.cluster == null) {
@@ -181,7 +186,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(IndexPrivileges value) {
 			if (this.index == null) {
@@ -199,7 +204,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndex(Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>> fn) {
 			return this.addIndex(fn.apply(new IndexPrivileges.Builder()).build());
@@ -222,7 +227,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -240,7 +245,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {

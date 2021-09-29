@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsFieldSelection
@@ -64,10 +66,14 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		this.isIncluded = Objects.requireNonNull(builder.isIncluded, "is_included");
 		this.isRequired = Objects.requireNonNull(builder.isRequired, "is_required");
 		this.featureType = builder.featureType;
-		this.mappingTypes = Objects.requireNonNull(builder.mappingTypes, "mapping_types");
+		this.mappingTypes = ModelTypeHelper.unmodifiableNonNull(builder.mappingTypes, "mapping_types");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.reason = builder.reason;
 
+	}
+
+	public DataframeAnalyticsFieldSelection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -243,7 +249,7 @@ public final class DataframeAnalyticsFieldSelection implements JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #mappingTypes(List)}, creating the list if needed.
+		 * Add a value to {@link #mappingTypes(List)}, creating the list if needed. 4
 		 */
 		public Builder addMappingTypes(String value) {
 			if (this.mappingTypes == null) {

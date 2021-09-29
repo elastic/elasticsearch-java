@@ -100,6 +100,8 @@ public final class ShardStats implements JsonpSerializable {
 	@Nullable
 	private final BulkStats bulk;
 
+	private final ShardsTotalStats shards;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public ShardStats(Builder builder) {
@@ -126,7 +128,12 @@ public final class ShardStats implements JsonpSerializable {
 		this.translog = Objects.requireNonNull(builder.translog, "translog");
 		this.warmer = Objects.requireNonNull(builder.warmer, "warmer");
 		this.bulk = builder.bulk;
+		this.shards = Objects.requireNonNull(builder.shards, "shards");
 
+	}
+
+	public ShardStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -285,6 +292,13 @@ public final class ShardStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code shards}
+	 */
+	public ShardsTotalStats shards() {
+		return this.shards;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -365,6 +379,9 @@ public final class ShardStats implements JsonpSerializable {
 
 		}
 
+		generator.writeKey("shards");
+		this.shards.serialize(generator, mapper);
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -417,6 +434,8 @@ public final class ShardStats implements JsonpSerializable {
 
 		@Nullable
 		private BulkStats bulk;
+
+		private ShardsTotalStats shards;
 
 		/**
 		 * API name: {@code commit}
@@ -749,6 +768,21 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(ShardsTotalStats value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shards}
+		 */
+		public Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link ShardStats}.
 		 *
 		 * @throws NullPointerException
@@ -792,6 +826,7 @@ public final class ShardStats implements JsonpSerializable {
 		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
 		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
 		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
+		op.add(Builder::shards, ShardsTotalStats._DESERIALIZER, "shards");
 
 	}
 

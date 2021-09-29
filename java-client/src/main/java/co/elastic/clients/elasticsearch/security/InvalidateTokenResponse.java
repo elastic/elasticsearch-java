@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -58,11 +59,15 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	public InvalidateTokenResponse(Builder builder) {
 
 		this.errorCount = Objects.requireNonNull(builder.errorCount, "error_count");
-		this.errorDetails = builder.errorDetails;
+		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
 		this.invalidatedTokens = Objects.requireNonNull(builder.invalidatedTokens, "invalidated_tokens");
 		this.previouslyInvalidatedTokens = Objects.requireNonNull(builder.previouslyInvalidatedTokens,
 				"previously_invalidated_tokens");
 
+	}
+
+	public InvalidateTokenResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -168,7 +173,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
+		 * Add a value to {@link #errorDetails(List)}, creating the list if needed. 4
 		 */
 		public Builder addErrorDetails(ErrorCause value) {
 			if (this.errorDetails == null) {
@@ -186,7 +191,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
+		 * Add a value to {@link #errorDetails(List)}, creating the list if needed. 5
 		 */
 		public Builder addErrorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addErrorDetails(fn.apply(new ErrorCause.Builder()).build());

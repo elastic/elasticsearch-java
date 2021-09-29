@@ -69,6 +69,10 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 
 	}
 
+	public DataframePreviewConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code source}
 	 */

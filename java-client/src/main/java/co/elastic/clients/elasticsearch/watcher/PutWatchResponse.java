@@ -37,6 +37,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Response
@@ -62,6 +63,10 @@ public final class PutWatchResponse implements JsonpSerializable {
 		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
 		this.version = Objects.requireNonNull(builder.version, "_version");
 
+	}
+
+	public PutWatchResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

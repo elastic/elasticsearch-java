@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -62,12 +63,16 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 	public BoolQuery(Builder builder) {
 		super(builder);
 
-		this.filter = builder.filter;
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.must = builder.must;
-		this.mustNot = builder.mustNot;
-		this.should = builder.should;
+		this.must = ModelTypeHelper.unmodifiable(builder.must);
+		this.mustNot = ModelTypeHelper.unmodifiable(builder.mustNot);
+		this.should = ModelTypeHelper.unmodifiable(builder.should);
 
+	}
+
+	public BoolQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -212,7 +217,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilter(Query value) {
 			if (this.filter == null) {
@@ -230,7 +235,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
 		 */
 		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addFilter(fn.apply(new Query.Builder()).build());
@@ -261,7 +266,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed.
+		 * Add a value to {@link #must(List)}, creating the list if needed. 4
 		 */
 		public Builder addMust(Query value) {
 			if (this.must == null) {
@@ -279,7 +284,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed.
+		 * Add a value to {@link #must(List)}, creating the list if needed. 5
 		 */
 		public Builder addMust(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addMust(fn.apply(new Query.Builder()).build());
@@ -302,7 +307,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
+		 * Add a value to {@link #mustNot(List)}, creating the list if needed. 4
 		 */
 		public Builder addMustNot(Query value) {
 			if (this.mustNot == null) {
@@ -320,7 +325,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
+		 * Add a value to {@link #mustNot(List)}, creating the list if needed. 5
 		 */
 		public Builder addMustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addMustNot(fn.apply(new Query.Builder()).build());
@@ -343,7 +348,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed.
+		 * Add a value to {@link #should(List)}, creating the list if needed. 4
 		 */
 		public Builder addShould(Query value) {
 			if (this.should == null) {
@@ -361,7 +366,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed.
+		 * Add a value to {@link #should(List)}, creating the list if needed. 5
 		 */
 		public Builder addShould(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addShould(fn.apply(new Query.Builder()).build());

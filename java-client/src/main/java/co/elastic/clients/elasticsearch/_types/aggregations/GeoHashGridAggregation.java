@@ -70,6 +70,10 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 	}
 
+	public GeoHashGridAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation} variant type
 	 */

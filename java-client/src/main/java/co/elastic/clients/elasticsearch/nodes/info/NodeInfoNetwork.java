@@ -53,6 +53,10 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 
 	}
 
+	public NodeInfoNetwork(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code primary_interface}
 	 */

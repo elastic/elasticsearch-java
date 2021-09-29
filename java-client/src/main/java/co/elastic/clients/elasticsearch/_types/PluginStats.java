@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.PluginStats
@@ -70,7 +72,7 @@ public final class PluginStats implements JsonpSerializable {
 		this.classname = Objects.requireNonNull(builder.classname, "classname");
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.elasticsearchVersion = Objects.requireNonNull(builder.elasticsearchVersion, "elasticsearch_version");
-		this.extendedPlugins = Objects.requireNonNull(builder.extendedPlugins, "extended_plugins");
+		this.extendedPlugins = ModelTypeHelper.unmodifiableNonNull(builder.extendedPlugins, "extended_plugins");
 		this.hasNativeController = Objects.requireNonNull(builder.hasNativeController, "has_native_controller");
 		this.javaVersion = Objects.requireNonNull(builder.javaVersion, "java_version");
 		this.name = Objects.requireNonNull(builder.name, "name");
@@ -78,6 +80,10 @@ public final class PluginStats implements JsonpSerializable {
 		this.licensed = Objects.requireNonNull(builder.licensed, "licensed");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public PluginStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -265,7 +271,7 @@ public final class PluginStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #extendedPlugins(List)}, creating the list if needed.
+		 * Add a value to {@link #extendedPlugins(List)}, creating the list if needed. 4
 		 */
 		public Builder addExtendedPlugins(String value) {
 			if (this.extendedPlugins == null) {

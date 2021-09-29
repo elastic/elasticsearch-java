@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AppendProcessor
@@ -56,9 +58,13 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		super(builder);
 
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ModelTypeHelper.unmodifiableNonNull(builder.value, "value");
 		this.allowDuplicates = builder.allowDuplicates;
 
+	}
+
+	public AppendProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -155,7 +161,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #value(List)}, creating the list if needed. 4
 		 */
 		public Builder addValue(JsonData value) {
 			if (this.value == null) {

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.AuthenticationProvider
@@ -50,6 +51,10 @@ public final class AuthenticationProvider implements JsonpSerializable {
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public AuthenticationProvider(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

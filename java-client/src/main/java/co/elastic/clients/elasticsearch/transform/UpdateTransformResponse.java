@@ -81,6 +81,10 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 
 	}
 
+	public UpdateTransformResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code create_time}
 	 */

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -63,10 +65,14 @@ public final class Suggestion<T> implements JsonpSerializable {
 
 		this.length = Objects.requireNonNull(builder.length, "length");
 		this.offset = Objects.requireNonNull(builder.offset, "offset");
-		this.options = Objects.requireNonNull(builder.options, "options");
+		this.options = ModelTypeHelper.unmodifiableNonNull(builder.options, "options");
 		this.text = Objects.requireNonNull(builder.text, "text");
 		this.tSerializer = builder.tSerializer;
 
+	}
+
+	public Suggestion(Function<Builder<T>, Builder<T>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -179,7 +185,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #options(List)}, creating the list if needed.
+		 * Add a value to {@link #options(List)}, creating the list if needed. 4
 		 */
 		public Builder<T> addOptions(
 				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ value) {

@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RegressionInferenceOptions
@@ -53,6 +54,10 @@ public final class RegressionInferenceOptions implements JsonpSerializable {
 		this.resultsField = builder.resultsField;
 		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
+	}
+
+	public RegressionInferenceOptions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

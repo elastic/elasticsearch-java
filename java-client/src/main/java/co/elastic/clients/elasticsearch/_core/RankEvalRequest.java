@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.rank_eval.RankEvalMetric;
 import co.elastic.clients.elasticsearch._core.rank_eval.RankEvalRequestItem;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -76,20 +78,25 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 	public RankEvalRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.searchType = builder.searchType;
-		this.requests = Objects.requireNonNull(builder.requests, "requests");
+		this.requests = ModelTypeHelper.unmodifiableNonNull(builder.requests, "requests");
 		this.metric = builder.metric;
 
 	}
 
+	public RankEvalRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Comma-separated list of data streams, indices, and index aliases used to
-	 * limit the request. Wildcard (*) expressions are supported. To target all data
-	 * streams and indices in a cluster, omit this parameter or use _all or *.
+	 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
+	 * target all data streams and indices in a cluster, omit this parameter or use
+	 * <code>_all</code> or <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -98,11 +105,12 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * If false, the request returns an error if any wildcard expression, index
-	 * alias, or _all value targets only missing or closed indices. This behavior
-	 * applies even if the request targets other open indices. For example, a
-	 * request targeting foo*,bar* returns an error if an index starts with foo but
-	 * no index starts with bar.
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+	 * error if an index starts with <code>foo</code> but no index starts with
+	 * <code>bar</code>.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -123,7 +131,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * If true, missing or closed indices are not included in the response.
+	 * If <code>true</code>, missing or closed indices are not included in the
+	 * response.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -143,7 +152,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * A set of typical search requests, together with their provided ratings
+	 * A set of typical search requests, together with their provided ratings.
 	 * <p>
 	 * API name: {@code requests}
 	 */
@@ -152,7 +161,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Definition of the evaluation metric to calculate
+	 * Definition of the evaluation metric to calculate.
 	 * <p>
 	 * API name: {@code metric}
 	 */
@@ -216,8 +225,9 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard (*) expressions are supported. To target all data
-		 * streams and indices in a cluster, omit this parameter or use _all or *.
+		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
+		 * target all data streams and indices in a cluster, omit this parameter or use
+		 * <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -228,8 +238,9 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard (*) expressions are supported. To target all data
-		 * streams and indices in a cluster, omit this parameter or use _all or *.
+		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
+		 * target all data streams and indices in a cluster, omit this parameter or use
+		 * <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -239,7 +250,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -250,11 +261,12 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * If false, the request returns an error if any wildcard expression, index
-		 * alias, or _all value targets only missing or closed indices. This behavior
-		 * applies even if the request targets other open indices. For example, a
-		 * request targeting foo*,bar* returns an error if an index starts with foo but
-		 * no index starts with bar.
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
+		 * error if an index starts with <code>foo</code> but no index starts with
+		 * <code>bar</code>.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -286,7 +298,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -297,7 +309,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * If true, missing or closed indices are not included in the response.
+		 * If <code>true</code>, missing or closed indices are not included in the
+		 * response.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -317,7 +330,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A set of typical search requests, together with their provided ratings
+		 * A set of typical search requests, together with their provided ratings.
 		 * <p>
 		 * API name: {@code requests}
 		 */
@@ -327,7 +340,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A set of typical search requests, together with their provided ratings
+		 * A set of typical search requests, together with their provided ratings.
 		 * <p>
 		 * API name: {@code requests}
 		 */
@@ -337,7 +350,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #requests(List)}, creating the list if needed.
+		 * Add a value to {@link #requests(List)}, creating the list if needed. 4
 		 */
 		public Builder addRequests(RankEvalRequestItem value) {
 			if (this.requests == null) {
@@ -355,14 +368,14 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #requests(List)}, creating the list if needed.
+		 * Add a value to {@link #requests(List)}, creating the list if needed. 5
 		 */
 		public Builder addRequests(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
 			return this.addRequests(fn.apply(new RankEvalRequestItem.Builder()).build());
 		}
 
 		/**
-		 * Definition of the evaluation metric to calculate
+		 * Definition of the evaluation metric to calculate.
 		 * <p>
 		 * API name: {@code metric}
 		 */
@@ -372,7 +385,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Definition of the evaluation metric to calculate
+		 * Definition of the evaluation metric to calculate.
 		 * <p>
 		 * API name: {@code metric}
 		 */
@@ -412,7 +425,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code rank_eval}".
 	 */
-	public static final Endpoint<RankEvalRequest, RankEvalResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RankEvalRequest, RankEvalResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -435,11 +448,11 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_rank_eval");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -461,5 +474,5 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RankEvalResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RankEvalResponse._DESERIALIZER);
 }

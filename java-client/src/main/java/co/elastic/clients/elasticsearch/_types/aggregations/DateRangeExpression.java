@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DateRangeExpression
@@ -70,6 +71,10 @@ public final class DateRangeExpression implements JsonpSerializable {
 		this.to = builder.to;
 		this.docCount = builder.docCount;
 
+	}
+
+	public DateRangeExpression(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

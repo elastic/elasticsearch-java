@@ -68,6 +68,10 @@ public final class SearchTemplateResponse<TDocument> implements JsonpSerializabl
 
 	}
 
+	public SearchTemplateResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
+	}
+
 	/**
 	 * API name: {@code _shards}
 	 */

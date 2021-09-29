@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -52,8 +53,12 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	public GetModelSnapshotsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.modelSnapshots = Objects.requireNonNull(builder.modelSnapshots, "model_snapshots");
+		this.modelSnapshots = ModelTypeHelper.unmodifiableNonNull(builder.modelSnapshots, "model_snapshots");
 
+	}
+
+	public GetModelSnapshotsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +134,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed. 4
 		 */
 		public Builder addModelSnapshots(ModelSnapshot value) {
 			if (this.modelSnapshots == null) {
@@ -147,7 +152,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed. 5
 		 */
 		public Builder addModelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.addModelSnapshots(fn.apply(new ModelSnapshot.Builder()).build());

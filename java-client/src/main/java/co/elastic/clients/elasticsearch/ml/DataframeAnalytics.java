@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -73,9 +74,13 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.memoryUsage = Objects.requireNonNull(builder.memoryUsage, "memory_usage");
 		this.node = builder.node;
-		this.progress = Objects.requireNonNull(builder.progress, "progress");
+		this.progress = ModelTypeHelper.unmodifiableNonNull(builder.progress, "progress");
 		this.state = Objects.requireNonNull(builder.state, "state");
 
+	}
+
+	public DataframeAnalytics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -363,7 +368,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #progress(List)}, creating the list if needed.
+		 * Add a value to {@link #progress(List)}, creating the list if needed. 4
 		 */
 		public Builder addProgress(DataframeAnalyticsStatsProgress value) {
 			if (this.progress == null) {
@@ -382,7 +387,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #progress(List)}, creating the list if needed.
+		 * Add a value to {@link #progress(List)}, creating the list if needed. 5
 		 */
 		public Builder addProgress(
 				Function<DataframeAnalyticsStatsProgress.Builder, ObjectBuilder<DataframeAnalyticsStatsProgress>> fn) {

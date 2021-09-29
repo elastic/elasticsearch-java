@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: snapshot.cleanup_repository.CleanupRepositoryResults
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		this.deletedBlobs = Objects.requireNonNull(builder.deletedBlobs, "deleted_blobs");
 		this.deletedBytes = Objects.requireNonNull(builder.deletedBytes, "deleted_bytes");
 
+	}
+
+	public CleanupRepositoryResults(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

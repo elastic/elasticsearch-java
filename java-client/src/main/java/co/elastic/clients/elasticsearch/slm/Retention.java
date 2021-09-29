@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Retention
@@ -54,6 +55,10 @@ public final class Retention implements JsonpSerializable {
 		this.maxCount = Objects.requireNonNull(builder.maxCount, "max_count");
 		this.minCount = Objects.requireNonNull(builder.minCount, "min_count");
 
+	}
+
+	public Retention(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

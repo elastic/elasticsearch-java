@@ -66,6 +66,10 @@ public final class ShardFailure implements JsonpSerializable {
 
 	}
 
+	public ShardFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code index}
 	 */

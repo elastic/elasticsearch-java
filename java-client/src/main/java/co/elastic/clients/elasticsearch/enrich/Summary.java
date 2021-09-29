@@ -49,6 +49,10 @@ public final class Summary implements JsonpSerializable {
 
 	}
 
+	public Summary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code config}
 	 */

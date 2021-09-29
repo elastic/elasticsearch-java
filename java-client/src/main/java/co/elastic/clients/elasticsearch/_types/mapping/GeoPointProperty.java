@@ -34,6 +34,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.GeoPointProperty
@@ -57,6 +58,10 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 		this.ignoreZValue = builder.ignoreZValue;
 		this.nullValue = builder.nullValue;
 
+	}
+
+	public GeoPointProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

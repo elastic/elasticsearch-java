@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,6 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.forget_follower.Request
@@ -67,6 +69,10 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		this.followerIndexUuid = builder.followerIndexUuid;
 		this.leaderRemoteCluster = builder.leaderRemoteCluster;
 
+	}
+
+	public ForgetFollowerRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -247,7 +253,7 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code ccr.forget_follower}".
 	 */
-	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -265,12 +271,12 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_ccr");
 					buf.append("/forget_follower");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -278,5 +284,5 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ForgetFollowerResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ForgetFollowerResponse._DESERIALIZER);
 }

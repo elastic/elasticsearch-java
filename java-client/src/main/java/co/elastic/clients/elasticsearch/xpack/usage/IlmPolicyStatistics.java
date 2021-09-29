@@ -54,6 +54,10 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 
 	}
 
+	public IlmPolicyStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code indices_managed}
 	 */

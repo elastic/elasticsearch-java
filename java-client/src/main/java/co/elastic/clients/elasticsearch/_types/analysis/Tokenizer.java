@@ -83,6 +83,10 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 
 	}
 
+	public Tokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code char_group} variant value.
 	 *
@@ -211,139 +215,132 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Tokenizer> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<Tokenizer> charGroup(CharGroupTokenizer v) {
+		public Builder charGroup(CharGroupTokenizer v) {
 			this._type = CHAR_GROUP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> charGroup(
-				Function<CharGroupTokenizer.Builder, ObjectBuilder<CharGroupTokenizer>> f) {
+		public Builder charGroup(Function<CharGroupTokenizer.Builder, ObjectBuilder<CharGroupTokenizer>> f) {
 			return this.charGroup(f.apply(new CharGroupTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> edgeNgram(EdgeNGramTokenizer v) {
+		public Builder edgeNgram(EdgeNGramTokenizer v) {
 			this._type = EDGE_NGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> edgeNgram(
-				Function<EdgeNGramTokenizer.Builder, ObjectBuilder<EdgeNGramTokenizer>> f) {
+		public Builder edgeNgram(Function<EdgeNGramTokenizer.Builder, ObjectBuilder<EdgeNGramTokenizer>> f) {
 			return this.edgeNgram(f.apply(new EdgeNGramTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> keyword(KeywordTokenizer v) {
+		public Builder keyword(KeywordTokenizer v) {
 			this._type = KEYWORD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> keyword(Function<KeywordTokenizer.Builder, ObjectBuilder<KeywordTokenizer>> f) {
+		public Builder keyword(Function<KeywordTokenizer.Builder, ObjectBuilder<KeywordTokenizer>> f) {
 			return this.keyword(f.apply(new KeywordTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> letter(LetterTokenizer v) {
+		public Builder letter(LetterTokenizer v) {
 			this._type = LETTER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> letter(Function<LetterTokenizer.Builder, ObjectBuilder<LetterTokenizer>> f) {
+		public Builder letter(Function<LetterTokenizer.Builder, ObjectBuilder<LetterTokenizer>> f) {
 			return this.letter(f.apply(new LetterTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> lowercase(LowercaseTokenizer v) {
+		public Builder lowercase(LowercaseTokenizer v) {
 			this._type = LOWERCASE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> lowercase(
-				Function<LowercaseTokenizer.Builder, ObjectBuilder<LowercaseTokenizer>> f) {
+		public Builder lowercase(Function<LowercaseTokenizer.Builder, ObjectBuilder<LowercaseTokenizer>> f) {
 			return this.lowercase(f.apply(new LowercaseTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> ngram(NGramTokenizer v) {
+		public Builder ngram(NGramTokenizer v) {
 			this._type = NGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> ngram(Function<NGramTokenizer.Builder, ObjectBuilder<NGramTokenizer>> f) {
+		public Builder ngram(Function<NGramTokenizer.Builder, ObjectBuilder<NGramTokenizer>> f) {
 			return this.ngram(f.apply(new NGramTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> noriTokenizer(NoriTokenizer v) {
+		public Builder noriTokenizer(NoriTokenizer v) {
 			this._type = NORI_TOKENIZER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> noriTokenizer(Function<NoriTokenizer.Builder, ObjectBuilder<NoriTokenizer>> f) {
+		public Builder noriTokenizer(Function<NoriTokenizer.Builder, ObjectBuilder<NoriTokenizer>> f) {
 			return this.noriTokenizer(f.apply(new NoriTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> pathHierarchy(PathHierarchyTokenizer v) {
+		public Builder pathHierarchy(PathHierarchyTokenizer v) {
 			this._type = PATH_HIERARCHY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> pathHierarchy(
+		public Builder pathHierarchy(
 				Function<PathHierarchyTokenizer.Builder, ObjectBuilder<PathHierarchyTokenizer>> f) {
 			return this.pathHierarchy(f.apply(new PathHierarchyTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> standard(StandardTokenizer v) {
+		public Builder standard(StandardTokenizer v) {
 			this._type = STANDARD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> standard(
-				Function<StandardTokenizer.Builder, ObjectBuilder<StandardTokenizer>> f) {
+		public Builder standard(Function<StandardTokenizer.Builder, ObjectBuilder<StandardTokenizer>> f) {
 			return this.standard(f.apply(new StandardTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> uaxUrlEmail(UaxEmailUrlTokenizer v) {
+		public Builder uaxUrlEmail(UaxEmailUrlTokenizer v) {
 			this._type = UAX_URL_EMAIL;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> uaxUrlEmail(
-				Function<UaxEmailUrlTokenizer.Builder, ObjectBuilder<UaxEmailUrlTokenizer>> f) {
+		public Builder uaxUrlEmail(Function<UaxEmailUrlTokenizer.Builder, ObjectBuilder<UaxEmailUrlTokenizer>> f) {
 			return this.uaxUrlEmail(f.apply(new UaxEmailUrlTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> whitespace(WhitespaceTokenizer v) {
+		public Builder whitespace(WhitespaceTokenizer v) {
 			this._type = WHITESPACE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> whitespace(
-				Function<WhitespaceTokenizer.Builder, ObjectBuilder<WhitespaceTokenizer>> f) {
+		public Builder whitespace(Function<WhitespaceTokenizer.Builder, ObjectBuilder<WhitespaceTokenizer>> f) {
 			return this.whitespace(f.apply(new WhitespaceTokenizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Tokenizer> kuromojiTokenizer(KuromojiTokenizer v) {
+		public Builder kuromojiTokenizer(KuromojiTokenizer v) {
 			this._type = KUROMOJI_TOKENIZER;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Tokenizer> kuromojiTokenizer(
-				Function<KuromojiTokenizer.Builder, ObjectBuilder<KuromojiTokenizer>> f) {
+		public Builder kuromojiTokenizer(Function<KuromojiTokenizer.Builder, ObjectBuilder<KuromojiTokenizer>> f) {
 			return this.kuromojiTokenizer(f.apply(new KuromojiTokenizer.Builder()).build());
 		}
 
-		protected Tokenizer build() {
+		public Tokenizer build() {
 			return new Tokenizer(this);
 		}
 
@@ -365,6 +362,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		op.add(Builder::kuromojiTokenizer, KuromojiTokenizer._DESERIALIZER, "kuromoji_tokenizer");
 
 		op.setTypeProperty("type");
+
 	}
 
 	public static final JsonpDeserializer<Tokenizer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

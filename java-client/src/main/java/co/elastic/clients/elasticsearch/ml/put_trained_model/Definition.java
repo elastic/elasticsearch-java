@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -51,9 +52,13 @@ public final class Definition implements JsonpSerializable {
 
 	public Definition(Builder builder) {
 
-		this.preprocessors = builder.preprocessors;
+		this.preprocessors = ModelTypeHelper.unmodifiable(builder.preprocessors);
 		this.trainedModel = Objects.requireNonNull(builder.trainedModel, "trained_model");
 
+	}
+
+	public Definition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -135,7 +140,7 @@ public final class Definition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preprocessors(List)}, creating the list if needed.
+		 * Add a value to {@link #preprocessors(List)}, creating the list if needed. 4
 		 */
 		public Builder addPreprocessors(Preprocessor value) {
 			if (this.preprocessors == null) {
@@ -153,7 +158,7 @@ public final class Definition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preprocessors(List)}, creating the list if needed.
+		 * Add a value to {@link #preprocessors(List)}, creating the list if needed. 5
 		 */
 		public Builder addPreprocessors(Function<Preprocessor.Builder, ObjectBuilder<Preprocessor>> fn) {
 			return this.addPreprocessors(fn.apply(new Preprocessor.Builder()).build());

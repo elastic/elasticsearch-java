@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -64,9 +65,13 @@ public final class Term implements JsonpSerializable {
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
 		this.termFreq = Objects.requireNonNull(builder.termFreq, "term_freq");
-		this.tokens = Objects.requireNonNull(builder.tokens, "tokens");
+		this.tokens = ModelTypeHelper.unmodifiableNonNull(builder.tokens, "tokens");
 		this.ttf = builder.ttf;
 
+	}
+
+	public Term(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -211,7 +216,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Add a value to {@link #tokens(List)}, creating the list if needed. 4
 		 */
 		public Builder addTokens(Token value) {
 			if (this.tokens == null) {
@@ -229,7 +234,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Add a value to {@link #tokens(List)}, creating the list if needed. 5
 		 */
 		public Builder addTokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
 			return this.addTokens(fn.apply(new Token.Builder()).build());

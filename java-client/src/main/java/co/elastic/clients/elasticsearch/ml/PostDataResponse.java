@@ -36,6 +36,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Response
@@ -93,6 +94,10 @@ public final class PostDataResponse implements JsonpSerializable {
 		this.processedRecordCount = Objects.requireNonNull(builder.processedRecordCount, "processed_record_count");
 		this.sparseBucketCount = Objects.requireNonNull(builder.sparseBucketCount, "sparse_bucket_count");
 
+	}
+
+	public PostDataResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

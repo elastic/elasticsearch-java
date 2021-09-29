@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.recovery.RecoveryRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.recovery.Response
 @JsonpDeserializable
 public final class RecoveryResponse implements JsonpSerializable {
-	private final List<RecoveryRecord> value;
+	private final List<RecoveryRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public RecoveryResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public RecoveryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<RecoveryRecord> value() {
-		return this.value;
+	public List<RecoveryRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class RecoveryResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (RecoveryRecord item0 : this.value) {
+		for (RecoveryRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class RecoveryResponse implements JsonpSerializable {
 	 * Builder for {@link RecoveryResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<RecoveryResponse> {
-		private List<RecoveryRecord> value;
+		private List<RecoveryRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<RecoveryRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<RecoveryRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(RecoveryRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(RecoveryRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(RecoveryRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(RecoveryRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
-			return this.value(fn.apply(new RecoveryRecord.Builder()).build());
+		public Builder valueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
+			return this.valueBody(fn.apply(new RecoveryRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
-			return this.addValue(fn.apply(new RecoveryRecord.Builder()).build());
+		public Builder addValueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
+			return this.addValueBody(fn.apply(new RecoveryRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class RecoveryResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = createRecoveryResponseDeserializer();
+	protected static JsonpDeserializer<RecoveryResponse> createRecoveryResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link RecoveryResponse}
-	 */
-	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<RecoveryRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(RecoveryRecord._DESERIALIZER);
 
-	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(RecoveryRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

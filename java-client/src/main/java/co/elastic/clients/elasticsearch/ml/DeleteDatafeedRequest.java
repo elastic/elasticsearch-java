@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_datafeed.Request
@@ -54,6 +56,10 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.force = builder.force;
 
+	}
+
+	public DeleteDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -123,7 +129,7 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_datafeed}".
 	 */
-	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -143,10 +149,10 @@ public final class DeleteDatafeedRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -158,5 +164,5 @@ public final class DeleteDatafeedRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteDatafeedResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteDatafeedResponse._DESERIALIZER);
 }

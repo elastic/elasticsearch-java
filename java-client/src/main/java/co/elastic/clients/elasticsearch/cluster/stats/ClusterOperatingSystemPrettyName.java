@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemPrettyName
@@ -51,6 +52,10 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.prettyName = Objects.requireNonNull(builder.prettyName, "pretty_name");
 
+	}
+
+	public ClusterOperatingSystemPrettyName(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

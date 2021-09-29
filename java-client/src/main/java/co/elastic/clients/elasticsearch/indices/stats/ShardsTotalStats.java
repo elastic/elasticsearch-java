@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch.indices.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -32,38 +32,32 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
-// typedef: cluster._types.TombstoneIndex
+// typedef: indices.stats.ShardsTotalStats
 @JsonpDeserializable
-public final class TombstoneIndex implements JsonpSerializable {
-	private final String indexName;
-
-	private final String indexUuid;
+public final class ShardsTotalStats implements JsonpSerializable {
+	private final long totalCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TombstoneIndex(Builder builder) {
+	public ShardsTotalStats(Builder builder) {
 
-		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
-		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
+		this.totalCount = Objects.requireNonNull(builder.totalCount, "total_count");
 
 	}
 
-	/**
-	 * API name: {@code index_name}
-	 */
-	public String indexName() {
-		return this.indexName;
+	public ShardsTotalStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code index_uuid}
+	 * API name: {@code total_count}
 	 */
-	public String indexUuid() {
-		return this.indexUuid;
+	public long totalCount() {
+		return this.totalCount;
 	}
 
 	/**
@@ -77,64 +71,50 @@ public final class TombstoneIndex implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index_name");
-		generator.write(this.indexName);
-
-		generator.writeKey("index_uuid");
-		generator.write(this.indexUuid);
+		generator.writeKey("total_count");
+		generator.write(this.totalCount);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TombstoneIndex}.
+	 * Builder for {@link ShardsTotalStats}.
 	 */
-	public static class Builder implements ObjectBuilder<TombstoneIndex> {
-		private String indexName;
-
-		private String indexUuid;
+	public static class Builder implements ObjectBuilder<ShardsTotalStats> {
+		private Long totalCount;
 
 		/**
-		 * API name: {@code index_name}
+		 * API name: {@code total_count}
 		 */
-		public Builder indexName(String value) {
-			this.indexName = value;
+		public Builder totalCount(long value) {
+			this.totalCount = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code index_uuid}
-		 */
-		public Builder indexUuid(String value) {
-			this.indexUuid = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link TombstoneIndex}.
+		 * Builds a {@link ShardsTotalStats}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TombstoneIndex build() {
+		public ShardsTotalStats build() {
 
-			return new TombstoneIndex(this);
+			return new ShardsTotalStats(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TombstoneIndex}
+	 * Json deserializer for {@link ShardsTotalStats}
 	 */
-	public static final JsonpDeserializer<TombstoneIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TombstoneIndex::setupTombstoneIndexDeserializer, Builder::build);
+	public static final JsonpDeserializer<ShardsTotalStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardsTotalStats::setupShardsTotalStatsDeserializer, Builder::build);
 
-	protected static void setupTombstoneIndexDeserializer(DelegatingDeserializer<TombstoneIndex.Builder> op) {
+	protected static void setupShardsTotalStatsDeserializer(DelegatingDeserializer<ShardsTotalStats.Builder> op) {
 
-		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
-		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
+		op.add(Builder::totalCount, JsonpDeserializer.longDeserializer(), "total_count");
 
 	}
 

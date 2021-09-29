@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -115,7 +116,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		this.hasHeaderRow = builder.hasHeaderRow;
 		this.hasByteOrderMarker = Objects.requireNonNull(builder.hasByteOrderMarker, "has_byte_order_marker");
 		this.format = Objects.requireNonNull(builder.format, "format");
-		this.fieldStats = Objects.requireNonNull(builder.fieldStats, "field_stats");
+		this.fieldStats = ModelTypeHelper.unmodifiableNonNull(builder.fieldStats, "field_stats");
 		this.sampleStart = Objects.requireNonNull(builder.sampleStart, "sample_start");
 		this.numMessagesAnalyzed = Objects.requireNonNull(builder.numMessagesAnalyzed, "num_messages_analyzed");
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
@@ -123,17 +124,21 @@ public final class FindStructureResponse implements JsonpSerializable {
 		this.delimiter = builder.delimiter;
 		this.needClientTimezone = Objects.requireNonNull(builder.needClientTimezone, "need_client_timezone");
 		this.numLinesAnalyzed = Objects.requireNonNull(builder.numLinesAnalyzed, "num_lines_analyzed");
-		this.columnNames = builder.columnNames;
-		this.explanation = builder.explanation;
+		this.columnNames = ModelTypeHelper.unmodifiable(builder.columnNames);
+		this.explanation = ModelTypeHelper.unmodifiable(builder.explanation);
 		this.grokPattern = builder.grokPattern;
 		this.multilineStartPattern = builder.multilineStartPattern;
 		this.excludeLinesPattern = builder.excludeLinesPattern;
-		this.javaTimestampFormats = builder.javaTimestampFormats;
-		this.jodaTimestampFormats = builder.jodaTimestampFormats;
+		this.javaTimestampFormats = ModelTypeHelper.unmodifiable(builder.javaTimestampFormats);
+		this.jodaTimestampFormats = ModelTypeHelper.unmodifiable(builder.jodaTimestampFormats);
 		this.timestampField = builder.timestampField;
 		this.shouldTrimFields = builder.shouldTrimFields;
 		this.ingestPipeline = Objects.requireNonNull(builder.ingestPipeline, "ingest_pipeline");
 
+	}
+
+	public FindStructureResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -653,7 +658,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #columnNames(List)}, creating the list if needed.
+		 * Add a value to {@link #columnNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addColumnNames(String value) {
 			if (this.columnNames == null) {
@@ -680,7 +685,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanation(List)}, creating the list if needed.
+		 * Add a value to {@link #explanation(List)}, creating the list if needed. 4
 		 */
 		public Builder addExplanation(String value) {
 			if (this.explanation == null) {
@@ -732,7 +737,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #javaTimestampFormats(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addJavaTimestampFormats(String value) {
 			if (this.javaTimestampFormats == null) {
@@ -760,7 +765,7 @@ public final class FindStructureResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #jodaTimestampFormats(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addJodaTimestampFormats(String value) {
 			if (this.jodaTimestampFormats == null) {

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Request
@@ -53,6 +55,10 @@ public final class GetScriptRequest extends RequestBase {
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.masterTimeout = builder.masterTimeout;
 
+	}
+
+	public GetScriptRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -122,7 +128,7 @@ public final class GetScriptRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get_script}".
 	 */
-	public static final Endpoint<GetScriptRequest, GetScriptResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetScriptRequest, GetScriptResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -141,10 +147,10 @@ public final class GetScriptRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_scripts");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -156,5 +162,5 @@ public final class GetScriptRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetScriptResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetScriptResponse._DESERIALIZER);
 }

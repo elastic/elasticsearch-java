@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MultiMatchQuery
@@ -102,7 +104,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.cutoffFrequency = builder.cutoffFrequency;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyRewrite = builder.fuzzyRewrite;
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
@@ -117,6 +119,10 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		this.type = builder.type;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	public MultiMatchQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -467,7 +473,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

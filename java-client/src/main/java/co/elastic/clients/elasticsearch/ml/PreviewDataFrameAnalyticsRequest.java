@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics.DataframePreviewConfig;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -58,6 +59,10 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		this.id = builder.id;
 		this.config = builder.config;
 
+	}
+
+	public PreviewDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -180,7 +185,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Endpoint "{@code ml.preview_data_frame_analytics}".
 	 */
-	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -210,11 +215,11 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_preview");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -222,5 +227,5 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PreviewDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PreviewDataFrameAnalyticsResponse._DESERIALIZER);
 }

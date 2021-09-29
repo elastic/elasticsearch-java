@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,6 +40,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Request
@@ -63,6 +65,10 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 		this.description = builder.description;
 		this.retain = builder.retain;
 
+	}
+
+	public UpdateModelSnapshotRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -210,7 +216,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.update_model_snapshot}".
 	 */
-	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -232,14 +238,14 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/model_snapshots");
 					buf.append("/");
-					buf.append(request.snapshotId);
+					SimpleEndpoint.pathEncode(request.snapshotId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -247,5 +253,5 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateModelSnapshotResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateModelSnapshotResponse._DESERIALIZER);
 }

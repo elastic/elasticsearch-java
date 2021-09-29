@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -52,8 +53,13 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	public GetDataFrameAnalyticsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.dataFrameAnalytics = Objects.requireNonNull(builder.dataFrameAnalytics, "data_frame_analytics");
+		this.dataFrameAnalytics = ModelTypeHelper.unmodifiableNonNull(builder.dataFrameAnalytics,
+				"data_frame_analytics");
 
+	}
+
+	public GetDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -139,7 +145,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addDataFrameAnalytics(DataframeAnalyticsSummary value) {
 			if (this.dataFrameAnalytics == null) {
@@ -159,7 +165,7 @@ public final class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addDataFrameAnalytics(
 				Function<DataframeAnalyticsSummary.Builder, ObjectBuilder<DataframeAnalyticsSummary>> fn) {

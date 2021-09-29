@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.NGramTokenFilter
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 		this.maxGram = Objects.requireNonNull(builder.maxGram, "max_gram");
 		this.minGram = Objects.requireNonNull(builder.minGram, "min_gram");
 
+	}
+
+	public NGramTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

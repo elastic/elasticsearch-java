@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,9 +58,13 @@ public final class FielddataRequest extends CatRequestBase {
 
 	public FielddataRequest(Builder builder) {
 
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.bytes = builder.bytes;
 
+	}
+
+	public FielddataRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -113,7 +120,7 @@ public final class FielddataRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -150,7 +157,7 @@ public final class FielddataRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.fielddata}".
 	 */
-	public static final Endpoint<FielddataRequest, FielddataResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FielddataRequest, FielddataResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -177,10 +184,11 @@ public final class FielddataRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/fielddata");
 					buf.append("/");
-					buf.append(request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -192,5 +200,5 @@ public final class FielddataRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, FielddataResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, FielddataResponse._DESERIALIZER);
 }

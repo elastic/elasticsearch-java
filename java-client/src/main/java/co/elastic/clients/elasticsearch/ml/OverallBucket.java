@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -64,11 +65,15 @@ public final class OverallBucket implements JsonpSerializable {
 
 		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
 		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
-		this.jobs = Objects.requireNonNull(builder.jobs, "jobs");
+		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
 		this.overallScore = Objects.requireNonNull(builder.overallScore, "overall_score");
 		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
+	}
+
+	public OverallBucket(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -224,7 +229,7 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Add a value to {@link #jobs(List)}, creating the list if needed. 4
 		 */
 		public Builder addJobs(OverallBucketJob value) {
 			if (this.jobs == null) {
@@ -242,7 +247,7 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Add a value to {@link #jobs(List)}, creating the list if needed. 5
 		 */
 		public Builder addJobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn) {
 			return this.addJobs(fn.apply(new OverallBucketJob.Builder()).build());

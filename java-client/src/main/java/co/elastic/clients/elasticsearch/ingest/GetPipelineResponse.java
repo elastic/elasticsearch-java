@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ingest.get_pipeline.Response
 @JsonpDeserializable
-public final class GetPipelineResponse extends AdditionalProperties<String, Pipeline> {
+public final class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetPipelineResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 
 	}
 
+	public GetPipelineResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Pipeline, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
 			implements
 				ObjectBuilder<GetPipelineResponse> {
 		@Override
@@ -80,7 +85,7 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer, Builder::build);
 
 	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Pipeline._DESERIALIZER);
 
 	}

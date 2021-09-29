@@ -54,6 +54,10 @@ public final class RankEvalHitItem implements JsonpSerializable {
 
 	}
 
+	public RankEvalHitItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code hit}
 	 */

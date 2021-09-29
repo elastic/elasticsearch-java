@@ -52,6 +52,10 @@ public final class ClusterProcess implements JsonpSerializable {
 
 	}
 
+	public ClusterProcess(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cpu}
 	 */

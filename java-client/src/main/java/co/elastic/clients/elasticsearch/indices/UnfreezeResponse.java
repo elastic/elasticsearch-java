@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.unfreeze.Response
 @JsonpDeserializable
@@ -47,6 +48,10 @@ public final class UnfreezeResponse extends AcknowledgedResponseBase {
 
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
+	}
+
+	public UnfreezeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

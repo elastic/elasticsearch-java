@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 
 	public PostCalendarEventsResponse(Builder builder) {
 
-		this.events = Objects.requireNonNull(builder.events, "events");
+		this.events = ModelTypeHelper.unmodifiableNonNull(builder.events, "events");
 
+	}
+
+	public PostCalendarEventsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +110,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 4
 		 */
 		public Builder addEvents(CalendarEvent value) {
 			if (this.events == null) {
@@ -123,7 +128,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 5
 		 */
 		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
 			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());

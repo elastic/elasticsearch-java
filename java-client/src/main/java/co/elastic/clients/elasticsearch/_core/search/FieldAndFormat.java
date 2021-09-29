@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.FieldAndFormat
@@ -56,6 +57,10 @@ public final class FieldAndFormat implements JsonpSerializable {
 		this.format = builder.format;
 		this.includeUnmapped = builder.includeUnmapped;
 
+	}
+
+	public FieldAndFormat(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

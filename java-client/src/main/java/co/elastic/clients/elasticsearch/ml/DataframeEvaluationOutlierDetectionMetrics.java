@@ -30,11 +30,13 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationOutlierDetectionMetrics
@@ -48,8 +50,12 @@ public final class DataframeEvaluationOutlierDetectionMetrics extends DataframeE
 	public DataframeEvaluationOutlierDetectionMetrics(Builder builder) {
 		super(builder);
 
-		this.confusionMatrix = builder.confusionMatrix;
+		this.confusionMatrix = ModelTypeHelper.unmodifiable(builder.confusionMatrix);
 
+	}
+
+	public DataframeEvaluationOutlierDetectionMetrics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

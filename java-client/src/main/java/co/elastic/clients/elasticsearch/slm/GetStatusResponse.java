@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.get_status.Response
@@ -47,6 +48,10 @@ public final class GetStatusResponse implements JsonpSerializable {
 
 		this.operationMode = Objects.requireNonNull(builder.operationMode, "operation_mode");
 
+	}
+
+	public GetStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

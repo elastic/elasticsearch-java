@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -52,8 +53,12 @@ public final class Ilm implements JsonpSerializable {
 	public Ilm(Builder builder) {
 
 		this.policyCount = Objects.requireNonNull(builder.policyCount, "policy_count");
-		this.policyStats = Objects.requireNonNull(builder.policyStats, "policy_stats");
+		this.policyStats = ModelTypeHelper.unmodifiableNonNull(builder.policyStats, "policy_stats");
 
+	}
+
+	public Ilm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +134,7 @@ public final class Ilm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
+		 * Add a value to {@link #policyStats(List)}, creating the list if needed. 4
 		 */
 		public Builder addPolicyStats(IlmPolicyStatistics value) {
 			if (this.policyStats == null) {
@@ -147,7 +152,7 @@ public final class Ilm implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policyStats(List)}, creating the list if needed.
+		 * Add a value to {@link #policyStats(List)}, creating the list if needed. 5
 		 */
 		public Builder addPolicyStats(Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
 			return this.addPolicyStats(fn.apply(new IlmPolicyStatistics.Builder()).build());

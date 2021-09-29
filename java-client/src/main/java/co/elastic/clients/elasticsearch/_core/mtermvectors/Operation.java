@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -93,7 +94,7 @@ public final class Operation implements JsonpSerializable {
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.index = builder.index;
 		this.doc = builder.doc;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.filter = builder.filter;
 		this.offsets = builder.offsets;
@@ -104,6 +105,10 @@ public final class Operation implements JsonpSerializable {
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public Operation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -387,7 +392,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

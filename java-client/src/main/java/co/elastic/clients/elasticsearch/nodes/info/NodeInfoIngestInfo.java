@@ -49,6 +49,10 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 
 	}
 
+	public NodeInfoIngestInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code downloader}
 	 */

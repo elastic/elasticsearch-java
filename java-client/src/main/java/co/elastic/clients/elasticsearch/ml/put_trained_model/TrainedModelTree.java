@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -57,11 +58,15 @@ public final class TrainedModelTree implements JsonpSerializable {
 
 	public TrainedModelTree(Builder builder) {
 
-		this.classificationLabels = builder.classificationLabels;
-		this.featureNames = Objects.requireNonNull(builder.featureNames, "feature_names");
+		this.classificationLabels = ModelTypeHelper.unmodifiable(builder.classificationLabels);
+		this.featureNames = ModelTypeHelper.unmodifiableNonNull(builder.featureNames, "feature_names");
 		this.targetType = builder.targetType;
-		this.treeStructure = Objects.requireNonNull(builder.treeStructure, "tree_structure");
+		this.treeStructure = ModelTypeHelper.unmodifiableNonNull(builder.treeStructure, "tree_structure");
 
+	}
+
+	public TrainedModelTree(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -176,7 +181,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #classificationLabels(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addClassificationLabels(String value) {
 			if (this.classificationLabels == null) {
@@ -203,7 +208,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureNames(List)}, creating the list if needed.
+		 * Add a value to {@link #featureNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureNames(String value) {
 			if (this.featureNames == null) {
@@ -238,7 +243,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #treeStructure(List)}, creating the list if needed.
+		 * Add a value to {@link #treeStructure(List)}, creating the list if needed. 4
 		 */
 		public Builder addTreeStructure(TrainedModelTreeNode value) {
 			if (this.treeStructure == null) {
@@ -256,7 +261,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #treeStructure(List)}, creating the list if needed.
+		 * Add a value to {@link #treeStructure(List)}, creating the list if needed. 5
 		 */
 		public Builder addTreeStructure(
 				Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {

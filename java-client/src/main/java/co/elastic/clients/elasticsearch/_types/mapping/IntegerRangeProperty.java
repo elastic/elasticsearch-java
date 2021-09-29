@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.mapping.IntegerRangeProperty
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class IntegerRangeProperty extends RangePropertyBase implements Pro
 	public IntegerRangeProperty(Builder builder) {
 		super(builder);
 
+	}
+
+	public IntegerRangeProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

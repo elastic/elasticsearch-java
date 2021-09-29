@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -67,12 +68,16 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	public CompletionSuggester(Builder builder) {
 		super(builder);
 
-		this.contexts = builder.contexts;
+		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
 		this.fuzzy = builder.fuzzy;
 		this.prefix = builder.prefix;
 		this.regex = builder.regex;
 		this.skipDuplicates = builder.skipDuplicates;
 
+	}
+
+	public CompletionSuggester(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

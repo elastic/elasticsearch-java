@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -54,10 +55,14 @@ public final class SimulatedActions implements JsonpSerializable {
 
 	public SimulatedActions(Builder builder) {
 
-		this.actions = Objects.requireNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
 		this.all = Objects.requireNonNull(builder.all, "all");
 		this.useAll = Objects.requireNonNull(builder.useAll, "use_all");
 
+	}
+
+	public SimulatedActions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -137,7 +142,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {

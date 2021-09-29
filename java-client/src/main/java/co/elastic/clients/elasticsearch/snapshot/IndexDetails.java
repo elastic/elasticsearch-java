@@ -36,6 +36,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.IndexDetails
@@ -59,6 +60,10 @@ public final class IndexDetails implements JsonpSerializable {
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
 		this.maxSegmentsPerShard = Objects.requireNonNull(builder.maxSegmentsPerShard, "max_segments_per_shard");
 
+	}
+
+	public IndexDetails(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

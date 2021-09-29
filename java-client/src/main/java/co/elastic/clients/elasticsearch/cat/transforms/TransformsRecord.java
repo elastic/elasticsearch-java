@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.TransformsRecord
@@ -176,6 +177,10 @@ public final class TransformsRecord implements JsonpSerializable {
 		this.indexedDocumentsExpAvg = builder.indexedDocumentsExpAvg;
 		this.processedDocumentsExpAvg = builder.processedDocumentsExpAvg;
 
+	}
+
+	public TransformsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

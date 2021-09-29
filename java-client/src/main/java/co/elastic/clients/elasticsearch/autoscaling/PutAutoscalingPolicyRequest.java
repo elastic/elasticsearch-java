@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -46,15 +46,19 @@ import javax.annotation.Nullable;
 public final class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
-	private final AutoscalingPolicy value;
+	private final AutoscalingPolicy policy;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutAutoscalingPolicyRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.policy = Objects.requireNonNull(builder.policy, "_value_body");
 
+	}
+
+	public PutAutoscalingPolicyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -69,17 +73,17 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public AutoscalingPolicy value() {
-		return this.value;
+	public AutoscalingPolicy policy() {
+		return this.policy;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.policy.serialize(generator, mapper);
 
 	}
 
@@ -91,7 +95,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	public static class Builder implements ObjectBuilder<PutAutoscalingPolicyRequest> {
 		private String name;
 
-		private AutoscalingPolicy value;
+		private AutoscalingPolicy policy;
 
 		/**
 		 * the name of the autoscaling policy
@@ -106,20 +110,20 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(AutoscalingPolicy value) {
-			this.value = value;
+		public Builder policy(AutoscalingPolicy value) {
+			this.policy = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
-			return this.value(fn.apply(new AutoscalingPolicy.Builder()).build());
+		public Builder policy(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
+			return this.policy(fn.apply(new AutoscalingPolicy.Builder()).build());
 		}
 
 		/**
@@ -134,19 +138,13 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutAutoscalingPolicyRequest> _DESERIALIZER = createPutAutoscalingPolicyRequestDeserializer();
+	protected static JsonpDeserializer<PutAutoscalingPolicyRequest> createPutAutoscalingPolicyRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PutAutoscalingPolicyRequest}
-	 */
-	public static final JsonpDeserializer<PutAutoscalingPolicyRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutAutoscalingPolicyRequest::setupPutAutoscalingPolicyRequestDeserializer, Builder::build);
+		JsonpDeserializer<AutoscalingPolicy> valueDeserializer = AutoscalingPolicy._DESERIALIZER;
 
-	protected static void setupPutAutoscalingPolicyRequestDeserializer(
-			DelegatingDeserializer<PutAutoscalingPolicyRequest.Builder> op) {
-
-		op.add(Builder::value, AutoscalingPolicy._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.policy(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -154,7 +152,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	/**
 	 * Endpoint "{@code autoscaling.put_autoscaling_policy}".
 	 */
-	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -174,10 +172,10 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 					buf.append("/_autoscaling");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -185,5 +183,5 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutAutoscalingPolicyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutAutoscalingPolicyResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -61,6 +62,10 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		this.jobConfig = builder.jobConfig;
 		this.datafeedConfig = builder.datafeedConfig;
 
+	}
+
+	public PreviewDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -203,7 +208,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code ml.preview_datafeed}".
 	 */
-	private static final Endpoint.Simple<PreviewDatafeedRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<PreviewDatafeedRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -224,7 +229,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					buf.append("/_preview");
 					return buf.toString();
 				}
@@ -235,7 +240,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 					buf.append("/_preview");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -243,7 +248,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code ml.preview_datafeed}" endpoint.

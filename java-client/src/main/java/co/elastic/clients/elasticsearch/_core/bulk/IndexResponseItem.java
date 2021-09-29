@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _global.bulk.IndexResponseItem
 @JsonpDeserializable
@@ -40,6 +41,10 @@ public final class IndexResponseItem extends ResponseItemBase implements Respons
 	public IndexResponseItem(Builder builder) {
 		super(builder);
 
+	}
+
+	public IndexResponseItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

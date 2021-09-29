@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregation
 @JsonpDeserializable
@@ -40,6 +41,10 @@ public final class ValueCountAggregation extends FormattableMetricAggregation im
 	public ValueCountAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	public ValueCountAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

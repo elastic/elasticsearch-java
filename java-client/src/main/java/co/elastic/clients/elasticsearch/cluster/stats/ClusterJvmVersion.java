@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmVersion
@@ -67,6 +68,10 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		this.vmVendor = Objects.requireNonNull(builder.vmVendor, "vm_vendor");
 		this.vmVersion = Objects.requireNonNull(builder.vmVersion, "vm_version");
 
+	}
+
+	public ClusterJvmVersion(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

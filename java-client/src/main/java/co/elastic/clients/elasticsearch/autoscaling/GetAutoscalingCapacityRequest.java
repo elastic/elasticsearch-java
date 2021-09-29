@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_capacity.Request
 
@@ -51,7 +53,7 @@ public final class GetAutoscalingCapacityRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code autoscaling.get_autoscaling_capacity}".
 	 */
-	public static final Endpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class GetAutoscalingCapacityRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetAutoscalingCapacityResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetAutoscalingCapacityResponse._DESERIALIZER);
 }

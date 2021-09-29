@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -51,9 +52,13 @@ public final class PinnedQuery extends QueryBase implements QueryVariant {
 	public PinnedQuery(Builder builder) {
 		super(builder);
 
-		this.ids = Objects.requireNonNull(builder.ids, "ids");
+		this.ids = ModelTypeHelper.unmodifiableNonNull(builder.ids, "ids");
 		this.organic = Objects.requireNonNull(builder.organic, "organic");
 
+	}
+
+	public PinnedQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -122,7 +127,7 @@ public final class PinnedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
+		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {

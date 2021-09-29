@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -59,10 +62,14 @@ public final class GetDatafeedsRequest extends RequestBase {
 
 	public GetDatafeedsRequest(Builder builder) {
 
-		this.datafeedId = builder.datafeedId;
+		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
 		this.excludeGenerated = builder.excludeGenerated;
 
+	}
+
+	public GetDatafeedsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -132,7 +139,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
+		 * Add a value to {@link #datafeedId(List)}, creating the list if needed. 4
 		 */
 		public Builder addDatafeedId(String value) {
 			if (this.datafeedId == null) {
@@ -180,7 +187,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_datafeeds}".
 	 */
-	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetDatafeedsRequest, GetDatafeedsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -201,7 +208,8 @@ public final class GetDatafeedsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -210,7 +218,7 @@ public final class GetDatafeedsRequest extends RequestBase {
 					buf.append("/datafeeds");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -225,5 +233,5 @@ public final class GetDatafeedsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetDatafeedsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDatafeedsResponse._DESERIALIZER);
 }

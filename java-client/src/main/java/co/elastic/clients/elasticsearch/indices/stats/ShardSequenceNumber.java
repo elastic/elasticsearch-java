@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.stats.ShardSequenceNumber
 @JsonpDeserializable
@@ -53,6 +54,10 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		this.localCheckpoint = Objects.requireNonNull(builder.localCheckpoint, "local_checkpoint");
 		this.maxSeqNo = Objects.requireNonNull(builder.maxSeqNo, "max_seq_no");
 
+	}
+
+	public ShardSequenceNumber(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

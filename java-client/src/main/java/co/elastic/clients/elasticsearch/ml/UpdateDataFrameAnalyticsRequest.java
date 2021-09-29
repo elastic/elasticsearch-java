@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,6 +41,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_data_frame_analytics.Request
@@ -69,6 +71,10 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		this.maxNumThreads = builder.maxNumThreads;
 		this.allowLazyStart = builder.allowLazyStart;
 
+	}
+
+	public UpdateDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -288,7 +294,7 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	/**
 	 * Endpoint "{@code ml.update_data_frame_analytics}".
 	 */
-	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -309,11 +315,11 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -321,5 +327,5 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateDataFrameAnalyticsResponse._DESERIALIZER);
 }

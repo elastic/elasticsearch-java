@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.FrequencyEncodingPreprocessor
@@ -54,8 +56,12 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.frequencyMap = Objects.requireNonNull(builder.frequencyMap, "frequency_map");
+		this.frequencyMap = ModelTypeHelper.unmodifiableNonNull(builder.frequencyMap, "frequency_map");
 
+	}
+
+	public FrequencyEncodingPreprocessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

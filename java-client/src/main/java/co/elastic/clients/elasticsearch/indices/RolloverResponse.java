@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.rollover.Response
@@ -59,13 +61,17 @@ public final class RolloverResponse extends AcknowledgedResponseBase {
 	public RolloverResponse(Builder builder) {
 		super(builder);
 
-		this.conditions = Objects.requireNonNull(builder.conditions, "conditions");
+		this.conditions = ModelTypeHelper.unmodifiableNonNull(builder.conditions, "conditions");
 		this.dryRun = Objects.requireNonNull(builder.dryRun, "dry_run");
 		this.newIndex = Objects.requireNonNull(builder.newIndex, "new_index");
 		this.oldIndex = Objects.requireNonNull(builder.oldIndex, "old_index");
 		this.rolledOver = Objects.requireNonNull(builder.rolledOver, "rolled_over");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
+	}
+
+	public RolloverResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

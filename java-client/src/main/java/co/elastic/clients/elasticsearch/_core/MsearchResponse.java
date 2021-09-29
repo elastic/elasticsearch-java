@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -60,9 +62,13 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 	public MsearchResponse(Builder<TDocument> builder) {
 
 		this.took = Objects.requireNonNull(builder.took, "took");
-		this.responses = Objects.requireNonNull(builder.responses, "responses");
+		this.responses = ModelTypeHelper.unmodifiableNonNull(builder.responses, "responses");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public MsearchResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -156,7 +162,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
 		 */
 		public Builder<TDocument> addResponses(JsonValue /*
 															 * Union(_global.msearch.SearchResult<_global.msearch.

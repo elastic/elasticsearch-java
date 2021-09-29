@@ -56,6 +56,10 @@ public final class TriggerEventResult implements JsonpSerializable {
 
 	}
 
+	public TriggerEventResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code manual}
 	 */

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
@@ -55,11 +57,15 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	public CommonGramsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.commonWords = Objects.requireNonNull(builder.commonWords, "common_words");
+		this.commonWords = ModelTypeHelper.unmodifiableNonNull(builder.commonWords, "common_words");
 		this.commonWordsPath = Objects.requireNonNull(builder.commonWordsPath, "common_words_path");
 		this.ignoreCase = Objects.requireNonNull(builder.ignoreCase, "ignore_case");
 		this.queryMode = Objects.requireNonNull(builder.queryMode, "query_mode");
 
+	}
+
+	public CommonGramsTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -155,7 +161,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * Add a value to {@link #commonWords(List)}, creating the list if needed.
+		 * Add a value to {@link #commonWords(List)}, creating the list if needed. 4
 		 */
 		public Builder addCommonWords(String value) {
 			if (this.commonWords == null) {

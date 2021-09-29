@@ -50,6 +50,10 @@ public final class ForgetFollowerResponse implements JsonpSerializable {
 
 	}
 
+	public ForgetFollowerResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code _shards}
 	 */

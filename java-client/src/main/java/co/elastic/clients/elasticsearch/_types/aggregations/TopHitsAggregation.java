@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -93,19 +94,23 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 	public TopHitsAggregation(Builder builder) {
 		super(builder);
 
-		this.docvalueFields = builder.docvalueFields;
+		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
 		this.explain = builder.explain;
 		this.from = builder.from;
 		this.highlight = builder.highlight;
-		this.scriptFields = builder.scriptFields;
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
 		this.size = builder.size;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.storedFields = builder.storedFields;
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
 
+	}
+
+	public TopHitsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -376,7 +381,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocvalueFields(String value) {
 			if (this.docvalueFields == null) {
@@ -475,7 +480,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -513,7 +518,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {

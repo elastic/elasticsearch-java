@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -53,10 +54,14 @@ public final class ShardProfile implements JsonpSerializable {
 
 	public ShardProfile(Builder builder) {
 
-		this.aggregations = Objects.requireNonNull(builder.aggregations, "aggregations");
+		this.aggregations = ModelTypeHelper.unmodifiableNonNull(builder.aggregations, "aggregations");
 		this.id = Objects.requireNonNull(builder.id, "id");
-		this.searches = Objects.requireNonNull(builder.searches, "searches");
+		this.searches = ModelTypeHelper.unmodifiableNonNull(builder.searches, "searches");
 
+	}
+
+	public ShardProfile(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -141,7 +146,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aggregations(List)}, creating the list if needed.
+		 * Add a value to {@link #aggregations(List)}, creating the list if needed. 4
 		 */
 		public Builder addAggregations(AggregationProfile value) {
 			if (this.aggregations == null) {
@@ -159,7 +164,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aggregations(List)}, creating the list if needed.
+		 * Add a value to {@link #aggregations(List)}, creating the list if needed. 5
 		 */
 		public Builder addAggregations(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
 			return this.addAggregations(fn.apply(new AggregationProfile.Builder()).build());
@@ -190,7 +195,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed.
+		 * Add a value to {@link #searches(List)}, creating the list if needed. 4
 		 */
 		public Builder addSearches(SearchProfile value) {
 			if (this.searches == null) {
@@ -208,7 +213,7 @@ public final class ShardProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed.
+		 * Add a value to {@link #searches(List)}, creating the list if needed. 5
 		 */
 		public Builder addSearches(Function<SearchProfile.Builder, ObjectBuilder<SearchProfile>> fn) {
 			return this.addSearches(fn.apply(new SearchProfile.Builder()).build());

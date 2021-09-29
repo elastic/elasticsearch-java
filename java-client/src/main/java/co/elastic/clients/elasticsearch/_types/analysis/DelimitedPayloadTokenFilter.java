@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DelimitedPayloadTokenFilter
@@ -50,6 +51,10 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 		this.delimiter = Objects.requireNonNull(builder.delimiter, "delimiter");
 		this.encoding = Objects.requireNonNull(builder.encoding, "encoding");
 
+	}
+
+	public DelimitedPayloadTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

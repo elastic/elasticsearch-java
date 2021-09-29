@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -66,10 +67,14 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		this.memoryBytes = builder.memoryBytes;
 		this.processingTimeMs = builder.processingTimeMs;
 		this.records = builder.records;
-		this.status = builder.status;
+		this.status = ModelTypeHelper.unmodifiable(builder.status);
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.forecastedJobs = Objects.requireNonNull(builder.forecastedJobs, "forecasted_jobs");
 
+	}
+
+	public JobForecastStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

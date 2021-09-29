@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ilm.move_to_step.StepKey;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -61,6 +62,10 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		this.currentStep = builder.currentStep;
 		this.nextStep = builder.nextStep;
 
+	}
+
+	public MoveToStepRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -200,7 +205,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code ilm.move_to_step}".
 	 */
-	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MoveToStepRequest, MoveToStepResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -220,10 +225,10 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 					buf.append("/_ilm");
 					buf.append("/move");
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -231,5 +236,5 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, MoveToStepResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MoveToStepResponse._DESERIALIZER);
 }

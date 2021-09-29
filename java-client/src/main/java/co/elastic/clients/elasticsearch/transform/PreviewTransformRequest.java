@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.reindex.Destination;
 import co.elastic.clients.elasticsearch._core.reindex.Source;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -527,7 +528,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code transform.preview_transform}".
 	 */
-	private static final Endpoint.Simple<PreviewTransformRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<PreviewTransformRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -547,7 +548,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_preview");
 					return buf.toString();
 				}
@@ -557,7 +558,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 					buf.append("/_preview");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -565,7 +566,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code transform.preview_transform}" endpoint.

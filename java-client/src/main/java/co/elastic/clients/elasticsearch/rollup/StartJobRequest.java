@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.start_job.Request
@@ -48,6 +50,10 @@ public final class StartJobRequest extends RequestBase {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 
+	}
+
+	public StartJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class StartJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.start_job}".
 	 */
-	public static final Endpoint<StartJobRequest, StartJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StartJobRequest, StartJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -114,11 +120,11 @@ public final class StartJobRequest extends RequestBase {
 					buf.append("/_rollup");
 					buf.append("/job");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_start");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -126,5 +132,5 @@ public final class StartJobRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, StartJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StartJobResponse._DESERIALIZER);
 }

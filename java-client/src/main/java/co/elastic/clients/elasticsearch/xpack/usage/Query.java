@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Query
@@ -60,6 +61,10 @@ public final class Query implements JsonpSerializable {
 		this.paging = builder.paging;
 		this.total = builder.total;
 
+	}
+
+	public Query(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

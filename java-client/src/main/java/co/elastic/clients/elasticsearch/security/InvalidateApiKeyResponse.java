@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -59,11 +60,16 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 	public InvalidateApiKeyResponse(Builder builder) {
 
 		this.errorCount = Objects.requireNonNull(builder.errorCount, "error_count");
-		this.errorDetails = builder.errorDetails;
-		this.invalidatedApiKeys = Objects.requireNonNull(builder.invalidatedApiKeys, "invalidated_api_keys");
-		this.previouslyInvalidatedApiKeys = Objects.requireNonNull(builder.previouslyInvalidatedApiKeys,
+		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
+		this.invalidatedApiKeys = ModelTypeHelper.unmodifiableNonNull(builder.invalidatedApiKeys,
+				"invalidated_api_keys");
+		this.previouslyInvalidatedApiKeys = ModelTypeHelper.unmodifiableNonNull(builder.previouslyInvalidatedApiKeys,
 				"previously_invalidated_api_keys");
 
+	}
+
+	public InvalidateApiKeyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -179,7 +185,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
+		 * Add a value to {@link #errorDetails(List)}, creating the list if needed. 4
 		 */
 		public Builder addErrorDetails(ErrorCause value) {
 			if (this.errorDetails == null) {
@@ -197,7 +203,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
+		 * Add a value to {@link #errorDetails(List)}, creating the list if needed. 5
 		 */
 		public Builder addErrorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addErrorDetails(fn.apply(new ErrorCause.Builder()).build());
@@ -221,7 +227,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #invalidatedApiKeys(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addInvalidatedApiKeys(String value) {
 			if (this.invalidatedApiKeys == null) {
@@ -249,7 +255,7 @@ public final class InvalidateApiKeyResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #previouslyInvalidatedApiKeys(List)}, creating the list
-		 * if needed.
+		 * if needed. 4
 		 */
 		public Builder addPreviouslyInvalidatedApiKeys(String value) {
 			if (this.previouslyInvalidatedApiKeys == null) {

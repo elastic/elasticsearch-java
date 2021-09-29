@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
@@ -63,6 +65,10 @@ public final class TransformsRequest extends CatRequestBase {
 		this.from = builder.from;
 		this.size = builder.size;
 
+	}
+
+	public TransformsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -184,7 +190,7 @@ public final class TransformsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.transforms}".
 	 */
-	public static final Endpoint<TransformsRequest, TransformsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TransformsRequest, TransformsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -211,10 +217,10 @@ public final class TransformsRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/transforms");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -232,5 +238,5 @@ public final class TransformsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, TransformsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, TransformsResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -63,8 +65,12 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
-		this.licenses = builder.licenses;
+		this.licenses = ModelTypeHelper.unmodifiable(builder.licenses);
 
+	}
+
+	public PostRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -181,7 +187,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed.
+		 * Add a value to {@link #licenses(List)}, creating the list if needed. 4
 		 */
 		public Builder addLicenses(License value) {
 			if (this.licenses == null) {
@@ -199,7 +205,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed.
+		 * Add a value to {@link #licenses(List)}, creating the list if needed. 5
 		 */
 		public Builder addLicenses(Function<License.Builder, ObjectBuilder<License>> fn) {
 			return this.addLicenses(fn.apply(new License.Builder()).build());
@@ -237,7 +243,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code license.post}".
 	 */
-	public static final Endpoint<PostRequest, PostResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostRequest, PostResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -258,5 +264,5 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PostResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PostResponse._DESERIALIZER);
 }

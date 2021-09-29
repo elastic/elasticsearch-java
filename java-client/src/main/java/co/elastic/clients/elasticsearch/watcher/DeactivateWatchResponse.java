@@ -49,6 +49,10 @@ public final class DeactivateWatchResponse implements JsonpSerializable {
 
 	}
 
+	public DeactivateWatchResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code status}
 	 */

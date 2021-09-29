@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -68,11 +69,15 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		this.attachPayload = Objects.requireNonNull(builder.attachPayload, "attach_payload");
 		this.client = Objects.requireNonNull(builder.client, "client");
 		this.clientUrl = Objects.requireNonNull(builder.clientUrl, "client_url");
-		this.context = Objects.requireNonNull(builder.context, "context");
+		this.context = ModelTypeHelper.unmodifiableNonNull(builder.context, "context");
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.eventType = Objects.requireNonNull(builder.eventType, "event_type");
 		this.incidentKey = Objects.requireNonNull(builder.incidentKey, "incident_key");
 
+	}
+
+	public PagerDutyEvent(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -244,7 +249,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #context(List)}, creating the list if needed.
+		 * Add a value to {@link #context(List)}, creating the list if needed. 4
 		 */
 		public Builder addContext(PagerDutyContext value) {
 			if (this.context == null) {
@@ -262,7 +267,7 @@ public final class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #context(List)}, creating the list if needed.
+		 * Add a value to {@link #context(List)}, creating the list if needed. 5
 		 */
 		public Builder addContext(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
 			return this.addContext(fn.apply(new PagerDutyContext.Builder()).build());

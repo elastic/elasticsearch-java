@@ -33,6 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.ShardMigrationStatus
@@ -46,6 +47,10 @@ public final class ShardMigrationStatus implements JsonpSerializable {
 
 		this.status = Objects.requireNonNull(builder.status, "status");
 
+	}
+
+	public ShardMigrationStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

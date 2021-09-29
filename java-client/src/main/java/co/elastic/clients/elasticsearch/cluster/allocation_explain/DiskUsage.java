@@ -36,6 +36,7 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.DiskUsage
@@ -64,6 +65,10 @@ public final class DiskUsage implements JsonpSerializable {
 		this.freeDiskPercent = Objects.requireNonNull(builder.freeDiskPercent, "free_disk_percent");
 		this.usedDiskPercent = Objects.requireNonNull(builder.usedDiskPercent, "used_disk_percent");
 
+	}
+
+	public DiskUsage(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

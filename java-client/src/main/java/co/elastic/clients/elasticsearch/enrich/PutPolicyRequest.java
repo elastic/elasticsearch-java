@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -60,6 +61,10 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		this.geoMatch = builder.geoMatch;
 		this.match = builder.match;
 
+	}
+
+	public PutPolicyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -199,7 +204,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code enrich.put_policy}".
 	 */
-	public static final Endpoint<PutPolicyRequest, PutPolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutPolicyRequest, PutPolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -219,10 +224,10 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 					buf.append("/_enrich");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -230,5 +235,5 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutPolicyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutPolicyResponse._DESERIALIZER);
 }

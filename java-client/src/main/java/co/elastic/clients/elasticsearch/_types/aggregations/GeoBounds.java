@@ -53,6 +53,10 @@ public final class GeoBounds implements JsonpSerializable {
 
 	}
 
+	public GeoBounds(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code bottom_right}
 	 */

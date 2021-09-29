@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestHighlight
@@ -50,6 +51,10 @@ public final class PhraseSuggestHighlight implements JsonpSerializable {
 		this.postTag = Objects.requireNonNull(builder.postTag, "post_tag");
 		this.preTag = Objects.requireNonNull(builder.preTag, "pre_tag");
 
+	}
+
+	public PhraseSuggestHighlight(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

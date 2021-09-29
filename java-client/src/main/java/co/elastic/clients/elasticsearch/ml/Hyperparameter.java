@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameter
@@ -63,6 +64,10 @@ public final class Hyperparameter implements JsonpSerializable {
 		this.supplied = Objects.requireNonNull(builder.supplied, "supplied");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public Hyperparameter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

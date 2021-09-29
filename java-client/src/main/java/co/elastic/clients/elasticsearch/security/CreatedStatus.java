@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security._types.CreatedStatus
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class CreatedStatus implements JsonpSerializable {
 
 		this.created = Objects.requireNonNull(builder.created, "created");
 
+	}
+
+	public CreatedStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -53,6 +53,10 @@ public final class WebhookResult implements JsonpSerializable {
 
 	}
 
+	public WebhookResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code request}
 	 */

@@ -35,6 +35,7 @@ import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Index
@@ -56,6 +57,10 @@ public final class Index implements JsonpSerializable {
 		this.docId = builder.docId;
 		this.refresh = builder.refresh;
 
+	}
+
+	public Index(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

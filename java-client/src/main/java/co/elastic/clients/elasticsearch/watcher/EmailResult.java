@@ -58,6 +58,10 @@ public final class EmailResult implements JsonpSerializable {
 
 	}
 
+	public EmailResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code account}
 	 */

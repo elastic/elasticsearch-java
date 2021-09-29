@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
@@ -53,9 +55,13 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	public ApplicationPrivilegesCheck(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
-		this.privileges = Objects.requireNonNull(builder.privileges, "privileges");
-		this.resources = Objects.requireNonNull(builder.resources, "resources");
+		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
+		this.resources = ModelTypeHelper.unmodifiableNonNull(builder.resources, "resources");
 
+	}
+
+	public ApplicationPrivilegesCheck(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -148,7 +154,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed.
+		 * Add a value to {@link #privileges(List)}, creating the list if needed. 4
 		 */
 		public Builder addPrivileges(String value) {
 			if (this.privileges == null) {
@@ -175,7 +181,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #resources(List)}, creating the list if needed.
+		 * Add a value to {@link #resources(List)}, creating the list if needed. 4
 		 */
 		public Builder addResources(String value) {
 			if (this.resources == null) {

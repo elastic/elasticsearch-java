@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -50,8 +53,12 @@ public final class GetPipelineRequest extends RequestBase {
 
 	public GetPipelineRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ModelTypeHelper.unmodifiableNonNull(builder.id, "id");
 
+	}
+
+	public GetPipelineRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -92,7 +99,7 @@ public final class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #id(List)}, creating the list if needed.
+		 * Add a value to {@link #id(List)}, creating the list if needed. 4
 		 */
 		public Builder addId(String value) {
 			if (this.id == null) {
@@ -119,7 +126,7 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code logstash.get_pipeline}".
 	 */
-	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -139,10 +146,10 @@ public final class GetPipelineRequest extends RequestBase {
 					buf.append("/_logstash");
 					buf.append("/pipeline");
 					buf.append("/");
-					buf.append(request.id.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.id.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -150,5 +157,5 @@ public final class GetPipelineRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetPipelineResponse._DESERIALIZER);
 }

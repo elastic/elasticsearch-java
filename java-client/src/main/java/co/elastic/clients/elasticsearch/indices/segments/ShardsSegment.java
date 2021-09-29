@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -58,8 +59,12 @@ public final class ShardsSegment implements JsonpSerializable {
 		this.numCommittedSegments = Objects.requireNonNull(builder.numCommittedSegments, "num_committed_segments");
 		this.routing = Objects.requireNonNull(builder.routing, "routing");
 		this.numSearchSegments = Objects.requireNonNull(builder.numSearchSegments, "num_search_segments");
-		this.segments = Objects.requireNonNull(builder.segments, "segments");
+		this.segments = ModelTypeHelper.unmodifiableNonNull(builder.segments, "segments");
 
+	}
+
+	public ShardsSegment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

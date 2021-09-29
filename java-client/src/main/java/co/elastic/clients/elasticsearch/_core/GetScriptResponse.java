@@ -59,6 +59,10 @@ public final class GetScriptResponse implements JsonpSerializable {
 
 	}
 
+	public GetScriptResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code _id}
 	 */

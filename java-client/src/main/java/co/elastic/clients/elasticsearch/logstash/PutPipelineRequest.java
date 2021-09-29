@@ -23,11 +23,12 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,15 +48,19 @@ import javax.annotation.Nullable;
 public final class PutPipelineRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
-	private final Pipeline value;
+	private final Pipeline pipeline;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutPipelineRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.pipeline = Objects.requireNonNull(builder.pipeline, "_value_body");
 
+	}
+
+	public PutPipelineRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -70,17 +75,17 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public Pipeline value() {
-		return this.value;
+	public Pipeline pipeline() {
+		return this.pipeline;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.pipeline.serialize(generator, mapper);
 
 	}
 
@@ -92,7 +97,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	public static class Builder implements ObjectBuilder<PutPipelineRequest> {
 		private String id;
 
-		private Pipeline value;
+		private Pipeline pipeline;
 
 		/**
 		 * The ID of the Pipeline
@@ -107,20 +112,20 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Pipeline value) {
-			this.value = value;
+		public Builder pipeline(Pipeline value) {
+			this.pipeline = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
-			return this.value(fn.apply(new Pipeline.Builder()).build());
+		public Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
 		}
 
 		/**
@@ -135,18 +140,13 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutPipelineRequest> _DESERIALIZER = createPutPipelineRequestDeserializer();
+	protected static JsonpDeserializer<PutPipelineRequest> createPutPipelineRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PutPipelineRequest}
-	 */
-	public static final JsonpDeserializer<PutPipelineRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPipelineRequest::setupPutPipelineRequestDeserializer, Builder::build);
+		JsonpDeserializer<Pipeline> valueDeserializer = Pipeline._DESERIALIZER;
 
-	protected static void setupPutPipelineRequestDeserializer(DelegatingDeserializer<PutPipelineRequest.Builder> op) {
-
-		op.add(Builder::value, Pipeline._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.pipeline(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code logstash.put_pipeline}".
 	 */
-	public static final Endpoint<PutPipelineRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<PutPipelineRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -174,10 +174,10 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 					buf.append("/_logstash");
 					buf.append("/pipeline");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -185,5 +185,5 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 }

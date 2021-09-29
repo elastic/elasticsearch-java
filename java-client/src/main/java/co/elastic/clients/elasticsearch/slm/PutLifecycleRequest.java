@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -81,6 +82,10 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;
 
+	}
+
+	public PutLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -382,7 +387,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code slm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -402,10 +407,10 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 					buf.append("/_slm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policyId);
+					SimpleEndpoint.pathEncode(request.policyId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -420,5 +425,5 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

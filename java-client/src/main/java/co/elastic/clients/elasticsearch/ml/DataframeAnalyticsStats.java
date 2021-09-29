@@ -75,6 +75,10 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 
 	}
 
+	public DataframeAnalyticsStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code classification_stats} variant value.
 	 *
@@ -121,44 +125,44 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<DataframeAnalyticsStats> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(DataframeAnalyticsStatsHyperparameters v) {
+		public Builder classificationStats(DataframeAnalyticsStatsHyperparameters v) {
 			this._type = CLASSIFICATION_STATS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalyticsStats> classificationStats(
+		public Builder classificationStats(
 				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> f) {
 			return this.classificationStats(f.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
+		public Builder outlierDetectionStats(DataframeAnalyticsStatsOutlierDetection v) {
 			this._type = OUTLIER_DETECTION_STATS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalyticsStats> outlierDetectionStats(
+		public Builder outlierDetectionStats(
 				Function<DataframeAnalyticsStatsOutlierDetection.Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> f) {
 			return this.outlierDetectionStats(f.apply(new DataframeAnalyticsStatsOutlierDetection.Builder()).build());
 		}
 
-		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(DataframeAnalyticsStatsHyperparameters v) {
+		public Builder regressionStats(DataframeAnalyticsStatsHyperparameters v) {
 			this._type = REGRESSION_STATS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<DataframeAnalyticsStats> regressionStats(
+		public Builder regressionStats(
 				Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> f) {
 			return this.regressionStats(f.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
 		}
 
-		protected DataframeAnalyticsStats build() {
+		public DataframeAnalyticsStats build() {
 			return new DataframeAnalyticsStats(this);
 		}
 

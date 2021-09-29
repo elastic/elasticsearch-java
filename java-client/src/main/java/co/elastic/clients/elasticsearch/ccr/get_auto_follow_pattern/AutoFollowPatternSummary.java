@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.AutoFollowPatternSummary
@@ -64,12 +66,17 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		this.active = Objects.requireNonNull(builder.active, "active");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = Objects.requireNonNull(builder.leaderIndexPatterns, "leader_index_patterns");
-		this.leaderIndexExclusionPatterns = Objects.requireNonNull(builder.leaderIndexExclusionPatterns,
+		this.leaderIndexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.leaderIndexPatterns,
+				"leader_index_patterns");
+		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiableNonNull(builder.leaderIndexExclusionPatterns,
 				"leader_index_exclusion_patterns");
 		this.maxOutstandingReadRequests = Objects.requireNonNull(builder.maxOutstandingReadRequests,
 				"max_outstanding_read_requests");
 
+	}
+
+	public AutoFollowPatternSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -243,7 +250,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addLeaderIndexPatterns(String value) {
 			if (this.leaderIndexPatterns == null) {
@@ -277,7 +284,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
-		 * if needed.
+		 * if needed. 4
 		 */
 		public Builder addLeaderIndexExclusionPatterns(String value) {
 			if (this.leaderIndexExclusionPatterns == null) {

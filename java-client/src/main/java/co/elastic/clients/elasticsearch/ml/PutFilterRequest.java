@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,6 +43,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_filter.Request
@@ -60,8 +63,12 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
 		this.description = builder.description;
-		this.items = builder.items;
+		this.items = ModelTypeHelper.unmodifiable(builder.items);
 
+	}
+
+	public PutFilterRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -169,7 +176,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
+		 * Add a value to {@link #items(List)}, creating the list if needed. 4
 		 */
 		public Builder addItems(String value) {
 			if (this.items == null) {
@@ -211,7 +218,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.put_filter}".
 	 */
-	public static final Endpoint<PutFilterRequest, PutFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutFilterRequest, PutFilterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -231,10 +238,10 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 					buf.append("/_ml");
 					buf.append("/filters");
 					buf.append("/");
-					buf.append(request.filterId);
+					SimpleEndpoint.pathEncode(request.filterId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -242,5 +249,5 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutFilterResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutFilterResponse._DESERIALIZER);
 }

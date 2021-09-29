@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -57,11 +58,15 @@ public final class DeprecationsResponse implements JsonpSerializable {
 
 	public DeprecationsResponse(Builder builder) {
 
-		this.clusterSettings = Objects.requireNonNull(builder.clusterSettings, "cluster_settings");
-		this.indexSettings = Objects.requireNonNull(builder.indexSettings, "index_settings");
-		this.nodeSettings = Objects.requireNonNull(builder.nodeSettings, "node_settings");
-		this.mlSettings = Objects.requireNonNull(builder.mlSettings, "ml_settings");
+		this.clusterSettings = ModelTypeHelper.unmodifiableNonNull(builder.clusterSettings, "cluster_settings");
+		this.indexSettings = ModelTypeHelper.unmodifiableNonNull(builder.indexSettings, "index_settings");
+		this.nodeSettings = ModelTypeHelper.unmodifiableNonNull(builder.nodeSettings, "node_settings");
+		this.mlSettings = ModelTypeHelper.unmodifiableNonNull(builder.mlSettings, "ml_settings");
 
+	}
+
+	public DeprecationsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -174,7 +179,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed.
+		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed. 4
 		 */
 		public Builder addClusterSettings(Deprecation value) {
 			if (this.clusterSettings == null) {
@@ -192,7 +197,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed.
+		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed. 5
 		 */
 		public Builder addClusterSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
 			return this.addClusterSettings(fn.apply(new Deprecation.Builder()).build());
@@ -234,7 +239,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeSettings(Deprecation value) {
 			if (this.nodeSettings == null) {
@@ -252,7 +257,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed. 5
 		 */
 		public Builder addNodeSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
 			return this.addNodeSettings(fn.apply(new Deprecation.Builder()).build());
@@ -275,7 +280,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #mlSettings(List)}, creating the list if needed.
+		 * Add a value to {@link #mlSettings(List)}, creating the list if needed. 4
 		 */
 		public Builder addMlSettings(Deprecation value) {
 			if (this.mlSettings == null) {
@@ -293,7 +298,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #mlSettings(List)}, creating the list if needed.
+		 * Add a value to {@link #mlSettings(List)}, creating the list if needed. 5
 		 */
 		public Builder addMlSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
 			return this.addMlSettings(fn.apply(new Deprecation.Builder()).build());

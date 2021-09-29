@@ -53,6 +53,10 @@ public final class KeyedProcessor implements JsonpSerializable {
 
 	}
 
+	public KeyedProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code statistics}
 	 */

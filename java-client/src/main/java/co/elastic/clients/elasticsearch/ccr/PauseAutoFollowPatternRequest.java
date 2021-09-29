@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.pause_auto_follow_pattern.Request
@@ -48,6 +50,10 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public PauseAutoFollowPatternRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -96,7 +102,7 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.pause_auto_follow_pattern}".
 	 */
-	public static final Endpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -116,11 +122,11 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 					buf.append("/_ccr");
 					buf.append("/auto_follow");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					buf.append("/pause");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -128,5 +134,5 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, PauseAutoFollowPatternResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PauseAutoFollowPatternResponse._DESERIALIZER);
 }

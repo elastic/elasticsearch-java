@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -33,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cat.nodeattrs.Request
 
@@ -50,7 +52,7 @@ public final class NodeattrsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodeattrs}".
 	 */
-	public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -67,5 +69,5 @@ public final class NodeattrsRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
 }

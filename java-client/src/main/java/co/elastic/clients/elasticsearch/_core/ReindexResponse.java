@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -103,7 +104,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		this.batches = builder.batches;
 		this.created = builder.created;
 		this.deleted = builder.deleted;
-		this.failures = builder.failures;
+		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
 		this.noops = builder.noops;
 		this.retries = builder.retries;
 		this.requestsPerSecond = builder.requestsPerSecond;
@@ -117,6 +118,10 @@ public final class ReindexResponse implements JsonpSerializable {
 		this.updated = builder.updated;
 		this.versionConflicts = builder.versionConflicts;
 
+	}
+
+	public ReindexResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -457,7 +462,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
 		 */
 		public Builder addFailures(BulkIndexByScrollFailure value) {
 			if (this.failures == null) {
@@ -476,7 +481,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
 		 */
 		public Builder addFailures(
 				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {

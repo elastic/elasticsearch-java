@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,6 +37,7 @@ import java.lang.Long;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Monitoring
@@ -51,8 +53,12 @@ public final class Monitoring extends Base {
 		super(builder);
 
 		this.collectionEnabled = Objects.requireNonNull(builder.collectionEnabled, "collection_enabled");
-		this.enabledExporters = Objects.requireNonNull(builder.enabledExporters, "enabled_exporters");
+		this.enabledExporters = ModelTypeHelper.unmodifiableNonNull(builder.enabledExporters, "enabled_exporters");
 
+	}
+
+	public Monitoring(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

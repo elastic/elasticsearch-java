@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -52,8 +53,12 @@ public final class TotalFeatureImportanceClass implements JsonpSerializable {
 	public TotalFeatureImportanceClass(Builder builder) {
 
 		this.className = Objects.requireNonNull(builder.className, "class_name");
-		this.importance = Objects.requireNonNull(builder.importance, "importance");
+		this.importance = ModelTypeHelper.unmodifiableNonNull(builder.importance, "importance");
 
+	}
+
+	public TotalFeatureImportanceClass(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -142,7 +147,7 @@ public final class TotalFeatureImportanceClass implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #importance(List)}, creating the list if needed.
+		 * Add a value to {@link #importance(List)}, creating the list if needed. 4
 		 */
 		public Builder addImportance(TotalFeatureImportanceStatistics value) {
 			if (this.importance == null) {
@@ -161,7 +166,7 @@ public final class TotalFeatureImportanceClass implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #importance(List)}, creating the list if needed.
+		 * Add a value to {@link #importance(List)}, creating the list if needed. 5
 		 */
 		public Builder addImportance(
 				Function<TotalFeatureImportanceStatistics.Builder, ObjectBuilder<TotalFeatureImportanceStatistics>> fn) {

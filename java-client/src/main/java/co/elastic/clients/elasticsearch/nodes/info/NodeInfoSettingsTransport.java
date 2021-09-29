@@ -58,6 +58,10 @@ public final class NodeInfoSettingsTransport implements JsonpSerializable {
 
 	}
 
+	public NodeInfoSettingsTransport(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code type}
 	 */

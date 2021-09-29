@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
@@ -53,10 +55,14 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	public KeepWordsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.keepWords = Objects.requireNonNull(builder.keepWords, "keep_words");
+		this.keepWords = ModelTypeHelper.unmodifiableNonNull(builder.keepWords, "keep_words");
 		this.keepWordsCase = Objects.requireNonNull(builder.keepWordsCase, "keep_words_case");
 		this.keepWordsPath = Objects.requireNonNull(builder.keepWordsPath, "keep_words_path");
 
+	}
+
+	public KeepWordsTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -140,7 +146,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * Add a value to {@link #keepWords(List)}, creating the list if needed.
+		 * Add a value to {@link #keepWords(List)}, creating the list if needed. 4
 		 */
 		public Builder addKeepWords(String value) {
 			if (this.keepWords == null) {

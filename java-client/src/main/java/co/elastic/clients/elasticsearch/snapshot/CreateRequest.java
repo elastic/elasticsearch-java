@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -44,6 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create.Request
@@ -87,11 +90,15 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		this.waitForCompletion = builder.waitForCompletion;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeGlobalState = builder.includeGlobalState;
-		this.indices = builder.indices;
-		this.featureStates = builder.featureStates;
-		this.metadata = builder.metadata;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
 
+	}
+
+	public CreateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -406,7 +413,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -447,7 +454,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureStates(String value) {
 			if (this.featureStates == null) {
@@ -531,7 +538,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code snapshot.create}".
 	 */
-	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateRequest, CreateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -552,12 +559,12 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -572,5 +579,5 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateResponse._DESERIALIZER);
 }

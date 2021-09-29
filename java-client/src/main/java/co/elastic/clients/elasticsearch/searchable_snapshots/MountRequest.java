@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -44,6 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.mount.Request
@@ -84,9 +87,13 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 		this.storage = builder.storage;
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.renamedIndex = builder.renamedIndex;
-		this.indexSettings = builder.indexSettings;
-		this.ignoreIndexSettings = builder.ignoreIndexSettings;
+		this.indexSettings = ModelTypeHelper.unmodifiable(builder.indexSettings);
+		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 
+	}
+
+	public MountRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -349,7 +356,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * Add a value to {@link #ignoreIndexSettings(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addIgnoreIndexSettings(String value) {
 			if (this.ignoreIndexSettings == null) {
@@ -395,7 +402,7 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code searchable_snapshots.mount}".
 	 */
-	public static final Endpoint<MountRequest, MountResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MountRequest, MountResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -416,13 +423,13 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					buf.append("/_mount");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -440,5 +447,5 @@ public final class MountRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, MountResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, MountResponse._DESERIALIZER);
 }

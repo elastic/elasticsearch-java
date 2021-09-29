@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,6 +43,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -54,8 +57,12 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 
 	public ClearScrollRequest(Builder builder) {
 
-		this.scrollId = builder.scrollId;
+		this.scrollId = ModelTypeHelper.unmodifiable(builder.scrollId);
 
+	}
+
+	public ClearScrollRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -111,7 +118,7 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #scrollId(List)}, creating the list if needed.
+		 * Add a value to {@link #scrollId(List)}, creating the list if needed. 4
 		 */
 		public Builder addScrollId(String value) {
 			if (this.scrollId == null) {
@@ -150,7 +157,7 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code clear_scroll}".
 	 */
-	public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearScrollRequest, ClearScrollResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -177,10 +184,11 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 					buf.append("/_search");
 					buf.append("/scroll");
 					buf.append("/");
-					buf.append(request.scrollId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.scrollId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -188,5 +196,5 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ClearScrollResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ClearScrollResponse._DESERIALIZER);
 }

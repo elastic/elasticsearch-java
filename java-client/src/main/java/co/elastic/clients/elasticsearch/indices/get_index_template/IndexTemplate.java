@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -73,15 +74,19 @@ public final class IndexTemplate implements JsonpSerializable {
 
 	public IndexTemplate(Builder builder) {
 
-		this.indexPatterns = Objects.requireNonNull(builder.indexPatterns, "index_patterns");
-		this.composedOf = Objects.requireNonNull(builder.composedOf, "composed_of");
+		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
+		this.composedOf = ModelTypeHelper.unmodifiableNonNull(builder.composedOf, "composed_of");
 		this.template = Objects.requireNonNull(builder.template, "template");
 		this.version = builder.version;
 		this.priority = builder.priority;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.allowAutoCreate = builder.allowAutoCreate;
-		this.dataStream = builder.dataStream;
+		this.dataStream = ModelTypeHelper.unmodifiable(builder.dataStream);
 
+	}
+
+	public IndexTemplate(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -264,7 +269,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -291,7 +296,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
+		 * Add a value to {@link #composedOf(List)}, creating the list if needed. 4
 		 */
 		public Builder addComposedOf(String value) {
 			if (this.composedOf == null) {
@@ -343,7 +348,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}

@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Document
@@ -56,6 +57,10 @@ public final class Document implements JsonpSerializable {
 		this.index = builder.index;
 		this.source = Objects.requireNonNull(builder.source, "_source");
 
+	}
+
+	public Document(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

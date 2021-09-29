@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -79,13 +80,17 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		this.email = builder.email;
 		this.fullName = builder.fullName;
 		this.lookupRealm = Objects.requireNonNull(builder.lookupRealm, "lookup_realm");
-		this.metadata = Objects.requireNonNull(builder.metadata, "metadata");
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.username = Objects.requireNonNull(builder.username, "username");
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
 		this.authenticationType = Objects.requireNonNull(builder.authenticationType, "authentication_type");
 		this.token = builder.token;
 
+	}
+
+	public AuthenticateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -337,7 +342,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.CharFilterDetail
@@ -50,9 +52,13 @@ public final class CharFilterDetail implements JsonpSerializable {
 
 	public CharFilterDetail(Builder builder) {
 
-		this.filteredText = Objects.requireNonNull(builder.filteredText, "filtered_text");
+		this.filteredText = ModelTypeHelper.unmodifiableNonNull(builder.filteredText, "filtered_text");
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public CharFilterDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -120,7 +126,7 @@ public final class CharFilterDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filteredText(List)}, creating the list if needed.
+		 * Add a value to {@link #filteredText(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilteredText(String value) {
 			if (this.filteredText == null) {

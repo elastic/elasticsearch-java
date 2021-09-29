@@ -83,6 +83,10 @@ public final class SnapshotLifecycle implements JsonpSerializable {
 
 	}
 
+	public SnapshotLifecycle(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code in_progress}
 	 */

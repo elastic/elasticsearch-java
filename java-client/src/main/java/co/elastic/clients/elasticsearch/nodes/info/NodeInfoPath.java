@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
@@ -57,9 +59,13 @@ public final class NodeInfoPath implements JsonpSerializable {
 
 		this.logs = Objects.requireNonNull(builder.logs, "logs");
 		this.home = Objects.requireNonNull(builder.home, "home");
-		this.repo = Objects.requireNonNull(builder.repo, "repo");
-		this.data = builder.data;
+		this.repo = ModelTypeHelper.unmodifiableNonNull(builder.repo, "repo");
+		this.data = ModelTypeHelper.unmodifiable(builder.data);
 
+	}
+
+	public NodeInfoPath(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -178,7 +184,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #repo(List)}, creating the list if needed.
+		 * Add a value to {@link #repo(List)}, creating the list if needed. 4
 		 */
 		public Builder addRepo(String value) {
 			if (this.repo == null) {
@@ -205,7 +211,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
+		 * Add a value to {@link #data(List)}, creating the list if needed. 4
 		 */
 		public Builder addData(String value) {
 			if (this.data == null) {

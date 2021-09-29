@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.BulkStats
@@ -76,6 +77,10 @@ public final class BulkStats implements JsonpSerializable {
 		this.avgSize = builder.avgSize;
 		this.avgSizeInBytes = Objects.requireNonNull(builder.avgSizeInBytes, "avg_size_in_bytes");
 
+	}
+
+	public BulkStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

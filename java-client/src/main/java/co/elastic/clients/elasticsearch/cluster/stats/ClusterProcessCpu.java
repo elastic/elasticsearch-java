@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessCpu
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 
 		this.percent = Objects.requireNonNull(builder.percent, "percent");
 
+	}
+
+	public ClusterProcessCpu(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

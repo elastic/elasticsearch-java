@@ -43,7 +43,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	// ----- Endpoint: shutdown.delete_node
 
 	/**
-	 * Removes a node from the shutdown list
+	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
+	 * and ECK. Direct use is not supported.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
@@ -55,7 +56,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	}
 
 	/**
-	 * Removes a node from the shutdown list
+	 * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
+	 * and ECK. Direct use is not supported.
 	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
@@ -74,7 +76,9 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	// ----- Endpoint: shutdown.get_node
 
 	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting down
+	 * Retrieve status of a node or nodes that are currently marked as shutting
+	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+	 * supported.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
@@ -86,7 +90,9 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	}
 
 	/**
-	 * Retrieve status of a node or nodes that are currently marked as shutting down
+	 * Retrieve status of a node or nodes that are currently marked as shutting
+	 * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+	 * supported.
 	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
@@ -105,7 +111,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	// ----- Endpoint: shutdown.put_node
 
 	/**
-	 * Adds a node to be shut down
+	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
+	 * Direct use is not supported.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current">Documentation
@@ -117,7 +124,8 @@ public class ElasticsearchShutdownAsyncClient extends ApiClient {
 	}
 
 	/**
-	 * Adds a node to be shut down
+	 * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
+	 * Direct use is not supported.
 	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This

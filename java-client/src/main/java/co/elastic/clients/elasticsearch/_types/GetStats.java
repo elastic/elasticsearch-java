@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.GetStats
@@ -78,6 +79,10 @@ public final class GetStats implements JsonpSerializable {
 		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public GetStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

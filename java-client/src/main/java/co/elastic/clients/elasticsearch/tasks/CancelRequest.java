@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.tasks;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -66,11 +69,15 @@ public final class CancelRequest extends RequestBase {
 	public CancelRequest(Builder builder) {
 
 		this.taskId = builder.taskId;
-		this.actions = builder.actions;
-		this.nodes = builder.nodes;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
+		this.nodes = ModelTypeHelper.unmodifiable(builder.nodes);
 		this.parentTaskId = builder.parentTaskId;
 		this.waitForCompletion = builder.waitForCompletion;
 
+	}
+
+	public CancelRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -182,7 +189,7 @@ public final class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {
@@ -217,7 +224,7 @@ public final class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
+		 * Add a value to {@link #nodes(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodes(String value) {
 			if (this.nodes == null) {
@@ -266,7 +273,7 @@ public final class CancelRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.cancel}".
 	 */
-	public static final Endpoint<CancelRequest, CancelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CancelRequest, CancelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -292,11 +299,11 @@ public final class CancelRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_tasks");
 					buf.append("/");
-					buf.append(request.taskId);
+					SimpleEndpoint.pathEncode(request.taskId, buf);
 					buf.append("/_cancel");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -317,5 +324,5 @@ public final class CancelRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, CancelResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, CancelResponse._DESERIALIZER);
 }

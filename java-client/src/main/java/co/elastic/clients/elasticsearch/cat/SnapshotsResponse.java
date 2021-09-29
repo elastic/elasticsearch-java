@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.snapshots.SnapshotsRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.snapshots.Response
 @JsonpDeserializable
 public final class SnapshotsResponse implements JsonpSerializable {
-	private final List<SnapshotsRecord> value;
+	private final List<SnapshotsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public SnapshotsResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public SnapshotsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<SnapshotsRecord> value() {
-		return this.value;
+	public List<SnapshotsRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class SnapshotsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (SnapshotsRecord item0 : this.value) {
+		for (SnapshotsRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class SnapshotsResponse implements JsonpSerializable {
 	 * Builder for {@link SnapshotsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<SnapshotsResponse> {
-		private List<SnapshotsRecord> value;
+		private List<SnapshotsRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<SnapshotsRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<SnapshotsRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(SnapshotsRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(SnapshotsRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(SnapshotsRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(SnapshotsRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
-			return this.value(fn.apply(new SnapshotsRecord.Builder()).build());
+		public Builder valueBody(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
+			return this.valueBody(fn.apply(new SnapshotsRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
-			return this.addValue(fn.apply(new SnapshotsRecord.Builder()).build());
+		public Builder addValueBody(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
+			return this.addValueBody(fn.apply(new SnapshotsRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class SnapshotsResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<SnapshotsResponse> _DESERIALIZER = createSnapshotsResponseDeserializer();
+	protected static JsonpDeserializer<SnapshotsResponse> createSnapshotsResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link SnapshotsResponse}
-	 */
-	public static final JsonpDeserializer<SnapshotsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnapshotsResponse::setupSnapshotsResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<SnapshotsRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(SnapshotsRecord._DESERIALIZER);
 
-	protected static void setupSnapshotsResponseDeserializer(DelegatingDeserializer<SnapshotsResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(SnapshotsRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

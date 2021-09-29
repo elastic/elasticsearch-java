@@ -52,6 +52,10 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 
 	}
 
+	public NodeInfoXpackSecurityAuthc(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code realms}
 	 */

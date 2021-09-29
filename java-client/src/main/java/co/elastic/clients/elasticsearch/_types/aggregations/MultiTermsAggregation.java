@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 	public MultiTermsAggregation(Builder builder) {
 		super(builder);
 
-		this.terms = Objects.requireNonNull(builder.terms, "terms");
+		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
 
+	}
+
+	public MultiTermsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -108,7 +113,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
+		 * Add a value to {@link #terms(List)}, creating the list if needed. 4
 		 */
 		public Builder addTerms(MultiTermLookup value) {
 			if (this.terms == null) {
@@ -126,7 +131,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
+		 * Add a value to {@link #terms(List)}, creating the list if needed. 5
 		 */
 		public Builder addTerms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
 			return this.addTerms(fn.apply(new MultiTermLookup.Builder()).build());

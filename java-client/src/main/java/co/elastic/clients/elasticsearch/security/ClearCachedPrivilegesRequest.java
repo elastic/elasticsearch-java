@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Request
@@ -48,6 +50,10 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
 
+	}
+
+	public ClearCachedPrivilegesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_privileges}".
 	 */
-	public static final Endpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -114,11 +120,11 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					buf.append(request.application);
+					SimpleEndpoint.pathEncode(request.application, buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -126,5 +132,5 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedPrivilegesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedPrivilegesResponse._DESERIALIZER);
 }

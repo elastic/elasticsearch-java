@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -59,12 +60,16 @@ public final class ExploreResponse implements JsonpSerializable {
 
 	public ExploreResponse(Builder builder) {
 
-		this.connections = Objects.requireNonNull(builder.connections, "connections");
-		this.failures = Objects.requireNonNull(builder.failures, "failures");
+		this.connections = ModelTypeHelper.unmodifiableNonNull(builder.connections, "connections");
+		this.failures = ModelTypeHelper.unmodifiableNonNull(builder.failures, "failures");
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.took = Objects.requireNonNull(builder.took, "took");
-		this.vertices = Objects.requireNonNull(builder.vertices, "vertices");
+		this.vertices = ModelTypeHelper.unmodifiableNonNull(builder.vertices, "vertices");
 
+	}
+
+	public ExploreResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -178,7 +183,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #connections(List)}, creating the list if needed.
+		 * Add a value to {@link #connections(List)}, creating the list if needed. 4
 		 */
 		public Builder addConnections(Connection value) {
 			if (this.connections == null) {
@@ -196,7 +201,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #connections(List)}, creating the list if needed.
+		 * Add a value to {@link #connections(List)}, creating the list if needed. 5
 		 */
 		public Builder addConnections(Function<Connection.Builder, ObjectBuilder<Connection>> fn) {
 			return this.addConnections(fn.apply(new Connection.Builder()).build());
@@ -219,7 +224,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
 		 */
 		public Builder addFailures(ShardFailure value) {
 			if (this.failures == null) {
@@ -237,7 +242,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
 		 */
 		public Builder addFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return this.addFailures(fn.apply(new ShardFailure.Builder()).build());
@@ -276,7 +281,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Add a value to {@link #vertices(List)}, creating the list if needed. 4
 		 */
 		public Builder addVertices(Vertex value) {
 			if (this.vertices == null) {
@@ -294,7 +299,7 @@ public final class ExploreResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Add a value to {@link #vertices(List)}, creating the list if needed. 5
 		 */
 		public Builder addVertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
 			return this.addVertices(fn.apply(new Vertex.Builder()).build());

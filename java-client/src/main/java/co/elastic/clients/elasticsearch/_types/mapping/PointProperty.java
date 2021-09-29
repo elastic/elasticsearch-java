@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.PointProperty
@@ -57,6 +58,10 @@ public final class PointProperty extends DocValuesPropertyBase implements Proper
 		this.ignoreZValue = builder.ignoreZValue;
 		this.nullValue = builder.nullValue;
 
+	}
+
+	public PointProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,6 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
@@ -51,6 +53,10 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 		this.policy = Objects.requireNonNull(builder.policy, "policy");
 
+	}
+
+	public PutLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -122,7 +128,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ilm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -142,10 +148,10 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policy);
+					SimpleEndpoint.pathEncode(request.policy, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -153,5 +159,5 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

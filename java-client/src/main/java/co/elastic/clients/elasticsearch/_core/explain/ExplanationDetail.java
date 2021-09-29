@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
@@ -56,9 +57,13 @@ public final class ExplanationDetail implements JsonpSerializable {
 	public ExplanationDetail(Builder builder) {
 
 		this.description = Objects.requireNonNull(builder.description, "description");
-		this.details = builder.details;
+		this.details = ModelTypeHelper.unmodifiable(builder.details);
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public ExplanationDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -152,7 +157,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * Add a value to {@link #details(List)}, creating the list if needed. 4
 		 */
 		public Builder addDetails(ExplanationDetail value) {
 			if (this.details == null) {
@@ -170,7 +175,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * Add a value to {@link #details(List)}, creating the list if needed. 5
 		 */
 		public Builder addDetails(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
 			return this.addDetails(fn.apply(new ExplanationDetail.Builder()).build());

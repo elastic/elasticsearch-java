@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,6 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -83,7 +85,7 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 	public GetResponse(Builder<TDocument> builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.found = Objects.requireNonNull(builder.found, "found");
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.primaryTerm = builder.primaryTerm;
@@ -94,6 +96,10 @@ public final class GetResponse<TDocument> implements JsonpSerializable {
 		this.version = builder.version;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public GetResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

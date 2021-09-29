@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStartStatus
@@ -51,6 +52,10 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		this.checkIndexTime = Objects.requireNonNull(builder.checkIndexTime, "check_index_time");
 		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
 
+	}
+
+	public RecoveryStartStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

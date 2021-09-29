@@ -53,6 +53,10 @@ public final class AutoFollowPattern implements JsonpSerializable {
 
 	}
 
+	public AutoFollowPattern(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code name}
 	 */

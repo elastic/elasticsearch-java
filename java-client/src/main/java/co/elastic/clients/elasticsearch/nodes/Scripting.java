@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: nodes._types.Scripting
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class Scripting implements JsonpSerializable {
 		this.cacheEvictions = Objects.requireNonNull(builder.cacheEvictions, "cache_evictions");
 		this.compilations = Objects.requireNonNull(builder.compilations, "compilations");
 
+	}
+
+	public Scripting(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

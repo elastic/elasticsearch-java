@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AllField
@@ -78,6 +79,10 @@ public final class AllField implements JsonpSerializable {
 				"store_term_vector_positions");
 		this.storeTermVectors = Objects.requireNonNull(builder.storeTermVectors, "store_term_vectors");
 
+	}
+
+	public AllField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

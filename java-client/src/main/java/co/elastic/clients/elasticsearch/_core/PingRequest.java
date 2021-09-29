@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch._core;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +37,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _global.ping.Request
 
@@ -52,7 +55,7 @@ public final class PingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ping}".
 	 */
-	public static final Endpoint<PingRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<PingRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -69,5 +72,5 @@ public final class PingRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

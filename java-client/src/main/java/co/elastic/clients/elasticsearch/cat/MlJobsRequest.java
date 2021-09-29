@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
@@ -59,6 +61,10 @@ public final class MlJobsRequest extends CatRequestBase {
 		this.allowNoJobs = builder.allowNoJobs;
 		this.bytes = builder.bytes;
 
+	}
+
+	public MlJobsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -155,7 +161,7 @@ public final class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_jobs}".
 	 */
-	public static final Endpoint<MlJobsRequest, MlJobsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MlJobsRequest, MlJobsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -184,10 +190,10 @@ public final class MlJobsRequest extends CatRequestBase {
 					buf.append("/ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -202,5 +208,5 @@ public final class MlJobsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, MlJobsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, MlJobsResponse._DESERIALIZER);
 }

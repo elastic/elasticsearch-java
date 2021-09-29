@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -52,9 +53,13 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	public DisMaxQuery(Builder builder) {
 		super(builder);
 
-		this.queries = Objects.requireNonNull(builder.queries, "queries");
+		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
 		this.tieBreaker = builder.tieBreaker;
 
+	}
+
+	public DisMaxQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +134,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
+		 * Add a value to {@link #queries(List)}, creating the list if needed. 4
 		 */
 		public Builder addQueries(Query value) {
 			if (this.queries == null) {
@@ -147,7 +152,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
+		 * Add a value to {@link #queries(List)}, creating the list if needed. 5
 		 */
 		public Builder addQueries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addQueries(fn.apply(new Query.Builder()).build());

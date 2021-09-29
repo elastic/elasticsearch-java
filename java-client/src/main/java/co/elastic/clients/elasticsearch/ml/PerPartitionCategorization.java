@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.PerPartitionCategorization
@@ -52,6 +53,10 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 		this.enabled = builder.enabled;
 		this.stopOnWarn = builder.stopOnWarn;
 
+	}
+
+	public PerPartitionCategorization(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

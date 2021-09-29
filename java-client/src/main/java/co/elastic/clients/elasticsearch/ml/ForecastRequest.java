@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -38,6 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Request
@@ -59,6 +61,10 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
 
+	}
+
+	public ForecastRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -184,7 +190,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ml.forecast}".
 	 */
-	public static final Endpoint<ForecastRequest, ForecastResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ForecastRequest, ForecastResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -204,11 +210,11 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_forecast");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -216,5 +222,5 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ForecastResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ForecastResponse._DESERIALIZER);
 }

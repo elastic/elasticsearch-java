@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
 @JsonpDeserializable
@@ -59,6 +60,10 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		this.usedInBytes = Objects.requireNonNull(builder.usedInBytes, "used_in_bytes");
 		this.usedPercent = Objects.requireNonNull(builder.usedPercent, "used_percent");
 
+	}
+
+	public OperatingSystemMemoryInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

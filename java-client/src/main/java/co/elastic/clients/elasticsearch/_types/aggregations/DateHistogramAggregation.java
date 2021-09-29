@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -112,11 +113,15 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 		this.missing = builder.missing;
 		this.offset = builder.offset;
 		this.order = builder.order;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.script = builder.script;
 		this.timeZone = builder.timeZone;
 		this.keyed = builder.keyed;
 
+	}
+
+	public DateHistogramAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

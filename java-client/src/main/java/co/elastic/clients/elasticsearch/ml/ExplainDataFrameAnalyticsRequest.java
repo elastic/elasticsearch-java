@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -87,6 +88,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		this.analyzedFields = builder.analyzedFields;
 		this.allowLazyStart = builder.allowLazyStart;
 
+	}
+
+	public ExplainDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -472,7 +477,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Endpoint "{@code ml.explain_data_frame_analytics}".
 	 */
-	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -502,11 +507,11 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_explain");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -514,5 +519,5 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ExplainDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ExplainDataFrameAnalyticsResponse._DESERIALIZER);
 }

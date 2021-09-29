@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Request
@@ -59,6 +61,10 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
 
+	}
+
+	public MlDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -155,7 +161,7 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_data_frame_analytics}".
 	 */
-	public static final Endpoint<MlDataFrameAnalyticsRequest, MlDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MlDataFrameAnalyticsRequest, MlDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -186,10 +192,10 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -204,5 +210,5 @@ public final class MlDataFrameAnalyticsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, MlDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, MlDataFrameAnalyticsResponse._DESERIALIZER);
 }

@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoundingBox
@@ -82,6 +83,10 @@ public final class BoundingBox implements JsonpSerializable {
 		this.bottom = builder.bottom;
 		this.wkt = builder.wkt;
 
+	}
+
+	public BoundingBox(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

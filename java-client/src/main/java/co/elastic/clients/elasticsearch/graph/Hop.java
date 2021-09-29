@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -56,8 +57,12 @@ public final class Hop implements JsonpSerializable {
 
 		this.connections = builder.connections;
 		this.query = Objects.requireNonNull(builder.query, "query");
-		this.vertices = Objects.requireNonNull(builder.vertices, "vertices");
+		this.vertices = ModelTypeHelper.unmodifiableNonNull(builder.vertices, "vertices");
 
+	}
+
+	public Hop(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -173,7 +178,7 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Add a value to {@link #vertices(List)}, creating the list if needed. 4
 		 */
 		public Builder addVertices(VertexDefinition value) {
 			if (this.vertices == null) {
@@ -191,7 +196,7 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * Add a value to {@link #vertices(List)}, creating the list if needed. 5
 		 */
 		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
 			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());

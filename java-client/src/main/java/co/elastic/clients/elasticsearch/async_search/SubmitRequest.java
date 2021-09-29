@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch._core.search.Highlight;
 import co.elastic.clients.elasticsearch._core.search.PointInTimeReference;
@@ -46,6 +47,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -72,6 +74,18 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final List<String> index;
 
 	@Nullable
+	private final Long batchedReduceSize;
+
+	@Nullable
+	private final String waitForCompletionTimeout;
+
+	@Nullable
+	private final Boolean keepOnCompletion;
+
+	@Nullable
+	private final Boolean typedKeys;
+
+	@Nullable
 	private final Map<String, Aggregation> aggs;
 
 	@Nullable
@@ -85,9 +99,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 	@Nullable
 	private final Boolean analyzeWildcard;
-
-	@Nullable
-	private final Long batchedReduceSize;
 
 	@Nullable
 	private final FieldCollapse collapse;
@@ -124,9 +135,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 	@Nullable
 	private final String keepAlive;
-
-	@Nullable
-	private final Boolean keepOnCompletion;
 
 	@Nullable
 	private final Boolean lenient;
@@ -216,13 +224,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean trackTotalHits;
 
 	@Nullable
-	private final Boolean typedKeys;
-
-	@Nullable
 	private final Boolean version;
-
-	@Nullable
-	private final String waitForCompletionTimeout;
 
 	@Nullable
 	private final List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
@@ -234,26 +236,28 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 	public SubmitRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.aggs = builder.aggs;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.batchedReduceSize = builder.batchedReduceSize;
+		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
+		this.keepOnCompletion = builder.keepOnCompletion;
+		this.typedKeys = builder.typedKeys;
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
-		this.batchedReduceSize = builder.batchedReduceSize;
 		this.collapse = builder.collapse;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.docvalueFields = builder.docvalueFields;
-		this.expandWildcards = builder.expandWildcards;
+		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.indicesBoost = builder.indicesBoost;
+		this.indicesBoost = ModelTypeHelper.unmodifiable(builder.indicesBoost);
 		this.keepAlive = builder.keepAlive;
-		this.keepOnCompletion = builder.keepOnCompletion;
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minScore = builder.minScore;
@@ -263,18 +267,18 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		this.pit = builder.pit;
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
-		this.rescore = builder.rescore;
+		this.rescore = ModelTypeHelper.unmodifiable(builder.rescore);
 		this.routing = builder.routing;
-		this.scriptFields = builder.scriptFields;
-		this.searchAfter = builder.searchAfter;
+		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
 		this.searchType = builder.searchType;
 		this.sequenceNumberPrimaryTerm = builder.sequenceNumberPrimaryTerm;
 		this.size = builder.size;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.stats = builder.stats;
-		this.storedFields = builder.storedFields;
-		this.suggest = builder.suggest;
+		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.suggest = ModelTypeHelper.unmodifiable(builder.suggest);
 		this.suggestField = builder.suggestField;
 		this.suggestMode = builder.suggestMode;
 		this.suggestSize = builder.suggestSize;
@@ -283,12 +287,14 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		this.timeout = builder.timeout;
 		this.trackScores = builder.trackScores;
 		this.trackTotalHits = builder.trackTotalHits;
-		this.typedKeys = builder.typedKeys;
 		this.version = builder.version;
-		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
-		this.fields = builder.fields;
-		this.runtimeMappings = builder.runtimeMappings;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 
+	}
+
+	public SubmitRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -300,6 +306,50 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * The number of shard results that should be reduced at once on the
+	 * coordinating node. This value should be used as the granularity at which
+	 * progress results will be made available.
+	 * <p>
+	 * API name: {@code batched_reduce_size}
+	 */
+	@Nullable
+	public Long batchedReduceSize() {
+		return this.batchedReduceSize;
+	}
+
+	/**
+	 * Specify the time that the request should block waiting for the final response
+	 * <p>
+	 * API name: {@code wait_for_completion_timeout}
+	 */
+	@Nullable
+	public String waitForCompletionTimeout() {
+		return this.waitForCompletionTimeout;
+	}
+
+	/**
+	 * Control whether the response should be stored in the cluster if it completed
+	 * within the provided [wait_for_completion] time (default: false)
+	 * <p>
+	 * API name: {@code keep_on_completion}
+	 */
+	@Nullable
+	public Boolean keepOnCompletion() {
+		return this.keepOnCompletion;
+	}
+
+	/**
+	 * Specify whether aggregation and suggester names should be prefixed by their
+	 * respective types in the response
+	 * <p>
+	 * API name: {@code typed_keys}
+	 */
+	@Nullable
+	public Boolean typedKeys() {
+		return this.typedKeys;
 	}
 
 	/**
@@ -340,14 +390,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
-	}
-
-	/**
-	 * API name: {@code batched_reduce_size}
-	 */
-	@Nullable
-	public Long batchedReduceSize() {
-		return this.batchedReduceSize;
 	}
 
 	/**
@@ -444,14 +486,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public String keepAlive() {
 		return this.keepAlive;
-	}
-
-	/**
-	 * API name: {@code keep_on_completion}
-	 */
-	@Nullable
-	public Boolean keepOnCompletion() {
-		return this.keepOnCompletion;
 	}
 
 	/**
@@ -687,27 +721,11 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
-	}
-
-	/**
 	 * API name: {@code version}
 	 */
 	@Nullable
 	public Boolean version() {
 		return this.version;
-	}
-
-	/**
-	 * API name: {@code wait_for_completion_timeout}
-	 */
-	@Nullable
-	public String waitForCompletionTimeout() {
-		return this.waitForCompletionTimeout;
 	}
 
 	/**
@@ -771,12 +789,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("analyze_wildcard");
 			generator.write(this.analyzeWildcard);
-
-		}
-		if (this.batchedReduceSize != null) {
-
-			generator.writeKey("batched_reduce_size");
-			generator.write(this.batchedReduceSize);
 
 		}
 		if (this.collapse != null) {
@@ -868,12 +880,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("keep_alive");
 			generator.write(this.keepAlive);
-
-		}
-		if (this.keepOnCompletion != null) {
-
-			generator.writeKey("keep_on_completion");
-			generator.write(this.keepOnCompletion);
 
 		}
 		if (this.lenient != null) {
@@ -1085,22 +1091,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.trackTotalHits);
 
 		}
-		if (this.typedKeys != null) {
-
-			generator.writeKey("typed_keys");
-			generator.write(this.typedKeys);
-
-		}
 		if (this.version != null) {
 
 			generator.writeKey("version");
 			generator.write(this.version);
-
-		}
-		if (this.waitForCompletionTimeout != null) {
-
-			generator.writeKey("wait_for_completion_timeout");
-			generator.write(this.waitForCompletionTimeout);
 
 		}
 		if (this.fields != null) {
@@ -1139,6 +1133,18 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private List<String> index;
 
 		@Nullable
+		private Long batchedReduceSize;
+
+		@Nullable
+		private String waitForCompletionTimeout;
+
+		@Nullable
+		private Boolean keepOnCompletion;
+
+		@Nullable
+		private Boolean typedKeys;
+
+		@Nullable
 		private Map<String, Aggregation> aggs;
 
 		@Nullable
@@ -1152,9 +1158,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Boolean analyzeWildcard;
-
-		@Nullable
-		private Long batchedReduceSize;
 
 		@Nullable
 		private FieldCollapse collapse;
@@ -1191,9 +1194,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private String keepAlive;
-
-		@Nullable
-		private Boolean keepOnCompletion;
 
 		@Nullable
 		private Boolean lenient;
@@ -1283,13 +1283,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean trackTotalHits;
 
 		@Nullable
-		private Boolean typedKeys;
-
-		@Nullable
 		private Boolean version;
-
-		@Nullable
-		private String waitForCompletionTimeout;
 
 		@Nullable
 		private List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
@@ -1320,13 +1314,57 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
 				this.index = new ArrayList<>();
 			}
 			this.index.add(value);
+			return this;
+		}
+
+		/**
+		 * The number of shard results that should be reduced at once on the
+		 * coordinating node. This value should be used as the granularity at which
+		 * progress results will be made available.
+		 * <p>
+		 * API name: {@code batched_reduce_size}
+		 */
+		public Builder batchedReduceSize(@Nullable Long value) {
+			this.batchedReduceSize = value;
+			return this;
+		}
+
+		/**
+		 * Specify the time that the request should block waiting for the final response
+		 * <p>
+		 * API name: {@code wait_for_completion_timeout}
+		 */
+		public Builder waitForCompletionTimeout(@Nullable String value) {
+			this.waitForCompletionTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Control whether the response should be stored in the cluster if it completed
+		 * within the provided [wait_for_completion] time (default: false)
+		 * <p>
+		 * API name: {@code keep_on_completion}
+		 */
+		public Builder keepOnCompletion(@Nullable Boolean value) {
+			this.keepOnCompletion = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether aggregation and suggester names should be prefixed by their
+		 * respective types in the response
+		 * <p>
+		 * API name: {@code typed_keys}
+		 */
+		public Builder typedKeys(@Nullable Boolean value) {
+			this.typedKeys = value;
 			return this;
 		}
 
@@ -1396,14 +1434,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code batched_reduce_size}
-		 */
-		public Builder batchedReduceSize(@Nullable Long value) {
-			this.batchedReduceSize = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code collapse}
 		 */
 		public Builder collapse(@Nullable FieldCollapse value) {
@@ -1451,7 +1481,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocvalueFields(String value) {
 			if (this.docvalueFields == null) {
@@ -1478,7 +1508,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -1552,7 +1582,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed.
+		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndicesBoost(Map<String, Double> value) {
 			if (this.indicesBoost == null) {
@@ -1567,14 +1597,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code keep_on_completion}
-		 */
-		public Builder keepOnCompletion(@Nullable Boolean value) {
-			this.keepOnCompletion = value;
 			return this;
 		}
 
@@ -1688,7 +1710,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed.
+		 * Add a value to {@link #rescore(List)}, creating the list if needed. 4
 		 */
 		public Builder addRescore(Rescore value) {
 			if (this.rescore == null) {
@@ -1706,7 +1728,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed.
+		 * Add a value to {@link #rescore(List)}, creating the list if needed. 5
 		 */
 		public Builder addRescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
 			return this.addRescore(fn.apply(new Rescore.Builder()).build());
@@ -1770,7 +1792,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed. 4
 		 */
 		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {
@@ -1821,7 +1843,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -1857,7 +1879,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
+		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
 		 */
 		public Builder addStats(String value) {
 			if (this.stats == null) {
@@ -1884,7 +1906,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -1992,26 +2014,10 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable Boolean value) {
 			this.version = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code wait_for_completion_timeout}
-		 */
-		public Builder waitForCompletionTimeout(@Nullable String value) {
-			this.waitForCompletionTimeout = value;
 			return this;
 		}
 
@@ -2032,7 +2038,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(JsonValue /* Union(_types.Field | _types.DateField) */ value) {
 			if (this.fields == null) {
@@ -2103,7 +2109,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 				"allow_partial_search_results");
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::analyzeWildcard, JsonpDeserializer.booleanDeserializer(), "analyze_wildcard");
-		op.add(Builder::batchedReduceSize, JsonpDeserializer.longDeserializer(), "batched_reduce_size");
 		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
 		op.add(Builder::defaultOperator, DefaultOperator._DESERIALIZER, "default_operator");
 		op.add(Builder::df, JsonpDeserializer.stringDeserializer(), "df");
@@ -2121,7 +2126,6 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
 		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
-		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::lenient, JsonpDeserializer.booleanDeserializer(), "lenient");
 		op.add(Builder::maxConcurrentShardRequests, JsonpDeserializer.longDeserializer(),
 				"max_concurrent_shard_requests");
@@ -2156,10 +2160,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
 		op.add(Builder::trackTotalHits, JsonpDeserializer.booleanDeserializer(), "track_total_hits");
-		op.add(Builder::typedKeys, JsonpDeserializer.booleanDeserializer(), "typed_keys");
 		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
-		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.stringDeserializer(),
-				"wait_for_completion_timeout");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
@@ -2172,7 +2173,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code async_search.submit}".
 	 */
-	private static final Endpoint.Simple<SubmitRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<SubmitRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -2196,20 +2197,32 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_async_search");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.batchedReduceSize != null) {
+					params.put("batched_reduce_size", String.valueOf(request.batchedReduceSize));
+				}
+				if (request.waitForCompletionTimeout != null) {
+					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout);
+				}
+				if (request.keepOnCompletion != null) {
+					params.put("keep_on_completion", String.valueOf(request.keepOnCompletion));
+				}
+				if (request.typedKeys != null) {
+					params.put("typed_keys", String.valueOf(request.typedKeys));
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code async_search.submit}" endpoint.

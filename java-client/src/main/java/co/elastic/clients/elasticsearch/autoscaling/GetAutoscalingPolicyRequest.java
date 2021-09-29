@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_policy.Request
@@ -48,6 +50,10 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public GetAutoscalingPolicyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code autoscaling.get_autoscaling_policy}".
 	 */
-	public static final Endpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -114,10 +120,10 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 					buf.append("/_autoscaling");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -125,5 +131,5 @@ public final class GetAutoscalingPolicyRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetAutoscalingPolicyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetAutoscalingPolicyResponse._DESERIALIZER);
 }

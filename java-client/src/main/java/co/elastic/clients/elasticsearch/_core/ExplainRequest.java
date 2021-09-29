@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -33,8 +34,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -110,12 +113,16 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
-		this.storedFields = builder.storedFields;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
 		this.q = builder.q;
 		this.query = builder.query;
 
+	}
+
+	public ExplainRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -462,9 +469,9 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceExcludes(String value) {
+		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -493,9 +500,9 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceIncludes(String value) {
+		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -524,7 +531,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -590,7 +597,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code explain}".
 	 */
-	private static final Endpoint.Simple<ExplainRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<ExplainRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -610,13 +617,13 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_explain");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -645,7 +652,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 					params.put("routing", request.routing);
 				}
 				if (request.source != null) {
-					params.put("_source", request.source.toString());
+					params.put("_source", JsonpUtils.toString(request.source));
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -664,7 +671,7 @@ public final class ExplainRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code explain}" endpoint.

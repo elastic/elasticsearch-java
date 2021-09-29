@@ -50,6 +50,10 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 
 	}
 
+	public SearchInputRequestBody(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code query}
 	 */

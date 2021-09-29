@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoDiscover
@@ -47,6 +48,10 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 
 		this.seedHosts = Objects.requireNonNull(builder.seedHosts, "seed_hosts");
 
+	}
+
+	public NodeInfoDiscover(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

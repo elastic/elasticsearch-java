@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.TrimProcessor
@@ -56,6 +57,10 @@ public final class TrimProcessor extends ProcessorBase implements ProcessorVaria
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
+	}
+
+	public TrimProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ingest._types.DropProcessor
 @JsonpDeserializable
@@ -40,6 +41,10 @@ public final class DropProcessor extends ProcessorBase implements ProcessorVaria
 	public DropProcessor(Builder builder) {
 		super(builder);
 
+	}
+
+	public DropProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -78,15 +79,19 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.timestampField = Objects.requireNonNull(builder.timestampField, "timestamp_field");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.generation = Objects.requireNonNull(builder.generation, "generation");
 		this.template = Objects.requireNonNull(builder.template, "template");
 		this.hidden = Objects.requireNonNull(builder.hidden, "hidden");
 		this.system = builder.system;
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.ilmPolicy = builder.ilmPolicy;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
+	}
+
+	public IndicesGetDataStreamItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -296,7 +301,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(IndicesGetDataStreamItemIndex value) {
 			if (this.indices == null) {
@@ -315,7 +320,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndices(
 				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
@@ -381,7 +386,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}

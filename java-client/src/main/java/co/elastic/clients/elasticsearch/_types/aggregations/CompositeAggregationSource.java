@@ -76,6 +76,10 @@ public class CompositeAggregationSource implements TaggedUnion<Object>, JsonpSer
 
 	}
 
+	public CompositeAggregationSource(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code terms} variant value.
 	 *
@@ -129,55 +133,52 @@ public class CompositeAggregationSource implements TaggedUnion<Object>, JsonpSer
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<CompositeAggregationSource> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<CompositeAggregationSource> terms(TermsAggregation v) {
+		public Builder terms(TermsAggregation v) {
 			this._type = TERMS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> terms(
-				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
+		public Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
 			return this.terms(f.apply(new TermsAggregation.Builder()).build());
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> histogram(HistogramAggregation v) {
+		public Builder histogram(HistogramAggregation v) {
 			this._type = HISTOGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> histogram(
-				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
+		public Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
 			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> dateHistogram(DateHistogramAggregation v) {
+		public Builder dateHistogram(DateHistogramAggregation v) {
 			this._type = DATE_HISTOGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> dateHistogram(
+		public Builder dateHistogram(
 				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
 			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> geotileGrid(GeoTileGridAggregation v) {
+		public Builder geotileGrid(GeoTileGridAggregation v) {
 			this._type = GEOTILE_GRID;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<CompositeAggregationSource> geotileGrid(
-				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
+		public Builder geotileGrid(Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
 			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
-		protected CompositeAggregationSource build() {
+		public CompositeAggregationSource build() {
 			return new CompositeAggregationSource(this);
 		}
 

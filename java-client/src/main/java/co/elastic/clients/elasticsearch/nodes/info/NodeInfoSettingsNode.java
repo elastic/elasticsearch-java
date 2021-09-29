@@ -31,12 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNode
@@ -54,9 +56,13 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 	public NodeInfoSettingsNode(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.attr = Objects.requireNonNull(builder.attr, "attr");
+		this.attr = ModelTypeHelper.unmodifiableNonNull(builder.attr, "attr");
 		this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
 
+	}
+
+	public NodeInfoSettingsNode(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

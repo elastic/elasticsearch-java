@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.templates.Request
@@ -48,6 +50,10 @@ public final class TemplatesRequest extends CatRequestBase {
 
 		this.name = builder.name;
 
+	}
+
+	public TemplatesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -96,7 +102,7 @@ public final class TemplatesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.templates}".
 	 */
-	public static final Endpoint<TemplatesRequest, TemplatesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TemplatesRequest, TemplatesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -123,10 +129,10 @@ public final class TemplatesRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/templates");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -134,5 +140,5 @@ public final class TemplatesRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, TemplatesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, TemplatesResponse._DESERIALIZER);
 }

@@ -62,6 +62,10 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 
 	}
 
+	public NodeInfoSettingsCluster(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code name}
 	 */

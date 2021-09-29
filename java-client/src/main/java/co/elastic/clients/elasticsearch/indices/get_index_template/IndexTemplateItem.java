@@ -53,6 +53,10 @@ public final class IndexTemplateItem implements JsonpSerializable {
 
 	}
 
+	public IndexTemplateItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code name}
 	 */

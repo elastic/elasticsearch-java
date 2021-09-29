@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CorePropertyBase
@@ -56,7 +58,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 	public CorePropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.copyTo = builder.copyTo;
+		this.copyTo = ModelTypeHelper.unmodifiable(builder.copyTo);
 		this.similarity = builder.similarity;
 		this.store = builder.store;
 
@@ -144,7 +146,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 		}
 
 		/**
-		 * Add a value to {@link #copyTo(List)}, creating the list if needed.
+		 * Add a value to {@link #copyTo(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addCopyTo(String value) {
 			if (this.copyTo == null) {

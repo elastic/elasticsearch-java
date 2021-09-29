@@ -63,6 +63,10 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 
 	}
 
+	public DataframeAnalyticsStatsHyperparameters(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code hyperparameters}
 	 */

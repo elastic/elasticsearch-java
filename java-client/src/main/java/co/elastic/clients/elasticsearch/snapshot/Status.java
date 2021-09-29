@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -65,7 +66,7 @@ public final class Status implements JsonpSerializable {
 	public Status(Builder builder) {
 
 		this.includeGlobalState = Objects.requireNonNull(builder.includeGlobalState, "include_global_state");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.shardsStats = Objects.requireNonNull(builder.shardsStats, "shards_stats");
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -73,6 +74,10 @@ public final class Status implements JsonpSerializable {
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
 		this.uuid = Objects.requireNonNull(builder.uuid, "uuid");
 
+	}
+
+	public Status(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

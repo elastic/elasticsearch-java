@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -60,8 +61,12 @@ public final class Collector implements JsonpSerializable {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.reason = Objects.requireNonNull(builder.reason, "reason");
 		this.timeInNanos = Objects.requireNonNull(builder.timeInNanos, "time_in_nanos");
-		this.children = builder.children;
+		this.children = ModelTypeHelper.unmodifiable(builder.children);
 
+	}
+
+	public Collector(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -183,7 +188,7 @@ public final class Collector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * Add a value to {@link #children(List)}, creating the list if needed. 4
 		 */
 		public Builder addChildren(Collector value) {
 			if (this.children == null) {
@@ -201,7 +206,7 @@ public final class Collector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed.
+		 * Add a value to {@link #children(List)}, creating the list if needed. 5
 		 */
 		public Builder addChildren(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
 			return this.addChildren(fn.apply(new Collector.Builder()).build());

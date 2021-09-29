@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -82,14 +84,18 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	public PutIndexTemplateRequest(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.indexPatterns = builder.indexPatterns;
-		this.composedOf = builder.composedOf;
+		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
 		this.template = builder.template;
 		this.dataStream = builder.dataStream;
 		this.priority = builder.priority;
 		this.version = builder.version;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
+	}
+
+	public PutIndexTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -285,7 +291,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -312,7 +318,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
+		 * Add a value to {@link #composedOf(List)}, creating the list if needed. 4
 		 */
 		public Builder addComposedOf(String value) {
 			if (this.composedOf == null) {
@@ -379,7 +385,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -427,7 +433,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code indices.put_index_template}".
 	 */
-	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -446,10 +452,10 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -457,5 +463,5 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
 }

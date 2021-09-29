@@ -72,6 +72,10 @@ public final class GetTokenResponse implements JsonpSerializable {
 
 	}
 
+	public GetTokenResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code access_token}
 	 */

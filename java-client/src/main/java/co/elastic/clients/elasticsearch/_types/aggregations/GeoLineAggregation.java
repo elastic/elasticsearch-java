@@ -67,6 +67,10 @@ public final class GeoLineAggregation implements AggregationVariant, JsonpSerial
 
 	}
 
+	public GeoLineAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Aggregation} variant type
 	 */

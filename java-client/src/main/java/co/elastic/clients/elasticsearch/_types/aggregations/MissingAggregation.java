@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MissingAggregation
@@ -52,6 +53,10 @@ public final class MissingAggregation extends BucketAggregationBase implements A
 		this.field = builder.field;
 		this.missing = builder.missing;
 
+	}
+
+	public MissingAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

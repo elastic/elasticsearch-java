@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -72,9 +74,13 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		this.from = builder.from;
 		this.size = builder.size;
 		this.query = builder.query;
-		this.sort = builder.sort;
-		this.searchAfter = builder.searchAfter;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
 
+	}
+
+	public QueryWatchesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -262,7 +268,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -293,7 +299,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed. 4
 		 */
 		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {
@@ -339,7 +345,7 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code watcher.query_watches}".
 	 */
-	public static final Endpoint<QueryWatchesRequest, QueryWatchesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<QueryWatchesRequest, QueryWatchesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -356,5 +362,5 @@ public final class QueryWatchesRequest extends RequestBase implements JsonpSeria
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, QueryWatchesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, QueryWatchesResponse._DESERIALIZER);
 }

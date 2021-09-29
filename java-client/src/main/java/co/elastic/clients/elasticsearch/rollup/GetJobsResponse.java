@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class GetJobsResponse implements JsonpSerializable {
 
 	public GetJobsResponse(Builder builder) {
 
-		this.jobs = Objects.requireNonNull(builder.jobs, "jobs");
+		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
 
+	}
+
+	public GetJobsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Add a value to {@link #jobs(List)}, creating the list if needed. 4
 		 */
 		public Builder addJobs(RollupJob value) {
 			if (this.jobs == null) {
@@ -124,7 +129,7 @@ public final class GetJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Add a value to {@link #jobs(List)}, creating the list if needed. 5
 		 */
 		public Builder addJobs(Function<RollupJob.Builder, ObjectBuilder<RollupJob>> fn) {
 			return this.addJobs(fn.apply(new RollupJob.Builder()).build());

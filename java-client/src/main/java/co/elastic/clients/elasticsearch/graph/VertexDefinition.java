@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -66,13 +67,17 @@ public final class VertexDefinition implements JsonpSerializable {
 
 	public VertexDefinition(Builder builder) {
 
-		this.exclude = builder.exclude;
+		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.include = builder.include;
+		this.include = ModelTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.shardMinDocCount = builder.shardMinDocCount;
 		this.size = builder.size;
 
+	}
+
+	public VertexDefinition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -220,7 +225,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
+		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {
@@ -255,7 +260,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
+		 * Add a value to {@link #include(List)}, creating the list if needed. 4
 		 */
 		public Builder addInclude(VertexInclude value) {
 			if (this.include == null) {
@@ -273,7 +278,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
+		 * Add a value to {@link #include(List)}, creating the list if needed. 5
 		 */
 		public Builder addInclude(Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>> fn) {
 			return this.addInclude(fn.apply(new VertexInclude.Builder()).build());

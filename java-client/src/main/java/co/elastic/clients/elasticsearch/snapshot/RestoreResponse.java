@@ -50,6 +50,10 @@ public final class RestoreResponse implements JsonpSerializable {
 
 	}
 
+	public RestoreResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code snapshot}
 	 */

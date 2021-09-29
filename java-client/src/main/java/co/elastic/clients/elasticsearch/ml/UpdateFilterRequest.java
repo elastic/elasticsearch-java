@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,6 +43,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_filter.Request
@@ -62,10 +65,14 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 	public UpdateFilterRequest(Builder builder) {
 
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.addItems = builder.addItems;
+		this.addItems = ModelTypeHelper.unmodifiable(builder.addItems);
 		this.description = builder.description;
-		this.removeItems = builder.removeItems;
+		this.removeItems = ModelTypeHelper.unmodifiable(builder.removeItems);
 
+	}
+
+	public UpdateFilterRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -187,7 +194,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #addItems(List)}, creating the list if needed.
+		 * Add a value to {@link #addItems(List)}, creating the list if needed. 4
 		 */
 		public Builder addAddItems(String value) {
 			if (this.addItems == null) {
@@ -222,7 +229,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #removeItems(List)}, creating the list if needed.
+		 * Add a value to {@link #removeItems(List)}, creating the list if needed. 4
 		 */
 		public Builder addRemoveItems(String value) {
 			if (this.removeItems == null) {
@@ -267,7 +274,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ml.update_filter}".
 	 */
-	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateFilterRequest, UpdateFilterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -287,11 +294,11 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 					buf.append("/_ml");
 					buf.append("/filters");
 					buf.append("/");
-					buf.append(request.filterId);
+					SimpleEndpoint.pathEncode(request.filterId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -299,5 +306,5 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateFilterResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateFilterResponse._DESERIALIZER);
 }

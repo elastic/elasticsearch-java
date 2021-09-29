@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get_template.Response
 @JsonpDeserializable
-public final class GetTemplateResponse extends AdditionalProperties<String, TemplateMapping> {
+public final class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetTemplateResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetTemplateResponse extends AdditionalProperties<String, Temp
 
 	}
 
+	public GetTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetTemplateResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, TemplateMapping, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
 			implements
 				ObjectBuilder<GetTemplateResponse> {
 		@Override
@@ -80,7 +85,7 @@ public final class GetTemplateResponse extends AdditionalProperties<String, Temp
 			.lazy(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupGetTemplateResponseDeserializer(DelegatingDeserializer<GetTemplateResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				TemplateMapping._DESERIALIZER);
 
 	}

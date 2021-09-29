@@ -56,6 +56,10 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	public BoostingQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Query} variant type
 	 */

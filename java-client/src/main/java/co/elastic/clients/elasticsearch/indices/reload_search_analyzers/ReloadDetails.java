@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
@@ -53,9 +55,13 @@ public final class ReloadDetails implements JsonpSerializable {
 	public ReloadDetails(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.reloadedAnalyzers = Objects.requireNonNull(builder.reloadedAnalyzers, "reloaded_analyzers");
-		this.reloadedNodeIds = Objects.requireNonNull(builder.reloadedNodeIds, "reloaded_node_ids");
+		this.reloadedAnalyzers = ModelTypeHelper.unmodifiableNonNull(builder.reloadedAnalyzers, "reloaded_analyzers");
+		this.reloadedNodeIds = ModelTypeHelper.unmodifiableNonNull(builder.reloadedNodeIds, "reloaded_node_ids");
 
+	}
+
+	public ReloadDetails(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -149,6 +155,7 @@ public final class ReloadDetails implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #reloadedAnalyzers(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addReloadedAnalyzers(String value) {
 			if (this.reloadedAnalyzers == null) {
@@ -175,7 +182,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reloadedNodeIds(List)}, creating the list if needed.
+		 * Add a value to {@link #reloadedNodeIds(List)}, creating the list if needed. 4
 		 */
 		public Builder addReloadedNodeIds(String value) {
 			if (this.reloadedNodeIds == null) {

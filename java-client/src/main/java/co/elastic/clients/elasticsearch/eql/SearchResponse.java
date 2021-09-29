@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -48,6 +49,10 @@ public final class SearchResponse<TEvent> extends EqlSearchResponseBase<TEvent> 
 
 		this.tEventSerializer = builder.tEventSerializer;
 
+	}
+
+	public SearchResponse(Function<Builder<TEvent>, Builder<TEvent>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

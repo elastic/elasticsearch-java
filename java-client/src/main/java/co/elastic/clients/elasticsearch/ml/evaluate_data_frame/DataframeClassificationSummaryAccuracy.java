@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -51,9 +52,13 @@ public final class DataframeClassificationSummaryAccuracy implements JsonpSerial
 
 	public DataframeClassificationSummaryAccuracy(Builder builder) {
 
-		this.classes = Objects.requireNonNull(builder.classes, "classes");
+		this.classes = ModelTypeHelper.unmodifiableNonNull(builder.classes, "classes");
 		this.overallAccuracy = Objects.requireNonNull(builder.overallAccuracy, "overall_accuracy");
 
+	}
+
+	public DataframeClassificationSummaryAccuracy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -121,7 +126,7 @@ public final class DataframeClassificationSummaryAccuracy implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
+		 * Add a value to {@link #classes(List)}, creating the list if needed. 4
 		 */
 		public Builder addClasses(DataframeEvaluationClass value) {
 			if (this.classes == null) {
@@ -139,7 +144,7 @@ public final class DataframeClassificationSummaryAccuracy implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
+		 * Add a value to {@link #classes(List)}, creating the list if needed. 5
 		 */
 		public Builder addClasses(
 				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {

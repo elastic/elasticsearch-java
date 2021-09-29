@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.KeyValueProcessor
@@ -77,11 +79,11 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 	public KeyValueProcessor(Builder builder) {
 		super(builder);
 
-		this.excludeKeys = builder.excludeKeys;
+		this.excludeKeys = ModelTypeHelper.unmodifiable(builder.excludeKeys);
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.fieldSplit = Objects.requireNonNull(builder.fieldSplit, "field_split");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.includeKeys = builder.includeKeys;
+		this.includeKeys = ModelTypeHelper.unmodifiable(builder.includeKeys);
 		this.prefix = builder.prefix;
 		this.stripBrackets = builder.stripBrackets;
 		this.targetField = builder.targetField;
@@ -89,6 +91,10 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		this.trimValue = builder.trimValue;
 		this.valueSplit = Objects.requireNonNull(builder.valueSplit, "value_split");
 
+	}
+
+	public KeyValueProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -313,7 +319,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * Add a value to {@link #excludeKeys(List)}, creating the list if needed.
+		 * Add a value to {@link #excludeKeys(List)}, creating the list if needed. 4
 		 */
 		public Builder addExcludeKeys(String value) {
 			if (this.excludeKeys == null) {
@@ -364,7 +370,7 @@ public final class KeyValueProcessor extends ProcessorBase implements ProcessorV
 		}
 
 		/**
-		 * Add a value to {@link #includeKeys(List)}, creating the list if needed.
+		 * Add a value to {@link #includeKeys(List)}, creating the list if needed. 4
 		 */
 		public Builder addIncludeKeys(String value) {
 			if (this.includeKeys == null) {

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -66,13 +67,17 @@ public final class ShardStore implements JsonpSerializable {
 
 		this.allocation = Objects.requireNonNull(builder.allocation, "allocation");
 		this.allocationId = Objects.requireNonNull(builder.allocationId, "allocation_id");
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.legacyVersion = Objects.requireNonNull(builder.legacyVersion, "legacy_version");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.storeException = Objects.requireNonNull(builder.storeException, "store_exception");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 
+	}
+
+	public ShardStore(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

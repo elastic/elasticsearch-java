@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -110,7 +112,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.caseSensitive = builder.caseSensitive;
@@ -118,14 +120,18 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		this.tiebreakerField = builder.tiebreakerField;
 		this.timestampField = builder.timestampField;
 		this.fetchSize = builder.fetchSize;
-		this.filter = builder.filter;
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 		this.size = builder.size;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.resultPosition = builder.resultPosition;
 
+	}
+
+	public SearchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -473,7 +479,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -574,7 +580,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilter(Query value) {
 			if (this.filter == null) {
@@ -592,7 +598,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
 		 */
 		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addFilter(fn.apply(new Query.Builder()).build());
@@ -657,7 +663,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ value) {
 			if (this.fields == null) {
@@ -720,7 +726,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code eql.search}".
 	 */
-	private static final Endpoint.Simple<SearchRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<SearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -738,12 +744,12 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_eql");
 					buf.append("/search");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -762,7 +768,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code eql.search}" endpoint.

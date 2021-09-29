@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -61,11 +62,15 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 
 	public ValidateQueryResponse(Builder builder) {
 
-		this.explanations = builder.explanations;
+		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
 		this.shards = builder.shards;
 		this.valid = Objects.requireNonNull(builder.valid, "valid");
 		this.error = builder.error;
 
+	}
+
+	public ValidateQueryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -174,7 +179,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 * Add a value to {@link #explanations(List)}, creating the list if needed. 4
 		 */
 		public Builder addExplanations(IndicesValidationExplanation value) {
 			if (this.explanations == null) {
@@ -193,7 +198,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 * Add a value to {@link #explanations(List)}, creating the list if needed. 5
 		 */
 		public Builder addExplanations(
 				Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {

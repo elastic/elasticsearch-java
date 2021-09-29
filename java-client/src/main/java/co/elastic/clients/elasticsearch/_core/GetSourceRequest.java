@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_source.Request
@@ -53,6 +55,10 @@ public final class GetSourceRequest extends GetRequest {
 		this.index = builder.index;
 		this.id = builder.id;
 
+	}
+
+	public GetSourceRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -129,7 +135,7 @@ public final class GetSourceRequest extends GetRequest {
 	/**
 	 * Endpoint "{@code get_source}".
 	 */
-	private static final Endpoint.Simple<GetSourceRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<GetSourceRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -151,13 +157,13 @@ public final class GetSourceRequest extends GetRequest {
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_source");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -165,7 +171,7 @@ public final class GetSourceRequest extends GetRequest {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 
 	/**
 	 * Create an "{@code get_source}" endpoint.

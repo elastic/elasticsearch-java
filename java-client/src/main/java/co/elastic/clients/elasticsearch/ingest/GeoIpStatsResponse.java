@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -53,8 +54,12 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	public GeoIpStatsResponse(Builder builder) {
 
 		this.stats = Objects.requireNonNull(builder.stats, "stats");
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
 
+	}
+
+	public GeoIpStatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

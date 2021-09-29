@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -39,6 +39,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.rollup.Request
@@ -48,7 +49,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 
 	private final String rollupIndex;
 
-	private final JsonData value;
+	private final JsonData config;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,8 +57,12 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.rollupIndex = Objects.requireNonNull(builder.rollupIndex, "rollup_index");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.config = Objects.requireNonNull(builder.config, "_value_body");
 
+	}
+
+	public RollupRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -81,17 +86,17 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public JsonData value() {
-		return this.value;
+	public JsonData config() {
+		return this.config;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.config.serialize(generator, mapper);
 
 	}
 
@@ -105,7 +110,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 
 		private String rollupIndex;
 
-		private JsonData value;
+		private JsonData config;
 
 		/**
 		 * The index to roll up
@@ -130,10 +135,10 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(JsonData value) {
-			this.value = value;
+		public Builder config(JsonData value) {
+			this.config = value;
 			return this;
 		}
 
@@ -149,18 +154,13 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<RollupRequest> _DESERIALIZER = createRollupRequestDeserializer();
+	protected static JsonpDeserializer<RollupRequest> createRollupRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link RollupRequest}
-	 */
-	public static final JsonpDeserializer<RollupRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RollupRequest::setupRollupRequestDeserializer, Builder::build);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupRollupRequestDeserializer(DelegatingDeserializer<RollupRequest.Builder> op) {
-
-		op.add(Builder::value, JsonData._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.config(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code rollup.rollup}".
 	 */
-	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RollupRequest, RollupResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -188,13 +188,13 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 				if (propsSet == (_index | _rollupIndex)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_rollup");
 					buf.append("/");
-					buf.append(request.rollupIndex);
+					SimpleEndpoint.pathEncode(request.rollupIndex, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -202,5 +202,5 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, RollupResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RollupResponse._DESERIALIZER);
 }

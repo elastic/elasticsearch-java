@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.termvectors.Filter;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
@@ -37,6 +38,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -112,7 +114,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.id = builder.id;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
@@ -125,9 +127,13 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		this.versionType = builder.versionType;
 		this.doc = builder.doc;
 		this.filter = builder.filter;
-		this.perFieldAnalyzer = builder.perFieldAnalyzer;
+		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public TermvectorsRequest(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -421,7 +427,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder<TDocument> addFields(String value) {
 			if (this.fields == null) {
@@ -625,7 +631,7 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 	/**
 	 * Endpoint "{@code termvectors}".
 	 */
-	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TermvectorsRequest<?>, TermvectorsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -646,20 +652,20 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_termvectors");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_termvectors");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -701,5 +707,5 @@ public final class TermvectorsRequest<TDocument> extends RequestBase implements 
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, TermvectorsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TermvectorsResponse._DESERIALIZER);
 }

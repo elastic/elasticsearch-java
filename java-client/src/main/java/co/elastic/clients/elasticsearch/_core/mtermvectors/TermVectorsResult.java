@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -75,9 +76,13 @@ public final class TermVectorsResult implements JsonpSerializable {
 		this.version = builder.version;
 		this.took = builder.took;
 		this.found = builder.found;
-		this.termVectors = builder.termVectors;
+		this.termVectors = ModelTypeHelper.unmodifiable(builder.termVectors);
 		this.error = builder.error;
 
+	}
+
+	public TermVectorsResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -45,6 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.put_auto_follow_pattern.Request
@@ -103,10 +106,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.followIndexPattern = builder.followIndexPattern;
-		this.leaderIndexPatterns = builder.leaderIndexPatterns;
-		this.leaderIndexExclusionPatterns = builder.leaderIndexExclusionPatterns;
+		this.leaderIndexPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexPatterns);
+		this.leaderIndexExclusionPatterns = ModelTypeHelper.unmodifiable(builder.leaderIndexExclusionPatterns);
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
-		this.settings = builder.settings;
+		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
 		this.readPollTimeout = builder.readPollTimeout;
 		this.maxReadRequestOperationCount = builder.maxReadRequestOperationCount;
@@ -117,6 +120,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
 
+	}
+
+	public PutAutoFollowPatternRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -523,7 +530,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 		/**
 		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addLeaderIndexPatterns(String value) {
 			if (this.leaderIndexPatterns == null) {
@@ -561,7 +568,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 
 		/**
 		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
-		 * if needed.
+		 * if needed. 4
 		 */
 		public Builder addLeaderIndexExclusionPatterns(String value) {
 			if (this.leaderIndexExclusionPatterns == null) {
@@ -758,7 +765,7 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 	/**
 	 * Endpoint "{@code ccr.put_auto_follow_pattern}".
 	 */
-	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -778,10 +785,10 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 					buf.append("/_ccr");
 					buf.append("/auto_follow");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -789,5 +796,5 @@ public final class PutAutoFollowPatternRequest extends RequestBase implements Js
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutAutoFollowPatternResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutAutoFollowPatternResponse._DESERIALIZER);
 }

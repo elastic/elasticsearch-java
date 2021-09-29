@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SamplerAggregation
@@ -48,6 +49,10 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 
 		this.shardSize = builder.shardSize;
 
+	}
+
+	public SamplerAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

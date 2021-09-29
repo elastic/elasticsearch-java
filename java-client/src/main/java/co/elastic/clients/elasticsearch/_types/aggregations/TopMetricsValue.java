@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsValue
@@ -47,6 +48,10 @@ public final class TopMetricsValue implements JsonpSerializable {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
 
+	}
+
+	public TopMetricsValue(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

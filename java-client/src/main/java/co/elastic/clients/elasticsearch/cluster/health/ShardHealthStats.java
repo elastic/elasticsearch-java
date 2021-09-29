@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.ShardHealthStats
@@ -64,6 +65,10 @@ public final class ShardHealthStats implements JsonpSerializable {
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.unassignedShards = Objects.requireNonNull(builder.unassignedShards, "unassigned_shards");
 
+	}
+
+	public ShardHealthStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

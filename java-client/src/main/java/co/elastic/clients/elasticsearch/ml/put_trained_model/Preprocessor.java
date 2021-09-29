@@ -75,6 +75,10 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Preprocessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code frequency_encoding} variant value.
 	 *
@@ -121,44 +125,44 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Preprocessor> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Preprocessor> frequencyEncoding(FrequencyEncodingPreprocessor v) {
+		public Builder frequencyEncoding(FrequencyEncodingPreprocessor v) {
 			this._type = FREQUENCY_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Preprocessor> frequencyEncoding(
+		public Builder frequencyEncoding(
 				Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> f) {
 			return this.frequencyEncoding(f.apply(new FrequencyEncodingPreprocessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Preprocessor> oneHotEncoding(OneHotEncodingPreprocessor v) {
+		public Builder oneHotEncoding(OneHotEncodingPreprocessor v) {
 			this._type = ONE_HOT_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Preprocessor> oneHotEncoding(
+		public Builder oneHotEncoding(
 				Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> f) {
 			return this.oneHotEncoding(f.apply(new OneHotEncodingPreprocessor.Builder()).build());
 		}
 
-		public ObjectBuilder<Preprocessor> targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
+		public Builder targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
 			this._type = TARGET_MEAN_ENCODING;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Preprocessor> targetMeanEncoding(
+		public Builder targetMeanEncoding(
 				Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> f) {
 			return this.targetMeanEncoding(f.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
 		}
 
-		protected Preprocessor build() {
+		public Preprocessor build() {
 			return new Preprocessor(this);
 		}
 

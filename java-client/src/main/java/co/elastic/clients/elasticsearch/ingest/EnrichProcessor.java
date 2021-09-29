@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.EnrichProcessor
@@ -72,6 +73,10 @@ public final class EnrichProcessor extends ProcessorBase implements ProcessorVar
 		this.shapeRelation = builder.shapeRelation;
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	public EnrichProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

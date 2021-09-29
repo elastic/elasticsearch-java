@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
@@ -50,6 +51,10 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 
 		this.compression = builder.compression;
 
+	}
+
+	public MedianAbsoluteDeviationAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

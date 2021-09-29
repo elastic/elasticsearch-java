@@ -59,6 +59,10 @@ public final class TaskFailure implements JsonpSerializable {
 
 	}
 
+	public TaskFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code task_id}
 	 */

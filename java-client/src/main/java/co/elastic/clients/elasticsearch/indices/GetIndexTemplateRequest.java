@@ -25,12 +25,10 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -40,11 +38,12 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
-@JsonpDeserializable
-public final class GetIndexTemplateRequest extends RequestBase implements JsonpSerializable {
+
+public final class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
@@ -70,6 +69,10 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 		this.includeTypeName = builder.includeTypeName;
 		this.masterTimeout = builder.masterTimeout;
 
+	}
+
+	public GetIndexTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -123,38 +126,6 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 	@Nullable
 	public String masterTimeout() {
 		return this.masterTimeout;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.flatSettings != null) {
-
-			generator.writeKey("flat_settings");
-			generator.write(this.flatSettings);
-
-		}
-		if (this.includeTypeName != null) {
-
-			generator.writeKey("include_type_name");
-			generator.write(this.includeTypeName);
-
-		}
-		if (this.masterTimeout != null) {
-
-			generator.writeKey("master_timeout");
-			generator.write(this.masterTimeout);
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -246,26 +217,9 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GetIndexTemplateRequest}
-	 */
-	public static final JsonpDeserializer<GetIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestDeserializer, Builder::build);
-
-	protected static void setupGetIndexTemplateRequestDeserializer(
-			DelegatingDeserializer<GetIndexTemplateRequest.Builder> op) {
-
-		op.add(Builder::flatSettings, JsonpDeserializer.booleanDeserializer(), "flat_settings");
-		op.add(Builder::includeTypeName, JsonpDeserializer.booleanDeserializer(), "include_type_name");
-		op.add(Builder::masterTimeout, JsonpDeserializer.stringDeserializer(), "master_timeout");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code indices.get_index_template}".
 	 */
-	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -290,10 +244,10 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -303,7 +257,16 @@ public final class GetIndexTemplateRequest extends RequestBase implements JsonpS
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
 				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.includeTypeName != null) {
+					params.put("include_type_name", String.valueOf(request.includeTypeName));
+				}
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetIndexTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetIndexTemplateResponse._DESERIALIZER);
 }

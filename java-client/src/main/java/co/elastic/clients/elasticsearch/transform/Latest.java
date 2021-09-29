@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
@@ -51,8 +53,12 @@ public final class Latest implements JsonpSerializable {
 	public Latest(Builder builder) {
 
 		this.sort = Objects.requireNonNull(builder.sort, "sort");
-		this.uniqueKey = Objects.requireNonNull(builder.uniqueKey, "unique_key");
+		this.uniqueKey = ModelTypeHelper.unmodifiableNonNull(builder.uniqueKey, "unique_key");
 
+	}
+
+	public Latest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -138,7 +144,7 @@ public final class Latest implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed.
+		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed. 4
 		 */
 		public Builder addUniqueKey(String value) {
 			if (this.uniqueKey == null) {

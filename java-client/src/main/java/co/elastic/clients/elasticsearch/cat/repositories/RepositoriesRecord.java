@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.repositories.RepositoriesRecord
@@ -52,6 +53,10 @@ public final class RepositoriesRecord implements JsonpSerializable {
 		this.id = builder.id;
 		this.type = builder.type;
 
+	}
+
+	public RepositoriesRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

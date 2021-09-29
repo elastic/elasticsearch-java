@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.Request
@@ -51,6 +53,10 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
 
+	}
+
+	public GetServiceCredentialsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -118,7 +124,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_service_credentials}".
 	 */
-	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -140,13 +146,13 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -154,5 +160,5 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetServiceCredentialsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetServiceCredentialsResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.cluster.reroute.Command;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -78,12 +80,16 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 
 		this.dryRun = builder.dryRun;
 		this.explain = builder.explain;
-		this.metric = builder.metric;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.retryFailed = builder.retryFailed;
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.commands = builder.commands;
+		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
 
+	}
+
+	public RerouteRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -256,7 +262,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -320,7 +326,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
+		 * Add a value to {@link #commands(List)}, creating the list if needed. 4
 		 */
 		public Builder addCommands(Command value) {
 			if (this.commands == null) {
@@ -338,7 +344,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
+		 * Add a value to {@link #commands(List)}, creating the list if needed. 5
 		 */
 		public Builder addCommands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
 			return this.addCommands(fn.apply(new Command.Builder()).build());
@@ -375,7 +381,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code cluster.reroute}".
 	 */
-	public static final Endpoint<RerouteRequest, RerouteResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RerouteRequest, RerouteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -411,5 +417,5 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RerouteResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RerouteResponse._DESERIALIZER);
 }

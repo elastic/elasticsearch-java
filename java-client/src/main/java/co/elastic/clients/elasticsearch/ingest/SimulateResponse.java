@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class SimulateResponse implements JsonpSerializable {
 
 	public SimulateResponse(Builder builder) {
 
-		this.docs = Objects.requireNonNull(builder.docs, "docs");
+		this.docs = ModelTypeHelper.unmodifiableNonNull(builder.docs, "docs");
 
+	}
+
+	public SimulateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocs(PipelineSimulation value) {
 			if (this.docs == null) {
@@ -124,7 +129,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
 		 */
 		public Builder addDocs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
 			return this.addDocs(fn.apply(new PipelineSimulation.Builder()).build());

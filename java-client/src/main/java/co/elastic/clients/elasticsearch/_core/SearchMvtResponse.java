@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,35 +33,40 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_mvt.Response
 @JsonpDeserializable
 public final class SearchMvtResponse implements JsonpSerializable {
-	private final JsonValue value;
+	private final JsonValue valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public SearchMvtResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public SearchMvtResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public JsonValue value() {
-		return this.value;
+	public JsonValue valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.write(this.value);
+		generator.write(this.valueBody);
 
 	}
 
@@ -72,15 +76,15 @@ public final class SearchMvtResponse implements JsonpSerializable {
 	 * Builder for {@link SearchMvtResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<SearchMvtResponse> {
-		private JsonValue value;
+		private JsonValue valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(JsonValue value) {
-			this.value = value;
+		public Builder valueBody(JsonValue value) {
+			this.valueBody = value;
 			return this;
 		}
 
@@ -96,18 +100,13 @@ public final class SearchMvtResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<SearchMvtResponse> _DESERIALIZER = createSearchMvtResponseDeserializer();
+	protected static JsonpDeserializer<SearchMvtResponse> createSearchMvtResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link SearchMvtResponse}
-	 */
-	public static final JsonpDeserializer<SearchMvtResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchMvtResponse::setupSearchMvtResponseDeserializer, Builder::build);
+		JsonpDeserializer<JsonValue> valueDeserializer = JsonpDeserializer.jsonValueDeserializer();
 
-	protected static void setupSearchMvtResponseDeserializer(DelegatingDeserializer<SearchMvtResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -37,6 +37,7 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.DirectGenerator
@@ -90,6 +91,10 @@ public final class DirectGenerator implements JsonpSerializable {
 		this.size = builder.size;
 		this.suggestMode = builder.suggestMode;
 
+	}
+
+	public DirectGenerator(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

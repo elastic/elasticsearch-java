@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Request
@@ -63,6 +65,10 @@ public final class GetTransformStatsRequest extends RequestBase {
 		this.from = builder.from;
 		this.size = builder.size;
 
+	}
+
+	public GetTransformStatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -182,7 +188,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.get_transform_stats}".
 	 */
-	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -201,11 +207,11 @@ public final class GetTransformStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -223,5 +229,5 @@ public final class GetTransformStatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTransformStatsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTransformStatsResponse._DESERIALIZER);
 }

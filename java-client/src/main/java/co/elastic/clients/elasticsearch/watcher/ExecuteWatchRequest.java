@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -80,14 +82,18 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 		this.id = builder.id;
 		this.debug = builder.debug;
-		this.actionModes = builder.actionModes;
-		this.alternativeInput = builder.alternativeInput;
+		this.actionModes = ModelTypeHelper.unmodifiable(builder.actionModes);
+		this.alternativeInput = ModelTypeHelper.unmodifiable(builder.alternativeInput);
 		this.ignoreCondition = builder.ignoreCondition;
 		this.recordExecution = builder.recordExecution;
 		this.simulatedActions = builder.simulatedActions;
 		this.triggerData = builder.triggerData;
 		this.watch = builder.watch;
 
+	}
+
+	public ExecuteWatchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -425,7 +431,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code watcher.execute_watch}".
 	 */
-	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -446,7 +452,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 					buf.append("/_watcher");
 					buf.append("/watch");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_execute");
 					return buf.toString();
 				}
@@ -457,7 +463,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 					buf.append("/_execute");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -469,5 +475,5 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ExecuteWatchResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ExecuteWatchResponse._DESERIALIZER);
 }

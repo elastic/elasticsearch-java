@@ -32,12 +32,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonQuery
 @JsonpDeserializable
 public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
+	private final String field;
+
+	private final GeoPolygonPoints polygon;
+
 	@Nullable
 	private final GeoValidationMethod validationMethod;
 
@@ -49,9 +55,16 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	public GeoPolygonQuery(Builder builder) {
 		super(builder);
 
+		this.field = Objects.requireNonNull(builder.field, "field");
+		this.polygon = Objects.requireNonNull(builder.polygon, "polygon");
+
 		this.validationMethod = builder.validationMethod;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
+	}
+
+	public GeoPolygonQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -60,6 +73,18 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	@Override
 	public String _variantType() {
 		return "geo_polygon";
+	}
+
+	/**
+	 */
+	public String field() {
+		return this.field;
+	}
+
+	/**
+	 */
+	public GeoPolygonPoints polygon() {
+		return this.polygon;
 	}
 
 	/**
@@ -79,6 +104,12 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		// >> AdditionalProperty start
+		generator.writeKey(this.field);
+		this.polygon.serialize(generator, mapper);
+
+		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 		if (this.validationMethod != null) {
@@ -101,6 +132,30 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	 * Builder for {@link GeoPolygonQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoPolygonQuery> {
+		private String field;
+
+		private GeoPolygonPoints polygon;
+
+		/**
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder polygon(GeoPolygonPoints value) {
+			this.polygon = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder polygon(Function<GeoPolygonPoints.Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+			return this.polygon(fn.apply(new GeoPolygonPoints.Builder()).build());
+		}
+
 		@Nullable
 		private GeoValidationMethod validationMethod;
 
@@ -152,6 +207,11 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.field(name);
+			builder.polygon(GeoPolygonPoints._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

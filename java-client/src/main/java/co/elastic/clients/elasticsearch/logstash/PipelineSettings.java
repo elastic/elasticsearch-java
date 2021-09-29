@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: logstash._types.PipelineSettings
@@ -66,6 +67,10 @@ public final class PipelineSettings implements JsonpSerializable {
 		this.queueMaxBytesUnits = Objects.requireNonNull(builder.queueMaxBytesUnits, "queue.max_bytes.units");
 		this.queueCheckpointWrites = Objects.requireNonNull(builder.queueCheckpointWrites, "queue.checkpoint.writes");
 
+	}
+
+	public PipelineSettings(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

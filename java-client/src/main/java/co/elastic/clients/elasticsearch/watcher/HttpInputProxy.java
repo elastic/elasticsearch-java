@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputProxy
@@ -51,6 +52,10 @@ public final class HttpInputProxy implements JsonpSerializable {
 		this.host = Objects.requireNonNull(builder.host, "host");
 		this.port = Objects.requireNonNull(builder.port, "port");
 
+	}
+
+	public HttpInputProxy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

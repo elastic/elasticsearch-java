@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocateReplicaAction
@@ -54,6 +55,10 @@ public final class CommandAllocateReplicaAction implements JsonpSerializable {
 		this.shard = Objects.requireNonNull(builder.shard, "shard");
 		this.node = Objects.requireNonNull(builder.node, "node");
 
+	}
+
+	public CommandAllocateReplicaAction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

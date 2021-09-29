@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameters
@@ -101,6 +102,10 @@ public final class Hyperparameters implements JsonpSerializable {
 		this.softTreeDepthLimit = builder.softTreeDepthLimit;
 		this.softTreeDepthTolerance = builder.softTreeDepthTolerance;
 
+	}
+
+	public Hyperparameters(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

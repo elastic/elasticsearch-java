@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.JsonProcessor
@@ -54,6 +55,10 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	public JsonProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

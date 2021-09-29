@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
@@ -37,6 +38,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -83,8 +85,12 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
 		this.input = Objects.requireNonNull(builder.input, "input");
 		this.metadata = builder.metadata;
-		this.tags = builder.tags;
+		this.tags = ModelTypeHelper.unmodifiable(builder.tags);
 
+	}
+
+	public PutTrainedModelRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -378,7 +384,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #tags(List)}, creating the list if needed.
+		 * Add a value to {@link #tags(List)}, creating the list if needed. 4
 		 */
 		public Builder addTags(String value) {
 			if (this.tags == null) {
@@ -426,7 +432,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code ml.put_trained_model}".
 	 */
-	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -446,10 +452,10 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					buf.append(request.modelId);
+					SimpleEndpoint.pathEncode(request.modelId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -457,5 +463,5 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutTrainedModelResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutTrainedModelResponse._DESERIALIZER);
 }

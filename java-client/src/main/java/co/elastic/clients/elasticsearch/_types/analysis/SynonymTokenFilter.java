@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.SynonymTokenFilter
@@ -64,11 +66,15 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		this.expand = Objects.requireNonNull(builder.expand, "expand");
 		this.format = Objects.requireNonNull(builder.format, "format");
 		this.lenient = Objects.requireNonNull(builder.lenient, "lenient");
-		this.synonyms = Objects.requireNonNull(builder.synonyms, "synonyms");
+		this.synonyms = ModelTypeHelper.unmodifiableNonNull(builder.synonyms, "synonyms");
 		this.synonymsPath = Objects.requireNonNull(builder.synonymsPath, "synonyms_path");
 		this.tokenizer = Objects.requireNonNull(builder.tokenizer, "tokenizer");
 		this.updateable = Objects.requireNonNull(builder.updateable, "updateable");
 
+	}
+
+	public SynonymTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -224,7 +230,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * Add a value to {@link #synonyms(List)}, creating the list if needed.
+		 * Add a value to {@link #synonyms(List)}, creating the list if needed. 4
 		 */
 		public Builder addSynonyms(String value) {
 			if (this.synonyms == null) {

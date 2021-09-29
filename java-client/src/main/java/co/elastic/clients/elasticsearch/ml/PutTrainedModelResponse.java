@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,30 +38,34 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model.Response
 @JsonpDeserializable
 public final class PutTrainedModelResponse implements JsonpSerializable {
-	private final TrainedModelConfig value;
+	private final TrainedModelConfig valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PutTrainedModelResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public PutTrainedModelResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public TrainedModelConfig value() {
-		return this.value;
+	public TrainedModelConfig valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -72,25 +75,25 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 	 * Builder for {@link PutTrainedModelResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PutTrainedModelResponse> {
-		private TrainedModelConfig value;
+		private TrainedModelConfig valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(TrainedModelConfig value) {
-			this.value = value;
+		public Builder valueBody(TrainedModelConfig value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
-			return this.value(fn.apply(new TrainedModelConfig.Builder()).build());
+		public Builder valueBody(Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+			return this.valueBody(fn.apply(new TrainedModelConfig.Builder()).build());
 		}
 
 		/**
@@ -105,19 +108,13 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutTrainedModelResponse> _DESERIALIZER = createPutTrainedModelResponseDeserializer();
+	protected static JsonpDeserializer<PutTrainedModelResponse> createPutTrainedModelResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PutTrainedModelResponse}
-	 */
-	public static final JsonpDeserializer<PutTrainedModelResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTrainedModelResponse::setupPutTrainedModelResponseDeserializer, Builder::build);
+		JsonpDeserializer<TrainedModelConfig> valueDeserializer = TrainedModelConfig._DESERIALIZER;
 
-	protected static void setupPutTrainedModelResponseDeserializer(
-			DelegatingDeserializer<PutTrainedModelResponse.Builder> op) {
-
-		op.add(Builder::value, TrainedModelConfig._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

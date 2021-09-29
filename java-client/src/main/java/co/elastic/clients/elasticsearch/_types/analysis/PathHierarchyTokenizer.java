@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
@@ -61,6 +62,10 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		this.reverse = Objects.requireNonNull(builder.reverse, "reverse");
 		this.skip = Objects.requireNonNull(builder.skip, "skip");
 
+	}
+
+	public PathHierarchyTokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

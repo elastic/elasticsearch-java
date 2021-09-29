@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -32,8 +33,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -45,6 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
@@ -84,12 +88,16 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		this.refresh = builder.refresh;
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = builder.metadata;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.password = builder.password;
 		this.passwordHash = builder.passwordHash;
-		this.roles = builder.roles;
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.enabled = builder.enabled;
 
+	}
+
+	public PutUserRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -360,7 +368,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -415,7 +423,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code security.put_user}".
 	 */
-	public static final Endpoint<PutUserRequest, PutUserResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutUserRequest, PutUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -435,10 +443,10 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					buf.append(request.username);
+					SimpleEndpoint.pathEncode(request.username, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -446,9 +454,9 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutUserResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutUserResponse._DESERIALIZER);
 }

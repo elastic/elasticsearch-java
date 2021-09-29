@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.ClusterStatistics
 @JsonpDeserializable
@@ -52,6 +53,10 @@ public final class ClusterStatistics implements JsonpSerializable {
 		this.successful = Objects.requireNonNull(builder.successful, "successful");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public ClusterStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

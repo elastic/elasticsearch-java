@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.Response
@@ -56,12 +58,16 @@ public final class HasPrivilegesResponse implements JsonpSerializable {
 
 	public HasPrivilegesResponse(Builder builder) {
 
-		this.application = Objects.requireNonNull(builder.application, "application");
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
+		this.application = ModelTypeHelper.unmodifiableNonNull(builder.application, "application");
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
 		this.hasAllRequested = Objects.requireNonNull(builder.hasAllRequested, "has_all_requested");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.username = Objects.requireNonNull(builder.username, "username");
 
+	}
+
+	public HasPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

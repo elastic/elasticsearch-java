@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -69,12 +70,16 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 	public SearchInputRequestDefinition(Builder builder) {
 
 		this.body = builder.body;
-		this.indices = builder.indices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.searchType = builder.searchType;
 		this.template = builder.template;
 		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
 
+	}
+
+	public SearchInputRequestDefinition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -235,7 +240,7 @@ public final class SearchInputRequestDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

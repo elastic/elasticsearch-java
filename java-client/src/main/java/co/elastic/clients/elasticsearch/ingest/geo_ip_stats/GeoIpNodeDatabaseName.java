@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.geo_ip_stats.GeoIpNodeDatabaseName
@@ -47,6 +48,10 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public GeoIpNodeDatabaseName(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

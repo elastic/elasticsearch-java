@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardFileSizeInfo
@@ -67,6 +68,10 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		this.averageSizeInBytes = builder.averageSizeInBytes;
 		this.count = builder.count;
 
+	}
+
+	public ShardFileSizeInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

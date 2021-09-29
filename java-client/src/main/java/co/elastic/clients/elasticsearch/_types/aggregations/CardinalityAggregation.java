@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
@@ -53,6 +54,10 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		this.precisionThreshold = builder.precisionThreshold;
 		this.rehash = builder.rehash;
 
+	}
+
+	public CardinalityAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

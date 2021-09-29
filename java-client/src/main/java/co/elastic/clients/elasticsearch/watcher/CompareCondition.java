@@ -68,6 +68,10 @@ public final class CompareCondition implements ConditionVariant, JsonpSerializab
 
 	}
 
+	public CompareCondition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Condition} variant type
 	 */

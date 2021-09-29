@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -58,8 +59,12 @@ public final class PipelineConfig implements JsonpSerializable {
 
 		this.description = builder.description;
 		this.version = builder.version;
-		this.processors = Objects.requireNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
 
+	}
+
+	public PipelineConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -166,7 +171,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
 		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
@@ -184,7 +189,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
 		 */
 		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addProcessors(fn.apply(new Processor.Builder()).build());

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -53,8 +54,12 @@ public final class GetTransformResponse implements JsonpSerializable {
 	public GetTransformResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.transforms = Objects.requireNonNull(builder.transforms, "transforms");
+		this.transforms = ModelTypeHelper.unmodifiableNonNull(builder.transforms, "transforms");
 
+	}
+
+	public GetTransformResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -130,7 +135,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Add a value to {@link #transforms(List)}, creating the list if needed. 4
 		 */
 		public Builder addTransforms(EmptyTransform value) {
 			if (this.transforms == null) {
@@ -148,7 +153,7 @@ public final class GetTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Add a value to {@link #transforms(List)}, creating the list if needed. 5
 		 */
 		public Builder addTransforms(Function<EmptyTransform.Builder, ObjectBuilder<EmptyTransform>> fn) {
 			return this.addTransforms(fn.apply(new EmptyTransform.Builder()).build());

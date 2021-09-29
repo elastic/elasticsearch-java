@@ -52,6 +52,10 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 
 	}
 
+	public SnapshotShardsStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code stage}
 	 */

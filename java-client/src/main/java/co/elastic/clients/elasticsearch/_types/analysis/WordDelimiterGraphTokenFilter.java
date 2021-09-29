@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.WordDelimiterGraphTokenFilter
@@ -82,14 +84,18 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		this.generateNumberParts = Objects.requireNonNull(builder.generateNumberParts, "generate_number_parts");
 		this.generateWordParts = Objects.requireNonNull(builder.generateWordParts, "generate_word_parts");
 		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
-		this.protectedWords = Objects.requireNonNull(builder.protectedWords, "protected_words");
+		this.protectedWords = ModelTypeHelper.unmodifiableNonNull(builder.protectedWords, "protected_words");
 		this.protectedWordsPath = Objects.requireNonNull(builder.protectedWordsPath, "protected_words_path");
 		this.splitOnCaseChange = Objects.requireNonNull(builder.splitOnCaseChange, "split_on_case_change");
 		this.splitOnNumerics = Objects.requireNonNull(builder.splitOnNumerics, "split_on_numerics");
 		this.stemEnglishPossessive = Objects.requireNonNull(builder.stemEnglishPossessive, "stem_english_possessive");
-		this.typeTable = Objects.requireNonNull(builder.typeTable, "type_table");
+		this.typeTable = ModelTypeHelper.unmodifiableNonNull(builder.typeTable, "type_table");
 		this.typeTablePath = Objects.requireNonNull(builder.typeTablePath, "type_table_path");
 
+	}
+
+	public WordDelimiterGraphTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -366,7 +372,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * Add a value to {@link #protectedWords(List)}, creating the list if needed.
+		 * Add a value to {@link #protectedWords(List)}, creating the list if needed. 4
 		 */
 		public Builder addProtectedWords(String value) {
 			if (this.protectedWords == null) {
@@ -425,7 +431,7 @@ public final class WordDelimiterGraphTokenFilter extends TokenFilterBase impleme
 		}
 
 		/**
-		 * Add a value to {@link #typeTable(List)}, creating the list if needed.
+		 * Add a value to {@link #typeTable(List)}, creating the list if needed. 4
 		 */
 		public Builder addTypeTable(String value) {
 			if (this.typeTable == null) {

@@ -66,6 +66,10 @@ public final class DataframeClassificationSummary implements JsonpSerializable {
 
 	}
 
+	public DataframeClassificationSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code auc_roc}
 	 */

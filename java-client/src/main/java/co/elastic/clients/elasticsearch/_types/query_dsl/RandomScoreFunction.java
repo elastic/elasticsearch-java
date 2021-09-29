@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
@@ -52,6 +53,10 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		this.field = builder.field;
 		this.seed = builder.seed;
 
+	}
+
+	public RandomScoreFunction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

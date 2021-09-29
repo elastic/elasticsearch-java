@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -79,7 +80,7 @@ public final class Detector implements JsonpSerializable {
 	public Detector(Builder builder) {
 
 		this.byFieldName = builder.byFieldName;
-		this.customRules = builder.customRules;
+		this.customRules = ModelTypeHelper.unmodifiable(builder.customRules);
 		this.detectorDescription = builder.detectorDescription;
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
@@ -89,6 +90,10 @@ public final class Detector implements JsonpSerializable {
 		this.partitionFieldName = builder.partitionFieldName;
 		this.useNull = builder.useNull;
 
+	}
+
+	public Detector(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -356,7 +361,7 @@ public final class Detector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #customRules(List)}, creating the list if needed.
+		 * Add a value to {@link #customRules(List)}, creating the list if needed. 4
 		 */
 		public Builder addCustomRules(DetectionRule value) {
 			if (this.customRules == null) {
@@ -374,7 +379,7 @@ public final class Detector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #customRules(List)}, creating the list if needed.
+		 * Add a value to {@link #customRules(List)}, creating the list if needed. 5
 		 */
 		public Builder addCustomRules(Function<DetectionRule.Builder, ObjectBuilder<DetectionRule>> fn) {
 			return this.addCustomRules(fn.apply(new DetectionRule.Builder()).build());

@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -68,14 +69,18 @@ public final class Role implements JsonpSerializable {
 
 	public Role(Builder builder) {
 
-		this.cluster = Objects.requireNonNull(builder.cluster, "cluster");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.metadata = Objects.requireNonNull(builder.metadata, "metadata");
-		this.runAs = Objects.requireNonNull(builder.runAs, "run_as");
+		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
+		this.runAs = ModelTypeHelper.unmodifiableNonNull(builder.runAs, "run_as");
 		this.transientMetadata = Objects.requireNonNull(builder.transientMetadata, "transient_metadata");
-		this.applications = Objects.requireNonNull(builder.applications, "applications");
-		this.roleTemplates = builder.roleTemplates;
+		this.applications = ModelTypeHelper.unmodifiableNonNull(builder.applications, "applications");
+		this.roleTemplates = ModelTypeHelper.unmodifiable(builder.roleTemplates);
 
+	}
+
+	public Role(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -235,7 +240,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
+		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
 		 */
 		public Builder addCluster(String value) {
 			if (this.cluster == null) {
@@ -262,7 +267,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -280,7 +285,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
@@ -322,7 +327,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -364,7 +369,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -382,7 +387,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -406,7 +411,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
+		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
 			if (this.roleTemplates == null) {

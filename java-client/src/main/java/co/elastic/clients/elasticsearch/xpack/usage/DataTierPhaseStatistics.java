@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.DataTierPhaseStatistics
 @JsonpDeserializable
@@ -76,6 +77,10 @@ public final class DataTierPhaseStatistics implements JsonpSerializable {
 		this.primaryShardSizeMadBytes = Objects.requireNonNull(builder.primaryShardSizeMadBytes,
 				"primary_shard_size_mad_bytes");
 
+	}
+
+	public DataTierPhaseStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

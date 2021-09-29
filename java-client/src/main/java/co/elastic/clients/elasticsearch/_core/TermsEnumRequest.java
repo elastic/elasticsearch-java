@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -82,6 +83,10 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 		this.string = builder.string;
 		this.searchAfter = builder.searchAfter;
 
+	}
+
+	public TermsEnumRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -379,7 +384,7 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code terms_enum}".
 	 */
-	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<TermsEnumRequest, TermsEnumResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -397,11 +402,11 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_terms_enum");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -409,5 +414,5 @@ public final class TermsEnumRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, TermsEnumResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TermsEnumResponse._DESERIALIZER);
 }

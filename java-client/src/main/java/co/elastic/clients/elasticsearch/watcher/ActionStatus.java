@@ -61,6 +61,10 @@ public final class ActionStatus implements JsonpSerializable {
 
 	}
 
+	public ActionStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code ack}
 	 */

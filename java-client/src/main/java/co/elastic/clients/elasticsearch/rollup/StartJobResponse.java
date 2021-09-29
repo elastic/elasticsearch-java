@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: rollup.start_job.Response
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class StartJobResponse implements JsonpSerializable {
 
 		this.started = Objects.requireNonNull(builder.started, "started");
 
+	}
+
+	public StartJobResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

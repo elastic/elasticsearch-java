@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.help.HelpRecord
@@ -47,6 +48,10 @@ public final class HelpRecord implements JsonpSerializable {
 
 		this.endpoint = Objects.requireNonNull(builder.endpoint, "endpoint");
 
+	}
+
+	public HelpRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

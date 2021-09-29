@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,6 +37,7 @@ import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
@@ -54,6 +56,10 @@ public final class NodesRequest extends CatRequestBase {
 		this.bytes = builder.bytes;
 		this.fullId = builder.fullId;
 
+	}
+
+	public NodesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -125,7 +131,7 @@ public final class NodesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodes}".
 	 */
-	public static final Endpoint<NodesRequest, NodesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<NodesRequest, NodesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -149,5 +155,5 @@ public final class NodesRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, NodesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, NodesResponse._DESERIALIZER);
 }

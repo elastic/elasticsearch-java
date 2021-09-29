@@ -73,6 +73,10 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
+	public Normalizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code lowercase} variant value.
 	 *
@@ -100,32 +104,31 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Normalizer> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<Normalizer> lowercase(LowercaseNormalizer v) {
+		public Builder lowercase(LowercaseNormalizer v) {
 			this._type = LOWERCASE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Normalizer> lowercase(
-				Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> f) {
+		public Builder lowercase(Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> f) {
 			return this.lowercase(f.apply(new LowercaseNormalizer.Builder()).build());
 		}
 
-		public ObjectBuilder<Normalizer> custom(CustomNormalizer v) {
+		public Builder custom(CustomNormalizer v) {
 			this._type = CUSTOM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Normalizer> custom(Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> f) {
+		public Builder custom(Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> f) {
 			return this.custom(f.apply(new CustomNormalizer.Builder()).build());
 		}
 
-		protected Normalizer build() {
+		public Normalizer build() {
 			return new Normalizer(this);
 		}
 
@@ -137,6 +140,7 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
 
 		op.setTypeProperty("type");
+
 	}
 
 	public static final JsonpDeserializer<Normalizer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

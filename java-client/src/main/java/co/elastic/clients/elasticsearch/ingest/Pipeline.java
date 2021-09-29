@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -61,10 +62,14 @@ public final class Pipeline implements JsonpSerializable {
 	public Pipeline(Builder builder) {
 
 		this.description = builder.description;
-		this.onFailure = builder.onFailure;
-		this.processors = builder.processors;
+		this.onFailure = ModelTypeHelper.unmodifiable(builder.onFailure);
+		this.processors = ModelTypeHelper.unmodifiable(builder.processors);
 		this.version = builder.version;
 
+	}
+
+	public Pipeline(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -190,7 +195,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 4
 		 */
 		public Builder addOnFailure(Processor value) {
 			if (this.onFailure == null) {
@@ -208,7 +213,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 5
 		 */
 		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
@@ -231,7 +236,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
 		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
@@ -249,7 +254,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
 		 */
 		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addProcessors(fn.apply(new Processor.Builder()).build());

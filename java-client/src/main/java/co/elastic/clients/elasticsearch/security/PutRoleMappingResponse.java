@@ -54,6 +54,10 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 
 	}
 
+	public PutRoleMappingResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code created}
 	 */

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.delete_lifecycle.Request
@@ -48,6 +50,10 @@ public final class DeleteLifecycleRequest extends RequestBase {
 
 		this.policy = Objects.requireNonNull(builder.policy, "policy");
 
+	}
+
+	public DeleteLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.delete_lifecycle}".
 	 */
-	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -114,10 +120,10 @@ public final class DeleteLifecycleRequest extends RequestBase {
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policy);
+					SimpleEndpoint.pathEncode(request.policy, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -125,5 +131,5 @@ public final class DeleteLifecycleRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteLifecycleResponse._DESERIALIZER);
 }

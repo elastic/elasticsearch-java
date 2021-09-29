@@ -76,6 +76,10 @@ public final class GetWatchResponse implements JsonpSerializable {
 
 	}
 
+	public GetWatchResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code found}
 	 */

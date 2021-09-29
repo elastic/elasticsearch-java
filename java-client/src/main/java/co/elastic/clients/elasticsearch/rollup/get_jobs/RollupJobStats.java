@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: rollup.get_jobs.RollupJobStats
 @JsonpDeserializable
@@ -79,6 +80,10 @@ public final class RollupJobStats implements JsonpSerializable {
 		this.processingTimeInMs = Objects.requireNonNull(builder.processingTimeInMs, "processing_time_in_ms");
 		this.processingTotal = Objects.requireNonNull(builder.processingTotal, "processing_total");
 
+	}
+
+	public RollupJobStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

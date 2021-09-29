@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateProcessor
@@ -60,11 +62,15 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		super(builder);
 
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.formats = Objects.requireNonNull(builder.formats, "formats");
+		this.formats = ModelTypeHelper.unmodifiableNonNull(builder.formats, "formats");
 		this.locale = builder.locale;
 		this.targetField = builder.targetField;
 		this.timezone = builder.timezone;
 
+	}
+
+	public DateProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -193,7 +199,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * Add a value to {@link #formats(List)}, creating the list if needed.
+		 * Add a value to {@link #formats(List)}, creating the list if needed. 4
 		 */
 		public Builder addFormats(String value) {
 			if (this.formats == null) {

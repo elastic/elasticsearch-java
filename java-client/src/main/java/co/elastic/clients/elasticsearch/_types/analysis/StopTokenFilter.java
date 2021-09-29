@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopTokenFilter
@@ -60,9 +62,13 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 
 		this.ignoreCase = builder.ignoreCase;
 		this.removeTrailing = builder.removeTrailing;
-		this.stopwords = Objects.requireNonNull(builder.stopwords, "stopwords");
+		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
 		this.stopwordsPath = builder.stopwordsPath;
 
+	}
+
+	public StopTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -190,7 +196,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {

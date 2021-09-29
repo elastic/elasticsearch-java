@@ -31,12 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJobStatus
@@ -54,10 +56,14 @@ public final class RollupJobStatus implements JsonpSerializable {
 
 	public RollupJobStatus(Builder builder) {
 
-		this.currentPosition = builder.currentPosition;
+		this.currentPosition = ModelTypeHelper.unmodifiable(builder.currentPosition);
 		this.jobState = Objects.requireNonNull(builder.jobState, "job_state");
 		this.upgradedDocId = builder.upgradedDocId;
 
+	}
+
+	public RollupJobStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

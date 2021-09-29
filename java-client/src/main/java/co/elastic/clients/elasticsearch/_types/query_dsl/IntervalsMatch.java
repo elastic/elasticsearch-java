@@ -72,6 +72,10 @@ public final class IntervalsMatch implements IntervalsQueryVariant, IntervalsVar
 
 	}
 
+	public IntervalsMatch(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link IntervalsQuery}, {@link Intervals} variant type
 	 */

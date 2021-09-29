@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.IpFilter
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class IpFilter implements JsonpSerializable {
 		this.http = Objects.requireNonNull(builder.http, "http");
 		this.transport = Objects.requireNonNull(builder.transport, "transport");
 
+	}
+
+	public IpFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharGroupTokenizer
@@ -48,8 +50,12 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 	public CharGroupTokenizer(Builder builder) {
 		super(builder);
 
-		this.tokenizeOnChars = Objects.requireNonNull(builder.tokenizeOnChars, "tokenize_on_chars");
+		this.tokenizeOnChars = ModelTypeHelper.unmodifiableNonNull(builder.tokenizeOnChars, "tokenize_on_chars");
 
+	}
+
+	public CharGroupTokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -109,7 +115,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * Add a value to {@link #tokenizeOnChars(List)}, creating the list if needed.
+		 * Add a value to {@link #tokenizeOnChars(List)}, creating the list if needed. 4
 		 */
 		public Builder addTokenizeOnChars(String value) {
 			if (this.tokenizeOnChars == null) {

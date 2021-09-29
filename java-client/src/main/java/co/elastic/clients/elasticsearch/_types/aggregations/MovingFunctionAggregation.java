@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingFunctionAggregation
@@ -57,6 +58,10 @@ public final class MovingFunctionAggregation extends PipelineAggregationBase imp
 		this.shift = builder.shift;
 		this.window = builder.window;
 
+	}
+
+	public MovingFunctionAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

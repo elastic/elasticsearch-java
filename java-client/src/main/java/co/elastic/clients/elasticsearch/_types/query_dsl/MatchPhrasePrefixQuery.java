@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhrasePrefixQuery
@@ -67,6 +68,10 @@ public final class MatchPhrasePrefixQuery extends QueryBase implements QueryVari
 		this.slop = builder.slop;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
+	}
+
+	public MatchPhrasePrefixQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

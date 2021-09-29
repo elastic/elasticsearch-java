@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.InProgress
@@ -56,6 +57,10 @@ public final class InProgress implements JsonpSerializable {
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.uuid = Objects.requireNonNull(builder.uuid, "uuid");
 
+	}
+
+	public InProgress(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

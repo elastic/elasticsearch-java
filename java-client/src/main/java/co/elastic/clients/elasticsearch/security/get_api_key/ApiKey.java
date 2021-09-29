@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,6 +40,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.ApiKey
@@ -73,8 +75,12 @@ public final class ApiKey implements JsonpSerializable {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.realm = Objects.requireNonNull(builder.realm, "realm");
 		this.username = Objects.requireNonNull(builder.username, "username");
-		this.metadata = builder.metadata;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 
+	}
+
+	public ApiKey(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

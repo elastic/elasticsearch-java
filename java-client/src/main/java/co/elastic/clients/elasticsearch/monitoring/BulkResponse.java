@@ -62,6 +62,10 @@ public final class BulkResponse implements JsonpSerializable {
 
 	}
 
+	public BulkResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code error}
 	 */

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriAnalyzer
@@ -56,9 +58,13 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		this.version = Objects.requireNonNull(builder.version, "version");
 		this.decompoundMode = Objects.requireNonNull(builder.decompoundMode, "decompound_mode");
-		this.stoptags = Objects.requireNonNull(builder.stoptags, "stoptags");
+		this.stoptags = ModelTypeHelper.unmodifiableNonNull(builder.stoptags, "stoptags");
 		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
 
+	}
+
+	public NoriAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -176,7 +182,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stoptags(List)}, creating the list if needed.
+		 * Add a value to {@link #stoptags(List)}, creating the list if needed. 4
 		 */
 		public Builder addStoptags(String value) {
 			if (this.stoptags == null) {

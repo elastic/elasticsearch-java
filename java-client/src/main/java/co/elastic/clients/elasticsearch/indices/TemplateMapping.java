@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -67,13 +68,17 @@ public final class TemplateMapping implements JsonpSerializable {
 
 	public TemplateMapping(Builder builder) {
 
-		this.aliases = Objects.requireNonNull(builder.aliases, "aliases");
-		this.indexPatterns = Objects.requireNonNull(builder.indexPatterns, "index_patterns");
+		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
+		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
 		this.order = Objects.requireNonNull(builder.order, "order");
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = ModelTypeHelper.unmodifiableNonNull(builder.settings, "settings");
 		this.version = builder.version;
 
+	}
+
+	public TemplateMapping(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -240,7 +245,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {

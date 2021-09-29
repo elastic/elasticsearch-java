@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ccr.put_auto_follow_pattern.Response
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 	public PutAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutAutoFollowPatternResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

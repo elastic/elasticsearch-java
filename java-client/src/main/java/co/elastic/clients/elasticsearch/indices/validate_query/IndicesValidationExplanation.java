@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.IndicesValidationExplanation
@@ -59,6 +60,10 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.valid = Objects.requireNonNull(builder.valid, "valid");
 
+	}
+
+	public IndicesValidationExplanation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

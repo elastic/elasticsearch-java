@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -96,7 +97,7 @@ public final class Status implements JsonpSerializable {
 		this.created = Objects.requireNonNull(builder.created, "created");
 		this.deleted = Objects.requireNonNull(builder.deleted, "deleted");
 		this.noops = Objects.requireNonNull(builder.noops, "noops");
-		this.failures = builder.failures;
+		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
 		this.requestsPerSecond = Objects.requireNonNull(builder.requestsPerSecond, "requests_per_second");
 		this.retries = Objects.requireNonNull(builder.retries, "retries");
 		this.throttled = builder.throttled;
@@ -109,6 +110,10 @@ public final class Status implements JsonpSerializable {
 		this.updated = Objects.requireNonNull(builder.updated, "updated");
 		this.versionConflicts = Objects.requireNonNull(builder.versionConflicts, "version_conflicts");
 
+	}
+
+	public Status(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -431,7 +436,7 @@ public final class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
 		 */
 		public Builder addFailures(String value) {
 			if (this.failures == null) {

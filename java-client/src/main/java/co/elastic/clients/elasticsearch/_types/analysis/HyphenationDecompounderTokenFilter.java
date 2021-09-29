@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
 @JsonpDeserializable
@@ -43,6 +44,10 @@ public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenF
 	public HyphenationDecompounderTokenFilter(Builder builder) {
 		super(builder);
 
+	}
+
+	public HyphenationDecompounderTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

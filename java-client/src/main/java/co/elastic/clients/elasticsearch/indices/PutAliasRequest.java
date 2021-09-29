@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -80,7 +82,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 
 	public PutAliasRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
@@ -90,6 +92,10 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
 
+	}
+
+	public PutAliasRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -269,7 +275,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -391,7 +397,7 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code indices.put_alias}".
 	 */
-	public static final Endpoint<PutAliasRequest, PutAliasResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutAliasRequest, PutAliasResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -411,22 +417,22 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_alias");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_aliases");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -441,5 +447,5 @@ public final class PutAliasRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutAliasResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutAliasResponse._DESERIALIZER);
 }

@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.DataStreamsStatsItem
@@ -61,6 +62,10 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		this.storeSizeBytes = Objects.requireNonNull(builder.storeSizeBytes, "store_size_bytes");
 		this.maximumTimestamp = Objects.requireNonNull(builder.maximumTimestamp, "maximum_timestamp");
 
+	}
+
+	public DataStreamsStatsItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -62,6 +62,10 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 
 	}
 
+	public MlInferenceTrainedModels(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code estimated_operations}
 	 */

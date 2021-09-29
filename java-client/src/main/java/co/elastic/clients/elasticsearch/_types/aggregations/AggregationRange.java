@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationRange
@@ -56,6 +57,10 @@ public final class AggregationRange implements JsonpSerializable {
 		this.key = builder.key;
 		this.to = builder.to;
 
+	}
+
+	public AggregationRange(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

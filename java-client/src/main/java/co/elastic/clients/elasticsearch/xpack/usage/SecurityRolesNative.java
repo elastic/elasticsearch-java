@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.SecurityRolesNative
 @JsonpDeserializable
@@ -53,6 +54,10 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		this.fls = Objects.requireNonNull(builder.fls, "fls");
 		this.size = Objects.requireNonNull(builder.size, "size");
 
+	}
+
+	public SecurityRolesNative(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

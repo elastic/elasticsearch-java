@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandCancelAction
@@ -59,6 +60,10 @@ public final class CommandCancelAction implements JsonpSerializable {
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.allowPrimary = builder.allowPrimary;
 
+	}
+
+	public CommandCancelAction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

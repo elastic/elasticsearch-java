@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -58,10 +59,14 @@ public final class DetectionRule implements JsonpSerializable {
 
 	public DetectionRule(Builder builder) {
 
-		this.actions = builder.actions;
-		this.conditions = builder.conditions;
-		this.scope = builder.scope;
+		this.actions = ModelTypeHelper.unmodifiable(builder.actions);
+		this.conditions = ModelTypeHelper.unmodifiable(builder.conditions);
+		this.scope = ModelTypeHelper.unmodifiable(builder.scope);
 
+	}
+
+	public DetectionRule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -186,7 +191,7 @@ public final class DetectionRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(RuleAction value) {
 			if (this.actions == null) {
@@ -221,7 +226,7 @@ public final class DetectionRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #conditions(List)}, creating the list if needed.
+		 * Add a value to {@link #conditions(List)}, creating the list if needed. 4
 		 */
 		public Builder addConditions(RuleCondition value) {
 			if (this.conditions == null) {
@@ -239,7 +244,7 @@ public final class DetectionRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #conditions(List)}, creating the list if needed.
+		 * Add a value to {@link #conditions(List)}, creating the list if needed. 5
 		 */
 		public Builder addConditions(Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>> fn) {
 			return this.addConditions(fn.apply(new RuleCondition.Builder()).build());

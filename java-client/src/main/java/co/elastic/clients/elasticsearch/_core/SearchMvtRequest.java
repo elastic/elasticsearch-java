@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.search_mvt.GridType;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
@@ -37,6 +38,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -101,22 +103,26 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 	public SearchMvtRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.zoom = Objects.requireNonNull(builder.zoom, "zoom");
 		this.x = Objects.requireNonNull(builder.x, "x");
 		this.y = Objects.requireNonNull(builder.y, "y");
-		this.aggs = builder.aggs;
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.exactBounds = builder.exactBounds;
 		this.extent = builder.extent;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.gridPrecision = builder.gridPrecision;
 		this.gridType = builder.gridType;
 		this.query = builder.query;
-		this.runtimeMappings = builder.runtimeMappings;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.size = builder.size;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 
+	}
+
+	public SearchMvtRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -451,7 +457,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -595,7 +601,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -721,7 +727,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -772,7 +778,7 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code search_mvt}".
 	 */
-	public static final Endpoint<SearchMvtRequest, SearchMvtResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SearchMvtRequest, SearchMvtResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -798,19 +804,19 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 				if (propsSet == (_index | _field | _zoom | _x | _y)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mvt");
 					buf.append("/");
-					buf.append(request.field);
+					SimpleEndpoint.pathEncode(request.field, buf);
 					buf.append("/");
-					buf.append(String.valueOf(request.zoom));
+					SimpleEndpoint.pathEncode(String.valueOf(request.zoom), buf);
 					buf.append("/");
-					buf.append(String.valueOf(request.x));
+					SimpleEndpoint.pathEncode(String.valueOf(request.x), buf);
 					buf.append("/");
-					buf.append(String.valueOf(request.y));
+					SimpleEndpoint.pathEncode(String.valueOf(request.y), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -819,5 +825,5 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 				Map<String, String> params = new HashMap<>();
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SearchMvtResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SearchMvtResponse._DESERIALIZER);
 }

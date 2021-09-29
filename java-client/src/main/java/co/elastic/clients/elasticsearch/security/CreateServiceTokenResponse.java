@@ -54,6 +54,10 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 
 	}
 
+	public CreateServiceTokenResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code created}
 	 */

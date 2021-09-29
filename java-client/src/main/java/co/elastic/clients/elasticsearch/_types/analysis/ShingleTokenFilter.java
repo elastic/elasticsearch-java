@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ShingleTokenFilter
@@ -65,6 +66,10 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 				"output_unigrams_if_no_shingles");
 		this.tokenSeparator = Objects.requireNonNull(builder.tokenSeparator, "token_separator");
 
+	}
+
+	public ShingleTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

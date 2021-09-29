@@ -59,6 +59,10 @@ public final class OperatingSystem implements JsonpSerializable {
 
 	}
 
+	public OperatingSystem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cpu}
 	 */

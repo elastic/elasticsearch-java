@@ -92,6 +92,10 @@ public class FunctionScore implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public FunctionScore(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code filter}
 	 */

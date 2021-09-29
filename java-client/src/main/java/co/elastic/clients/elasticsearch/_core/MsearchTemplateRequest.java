@@ -25,16 +25,17 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._core.msearch_template.TemplateItem;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -66,25 +67,25 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	private final SearchType searchType;
 
 	@Nullable
-	private final Boolean restTotalHitsAsInt;
-
-	@Nullable
 	private final Boolean typedKeys;
 
-	private final List<TemplateItem> value;
+	private final List<TemplateItem> searchTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MsearchTemplateRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
-		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
 		this.typedKeys = builder.typedKeys;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.searchTemplates = ModelTypeHelper.unmodifiableNonNull(builder.searchTemplates, "_value_body");
 
+	}
+
+	public MsearchTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -130,17 +131,6 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Indicates whether hits.total should be rendered as an integer or an object in
-	 * the rest search response
-	 * <p>
-	 * API name: {@code rest_total_hits_as_int}
-	 */
-	@Nullable
-	public Boolean restTotalHitsAsInt() {
-		return this.restTotalHitsAsInt;
-	}
-
-	/**
 	 * Specify whether aggregation and suggester names should be prefixed by their
 	 * respective types in the response
 	 * <p>
@@ -154,10 +144,10 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<TemplateItem> value() {
-		return this.value;
+	public List<TemplateItem> searchTemplates() {
+		return this.searchTemplates;
 	}
 
 	/**
@@ -165,7 +155,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TemplateItem item0 : this.value) {
+		for (TemplateItem item0 : this.searchTemplates) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -192,12 +182,9 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		private SearchType searchType;
 
 		@Nullable
-		private Boolean restTotalHitsAsInt;
-
-		@Nullable
 		private Boolean typedKeys;
 
-		private List<TemplateItem> value;
+		private List<TemplateItem> searchTemplates;
 
 		/**
 		 * A comma-separated list of index names to use as default
@@ -220,7 +207,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -263,17 +250,6 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Indicates whether hits.total should be rendered as an integer or an object in
-		 * the rest search response
-		 * <p>
-		 * API name: {@code rest_total_hits_as_int}
-		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
-			this.restTotalHitsAsInt = value;
-			return this;
-		}
-
-		/**
 		 * Specify whether aggregation and suggester names should be prefixed by their
 		 * respective types in the response
 		 * <p>
@@ -287,46 +263,46 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<TemplateItem> value) {
-			this.value = value;
+		public Builder searchTemplates(List<TemplateItem> value) {
+			this.searchTemplates = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(TemplateItem... value) {
-			this.value = Arrays.asList(value);
+		public Builder searchTemplates(TemplateItem... value) {
+			this.searchTemplates = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(TemplateItem value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addSearchTemplates(TemplateItem value) {
+			if (this.searchTemplates == null) {
+				this.searchTemplates = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.searchTemplates.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #searchTemplates(List)} to a singleton list.
 		 */
-		public Builder value(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
-			return this.value(fn.apply(new TemplateItem.Builder()).build());
+		public Builder searchTemplates(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
+			return this.searchTemplates(fn.apply(new TemplateItem.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
-			return this.addValue(fn.apply(new TemplateItem.Builder()).build());
+		public Builder addSearchTemplates(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
+			return this.addSearchTemplates(fn.apply(new TemplateItem.Builder()).build());
 		}
 
 		/**
@@ -341,19 +317,14 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<MsearchTemplateRequest> _DESERIALIZER = createMsearchTemplateRequestDeserializer();
+	protected static JsonpDeserializer<MsearchTemplateRequest> createMsearchTemplateRequestDeserializer() {
 
-	/**
-	 * Json deserializer for {@link MsearchTemplateRequest}
-	 */
-	public static final JsonpDeserializer<MsearchTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MsearchTemplateRequest::setupMsearchTemplateRequestDeserializer, Builder::build);
+		JsonpDeserializer<List<TemplateItem>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(TemplateItem._DESERIALIZER);
 
-	protected static void setupMsearchTemplateRequestDeserializer(
-			DelegatingDeserializer<MsearchTemplateRequest.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplateItem._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.searchTemplates(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -361,7 +332,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code msearch_template}".
 	 */
-	private static final Endpoint.Simple<MsearchTemplateRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<MsearchTemplateRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -386,12 +357,12 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_msearch");
 					buf.append("/template");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -407,15 +378,12 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.toString());
 				}
-				if (request.restTotalHitsAsInt != null) {
-					params.put("rest_total_hits_as_int", String.valueOf(request.restTotalHitsAsInt));
-				}
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code msearch_template}" endpoint.

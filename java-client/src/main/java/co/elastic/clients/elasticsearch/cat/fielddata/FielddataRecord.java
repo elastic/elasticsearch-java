@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.FielddataRecord
@@ -68,6 +69,10 @@ public final class FielddataRecord implements JsonpSerializable {
 		this.field = builder.field;
 		this.size = builder.size;
 
+	}
+
+	public FielddataRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

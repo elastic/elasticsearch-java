@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.indices.IndicesRecord
@@ -608,6 +609,10 @@ public final class IndicesRecord implements JsonpSerializable {
 		this.bulkAvgSizeInBytes = builder.bulkAvgSizeInBytes;
 		this.priBulkAvgSizeInBytes = builder.priBulkAvgSizeInBytes;
 
+	}
+
+	public IndicesRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

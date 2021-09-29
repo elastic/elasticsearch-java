@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,35 +33,40 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Response
 @JsonpDeserializable
 public final class PromoteDataStreamResponse implements JsonpSerializable {
-	private final JsonData value;
+	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PromoteDataStreamResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public PromoteDataStreamResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public JsonData value() {
-		return this.value;
+	public JsonData valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.value.serialize(generator, mapper);
+		this.valueBody.serialize(generator, mapper);
 
 	}
 
@@ -72,15 +76,15 @@ public final class PromoteDataStreamResponse implements JsonpSerializable {
 	 * Builder for {@link PromoteDataStreamResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PromoteDataStreamResponse> {
-		private JsonData value;
+		private JsonData valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(JsonData value) {
-			this.value = value;
+		public Builder valueBody(JsonData value) {
+			this.valueBody = value;
 			return this;
 		}
 
@@ -96,19 +100,13 @@ public final class PromoteDataStreamResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PromoteDataStreamResponse> _DESERIALIZER = createPromoteDataStreamResponseDeserializer();
+	protected static JsonpDeserializer<PromoteDataStreamResponse> createPromoteDataStreamResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PromoteDataStreamResponse}
-	 */
-	public static final JsonpDeserializer<PromoteDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PromoteDataStreamResponse::setupPromoteDataStreamResponseDeserializer, Builder::build);
+		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-	protected static void setupPromoteDataStreamResponseDeserializer(
-			DelegatingDeserializer<PromoteDataStreamResponse.Builder> op) {
-
-		op.add(Builder::value, JsonData._DESERIALIZER, "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

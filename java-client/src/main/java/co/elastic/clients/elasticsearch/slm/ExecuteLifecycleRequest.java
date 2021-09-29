@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.execute_lifecycle.Request
@@ -48,6 +50,10 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 
 		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
 
+	}
+
+	public ExecuteLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,7 +100,7 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.execute_lifecycle}".
 	 */
-	public static final Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -114,11 +120,11 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 					buf.append("/_slm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policyId);
+					SimpleEndpoint.pathEncode(request.policyId, buf);
 					buf.append("/_execute");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -126,5 +132,5 @@ public final class ExecuteLifecycleRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ExecuteLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ExecuteLifecycleResponse._DESERIALIZER);
 }

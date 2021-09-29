@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -92,6 +93,10 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		this.start = builder.start;
 		this.page = builder.page;
 
+	}
+
+	public GetInfluencersRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -387,7 +392,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code ml.get_influencers}".
 	 */
-	public static final Endpoint<GetInfluencersRequest, GetInfluencersResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetInfluencersRequest, GetInfluencersResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -407,12 +412,12 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/results");
 					buf.append("/influencers");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -445,5 +450,5 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetInfluencersResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetInfluencersResponse._DESERIALIZER);
 }

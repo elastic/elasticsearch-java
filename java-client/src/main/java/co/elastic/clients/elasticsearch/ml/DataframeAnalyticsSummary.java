@@ -91,6 +91,10 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 
 	}
 
+	public DataframeAnalyticsSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code id}
 	 */

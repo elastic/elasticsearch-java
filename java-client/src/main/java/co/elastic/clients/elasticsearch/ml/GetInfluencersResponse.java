@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -52,8 +53,12 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 	public GetInfluencersResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.influencers = Objects.requireNonNull(builder.influencers, "influencers");
+		this.influencers = ModelTypeHelper.unmodifiableNonNull(builder.influencers, "influencers");
 
+	}
+
+	public GetInfluencersResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -135,7 +140,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
 		 */
 		public Builder addInfluencers(BucketInfluencer value) {
 			if (this.influencers == null) {
@@ -153,7 +158,7 @@ public final class GetInfluencersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed.
+		 * Add a value to {@link #influencers(List)}, creating the list if needed. 5
 		 */
 		public Builder addInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
 			return this.addInfluencers(fn.apply(new BucketInfluencer.Builder()).build());

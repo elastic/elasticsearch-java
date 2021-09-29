@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.templates.TemplatesRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.templates.Response
 @JsonpDeserializable
 public final class TemplatesResponse implements JsonpSerializable {
-	private final List<TemplatesRecord> value;
+	private final List<TemplatesRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public TemplatesResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public TemplatesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<TemplatesRecord> value() {
-		return this.value;
+	public List<TemplatesRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class TemplatesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TemplatesRecord item0 : this.value) {
+		for (TemplatesRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class TemplatesResponse implements JsonpSerializable {
 	 * Builder for {@link TemplatesResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<TemplatesResponse> {
-		private List<TemplatesRecord> value;
+		private List<TemplatesRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<TemplatesRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<TemplatesRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(TemplatesRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(TemplatesRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(TemplatesRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(TemplatesRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
-			return this.value(fn.apply(new TemplatesRecord.Builder()).build());
+		public Builder valueBody(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
+			return this.valueBody(fn.apply(new TemplatesRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
-			return this.addValue(fn.apply(new TemplatesRecord.Builder()).build());
+		public Builder addValueBody(Function<TemplatesRecord.Builder, ObjectBuilder<TemplatesRecord>> fn) {
+			return this.addValueBody(fn.apply(new TemplatesRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class TemplatesResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<TemplatesResponse> _DESERIALIZER = createTemplatesResponseDeserializer();
+	protected static JsonpDeserializer<TemplatesResponse> createTemplatesResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link TemplatesResponse}
-	 */
-	public static final JsonpDeserializer<TemplatesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TemplatesResponse::setupTemplatesResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<TemplatesRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(TemplatesRecord._DESERIALIZER);
 
-	protected static void setupTemplatesResponseDeserializer(DelegatingDeserializer<TemplatesResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(TemplatesRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

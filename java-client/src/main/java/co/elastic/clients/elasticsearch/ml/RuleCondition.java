@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.RuleCondition
@@ -53,6 +54,10 @@ public final class RuleCondition implements JsonpSerializable {
 		this.operator = Objects.requireNonNull(builder.operator, "operator");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public RuleCondition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -55,10 +56,14 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 
 	public SearchInput(Builder builder) {
 
-		this.extract = builder.extract;
+		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
 		this.request = Objects.requireNonNull(builder.request, "request");
 		this.timeout = builder.timeout;
 
+	}
+
+	public SearchInput(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -158,7 +163,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #extract(List)}, creating the list if needed.
+		 * Add a value to {@link #extract(List)}, creating the list if needed. 4
 		 */
 		public Builder addExtract(String value) {
 			if (this.extract == null) {

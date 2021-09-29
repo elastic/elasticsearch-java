@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -82,10 +85,10 @@ public final class StateRequest extends RequestBase {
 
 	public StateRequest(Builder builder) {
 
-		this.metric = builder.metric;
-		this.index = builder.index;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.local = builder.local;
@@ -93,6 +96,10 @@ public final class StateRequest extends RequestBase {
 		this.waitForMetadataVersion = builder.waitForMetadataVersion;
 		this.waitForTimeout = builder.waitForTimeout;
 
+	}
+
+	public StateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -259,7 +266,7 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -292,7 +299,7 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -337,7 +344,7 @@ public final class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -427,7 +434,7 @@ public final class StateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.state}".
 	 */
-	public static final Endpoint<StateRequest, StateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StateRequest, StateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -457,7 +464,8 @@ public final class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _index)) {
@@ -465,12 +473,13 @@ public final class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -504,5 +513,5 @@ public final class StateRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StateResponse._DESERIALIZER);
 }

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsMemoryEstimation
@@ -52,6 +53,10 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 		this.expectedMemoryWithoutDisk = Objects.requireNonNull(builder.expectedMemoryWithoutDisk,
 				"expected_memory_without_disk");
 
+	}
+
+	public DataframeAnalyticsMemoryEstimation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

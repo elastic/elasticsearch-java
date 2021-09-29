@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
@@ -56,8 +57,12 @@ public final class NodeInfoXpack implements JsonpSerializable {
 
 		this.license = builder.license;
 		this.security = Objects.requireNonNull(builder.security, "security");
-		this.notification = builder.notification;
+		this.notification = ModelTypeHelper.unmodifiable(builder.notification);
 
+	}
+
+	public NodeInfoXpack(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

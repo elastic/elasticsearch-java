@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Request
@@ -80,6 +82,10 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		this.size = builder.size;
 		this.tags = builder.tags;
 
+	}
+
+	public GetTrainedModelsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -309,7 +315,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_trained_models}".
 	 */
-	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -330,7 +336,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					buf.append(request.modelId);
+					SimpleEndpoint.pathEncode(request.modelId, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -339,7 +345,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 					buf.append("/trained_models");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -369,5 +375,5 @@ public final class GetTrainedModelsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTrainedModelsResponse._DESERIALIZER);
 }

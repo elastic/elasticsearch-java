@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.GeoIpProcessor
@@ -63,9 +65,13 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.firstOnly = Objects.requireNonNull(builder.firstOnly, "first_only");
 		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
-		this.properties = Objects.requireNonNull(builder.properties, "properties");
+		this.properties = ModelTypeHelper.unmodifiableNonNull(builder.properties, "properties");
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 
+	}
+
+	public GeoIpProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -216,7 +222,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
+		 * Add a value to {@link #properties(List)}, creating the list if needed. 4
 		 */
 		public Builder addProperties(String value) {
 			if (this.properties == null) {

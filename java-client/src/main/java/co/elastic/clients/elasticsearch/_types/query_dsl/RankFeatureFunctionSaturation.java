@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
@@ -48,6 +49,10 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 
 		this.pivot = builder.pivot;
 
+	}
+
+	public RankFeatureFunctionSaturation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

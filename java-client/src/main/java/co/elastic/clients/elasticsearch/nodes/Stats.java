@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -91,26 +92,30 @@ public final class Stats implements JsonpSerializable {
 
 	public Stats(Builder builder) {
 
-		this.adaptiveSelection = Objects.requireNonNull(builder.adaptiveSelection, "adaptive_selection");
-		this.breakers = Objects.requireNonNull(builder.breakers, "breakers");
+		this.adaptiveSelection = ModelTypeHelper.unmodifiableNonNull(builder.adaptiveSelection, "adaptive_selection");
+		this.breakers = ModelTypeHelper.unmodifiableNonNull(builder.breakers, "breakers");
 		this.fs = Objects.requireNonNull(builder.fs, "fs");
 		this.host = Objects.requireNonNull(builder.host, "host");
 		this.http = Objects.requireNonNull(builder.http, "http");
 		this.indices = Objects.requireNonNull(builder.indices, "indices");
 		this.ingest = Objects.requireNonNull(builder.ingest, "ingest");
-		this.ip = Objects.requireNonNull(builder.ip, "ip");
+		this.ip = ModelTypeHelper.unmodifiableNonNull(builder.ip, "ip");
 		this.jvm = Objects.requireNonNull(builder.jvm, "jvm");
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.os = Objects.requireNonNull(builder.os, "os");
 		this.process = Objects.requireNonNull(builder.process, "process");
-		this.roles = Objects.requireNonNull(builder.roles, "roles");
+		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
 		this.script = Objects.requireNonNull(builder.script, "script");
-		this.threadPool = Objects.requireNonNull(builder.threadPool, "thread_pool");
+		this.threadPool = ModelTypeHelper.unmodifiableNonNull(builder.threadPool, "thread_pool");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.transport = Objects.requireNonNull(builder.transport, "transport");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 
+	}
+
+	public Stats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -549,7 +554,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #ip(List)}, creating the list if needed.
+		 * Add a value to {@link #ip(List)}, creating the list if needed. 4
 		 */
 		public Builder addIp(String value) {
 			if (this.ip == null) {
@@ -629,7 +634,7 @@ public final class Stats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {

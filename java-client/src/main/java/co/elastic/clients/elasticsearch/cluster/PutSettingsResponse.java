@@ -31,12 +31,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.put_settings.Response
@@ -53,9 +55,13 @@ public final class PutSettingsResponse implements JsonpSerializable {
 	public PutSettingsResponse(Builder builder) {
 
 		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
-		this.persistent = Objects.requireNonNull(builder.persistent, "persistent");
-		this.transient_ = Objects.requireNonNull(builder.transient_, "transient");
+		this.persistent = ModelTypeHelper.unmodifiableNonNull(builder.persistent, "persistent");
+		this.transient_ = ModelTypeHelper.unmodifiableNonNull(builder.transient_, "transient");
 
+	}
+
+	public PutSettingsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

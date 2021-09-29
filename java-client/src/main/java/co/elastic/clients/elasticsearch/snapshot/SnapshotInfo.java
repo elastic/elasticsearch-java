@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -113,16 +114,16 @@ public final class SnapshotInfo implements JsonpSerializable {
 
 	public SnapshotInfo(Builder builder) {
 
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
+		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
 		this.duration = builder.duration;
 		this.durationInMillis = builder.durationInMillis;
 		this.endTime = builder.endTime;
 		this.endTimeInMillis = builder.endTimeInMillis;
-		this.failures = builder.failures;
+		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
 		this.includeGlobalState = builder.includeGlobalState;
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.indexDetails = builder.indexDetails;
-		this.metadata = builder.metadata;
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.indexDetails = ModelTypeHelper.unmodifiable(builder.indexDetails);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 		this.reason = builder.reason;
 		this.repository = builder.repository;
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
@@ -133,8 +134,12 @@ public final class SnapshotInfo implements JsonpSerializable {
 		this.uuid = Objects.requireNonNull(builder.uuid, "uuid");
 		this.version = builder.version;
 		this.versionId = builder.versionId;
-		this.featureStates = builder.featureStates;
+		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
 
+	}
+
+	public SnapshotInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -546,7 +551,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
 		 */
 		public Builder addDataStreams(String value) {
 			if (this.dataStreams == null) {
@@ -605,7 +610,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
 		 */
 		public Builder addFailures(SnapshotShardFailure value) {
 			if (this.failures == null) {
@@ -623,7 +628,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
 		 */
 		public Builder addFailures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
 			return this.addFailures(fn.apply(new SnapshotShardFailure.Builder()).build());
@@ -654,7 +659,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -820,7 +825,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureStates(InfoFeatureState value) {
 			if (this.featureStates == null) {
@@ -838,7 +843,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 5
 		 */
 		public Builder addFeatureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
 			return this.addFeatureStates(fn.apply(new InfoFeatureState.Builder()).build());

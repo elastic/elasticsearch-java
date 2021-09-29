@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Conflicts;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
@@ -37,8 +38,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -169,14 +172,14 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 
 	public DeleteByQueryRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.conflicts = builder.conflicts;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.from = builder.from;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.lenient = builder.lenient;
@@ -192,11 +195,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		this.searchType = builder.searchType;
 		this.size = builder.size;
 		this.slices = builder.slices;
-		this.sort = builder.sort;
+		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
-		this.stats = builder.stats;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -206,6 +209,10 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		this.query = builder.query;
 		this.slice = builder.slice;
 
+	}
+
+	public DeleteByQueryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -747,7 +754,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -844,7 +851,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -1030,7 +1037,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
 		 */
 		public Builder addSort(String value) {
 			if (this.sort == null) {
@@ -1072,9 +1079,9 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceExcludes(String value) {
+		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -1103,9 +1110,9 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public Builder add_sourceIncludes(String value) {
+		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -1134,7 +1141,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
+		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
 		 */
 		public Builder addStats(String value) {
 			if (this.stats == null) {
@@ -1272,7 +1279,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code delete_by_query}".
 	 */
-	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -1290,11 +1297,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_delete_by_query");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -1372,7 +1379,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.source != null) {
-					params.put("_source", request.source.toString());
+					params.put("_source", JsonpUtils.toString(request.source));
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -1395,12 +1402,12 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 					params.put("version", String.valueOf(request.version));
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, DeleteByQueryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, DeleteByQueryResponse._DESERIALIZER);
 }

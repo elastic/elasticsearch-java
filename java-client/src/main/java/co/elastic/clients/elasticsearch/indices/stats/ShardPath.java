@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardPath
@@ -54,6 +55,10 @@ public final class ShardPath implements JsonpSerializable {
 		this.isCustomDataPath = Objects.requireNonNull(builder.isCustomDataPath, "is_custom_data_path");
 		this.statePath = Objects.requireNonNull(builder.statePath, "state_path");
 
+	}
+
+	public ShardPath(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

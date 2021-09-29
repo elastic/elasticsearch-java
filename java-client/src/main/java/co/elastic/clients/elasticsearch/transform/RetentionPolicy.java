@@ -73,6 +73,10 @@ public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public RetentionPolicy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code time} variant value.
 	 *
@@ -96,22 +100,21 @@ public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<RetentionPolicy> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<RetentionPolicy> time(TimeRetentionPolicy v) {
+		public Builder time(TimeRetentionPolicy v) {
 			this._type = TIME;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<RetentionPolicy> time(
-				Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> f) {
+		public Builder time(Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> f) {
 			return this.time(f.apply(new TimeRetentionPolicy.Builder()).build());
 		}
 
-		protected RetentionPolicy build() {
+		public RetentionPolicy build() {
 			return new RetentionPolicy(this);
 		}
 

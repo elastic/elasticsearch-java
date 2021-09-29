@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -59,9 +60,13 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 
 		this.requiredCapacity = Objects.requireNonNull(builder.requiredCapacity, "required_capacity");
 		this.currentCapacity = Objects.requireNonNull(builder.currentCapacity, "current_capacity");
-		this.currentNodes = Objects.requireNonNull(builder.currentNodes, "current_nodes");
-		this.deciders = Objects.requireNonNull(builder.deciders, "deciders");
+		this.currentNodes = ModelTypeHelper.unmodifiableNonNull(builder.currentNodes, "current_nodes");
+		this.deciders = ModelTypeHelper.unmodifiableNonNull(builder.deciders, "deciders");
 
+	}
+
+	public AutoscalingDeciders(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -189,7 +194,7 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentNodes(List)}, creating the list if needed.
+		 * Add a value to {@link #currentNodes(List)}, creating the list if needed. 4
 		 */
 		public Builder addCurrentNodes(AutoscalingNode value) {
 			if (this.currentNodes == null) {
@@ -207,7 +212,7 @@ public final class AutoscalingDeciders implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentNodes(List)}, creating the list if needed.
+		 * Add a value to {@link #currentNodes(List)}, creating the list if needed. 5
 		 */
 		public Builder addCurrentNodes(Function<AutoscalingNode.Builder, ObjectBuilder<AutoscalingNode>> fn) {
 			return this.addCurrentNodes(fn.apply(new AutoscalingNode.Builder()).build());

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -61,11 +62,15 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 
 	public TrainedModelConfigMetadata(Builder builder) {
 
-		this.modelAliases = builder.modelAliases;
-		this.featureImportanceBaseline = builder.featureImportanceBaseline;
-		this.hyperparameters = builder.hyperparameters;
-		this.totalFeatureImportance = builder.totalFeatureImportance;
+		this.modelAliases = ModelTypeHelper.unmodifiable(builder.modelAliases);
+		this.featureImportanceBaseline = ModelTypeHelper.unmodifiable(builder.featureImportanceBaseline);
+		this.hyperparameters = ModelTypeHelper.unmodifiable(builder.hyperparameters);
+		this.totalFeatureImportance = ModelTypeHelper.unmodifiable(builder.totalFeatureImportance);
 
+	}
+
+	public TrainedModelConfigMetadata(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -206,7 +211,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modelAliases(List)}, creating the list if needed.
+		 * Add a value to {@link #modelAliases(List)}, creating the list if needed. 4
 		 */
 		public Builder addModelAliases(String value) {
 			if (this.modelAliases == null) {
@@ -263,7 +268,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed.
+		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed. 4
 		 */
 		public Builder addHyperparameters(Hyperparameter value) {
 			if (this.hyperparameters == null) {
@@ -281,7 +286,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed.
+		 * Add a value to {@link #hyperparameters(List)}, creating the list if needed. 5
 		 */
 		public Builder addHyperparameters(Function<Hyperparameter.Builder, ObjectBuilder<Hyperparameter>> fn) {
 			return this.addHyperparameters(fn.apply(new Hyperparameter.Builder()).build());
@@ -315,7 +320,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #totalFeatureImportance(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addTotalFeatureImportance(TotalFeatureImportance value) {
 			if (this.totalFeatureImportance == null) {
@@ -335,7 +340,7 @@ public final class TrainedModelConfigMetadata implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #totalFeatureImportance(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addTotalFeatureImportance(
 				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn) {

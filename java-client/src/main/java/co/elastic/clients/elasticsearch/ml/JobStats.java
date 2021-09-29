@@ -80,6 +80,10 @@ public final class JobStats implements JsonpSerializable {
 
 	}
 
+	public JobStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code assignment_explanation}
 	 */

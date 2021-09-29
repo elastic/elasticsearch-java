@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RegexpQuery
@@ -68,6 +69,10 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		this.rewrite = builder.rewrite;
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public RegexpQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

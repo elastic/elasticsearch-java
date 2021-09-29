@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.UnassignedInformation
@@ -72,6 +73,10 @@ public final class UnassignedInformation implements JsonpSerializable {
 		this.delayed = builder.delayed;
 		this.allocationStatus = builder.allocationStatus;
 
+	}
+
+	public UnassignedInformation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

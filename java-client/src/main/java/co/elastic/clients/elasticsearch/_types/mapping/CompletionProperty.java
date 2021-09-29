@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -68,12 +69,16 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		super(builder);
 
 		this.analyzer = builder.analyzer;
-		this.contexts = builder.contexts;
+		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
 		this.maxInputLength = builder.maxInputLength;
 		this.preservePositionIncrements = builder.preservePositionIncrements;
 		this.preserveSeparators = builder.preserveSeparators;
 		this.searchAnalyzer = builder.searchAnalyzer;
 
+	}
+
+	public CompletionProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -231,7 +236,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
+		 * Add a value to {@link #contexts(List)}, creating the list if needed. 4
 		 */
 		public Builder addContexts(SuggestContext value) {
 			if (this.contexts == null) {
@@ -249,7 +254,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
+		 * Add a value to {@link #contexts(List)}, creating the list if needed. 5
 		 */
 		public Builder addContexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
 			return this.addContexts(fn.apply(new SuggestContext.Builder()).build());

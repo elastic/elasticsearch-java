@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RecoveryStats
@@ -58,6 +59,10 @@ public final class RecoveryStats implements JsonpSerializable {
 		this.throttleTime = builder.throttleTime;
 		this.throttleTimeInMillis = Objects.requireNonNull(builder.throttleTimeInMillis, "throttle_time_in_millis");
 
+	}
+
+	public RecoveryStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

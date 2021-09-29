@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -58,11 +59,15 @@ public final class GetResponse implements JsonpSerializable {
 
 	public GetResponse(Builder builder) {
 
-		this.responses = builder.responses;
-		this.snapshots = builder.snapshots;
+		this.responses = ModelTypeHelper.unmodifiable(builder.responses);
+		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.remaining = Objects.requireNonNull(builder.remaining, "remaining");
 
+	}
+
+	public GetResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -176,7 +181,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
 		 */
 		public Builder addResponses(SnapshotResponseItem value) {
 			if (this.responses == null) {
@@ -194,7 +199,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * Add a value to {@link #responses(List)}, creating the list if needed. 5
 		 */
 		public Builder addResponses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
 			return this.addResponses(fn.apply(new SnapshotResponseItem.Builder()).build());
@@ -217,7 +222,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
 		 */
 		public Builder addSnapshots(SnapshotInfo value) {
 			if (this.snapshots == null) {
@@ -235,7 +240,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
 		 */
 		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());

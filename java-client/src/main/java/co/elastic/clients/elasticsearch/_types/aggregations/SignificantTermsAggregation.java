@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -94,11 +95,11 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 
 		this.backgroundFilter = builder.backgroundFilter;
 		this.chiSquare = builder.chiSquare;
-		this.exclude = builder.exclude;
+		this.exclude = ModelTypeHelper.unmodifiable(builder.exclude);
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.gnd = builder.gnd;
-		this.include = builder.include;
+		this.include = ModelTypeHelper.unmodifiable(builder.include);
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -107,6 +108,10 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		this.shardSize = builder.shardSize;
 		this.size = builder.size;
 
+	}
+
+	public SignificantTermsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -425,7 +430,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed.
+		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {
@@ -484,7 +489,7 @@ public final class SignificantTermsAggregation extends BucketAggregationBase imp
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed.
+		 * Add a value to {@link #include(List)}, creating the list if needed. 4
 		 */
 		public Builder addInclude(String value) {
 			if (this.include == null) {

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -35,6 +36,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -48,6 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -138,8 +141,8 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.sourceExcludes = builder.sourceExcludes;
-		this.sourceIncludes = builder.sourceIncludes;
+		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.detectNoop = builder.detectNoop;
 		this.doc = builder.doc;
 		this.docAsUpsert = builder.docAsUpsert;
@@ -150,6 +153,10 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 		this.tPartialDocumentSerializer = builder.tPartialDocumentSerializer;
 
+	}
+
+	public UpdateRequest(Function<Builder<TDocument, TPartialDocument>, Builder<TDocument, TPartialDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -652,9 +659,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
 		 */
-		public Builder<TDocument, TPartialDocument> add_sourceExcludes(String value) {
+		public Builder<TDocument, TPartialDocument> addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
 				this.sourceExcludes = new ArrayList<>();
 			}
@@ -683,9 +690,9 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
 		 */
-		public Builder<TDocument, TPartialDocument> add_sourceIncludes(String value) {
+		public Builder<TDocument, TPartialDocument> addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
 				this.sourceIncludes = new ArrayList<>();
 			}
@@ -831,7 +838,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	/**
 	 * Endpoint "{@code update}".
 	 */
-	private static final Endpoint.Simple<UpdateRequest<?, ?>, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<UpdateRequest<?, ?>, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -854,24 +861,24 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_update");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type | _id)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/");
-					buf.append(request.type);
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -888,7 +895,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 					params.put("lang", request.lang);
 				}
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));
@@ -903,7 +910,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 					params.put("timeout", request.timeout);
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				if (request.sourceExcludes != null) {
 					params.put("_source_excludes",
@@ -915,7 +922,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code update}" endpoint.

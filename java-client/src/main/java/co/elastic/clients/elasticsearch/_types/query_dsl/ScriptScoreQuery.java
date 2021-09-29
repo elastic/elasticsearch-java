@@ -58,6 +58,10 @@ public final class ScriptScoreQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	public ScriptScoreQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Query} variant type
 	 */

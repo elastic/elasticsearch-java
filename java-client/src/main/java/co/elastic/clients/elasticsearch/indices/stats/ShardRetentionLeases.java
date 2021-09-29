@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -55,8 +56,12 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 
 		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "primary_term");
 		this.version = Objects.requireNonNull(builder.version, "version");
-		this.leases = Objects.requireNonNull(builder.leases, "leases");
+		this.leases = ModelTypeHelper.unmodifiableNonNull(builder.leases, "leases");
 
+	}
+
+	public ShardRetentionLeases(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -152,7 +157,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #leases(List)}, creating the list if needed.
+		 * Add a value to {@link #leases(List)}, creating the list if needed. 4
 		 */
 		public Builder addLeases(ShardLease value) {
 			if (this.leases == null) {
@@ -170,7 +175,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #leases(List)}, creating the list if needed.
+		 * Add a value to {@link #leases(List)}, creating the list if needed. 5
 		 */
 		public Builder addLeases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
 			return this.addLeases(fn.apply(new ShardLease.Builder()).build());

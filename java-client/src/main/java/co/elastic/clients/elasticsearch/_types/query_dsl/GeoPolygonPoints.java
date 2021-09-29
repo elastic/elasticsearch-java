@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -30,41 +30,39 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: cluster._types.ClusterStateIngestPipeline
+// typedef: _types.query_dsl.GeoPolygonPoints
 @JsonpDeserializable
-public final class ClusterStateIngestPipeline implements JsonpSerializable {
-	private final String id;
-
-	private final ClusterStateIngestPipelineConfig config;
+public final class GeoPolygonPoints implements JsonpSerializable {
+	private final List<JsonValue /* _types.query_dsl.GeoLocation */> points;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterStateIngestPipeline(Builder builder) {
+	public GeoPolygonPoints(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.config = Objects.requireNonNull(builder.config, "config");
+		this.points = ModelTypeHelper.unmodifiableNonNull(builder.points, "points");
 
 	}
 
-	/**
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
+	public GeoPolygonPoints(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code config}
+	 * API name: {@code points}
 	 */
-	public ClusterStateIngestPipelineConfig config() {
-		return this.config;
+	public List<JsonValue /* _types.query_dsl.GeoLocation */> points() {
+		return this.points;
 	}
 
 	/**
@@ -78,73 +76,75 @@ public final class ClusterStateIngestPipeline implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("id");
-		generator.write(this.id);
+		generator.writeKey("points");
+		generator.writeStartArray();
+		for (JsonValue /* _types.query_dsl.GeoLocation */ item0 : this.points) {
+			generator.write(item0);
 
-		generator.writeKey("config");
-		this.config.serialize(generator, mapper);
+		}
+		generator.writeEnd();
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ClusterStateIngestPipeline}.
+	 * Builder for {@link GeoPolygonPoints}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterStateIngestPipeline> {
-		private String id;
-
-		private ClusterStateIngestPipelineConfig config;
+	public static class Builder implements ObjectBuilder<GeoPolygonPoints> {
+		private List<JsonValue /* _types.query_dsl.GeoLocation */> points;
 
 		/**
-		 * API name: {@code id}
+		 * API name: {@code points}
 		 */
-		public Builder id(String value) {
-			this.id = value;
+		public Builder points(List<JsonValue /* _types.query_dsl.GeoLocation */> value) {
+			this.points = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code config}
+		 * API name: {@code points}
 		 */
-		public Builder config(ClusterStateIngestPipelineConfig value) {
-			this.config = value;
+		public Builder points(JsonValue /* _types.query_dsl.GeoLocation */... value) {
+			this.points = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * API name: {@code config}
+		 * Add a value to {@link #points(List)}, creating the list if needed. 4
 		 */
-		public Builder config(
-				Function<ClusterStateIngestPipelineConfig.Builder, ObjectBuilder<ClusterStateIngestPipelineConfig>> fn) {
-			return this.config(fn.apply(new ClusterStateIngestPipelineConfig.Builder()).build());
+		public Builder addPoints(JsonValue /* _types.query_dsl.GeoLocation */ value) {
+			if (this.points == null) {
+				this.points = new ArrayList<>();
+			}
+			this.points.add(value);
+			return this;
 		}
 
 		/**
-		 * Builds a {@link ClusterStateIngestPipeline}.
+		 * Builds a {@link GeoPolygonPoints}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ClusterStateIngestPipeline build() {
+		public GeoPolygonPoints build() {
 
-			return new ClusterStateIngestPipeline(this);
+			return new GeoPolygonPoints(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ClusterStateIngestPipeline}
+	 * Json deserializer for {@link GeoPolygonPoints}
 	 */
-	public static final JsonpDeserializer<ClusterStateIngestPipeline> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ClusterStateIngestPipeline::setupClusterStateIngestPipelineDeserializer, Builder::build);
+	public static final JsonpDeserializer<GeoPolygonPoints> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			GeoPolygonPoints::setupGeoPolygonPointsDeserializer, Builder::build);
 
-	protected static void setupClusterStateIngestPipelineDeserializer(
-			DelegatingDeserializer<ClusterStateIngestPipeline.Builder> op) {
+	protected static void setupGeoPolygonPointsDeserializer(DelegatingDeserializer<GeoPolygonPoints.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::config, ClusterStateIngestPipelineConfig._DESERIALIZER, "config");
+		op.add(Builder::points, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"points");
 
 	}
 

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -58,9 +59,13 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 	public InnerHitsMetadata(Builder builder) {
 
 		this.total = Objects.requireNonNull(builder.total, "total");
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.hits = ModelTypeHelper.unmodifiableNonNull(builder.hits, "hits");
 		this.maxScore = builder.maxScore;
 
+	}
+
+	public InnerHitsMetadata(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -154,7 +159,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Add a value to {@link #hits(List)}, creating the list if needed. 4
 		 */
 		public Builder addHits(Hit<Map<String, JsonData>> value) {
 			if (this.hits == null) {
@@ -173,7 +178,7 @@ public final class InnerHitsMetadata implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Add a value to {@link #hits(List)}, creating the list if needed. 5
 		 */
 		public Builder addHits(
 				Function<Hit.Builder<Map<String, JsonData>>, ObjectBuilder<Hit<Map<String, JsonData>>>> fn) {

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.AggregationBreakdown
@@ -83,6 +84,10 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		this.reduce = Objects.requireNonNull(builder.reduce, "reduce");
 		this.reduceCount = Objects.requireNonNull(builder.reduceCount, "reduce_count");
 
+	}
+
+	public AggregationBreakdown(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

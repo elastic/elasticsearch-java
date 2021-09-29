@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.get_role_mapping.Response
 @JsonpDeserializable
-public final class GetRoleMappingResponse extends AdditionalProperties<String, RoleMapping> {
+public final class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetRoleMappingResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetRoleMappingResponse extends AdditionalProperties<String, R
 
 	}
 
+	public GetRoleMappingResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetRoleMappingResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, RoleMapping, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleMapping, Builder>
 			implements
 				ObjectBuilder<GetRoleMappingResponse> {
 		@Override
@@ -81,7 +86,7 @@ public final class GetRoleMappingResponse extends AdditionalProperties<String, R
 
 	protected static void setupGetRoleMappingResponseDeserializer(
 			DelegatingDeserializer<GetRoleMappingResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RoleMapping._DESERIALIZER);
 
 	}

@@ -52,6 +52,10 @@ public final class SpanWithinQuery extends QueryBase implements SpanQueryVariant
 
 	}
 
+	public SpanWithinQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */

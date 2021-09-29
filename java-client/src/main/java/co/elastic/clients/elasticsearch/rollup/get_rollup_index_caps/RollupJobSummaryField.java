@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
@@ -55,6 +56,10 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		this.timeZone = builder.timeZone;
 		this.calendarInterval = builder.calendarInterval;
 
+	}
+
+	public RollupJobSummaryField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

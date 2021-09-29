@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -51,8 +52,12 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 	public DeleteJobResponse(Builder builder) {
 		super(builder);
 
-		this.taskFailures = builder.taskFailures;
+		this.taskFailures = ModelTypeHelper.unmodifiable(builder.taskFailures);
 
+	}
+
+	public DeleteJobResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -108,7 +113,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #taskFailures(List)}, creating the list if needed.
+		 * Add a value to {@link #taskFailures(List)}, creating the list if needed. 4
 		 */
 		public Builder addTaskFailures(TaskFailure value) {
 			if (this.taskFailures == null) {
@@ -126,7 +131,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #taskFailures(List)}, creating the list if needed.
+		 * Add a value to {@link #taskFailures(List)}, creating the list if needed. 5
 		 */
 		public Builder addTaskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
 			return this.addTaskFailures(fn.apply(new TaskFailure.Builder()).build());

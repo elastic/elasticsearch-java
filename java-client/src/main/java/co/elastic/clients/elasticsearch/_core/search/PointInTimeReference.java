@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PointInTimeReference
@@ -51,6 +52,10 @@ public final class PointInTimeReference implements JsonpSerializable {
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.keepAlive = builder.keepAlive;
 
+	}
+
+	public PointInTimeReference(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

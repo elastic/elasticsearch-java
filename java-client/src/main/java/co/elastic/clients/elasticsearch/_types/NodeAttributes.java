@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
@@ -62,13 +64,17 @@ public final class NodeAttributes implements JsonpSerializable {
 
 	public NodeAttributes(Builder builder) {
 
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
 		this.id = builder.id;
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
-		this.roles = builder.roles;
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 
+	}
+
+	public NodeAttributes(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -272,7 +278,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {

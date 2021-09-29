@@ -31,11 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.get_settings.Response
@@ -52,10 +54,14 @@ public final class GetSettingsResponse implements JsonpSerializable {
 
 	public GetSettingsResponse(Builder builder) {
 
-		this.persistent = Objects.requireNonNull(builder.persistent, "persistent");
-		this.transient_ = Objects.requireNonNull(builder.transient_, "transient");
-		this.defaults = builder.defaults;
+		this.persistent = ModelTypeHelper.unmodifiableNonNull(builder.persistent, "persistent");
+		this.transient_ = ModelTypeHelper.unmodifiableNonNull(builder.transient_, "transient");
+		this.defaults = ModelTypeHelper.unmodifiable(builder.defaults);
 
+	}
+
+	public GetSettingsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

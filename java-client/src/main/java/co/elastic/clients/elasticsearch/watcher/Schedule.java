@@ -89,6 +89,10 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 
 	}
 
+	public Schedule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code cron} variant value.
 	 *
@@ -210,61 +214,61 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Schedule> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Schedule> cron(String v) {
+		public Builder cron(String v) {
 			this._type = CRON;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Schedule> daily(DailySchedule v) {
+		public Builder daily(DailySchedule v) {
 			this._type = DAILY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Schedule> daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> f) {
+		public Builder daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> f) {
 			return this.daily(f.apply(new DailySchedule.Builder()).build());
 		}
 
-		public ObjectBuilder<Schedule> hourly(HourlySchedule v) {
+		public Builder hourly(HourlySchedule v) {
 			this._type = HOURLY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Schedule> hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> f) {
+		public Builder hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> f) {
 			return this.hourly(f.apply(new HourlySchedule.Builder()).build());
 		}
 
-		public ObjectBuilder<Schedule> interval(String v) {
+		public Builder interval(String v) {
 			this._type = INTERVAL;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Schedule> monthly(List<TimeOfMonth> v) {
+		public Builder monthly(List<TimeOfMonth> v) {
 			this._type = MONTHLY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Schedule> weekly(List<TimeOfWeek> v) {
+		public Builder weekly(List<TimeOfWeek> v) {
 			this._type = WEEKLY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Schedule> yearly(List<TimeOfYear> v) {
+		public Builder yearly(List<TimeOfYear> v) {
 			this._type = YEARLY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		protected Schedule build() {
+		public Schedule build() {
 			return new Schedule(this);
 		}
 

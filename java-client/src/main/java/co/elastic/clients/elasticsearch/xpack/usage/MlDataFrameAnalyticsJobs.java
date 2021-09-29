@@ -58,6 +58,10 @@ public final class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 
 	}
 
+	public MlDataFrameAnalyticsJobs(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code memory_usage}
 	 */

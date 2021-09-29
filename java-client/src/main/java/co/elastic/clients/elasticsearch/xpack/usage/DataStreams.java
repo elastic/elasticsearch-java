@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.DataStreams
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class DataStreams extends Base {
 		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
 		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
 
+	}
+
+	public DataStreams(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

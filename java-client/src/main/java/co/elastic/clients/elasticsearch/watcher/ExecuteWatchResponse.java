@@ -54,6 +54,10 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 
 	}
 
+	public ExecuteWatchResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code _id}
 	 */

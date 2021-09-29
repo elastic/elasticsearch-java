@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -56,8 +59,12 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 
 		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
 		this.service = Objects.requireNonNull(builder.service, "service");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
+	}
+
+	public ClearCachedServiceTokensRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -140,7 +147,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -167,7 +174,7 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_service_tokens}".
 	 */
-	public static final Endpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -191,17 +198,17 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -209,5 +216,5 @@ public final class ClearCachedServiceTokensRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedServiceTokensResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedServiceTokensResponse._DESERIALIZER);
 }

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -110,7 +111,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		this.eta = builder.eta;
 		this.etaGrowthRatePerTree = builder.etaGrowthRatePerTree;
 		this.featureBagFraction = builder.featureBagFraction;
-		this.featureProcessors = builder.featureProcessors;
+		this.featureProcessors = ModelTypeHelper.unmodifiable(builder.featureProcessors);
 		this.gamma = builder.gamma;
 		this.lambda = builder.lambda;
 		this.maxOptimizationRoundsPerHyperparameter = builder.maxOptimizationRoundsPerHyperparameter;
@@ -703,6 +704,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #featureProcessors(List)}, creating the list if needed.
+		 * 4
 		 */
 		public BuilderT addFeatureProcessors(DataframeAnalysisFeatureProcessor value) {
 			if (this.featureProcessors == null) {
@@ -722,6 +724,7 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #featureProcessors(List)}, creating the list if needed.
+		 * 5
 		 */
 		public BuilderT addFeatureProcessors(
 				Function<DataframeAnalysisFeatureProcessor.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>> fn) {

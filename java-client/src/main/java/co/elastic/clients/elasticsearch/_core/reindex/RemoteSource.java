@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.RemoteSource
@@ -59,6 +60,10 @@ public final class RemoteSource implements JsonpSerializable {
 		this.password = Objects.requireNonNull(builder.password, "password");
 		this.socketTimeout = Objects.requireNonNull(builder.socketTimeout, "socket_timeout");
 
+	}
+
+	public RemoteSource(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

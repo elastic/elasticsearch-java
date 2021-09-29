@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.text_structure;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -45,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Request
@@ -93,7 +94,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	@Nullable
 	private final String timestampFormat;
 
-	private final List<TJsonDocument> value;
+	private final List<TJsonDocument> textFiles;
 
 	@Nullable
 	private final JsonpSerializer<TJsonDocument> tJsonDocumentSerializer;
@@ -116,9 +117,13 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		this.timeout = builder.timeout;
 		this.timestampField = builder.timestampField;
 		this.timestampFormat = builder.timestampFormat;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.textFiles = ModelTypeHelper.unmodifiableNonNull(builder.textFiles, "_value_body");
 		this.tJsonDocumentSerializer = builder.tJsonDocumentSerializer;
 
+	}
+
+	public FindStructureRequest(Function<Builder<TJsonDocument>, Builder<TJsonDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -309,10 +314,10 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<TJsonDocument> value() {
-		return this.value;
+	public List<TJsonDocument> textFiles() {
+		return this.textFiles;
 	}
 
 	/**
@@ -320,7 +325,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TJsonDocument item0 : this.value) {
+		for (TJsonDocument item0 : this.textFiles) {
 			JsonpUtils.serialize(item0, generator, tJsonDocumentSerializer, mapper);
 
 		}
@@ -376,7 +381,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		@Nullable
 		private String timestampFormat;
 
-		private List<TJsonDocument> value;
+		private List<TJsonDocument> textFiles;
 
 		@Nullable
 		private JsonpSerializer<TJsonDocument> tJsonDocumentSerializer;
@@ -569,31 +574,31 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TJsonDocument> value(List<TJsonDocument> value) {
-			this.value = value;
+		public Builder<TJsonDocument> textFiles(List<TJsonDocument> value) {
+			this.textFiles = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TJsonDocument> value(TJsonDocument... value) {
-			this.value = Arrays.asList(value);
+		public Builder<TJsonDocument> textFiles(TJsonDocument... value) {
+			this.textFiles = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #textFiles(List)}, creating the list if needed. 4
 		 */
-		public Builder<TJsonDocument> addValue(TJsonDocument value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder<TJsonDocument> addTextFiles(TJsonDocument value) {
+			if (this.textFiles == null) {
+				this.textFiles = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.textFiles.add(value);
 			return this;
 		}
 
@@ -618,23 +623,15 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Create a json deserializer for FindStructureRequest
-	 */
 	public static <TJsonDocument> JsonpDeserializer<FindStructureRequest<TJsonDocument>> createFindStructureRequestDeserializer(
 			JsonpDeserializer<TJsonDocument> tJsonDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TJsonDocument>>) Builder::new,
-				op -> FindStructureRequest.setupFindStructureRequestDeserializer(op, tJsonDocumentDeserializer));
-	};
 
-	protected static <TJsonDocument> void setupFindStructureRequestDeserializer(
-			DelegatingDeserializer<FindStructureRequest.Builder<TJsonDocument>> op,
-			JsonpDeserializer<TJsonDocument> tJsonDocumentDeserializer) {
+		JsonpDeserializer<List<TJsonDocument>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(tJsonDocumentDeserializer);
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(tJsonDocumentDeserializer), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper, event) -> new Builder<TJsonDocument>()
+						.textFiles(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -642,7 +639,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	/**
 	 * Endpoint "{@code text_structure.find_structure}".
 	 */
-	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FindStructureRequest<?>, FindStructureResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -702,5 +699,5 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FindStructureResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, FindStructureResponse._DESERIALIZER);
 }

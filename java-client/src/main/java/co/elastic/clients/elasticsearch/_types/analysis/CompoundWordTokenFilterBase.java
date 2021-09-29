@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CompoundWordTokenFilterBase
@@ -68,7 +70,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		this.minSubwordSize = Objects.requireNonNull(builder.minSubwordSize, "min_subword_size");
 		this.minWordSize = Objects.requireNonNull(builder.minWordSize, "min_word_size");
 		this.onlyLongestMatch = Objects.requireNonNull(builder.onlyLongestMatch, "only_longest_match");
-		this.wordList = Objects.requireNonNull(builder.wordList, "word_list");
+		this.wordList = ModelTypeHelper.unmodifiableNonNull(builder.wordList, "word_list");
 		this.wordListPath = Objects.requireNonNull(builder.wordListPath, "word_list_path");
 
 	}
@@ -228,7 +230,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * Add a value to {@link #wordList(List)}, creating the list if needed.
+		 * Add a value to {@link #wordList(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addWordList(String value) {
 			if (this.wordList == null) {

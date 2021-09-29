@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.ml_jobs.JobsRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.ml_jobs.Response
 @JsonpDeserializable
 public final class MlJobsResponse implements JsonpSerializable {
-	private final List<JobsRecord> value;
+	private final List<JobsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public MlJobsResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public MlJobsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<JobsRecord> value() {
-		return this.value;
+	public List<JobsRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class MlJobsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JobsRecord item0 : this.value) {
+		for (JobsRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class MlJobsResponse implements JsonpSerializable {
 	 * Builder for {@link MlJobsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<MlJobsResponse> {
-		private List<JobsRecord> value;
+		private List<JobsRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<JobsRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<JobsRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(JobsRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(JobsRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(JobsRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(JobsRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
-			return this.value(fn.apply(new JobsRecord.Builder()).build());
+		public Builder valueBody(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
+			return this.valueBody(fn.apply(new JobsRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
-			return this.addValue(fn.apply(new JobsRecord.Builder()).build());
+		public Builder addValueBody(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
+			return this.addValueBody(fn.apply(new JobsRecord.Builder()).build());
 		}
 
 		/**
@@ -140,18 +144,14 @@ public final class MlJobsResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<MlJobsResponse> _DESERIALIZER = createMlJobsResponseDeserializer();
+	protected static JsonpDeserializer<MlJobsResponse> createMlJobsResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link MlJobsResponse}
-	 */
-	public static final JsonpDeserializer<MlJobsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlJobsResponse::setupMlJobsResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<JobsRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(JobsRecord._DESERIALIZER);
 
-	protected static void setupMlJobsResponseDeserializer(DelegatingDeserializer<MlJobsResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JobsRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

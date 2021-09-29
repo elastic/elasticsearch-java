@@ -68,6 +68,10 @@ public final class TransformStats implements JsonpSerializable {
 
 	}
 
+	public TransformStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code checkpointing}
 	 */

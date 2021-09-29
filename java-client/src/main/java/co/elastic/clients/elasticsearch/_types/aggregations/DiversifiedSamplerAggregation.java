@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
@@ -66,6 +67,10 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		this.shardSize = builder.shardSize;
 		this.field = builder.field;
 
+	}
+
+	public DiversifiedSamplerAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

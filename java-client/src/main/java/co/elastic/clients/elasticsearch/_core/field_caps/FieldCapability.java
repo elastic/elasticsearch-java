@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.field_caps.FieldCapability
@@ -71,14 +73,18 @@ public final class FieldCapability implements JsonpSerializable {
 	public FieldCapability(Builder builder) {
 
 		this.aggregatable = Objects.requireNonNull(builder.aggregatable, "aggregatable");
-		this.indices = builder.indices;
-		this.meta = builder.meta;
-		this.nonAggregatableIndices = builder.nonAggregatableIndices;
-		this.nonSearchableIndices = builder.nonSearchableIndices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.nonAggregatableIndices = ModelTypeHelper.unmodifiable(builder.nonAggregatableIndices);
+		this.nonSearchableIndices = ModelTypeHelper.unmodifiable(builder.nonSearchableIndices);
 		this.searchable = Objects.requireNonNull(builder.searchable, "searchable");
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.metadataField = builder.metadataField;
 
+	}
+
+	public FieldCapability(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -274,7 +280,7 @@ public final class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -321,7 +327,7 @@ public final class FieldCapability implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nonAggregatableIndices(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addNonAggregatableIndices(String value) {
 			if (this.nonAggregatableIndices == null) {
@@ -349,7 +355,7 @@ public final class FieldCapability implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nonSearchableIndices(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addNonSearchableIndices(String value) {
 			if (this.nonSearchableIndices == null) {

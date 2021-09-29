@@ -77,6 +77,10 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	}
 
+	public ExplainResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
+	}
+
 	/**
 	 * API name: {@code _index}
 	 */

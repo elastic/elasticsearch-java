@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.AdaptiveSelection
@@ -66,6 +67,10 @@ public final class AdaptiveSelection implements JsonpSerializable {
 		this.outgoingSearches = Objects.requireNonNull(builder.outgoingSearches, "outgoing_searches");
 		this.rank = Objects.requireNonNull(builder.rank, "rank");
 
+	}
+
+	public AdaptiveSelection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

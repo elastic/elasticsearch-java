@@ -36,6 +36,7 @@ import java.lang.Integer;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.SecurityRolesDlsBitSetCache
@@ -56,6 +57,10 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		this.memory = builder.memory;
 		this.memoryInBytes = Objects.requireNonNull(builder.memoryInBytes, "memory_in_bytes");
 
+	}
+
+	public SecurityRolesDlsBitSetCache(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

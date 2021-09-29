@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggestCollateQuery
@@ -52,6 +53,10 @@ public final class PhraseSuggestCollateQuery implements JsonpSerializable {
 		this.id = builder.id;
 		this.source = builder.source;
 
+	}
+
+	public PhraseSuggestCollateQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -56,9 +57,13 @@ public final class TermsEnumResponse implements JsonpSerializable {
 	public TermsEnumResponse(Builder builder) {
 
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.terms = Objects.requireNonNull(builder.terms, "terms");
+		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
 		this.complete = Objects.requireNonNull(builder.complete, "complete");
 
+	}
+
+	public TermsEnumResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -153,7 +158,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
+		 * Add a value to {@link #terms(List)}, creating the list if needed. 4
 		 */
 		public Builder addTerms(String value) {
 			if (this.terms == null) {

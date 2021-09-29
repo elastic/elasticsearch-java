@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsClusterElection
@@ -47,6 +48,10 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 
 		this.strategy = Objects.requireNonNull(builder.strategy, "strategy");
 
+	}
+
+	public NodeInfoSettingsClusterElection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

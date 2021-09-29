@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.PendingTask
@@ -60,6 +61,10 @@ public final class PendingTask implements JsonpSerializable {
 		this.timeInQueue = Objects.requireNonNull(builder.timeInQueue, "time_in_queue");
 		this.timeInQueueMillis = Objects.requireNonNull(builder.timeInQueueMillis, "time_in_queue_millis");
 
+	}
+
+	public PendingTask(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

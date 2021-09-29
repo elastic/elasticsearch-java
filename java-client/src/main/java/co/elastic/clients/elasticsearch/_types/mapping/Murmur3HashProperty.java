@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.mapping.Murmur3HashProperty
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class Murmur3HashProperty extends DocValuesPropertyBase implements 
 	public Murmur3HashProperty(Builder builder) {
 		super(builder);
 
+	}
+
+	public Murmur3HashProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

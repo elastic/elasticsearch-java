@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
@@ -48,6 +49,10 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 
 		this.sigma = builder.sigma;
 
+	}
+
+	public ExtendedStatsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

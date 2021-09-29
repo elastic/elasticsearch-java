@@ -56,6 +56,10 @@ public final class Slm extends Base {
 
 	}
 
+	public Slm(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code policy_count}
 	 */

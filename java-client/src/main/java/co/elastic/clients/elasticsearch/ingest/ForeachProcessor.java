@@ -58,6 +58,10 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 
 	}
 
+	public ForeachProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Processor} variant type
 	 */

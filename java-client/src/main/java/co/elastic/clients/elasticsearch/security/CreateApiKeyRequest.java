@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.create_api_key.RoleDescriptor;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -33,8 +34,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -71,9 +74,13 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		this.refresh = builder.refresh;
 		this.expiration = builder.expiration;
 		this.name = builder.name;
-		this.roleDescriptors = builder.roleDescriptors;
-		this.metadata = builder.metadata;
+		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
 
+	}
+
+	public CreateApiKeyRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -343,7 +350,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code security.create_api_key}".
 	 */
-	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -360,9 +367,9 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateApiKeyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateApiKeyResponse._DESERIALIZER);
 }

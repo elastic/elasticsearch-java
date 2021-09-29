@@ -101,6 +101,10 @@ public final class ShardRecovery implements JsonpSerializable {
 
 	}
 
+	public ShardRecovery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code id}
 	 */

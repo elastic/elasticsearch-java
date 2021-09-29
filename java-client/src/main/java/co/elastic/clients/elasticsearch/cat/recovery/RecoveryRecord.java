@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.RecoveryRecord
@@ -148,6 +149,10 @@ public final class RecoveryRecord implements JsonpSerializable {
 		this.translogOpsRecovered = builder.translogOpsRecovered;
 		this.translogOpsPercent = builder.translogOpsPercent;
 
+	}
+
+	public RecoveryRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

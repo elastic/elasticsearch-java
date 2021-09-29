@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -57,10 +58,14 @@ public final class QueryResponse implements JsonpSerializable {
 
 	public QueryResponse(Builder builder) {
 
-		this.columns = builder.columns;
+		this.columns = ModelTypeHelper.unmodifiable(builder.columns);
 		this.cursor = builder.cursor;
-		this.rows = Objects.requireNonNull(builder.rows, "rows");
+		this.rows = ModelTypeHelper.unmodifiableNonNull(builder.rows, "rows");
 
+	}
+
+	public QueryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -161,7 +166,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #columns(List)}, creating the list if needed.
+		 * Add a value to {@link #columns(List)}, creating the list if needed. 4
 		 */
 		public Builder addColumns(Column value) {
 			if (this.columns == null) {
@@ -179,7 +184,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #columns(List)}, creating the list if needed.
+		 * Add a value to {@link #columns(List)}, creating the list if needed. 5
 		 */
 		public Builder addColumns(Function<Column.Builder, ObjectBuilder<Column>> fn) {
 			return this.addColumns(fn.apply(new Column.Builder()).build());
@@ -210,7 +215,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rows(List)}, creating the list if needed.
+		 * Add a value to {@link #rows(List)}, creating the list if needed. 4
 		 */
 		public Builder addRows(List<JsonData> value) {
 			if (this.rows == null) {

@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: snapshot.get_repository.Response
 @JsonpDeserializable
-public final class GetRepositoryResponse extends AdditionalProperties<String, Repository> {
+public final class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetRepositoryResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetRepositoryResponse extends AdditionalProperties<String, Re
 
 	}
 
+	public GetRepositoryResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetRepositoryResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Repository, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
 			implements
 				ObjectBuilder<GetRepositoryResponse> {
 		@Override
@@ -81,7 +86,7 @@ public final class GetRepositoryResponse extends AdditionalProperties<String, Re
 
 	protected static void setupGetRepositoryResponseDeserializer(
 			DelegatingDeserializer<GetRepositoryResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Repository._DESERIALIZER);
 
 	}

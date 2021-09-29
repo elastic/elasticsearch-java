@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -63,13 +64,17 @@ public final class WatchStatus implements JsonpSerializable {
 
 	public WatchStatus(Builder builder) {
 
-		this.actions = Objects.requireNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
 		this.lastChecked = builder.lastChecked;
 		this.lastMetCondition = builder.lastMetCondition;
 		this.state = Objects.requireNonNull(builder.state, "state");
 		this.version = Objects.requireNonNull(builder.version, "version");
 		this.executionState = builder.executionState;
 
+	}
+
+	public WatchStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

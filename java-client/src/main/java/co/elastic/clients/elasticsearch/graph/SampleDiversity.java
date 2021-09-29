@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.SampleDiversity
@@ -51,6 +52,10 @@ public final class SampleDiversity implements JsonpSerializable {
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.maxDocsPerValue = Objects.requireNonNull(builder.maxDocsPerValue, "max_docs_per_value");
 
+	}
+
+	public SampleDiversity(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

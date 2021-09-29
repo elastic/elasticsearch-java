@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -40,6 +41,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
@@ -65,6 +67,10 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 
+	}
+
+	public StopDatafeedRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -215,7 +221,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ml.stop_datafeed}".
 	 */
-	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -235,11 +241,11 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					buf.append("/_stop");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -251,5 +257,5 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, StopDatafeedResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StopDatafeedResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.mapping.DynamicTemplate;
@@ -41,6 +42,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -120,9 +122,9 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 
 	public PutMappingRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeTypeName = builder.includeTypeName;
 		this.masterTimeout = builder.masterTimeout;
@@ -130,16 +132,20 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		this.writeIndexOnly = builder.writeIndexOnly;
 		this.dateDetection = builder.dateDetection;
 		this.dynamic = builder.dynamic;
-		this.dynamicDateFormats = builder.dynamicDateFormats;
-		this.dynamicTemplates = builder.dynamicTemplates;
+		this.dynamicDateFormats = ModelTypeHelper.unmodifiable(builder.dynamicDateFormats);
+		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.fieldNames = builder.fieldNames;
-		this.meta = builder.meta;
+		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 		this.numericDetection = builder.numericDetection;
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.runtime = builder.runtime;
+		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
 
+	}
+
+	public PutMappingRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -546,7 +552,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -591,7 +597,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -698,7 +704,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Add a value to {@link #dynamicDateFormats(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addDynamicDateFormats(String value) {
 			if (this.dynamicDateFormats == null) {
@@ -730,6 +736,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Add a value to {@link #dynamicTemplates(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addDynamicTemplates(Map<String, DynamicTemplate> value) {
 			if (this.dynamicTemplates == null) {
@@ -773,7 +780,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
 		 */
-		public Builder put_meta(String key, JsonData value) {
+		public Builder putMeta(String key, JsonData value) {
 			if (this.meta == null) {
 				this.meta = new HashMap<>();
 			}
@@ -947,7 +954,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code indices.put_mapping}".
 	 */
-	public static final Endpoint<PutMappingRequest, PutMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutMappingRequest, PutMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -965,11 +972,11 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_mapping");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -1000,5 +1007,5 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutMappingResponse._DESERIALIZER);
 }

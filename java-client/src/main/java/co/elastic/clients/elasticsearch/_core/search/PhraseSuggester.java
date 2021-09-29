@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -91,7 +92,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 
 		this.collate = builder.collate;
 		this.confidence = builder.confidence;
-		this.directGenerator = builder.directGenerator;
+		this.directGenerator = ModelTypeHelper.unmodifiable(builder.directGenerator);
 		this.forceUnigrams = builder.forceUnigrams;
 		this.gramSize = builder.gramSize;
 		this.highlight = builder.highlight;
@@ -103,6 +104,10 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		this.text = builder.text;
 		this.tokenLimit = builder.tokenLimit;
 
+	}
+
+	public PhraseSuggester(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -393,7 +398,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		}
 
 		/**
-		 * Add a value to {@link #directGenerator(List)}, creating the list if needed.
+		 * Add a value to {@link #directGenerator(List)}, creating the list if needed. 4
 		 */
 		public Builder addDirectGenerator(DirectGenerator value) {
 			if (this.directGenerator == null) {
@@ -411,7 +416,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		}
 
 		/**
-		 * Add a value to {@link #directGenerator(List)}, creating the list if needed.
+		 * Add a value to {@link #directGenerator(List)}, creating the list if needed. 5
 		 */
 		public Builder addDirectGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn) {
 			return this.addDirectGenerator(fn.apply(new DirectGenerator.Builder()).build());

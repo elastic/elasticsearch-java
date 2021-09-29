@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 
 	public ListDanglingIndicesResponse(Builder builder) {
 
-		this.danglingIndices = Objects.requireNonNull(builder.danglingIndices, "dangling_indices");
+		this.danglingIndices = ModelTypeHelper.unmodifiableNonNull(builder.danglingIndices, "dangling_indices");
 
+	}
+
+	public ListDanglingIndicesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed.
+		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed. 4
 		 */
 		public Builder addDanglingIndices(DanglingIndex value) {
 			if (this.danglingIndices == null) {
@@ -124,7 +129,7 @@ public final class ListDanglingIndicesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed.
+		 * Add a value to {@link #danglingIndices(List)}, creating the list if needed. 5
 		 */
 		public Builder addDanglingIndices(Function<DanglingIndex.Builder, ObjectBuilder<DanglingIndex>> fn) {
 			return this.addDanglingIndices(fn.apply(new DanglingIndex.Builder()).build());

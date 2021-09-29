@@ -31,11 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultInput
@@ -51,10 +53,14 @@ public final class ExecutionResultInput implements JsonpSerializable {
 
 	public ExecutionResultInput(Builder builder) {
 
-		this.payload = Objects.requireNonNull(builder.payload, "payload");
+		this.payload = ModelTypeHelper.unmodifiableNonNull(builder.payload, "payload");
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public ExecutionResultInput(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

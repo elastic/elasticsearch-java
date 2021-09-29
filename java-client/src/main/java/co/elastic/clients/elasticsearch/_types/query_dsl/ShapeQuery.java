@@ -26,20 +26,35 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeQuery
 @JsonpDeserializable
 public final class ShapeQuery extends QueryBase implements QueryVariant {
+	private final String field;
+
+	private final ShapeFieldQuery shape;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public ShapeQuery(Builder builder) {
 		super(builder);
 
+		this.field = Objects.requireNonNull(builder.field, "field");
+		this.shape = Objects.requireNonNull(builder.shape, "shape");
+
+	}
+
+	public ShapeQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -50,12 +65,60 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 		return "shape";
 	}
 
+	/**
+	 */
+	public String field() {
+		return this.field;
+	}
+
+	/**
+	 */
+	public ShapeFieldQuery shape() {
+		return this.shape;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		// >> AdditionalProperty start
+		generator.writeKey(this.field);
+		this.shape.serialize(generator, mapper);
+
+		// << AdditionalProperty start
+
+		super.serializeInternal(generator, mapper);
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ShapeQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ShapeQuery> {
+		private String field;
+
+		private ShapeFieldQuery shape;
+
+		/**
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder shape(ShapeFieldQuery value) {
+			this.shape = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder shape(Function<ShapeFieldQuery.Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
+			return this.shape(fn.apply(new ShapeFieldQuery.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -83,6 +146,11 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 
 	protected static void setupShapeQueryDeserializer(DelegatingDeserializer<ShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.field(name);
+			builder.shape(ShapeFieldQuery._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

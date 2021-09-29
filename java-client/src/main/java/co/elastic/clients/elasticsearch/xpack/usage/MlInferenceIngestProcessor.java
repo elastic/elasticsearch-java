@@ -58,6 +58,10 @@ public final class MlInferenceIngestProcessor implements JsonpSerializable {
 
 	}
 
+	public MlInferenceIngestProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code num_docs_processed}
 	 */

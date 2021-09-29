@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: license.get_trial_status.Response
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 
 		this.eligibleToStartTrial = Objects.requireNonNull(builder.eligibleToStartTrial, "eligible_to_start_trial");
 
+	}
+
+	public GetTrialStatusResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

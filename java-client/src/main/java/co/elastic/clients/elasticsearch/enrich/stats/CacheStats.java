@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch.enrich.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -32,24 +32,39 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: cluster._types.VotingConfigExclusionsItem
+// typedef: enrich.stats.CacheStats
 @JsonpDeserializable
-public final class VotingConfigExclusionsItem implements JsonpSerializable {
+public final class CacheStats implements JsonpSerializable {
 	private final String nodeId;
 
-	private final String nodeName;
+	private final int count;
+
+	private final int hits;
+
+	private final int misses;
+
+	private final int evictions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VotingConfigExclusionsItem(Builder builder) {
+	public CacheStats(Builder builder) {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.nodeName = Objects.requireNonNull(builder.nodeName, "node_name");
+		this.count = Objects.requireNonNull(builder.count, "count");
+		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.misses = Objects.requireNonNull(builder.misses, "misses");
+		this.evictions = Objects.requireNonNull(builder.evictions, "evictions");
 
+	}
+
+	public CacheStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -60,10 +75,31 @@ public final class VotingConfigExclusionsItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node_name}
+	 * API name: {@code count}
 	 */
-	public String nodeName() {
-		return this.nodeName;
+	public int count() {
+		return this.count;
+	}
+
+	/**
+	 * API name: {@code hits}
+	 */
+	public int hits() {
+		return this.hits;
+	}
+
+	/**
+	 * API name: {@code misses}
+	 */
+	public int misses() {
+		return this.misses;
+	}
+
+	/**
+	 * API name: {@code evictions}
+	 */
+	public int evictions() {
+		return this.evictions;
 	}
 
 	/**
@@ -80,20 +116,35 @@ public final class VotingConfigExclusionsItem implements JsonpSerializable {
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
 
-		generator.writeKey("node_name");
-		generator.write(this.nodeName);
+		generator.writeKey("count");
+		generator.write(this.count);
+
+		generator.writeKey("hits");
+		generator.write(this.hits);
+
+		generator.writeKey("misses");
+		generator.write(this.misses);
+
+		generator.writeKey("evictions");
+		generator.write(this.evictions);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link VotingConfigExclusionsItem}.
+	 * Builder for {@link CacheStats}.
 	 */
-	public static class Builder implements ObjectBuilder<VotingConfigExclusionsItem> {
+	public static class Builder implements ObjectBuilder<CacheStats> {
 		private String nodeId;
 
-		private String nodeName;
+		private Integer count;
+
+		private Integer hits;
+
+		private Integer misses;
+
+		private Integer evictions;
 
 		/**
 		 * API name: {@code node_id}
@@ -104,38 +155,64 @@ public final class VotingConfigExclusionsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_name}
+		 * API name: {@code count}
 		 */
-		public Builder nodeName(String value) {
-			this.nodeName = value;
+		public Builder count(int value) {
+			this.count = value;
 			return this;
 		}
 
 		/**
-		 * Builds a {@link VotingConfigExclusionsItem}.
+		 * API name: {@code hits}
+		 */
+		public Builder hits(int value) {
+			this.hits = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code misses}
+		 */
+		public Builder misses(int value) {
+			this.misses = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code evictions}
+		 */
+		public Builder evictions(int value) {
+			this.evictions = value;
+			return this;
+		}
+
+		/**
+		 * Builds a {@link CacheStats}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public VotingConfigExclusionsItem build() {
+		public CacheStats build() {
 
-			return new VotingConfigExclusionsItem(this);
+			return new CacheStats(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link VotingConfigExclusionsItem}
+	 * Json deserializer for {@link CacheStats}
 	 */
-	public static final JsonpDeserializer<VotingConfigExclusionsItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, VotingConfigExclusionsItem::setupVotingConfigExclusionsItemDeserializer, Builder::build);
+	public static final JsonpDeserializer<CacheStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CacheStats::setupCacheStatsDeserializer, Builder::build);
 
-	protected static void setupVotingConfigExclusionsItemDeserializer(
-			DelegatingDeserializer<VotingConfigExclusionsItem.Builder> op) {
+	protected static void setupCacheStatsDeserializer(DelegatingDeserializer<CacheStats.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
-		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::hits, JsonpDeserializer.integerDeserializer(), "hits");
+		op.add(Builder::misses, JsonpDeserializer.integerDeserializer(), "misses");
+		op.add(Builder::evictions, JsonpDeserializer.integerDeserializer(), "evictions");
 
 	}
 

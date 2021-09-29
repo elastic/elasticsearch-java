@@ -37,6 +37,7 @@ import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggester
@@ -96,6 +97,10 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		this.suggestMode = builder.suggestMode;
 		this.text = builder.text;
 
+	}
+
+	public TermSuggester(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

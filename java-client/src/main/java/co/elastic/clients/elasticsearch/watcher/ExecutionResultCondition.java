@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultCondition
@@ -53,6 +54,10 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public ExecutionResultCondition(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

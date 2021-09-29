@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NGramTokenizer
@@ -58,8 +60,12 @@ public final class NGramTokenizer extends TokenizerBase implements TokenizerVari
 		this.customTokenChars = Objects.requireNonNull(builder.customTokenChars, "custom_token_chars");
 		this.maxGram = Objects.requireNonNull(builder.maxGram, "max_gram");
 		this.minGram = Objects.requireNonNull(builder.minGram, "min_gram");
-		this.tokenChars = Objects.requireNonNull(builder.tokenChars, "token_chars");
+		this.tokenChars = ModelTypeHelper.unmodifiableNonNull(builder.tokenChars, "token_chars");
 
+	}
+
+	public NGramTokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -178,7 +184,7 @@ public final class NGramTokenizer extends TokenizerBase implements TokenizerVari
 		}
 
 		/**
-		 * Add a value to {@link #tokenChars(List)}, creating the list if needed.
+		 * Add a value to {@link #tokenChars(List)}, creating the list if needed. 4
 		 */
 		public Builder addTokenChars(TokenChar value) {
 			if (this.tokenChars == null) {

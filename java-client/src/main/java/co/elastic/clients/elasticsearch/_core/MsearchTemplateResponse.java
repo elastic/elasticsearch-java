@@ -31,7 +31,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.ArrayList;
@@ -45,7 +47,10 @@ import javax.annotation.Nullable;
 // typedef: _global.msearch_template.Response
 
 public final class MsearchTemplateResponse<TDocument> implements JsonpSerializable {
-	private final List<SearchResponse<TDocument>> responses;
+	private final List<JsonValue /*
+									 * Union(_global.search.Response<_global.msearch_template.TDocument> |
+									 * _types.ErrorResponseBase)
+									 */> responses;
 
 	private final long took;
 
@@ -56,16 +61,23 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 
 	public MsearchTemplateResponse(Builder<TDocument> builder) {
 
-		this.responses = Objects.requireNonNull(builder.responses, "responses");
+		this.responses = ModelTypeHelper.unmodifiableNonNull(builder.responses, "responses");
 		this.took = Objects.requireNonNull(builder.took, "took");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
+	public MsearchTemplateResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
+	}
+
 	/**
 	 * API name: {@code responses}
 	 */
-	public List<SearchResponse<TDocument>> responses() {
+	public List<JsonValue /*
+							 * Union(_global.search.Response<_global.msearch_template.TDocument> |
+							 * _types.ErrorResponseBase)
+							 */> responses() {
 		return this.responses;
 	}
 
@@ -89,8 +101,11 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 
 		generator.writeKey("responses");
 		generator.writeStartArray();
-		for (SearchResponse<TDocument> item0 : this.responses) {
-			item0.serialize(generator, mapper);
+		for (JsonValue /*
+						 * Union(_global.search.Response<_global.msearch_template.TDocument> |
+						 * _types.ErrorResponseBase)
+						 */ item0 : this.responses) {
+			generator.write(item0);
 
 		}
 		generator.writeEnd();
@@ -106,7 +121,10 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 	 * Builder for {@link MsearchTemplateResponse}.
 	 */
 	public static class Builder<TDocument> implements ObjectBuilder<MsearchTemplateResponse<TDocument>> {
-		private List<SearchResponse<TDocument>> responses;
+		private List<JsonValue /*
+								 * Union(_global.search.Response<_global.msearch_template.TDocument> |
+								 * _types.ErrorResponseBase)
+								 */> responses;
 
 		private Long took;
 
@@ -116,7 +134,10 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 		/**
 		 * API name: {@code responses}
 		 */
-		public Builder<TDocument> responses(List<SearchResponse<TDocument>> value) {
+		public Builder<TDocument> responses(List<JsonValue /*
+															 * Union(_global.search.Response<_global.msearch_template.
+															 * TDocument> | _types.ErrorResponseBase)
+															 */> value) {
 			this.responses = value;
 			return this;
 		}
@@ -124,36 +145,26 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 		/**
 		 * API name: {@code responses}
 		 */
-		public Builder<TDocument> responses(SearchResponse<TDocument>... value) {
+		public Builder<TDocument> responses(JsonValue /*
+														 * Union(_global.search.Response<_global.msearch_template.
+														 * TDocument> | _types.ErrorResponseBase)
+														 */... value) {
 			this.responses = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
 		 */
-		public Builder<TDocument> addResponses(SearchResponse<TDocument> value) {
+		public Builder<TDocument> addResponses(JsonValue /*
+															 * Union(_global.search.Response<_global.msearch_template.
+															 * TDocument> | _types.ErrorResponseBase)
+															 */ value) {
 			if (this.responses == null) {
 				this.responses = new ArrayList<>();
 			}
 			this.responses.add(value);
 			return this;
-		}
-
-		/**
-		 * Set {@link #responses(List)} to a singleton list.
-		 */
-		public Builder<TDocument> responses(
-				Function<SearchResponse.Builder<TDocument>, ObjectBuilder<SearchResponse<TDocument>>> fn) {
-			return this.responses(fn.apply(new SearchResponse.Builder<TDocument>()).build());
-		}
-
-		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addResponses(
-				Function<SearchResponse.Builder<TDocument>, ObjectBuilder<SearchResponse<TDocument>>> fn) {
-			return this.addResponses(fn.apply(new SearchResponse.Builder<TDocument>()).build());
 		}
 
 		/**
@@ -200,8 +211,8 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 			DelegatingDeserializer<MsearchTemplateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
-		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(
-				SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer)), "responses");
+		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+				"responses");
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 
 	}

@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -41,6 +43,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow.Request
@@ -106,6 +109,10 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		this.readPollTimeout = builder.readPollTimeout;
 		this.remoteCluster = builder.remoteCluster;
 
+	}
+
+	public FollowRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -524,7 +531,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ccr.follow}".
 	 */
-	public static final Endpoint<FollowRequest, FollowResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FollowRequest, FollowResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -542,12 +549,12 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_ccr");
 					buf.append("/follow");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -555,9 +562,9 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards.toString());
+					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FollowResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, FollowResponse._DESERIALIZER);
 }

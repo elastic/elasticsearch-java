@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -59,9 +60,13 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 
 		this.serviceAccount = Objects.requireNonNull(builder.serviceAccount, "service_account");
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.tokens = Objects.requireNonNull(builder.tokens, "tokens");
+		this.tokens = ModelTypeHelper.unmodifiableNonNull(builder.tokens, "tokens");
 		this.nodesCredentials = Objects.requireNonNull(builder.nodesCredentials, "nodes_credentials");
 
+	}
+
+	public GetServiceCredentialsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

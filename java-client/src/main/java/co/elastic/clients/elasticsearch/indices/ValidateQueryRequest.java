@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -102,15 +104,15 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 
 	public ValidateQueryRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.type = builder.type;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.type = ModelTypeHelper.unmodifiable(builder.type);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allShards = builder.allShards;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.lenient = builder.lenient;
@@ -118,6 +120,10 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		this.q = builder.q;
 		this.query = builder.query;
 
+	}
+
+	public ValidateQueryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -372,7 +378,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -405,7 +411,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
+		 * Add a value to {@link #type(List)}, creating the list if needed. 4
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -502,7 +508,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -612,7 +618,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code indices.validate_query}".
 	 */
-	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -640,7 +646,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_validate");
 					buf.append("/query");
 					return buf.toString();
@@ -648,14 +654,14 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					buf.append(request.type.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.type.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_validate");
 					buf.append("/query");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -701,5 +707,5 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, ValidateQueryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ValidateQueryResponse._DESERIALIZER);
 }

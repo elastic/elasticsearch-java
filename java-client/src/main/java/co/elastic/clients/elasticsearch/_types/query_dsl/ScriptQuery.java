@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptQuery
@@ -47,6 +48,10 @@ public final class ScriptQuery extends QueryBase implements QueryVariant {
 
 		this.script = Objects.requireNonNull(builder.script, "script");
 
+	}
+
+	public ScriptQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

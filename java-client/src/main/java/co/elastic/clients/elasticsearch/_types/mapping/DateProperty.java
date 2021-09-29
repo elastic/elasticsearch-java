@@ -79,6 +79,10 @@ public final class DateProperty extends DocValuesPropertyBase implements Propert
 
 	}
 
+	public DateProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Property} variant type
 	 */

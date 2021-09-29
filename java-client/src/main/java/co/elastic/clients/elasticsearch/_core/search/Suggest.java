@@ -79,6 +79,10 @@ public class Suggest implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Suggest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code completion} variant value.
 	 *
@@ -167,60 +171,59 @@ public class Suggest implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Suggest> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Suggest> completion(CompletionSuggester v) {
+		public Builder completion(CompletionSuggester v) {
 			this._type = COMPLETION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Suggest> completion(
-				Function<CompletionSuggester.Builder, ObjectBuilder<CompletionSuggester>> f) {
+		public Builder completion(Function<CompletionSuggester.Builder, ObjectBuilder<CompletionSuggester>> f) {
 			return this.completion(f.apply(new CompletionSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<Suggest> phrase(PhraseSuggester v) {
+		public Builder phrase(PhraseSuggester v) {
 			this._type = PHRASE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Suggest> phrase(Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> f) {
+		public Builder phrase(Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> f) {
 			return this.phrase(f.apply(new PhraseSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<Suggest> prefix(String v) {
+		public Builder prefix(String v) {
 			this._type = PREFIX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Suggest> regex(String v) {
+		public Builder regex(String v) {
 			this._type = REGEX;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Suggest> term(TermSuggester v) {
+		public Builder term(TermSuggester v) {
 			this._type = TERM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Suggest> term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> f) {
+		public Builder term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> f) {
 			return this.term(f.apply(new TermSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<Suggest> text(String v) {
+		public Builder text(String v) {
 			this._type = TEXT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		protected Suggest build() {
+		public Suggest build() {
 			return new Suggest(this);
 		}
 

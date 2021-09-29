@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.DefaultOperator;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -36,6 +37,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -107,13 +109,13 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 
 	public CountRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.lenient = builder.lenient;
@@ -124,6 +126,10 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		this.q = builder.q;
 		this.query = builder.query;
 
+	}
+
+	public CountRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -390,7 +396,7 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -477,7 +483,7 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -619,7 +625,7 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code count}".
 	 */
-	public static final Endpoint<CountRequest, CountResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CountRequest, CountResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -643,11 +649,11 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_count");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -699,5 +705,5 @@ public final class CountRequest extends RequestBase implements JsonpSerializable
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CountResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CountResponse._DESERIALIZER);
 }

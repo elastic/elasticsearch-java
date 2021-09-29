@@ -58,6 +58,10 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 	}
 
+	public UpdateResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
+	}
+
 	/**
 	 * API name: {@code get}
 	 */

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -61,10 +62,14 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		super(builder);
 
 		this.keyed = builder.keyed;
-		this.values = builder.values;
+		this.values = ModelTypeHelper.unmodifiable(builder.values);
 		this.hdr = builder.hdr;
 		this.tdigest = builder.tdigest;
 
+	}
+
+	public PercentileRanksAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -187,7 +192,7 @@ public final class PercentileRanksAggregation extends FormatMetricAggregationBas
 		}
 
 		/**
-		 * Add a value to {@link #values(List)}, creating the list if needed.
+		 * Add a value to {@link #values(List)}, creating the list if needed. 4
 		 */
 		public Builder addValues(Double value) {
 			if (this.values == null) {

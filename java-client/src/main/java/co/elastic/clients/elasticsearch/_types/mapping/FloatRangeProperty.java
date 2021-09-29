@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.mapping.FloatRangeProperty
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class FloatRangeProperty extends RangePropertyBase implements Prope
 	public FloatRangeProperty(Builder builder) {
 		super(builder);
 
+	}
+
+	public FloatRangeProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

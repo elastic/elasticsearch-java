@@ -26,20 +26,39 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQuery
 @JsonpDeserializable
 public final class TermsQuery extends QueryBase implements QueryVariant {
+	private final String field;
+
+	private final JsonValue /*
+							 * Union(Array<internal.string> | Array<_types.long> |
+							 * _types.query_dsl.TermsLookup)
+							 */ value;
+
 	// ---------------------------------------------------------------------------------------------
 
 	public TermsQuery(Builder builder) {
 		super(builder);
 
+		this.field = Objects.requireNonNull(builder.field, "field");
+		this.value = Objects.requireNonNull(builder.value, "value");
+
+	}
+
+	public TermsQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -50,12 +69,63 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		return "terms";
 	}
 
+	/**
+	 */
+	public String field() {
+		return this.field;
+	}
+
+	/**
+	 */
+	public JsonValue /*
+						 * Union(Array<internal.string> | Array<_types.long> |
+						 * _types.query_dsl.TermsLookup)
+						 */ value() {
+		return this.value;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		// >> AdditionalProperty start
+		generator.writeKey(this.field);
+		generator.write(this.value);
+
+		// << AdditionalProperty start
+
+		super.serializeInternal(generator, mapper);
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link TermsQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
+		private String field;
+
+		private JsonValue /*
+							 * Union(Array<internal.string> | Array<_types.long> |
+							 * _types.query_dsl.TermsLookup)
+							 */ value;
+
+		/**
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder value(JsonValue /*
+										 * Union(Array<internal.string> | Array<_types.long> |
+										 * _types.query_dsl.TermsLookup)
+										 */ value) {
+			this.value = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -83,6 +153,11 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 
 	protected static void setupTermsQueryDeserializer(DelegatingDeserializer<TermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.field(name);
+			builder.value(JsonpDeserializer.jsonValueDeserializer().deserialize(parser, mapper));
+		});
 
 	}
 

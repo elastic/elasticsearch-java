@@ -36,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFuzzy
@@ -69,6 +70,10 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		this.transpositions = builder.transpositions;
 		this.useField = builder.useField;
 
+	}
+
+	public IntervalsFuzzy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

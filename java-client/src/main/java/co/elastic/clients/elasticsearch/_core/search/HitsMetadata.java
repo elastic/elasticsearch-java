@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -60,10 +61,14 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 	public HitsMetadata(Builder<T> builder) {
 
 		this.total = Objects.requireNonNull(builder.total, "total");
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.hits = ModelTypeHelper.unmodifiableNonNull(builder.hits, "hits");
 		this.maxScore = builder.maxScore;
 		this.tSerializer = builder.tSerializer;
 
+	}
+
+	public HitsMetadata(Function<Builder<T>, Builder<T>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -167,7 +172,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Add a value to {@link #hits(List)}, creating the list if needed. 4
 		 */
 		public Builder<T> addHits(Hit<T> value) {
 			if (this.hits == null) {
@@ -185,7 +190,7 @@ public final class HitsMetadata<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed.
+		 * Add a value to {@link #hits(List)}, creating the list if needed. 5
 		 */
 		public Builder<T> addHits(Function<Hit.Builder<T>, ObjectBuilder<Hit<T>>> fn) {
 			return this.addHits(fn.apply(new Hit.Builder<T>()).build());

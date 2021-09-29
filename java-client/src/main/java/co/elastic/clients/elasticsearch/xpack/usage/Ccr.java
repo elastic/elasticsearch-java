@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.Ccr
 @JsonpDeserializable
@@ -50,6 +51,10 @@ public final class Ccr extends Base {
 				"auto_follow_patterns_count");
 		this.followerIndicesCount = Objects.requireNonNull(builder.followerIndicesCount, "follower_indices_count");
 
+	}
+
+	public Ccr(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

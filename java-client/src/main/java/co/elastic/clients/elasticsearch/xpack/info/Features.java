@@ -131,6 +131,10 @@ public final class Features implements JsonpSerializable {
 
 	}
 
+	public Features(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code aggregate_metric}
 	 */

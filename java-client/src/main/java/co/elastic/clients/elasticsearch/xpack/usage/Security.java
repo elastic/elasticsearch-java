@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -76,14 +77,18 @@ public final class Security extends Base {
 		this.audit = Objects.requireNonNull(builder.audit, "audit");
 		this.fips140 = Objects.requireNonNull(builder.fips140, "fips_140");
 		this.ipfilter = Objects.requireNonNull(builder.ipfilter, "ipfilter");
-		this.realms = Objects.requireNonNull(builder.realms, "realms");
-		this.roleMapping = Objects.requireNonNull(builder.roleMapping, "role_mapping");
+		this.realms = ModelTypeHelper.unmodifiableNonNull(builder.realms, "realms");
+		this.roleMapping = ModelTypeHelper.unmodifiableNonNull(builder.roleMapping, "role_mapping");
 		this.roles = Objects.requireNonNull(builder.roles, "roles");
 		this.ssl = Objects.requireNonNull(builder.ssl, "ssl");
 		this.systemKey = builder.systemKey;
 		this.tokenService = Objects.requireNonNull(builder.tokenService, "token_service");
 		this.operatorPrivileges = Objects.requireNonNull(builder.operatorPrivileges, "operator_privileges");
 
+	}
+
+	public Security(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

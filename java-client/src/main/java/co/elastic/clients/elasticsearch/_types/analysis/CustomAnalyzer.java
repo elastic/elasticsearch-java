@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomAnalyzer
@@ -61,12 +63,16 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 	public CustomAnalyzer(Builder builder) {
 
-		this.charFilter = builder.charFilter;
-		this.filter = builder.filter;
+		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.positionIncrementGap = builder.positionIncrementGap;
 		this.positionOffsetGap = builder.positionOffsetGap;
 		this.tokenizer = Objects.requireNonNull(builder.tokenizer, "tokenizer");
 
+	}
+
+	public CustomAnalyzer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -206,7 +212,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
 		 */
 		public Builder addCharFilter(String value) {
 			if (this.charFilter == null) {
@@ -233,7 +239,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
 		 */
 		public Builder addFilter(String value) {
 			if (this.filter == null) {

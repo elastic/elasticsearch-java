@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,6 +42,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.Request
@@ -75,6 +77,10 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 		this.primary = builder.primary;
 		this.shard = builder.shard;
 
+	}
+
+	public AllocationExplainRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -296,7 +302,7 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code cluster.allocation_explain}".
 	 */
-	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AllocationExplainRequest, AllocationExplainResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -320,5 +326,5 @@ public final class AllocationExplainRequest extends RequestBase implements Jsonp
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, AllocationExplainResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, AllocationExplainResponse._DESERIALIZER);
 }

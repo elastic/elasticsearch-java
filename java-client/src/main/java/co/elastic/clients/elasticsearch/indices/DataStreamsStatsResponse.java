@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -68,8 +69,12 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		this.dataStreamCount = Objects.requireNonNull(builder.dataStreamCount, "data_stream_count");
 		this.totalStoreSizes = builder.totalStoreSizes;
 		this.totalStoreSizeBytes = Objects.requireNonNull(builder.totalStoreSizeBytes, "total_store_size_bytes");
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
+		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
 
+	}
+
+	public DataStreamsStatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -238,7 +243,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
 		 */
 		public Builder addDataStreams(DataStreamsStatsItem value) {
 			if (this.dataStreams == null) {
@@ -256,7 +261,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 5
 		 */
 		public Builder addDataStreams(Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
 			return this.addDataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());

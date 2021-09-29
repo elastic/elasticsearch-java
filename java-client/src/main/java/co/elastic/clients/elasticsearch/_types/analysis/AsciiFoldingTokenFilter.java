@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 
 		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
 
+	}
+
+	public AsciiFoldingTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

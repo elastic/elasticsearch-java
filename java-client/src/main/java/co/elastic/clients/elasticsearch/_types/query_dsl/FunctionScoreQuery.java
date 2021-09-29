@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -66,12 +67,16 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		super(builder);
 
 		this.boostMode = builder.boostMode;
-		this.functions = builder.functions;
+		this.functions = ModelTypeHelper.unmodifiable(builder.functions);
 		this.maxBoost = builder.maxBoost;
 		this.minScore = builder.minScore;
 		this.query = builder.query;
 		this.scoreMode = builder.scoreMode;
 
+	}
+
+	public FunctionScoreQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -226,7 +231,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		}
 
 		/**
-		 * Add a value to {@link #functions(List)}, creating the list if needed.
+		 * Add a value to {@link #functions(List)}, creating the list if needed. 4
 		 */
 		public Builder addFunctions(FunctionScore value) {
 			if (this.functions == null) {
@@ -244,7 +249,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		}
 
 		/**
-		 * Add a value to {@link #functions(List)}, creating the list if needed.
+		 * Add a value to {@link #functions(List)}, creating the list if needed. 5
 		 */
 		public Builder addFunctions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
 			return this.addFunctions(fn.apply(new FunctionScore.Builder()).build());

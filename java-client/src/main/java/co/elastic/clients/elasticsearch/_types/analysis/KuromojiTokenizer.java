@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KuromojiTokenizer
@@ -65,8 +67,13 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 		this.nbestCost = Objects.requireNonNull(builder.nbestCost, "nbest_cost");
 		this.nbestExamples = Objects.requireNonNull(builder.nbestExamples, "nbest_examples");
 		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
-		this.userDictionaryRules = Objects.requireNonNull(builder.userDictionaryRules, "user_dictionary_rules");
+		this.userDictionaryRules = ModelTypeHelper.unmodifiableNonNull(builder.userDictionaryRules,
+				"user_dictionary_rules");
 
+	}
+
+	public KuromojiTokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -227,7 +234,7 @@ public final class KuromojiTokenizer extends TokenizerBase implements TokenizerV
 
 		/**
 		 * Add a value to {@link #userDictionaryRules(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addUserDictionaryRules(String value) {
 			if (this.userDictionaryRules == null) {

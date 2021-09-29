@@ -59,6 +59,10 @@ public final class SnapshotStats implements JsonpSerializable {
 
 	}
 
+	public SnapshotStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code incremental}
 	 */

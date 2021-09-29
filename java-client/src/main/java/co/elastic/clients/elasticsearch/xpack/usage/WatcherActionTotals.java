@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.WatcherActionTotals
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		this.total = Objects.requireNonNull(builder.total, "total");
 		this.totalTimeInMs = Objects.requireNonNull(builder.totalTimeInMs, "total_time_in_ms");
 
+	}
+
+	public WatcherActionTotals(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -112,7 +113,7 @@ public final class Highlight implements JsonpSerializable {
 
 	public Highlight(Builder builder) {
 
-		this.fields = Objects.requireNonNull(builder.fields, "fields");
+		this.fields = ModelTypeHelper.unmodifiableNonNull(builder.fields, "fields");
 		this.type = builder.type;
 		this.boundaryChars = builder.boundaryChars;
 		this.boundaryMaxScan = builder.boundaryMaxScan;
@@ -126,13 +127,17 @@ public final class Highlight implements JsonpSerializable {
 		this.noMatchSize = builder.noMatchSize;
 		this.numberOfFragments = builder.numberOfFragments;
 		this.order = builder.order;
-		this.postTags = builder.postTags;
-		this.preTags = builder.preTags;
+		this.postTags = ModelTypeHelper.unmodifiable(builder.postTags);
+		this.preTags = ModelTypeHelper.unmodifiable(builder.preTags);
 		this.requireFieldMatch = builder.requireFieldMatch;
 		this.tagsSchema = builder.tagsSchema;
 		this.highlightQuery = builder.highlightQuery;
 		this.maxAnalyzedOffset = builder.maxAnalyzedOffset;
 
+	}
+
+	public Highlight(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -654,7 +659,7 @@ public final class Highlight implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #postTags(List)}, creating the list if needed.
+		 * Add a value to {@link #postTags(List)}, creating the list if needed. 4
 		 */
 		public Builder addPostTags(String value) {
 			if (this.postTags == null) {
@@ -681,7 +686,7 @@ public final class Highlight implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preTags(List)}, creating the list if needed.
+		 * Add a value to {@link #preTags(List)}, creating the list if needed. 4
 		 */
 		public Builder addPreTags(String value) {
 			if (this.preTags == null) {

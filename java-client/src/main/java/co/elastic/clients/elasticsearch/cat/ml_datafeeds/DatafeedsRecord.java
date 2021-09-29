@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.DatafeedsRecord
@@ -93,6 +94,10 @@ public final class DatafeedsRecord implements JsonpSerializable {
 		this.nodeEphemeralId = builder.nodeEphemeralId;
 		this.nodeAddress = builder.nodeAddress;
 
+	}
+
+	public DatafeedsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

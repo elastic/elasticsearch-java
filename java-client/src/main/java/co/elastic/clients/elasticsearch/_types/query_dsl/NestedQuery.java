@@ -67,6 +67,10 @@ public final class NestedQuery extends QueryBase implements QueryVariant {
 
 	}
 
+	public NestedQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Query} variant type
 	 */

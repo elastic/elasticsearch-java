@@ -81,6 +81,10 @@ public final class ModelSnapshot implements JsonpSerializable {
 
 	}
 
+	public ModelSnapshot(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * An optional description of the job.
 	 * <p>

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CalendarEvent
@@ -61,6 +62,10 @@ public final class CalendarEvent implements JsonpSerializable {
 		this.endTime = Objects.requireNonNull(builder.endTime, "end_time");
 		this.startTime = Objects.requireNonNull(builder.startTime, "start_time");
 
+	}
+
+	public CalendarEvent(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -49,6 +49,10 @@ public final class Analytics extends Base {
 
 	}
 
+	public Analytics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code stats}
 	 */

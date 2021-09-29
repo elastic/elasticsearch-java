@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -77,7 +78,7 @@ public final class State implements JsonpSerializable {
 		this.action = Objects.requireNonNull(builder.action, "action");
 		this.cancellable = Objects.requireNonNull(builder.cancellable, "cancellable");
 		this.description = builder.description;
-		this.headers = Objects.requireNonNull(builder.headers, "headers");
+		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.parentTaskId = builder.parentTaskId;
@@ -86,6 +87,10 @@ public final class State implements JsonpSerializable {
 		this.status = builder.status;
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public State(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

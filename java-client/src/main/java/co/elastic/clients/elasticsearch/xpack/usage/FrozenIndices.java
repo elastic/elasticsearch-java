@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.FrozenIndices
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class FrozenIndices extends Base {
 
 		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
 
+	}
+
+	public FrozenIndices(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

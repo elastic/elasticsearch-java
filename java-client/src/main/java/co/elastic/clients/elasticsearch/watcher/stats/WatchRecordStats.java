@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
@@ -60,10 +62,14 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 
 		this.executionPhase = Objects.requireNonNull(builder.executionPhase, "execution_phase");
 		this.triggeredTime = Objects.requireNonNull(builder.triggeredTime, "triggered_time");
-		this.executedActions = builder.executedActions;
+		this.executedActions = ModelTypeHelper.unmodifiable(builder.executedActions);
 		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
 		this.watchRecordId = Objects.requireNonNull(builder.watchRecordId, "watch_record_id");
 
+	}
+
+	public WatchRecordStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -184,7 +190,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * Add a value to {@link #executedActions(List)}, creating the list if needed.
+		 * Add a value to {@link #executedActions(List)}, creating the list if needed. 4
 		 */
 		public Builder addExecutedActions(String value) {
 			if (this.executedActions == null) {

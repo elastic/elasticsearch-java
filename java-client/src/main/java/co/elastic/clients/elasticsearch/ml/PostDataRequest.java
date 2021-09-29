@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,6 +35,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,7 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_data.Request
@@ -58,7 +59,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	@Nullable
 	private final String resetStart;
 
-	private final List<TData> value;
+	private final List<TData> data;
 
 	@Nullable
 	private final JsonpSerializer<TData> tDataSerializer;
@@ -70,9 +71,13 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.resetEnd = builder.resetEnd;
 		this.resetStart = builder.resetStart;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.data = ModelTypeHelper.unmodifiableNonNull(builder.data, "_value_body");
 		this.tDataSerializer = builder.tDataSerializer;
 
+	}
+
+	public PostDataRequest(Function<Builder<TData>, Builder<TData>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -107,10 +112,10 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	/**
 	 * Request body.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<TData> value() {
-		return this.value;
+	public List<TData> data() {
+		return this.data;
 	}
 
 	/**
@@ -118,7 +123,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TData item0 : this.value) {
+		for (TData item0 : this.data) {
 			JsonpUtils.serialize(item0, generator, tDataSerializer, mapper);
 
 		}
@@ -140,7 +145,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		@Nullable
 		private String resetStart;
 
-		private List<TData> value;
+		private List<TData> data;
 
 		@Nullable
 		private JsonpSerializer<TData> tDataSerializer;
@@ -178,31 +183,31 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TData> value(List<TData> value) {
-			this.value = value;
+		public Builder<TData> data(List<TData> value) {
+			this.data = value;
 			return this;
 		}
 
 		/**
 		 * Request body.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder<TData> value(TData... value) {
-			this.value = Arrays.asList(value);
+		public Builder<TData> data(TData... value) {
+			this.data = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #data(List)}, creating the list if needed. 4
 		 */
-		public Builder<TData> addValue(TData value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder<TData> addData(TData value) {
+			if (this.data == null) {
+				this.data = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.data.add(value);
 			return this;
 		}
 
@@ -227,22 +232,13 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Create a json deserializer for PostDataRequest
-	 */
 	public static <TData> JsonpDeserializer<PostDataRequest<TData>> createPostDataRequestDeserializer(
 			JsonpDeserializer<TData> tDataDeserializer) {
-		return ObjectBuilderDeserializer.createForValue((Supplier<Builder<TData>>) Builder::new,
-				op -> PostDataRequest.setupPostDataRequestDeserializer(op, tDataDeserializer));
-	};
 
-	protected static <TData> void setupPostDataRequestDeserializer(
-			DelegatingDeserializer<PostDataRequest.Builder<TData>> op, JsonpDeserializer<TData> tDataDeserializer) {
+		JsonpDeserializer<List<TData>> valueDeserializer = JsonpDeserializer.arrayDeserializer(tDataDeserializer);
 
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(tDataDeserializer), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder<TData>()
+				.data(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -250,7 +246,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code ml.post_data}".
 	 */
-	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostDataRequest<?>, PostDataResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -270,11 +266,11 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_data");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -289,5 +285,5 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PostDataResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PostDataResponse._DESERIALIZER);
 }

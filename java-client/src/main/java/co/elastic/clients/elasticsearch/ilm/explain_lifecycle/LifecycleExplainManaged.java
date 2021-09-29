@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -95,10 +96,14 @@ public final class LifecycleExplainManaged implements LifecycleExplainVariant, J
 		this.phaseTimeMillis = Objects.requireNonNull(builder.phaseTimeMillis, "phase_time_millis");
 		this.policy = Objects.requireNonNull(builder.policy, "policy");
 		this.step = Objects.requireNonNull(builder.step, "step");
-		this.stepInfo = builder.stepInfo;
+		this.stepInfo = ModelTypeHelper.unmodifiable(builder.stepInfo);
 		this.stepTimeMillis = Objects.requireNonNull(builder.stepTimeMillis, "step_time_millis");
 		this.phaseExecution = Objects.requireNonNull(builder.phaseExecution, "phase_execution");
 
+	}
+
+	public LifecycleExplainManaged(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

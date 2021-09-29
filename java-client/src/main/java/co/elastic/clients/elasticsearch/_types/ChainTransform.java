@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -48,8 +49,12 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 
 	public ChainTransform(Builder builder) {
 
-		this.transforms = Objects.requireNonNull(builder.transforms, "transforms");
+		this.transforms = ModelTypeHelper.unmodifiableNonNull(builder.transforms, "transforms");
 
+	}
+
+	public ChainTransform(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -113,7 +118,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Add a value to {@link #transforms(List)}, creating the list if needed. 4
 		 */
 		public Builder addTransforms(Transform value) {
 			if (this.transforms == null) {
@@ -131,7 +136,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Add a value to {@link #transforms(List)}, creating the list if needed. 5
 		 */
 		public Builder addTransforms(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
 			return this.addTransforms(fn.apply(new Transform.Builder()).build());

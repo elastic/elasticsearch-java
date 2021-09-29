@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -75,10 +76,14 @@ public final class NodeShard implements JsonpSerializable {
 		this.node = builder.node;
 		this.shard = Objects.requireNonNull(builder.shard, "shard");
 		this.index = Objects.requireNonNull(builder.index, "index");
-		this.allocationId = builder.allocationId;
-		this.recoverySource = builder.recoverySource;
+		this.allocationId = ModelTypeHelper.unmodifiable(builder.allocationId);
+		this.recoverySource = ModelTypeHelper.unmodifiable(builder.recoverySource);
 		this.unassignedInfo = builder.unassignedInfo;
 
+	}
+
+	public NodeShard(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

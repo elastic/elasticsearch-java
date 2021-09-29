@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ScheduleTriggerEvent
@@ -51,6 +52,10 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 		this.scheduledTime = Objects.requireNonNull(builder.scheduledTime, "scheduled_time");
 		this.triggeredTime = builder.triggeredTime;
 
+	}
+
+	public ScheduleTriggerEvent(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

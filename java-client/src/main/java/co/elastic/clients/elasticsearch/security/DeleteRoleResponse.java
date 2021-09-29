@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: security.delete_role.Response
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class DeleteRoleResponse implements JsonpSerializable {
 
 		this.found = Objects.requireNonNull(builder.found, "found");
 
+	}
+
+	public DeleteRoleResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

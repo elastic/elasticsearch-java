@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -123,18 +124,22 @@ public final class HighlightField implements JsonpSerializable {
 		this.fragmentOffset = builder.fragmentOffset;
 		this.fragmentSize = builder.fragmentSize;
 		this.highlightQuery = builder.highlightQuery;
-		this.matchedFields = builder.matchedFields;
+		this.matchedFields = ModelTypeHelper.unmodifiable(builder.matchedFields);
 		this.maxFragmentLength = builder.maxFragmentLength;
 		this.noMatchSize = builder.noMatchSize;
 		this.numberOfFragments = builder.numberOfFragments;
 		this.order = builder.order;
 		this.phraseLimit = builder.phraseLimit;
-		this.postTags = builder.postTags;
-		this.preTags = builder.preTags;
+		this.postTags = ModelTypeHelper.unmodifiable(builder.postTags);
+		this.preTags = ModelTypeHelper.unmodifiable(builder.preTags);
 		this.requireFieldMatch = builder.requireFieldMatch;
 		this.tagsSchema = builder.tagsSchema;
 		this.type = builder.type;
 
+	}
+
+	public HighlightField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -628,7 +633,7 @@ public final class HighlightField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #matchedFields(List)}, creating the list if needed.
+		 * Add a value to {@link #matchedFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addMatchedFields(String value) {
 			if (this.matchedFields == null) {
@@ -695,7 +700,7 @@ public final class HighlightField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #postTags(List)}, creating the list if needed.
+		 * Add a value to {@link #postTags(List)}, creating the list if needed. 4
 		 */
 		public Builder addPostTags(String value) {
 			if (this.postTags == null) {
@@ -722,7 +727,7 @@ public final class HighlightField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preTags(List)}, creating the list if needed.
+		 * Add a value to {@link #preTags(List)}, creating the list if needed. 4
 		 */
 		public Builder addPreTags(String value) {
 			if (this.preTags == null) {

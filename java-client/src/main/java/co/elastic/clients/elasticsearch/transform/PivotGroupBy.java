@@ -80,6 +80,10 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public PivotGroupBy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code date_histogram} variant value.
 	 *
@@ -133,55 +137,52 @@ public class PivotGroupBy implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<PivotGroupBy> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<PivotGroupBy> dateHistogram(DateHistogramAggregation v) {
+		public Builder dateHistogram(DateHistogramAggregation v) {
 			this._type = DATE_HISTOGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> dateHistogram(
+		public Builder dateHistogram(
 				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
 			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
-		public ObjectBuilder<PivotGroupBy> geotileGrid(GeoTileGridAggregation v) {
+		public Builder geotileGrid(GeoTileGridAggregation v) {
 			this._type = GEOTILE_GRID;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> geotileGrid(
-				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
+		public Builder geotileGrid(Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
 			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
-		public ObjectBuilder<PivotGroupBy> histogram(HistogramAggregation v) {
+		public Builder histogram(HistogramAggregation v) {
 			this._type = HISTOGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> histogram(
-				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
+		public Builder histogram(Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
 			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
 		}
 
-		public ObjectBuilder<PivotGroupBy> terms(TermsAggregation v) {
+		public Builder terms(TermsAggregation v) {
 			this._type = TERMS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<PivotGroupBy> terms(
-				Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
+		public Builder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
 			return this.terms(f.apply(new TermsAggregation.Builder()).build());
 		}
 
-		protected PivotGroupBy build() {
+		public PivotGroupBy build() {
 			return new PivotGroupBy(this);
 		}
 

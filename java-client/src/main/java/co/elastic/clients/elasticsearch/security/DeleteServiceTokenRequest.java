@@ -25,9 +25,11 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -37,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
@@ -60,6 +63,10 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.refresh = builder.refresh;
 
+	}
+
+	public DeleteServiceTokenRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -177,7 +184,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_service_token}".
 	 */
-	public static final Endpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -201,16 +208,16 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/service");
 					buf.append("/");
-					buf.append(request.namespace);
+					SimpleEndpoint.pathEncode(request.namespace, buf);
 					buf.append("/");
-					buf.append(request.service);
+					SimpleEndpoint.pathEncode(request.service, buf);
 					buf.append("/credential");
 					buf.append("/token");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -218,9 +225,9 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteServiceTokenResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteServiceTokenResponse._DESERIALIZER);
 }

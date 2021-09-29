@@ -25,9 +25,11 @@ package co.elastic.clients.elasticsearch._core;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.elasticsearch._core.field_caps.FieldCapabilitiesBodyIndexFilter;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,12 +37,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,20 +75,28 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	private final Boolean includeUnmapped;
 
 	@Nullable
-	private final FieldCapabilitiesBodyIndexFilter indexFilter;
+	private final Query indexFilter;
+
+	@Nullable
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public FieldCapsRequest(Builder builder) {
 
-		this.index = builder.index;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
-		this.fields = builder.fields;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
 		this.indexFilter = builder.indexFilter;
+		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
 
+	}
+
+	public FieldCapsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -156,8 +168,16 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code index_filter}
 	 */
 	@Nullable
-	public FieldCapabilitiesBodyIndexFilter indexFilter() {
+	public Query indexFilter() {
 		return this.indexFilter;
+	}
+
+	/**
+	 * API name: {@code runtime_mappings}
+	 */
+	@Nullable
+	public Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
 	}
 
 	/**
@@ -175,6 +195,18 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 
 			generator.writeKey("index_filter");
 			this.indexFilter.serialize(generator, mapper);
+
+		}
+		if (this.runtimeMappings != null) {
+
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -205,7 +237,10 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		private Boolean includeUnmapped;
 
 		@Nullable
-		private FieldCapabilitiesBodyIndexFilter indexFilter;
+		private Query indexFilter;
+
+		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
 
 		/**
 		 * A comma-separated list of index names; use <code>_all</code> or empty string
@@ -230,7 +265,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -275,7 +310,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -306,7 +341,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -340,7 +375,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code index_filter}
 		 */
-		public Builder indexFilter(@Nullable FieldCapabilitiesBodyIndexFilter value) {
+		public Builder indexFilter(@Nullable Query value) {
 			this.indexFilter = value;
 			return this;
 		}
@@ -348,9 +383,41 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code index_filter}
 		 */
-		public Builder indexFilter(
-				Function<FieldCapabilitiesBodyIndexFilter.Builder, ObjectBuilder<FieldCapabilitiesBodyIndexFilter>> fn) {
-			return this.indexFilter(fn.apply(new FieldCapabilitiesBodyIndexFilter.Builder()).build());
+		public Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.indexFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 */
+		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
+			this.runtimeMappings = value;
+			return this;
+		}
+
+		/**
+		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 */
+		public Builder putRuntimeMappings(String key, RuntimeField value) {
+			if (this.runtimeMappings == null) {
+				this.runtimeMappings = new HashMap<>();
+			}
+			this.runtimeMappings.put(key, value);
+			return this;
+		}
+
+		/**
+		 * Set {@link #runtimeMappings(Map)} to a singleton map.
+		 */
+		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
+		}
+
+		/**
+		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 */
+		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -375,7 +442,9 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 
 	protected static void setupFieldCapsRequestDeserializer(DelegatingDeserializer<FieldCapsRequest.Builder> op) {
 
-		op.add(Builder::indexFilter, FieldCapabilitiesBodyIndexFilter._DESERIALIZER, "index_filter");
+		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 
 	}
 
@@ -384,7 +453,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code field_caps}".
 	 */
-	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -408,11 +477,11 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_field_caps");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -437,5 +506,5 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, FieldCapsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, FieldCapsResponse._DESERIALIZER);
 }

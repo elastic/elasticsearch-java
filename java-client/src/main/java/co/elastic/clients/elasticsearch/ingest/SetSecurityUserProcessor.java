@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
@@ -52,8 +54,12 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		super(builder);
 
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.properties = builder.properties;
+		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
 
+	}
+
+	public SetSecurityUserProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -138,7 +144,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		}
 
 		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
+		 * Add a value to {@link #properties(List)}, creating the list if needed. 4
 		 */
 		public Builder addProperties(String value) {
 			if (this.properties == null) {

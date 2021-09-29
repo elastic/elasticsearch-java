@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
@@ -57,8 +59,12 @@ public final class DanglingIndex implements JsonpSerializable {
 		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
 		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 		this.creationDateMillis = Objects.requireNonNull(builder.creationDateMillis, "creation_date_millis");
-		this.nodeIds = Objects.requireNonNull(builder.nodeIds, "node_ids");
+		this.nodeIds = ModelTypeHelper.unmodifiableNonNull(builder.nodeIds, "node_ids");
 
+	}
+
+	public DanglingIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -174,7 +180,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeIds(List)}, creating the list if needed.
+		 * Add a value to {@link #nodeIds(List)}, creating the list if needed. 4
 		 */
 		public Builder addNodeIds(String value) {
 			if (this.nodeIds == null) {

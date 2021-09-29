@@ -62,6 +62,10 @@ public final class DatafeedStats implements JsonpSerializable {
 
 	}
 
+	public DatafeedStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code assignment_explanation}
 	 */

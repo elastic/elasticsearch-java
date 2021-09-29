@@ -54,6 +54,10 @@ public final class SearchTransform implements TransformVariant, JsonpSerializabl
 
 	}
 
+	public SearchTransform(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link Transform} variant type
 	 */

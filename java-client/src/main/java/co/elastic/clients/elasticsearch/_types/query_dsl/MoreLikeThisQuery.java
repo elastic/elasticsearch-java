@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -113,9 +114,9 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.analyzer = builder.analyzer;
 		this.boostTerms = builder.boostTerms;
 		this.failOnUnsupportedField = builder.failOnUnsupportedField;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.include = builder.include;
-		this.like = Objects.requireNonNull(builder.like, "like");
+		this.like = ModelTypeHelper.unmodifiableNonNull(builder.like, "like");
 		this.maxDocFreq = builder.maxDocFreq;
 		this.maxQueryTerms = builder.maxQueryTerms;
 		this.maxWordLength = builder.maxWordLength;
@@ -123,13 +124,17 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
-		this.perFieldAnalyzer = builder.perFieldAnalyzer;
+		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
-		this.stopWords = builder.stopWords;
-		this.unlike = builder.unlike;
+		this.stopWords = ModelTypeHelper.unmodifiable(builder.stopWords);
+		this.unlike = ModelTypeHelper.unmodifiable(builder.unlike);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public MoreLikeThisQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -537,7 +542,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -572,7 +577,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #like(List)}, creating the list if needed.
+		 * Add a value to {@link #like(List)}, creating the list if needed. 4
 		 */
 		public Builder addLike(LikeDocument value) {
 			if (this.like == null) {
@@ -590,7 +595,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #like(List)}, creating the list if needed.
+		 * Add a value to {@link #like(List)}, creating the list if needed. 5
 		 */
 		public Builder addLike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
 			return this.addLike(fn.apply(new LikeDocument.Builder()).build());
@@ -697,7 +702,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #stopWords(List)}, creating the list if needed.
+		 * Add a value to {@link #stopWords(List)}, creating the list if needed. 4
 		 */
 		public Builder addStopWords(String value) {
 			if (this.stopWords == null) {
@@ -724,7 +729,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #unlike(List)}, creating the list if needed.
+		 * Add a value to {@link #unlike(List)}, creating the list if needed. 4
 		 */
 		public Builder addUnlike(LikeDocument value) {
 			if (this.unlike == null) {
@@ -742,7 +747,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #unlike(List)}, creating the list if needed.
+		 * Add a value to {@link #unlike(List)}, creating the list if needed. 5
 		 */
 		public Builder addUnlike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
 			return this.addUnlike(fn.apply(new LikeDocument.Builder()).build());

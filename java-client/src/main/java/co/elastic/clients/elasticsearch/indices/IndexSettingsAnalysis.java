@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -62,11 +63,15 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 
 	public IndexSettingsAnalysis(Builder builder) {
 
-		this.analyzer = builder.analyzer;
-		this.charFilter = builder.charFilter;
-		this.filter = builder.filter;
-		this.normalizer = builder.normalizer;
+		this.analyzer = ModelTypeHelper.unmodifiable(builder.analyzer);
+		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.normalizer = ModelTypeHelper.unmodifiable(builder.normalizer);
 
+	}
+
+	public IndexSettingsAnalysis(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

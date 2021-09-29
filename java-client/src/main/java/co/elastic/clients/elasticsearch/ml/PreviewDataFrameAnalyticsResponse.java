@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +39,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Response
@@ -49,8 +51,12 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 
 	public PreviewDataFrameAnalyticsResponse(Builder builder) {
 
-		this.featureValues = Objects.requireNonNull(builder.featureValues, "feature_values");
+		this.featureValues = ModelTypeHelper.unmodifiableNonNull(builder.featureValues, "feature_values");
 
+	}
+
+	public PreviewDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -121,7 +127,7 @@ public final class PreviewDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #featureValues(List)}, creating the list if needed.
+		 * Add a value to {@link #featureValues(List)}, creating the list if needed. 4
 		 */
 		public Builder addFeatureValues(Map<String, String> value) {
 			if (this.featureValues == null) {

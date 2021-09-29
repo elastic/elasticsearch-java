@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.DocStats
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class DocStats implements JsonpSerializable {
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.deleted = Objects.requireNonNull(builder.deleted, "deleted");
 
+	}
+
+	public DocStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

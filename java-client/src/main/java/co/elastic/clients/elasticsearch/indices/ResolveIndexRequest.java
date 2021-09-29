@@ -25,12 +25,14 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,9 +58,13 @@ public final class ResolveIndexRequest extends RequestBase {
 
 	public ResolveIndexRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.expandWildcards = builder.expandWildcards;
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 
+	}
+
+	public ResolveIndexRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -112,7 +119,7 @@ public final class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -145,7 +152,7 @@ public final class ResolveIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -172,7 +179,7 @@ public final class ResolveIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.resolve_index}".
 	 */
-	public static final Endpoint<ResolveIndexRequest, ResolveIndexResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ResolveIndexRequest, ResolveIndexResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -192,10 +199,10 @@ public final class ResolveIndexRequest extends RequestBase {
 					buf.append("/_resolve");
 					buf.append("/index");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -208,5 +215,5 @@ public final class ResolveIndexRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ResolveIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ResolveIndexResponse._DESERIALIZER);
 }

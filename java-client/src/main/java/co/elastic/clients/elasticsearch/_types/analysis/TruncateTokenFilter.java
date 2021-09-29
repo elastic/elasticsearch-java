@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.TruncateTokenFilter
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 
 		this.length = Objects.requireNonNull(builder.length, "length");
 
+	}
+
+	public TruncateTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

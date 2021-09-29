@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -53,10 +54,14 @@ public final class FileSystem implements JsonpSerializable {
 
 	public FileSystem(Builder builder) {
 
-		this.data = Objects.requireNonNull(builder.data, "data");
+		this.data = ModelTypeHelper.unmodifiableNonNull(builder.data, "data");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public FileSystem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -136,7 +141,7 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
+		 * Add a value to {@link #data(List)}, creating the list if needed. 4
 		 */
 		public Builder addData(DataPathStats value) {
 			if (this.data == null) {
@@ -154,7 +159,7 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
+		 * Add a value to {@link #data(List)}, creating the list if needed. 5
 		 */
 		public Builder addData(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn) {
 			return this.addData(fn.apply(new DataPathStats.Builder()).build());

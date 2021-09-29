@@ -49,6 +49,10 @@ public final class IndexResult implements JsonpSerializable {
 
 	}
 
+	public IndexResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code response}
 	 */

@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteExplanation;
-import co.elastic.clients.elasticsearch.cluster.reroute.RerouteState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,20 +44,23 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Response
 @JsonpDeserializable
-public final class RerouteResponse extends AcknowledgedResponseBase {
+public final class RerouteResponse implements JsonpSerializable {
 	@Nullable
 	private final List<RerouteExplanation> explanations;
 
-	private final RerouteState state;
+	private final JsonData state;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public RerouteResponse(Builder builder) {
-		super(builder);
 
-		this.explanations = builder.explanations;
+		this.explanations = ModelTypeHelper.unmodifiable(builder.explanations);
 		this.state = Objects.requireNonNull(builder.state, "state");
 
+	}
+
+	public RerouteResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -68,15 +72,27 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
+	 * There aren't any guarantees on the output/structure of the raw cluster state.
+	 * Here you will find the internal representation of the cluster, which can
+	 * differ from the external representation.
+	 * <p>
 	 * API name: {@code state}
 	 */
-	public RerouteState state() {
+	public JsonData state() {
 		return this.state;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.explanations != null) {
 
 			generator.writeKey("explanations");
@@ -99,13 +115,11 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link RerouteResponse}.
 	 */
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RerouteResponse> {
+	public static class Builder implements ObjectBuilder<RerouteResponse> {
 		@Nullable
 		private List<RerouteExplanation> explanations;
 
-		private RerouteState state;
+		private JsonData state;
 
 		/**
 		 * API name: {@code explanations}
@@ -124,7 +138,7 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 * Add a value to {@link #explanations(List)}, creating the list if needed. 4
 		 */
 		public Builder addExplanations(RerouteExplanation value) {
 			if (this.explanations == null) {
@@ -142,29 +156,21 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed.
+		 * Add a value to {@link #explanations(List)}, creating the list if needed. 5
 		 */
 		public Builder addExplanations(Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn) {
 			return this.addExplanations(fn.apply(new RerouteExplanation.Builder()).build());
 		}
 
 		/**
+		 * There aren't any guarantees on the output/structure of the raw cluster state.
+		 * Here you will find the internal representation of the cluster, which can
+		 * differ from the external representation.
+		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(RerouteState value) {
+		public Builder state(JsonData value) {
 			this.state = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code state}
-		 */
-		public Builder state(Function<RerouteState.Builder, ObjectBuilder<RerouteState>> fn) {
-			return this.state(fn.apply(new RerouteState.Builder()).build());
-		}
-
-		@Override
-		protected Builder self() {
 			return this;
 		}
 
@@ -189,10 +195,10 @@ public final class RerouteResponse extends AcknowledgedResponseBase {
 			RerouteResponse::setupRerouteResponseDeserializer, Builder::build);
 
 	protected static void setupRerouteResponseDeserializer(DelegatingDeserializer<RerouteResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
 		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(RerouteExplanation._DESERIALIZER),
 				"explanations");
-		op.add(Builder::state, RerouteState._DESERIALIZER, "state");
+		op.add(Builder::state, JsonData._DESERIALIZER, "state");
 
 	}
 

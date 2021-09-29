@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -42,6 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -69,13 +73,17 @@ public final class ExistsAliasRequest extends RequestBase {
 
 	public ExistsAliasRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.index = builder.index;
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.local = builder.local;
 
+	}
+
+	public ExistsAliasRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -186,7 +194,7 @@ public final class ExistsAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -217,7 +225,7 @@ public final class ExistsAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -262,7 +270,7 @@ public final class ExistsAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -311,7 +319,7 @@ public final class ExistsAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_alias}".
 	 */
-	public static final Endpoint<ExistsAliasRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<ExistsAliasRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -333,19 +341,19 @@ public final class ExistsAliasRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_alias");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_alias");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -367,5 +375,5 @@ public final class ExistsAliasRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

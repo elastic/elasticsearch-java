@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -53,6 +54,10 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 		this.result = Objects.requireNonNull(builder.result, "result");
 		this.tResultSerializer = builder.tResultSerializer;
 
+	}
+
+	public ScriptsPainlessExecuteResponse(Function<Builder<TResult>, Builder<TResult>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**

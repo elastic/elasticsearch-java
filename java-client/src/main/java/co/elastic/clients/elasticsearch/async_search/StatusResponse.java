@@ -60,6 +60,10 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 
 	}
 
+	public StatusResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
+	}
+
 	/**
 	 * API name: {@code _shards}
 	 */

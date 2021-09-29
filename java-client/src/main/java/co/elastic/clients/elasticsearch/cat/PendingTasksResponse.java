@@ -24,13 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.pending_tasks.PendingTasksRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,23 +43,27 @@ import javax.annotation.Nullable;
 // typedef: cat.pending_tasks.Response
 @JsonpDeserializable
 public final class PendingTasksResponse implements JsonpSerializable {
-	private final List<PendingTasksRecord> value;
+	private final List<PendingTasksRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
 	public PendingTasksResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public PendingTasksResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
 	 * <p>
-	 * API name: {@code value}
+	 * API name: {@code _value_body}
 	 */
-	public List<PendingTasksRecord> value() {
-		return this.value;
+	public List<PendingTasksRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
@@ -67,7 +71,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (PendingTasksRecord item0 : this.value) {
+		for (PendingTasksRecord item0 : this.valueBody) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -81,51 +85,51 @@ public final class PendingTasksResponse implements JsonpSerializable {
 	 * Builder for {@link PendingTasksResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<PendingTasksResponse> {
-		private List<PendingTasksRecord> value;
+		private List<PendingTasksRecord> valueBody;
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<PendingTasksRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<PendingTasksRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
 		 * <p>
-		 * API name: {@code value}
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(PendingTasksRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(PendingTasksRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(PendingTasksRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(PendingTasksRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
-			return this.value(fn.apply(new PendingTasksRecord.Builder()).build());
+		public Builder valueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
+			return this.valueBody(fn.apply(new PendingTasksRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
-			return this.addValue(fn.apply(new PendingTasksRecord.Builder()).build());
+		public Builder addValueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
+			return this.addValueBody(fn.apply(new PendingTasksRecord.Builder()).build());
 		}
 
 		/**
@@ -140,19 +144,14 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PendingTasksResponse> _DESERIALIZER = createPendingTasksResponseDeserializer();
+	protected static JsonpDeserializer<PendingTasksResponse> createPendingTasksResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PendingTasksResponse}
-	 */
-	public static final JsonpDeserializer<PendingTasksResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PendingTasksResponse::setupPendingTasksResponseDeserializer, Builder::build);
+		JsonpDeserializer<List<PendingTasksRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(PendingTasksRecord._DESERIALIZER);
 
-	protected static void setupPendingTasksResponseDeserializer(
-			DelegatingDeserializer<PendingTasksResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(PendingTasksRecord._DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

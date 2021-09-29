@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.cluster;
+package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -32,52 +32,69 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: cluster._types.Tombstone
+// typedef: _types.query_dsl.FieldLookup
 @JsonpDeserializable
-public final class Tombstone implements JsonpSerializable {
-	private final TombstoneIndex index;
+public final class FieldLookup implements JsonpSerializable {
+	private final String id;
 
 	@Nullable
-	private final String deleteDate;
+	private final String index;
 
-	private final long deleteDateInMillis;
+	@Nullable
+	private final String path;
+
+	@Nullable
+	private final String routing;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Tombstone(Builder builder) {
+	public FieldLookup(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.deleteDate = builder.deleteDate;
-		this.deleteDateInMillis = Objects.requireNonNull(builder.deleteDateInMillis, "delete_date_in_millis");
+		this.id = Objects.requireNonNull(builder.id, "id");
+		this.index = builder.index;
+		this.path = builder.path;
+		this.routing = builder.routing;
 
+	}
+
+	public FieldLookup(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	public String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code index}
 	 */
-	public TombstoneIndex index() {
+	@Nullable
+	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code delete_date}
+	 * API name: {@code path}
 	 */
 	@Nullable
-	public String deleteDate() {
-		return this.deleteDate;
+	public String path() {
+		return this.path;
 	}
 
 	/**
-	 * API name: {@code delete_date_in_millis}
+	 * API name: {@code routing}
 	 */
-	public long deleteDateInMillis() {
-		return this.deleteDateInMillis;
+	@Nullable
+	public String routing() {
+		return this.routing;
 	}
 
 	/**
@@ -91,90 +108,105 @@ public final class Tombstone implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		this.index.serialize(generator, mapper);
+		generator.writeKey("id");
+		generator.write(this.id);
 
-		if (this.deleteDate != null) {
+		if (this.index != null) {
 
-			generator.writeKey("delete_date");
-			generator.write(this.deleteDate);
+			generator.writeKey("index");
+			generator.write(this.index);
 
 		}
+		if (this.path != null) {
 
-		generator.writeKey("delete_date_in_millis");
-		generator.write(this.deleteDateInMillis);
+			generator.writeKey("path");
+			generator.write(this.path);
+
+		}
+		if (this.routing != null) {
+
+			generator.writeKey("routing");
+			generator.write(this.routing);
+
+		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Tombstone}.
+	 * Builder for {@link FieldLookup}.
 	 */
-	public static class Builder implements ObjectBuilder<Tombstone> {
-		private TombstoneIndex index;
+	public static class Builder implements ObjectBuilder<FieldLookup> {
+		private String id;
 
 		@Nullable
-		private String deleteDate;
+		private String index;
 
-		private Long deleteDateInMillis;
+		@Nullable
+		private String path;
+
+		@Nullable
+		private String routing;
+
+		/**
+		 * API name: {@code id}
+		 */
+		public Builder id(String value) {
+			this.id = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(TombstoneIndex value) {
+		public Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code index}
+		 * API name: {@code path}
 		 */
-		public Builder index(Function<TombstoneIndex.Builder, ObjectBuilder<TombstoneIndex>> fn) {
-			return this.index(fn.apply(new TombstoneIndex.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code delete_date}
-		 */
-		public Builder deleteDate(@Nullable String value) {
-			this.deleteDate = value;
+		public Builder path(@Nullable String value) {
+			this.path = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code delete_date_in_millis}
+		 * API name: {@code routing}
 		 */
-		public Builder deleteDateInMillis(long value) {
-			this.deleteDateInMillis = value;
+		public Builder routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
 		/**
-		 * Builds a {@link Tombstone}.
+		 * Builds a {@link FieldLookup}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Tombstone build() {
+		public FieldLookup build() {
 
-			return new Tombstone(this);
+			return new FieldLookup(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Tombstone}
+	 * Json deserializer for {@link FieldLookup}
 	 */
-	public static final JsonpDeserializer<Tombstone> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Tombstone::setupTombstoneDeserializer, Builder::build);
+	public static final JsonpDeserializer<FieldLookup> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldLookup::setupFieldLookupDeserializer, Builder::build);
 
-	protected static void setupTombstoneDeserializer(DelegatingDeserializer<Tombstone.Builder> op) {
+	protected static void setupFieldLookupDeserializer(DelegatingDeserializer<FieldLookup.Builder> op) {
 
-		op.add(Builder::index, TombstoneIndex._DESERIALIZER, "index");
-		op.add(Builder::deleteDate, JsonpDeserializer.stringDeserializer(), "delete_date");
-		op.add(Builder::deleteDateInMillis, JsonpDeserializer.longDeserializer(), "delete_date_in_millis");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 
 	}
 

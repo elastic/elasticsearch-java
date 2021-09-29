@@ -36,6 +36,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TranslogStats
@@ -71,6 +72,10 @@ public final class TranslogStats implements JsonpSerializable {
 		this.uncommittedSizeInBytes = Objects.requireNonNull(builder.uncommittedSizeInBytes,
 				"uncommitted_size_in_bytes");
 
+	}
+
+	public TranslogStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

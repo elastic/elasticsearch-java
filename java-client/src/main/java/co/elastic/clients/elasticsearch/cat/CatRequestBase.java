@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
+import co.elastic.clients.base.ElasticsearchCatRequest;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,10 +32,11 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cat._types.CatRequestBase
 
-public abstract class CatRequestBase extends RequestBase {
+public abstract class CatRequestBase extends RequestBase implements ElasticsearchCatRequest {
 	public CatRequestBase() {
 	}
 

@@ -35,6 +35,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SearchAsYouTypeProperty
@@ -78,6 +79,10 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		this.searchQuoteAnalyzer = builder.searchQuoteAnalyzer;
 		this.termVector = builder.termVector;
 
+	}
+
+	public SearchAsYouTypeProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

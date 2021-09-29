@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -55,8 +56,12 @@ public final class AnalyzeResponse implements JsonpSerializable {
 	public AnalyzeResponse(Builder builder) {
 
 		this.detail = builder.detail;
-		this.tokens = builder.tokens;
+		this.tokens = ModelTypeHelper.unmodifiable(builder.tokens);
 
+	}
+
+	public AnalyzeResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -150,7 +155,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Add a value to {@link #tokens(List)}, creating the list if needed. 4
 		 */
 		public Builder addTokens(AnalyzeToken value) {
 			if (this.tokens == null) {
@@ -168,7 +173,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Add a value to {@link #tokens(List)}, creating the list if needed. 5
 		 */
 		public Builder addTokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
 			return this.addTokens(fn.apply(new AnalyzeToken.Builder()).build());

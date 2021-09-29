@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
@@ -48,8 +50,12 @@ public final class Input implements JsonpSerializable {
 
 	public Input(Builder builder) {
 
-		this.fieldNames = Objects.requireNonNull(builder.fieldNames, "field_names");
+		this.fieldNames = ModelTypeHelper.unmodifiableNonNull(builder.fieldNames, "field_names");
 
+	}
+
+	public Input(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -105,7 +111,7 @@ public final class Input implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
+		 * Add a value to {@link #fieldNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addFieldNames(String value) {
 			if (this.fieldNames == null) {

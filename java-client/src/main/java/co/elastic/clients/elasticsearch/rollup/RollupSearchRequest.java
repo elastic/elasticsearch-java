@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
@@ -35,6 +36,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -60,9 +62,6 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	private final String type;
 
 	@Nullable
-	private final Boolean restTotalHitsAsInt;
-
-	@Nullable
 	private final Boolean typedKeys;
 
 	@Nullable
@@ -78,14 +77,17 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 
 	public RollupSearchRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.type = builder.type;
-		this.restTotalHitsAsInt = builder.restTotalHitsAsInt;
 		this.typedKeys = builder.typedKeys;
-		this.aggs = builder.aggs;
+		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
 		this.query = builder.query;
 		this.size = builder.size;
 
+	}
+
+	public RollupSearchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,17 +108,6 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	public String type() {
 		return this.type;
-	}
-
-	/**
-	 * Indicates whether hits.total should be rendered as an integer or an object in
-	 * the rest search response
-	 * <p>
-	 * API name: {@code rest_total_hits_as_int}
-	 */
-	@Nullable
-	public Boolean restTotalHitsAsInt() {
-		return this.restTotalHitsAsInt;
 	}
 
 	/**
@@ -204,9 +195,6 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		private String type;
 
 		@Nullable
-		private Boolean restTotalHitsAsInt;
-
-		@Nullable
 		private Boolean typedKeys;
 
 		@Nullable
@@ -241,7 +229,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -258,17 +246,6 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		 */
 		public Builder type(@Nullable String value) {
 			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Indicates whether hits.total should be rendered as an integer or an object in
-		 * the rest search response
-		 * <p>
-		 * API name: {@code rest_total_hits_as_int}
-		 */
-		public Builder restTotalHitsAsInt(@Nullable Boolean value) {
-			this.restTotalHitsAsInt = value;
 			return this;
 		}
 
@@ -372,7 +349,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code rollup.rollup_search}".
 	 */
-	private static final Endpoint.Simple<RollupSearchRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<RollupSearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -393,35 +370,32 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_rollup_search");
 					return buf.toString();
 				}
 				if (propsSet == (_index | _type)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					buf.append(request.type);
+					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_rollup_search");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.restTotalHitsAsInt != null) {
-					params.put("rest_total_hits_as_int", String.valueOf(request.restTotalHitsAsInt));
-				}
 				if (request.typedKeys != null) {
 					params.put("typed_keys", String.valueOf(request.typedKeys));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code rollup.rollup_search}" endpoint.

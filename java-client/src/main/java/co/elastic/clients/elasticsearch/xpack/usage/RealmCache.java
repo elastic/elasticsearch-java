@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: xpack.usage.RealmCache
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class RealmCache implements JsonpSerializable {
 
 		this.size = Objects.requireNonNull(builder.size, "size");
 
+	}
+
+	public RealmCache(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

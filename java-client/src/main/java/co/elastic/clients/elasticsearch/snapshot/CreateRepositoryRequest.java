@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -72,6 +73,10 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 		this.type = Objects.requireNonNull(builder.type, "type");
 		this.settings = Objects.requireNonNull(builder.settings, "settings");
 
+	}
+
+	public CreateRepositoryRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -263,7 +268,7 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code snapshot.create_repository}".
 	 */
-	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -282,10 +287,10 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -303,5 +308,5 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, CreateRepositoryResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateRepositoryResponse._DESERIALIZER);
 }

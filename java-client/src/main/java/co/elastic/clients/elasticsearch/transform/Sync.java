@@ -73,6 +73,10 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public Sync(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code time} variant value.
 	 *
@@ -96,21 +100,21 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 		generator.writeEnd();
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Sync> {
 		private String _type;
 		private Object _value;
 
-		public ObjectBuilder<Sync> time(TimeSync v) {
+		public Builder time(TimeSync v) {
 			this._type = TIME;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Sync> time(Function<TimeSync.Builder, ObjectBuilder<TimeSync>> f) {
+		public Builder time(Function<TimeSync.Builder, ObjectBuilder<TimeSync>> f) {
 			return this.time(f.apply(new TimeSync.Builder()).build());
 		}
 
-		protected Sync build() {
+		public Sync build() {
 			return new Sync(this);
 		}
 

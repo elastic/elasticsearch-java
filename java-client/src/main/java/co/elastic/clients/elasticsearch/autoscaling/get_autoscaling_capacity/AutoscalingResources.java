@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingResources
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class AutoscalingResources implements JsonpSerializable {
 		this.storage = Objects.requireNonNull(builder.storage, "storage");
 		this.memory = Objects.requireNonNull(builder.memory, "memory");
 
+	}
+
+	public AutoscalingResources(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

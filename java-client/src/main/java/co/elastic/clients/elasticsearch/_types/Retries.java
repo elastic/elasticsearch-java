@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.Retries
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class Retries implements JsonpSerializable {
 		this.bulk = Objects.requireNonNull(builder.bulk, "bulk");
 		this.search = Objects.requireNonNull(builder.search, "search");
 
+	}
+
+	public Retries(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

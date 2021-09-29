@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.open_job.Response
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class OpenJobResponse implements JsonpSerializable {
 
 		this.opened = Objects.requireNonNull(builder.opened, "opened");
 
+	}
+
+	public OpenJobResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

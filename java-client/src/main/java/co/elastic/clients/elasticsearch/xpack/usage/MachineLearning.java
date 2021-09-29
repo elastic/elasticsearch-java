@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -58,13 +59,17 @@ public final class MachineLearning extends Base {
 	public MachineLearning(Builder builder) {
 		super(builder);
 
-		this.datafeeds = Objects.requireNonNull(builder.datafeeds, "datafeeds");
-		this.jobs = Objects.requireNonNull(builder.jobs, "jobs");
+		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
+		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
 		this.nodeCount = Objects.requireNonNull(builder.nodeCount, "node_count");
 		this.dataFrameAnalyticsJobs = Objects.requireNonNull(builder.dataFrameAnalyticsJobs,
 				"data_frame_analytics_jobs");
 		this.inference = Objects.requireNonNull(builder.inference, "inference");
 
+	}
+
+	public MachineLearning(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

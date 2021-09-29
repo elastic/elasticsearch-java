@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.SnapshotsRecord
@@ -96,6 +97,10 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		this.totalShards = builder.totalShards;
 		this.reason = builder.reason;
 
+	}
+
+	public SnapshotsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

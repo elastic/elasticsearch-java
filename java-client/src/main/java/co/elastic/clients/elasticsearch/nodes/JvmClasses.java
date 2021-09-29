@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: nodes._types.JvmClasses
 @JsonpDeserializable
@@ -52,6 +53,10 @@ public final class JvmClasses implements JsonpSerializable {
 		this.totalLoadedCount = Objects.requireNonNull(builder.totalLoadedCount, "total_loaded_count");
 		this.totalUnloadedCount = Objects.requireNonNull(builder.totalUnloadedCount, "total_unloaded_count");
 
+	}
+
+	public JvmClasses(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -53,6 +53,10 @@ public final class Configuration implements JsonpSerializable {
 
 	}
 
+	public Configuration(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code geo_match}
 	 */

@@ -52,6 +52,10 @@ public final class SpanContainingQuery extends QueryBase implements SpanQueryVar
 
 	}
 
+	public SpanContainingQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link SpanQuery}, {@link Query} variant type
 	 */

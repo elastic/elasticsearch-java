@@ -32,12 +32,18 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoBoundingBoxQuery
 @JsonpDeserializable
 public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
+	private final String field;
+
+	private final BoundingBox boundingBox;
+
 	@Nullable
 	private final GeoExecution type;
 
@@ -52,10 +58,17 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	public GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
 
+		this.field = Objects.requireNonNull(builder.field, "field");
+		this.boundingBox = Objects.requireNonNull(builder.boundingBox, "bounding_box");
+
 		this.type = builder.type;
 		this.validationMethod = builder.validationMethod;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 
+	}
+
+	public GeoBoundingBoxQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,6 +77,18 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	@Override
 	public String _variantType() {
 		return "geo_bounding_box";
+	}
+
+	/**
+	 */
+	public String field() {
+		return this.field;
+	}
+
+	/**
+	 */
+	public BoundingBox boundingBox() {
+		return this.boundingBox;
 	}
 
 	/**
@@ -91,6 +116,12 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		// >> AdditionalProperty start
+		generator.writeKey(this.field);
+		this.boundingBox.serialize(generator, mapper);
+
+		// << AdditionalProperty start
 
 		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
@@ -120,6 +151,30 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundingBoxQuery> {
+		private String field;
+
+		private BoundingBox boundingBox;
+
+		/**
+		 */
+		public Builder field(String value) {
+			this.field = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder boundingBox(BoundingBox value) {
+			this.boundingBox = value;
+			return this;
+		}
+
+		/**
+		 */
+		public Builder boundingBox(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
+			return this.boundingBox(fn.apply(new BoundingBox.Builder()).build());
+		}
+
 		@Nullable
 		private GeoExecution type;
 
@@ -183,6 +238,11 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		op.add(Builder::type, GeoExecution._DESERIALIZER, "type");
 		op.add(Builder::validationMethod, GeoValidationMethod._DESERIALIZER, "validation_method");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.field(name);
+			builder.boundingBox(BoundingBox._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

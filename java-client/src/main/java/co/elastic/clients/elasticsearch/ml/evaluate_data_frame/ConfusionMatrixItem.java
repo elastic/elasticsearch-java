@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -58,10 +59,14 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 
 		this.actualClass = Objects.requireNonNull(builder.actualClass, "actual_class");
 		this.actualClassDocCount = Objects.requireNonNull(builder.actualClassDocCount, "actual_class_doc_count");
-		this.predictedClasses = Objects.requireNonNull(builder.predictedClasses, "predicted_classes");
+		this.predictedClasses = ModelTypeHelper.unmodifiableNonNull(builder.predictedClasses, "predicted_classes");
 		this.otherPredictedClassDocCount = Objects.requireNonNull(builder.otherPredictedClassDocCount,
 				"other_predicted_class_doc_count");
 
+	}
+
+	public ConfusionMatrixItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -170,6 +175,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #predictedClasses(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addPredictedClasses(ConfusionMatrixPrediction value) {
 			if (this.predictedClasses == null) {
@@ -189,6 +195,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #predictedClasses(List)}, creating the list if needed.
+		 * 5
 		 */
 		public Builder addPredictedClasses(
 				Function<ConfusionMatrixPrediction.Builder, ObjectBuilder<ConfusionMatrixPrediction>> fn) {

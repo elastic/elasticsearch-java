@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -104,18 +106,22 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.customSettings = builder.customSettings;
-		this.categorizationFilters = builder.categorizationFilters;
+		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
+		this.categorizationFilters = ModelTypeHelper.unmodifiable(builder.categorizationFilters);
 		this.description = builder.description;
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
 		this.resultsRetentionDays = builder.resultsRetentionDays;
-		this.groups = builder.groups;
-		this.detectors = builder.detectors;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.detectors = ModelTypeHelper.unmodifiable(builder.detectors);
 		this.perPartitionCategorization = builder.perPartitionCategorization;
 
+	}
+
+	public UpdateJobRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -145,7 +151,12 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 
 	/**
 	 * Advanced configuration option. The time between each periodic persistence of
-	 * the model. See Job resources.
+	 * the model. The default value is a randomized value between 3 to 4 hours,
+	 * which avoids all jobs persisting at exactly the same time. The smallest
+	 * allowed value is 1 hour. For very large models (several GB), persistence
+	 * could take 10-20 minutes, so do not set the value too low. If the job is open
+	 * when you make the update, you must stop the datafeed, close the job, then
+	 * reopen the job and restart the datafeed for the changes to take effect.
 	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
@@ -175,7 +186,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * A description of the job. See Job resources.
+	 * A description of the job.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -473,7 +484,12 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 
 		/**
 		 * Advanced configuration option. The time between each periodic persistence of
-		 * the model. See Job resources.
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour. For very large models (several GB), persistence
+		 * could take 10-20 minutes, so do not set the value too low. If the job is open
+		 * when you make the update, you must stop the datafeed, close the job, then
+		 * reopen the job and restart the datafeed for the changes to take effect.
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
@@ -523,7 +539,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 
 		/**
 		 * Add a value to {@link #categorizationFilters(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addCategorizationFilters(String value) {
 			if (this.categorizationFilters == null) {
@@ -534,7 +550,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * A description of the job. See Job resources.
+		 * A description of the job.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -626,7 +642,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -657,7 +673,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Add a value to {@link #detectors(List)}, creating the list if needed. 4
 		 */
 		public Builder addDetectors(Detector value) {
 			if (this.detectors == null) {
@@ -675,7 +691,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed.
+		 * Add a value to {@link #detectors(List)}, creating the list if needed. 5
 		 */
 		public Builder addDetectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.addDetectors(fn.apply(new Detector.Builder()).build());
@@ -751,7 +767,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code ml.update_job}".
 	 */
-	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateJobRequest, UpdateJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -771,11 +787,11 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -783,5 +799,5 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateJobResponse._DESERIALIZER);
 }

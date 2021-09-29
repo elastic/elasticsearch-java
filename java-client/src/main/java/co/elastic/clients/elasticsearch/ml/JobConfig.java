@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -107,7 +108,7 @@ public final class JobConfig implements JsonpSerializable {
 		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = builder.groups;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 		this.jobId = builder.jobId;
 		this.jobType = builder.jobType;
 		this.modelPlotConfig = builder.modelPlotConfig;
@@ -116,6 +117,10 @@ public final class JobConfig implements JsonpSerializable {
 		this.resultsIndexName = builder.resultsIndexName;
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
+	}
+
+	public JobConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -548,7 +553,7 @@ public final class JobConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {

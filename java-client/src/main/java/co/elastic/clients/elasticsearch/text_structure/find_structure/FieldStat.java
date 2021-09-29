@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -74,7 +75,7 @@ public final class FieldStat implements JsonpSerializable {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.cardinality = Objects.requireNonNull(builder.cardinality, "cardinality");
-		this.topHits = Objects.requireNonNull(builder.topHits, "top_hits");
+		this.topHits = ModelTypeHelper.unmodifiableNonNull(builder.topHits, "top_hits");
 		this.meanValue = builder.meanValue;
 		this.medianValue = builder.medianValue;
 		this.maxValue = builder.maxValue;
@@ -82,6 +83,10 @@ public final class FieldStat implements JsonpSerializable {
 		this.earliest = builder.earliest;
 		this.latest = builder.latest;
 
+	}
+
+	public FieldStat(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -280,7 +285,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #topHits(List)}, creating the list if needed.
+		 * Add a value to {@link #topHits(List)}, creating the list if needed. 4
 		 */
 		public Builder addTopHits(TopHit value) {
 			if (this.topHits == null) {
@@ -298,7 +303,7 @@ public final class FieldStat implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #topHits(List)}, creating the list if needed.
+		 * Add a value to {@link #topHits(List)}, creating the list if needed. 5
 		 */
 		public Builder addTopHits(Function<TopHit.Builder, ObjectBuilder<TopHit>> fn) {
 			return this.addTopHits(fn.apply(new TopHit.Builder()).build());

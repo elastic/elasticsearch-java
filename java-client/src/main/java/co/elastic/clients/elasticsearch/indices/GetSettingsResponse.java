@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +33,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get_settings.Response
 @JsonpDeserializable
-public final class GetSettingsResponse extends AdditionalProperties<String, IndexState> {
+public final class GetSettingsResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetSettingsResponse(Builder builder) {
@@ -44,12 +45,16 @@ public final class GetSettingsResponse extends AdditionalProperties<String, Inde
 
 	}
 
+	public GetSettingsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetSettingsResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, IndexState, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetSettingsResponse> {
 		@Override
@@ -80,7 +85,7 @@ public final class GetSettingsResponse extends AdditionalProperties<String, Inde
 			.lazy(Builder::new, GetSettingsResponse::setupGetSettingsResponseDeserializer, Builder::build);
 
 	protected static void setupGetSettingsResponseDeserializer(DelegatingDeserializer<GetSettingsResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexState._DESERIALIZER);
 
 	}

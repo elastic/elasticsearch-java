@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemIndex
@@ -50,6 +51,10 @@ public final class IndicesGetDataStreamItemIndex implements JsonpSerializable {
 		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
 		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
 
+	}
+
+	public IndicesGetDataStreamItemIndex(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

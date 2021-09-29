@@ -23,9 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.base.BooleanEndpoint;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +39,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.exists_index_template.Request
@@ -54,6 +57,10 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
 
+	}
+
+	public ExistsIndexTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -127,7 +134,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_index_template}".
 	 */
-	public static final Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new Endpoint.Boolean<>(
+	public static final Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
 			// Request method
 			request -> {
 				return "HEAD";
@@ -146,10 +153,10 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -161,5 +168,5 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

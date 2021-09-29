@@ -38,6 +38,7 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -110,16 +111,16 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		this.timedOut = Objects.requireNonNull(builder.timedOut, "timed_out");
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.hits = Objects.requireNonNull(builder.hits, "hits");
-		this.aggregations = builder.aggregations;
+		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
 		this.clusters = builder.clusters;
-		this.documents = builder.documents;
-		this.fields = builder.fields;
+		this.documents = ModelTypeHelper.unmodifiable(builder.documents);
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.maxScore = builder.maxScore;
 		this.numReducePhases = builder.numReducePhases;
 		this.profile = builder.profile;
 		this.pitId = builder.pitId;
 		this.scrollId = builder.scrollId;
-		this.suggest = builder.suggest;
+		this.suggest = ModelTypeHelper.unmodifiable(builder.suggest);
 		this.terminatedEarly = builder.terminatedEarly;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -529,7 +530,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #documents(List)}, creating the list if needed.
+		 * Add a value to {@link #documents(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addDocuments(TDocument value) {
 			if (this.documents == null) {

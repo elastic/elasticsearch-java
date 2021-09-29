@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,6 +37,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_datafeeds.Request
@@ -54,6 +56,10 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 		this.datafeedId = builder.datafeedId;
 		this.allowNoDatafeeds = builder.allowNoDatafeeds;
 
+	}
+
+	public MlDatafeedsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -127,7 +133,7 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_datafeeds}".
 	 */
-	public static final Endpoint<MlDatafeedsRequest, MlDatafeedsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<MlDatafeedsRequest, MlDatafeedsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -156,10 +162,10 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 					buf.append("/ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					buf.append(request.datafeedId);
+					SimpleEndpoint.pathEncode(request.datafeedId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -171,5 +177,5 @@ public final class MlDatafeedsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, MlDatafeedsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, MlDatafeedsResponse._DESERIALIZER);
 }

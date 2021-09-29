@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,6 +42,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
@@ -86,6 +88,10 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		this.allowNoMatch = builder.allowNoMatch;
 		this.allowNoJobs = builder.allowNoJobs;
 
+	}
+
+	public GetOverallBucketsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -361,7 +367,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code ml.get_overall_buckets}".
 	 */
-	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -381,12 +387,12 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					buf.append(request.jobId);
+					SimpleEndpoint.pathEncode(request.jobId, buf);
 					buf.append("/results");
 					buf.append("/overall_buckets");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -416,5 +422,5 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
 }

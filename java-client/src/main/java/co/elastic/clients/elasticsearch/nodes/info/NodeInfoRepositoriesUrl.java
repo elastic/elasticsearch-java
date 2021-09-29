@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositoriesUrl
@@ -47,6 +48,10 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 
 		this.allowedUrls = Objects.requireNonNull(builder.allowedUrls, "allowed_urls");
 
+	}
+
+	public NodeInfoRepositoriesUrl(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

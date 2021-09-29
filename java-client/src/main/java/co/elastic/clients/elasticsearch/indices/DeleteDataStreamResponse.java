@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.delete_data_stream.Response
 @JsonpDeserializable
@@ -41,6 +42,10 @@ public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 	public DeleteDataStreamResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteDataStreamResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

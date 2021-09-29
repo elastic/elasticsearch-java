@@ -107,6 +107,10 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	}
 
+	public Property(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Get the {@code flattened} variant value.
 	 *
@@ -477,390 +481,374 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	}
 
-	public static class Builder {
+	public static class Builder implements ObjectBuilder<Property> {
 		private String _type;
 		private JsonpSerializable _value;
 
-		public ObjectBuilder<Property> flattened(FlattenedProperty v) {
+		public Builder flattened(FlattenedProperty v) {
 			this._type = FLATTENED;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> flattened(
-				Function<FlattenedProperty.Builder, ObjectBuilder<FlattenedProperty>> f) {
+		public Builder flattened(Function<FlattenedProperty.Builder, ObjectBuilder<FlattenedProperty>> f) {
 			return this.flattened(f.apply(new FlattenedProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> join(JoinProperty v) {
+		public Builder join(JoinProperty v) {
 			this._type = JOIN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> join(Function<JoinProperty.Builder, ObjectBuilder<JoinProperty>> f) {
+		public Builder join(Function<JoinProperty.Builder, ObjectBuilder<JoinProperty>> f) {
 			return this.join(f.apply(new JoinProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> percolator(PercolatorProperty v) {
+		public Builder percolator(PercolatorProperty v) {
 			this._type = PERCOLATOR;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> percolator(
-				Function<PercolatorProperty.Builder, ObjectBuilder<PercolatorProperty>> f) {
+		public Builder percolator(Function<PercolatorProperty.Builder, ObjectBuilder<PercolatorProperty>> f) {
 			return this.percolator(f.apply(new PercolatorProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> rankFeature(RankFeatureProperty v) {
+		public Builder rankFeature(RankFeatureProperty v) {
 			this._type = RANK_FEATURE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> rankFeature(
-				Function<RankFeatureProperty.Builder, ObjectBuilder<RankFeatureProperty>> f) {
+		public Builder rankFeature(Function<RankFeatureProperty.Builder, ObjectBuilder<RankFeatureProperty>> f) {
 			return this.rankFeature(f.apply(new RankFeatureProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> rankFeatures(RankFeaturesProperty v) {
+		public Builder rankFeatures(RankFeaturesProperty v) {
 			this._type = RANK_FEATURES;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> rankFeatures(
-				Function<RankFeaturesProperty.Builder, ObjectBuilder<RankFeaturesProperty>> f) {
+		public Builder rankFeatures(Function<RankFeaturesProperty.Builder, ObjectBuilder<RankFeaturesProperty>> f) {
 			return this.rankFeatures(f.apply(new RankFeaturesProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> constantKeyword(ConstantKeywordProperty v) {
+		public Builder constantKeyword(ConstantKeywordProperty v) {
 			this._type = CONSTANT_KEYWORD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> constantKeyword(
+		public Builder constantKeyword(
 				Function<ConstantKeywordProperty.Builder, ObjectBuilder<ConstantKeywordProperty>> f) {
 			return this.constantKeyword(f.apply(new ConstantKeywordProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
+		public Builder alias(FieldAliasProperty v) {
 			this._type = ALIAS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> alias(
-				Function<FieldAliasProperty.Builder, ObjectBuilder<FieldAliasProperty>> f) {
+		public Builder alias(Function<FieldAliasProperty.Builder, ObjectBuilder<FieldAliasProperty>> f) {
 			return this.alias(f.apply(new FieldAliasProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> histogram(HistogramProperty v) {
+		public Builder histogram(HistogramProperty v) {
 			this._type = HISTOGRAM;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> histogram(
-				Function<HistogramProperty.Builder, ObjectBuilder<HistogramProperty>> f) {
+		public Builder histogram(Function<HistogramProperty.Builder, ObjectBuilder<HistogramProperty>> f) {
 			return this.histogram(f.apply(new HistogramProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> denseVector(DenseVectorProperty v) {
+		public Builder denseVector(DenseVectorProperty v) {
 			this._type = DENSE_VECTOR;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> denseVector(
-				Function<DenseVectorProperty.Builder, ObjectBuilder<DenseVectorProperty>> f) {
+		public Builder denseVector(Function<DenseVectorProperty.Builder, ObjectBuilder<DenseVectorProperty>> f) {
 			return this.denseVector(f.apply(new DenseVectorProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> aggregateMetricDouble(AggregateMetricDoubleProperty v) {
+		public Builder aggregateMetricDouble(AggregateMetricDoubleProperty v) {
 			this._type = AGGREGATE_METRIC_DOUBLE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> aggregateMetricDouble(
+		public Builder aggregateMetricDouble(
 				Function<AggregateMetricDoubleProperty.Builder, ObjectBuilder<AggregateMetricDoubleProperty>> f) {
 			return this.aggregateMetricDouble(f.apply(new AggregateMetricDoubleProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> object(ObjectProperty v) {
+		public Builder object(ObjectProperty v) {
 			this._type = OBJECT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> object(Function<ObjectProperty.Builder, ObjectBuilder<ObjectProperty>> f) {
+		public Builder object(Function<ObjectProperty.Builder, ObjectBuilder<ObjectProperty>> f) {
 			return this.object(f.apply(new ObjectProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> nested(NestedProperty v) {
+		public Builder nested(NestedProperty v) {
 			this._type = NESTED;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> nested(Function<NestedProperty.Builder, ObjectBuilder<NestedProperty>> f) {
+		public Builder nested(Function<NestedProperty.Builder, ObjectBuilder<NestedProperty>> f) {
 			return this.nested(f.apply(new NestedProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> searchAsYouType(SearchAsYouTypeProperty v) {
+		public Builder searchAsYouType(SearchAsYouTypeProperty v) {
 			this._type = SEARCH_AS_YOU_TYPE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> searchAsYouType(
+		public Builder searchAsYouType(
 				Function<SearchAsYouTypeProperty.Builder, ObjectBuilder<SearchAsYouTypeProperty>> f) {
 			return this.searchAsYouType(f.apply(new SearchAsYouTypeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> text(TextProperty v) {
+		public Builder text(TextProperty v) {
 			this._type = TEXT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> text(Function<TextProperty.Builder, ObjectBuilder<TextProperty>> f) {
+		public Builder text(Function<TextProperty.Builder, ObjectBuilder<TextProperty>> f) {
 			return this.text(f.apply(new TextProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> binary(BinaryProperty v) {
+		public Builder binary(BinaryProperty v) {
 			this._type = BINARY;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> binary(Function<BinaryProperty.Builder, ObjectBuilder<BinaryProperty>> f) {
+		public Builder binary(Function<BinaryProperty.Builder, ObjectBuilder<BinaryProperty>> f) {
 			return this.binary(f.apply(new BinaryProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> boolean_(BooleanProperty v) {
+		public Builder boolean_(BooleanProperty v) {
 			this._type = BOOLEAN;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> boolean_(Function<BooleanProperty.Builder, ObjectBuilder<BooleanProperty>> f) {
+		public Builder boolean_(Function<BooleanProperty.Builder, ObjectBuilder<BooleanProperty>> f) {
 			return this.boolean_(f.apply(new BooleanProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> date(DateProperty v) {
+		public Builder date(DateProperty v) {
 			this._type = DATE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> date(Function<DateProperty.Builder, ObjectBuilder<DateProperty>> f) {
+		public Builder date(Function<DateProperty.Builder, ObjectBuilder<DateProperty>> f) {
 			return this.date(f.apply(new DateProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> dateNanos(DateNanosProperty v) {
+		public Builder dateNanos(DateNanosProperty v) {
 			this._type = DATE_NANOS;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> dateNanos(
-				Function<DateNanosProperty.Builder, ObjectBuilder<DateNanosProperty>> f) {
+		public Builder dateNanos(Function<DateNanosProperty.Builder, ObjectBuilder<DateNanosProperty>> f) {
 			return this.dateNanos(f.apply(new DateNanosProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> keyword(KeywordProperty v) {
+		public Builder keyword(KeywordProperty v) {
 			this._type = KEYWORD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> keyword(Function<KeywordProperty.Builder, ObjectBuilder<KeywordProperty>> f) {
+		public Builder keyword(Function<KeywordProperty.Builder, ObjectBuilder<KeywordProperty>> f) {
 			return this.keyword(f.apply(new KeywordProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> float_(NumberProperty v) {
+		public Builder float_(NumberProperty v) {
 			this._type = FLOAT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> float_(Function<NumberProperty.Builder, ObjectBuilder<NumberProperty>> f) {
+		public Builder float_(Function<NumberProperty.Builder, ObjectBuilder<NumberProperty>> f) {
 			return this.float_(f.apply(new NumberProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> longRange(LongRangeProperty v) {
+		public Builder longRange(LongRangeProperty v) {
 			this._type = LONG_RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> longRange(
-				Function<LongRangeProperty.Builder, ObjectBuilder<LongRangeProperty>> f) {
+		public Builder longRange(Function<LongRangeProperty.Builder, ObjectBuilder<LongRangeProperty>> f) {
 			return this.longRange(f.apply(new LongRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> ipRange(IpRangeProperty v) {
+		public Builder ipRange(IpRangeProperty v) {
 			this._type = IP_RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> ipRange(Function<IpRangeProperty.Builder, ObjectBuilder<IpRangeProperty>> f) {
+		public Builder ipRange(Function<IpRangeProperty.Builder, ObjectBuilder<IpRangeProperty>> f) {
 			return this.ipRange(f.apply(new IpRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> integerRange(IntegerRangeProperty v) {
+		public Builder integerRange(IntegerRangeProperty v) {
 			this._type = INTEGER_RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> integerRange(
-				Function<IntegerRangeProperty.Builder, ObjectBuilder<IntegerRangeProperty>> f) {
+		public Builder integerRange(Function<IntegerRangeProperty.Builder, ObjectBuilder<IntegerRangeProperty>> f) {
 			return this.integerRange(f.apply(new IntegerRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> floatRange(FloatRangeProperty v) {
+		public Builder floatRange(FloatRangeProperty v) {
 			this._type = FLOAT_RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> floatRange(
-				Function<FloatRangeProperty.Builder, ObjectBuilder<FloatRangeProperty>> f) {
+		public Builder floatRange(Function<FloatRangeProperty.Builder, ObjectBuilder<FloatRangeProperty>> f) {
 			return this.floatRange(f.apply(new FloatRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> doubleRange(DoubleRangeProperty v) {
+		public Builder doubleRange(DoubleRangeProperty v) {
 			this._type = DOUBLE_RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> doubleRange(
-				Function<DoubleRangeProperty.Builder, ObjectBuilder<DoubleRangeProperty>> f) {
+		public Builder doubleRange(Function<DoubleRangeProperty.Builder, ObjectBuilder<DoubleRangeProperty>> f) {
 			return this.doubleRange(f.apply(new DoubleRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> dateRange(DateRangeProperty v) {
+		public Builder dateRange(DateRangeProperty v) {
 			this._type = DATE_RANGE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> dateRange(
-				Function<DateRangeProperty.Builder, ObjectBuilder<DateRangeProperty>> f) {
+		public Builder dateRange(Function<DateRangeProperty.Builder, ObjectBuilder<DateRangeProperty>> f) {
 			return this.dateRange(f.apply(new DateRangeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> geoPoint(GeoPointProperty v) {
+		public Builder geoPoint(GeoPointProperty v) {
 			this._type = GEO_POINT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> geoPoint(Function<GeoPointProperty.Builder, ObjectBuilder<GeoPointProperty>> f) {
+		public Builder geoPoint(Function<GeoPointProperty.Builder, ObjectBuilder<GeoPointProperty>> f) {
 			return this.geoPoint(f.apply(new GeoPointProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> geoShape(GeoShapeProperty v) {
+		public Builder geoShape(GeoShapeProperty v) {
 			this._type = GEO_SHAPE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> geoShape(Function<GeoShapeProperty.Builder, ObjectBuilder<GeoShapeProperty>> f) {
+		public Builder geoShape(Function<GeoShapeProperty.Builder, ObjectBuilder<GeoShapeProperty>> f) {
 			return this.geoShape(f.apply(new GeoShapeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> completion(CompletionProperty v) {
+		public Builder completion(CompletionProperty v) {
 			this._type = COMPLETION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> completion(
-				Function<CompletionProperty.Builder, ObjectBuilder<CompletionProperty>> f) {
+		public Builder completion(Function<CompletionProperty.Builder, ObjectBuilder<CompletionProperty>> f) {
 			return this.completion(f.apply(new CompletionProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> ip(IpProperty v) {
+		public Builder ip(IpProperty v) {
 			this._type = IP;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> ip(Function<IpProperty.Builder, ObjectBuilder<IpProperty>> f) {
+		public Builder ip(Function<IpProperty.Builder, ObjectBuilder<IpProperty>> f) {
 			return this.ip(f.apply(new IpProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> murmur3(Murmur3HashProperty v) {
+		public Builder murmur3(Murmur3HashProperty v) {
 			this._type = MURMUR3;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> murmur3(
-				Function<Murmur3HashProperty.Builder, ObjectBuilder<Murmur3HashProperty>> f) {
+		public Builder murmur3(Function<Murmur3HashProperty.Builder, ObjectBuilder<Murmur3HashProperty>> f) {
 			return this.murmur3(f.apply(new Murmur3HashProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> shape(ShapeProperty v) {
+		public Builder shape(ShapeProperty v) {
 			this._type = SHAPE;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> shape(Function<ShapeProperty.Builder, ObjectBuilder<ShapeProperty>> f) {
+		public Builder shape(Function<ShapeProperty.Builder, ObjectBuilder<ShapeProperty>> f) {
 			return this.shape(f.apply(new ShapeProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> tokenCount(TokenCountProperty v) {
+		public Builder tokenCount(TokenCountProperty v) {
 			this._type = TOKEN_COUNT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> tokenCount(
-				Function<TokenCountProperty.Builder, ObjectBuilder<TokenCountProperty>> f) {
+		public Builder tokenCount(Function<TokenCountProperty.Builder, ObjectBuilder<TokenCountProperty>> f) {
 			return this.tokenCount(f.apply(new TokenCountProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> version(VersionProperty v) {
+		public Builder version(VersionProperty v) {
 			this._type = VERSION;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> version(Function<VersionProperty.Builder, ObjectBuilder<VersionProperty>> f) {
+		public Builder version(Function<VersionProperty.Builder, ObjectBuilder<VersionProperty>> f) {
 			return this.version(f.apply(new VersionProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> wildcard(WildcardProperty v) {
+		public Builder wildcard(WildcardProperty v) {
 			this._type = WILDCARD;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> wildcard(Function<WildcardProperty.Builder, ObjectBuilder<WildcardProperty>> f) {
+		public Builder wildcard(Function<WildcardProperty.Builder, ObjectBuilder<WildcardProperty>> f) {
 			return this.wildcard(f.apply(new WildcardProperty.Builder()).build());
 		}
 
-		public ObjectBuilder<Property> point(PointProperty v) {
+		public Builder point(PointProperty v) {
 			this._type = POINT;
 			this._value = v;
-			return ObjectBuilder.constant(this.build());
+			return this;
 		}
 
-		public ObjectBuilder<Property> point(Function<PointProperty.Builder, ObjectBuilder<PointProperty>> f) {
+		public Builder point(Function<PointProperty.Builder, ObjectBuilder<PointProperty>> f) {
 			return this.point(f.apply(new PointProperty.Builder()).build());
 		}
 
-		protected Property build() {
+		public Property build() {
 			return new Property(this);
 		}
 
@@ -906,6 +894,7 @@ public class Property implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		op.add(Builder::point, PointProperty._DESERIALIZER, "point");
 
 		op.setTypeProperty("type");
+
 	}
 
 	public static final JsonpDeserializer<Property> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,

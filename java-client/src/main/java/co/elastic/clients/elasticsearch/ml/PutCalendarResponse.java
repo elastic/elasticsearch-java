@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Response
@@ -54,8 +56,12 @@ public final class PutCalendarResponse implements JsonpSerializable {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.description = Objects.requireNonNull(builder.description, "description");
-		this.jobIds = Objects.requireNonNull(builder.jobIds, "job_ids");
+		this.jobIds = ModelTypeHelper.unmodifiableNonNull(builder.jobIds, "job_ids");
 
+	}
+
+	public PutCalendarResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -151,7 +157,7 @@ public final class PutCalendarResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobIds(List)}, creating the list if needed.
+		 * Add a value to {@link #jobIds(List)}, creating the list if needed. 4
 		 */
 		public Builder addJobIds(String value) {
 			if (this.jobIds == null) {

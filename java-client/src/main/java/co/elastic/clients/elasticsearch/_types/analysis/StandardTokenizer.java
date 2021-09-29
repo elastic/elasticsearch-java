@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.StandardTokenizer
 @JsonpDeserializable
@@ -46,6 +47,10 @@ public final class StandardTokenizer extends TokenizerBase implements TokenizerV
 
 		this.maxTokenLength = Objects.requireNonNull(builder.maxTokenLength, "max_token_length");
 
+	}
+
+	public StandardTokenizer(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

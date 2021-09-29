@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.TimeSync
@@ -51,6 +52,10 @@ public final class TimeSync implements SyncVariant, JsonpSerializable {
 		this.delay = builder.delay;
 		this.field = Objects.requireNonNull(builder.field, "field");
 
+	}
+
+	public TimeSync(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

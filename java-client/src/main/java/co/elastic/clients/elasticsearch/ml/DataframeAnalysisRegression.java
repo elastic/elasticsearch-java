@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
@@ -53,6 +54,10 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		this.lossFunction = builder.lossFunction;
 		this.lossFunctionParameter = builder.lossFunctionParameter;
 
+	}
+
+	public DataframeAnalysisRegression(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

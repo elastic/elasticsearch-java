@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelPlotConfig
@@ -57,6 +58,10 @@ public final class ModelPlotConfig implements JsonpSerializable {
 		this.enabled = builder.enabled;
 		this.terms = builder.terms;
 
+	}
+
+	public ModelPlotConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

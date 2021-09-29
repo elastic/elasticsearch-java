@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,6 +40,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -51,8 +54,12 @@ public final class GetLifecycleRequest extends RequestBase {
 
 	public GetLifecycleRequest(Builder builder) {
 
-		this.policyId = builder.policyId;
+		this.policyId = ModelTypeHelper.unmodifiable(builder.policyId);
 
+	}
+
+	public GetLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -95,7 +102,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #policyId(List)}, creating the list if needed.
+		 * Add a value to {@link #policyId(List)}, creating the list if needed. 4
 		 */
 		public Builder addPolicyId(String value) {
 			if (this.policyId == null) {
@@ -122,7 +129,7 @@ public final class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.get_lifecycle}".
 	 */
-	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -143,7 +150,8 @@ public final class GetLifecycleRequest extends RequestBase {
 					buf.append("/_slm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policyId.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.policyId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -152,7 +160,7 @@ public final class GetLifecycleRequest extends RequestBase {
 					buf.append("/policy");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -160,5 +168,5 @@ public final class GetLifecycleRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetLifecycleResponse._DESERIALIZER);
 }

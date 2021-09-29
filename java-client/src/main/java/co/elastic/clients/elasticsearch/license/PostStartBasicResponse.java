@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Response
@@ -54,10 +56,14 @@ public final class PostStartBasicResponse extends AcknowledgedResponseBase {
 	public PostStartBasicResponse(Builder builder) {
 		super(builder);
 
-		this.acknowledge = Objects.requireNonNull(builder.acknowledge, "acknowledge");
+		this.acknowledge = ModelTypeHelper.unmodifiableNonNull(builder.acknowledge, "acknowledge");
 		this.basicWasStarted = Objects.requireNonNull(builder.basicWasStarted, "basic_was_started");
 		this.errorMessage = Objects.requireNonNull(builder.errorMessage, "error_message");
 
+	}
+
+	public PostStartBasicResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

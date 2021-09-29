@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Statistics
@@ -85,6 +86,10 @@ public final class Statistics implements JsonpSerializable {
 		this.totalSnapshotsFailed = builder.totalSnapshotsFailed;
 		this.totalSnapshotsTaken = builder.totalSnapshotsTaken;
 
+	}
+
+	public Statistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -49,8 +50,12 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 
 	public GetAutoscalingCapacityResponse(Builder builder) {
 
-		this.policies = Objects.requireNonNull(builder.policies, "policies");
+		this.policies = ModelTypeHelper.unmodifiableNonNull(builder.policies, "policies");
 
+	}
+
+	public GetAutoscalingCapacityResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

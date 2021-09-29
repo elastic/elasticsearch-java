@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -52,8 +53,13 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 	public GetTrainedModelsResponse(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
-		this.trainedModelConfigs = Objects.requireNonNull(builder.trainedModelConfigs, "trained_model_configs");
+		this.trainedModelConfigs = ModelTypeHelper.unmodifiableNonNull(builder.trainedModelConfigs,
+				"trained_model_configs");
 
+	}
+
+	public GetTrainedModelsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -139,7 +145,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #trainedModelConfigs(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addTrainedModelConfigs(TrainedModelConfig value) {
 			if (this.trainedModelConfigs == null) {
@@ -158,7 +164,7 @@ public final class GetTrainedModelsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #trainedModelConfigs(List)}, creating the list if
-		 * needed.
+		 * needed. 5
 		 */
 		public Builder addTrainedModelConfigs(
 				Function<TrainedModelConfig.Builder, ObjectBuilder<TrainedModelConfig>> fn) {

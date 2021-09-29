@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -134,7 +135,7 @@ public final class ShardStats implements JsonpSerializable {
 				"outstanding_read_requests");
 		this.outstandingWriteRequests = Objects.requireNonNull(builder.outstandingWriteRequests,
 				"outstanding_write_requests");
-		this.readExceptions = Objects.requireNonNull(builder.readExceptions, "read_exceptions");
+		this.readExceptions = ModelTypeHelper.unmodifiableNonNull(builder.readExceptions, "read_exceptions");
 		this.remoteCluster = Objects.requireNonNull(builder.remoteCluster, "remote_cluster");
 		this.shardId = Objects.requireNonNull(builder.shardId, "shard_id");
 		this.successfulReadRequests = Objects.requireNonNull(builder.successfulReadRequests,
@@ -152,6 +153,10 @@ public final class ShardStats implements JsonpSerializable {
 		this.writeBufferSizeInBytes = Objects.requireNonNull(builder.writeBufferSizeInBytes,
 				"write_buffer_size_in_bytes");
 
+	}
+
+	public ShardStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -700,7 +705,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #readExceptions(List)}, creating the list if needed.
+		 * Add a value to {@link #readExceptions(List)}, creating the list if needed. 4
 		 */
 		public Builder addReadExceptions(ReadException value) {
 			if (this.readExceptions == null) {
@@ -718,7 +723,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #readExceptions(List)}, creating the list if needed.
+		 * Add a value to {@link #readExceptions(List)}, creating the list if needed. 5
 		 */
 		public Builder addReadExceptions(Function<ReadException.Builder, ObjectBuilder<ReadException>> fn) {
 			return this.addReadExceptions(fn.apply(new ReadException.Builder()).build());

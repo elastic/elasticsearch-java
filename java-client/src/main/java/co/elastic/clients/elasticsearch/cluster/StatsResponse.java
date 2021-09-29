@@ -69,6 +69,10 @@ public final class StatsResponse extends NodesResponseBase {
 
 	}
 
+	public StatsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Name of the cluster, based on the Cluster name setting setting.
 	 * <p>

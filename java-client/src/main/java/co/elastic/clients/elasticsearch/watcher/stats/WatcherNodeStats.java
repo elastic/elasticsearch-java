@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -63,13 +64,17 @@ public final class WatcherNodeStats implements JsonpSerializable {
 
 	public WatcherNodeStats(Builder builder) {
 
-		this.currentWatches = builder.currentWatches;
+		this.currentWatches = ModelTypeHelper.unmodifiable(builder.currentWatches);
 		this.executionThreadPool = Objects.requireNonNull(builder.executionThreadPool, "execution_thread_pool");
-		this.queuedWatches = builder.queuedWatches;
+		this.queuedWatches = ModelTypeHelper.unmodifiable(builder.queuedWatches);
 		this.watchCount = Objects.requireNonNull(builder.watchCount, "watch_count");
 		this.watcherState = Objects.requireNonNull(builder.watcherState, "watcher_state");
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 
+	}
+
+	public WatcherNodeStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -202,7 +207,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
+		 * Add a value to {@link #currentWatches(List)}, creating the list if needed. 4
 		 */
 		public Builder addCurrentWatches(WatchRecordStats value) {
 			if (this.currentWatches == null) {
@@ -220,7 +225,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
+		 * Add a value to {@link #currentWatches(List)}, creating the list if needed. 5
 		 */
 		public Builder addCurrentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
 			return this.addCurrentWatches(fn.apply(new WatchRecordStats.Builder()).build());
@@ -259,7 +264,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
+		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed. 4
 		 */
 		public Builder addQueuedWatches(WatchRecordQueuedStats value) {
 			if (this.queuedWatches == null) {
@@ -278,7 +283,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
+		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed. 5
 		 */
 		public Builder addQueuedWatches(
 				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {

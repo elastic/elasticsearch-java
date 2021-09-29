@@ -53,6 +53,10 @@ public final class ComponentTemplate implements JsonpSerializable {
 
 	}
 
+	public ComponentTemplate(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code name}
 	 */

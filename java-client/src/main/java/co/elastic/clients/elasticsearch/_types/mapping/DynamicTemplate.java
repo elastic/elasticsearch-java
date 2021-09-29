@@ -75,6 +75,10 @@ public final class DynamicTemplate implements JsonpSerializable {
 
 	}
 
+	public DynamicTemplate(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code mapping}
 	 */

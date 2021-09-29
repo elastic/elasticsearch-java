@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -60,6 +61,10 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.query = builder.query;
 
+	}
+
+	public EvaluateDataFrameRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -211,7 +216,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code ml.evaluate_data_frame}".
 	 */
-	public static final Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -228,5 +233,5 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, EvaluateDataFrameResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, EvaluateDataFrameResponse._DESERIALIZER);
 }

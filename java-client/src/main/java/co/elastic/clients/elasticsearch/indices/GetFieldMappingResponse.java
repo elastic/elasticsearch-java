@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.get_field_mapping.TypeFieldMappings;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -34,10 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.Response
 @JsonpDeserializable
-public final class GetFieldMappingResponse extends AdditionalProperties<String, TypeFieldMappings> {
+public final class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
 	// ---------------------------------------------------------------------------------------------
 
 	public GetFieldMappingResponse(Builder builder) {
@@ -45,12 +46,16 @@ public final class GetFieldMappingResponse extends AdditionalProperties<String, 
 
 	}
 
+	public GetFieldMappingResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link GetFieldMappingResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, TypeFieldMappings, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TypeFieldMappings, Builder>
 			implements
 				ObjectBuilder<GetFieldMappingResponse> {
 		@Override
@@ -82,7 +87,7 @@ public final class GetFieldMappingResponse extends AdditionalProperties<String, 
 
 	protected static void setupGetFieldMappingResponseDeserializer(
 			DelegatingDeserializer<GetFieldMappingResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				TypeFieldMappings._DESERIALIZER);
 
 	}

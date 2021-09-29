@@ -30,12 +30,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
@@ -50,8 +52,12 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 	public OneHotEncodingPreprocessor(Builder builder) {
 
 		this.field = Objects.requireNonNull(builder.field, "field");
-		this.hotMap = Objects.requireNonNull(builder.hotMap, "hot_map");
+		this.hotMap = ModelTypeHelper.unmodifiableNonNull(builder.hotMap, "hot_map");
 
+	}
+
+	public OneHotEncodingPreprocessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

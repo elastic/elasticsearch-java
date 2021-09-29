@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -60,10 +61,14 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	public DataframeOutlierDetectionSummary(Builder builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = builder.precision;
-		this.recall = builder.recall;
-		this.confusionMatrix = builder.confusionMatrix;
+		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
+		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
+		this.confusionMatrix = ModelTypeHelper.unmodifiable(builder.confusionMatrix);
 
+	}
+
+	public DataframeOutlierDetectionSummary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

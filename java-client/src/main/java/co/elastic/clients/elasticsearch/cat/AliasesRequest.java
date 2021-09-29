@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
@@ -55,9 +58,13 @@ public final class AliasesRequest extends CatRequestBase {
 
 	public AliasesRequest(Builder builder) {
 
-		this.name = builder.name;
-		this.expandWildcards = builder.expandWildcards;
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 
+	}
+
+	public AliasesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -114,7 +121,7 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -147,7 +154,7 @@ public final class AliasesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -174,7 +181,7 @@ public final class AliasesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.aliases}".
 	 */
-	public static final Endpoint<AliasesRequest, AliasesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<AliasesRequest, AliasesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -201,10 +208,10 @@ public final class AliasesRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/aliases");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -217,5 +224,5 @@ public final class AliasesRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, AliasesResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, AliasesResponse._DESERIALIZER);
 }

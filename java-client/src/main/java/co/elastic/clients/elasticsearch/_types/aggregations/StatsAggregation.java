@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsAggregation
 @JsonpDeserializable
@@ -40,6 +41,10 @@ public final class StatsAggregation extends FormatMetricAggregationBase implemen
 	public StatsAggregation(Builder builder) {
 		super(builder);
 
+	}
+
+	public StatsAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ConvertProcessor
@@ -58,6 +59,10 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public ConvertProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

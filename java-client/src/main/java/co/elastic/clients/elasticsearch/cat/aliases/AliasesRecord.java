@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.aliases.AliasesRecord
@@ -68,6 +69,10 @@ public final class AliasesRecord implements JsonpSerializable {
 		this.routingSearch = builder.routingSearch;
 		this.isWriteIndex = builder.isWriteIndex;
 
+	}
+
+	public AliasesRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

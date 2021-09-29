@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ingest.simulate.Document;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -68,9 +70,13 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 
 		this.id = builder.id;
 		this.verbose = builder.verbose;
-		this.docs = builder.docs;
+		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
 		this.pipeline = builder.pipeline;
 
+	}
+
+	public SimulateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -195,7 +201,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
 		 */
 		public Builder addDocs(Document value) {
 			if (this.docs == null) {
@@ -213,7 +219,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
 		 */
 		public Builder addDocs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
 			return this.addDocs(fn.apply(new Document.Builder()).build());
@@ -266,7 +272,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ingest.simulate}".
 	 */
-	public static final Endpoint<SimulateRequest, SimulateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SimulateRequest, SimulateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -294,11 +300,11 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 					buf.append("/_ingest");
 					buf.append("/pipeline");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_simulate");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -310,5 +316,5 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateResponse._DESERIALIZER);
 }

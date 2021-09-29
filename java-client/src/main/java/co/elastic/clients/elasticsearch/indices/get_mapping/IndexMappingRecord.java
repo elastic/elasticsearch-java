@@ -54,6 +54,10 @@ public final class IndexMappingRecord implements JsonpSerializable {
 
 	}
 
+	public IndexMappingRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code item}
 	 */

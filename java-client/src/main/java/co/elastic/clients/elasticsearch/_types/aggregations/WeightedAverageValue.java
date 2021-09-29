@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageValue
@@ -58,6 +59,10 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		this.missing = builder.missing;
 		this.script = builder.script;
 
+	}
+
+	public WeightedAverageValue(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

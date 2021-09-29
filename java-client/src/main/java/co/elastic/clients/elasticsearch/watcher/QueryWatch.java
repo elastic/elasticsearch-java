@@ -67,6 +67,10 @@ public final class QueryWatch implements JsonpSerializable {
 
 	}
 
+	public QueryWatch(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code _id}
 	 */

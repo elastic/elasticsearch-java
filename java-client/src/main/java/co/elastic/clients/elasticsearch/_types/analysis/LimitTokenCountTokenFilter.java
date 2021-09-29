@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
 @JsonpDeserializable
@@ -50,6 +51,10 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 		this.consumeAllTokens = Objects.requireNonNull(builder.consumeAllTokens, "consume_all_tokens");
 		this.maxTokenCount = Objects.requireNonNull(builder.maxTokenCount, "max_token_count");
 
+	}
+
+	public LimitTokenCountTokenFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
@@ -32,8 +33,10 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -78,11 +81,15 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		this.name = Objects.requireNonNull(builder.name, "name");
 		this.refresh = builder.refresh;
 		this.enabled = builder.enabled;
-		this.metadata = builder.metadata;
-		this.roles = builder.roles;
+		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
 		this.rules = builder.rules;
-		this.runAs = builder.runAs;
+		this.runAs = ModelTypeHelper.unmodifiable(builder.runAs);
 
+	}
+
+	public PutRoleMappingRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -300,7 +307,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -342,7 +349,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -388,7 +395,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code security.put_role_mapping}".
 	 */
-	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutRoleMappingRequest, PutRoleMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -408,10 +415,10 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 					buf.append("/_security");
 					buf.append("/role_mapping");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -419,9 +426,9 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", request.refresh.toString());
+					params.put("refresh", JsonpUtils.toString(request.refresh));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutRoleMappingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutRoleMappingResponse._DESERIALIZER);
 }

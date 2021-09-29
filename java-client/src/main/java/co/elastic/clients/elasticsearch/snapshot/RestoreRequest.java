@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.PutSettingsRequest;
 import co.elastic.clients.json.DelegatingDeserializer;
@@ -34,6 +35,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -95,16 +97,20 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.masterTimeout = builder.masterTimeout;
 		this.waitForCompletion = builder.waitForCompletion;
-		this.ignoreIndexSettings = builder.ignoreIndexSettings;
+		this.ignoreIndexSettings = ModelTypeHelper.unmodifiable(builder.ignoreIndexSettings);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeAliases = builder.includeAliases;
 		this.includeGlobalState = builder.includeGlobalState;
 		this.indexSettings = builder.indexSettings;
-		this.indices = builder.indices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.partial = builder.partial;
 		this.renamePattern = builder.renamePattern;
 		this.renameReplacement = builder.renameReplacement;
 
+	}
+
+	public RestoreRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -396,7 +402,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * Add a value to {@link #ignoreIndexSettings(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addIgnoreIndexSettings(String value) {
 			if (this.ignoreIndexSettings == null) {
@@ -462,7 +468,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -537,7 +543,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code snapshot.restore}".
 	 */
-	public static final Endpoint<RestoreRequest, RestoreResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<RestoreRequest, RestoreResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -558,13 +564,13 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					buf.append(request.repository);
+					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					buf.append(request.snapshot);
+					SimpleEndpoint.pathEncode(request.snapshot, buf);
 					buf.append("/_restore");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -579,5 +585,5 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, RestoreResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, RestoreResponse._DESERIALIZER);
 }

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.pending_tasks.Request
@@ -55,6 +57,10 @@ public final class PendingTasksRequest extends RequestBase {
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 
+	}
+
+	public PendingTasksRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -128,7 +134,7 @@ public final class PendingTasksRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.pending_tasks}".
 	 */
-	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -152,5 +158,5 @@ public final class PendingTasksRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
 }

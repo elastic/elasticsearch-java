@@ -59,6 +59,10 @@ public final class DataframeAnalyticsStatsOutlierDetection
 
 	}
 
+	public DataframeAnalyticsStatsOutlierDetection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * {@link DataframeAnalyticsStats} variant type
 	 */

@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.ConfusionMatrixPrediction
@@ -51,6 +52,10 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		this.predictedClass = Objects.requireNonNull(builder.predictedClass, "predicted_class");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
+	}
+
+	public ConfusionMatrixPrediction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

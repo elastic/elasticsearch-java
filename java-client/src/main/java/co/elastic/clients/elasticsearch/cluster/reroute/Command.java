@@ -66,6 +66,10 @@ public final class Command implements JsonpSerializable {
 
 	}
 
+	public Command(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Cancel allocation of a shard (or recovery). Accepts index and shard for index
 	 * name and shard number, and node for the node to cancel the shard allocation

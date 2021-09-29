@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSigmoid
 @JsonpDeserializable
@@ -49,6 +50,10 @@ public final class RankFeatureFunctionSigmoid extends RankFeatureFunction implem
 		this.pivot = Objects.requireNonNull(builder.pivot, "pivot");
 		this.exponent = Objects.requireNonNull(builder.exponent, "exponent");
 
+	}
+
+	public RankFeatureFunctionSigmoid(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

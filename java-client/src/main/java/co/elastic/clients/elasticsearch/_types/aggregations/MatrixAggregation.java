@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
@@ -55,8 +57,8 @@ public abstract class MatrixAggregation extends AggregationBase {
 	public MatrixAggregation(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.fields = builder.fields;
-		this.missing = builder.missing;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
 
 	}
 
@@ -131,7 +133,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public BuilderT addFields(String value) {
 			if (this.fields == null) {

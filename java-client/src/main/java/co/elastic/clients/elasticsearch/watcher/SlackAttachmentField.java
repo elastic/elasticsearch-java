@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachmentField
@@ -54,6 +55,10 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		this.title = Objects.requireNonNull(builder.title, "title");
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public SlackAttachmentField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

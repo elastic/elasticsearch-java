@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
@@ -54,9 +56,13 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	public HttpInputResponseResult(Builder builder) {
 
 		this.body = Objects.requireNonNull(builder.body, "body");
-		this.headers = Objects.requireNonNull(builder.headers, "headers");
+		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
 		this.status = Objects.requireNonNull(builder.status, "status");
 
+	}
+
+	public HttpInputResponseResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

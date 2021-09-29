@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -53,8 +54,12 @@ public final class CloseIndexResult implements JsonpSerializable {
 	public CloseIndexResult(Builder builder) {
 
 		this.closed = Objects.requireNonNull(builder.closed, "closed");
-		this.shards = builder.shards;
+		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
 
+	}
+
+	public CloseIndexResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

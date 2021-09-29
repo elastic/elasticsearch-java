@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.HashMap;
@@ -58,11 +59,15 @@ public final class DataframeEvaluationRegressionMetrics implements JsonpSerializ
 
 	public DataframeEvaluationRegressionMetrics(Builder builder) {
 
-		this.mse = builder.mse;
+		this.mse = ModelTypeHelper.unmodifiable(builder.mse);
 		this.msle = builder.msle;
 		this.huber = builder.huber;
-		this.rSquared = builder.rSquared;
+		this.rSquared = ModelTypeHelper.unmodifiable(builder.rSquared);
 
+	}
+
+	public DataframeEvaluationRegressionMetrics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

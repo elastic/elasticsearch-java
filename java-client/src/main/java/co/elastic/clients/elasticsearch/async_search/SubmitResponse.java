@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
@@ -48,6 +49,10 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public SubmitResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	// ---------------------------------------------------------------------------------------------

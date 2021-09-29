@@ -35,6 +35,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ssl.certificates.CertificateInformation
@@ -67,6 +68,10 @@ public final class CertificateInformation implements JsonpSerializable {
 		this.serialNumber = Objects.requireNonNull(builder.serialNumber, "serial_number");
 		this.subjectDn = Objects.requireNonNull(builder.subjectDn, "subject_dn");
 
+	}
+
+	public CertificateInformation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Vector
@@ -56,6 +57,10 @@ public final class Vector extends Base {
 				"dense_vector_fields_count");
 		this.sparseVectorFieldsCount = builder.sparseVectorFieldsCount;
 
+	}
+
+	public Vector(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

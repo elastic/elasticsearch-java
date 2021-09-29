@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.NestedProperty
@@ -56,6 +57,10 @@ public final class NestedProperty extends CorePropertyBase implements PropertyVa
 		this.includeInParent = builder.includeInParent;
 		this.includeInRoot = builder.includeInRoot;
 
+	}
+
+	public NestedProperty(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

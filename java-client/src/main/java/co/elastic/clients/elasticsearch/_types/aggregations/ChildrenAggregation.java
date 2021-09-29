@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ChildrenAggregation
@@ -48,6 +49,10 @@ public final class ChildrenAggregation extends BucketAggregationBase implements 
 
 		this.type = builder.type;
 
+	}
+
+	public ChildrenAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**

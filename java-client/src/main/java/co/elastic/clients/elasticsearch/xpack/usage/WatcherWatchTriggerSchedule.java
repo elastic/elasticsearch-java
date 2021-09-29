@@ -52,6 +52,10 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 
 	}
 
+	public WatcherWatchTriggerSchedule(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code cron}
 	 */

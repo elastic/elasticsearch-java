@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -49,8 +50,12 @@ public final class FollowInfoResponse implements JsonpSerializable {
 
 	public FollowInfoResponse(Builder builder) {
 
-		this.followerIndices = Objects.requireNonNull(builder.followerIndices, "follower_indices");
+		this.followerIndices = ModelTypeHelper.unmodifiableNonNull(builder.followerIndices, "follower_indices");
 
+	}
+
+	public FollowInfoResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -106,7 +111,7 @@ public final class FollowInfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #followerIndices(List)}, creating the list if needed.
+		 * Add a value to {@link #followerIndices(List)}, creating the list if needed. 4
 		 */
 		public Builder addFollowerIndices(FollowerIndex value) {
 			if (this.followerIndices == null) {
@@ -124,7 +129,7 @@ public final class FollowInfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #followerIndices(List)}, creating the list if needed.
+		 * Add a value to {@link #followerIndices(List)}, creating the list if needed. 5
 		 */
 		public Builder addFollowerIndices(Function<FollowerIndex.Builder, ObjectBuilder<FollowerIndex>> fn) {
 			return this.addFollowerIndices(fn.apply(new FollowerIndex.Builder()).build());

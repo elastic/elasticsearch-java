@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealmsStatus
@@ -51,6 +52,10 @@ public final class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerial
 		this.enabled = builder.enabled;
 		this.order = Objects.requireNonNull(builder.order, "order");
 
+	}
+
+	public NodeInfoXpackSecurityAuthcRealmsStatus(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
