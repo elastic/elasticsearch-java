@@ -91,7 +91,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	}
 
 	/**
-	 * The feature name prefix. Defaults to ngram_<start>_<length>.
+	 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
 	 * <p>
 	 * API name: {@code feature_prefix}
 	 */
@@ -223,7 +223,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		private Boolean custom;
 
 		/**
-		 * The feature name prefix. Defaults to ngram_<start>_<length>.
+		 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
 		 * <p>
 		 * API name: {@code feature_prefix}
 		 */
