@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -34,21 +36,29 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model.Request
+
 public final class DeleteTrainedModelRequest extends RequestBase {
 	private final String modelId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTrainedModelRequest(Builder builder) {
+	public DeleteTrainedModelRequest(Builder builder) {
 
 		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 
 	}
 
+	public DeleteTrainedModelRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the trained model to delete
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public String modelId() {
@@ -64,6 +74,8 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 		private String modelId;
 
 		/**
+		 * The ID of the trained model to delete
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
@@ -88,7 +100,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_trained_model}".
 	 */
-	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "DELETE";
@@ -101,18 +113,17 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
-					propsSet |= _modelId;
+				propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					buf.append(request.modelId);
+					SimpleEndpoint.pathEncode(request.modelId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -120,5 +131,5 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, DeleteTrainedModelResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteTrainedModelResponse._DESERIALIZER);
 }

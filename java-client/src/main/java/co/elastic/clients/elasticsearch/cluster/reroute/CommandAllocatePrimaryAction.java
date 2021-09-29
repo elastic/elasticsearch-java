@@ -24,38 +24,45 @@
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.CommandAllocatePrimaryAction
-public final class CommandAllocatePrimaryAction implements ToJsonp {
+@JsonpDeserializable
+public final class CommandAllocatePrimaryAction implements JsonpSerializable {
 	private final String index;
 
-	private final Number shard;
+	private final int shard;
 
 	private final String node;
 
-	private final Boolean acceptDataLoss;
+	private final boolean acceptDataLoss;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CommandAllocatePrimaryAction(Builder builder) {
+	public CommandAllocatePrimaryAction(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.shard = Objects.requireNonNull(builder.shard, "shard");
 		this.node = Objects.requireNonNull(builder.node, "node");
 		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");
 
+	}
+
+	public CommandAllocatePrimaryAction(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -68,7 +75,7 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 	/**
 	 * API name: {@code shard}
 	 */
-	public Number shard() {
+	public int shard() {
 		return this.shard;
 	}
 
@@ -83,29 +90,29 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 	 * If a node which has a copy of the data rejoins the cluster later on, that
 	 * data will be deleted. To ensure that these implications are well-understood,
 	 * this command requires the flag accept_data_loss to be explicitly set to true
-	 *
+	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public Boolean acceptDataLoss() {
+	public boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
 
 		generator.writeKey("shard");
-		generator.write(this.shard.doubleValue());
+		generator.write(this.shard);
 
 		generator.writeKey("node");
 		generator.write(this.node);
@@ -123,7 +130,7 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 	public static class Builder implements ObjectBuilder<CommandAllocatePrimaryAction> {
 		private String index;
 
-		private Number shard;
+		private Integer shard;
 
 		private String node;
 
@@ -140,7 +147,7 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 		/**
 		 * API name: {@code shard}
 		 */
-		public Builder shard(Number value) {
+		public Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -157,10 +164,10 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 		 * If a node which has a copy of the data rejoins the cluster later on, that
 		 * data will be deleted. To ensure that these implications are well-understood,
 		 * this command requires the flag accept_data_loss to be explicitly set to true
-		 *
+		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public Builder acceptDataLoss(Boolean value) {
+		public Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}
@@ -180,16 +187,16 @@ public final class CommandAllocatePrimaryAction implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CommandAllocatePrimaryAction
+	 * Json deserializer for {@link CommandAllocatePrimaryAction}
 	 */
-	public static final JsonpDeserializer<CommandAllocatePrimaryAction> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CommandAllocatePrimaryAction::setupCommandAllocatePrimaryActionDeserializer);
+	public static final JsonpDeserializer<CommandAllocatePrimaryAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, CommandAllocatePrimaryAction::setupCommandAllocatePrimaryActionDeserializer, Builder::build);
 
 	protected static void setupCommandAllocatePrimaryActionDeserializer(
 			DelegatingDeserializer<CommandAllocatePrimaryAction.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::shard, JsonpDeserializer.numberDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::acceptDataLoss, JsonpDeserializer.booleanDeserializer(), "accept_data_loss");
 

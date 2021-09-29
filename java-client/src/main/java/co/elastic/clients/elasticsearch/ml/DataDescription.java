@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataDescription
-public final class DataDescription implements ToJsonp {
+@JsonpDeserializable
+public final class DataDescription implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
@@ -50,7 +53,7 @@ public final class DataDescription implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataDescription(Builder builder) {
+	public DataDescription(Builder builder) {
 
 		this.format = builder.format;
 		this.timeField = Objects.requireNonNull(builder.timeField, "time_field");
@@ -59,7 +62,13 @@ public final class DataDescription implements ToJsonp {
 
 	}
 
+	public DataDescription(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Only JSON format is supported at this time.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -68,6 +77,8 @@ public final class DataDescription implements ToJsonp {
 	}
 
 	/**
+	 * The name of the field that contains the timestamp.
+	 * <p>
 	 * API name: {@code time_field}
 	 */
 	public String timeField() {
@@ -75,6 +86,17 @@ public final class DataDescription implements ToJsonp {
 	}
 
 	/**
+	 * The time format, which can be <code>epoch</code>, <code>epoch_ms</code>, or a
+	 * custom pattern. The value <code>epoch</code> refers to UNIX or Epoch time
+	 * (the number of seconds since 1 Jan 1970). The value <code>epoch_ms</code>
+	 * indicates that time is measured in milliseconds since the epoch. The
+	 * <code>epoch</code> and <code>epoch_ms</code> time formats accept either
+	 * integer or real values. Custom patterns must conform to the Java
+	 * DateTimeFormatter class. When you use date-time formatting patterns, it is
+	 * recommended that you provide the full date, time and time zone. For example:
+	 * yyyy-MM-dd'T'HH:mm:ssX. If the pattern that you specify is not sufficient to
+	 * produce a complete timestamp, job creation fails.
+	 * <p>
 	 * API name: {@code time_format}
 	 */
 	@Nullable
@@ -93,13 +115,13 @@ public final class DataDescription implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.format != null) {
 
@@ -144,6 +166,8 @@ public final class DataDescription implements ToJsonp {
 		private String fieldDelimiter;
 
 		/**
+		 * Only JSON format is supported at this time.
+		 * <p>
 		 * API name: {@code format}
 		 */
 		public Builder format(@Nullable String value) {
@@ -152,6 +176,8 @@ public final class DataDescription implements ToJsonp {
 		}
 
 		/**
+		 * The name of the field that contains the timestamp.
+		 * <p>
 		 * API name: {@code time_field}
 		 */
 		public Builder timeField(String value) {
@@ -160,6 +186,17 @@ public final class DataDescription implements ToJsonp {
 		}
 
 		/**
+		 * The time format, which can be <code>epoch</code>, <code>epoch_ms</code>, or a
+		 * custom pattern. The value <code>epoch</code> refers to UNIX or Epoch time
+		 * (the number of seconds since 1 Jan 1970). The value <code>epoch_ms</code>
+		 * indicates that time is measured in milliseconds since the epoch. The
+		 * <code>epoch</code> and <code>epoch_ms</code> time formats accept either
+		 * integer or real values. Custom patterns must conform to the Java
+		 * DateTimeFormatter class. When you use date-time formatting patterns, it is
+		 * recommended that you provide the full date, time and time zone. For example:
+		 * yyyy-MM-dd'T'HH:mm:ssX. If the pattern that you specify is not sufficient to
+		 * produce a complete timestamp, job creation fails.
+		 * <p>
 		 * API name: {@code time_format}
 		 */
 		public Builder timeFormat(@Nullable String value) {
@@ -190,10 +227,10 @@ public final class DataDescription implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataDescription
+	 * Json deserializer for {@link DataDescription}
 	 */
-	public static final JsonpDeserializer<DataDescription> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataDescription::setupDataDescriptionDeserializer);
+	public static final JsonpDeserializer<DataDescription> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DataDescription::setupDataDescriptionDeserializer, Builder::build);
 
 	protected static void setupDataDescriptionDeserializer(DelegatingDeserializer<DataDescription.Builder> op) {
 

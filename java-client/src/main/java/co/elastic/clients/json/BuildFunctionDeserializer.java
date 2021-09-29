@@ -20,12 +20,13 @@
 package co.elastic.clients.json;
 
 import jakarta.json.stream.JsonParser;
+
 import java.util.function.Function;
 
 /**
  * An object deserializer based on a builder object deserializer and a build function
  */
-public class BuildFunctionDeserializer<T, B> extends JsonpDeserializer<T> {
+public class BuildFunctionDeserializer<B, T> extends JsonpDeserializer<T> {
 
     private final JsonpDeserializer<B> builderDeserializer;
     private final Function<B, T> build;

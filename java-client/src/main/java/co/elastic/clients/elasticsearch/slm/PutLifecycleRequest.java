@@ -25,25 +25,34 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
-public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
 	private final String policyId;
+
+	@Nullable
+	private final String masterTimeout;
+
+	@Nullable
+	private final String timeout;
 
 	@Nullable
 	private final Configuration config;
@@ -58,13 +67,15 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	private final Retention retention;
 
 	@Nullable
-	private final JsonValue schedule;
+	private final String schedule;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutLifecycleRequest(Builder builder) {
+	public PutLifecycleRequest(Builder builder) {
 
 		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
+		this.masterTimeout = builder.masterTimeout;
+		this.timeout = builder.timeout;
 		this.config = builder.config;
 		this.name = builder.name;
 		this.repository = builder.repository;
@@ -73,7 +84,13 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 
 	}
 
+	public PutLifecycleRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * ID for the snapshot lifecycle policy you want to create or update.
+	 * <p>
 	 * API name: {@code policy_id}
 	 */
 	public String policyId() {
@@ -81,6 +98,30 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public String masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public String timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Configuration for each snapshot created by the policy.
+	 * <p>
 	 * API name: {@code config}
 	 */
 	@Nullable
@@ -89,6 +130,10 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Name automatically assigned to each snapshot created by the policy. Date math
+	 * is supported. To prevent conflicting snapshot names, a UUID is automatically
+	 * appended to each snapshot name.
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -97,6 +142,10 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Repository used to store snapshots created by this policy. This repository
+	 * must exist prior to the policy’s creation. You can create a repository using
+	 * the snapshot repository API.
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -105,6 +154,8 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Retention rules used to retain and delete snapshots created by the policy.
+	 * <p>
 	 * API name: {@code retention}
 	 */
 	@Nullable
@@ -113,28 +164,31 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
+	 * Periodic or absolute schedule at which the policy creates snapshots. SLM
+	 * applies schedule changes immediately.
+	 * <p>
 	 * API name: {@code schedule}
 	 */
 	@Nullable
-	public JsonValue schedule() {
+	public String schedule() {
 		return this.schedule;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
 
 			generator.writeKey("config");
-			this.config.toJsonp(generator, mapper);
+			this.config.serialize(generator, mapper);
 
 		}
 		if (this.name != null) {
@@ -152,7 +206,7 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		if (this.retention != null) {
 
 			generator.writeKey("retention");
-			this.retention.toJsonp(generator, mapper);
+			this.retention.serialize(generator, mapper);
 
 		}
 		if (this.schedule != null) {
@@ -173,6 +227,12 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		private String policyId;
 
 		@Nullable
+		private String masterTimeout;
+
+		@Nullable
+		private String timeout;
+
+		@Nullable
 		private Configuration config;
 
 		@Nullable
@@ -185,9 +245,11 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		private Retention retention;
 
 		@Nullable
-		private JsonValue schedule;
+		private String schedule;
 
 		/**
+		 * ID for the snapshot lifecycle policy you want to create or update.
+		 * <p>
 		 * API name: {@code policy_id}
 		 */
 		public Builder policyId(String value) {
@@ -196,6 +258,30 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public Builder masterTimeout(@Nullable String value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public Builder timeout(@Nullable String value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Configuration for each snapshot created by the policy.
+		 * <p>
 		 * API name: {@code config}
 		 */
 		public Builder config(@Nullable Configuration value) {
@@ -204,6 +290,8 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Configuration for each snapshot created by the policy.
+		 * <p>
 		 * API name: {@code config}
 		 */
 		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
@@ -211,6 +299,10 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Name automatically assigned to each snapshot created by the policy. Date math
+		 * is supported. To prevent conflicting snapshot names, a UUID is automatically
+		 * appended to each snapshot name.
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -219,6 +311,10 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Repository used to store snapshots created by this policy. This repository
+		 * must exist prior to the policy’s creation. You can create a repository using
+		 * the snapshot repository API.
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {
@@ -227,6 +323,8 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Retention rules used to retain and delete snapshots created by the policy.
+		 * <p>
 		 * API name: {@code retention}
 		 */
 		public Builder retention(@Nullable Retention value) {
@@ -235,6 +333,8 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Retention rules used to retain and delete snapshots created by the policy.
+		 * <p>
 		 * API name: {@code retention}
 		 */
 		public Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
@@ -242,9 +342,12 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
+		 * Periodic or absolute schedule at which the policy creates snapshots. SLM
+		 * applies schedule changes immediately.
+		 * <p>
 		 * API name: {@code schedule}
 		 */
-		public Builder schedule(@Nullable JsonValue value) {
+		public Builder schedule(@Nullable String value) {
 			this.schedule = value;
 			return this;
 		}
@@ -264,18 +367,18 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutLifecycleRequest
+	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
-	public static final JsonpDeserializer<PutLifecycleRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
+	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
 
 	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
 
-		op.add(Builder::config, Configuration.DESERIALIZER, "config");
+		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
-		op.add(Builder::retention, Retention.DESERIALIZER, "retention");
-		op.add(Builder::schedule, JsonpDeserializer.jsonValueDeserializer(), "schedule");
+		op.add(Builder::retention, Retention._DESERIALIZER, "retention");
+		op.add(Builder::schedule, JsonpDeserializer.stringDeserializer(), "schedule");
 
 	}
 
@@ -284,7 +387,7 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code slm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -297,24 +400,30 @@ public final class PutLifecycleRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.policyId() != null)
-					propsSet |= _policyId;
+				propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_slm");
 					buf.append("/policy");
 					buf.append("/");
-					buf.append(request.policyId);
+					SimpleEndpoint.pathEncode(request.policyId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout);
+				}
+				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutLifecycleResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

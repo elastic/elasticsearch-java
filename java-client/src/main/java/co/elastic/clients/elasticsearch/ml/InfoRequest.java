@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.info.Request
+
 public final class InfoRequest extends RequestBase {
-	protected InfoRequest() {
+	public InfoRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link InfoRequest}.
 	 */
-	public static final InfoRequest INSTANCE = new InfoRequest();
-
-	public static final JsonpDeserializer<InfoRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(InfoRequest.INSTANCE);
+	public static final InfoRequest _INSTANCE = new InfoRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code ml.info}".
 	 */
-	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class InfoRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, InfoResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, InfoResponse._DESERIALIZER);
 }

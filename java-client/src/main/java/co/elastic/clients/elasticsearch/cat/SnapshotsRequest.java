@@ -25,9 +25,12 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -37,10 +40,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.Request
+
 public final class SnapshotsRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> repository;
@@ -50,14 +56,20 @@ public final class SnapshotsRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotsRequest(Builder builder) {
+	public SnapshotsRequest(Builder builder) {
 
-		this.repository = builder.repository;
+		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 
 	}
 
+	public SnapshotsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Name of repository from which to fetch the snapshot information
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -66,6 +78,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Set to true to ignore unavailable snapshots
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -86,6 +100,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		private Boolean ignoreUnavailable;
 
 		/**
+		 * Name of repository from which to fetch the snapshot information
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable List<String> value) {
@@ -94,6 +110,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Name of repository from which to fetch the snapshot information
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(String... value) {
@@ -102,7 +120,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
+		 * Add a value to {@link #repository(List)}, creating the list if needed. 4
 		 */
 		public Builder addRepository(String value) {
 			if (this.repository == null) {
@@ -113,6 +131,8 @@ public final class SnapshotsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Set to true to ignore unavailable snapshots
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -137,7 +157,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.snapshots}".
 	 */
-	public static final Endpoint<SnapshotsRequest, SnapshotsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SnapshotsRequest, SnapshotsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -164,10 +184,11 @@ public final class SnapshotsRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/snapshots");
 					buf.append("/");
-					buf.append(request.repository.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.repository.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -179,5 +200,5 @@ public final class SnapshotsRequest extends CatRequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, SnapshotsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, SnapshotsResponse._DESERIALIZER);
 }

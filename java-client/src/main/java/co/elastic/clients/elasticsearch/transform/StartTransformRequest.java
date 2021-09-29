@@ -25,36 +25,45 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.start_transform.Request
+
 public final class StartTransformRequest extends RequestBase {
 	private final String transformId;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartTransformRequest(Builder builder) {
+	public StartTransformRequest(Builder builder) {
 
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.timeout = builder.timeout;
 
 	}
 
+	public StartTransformRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The id of the transform to start
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -62,10 +71,12 @@ public final class StartTransformRequest extends RequestBase {
 	}
 
 	/**
+	 * Controls the time to wait for the transform to start
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -78,9 +89,11 @@ public final class StartTransformRequest extends RequestBase {
 		private String transformId;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * The id of the transform to start
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(String value) {
@@ -89,9 +102,11 @@ public final class StartTransformRequest extends RequestBase {
 		}
 
 		/**
+		 * Controls the time to wait for the transform to start
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -113,7 +128,7 @@ public final class StartTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.start_transform}".
 	 */
-	public static final Endpoint<StartTransformRequest, StartTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StartTransformRequest, StartTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -126,18 +141,17 @@ public final class StartTransformRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
-					propsSet |= _transformId;
+				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_start");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -145,9 +159,9 @@ public final class StartTransformRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StartTransformResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StartTransformResponse._DESERIALIZER);
 }

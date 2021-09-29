@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.watcher.stats.WatcherMetric;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.ArrayList;
@@ -38,35 +41,46 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Request
+
 public final class StatsRequest extends RequestBase {
 	@Nullable
-	private final List<JsonValue> metric;
+	private final List<WatcherMetric> metric;
 
 	@Nullable
 	private final Boolean emitStacktraces;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
-		this.metric = builder.metric;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.emitStacktraces = builder.emitStacktraces;
 
 	}
 
+	public StatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Defines which additional metrics are included in the response.
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
-	public List<JsonValue> metric() {
+	public List<WatcherMetric> metric() {
 		return this.metric;
 	}
 
 	/**
+	 * Defines whether stack traces are generated for each watch that is running.
+	 * <p>
 	 * API name: {@code emit_stacktraces}
 	 */
 	@Nullable
@@ -81,31 +95,35 @@ public final class StatsRequest extends RequestBase {
 	 */
 	public static class Builder implements ObjectBuilder<StatsRequest> {
 		@Nullable
-		private List<JsonValue> metric;
+		private List<WatcherMetric> metric;
 
 		@Nullable
 		private Boolean emitStacktraces;
 
 		/**
+		 * Defines which additional metrics are included in the response.
+		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(@Nullable List<JsonValue> value) {
+		public Builder metric(@Nullable List<WatcherMetric> value) {
 			this.metric = value;
 			return this;
 		}
 
 		/**
+		 * Defines which additional metrics are included in the response.
+		 * <p>
 		 * API name: {@code metric}
 		 */
-		public Builder metric(JsonValue... value) {
+		public Builder metric(WatcherMetric... value) {
 			this.metric = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
-		public Builder addMetric(JsonValue value) {
+		public Builder addMetric(WatcherMetric value) {
 			if (this.metric == null) {
 				this.metric = new ArrayList<>();
 			}
@@ -114,6 +132,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Defines whether stack traces are generated for each watch that is running.
+		 * <p>
 		 * API name: {@code emit_stacktraces}
 		 */
 		public Builder emitStacktraces(@Nullable Boolean value) {
@@ -138,7 +158,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.stats}".
 	 */
-	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -165,10 +185,11 @@ public final class StatsRequest extends RequestBase {
 					buf.append("/_watcher");
 					buf.append("/stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.toString()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -180,5 +201,5 @@ public final class StatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatsResponse._DESERIALIZER);
 }

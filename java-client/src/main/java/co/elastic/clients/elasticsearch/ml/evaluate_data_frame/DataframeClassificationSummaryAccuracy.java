@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,18 +42,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeClassificationSummaryAccuracy
-public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeClassificationSummaryAccuracy implements JsonpSerializable {
 	private final List<DataframeEvaluationClass> classes;
 
-	private final Number overallAccuracy;
+	private final double overallAccuracy;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeClassificationSummaryAccuracy(Builder builder) {
+	public DataframeClassificationSummaryAccuracy(Builder builder) {
 
-		this.classes = Objects.requireNonNull(builder.classes, "classes");
+		this.classes = ModelTypeHelper.unmodifiableNonNull(builder.classes, "classes");
 		this.overallAccuracy = Objects.requireNonNull(builder.overallAccuracy, "overall_accuracy");
 
+	}
+
+	public DataframeClassificationSummaryAccuracy(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,31 +71,31 @@ public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
 	/**
 	 * API name: {@code overall_accuracy}
 	 */
-	public Number overallAccuracy() {
+	public double overallAccuracy() {
 		return this.overallAccuracy;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("classes");
 		generator.writeStartArray();
 		for (DataframeEvaluationClass item0 : this.classes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("overall_accuracy");
-		generator.write(this.overallAccuracy.doubleValue());
+		generator.write(this.overallAccuracy);
 
 	}
 
@@ -100,7 +107,7 @@ public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataframeClassificationSummaryAccuracy> {
 		private List<DataframeEvaluationClass> classes;
 
-		private Number overallAccuracy;
+		private Double overallAccuracy;
 
 		/**
 		 * API name: {@code classes}
@@ -119,7 +126,7 @@ public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
+		 * Add a value to {@link #classes(List)}, creating the list if needed. 4
 		 */
 		public Builder addClasses(DataframeEvaluationClass value) {
 			if (this.classes == null) {
@@ -137,7 +144,7 @@ public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed.
+		 * Add a value to {@link #classes(List)}, creating the list if needed. 5
 		 */
 		public Builder addClasses(
 				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
@@ -147,7 +154,7 @@ public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
 		/**
 		 * API name: {@code overall_accuracy}
 		 */
-		public Builder overallAccuracy(Number value) {
+		public Builder overallAccuracy(double value) {
 			this.overallAccuracy = value;
 			return this;
 		}
@@ -167,17 +174,19 @@ public final class DataframeClassificationSummaryAccuracy implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeClassificationSummaryAccuracy
+	 * Json deserializer for {@link DataframeClassificationSummaryAccuracy}
 	 */
-	public static final JsonpDeserializer<DataframeClassificationSummaryAccuracy> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeClassificationSummaryAccuracy::setupDataframeClassificationSummaryAccuracyDeserializer);
+	public static final JsonpDeserializer<DataframeClassificationSummaryAccuracy> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DataframeClassificationSummaryAccuracy::setupDataframeClassificationSummaryAccuracyDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeClassificationSummaryAccuracyDeserializer(
 			DelegatingDeserializer<DataframeClassificationSummaryAccuracy.Builder> op) {
 
-		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass.DESERIALIZER), "classes");
-		op.add(Builder::overallAccuracy, JsonpDeserializer.numberDeserializer(), "overall_accuracy");
+		op.add(Builder::classes, JsonpDeserializer.arrayDeserializer(DataframeEvaluationClass._DESERIALIZER),
+				"classes");
+		op.add(Builder::overallAccuracy, JsonpDeserializer.doubleDeserializer(), "overall_accuracy");
 
 	}
 

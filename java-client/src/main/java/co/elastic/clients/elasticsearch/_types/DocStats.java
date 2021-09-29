@@ -24,62 +24,68 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.DocStats
-public final class DocStats implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class DocStats implements JsonpSerializable {
+	private final long count;
 
-	private final Number deleted;
+	private final long deleted;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DocStats(Builder builder) {
+	public DocStats(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.deleted = Objects.requireNonNull(builder.deleted, "deleted");
 
 	}
 
+	public DocStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code deleted}
 	 */
-	public Number deleted() {
+	public long deleted() {
 		return this.deleted;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("deleted");
-		generator.write(this.deleted.doubleValue());
+		generator.write(this.deleted);
 
 	}
 
@@ -89,14 +95,14 @@ public final class DocStats implements ToJsonp {
 	 * Builder for {@link DocStats}.
 	 */
 	public static class Builder implements ObjectBuilder<DocStats> {
-		private Number count;
+		private Long count;
 
-		private Number deleted;
+		private Long deleted;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -104,7 +110,7 @@ public final class DocStats implements ToJsonp {
 		/**
 		 * API name: {@code deleted}
 		 */
-		public Builder deleted(Number value) {
+		public Builder deleted(long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -124,15 +130,15 @@ public final class DocStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DocStats
+	 * Json deserializer for {@link DocStats}
 	 */
-	public static final JsonpDeserializer<DocStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DocStats::setupDocStatsDeserializer);
+	public static final JsonpDeserializer<DocStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DocStats::setupDocStatsDeserializer, Builder::build);
 
 	protected static void setupDocStatsDeserializer(DelegatingDeserializer<DocStats.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::deleted, JsonpDeserializer.numberDeserializer(), "deleted");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
 
 	}
 

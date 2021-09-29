@@ -24,22 +24,26 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.CurrentNode
-public final class CurrentNode implements ToJsonp {
+@JsonpDeserializable
+public final class CurrentNode implements JsonpSerializable {
 	private final String id;
 
 	private final String name;
@@ -48,18 +52,22 @@ public final class CurrentNode implements ToJsonp {
 
 	private final String transportAddress;
 
-	private final Number weightRanking;
+	private final int weightRanking;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CurrentNode(Builder builder) {
+	public CurrentNode(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.attributes = Objects.requireNonNull(builder.attributes, "attributes");
+		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
 		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
 		this.weightRanking = Objects.requireNonNull(builder.weightRanking, "weight_ranking");
 
+	}
+
+	public CurrentNode(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -93,20 +101,20 @@ public final class CurrentNode implements ToJsonp {
 	/**
 	 * API name: {@code weight_ranking}
 	 */
-	public Number weightRanking() {
+	public int weightRanking() {
 		return this.weightRanking;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -127,7 +135,7 @@ public final class CurrentNode implements ToJsonp {
 		generator.write(this.transportAddress);
 
 		generator.writeKey("weight_ranking");
-		generator.write(this.weightRanking.doubleValue());
+		generator.write(this.weightRanking);
 
 	}
 
@@ -145,7 +153,7 @@ public final class CurrentNode implements ToJsonp {
 
 		private String transportAddress;
 
-		private Number weightRanking;
+		private Integer weightRanking;
 
 		/**
 		 * API name: {@code id}
@@ -193,7 +201,7 @@ public final class CurrentNode implements ToJsonp {
 		/**
 		 * API name: {@code weight_ranking}
 		 */
-		public Builder weightRanking(Number value) {
+		public Builder weightRanking(int value) {
 			this.weightRanking = value;
 			return this;
 		}
@@ -213,10 +221,10 @@ public final class CurrentNode implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CurrentNode
+	 * Json deserializer for {@link CurrentNode}
 	 */
-	public static final JsonpDeserializer<CurrentNode> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CurrentNode::setupCurrentNodeDeserializer);
+	public static final JsonpDeserializer<CurrentNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CurrentNode::setupCurrentNodeDeserializer, Builder::build);
 
 	protected static void setupCurrentNodeDeserializer(DelegatingDeserializer<CurrentNode.Builder> op) {
 
@@ -225,7 +233,7 @@ public final class CurrentNode implements ToJsonp {
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
-		op.add(Builder::weightRanking, JsonpDeserializer.numberDeserializer(), "weight_ranking");
+		op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");
 
 	}
 

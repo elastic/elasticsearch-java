@@ -24,18 +24,21 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm._types.Phases
-public final class Phases implements ToJsonp {
+@JsonpDeserializable
+public final class Phases implements JsonpSerializable {
 	@Nullable
 	private final Phase cold;
 
@@ -50,13 +53,17 @@ public final class Phases implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Phases(Builder builder) {
+	public Phases(Builder builder) {
 
 		this.cold = builder.cold;
 		this.delete = builder.delete;
 		this.hot = builder.hot;
 		this.warm = builder.warm;
 
+	}
+
+	public Phases(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -94,36 +101,36 @@ public final class Phases implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cold != null) {
 
 			generator.writeKey("cold");
-			this.cold.toJsonp(generator, mapper);
+			this.cold.serialize(generator, mapper);
 
 		}
 		if (this.delete != null) {
 
 			generator.writeKey("delete");
-			this.delete.toJsonp(generator, mapper);
+			this.delete.serialize(generator, mapper);
 
 		}
 		if (this.hot != null) {
 
 			generator.writeKey("hot");
-			this.hot.toJsonp(generator, mapper);
+			this.hot.serialize(generator, mapper);
 
 		}
 		if (this.warm != null) {
 
 			generator.writeKey("warm");
-			this.warm.toJsonp(generator, mapper);
+			this.warm.serialize(generator, mapper);
 
 		}
 
@@ -222,17 +229,17 @@ public final class Phases implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Phases
+	 * Json deserializer for {@link Phases}
 	 */
-	public static final JsonpDeserializer<Phases> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Phases::setupPhasesDeserializer);
+	public static final JsonpDeserializer<Phases> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Phases::setupPhasesDeserializer, Builder::build);
 
 	protected static void setupPhasesDeserializer(DelegatingDeserializer<Phases.Builder> op) {
 
-		op.add(Builder::cold, Phase.DESERIALIZER, "cold");
-		op.add(Builder::delete, Phase.DESERIALIZER, "delete");
-		op.add(Builder::hot, Phase.DESERIALIZER, "hot");
-		op.add(Builder::warm, Phase.DESERIALIZER, "warm");
+		op.add(Builder::cold, Phase._DESERIALIZER, "cold");
+		op.add(Builder::delete, Phase._DESERIALIZER, "delete");
+		op.add(Builder::hot, Phase._DESERIALIZER, "hot");
+		op.add(Builder::warm, Phase._DESERIALIZER, "warm");
 
 	}
 

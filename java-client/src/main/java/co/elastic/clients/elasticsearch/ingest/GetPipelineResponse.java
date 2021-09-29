@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.AdditionalProperties;
+import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ingest.get_pipeline.Response
-public final class GetPipelineResponse extends AdditionalProperties<String, Pipeline> {
+@JsonpDeserializable
+public final class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetPipelineResponse(Builder builder) {
+	public GetPipelineResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public GetPipelineResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -46,7 +54,7 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
-	public static class Builder extends AdditionalProperties.AbstractBuilder<String, Pipeline, Builder>
+	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
 			implements
 				ObjectBuilder<GetPipelineResponse> {
 		@Override
@@ -71,14 +79,14 @@ public final class GetPipelineResponse extends AdditionalProperties<String, Pipe
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetPipelineResponse
+	 * Json deserializer for {@link GetPipelineResponse}
 	 */
-	public static final JsonpDeserializer<GetPipelineResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
+	public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer, Builder::build);
 
 	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
-		AdditionalProperties.setupAdditionalPropertiesDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Pipeline.DESERIALIZER);
+		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
+				Pipeline._DESERIALIZER);
 
 	}
 

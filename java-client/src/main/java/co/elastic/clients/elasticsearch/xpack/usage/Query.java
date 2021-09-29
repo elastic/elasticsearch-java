@@ -24,33 +24,37 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Query
-public final class Query implements ToJsonp {
+@JsonpDeserializable
+public final class Query implements JsonpSerializable {
 	@Nullable
-	private final Number count;
+	private final Integer count;
 
 	@Nullable
-	private final Number failed;
+	private final Integer failed;
 
 	@Nullable
-	private final Number paging;
+	private final Integer paging;
 
 	@Nullable
-	private final Number total;
+	private final Integer total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Query(Builder builder) {
+	public Query(Builder builder) {
 
 		this.count = builder.count;
 		this.failed = builder.failed;
@@ -59,11 +63,15 @@ public final class Query implements ToJsonp {
 
 	}
 
+	public Query(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code count}
 	 */
 	@Nullable
-	public Number count() {
+	public Integer count() {
 		return this.count;
 	}
 
@@ -71,7 +79,7 @@ public final class Query implements ToJsonp {
 	 * API name: {@code failed}
 	 */
 	@Nullable
-	public Number failed() {
+	public Integer failed() {
 		return this.failed;
 	}
 
@@ -79,7 +87,7 @@ public final class Query implements ToJsonp {
 	 * API name: {@code paging}
 	 */
 	@Nullable
-	public Number paging() {
+	public Integer paging() {
 		return this.paging;
 	}
 
@@ -87,43 +95,43 @@ public final class Query implements ToJsonp {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public Number total() {
+	public Integer total() {
 		return this.total;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.count != null) {
 
 			generator.writeKey("count");
-			generator.write(this.count.doubleValue());
+			generator.write(this.count);
 
 		}
 		if (this.failed != null) {
 
 			generator.writeKey("failed");
-			generator.write(this.failed.doubleValue());
+			generator.write(this.failed);
 
 		}
 		if (this.paging != null) {
 
 			generator.writeKey("paging");
-			generator.write(this.paging.doubleValue());
+			generator.write(this.paging);
 
 		}
 		if (this.total != null) {
 
 			generator.writeKey("total");
-			generator.write(this.total.doubleValue());
+			generator.write(this.total);
 
 		}
 
@@ -136,21 +144,21 @@ public final class Query implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<Query> {
 		@Nullable
-		private Number count;
+		private Integer count;
 
 		@Nullable
-		private Number failed;
+		private Integer failed;
 
 		@Nullable
-		private Number paging;
+		private Integer paging;
 
 		@Nullable
-		private Number total;
+		private Integer total;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(@Nullable Number value) {
+		public Builder count(@Nullable Integer value) {
 			this.count = value;
 			return this;
 		}
@@ -158,7 +166,7 @@ public final class Query implements ToJsonp {
 		/**
 		 * API name: {@code failed}
 		 */
-		public Builder failed(@Nullable Number value) {
+		public Builder failed(@Nullable Integer value) {
 			this.failed = value;
 			return this;
 		}
@@ -166,7 +174,7 @@ public final class Query implements ToJsonp {
 		/**
 		 * API name: {@code paging}
 		 */
-		public Builder paging(@Nullable Number value) {
+		public Builder paging(@Nullable Integer value) {
 			this.paging = value;
 			return this;
 		}
@@ -174,7 +182,7 @@ public final class Query implements ToJsonp {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable Number value) {
+		public Builder total(@Nullable Integer value) {
 			this.total = value;
 			return this;
 		}
@@ -194,17 +202,17 @@ public final class Query implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Query
+	 * Json deserializer for {@link Query}
 	 */
-	public static final JsonpDeserializer<Query> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Query::setupQueryDeserializer);
+	public static final JsonpDeserializer<Query> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Query::setupQueryDeserializer, Builder::build);
 
 	protected static void setupQueryDeserializer(DelegatingDeserializer<Query.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
-		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
-		op.add(Builder::paging, JsonpDeserializer.numberDeserializer(), "paging");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
+		op.add(Builder::failed, JsonpDeserializer.integerDeserializer(), "failed");
+		op.add(Builder::paging, JsonpDeserializer.integerDeserializer(), "paging");
+		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");
 
 	}
 

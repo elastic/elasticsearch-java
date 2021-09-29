@@ -25,32 +25,34 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cat.help.Request
+
 public final class HelpRequest extends CatRequestBase {
-	protected HelpRequest() {
+	public HelpRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link HelpRequest}.
 	 */
-	public static final HelpRequest INSTANCE = new HelpRequest();
-
-	public static final JsonpDeserializer<HelpRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(HelpRequest.INSTANCE);
+	public static final HelpRequest _INSTANCE = new HelpRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code cat.help}".
 	 */
-	public static final Endpoint<HelpRequest, HelpResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<HelpRequest, HelpResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -67,5 +69,5 @@ public final class HelpRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, HelpResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
 }

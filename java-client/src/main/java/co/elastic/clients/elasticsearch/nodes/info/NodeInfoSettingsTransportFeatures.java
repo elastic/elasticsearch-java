@@ -24,27 +24,34 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsTransportFeatures
-public final class NodeInfoSettingsTransportFeatures implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoSettingsTransportFeatures implements JsonpSerializable {
 	private final String xPack;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsTransportFeatures(Builder builder) {
+	public NodeInfoSettingsTransportFeatures(Builder builder) {
 
 		this.xPack = Objects.requireNonNull(builder.xPack, "x-pack");
 
+	}
+
+	public NodeInfoSettingsTransportFeatures(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,13 +64,13 @@ public final class NodeInfoSettingsTransportFeatures implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("x-pack");
 		generator.write(this.xPack);
@@ -101,11 +108,11 @@ public final class NodeInfoSettingsTransportFeatures implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsTransportFeatures
+	 * Json deserializer for {@link NodeInfoSettingsTransportFeatures}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettingsTransportFeatures> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					NodeInfoSettingsTransportFeatures::setupNodeInfoSettingsTransportFeaturesDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettingsTransportFeatures> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoSettingsTransportFeatures::setupNodeInfoSettingsTransportFeaturesDeserializer,
+					Builder::build);
 
 	protected static void setupNodeInfoSettingsTransportFeaturesDeserializer(
 			DelegatingDeserializer<NodeInfoSettingsTransportFeatures.Builder> op) {

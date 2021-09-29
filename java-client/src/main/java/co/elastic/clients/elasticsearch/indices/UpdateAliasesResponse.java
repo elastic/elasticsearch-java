@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.update_aliases.Response
+@JsonpDeserializable
 public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateAliasesResponse(Builder builder) {
+	public UpdateAliasesResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public UpdateAliasesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateAliasesResponse
+	 * Json deserializer for {@link UpdateAliasesResponse}
 	 */
-	public static final JsonpDeserializer<UpdateAliasesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer);
+	public static final JsonpDeserializer<UpdateAliasesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer, Builder::build);
 
 	protected static void setupUpdateAliasesResponseDeserializer(
 			DelegatingDeserializer<UpdateAliasesResponse.Builder> op) {

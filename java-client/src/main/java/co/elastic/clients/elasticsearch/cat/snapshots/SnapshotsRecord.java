@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.snapshots;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.SnapshotsRecord
-public final class SnapshotsRecord implements ToJsonp {
+@JsonpDeserializable
+public final class SnapshotsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -47,19 +50,19 @@ public final class SnapshotsRecord implements ToJsonp {
 	private final String status;
 
 	@Nullable
-	private final JsonValue startEpoch;
+	private final String startEpoch;
 
 	@Nullable
 	private final String startTime;
 
 	@Nullable
-	private final JsonValue endEpoch;
+	private final String endEpoch;
 
 	@Nullable
 	private final String endTime;
 
 	@Nullable
-	private final JsonValue duration;
+	private final String duration;
 
 	@Nullable
 	private final String indices;
@@ -78,7 +81,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotsRecord(Builder builder) {
+	public SnapshotsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.repository = builder.repository;
@@ -96,9 +99,13 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	}
 
+	public SnapshotsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * unique snapshot
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -108,7 +115,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * repository name
-	 *
+	 * <p>
 	 * API name: {@code repository}
 	 */
 	@Nullable
@@ -118,7 +125,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * snapshot name
-	 *
+	 * <p>
 	 * API name: {@code status}
 	 */
 	@Nullable
@@ -128,17 +135,17 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * start time in seconds since 1970-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code start_epoch}
 	 */
 	@Nullable
-	public JsonValue startEpoch() {
+	public String startEpoch() {
 		return this.startEpoch;
 	}
 
 	/**
 	 * start time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code start_time}
 	 */
 	@Nullable
@@ -148,17 +155,17 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * end time in seconds since 1970-01-01 00:00:00
-	 *
+	 * <p>
 	 * API name: {@code end_epoch}
 	 */
 	@Nullable
-	public JsonValue endEpoch() {
+	public String endEpoch() {
 		return this.endEpoch;
 	}
 
 	/**
 	 * end time in HH:MM:SS
-	 *
+	 * <p>
 	 * API name: {@code end_time}
 	 */
 	@Nullable
@@ -168,17 +175,17 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * duration
-	 *
+	 * <p>
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public JsonValue duration() {
+	public String duration() {
 		return this.duration;
 	}
 
 	/**
 	 * number of indices
-	 *
+	 * <p>
 	 * API name: {@code indices}
 	 */
 	@Nullable
@@ -188,7 +195,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of successful shards
-	 *
+	 * <p>
 	 * API name: {@code successful_shards}
 	 */
 	@Nullable
@@ -198,7 +205,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of failed shards
-	 *
+	 * <p>
 	 * API name: {@code failed_shards}
 	 */
 	@Nullable
@@ -208,7 +215,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * number of total shards
-	 *
+	 * <p>
 	 * API name: {@code total_shards}
 	 */
 	@Nullable
@@ -218,7 +225,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 	/**
 	 * reason for failures
-	 *
+	 * <p>
 	 * API name: {@code reason}
 	 */
 	@Nullable
@@ -229,13 +236,13 @@ public final class SnapshotsRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -334,19 +341,19 @@ public final class SnapshotsRecord implements ToJsonp {
 		private String status;
 
 		@Nullable
-		private JsonValue startEpoch;
+		private String startEpoch;
 
 		@Nullable
 		private String startTime;
 
 		@Nullable
-		private JsonValue endEpoch;
+		private String endEpoch;
 
 		@Nullable
 		private String endTime;
 
 		@Nullable
-		private JsonValue duration;
+		private String duration;
 
 		@Nullable
 		private String indices;
@@ -365,7 +372,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * unique snapshot
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -375,7 +382,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * repository name
-		 *
+		 * <p>
 		 * API name: {@code repository}
 		 */
 		public Builder repository(@Nullable String value) {
@@ -385,7 +392,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * snapshot name
-		 *
+		 * <p>
 		 * API name: {@code status}
 		 */
 		public Builder status(@Nullable String value) {
@@ -395,17 +402,17 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * start time in seconds since 1970-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code start_epoch}
 		 */
-		public Builder startEpoch(@Nullable JsonValue value) {
+		public Builder startEpoch(@Nullable String value) {
 			this.startEpoch = value;
 			return this;
 		}
 
 		/**
 		 * start time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code start_time}
 		 */
 		public Builder startTime(@Nullable String value) {
@@ -415,17 +422,17 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * end time in seconds since 1970-01-01 00:00:00
-		 *
+		 * <p>
 		 * API name: {@code end_epoch}
 		 */
-		public Builder endEpoch(@Nullable JsonValue value) {
+		public Builder endEpoch(@Nullable String value) {
 			this.endEpoch = value;
 			return this;
 		}
 
 		/**
 		 * end time in HH:MM:SS
-		 *
+		 * <p>
 		 * API name: {@code end_time}
 		 */
 		public Builder endTime(@Nullable String value) {
@@ -435,17 +442,17 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * duration
-		 *
+		 * <p>
 		 * API name: {@code duration}
 		 */
-		public Builder duration(@Nullable JsonValue value) {
+		public Builder duration(@Nullable String value) {
 			this.duration = value;
 			return this;
 		}
 
 		/**
 		 * number of indices
-		 *
+		 * <p>
 		 * API name: {@code indices}
 		 */
 		public Builder indices(@Nullable String value) {
@@ -455,7 +462,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of successful shards
-		 *
+		 * <p>
 		 * API name: {@code successful_shards}
 		 */
 		public Builder successfulShards(@Nullable String value) {
@@ -465,7 +472,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of failed shards
-		 *
+		 * <p>
 		 * API name: {@code failed_shards}
 		 */
 		public Builder failedShards(@Nullable String value) {
@@ -475,7 +482,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * number of total shards
-		 *
+		 * <p>
 		 * API name: {@code total_shards}
 		 */
 		public Builder totalShards(@Nullable String value) {
@@ -485,7 +492,7 @@ public final class SnapshotsRecord implements ToJsonp {
 
 		/**
 		 * reason for failures
-		 *
+		 * <p>
 		 * API name: {@code reason}
 		 */
 		public Builder reason(@Nullable String value) {
@@ -508,21 +515,21 @@ public final class SnapshotsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotsRecord
+	 * Json deserializer for {@link SnapshotsRecord}
 	 */
-	public static final JsonpDeserializer<SnapshotsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotsRecord::setupSnapshotsRecordDeserializer);
+	public static final JsonpDeserializer<SnapshotsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SnapshotsRecord::setupSnapshotsRecordDeserializer, Builder::build);
 
 	protected static void setupSnapshotsRecordDeserializer(DelegatingDeserializer<SnapshotsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "snapshot");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository", "re", "repo");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status", "s");
-		op.add(Builder::startEpoch, JsonpDeserializer.jsonValueDeserializer(), "start_epoch", "ste", "startEpoch");
+		op.add(Builder::startEpoch, JsonpDeserializer.stringDeserializer(), "start_epoch", "ste", "startEpoch");
 		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "sti", "startTime");
-		op.add(Builder::endEpoch, JsonpDeserializer.jsonValueDeserializer(), "end_epoch", "ete", "endEpoch");
+		op.add(Builder::endEpoch, JsonpDeserializer.stringDeserializer(), "end_epoch", "ete", "endEpoch");
 		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time", "eti", "endTime");
-		op.add(Builder::duration, JsonpDeserializer.jsonValueDeserializer(), "duration", "dur");
+		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration", "dur");
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices", "i");
 		op.add(Builder::successfulShards, JsonpDeserializer.stringDeserializer(), "successful_shards", "ss");
 		op.add(Builder::failedShards, JsonpDeserializer.stringDeserializer(), "failed_shards", "fs");

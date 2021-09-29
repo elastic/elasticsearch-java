@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,21 +35,28 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.clone.Response
+@JsonpDeserializable
 public final class CloneResponse extends AcknowledgedResponseBase {
 	private final String index;
 
-	private final Boolean shardsAcknowledged;
+	private final boolean shardsAcknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected CloneResponse(Builder builder) {
+	public CloneResponse(Builder builder) {
 		super(builder);
+
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
 
+	}
+
+	public CloneResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -61,12 +69,13 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 	/**
 	 * API name: {@code shards_acknowledged}
 	 */
-	public Boolean shardsAcknowledged() {
+	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -99,7 +108,7 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(Boolean value) {
+		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
@@ -124,10 +133,10 @@ public final class CloneResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for CloneResponse
+	 * Json deserializer for {@link CloneResponse}
 	 */
-	public static final JsonpDeserializer<CloneResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, CloneResponse::setupCloneResponseDeserializer);
+	public static final JsonpDeserializer<CloneResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloneResponse::setupCloneResponseDeserializer, Builder::build);
 
 	protected static void setupCloneResponseDeserializer(DelegatingDeserializer<CloneResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

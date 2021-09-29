@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.ml.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Limits
-public final class Limits implements ToJsonp {
+@JsonpDeserializable
+public final class Limits implements JsonpSerializable {
 	@Nullable
 	private final String maxModelMemoryLimit;
 
@@ -46,13 +49,17 @@ public final class Limits implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Limits(Builder builder) {
+	public Limits(Builder builder) {
 
 		this.maxModelMemoryLimit = builder.maxModelMemoryLimit;
 		this.effectiveMaxModelMemoryLimit = Objects.requireNonNull(builder.effectiveMaxModelMemoryLimit,
 				"effective_max_model_memory_limit");
 		this.totalMlMemory = Objects.requireNonNull(builder.totalMlMemory, "total_ml_memory");
 
+	}
+
+	public Limits(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -80,13 +87,13 @@ public final class Limits implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.maxModelMemoryLimit != null) {
 
@@ -155,10 +162,10 @@ public final class Limits implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Limits
+	 * Json deserializer for {@link Limits}
 	 */
-	public static final JsonpDeserializer<Limits> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Limits::setupLimitsDeserializer);
+	public static final JsonpDeserializer<Limits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Limits::setupLimitsDeserializer, Builder::build);
 
 	protected static void setupLimitsDeserializer(DelegatingDeserializer<Limits.Builder> op) {
 

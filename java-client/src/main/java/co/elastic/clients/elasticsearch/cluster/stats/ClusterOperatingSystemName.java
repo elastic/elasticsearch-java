@@ -24,37 +24,44 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemName
-public final class ClusterOperatingSystemName implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class ClusterOperatingSystemName implements JsonpSerializable {
+	private final int count;
 
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterOperatingSystemName(Builder builder) {
+	public ClusterOperatingSystemName(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.name = Objects.requireNonNull(builder.name, "name");
 
 	}
 
+	public ClusterOperatingSystemName(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -68,16 +75,16 @@ public final class ClusterOperatingSystemName implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -90,14 +97,14 @@ public final class ClusterOperatingSystemName implements ToJsonp {
 	 * Builder for {@link ClusterOperatingSystemName}.
 	 */
 	public static class Builder implements ObjectBuilder<ClusterOperatingSystemName> {
-		private Number count;
+		private Integer count;
 
 		private String name;
 
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -125,15 +132,15 @@ public final class ClusterOperatingSystemName implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterOperatingSystemName
+	 * Json deserializer for {@link ClusterOperatingSystemName}
 	 */
-	public static final JsonpDeserializer<ClusterOperatingSystemName> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterOperatingSystemName::setupClusterOperatingSystemNameDeserializer);
+	public static final JsonpDeserializer<ClusterOperatingSystemName> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ClusterOperatingSystemName::setupClusterOperatingSystemNameDeserializer, Builder::build);
 
 	protected static void setupClusterOperatingSystemNameDeserializer(
 			DelegatingDeserializer<ClusterOperatingSystemName.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 
 	}

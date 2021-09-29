@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
@@ -36,6 +37,7 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchDocumentResponseBase
+
 public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSearchResponseBase {
 	private final AsyncSearch<TDocument> response;
 
@@ -44,8 +46,9 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
+	public AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
+
 		this.response = Objects.requireNonNull(builder.response, "response");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -58,11 +61,12 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		return this.response;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("response");
-		this.response.toJsonp(generator, mapper);
+		this.response.serialize(generator, mapper);
 
 	}
 
@@ -92,7 +96,6 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public BuilderT tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;

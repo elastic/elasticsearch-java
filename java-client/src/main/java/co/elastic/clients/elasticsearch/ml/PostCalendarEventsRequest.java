@@ -25,13 +25,16 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -44,27 +47,30 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_calendar_events.Request
-public final class PostCalendarEventsRequest extends RequestBase implements ToJsonp {
-	@Nullable
+@JsonpDeserializable
+public final class PostCalendarEventsRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
 	private final List<CalendarEvent> events;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostCalendarEventsRequest(Builder builder) {
+	public PostCalendarEventsRequest(Builder builder) {
 
-		this.calendarId = builder.calendarId;
-		this.events = Objects.requireNonNull(builder.events, "events");
+		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
+		this.events = ModelTypeHelper.unmodifiableNonNull(builder.events, "events");
 
+	}
+
+	public PostCalendarEventsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * A string that uniquely identifies a calendar.
-	 *
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	@Nullable
 	public String calendarId() {
 		return this.calendarId;
 	}
@@ -73,7 +79,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	 * A list of one of more scheduled events. The event’s start and end times may
 	 * be specified as integer milliseconds since the epoch or as a string in ISO
 	 * 8601 format.
-	 *
+	 * <p>
 	 * API name: {@code events}
 	 */
 	public List<CalendarEvent> events() {
@@ -83,18 +89,18 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("events");
 		generator.writeStartArray();
 		for (CalendarEvent item0 : this.events) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -107,17 +113,16 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	 * Builder for {@link PostCalendarEventsRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<PostCalendarEventsRequest> {
-		@Nullable
 		private String calendarId;
 
 		private List<CalendarEvent> events;
 
 		/**
 		 * A string that uniquely identifies a calendar.
-		 *
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(@Nullable String value) {
+		public Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -126,7 +131,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		 * A list of one of more scheduled events. The event’s start and end times may
 		 * be specified as integer milliseconds since the epoch or as a string in ISO
 		 * 8601 format.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder events(List<CalendarEvent> value) {
@@ -138,7 +143,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		 * A list of one of more scheduled events. The event’s start and end times may
 		 * be specified as integer milliseconds since the epoch or as a string in ISO
 		 * 8601 format.
-		 *
+		 * <p>
 		 * API name: {@code events}
 		 */
 		public Builder events(CalendarEvent... value) {
@@ -147,7 +152,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 4
 		 */
 		public Builder addEvents(CalendarEvent value) {
 			if (this.events == null) {
@@ -165,7 +170,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Add a value to {@link #events(List)}, creating the list if needed. 5
 		 */
 		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
 			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());
@@ -186,15 +191,15 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostCalendarEventsRequest
+	 * Json deserializer for {@link PostCalendarEventsRequest}
 	 */
-	public static final JsonpDeserializer<PostCalendarEventsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostCalendarEventsRequest::setupPostCalendarEventsRequestDeserializer);
+	public static final JsonpDeserializer<PostCalendarEventsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PostCalendarEventsRequest::setupPostCalendarEventsRequestDeserializer, Builder::build);
 
 	protected static void setupPostCalendarEventsRequestDeserializer(
 			DelegatingDeserializer<PostCalendarEventsRequest.Builder> op) {
 
-		op.add(Builder::events, JsonpDeserializer.arrayDeserializer(CalendarEvent.DESERIALIZER), "events");
+		op.add(Builder::events, JsonpDeserializer.arrayDeserializer(CalendarEvent._DESERIALIZER), "events");
 
 	}
 
@@ -203,7 +208,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 	/**
 	 * Endpoint "{@code ml.post_calendar_events}".
 	 */
-	public static final Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -216,19 +221,18 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 
 				int propsSet = 0;
 
-				if (request.calendarId() != null)
-					propsSet |= _calendarId;
+				propsSet |= _calendarId;
 
 				if (propsSet == (_calendarId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/events");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -236,5 +240,5 @@ public final class PostCalendarEventsRequest extends RequestBase implements ToJs
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PostCalendarEventsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PostCalendarEventsResponse._DESERIALIZER);
 }

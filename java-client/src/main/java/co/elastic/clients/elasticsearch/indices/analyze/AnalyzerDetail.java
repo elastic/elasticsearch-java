@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.analyze;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -40,18 +42,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzerDetail
-public final class AnalyzerDetail implements ToJsonp {
+@JsonpDeserializable
+public final class AnalyzerDetail implements JsonpSerializable {
 	private final String name;
 
 	private final List<ExplainAnalyzeToken> tokens;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AnalyzerDetail(Builder builder) {
+	public AnalyzerDetail(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.tokens = Objects.requireNonNull(builder.tokens, "tokens");
+		this.tokens = ModelTypeHelper.unmodifiableNonNull(builder.tokens, "tokens");
 
+	}
+
+	public AnalyzerDetail(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -71,13 +78,13 @@ public final class AnalyzerDetail implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -85,7 +92,7 @@ public final class AnalyzerDetail implements ToJsonp {
 		generator.writeKey("tokens");
 		generator.writeStartArray();
 		for (ExplainAnalyzeToken item0 : this.tokens) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -127,7 +134,7 @@ public final class AnalyzerDetail implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Add a value to {@link #tokens(List)}, creating the list if needed. 4
 		 */
 		public Builder addTokens(ExplainAnalyzeToken value) {
 			if (this.tokens == null) {
@@ -145,7 +152,7 @@ public final class AnalyzerDetail implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Add a value to {@link #tokens(List)}, creating the list if needed. 5
 		 */
 		public Builder addTokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
 			return this.addTokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
@@ -166,15 +173,15 @@ public final class AnalyzerDetail implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AnalyzerDetail
+	 * Json deserializer for {@link AnalyzerDetail}
 	 */
-	public static final JsonpDeserializer<AnalyzerDetail> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AnalyzerDetail::setupAnalyzerDetailDeserializer);
+	public static final JsonpDeserializer<AnalyzerDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AnalyzerDetail::setupAnalyzerDetailDeserializer, Builder::build);
 
 	protected static void setupAnalyzerDetailDeserializer(DelegatingDeserializer<AnalyzerDetail.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken.DESERIALIZER), "tokens");
+		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken._DESERIALIZER), "tokens");
 
 	}
 

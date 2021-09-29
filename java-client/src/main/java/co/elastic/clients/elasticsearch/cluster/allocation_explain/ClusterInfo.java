@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +46,11 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ClusterInfo
-public final class ClusterInfo implements ToJsonp {
+@JsonpDeserializable
+public final class ClusterInfo implements JsonpSerializable {
 	private final Map<String, NodeDiskUsage> nodes;
 
-	private final Map<String, Number> shardSizes;
+	private final Map<String, Long> shardSizes;
 
 	@Nullable
 	private final Map<String, String> shardDataSetSizes;
@@ -58,14 +61,18 @@ public final class ClusterInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterInfo(Builder builder) {
+	public ClusterInfo(Builder builder) {
 
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
-		this.shardSizes = Objects.requireNonNull(builder.shardSizes, "shard_sizes");
-		this.shardDataSetSizes = builder.shardDataSetSizes;
-		this.shardPaths = Objects.requireNonNull(builder.shardPaths, "shard_paths");
-		this.reservedSizes = Objects.requireNonNull(builder.reservedSizes, "reserved_sizes");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.shardSizes = ModelTypeHelper.unmodifiableNonNull(builder.shardSizes, "shard_sizes");
+		this.shardDataSetSizes = ModelTypeHelper.unmodifiable(builder.shardDataSetSizes);
+		this.shardPaths = ModelTypeHelper.unmodifiableNonNull(builder.shardPaths, "shard_paths");
+		this.reservedSizes = ModelTypeHelper.unmodifiableNonNull(builder.reservedSizes, "reserved_sizes");
 
+	}
+
+	public ClusterInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -78,7 +85,7 @@ public final class ClusterInfo implements ToJsonp {
 	/**
 	 * API name: {@code shard_sizes}
 	 */
-	public Map<String, Number> shardSizes() {
+	public Map<String, Long> shardSizes() {
 		return this.shardSizes;
 	}
 
@@ -107,28 +114,28 @@ public final class ClusterInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("nodes");
 		generator.writeStartObject();
 		for (Map.Entry<String, NodeDiskUsage> item0 : this.nodes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("shard_sizes");
 		generator.writeStartObject();
-		for (Map.Entry<String, Number> item0 : this.shardSizes.entrySet()) {
+		for (Map.Entry<String, Long> item0 : this.shardSizes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue().doubleValue());
+			generator.write(item0.getValue());
 
 		}
 		generator.writeEnd();
@@ -158,7 +165,7 @@ public final class ClusterInfo implements ToJsonp {
 		generator.writeKey("reserved_sizes");
 		generator.writeStartArray();
 		for (ReservedSize item0 : this.reservedSizes) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -173,7 +180,7 @@ public final class ClusterInfo implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ClusterInfo> {
 		private Map<String, NodeDiskUsage> nodes;
 
-		private Map<String, Number> shardSizes;
+		private Map<String, Long> shardSizes;
 
 		@Nullable
 		private Map<String, String> shardDataSetSizes;
@@ -218,7 +225,7 @@ public final class ClusterInfo implements ToJsonp {
 		/**
 		 * API name: {@code shard_sizes}
 		 */
-		public Builder shardSizes(Map<String, Number> value) {
+		public Builder shardSizes(Map<String, Long> value) {
 			this.shardSizes = value;
 			return this;
 		}
@@ -226,7 +233,7 @@ public final class ClusterInfo implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #shardSizes(Map)}, creating the map if needed.
 		 */
-		public Builder putShardSizes(String key, Number value) {
+		public Builder putShardSizes(String key, Long value) {
 			if (this.shardSizes == null) {
 				this.shardSizes = new HashMap<>();
 			}
@@ -290,7 +297,7 @@ public final class ClusterInfo implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed.
+		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed. 4
 		 */
 		public Builder addReservedSizes(ReservedSize value) {
 			if (this.reservedSizes == null) {
@@ -308,7 +315,7 @@ public final class ClusterInfo implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed.
+		 * Add a value to {@link #reservedSizes(List)}, creating the list if needed. 5
 		 */
 		public Builder addReservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {
 			return this.addReservedSizes(fn.apply(new ReservedSize.Builder()).build());
@@ -329,22 +336,22 @@ public final class ClusterInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterInfo
+	 * Json deserializer for {@link ClusterInfo}
 	 */
-	public static final JsonpDeserializer<ClusterInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterInfo::setupClusterInfoDeserializer);
+	public static final JsonpDeserializer<ClusterInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterInfo::setupClusterInfoDeserializer, Builder::build);
 
 	protected static void setupClusterInfoDeserializer(DelegatingDeserializer<ClusterInfo.Builder> op) {
 
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDiskUsage.DESERIALIZER), "nodes");
-		op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.numberDeserializer()),
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDiskUsage._DESERIALIZER), "nodes");
+		op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
 				"shard_sizes");
 		op.add(Builder::shardDataSetSizes,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"shard_data_set_sizes");
 		op.add(Builder::shardPaths, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"shard_paths");
-		op.add(Builder::reservedSizes, JsonpDeserializer.arrayDeserializer(ReservedSize.DESERIALIZER),
+		op.add(Builder::reservedSizes, JsonpDeserializer.arrayDeserializer(ReservedSize._DESERIALIZER),
 				"reserved_sizes");
 
 	}

@@ -27,15 +27,17 @@ import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.ingest.PipelineConfig;
 import co.elastic.clients.elasticsearch.text_structure.find_structure.FieldStat;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,13 +50,14 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: text_structure.find_structure.Response
-public final class FindStructureResponse implements ToJsonp {
+@JsonpDeserializable
+public final class FindStructureResponse implements JsonpSerializable {
 	private final String charset;
 
 	@Nullable
 	private final Boolean hasHeaderRow;
 
-	private final Boolean hasByteOrderMarker;
+	private final boolean hasByteOrderMarker;
 
 	private final String format;
 
@@ -62,7 +65,7 @@ public final class FindStructureResponse implements ToJsonp {
 
 	private final String sampleStart;
 
-	private final Number numMessagesAnalyzed;
+	private final int numMessagesAnalyzed;
 
 	private final TypeMapping mappings;
 
@@ -72,9 +75,9 @@ public final class FindStructureResponse implements ToJsonp {
 	@Nullable
 	private final String delimiter;
 
-	private final Boolean needClientTimezone;
+	private final boolean needClientTimezone;
 
-	private final Number numLinesAnalyzed;
+	private final int numLinesAnalyzed;
 
 	@Nullable
 	private final List<String> columnNames;
@@ -107,13 +110,13 @@ public final class FindStructureResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FindStructureResponse(Builder builder) {
+	public FindStructureResponse(Builder builder) {
 
 		this.charset = Objects.requireNonNull(builder.charset, "charset");
 		this.hasHeaderRow = builder.hasHeaderRow;
 		this.hasByteOrderMarker = Objects.requireNonNull(builder.hasByteOrderMarker, "has_byte_order_marker");
 		this.format = Objects.requireNonNull(builder.format, "format");
-		this.fieldStats = Objects.requireNonNull(builder.fieldStats, "field_stats");
+		this.fieldStats = ModelTypeHelper.unmodifiableNonNull(builder.fieldStats, "field_stats");
 		this.sampleStart = Objects.requireNonNull(builder.sampleStart, "sample_start");
 		this.numMessagesAnalyzed = Objects.requireNonNull(builder.numMessagesAnalyzed, "num_messages_analyzed");
 		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
@@ -121,17 +124,21 @@ public final class FindStructureResponse implements ToJsonp {
 		this.delimiter = builder.delimiter;
 		this.needClientTimezone = Objects.requireNonNull(builder.needClientTimezone, "need_client_timezone");
 		this.numLinesAnalyzed = Objects.requireNonNull(builder.numLinesAnalyzed, "num_lines_analyzed");
-		this.columnNames = builder.columnNames;
-		this.explanation = builder.explanation;
+		this.columnNames = ModelTypeHelper.unmodifiable(builder.columnNames);
+		this.explanation = ModelTypeHelper.unmodifiable(builder.explanation);
 		this.grokPattern = builder.grokPattern;
 		this.multilineStartPattern = builder.multilineStartPattern;
 		this.excludeLinesPattern = builder.excludeLinesPattern;
-		this.javaTimestampFormats = builder.javaTimestampFormats;
-		this.jodaTimestampFormats = builder.jodaTimestampFormats;
+		this.javaTimestampFormats = ModelTypeHelper.unmodifiable(builder.javaTimestampFormats);
+		this.jodaTimestampFormats = ModelTypeHelper.unmodifiable(builder.jodaTimestampFormats);
 		this.timestampField = builder.timestampField;
 		this.shouldTrimFields = builder.shouldTrimFields;
 		this.ingestPipeline = Objects.requireNonNull(builder.ingestPipeline, "ingest_pipeline");
 
+	}
+
+	public FindStructureResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -152,7 +159,7 @@ public final class FindStructureResponse implements ToJsonp {
 	/**
 	 * API name: {@code has_byte_order_marker}
 	 */
-	public Boolean hasByteOrderMarker() {
+	public boolean hasByteOrderMarker() {
 		return this.hasByteOrderMarker;
 	}
 
@@ -180,7 +187,7 @@ public final class FindStructureResponse implements ToJsonp {
 	/**
 	 * API name: {@code num_messages_analyzed}
 	 */
-	public Number numMessagesAnalyzed() {
+	public int numMessagesAnalyzed() {
 		return this.numMessagesAnalyzed;
 	}
 
@@ -210,14 +217,14 @@ public final class FindStructureResponse implements ToJsonp {
 	/**
 	 * API name: {@code need_client_timezone}
 	 */
-	public Boolean needClientTimezone() {
+	public boolean needClientTimezone() {
 		return this.needClientTimezone;
 	}
 
 	/**
 	 * API name: {@code num_lines_analyzed}
 	 */
-	public Number numLinesAnalyzed() {
+	public int numLinesAnalyzed() {
 		return this.numLinesAnalyzed;
 	}
 
@@ -303,13 +310,13 @@ public final class FindStructureResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("charset");
 		generator.write(this.charset);
@@ -331,7 +338,7 @@ public final class FindStructureResponse implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, FieldStat> item0 : this.fieldStats.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -340,10 +347,10 @@ public final class FindStructureResponse implements ToJsonp {
 		generator.write(this.sampleStart);
 
 		generator.writeKey("num_messages_analyzed");
-		generator.write(this.numMessagesAnalyzed.doubleValue());
+		generator.write(this.numMessagesAnalyzed);
 
 		generator.writeKey("mappings");
-		this.mappings.toJsonp(generator, mapper);
+		this.mappings.serialize(generator, mapper);
 
 		if (this.quote != null) {
 
@@ -362,7 +369,7 @@ public final class FindStructureResponse implements ToJsonp {
 		generator.write(this.needClientTimezone);
 
 		generator.writeKey("num_lines_analyzed");
-		generator.write(this.numLinesAnalyzed.doubleValue());
+		generator.write(this.numLinesAnalyzed);
 
 		if (this.columnNames != null) {
 
@@ -440,7 +447,7 @@ public final class FindStructureResponse implements ToJsonp {
 		}
 
 		generator.writeKey("ingest_pipeline");
-		this.ingestPipeline.toJsonp(generator, mapper);
+		this.ingestPipeline.serialize(generator, mapper);
 
 	}
 
@@ -463,7 +470,7 @@ public final class FindStructureResponse implements ToJsonp {
 
 		private String sampleStart;
 
-		private Number numMessagesAnalyzed;
+		private Integer numMessagesAnalyzed;
 
 		private TypeMapping mappings;
 
@@ -475,7 +482,7 @@ public final class FindStructureResponse implements ToJsonp {
 
 		private Boolean needClientTimezone;
 
-		private Number numLinesAnalyzed;
+		private Integer numLinesAnalyzed;
 
 		@Nullable
 		private List<String> columnNames;
@@ -525,7 +532,7 @@ public final class FindStructureResponse implements ToJsonp {
 		/**
 		 * API name: {@code has_byte_order_marker}
 		 */
-		public Builder hasByteOrderMarker(Boolean value) {
+		public Builder hasByteOrderMarker(boolean value) {
 			this.hasByteOrderMarker = value;
 			return this;
 		}
@@ -582,7 +589,7 @@ public final class FindStructureResponse implements ToJsonp {
 		/**
 		 * API name: {@code num_messages_analyzed}
 		 */
-		public Builder numMessagesAnalyzed(Number value) {
+		public Builder numMessagesAnalyzed(int value) {
 			this.numMessagesAnalyzed = value;
 			return this;
 		}
@@ -621,7 +628,7 @@ public final class FindStructureResponse implements ToJsonp {
 		/**
 		 * API name: {@code need_client_timezone}
 		 */
-		public Builder needClientTimezone(Boolean value) {
+		public Builder needClientTimezone(boolean value) {
 			this.needClientTimezone = value;
 			return this;
 		}
@@ -629,7 +636,7 @@ public final class FindStructureResponse implements ToJsonp {
 		/**
 		 * API name: {@code num_lines_analyzed}
 		 */
-		public Builder numLinesAnalyzed(Number value) {
+		public Builder numLinesAnalyzed(int value) {
 			this.numLinesAnalyzed = value;
 			return this;
 		}
@@ -651,7 +658,7 @@ public final class FindStructureResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #columnNames(List)}, creating the list if needed.
+		 * Add a value to {@link #columnNames(List)}, creating the list if needed. 4
 		 */
 		public Builder addColumnNames(String value) {
 			if (this.columnNames == null) {
@@ -678,7 +685,7 @@ public final class FindStructureResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #explanation(List)}, creating the list if needed.
+		 * Add a value to {@link #explanation(List)}, creating the list if needed. 4
 		 */
 		public Builder addExplanation(String value) {
 			if (this.explanation == null) {
@@ -730,7 +737,7 @@ public final class FindStructureResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #javaTimestampFormats(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addJavaTimestampFormats(String value) {
 			if (this.javaTimestampFormats == null) {
@@ -758,7 +765,7 @@ public final class FindStructureResponse implements ToJsonp {
 
 		/**
 		 * Add a value to {@link #jodaTimestampFormats(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addJodaTimestampFormats(String value) {
 			if (this.jodaTimestampFormats == null) {
@@ -814,10 +821,10 @@ public final class FindStructureResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FindStructureResponse
+	 * Json deserializer for {@link FindStructureResponse}
 	 */
-	public static final JsonpDeserializer<FindStructureResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer);
+	public static final JsonpDeserializer<FindStructureResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FindStructureResponse::setupFindStructureResponseDeserializer, Builder::build);
 
 	protected static void setupFindStructureResponseDeserializer(
 			DelegatingDeserializer<FindStructureResponse.Builder> op) {
@@ -826,14 +833,14 @@ public final class FindStructureResponse implements ToJsonp {
 		op.add(Builder::hasHeaderRow, JsonpDeserializer.booleanDeserializer(), "has_header_row");
 		op.add(Builder::hasByteOrderMarker, JsonpDeserializer.booleanDeserializer(), "has_byte_order_marker");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::fieldStats, JsonpDeserializer.stringMapDeserializer(FieldStat.DESERIALIZER), "field_stats");
+		op.add(Builder::fieldStats, JsonpDeserializer.stringMapDeserializer(FieldStat._DESERIALIZER), "field_stats");
 		op.add(Builder::sampleStart, JsonpDeserializer.stringDeserializer(), "sample_start");
-		op.add(Builder::numMessagesAnalyzed, JsonpDeserializer.numberDeserializer(), "num_messages_analyzed");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::numMessagesAnalyzed, JsonpDeserializer.integerDeserializer(), "num_messages_analyzed");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::quote, JsonpDeserializer.stringDeserializer(), "quote");
 		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");
 		op.add(Builder::needClientTimezone, JsonpDeserializer.booleanDeserializer(), "need_client_timezone");
-		op.add(Builder::numLinesAnalyzed, JsonpDeserializer.numberDeserializer(), "num_lines_analyzed");
+		op.add(Builder::numLinesAnalyzed, JsonpDeserializer.integerDeserializer(), "num_lines_analyzed");
 		op.add(Builder::columnNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"column_names");
 		op.add(Builder::explanation, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -847,7 +854,7 @@ public final class FindStructureResponse implements ToJsonp {
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "joda_timestamp_formats");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
 		op.add(Builder::shouldTrimFields, JsonpDeserializer.booleanDeserializer(), "should_trim_fields");
-		op.add(Builder::ingestPipeline, PipelineConfig.DESERIALIZER, "ingest_pipeline");
+		op.add(Builder::ingestPipeline, PipelineConfig._DESERIALIZER, "ingest_pipeline");
 
 	}
 

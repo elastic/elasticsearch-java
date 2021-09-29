@@ -24,39 +24,43 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TranslogStats
-public final class TranslogStats implements ToJsonp {
-	private final Number earliestLastModifiedAge;
+@JsonpDeserializable
+public final class TranslogStats implements JsonpSerializable {
+	private final long earliestLastModifiedAge;
 
-	private final Number operations;
+	private final long operations;
 
 	@Nullable
 	private final String size;
 
-	private final Number sizeInBytes;
+	private final long sizeInBytes;
 
-	private final Number uncommittedOperations;
+	private final int uncommittedOperations;
 
 	@Nullable
 	private final String uncommittedSize;
 
-	private final Number uncommittedSizeInBytes;
+	private final long uncommittedSizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected TranslogStats(Builder builder) {
+	public TranslogStats(Builder builder) {
 
 		this.earliestLastModifiedAge = Objects.requireNonNull(builder.earliestLastModifiedAge,
 				"earliest_last_modified_age");
@@ -70,17 +74,21 @@ public final class TranslogStats implements ToJsonp {
 
 	}
 
+	public TranslogStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code earliest_last_modified_age}
 	 */
-	public Number earliestLastModifiedAge() {
+	public long earliestLastModifiedAge() {
 		return this.earliestLastModifiedAge;
 	}
 
 	/**
 	 * API name: {@code operations}
 	 */
-	public Number operations() {
+	public long operations() {
 		return this.operations;
 	}
 
@@ -95,14 +103,14 @@ public final class TranslogStats implements ToJsonp {
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * API name: {@code uncommitted_operations}
 	 */
-	public Number uncommittedOperations() {
+	public int uncommittedOperations() {
 		return this.uncommittedOperations;
 	}
 
@@ -117,26 +125,26 @@ public final class TranslogStats implements ToJsonp {
 	/**
 	 * API name: {@code uncommitted_size_in_bytes}
 	 */
-	public Number uncommittedSizeInBytes() {
+	public long uncommittedSizeInBytes() {
 		return this.uncommittedSizeInBytes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("earliest_last_modified_age");
-		generator.write(this.earliestLastModifiedAge.doubleValue());
+		generator.write(this.earliestLastModifiedAge);
 
 		generator.writeKey("operations");
-		generator.write(this.operations.doubleValue());
+		generator.write(this.operations);
 
 		if (this.size != null) {
 
@@ -146,10 +154,10 @@ public final class TranslogStats implements ToJsonp {
 		}
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 		generator.writeKey("uncommitted_operations");
-		generator.write(this.uncommittedOperations.doubleValue());
+		generator.write(this.uncommittedOperations);
 
 		if (this.uncommittedSize != null) {
 
@@ -159,7 +167,7 @@ public final class TranslogStats implements ToJsonp {
 		}
 
 		generator.writeKey("uncommitted_size_in_bytes");
-		generator.write(this.uncommittedSizeInBytes.doubleValue());
+		generator.write(this.uncommittedSizeInBytes);
 
 	}
 
@@ -169,26 +177,26 @@ public final class TranslogStats implements ToJsonp {
 	 * Builder for {@link TranslogStats}.
 	 */
 	public static class Builder implements ObjectBuilder<TranslogStats> {
-		private Number earliestLastModifiedAge;
+		private Long earliestLastModifiedAge;
 
-		private Number operations;
+		private Long operations;
 
 		@Nullable
 		private String size;
 
-		private Number sizeInBytes;
+		private Long sizeInBytes;
 
-		private Number uncommittedOperations;
+		private Integer uncommittedOperations;
 
 		@Nullable
 		private String uncommittedSize;
 
-		private Number uncommittedSizeInBytes;
+		private Long uncommittedSizeInBytes;
 
 		/**
 		 * API name: {@code earliest_last_modified_age}
 		 */
-		public Builder earliestLastModifiedAge(Number value) {
+		public Builder earliestLastModifiedAge(long value) {
 			this.earliestLastModifiedAge = value;
 			return this;
 		}
@@ -196,7 +204,7 @@ public final class TranslogStats implements ToJsonp {
 		/**
 		 * API name: {@code operations}
 		 */
-		public Builder operations(Number value) {
+		public Builder operations(long value) {
 			this.operations = value;
 			return this;
 		}
@@ -212,7 +220,7 @@ public final class TranslogStats implements ToJsonp {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -220,7 +228,7 @@ public final class TranslogStats implements ToJsonp {
 		/**
 		 * API name: {@code uncommitted_operations}
 		 */
-		public Builder uncommittedOperations(Number value) {
+		public Builder uncommittedOperations(int value) {
 			this.uncommittedOperations = value;
 			return this;
 		}
@@ -236,7 +244,7 @@ public final class TranslogStats implements ToJsonp {
 		/**
 		 * API name: {@code uncommitted_size_in_bytes}
 		 */
-		public Builder uncommittedSizeInBytes(Number value) {
+		public Builder uncommittedSizeInBytes(long value) {
 			this.uncommittedSizeInBytes = value;
 			return this;
 		}
@@ -256,20 +264,20 @@ public final class TranslogStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for TranslogStats
+	 * Json deserializer for {@link TranslogStats}
 	 */
-	public static final JsonpDeserializer<TranslogStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, TranslogStats::setupTranslogStatsDeserializer);
+	public static final JsonpDeserializer<TranslogStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TranslogStats::setupTranslogStatsDeserializer, Builder::build);
 
 	protected static void setupTranslogStatsDeserializer(DelegatingDeserializer<TranslogStats.Builder> op) {
 
-		op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.numberDeserializer(), "earliest_last_modified_age");
-		op.add(Builder::operations, JsonpDeserializer.numberDeserializer(), "operations");
+		op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.longDeserializer(), "earliest_last_modified_age");
+		op.add(Builder::operations, JsonpDeserializer.longDeserializer(), "operations");
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
-		op.add(Builder::uncommittedOperations, JsonpDeserializer.numberDeserializer(), "uncommitted_operations");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
+		op.add(Builder::uncommittedOperations, JsonpDeserializer.integerDeserializer(), "uncommitted_operations");
 		op.add(Builder::uncommittedSize, JsonpDeserializer.stringDeserializer(), "uncommitted_size");
-		op.add(Builder::uncommittedSizeInBytes, JsonpDeserializer.numberDeserializer(), "uncommitted_size_in_bytes");
+		op.add(Builder::uncommittedSizeInBytes, JsonpDeserializer.longDeserializer(), "uncommitted_size_in_bytes");
 
 	}
 

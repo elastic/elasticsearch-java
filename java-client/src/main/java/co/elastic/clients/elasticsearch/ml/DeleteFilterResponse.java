@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.delete_filter.Response
+@JsonpDeserializable
 public final class DeleteFilterResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteFilterResponse(Builder builder) {
+	public DeleteFilterResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteFilterResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteFilterResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteFilterResponse
+	 * Json deserializer for {@link DeleteFilterResponse}
 	 */
-	public static final JsonpDeserializer<DeleteFilterResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteFilterResponse::setupDeleteFilterResponseDeserializer);
+	public static final JsonpDeserializer<DeleteFilterResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteFilterResponse::setupDeleteFilterResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteFilterResponseDeserializer(
 			DelegatingDeserializer<DeleteFilterResponse.Builder> op) {

@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.pending_tasks;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.pending_tasks.PendingTasksRecord
-public final class PendingTasksRecord implements ToJsonp {
+@JsonpDeserializable
+public final class PendingTasksRecord implements JsonpSerializable {
 	@Nullable
 	private final String insertorder;
 
@@ -50,7 +54,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PendingTasksRecord(Builder builder) {
+	public PendingTasksRecord(Builder builder) {
 
 		this.insertorder = builder.insertorder;
 		this.timeinqueue = builder.timeinqueue;
@@ -59,9 +63,13 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	}
 
+	public PendingTasksRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * task insertion order
-	 *
+	 * <p>
 	 * API name: {@code insertOrder}
 	 */
 	@Nullable
@@ -71,7 +79,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * how long task has been in queue
-	 *
+	 * <p>
 	 * API name: {@code timeInQueue}
 	 */
 	@Nullable
@@ -81,7 +89,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * task priority
-	 *
+	 * <p>
 	 * API name: {@code priority}
 	 */
 	@Nullable
@@ -91,7 +99,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 	/**
 	 * task source
-	 *
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -102,13 +110,13 @@ public final class PendingTasksRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.insertorder != null) {
 
@@ -157,7 +165,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * task insertion order
-		 *
+		 * <p>
 		 * API name: {@code insertOrder}
 		 */
 		public Builder insertorder(@Nullable String value) {
@@ -167,7 +175,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * how long task has been in queue
-		 *
+		 * <p>
 		 * API name: {@code timeInQueue}
 		 */
 		public Builder timeinqueue(@Nullable String value) {
@@ -177,7 +185,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * task priority
-		 *
+		 * <p>
 		 * API name: {@code priority}
 		 */
 		public Builder priority(@Nullable String value) {
@@ -187,7 +195,7 @@ public final class PendingTasksRecord implements ToJsonp {
 
 		/**
 		 * task source
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public Builder source(@Nullable String value) {
@@ -210,10 +218,10 @@ public final class PendingTasksRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PendingTasksRecord
+	 * Json deserializer for {@link PendingTasksRecord}
 	 */
-	public static final JsonpDeserializer<PendingTasksRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PendingTasksRecord::setupPendingTasksRecordDeserializer);
+	public static final JsonpDeserializer<PendingTasksRecord> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PendingTasksRecord::setupPendingTasksRecordDeserializer, Builder::build);
 
 	protected static void setupPendingTasksRecordDeserializer(DelegatingDeserializer<PendingTasksRecord.Builder> op) {
 

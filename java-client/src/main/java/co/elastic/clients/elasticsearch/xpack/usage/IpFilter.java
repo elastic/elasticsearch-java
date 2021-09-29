@@ -24,56 +24,62 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: xpack.usage.IpFilter
-public final class IpFilter implements ToJsonp {
-	private final Boolean http;
+@JsonpDeserializable
+public final class IpFilter implements JsonpSerializable {
+	private final boolean http;
 
-	private final Boolean transport;
+	private final boolean transport;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IpFilter(Builder builder) {
+	public IpFilter(Builder builder) {
 
 		this.http = Objects.requireNonNull(builder.http, "http");
 		this.transport = Objects.requireNonNull(builder.transport, "transport");
 
 	}
 
+	public IpFilter(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code http}
 	 */
-	public Boolean http() {
+	public boolean http() {
 		return this.http;
 	}
 
 	/**
 	 * API name: {@code transport}
 	 */
-	public Boolean transport() {
+	public boolean transport() {
 		return this.transport;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("http");
 		generator.write(this.http);
@@ -96,7 +102,7 @@ public final class IpFilter implements ToJsonp {
 		/**
 		 * API name: {@code http}
 		 */
-		public Builder http(Boolean value) {
+		public Builder http(boolean value) {
 			this.http = value;
 			return this;
 		}
@@ -104,7 +110,7 @@ public final class IpFilter implements ToJsonp {
 		/**
 		 * API name: {@code transport}
 		 */
-		public Builder transport(Boolean value) {
+		public Builder transport(boolean value) {
 			this.transport = value;
 			return this;
 		}
@@ -124,10 +130,10 @@ public final class IpFilter implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IpFilter
+	 * Json deserializer for {@link IpFilter}
 	 */
-	public static final JsonpDeserializer<IpFilter> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IpFilter::setupIpFilterDeserializer);
+	public static final JsonpDeserializer<IpFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IpFilter::setupIpFilterDeserializer, Builder::build);
 
 	protected static void setupIpFilterDeserializer(DelegatingDeserializer<IpFilter.Builder> op) {
 

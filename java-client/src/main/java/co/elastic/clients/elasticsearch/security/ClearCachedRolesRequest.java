@@ -25,10 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,22 +40,30 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Request
+
 public final class ClearCachedRolesRequest extends RequestBase {
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedRolesRequest(Builder builder) {
+	public ClearCachedRolesRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
 
 	}
 
+	public ClearCachedRolesRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Role name
+	 * <p>
 	 * API name: {@code name}
 	 */
 	public List<String> name() {
@@ -68,6 +79,8 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		private List<String> name;
 
 		/**
+		 * Role name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(List<String> value) {
@@ -76,6 +89,8 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		}
 
 		/**
+		 * Role name
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -84,7 +99,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -111,7 +126,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_roles}".
 	 */
-	public static final Endpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -124,19 +139,18 @@ public final class ClearCachedRolesRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_security");
 					buf.append("/role");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -144,5 +158,5 @@ public final class ClearCachedRolesRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, ClearCachedRolesResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedRolesResponse._DESERIALIZER);
 }

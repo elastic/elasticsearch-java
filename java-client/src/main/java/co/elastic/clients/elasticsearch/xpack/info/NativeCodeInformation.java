@@ -24,30 +24,37 @@
 package co.elastic.clients.elasticsearch.xpack.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.info.NativeCodeInformation
-public final class NativeCodeInformation implements ToJsonp {
+@JsonpDeserializable
+public final class NativeCodeInformation implements JsonpSerializable {
 	private final String buildHash;
 
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NativeCodeInformation(Builder builder) {
+	public NativeCodeInformation(Builder builder) {
 
 		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
 		this.version = Objects.requireNonNull(builder.version, "version");
 
+	}
+
+	public NativeCodeInformation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,13 +74,13 @@ public final class NativeCodeInformation implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("build_hash");
 		generator.write(this.buildHash);
@@ -124,10 +131,10 @@ public final class NativeCodeInformation implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NativeCodeInformation
+	 * Json deserializer for {@link NativeCodeInformation}
 	 */
-	public static final JsonpDeserializer<NativeCodeInformation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NativeCodeInformation::setupNativeCodeInformationDeserializer);
+	public static final JsonpDeserializer<NativeCodeInformation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NativeCodeInformation::setupNativeCodeInformationDeserializer, Builder::build);
 
 	protected static void setupNativeCodeInformationDeserializer(
 			DelegatingDeserializer<NativeCodeInformation.Builder> op) {

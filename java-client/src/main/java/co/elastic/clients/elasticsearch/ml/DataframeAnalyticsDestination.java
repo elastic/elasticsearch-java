@@ -24,19 +24,22 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsDestination
-public final class DataframeAnalyticsDestination implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalyticsDestination implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -44,17 +47,21 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsDestination(Builder builder) {
+	public DataframeAnalyticsDestination(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.resultsField = builder.resultsField;
 
 	}
 
+	public DataframeAnalyticsDestination(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Defines the destination index to store the results of the data frame
 	 * analytics job.
-	 *
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -63,8 +70,8 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 
 	/**
 	 * Defines the name of the field in which to store the results of the analysis.
-	 * Defaults to ml.
-	 *
+	 * Defaults to <code>ml</code>.
+	 * <p>
 	 * API name: {@code results_field}
 	 */
 	@Nullable
@@ -75,13 +82,13 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("index");
 		generator.write(this.index);
@@ -109,7 +116,7 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 		/**
 		 * Defines the destination index to store the results of the data frame
 		 * analytics job.
-		 *
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -119,8 +126,8 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 
 		/**
 		 * Defines the name of the field in which to store the results of the analysis.
-		 * Defaults to ml.
-		 *
+		 * Defaults to <code>ml</code>.
+		 * <p>
 		 * API name: {@code results_field}
 		 */
 		public Builder resultsField(@Nullable String value) {
@@ -143,11 +150,11 @@ public final class DataframeAnalyticsDestination implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsDestination
+	 * Json deserializer for {@link DataframeAnalyticsDestination}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsDestination> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsDestination::setupDataframeAnalyticsDestinationDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsDestination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeAnalyticsDestination::setupDataframeAnalyticsDestinationDeserializer,
+			Builder::build);
 
 	protected static void setupDataframeAnalyticsDestinationDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsDestination.Builder> op) {

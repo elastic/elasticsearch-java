@@ -25,20 +25,25 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Request
+
 public final class GetTrainedModelsStatsRequest extends RequestBase {
 	@Nullable
 	private final String modelId;
@@ -47,14 +52,14 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Number from;
+	private final Integer from;
 
 	@Nullable
-	private final Number size;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetTrainedModelsStatsRequest(Builder builder) {
+	public GetTrainedModelsStatsRequest(Builder builder) {
 
 		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
@@ -63,9 +68,13 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	}
 
+	public GetTrainedModelsStatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The unique identifier of the trained model.
-	 *
+	 * <p>
 	 * API name: {@code model_id}
 	 */
 	@Nullable
@@ -74,11 +83,13 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies what to do when the request: - Contains wildcard expressions and
-	 * there are no models that match. - Contains the _all string or no identifiers
-	 * and there are no matches. - Contains wildcard expressions and there are only
-	 * partial matches.
-	 *
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no models that match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
@@ -88,21 +99,21 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 	/**
 	 * Skips the specified number of models.
-	 *
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Number from() {
+	public Integer from() {
 		return this.from;
 	}
 
 	/**
 	 * Specifies the maximum number of models to obtain.
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Number size() {
+	public Integer size() {
 		return this.size;
 	}
 
@@ -119,14 +130,14 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Number from;
+		private Integer from;
 
 		@Nullable
-		private Number size;
+		private Integer size;
 
 		/**
 		 * The unique identifier of the trained model.
-		 *
+		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public Builder modelId(@Nullable String value) {
@@ -135,11 +146,13 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies what to do when the request: - Contains wildcard expressions and
-		 * there are no models that match. - Contains the _all string or no identifiers
-		 * and there are no matches. - Contains wildcard expressions and there are only
-		 * partial matches.
-		 *
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no models that match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
 		public Builder allowNoMatch(@Nullable Boolean value) {
@@ -149,20 +162,20 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 
 		/**
 		 * Skips the specified number of models.
-		 *
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Number value) {
+		public Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
 		 * Specifies the maximum number of models to obtain.
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Number value) {
+		public Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -184,7 +197,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_trained_models_stats}".
 	 */
-	public static final Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -205,7 +218,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					buf.append(request.modelId);
+					SimpleEndpoint.pathEncode(request.modelId, buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
@@ -216,7 +229,7 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 					buf.append("/_stats");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -227,12 +240,12 @@ public final class GetTrainedModelsStatsRequest extends RequestBase {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.from != null) {
-					params.put("from", request.from.toString());
+					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetTrainedModelsStatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetTrainedModelsStatsResponse._DESERIALIZER);
 }

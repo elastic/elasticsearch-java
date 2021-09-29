@@ -24,27 +24,34 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingsLifecycle
-public final class IndexSettingsLifecycle implements ToJsonp {
+@JsonpDeserializable
+public final class IndexSettingsLifecycle implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexSettingsLifecycle(Builder builder) {
+	public IndexSettingsLifecycle(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
 
+	}
+
+	public IndexSettingsLifecycle(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,13 +64,13 @@ public final class IndexSettingsLifecycle implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -101,10 +108,10 @@ public final class IndexSettingsLifecycle implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexSettingsLifecycle
+	 * Json deserializer for {@link IndexSettingsLifecycle}
 	 */
-	public static final JsonpDeserializer<IndexSettingsLifecycle> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexSettingsLifecycle::setupIndexSettingsLifecycleDeserializer);
+	public static final JsonpDeserializer<IndexSettingsLifecycle> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexSettingsLifecycle::setupIndexSettingsLifecycleDeserializer, Builder::build);
 
 	protected static void setupIndexSettingsLifecycleDeserializer(
 			DelegatingDeserializer<IndexSettingsLifecycle.Builder> op) {

@@ -24,38 +24,43 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.WebhookResult
-public final class WebhookResult implements ToJsonp {
-	private final JsonValue request;
+@JsonpDeserializable
+public final class WebhookResult implements JsonpSerializable {
+	private final HttpInputRequestResult request;
 
 	@Nullable
 	private final HttpInputResponseResult response;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected WebhookResult(Builder builder) {
+	public WebhookResult(Builder builder) {
 
 		this.request = Objects.requireNonNull(builder.request, "request");
 		this.response = builder.response;
 
 	}
 
+	public WebhookResult(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code request}
 	 */
-	public JsonValue request() {
+	public HttpInputRequestResult request() {
 		return this.request;
 	}
 
@@ -70,21 +75,21 @@ public final class WebhookResult implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("request");
-		generator.write(this.request);
+		this.request.serialize(generator, mapper);
 
 		if (this.response != null) {
 
 			generator.writeKey("response");
-			this.response.toJsonp(generator, mapper);
+			this.response.serialize(generator, mapper);
 
 		}
 
@@ -96,7 +101,7 @@ public final class WebhookResult implements ToJsonp {
 	 * Builder for {@link WebhookResult}.
 	 */
 	public static class Builder implements ObjectBuilder<WebhookResult> {
-		private JsonValue request;
+		private HttpInputRequestResult request;
 
 		@Nullable
 		private HttpInputResponseResult response;
@@ -104,9 +109,16 @@ public final class WebhookResult implements ToJsonp {
 		/**
 		 * API name: {@code request}
 		 */
-		public Builder request(JsonValue value) {
+		public Builder request(HttpInputRequestResult value) {
 			this.request = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code request}
+		 */
+		public Builder request(Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
 		}
 
 		/**
@@ -139,15 +151,15 @@ public final class WebhookResult implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for WebhookResult
+	 * Json deserializer for {@link WebhookResult}
 	 */
-	public static final JsonpDeserializer<WebhookResult> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, WebhookResult::setupWebhookResultDeserializer);
+	public static final JsonpDeserializer<WebhookResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			WebhookResult::setupWebhookResultDeserializer, Builder::build);
 
 	protected static void setupWebhookResultDeserializer(DelegatingDeserializer<WebhookResult.Builder> op) {
 
-		op.add(Builder::request, JsonpDeserializer.jsonValueDeserializer(), "request");
-		op.add(Builder::response, HttpInputResponseResult.DESERIALIZER, "response");
+		op.add(Builder::request, HttpInputRequestResult._DESERIALIZER, "request");
+		op.add(Builder::response, HttpInputResponseResult._DESERIALIZER, "response");
 
 	}
 

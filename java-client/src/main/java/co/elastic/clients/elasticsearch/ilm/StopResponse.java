@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ilm.stop.Response
+@JsonpDeserializable
 public final class StopResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected StopResponse(Builder builder) {
+	public StopResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public StopResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class StopResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for StopResponse
+	 * Json deserializer for {@link StopResponse}
 	 */
-	public static final JsonpDeserializer<StopResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, StopResponse::setupStopResponseDeserializer);
+	public static final JsonpDeserializer<StopResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StopResponse::setupStopResponseDeserializer, Builder::build);
 
 	protected static void setupStopResponseDeserializer(DelegatingDeserializer<StopResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);

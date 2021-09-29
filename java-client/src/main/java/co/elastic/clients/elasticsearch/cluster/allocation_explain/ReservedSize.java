@@ -24,40 +24,48 @@
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.ReservedSize
-public final class ReservedSize implements ToJsonp {
+@JsonpDeserializable
+public final class ReservedSize implements JsonpSerializable {
 	private final String nodeId;
 
 	private final String path;
 
-	private final Number total;
+	private final long total;
 
 	private final List<String> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ReservedSize(Builder builder) {
+	public ReservedSize(Builder builder) {
 
 		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
 		this.path = Objects.requireNonNull(builder.path, "path");
 		this.total = Objects.requireNonNull(builder.total, "total");
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
 
+	}
+
+	public ReservedSize(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -77,7 +85,7 @@ public final class ReservedSize implements ToJsonp {
 	/**
 	 * API name: {@code total}
 	 */
-	public Number total() {
+	public long total() {
 		return this.total;
 	}
 
@@ -91,13 +99,13 @@ public final class ReservedSize implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
@@ -106,7 +114,7 @@ public final class ReservedSize implements ToJsonp {
 		generator.write(this.path);
 
 		generator.writeKey("total");
-		generator.write(this.total.doubleValue());
+		generator.write(this.total);
 
 		generator.writeKey("shards");
 		generator.writeStartArray();
@@ -128,7 +136,7 @@ public final class ReservedSize implements ToJsonp {
 
 		private String path;
 
-		private Number total;
+		private Long total;
 
 		private List<String> shards;
 
@@ -151,7 +159,7 @@ public final class ReservedSize implements ToJsonp {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -173,7 +181,7 @@ public final class ReservedSize implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
 		 */
 		public Builder addShards(String value) {
 			if (this.shards == null) {
@@ -198,16 +206,16 @@ public final class ReservedSize implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ReservedSize
+	 * Json deserializer for {@link ReservedSize}
 	 */
-	public static final JsonpDeserializer<ReservedSize> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ReservedSize::setupReservedSizeDeserializer);
+	public static final JsonpDeserializer<ReservedSize> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ReservedSize::setupReservedSizeDeserializer, Builder::build);
 
 	protected static void setupReservedSizeDeserializer(DelegatingDeserializer<ReservedSize.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::total, JsonpDeserializer.numberDeserializer(), "total");
+		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "shards");
 
 	}

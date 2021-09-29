@@ -24,62 +24,68 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: _types.Retries
-public final class Retries implements ToJsonp {
-	private final Number bulk;
+@JsonpDeserializable
+public final class Retries implements JsonpSerializable {
+	private final long bulk;
 
-	private final Number search;
+	private final long search;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Retries(Builder builder) {
+	public Retries(Builder builder) {
 
 		this.bulk = Objects.requireNonNull(builder.bulk, "bulk");
 		this.search = Objects.requireNonNull(builder.search, "search");
 
 	}
 
+	public Retries(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code bulk}
 	 */
-	public Number bulk() {
+	public long bulk() {
 		return this.bulk;
 	}
 
 	/**
 	 * API name: {@code search}
 	 */
-	public Number search() {
+	public long search() {
 		return this.search;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bulk");
-		generator.write(this.bulk.doubleValue());
+		generator.write(this.bulk);
 
 		generator.writeKey("search");
-		generator.write(this.search.doubleValue());
+		generator.write(this.search);
 
 	}
 
@@ -89,14 +95,14 @@ public final class Retries implements ToJsonp {
 	 * Builder for {@link Retries}.
 	 */
 	public static class Builder implements ObjectBuilder<Retries> {
-		private Number bulk;
+		private Long bulk;
 
-		private Number search;
+		private Long search;
 
 		/**
 		 * API name: {@code bulk}
 		 */
-		public Builder bulk(Number value) {
+		public Builder bulk(long value) {
 			this.bulk = value;
 			return this;
 		}
@@ -104,7 +110,7 @@ public final class Retries implements ToJsonp {
 		/**
 		 * API name: {@code search}
 		 */
-		public Builder search(Number value) {
+		public Builder search(long value) {
 			this.search = value;
 			return this;
 		}
@@ -124,15 +130,15 @@ public final class Retries implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Retries
+	 * Json deserializer for {@link Retries}
 	 */
-	public static final JsonpDeserializer<Retries> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Retries::setupRetriesDeserializer);
+	public static final JsonpDeserializer<Retries> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Retries::setupRetriesDeserializer, Builder::build);
 
 	protected static void setupRetriesDeserializer(DelegatingDeserializer<Retries.Builder> op) {
 
-		op.add(Builder::bulk, JsonpDeserializer.numberDeserializer(), "bulk");
-		op.add(Builder::search, JsonpDeserializer.numberDeserializer(), "search");
+		op.add(Builder::bulk, JsonpDeserializer.longDeserializer(), "bulk");
+		op.add(Builder::search, JsonpDeserializer.longDeserializer(), "search");
 
 	}
 

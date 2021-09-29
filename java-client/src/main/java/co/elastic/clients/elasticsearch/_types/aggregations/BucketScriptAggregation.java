@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -31,31 +32,48 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.BucketScriptAggregation
-public final class BucketScriptAggregation extends PipelineAggregationBase {
+@JsonpDeserializable
+public final class BucketScriptAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue script;
+	private final JsonValue /* _types.Script */ script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BucketScriptAggregation(Builder builder) {
+	public BucketScriptAggregation(Builder builder) {
 		super(builder);
+
 		this.script = builder.script;
 
+	}
+
+	public BucketScriptAggregation(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Aggregation} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "bucket_script";
 	}
 
 	/**
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue script() {
+	public JsonValue /* _types.Script */ script() {
 		return this.script;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.script != null) {
 
 			generator.writeKey("script");
@@ -74,12 +92,12 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 			implements
 				ObjectBuilder<BucketScriptAggregation> {
 		@Nullable
-		private JsonValue script;
+		private JsonValue /* _types.Script */ script;
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue value) {
+		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
 			this.script = value;
 			return this;
 		}
@@ -104,10 +122,10 @@ public final class BucketScriptAggregation extends PipelineAggregationBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BucketScriptAggregation
+	 * Json deserializer for {@link BucketScriptAggregation}
 	 */
-	public static final JsonpDeserializer<BucketScriptAggregation> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer);
+	public static final JsonpDeserializer<BucketScriptAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BucketScriptAggregation::setupBucketScriptAggregationDeserializer, Builder::build);
 
 	protected static void setupBucketScriptAggregationDeserializer(
 			DelegatingDeserializer<BucketScriptAggregation.Builder> op) {

@@ -24,26 +24,29 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmVersion
-public final class ClusterJvmVersion implements ToJsonp {
-	private final Boolean bundledJdk;
+@JsonpDeserializable
+public final class ClusterJvmVersion implements JsonpSerializable {
+	private final boolean bundledJdk;
 
-	private final Number count;
+	private final int count;
 
-	private final Boolean usingBundledJdk;
+	private final boolean usingBundledJdk;
 
 	private final String version;
 
@@ -55,7 +58,7 @@ public final class ClusterJvmVersion implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterJvmVersion(Builder builder) {
+	public ClusterJvmVersion(Builder builder) {
 
 		this.bundledJdk = Objects.requireNonNull(builder.bundledJdk, "bundled_jdk");
 		this.count = Objects.requireNonNull(builder.count, "count");
@@ -67,24 +70,28 @@ public final class ClusterJvmVersion implements ToJsonp {
 
 	}
 
+	public ClusterJvmVersion(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code bundled_jdk}
 	 */
-	public Boolean bundledJdk() {
+	public boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
 	/**
 	 * API name: {@code using_bundled_jdk}
 	 */
-	public Boolean usingBundledJdk() {
+	public boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
@@ -119,19 +126,19 @@ public final class ClusterJvmVersion implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bundled_jdk");
 		generator.write(this.bundledJdk);
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("using_bundled_jdk");
 		generator.write(this.usingBundledJdk);
@@ -158,7 +165,7 @@ public final class ClusterJvmVersion implements ToJsonp {
 	public static class Builder implements ObjectBuilder<ClusterJvmVersion> {
 		private Boolean bundledJdk;
 
-		private Number count;
+		private Integer count;
 
 		private Boolean usingBundledJdk;
 
@@ -173,7 +180,7 @@ public final class ClusterJvmVersion implements ToJsonp {
 		/**
 		 * API name: {@code bundled_jdk}
 		 */
-		public Builder bundledJdk(Boolean value) {
+		public Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
 			return this;
 		}
@@ -181,7 +188,7 @@ public final class ClusterJvmVersion implements ToJsonp {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -189,7 +196,7 @@ public final class ClusterJvmVersion implements ToJsonp {
 		/**
 		 * API name: {@code using_bundled_jdk}
 		 */
-		public Builder usingBundledJdk(Boolean value) {
+		public Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
 			return this;
 		}
@@ -241,15 +248,15 @@ public final class ClusterJvmVersion implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterJvmVersion
+	 * Json deserializer for {@link ClusterJvmVersion}
 	 */
-	public static final JsonpDeserializer<ClusterJvmVersion> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer);
+	public static final JsonpDeserializer<ClusterJvmVersion> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer, Builder::build);
 
 	protected static void setupClusterJvmVersionDeserializer(DelegatingDeserializer<ClusterJvmVersion.Builder> op) {
 
 		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");

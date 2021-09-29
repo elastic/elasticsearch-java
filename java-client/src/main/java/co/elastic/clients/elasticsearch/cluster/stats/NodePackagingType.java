@@ -24,21 +24,24 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.NodePackagingType
-public final class NodePackagingType implements ToJsonp {
-	private final Number count;
+@JsonpDeserializable
+public final class NodePackagingType implements JsonpSerializable {
+	private final int count;
 
 	private final String flavor;
 
@@ -46,7 +49,7 @@ public final class NodePackagingType implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodePackagingType(Builder builder) {
+	public NodePackagingType(Builder builder) {
 
 		this.count = Objects.requireNonNull(builder.count, "count");
 		this.flavor = Objects.requireNonNull(builder.flavor, "flavor");
@@ -54,10 +57,14 @@ public final class NodePackagingType implements ToJsonp {
 
 	}
 
+	public NodePackagingType(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public int count() {
 		return this.count;
 	}
 
@@ -78,16 +85,16 @@ public final class NodePackagingType implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 		generator.writeKey("flavor");
 		generator.write(this.flavor);
@@ -103,7 +110,7 @@ public final class NodePackagingType implements ToJsonp {
 	 * Builder for {@link NodePackagingType}.
 	 */
 	public static class Builder implements ObjectBuilder<NodePackagingType> {
-		private Number count;
+		private Integer count;
 
 		private String flavor;
 
@@ -112,7 +119,7 @@ public final class NodePackagingType implements ToJsonp {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -148,14 +155,14 @@ public final class NodePackagingType implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodePackagingType
+	 * Json deserializer for {@link NodePackagingType}
 	 */
-	public static final JsonpDeserializer<NodePackagingType> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodePackagingType::setupNodePackagingTypeDeserializer);
+	public static final JsonpDeserializer<NodePackagingType> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodePackagingType::setupNodePackagingTypeDeserializer, Builder::build);
 
 	protected static void setupNodePackagingTypeDeserializer(DelegatingDeserializer<NodePackagingType.Builder> op) {
 
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::flavor, JsonpDeserializer.stringDeserializer(), "flavor");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

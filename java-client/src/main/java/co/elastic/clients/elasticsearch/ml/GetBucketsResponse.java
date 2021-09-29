@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,18 +42,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_buckets.Response
-public final class GetBucketsResponse implements ToJsonp {
+@JsonpDeserializable
+public final class GetBucketsResponse implements JsonpSerializable {
 	private final List<BucketSummary> buckets;
 
-	private final Number count;
+	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetBucketsResponse(Builder builder) {
+	public GetBucketsResponse(Builder builder) {
 
-		this.buckets = Objects.requireNonNull(builder.buckets, "buckets");
+		this.buckets = ModelTypeHelper.unmodifiableNonNull(builder.buckets, "buckets");
 		this.count = Objects.requireNonNull(builder.count, "count");
 
+	}
+
+	public GetBucketsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,31 +71,31 @@ public final class GetBucketsResponse implements ToJsonp {
 	/**
 	 * API name: {@code count}
 	 */
-	public Number count() {
+	public long count() {
 		return this.count;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("buckets");
 		generator.writeStartArray();
 		for (BucketSummary item0 : this.buckets) {
-			item0.toJsonp(generator, mapper);
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
 
 		generator.writeKey("count");
-		generator.write(this.count.doubleValue());
+		generator.write(this.count);
 
 	}
 
@@ -100,7 +107,7 @@ public final class GetBucketsResponse implements ToJsonp {
 	public static class Builder implements ObjectBuilder<GetBucketsResponse> {
 		private List<BucketSummary> buckets;
 
-		private Number count;
+		private Long count;
 
 		/**
 		 * API name: {@code buckets}
@@ -119,7 +126,7 @@ public final class GetBucketsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #buckets(List)}, creating the list if needed.
+		 * Add a value to {@link #buckets(List)}, creating the list if needed. 4
 		 */
 		public Builder addBuckets(BucketSummary value) {
 			if (this.buckets == null) {
@@ -137,7 +144,7 @@ public final class GetBucketsResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #buckets(List)}, creating the list if needed.
+		 * Add a value to {@link #buckets(List)}, creating the list if needed. 5
 		 */
 		public Builder addBuckets(Function<BucketSummary.Builder, ObjectBuilder<BucketSummary>> fn) {
 			return this.addBuckets(fn.apply(new BucketSummary.Builder()).build());
@@ -146,7 +153,7 @@ public final class GetBucketsResponse implements ToJsonp {
 		/**
 		 * API name: {@code count}
 		 */
-		public Builder count(Number value) {
+		public Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -166,15 +173,15 @@ public final class GetBucketsResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetBucketsResponse
+	 * Json deserializer for {@link GetBucketsResponse}
 	 */
-	public static final JsonpDeserializer<GetBucketsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetBucketsResponse::setupGetBucketsResponseDeserializer);
+	public static final JsonpDeserializer<GetBucketsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetBucketsResponse::setupGetBucketsResponseDeserializer, Builder::build);
 
 	protected static void setupGetBucketsResponseDeserializer(DelegatingDeserializer<GetBucketsResponse.Builder> op) {
 
-		op.add(Builder::buckets, JsonpDeserializer.arrayDeserializer(BucketSummary.DESERIALIZER), "buckets");
-		op.add(Builder::count, JsonpDeserializer.numberDeserializer(), "count");
+		op.add(Builder::buckets, JsonpDeserializer.arrayDeserializer(BucketSummary._DESERIALIZER), "buckets");
+		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 
 	}
 

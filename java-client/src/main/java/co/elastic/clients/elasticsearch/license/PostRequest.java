@@ -25,13 +25,16 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -40,11 +43,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Request
-public final class PostRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PostRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean acknowledge;
 
@@ -56,15 +61,21 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PostRequest(Builder builder) {
+	public PostRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
-		this.licenses = builder.licenses;
+		this.licenses = ModelTypeHelper.unmodifiable(builder.licenses);
 
 	}
 
+	public PostRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * <p>
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
@@ -91,18 +102,18 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.license != null) {
 
 			generator.writeKey("license");
-			this.license.toJsonp(generator, mapper);
+			this.license.serialize(generator, mapper);
 
 		}
 		if (this.licenses != null) {
@@ -110,7 +121,7 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 			generator.writeKey("licenses");
 			generator.writeStartArray();
 			for (License item0 : this.licenses) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -135,6 +146,8 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 		private List<License> licenses;
 
 		/**
+		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * <p>
 		 * API name: {@code acknowledge}
 		 */
 		public Builder acknowledge(@Nullable Boolean value) {
@@ -174,7 +187,7 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed.
+		 * Add a value to {@link #licenses(List)}, creating the list if needed. 4
 		 */
 		public Builder addLicenses(License value) {
 			if (this.licenses == null) {
@@ -192,7 +205,7 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed.
+		 * Add a value to {@link #licenses(List)}, creating the list if needed. 5
 		 */
 		public Builder addLicenses(Function<License.Builder, ObjectBuilder<License>> fn) {
 			return this.addLicenses(fn.apply(new License.Builder()).build());
@@ -213,15 +226,15 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PostRequest
+	 * Json deserializer for {@link PostRequest}
 	 */
-	public static final JsonpDeserializer<PostRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PostRequest::setupPostRequestDeserializer);
+	public static final JsonpDeserializer<PostRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PostRequest::setupPostRequestDeserializer, Builder::build);
 
 	protected static void setupPostRequestDeserializer(DelegatingDeserializer<PostRequest.Builder> op) {
 
-		op.add(Builder::license, License.DESERIALIZER, "license");
-		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License.DESERIALIZER), "licenses");
+		op.add(Builder::license, License._DESERIALIZER, "license");
+		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License._DESERIALIZER), "licenses");
 
 	}
 
@@ -230,7 +243,7 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code license.post}".
 	 */
-	public static final Endpoint<PostRequest, PostResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PostRequest, PostResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -251,5 +264,5 @@ public final class PostRequest extends RequestBase implements ToJsonp {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PostResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PostResponse._DESERIALIZER);
 }

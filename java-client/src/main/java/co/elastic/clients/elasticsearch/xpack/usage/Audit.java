@@ -24,29 +24,39 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Audit
+@JsonpDeserializable
 public final class Audit extends FeatureToggle {
 	@Nullable
 	private final List<String> outputs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Audit(Builder builder) {
+	public Audit(Builder builder) {
 		super(builder);
-		this.outputs = builder.outputs;
 
+		this.outputs = ModelTypeHelper.unmodifiable(builder.outputs);
+
+	}
+
+	public Audit(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,8 +67,9 @@ public final class Audit extends FeatureToggle {
 		return this.outputs;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.outputs != null) {
 
 			generator.writeKey("outputs");
@@ -99,7 +110,7 @@ public final class Audit extends FeatureToggle {
 		}
 
 		/**
-		 * Add a value to {@link #outputs(List)}, creating the list if needed.
+		 * Add a value to {@link #outputs(List)}, creating the list if needed. 4
 		 */
 		public Builder addOutputs(String value) {
 			if (this.outputs == null) {
@@ -129,10 +140,10 @@ public final class Audit extends FeatureToggle {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Audit
+	 * Json deserializer for {@link Audit}
 	 */
-	public static final JsonpDeserializer<Audit> DESERIALIZER = ObjectBuilderDeserializer.createForObject(Builder::new,
-			Audit::setupAuditDeserializer);
+	public static final JsonpDeserializer<Audit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Audit::setupAuditDeserializer, Builder::build);
 
 	protected static void setupAuditDeserializer(DelegatingDeserializer<Audit.Builder> op) {
 		FeatureToggle.setupFeatureToggleDeserializer(op);

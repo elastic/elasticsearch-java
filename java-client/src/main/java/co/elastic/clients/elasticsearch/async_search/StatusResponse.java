@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
@@ -32,29 +33,35 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search.status.Response
+
 public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	private final ShardStatistics shards;
 
-	private final Number completionStatus;
+	private final int completionStatus;
 
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatusResponse(Builder<TDocument> builder) {
+	public StatusResponse(Builder<TDocument> builder) {
 		super(builder);
+
 		this.shards = Objects.requireNonNull(builder.shards, "_shards");
 		this.completionStatus = Objects.requireNonNull(builder.completionStatus, "completion_status");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public StatusResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -67,18 +74,19 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 	/**
 	 * API name: {@code completion_status}
 	 */
-	public Number completionStatus() {
+	public int completionStatus() {
 		return this.completionStatus;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("_shards");
-		this.shards.toJsonp(generator, mapper);
+		this.shards.serialize(generator, mapper);
 
 		generator.writeKey("completion_status");
-		generator.write(this.completionStatus.doubleValue());
+		generator.write(this.completionStatus);
 
 	}
 
@@ -92,7 +100,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 				ObjectBuilder<StatusResponse<TDocument>> {
 		private ShardStatistics shards;
 
-		private Number completionStatus;
+		private Integer completionStatus;
 
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
@@ -115,7 +123,7 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		/**
 		 * API name: {@code completion_status}
 		 */
-		public Builder<TDocument> completionStatus(Number value) {
+		public Builder<TDocument> completionStatus(int value) {
 			this.completionStatus = value;
 			return this;
 		}
@@ -123,7 +131,6 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
@@ -162,8 +169,8 @@ public final class StatusResponse<TDocument> extends AsyncSearchResponseBase {
 			DelegatingDeserializer<StatusResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
-		op.add(Builder::shards, ShardStatistics.DESERIALIZER, "_shards");
-		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
+		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
+		op.add(Builder::completionStatus, JsonpDeserializer.integerDeserializer(), "completion_status");
 
 	}
 

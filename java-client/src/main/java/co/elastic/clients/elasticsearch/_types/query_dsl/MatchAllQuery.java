@@ -24,45 +24,35 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchAllQuery
-public final class MatchAllQuery extends QueryBase {
-	@Nullable
-	private final String normField;
-
+@JsonpDeserializable
+public final class MatchAllQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	protected MatchAllQuery(Builder builder) {
+	public MatchAllQuery(Builder builder) {
 		super(builder);
-		this.normField = builder.normField;
 
+	}
+
+	public MatchAllQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
-	 * API name: {@code norm_field}
+	 * {@link Query} variant type
 	 */
-	@Nullable
-	public String normField() {
-		return this.normField;
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
-		if (this.normField != null) {
-
-			generator.writeKey("norm_field");
-			generator.write(this.normField);
-
-		}
-
+	@Override
+	public String _variantType() {
+		return "match_all";
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -71,17 +61,6 @@ public final class MatchAllQuery extends QueryBase {
 	 * Builder for {@link MatchAllQuery}.
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchAllQuery> {
-		@Nullable
-		private String normField;
-
-		/**
-		 * API name: {@code norm_field}
-		 */
-		public Builder normField(@Nullable String value) {
-			this.normField = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -102,14 +81,13 @@ public final class MatchAllQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MatchAllQuery
+	 * Json deserializer for {@link MatchAllQuery}
 	 */
-	public static final JsonpDeserializer<MatchAllQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MatchAllQuery::setupMatchAllQueryDeserializer);
+	public static final JsonpDeserializer<MatchAllQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			MatchAllQuery::setupMatchAllQueryDeserializer, Builder::build);
 
 	protected static void setupMatchAllQueryDeserializer(DelegatingDeserializer<MatchAllQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::normField, JsonpDeserializer.stringDeserializer(), "norm_field");
 
 	}
 

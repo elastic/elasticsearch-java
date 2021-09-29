@@ -24,23 +24,26 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputRequestDefinition
-public class HttpInputRequestDefinition implements ToJsonp {
+@JsonpDeserializable
+public class HttpInputRequestDefinition implements JsonpSerializable {
 	@Nullable
 	private final HttpInputAuthentication auth;
 
@@ -48,7 +51,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	private final String body;
 
 	@Nullable
-	private final JsonValue connectionTimeout;
+	private final String connectionTimeout;
 
 	@Nullable
 	private final Map<String, String> headers;
@@ -57,7 +60,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	private final String host;
 
 	@Nullable
-	private final JsonValue method;
+	private final HttpInputMethod method;
 
 	@Nullable
 	private final Map<String, String> params;
@@ -72,25 +75,25 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	private final HttpInputProxy proxy;
 
 	@Nullable
-	private final JsonValue readTimeout;
+	private final String readTimeout;
 
 	@Nullable
-	private final JsonValue scheme;
+	private final ConnectionScheme scheme;
 
 	@Nullable
 	private final String url;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HttpInputRequestDefinition(AbstractBuilder<?> builder) {
+	public HttpInputRequestDefinition(AbstractBuilder<?> builder) {
 
 		this.auth = builder.auth;
 		this.body = builder.body;
 		this.connectionTimeout = builder.connectionTimeout;
-		this.headers = builder.headers;
+		this.headers = ModelTypeHelper.unmodifiable(builder.headers);
 		this.host = builder.host;
 		this.method = builder.method;
-		this.params = builder.params;
+		this.params = ModelTypeHelper.unmodifiable(builder.params);
 		this.path = builder.path;
 		this.port = builder.port;
 		this.proxy = builder.proxy;
@@ -120,7 +123,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	 * API name: {@code connection_timeout}
 	 */
 	@Nullable
-	public JsonValue connectionTimeout() {
+	public String connectionTimeout() {
 		return this.connectionTimeout;
 	}
 
@@ -144,7 +147,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	 * API name: {@code method}
 	 */
 	@Nullable
-	public JsonValue method() {
+	public HttpInputMethod method() {
 		return this.method;
 	}
 
@@ -184,7 +187,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	 * API name: {@code read_timeout}
 	 */
 	@Nullable
-	public JsonValue readTimeout() {
+	public String readTimeout() {
 		return this.readTimeout;
 	}
 
@@ -192,7 +195,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	 * API name: {@code scheme}
 	 */
 	@Nullable
-	public JsonValue scheme() {
+	public ConnectionScheme scheme() {
 		return this.scheme;
 	}
 
@@ -207,18 +210,18 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.auth != null) {
 
 			generator.writeKey("auth");
-			this.auth.toJsonp(generator, mapper);
+			this.auth.serialize(generator, mapper);
 
 		}
 		if (this.body != null) {
@@ -254,8 +257,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		if (this.method != null) {
 
 			generator.writeKey("method");
-			generator.write(this.method);
-
+			this.method.serialize(generator, mapper);
 		}
 		if (this.params != null) {
 
@@ -284,7 +286,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		if (this.proxy != null) {
 
 			generator.writeKey("proxy");
-			this.proxy.toJsonp(generator, mapper);
+			this.proxy.serialize(generator, mapper);
 
 		}
 		if (this.readTimeout != null) {
@@ -296,8 +298,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		if (this.scheme != null) {
 
 			generator.writeKey("scheme");
-			generator.write(this.scheme);
-
+			this.scheme.serialize(generator, mapper);
 		}
 		if (this.url != null) {
 
@@ -341,7 +342,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		private String body;
 
 		@Nullable
-		private JsonValue connectionTimeout;
+		private String connectionTimeout;
 
 		@Nullable
 		private Map<String, String> headers;
@@ -350,7 +351,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		private String host;
 
 		@Nullable
-		private JsonValue method;
+		private HttpInputMethod method;
 
 		@Nullable
 		private Map<String, String> params;
@@ -365,10 +366,10 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		private HttpInputProxy proxy;
 
 		@Nullable
-		private JsonValue readTimeout;
+		private String readTimeout;
 
 		@Nullable
-		private JsonValue scheme;
+		private ConnectionScheme scheme;
 
 		@Nullable
 		private String url;
@@ -399,7 +400,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code connection_timeout}
 		 */
-		public BuilderT connectionTimeout(@Nullable JsonValue value) {
+		public BuilderT connectionTimeout(@Nullable String value) {
 			this.connectionTimeout = value;
 			return self();
 		}
@@ -434,7 +435,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code method}
 		 */
-		public BuilderT method(@Nullable JsonValue value) {
+		public BuilderT method(@Nullable HttpInputMethod value) {
 			this.method = value;
 			return self();
 		}
@@ -492,7 +493,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code read_timeout}
 		 */
-		public BuilderT readTimeout(@Nullable JsonValue value) {
+		public BuilderT readTimeout(@Nullable String value) {
 			this.readTimeout = value;
 			return self();
 		}
@@ -500,7 +501,7 @@ public class HttpInputRequestDefinition implements ToJsonp {
 		/**
 		 * API name: {@code scheme}
 		 */
-		public BuilderT scheme(@Nullable JsonValue value) {
+		public BuilderT scheme(@Nullable ConnectionScheme value) {
 			this.scheme = value;
 			return self();
 		}
@@ -520,28 +521,28 @@ public class HttpInputRequestDefinition implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HttpInputRequestDefinition
+	 * Json deserializer for {@link HttpInputRequestDefinition}
 	 */
-	public static final JsonpDeserializer<HttpInputRequestDefinition> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionDeserializer);
+	public static final JsonpDeserializer<HttpInputRequestDefinition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, HttpInputRequestDefinition::setupHttpInputRequestDefinitionDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupHttpInputRequestDefinitionDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::auth, HttpInputAuthentication.DESERIALIZER, "auth");
+		op.add(AbstractBuilder::auth, HttpInputAuthentication._DESERIALIZER, "auth");
 		op.add(AbstractBuilder::body, JsonpDeserializer.stringDeserializer(), "body");
-		op.add(AbstractBuilder::connectionTimeout, JsonpDeserializer.jsonValueDeserializer(), "connection_timeout");
+		op.add(AbstractBuilder::connectionTimeout, JsonpDeserializer.stringDeserializer(), "connection_timeout");
 		op.add(AbstractBuilder::headers,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
 		op.add(AbstractBuilder::host, JsonpDeserializer.stringDeserializer(), "host");
-		op.add(AbstractBuilder::method, JsonpDeserializer.jsonValueDeserializer(), "method");
+		op.add(AbstractBuilder::method, HttpInputMethod._DESERIALIZER, "method");
 		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"params");
 		op.add(AbstractBuilder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(AbstractBuilder::port, JsonpDeserializer.numberDeserializer(), "port");
-		op.add(AbstractBuilder::proxy, HttpInputProxy.DESERIALIZER, "proxy");
-		op.add(AbstractBuilder::readTimeout, JsonpDeserializer.jsonValueDeserializer(), "read_timeout");
-		op.add(AbstractBuilder::scheme, JsonpDeserializer.jsonValueDeserializer(), "scheme");
+		op.add(AbstractBuilder::proxy, HttpInputProxy._DESERIALIZER, "proxy");
+		op.add(AbstractBuilder::readTimeout, JsonpDeserializer.stringDeserializer(), "read_timeout");
+		op.add(AbstractBuilder::scheme, ConnectionScheme._DESERIALIZER, "scheme");
 		op.add(AbstractBuilder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}

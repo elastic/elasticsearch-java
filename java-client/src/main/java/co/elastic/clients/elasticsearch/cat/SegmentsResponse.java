@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.segments.SegmentsRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,33 +41,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.segments.Response
-public final class SegmentsResponse implements ToJsonp {
-	private final List<SegmentsRecord> value;
+@JsonpDeserializable
+public final class SegmentsResponse implements JsonpSerializable {
+	private final List<SegmentsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SegmentsResponse(Builder builder) {
+	public SegmentsResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public SegmentsResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
-	 *
-	 * API name: {@code value}
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<SegmentsRecord> value() {
-		return this.value;
+	public List<SegmentsRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (SegmentsRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+		for (SegmentsRecord item0 : this.valueBody) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -79,51 +85,51 @@ public final class SegmentsResponse implements ToJsonp {
 	 * Builder for {@link SegmentsResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<SegmentsResponse> {
-		private List<SegmentsRecord> value;
+		private List<SegmentsRecord> valueBody;
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<SegmentsRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<SegmentsRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(SegmentsRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(SegmentsRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(SegmentsRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(SegmentsRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
-			return this.value(fn.apply(new SegmentsRecord.Builder()).build());
+		public Builder valueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
+			return this.valueBody(fn.apply(new SegmentsRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
-			return this.addValue(fn.apply(new SegmentsRecord.Builder()).build());
+		public Builder addValueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
+			return this.addValueBody(fn.apply(new SegmentsRecord.Builder()).build());
 		}
 
 		/**
@@ -138,18 +144,14 @@ public final class SegmentsResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<SegmentsResponse> _DESERIALIZER = createSegmentsResponseDeserializer();
+	protected static JsonpDeserializer<SegmentsResponse> createSegmentsResponseDeserializer() {
 
-	/**
-	 * Json deserializer for SegmentsResponse
-	 */
-	public static final JsonpDeserializer<SegmentsResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SegmentsResponse::setupSegmentsResponseDeserializer);
+		JsonpDeserializer<List<SegmentsRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(SegmentsRecord._DESERIALIZER);
 
-	protected static void setupSegmentsResponseDeserializer(DelegatingDeserializer<SegmentsResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(SegmentsRecord.DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -24,37 +24,43 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.OperatingSystem
-public final class OperatingSystem implements ToJsonp {
+@JsonpDeserializable
+public final class OperatingSystem implements JsonpSerializable {
 	private final Cpu cpu;
 
 	private final ExtendedMemoryStats mem;
 
 	private final MemoryStats swap;
 
-	private final Number timestamp;
+	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected OperatingSystem(Builder builder) {
+	public OperatingSystem(Builder builder) {
 
 		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
 		this.mem = Objects.requireNonNull(builder.mem, "mem");
 		this.swap = Objects.requireNonNull(builder.swap, "swap");
 		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
 
+	}
+
+	public OperatingSystem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -81,32 +87,32 @@ public final class OperatingSystem implements ToJsonp {
 	/**
 	 * API name: {@code timestamp}
 	 */
-	public Number timestamp() {
+	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cpu");
-		this.cpu.toJsonp(generator, mapper);
+		this.cpu.serialize(generator, mapper);
 
 		generator.writeKey("mem");
-		this.mem.toJsonp(generator, mapper);
+		this.mem.serialize(generator, mapper);
 
 		generator.writeKey("swap");
-		this.swap.toJsonp(generator, mapper);
+		this.swap.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp.doubleValue());
+		generator.write(this.timestamp);
 
 	}
 
@@ -122,7 +128,7 @@ public final class OperatingSystem implements ToJsonp {
 
 		private MemoryStats swap;
 
-		private Number timestamp;
+		private Long timestamp;
 
 		/**
 		 * API name: {@code cpu}
@@ -172,7 +178,7 @@ public final class OperatingSystem implements ToJsonp {
 		/**
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(Number value) {
+		public Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -192,17 +198,17 @@ public final class OperatingSystem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for OperatingSystem
+	 * Json deserializer for {@link OperatingSystem}
 	 */
-	public static final JsonpDeserializer<OperatingSystem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, OperatingSystem::setupOperatingSystemDeserializer);
+	public static final JsonpDeserializer<OperatingSystem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			OperatingSystem::setupOperatingSystemDeserializer, Builder::build);
 
 	protected static void setupOperatingSystemDeserializer(DelegatingDeserializer<OperatingSystem.Builder> op) {
 
-		op.add(Builder::cpu, Cpu.DESERIALIZER, "cpu");
-		op.add(Builder::mem, ExtendedMemoryStats.DESERIALIZER, "mem");
-		op.add(Builder::swap, MemoryStats.DESERIALIZER, "swap");
-		op.add(Builder::timestamp, JsonpDeserializer.numberDeserializer(), "timestamp");
+		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
+		op.add(Builder::mem, ExtendedMemoryStats._DESERIALIZER, "mem");
+		op.add(Builder::swap, MemoryStats._DESERIALIZER, "swap");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

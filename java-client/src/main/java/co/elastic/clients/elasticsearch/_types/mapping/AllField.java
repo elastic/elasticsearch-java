@@ -24,43 +24,46 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AllField
-public final class AllField implements ToJsonp {
+@JsonpDeserializable
+public final class AllField implements JsonpSerializable {
 	private final String analyzer;
 
-	private final Boolean enabled;
+	private final boolean enabled;
 
-	private final Boolean omitNorms;
+	private final boolean omitNorms;
 
 	private final String searchAnalyzer;
 
 	private final String similarity;
 
-	private final Boolean store;
+	private final boolean store;
 
-	private final Boolean storeTermVectorOffsets;
+	private final boolean storeTermVectorOffsets;
 
-	private final Boolean storeTermVectorPayloads;
+	private final boolean storeTermVectorPayloads;
 
-	private final Boolean storeTermVectorPositions;
+	private final boolean storeTermVectorPositions;
 
-	private final Boolean storeTermVectors;
+	private final boolean storeTermVectors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AllField(Builder builder) {
+	public AllField(Builder builder) {
 
 		this.analyzer = Objects.requireNonNull(builder.analyzer, "analyzer");
 		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
@@ -78,6 +81,10 @@ public final class AllField implements ToJsonp {
 
 	}
 
+	public AllField(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code analyzer}
 	 */
@@ -88,14 +95,14 @@ public final class AllField implements ToJsonp {
 	/**
 	 * API name: {@code enabled}
 	 */
-	public Boolean enabled() {
+	public boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * API name: {@code omit_norms}
 	 */
-	public Boolean omitNorms() {
+	public boolean omitNorms() {
 		return this.omitNorms;
 	}
 
@@ -116,48 +123,48 @@ public final class AllField implements ToJsonp {
 	/**
 	 * API name: {@code store}
 	 */
-	public Boolean store() {
+	public boolean store() {
 		return this.store;
 	}
 
 	/**
 	 * API name: {@code store_term_vector_offsets}
 	 */
-	public Boolean storeTermVectorOffsets() {
+	public boolean storeTermVectorOffsets() {
 		return this.storeTermVectorOffsets;
 	}
 
 	/**
 	 * API name: {@code store_term_vector_payloads}
 	 */
-	public Boolean storeTermVectorPayloads() {
+	public boolean storeTermVectorPayloads() {
 		return this.storeTermVectorPayloads;
 	}
 
 	/**
 	 * API name: {@code store_term_vector_positions}
 	 */
-	public Boolean storeTermVectorPositions() {
+	public boolean storeTermVectorPositions() {
 		return this.storeTermVectorPositions;
 	}
 
 	/**
 	 * API name: {@code store_term_vectors}
 	 */
-	public Boolean storeTermVectors() {
+	public boolean storeTermVectors() {
 		return this.storeTermVectors;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("analyzer");
 		generator.write(this.analyzer);
@@ -228,7 +235,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(Boolean value) {
+		public Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -236,7 +243,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code omit_norms}
 		 */
-		public Builder omitNorms(Boolean value) {
+		public Builder omitNorms(boolean value) {
 			this.omitNorms = value;
 			return this;
 		}
@@ -260,7 +267,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code store}
 		 */
-		public Builder store(Boolean value) {
+		public Builder store(boolean value) {
 			this.store = value;
 			return this;
 		}
@@ -268,7 +275,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code store_term_vector_offsets}
 		 */
-		public Builder storeTermVectorOffsets(Boolean value) {
+		public Builder storeTermVectorOffsets(boolean value) {
 			this.storeTermVectorOffsets = value;
 			return this;
 		}
@@ -276,7 +283,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code store_term_vector_payloads}
 		 */
-		public Builder storeTermVectorPayloads(Boolean value) {
+		public Builder storeTermVectorPayloads(boolean value) {
 			this.storeTermVectorPayloads = value;
 			return this;
 		}
@@ -284,7 +291,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code store_term_vector_positions}
 		 */
-		public Builder storeTermVectorPositions(Boolean value) {
+		public Builder storeTermVectorPositions(boolean value) {
 			this.storeTermVectorPositions = value;
 			return this;
 		}
@@ -292,7 +299,7 @@ public final class AllField implements ToJsonp {
 		/**
 		 * API name: {@code store_term_vectors}
 		 */
-		public Builder storeTermVectors(Boolean value) {
+		public Builder storeTermVectors(boolean value) {
 			this.storeTermVectors = value;
 			return this;
 		}
@@ -312,10 +319,10 @@ public final class AllField implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for AllField
+	 * Json deserializer for {@link AllField}
 	 */
-	public static final JsonpDeserializer<AllField> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, AllField::setupAllFieldDeserializer);
+	public static final JsonpDeserializer<AllField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			AllField::setupAllFieldDeserializer, Builder::build);
 
 	protected static void setupAllFieldDeserializer(DelegatingDeserializer<AllField.Builder> op) {
 

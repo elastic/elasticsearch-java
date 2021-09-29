@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: ml.put_trained_model_alias.Response
+@JsonpDeserializable
 public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTrainedModelAliasResponse(Builder builder) {
+	public PutTrainedModelAliasResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public PutTrainedModelAliasResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTrainedModelAliasResponse
+	 * Json deserializer for {@link PutTrainedModelAliasResponse}
 	 */
-	public static final JsonpDeserializer<PutTrainedModelAliasResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTrainedModelAliasResponse::setupPutTrainedModelAliasResponseDeserializer);
+	public static final JsonpDeserializer<PutTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, PutTrainedModelAliasResponse::setupPutTrainedModelAliasResponseDeserializer, Builder::build);
 
 	protected static void setupPutTrainedModelAliasResponseDeserializer(
 			DelegatingDeserializer<PutTrainedModelAliasResponse.Builder> op) {

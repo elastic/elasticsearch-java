@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.Health;
 import co.elastic.clients.elasticsearch.cluster.health.IndexHealthStats;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,43 +46,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.Response
-public final class HealthResponse implements ToJsonp {
-	private final Number activePrimaryShards;
+@JsonpDeserializable
+public final class HealthResponse implements JsonpSerializable {
+	private final int activePrimaryShards;
 
-	private final Number activeShards;
+	private final int activeShards;
 
-	private final JsonValue activeShardsPercentAsNumber;
+	private final String activeShardsPercentAsNumber;
 
 	private final String clusterName;
 
-	private final Number delayedUnassignedShards;
+	private final int delayedUnassignedShards;
 
 	@Nullable
 	private final Map<String, IndexHealthStats> indices;
 
-	private final Number initializingShards;
+	private final int initializingShards;
 
-	private final Number numberOfDataNodes;
+	private final int numberOfDataNodes;
 
-	private final Number numberOfInFlightFetch;
+	private final int numberOfInFlightFetch;
 
-	private final Number numberOfNodes;
+	private final int numberOfNodes;
 
-	private final Number numberOfPendingTasks;
+	private final int numberOfPendingTasks;
 
-	private final Number relocatingShards;
+	private final int relocatingShards;
 
-	private final JsonValue status;
+	private final Health status;
 
-	private final JsonValue taskMaxWaitingInQueueMillis;
+	private final String taskMaxWaitingInQueueMillis;
 
-	private final Boolean timedOut;
+	private final boolean timedOut;
 
-	private final Number unassignedShards;
+	private final int unassignedShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthResponse(Builder builder) {
+	public HealthResponse(Builder builder) {
 
 		this.activePrimaryShards = Objects.requireNonNull(builder.activePrimaryShards, "active_primary_shards");
 		this.activeShards = Objects.requireNonNull(builder.activeShards, "active_shards");
@@ -89,7 +92,7 @@ public final class HealthResponse implements ToJsonp {
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
 		this.delayedUnassignedShards = Objects.requireNonNull(builder.delayedUnassignedShards,
 				"delayed_unassigned_shards");
-		this.indices = builder.indices;
+		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
 		this.initializingShards = Objects.requireNonNull(builder.initializingShards, "initializing_shards");
 		this.numberOfDataNodes = Objects.requireNonNull(builder.numberOfDataNodes, "number_of_data_nodes");
 		this.numberOfInFlightFetch = Objects.requireNonNull(builder.numberOfInFlightFetch, "number_of_in_flight_fetch");
@@ -104,36 +107,40 @@ public final class HealthResponse implements ToJsonp {
 
 	}
 
+	public HealthResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * The number of active primary shards.
-	 *
+	 * <p>
 	 * API name: {@code active_primary_shards}
 	 */
-	public Number activePrimaryShards() {
+	public int activePrimaryShards() {
 		return this.activePrimaryShards;
 	}
 
 	/**
 	 * The total number of active primary and replica shards.
-	 *
+	 * <p>
 	 * API name: {@code active_shards}
 	 */
-	public Number activeShards() {
+	public int activeShards() {
 		return this.activeShards;
 	}
 
 	/**
 	 * The ratio of active shards in the cluster expressed as a percentage.
-	 *
+	 * <p>
 	 * API name: {@code active_shards_percent_as_number}
 	 */
-	public JsonValue activeShardsPercentAsNumber() {
+	public String activeShardsPercentAsNumber() {
 		return this.activeShardsPercentAsNumber;
 	}
 
 	/**
 	 * The name of the cluster.
-	 *
+	 * <p>
 	 * API name: {@code cluster_name}
 	 */
 	public String clusterName() {
@@ -143,10 +150,10 @@ public final class HealthResponse implements ToJsonp {
 	/**
 	 * The number of shards whose allocation has been delayed by the timeout
 	 * settings.
-	 *
+	 * <p>
 	 * API name: {@code delayed_unassigned_shards}
 	 */
-	public Number delayedUnassignedShards() {
+	public int delayedUnassignedShards() {
 		return this.delayedUnassignedShards;
 	}
 
@@ -160,108 +167,108 @@ public final class HealthResponse implements ToJsonp {
 
 	/**
 	 * The number of shards that are under initialization.
-	 *
+	 * <p>
 	 * API name: {@code initializing_shards}
 	 */
-	public Number initializingShards() {
+	public int initializingShards() {
 		return this.initializingShards;
 	}
 
 	/**
 	 * The number of nodes that are dedicated data nodes.
-	 *
+	 * <p>
 	 * API name: {@code number_of_data_nodes}
 	 */
-	public Number numberOfDataNodes() {
+	public int numberOfDataNodes() {
 		return this.numberOfDataNodes;
 	}
 
 	/**
 	 * API name: {@code number_of_in_flight_fetch}
 	 */
-	public Number numberOfInFlightFetch() {
+	public int numberOfInFlightFetch() {
 		return this.numberOfInFlightFetch;
 	}
 
 	/**
 	 * The number of nodes within the cluster.
-	 *
+	 * <p>
 	 * API name: {@code number_of_nodes}
 	 */
-	public Number numberOfNodes() {
+	public int numberOfNodes() {
 		return this.numberOfNodes;
 	}
 
 	/**
 	 * The number of cluster-level changes that have not yet been executed.
-	 *
+	 * <p>
 	 * API name: {@code number_of_pending_tasks}
 	 */
-	public Number numberOfPendingTasks() {
+	public int numberOfPendingTasks() {
 		return this.numberOfPendingTasks;
 	}
 
 	/**
 	 * The number of shards that are under relocation.
-	 *
+	 * <p>
 	 * API name: {@code relocating_shards}
 	 */
-	public Number relocatingShards() {
+	public int relocatingShards() {
 		return this.relocatingShards;
 	}
 
 	/**
 	 * API name: {@code status}
 	 */
-	public JsonValue status() {
+	public Health status() {
 		return this.status;
 	}
 
 	/**
 	 * The time expressed in milliseconds since the earliest initiated task is
 	 * waiting for being performed.
-	 *
+	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
-	public JsonValue taskMaxWaitingInQueueMillis() {
+	public String taskMaxWaitingInQueueMillis() {
 		return this.taskMaxWaitingInQueueMillis;
 	}
 
 	/**
 	 * If false the response returned within the period of time that is specified by
 	 * the timeout parameter (30s by default)
-	 *
+	 * <p>
 	 * API name: {@code timed_out}
 	 */
-	public Boolean timedOut() {
+	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
 	 * The number of shards that are not allocated.
-	 *
+	 * <p>
 	 * API name: {@code unassigned_shards}
 	 */
-	public Number unassignedShards() {
+	public int unassignedShards() {
 		return this.unassignedShards;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("active_primary_shards");
-		generator.write(this.activePrimaryShards.doubleValue());
+		generator.write(this.activePrimaryShards);
 
 		generator.writeKey("active_shards");
-		generator.write(this.activeShards.doubleValue());
+		generator.write(this.activeShards);
 
 		generator.writeKey("active_shards_percent_as_number");
 		generator.write(this.activeShardsPercentAsNumber);
@@ -270,7 +277,7 @@ public final class HealthResponse implements ToJsonp {
 		generator.write(this.clusterName);
 
 		generator.writeKey("delayed_unassigned_shards");
-		generator.write(this.delayedUnassignedShards.doubleValue());
+		generator.write(this.delayedUnassignedShards);
 
 		if (this.indices != null) {
 
@@ -278,7 +285,7 @@ public final class HealthResponse implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexHealthStats> item0 : this.indices.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -286,25 +293,25 @@ public final class HealthResponse implements ToJsonp {
 		}
 
 		generator.writeKey("initializing_shards");
-		generator.write(this.initializingShards.doubleValue());
+		generator.write(this.initializingShards);
 
 		generator.writeKey("number_of_data_nodes");
-		generator.write(this.numberOfDataNodes.doubleValue());
+		generator.write(this.numberOfDataNodes);
 
 		generator.writeKey("number_of_in_flight_fetch");
-		generator.write(this.numberOfInFlightFetch.doubleValue());
+		generator.write(this.numberOfInFlightFetch);
 
 		generator.writeKey("number_of_nodes");
-		generator.write(this.numberOfNodes.doubleValue());
+		generator.write(this.numberOfNodes);
 
 		generator.writeKey("number_of_pending_tasks");
-		generator.write(this.numberOfPendingTasks.doubleValue());
+		generator.write(this.numberOfPendingTasks);
 
 		generator.writeKey("relocating_shards");
-		generator.write(this.relocatingShards.doubleValue());
+		generator.write(this.relocatingShards);
 
 		generator.writeKey("status");
-		generator.write(this.status);
+		this.status.serialize(generator, mapper);
 
 		generator.writeKey("task_max_waiting_in_queue_millis");
 		generator.write(this.taskMaxWaitingInQueueMillis);
@@ -313,7 +320,7 @@ public final class HealthResponse implements ToJsonp {
 		generator.write(this.timedOut);
 
 		generator.writeKey("unassigned_shards");
-		generator.write(this.unassignedShards.doubleValue());
+		generator.write(this.unassignedShards);
 
 	}
 
@@ -323,72 +330,72 @@ public final class HealthResponse implements ToJsonp {
 	 * Builder for {@link HealthResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<HealthResponse> {
-		private Number activePrimaryShards;
+		private Integer activePrimaryShards;
 
-		private Number activeShards;
+		private Integer activeShards;
 
-		private JsonValue activeShardsPercentAsNumber;
+		private String activeShardsPercentAsNumber;
 
 		private String clusterName;
 
-		private Number delayedUnassignedShards;
+		private Integer delayedUnassignedShards;
 
 		@Nullable
 		private Map<String, IndexHealthStats> indices;
 
-		private Number initializingShards;
+		private Integer initializingShards;
 
-		private Number numberOfDataNodes;
+		private Integer numberOfDataNodes;
 
-		private Number numberOfInFlightFetch;
+		private Integer numberOfInFlightFetch;
 
-		private Number numberOfNodes;
+		private Integer numberOfNodes;
 
-		private Number numberOfPendingTasks;
+		private Integer numberOfPendingTasks;
 
-		private Number relocatingShards;
+		private Integer relocatingShards;
 
-		private JsonValue status;
+		private Health status;
 
-		private JsonValue taskMaxWaitingInQueueMillis;
+		private String taskMaxWaitingInQueueMillis;
 
 		private Boolean timedOut;
 
-		private Number unassignedShards;
+		private Integer unassignedShards;
 
 		/**
 		 * The number of active primary shards.
-		 *
+		 * <p>
 		 * API name: {@code active_primary_shards}
 		 */
-		public Builder activePrimaryShards(Number value) {
+		public Builder activePrimaryShards(int value) {
 			this.activePrimaryShards = value;
 			return this;
 		}
 
 		/**
 		 * The total number of active primary and replica shards.
-		 *
+		 * <p>
 		 * API name: {@code active_shards}
 		 */
-		public Builder activeShards(Number value) {
+		public Builder activeShards(int value) {
 			this.activeShards = value;
 			return this;
 		}
 
 		/**
 		 * The ratio of active shards in the cluster expressed as a percentage.
-		 *
+		 * <p>
 		 * API name: {@code active_shards_percent_as_number}
 		 */
-		public Builder activeShardsPercentAsNumber(JsonValue value) {
+		public Builder activeShardsPercentAsNumber(String value) {
 			this.activeShardsPercentAsNumber = value;
 			return this;
 		}
 
 		/**
 		 * The name of the cluster.
-		 *
+		 * <p>
 		 * API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
@@ -399,10 +406,10 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * The number of shards whose allocation has been delayed by the timeout
 		 * settings.
-		 *
+		 * <p>
 		 * API name: {@code delayed_unassigned_shards}
 		 */
-		public Builder delayedUnassignedShards(Number value) {
+		public Builder delayedUnassignedShards(int value) {
 			this.delayedUnassignedShards = value;
 			return this;
 		}
@@ -442,20 +449,20 @@ public final class HealthResponse implements ToJsonp {
 
 		/**
 		 * The number of shards that are under initialization.
-		 *
+		 * <p>
 		 * API name: {@code initializing_shards}
 		 */
-		public Builder initializingShards(Number value) {
+		public Builder initializingShards(int value) {
 			this.initializingShards = value;
 			return this;
 		}
 
 		/**
 		 * The number of nodes that are dedicated data nodes.
-		 *
+		 * <p>
 		 * API name: {@code number_of_data_nodes}
 		 */
-		public Builder numberOfDataNodes(Number value) {
+		public Builder numberOfDataNodes(int value) {
 			this.numberOfDataNodes = value;
 			return this;
 		}
@@ -463,37 +470,37 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * API name: {@code number_of_in_flight_fetch}
 		 */
-		public Builder numberOfInFlightFetch(Number value) {
+		public Builder numberOfInFlightFetch(int value) {
 			this.numberOfInFlightFetch = value;
 			return this;
 		}
 
 		/**
 		 * The number of nodes within the cluster.
-		 *
+		 * <p>
 		 * API name: {@code number_of_nodes}
 		 */
-		public Builder numberOfNodes(Number value) {
+		public Builder numberOfNodes(int value) {
 			this.numberOfNodes = value;
 			return this;
 		}
 
 		/**
 		 * The number of cluster-level changes that have not yet been executed.
-		 *
+		 * <p>
 		 * API name: {@code number_of_pending_tasks}
 		 */
-		public Builder numberOfPendingTasks(Number value) {
+		public Builder numberOfPendingTasks(int value) {
 			this.numberOfPendingTasks = value;
 			return this;
 		}
 
 		/**
 		 * The number of shards that are under relocation.
-		 *
+		 * <p>
 		 * API name: {@code relocating_shards}
 		 */
-		public Builder relocatingShards(Number value) {
+		public Builder relocatingShards(int value) {
 			this.relocatingShards = value;
 			return this;
 		}
@@ -501,7 +508,7 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(JsonValue value) {
+		public Builder status(Health value) {
 			this.status = value;
 			return this;
 		}
@@ -509,10 +516,10 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * The time expressed in milliseconds since the earliest initiated task is
 		 * waiting for being performed.
-		 *
+		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
-		public Builder taskMaxWaitingInQueueMillis(JsonValue value) {
+		public Builder taskMaxWaitingInQueueMillis(String value) {
 			this.taskMaxWaitingInQueueMillis = value;
 			return this;
 		}
@@ -520,20 +527,20 @@ public final class HealthResponse implements ToJsonp {
 		/**
 		 * If false the response returned within the period of time that is specified by
 		 * the timeout parameter (30s by default)
-		 *
+		 * <p>
 		 * API name: {@code timed_out}
 		 */
-		public Builder timedOut(Boolean value) {
+		public Builder timedOut(boolean value) {
 			this.timedOut = value;
 			return this;
 		}
 
 		/**
 		 * The number of shards that are not allocated.
-		 *
+		 * <p>
 		 * API name: {@code unassigned_shards}
 		 */
-		public Builder unassignedShards(Number value) {
+		public Builder unassignedShards(int value) {
 			this.unassignedShards = value;
 			return this;
 		}
@@ -553,31 +560,31 @@ public final class HealthResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HealthResponse
+	 * Json deserializer for {@link HealthResponse}
 	 */
-	public static final JsonpDeserializer<HealthResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HealthResponse::setupHealthResponseDeserializer);
+	public static final JsonpDeserializer<HealthResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HealthResponse::setupHealthResponseDeserializer, Builder::build);
 
 	protected static void setupHealthResponseDeserializer(DelegatingDeserializer<HealthResponse.Builder> op) {
 
-		op.add(Builder::activePrimaryShards, JsonpDeserializer.numberDeserializer(), "active_primary_shards");
-		op.add(Builder::activeShards, JsonpDeserializer.numberDeserializer(), "active_shards");
-		op.add(Builder::activeShardsPercentAsNumber, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::activePrimaryShards, JsonpDeserializer.integerDeserializer(), "active_primary_shards");
+		op.add(Builder::activeShards, JsonpDeserializer.integerDeserializer(), "active_shards");
+		op.add(Builder::activeShardsPercentAsNumber, JsonpDeserializer.stringDeserializer(),
 				"active_shards_percent_as_number");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::delayedUnassignedShards, JsonpDeserializer.numberDeserializer(), "delayed_unassigned_shards");
-		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexHealthStats.DESERIALIZER), "indices");
-		op.add(Builder::initializingShards, JsonpDeserializer.numberDeserializer(), "initializing_shards");
-		op.add(Builder::numberOfDataNodes, JsonpDeserializer.numberDeserializer(), "number_of_data_nodes");
-		op.add(Builder::numberOfInFlightFetch, JsonpDeserializer.numberDeserializer(), "number_of_in_flight_fetch");
-		op.add(Builder::numberOfNodes, JsonpDeserializer.numberDeserializer(), "number_of_nodes");
-		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.numberDeserializer(), "number_of_pending_tasks");
-		op.add(Builder::relocatingShards, JsonpDeserializer.numberDeserializer(), "relocating_shards");
-		op.add(Builder::status, JsonpDeserializer.jsonValueDeserializer(), "status");
-		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::delayedUnassignedShards, JsonpDeserializer.integerDeserializer(), "delayed_unassigned_shards");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexHealthStats._DESERIALIZER), "indices");
+		op.add(Builder::initializingShards, JsonpDeserializer.integerDeserializer(), "initializing_shards");
+		op.add(Builder::numberOfDataNodes, JsonpDeserializer.integerDeserializer(), "number_of_data_nodes");
+		op.add(Builder::numberOfInFlightFetch, JsonpDeserializer.integerDeserializer(), "number_of_in_flight_fetch");
+		op.add(Builder::numberOfNodes, JsonpDeserializer.integerDeserializer(), "number_of_nodes");
+		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.integerDeserializer(), "number_of_pending_tasks");
+		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
+		op.add(Builder::status, Health._DESERIALIZER, "status");
+		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.stringDeserializer(),
 				"task_max_waiting_in_queue_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::unassignedShards, JsonpDeserializer.numberDeserializer(), "unassigned_shards");
+		op.add(Builder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 
 	}
 

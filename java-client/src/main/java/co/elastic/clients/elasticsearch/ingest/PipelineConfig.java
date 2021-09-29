@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,23 +43,28 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineConfig
-public final class PipelineConfig implements ToJsonp {
+@JsonpDeserializable
+public final class PipelineConfig implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
-	private final List<ProcessorContainer> processors;
+	private final List<Processor> processors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PipelineConfig(Builder builder) {
+	public PipelineConfig(Builder builder) {
 
 		this.description = builder.description;
 		this.version = builder.version;
-		this.processors = Objects.requireNonNull(builder.processors, "processors");
+		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
 
+	}
+
+	public PipelineConfig(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -72,27 +79,27 @@ public final class PipelineConfig implements ToJsonp {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
 	/**
 	 * API name: {@code processors}
 	 */
-	public List<ProcessorContainer> processors() {
+	public List<Processor> processors() {
 		return this.processors;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -103,14 +110,14 @@ public final class PipelineConfig implements ToJsonp {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
 		generator.writeKey("processors");
 		generator.writeStartArray();
-		for (ProcessorContainer item0 : this.processors) {
-			item0.toJsonp(generator, mapper);
+		for (Processor item0 : this.processors) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -127,9 +134,9 @@ public final class PipelineConfig implements ToJsonp {
 		private String description;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
-		private List<ProcessorContainer> processors;
+		private List<Processor> processors;
 
 		/**
 		 * API name: {@code description}
@@ -142,7 +149,7 @@ public final class PipelineConfig implements ToJsonp {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -150,7 +157,7 @@ public final class PipelineConfig implements ToJsonp {
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(List<ProcessorContainer> value) {
+		public Builder processors(List<Processor> value) {
 			this.processors = value;
 			return this;
 		}
@@ -158,15 +165,15 @@ public final class PipelineConfig implements ToJsonp {
 		/**
 		 * API name: {@code processors}
 		 */
-		public Builder processors(ProcessorContainer... value) {
+		public Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
 		 */
-		public Builder addProcessors(ProcessorContainer value) {
+		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
 				this.processors = new ArrayList<>();
 			}
@@ -177,15 +184,15 @@ public final class PipelineConfig implements ToJsonp {
 		/**
 		 * Set {@link #processors(List)} to a singleton list.
 		 */
-		public Builder processors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.processors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.processors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
 		 */
-		public Builder addProcessors(Function<ProcessorContainer.Builder, ObjectBuilder<ProcessorContainer>> fn) {
-			return this.addProcessors(fn.apply(new ProcessorContainer.Builder()).build());
+		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.addProcessors(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
@@ -203,16 +210,16 @@ public final class PipelineConfig implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PipelineConfig
+	 * Json deserializer for {@link PipelineConfig}
 	 */
-	public static final JsonpDeserializer<PipelineConfig> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PipelineConfig::setupPipelineConfigDeserializer);
+	public static final JsonpDeserializer<PipelineConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PipelineConfig::setupPipelineConfigDeserializer, Builder::build);
 
 	protected static void setupPipelineConfigDeserializer(DelegatingDeserializer<PipelineConfig.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(ProcessorContainer.DESERIALIZER), "processors");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");
 
 	}
 

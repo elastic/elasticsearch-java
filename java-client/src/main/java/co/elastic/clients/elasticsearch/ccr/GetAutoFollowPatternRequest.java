@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,25 +35,32 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.get_auto_follow_pattern.Request
+
 public final class GetAutoFollowPatternRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetAutoFollowPatternRequest(Builder builder) {
+	public GetAutoFollowPatternRequest(Builder builder) {
 
 		this.name = builder.name;
 
 	}
 
+	public GetAutoFollowPatternRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Specifies the auto-follow pattern collection that you want to retrieve. If
 	 * you do not specify a name, the API returns information for all collections.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -71,7 +80,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 		/**
 		 * Specifies the auto-follow pattern collection that you want to retrieve. If
 		 * you do not specify a name, the API returns information for all collections.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -96,7 +105,7 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.get_auto_follow_pattern}".
 	 */
-	public static final Endpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -123,10 +132,10 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 					buf.append("/_ccr");
 					buf.append("/auto_follow");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -134,5 +143,5 @@ public final class GetAutoFollowPatternRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetAutoFollowPatternResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetAutoFollowPatternResponse._DESERIALIZER);
 }

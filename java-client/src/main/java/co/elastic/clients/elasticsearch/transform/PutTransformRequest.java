@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -36,9 +38,11 @@ import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.put_transform.Request
+@JsonpDeserializable
 public class PutTransformRequest extends PreviewTransformRequest {
 	private final String transformId;
 
@@ -47,8 +51,9 @@ public class PutTransformRequest extends PreviewTransformRequest {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutTransformRequest(AbstractBuilder<?> builder) {
+	public PutTransformRequest(AbstractBuilder<?> builder) {
 		super(builder);
+
 		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.deferValidation = builder.deferValidation;
 
@@ -58,7 +63,7 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	 * Identifier for the transform. This identifier can contain lowercase
 	 * alphanumeric characters (a-z and 0-9), hyphens, and underscores. It must
 	 * start and end with alphanumeric characters.
-	 *
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	public String transformId() {
@@ -68,7 +73,7 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	/**
 	 * When true, deferrable validations are not run. This behavior may be desired
 	 * if the source index does not exist until after the transform is created.
-	 *
+	 * <p>
 	 * API name: {@code defer_validation}
 	 */
 	@Nullable
@@ -113,7 +118,7 @@ public class PutTransformRequest extends PreviewTransformRequest {
 		 * Identifier for the transform. This identifier can contain lowercase
 		 * alphanumeric characters (a-z and 0-9), hyphens, and underscores. It must
 		 * start and end with alphanumeric characters.
-		 *
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public BuilderT transformId(String value) {
@@ -124,7 +129,7 @@ public class PutTransformRequest extends PreviewTransformRequest {
 		/**
 		 * When true, deferrable validations are not run. This behavior may be desired
 		 * if the source index does not exist until after the transform is created.
-		 *
+		 * <p>
 		 * API name: {@code defer_validation}
 		 */
 		public BuilderT deferValidation(@Nullable Boolean value) {
@@ -137,10 +142,10 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutTransformRequest
+	 * Json deserializer for {@link PutTransformRequest}
 	 */
-	public static final JsonpDeserializer<PutTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer);
+	public static final JsonpDeserializer<PutTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTransformRequest::setupPutTransformRequestDeserializer, Builder::build);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPutTransformRequestDeserializer(
 			DelegatingDeserializer<BuilderT> op) {
@@ -153,7 +158,7 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	/**
 	 * Endpoint "{@code transform.put_transform}".
 	 */
-	public static final Endpoint<PutTransformRequest, PutTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutTransformRequest, PutTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -166,17 +171,16 @@ public class PutTransformRequest extends PreviewTransformRequest {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
-					propsSet |= _transformId;
+				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -188,5 +192,5 @@ public class PutTransformRequest extends PreviewTransformRequest {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, PutTransformResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutTransformResponse._DESERIALIZER);
 }

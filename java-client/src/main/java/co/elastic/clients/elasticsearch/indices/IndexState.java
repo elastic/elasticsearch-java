@@ -25,14 +25,17 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,23 +44,36 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexState
-public final class IndexState implements ToJsonp {
+@JsonpDeserializable
+public final class IndexState implements JsonpSerializable {
 	@Nullable
 	private final Map<String, Alias> aliases;
 
 	@Nullable
 	private final TypeMapping mappings;
 
-	private final JsonValue settings;
+	@Nullable
+	private final JsonValue /*
+							 * Union(indices._types.IndexSettings |
+							 * indices._types.IndexStatePrefixedSettings)
+							 */ settings;
+
+	@Nullable
+	private final String dataStream;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IndexState(Builder builder) {
+	public IndexState(Builder builder) {
 
-		this.aliases = builder.aliases;
+		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
 		this.mappings = builder.mappings;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
+		this.settings = builder.settings;
+		this.dataStream = builder.dataStream;
 
+	}
+
+	public IndexState(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -79,20 +95,32 @@ public final class IndexState implements ToJsonp {
 	/**
 	 * API name: {@code settings}
 	 */
-	public JsonValue settings() {
+	@Nullable
+	public JsonValue /*
+						 * Union(indices._types.IndexSettings |
+						 * indices._types.IndexStatePrefixedSettings)
+						 */ settings() {
 		return this.settings;
+	}
+
+	/**
+	 * API name: {@code data_stream}
+	 */
+	@Nullable
+	public String dataStream() {
+		return this.dataStream;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aliases != null) {
 
@@ -100,7 +128,7 @@ public final class IndexState implements ToJsonp {
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().toJsonp(generator, mapper);
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -109,12 +137,21 @@ public final class IndexState implements ToJsonp {
 		if (this.mappings != null) {
 
 			generator.writeKey("mappings");
-			this.mappings.toJsonp(generator, mapper);
+			this.mappings.serialize(generator, mapper);
 
 		}
+		if (this.settings != null) {
 
-		generator.writeKey("settings");
-		generator.write(this.settings);
+			generator.writeKey("settings");
+			generator.write(this.settings);
+
+		}
+		if (this.dataStream != null) {
+
+			generator.writeKey("data_stream");
+			generator.write(this.dataStream);
+
+		}
 
 	}
 
@@ -130,7 +167,14 @@ public final class IndexState implements ToJsonp {
 		@Nullable
 		private TypeMapping mappings;
 
-		private JsonValue settings;
+		@Nullable
+		private JsonValue /*
+							 * Union(indices._types.IndexSettings |
+							 * indices._types.IndexStatePrefixedSettings)
+							 */ settings;
+
+		@Nullable
+		private String dataStream;
 
 		/**
 		 * API name: {@code aliases}
@@ -183,8 +227,19 @@ public final class IndexState implements ToJsonp {
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(JsonValue value) {
+		public Builder settings(@Nullable JsonValue /*
+													 * Union(indices._types.IndexSettings |
+													 * indices._types.IndexStatePrefixedSettings)
+													 */ value) {
 			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream}
+		 */
+		public Builder dataStream(@Nullable String value) {
+			this.dataStream = value;
 			return this;
 		}
 
@@ -203,16 +258,17 @@ public final class IndexState implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IndexState
+	 * Json deserializer for {@link IndexState}
 	 */
-	public static final JsonpDeserializer<IndexState> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IndexState::setupIndexStateDeserializer);
+	public static final JsonpDeserializer<IndexState> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			IndexState::setupIndexStateDeserializer, Builder::build);
 
 	protected static void setupIndexStateDeserializer(DelegatingDeserializer<IndexState.Builder> op) {
 
-		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias.DESERIALIZER), "aliases");
-		op.add(Builder::mappings, TypeMapping.DESERIALIZER, "mappings");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
+		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 
 	}
 

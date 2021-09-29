@@ -25,11 +25,13 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -41,7 +43,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_privileges.Response
-public final class ClearCachedPrivilegesResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ClearCachedPrivilegesResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
 	private final String clusterName;
@@ -50,12 +53,16 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClearCachedPrivilegesResponse(Builder builder) {
+	public ClearCachedPrivilegesResponse(Builder builder) {
 
 		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
 		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
+		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
 
+	}
+
+	public ClearCachedPrivilegesResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -82,16 +89,16 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_nodes");
-		this.nodeStats.toJsonp(generator, mapper);
+		this.nodeStats.serialize(generator, mapper);
 
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
@@ -100,7 +107,7 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 		generator.writeStartObject();
 		for (Map.Entry<String, ClusterNode> item0 : this.nodes.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -190,18 +197,18 @@ public final class ClearCachedPrivilegesResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClearCachedPrivilegesResponse
+	 * Json deserializer for {@link ClearCachedPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<ClearCachedPrivilegesResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ClearCachedPrivilegesResponse::setupClearCachedPrivilegesResponseDeserializer);
+	public static final JsonpDeserializer<ClearCachedPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ClearCachedPrivilegesResponse::setupClearCachedPrivilegesResponseDeserializer,
+			Builder::build);
 
 	protected static void setupClearCachedPrivilegesResponseDeserializer(
 			DelegatingDeserializer<ClearCachedPrivilegesResponse.Builder> op) {
 
-		op.add(Builder::nodeStats, NodeStatistics.DESERIALIZER, "_nodes");
+		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode.DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ClusterNode._DESERIALIZER), "nodes");
 
 	}
 

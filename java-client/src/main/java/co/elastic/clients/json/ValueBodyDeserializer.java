@@ -21,6 +21,7 @@ package co.elastic.clients.json;
 
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
+
 import java.util.EnumSet;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
@@ -69,4 +70,22 @@ public class ValueBodyDeserializer<ObjectType> extends DelegatingDeserializer<Ob
         this.setter = tempSetter;
         this.valueDeserializer = valueParser;
     }
+
+    /**
+     * Not supported in this implementation
+     * @throws UnsupportedOperationException not implemented.
+     */
+    @Override
+    public void setKey(BiConsumer<ObjectType, String> setter) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Not supported in this implementation
+     * @throws UnsupportedOperationException not implemented.
+     */
+    @Override
+    public void setTypeProperty(String name) {
+        throw new UnsupportedOperationException();
+    };
 }

@@ -25,36 +25,45 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Request
+
 public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final JsonValue timeout;
+	private final String timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StartDataFrameAnalyticsRequest(Builder builder) {
+	public StartDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.timeout = builder.timeout;
 
 	}
 
+	public StartDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the data frame analytics to start
+	 * <p>
 	 * API name: {@code id}
 	 */
 	public String id() {
@@ -64,11 +73,11 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Controls the amount of time to wait until the data frame analytics job
 	 * starts.
-	 *
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public JsonValue timeout() {
+	public String timeout() {
 		return this.timeout;
 	}
 
@@ -81,9 +90,11 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		private String id;
 
 		@Nullable
-		private JsonValue timeout;
+		private String timeout;
 
 		/**
+		 * The ID of the data frame analytics to start
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(String value) {
@@ -94,10 +105,10 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		/**
 		 * Controls the amount of time to wait until the data frame analytics job
 		 * starts.
-		 *
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable JsonValue value) {
+		public Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -119,7 +130,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.start_data_frame_analytics}".
 	 */
-	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -132,8 +143,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.id() != null)
-					propsSet |= _id;
+				propsSet |= _id;
 
 				if (propsSet == (_id)) {
 					StringBuilder buf = new StringBuilder();
@@ -141,11 +151,11 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_start");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -153,9 +163,9 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+					params.put("timeout", request.timeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StartDataFrameAnalyticsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StartDataFrameAnalyticsResponse._DESERIALIZER);
 }

@@ -24,35 +24,51 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetProcessor
-public final class SetProcessor extends ProcessorBase {
+@JsonpDeserializable
+public final class SetProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
 	private final Boolean override;
 
-	private final JsonValue value;
+	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SetProcessor(Builder builder) {
+	public SetProcessor(Builder builder) {
 		super(builder);
+
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.override = builder.override;
 		this.value = Objects.requireNonNull(builder.value, "value");
 
+	}
+
+	public SetProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Processor} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "set";
 	}
 
 	/**
@@ -73,12 +89,13 @@ public final class SetProcessor extends ProcessorBase {
 	/**
 	 * API name: {@code value}
 	 */
-	public JsonValue value() {
+	public JsonData value() {
 		return this.value;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 
 		generator.writeKey("field");
 		generator.write(this.field);
@@ -91,7 +108,7 @@ public final class SetProcessor extends ProcessorBase {
 		}
 
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 	}
 
@@ -106,7 +123,7 @@ public final class SetProcessor extends ProcessorBase {
 		@Nullable
 		private Boolean override;
 
-		private JsonValue value;
+		private JsonData value;
 
 		/**
 		 * API name: {@code field}
@@ -127,7 +144,7 @@ public final class SetProcessor extends ProcessorBase {
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(JsonValue value) {
+		public Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -152,16 +169,16 @@ public final class SetProcessor extends ProcessorBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SetProcessor
+	 * Json deserializer for {@link SetProcessor}
 	 */
-	public static final JsonpDeserializer<SetProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SetProcessor::setupSetProcessorDeserializer);
+	public static final JsonpDeserializer<SetProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SetProcessor::setupSetProcessorDeserializer, Builder::build);
 
 	protected static void setupSetProcessorDeserializer(DelegatingDeserializer<SetProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::override, JsonpDeserializer.booleanDeserializer(), "override");
-		op.add(Builder::value, JsonpDeserializer.jsonValueDeserializer(), "value");
+		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 
 	}
 

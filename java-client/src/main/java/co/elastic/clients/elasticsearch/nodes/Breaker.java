@@ -24,35 +24,39 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Float;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Breaker
-public final class Breaker implements ToJsonp {
+@JsonpDeserializable
+public final class Breaker implements JsonpSerializable {
 	private final String estimatedSize;
 
-	private final Number estimatedSizeInBytes;
+	private final long estimatedSizeInBytes;
 
 	private final String limitSize;
 
-	private final Number limitSizeInBytes;
+	private final long limitSizeInBytes;
 
-	private final Number overhead;
+	private final float overhead;
 
-	private final Number tripped;
+	private final float tripped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Breaker(Builder builder) {
+	public Breaker(Builder builder) {
 
 		this.estimatedSize = Objects.requireNonNull(builder.estimatedSize, "estimated_size");
 		this.estimatedSizeInBytes = Objects.requireNonNull(builder.estimatedSizeInBytes, "estimated_size_in_bytes");
@@ -61,6 +65,10 @@ public final class Breaker implements ToJsonp {
 		this.overhead = Objects.requireNonNull(builder.overhead, "overhead");
 		this.tripped = Objects.requireNonNull(builder.tripped, "tripped");
 
+	}
+
+	public Breaker(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -73,7 +81,7 @@ public final class Breaker implements ToJsonp {
 	/**
 	 * API name: {@code estimated_size_in_bytes}
 	 */
-	public Number estimatedSizeInBytes() {
+	public long estimatedSizeInBytes() {
 		return this.estimatedSizeInBytes;
 	}
 
@@ -87,52 +95,52 @@ public final class Breaker implements ToJsonp {
 	/**
 	 * API name: {@code limit_size_in_bytes}
 	 */
-	public Number limitSizeInBytes() {
+	public long limitSizeInBytes() {
 		return this.limitSizeInBytes;
 	}
 
 	/**
 	 * API name: {@code overhead}
 	 */
-	public Number overhead() {
+	public float overhead() {
 		return this.overhead;
 	}
 
 	/**
 	 * API name: {@code tripped}
 	 */
-	public Number tripped() {
+	public float tripped() {
 		return this.tripped;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("estimated_size");
 		generator.write(this.estimatedSize);
 
 		generator.writeKey("estimated_size_in_bytes");
-		generator.write(this.estimatedSizeInBytes.doubleValue());
+		generator.write(this.estimatedSizeInBytes);
 
 		generator.writeKey("limit_size");
 		generator.write(this.limitSize);
 
 		generator.writeKey("limit_size_in_bytes");
-		generator.write(this.limitSizeInBytes.doubleValue());
+		generator.write(this.limitSizeInBytes);
 
 		generator.writeKey("overhead");
-		generator.write(this.overhead.doubleValue());
+		generator.write(this.overhead);
 
 		generator.writeKey("tripped");
-		generator.write(this.tripped.doubleValue());
+		generator.write(this.tripped);
 
 	}
 
@@ -144,15 +152,15 @@ public final class Breaker implements ToJsonp {
 	public static class Builder implements ObjectBuilder<Breaker> {
 		private String estimatedSize;
 
-		private Number estimatedSizeInBytes;
+		private Long estimatedSizeInBytes;
 
 		private String limitSize;
 
-		private Number limitSizeInBytes;
+		private Long limitSizeInBytes;
 
-		private Number overhead;
+		private Float overhead;
 
-		private Number tripped;
+		private Float tripped;
 
 		/**
 		 * API name: {@code estimated_size}
@@ -165,7 +173,7 @@ public final class Breaker implements ToJsonp {
 		/**
 		 * API name: {@code estimated_size_in_bytes}
 		 */
-		public Builder estimatedSizeInBytes(Number value) {
+		public Builder estimatedSizeInBytes(long value) {
 			this.estimatedSizeInBytes = value;
 			return this;
 		}
@@ -181,7 +189,7 @@ public final class Breaker implements ToJsonp {
 		/**
 		 * API name: {@code limit_size_in_bytes}
 		 */
-		public Builder limitSizeInBytes(Number value) {
+		public Builder limitSizeInBytes(long value) {
 			this.limitSizeInBytes = value;
 			return this;
 		}
@@ -189,7 +197,7 @@ public final class Breaker implements ToJsonp {
 		/**
 		 * API name: {@code overhead}
 		 */
-		public Builder overhead(Number value) {
+		public Builder overhead(float value) {
 			this.overhead = value;
 			return this;
 		}
@@ -197,7 +205,7 @@ public final class Breaker implements ToJsonp {
 		/**
 		 * API name: {@code tripped}
 		 */
-		public Builder tripped(Number value) {
+		public Builder tripped(float value) {
 			this.tripped = value;
 			return this;
 		}
@@ -217,19 +225,19 @@ public final class Breaker implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Breaker
+	 * Json deserializer for {@link Breaker}
 	 */
-	public static final JsonpDeserializer<Breaker> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Breaker::setupBreakerDeserializer);
+	public static final JsonpDeserializer<Breaker> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Breaker::setupBreakerDeserializer, Builder::build);
 
 	protected static void setupBreakerDeserializer(DelegatingDeserializer<Breaker.Builder> op) {
 
 		op.add(Builder::estimatedSize, JsonpDeserializer.stringDeserializer(), "estimated_size");
-		op.add(Builder::estimatedSizeInBytes, JsonpDeserializer.numberDeserializer(), "estimated_size_in_bytes");
+		op.add(Builder::estimatedSizeInBytes, JsonpDeserializer.longDeserializer(), "estimated_size_in_bytes");
 		op.add(Builder::limitSize, JsonpDeserializer.stringDeserializer(), "limit_size");
-		op.add(Builder::limitSizeInBytes, JsonpDeserializer.numberDeserializer(), "limit_size_in_bytes");
-		op.add(Builder::overhead, JsonpDeserializer.numberDeserializer(), "overhead");
-		op.add(Builder::tripped, JsonpDeserializer.numberDeserializer(), "tripped");
+		op.add(Builder::limitSizeInBytes, JsonpDeserializer.longDeserializer(), "limit_size_in_bytes");
+		op.add(Builder::overhead, JsonpDeserializer.floatDeserializer(), "overhead");
+		op.add(Builder::tripped, JsonpDeserializer.floatDeserializer(), "tripped");
 
 	}
 

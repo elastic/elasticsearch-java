@@ -24,27 +24,30 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ElasticsearchVersionInfo
-public final class ElasticsearchVersionInfo implements ToJsonp {
+@JsonpDeserializable
+public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
 
 	private final String buildFlavor;
 
 	private final String buildHash;
 
-	private final Boolean buildSnapshot;
+	private final boolean buildSnapshot;
 
 	private final String buildType;
 
@@ -58,7 +61,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ElasticsearchVersionInfo(Builder builder) {
+	public ElasticsearchVersionInfo(Builder builder) {
 
 		this.buildDate = Objects.requireNonNull(builder.buildDate, "build_date");
 		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
@@ -72,6 +75,10 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 				"minimum_wire_compatibility_version");
 		this.number = Objects.requireNonNull(builder.number, "number");
 
+	}
+
+	public ElasticsearchVersionInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -98,7 +105,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	/**
 	 * API name: {@code build_snapshot}
 	 */
-	public Boolean buildSnapshot() {
+	public boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
@@ -140,13 +147,13 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("build_date");
 		generator.write(this.buildDate);
@@ -228,7 +235,7 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 		/**
 		 * API name: {@code build_snapshot}
 		 */
-		public Builder buildSnapshot(Boolean value) {
+		public Builder buildSnapshot(boolean value) {
 			this.buildSnapshot = value;
 			return this;
 		}
@@ -288,10 +295,10 @@ public final class ElasticsearchVersionInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ElasticsearchVersionInfo
+	 * Json deserializer for {@link ElasticsearchVersionInfo}
 	 */
-	public static final JsonpDeserializer<ElasticsearchVersionInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
+	public static final JsonpDeserializer<ElasticsearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer, Builder::build);
 
 	protected static void setupElasticsearchVersionInfoDeserializer(
 			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {

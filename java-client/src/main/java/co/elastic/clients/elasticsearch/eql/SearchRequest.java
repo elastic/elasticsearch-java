@@ -25,14 +25,19 @@ package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryContainer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch.eql.search.ResultPosition;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -46,17 +51,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: eql.search.Request
-public final class SearchRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -79,33 +86,33 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	private final Number fetchSize;
 
 	@Nullable
-	private final List<QueryContainer> filter;
+	private final List<Query> filter;
 
 	@Nullable
-	private final JsonValue keepAlive;
+	private final String keepAlive;
 
 	@Nullable
 	private final Boolean keepOnCompletion;
 
 	@Nullable
-	private final JsonValue waitForCompletionTimeout;
+	private final String waitForCompletionTimeout;
 
 	@Nullable
-	private final JsonValue size;
+	private final JsonValue /* Union(_types.uint | _types.float) */ size;
 
 	@Nullable
-	private final List<JsonValue> fields;
+	private final List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
 
 	@Nullable
-	private final JsonValue resultPosition;
+	private final ResultPosition resultPosition;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SearchRequest(Builder builder) {
+	public SearchRequest(Builder builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.query = Objects.requireNonNull(builder.query, "query");
 		this.caseSensitive = builder.caseSensitive;
@@ -113,17 +120,23 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		this.tiebreakerField = builder.tiebreakerField;
 		this.timestampField = builder.timestampField;
 		this.fetchSize = builder.fetchSize;
-		this.filter = builder.filter;
+		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 		this.size = builder.size;
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.resultPosition = builder.resultPosition;
 
 	}
 
+	public SearchRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The name of the index to scope the operation
+	 * <p>
 	 * API name: {@code index}
 	 */
 	public String index() {
@@ -142,13 +155,13 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
 	 * If true, missing or closed indices are not included in the response.
-	 *
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -158,7 +171,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * EQL query you wish to run.
-	 *
+	 * <p>
 	 * API name: {@code query}
 	 */
 	public String query() {
@@ -175,7 +188,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Field containing the event classification, such as process, file, or network.
-	 *
+	 * <p>
 	 * API name: {@code event_category_field}
 	 */
 	@Nullable
@@ -185,7 +198,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Field used to sort hits with the same timestamp in ascending order
-	 *
+	 * <p>
 	 * API name: {@code tiebreaker_field}
 	 */
 	@Nullable
@@ -194,8 +207,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	}
 
 	/**
-	 * Field containing event timestamp. Default "@timestamp"
-	 *
+	 * Field containing event timestamp. Default &quot;@timestamp&quot;
+	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
 	@Nullable
@@ -205,7 +218,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 	/**
 	 * Maximum number of events to search at a time for sequence queries.
-	 *
+	 * <p>
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
@@ -216,11 +229,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Query, written in Query DSL, used to filter the events on which the EQL query
 	 * runs.
-	 *
+	 * <p>
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public List<QueryContainer> filter() {
+	public List<Query> filter() {
 		return this.filter;
 	}
 
@@ -228,7 +241,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public JsonValue keepAlive() {
+	public String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -244,29 +257,29 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public JsonValue waitForCompletionTimeout() {
+	public String waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
 	/**
 	 * For basic queries, the maximum number of matching events to return. Defaults
 	 * to 10
-	 *
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public JsonValue /* Union(_types.uint | _types.float) */ size() {
 		return this.size;
 	}
 
 	/**
 	 * Array of wildcard (*) patterns. The response returns values for field names
 	 * matching these patterns in the fields property of each hit.
-	 *
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public List<JsonValue> fields() {
+	public List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields() {
 		return this.fields;
 	}
 
@@ -274,20 +287,20 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	 * API name: {@code result_position}
 	 */
 	@Nullable
-	public JsonValue resultPosition() {
+	public ResultPosition resultPosition() {
 		return this.resultPosition;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("query");
 		generator.write(this.query);
@@ -326,8 +339,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("filter");
 			generator.writeStartArray();
-			for (QueryContainer item0 : this.filter) {
-				item0.toJsonp(generator, mapper);
+			for (Query item0 : this.filter) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -361,7 +374,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.fields) {
+			for (JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ item0 : this.fields) {
 				generator.write(item0);
 
 			}
@@ -371,8 +384,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		if (this.resultPosition != null) {
 
 			generator.writeKey("result_position");
-			generator.write(this.resultPosition);
-
+			this.resultPosition.serialize(generator, mapper);
 		}
 
 	}
@@ -389,7 +401,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -412,27 +424,29 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		private Number fetchSize;
 
 		@Nullable
-		private List<QueryContainer> filter;
+		private List<Query> filter;
 
 		@Nullable
-		private JsonValue keepAlive;
+		private String keepAlive;
 
 		@Nullable
 		private Boolean keepOnCompletion;
 
 		@Nullable
-		private JsonValue waitForCompletionTimeout;
+		private String waitForCompletionTimeout;
 
 		@Nullable
-		private JsonValue size;
+		private JsonValue /* Union(_types.uint | _types.float) */ size;
 
 		@Nullable
-		private List<JsonValue> fields;
+		private List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> fields;
 
 		@Nullable
-		private JsonValue resultPosition;
+		private ResultPosition resultPosition;
 
 		/**
+		 * The name of the index to scope the operation
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String value) {
@@ -451,14 +465,33 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
 		 * If true, missing or closed indices are not included in the response.
-		 *
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -468,7 +501,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * EQL query you wish to run.
-		 *
+		 * <p>
 		 * API name: {@code query}
 		 */
 		public Builder query(String value) {
@@ -486,7 +519,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Field containing the event classification, such as process, file, or network.
-		 *
+		 * <p>
 		 * API name: {@code event_category_field}
 		 */
 		public Builder eventCategoryField(@Nullable String value) {
@@ -496,7 +529,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Field used to sort hits with the same timestamp in ascending order
-		 *
+		 * <p>
 		 * API name: {@code tiebreaker_field}
 		 */
 		public Builder tiebreakerField(@Nullable String value) {
@@ -505,8 +538,8 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		}
 
 		/**
-		 * Field containing event timestamp. Default "@timestamp"
-		 *
+		 * Field containing event timestamp. Default &quot;@timestamp&quot;
+		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
 		public Builder timestampField(@Nullable String value) {
@@ -516,7 +549,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 		/**
 		 * Maximum number of events to search at a time for sequence queries.
-		 *
+		 * <p>
 		 * API name: {@code fetch_size}
 		 */
 		public Builder fetchSize(@Nullable Number value) {
@@ -527,10 +560,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Query, written in Query DSL, used to filter the events on which the EQL query
 		 * runs.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable List<QueryContainer> value) {
+		public Builder filter(@Nullable List<Query> value) {
 			this.filter = value;
 			return this;
 		}
@@ -538,18 +571,18 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Query, written in Query DSL, used to filter the events on which the EQL query
 		 * runs.
-		 *
+		 * <p>
 		 * API name: {@code filter}
 		 */
-		public Builder filter(QueryContainer... value) {
+		public Builder filter(Query... value) {
 			this.filter = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
 		 */
-		public Builder addFilter(QueryContainer value) {
+		public Builder addFilter(Query value) {
 			if (this.filter == null) {
 				this.filter = new ArrayList<>();
 			}
@@ -560,21 +593,21 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Set {@link #filter(List)} to a singleton list.
 		 */
-		public Builder filter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.filter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
 		 */
-		public Builder addFilter(Function<QueryContainer.Builder, ObjectBuilder<QueryContainer>> fn) {
-			return this.addFilter(fn.apply(new QueryContainer.Builder()).build());
+		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.addFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable JsonValue value) {
+		public Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -590,7 +623,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable JsonValue value) {
+		public Builder waitForCompletionTimeout(@Nullable String value) {
 			this.waitForCompletionTimeout = value;
 			return this;
 		}
@@ -598,10 +631,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * For basic queries, the maximum number of matching events to return. Defaults
 		 * to 10
-		 *
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable JsonValue /* Union(_types.uint | _types.float) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -609,10 +642,11 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Array of wildcard (*) patterns. The response returns values for field names
 		 * matching these patterns in the fields property of each hit.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<JsonValue> value) {
+		public Builder fields(
+				@Nullable List<JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */> value) {
 			this.fields = value;
 			return this;
 		}
@@ -620,18 +654,18 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * Array of wildcard (*) patterns. The response returns values for field names
 		 * matching these patterns in the fields property of each hit.
-		 *
+		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(JsonValue... value) {
+		public Builder fields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */... value) {
 			this.fields = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
-		public Builder addFields(JsonValue value) {
+		public Builder addFields(JsonValue /* Union(_types.Field | eql.search.SearchFieldFormatted) */ value) {
 			if (this.fields == null) {
 				this.fields = new ArrayList<>();
 			}
@@ -642,7 +676,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		/**
 		 * API name: {@code result_position}
 		 */
-		public Builder resultPosition(@Nullable JsonValue value) {
+		public Builder resultPosition(@Nullable ResultPosition value) {
 			this.resultPosition = value;
 			return this;
 		}
@@ -662,10 +696,10 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SearchRequest
+	 * Json deserializer for {@link SearchRequest}
 	 */
-	public static final JsonpDeserializer<SearchRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SearchRequest::setupSearchRequestDeserializer);
+	public static final JsonpDeserializer<SearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SearchRequest::setupSearchRequestDeserializer, Builder::build);
 
 	protected static void setupSearchRequestDeserializer(DelegatingDeserializer<SearchRequest.Builder> op) {
 
@@ -675,15 +709,15 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 		op.add(Builder::tiebreakerField, JsonpDeserializer.stringDeserializer(), "tiebreaker_field");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
 		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(QueryContainer.DESERIALIZER), "filter");
-		op.add(Builder::keepAlive, JsonpDeserializer.jsonValueDeserializer(), "keep_alive");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
+		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
-		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.jsonValueDeserializer(),
+		op.add(Builder::waitForCompletionTimeout, JsonpDeserializer.stringDeserializer(),
 				"wait_for_completion_timeout");
 		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
 				"fields");
-		op.add(Builder::resultPosition, JsonpDeserializer.jsonValueDeserializer(), "result_position");
+		op.add(Builder::resultPosition, ResultPosition._DESERIALIZER, "result_position");
 
 	}
 
@@ -692,7 +726,7 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code eql.search}".
 	 */
-	private static final Endpoint.Simple<SearchRequest, Void> ENDPOINT = new Endpoint.Simple<>(
+	private static final SimpleEndpoint<SearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -705,18 +739,17 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
-					propsSet |= _index;
+				propsSet |= _index;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index);
+					SimpleEndpoint.pathEncode(request.index, buf);
 					buf.append("/_eql");
 					buf.append("/search");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -727,14 +760,15 @@ public final class SearchRequest extends RequestBase implements ToJsonp {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, null);
 
 	/**
 	 * Create an "{@code eql.search}" endpoint.

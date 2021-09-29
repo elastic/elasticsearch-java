@@ -24,29 +24,33 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.PercolateQuery
-public final class PercolateQuery extends QueryBase {
+@JsonpDeserializable
+public final class PercolateQuery extends QueryBase implements QueryVariant {
 	@Nullable
-	private final JsonValue document;
+	private final JsonData document;
 
 	@Nullable
-	private final List<JsonValue> documents;
+	private final List<JsonData> documents;
 
-	@Nullable
 	private final String field;
 
 	@Nullable
@@ -56,34 +60,51 @@ public final class PercolateQuery extends QueryBase {
 	private final String index;
 
 	@Nullable
+	private final String name;
+
+	@Nullable
 	private final String preference;
 
 	@Nullable
-	private final JsonValue routing;
+	private final String routing;
 
 	@Nullable
-	private final Number version;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PercolateQuery(Builder builder) {
+	public PercolateQuery(Builder builder) {
 		super(builder);
+
 		this.document = builder.document;
-		this.documents = builder.documents;
-		this.field = builder.field;
+		this.documents = ModelTypeHelper.unmodifiable(builder.documents);
+		this.field = Objects.requireNonNull(builder.field, "field");
 		this.id = builder.id;
 		this.index = builder.index;
+		this.name = builder.name;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 		this.version = builder.version;
 
 	}
 
+	public PercolateQuery(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
+	/**
+	 * {@link Query} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "percolate";
+	}
+
 	/**
 	 * API name: {@code document}
 	 */
 	@Nullable
-	public JsonValue document() {
+	public JsonData document() {
 		return this.document;
 	}
 
@@ -91,14 +112,13 @@ public final class PercolateQuery extends QueryBase {
 	 * API name: {@code documents}
 	 */
 	@Nullable
-	public List<JsonValue> documents() {
+	public List<JsonData> documents() {
 		return this.documents;
 	}
 
 	/**
 	 * API name: {@code field}
 	 */
-	@Nullable
 	public String field() {
 		return this.field;
 	}
@@ -120,6 +140,14 @@ public final class PercolateQuery extends QueryBase {
 	}
 
 	/**
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public String name() {
+		return this.name;
+	}
+
+	/**
 	 * API name: {@code preference}
 	 */
 	@Nullable
@@ -131,7 +159,7 @@ public final class PercolateQuery extends QueryBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public JsonValue routing() {
+	public String routing() {
 		return this.routing;
 	}
 
@@ -139,35 +167,34 @@ public final class PercolateQuery extends QueryBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Number version() {
+	public Long version() {
 		return this.version;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.document != null) {
 
 			generator.writeKey("document");
-			generator.write(this.document);
+			this.document.serialize(generator, mapper);
 
 		}
 		if (this.documents != null) {
 
 			generator.writeKey("documents");
 			generator.writeStartArray();
-			for (JsonValue item0 : this.documents) {
-				generator.write(item0);
+			for (JsonData item0 : this.documents) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
-		if (this.field != null) {
 
-			generator.writeKey("field");
-			generator.write(this.field);
+		generator.writeKey("field");
+		generator.write(this.field);
 
-		}
 		if (this.id != null) {
 
 			generator.writeKey("id");
@@ -178,6 +205,12 @@ public final class PercolateQuery extends QueryBase {
 
 			generator.writeKey("index");
 			generator.write(this.index);
+
+		}
+		if (this.name != null) {
+
+			generator.writeKey("name");
+			generator.write(this.name);
 
 		}
 		if (this.preference != null) {
@@ -195,7 +228,7 @@ public final class PercolateQuery extends QueryBase {
 		if (this.version != null) {
 
 			generator.writeKey("version");
-			generator.write(this.version.doubleValue());
+			generator.write(this.version);
 
 		}
 
@@ -208,12 +241,11 @@ public final class PercolateQuery extends QueryBase {
 	 */
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<PercolateQuery> {
 		@Nullable
-		private JsonValue document;
+		private JsonData document;
 
 		@Nullable
-		private List<JsonValue> documents;
+		private List<JsonData> documents;
 
-		@Nullable
 		private String field;
 
 		@Nullable
@@ -223,18 +255,21 @@ public final class PercolateQuery extends QueryBase {
 		private String index;
 
 		@Nullable
+		private String name;
+
+		@Nullable
 		private String preference;
 
 		@Nullable
-		private JsonValue routing;
+		private String routing;
 
 		@Nullable
-		private Number version;
+		private Long version;
 
 		/**
 		 * API name: {@code document}
 		 */
-		public Builder document(@Nullable JsonValue value) {
+		public Builder document(@Nullable JsonData value) {
 			this.document = value;
 			return this;
 		}
@@ -242,7 +277,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code documents}
 		 */
-		public Builder documents(@Nullable List<JsonValue> value) {
+		public Builder documents(@Nullable List<JsonData> value) {
 			this.documents = value;
 			return this;
 		}
@@ -250,15 +285,15 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code documents}
 		 */
-		public Builder documents(JsonValue... value) {
+		public Builder documents(JsonData... value) {
 			this.documents = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #documents(List)}, creating the list if needed.
+		 * Add a value to {@link #documents(List)}, creating the list if needed. 4
 		 */
-		public Builder addDocuments(JsonValue value) {
+		public Builder addDocuments(JsonData value) {
 			if (this.documents == null) {
 				this.documents = new ArrayList<>();
 			}
@@ -269,7 +304,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -291,6 +326,14 @@ public final class PercolateQuery extends QueryBase {
 		}
 
 		/**
+		 * API name: {@code name}
+		 */
+		public Builder name(@Nullable String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code preference}
 		 */
 		public Builder preference(@Nullable String value) {
@@ -301,7 +344,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable JsonValue value) {
+		public Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -309,7 +352,7 @@ public final class PercolateQuery extends QueryBase {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Number value) {
+		public Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -334,22 +377,22 @@ public final class PercolateQuery extends QueryBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PercolateQuery
+	 * Json deserializer for {@link PercolateQuery}
 	 */
-	public static final JsonpDeserializer<PercolateQuery> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PercolateQuery::setupPercolateQueryDeserializer);
+	public static final JsonpDeserializer<PercolateQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PercolateQuery::setupPercolateQueryDeserializer, Builder::build);
 
 	protected static void setupPercolateQueryDeserializer(DelegatingDeserializer<PercolateQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::document, JsonpDeserializer.jsonValueDeserializer(), "document");
-		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"documents");
+		op.add(Builder::document, JsonData._DESERIALIZER, "document");
+		op.add(Builder::documents, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "documents");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
-		op.add(Builder::routing, JsonpDeserializer.jsonValueDeserializer(), "routing");
-		op.add(Builder::version, JsonpDeserializer.numberDeserializer(), "version");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
 

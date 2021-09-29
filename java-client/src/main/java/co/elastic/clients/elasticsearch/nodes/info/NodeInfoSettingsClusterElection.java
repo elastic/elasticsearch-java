@@ -24,27 +24,34 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsClusterElection
-public final class NodeInfoSettingsClusterElection implements ToJsonp {
+@JsonpDeserializable
+public final class NodeInfoSettingsClusterElection implements JsonpSerializable {
 	private final String strategy;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeInfoSettingsClusterElection(Builder builder) {
+	public NodeInfoSettingsClusterElection(Builder builder) {
 
 		this.strategy = Objects.requireNonNull(builder.strategy, "strategy");
 
+	}
+
+	public NodeInfoSettingsClusterElection(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,13 +64,13 @@ public final class NodeInfoSettingsClusterElection implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("strategy");
 		generator.write(this.strategy);
@@ -101,11 +108,11 @@ public final class NodeInfoSettingsClusterElection implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeInfoSettingsClusterElection
+	 * Json deserializer for {@link NodeInfoSettingsClusterElection}
 	 */
-	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer);
+	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer,
+					Builder::build);
 
 	protected static void setupNodeInfoSettingsClusterElectionDeserializer(
 			DelegatingDeserializer<NodeInfoSettingsClusterElection.Builder> op) {

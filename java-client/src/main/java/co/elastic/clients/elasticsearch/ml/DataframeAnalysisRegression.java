@@ -24,34 +24,55 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Double;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
-public final class DataframeAnalysisRegression extends DataframeAnalysis {
+@JsonpDeserializable
+public final class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
 	private final String lossFunction;
 
 	@Nullable
-	private final Number lossFunctionParameter;
+	private final Double lossFunctionParameter;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalysisRegression(Builder builder) {
+	public DataframeAnalysisRegression(Builder builder) {
 		super(builder);
+
 		this.lossFunction = builder.lossFunction;
 		this.lossFunctionParameter = builder.lossFunctionParameter;
 
 	}
 
+	public DataframeAnalysisRegression(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * {@link DataframeAnalysis} variant type
+	 */
+	@Override
+	public String _variantType() {
+		return "regression";
+	}
+
+	/**
+	 * The loss function used during regression. Available options are
+	 * <code>mse</code> (mean squared error), <code>msle</code> (mean squared
+	 * logarithmic error), <code>huber</code> (Pseudo-Huber loss).
+	 * <p>
 	 * API name: {@code loss_function}
 	 */
 	@Nullable
@@ -60,15 +81,19 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	}
 
 	/**
+	 * A positive number that is used as a parameter to the
+	 * <code>loss_function</code>.
+	 * <p>
 	 * API name: {@code loss_function_parameter}
 	 */
 	@Nullable
-	public Number lossFunctionParameter() {
+	public Double lossFunctionParameter() {
 		return this.lossFunctionParameter;
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-		super.toJsonpInternal(generator, mapper);
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
 		if (this.lossFunction != null) {
 
 			generator.writeKey("loss_function");
@@ -78,7 +103,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 		if (this.lossFunctionParameter != null) {
 
 			generator.writeKey("loss_function_parameter");
-			generator.write(this.lossFunctionParameter.doubleValue());
+			generator.write(this.lossFunctionParameter);
 
 		}
 
@@ -89,16 +114,20 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	/**
 	 * Builder for {@link DataframeAnalysisRegression}.
 	 */
-	public static class Builder extends DataframeAnalysis.AbstractBuilder<Builder>
+	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisRegression> {
 		@Nullable
 		private String lossFunction;
 
 		@Nullable
-		private Number lossFunctionParameter;
+		private Double lossFunctionParameter;
 
 		/**
+		 * The loss function used during regression. Available options are
+		 * <code>mse</code> (mean squared error), <code>msle</code> (mean squared
+		 * logarithmic error), <code>huber</code> (Pseudo-Huber loss).
+		 * <p>
 		 * API name: {@code loss_function}
 		 */
 		public Builder lossFunction(@Nullable String value) {
@@ -107,9 +136,12 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 		}
 
 		/**
+		 * A positive number that is used as a parameter to the
+		 * <code>loss_function</code>.
+		 * <p>
 		 * API name: {@code loss_function_parameter}
 		 */
-		public Builder lossFunctionParameter(@Nullable Number value) {
+		public Builder lossFunctionParameter(@Nullable Double value) {
 			this.lossFunctionParameter = value;
 			return this;
 		}
@@ -134,16 +166,16 @@ public final class DataframeAnalysisRegression extends DataframeAnalysis {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalysisRegression
+	 * Json deserializer for {@link DataframeAnalysisRegression}
 	 */
-	public static final JsonpDeserializer<DataframeAnalysisRegression> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer);
+	public static final JsonpDeserializer<DataframeAnalysisRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer, Builder::build);
 
 	protected static void setupDataframeAnalysisRegressionDeserializer(
 			DelegatingDeserializer<DataframeAnalysisRegression.Builder> op) {
-		DataframeAnalysis.setupDataframeAnalysisDeserializer(op);
+		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::lossFunction, JsonpDeserializer.stringDeserializer(), "loss_function");
-		op.add(Builder::lossFunctionParameter, JsonpDeserializer.numberDeserializer(), "loss_function_parameter");
+		op.add(Builder::lossFunctionParameter, JsonpDeserializer.doubleDeserializer(), "loss_function_parameter");
 
 	}
 

@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,7 +37,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceIngestProcessor
-public final class MlInferenceIngestProcessor implements ToJsonp {
+@JsonpDeserializable
+public final class MlInferenceIngestProcessor implements JsonpSerializable {
 	private final MlInferenceIngestProcessorCount numDocsProcessed;
 
 	private final MlCounter pipelines;
@@ -47,13 +49,17 @@ public final class MlInferenceIngestProcessor implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected MlInferenceIngestProcessor(Builder builder) {
+	public MlInferenceIngestProcessor(Builder builder) {
 
 		this.numDocsProcessed = Objects.requireNonNull(builder.numDocsProcessed, "num_docs_processed");
 		this.pipelines = Objects.requireNonNull(builder.pipelines, "pipelines");
 		this.numFailures = Objects.requireNonNull(builder.numFailures, "num_failures");
 		this.timeMs = Objects.requireNonNull(builder.timeMs, "time_ms");
 
+	}
+
+	public MlInferenceIngestProcessor(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -87,25 +93,25 @@ public final class MlInferenceIngestProcessor implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("num_docs_processed");
-		this.numDocsProcessed.toJsonp(generator, mapper);
+		this.numDocsProcessed.serialize(generator, mapper);
 
 		generator.writeKey("pipelines");
-		this.pipelines.toJsonp(generator, mapper);
+		this.pipelines.serialize(generator, mapper);
 
 		generator.writeKey("num_failures");
-		this.numFailures.toJsonp(generator, mapper);
+		this.numFailures.serialize(generator, mapper);
 
 		generator.writeKey("time_ms");
-		this.timeMs.toJsonp(generator, mapper);
+		this.timeMs.serialize(generator, mapper);
 
 	}
 
@@ -201,18 +207,18 @@ public final class MlInferenceIngestProcessor implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for MlInferenceIngestProcessor
+	 * Json deserializer for {@link MlInferenceIngestProcessor}
 	 */
-	public static final JsonpDeserializer<MlInferenceIngestProcessor> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, MlInferenceIngestProcessor::setupMlInferenceIngestProcessorDeserializer);
+	public static final JsonpDeserializer<MlInferenceIngestProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, MlInferenceIngestProcessor::setupMlInferenceIngestProcessorDeserializer, Builder::build);
 
 	protected static void setupMlInferenceIngestProcessorDeserializer(
 			DelegatingDeserializer<MlInferenceIngestProcessor.Builder> op) {
 
-		op.add(Builder::numDocsProcessed, MlInferenceIngestProcessorCount.DESERIALIZER, "num_docs_processed");
-		op.add(Builder::pipelines, MlCounter.DESERIALIZER, "pipelines");
-		op.add(Builder::numFailures, MlInferenceIngestProcessorCount.DESERIALIZER, "num_failures");
-		op.add(Builder::timeMs, MlInferenceIngestProcessorCount.DESERIALIZER, "time_ms");
+		op.add(Builder::numDocsProcessed, MlInferenceIngestProcessorCount._DESERIALIZER, "num_docs_processed");
+		op.add(Builder::pipelines, MlCounter._DESERIALIZER, "pipelines");
+		op.add(Builder::numFailures, MlInferenceIngestProcessorCount._DESERIALIZER, "num_failures");
+		op.add(Builder::timeMs, MlInferenceIngestProcessorCount._DESERIALIZER, "time_ms");
 
 	}
 

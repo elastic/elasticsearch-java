@@ -25,13 +25,16 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -39,12 +42,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.simulate_index_template.Request
-public final class SimulateIndexTemplateRequest extends RequestBase implements ToJsonp {
-	@Nullable
+@JsonpDeserializable
+public final class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
@@ -61,22 +65,25 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulateIndexTemplateRequest(Builder builder) {
+	public SimulateIndexTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
-		this.indexPatterns = builder.indexPatterns;
-		this.composedOf = builder.composedOf;
-		this.overlapping = builder.overlapping;
+		this.name = Objects.requireNonNull(builder.name, "name");
+		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
+		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
+		this.overlapping = ModelTypeHelper.unmodifiable(builder.overlapping);
 		this.template = builder.template;
 
 	}
 
+	public SimulateIndexTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Index or template name to simulate
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
 	public String name() {
 		return this.name;
 	}
@@ -99,7 +106,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 	/**
 	 * Any overlapping templates that would have matched, but have lower priority
-	 *
+	 * <p>
 	 * API name: {@code overlapping}
 	 */
 	@Nullable
@@ -118,13 +125,13 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.indexPatterns != null) {
 
@@ -153,7 +160,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 			generator.writeKey("overlapping");
 			generator.writeStartArray();
 			for (OverlappingIndexTemplate item0 : this.overlapping) {
-				item0.toJsonp(generator, mapper);
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -162,7 +169,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		if (this.template != null) {
 
 			generator.writeKey("template");
-			this.template.toJsonp(generator, mapper);
+			this.template.serialize(generator, mapper);
 
 		}
 
@@ -174,7 +181,6 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	 * Builder for {@link SimulateIndexTemplateRequest}.
 	 */
 	public static class Builder implements ObjectBuilder<SimulateIndexTemplateRequest> {
-		@Nullable
 		private String name;
 
 		@Nullable
@@ -191,10 +197,10 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 		/**
 		 * Index or template name to simulate
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -216,7 +222,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -243,7 +249,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
+		 * Add a value to {@link #composedOf(List)}, creating the list if needed. 4
 		 */
 		public Builder addComposedOf(String value) {
 			if (this.composedOf == null) {
@@ -255,7 +261,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 		/**
 		 * Any overlapping templates that would have matched, but have lower priority
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(@Nullable List<OverlappingIndexTemplate> value) {
@@ -265,7 +271,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 		/**
 		 * Any overlapping templates that would have matched, but have lower priority
-		 *
+		 * <p>
 		 * API name: {@code overlapping}
 		 */
 		public Builder overlapping(OverlappingIndexTemplate... value) {
@@ -274,7 +280,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 4
 		 */
 		public Builder addOverlapping(OverlappingIndexTemplate value) {
 			if (this.overlapping == null) {
@@ -293,7 +299,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 5
 		 */
 		public Builder addOverlapping(
 				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {
@@ -330,10 +336,10 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulateIndexTemplateRequest
+	 * Json deserializer for {@link SimulateIndexTemplateRequest}
 	 */
-	public static final JsonpDeserializer<SimulateIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer);
+	public static final JsonpDeserializer<SimulateIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SimulateIndexTemplateRequest::setupSimulateIndexTemplateRequestDeserializer, Builder::build);
 
 	protected static void setupSimulateIndexTemplateRequestDeserializer(
 			DelegatingDeserializer<SimulateIndexTemplateRequest.Builder> op) {
@@ -342,9 +348,9 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 				"index_patterns");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate.DESERIALIZER),
+		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(OverlappingIndexTemplate._DESERIALIZER),
 				"overlapping");
-		op.add(Builder::template, TemplateMapping.DESERIALIZER, "template");
+		op.add(Builder::template, TemplateMapping._DESERIALIZER, "template");
 
 	}
 
@@ -353,7 +359,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 	/**
 	 * Endpoint "{@code indices.simulate_index_template}".
 	 */
-	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -366,18 +372,17 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 
 				int propsSet = 0;
 
-				if (request.name() != null)
-					propsSet |= _name;
+				propsSet |= _name;
 
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/_simulate_index");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -385,5 +390,5 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements T
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, SimulateIndexTemplateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateIndexTemplateResponse._DESERIALIZER);
 }

@@ -24,12 +24,13 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch.cat.health.HealthRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -40,33 +41,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.Response
-public final class HealthResponse implements ToJsonp {
-	private final List<HealthRecord> value;
+@JsonpDeserializable
+public final class HealthResponse implements JsonpSerializable {
+	private final List<HealthRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HealthResponse(Builder builder) {
+	public HealthResponse(Builder builder) {
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
 
+	}
+
+	public HealthResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Response value.
-	 *
-	 * API name: {@code value}
+	 * <p>
+	 * API name: {@code _value_body}
 	 */
-	public List<HealthRecord> value() {
-		return this.value;
+	public List<HealthRecord> valueBody() {
+		return this.valueBody;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (HealthRecord item0 : this.value) {
-			item0.toJsonp(generator, mapper);
+		for (HealthRecord item0 : this.valueBody) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -79,51 +85,51 @@ public final class HealthResponse implements ToJsonp {
 	 * Builder for {@link HealthResponse}.
 	 */
 	public static class Builder implements ObjectBuilder<HealthResponse> {
-		private List<HealthRecord> value;
+		private List<HealthRecord> valueBody;
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(List<HealthRecord> value) {
-			this.value = value;
+		public Builder valueBody(List<HealthRecord> value) {
+			this.valueBody = value;
 			return this;
 		}
 
 		/**
 		 * Response value.
-		 *
-		 * API name: {@code value}
+		 * <p>
+		 * API name: {@code _value_body}
 		 */
-		public Builder value(HealthRecord... value) {
-			this.value = Arrays.asList(value);
+		public Builder valueBody(HealthRecord... value) {
+			this.valueBody = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
 		 */
-		public Builder addValue(HealthRecord value) {
-			if (this.value == null) {
-				this.value = new ArrayList<>();
+		public Builder addValueBody(HealthRecord value) {
+			if (this.valueBody == null) {
+				this.valueBody = new ArrayList<>();
 			}
-			this.value.add(value);
+			this.valueBody.add(value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #value(List)} to a singleton list.
+		 * Set {@link #valueBody(List)} to a singleton list.
 		 */
-		public Builder value(Function<HealthRecord.Builder, ObjectBuilder<HealthRecord>> fn) {
-			return this.value(fn.apply(new HealthRecord.Builder()).build());
+		public Builder valueBody(Function<HealthRecord.Builder, ObjectBuilder<HealthRecord>> fn) {
+			return this.valueBody(fn.apply(new HealthRecord.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed.
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
 		 */
-		public Builder addValue(Function<HealthRecord.Builder, ObjectBuilder<HealthRecord>> fn) {
-			return this.addValue(fn.apply(new HealthRecord.Builder()).build());
+		public Builder addValueBody(Function<HealthRecord.Builder, ObjectBuilder<HealthRecord>> fn) {
+			return this.addValueBody(fn.apply(new HealthRecord.Builder()).build());
 		}
 
 		/**
@@ -138,18 +144,14 @@ public final class HealthResponse implements ToJsonp {
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<HealthResponse> _DESERIALIZER = createHealthResponseDeserializer();
+	protected static JsonpDeserializer<HealthResponse> createHealthResponseDeserializer() {
 
-	/**
-	 * Json deserializer for HealthResponse
-	 */
-	public static final JsonpDeserializer<HealthResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HealthResponse::setupHealthResponseDeserializer);
+		JsonpDeserializer<List<HealthRecord>> valueDeserializer = JsonpDeserializer
+				.arrayDeserializer(HealthRecord._DESERIALIZER);
 
-	protected static void setupHealthResponseDeserializer(DelegatingDeserializer<HealthResponse.Builder> op) {
-
-		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(HealthRecord.DESERIALIZER), "value");
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

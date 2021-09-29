@@ -25,32 +25,34 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cat.pending_tasks.Request
+
 public final class PendingTasksRequest extends CatRequestBase {
-	protected PendingTasksRequest() {
+	public PendingTasksRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link PendingTasksRequest}.
 	 */
-	public static final PendingTasksRequest INSTANCE = new PendingTasksRequest();
-
-	public static final JsonpDeserializer<PendingTasksRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(PendingTasksRequest.INSTANCE);
+	public static final PendingTasksRequest _INSTANCE = new PendingTasksRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code cat.pending_tasks}".
 	 */
-	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PendingTasksRequest, PendingTasksResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -67,5 +69,5 @@ public final class PendingTasksRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, PendingTasksResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PendingTasksResponse._DESERIALIZER);
 }

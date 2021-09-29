@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,18 +38,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackDynamicAttachment
-public final class SlackDynamicAttachment implements ToJsonp {
+@JsonpDeserializable
+public final class SlackDynamicAttachment implements JsonpSerializable {
 	private final SlackAttachment attachmentTemplate;
 
 	private final String listPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SlackDynamicAttachment(Builder builder) {
+	public SlackDynamicAttachment(Builder builder) {
 
 		this.attachmentTemplate = Objects.requireNonNull(builder.attachmentTemplate, "attachment_template");
 		this.listPath = Objects.requireNonNull(builder.listPath, "list_path");
 
+	}
+
+	public SlackDynamicAttachment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -68,16 +74,16 @@ public final class SlackDynamicAttachment implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("attachment_template");
-		this.attachmentTemplate.toJsonp(generator, mapper);
+		this.attachmentTemplate.serialize(generator, mapper);
 
 		generator.writeKey("list_path");
 		generator.write(this.listPath);
@@ -132,15 +138,15 @@ public final class SlackDynamicAttachment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SlackDynamicAttachment
+	 * Json deserializer for {@link SlackDynamicAttachment}
 	 */
-	public static final JsonpDeserializer<SlackDynamicAttachment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SlackDynamicAttachment::setupSlackDynamicAttachmentDeserializer);
+	public static final JsonpDeserializer<SlackDynamicAttachment> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SlackDynamicAttachment::setupSlackDynamicAttachmentDeserializer, Builder::build);
 
 	protected static void setupSlackDynamicAttachmentDeserializer(
 			DelegatingDeserializer<SlackDynamicAttachment.Builder> op) {
 
-		op.add(Builder::attachmentTemplate, SlackAttachment.DESERIALIZER, "attachment_template");
+		op.add(Builder::attachmentTemplate, SlackAttachment._DESERIALIZER, "attachment_template");
 		op.add(Builder::listPath, JsonpDeserializer.stringDeserializer(), "list_path");
 
 	}

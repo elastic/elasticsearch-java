@@ -24,52 +24,60 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HdrMethod
-public final class HdrMethod implements ToJsonp {
+@JsonpDeserializable
+public final class HdrMethod implements JsonpSerializable {
 	@Nullable
-	private final Number numberOfSignificantValueDigits;
+	private final Integer numberOfSignificantValueDigits;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HdrMethod(Builder builder) {
+	public HdrMethod(Builder builder) {
 
 		this.numberOfSignificantValueDigits = builder.numberOfSignificantValueDigits;
 
+	}
+
+	public HdrMethod(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code number_of_significant_value_digits}
 	 */
 	@Nullable
-	public Number numberOfSignificantValueDigits() {
+	public Integer numberOfSignificantValueDigits() {
 		return this.numberOfSignificantValueDigits;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.numberOfSignificantValueDigits != null) {
 
 			generator.writeKey("number_of_significant_value_digits");
-			generator.write(this.numberOfSignificantValueDigits.doubleValue());
+			generator.write(this.numberOfSignificantValueDigits);
 
 		}
 
@@ -82,12 +90,12 @@ public final class HdrMethod implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<HdrMethod> {
 		@Nullable
-		private Number numberOfSignificantValueDigits;
+		private Integer numberOfSignificantValueDigits;
 
 		/**
 		 * API name: {@code number_of_significant_value_digits}
 		 */
-		public Builder numberOfSignificantValueDigits(@Nullable Number value) {
+		public Builder numberOfSignificantValueDigits(@Nullable Integer value) {
 			this.numberOfSignificantValueDigits = value;
 			return this;
 		}
@@ -107,14 +115,14 @@ public final class HdrMethod implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for HdrMethod
+	 * Json deserializer for {@link HdrMethod}
 	 */
-	public static final JsonpDeserializer<HdrMethod> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, HdrMethod::setupHdrMethodDeserializer);
+	public static final JsonpDeserializer<HdrMethod> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			HdrMethod::setupHdrMethodDeserializer, Builder::build);
 
 	protected static void setupHdrMethodDeserializer(DelegatingDeserializer<HdrMethod.Builder> op) {
 
-		op.add(Builder::numberOfSignificantValueDigits, JsonpDeserializer.numberDeserializer(),
+		op.add(Builder::numberOfSignificantValueDigits, JsonpDeserializer.integerDeserializer(),
 				"number_of_significant_value_digits");
 
 	}

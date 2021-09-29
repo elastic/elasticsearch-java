@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,15 +37,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich._types.Summary
-public final class Summary implements ToJsonp {
+@JsonpDeserializable
+public final class Summary implements JsonpSerializable {
 	private final Configuration config;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Summary(Builder builder) {
+	public Summary(Builder builder) {
 
 		this.config = Objects.requireNonNull(builder.config, "config");
 
+	}
+
+	public Summary(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -57,16 +63,16 @@ public final class Summary implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("config");
-		this.config.toJsonp(generator, mapper);
+		this.config.serialize(generator, mapper);
 
 	}
 
@@ -108,14 +114,14 @@ public final class Summary implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Summary
+	 * Json deserializer for {@link Summary}
 	 */
-	public static final JsonpDeserializer<Summary> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Summary::setupSummaryDeserializer);
+	public static final JsonpDeserializer<Summary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Summary::setupSummaryDeserializer, Builder::build);
 
 	protected static void setupSummaryDeserializer(DelegatingDeserializer<Summary.Builder> op) {
 
-		op.add(Builder::config, Configuration.DESERIALIZER, "config");
+		op.add(Builder::config, Configuration._DESERIALIZER, "config");
 
 	}
 

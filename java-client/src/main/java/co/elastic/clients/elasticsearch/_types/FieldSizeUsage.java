@@ -24,59 +24,66 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldSizeUsage
-public final class FieldSizeUsage implements ToJsonp {
+@JsonpDeserializable
+public final class FieldSizeUsage implements JsonpSerializable {
 	@Nullable
-	private final JsonValue size;
+	private final String size;
 
-	private final Number sizeInBytes;
+	private final long sizeInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected FieldSizeUsage(Builder builder) {
+	public FieldSizeUsage(Builder builder) {
 
 		this.size = builder.size;
 		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
 
 	}
 
+	public FieldSizeUsage(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public String size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code size_in_bytes}
 	 */
-	public Number sizeInBytes() {
+	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.size != null) {
 
@@ -86,7 +93,7 @@ public final class FieldSizeUsage implements ToJsonp {
 		}
 
 		generator.writeKey("size_in_bytes");
-		generator.write(this.sizeInBytes.doubleValue());
+		generator.write(this.sizeInBytes);
 
 	}
 
@@ -97,14 +104,14 @@ public final class FieldSizeUsage implements ToJsonp {
 	 */
 	public static class Builder implements ObjectBuilder<FieldSizeUsage> {
 		@Nullable
-		private JsonValue size;
+		private String size;
 
-		private Number sizeInBytes;
+		private Long sizeInBytes;
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -112,7 +119,7 @@ public final class FieldSizeUsage implements ToJsonp {
 		/**
 		 * API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(Number value) {
+		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -132,15 +139,15 @@ public final class FieldSizeUsage implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for FieldSizeUsage
+	 * Json deserializer for {@link FieldSizeUsage}
 	 */
-	public static final JsonpDeserializer<FieldSizeUsage> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, FieldSizeUsage::setupFieldSizeUsageDeserializer);
+	public static final JsonpDeserializer<FieldSizeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldSizeUsage::setupFieldSizeUsageDeserializer, Builder::build);
 
 	protected static void setupFieldSizeUsageDeserializer(DelegatingDeserializer<FieldSizeUsage.Builder> op) {
 
-		op.add(Builder::size, JsonpDeserializer.jsonValueDeserializer(), "size");
-		op.add(Builder::sizeInBytes, JsonpDeserializer.numberDeserializer(), "size_in_bytes");
+		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 
 	}
 

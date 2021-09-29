@@ -24,18 +24,22 @@
 package co.elastic.clients.elasticsearch.cat.plugins;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.plugins.PluginsRecord
-public final class PluginsRecord implements ToJsonp {
+@JsonpDeserializable
+public final class PluginsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -56,7 +60,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PluginsRecord(Builder builder) {
+	public PluginsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.name = builder.name;
@@ -67,9 +71,13 @@ public final class PluginsRecord implements ToJsonp {
 
 	}
 
+	public PluginsRecord(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * unique node id
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -79,7 +87,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * node name
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -89,7 +97,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * component
-	 *
+	 * <p>
 	 * API name: {@code component}
 	 */
 	@Nullable
@@ -99,7 +107,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * component version
-	 *
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
@@ -109,7 +117,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * plugin details
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -119,7 +127,7 @@ public final class PluginsRecord implements ToJsonp {
 
 	/**
 	 * plugin type
-	 *
+	 * <p>
 	 * API name: {@code type}
 	 */
 	@Nullable
@@ -130,13 +138,13 @@ public final class PluginsRecord implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
 
@@ -203,7 +211,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * unique node id
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -213,7 +221,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * node name
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -223,7 +231,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * component
-		 *
+		 * <p>
 		 * API name: {@code component}
 		 */
 		public Builder component(@Nullable String value) {
@@ -233,7 +241,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * component version
-		 *
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public Builder version(@Nullable String value) {
@@ -243,7 +251,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * plugin details
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -253,7 +261,7 @@ public final class PluginsRecord implements ToJsonp {
 
 		/**
 		 * plugin type
-		 *
+		 * <p>
 		 * API name: {@code type}
 		 */
 		public Builder type(@Nullable String value) {
@@ -276,10 +284,10 @@ public final class PluginsRecord implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PluginsRecord
+	 * Json deserializer for {@link PluginsRecord}
 	 */
-	public static final JsonpDeserializer<PluginsRecord> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PluginsRecord::setupPluginsRecordDeserializer);
+	public static final JsonpDeserializer<PluginsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PluginsRecord::setupPluginsRecordDeserializer, Builder::build);
 
 	protected static void setupPluginsRecordDeserializer(DelegatingDeserializer<PluginsRecord.Builder> op) {
 

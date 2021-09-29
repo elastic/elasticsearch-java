@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -41,21 +43,26 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SimulatedActions
-public final class SimulatedActions implements ToJsonp {
+@JsonpDeserializable
+public final class SimulatedActions implements JsonpSerializable {
 	private final List<String> actions;
 
-	private final co.elastic.clients.elasticsearch.watcher.SimulatedActions all;
+	private final SimulatedActions all;
 
-	private final Boolean useAll;
+	private final boolean useAll;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SimulatedActions(Builder builder) {
+	public SimulatedActions(Builder builder) {
 
-		this.actions = Objects.requireNonNull(builder.actions, "actions");
+		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
 		this.all = Objects.requireNonNull(builder.all, "all");
 		this.useAll = Objects.requireNonNull(builder.useAll, "use_all");
 
+	}
+
+	public SimulatedActions(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -68,27 +75,27 @@ public final class SimulatedActions implements ToJsonp {
 	/**
 	 * API name: {@code all}
 	 */
-	public co.elastic.clients.elasticsearch.watcher.SimulatedActions all() {
+	public SimulatedActions all() {
 		return this.all;
 	}
 
 	/**
 	 * API name: {@code use_all}
 	 */
-	public Boolean useAll() {
+	public boolean useAll() {
 		return this.useAll;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("actions");
 		generator.writeStartArray();
@@ -99,7 +106,7 @@ public final class SimulatedActions implements ToJsonp {
 		generator.writeEnd();
 
 		generator.writeKey("all");
-		this.all.toJsonp(generator, mapper);
+		this.all.serialize(generator, mapper);
 
 		generator.writeKey("use_all");
 		generator.write(this.useAll);
@@ -114,7 +121,7 @@ public final class SimulatedActions implements ToJsonp {
 	public static class Builder implements ObjectBuilder<SimulatedActions> {
 		private List<String> actions;
 
-		private co.elastic.clients.elasticsearch.watcher.SimulatedActions all;
+		private SimulatedActions all;
 
 		private Boolean useAll;
 
@@ -135,7 +142,7 @@ public final class SimulatedActions implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {
@@ -148,7 +155,7 @@ public final class SimulatedActions implements ToJsonp {
 		/**
 		 * API name: {@code all}
 		 */
-		public Builder all(co.elastic.clients.elasticsearch.watcher.SimulatedActions value) {
+		public Builder all(SimulatedActions value) {
 			this.all = value;
 			return this;
 		}
@@ -156,15 +163,14 @@ public final class SimulatedActions implements ToJsonp {
 		/**
 		 * API name: {@code all}
 		 */
-		public Builder all(
-				Function<co.elastic.clients.elasticsearch.watcher.SimulatedActions.Builder, ObjectBuilder<co.elastic.clients.elasticsearch.watcher.SimulatedActions>> fn) {
-			return this.all(fn.apply(new co.elastic.clients.elasticsearch.watcher.SimulatedActions.Builder()).build());
+		public Builder all(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
+			return this.all(fn.apply(new SimulatedActions.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code use_all}
 		 */
-		public Builder useAll(Boolean value) {
+		public Builder useAll(boolean value) {
 			this.useAll = value;
 			return this;
 		}
@@ -184,16 +190,16 @@ public final class SimulatedActions implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SimulatedActions
+	 * Json deserializer for {@link SimulatedActions}
 	 */
-	public static final JsonpDeserializer<SimulatedActions> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SimulatedActions::setupSimulatedActionsDeserializer);
+	public static final JsonpDeserializer<SimulatedActions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SimulatedActions::setupSimulatedActionsDeserializer, Builder::build);
 
 	protected static void setupSimulatedActionsDeserializer(DelegatingDeserializer<SimulatedActions.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"actions");
-		op.add(Builder::all, co.elastic.clients.elasticsearch.watcher.SimulatedActions.DESERIALIZER, "all");
+		op.add(Builder::all, SimulatedActions._DESERIALIZER, "all");
 		op.add(Builder::useAll, JsonpDeserializer.booleanDeserializer(), "use_all");
 
 	}

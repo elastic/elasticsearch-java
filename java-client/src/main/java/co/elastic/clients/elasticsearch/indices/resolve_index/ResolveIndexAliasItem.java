@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,21 +38,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexAliasItem
-public final class ResolveIndexAliasItem implements ToJsonp {
+@JsonpDeserializable
+public final class ResolveIndexAliasItem implements JsonpSerializable {
 	private final String name;
 
 	private final List<String> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ResolveIndexAliasItem(Builder builder) {
+	public ResolveIndexAliasItem(Builder builder) {
 
 		this.name = Objects.requireNonNull(builder.name, "name");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
+		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
 
+	}
+
+	public ResolveIndexAliasItem(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -70,13 +78,13 @@ public final class ResolveIndexAliasItem implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("name");
 		generator.write(this.name);
@@ -126,7 +134,7 @@ public final class ResolveIndexAliasItem implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -151,10 +159,10 @@ public final class ResolveIndexAliasItem implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ResolveIndexAliasItem
+	 * Json deserializer for {@link ResolveIndexAliasItem}
 	 */
-	public static final JsonpDeserializer<ResolveIndexAliasItem> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ResolveIndexAliasItem::setupResolveIndexAliasItemDeserializer);
+	public static final JsonpDeserializer<ResolveIndexAliasItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexAliasItem::setupResolveIndexAliasItemDeserializer, Builder::build);
 
 	protected static void setupResolveIndexAliasItemDeserializer(
 			DelegatingDeserializer<ResolveIndexAliasItem.Builder> op) {

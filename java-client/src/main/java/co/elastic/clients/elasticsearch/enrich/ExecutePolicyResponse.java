@@ -25,32 +25,38 @@ package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch.enrich.execute_policy.ExecuteEnrichPolicyStatus;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Response
-public final class ExecutePolicyResponse implements ToJsonp {
+@JsonpDeserializable
+public final class ExecutePolicyResponse implements JsonpSerializable {
 	private final ExecuteEnrichPolicyStatus status;
 
 	@Nullable
-	private final JsonValue taskId;
+	private final String taskId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExecutePolicyResponse(Builder builder) {
+	public ExecutePolicyResponse(Builder builder) {
 
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.taskId = builder.taskId;
 
+	}
+
+	public ExecutePolicyResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -64,23 +70,23 @@ public final class ExecutePolicyResponse implements ToJsonp {
 	 * API name: {@code task_id}
 	 */
 	@Nullable
-	public JsonValue taskId() {
+	public String taskId() {
 		return this.taskId;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("status");
-		this.status.toJsonp(generator, mapper);
+		this.status.serialize(generator, mapper);
 
 		if (this.taskId != null) {
 
@@ -100,7 +106,7 @@ public final class ExecutePolicyResponse implements ToJsonp {
 		private ExecuteEnrichPolicyStatus status;
 
 		@Nullable
-		private JsonValue taskId;
+		private String taskId;
 
 		/**
 		 * API name: {@code status}
@@ -121,7 +127,7 @@ public final class ExecutePolicyResponse implements ToJsonp {
 		/**
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(@Nullable JsonValue value) {
+		public Builder taskId(@Nullable String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -141,16 +147,16 @@ public final class ExecutePolicyResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExecutePolicyResponse
+	 * Json deserializer for {@link ExecutePolicyResponse}
 	 */
-	public static final JsonpDeserializer<ExecutePolicyResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ExecutePolicyResponse::setupExecutePolicyResponseDeserializer);
+	public static final JsonpDeserializer<ExecutePolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExecutePolicyResponse::setupExecutePolicyResponseDeserializer, Builder::build);
 
 	protected static void setupExecutePolicyResponseDeserializer(
 			DelegatingDeserializer<ExecutePolicyResponse.Builder> op) {
 
-		op.add(Builder::status, ExecuteEnrichPolicyStatus.DESERIALIZER, "status");
-		op.add(Builder::taskId, JsonpDeserializer.jsonValueDeserializer(), "task_id");
+		op.add(Builder::status, ExecuteEnrichPolicyStatus._DESERIALIZER, "status");
+		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
 
 	}
 

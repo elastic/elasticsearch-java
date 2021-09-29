@@ -24,11 +24,12 @@
 package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,18 +37,23 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
-public final class ClusterProcess implements ToJsonp {
+@JsonpDeserializable
+public final class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;
 
 	private final ClusterProcessOpenFileDescriptors openFileDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ClusterProcess(Builder builder) {
+	public ClusterProcess(Builder builder) {
 
 		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
 		this.openFileDescriptors = Objects.requireNonNull(builder.openFileDescriptors, "open_file_descriptors");
 
+	}
+
+	public ClusterProcess(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,19 +73,19 @@ public final class ClusterProcess implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cpu");
-		this.cpu.toJsonp(generator, mapper);
+		this.cpu.serialize(generator, mapper);
 
 		generator.writeKey("open_file_descriptors");
-		this.openFileDescriptors.toJsonp(generator, mapper);
+		this.openFileDescriptors.serialize(generator, mapper);
 
 	}
 
@@ -139,15 +145,15 @@ public final class ClusterProcess implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ClusterProcess
+	 * Json deserializer for {@link ClusterProcess}
 	 */
-	public static final JsonpDeserializer<ClusterProcess> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ClusterProcess::setupClusterProcessDeserializer);
+	public static final JsonpDeserializer<ClusterProcess> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterProcess::setupClusterProcessDeserializer, Builder::build);
 
 	protected static void setupClusterProcessDeserializer(DelegatingDeserializer<ClusterProcess.Builder> op) {
 
-		op.add(Builder::cpu, ClusterProcessCpu.DESERIALIZER, "cpu");
-		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors.DESERIALIZER, "open_file_descriptors");
+		op.add(Builder::cpu, ClusterProcessCpu._DESERIALIZER, "cpu");
+		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors._DESERIALIZER, "open_file_descriptors");
 
 	}
 

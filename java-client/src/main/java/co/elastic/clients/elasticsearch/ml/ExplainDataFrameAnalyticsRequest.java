@@ -25,18 +25,20 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -44,7 +46,8 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.explain_data_frame_analytics.Request
-public final class ExplainDataFrameAnalyticsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class ExplainDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -54,7 +57,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	@Nullable
 	private final DataframeAnalyticsDestination dest;
 
-	private final DataframeAnalysisContainer analysis;
+	private final DataframeAnalysis analysis;
 
 	@Nullable
 	private final String description;
@@ -63,17 +66,17 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	private final String modelMemoryLimit;
 
 	@Nullable
-	private final Number maxNumThreads;
+	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue analyzedFields;
+	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 	@Nullable
 	private final Boolean allowLazyStart;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ExplainDataFrameAnalyticsRequest(Builder builder) {
+	public ExplainDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.source = builder.source;
@@ -87,11 +90,15 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 
 	}
 
+	public ExplainDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Identifier for the data frame analytics job. This identifier can contain
 	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 	 * must start and end with alphanumeric characters.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -102,7 +109,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * The configuration of how to source the analysis data. It requires an index.
 	 * Optionally, query and _source may be specified.
-	 *
+	 * <p>
 	 * API name: {@code source}
 	 */
 	@Nullable
@@ -113,7 +120,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * The destination configuration, consisting of index and optionally
 	 * results_field (ml by default).
-	 *
+	 * <p>
 	 * API name: {@code dest}
 	 */
 	@Nullable
@@ -125,16 +132,16 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 * The analysis configuration, which contains the information necessary to
 	 * perform one of the following types of analysis: classification, outlier
 	 * detection, or regression.
-	 *
+	 * <p>
 	 * API name: {@code analysis}
 	 */
-	public DataframeAnalysisContainer analysis() {
+	public DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
 	/**
 	 * A description of the job.
-	 *
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -149,7 +156,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 	 * create data frame analytics jobs that have model_memory_limit values greater
 	 * than that setting.
-	 *
+	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
@@ -163,11 +170,11 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 * analysis at the cost of using more CPU. Note that the process may use
 	 * additional threads for operational functionality other than the analysis
 	 * itself.
-	 *
+	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Number maxNumThreads() {
+	public Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -177,18 +184,18 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	 * last, therefore excludes takes precedence. In other words, if the same field
 	 * is specified in both includes and excludes, then the field will not be
 	 * included in the analysis.
-	 *
+	 * <p>
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue analyzedFields() {
+	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
 		return this.analyzedFields;
 	}
 
 	/**
 	 * Specifies whether this job can start when there is insufficient machine
 	 * learning node capacity for it to be immediately assigned to a node.
-	 *
+	 * <p>
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
@@ -199,29 +206,29 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.source != null) {
 
 			generator.writeKey("source");
-			this.source.toJsonp(generator, mapper);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (this.dest != null) {
 
 			generator.writeKey("dest");
-			this.dest.toJsonp(generator, mapper);
+			this.dest.serialize(generator, mapper);
 
 		}
 
 		generator.writeKey("analysis");
-		this.analysis.toJsonp(generator, mapper);
+		this.analysis.serialize(generator, mapper);
 
 		if (this.description != null) {
 
@@ -238,7 +245,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		if (this.maxNumThreads != null) {
 
 			generator.writeKey("max_num_threads");
-			generator.write(this.maxNumThreads.doubleValue());
+			generator.write(this.maxNumThreads);
 
 		}
 		if (this.analyzedFields != null) {
@@ -271,7 +278,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		@Nullable
 		private DataframeAnalyticsDestination dest;
 
-		private DataframeAnalysisContainer analysis;
+		private DataframeAnalysis analysis;
 
 		@Nullable
 		private String description;
@@ -280,10 +287,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		private String modelMemoryLimit;
 
 		@Nullable
-		private Number maxNumThreads;
+		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue analyzedFields;
+		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		@Nullable
 		private Boolean allowLazyStart;
@@ -292,7 +299,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * Identifier for the data frame analytics job. This identifier can contain
 		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 		 * must start and end with alphanumeric characters.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -303,7 +310,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		/**
 		 * The configuration of how to source the analysis data. It requires an index.
 		 * Optionally, query and _source may be specified.
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public Builder source(@Nullable DataframeAnalyticsSource value) {
@@ -314,7 +321,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		/**
 		 * The configuration of how to source the analysis data. It requires an index.
 		 * Optionally, query and _source may be specified.
-		 *
+		 * <p>
 		 * API name: {@code source}
 		 */
 		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
@@ -324,7 +331,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		/**
 		 * The destination configuration, consisting of index and optionally
 		 * results_field (ml by default).
-		 *
+		 * <p>
 		 * API name: {@code dest}
 		 */
 		public Builder dest(@Nullable DataframeAnalyticsDestination value) {
@@ -335,7 +342,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		/**
 		 * The destination configuration, consisting of index and optionally
 		 * results_field (ml by default).
-		 *
+		 * <p>
 		 * API name: {@code dest}
 		 */
 		public Builder dest(
@@ -347,10 +354,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * The analysis configuration, which contains the information necessary to
 		 * perform one of the following types of analysis: classification, outlier
 		 * detection, or regression.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysisContainer value) {
+		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -359,17 +366,16 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * The analysis configuration, which contains the information necessary to
 		 * perform one of the following types of analysis: classification, outlier
 		 * detection, or regression.
-		 *
+		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(
-				Function<DataframeAnalysisContainer.Builder, ObjectBuilder<DataframeAnalysisContainer>> fn) {
-			return this.analysis(fn.apply(new DataframeAnalysisContainer.Builder()).build());
+		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
 		 * A description of the job.
-		 *
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public Builder description(@Nullable String value) {
@@ -384,7 +390,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
 		 * create data frame analytics jobs that have model_memory_limit values greater
 		 * than that setting.
-		 *
+		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(@Nullable String value) {
@@ -398,10 +404,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * analysis at the cost of using more CPU. Note that the process may use
 		 * additional threads for operational functionality other than the analysis
 		 * itself.
-		 *
+		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Number value) {
+		public Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -412,10 +418,10 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		 * last, therefore excludes takes precedence. In other words, if the same field
 		 * is specified in both includes and excludes, then the field will not be
 		 * included in the analysis.
-		 *
+		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue value) {
+		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
 			this.analyzedFields = value;
 			return this;
 		}
@@ -423,7 +429,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node.
-		 *
+		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
 		public Builder allowLazyStart(@Nullable Boolean value) {
@@ -446,21 +452,21 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ExplainDataFrameAnalyticsRequest
+	 * Json deserializer for {@link ExplainDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<ExplainDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer);
+	public static final JsonpDeserializer<ExplainDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ExplainDataFrameAnalyticsRequest::setupExplainDataFrameAnalyticsRequestDeserializer,
+					Builder::build);
 
 	protected static void setupExplainDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<ExplainDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::source, DataframeAnalyticsSource.DESERIALIZER, "source");
-		op.add(Builder::dest, DataframeAnalyticsDestination.DESERIALIZER, "dest");
-		op.add(Builder::analysis, DataframeAnalysisContainer.DESERIALIZER, "analysis");
+		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
+		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
+		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
-		op.add(Builder::maxNumThreads, JsonpDeserializer.numberDeserializer(), "max_num_threads");
+		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 
@@ -471,7 +477,7 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Endpoint "{@code ml.explain_data_frame_analytics}".
 	 */
-	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -501,11 +507,11 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_explain");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -513,5 +519,5 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, ExplainDataFrameAnalyticsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ExplainDataFrameAnalyticsResponse._DESERIALIZER);
 }

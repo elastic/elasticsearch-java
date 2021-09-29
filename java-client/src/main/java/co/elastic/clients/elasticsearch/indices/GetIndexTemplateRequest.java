@@ -25,24 +25,25 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
-public final class GetIndexTemplateRequest extends RequestBase implements ToJsonp {
+
+public final class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
@@ -56,11 +57,11 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetIndexTemplateRequest(Builder builder) {
+	public GetIndexTemplateRequest(Builder builder) {
 
 		this.name = builder.name;
 		this.local = builder.local;
@@ -70,10 +71,14 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 	}
 
+	public GetIndexTemplateRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Comma-separated list of index template names used to limit the request.
 	 * Wildcard (*) expressions are supported.
-	 *
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -84,7 +89,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * If true, the request retrieves information from the local node only. Defaults
 	 * to false, which means information is retrieved from the master node.
-	 *
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -94,7 +99,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 	/**
 	 * If true, returns settings in flat format.
-	 *
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -104,7 +109,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 	/**
 	 * If true, a mapping type is expected in the body of mappings.
-	 *
+	 * <p>
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
@@ -115,44 +120,12 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	/**
 	 * Period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
-	 *
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
-		generator.writeEnd();
-	}
-
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.flatSettings != null) {
-
-			generator.writeKey("flat_settings");
-			generator.write(this.flatSettings);
-
-		}
-		if (this.includeTypeName != null) {
-
-			generator.writeKey("include_type_name");
-			generator.write(this.includeTypeName);
-
-		}
-		if (this.masterTimeout != null) {
-
-			generator.writeKey("master_timeout");
-			generator.write(this.masterTimeout);
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -174,12 +147,12 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 		private Boolean includeTypeName;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
 		 * Comma-separated list of index template names used to limit the request.
 		 * Wildcard (*) expressions are supported.
-		 *
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable String value) {
@@ -190,7 +163,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
-		 *
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -200,7 +173,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * If true, returns settings in flat format.
-		 *
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -210,7 +183,7 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 
 		/**
 		 * If true, a mapping type is expected in the body of mappings.
-		 *
+		 * <p>
 		 * API name: {@code include_type_name}
 		 */
 		public Builder includeTypeName(@Nullable Boolean value) {
@@ -221,10 +194,10 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
-		 *
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -244,26 +217,9 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for GetIndexTemplateRequest
-	 */
-	public static final JsonpDeserializer<GetIndexTemplateRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, GetIndexTemplateRequest::setupGetIndexTemplateRequestDeserializer);
-
-	protected static void setupGetIndexTemplateRequestDeserializer(
-			DelegatingDeserializer<GetIndexTemplateRequest.Builder> op) {
-
-		op.add(Builder::flatSettings, JsonpDeserializer.booleanDeserializer(), "flat_settings");
-		op.add(Builder::includeTypeName, JsonpDeserializer.booleanDeserializer(), "include_type_name");
-		op.add(Builder::masterTimeout, JsonpDeserializer.jsonValueDeserializer(), "master_timeout");
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
 	 * Endpoint "{@code indices.get_index_template}".
 	 */
-	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -288,10 +244,10 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					buf.append(request.name);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -301,7 +257,16 @@ public final class GetIndexTemplateRequest extends RequestBase implements ToJson
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
 				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.includeTypeName != null) {
+					params.put("include_type_name", String.valueOf(request.includeTypeName));
+				}
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout);
+				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), true, GetIndexTemplateResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetIndexTemplateResponse._DESERIALIZER);
 }

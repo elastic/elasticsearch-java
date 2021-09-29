@@ -25,32 +25,34 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: cat.plugins.Request
+
 public final class PluginsRequest extends CatRequestBase {
-	protected PluginsRequest() {
+	public PluginsRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link PluginsRequest}.
 	 */
-	public static final PluginsRequest INSTANCE = new PluginsRequest();
-
-	public static final JsonpDeserializer<PluginsRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(PluginsRequest.INSTANCE);
+	public static final PluginsRequest _INSTANCE = new PluginsRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code cat.plugins}".
 	 */
-	public static final Endpoint<PluginsRequest, PluginsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PluginsRequest, PluginsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -67,5 +69,5 @@ public final class PluginsRequest extends CatRequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, PluginsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, PluginsResponse._DESERIALIZER);
 }

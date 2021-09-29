@@ -24,26 +24,35 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: async_search.get.Response
+
 public final class GetResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetResponse(Builder<TDocument> builder) {
+	public GetResponse(Builder<TDocument> builder) {
 		super(builder);
+
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
+	}
+
+	public GetResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -62,7 +71,6 @@ public final class GetResponse<TDocument> extends AsyncSearchDocumentResponseBas
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;

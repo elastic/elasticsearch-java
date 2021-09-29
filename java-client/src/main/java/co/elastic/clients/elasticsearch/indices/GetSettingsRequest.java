@@ -25,12 +25,15 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +42,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_settings.Request
+
 public final class GetSettingsRequest extends RequestBase {
 	@Nullable
 	private final List<String> index;
@@ -54,7 +60,7 @@ public final class GetSettingsRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -69,16 +75,16 @@ public final class GetSettingsRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final JsonValue masterTimeout;
+	private final String masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected GetSettingsRequest(Builder builder) {
+	public GetSettingsRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.name = builder.name;
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.name = ModelTypeHelper.unmodifiable(builder.name);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = builder.expandWildcards;
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
@@ -87,7 +93,14 @@ public final class GetSettingsRequest extends RequestBase {
 
 	}
 
+	public GetSettingsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -96,6 +109,8 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * The name of the settings that should be included
+	 * <p>
 	 * API name: {@code name}
 	 */
 	@Nullable
@@ -104,6 +119,10 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -112,14 +131,19 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * Return settings in flat format (default: false)
+	 * <p>
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
@@ -128,6 +152,9 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -136,6 +163,8 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to return all default setting for each of the indices.
+	 * <p>
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
@@ -144,6 +173,9 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return local information, do not retrieve the state from master node
+	 * (default: false)
+	 * <p>
 	 * API name: {@code local}
 	 */
 	@Nullable
@@ -152,10 +184,12 @@ public final class GetSettingsRequest extends RequestBase {
 	}
 
 	/**
+	 * Specify timeout for connection to master
+	 * <p>
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public JsonValue masterTimeout() {
+	public String masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -175,7 +209,7 @@ public final class GetSettingsRequest extends RequestBase {
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -190,9 +224,12 @@ public final class GetSettingsRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private JsonValue masterTimeout;
+		private String masterTimeout;
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -201,6 +238,9 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -209,7 +249,7 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -220,6 +260,8 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * The name of the settings that should be included
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(@Nullable List<String> value) {
@@ -228,6 +270,8 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * The name of the settings that should be included
+		 * <p>
 		 * API name: {@code name}
 		 */
 		public Builder name(String... value) {
@@ -236,7 +280,7 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
+		 * Add a value to {@link #name(List)}, creating the list if needed. 4
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -247,6 +291,10 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public Builder allowNoIndices(@Nullable Boolean value) {
@@ -255,14 +303,41 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * Return settings in flat format (default: false)
+		 * <p>
 		 * API name: {@code flat_settings}
 		 */
 		public Builder flatSettings(@Nullable Boolean value) {
@@ -271,6 +346,9 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -279,6 +357,8 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to return all default setting for each of the indices.
+		 * <p>
 		 * API name: {@code include_defaults}
 		 */
 		public Builder includeDefaults(@Nullable Boolean value) {
@@ -287,6 +367,9 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Return local information, do not retrieve the state from master node
+		 * (default: false)
+		 * <p>
 		 * API name: {@code local}
 		 */
 		public Builder local(@Nullable Boolean value) {
@@ -295,9 +378,11 @@ public final class GetSettingsRequest extends RequestBase {
 		}
 
 		/**
+		 * Specify timeout for connection to master
+		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable JsonValue value) {
+		public Builder masterTimeout(@Nullable String value) {
 			this.masterTimeout = value;
 			return this;
 		}
@@ -319,7 +404,7 @@ public final class GetSettingsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_settings}".
 	 */
-	public static final Endpoint<GetSettingsRequest, GetSettingsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetSettingsRequest, GetSettingsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -346,27 +431,27 @@ public final class GetSettingsRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_settings");
 					return buf.toString();
 				}
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_settings");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_settings");
 					buf.append("/");
-					buf.append(request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -377,7 +462,8 @@ public final class GetSettingsRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
@@ -392,9 +478,9 @@ public final class GetSettingsRequest extends RequestBase {
 					params.put("local", String.valueOf(request.local));
 				}
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, GetSettingsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetSettingsResponse._DESERIALIZER);
 }

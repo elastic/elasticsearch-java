@@ -25,13 +25,15 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.ArrayList;
@@ -43,7 +45,8 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: transform.preview_transform.Response
-public final class PreviewTransformResponse<TTransform> implements ToJsonp {
+
+public final class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 	private final IndexState generatedDestIndex;
 
 	private final List<TTransform> preview;
@@ -53,12 +56,16 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PreviewTransformResponse(Builder<TTransform> builder) {
+	public PreviewTransformResponse(Builder<TTransform> builder) {
 
 		this.generatedDestIndex = Objects.requireNonNull(builder.generatedDestIndex, "generated_dest_index");
-		this.preview = Objects.requireNonNull(builder.preview, "preview");
+		this.preview = ModelTypeHelper.unmodifiableNonNull(builder.preview, "preview");
 		this.tTransformSerializer = builder.tTransformSerializer;
 
+	}
+
+	public PreviewTransformResponse(Function<Builder<TTransform>, Builder<TTransform>> fn) {
+		this(fn.apply(new Builder<>()));
 	}
 
 	/**
@@ -78,16 +85,16 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("generated_dest_index");
-		this.generatedDestIndex.toJsonp(generator, mapper);
+		this.generatedDestIndex.serialize(generator, mapper);
 
 		generator.writeKey("preview");
 		generator.writeStartArray();
@@ -144,7 +151,7 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #preview(List)}, creating the list if needed.
+		 * Add a value to {@link #preview(List)}, creating the list if needed. 4
 		 */
 		public Builder<TTransform> addPreview(TTransform value) {
 			if (this.preview == null) {
@@ -157,7 +164,6 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 		/**
 		 * Serializer for TTransform. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TTransform> tTransformSerializer(@Nullable JsonpSerializer<TTransform> value) {
 			this.tTransformSerializer = value;
@@ -191,7 +197,7 @@ public final class PreviewTransformResponse<TTransform> implements ToJsonp {
 			DelegatingDeserializer<PreviewTransformResponse.Builder<TTransform>> op,
 			JsonpDeserializer<TTransform> tTransformDeserializer) {
 
-		op.add(Builder::generatedDestIndex, IndexState.DESERIALIZER, "generated_dest_index");
+		op.add(Builder::generatedDestIndex, IndexState._DESERIALIZER, "generated_dest_index");
 		op.add(Builder::preview, JsonpDeserializer.arrayDeserializer(tTransformDeserializer), "preview");
 
 	}

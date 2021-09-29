@@ -25,9 +25,13 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -37,27 +41,37 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
+
 public final class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
 	private final List<String> threadPoolPatterns;
 
 	@Nullable
-	private final JsonValue size;
+	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ThreadPoolRequest(Builder builder) {
+	public ThreadPoolRequest(Builder builder) {
 
-		this.threadPoolPatterns = builder.threadPoolPatterns;
+		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
 		this.size = builder.size;
 
 	}
 
+	public ThreadPoolRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * A comma-separated list of regular-expressions to filter the thread pools in
+	 * the output
+	 * <p>
 	 * API name: {@code thread_pool_patterns}
 	 */
 	@Nullable
@@ -69,7 +83,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public JsonValue size() {
+	public JsonValue /* Union(_types.Size | internal.boolean) */ size() {
 		return this.size;
 	}
 
@@ -83,9 +97,12 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		private List<String> threadPoolPatterns;
 
 		@Nullable
-		private JsonValue size;
+		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
 
 		/**
+		 * A comma-separated list of regular-expressions to filter the thread pools in
+		 * the output
+		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 */
 		public Builder threadPoolPatterns(@Nullable List<String> value) {
@@ -94,6 +111,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
+		 * A comma-separated list of regular-expressions to filter the thread pools in
+		 * the output
+		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 */
 		public Builder threadPoolPatterns(String... value) {
@@ -103,7 +123,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 
 		/**
 		 * Add a value to {@link #threadPoolPatterns(List)}, creating the list if
-		 * needed.
+		 * needed. 4
 		 */
 		public Builder addThreadPoolPatterns(String value) {
 			if (this.threadPoolPatterns == null) {
@@ -116,7 +136,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue value) {
+		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
 			this.size = value;
 			return this;
 		}
@@ -138,7 +158,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.thread_pool}".
 	 */
-	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -165,10 +185,11 @@ public final class ThreadPoolRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/thread_pool");
 					buf.append("/");
-					buf.append(request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(
+							request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -176,9 +197,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.size != null) {
-					params.put("size", request.size.toString());
+					params.put("size", JsonpUtils.toString(request.size));
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, ThreadPoolResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, ThreadPoolResponse._DESERIALIZER);
 }

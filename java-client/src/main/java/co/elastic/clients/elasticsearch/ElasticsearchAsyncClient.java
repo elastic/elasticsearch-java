@@ -26,261 +26,258 @@ package co.elastic.clients.elasticsearch;
 import co.elastic.clients.base.ApiClient;
 import co.elastic.clients.base.BooleanResponse;
 import co.elastic.clients.base.Transport;
-import co.elastic.clients.elasticsearch._global.BulkRequest;
-import co.elastic.clients.elasticsearch._global.BulkResponse;
-import co.elastic.clients.elasticsearch._global.ClearScrollRequest;
-import co.elastic.clients.elasticsearch._global.ClearScrollResponse;
-import co.elastic.clients.elasticsearch._global.ClosePointInTimeRequest;
-import co.elastic.clients.elasticsearch._global.ClosePointInTimeResponse;
-import co.elastic.clients.elasticsearch._global.CountRequest;
-import co.elastic.clients.elasticsearch._global.CountResponse;
-import co.elastic.clients.elasticsearch._global.CreateRequest;
-import co.elastic.clients.elasticsearch._global.CreateResponse;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRequest;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryResponse;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.DeleteByQueryRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.DeleteRequest;
-import co.elastic.clients.elasticsearch._global.DeleteResponse;
-import co.elastic.clients.elasticsearch._global.DeleteScriptRequest;
-import co.elastic.clients.elasticsearch._global.DeleteScriptResponse;
-import co.elastic.clients.elasticsearch._global.ExistsRequest;
-import co.elastic.clients.elasticsearch._global.ExistsSourceRequest;
-import co.elastic.clients.elasticsearch._global.ExplainRequest;
-import co.elastic.clients.elasticsearch._global.ExplainResponse;
-import co.elastic.clients.elasticsearch._global.FieldCapsRequest;
-import co.elastic.clients.elasticsearch._global.FieldCapsResponse;
-import co.elastic.clients.elasticsearch._global.GetRequest;
-import co.elastic.clients.elasticsearch._global.GetResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptContextRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptContextResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptLanguagesRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptLanguagesResponse;
-import co.elastic.clients.elasticsearch._global.GetScriptRequest;
-import co.elastic.clients.elasticsearch._global.GetScriptResponse;
-import co.elastic.clients.elasticsearch._global.GetSourceRequest;
-import co.elastic.clients.elasticsearch._global.GetSourceResponse;
-import co.elastic.clients.elasticsearch._global.IndexRequest;
-import co.elastic.clients.elasticsearch._global.IndexResponse;
-import co.elastic.clients.elasticsearch._global.InfoRequest;
-import co.elastic.clients.elasticsearch._global.InfoResponse;
-import co.elastic.clients.elasticsearch._global.MgetRequest;
-import co.elastic.clients.elasticsearch._global.MgetResponse;
-import co.elastic.clients.elasticsearch._global.MsearchRequest;
-import co.elastic.clients.elasticsearch._global.MsearchResponse;
-import co.elastic.clients.elasticsearch._global.MsearchTemplateRequest;
-import co.elastic.clients.elasticsearch._global.MsearchTemplateResponse;
-import co.elastic.clients.elasticsearch._global.MtermvectorsRequest;
-import co.elastic.clients.elasticsearch._global.MtermvectorsResponse;
-import co.elastic.clients.elasticsearch._global.OpenPointInTimeRequest;
-import co.elastic.clients.elasticsearch._global.OpenPointInTimeResponse;
-import co.elastic.clients.elasticsearch._global.PingRequest;
-import co.elastic.clients.elasticsearch._global.PutScriptRequest;
-import co.elastic.clients.elasticsearch._global.PutScriptResponse;
-import co.elastic.clients.elasticsearch._global.RankEvalRequest;
-import co.elastic.clients.elasticsearch._global.RankEvalResponse;
-import co.elastic.clients.elasticsearch._global.ReindexRequest;
-import co.elastic.clients.elasticsearch._global.ReindexResponse;
-import co.elastic.clients.elasticsearch._global.ReindexRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.ReindexRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteRequest;
-import co.elastic.clients.elasticsearch._global.ScriptsPainlessExecuteResponse;
-import co.elastic.clients.elasticsearch._global.SearchRequest;
-import co.elastic.clients.elasticsearch._global.SearchResponse;
-import co.elastic.clients.elasticsearch._global.SearchShardsRequest;
-import co.elastic.clients.elasticsearch._global.SearchShardsResponse;
-import co.elastic.clients.elasticsearch._global.SearchTemplateRequest;
-import co.elastic.clients.elasticsearch._global.SearchTemplateResponse;
-import co.elastic.clients.elasticsearch._global.TermsEnumRequest;
-import co.elastic.clients.elasticsearch._global.TermsEnumResponse;
-import co.elastic.clients.elasticsearch._global.TermvectorsRequest;
-import co.elastic.clients.elasticsearch._global.TermvectorsResponse;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRequest;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryResponse;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleRequest;
-import co.elastic.clients.elasticsearch._global.UpdateByQueryRethrottleResponse;
-import co.elastic.clients.elasticsearch._global.UpdateRequest;
-import co.elastic.clients.elasticsearch._global.UpdateResponse;
-import co.elastic.clients.elasticsearch.api.async_search.AsyncSearchAsyncClient;
-import co.elastic.clients.elasticsearch.api.autoscaling.AutoscalingAsyncClient;
-import co.elastic.clients.elasticsearch.api.cat.CatAsyncClient;
-import co.elastic.clients.elasticsearch.api.ccr.CcrAsyncClient;
-import co.elastic.clients.elasticsearch.api.cluster.ClusterAsyncClient;
-import co.elastic.clients.elasticsearch.api.dangling_indices.DanglingIndicesAsyncClient;
-import co.elastic.clients.elasticsearch.api.enrich.EnrichAsyncClient;
-import co.elastic.clients.elasticsearch.api.eql.EqlAsyncClient;
-import co.elastic.clients.elasticsearch.api.features.FeaturesAsyncClient;
-import co.elastic.clients.elasticsearch.api.graph.GraphAsyncClient;
-import co.elastic.clients.elasticsearch.api.ilm.IlmAsyncClient;
-import co.elastic.clients.elasticsearch.api.indices.IndicesAsyncClient;
-import co.elastic.clients.elasticsearch.api.ingest.IngestAsyncClient;
-import co.elastic.clients.elasticsearch.api.license.LicenseAsyncClient;
-import co.elastic.clients.elasticsearch.api.logstash.LogstashAsyncClient;
-import co.elastic.clients.elasticsearch.api.migration.MigrationAsyncClient;
-import co.elastic.clients.elasticsearch.api.ml.MlAsyncClient;
-import co.elastic.clients.elasticsearch.api.monitoring.MonitoringAsyncClient;
-import co.elastic.clients.elasticsearch.api.nodes.NodesAsyncClient;
-import co.elastic.clients.elasticsearch.api.rollup.RollupAsyncClient;
-import co.elastic.clients.elasticsearch.api.searchable_snapshots.SearchableSnapshotsAsyncClient;
-import co.elastic.clients.elasticsearch.api.security.SecurityAsyncClient;
-import co.elastic.clients.elasticsearch.api.shutdown.ShutdownAsyncClient;
-import co.elastic.clients.elasticsearch.api.slm.SlmAsyncClient;
-import co.elastic.clients.elasticsearch.api.snapshot.SnapshotAsyncClient;
-import co.elastic.clients.elasticsearch.api.sql.SqlAsyncClient;
-import co.elastic.clients.elasticsearch.api.ssl.SslAsyncClient;
-import co.elastic.clients.elasticsearch.api.tasks.TasksAsyncClient;
-import co.elastic.clients.elasticsearch.api.text_structure.TextStructureAsyncClient;
-import co.elastic.clients.elasticsearch.api.transform.TransformAsyncClient;
-import co.elastic.clients.elasticsearch.api.watcher.WatcherAsyncClient;
-import co.elastic.clients.elasticsearch.api.xpack.XpackAsyncClient;
+import co.elastic.clients.elasticsearch._core.BulkRequest;
+import co.elastic.clients.elasticsearch._core.BulkResponse;
+import co.elastic.clients.elasticsearch._core.ClearScrollRequest;
+import co.elastic.clients.elasticsearch._core.ClearScrollResponse;
+import co.elastic.clients.elasticsearch._core.ClosePointInTimeRequest;
+import co.elastic.clients.elasticsearch._core.ClosePointInTimeResponse;
+import co.elastic.clients.elasticsearch._core.CountRequest;
+import co.elastic.clients.elasticsearch._core.CountResponse;
+import co.elastic.clients.elasticsearch._core.CreateRequest;
+import co.elastic.clients.elasticsearch._core.CreateResponse;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryRequest;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryResponse;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryRethrottleRequest;
+import co.elastic.clients.elasticsearch._core.DeleteByQueryRethrottleResponse;
+import co.elastic.clients.elasticsearch._core.DeleteRequest;
+import co.elastic.clients.elasticsearch._core.DeleteResponse;
+import co.elastic.clients.elasticsearch._core.DeleteScriptRequest;
+import co.elastic.clients.elasticsearch._core.DeleteScriptResponse;
+import co.elastic.clients.elasticsearch._core.ExistsRequest;
+import co.elastic.clients.elasticsearch._core.ExistsSourceRequest;
+import co.elastic.clients.elasticsearch._core.ExplainRequest;
+import co.elastic.clients.elasticsearch._core.ExplainResponse;
+import co.elastic.clients.elasticsearch._core.FieldCapsRequest;
+import co.elastic.clients.elasticsearch._core.FieldCapsResponse;
+import co.elastic.clients.elasticsearch._core.GetRequest;
+import co.elastic.clients.elasticsearch._core.GetResponse;
+import co.elastic.clients.elasticsearch._core.GetScriptContextRequest;
+import co.elastic.clients.elasticsearch._core.GetScriptContextResponse;
+import co.elastic.clients.elasticsearch._core.GetScriptLanguagesRequest;
+import co.elastic.clients.elasticsearch._core.GetScriptLanguagesResponse;
+import co.elastic.clients.elasticsearch._core.GetScriptRequest;
+import co.elastic.clients.elasticsearch._core.GetScriptResponse;
+import co.elastic.clients.elasticsearch._core.GetSourceRequest;
+import co.elastic.clients.elasticsearch._core.GetSourceResponse;
+import co.elastic.clients.elasticsearch._core.IndexRequest;
+import co.elastic.clients.elasticsearch._core.IndexResponse;
+import co.elastic.clients.elasticsearch._core.InfoRequest;
+import co.elastic.clients.elasticsearch._core.InfoResponse;
+import co.elastic.clients.elasticsearch._core.MgetRequest;
+import co.elastic.clients.elasticsearch._core.MgetResponse;
+import co.elastic.clients.elasticsearch._core.MsearchRequest;
+import co.elastic.clients.elasticsearch._core.MsearchResponse;
+import co.elastic.clients.elasticsearch._core.MsearchTemplateRequest;
+import co.elastic.clients.elasticsearch._core.MsearchTemplateResponse;
+import co.elastic.clients.elasticsearch._core.MtermvectorsRequest;
+import co.elastic.clients.elasticsearch._core.MtermvectorsResponse;
+import co.elastic.clients.elasticsearch._core.OpenPointInTimeRequest;
+import co.elastic.clients.elasticsearch._core.OpenPointInTimeResponse;
+import co.elastic.clients.elasticsearch._core.PingRequest;
+import co.elastic.clients.elasticsearch._core.PutScriptRequest;
+import co.elastic.clients.elasticsearch._core.PutScriptResponse;
+import co.elastic.clients.elasticsearch._core.RankEvalRequest;
+import co.elastic.clients.elasticsearch._core.RankEvalResponse;
+import co.elastic.clients.elasticsearch._core.ReindexRequest;
+import co.elastic.clients.elasticsearch._core.ReindexResponse;
+import co.elastic.clients.elasticsearch._core.ReindexRethrottleRequest;
+import co.elastic.clients.elasticsearch._core.ReindexRethrottleResponse;
+import co.elastic.clients.elasticsearch._core.ScriptsPainlessExecuteRequest;
+import co.elastic.clients.elasticsearch._core.ScriptsPainlessExecuteResponse;
+import co.elastic.clients.elasticsearch._core.SearchMvtRequest;
+import co.elastic.clients.elasticsearch._core.SearchMvtResponse;
+import co.elastic.clients.elasticsearch._core.SearchRequest;
+import co.elastic.clients.elasticsearch._core.SearchResponse;
+import co.elastic.clients.elasticsearch._core.SearchShardsRequest;
+import co.elastic.clients.elasticsearch._core.SearchShardsResponse;
+import co.elastic.clients.elasticsearch._core.SearchTemplateRequest;
+import co.elastic.clients.elasticsearch._core.SearchTemplateResponse;
+import co.elastic.clients.elasticsearch._core.TermsEnumRequest;
+import co.elastic.clients.elasticsearch._core.TermsEnumResponse;
+import co.elastic.clients.elasticsearch._core.TermvectorsRequest;
+import co.elastic.clients.elasticsearch._core.TermvectorsResponse;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryRequest;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryResponse;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryRethrottleRequest;
+import co.elastic.clients.elasticsearch._core.UpdateByQueryRethrottleResponse;
+import co.elastic.clients.elasticsearch._core.UpdateRequest;
+import co.elastic.clients.elasticsearch._core.UpdateResponse;
+import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchAsyncClient;
+import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingAsyncClient;
+import co.elastic.clients.elasticsearch.cat.ElasticsearchCatAsyncClient;
+import co.elastic.clients.elasticsearch.ccr.ElasticsearchCcrAsyncClient;
+import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterAsyncClient;
+import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichAsyncClient;
+import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlAsyncClient;
+import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesAsyncClient;
+import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphAsyncClient;
+import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmAsyncClient;
+import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestAsyncClient;
+import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseAsyncClient;
+import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashAsyncClient;
+import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationAsyncClient;
+import co.elastic.clients.elasticsearch.ml.ElasticsearchMlAsyncClient;
+import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringAsyncClient;
+import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesAsyncClient;
+import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupAsyncClient;
+import co.elastic.clients.elasticsearch.searchable_snapshots.ElasticsearchSearchableSnapshotsAsyncClient;
+import co.elastic.clients.elasticsearch.security.ElasticsearchSecurityAsyncClient;
+import co.elastic.clients.elasticsearch.shutdown.ElasticsearchShutdownAsyncClient;
+import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmAsyncClient;
+import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotAsyncClient;
+import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
+import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslAsyncClient;
+import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksAsyncClient;
+import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureAsyncClient;
+import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformAsyncClient;
+import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherAsyncClient;
+import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackAsyncClient;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
-import org.elasticsearch.client.RequestOptions;
 
 /**
  * Client for the namespace.
  */
-public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient> {
+public class ElasticsearchAsyncClient extends ApiClient {
 
 	public ElasticsearchAsyncClient(Transport transport) {
-		super(transport, null);
-	}
-
-	public ElasticsearchAsyncClient(Transport transport, RequestOptions options) {
-		super(transport, options);
+		super(transport);
 	}
 
 	// ----- Child clients
 
-	public AsyncSearchAsyncClient asyncSearch() {
-		return new AsyncSearchAsyncClient(this.transport);
+	public ElasticsearchAsyncSearchAsyncClient asyncSearch() {
+		return new ElasticsearchAsyncSearchAsyncClient(this.transport);
 	}
 
-	public AutoscalingAsyncClient autoscaling() {
-		return new AutoscalingAsyncClient(this.transport);
+	public ElasticsearchAutoscalingAsyncClient autoscaling() {
+		return new ElasticsearchAutoscalingAsyncClient(this.transport);
 	}
 
-	public CatAsyncClient cat() {
-		return new CatAsyncClient(this.transport);
+	public ElasticsearchCatAsyncClient cat() {
+		return new ElasticsearchCatAsyncClient(this.transport);
 	}
 
-	public CcrAsyncClient ccr() {
-		return new CcrAsyncClient(this.transport);
+	public ElasticsearchCcrAsyncClient ccr() {
+		return new ElasticsearchCcrAsyncClient(this.transport);
 	}
 
-	public ClusterAsyncClient cluster() {
-		return new ClusterAsyncClient(this.transport);
+	public ElasticsearchClusterAsyncClient cluster() {
+		return new ElasticsearchClusterAsyncClient(this.transport);
 	}
 
-	public DanglingIndicesAsyncClient danglingIndices() {
-		return new DanglingIndicesAsyncClient(this.transport);
+	public ElasticsearchDanglingIndicesAsyncClient danglingIndices() {
+		return new ElasticsearchDanglingIndicesAsyncClient(this.transport);
 	}
 
-	public EnrichAsyncClient enrich() {
-		return new EnrichAsyncClient(this.transport);
+	public ElasticsearchEnrichAsyncClient enrich() {
+		return new ElasticsearchEnrichAsyncClient(this.transport);
 	}
 
-	public EqlAsyncClient eql() {
-		return new EqlAsyncClient(this.transport);
+	public ElasticsearchEqlAsyncClient eql() {
+		return new ElasticsearchEqlAsyncClient(this.transport);
 	}
 
-	public FeaturesAsyncClient features() {
-		return new FeaturesAsyncClient(this.transport);
+	public ElasticsearchFeaturesAsyncClient features() {
+		return new ElasticsearchFeaturesAsyncClient(this.transport);
 	}
 
-	public GraphAsyncClient graph() {
-		return new GraphAsyncClient(this.transport);
+	public ElasticsearchGraphAsyncClient graph() {
+		return new ElasticsearchGraphAsyncClient(this.transport);
 	}
 
-	public IlmAsyncClient ilm() {
-		return new IlmAsyncClient(this.transport);
+	public ElasticsearchIlmAsyncClient ilm() {
+		return new ElasticsearchIlmAsyncClient(this.transport);
 	}
 
-	public IndicesAsyncClient indices() {
-		return new IndicesAsyncClient(this.transport);
+	public ElasticsearchIndicesAsyncClient indices() {
+		return new ElasticsearchIndicesAsyncClient(this.transport);
 	}
 
-	public IngestAsyncClient ingest() {
-		return new IngestAsyncClient(this.transport);
+	public ElasticsearchIngestAsyncClient ingest() {
+		return new ElasticsearchIngestAsyncClient(this.transport);
 	}
 
-	public LicenseAsyncClient license() {
-		return new LicenseAsyncClient(this.transport);
+	public ElasticsearchLicenseAsyncClient license() {
+		return new ElasticsearchLicenseAsyncClient(this.transport);
 	}
 
-	public LogstashAsyncClient logstash() {
-		return new LogstashAsyncClient(this.transport);
+	public ElasticsearchLogstashAsyncClient logstash() {
+		return new ElasticsearchLogstashAsyncClient(this.transport);
 	}
 
-	public MigrationAsyncClient migration() {
-		return new MigrationAsyncClient(this.transport);
+	public ElasticsearchMigrationAsyncClient migration() {
+		return new ElasticsearchMigrationAsyncClient(this.transport);
 	}
 
-	public MlAsyncClient ml() {
-		return new MlAsyncClient(this.transport);
+	public ElasticsearchMlAsyncClient ml() {
+		return new ElasticsearchMlAsyncClient(this.transport);
 	}
 
-	public MonitoringAsyncClient monitoring() {
-		return new MonitoringAsyncClient(this.transport);
+	public ElasticsearchMonitoringAsyncClient monitoring() {
+		return new ElasticsearchMonitoringAsyncClient(this.transport);
 	}
 
-	public NodesAsyncClient nodes() {
-		return new NodesAsyncClient(this.transport);
+	public ElasticsearchNodesAsyncClient nodes() {
+		return new ElasticsearchNodesAsyncClient(this.transport);
 	}
 
-	public RollupAsyncClient rollup() {
-		return new RollupAsyncClient(this.transport);
+	public ElasticsearchRollupAsyncClient rollup() {
+		return new ElasticsearchRollupAsyncClient(this.transport);
 	}
 
-	public SearchableSnapshotsAsyncClient searchableSnapshots() {
-		return new SearchableSnapshotsAsyncClient(this.transport);
+	public ElasticsearchSearchableSnapshotsAsyncClient searchableSnapshots() {
+		return new ElasticsearchSearchableSnapshotsAsyncClient(this.transport);
 	}
 
-	public SecurityAsyncClient security() {
-		return new SecurityAsyncClient(this.transport);
+	public ElasticsearchSecurityAsyncClient security() {
+		return new ElasticsearchSecurityAsyncClient(this.transport);
 	}
 
-	public ShutdownAsyncClient shutdown() {
-		return new ShutdownAsyncClient(this.transport);
+	public ElasticsearchShutdownAsyncClient shutdown() {
+		return new ElasticsearchShutdownAsyncClient(this.transport);
 	}
 
-	public SlmAsyncClient slm() {
-		return new SlmAsyncClient(this.transport);
+	public ElasticsearchSlmAsyncClient slm() {
+		return new ElasticsearchSlmAsyncClient(this.transport);
 	}
 
-	public SnapshotAsyncClient snapshot() {
-		return new SnapshotAsyncClient(this.transport);
+	public ElasticsearchSnapshotAsyncClient snapshot() {
+		return new ElasticsearchSnapshotAsyncClient(this.transport);
 	}
 
-	public SqlAsyncClient sql() {
-		return new SqlAsyncClient(this.transport);
+	public ElasticsearchSqlAsyncClient sql() {
+		return new ElasticsearchSqlAsyncClient(this.transport);
 	}
 
-	public SslAsyncClient ssl() {
-		return new SslAsyncClient(this.transport);
+	public ElasticsearchSslAsyncClient ssl() {
+		return new ElasticsearchSslAsyncClient(this.transport);
 	}
 
-	public TasksAsyncClient tasks() {
-		return new TasksAsyncClient(this.transport);
+	public ElasticsearchTasksAsyncClient tasks() {
+		return new ElasticsearchTasksAsyncClient(this.transport);
 	}
 
-	public TextStructureAsyncClient textStructure() {
-		return new TextStructureAsyncClient(this.transport);
+	public ElasticsearchTextStructureAsyncClient textStructure() {
+		return new ElasticsearchTextStructureAsyncClient(this.transport);
 	}
 
-	public TransformAsyncClient transform() {
-		return new TransformAsyncClient(this.transport);
+	public ElasticsearchTransformAsyncClient transform() {
+		return new ElasticsearchTransformAsyncClient(this.transport);
 	}
 
-	public WatcherAsyncClient watcher() {
-		return new WatcherAsyncClient(this.transport);
+	public ElasticsearchWatcherAsyncClient watcher() {
+		return new ElasticsearchWatcherAsyncClient(this.transport);
 	}
 
-	public XpackAsyncClient xpack() {
-		return new XpackAsyncClient(this.transport);
+	public ElasticsearchXpackAsyncClient xpack() {
+		return new ElasticsearchXpackAsyncClient(this.transport);
 	}
 
 	// ----- Endpoint: bulk
@@ -288,23 +285,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TSource> CompletableFuture<BulkResponse> bulk(BulkRequest<TSource> request) throws IOException {
-		return this.transport.performRequestAsync(request, BulkRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, BulkRequest.ENDPOINT);
 	}
 
 	/**
 	 * Allows to perform multiple index/update/delete operations in a single
 	 * request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TSource> CompletableFuture<BulkResponse> bulk(
@@ -316,22 +317,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Explicitly clears the search context for a scroll.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ClearScrollResponse> clearScroll(ClearScrollRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ClearScrollRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, ClearScrollRequest.ENDPOINT);
 	}
 
 	/**
 	 * Explicitly clears the search context for a scroll.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearScrollResponse> clearScroll(
@@ -343,23 +348,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Close a point in time
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ClosePointInTimeResponse> closePointInTime(ClosePointInTimeRequest request)
 			throws IOException {
-		return this.transport.performRequestAsync(request, ClosePointInTimeRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, ClosePointInTimeRequest.ENDPOINT);
 	}
 
 	/**
 	 * Close a point in time
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClosePointInTimeResponse> closePointInTime(
@@ -371,22 +380,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns number of documents matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CountRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, CountRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns number of documents matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
@@ -398,28 +411,32 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates a new document in the index.
-	 *
+	 * <p>
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<CreateResponse> create(CreateRequest<TDocument> request) throws IOException {
-		return this.transport.performRequestAsync(request, CreateRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, CreateRequest.ENDPOINT);
 	}
 
 	/**
 	 * Creates a new document in the index.
-	 *
+	 * <p>
 	 * Returns a 409 response when a document with a same ID already exists in the
 	 * index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<CreateResponse> create(
@@ -431,22 +448,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Removes a document from the index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteResponse> delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, DeleteRequest.ENDPOINT);
 	}
 
 	/**
 	 * Removes a document from the index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteResponse> delete(
@@ -458,22 +479,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Deletes documents matching the provided query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteByQueryResponse> deleteByQuery(DeleteByQueryRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteByQueryRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, DeleteByQueryRequest.ENDPOINT);
 	}
 
 	/**
 	 * Deletes documents matching the provided query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteByQueryResponse> deleteByQuery(
@@ -486,25 +511,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteByQueryRethrottleResponse> deleteByQueryRethrottle(
 			DeleteByQueryRethrottleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteByQueryRethrottleRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequestAsync(request, DeleteByQueryRethrottleRequest.ENDPOINT);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Delete By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteByQueryRethrottleResponse> deleteByQueryRethrottle(
@@ -517,22 +545,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Deletes a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<DeleteScriptResponse> deleteScript(DeleteScriptRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, DeleteScriptRequest.ENDPOINT);
 	}
 
 	/**
 	 * Deletes a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteScriptResponse> deleteScript(
@@ -544,22 +576,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about whether a document exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ExistsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, ExistsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information about whether a document exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> exists(
@@ -571,22 +607,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about whether a document source exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<BooleanResponse> existsSource(ExistsSourceRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ExistsSourceRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, ExistsSourceRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information about whether a document source exists in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsSource(
@@ -598,24 +638,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(ExplainRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<ExplainResponse<TDocument>> explain(
@@ -629,23 +673,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<FieldCapsResponse> fieldCaps(FieldCapsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, FieldCapsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, FieldCapsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns the information about the capabilities of fields among multiple
 	 * indices.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<FieldCapsResponse> fieldCaps(
@@ -657,24 +705,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<GetResponse<TDocument>> get(GetRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<GetResponse<TDocument>> get(
@@ -687,22 +739,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetScriptResponse> getScript(GetScriptRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, GetScriptRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetScriptResponse> getScript(
@@ -714,48 +770,55 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns all script contexts.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetScriptContextResponse> getScriptContext() throws IOException {
-		return this.transport.performRequestAsync(GetScriptContextRequest.INSTANCE, GetScriptContextRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequestAsync(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get_script_languages
 
 	/**
 	 * Returns available script types, languages and contexts
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() throws IOException {
-		return this.transport.performRequestAsync(GetScriptLanguagesRequest.INSTANCE,
-				GetScriptLanguagesRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(GetScriptLanguagesRequest._INSTANCE,
+				GetScriptLanguagesRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: get_source
 
 	/**
 	 * Returns the source of a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(GetSourceRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns the source of a document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<GetSourceResponse<TDocument>> getSource(
@@ -768,22 +831,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Creates or updates a document in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<IndexResponse> index(IndexRequest<TDocument> request) throws IOException {
-		return this.transport.performRequestAsync(request, IndexRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, IndexRequest.ENDPOINT);
 	}
 
 	/**
 	 * Creates or updates a document in an index.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<IndexResponse> index(
@@ -795,35 +862,41 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns basic information about the cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<InfoResponse> info() throws IOException {
-		return this.transport.performRequestAsync(InfoRequest.INSTANCE, InfoRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: mget
 
 	/**
 	 * Allows to get multiple documents in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(MgetRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to get multiple documents in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<MgetResponse<TDocument>> mget(
@@ -836,24 +909,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to execute several search operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(MsearchRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to execute several search operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<MsearchResponse<TDocument>> msearch(
@@ -866,25 +943,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to execute several search template operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
 			MsearchTemplateRequest request, Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to execute several search template operations in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<MsearchTemplateResponse<TDocument>> msearchTemplate(
@@ -897,22 +977,26 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns multiple termvectors in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<MtermvectorsResponse> mtermvectors(MtermvectorsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, MtermvectorsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, MtermvectorsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns multiple termvectors in one request.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MtermvectorsResponse> mtermvectors(
@@ -924,23 +1008,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<OpenPointInTimeResponse> openPointInTime(OpenPointInTimeRequest request)
 			throws IOException {
-		return this.transport.performRequestAsync(request, OpenPointInTimeRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, OpenPointInTimeRequest.ENDPOINT);
 	}
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<OpenPointInTimeResponse> openPointInTime(
@@ -952,33 +1040,39 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns whether the cluster is running.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<BooleanResponse> ping() throws IOException {
-		return this.transport.performRequestAsync(PingRequest.INSTANCE, PingRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(PingRequest._INSTANCE, PingRequest.ENDPOINT);
 	}
 
 	// ----- Endpoint: put_script
 
 	/**
 	 * Creates or updates a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<PutScriptResponse> putScript(PutScriptRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutScriptRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, PutScriptRequest.ENDPOINT);
 	}
 
 	/**
 	 * Creates or updates a script.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutScriptResponse> putScript(
@@ -991,23 +1085,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<RankEvalResponse> rankEval(RankEvalRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, RankEvalRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, RankEvalRequest.ENDPOINT);
 	}
 
 	/**
 	 * Allows to evaluate the quality of ranked search results over a set of typical
 	 * search queries
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RankEvalResponse> rankEval(
@@ -1021,24 +1119,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	 * Allows to copy documents from one index to another, optionally filtering the
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ReindexResponse> reindex(ReindexRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ReindexRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, ReindexRequest.ENDPOINT);
 	}
 
 	/**
 	 * Allows to copy documents from one index to another, optionally filtering the
 	 * source documents by a query, changing the destination index settings, or
 	 * fetching the documents from a remote cluster.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ReindexResponse> reindex(
@@ -1050,23 +1152,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<ReindexRethrottleResponse> reindexRethrottle(ReindexRethrottleRequest request)
 			throws IOException {
-		return this.transport.performRequestAsync(request, ReindexRethrottleRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, ReindexRethrottleRequest.ENDPOINT);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ReindexRethrottleResponse> reindexRethrottle(
@@ -1078,25 +1184,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
 			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)),
-				this.requestOptions);
+				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)));
 	}
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TResult> CompletableFuture<ScriptsPainlessExecuteResponse<TResult>> scriptsPainlessExecute(
@@ -1109,24 +1218,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Returns results matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<SearchResponse<TDocument>> search(SearchRequest request,
 			Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Returns results matching a query.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<SearchResponse<TDocument>> search(
@@ -1135,28 +1248,65 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
 	}
 
+	// ----- Endpoint: search_mvt
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SearchMvtResponse> searchMvt(SearchMvtRequest request) throws IOException {
+		return this.transport.performRequestAsync(request, SearchMvtRequest.ENDPOINT);
+	}
+
+	/**
+	 * Searches a vector tile for geospatial values. Returns results as a binary
+	 * Mapbox vector tile.
+	 * 
+	 * @param fn
+	 *            a function that initializes a freshly created builder. This
+	 *            function can either return its builder argument after having set
+	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SearchMvtResponse> searchMvt(
+			Function<SearchMvtRequest.Builder, ObjectBuilder<SearchMvtRequest>> fn) throws IOException {
+		return searchMvt(fn.apply(new SearchMvtRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: search_shards
 
 	/**
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<SearchShardsResponse> searchShards(SearchShardsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, SearchShardsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, SearchShardsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information about the indices and shards that a search request would
 	 * be executed against.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<SearchShardsResponse> searchShards(
@@ -1168,25 +1318,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
 			SearchTemplateRequest request, Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)),
-				this.requestOptions);
+				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<SearchTemplateResponse<TDocument>> searchTemplate(
@@ -1201,24 +1354,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	 * The terms enum API can be used to discover terms in the index that begin with
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<TermsEnumResponse> termsEnum(TermsEnumRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TermsEnumRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, TermsEnumRequest.ENDPOINT);
 	}
 
 	/**
 	 * The terms enum API can be used to discover terms in the index that begin with
 	 * the provided string. It is designed for low-latency look-ups used in
 	 * auto-complete scenarios.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TermsEnumResponse> termsEnum(
@@ -1231,24 +1388,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument> CompletableFuture<TermvectorsResponse> termvectors(TermvectorsRequest<TDocument> request)
 			throws IOException {
-		return this.transport.performRequestAsync(request, TermvectorsRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, TermvectorsRequest.ENDPOINT);
 	}
 
 	/**
 	 * Returns information and statistics about terms in the fields of a particular
 	 * document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CompletableFuture<TermvectorsResponse> termvectors(
@@ -1261,24 +1422,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 
 	/**
 	 * Updates a document with a script or partial document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
 			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass) throws IOException {
 		return this.transport.performRequestAsync(request,
-				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)), this.requestOptions);
+				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)));
 	}
 
 	/**
 	 * Updates a document with a script or partial document.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument, TPartialDocument> CompletableFuture<UpdateResponse<TDocument>> update(
@@ -1292,23 +1457,27 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateByQueryResponse> updateByQuery(UpdateByQueryRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, UpdateByQueryRequest.ENDPOINT, this.requestOptions);
+		return this.transport.performRequestAsync(request, UpdateByQueryRequest.ENDPOINT);
 	}
 
 	/**
 	 * Performs an update on every document in the index without changing the
 	 * source, for example to pick up a mapping change.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateByQueryResponse> updateByQuery(
@@ -1321,25 +1490,28 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 	/**
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<UpdateByQueryRethrottleResponse> updateByQueryRethrottle(
 			UpdateByQueryRethrottleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, UpdateByQueryRethrottleRequest.ENDPOINT,
-				this.requestOptions);
+		return this.transport.performRequestAsync(request, UpdateByQueryRethrottleRequest.ENDPOINT);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Update By Query
 	 * operation.
-	 *
-	 * @see "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html"
+	 * 
 	 * @param fn
 	 *            a function that initializes a freshly created builder. This
 	 *            function can either return its builder argument after having set
 	 *            its properties or return another builder.
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<UpdateByQueryRethrottleResponse> updateByQueryRethrottle(
@@ -1348,30 +1520,4 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchAsyncClient
 		return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
 	}
 
-	// ----- Misc
-
-	/**
-	 * Creates a new {@link #ElasticsearchAsyncClient} with specific request
-	 * options.
-	 */
-	@Override
-	public ElasticsearchAsyncClient withRequestOptions(@Nullable RequestOptions options) {
-		return new ElasticsearchAsyncClient(transport, options);
-	}
-
-	/**
-	 * Creates a new {@link #ElasticsearchAsyncClient} with specific request
-	 * options, inheriting existing options.
-	 *
-	 * @param fn
-	 *            a function taking an options builder initialized with the current
-	 *            request options, or initialized with default values.
-	 */
-	public ElasticsearchAsyncClient withRequestOptions(Function<RequestOptions.Builder, RequestOptions.Builder> fn) {
-		RequestOptions.Builder builder = requestOptions == null
-				? RequestOptions.DEFAULT.toBuilder()
-				: requestOptions.toBuilder();
-
-		return withRequestOptions(fn.apply(builder).build());
-	}
 }

@@ -24,37 +24,43 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotStats
-public final class SnapshotStats implements ToJsonp {
+@JsonpDeserializable
+public final class SnapshotStats implements JsonpSerializable {
 	private final FileCountSnapshotStats incremental;
 
-	private final Number startTimeInMillis;
+	private final long startTimeInMillis;
 
-	private final Number timeInMillis;
+	private final long timeInMillis;
 
 	private final FileCountSnapshotStats total;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected SnapshotStats(Builder builder) {
+	public SnapshotStats(Builder builder) {
 
 		this.incremental = Objects.requireNonNull(builder.incremental, "incremental");
 		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
 		this.timeInMillis = Objects.requireNonNull(builder.timeInMillis, "time_in_millis");
 		this.total = Objects.requireNonNull(builder.total, "total");
 
+	}
+
+	public SnapshotStats(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -67,14 +73,14 @@ public final class SnapshotStats implements ToJsonp {
 	/**
 	 * API name: {@code start_time_in_millis}
 	 */
-	public Number startTimeInMillis() {
+	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code time_in_millis}
 	 */
-	public Number timeInMillis() {
+	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -88,25 +94,25 @@ public final class SnapshotStats implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("incremental");
-		this.incremental.toJsonp(generator, mapper);
+		this.incremental.serialize(generator, mapper);
 
 		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis.doubleValue());
+		generator.write(this.startTimeInMillis);
 
 		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis.doubleValue());
+		generator.write(this.timeInMillis);
 
 		generator.writeKey("total");
-		this.total.toJsonp(generator, mapper);
+		this.total.serialize(generator, mapper);
 
 	}
 
@@ -118,9 +124,9 @@ public final class SnapshotStats implements ToJsonp {
 	public static class Builder implements ObjectBuilder<SnapshotStats> {
 		private FileCountSnapshotStats incremental;
 
-		private Number startTimeInMillis;
+		private Long startTimeInMillis;
 
-		private Number timeInMillis;
+		private Long timeInMillis;
 
 		private FileCountSnapshotStats total;
 
@@ -142,7 +148,7 @@ public final class SnapshotStats implements ToJsonp {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(Number value) {
+		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -150,7 +156,7 @@ public final class SnapshotStats implements ToJsonp {
 		/**
 		 * API name: {@code time_in_millis}
 		 */
-		public Builder timeInMillis(Number value) {
+		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -185,17 +191,17 @@ public final class SnapshotStats implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for SnapshotStats
+	 * Json deserializer for {@link SnapshotStats}
 	 */
-	public static final JsonpDeserializer<SnapshotStats> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, SnapshotStats::setupSnapshotStatsDeserializer);
+	public static final JsonpDeserializer<SnapshotStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			SnapshotStats::setupSnapshotStatsDeserializer, Builder::build);
 
 	protected static void setupSnapshotStatsDeserializer(DelegatingDeserializer<SnapshotStats.Builder> op) {
 
-		op.add(Builder::incremental, FileCountSnapshotStats.DESERIALIZER, "incremental");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
-		op.add(Builder::timeInMillis, JsonpDeserializer.numberDeserializer(), "time_in_millis");
-		op.add(Builder::total, FileCountSnapshotStats.DESERIALIZER, "total");
+		op.add(Builder::incremental, FileCountSnapshotStats._DESERIALIZER, "incremental");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
+		op.add(Builder::total, FileCountSnapshotStats._DESERIALIZER, "total");
 
 	}
 

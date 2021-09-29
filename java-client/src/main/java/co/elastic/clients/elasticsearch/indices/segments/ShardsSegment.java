@@ -24,14 +24,16 @@
 package co.elastic.clients.elasticsearch.indices.segments;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,30 +42,35 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardsSegment
-public final class ShardsSegment implements ToJsonp {
-	private final Number numCommittedSegments;
+@JsonpDeserializable
+public final class ShardsSegment implements JsonpSerializable {
+	private final int numCommittedSegments;
 
 	private final ShardSegmentRouting routing;
 
-	private final Number numSearchSegments;
+	private final int numSearchSegments;
 
 	private final Map<String, Segment> segments;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ShardsSegment(Builder builder) {
+	public ShardsSegment(Builder builder) {
 
 		this.numCommittedSegments = Objects.requireNonNull(builder.numCommittedSegments, "num_committed_segments");
 		this.routing = Objects.requireNonNull(builder.routing, "routing");
 		this.numSearchSegments = Objects.requireNonNull(builder.numSearchSegments, "num_search_segments");
-		this.segments = Objects.requireNonNull(builder.segments, "segments");
+		this.segments = ModelTypeHelper.unmodifiableNonNull(builder.segments, "segments");
 
+	}
+
+	public ShardsSegment(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * API name: {@code num_committed_segments}
 	 */
-	public Number numCommittedSegments() {
+	public int numCommittedSegments() {
 		return this.numCommittedSegments;
 	}
 
@@ -77,7 +84,7 @@ public final class ShardsSegment implements ToJsonp {
 	/**
 	 * API name: {@code num_search_segments}
 	 */
-	public Number numSearchSegments() {
+	public int numSearchSegments() {
 		return this.numSearchSegments;
 	}
 
@@ -91,28 +98,28 @@ public final class ShardsSegment implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("num_committed_segments");
-		generator.write(this.numCommittedSegments.doubleValue());
+		generator.write(this.numCommittedSegments);
 
 		generator.writeKey("routing");
-		this.routing.toJsonp(generator, mapper);
+		this.routing.serialize(generator, mapper);
 
 		generator.writeKey("num_search_segments");
-		generator.write(this.numSearchSegments.doubleValue());
+		generator.write(this.numSearchSegments);
 
 		generator.writeKey("segments");
 		generator.writeStartObject();
 		for (Map.Entry<String, Segment> item0 : this.segments.entrySet()) {
 			generator.writeKey(item0.getKey());
-			item0.getValue().toJsonp(generator, mapper);
+			item0.getValue().serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -125,18 +132,18 @@ public final class ShardsSegment implements ToJsonp {
 	 * Builder for {@link ShardsSegment}.
 	 */
 	public static class Builder implements ObjectBuilder<ShardsSegment> {
-		private Number numCommittedSegments;
+		private Integer numCommittedSegments;
 
 		private ShardSegmentRouting routing;
 
-		private Number numSearchSegments;
+		private Integer numSearchSegments;
 
 		private Map<String, Segment> segments;
 
 		/**
 		 * API name: {@code num_committed_segments}
 		 */
-		public Builder numCommittedSegments(Number value) {
+		public Builder numCommittedSegments(int value) {
 			this.numCommittedSegments = value;
 			return this;
 		}
@@ -159,7 +166,7 @@ public final class ShardsSegment implements ToJsonp {
 		/**
 		 * API name: {@code num_search_segments}
 		 */
-		public Builder numSearchSegments(Number value) {
+		public Builder numSearchSegments(int value) {
 			this.numSearchSegments = value;
 			return this;
 		}
@@ -212,17 +219,17 @@ public final class ShardsSegment implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ShardsSegment
+	 * Json deserializer for {@link ShardsSegment}
 	 */
-	public static final JsonpDeserializer<ShardsSegment> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ShardsSegment::setupShardsSegmentDeserializer);
+	public static final JsonpDeserializer<ShardsSegment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ShardsSegment::setupShardsSegmentDeserializer, Builder::build);
 
 	protected static void setupShardsSegmentDeserializer(DelegatingDeserializer<ShardsSegment.Builder> op) {
 
-		op.add(Builder::numCommittedSegments, JsonpDeserializer.numberDeserializer(), "num_committed_segments");
-		op.add(Builder::routing, ShardSegmentRouting.DESERIALIZER, "routing");
-		op.add(Builder::numSearchSegments, JsonpDeserializer.numberDeserializer(), "num_search_segments");
-		op.add(Builder::segments, JsonpDeserializer.stringMapDeserializer(Segment.DESERIALIZER), "segments");
+		op.add(Builder::numCommittedSegments, JsonpDeserializer.integerDeserializer(), "num_committed_segments");
+		op.add(Builder::routing, ShardSegmentRouting._DESERIALIZER, "routing");
+		op.add(Builder::numSearchSegments, JsonpDeserializer.integerDeserializer(), "num_search_segments");
+		op.add(Builder::segments, JsonpDeserializer.stringMapDeserializer(Segment._DESERIALIZER), "segments");
 
 	}
 

@@ -25,33 +25,35 @@ package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: license.get_basic_status.Request
+
 public final class GetBasicStatusRequest extends RequestBase {
-	protected GetBasicStatusRequest() {
+	public GetBasicStatusRequest() {
 	}
 
 	/**
 	 * Singleton instance for {@link GetBasicStatusRequest}.
 	 */
-	public static final GetBasicStatusRequest INSTANCE = new GetBasicStatusRequest();
-
-	public static final JsonpDeserializer<GetBasicStatusRequest> DESERIALIZER = JsonpDeserializer
-			.fixedValue(GetBasicStatusRequest.INSTANCE);
+	public static final GetBasicStatusRequest _INSTANCE = new GetBasicStatusRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Endpoint "{@code license.get_basic_status}".
 	 */
-	public static final Endpoint<GetBasicStatusRequest, GetBasicStatusResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<GetBasicStatusRequest, GetBasicStatusResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -68,5 +70,5 @@ public final class GetBasicStatusRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), false, GetBasicStatusResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetBasicStatusResponse._DESERIALIZER);
 }

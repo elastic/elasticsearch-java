@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,27 +38,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ValidationLoss
-public final class ValidationLoss implements ToJsonp {
+@JsonpDeserializable
+public final class ValidationLoss implements JsonpSerializable {
 	private final List<String> foldValues;
 
 	private final String lossType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ValidationLoss(Builder builder) {
+	public ValidationLoss(Builder builder) {
 
-		this.foldValues = Objects.requireNonNull(builder.foldValues, "fold_values");
+		this.foldValues = ModelTypeHelper.unmodifiableNonNull(builder.foldValues, "fold_values");
 		this.lossType = Objects.requireNonNull(builder.lossType, "loss_type");
 
+	}
+
+	public ValidationLoss(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
 	 * Validation loss values for every added decision tree during the forest
 	 * growing procedure.
-	 *
+	 * <p>
 	 * API name: {@code fold_values}
 	 */
 	public List<String> foldValues() {
@@ -65,7 +73,7 @@ public final class ValidationLoss implements ToJsonp {
 
 	/**
 	 * The type of the loss metric. For example, binomial_logistic.
-	 *
+	 * <p>
 	 * API name: {@code loss_type}
 	 */
 	public String lossType() {
@@ -75,13 +83,13 @@ public final class ValidationLoss implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("fold_values");
 		generator.writeStartArray();
@@ -109,7 +117,7 @@ public final class ValidationLoss implements ToJsonp {
 		/**
 		 * Validation loss values for every added decision tree during the forest
 		 * growing procedure.
-		 *
+		 * <p>
 		 * API name: {@code fold_values}
 		 */
 		public Builder foldValues(List<String> value) {
@@ -120,7 +128,7 @@ public final class ValidationLoss implements ToJsonp {
 		/**
 		 * Validation loss values for every added decision tree during the forest
 		 * growing procedure.
-		 *
+		 * <p>
 		 * API name: {@code fold_values}
 		 */
 		public Builder foldValues(String... value) {
@@ -129,7 +137,7 @@ public final class ValidationLoss implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #foldValues(List)}, creating the list if needed.
+		 * Add a value to {@link #foldValues(List)}, creating the list if needed. 4
 		 */
 		public Builder addFoldValues(String value) {
 			if (this.foldValues == null) {
@@ -141,7 +149,7 @@ public final class ValidationLoss implements ToJsonp {
 
 		/**
 		 * The type of the loss metric. For example, binomial_logistic.
-		 *
+		 * <p>
 		 * API name: {@code loss_type}
 		 */
 		public Builder lossType(String value) {
@@ -164,10 +172,10 @@ public final class ValidationLoss implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ValidationLoss
+	 * Json deserializer for {@link ValidationLoss}
 	 */
-	public static final JsonpDeserializer<ValidationLoss> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ValidationLoss::setupValidationLossDeserializer);
+	public static final JsonpDeserializer<ValidationLoss> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ValidationLoss::setupValidationLossDeserializer, Builder::build);
 
 	protected static void setupValidationLossDeserializer(DelegatingDeserializer<ValidationLoss.Builder> op) {
 

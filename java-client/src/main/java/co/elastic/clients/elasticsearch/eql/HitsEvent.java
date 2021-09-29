@@ -24,26 +24,30 @@
 package co.elastic.clients.elasticsearch.eql;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.HitsEvent
-public final class HitsEvent<TEvent> implements ToJsonp {
+
+public final class HitsEvent<TEvent> implements JsonpSerializable {
 	private final String index;
 
 	private final String id;
@@ -51,26 +55,30 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	private final TEvent source;
 
 	@Nullable
-	private final Map<String, List<JsonValue>> fields;
+	private final Map<String, List<JsonData>> fields;
 
 	@Nullable
 	private final JsonpSerializer<TEvent> tEventSerializer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected HitsEvent(Builder<TEvent> builder) {
+	public HitsEvent(Builder<TEvent> builder) {
 
 		this.index = Objects.requireNonNull(builder.index, "_index");
 		this.id = Objects.requireNonNull(builder.id, "_id");
 		this.source = Objects.requireNonNull(builder.source, "_source");
-		this.fields = builder.fields;
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
 
+	public HitsEvent(Function<Builder<TEvent>, Builder<TEvent>> fn) {
+		this(fn.apply(new Builder<>()));
+	}
+
 	/**
 	 * Name of the index containing the event.
-	 *
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	public String index() {
@@ -79,7 +87,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 	/**
 	 * Unique identifier for the event. This ID is only unique within the index.
-	 *
+	 * <p>
 	 * API name: {@code _id}
 	 */
 	public String id() {
@@ -88,7 +96,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 	/**
 	 * Original JSON body passed for the event at index time.
-	 *
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	public TEvent source() {
@@ -99,20 +107,20 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public Map<String, List<JsonValue>> fields() {
+	public Map<String, List<JsonData>> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_index");
 		generator.write(this.index);
@@ -127,11 +135,11 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 			generator.writeKey("fields");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<JsonValue>> item0 : this.fields.entrySet()) {
+			for (Map.Entry<String, List<JsonData>> item0 : this.fields.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (JsonValue item1 : item0.getValue()) {
-					generator.write(item1);
+				for (JsonData item1 : item0.getValue()) {
+					item1.serialize(generator, mapper);
 
 				}
 				generator.writeEnd();
@@ -156,14 +164,14 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		private TEvent source;
 
 		@Nullable
-		private Map<String, List<JsonValue>> fields;
+		private Map<String, List<JsonData>> fields;
 
 		@Nullable
 		private JsonpSerializer<TEvent> tEventSerializer;
 
 		/**
 		 * Name of the index containing the event.
-		 *
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public Builder<TEvent> index(String value) {
@@ -173,7 +181,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 		/**
 		 * Unique identifier for the event. This ID is only unique within the index.
-		 *
+		 * <p>
 		 * API name: {@code _id}
 		 */
 		public Builder<TEvent> id(String value) {
@@ -183,7 +191,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 
 		/**
 		 * Original JSON body passed for the event at index time.
-		 *
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public Builder<TEvent> source(TEvent value) {
@@ -194,7 +202,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder<TEvent> fields(@Nullable Map<String, List<JsonValue>> value) {
+		public Builder<TEvent> fields(@Nullable Map<String, List<JsonData>> value) {
 			this.fields = value;
 			return this;
 		}
@@ -202,7 +210,7 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		/**
 		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
 		 */
-		public Builder<TEvent> putFields(String key, List<JsonValue> value) {
+		public Builder<TEvent> putFields(String key, List<JsonData> value) {
 			if (this.fields == null) {
 				this.fields = new HashMap<>();
 			}
@@ -213,7 +221,6 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		/**
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
-		 *
 		 */
 		public Builder<TEvent> tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;
@@ -249,8 +256,9 @@ public final class HitsEvent<TEvent> implements ToJsonp {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::source, tEventDeserializer, "_source");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer())), "fields");
+		op.add(Builder::fields,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER)),
+				"fields");
 
 	}
 

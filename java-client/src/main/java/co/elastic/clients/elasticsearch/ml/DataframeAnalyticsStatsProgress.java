@@ -24,36 +24,43 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsProgress
-public final class DataframeAnalyticsStatsProgress implements ToJsonp {
+@JsonpDeserializable
+public final class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	private final String phase;
 
-	private final Number progressPercent;
+	private final int progressPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataframeAnalyticsStatsProgress(Builder builder) {
+	public DataframeAnalyticsStatsProgress(Builder builder) {
 
 		this.phase = Objects.requireNonNull(builder.phase, "phase");
 		this.progressPercent = Objects.requireNonNull(builder.progressPercent, "progress_percent");
 
 	}
 
+	public DataframeAnalyticsStatsProgress(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Defines the phase of the data frame analytics job.
-	 *
+	 * <p>
 	 * API name: {@code phase}
 	 */
 	public String phase() {
@@ -63,29 +70,29 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	/**
 	 * The progress that the data frame analytics job has made expressed in
 	 * percentage.
-	 *
+	 * <p>
 	 * API name: {@code progress_percent}
 	 */
-	public Number progressPercent() {
+	public int progressPercent() {
 		return this.progressPercent;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("phase");
 		generator.write(this.phase);
 
 		generator.writeKey("progress_percent");
-		generator.write(this.progressPercent.doubleValue());
+		generator.write(this.progressPercent);
 
 	}
 
@@ -97,11 +104,11 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsProgress> {
 		private String phase;
 
-		private Number progressPercent;
+		private Integer progressPercent;
 
 		/**
 		 * Defines the phase of the data frame analytics job.
-		 *
+		 * <p>
 		 * API name: {@code phase}
 		 */
 		public Builder phase(String value) {
@@ -112,10 +119,10 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 		/**
 		 * The progress that the data frame analytics job has made expressed in
 		 * percentage.
-		 *
+		 * <p>
 		 * API name: {@code progress_percent}
 		 */
-		public Builder progressPercent(Number value) {
+		public Builder progressPercent(int value) {
 			this.progressPercent = value;
 			return this;
 		}
@@ -135,17 +142,17 @@ public final class DataframeAnalyticsStatsProgress implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DataframeAnalyticsStatsProgress
+	 * Json deserializer for {@link DataframeAnalyticsStatsProgress}
 	 */
-	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer);
+	public static final JsonpDeserializer<DataframeAnalyticsStatsProgress> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalyticsStatsProgress::setupDataframeAnalyticsStatsProgressDeserializer,
+					Builder::build);
 
 	protected static void setupDataframeAnalyticsStatsProgressDeserializer(
 			DelegatingDeserializer<DataframeAnalyticsStatsProgress.Builder> op) {
 
 		op.add(Builder::phase, JsonpDeserializer.stringDeserializer(), "phase");
-		op.add(Builder::progressPercent, JsonpDeserializer.numberDeserializer(), "progress_percent");
+		op.add(Builder::progressPercent, JsonpDeserializer.integerDeserializer(), "progress_percent");
 
 	}
 

@@ -25,22 +25,26 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar.Request
-public final class PutCalendarRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PutCalendarRequest extends RequestBase implements JsonpSerializable {
 	private final String calendarId;
 
 	@Nullable
@@ -48,14 +52,20 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutCalendarRequest(Builder builder) {
+	public PutCalendarRequest(Builder builder) {
 
 		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
 		this.description = builder.description;
 
 	}
 
+	public PutCalendarRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * The ID of the calendar to create
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	public String calendarId() {
@@ -73,13 +83,13 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
 
@@ -102,6 +112,8 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 		private String description;
 
 		/**
+		 * The ID of the calendar to create
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
@@ -132,10 +144,10 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutCalendarRequest
+	 * Json deserializer for {@link PutCalendarRequest}
 	 */
-	public static final JsonpDeserializer<PutCalendarRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer);
+	public static final JsonpDeserializer<PutCalendarRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutCalendarRequest::setupPutCalendarRequestDeserializer, Builder::build);
 
 	protected static void setupPutCalendarRequestDeserializer(DelegatingDeserializer<PutCalendarRequest.Builder> op) {
 
@@ -148,7 +160,7 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 	/**
 	 * Endpoint "{@code ml.put_calendar}".
 	 */
-	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PutCalendarRequest, PutCalendarResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "PUT";
@@ -161,18 +173,17 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 
 				int propsSet = 0;
 
-				if (request.calendarId() != null)
-					propsSet |= _calendarId;
+				propsSet |= _calendarId;
 
 				if (propsSet == (_calendarId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
 					buf.append("/calendars");
 					buf.append("/");
-					buf.append(request.calendarId);
+					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -180,5 +191,5 @@ public final class PutCalendarRequest extends RequestBase implements ToJsonp {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PutCalendarResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutCalendarResponse._DESERIALIZER);
 }

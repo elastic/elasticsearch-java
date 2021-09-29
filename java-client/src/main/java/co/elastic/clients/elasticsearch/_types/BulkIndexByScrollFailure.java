@@ -24,34 +24,36 @@
 package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.BulkIndexByScrollFailure
-public final class BulkIndexByScrollFailure implements ToJsonp {
+@JsonpDeserializable
+public final class BulkIndexByScrollFailure implements JsonpSerializable {
 	private final MainError cause;
 
 	private final String id;
 
 	private final String index;
 
-	private final Number status;
+	private final int status;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected BulkIndexByScrollFailure(Builder builder) {
+	public BulkIndexByScrollFailure(Builder builder) {
 
 		this.cause = Objects.requireNonNull(builder.cause, "cause");
 		this.id = Objects.requireNonNull(builder.id, "id");
@@ -59,6 +61,10 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 		this.status = Objects.requireNonNull(builder.status, "status");
 		this.type = Objects.requireNonNull(builder.type, "type");
 
+	}
+
+	public BulkIndexByScrollFailure(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -85,7 +91,7 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 	/**
 	 * API name: {@code status}
 	 */
-	public Number status() {
+	public int status() {
 		return this.status;
 	}
 
@@ -99,16 +105,16 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("cause");
-		this.cause.toJsonp(generator, mapper);
+		this.cause.serialize(generator, mapper);
 
 		generator.writeKey("id");
 		generator.write(this.id);
@@ -117,7 +123,7 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 		generator.write(this.index);
 
 		generator.writeKey("status");
-		generator.write(this.status.doubleValue());
+		generator.write(this.status);
 
 		generator.writeKey("type");
 		generator.write(this.type);
@@ -136,7 +142,7 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 
 		private String index;
 
-		private Number status;
+		private Integer status;
 
 		private String type;
 
@@ -174,7 +180,7 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Number value) {
+		public Builder status(int value) {
 			this.status = value;
 			return this;
 		}
@@ -202,18 +208,18 @@ public final class BulkIndexByScrollFailure implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for BulkIndexByScrollFailure
+	 * Json deserializer for {@link BulkIndexByScrollFailure}
 	 */
-	public static final JsonpDeserializer<BulkIndexByScrollFailure> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer);
+	public static final JsonpDeserializer<BulkIndexByScrollFailure> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, BulkIndexByScrollFailure::setupBulkIndexByScrollFailureDeserializer, Builder::build);
 
 	protected static void setupBulkIndexByScrollFailureDeserializer(
 			DelegatingDeserializer<BulkIndexByScrollFailure.Builder> op) {
 
-		op.add(Builder::cause, MainError.DESERIALIZER, "cause");
+		op.add(Builder::cause, MainError._DESERIALIZER, "cause");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::status, JsonpDeserializer.numberDeserializer(), "status");
+		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

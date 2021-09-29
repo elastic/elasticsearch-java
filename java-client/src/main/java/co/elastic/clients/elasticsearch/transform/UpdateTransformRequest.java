@@ -25,7 +25,9 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -33,24 +35,32 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.update_transform.Request
+@JsonpDeserializable
 public final class UpdateTransformRequest extends PutTransformRequest {
 	@Nullable
 	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected UpdateTransformRequest(Builder builder) {
+	public UpdateTransformRequest(Builder builder) {
 		super(builder);
+
 		this.transformId = builder.transformId;
 
 	}
 
+	public UpdateTransformRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Auto generated - missing in the input spec
-	 *
+	 * <p>
 	 * API name: {@code transform_id}
 	 */
 	@Nullable
@@ -71,7 +81,7 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 
 		/**
 		 * Auto generated - missing in the input spec
-		 *
+		 * <p>
 		 * API name: {@code transform_id}
 		 */
 		public Builder transformId(@Nullable String value) {
@@ -99,10 +109,10 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for UpdateTransformRequest
+	 * Json deserializer for {@link UpdateTransformRequest}
 	 */
-	public static final JsonpDeserializer<UpdateTransformRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestDeserializer);
+	public static final JsonpDeserializer<UpdateTransformRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateTransformRequest::setupUpdateTransformRequestDeserializer, Builder::build);
 
 	protected static void setupUpdateTransformRequestDeserializer(
 			DelegatingDeserializer<UpdateTransformRequest.Builder> op) {
@@ -115,7 +125,7 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 	/**
 	 * Endpoint "{@code transform.update_transform}".
 	 */
-	public static final Endpoint<UpdateTransformRequest, UpdateTransformResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<UpdateTransformRequest, UpdateTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -135,11 +145,11 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					buf.append(request.transformId);
+					SimpleEndpoint.pathEncode(request.transformId, buf);
 					buf.append("/_update");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -147,5 +157,5 @@ public final class UpdateTransformRequest extends PutTransformRequest {
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, UpdateTransformResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateTransformResponse._DESERIALIZER);
 }

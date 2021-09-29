@@ -25,12 +25,16 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,10 +43,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.Request
+
 public final class StatsRequest extends RequestBase {
 	@Nullable
 	private final List<String> metric;
@@ -54,7 +61,7 @@ public final class StatsRequest extends RequestBase {
 	private final List<String> completionFields;
 
 	@Nullable
-	private final JsonValue expandWildcards;
+	private final List<ExpandWildcardOptions> expandWildcards;
 
 	@Nullable
 	private final List<String> fielddataFields;
@@ -75,31 +82,37 @@ public final class StatsRequest extends RequestBase {
 	private final Boolean includeUnloadedSegments;
 
 	@Nullable
-	private final JsonValue level;
+	private final Level level;
 
 	@Nullable
 	private final List<String> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected StatsRequest(Builder builder) {
+	public StatsRequest(Builder builder) {
 
-		this.metric = builder.metric;
-		this.index = builder.index;
-		this.completionFields = builder.completionFields;
-		this.expandWildcards = builder.expandWildcards;
-		this.fielddataFields = builder.fielddataFields;
-		this.fields = builder.fields;
+		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
+		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
+		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.forbidClosedIndices = builder.forbidClosedIndices;
-		this.groups = builder.groups;
+		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
 		this.level = builder.level;
-		this.types = builder.types;
+		this.types = ModelTypeHelper.unmodifiable(builder.types);
 
 	}
 
+	public StatsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
+	 * Limit the information returned the specific metrics.
+	 * <p>
 	 * API name: {@code metric}
 	 */
 	@Nullable
@@ -108,6 +121,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
 	 * API name: {@code index}
 	 */
 	@Nullable
@@ -116,6 +132,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields for the <code>completion</code> index metric
+	 * (supports wildcards)
+	 * <p>
 	 * API name: {@code completion_fields}
 	 */
 	@Nullable
@@ -124,14 +143,20 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	@Nullable
-	public JsonValue expandWildcards() {
+	public List<ExpandWildcardOptions> expandWildcards() {
 		return this.expandWildcards;
 	}
 
 	/**
+	 * A comma-separated list of fields for the <code>fielddata</code> index metric
+	 * (supports wildcards)
+	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
 	@Nullable
@@ -140,6 +165,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of fields for <code>fielddata</code> and
+	 * <code>completion</code> index metric (supports wildcards)
+	 * <p>
 	 * API name: {@code fields}
 	 */
 	@Nullable
@@ -148,6 +176,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to false stats will also collected from closed indices if explicitly
+	 * specified or if expand_wildcards expands to closed indices
+	 * <p>
 	 * API name: {@code forbid_closed_indices}
 	 */
 	@Nullable
@@ -156,6 +187,8 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * A comma-separated list of search groups for <code>search</code> index metric
+	 * <p>
 	 * API name: {@code groups}
 	 */
 	@Nullable
@@ -164,6 +197,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Whether to report the aggregated disk usage of each one of the Lucene index
+	 * files (only applies if segment stats are requested)
+	 * <p>
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
@@ -172,6 +208,9 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * If set to true segment stats will include stats for segments that are not
+	 * currently loaded into memory
+	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
@@ -180,14 +219,19 @@ public final class StatsRequest extends RequestBase {
 	}
 
 	/**
+	 * Return stats aggregated at cluster, index or shard level
+	 * <p>
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public JsonValue level() {
+	public Level level() {
 		return this.level;
 	}
 
 	/**
+	 * A comma-separated list of document types for the <code>indexing</code> index
+	 * metric
+	 * <p>
 	 * API name: {@code types}
 	 */
 	@Nullable
@@ -211,7 +255,7 @@ public final class StatsRequest extends RequestBase {
 		private List<String> completionFields;
 
 		@Nullable
-		private JsonValue expandWildcards;
+		private List<ExpandWildcardOptions> expandWildcards;
 
 		@Nullable
 		private List<String> fielddataFields;
@@ -232,12 +276,14 @@ public final class StatsRequest extends RequestBase {
 		private Boolean includeUnloadedSegments;
 
 		@Nullable
-		private JsonValue level;
+		private Level level;
 
 		@Nullable
 		private List<String> types;
 
 		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(@Nullable List<String> value) {
@@ -246,6 +292,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
 		 * API name: {@code metric}
 		 */
 		public Builder metric(String... value) {
@@ -254,7 +302,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
+		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -265,6 +313,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(@Nullable List<String> value) {
@@ -273,6 +324,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
 		 * API name: {@code index}
 		 */
 		public Builder index(String... value) {
@@ -281,7 +335,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Add a value to {@link #index(List)}, creating the list if needed. 4
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -292,6 +346,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>completion</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(@Nullable List<String> value) {
@@ -300,6 +357,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>completion</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code completion_fields}
 		 */
 		public Builder completionFields(String... value) {
@@ -309,6 +369,7 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
+		 * 4
 		 */
 		public Builder addCompletionFields(String value) {
 			if (this.completionFields == null) {
@@ -319,14 +380,42 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 */
-		public Builder expandWildcards(@Nullable JsonValue value) {
+		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
 			this.expandWildcards = value;
 			return this;
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 */
+		public Builder expandWildcards(ExpandWildcardOptions... value) {
+			this.expandWildcards = Arrays.asList(value);
+			return this;
+		}
+
+		/**
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 */
+		public Builder addExpandWildcards(ExpandWildcardOptions value) {
+			if (this.expandWildcards == null) {
+				this.expandWildcards = new ArrayList<>();
+			}
+			this.expandWildcards.add(value);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of fields for the <code>fielddata</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(@Nullable List<String> value) {
@@ -335,6 +424,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for the <code>fielddata</code> index metric
+		 * (supports wildcards)
+		 * <p>
 		 * API name: {@code fielddata_fields}
 		 */
 		public Builder fielddataFields(String... value) {
@@ -343,7 +435,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
+		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFielddataFields(String value) {
 			if (this.fielddataFields == null) {
@@ -354,6 +446,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for <code>fielddata</code> and
+		 * <code>completion</code> index metric (supports wildcards)
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(@Nullable List<String> value) {
@@ -362,6 +457,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of fields for <code>fielddata</code> and
+		 * <code>completion</code> index metric (supports wildcards)
+		 * <p>
 		 * API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
@@ -370,7 +468,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -381,6 +479,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to false stats will also collected from closed indices if explicitly
+		 * specified or if expand_wildcards expands to closed indices
+		 * <p>
 		 * API name: {@code forbid_closed_indices}
 		 */
 		public Builder forbidClosedIndices(@Nullable Boolean value) {
@@ -389,6 +490,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of search groups for <code>search</code> index metric
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(@Nullable List<String> value) {
@@ -397,6 +500,8 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of search groups for <code>search</code> index metric
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public Builder groups(String... value) {
@@ -405,7 +510,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -416,6 +521,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Whether to report the aggregated disk usage of each one of the Lucene index
+		 * files (only applies if segment stats are requested)
+		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
 		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
@@ -424,6 +532,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * If set to true segment stats will include stats for segments that are not
+		 * currently loaded into memory
+		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
 		public Builder includeUnloadedSegments(@Nullable Boolean value) {
@@ -432,14 +543,19 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * Return stats aggregated at cluster, index or shard level
+		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable JsonValue value) {
+		public Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
 
 		/**
+		 * A comma-separated list of document types for the <code>indexing</code> index
+		 * metric
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(@Nullable List<String> value) {
@@ -448,6 +564,9 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
+		 * A comma-separated list of document types for the <code>indexing</code> index
+		 * metric
+		 * <p>
 		 * API name: {@code types}
 		 */
 		public Builder types(String... value) {
@@ -456,7 +575,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
+		 * Add a value to {@link #types(List)}, creating the list if needed. 4
 		 */
 		public Builder addTypes(String value) {
 			if (this.types == null) {
@@ -483,7 +602,7 @@ public final class StatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.stats}".
 	 */
-	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<StatsRequest, StatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "GET";
@@ -511,26 +630,28 @@ public final class StatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
 				if (propsSet == (_index | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					buf.append(request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					buf.append("/");
-					buf.append(request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -542,7 +663,8 @@ public final class StatsRequest extends RequestBase {
 							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.expandWildcards != null) {
-					params.put("expand_wildcards", request.expandWildcards.toString());
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
 				}
 				if (request.fielddataFields != null) {
 					params.put("fielddata_fields",
@@ -571,5 +693,5 @@ public final class StatsRequest extends RequestBase {
 				}
 				return params;
 
-			}, Endpoint.Simple.emptyMap(), false, StatsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, StatsResponse._DESERIALIZER);
 }

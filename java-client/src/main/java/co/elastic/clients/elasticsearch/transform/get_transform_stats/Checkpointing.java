@@ -24,22 +24,24 @@
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Checkpointing
-public final class Checkpointing implements ToJsonp {
-	private final Number changesLastDetectedAt;
+@JsonpDeserializable
+public final class Checkpointing implements JsonpSerializable {
+	private final long changesLastDetectedAt;
 
 	@Nullable
 	private final String changesLastDetectedAtDateTime;
@@ -50,11 +52,11 @@ public final class Checkpointing implements ToJsonp {
 	private final CheckpointStats next;
 
 	@Nullable
-	private final Number operationsBehind;
+	private final Long operationsBehind;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected Checkpointing(Builder builder) {
+	public Checkpointing(Builder builder) {
 
 		this.changesLastDetectedAt = Objects.requireNonNull(builder.changesLastDetectedAt, "changes_last_detected_at");
 		this.changesLastDetectedAtDateTime = builder.changesLastDetectedAtDateTime;
@@ -64,10 +66,14 @@ public final class Checkpointing implements ToJsonp {
 
 	}
 
+	public Checkpointing(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code changes_last_detected_at}
 	 */
-	public Number changesLastDetectedAt() {
+	public long changesLastDetectedAt() {
 		return this.changesLastDetectedAt;
 	}
 
@@ -98,23 +104,23 @@ public final class Checkpointing implements ToJsonp {
 	 * API name: {@code operations_behind}
 	 */
 	@Nullable
-	public Number operationsBehind() {
+	public Long operationsBehind() {
 		return this.operationsBehind;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("changes_last_detected_at");
-		generator.write(this.changesLastDetectedAt.doubleValue());
+		generator.write(this.changesLastDetectedAt);
 
 		if (this.changesLastDetectedAtDateTime != null) {
 
@@ -124,18 +130,18 @@ public final class Checkpointing implements ToJsonp {
 		}
 
 		generator.writeKey("last");
-		this.last.toJsonp(generator, mapper);
+		this.last.serialize(generator, mapper);
 
 		if (this.next != null) {
 
 			generator.writeKey("next");
-			this.next.toJsonp(generator, mapper);
+			this.next.serialize(generator, mapper);
 
 		}
 		if (this.operationsBehind != null) {
 
 			generator.writeKey("operations_behind");
-			generator.write(this.operationsBehind.doubleValue());
+			generator.write(this.operationsBehind);
 
 		}
 
@@ -147,7 +153,7 @@ public final class Checkpointing implements ToJsonp {
 	 * Builder for {@link Checkpointing}.
 	 */
 	public static class Builder implements ObjectBuilder<Checkpointing> {
-		private Number changesLastDetectedAt;
+		private Long changesLastDetectedAt;
 
 		@Nullable
 		private String changesLastDetectedAtDateTime;
@@ -158,12 +164,12 @@ public final class Checkpointing implements ToJsonp {
 		private CheckpointStats next;
 
 		@Nullable
-		private Number operationsBehind;
+		private Long operationsBehind;
 
 		/**
 		 * API name: {@code changes_last_detected_at}
 		 */
-		public Builder changesLastDetectedAt(Number value) {
+		public Builder changesLastDetectedAt(long value) {
 			this.changesLastDetectedAt = value;
 			return this;
 		}
@@ -209,7 +215,7 @@ public final class Checkpointing implements ToJsonp {
 		/**
 		 * API name: {@code operations_behind}
 		 */
-		public Builder operationsBehind(@Nullable Number value) {
+		public Builder operationsBehind(@Nullable Long value) {
 			this.operationsBehind = value;
 			return this;
 		}
@@ -229,19 +235,19 @@ public final class Checkpointing implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for Checkpointing
+	 * Json deserializer for {@link Checkpointing}
 	 */
-	public static final JsonpDeserializer<Checkpointing> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, Checkpointing::setupCheckpointingDeserializer);
+	public static final JsonpDeserializer<Checkpointing> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Checkpointing::setupCheckpointingDeserializer, Builder::build);
 
 	protected static void setupCheckpointingDeserializer(DelegatingDeserializer<Checkpointing.Builder> op) {
 
-		op.add(Builder::changesLastDetectedAt, JsonpDeserializer.numberDeserializer(), "changes_last_detected_at");
+		op.add(Builder::changesLastDetectedAt, JsonpDeserializer.longDeserializer(), "changes_last_detected_at");
 		op.add(Builder::changesLastDetectedAtDateTime, JsonpDeserializer.stringDeserializer(),
 				"changes_last_detected_at_date_time");
-		op.add(Builder::last, CheckpointStats.DESERIALIZER, "last");
-		op.add(Builder::next, CheckpointStats.DESERIALIZER, "next");
-		op.add(Builder::operationsBehind, JsonpDeserializer.numberDeserializer(), "operations_behind");
+		op.add(Builder::last, CheckpointStats._DESERIALIZER, "last");
+		op.add(Builder::next, CheckpointStats._DESERIALIZER, "next");
+		op.add(Builder::operationsBehind, JsonpDeserializer.longDeserializer(), "operations_behind");
 
 	}
 

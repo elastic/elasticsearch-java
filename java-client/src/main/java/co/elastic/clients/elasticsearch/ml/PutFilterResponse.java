@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_filter.Response
-public final class PutFilterResponse implements ToJsonp {
+@JsonpDeserializable
+public final class PutFilterResponse implements JsonpSerializable {
 	private final String description;
 
 	private final String filterId;
@@ -48,12 +52,16 @@ public final class PutFilterResponse implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PutFilterResponse(Builder builder) {
+	public PutFilterResponse(Builder builder) {
 
 		this.description = Objects.requireNonNull(builder.description, "description");
 		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.items = Objects.requireNonNull(builder.items, "items");
+		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
 
+	}
+
+	public PutFilterResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -80,13 +88,13 @@ public final class PutFilterResponse implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("description");
 		generator.write(this.description);
@@ -149,7 +157,7 @@ public final class PutFilterResponse implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
+		 * Add a value to {@link #items(List)}, creating the list if needed. 4
 		 */
 		public Builder addItems(String value) {
 			if (this.items == null) {
@@ -174,10 +182,10 @@ public final class PutFilterResponse implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PutFilterResponse
+	 * Json deserializer for {@link PutFilterResponse}
 	 */
-	public static final JsonpDeserializer<PutFilterResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, PutFilterResponse::setupPutFilterResponseDeserializer);
+	public static final JsonpDeserializer<PutFilterResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutFilterResponse::setupPutFilterResponseDeserializer, Builder::build);
 
 	protected static void setupPutFilterResponseDeserializer(DelegatingDeserializer<PutFilterResponse.Builder> op) {
 

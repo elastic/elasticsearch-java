@@ -24,29 +24,31 @@
 package co.elastic.clients.elasticsearch.nodes.info;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Number;
+import java.lang.Long;
 import java.util.Objects;
-import javax.annotation.Nullable;
+import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
-public final class NodeProcessInfo implements ToJsonp {
-	private final Number id;
+@JsonpDeserializable
+public final class NodeProcessInfo implements JsonpSerializable {
+	private final long id;
 
-	private final Boolean mlockall;
+	private final boolean mlockall;
 
-	private final Number refreshIntervalInMillis;
+	private final long refreshIntervalInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected NodeProcessInfo(Builder builder) {
+	public NodeProcessInfo(Builder builder) {
 
 		this.id = Objects.requireNonNull(builder.id, "id");
 		this.mlockall = Objects.requireNonNull(builder.mlockall, "mlockall");
@@ -55,52 +57,56 @@ public final class NodeProcessInfo implements ToJsonp {
 
 	}
 
+	public NodeProcessInfo(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Process identifier (PID)
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
-	public Number id() {
+	public long id() {
 		return this.id;
 	}
 
 	/**
 	 * Indicates if the process address space has been successfully locked in memory
-	 *
+	 * <p>
 	 * API name: {@code mlockall}
 	 */
-	public Boolean mlockall() {
+	public boolean mlockall() {
 		return this.mlockall;
 	}
 
 	/**
 	 * Refresh interval for the process statistics
-	 *
+	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public Number refreshIntervalInMillis() {
+	public long refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("id");
-		generator.write(this.id.doubleValue());
+		generator.write(this.id);
 
 		generator.writeKey("mlockall");
 		generator.write(this.mlockall);
 
 		generator.writeKey("refresh_interval_in_millis");
-		generator.write(this.refreshIntervalInMillis.doubleValue());
+		generator.write(this.refreshIntervalInMillis);
 
 	}
 
@@ -110,38 +116,38 @@ public final class NodeProcessInfo implements ToJsonp {
 	 * Builder for {@link NodeProcessInfo}.
 	 */
 	public static class Builder implements ObjectBuilder<NodeProcessInfo> {
-		private Number id;
+		private Long id;
 
 		private Boolean mlockall;
 
-		private Number refreshIntervalInMillis;
+		private Long refreshIntervalInMillis;
 
 		/**
 		 * Process identifier (PID)
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(Number value) {
+		public Builder id(long value) {
 			this.id = value;
 			return this;
 		}
 
 		/**
 		 * Indicates if the process address space has been successfully locked in memory
-		 *
+		 * <p>
 		 * API name: {@code mlockall}
 		 */
-		public Builder mlockall(Boolean value) {
+		public Builder mlockall(boolean value) {
 			this.mlockall = value;
 			return this;
 		}
 
 		/**
 		 * Refresh interval for the process statistics
-		 *
+		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(Number value) {
+		public Builder refreshIntervalInMillis(long value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
@@ -161,16 +167,16 @@ public final class NodeProcessInfo implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for NodeProcessInfo
+	 * Json deserializer for {@link NodeProcessInfo}
 	 */
-	public static final JsonpDeserializer<NodeProcessInfo> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, NodeProcessInfo::setupNodeProcessInfoDeserializer);
+	public static final JsonpDeserializer<NodeProcessInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			NodeProcessInfo::setupNodeProcessInfoDeserializer, Builder::build);
 
 	protected static void setupNodeProcessInfoDeserializer(DelegatingDeserializer<NodeProcessInfo.Builder> op) {
 
-		op.add(Builder::id, JsonpDeserializer.numberDeserializer(), "id");
+		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");
-		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.numberDeserializer(), "refresh_interval_in_millis");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
 
 	}
 

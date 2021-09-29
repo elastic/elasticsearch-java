@@ -25,23 +25,27 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics.DataframePreviewConfig;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
-public final class PreviewDataFrameAnalyticsRequest extends RequestBase implements ToJsonp {
+@JsonpDeserializable
+public final class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -50,16 +54,20 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected PreviewDataFrameAnalyticsRequest(Builder builder) {
+	public PreviewDataFrameAnalyticsRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.config = builder.config;
 
 	}
 
+	public PreviewDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * Identifier for the data frame analytics job.
-	 *
+	 * <p>
 	 * API name: {@code id}
 	 */
 	@Nullable
@@ -71,7 +79,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	 * A data frame analytics config as described in Create data frame analytics
 	 * jobs. Note that id and dest don’t need to be provided in the context of this
 	 * API.
-	 *
+	 * <p>
 	 * API name: {@code config}
 	 */
 	@Nullable
@@ -82,18 +90,18 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
 
 			generator.writeKey("config");
-			this.config.toJsonp(generator, mapper);
+			this.config.serialize(generator, mapper);
 
 		}
 
@@ -113,7 +121,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 
 		/**
 		 * Identifier for the data frame analytics job.
-		 *
+		 * <p>
 		 * API name: {@code id}
 		 */
 		public Builder id(@Nullable String value) {
@@ -125,7 +133,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * A data frame analytics config as described in Create data frame analytics
 		 * jobs. Note that id and dest don’t need to be provided in the context of this
 		 * API.
-		 *
+		 * <p>
 		 * API name: {@code config}
 		 */
 		public Builder config(@Nullable DataframePreviewConfig value) {
@@ -137,7 +145,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * A data frame analytics config as described in Create data frame analytics
 		 * jobs. Note that id and dest don’t need to be provided in the context of this
 		 * API.
-		 *
+		 * <p>
 		 * API name: {@code config}
 		 */
 		public Builder config(Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
@@ -159,16 +167,16 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for PreviewDataFrameAnalyticsRequest
+	 * Json deserializer for {@link PreviewDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new,
-					PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer);
+	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer,
+					Builder::build);
 
 	protected static void setupPreviewDataFrameAnalyticsRequestDeserializer(
 			DelegatingDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
 
-		op.add(Builder::config, DataframePreviewConfig.DESERIALIZER, "config");
+		op.add(Builder::config, DataframePreviewConfig._DESERIALIZER, "config");
 
 	}
 
@@ -177,7 +185,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Endpoint "{@code ml.preview_data_frame_analytics}".
 	 */
-	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new Endpoint.Simple<>(
+	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
 			// Request method
 			request -> {
 				return "POST";
@@ -207,11 +215,11 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 					buf.append("/data_frame");
 					buf.append("/analytics");
 					buf.append("/");
-					buf.append(request.id);
+					SimpleEndpoint.pathEncode(request.id, buf);
 					buf.append("/_preview");
 					return buf.toString();
 				}
-				throw Endpoint.Simple.noPathTemplateFound("path");
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
@@ -219,5 +227,5 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 			request -> {
 				return Collections.emptyMap();
 
-			}, Endpoint.Simple.emptyMap(), true, PreviewDataFrameAnalyticsResponse.DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PreviewDataFrameAnalyticsResponse._DESERIALIZER);
 }

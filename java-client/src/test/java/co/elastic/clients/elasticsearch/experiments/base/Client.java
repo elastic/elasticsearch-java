@@ -19,11 +19,11 @@
 
 package co.elastic.clients.elasticsearch.experiments.base;
 
-import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.base.Endpoint;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
 import co.elastic.clients.elasticsearch.experiments.api.FooResponse;
+import co.elastic.clients.util.ObjectBuilder;
 
 import java.io.IOException;
 import java.util.function.Function;
@@ -43,6 +43,6 @@ public class Client {
   protected <RequestT, ResponseT, ErrorT> ResponseT performRequest(
       RequestT request, Endpoint<RequestT, ResponseT, ErrorT> endpoint
   ) throws IOException {
-    return transport.performRequest(request, endpoint, null);
+    return transport.performRequest(request, endpoint);
   }
 }

@@ -25,19 +25,27 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Objects;
+import java.util.function.Function;
 
 // typedef: indices.delete_template.Response
+@JsonpDeserializable
 public final class DeleteTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected DeleteTemplateResponse(Builder builder) {
+	public DeleteTemplateResponse(Builder builder) {
 		super(builder);
 
+	}
+
+	public DeleteTemplateResponse(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,10 +76,10 @@ public final class DeleteTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for DeleteTemplateResponse
+	 * Json deserializer for {@link DeleteTemplateResponse}
 	 */
-	public static final JsonpDeserializer<DeleteTemplateResponse> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, DeleteTemplateResponse::setupDeleteTemplateResponseDeserializer);
+	public static final JsonpDeserializer<DeleteTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteTemplateResponse::setupDeleteTemplateResponseDeserializer, Builder::build);
 
 	protected static void setupDeleteTemplateResponseDeserializer(
 			DelegatingDeserializer<DeleteTemplateResponse.Builder> op) {

@@ -25,37 +25,43 @@ package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ilm.Phases;
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IlmPolicyStatistics
-public final class IlmPolicyStatistics implements ToJsonp {
-	private final Number indicesManaged;
+@JsonpDeserializable
+public final class IlmPolicyStatistics implements JsonpSerializable {
+	private final int indicesManaged;
 
 	private final Phases phases;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected IlmPolicyStatistics(Builder builder) {
+	public IlmPolicyStatistics(Builder builder) {
 
 		this.indicesManaged = Objects.requireNonNull(builder.indicesManaged, "indices_managed");
 		this.phases = Objects.requireNonNull(builder.phases, "phases");
 
 	}
 
+	public IlmPolicyStatistics(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
+	}
+
 	/**
 	 * API name: {@code indices_managed}
 	 */
-	public Number indicesManaged() {
+	public int indicesManaged() {
 		return this.indicesManaged;
 	}
 
@@ -69,19 +75,19 @@ public final class IlmPolicyStatistics implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("indices_managed");
-		generator.write(this.indicesManaged.doubleValue());
+		generator.write(this.indicesManaged);
 
 		generator.writeKey("phases");
-		this.phases.toJsonp(generator, mapper);
+		this.phases.serialize(generator, mapper);
 
 	}
 
@@ -91,14 +97,14 @@ public final class IlmPolicyStatistics implements ToJsonp {
 	 * Builder for {@link IlmPolicyStatistics}.
 	 */
 	public static class Builder implements ObjectBuilder<IlmPolicyStatistics> {
-		private Number indicesManaged;
+		private Integer indicesManaged;
 
 		private Phases phases;
 
 		/**
 		 * API name: {@code indices_managed}
 		 */
-		public Builder indicesManaged(Number value) {
+		public Builder indicesManaged(int value) {
 			this.indicesManaged = value;
 			return this;
 		}
@@ -133,15 +139,15 @@ public final class IlmPolicyStatistics implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for IlmPolicyStatistics
+	 * Json deserializer for {@link IlmPolicyStatistics}
 	 */
-	public static final JsonpDeserializer<IlmPolicyStatistics> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer);
+	public static final JsonpDeserializer<IlmPolicyStatistics> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer, Builder::build);
 
 	protected static void setupIlmPolicyStatisticsDeserializer(DelegatingDeserializer<IlmPolicyStatistics.Builder> op) {
 
-		op.add(Builder::indicesManaged, JsonpDeserializer.numberDeserializer(), "indices_managed");
-		op.add(Builder::phases, Phases.DESERIALIZER, "phases");
+		op.add(Builder::indicesManaged, JsonpDeserializer.integerDeserializer(), "indices_managed");
+		op.add(Builder::phases, Phases._DESERIALIZER, "phases");
 
 	}
 

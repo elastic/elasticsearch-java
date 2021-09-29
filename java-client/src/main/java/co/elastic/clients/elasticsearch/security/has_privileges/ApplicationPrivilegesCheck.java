@@ -24,11 +24,13 @@
 package co.elastic.clients.elasticsearch.security.has_privileges;
 
 import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.ToJsonp;
+import co.elastic.clients.util.ModelTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,10 +38,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
-public final class ApplicationPrivilegesCheck implements ToJsonp {
+@JsonpDeserializable
+public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	private final String application;
 
 	private final List<String> privileges;
@@ -48,12 +52,16 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ApplicationPrivilegesCheck(Builder builder) {
+	public ApplicationPrivilegesCheck(Builder builder) {
 
 		this.application = Objects.requireNonNull(builder.application, "application");
-		this.privileges = Objects.requireNonNull(builder.privileges, "privileges");
-		this.resources = Objects.requireNonNull(builder.resources, "resources");
+		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
+		this.resources = ModelTypeHelper.unmodifiableNonNull(builder.resources, "resources");
 
+	}
+
+	public ApplicationPrivilegesCheck(Function<Builder, Builder> fn) {
+		this(fn.apply(new Builder()));
 	}
 
 	/**
@@ -80,13 +88,13 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 	/**
 	 * Serialize this object to JSON.
 	 */
-	public void toJsonp(JsonGenerator generator, JsonpMapper mapper) {
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		toJsonpInternal(generator, mapper);
+		serializeInternal(generator, mapper);
 		generator.writeEnd();
 	}
 
-	protected void toJsonpInternal(JsonGenerator generator, JsonpMapper mapper) {
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("application");
 		generator.write(this.application);
@@ -146,7 +154,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed.
+		 * Add a value to {@link #privileges(List)}, creating the list if needed. 4
 		 */
 		public Builder addPrivileges(String value) {
 			if (this.privileges == null) {
@@ -173,7 +181,7 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 		}
 
 		/**
-		 * Add a value to {@link #resources(List)}, creating the list if needed.
+		 * Add a value to {@link #resources(List)}, creating the list if needed. 4
 		 */
 		public Builder addResources(String value) {
 			if (this.resources == null) {
@@ -198,10 +206,10 @@ public final class ApplicationPrivilegesCheck implements ToJsonp {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for ApplicationPrivilegesCheck
+	 * Json deserializer for {@link ApplicationPrivilegesCheck}
 	 */
-	public static final JsonpDeserializer<ApplicationPrivilegesCheck> DESERIALIZER = ObjectBuilderDeserializer
-			.createForObject(Builder::new, ApplicationPrivilegesCheck::setupApplicationPrivilegesCheckDeserializer);
+	public static final JsonpDeserializer<ApplicationPrivilegesCheck> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, ApplicationPrivilegesCheck::setupApplicationPrivilegesCheckDeserializer, Builder::build);
 
 	protected static void setupApplicationPrivilegesCheckDeserializer(
 			DelegatingDeserializer<ApplicationPrivilegesCheck.Builder> op) {
