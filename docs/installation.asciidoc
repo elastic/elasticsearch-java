@@ -19,8 +19,8 @@ Requirements:
   https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
 
 
-The GA releases are hosted on Maven Central. Snapshot versions are hosted on 
-https://snapshots.elastic.co/maven/[Elastic's Maven snapshot repository].
+Releases are hosted on https://search.maven.org/search?q=g:co.elastic.clients[Maven Central]. If you are looking for
+a SNAPSHOT version, the Elastic Maven Snapshot repository is available at https://snapshots.elastic.co/maven/.
 
 
 [discrete]
@@ -29,16 +29,8 @@ https://snapshots.elastic.co/maven/[Elastic's Maven snapshot repository].
 
 ["source","groovy",subs="attributes"]
 --------------------------------------------------
-repositories {
-    mavenCentral()
-    maven {
-        name = "Elastic-Snapshots"
-        url = uri("https://snapshots.elastic.co/maven")
-    }
-}
-
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:7.15.0-SNAPSHOT'
+    implementation 'co.elastic.clients:elasticsearch-java:7.15.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 }
 --------------------------------------------------
@@ -53,16 +45,6 @@ dependencies:
 ["source","xml",subs="attributes"]
 --------------------------------------------------
 <project>
-
-  <repositories>
-    <repository>
-      <id>Elastic-Snapshots</id>
-      <url>https://snapshots.elastic.co/maven</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      </repository>
-  </repositories>
 
   <dependencies>
     <dependency>
