@@ -935,7 +935,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-	 * specify an <index> in the request path.
+	 * specify an &lt;index&gt; in the request path.
 	 * <p>
 	 * API name: {@code pit}
 	 */
@@ -2371,7 +2371,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-		 * specify an <index> in the request path.
+		 * specify an &lt;index&gt; in the request path.
 		 * <p>
 		 * API name: {@code pit}
 		 */
@@ -2382,7 +2382,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-		 * specify an <index> in the request path.
+		 * specify an &lt;index&gt; in the request path.
 		 * <p>
 		 * API name: {@code pit}
 		 */

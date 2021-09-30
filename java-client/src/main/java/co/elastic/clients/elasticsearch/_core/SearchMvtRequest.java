@@ -192,9 +192,9 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * If false, the meta layer’s feature is the bounding box of the tile. If true,
 	 * the meta layer’s feature is a bounding box resulting from a geo_bounds
-	 * aggregation. The aggregation runs on <field> values that intersect the
-	 * <zoom>/<x>/<y> tile with wrap_longitude set to false. The resulting bounding
-	 * box may be larger than the vector tile.
+	 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
+	 * &lt;zoom&gt;/&lt;x&gt;/&lt;y&gt; tile with wrap_longitude set to false. The
+	 * resulting bounding box may be larger than the vector tile.
 	 * <p>
 	 * API name: {@code exact_bounds}
 	 */
@@ -228,8 +228,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 	/**
 	 * Additional zoom levels available through the aggs layer. For example, if
-	 * <zoom> is 7 and grid_precision is 8, you can zoom in up to level 15. Accepts
-	 * 0-8. If 0, results don’t include the aggs layer.
+	 * &lt;zoom&gt; is 7 and grid_precision is 8, you can zoom in up to level 15.
+	 * Accepts 0-8. If 0, results don’t include the aggs layer.
 	 * <p>
 	 * API name: {@code grid_precision}
 	 */
@@ -554,9 +554,9 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * If false, the meta layer’s feature is the bounding box of the tile. If true,
 		 * the meta layer’s feature is a bounding box resulting from a geo_bounds
-		 * aggregation. The aggregation runs on <field> values that intersect the
-		 * <zoom>/<x>/<y> tile with wrap_longitude set to false. The resulting bounding
-		 * box may be larger than the vector tile.
+		 * aggregation. The aggregation runs on &lt;field&gt; values that intersect the
+		 * &lt;zoom&gt;/&lt;x&gt;/&lt;y&gt; tile with wrap_longitude set to false. The
+		 * resulting bounding box may be larger than the vector tile.
 		 * <p>
 		 * API name: {@code exact_bounds}
 		 */
@@ -613,8 +613,8 @@ public final class SearchMvtRequest extends RequestBase implements JsonpSerializ
 
 		/**
 		 * Additional zoom levels available through the aggs layer. For example, if
-		 * <zoom> is 7 and grid_precision is 8, you can zoom in up to level 15. Accepts
-		 * 0-8. If 0, results don’t include the aggs layer.
+		 * &lt;zoom&gt; is 7 and grid_precision is 8, you can zoom in up to level 15.
+		 * Accepts 0-8. If 0, results don’t include the aggs layer.
 		 * <p>
 		 * API name: {@code grid_precision}
 		 */

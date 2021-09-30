@@ -1,8 +1,5 @@
 = Elasticsearch Java API Client
 
-[partintro]
---
-
 The {es} Java API Client is an experimental Java client for {es}. It removes all 
 dependencies to the {es} server code base.
 
@@ -10,7 +7,6 @@ dependencies to the {es} server code base.
 * <<installation>>
 * <<connecting>>
 * <<java-rest-low>>
---
 
 :branch: master
 include::{asciidoc-dir}/../../shared/attributes.asciidoc[]

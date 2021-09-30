@@ -19,8 +19,9 @@
 
 package co.elastic.clients.elasticsearch.end_to_end;
 
-
+import co.elastic.clients.base.ApiException;
 import co.elastic.clients.base.BooleanResponse;
+import co.elastic.clients.base.ElasticsearchError;
 import co.elastic.clients.base.RestClientTransport;
 import co.elastic.clients.base.Transport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
@@ -51,6 +52,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class RequestTest extends Assert {
@@ -229,6 +231,38 @@ public class RequestTest extends Assert {
         );
 
         assertEquals("1", ir.id());
+    }
+
+    @Test public void errorResponse() throws Exception {
+
+        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200))).build();
+        Transport transport = new RestClientTransport(restClient, mapper);
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+
+        BooleanResponse exists = client.exists(_0 -> _0.index("doesnotexist").id("reallynot"));
+        assertFalse(exists.value());
+
+        try {
+            co.elastic.clients.elasticsearch._core.GetResponse<String> response = client.get(
+                _0 -> _0.index("doesnotexist").id("reallynot"), String.class
+            );
+        } catch(ApiException apie) {
+            ElasticsearchError error = (ElasticsearchError) apie.error();
+            assertEquals(404, error.status());
+            assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
+        }
+
+        try {
+            ElasticsearchAsyncClient aClient = new ElasticsearchAsyncClient(transport);
+            co.elastic.clients.elasticsearch._core.GetResponse<String> response = aClient.get(
+                _0 -> _0.index("doesnotexist").id("reallynot"), String.class
+            ).get();
+        } catch(ExecutionException ee) {
+            ApiException apie = ((ApiException) ee.getCause());
+            ElasticsearchError error = (ElasticsearchError) apie.error();
+            assertEquals(404, error.status());
+            assertEquals("index_not_found_exception", error.error().asJsonObject().getString("type"));
+        }
     }
 
     public static class AppData {
