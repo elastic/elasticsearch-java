@@ -17,8 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.base;
+package co.elastic.clients.base.rest_client;
 
+import co.elastic.clients.base.ApiException;
+import co.elastic.clients.base.BooleanEndpoint;
+import co.elastic.clients.base.BooleanResponse;
+import co.elastic.clients.base.ElasticsearchCatRequest;
+import co.elastic.clients.base.Endpoint;
+import co.elastic.clients.base.Transport;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.NdJsonpSerializable;
@@ -81,6 +87,11 @@ public class RestClientTransport implements Transport {
     @Override
     public JsonpMapper jsonpMapper() {
         return mapper;
+    }
+
+    @Override
+    public void close() throws IOException {
+        this.restClient.close();
     }
 
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
