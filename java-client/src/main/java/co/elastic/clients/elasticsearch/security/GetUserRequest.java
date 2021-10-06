@@ -108,7 +108,7 @@ public final class GetUserRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #username(List)}, creating the list if needed. 4
+		 * Add a value to {@link #username(List)}, creating the list if needed.
 		 */
 		public Builder addUsername(String value) {
 			if (this.username == null) {

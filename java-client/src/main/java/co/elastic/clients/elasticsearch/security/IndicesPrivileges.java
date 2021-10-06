@@ -86,8 +86,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of indices (or index name patterns) to which the permissions in this
-	 * entry apply.
+	 * Required - A list of indices (or index name patterns) to which the
+	 * permissions in this entry apply.
 	 * <p>
 	 * API name: {@code names}
 	 */
@@ -96,8 +96,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * The index level privileges that owners of the role have on the specified
-	 * indices.
+	 * Required - The index level privileges that owners of the role have on the
+	 * specified indices.
 	 * <p>
 	 * API name: {@code privileges}
 	 */
@@ -219,8 +219,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of indices (or index name patterns) to which the permissions in this
-		 * entry apply.
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
 		 * <p>
 		 * API name: {@code names}
 		 */
@@ -230,8 +230,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of indices (or index name patterns) to which the permissions in this
-		 * entry apply.
+		 * Required - A list of indices (or index name patterns) to which the
+		 * permissions in this entry apply.
 		 * <p>
 		 * API name: {@code names}
 		 */
@@ -241,7 +241,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #names(List)}, creating the list if needed. 4
+		 * Add a value to {@link #names(List)}, creating the list if needed.
 		 */
 		public Builder addNames(String value) {
 			if (this.names == null) {
@@ -252,8 +252,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * The index level privileges that owners of the role have on the specified
-		 * indices.
+		 * Required - The index level privileges that owners of the role have on the
+		 * specified indices.
 		 * <p>
 		 * API name: {@code privileges}
 		 */
@@ -263,8 +263,8 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * The index level privileges that owners of the role have on the specified
-		 * indices.
+		 * Required - The index level privileges that owners of the role have on the
+		 * specified indices.
 		 * <p>
 		 * API name: {@code privileges}
 		 */
@@ -274,7 +274,7 @@ public final class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #privileges(List)}, creating the list if needed.
 		 */
 		public Builder addPrivileges(IndexPrivilege value) {
 			if (this.privileges == null) {

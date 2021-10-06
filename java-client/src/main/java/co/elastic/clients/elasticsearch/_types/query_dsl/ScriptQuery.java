@@ -63,7 +63,7 @@ public final class ScriptQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public JsonValue /* _types.Script */ script() {
 		return this.script;
@@ -87,7 +87,7 @@ public final class ScriptQuery extends QueryBase implements QueryVariant {
 		private JsonValue /* _types.Script */ script;
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;

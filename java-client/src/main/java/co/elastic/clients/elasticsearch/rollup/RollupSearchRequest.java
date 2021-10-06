@@ -91,8 +91,8 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The indices or index-pattern(s) (containing rollup or regular data) that
-	 * should be searched
+	 * Required - The indices or index-pattern(s) (containing rollup or regular
+	 * data) that should be searched
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -207,8 +207,8 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		private Integer size;
 
 		/**
-		 * The indices or index-pattern(s) (containing rollup or regular data) that
-		 * should be searched
+		 * Required - The indices or index-pattern(s) (containing rollup or regular
+		 * data) that should be searched
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -218,8 +218,8 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * The indices or index-pattern(s) (containing rollup or regular data) that
-		 * should be searched
+		 * Required - The indices or index-pattern(s) (containing rollup or regular
+		 * data) that should be searched
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -229,7 +229,7 @@ public final class RollupSearchRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {

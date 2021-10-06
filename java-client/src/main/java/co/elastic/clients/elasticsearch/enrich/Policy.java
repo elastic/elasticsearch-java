@@ -73,21 +73,21 @@ public final class Policy implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enrich_fields}
+	 * Required - API name: {@code enrich_fields}
 	 */
 	public List<String> enrichFields() {
 		return this.enrichFields;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code match_field}
+	 * Required - API name: {@code match_field}
 	 */
 	public String matchField() {
 		return this.matchField;
@@ -173,7 +173,7 @@ public final class Policy implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code enrich_fields}
+		 * Required - API name: {@code enrich_fields}
 		 */
 		public Builder enrichFields(List<String> value) {
 			this.enrichFields = value;
@@ -181,7 +181,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code enrich_fields}
+		 * Required - API name: {@code enrich_fields}
 		 */
 		public Builder enrichFields(String... value) {
 			this.enrichFields = Arrays.asList(value);
@@ -189,7 +189,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #enrichFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #enrichFields(List)}, creating the list if needed.
 		 */
 		public Builder addEnrichFields(String value) {
 			if (this.enrichFields == null) {
@@ -200,7 +200,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -208,7 +208,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -216,7 +216,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -227,7 +227,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code match_field}
+		 * Required - API name: {@code match_field}
 		 */
 		public Builder matchField(String value) {
 			this.matchField = value;

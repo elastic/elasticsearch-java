@@ -74,7 +74,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -182,7 +182,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -293,7 +293,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -377,7 +377,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
+		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -403,7 +403,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -434,7 +434,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -465,7 +465,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -492,7 +492,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Operation value) {
 			if (this.docs == null) {
@@ -510,7 +510,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
 			return this.addDocs(fn.apply(new Operation.Builder()).build());
@@ -533,7 +533,7 @@ public final class MgetRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ids(List)}, creating the list if needed.
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {

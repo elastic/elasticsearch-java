@@ -59,14 +59,14 @@ public final class StatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code auto_follow_stats}
+	 * Required - API name: {@code auto_follow_stats}
 	 */
 	public AutoFollowStats autoFollowStats() {
 		return this.autoFollowStats;
 	}
 
 	/**
-	 * API name: {@code follow_stats}
+	 * Required - API name: {@code follow_stats}
 	 */
 	public FollowStats followStats() {
 		return this.followStats;
@@ -102,7 +102,7 @@ public final class StatsResponse implements JsonpSerializable {
 		private FollowStats followStats;
 
 		/**
-		 * API name: {@code auto_follow_stats}
+		 * Required - API name: {@code auto_follow_stats}
 		 */
 		public Builder autoFollowStats(AutoFollowStats value) {
 			this.autoFollowStats = value;
@@ -110,14 +110,14 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code auto_follow_stats}
+		 * Required - API name: {@code auto_follow_stats}
 		 */
 		public Builder autoFollowStats(Function<AutoFollowStats.Builder, ObjectBuilder<AutoFollowStats>> fn) {
 			return this.autoFollowStats(fn.apply(new AutoFollowStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code follow_stats}
+		 * Required - API name: {@code follow_stats}
 		 */
 		public Builder followStats(FollowStats value) {
 			this.followStats = value;
@@ -125,7 +125,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follow_stats}
+		 * Required - API name: {@code follow_stats}
 		 */
 		public Builder followStats(Function<FollowStats.Builder, ObjectBuilder<FollowStats>> fn) {
 			return this.followStats(fn.apply(new FollowStats.Builder()).build());

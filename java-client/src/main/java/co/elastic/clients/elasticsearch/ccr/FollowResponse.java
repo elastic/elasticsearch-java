@@ -61,21 +61,21 @@ public final class FollowResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code follow_index_created}
+	 * Required - API name: {@code follow_index_created}
 	 */
 	public boolean followIndexCreated() {
 		return this.followIndexCreated;
 	}
 
 	/**
-	 * API name: {@code follow_index_shards_acked}
+	 * Required - API name: {@code follow_index_shards_acked}
 	 */
 	public boolean followIndexShardsAcked() {
 		return this.followIndexShardsAcked;
 	}
 
 	/**
-	 * API name: {@code index_following_started}
+	 * Required - API name: {@code index_following_started}
 	 */
 	public boolean indexFollowingStarted() {
 		return this.indexFollowingStarted;
@@ -116,7 +116,7 @@ public final class FollowResponse implements JsonpSerializable {
 		private Boolean indexFollowingStarted;
 
 		/**
-		 * API name: {@code follow_index_created}
+		 * Required - API name: {@code follow_index_created}
 		 */
 		public Builder followIndexCreated(boolean value) {
 			this.followIndexCreated = value;
@@ -124,7 +124,7 @@ public final class FollowResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follow_index_shards_acked}
+		 * Required - API name: {@code follow_index_shards_acked}
 		 */
 		public Builder followIndexShardsAcked(boolean value) {
 			this.followIndexShardsAcked = value;
@@ -132,7 +132,7 @@ public final class FollowResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_following_started}
+		 * Required - API name: {@code index_following_started}
 		 */
 		public Builder indexFollowingStarted(boolean value) {
 			this.indexFollowingStarted = value;

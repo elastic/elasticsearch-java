@@ -57,7 +57,7 @@ public final class PromoteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the data stream
+	 * Required - The name of the data stream
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -74,7 +74,7 @@ public final class PromoteDataStreamRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * The name of the data stream
+		 * Required - The name of the data stream
 		 * <p>
 		 * API name: {@code name}
 		 */

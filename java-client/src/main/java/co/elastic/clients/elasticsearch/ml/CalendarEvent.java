@@ -85,7 +85,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * A description of the scheduled event.
+	 * Required - A description of the scheduled event.
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -94,8 +94,8 @@ public final class CalendarEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * The timestamp for the end of the scheduled event in milliseconds since the
-	 * epoch or ISO 8601 format.
+	 * Required - The timestamp for the end of the scheduled event in milliseconds
+	 * since the epoch or ISO 8601 format.
 	 * <p>
 	 * API name: {@code end_time}
 	 */
@@ -104,8 +104,8 @@ public final class CalendarEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * The timestamp for the beginning of the scheduled event in milliseconds since
-	 * the epoch or ISO 8601 format.
+	 * Required - The timestamp for the beginning of the scheduled event in
+	 * milliseconds since the epoch or ISO 8601 format.
 	 * <p>
 	 * API name: {@code start_time}
 	 */
@@ -183,7 +183,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * A description of the scheduled event.
+		 * Required - A description of the scheduled event.
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -193,8 +193,8 @@ public final class CalendarEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * The timestamp for the end of the scheduled event in milliseconds since the
-		 * epoch or ISO 8601 format.
+		 * Required - The timestamp for the end of the scheduled event in milliseconds
+		 * since the epoch or ISO 8601 format.
 		 * <p>
 		 * API name: {@code end_time}
 		 */
@@ -204,8 +204,8 @@ public final class CalendarEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * The timestamp for the beginning of the scheduled event in milliseconds since
-		 * the epoch or ISO 8601 format.
+		 * Required - The timestamp for the beginning of the scheduled event in
+		 * milliseconds since the epoch or ISO 8601 format.
 		 * <p>
 		 * API name: {@code start_time}
 		 */

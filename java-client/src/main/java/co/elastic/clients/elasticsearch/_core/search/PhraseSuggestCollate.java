@@ -83,7 +83,7 @@ public final class PhraseSuggestCollate implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public PhraseSuggestCollateQuery query() {
 		return this.query;
@@ -166,7 +166,7 @@ public final class PhraseSuggestCollate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(PhraseSuggestCollateQuery value) {
 			this.query = value;
@@ -174,7 +174,7 @@ public final class PhraseSuggestCollate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<PhraseSuggestCollateQuery.Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
 			return this.query(fn.apply(new PhraseSuggestCollateQuery.Builder()).build());

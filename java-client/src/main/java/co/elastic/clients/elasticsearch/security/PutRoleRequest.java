@@ -101,7 +101,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Role name
+	 * Required - Role name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -321,7 +321,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		private TransientMetadata transientMetadata;
 
 		/**
-		 * Role name
+		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -364,7 +364,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
+		 * Add a value to {@link #applications(List)}, creating the list if needed.
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -382,7 +382,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
+		 * Add a value to {@link #applications(List)}, creating the list if needed.
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -412,7 +412,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
+		 * Add a value to {@link #cluster(List)}, creating the list if needed.
 		 */
 		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
@@ -466,7 +466,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -484,7 +484,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
@@ -533,7 +533,7 @@ public final class PutRoleRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #runAs(List)}, creating the list if needed.
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {

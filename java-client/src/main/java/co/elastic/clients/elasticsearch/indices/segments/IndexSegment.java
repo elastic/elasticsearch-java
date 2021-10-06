@@ -58,7 +58,7 @@ public final class IndexSegment implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public Map<String, List<ShardsSegment>> shards() {
 		return this.shards;
@@ -100,7 +100,7 @@ public final class IndexSegment implements JsonpSerializable {
 		private Map<String, List<ShardsSegment>> shards;
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(Map<String, List<ShardsSegment>> value) {
 			this.shards = value;

@@ -105,21 +105,21 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cluster}
+	 * Required - API name: {@code cluster}
 	 */
 	public NodeInfoSettingsCluster cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public NodeInfoSettingsNode node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public NodeInfoPath path() {
 		return this.path;
@@ -150,14 +150,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code client}
+	 * Required - API name: {@code client}
 	 */
 	public NodeInfoClient client() {
 		return this.client;
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public NodeInfoSettingsHttp http() {
 		return this.http;
@@ -172,7 +172,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public NodeInfoSettingsTransport transport() {
 		return this.transport;
@@ -352,7 +352,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		private NodeInfoSettingsIngest ingest;
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(NodeInfoSettingsCluster value) {
 			this.cluster = value;
@@ -360,14 +360,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(Function<NodeInfoSettingsCluster.Builder, ObjectBuilder<NodeInfoSettingsCluster>> fn) {
 			return this.cluster(fn.apply(new NodeInfoSettingsCluster.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(NodeInfoSettingsNode value) {
 			this.node = value;
@@ -375,14 +375,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(Function<NodeInfoSettingsNode.Builder, ObjectBuilder<NodeInfoSettingsNode>> fn) {
 			return this.node(fn.apply(new NodeInfoSettingsNode.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(NodeInfoPath value) {
 			this.path = value;
@@ -390,7 +390,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(Function<NodeInfoPath.Builder, ObjectBuilder<NodeInfoPath>> fn) {
 			return this.path(fn.apply(new NodeInfoPath.Builder()).build());
@@ -442,7 +442,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code client}
+		 * Required - API name: {@code client}
 		 */
 		public Builder client(NodeInfoClient value) {
 			this.client = value;
@@ -450,14 +450,14 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code client}
+		 * Required - API name: {@code client}
 		 */
 		public Builder client(Function<NodeInfoClient.Builder, ObjectBuilder<NodeInfoClient>> fn) {
 			return this.client(fn.apply(new NodeInfoClient.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(NodeInfoSettingsHttp value) {
 			this.http = value;
@@ -465,7 +465,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<NodeInfoSettingsHttp.Builder, ObjectBuilder<NodeInfoSettingsHttp>> fn) {
 			return this.http(fn.apply(new NodeInfoSettingsHttp.Builder()).build());
@@ -487,7 +487,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(NodeInfoSettingsTransport value) {
 			this.transport = value;
@@ -495,7 +495,7 @@ public final class NodeInfoSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(
 				Function<NodeInfoSettingsTransport.Builder, ObjectBuilder<NodeInfoSettingsTransport>> fn) {

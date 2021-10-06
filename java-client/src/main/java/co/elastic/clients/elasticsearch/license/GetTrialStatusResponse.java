@@ -54,7 +54,7 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code eligible_to_start_trial}
+	 * Required - API name: {@code eligible_to_start_trial}
 	 */
 	public boolean eligibleToStartTrial() {
 		return this.eligibleToStartTrial;
@@ -85,7 +85,7 @@ public final class GetTrialStatusResponse implements JsonpSerializable {
 		private Boolean eligibleToStartTrial;
 
 		/**
-		 * API name: {@code eligible_to_start_trial}
+		 * Required - API name: {@code eligible_to_start_trial}
 		 */
 		public Builder eligibleToStartTrial(boolean value) {
 			this.eligibleToStartTrial = value;

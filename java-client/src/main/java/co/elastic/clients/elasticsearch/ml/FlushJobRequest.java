@@ -82,7 +82,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The name of the job to flush
+	 * Required - The name of the job to flush
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -195,7 +195,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		private String start;
 
 		/**
-		 * The name of the job to flush
+		 * Required - The name of the job to flush
 		 * <p>
 		 * API name: {@code job_id}
 		 */

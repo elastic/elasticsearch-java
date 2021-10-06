@@ -345,7 +345,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #attributes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #attributes(List)}, creating the list if needed.
 		 */
 		public Builder addAttributes(String value) {
 			if (this.attributes == null) {
@@ -372,7 +372,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilter(CharFilter value) {
 			if (this.charFilter == null) {
@@ -390,7 +390,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 5
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
 			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
@@ -429,7 +429,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(TokenFilter value) {
 			if (this.filter == null) {
@@ -447,7 +447,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
 			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
@@ -478,7 +478,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #text(List)}, creating the list if needed. 4
+		 * Add a value to {@link #text(List)}, creating the list if needed.
 		 */
 		public Builder addText(String value) {
 			if (this.text == null) {

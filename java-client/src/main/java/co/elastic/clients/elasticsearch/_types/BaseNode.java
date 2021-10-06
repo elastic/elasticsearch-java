@@ -73,28 +73,28 @@ public abstract class BaseNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code host}
+	 * Required - API name: {@code host}
 	 */
 	public String host() {
 		return this.host;
 	}
 
 	/**
-	 * API name: {@code ip}
+	 * Required - API name: {@code ip}
 	 */
 	public String ip() {
 		return this.ip;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -109,7 +109,7 @@ public abstract class BaseNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
@@ -175,7 +175,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		private String transportAddress;
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public BuilderT attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -194,7 +194,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code host}
+		 * Required - API name: {@code host}
 		 */
 		public BuilderT host(String value) {
 			this.host = value;
@@ -202,7 +202,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ip}
+		 * Required - API name: {@code ip}
 		 */
 		public BuilderT ip(String value) {
 			this.ip = value;
@@ -210,7 +210,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public BuilderT name(String value) {
 			this.name = value;
@@ -234,7 +234,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public BuilderT addRoles(NodeRole value) {
 			if (this.roles == null) {
@@ -245,7 +245,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public BuilderT transportAddress(String value) {
 			this.transportAddress = value;

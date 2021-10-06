@@ -73,14 +73,14 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	}
 
 	/**
-	 * API name: {@code execution_phase}
+	 * Required - API name: {@code execution_phase}
 	 */
 	public ExecutionPhase executionPhase() {
 		return this.executionPhase;
 	}
 
 	/**
-	 * API name: {@code triggered_time}
+	 * Required - API name: {@code triggered_time}
 	 */
 	public String triggeredTime() {
 		return this.triggeredTime;
@@ -95,14 +95,14 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	}
 
 	/**
-	 * API name: {@code watch_id}
+	 * Required - API name: {@code watch_id}
 	 */
 	public String watchId() {
 		return this.watchId;
 	}
 
 	/**
-	 * API name: {@code watch_record_id}
+	 * Required - API name: {@code watch_record_id}
 	 */
 	public String watchRecordId() {
 		return this.watchRecordId;
@@ -158,7 +158,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		private String watchRecordId;
 
 		/**
-		 * API name: {@code execution_phase}
+		 * Required - API name: {@code execution_phase}
 		 */
 		public Builder executionPhase(ExecutionPhase value) {
 			this.executionPhase = value;
@@ -166,7 +166,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * API name: {@code triggered_time}
+		 * Required - API name: {@code triggered_time}
 		 */
 		public Builder triggeredTime(String value) {
 			this.triggeredTime = value;
@@ -190,7 +190,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * Add a value to {@link #executedActions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #executedActions(List)}, creating the list if needed.
 		 */
 		public Builder addExecutedActions(String value) {
 			if (this.executedActions == null) {
@@ -201,7 +201,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * API name: {@code watch_id}
+		 * Required - API name: {@code watch_id}
 		 */
 		public Builder watchId(String value) {
 			this.watchId = value;
@@ -209,7 +209,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 
 		/**
-		 * API name: {@code watch_record_id}
+		 * Required - API name: {@code watch_record_id}
 		 */
 		public Builder watchRecordId(String value) {
 			this.watchRecordId = value;

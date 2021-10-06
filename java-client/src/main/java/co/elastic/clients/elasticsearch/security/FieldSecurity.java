@@ -71,7 +71,7 @@ public final class FieldSecurity implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code grant}
+	 * Required - API name: {@code grant}
 	 */
 	public List<String> grant() {
 		return this.grant;
@@ -138,7 +138,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #except(List)}, creating the list if needed. 4
+		 * Add a value to {@link #except(List)}, creating the list if needed.
 		 */
 		public Builder addExcept(String value) {
 			if (this.except == null) {
@@ -149,7 +149,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code grant}
+		 * Required - API name: {@code grant}
 		 */
 		public Builder grant(List<String> value) {
 			this.grant = value;
@@ -157,7 +157,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code grant}
+		 * Required - API name: {@code grant}
 		 */
 		public Builder grant(String... value) {
 			this.grant = Arrays.asList(value);
@@ -165,7 +165,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #grant(List)}, creating the list if needed. 4
+		 * Add a value to {@link #grant(List)}, creating the list if needed.
 		 */
 		public Builder addGrant(String value) {
 			if (this.grant == null) {

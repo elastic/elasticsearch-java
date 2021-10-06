@@ -66,6 +66,10 @@ public class Sync implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends SyncVariant> Sync(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Sync(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

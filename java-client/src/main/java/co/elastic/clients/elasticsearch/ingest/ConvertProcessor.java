@@ -74,7 +74,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -89,14 +89,14 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public ConvertType type() {
 		return this.type;
@@ -142,7 +142,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		private ConvertType type;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -158,7 +158,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;
@@ -166,7 +166,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(ConvertType value) {
 			this.type = value;

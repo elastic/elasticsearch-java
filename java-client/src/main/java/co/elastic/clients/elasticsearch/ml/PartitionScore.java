@@ -68,35 +68,35 @@ public final class PartitionScore implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code initial_record_score}
+	 * Required - API name: {@code initial_record_score}
 	 */
 	public double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
 	/**
-	 * API name: {@code partition_field_name}
+	 * Required - API name: {@code partition_field_name}
 	 */
 	public String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
 	/**
-	 * API name: {@code partition_field_value}
+	 * Required - API name: {@code partition_field_value}
 	 */
 	public String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
 
 	/**
-	 * API name: {@code probability}
+	 * Required - API name: {@code probability}
 	 */
 	public double probability() {
 		return this.probability;
 	}
 
 	/**
-	 * API name: {@code record_score}
+	 * Required - API name: {@code record_score}
 	 */
 	public double recordScore() {
 		return this.recordScore;
@@ -147,7 +147,7 @@ public final class PartitionScore implements JsonpSerializable {
 		private Double recordScore;
 
 		/**
-		 * API name: {@code initial_record_score}
+		 * Required - API name: {@code initial_record_score}
 		 */
 		public Builder initialRecordScore(double value) {
 			this.initialRecordScore = value;
@@ -155,7 +155,7 @@ public final class PartitionScore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code partition_field_name}
+		 * Required - API name: {@code partition_field_name}
 		 */
 		public Builder partitionFieldName(String value) {
 			this.partitionFieldName = value;
@@ -163,7 +163,7 @@ public final class PartitionScore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code partition_field_value}
+		 * Required - API name: {@code partition_field_value}
 		 */
 		public Builder partitionFieldValue(String value) {
 			this.partitionFieldValue = value;
@@ -171,7 +171,7 @@ public final class PartitionScore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code probability}
+		 * Required - API name: {@code probability}
 		 */
 		public Builder probability(double value) {
 			this.probability = value;
@@ -179,7 +179,7 @@ public final class PartitionScore implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code record_score}
+		 * Required - API name: {@code record_score}
 		 */
 		public Builder recordScore(double value) {
 			this.recordScore = value;

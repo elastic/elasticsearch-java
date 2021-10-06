@@ -91,56 +91,56 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code build_aggregation}
+	 * Required - API name: {@code build_aggregation}
 	 */
 	public long buildAggregation() {
 		return this.buildAggregation;
 	}
 
 	/**
-	 * API name: {@code build_aggregation_count}
+	 * Required - API name: {@code build_aggregation_count}
 	 */
 	public long buildAggregationCount() {
 		return this.buildAggregationCount;
 	}
 
 	/**
-	 * API name: {@code build_leaf_collector}
+	 * Required - API name: {@code build_leaf_collector}
 	 */
 	public long buildLeafCollector() {
 		return this.buildLeafCollector;
 	}
 
 	/**
-	 * API name: {@code build_leaf_collector_count}
+	 * Required - API name: {@code build_leaf_collector_count}
 	 */
 	public long buildLeafCollectorCount() {
 		return this.buildLeafCollectorCount;
 	}
 
 	/**
-	 * API name: {@code collect}
+	 * Required - API name: {@code collect}
 	 */
 	public long collect() {
 		return this.collect;
 	}
 
 	/**
-	 * API name: {@code collect_count}
+	 * Required - API name: {@code collect_count}
 	 */
 	public long collectCount() {
 		return this.collectCount;
 	}
 
 	/**
-	 * API name: {@code initialize}
+	 * Required - API name: {@code initialize}
 	 */
 	public long initialize() {
 		return this.initialize;
 	}
 
 	/**
-	 * API name: {@code initialize_count}
+	 * Required - API name: {@code initialize_count}
 	 */
 	public long initializeCount() {
 		return this.initializeCount;
@@ -163,14 +163,14 @@ public final class AggregationBreakdown implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code reduce}
+	 * Required - API name: {@code reduce}
 	 */
 	public long reduce() {
 		return this.reduce;
 	}
 
 	/**
-	 * API name: {@code reduce_count}
+	 * Required - API name: {@code reduce_count}
 	 */
 	public long reduceCount() {
 		return this.reduceCount;
@@ -265,7 +265,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		private Long reduceCount;
 
 		/**
-		 * API name: {@code build_aggregation}
+		 * Required - API name: {@code build_aggregation}
 		 */
 		public Builder buildAggregation(long value) {
 			this.buildAggregation = value;
@@ -273,7 +273,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_aggregation_count}
+		 * Required - API name: {@code build_aggregation_count}
 		 */
 		public Builder buildAggregationCount(long value) {
 			this.buildAggregationCount = value;
@@ -281,7 +281,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_leaf_collector}
+		 * Required - API name: {@code build_leaf_collector}
 		 */
 		public Builder buildLeafCollector(long value) {
 			this.buildLeafCollector = value;
@@ -289,7 +289,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_leaf_collector_count}
+		 * Required - API name: {@code build_leaf_collector_count}
 		 */
 		public Builder buildLeafCollectorCount(long value) {
 			this.buildLeafCollectorCount = value;
@@ -297,7 +297,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code collect}
+		 * Required - API name: {@code collect}
 		 */
 		public Builder collect(long value) {
 			this.collect = value;
@@ -305,7 +305,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code collect_count}
+		 * Required - API name: {@code collect_count}
 		 */
 		public Builder collectCount(long value) {
 			this.collectCount = value;
@@ -313,7 +313,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code initialize}
+		 * Required - API name: {@code initialize}
 		 */
 		public Builder initialize(long value) {
 			this.initialize = value;
@@ -321,7 +321,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code initialize_count}
+		 * Required - API name: {@code initialize_count}
 		 */
 		public Builder initializeCount(long value) {
 			this.initializeCount = value;
@@ -345,7 +345,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reduce}
+		 * Required - API name: {@code reduce}
 		 */
 		public Builder reduce(long value) {
 			this.reduce = value;
@@ -353,7 +353,7 @@ public final class AggregationBreakdown implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reduce_count}
+		 * Required - API name: {@code reduce_count}
 		 */
 		public Builder reduceCount(long value) {
 			this.reduceCount = value;

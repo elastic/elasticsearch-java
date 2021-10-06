@@ -70,7 +70,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -85,7 +85,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public List<String> attributes() {
 		return this.attributes;
@@ -159,7 +159,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		private String dataStream;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -183,7 +183,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed. 4
+		 * Add a value to {@link #aliases(List)}, creating the list if needed.
 		 */
 		public Builder addAliases(String value) {
 			if (this.aliases == null) {
@@ -194,7 +194,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(List<String> value) {
 			this.attributes = value;
@@ -202,7 +202,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(String... value) {
 			this.attributes = Arrays.asList(value);
@@ -210,7 +210,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #attributes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #attributes(List)}, creating the list if needed.
 		 */
 		public Builder addAttributes(String value) {
 			if (this.attributes == null) {

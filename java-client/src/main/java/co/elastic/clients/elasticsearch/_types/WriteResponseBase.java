@@ -80,42 +80,42 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code _primary_term}
+	 * Required - API name: {@code _primary_term}
 	 */
 	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
-	 * API name: {@code result}
+	 * Required - API name: {@code result}
 	 */
 	public Result result() {
 		return this.result;
 	}
 
 	/**
-	 * API name: {@code _seq_no}
+	 * Required - API name: {@code _seq_no}
 	 */
 	public int seqNo() {
 		return this.seqNo;
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
@@ -130,7 +130,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _version}
+	 * Required - API name: {@code _version}
 	 */
 	public long version() {
 		return this.version;
@@ -214,7 +214,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		private Boolean forcedRefresh;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public BuilderT id(String value) {
 			this.id = value;
@@ -222,7 +222,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public BuilderT index(String value) {
 			this.index = value;
@@ -230,7 +230,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _primary_term}
+		 * Required - API name: {@code _primary_term}
 		 */
 		public BuilderT primaryTerm(long value) {
 			this.primaryTerm = value;
@@ -238,7 +238,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code result}
+		 * Required - API name: {@code result}
 		 */
 		public BuilderT result(Result value) {
 			this.result = value;
@@ -246,7 +246,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _seq_no}
+		 * Required - API name: {@code _seq_no}
 		 */
 		public BuilderT seqNo(int value) {
 			this.seqNo = value;
@@ -254,7 +254,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public BuilderT shards(ShardStatistics value) {
 			this.shards = value;
@@ -262,7 +262,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
@@ -277,7 +277,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _version}
+		 * Required - API name: {@code _version}
 		 */
 		public BuilderT version(long value) {
 			this.version = value;

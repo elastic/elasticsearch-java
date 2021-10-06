@@ -84,42 +84,42 @@ public final class Role implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cluster}
+	 * Required - API name: {@code cluster}
 	 */
 	public List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<IndicesPrivileges> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code metadata}
+	 * Required - API name: {@code metadata}
 	 */
 	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
-	 * API name: {@code run_as}
+	 * Required - API name: {@code run_as}
 	 */
 	public List<String> runAs() {
 		return this.runAs;
 	}
 
 	/**
-	 * API name: {@code transient_metadata}
+	 * Required - API name: {@code transient_metadata}
 	 */
 	public TransientMetadata transientMetadata() {
 		return this.transientMetadata;
 	}
 
 	/**
-	 * API name: {@code applications}
+	 * Required - API name: {@code applications}
 	 */
 	public List<ApplicationPrivileges> applications() {
 		return this.applications;
@@ -224,7 +224,7 @@ public final class Role implements JsonpSerializable {
 		private List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(List<String> value) {
 			this.cluster = value;
@@ -232,7 +232,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cluster}
+		 * Required - API name: {@code cluster}
 		 */
 		public Builder cluster(String... value) {
 			this.cluster = Arrays.asList(value);
@@ -240,7 +240,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
+		 * Add a value to {@link #cluster(List)}, creating the list if needed.
 		 */
 		public Builder addCluster(String value) {
 			if (this.cluster == null) {
@@ -251,7 +251,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<IndicesPrivileges> value) {
 			this.indices = value;
@@ -259,7 +259,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(IndicesPrivileges... value) {
 			this.indices = Arrays.asList(value);
@@ -267,7 +267,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(IndicesPrivileges value) {
 			if (this.indices == null) {
@@ -285,14 +285,14 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
 			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code metadata}
+		 * Required - API name: {@code metadata}
 		 */
 		public Builder metadata(Map<String, JsonData> value) {
 			this.metadata = value;
@@ -311,7 +311,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code run_as}
+		 * Required - API name: {@code run_as}
 		 */
 		public Builder runAs(List<String> value) {
 			this.runAs = value;
@@ -319,7 +319,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code run_as}
+		 * Required - API name: {@code run_as}
 		 */
 		public Builder runAs(String... value) {
 			this.runAs = Arrays.asList(value);
@@ -327,7 +327,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #runAs(List)}, creating the list if needed.
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {
@@ -338,7 +338,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transient_metadata}
+		 * Required - API name: {@code transient_metadata}
 		 */
 		public Builder transientMetadata(TransientMetadata value) {
 			this.transientMetadata = value;
@@ -346,14 +346,14 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transient_metadata}
+		 * Required - API name: {@code transient_metadata}
 		 */
 		public Builder transientMetadata(Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
 			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code applications}
+		 * Required - API name: {@code applications}
 		 */
 		public Builder applications(List<ApplicationPrivileges> value) {
 			this.applications = value;
@@ -361,7 +361,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code applications}
+		 * Required - API name: {@code applications}
 		 */
 		public Builder applications(ApplicationPrivileges... value) {
 			this.applications = Arrays.asList(value);
@@ -369,7 +369,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
+		 * Add a value to {@link #applications(List)}, creating the list if needed.
 		 */
 		public Builder addApplications(ApplicationPrivileges value) {
 			if (this.applications == null) {
@@ -387,7 +387,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed. 5
+		 * Add a value to {@link #applications(List)}, creating the list if needed.
 		 */
 		public Builder addApplications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
@@ -411,7 +411,7 @@ public final class Role implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
 		 */
 		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
 			if (this.roleTemplates == null) {

@@ -67,7 +67,7 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Return the task with specified id (node_id:task_number)
+	 * Required - Return the task with specified id (node_id:task_number)
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -110,7 +110,7 @@ public final class GetRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Return the task with specified id (node_id:task_number)
+		 * Required - Return the task with specified id (node_id:task_number)
 		 * <p>
 		 * API name: {@code task_id}
 		 */

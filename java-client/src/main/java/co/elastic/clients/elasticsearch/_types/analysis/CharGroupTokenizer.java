@@ -67,7 +67,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 	}
 
 	/**
-	 * API name: {@code tokenize_on_chars}
+	 * Required - API name: {@code tokenize_on_chars}
 	 */
 	public List<String> tokenizeOnChars() {
 		return this.tokenizeOnChars;
@@ -99,7 +99,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		private List<String> tokenizeOnChars;
 
 		/**
-		 * API name: {@code tokenize_on_chars}
+		 * Required - API name: {@code tokenize_on_chars}
 		 */
 		public Builder tokenizeOnChars(List<String> value) {
 			this.tokenizeOnChars = value;
@@ -107,7 +107,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * API name: {@code tokenize_on_chars}
+		 * Required - API name: {@code tokenize_on_chars}
 		 */
 		public Builder tokenizeOnChars(String... value) {
 			this.tokenizeOnChars = Arrays.asList(value);
@@ -115,7 +115,7 @@ public final class CharGroupTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * Add a value to {@link #tokenizeOnChars(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokenizeOnChars(List)}, creating the list if needed.
 		 */
 		public Builder addTokenizeOnChars(String value) {
 			if (this.tokenizeOnChars == null) {

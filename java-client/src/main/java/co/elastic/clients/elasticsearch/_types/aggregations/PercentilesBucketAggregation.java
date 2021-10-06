@@ -120,7 +120,7 @@ public final class PercentilesBucketAggregation extends PipelineAggregationBase 
 		}
 
 		/**
-		 * Add a value to {@link #percents(List)}, creating the list if needed. 4
+		 * Add a value to {@link #percents(List)}, creating the list if needed.
 		 */
 		public Builder addPercents(Double value) {
 			if (this.percents == null) {

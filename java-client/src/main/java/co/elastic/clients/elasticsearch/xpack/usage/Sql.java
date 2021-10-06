@@ -62,14 +62,14 @@ public final class Sql extends Base {
 	}
 
 	/**
-	 * API name: {@code features}
+	 * Required - API name: {@code features}
 	 */
 	public Map<String, Integer> features() {
 		return this.features;
 	}
 
 	/**
-	 * API name: {@code queries}
+	 * Required - API name: {@code queries}
 	 */
 	public Map<String, Query> queries() {
 		return this.queries;
@@ -110,7 +110,7 @@ public final class Sql extends Base {
 		private Map<String, Query> queries;
 
 		/**
-		 * API name: {@code features}
+		 * Required - API name: {@code features}
 		 */
 		public Builder features(Map<String, Integer> value) {
 			this.features = value;
@@ -129,7 +129,7 @@ public final class Sql extends Base {
 		}
 
 		/**
-		 * API name: {@code queries}
+		 * Required - API name: {@code queries}
 		 */
 		public Builder queries(Map<String, Query> value) {
 			this.queries = value;

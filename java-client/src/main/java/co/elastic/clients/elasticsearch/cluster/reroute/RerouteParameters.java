@@ -74,28 +74,28 @@ public final class RerouteParameters implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allow_primary}
+	 * Required - API name: {@code allow_primary}
 	 */
 	public boolean allowPrimary() {
 		return this.allowPrimary;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
 	public int shard() {
 		return this.shard;
@@ -176,7 +176,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		private String toNode;
 
 		/**
-		 * API name: {@code allow_primary}
+		 * Required - API name: {@code allow_primary}
 		 */
 		public Builder allowPrimary(boolean value) {
 			this.allowPrimary = value;
@@ -184,7 +184,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -192,7 +192,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -200,7 +200,7 @@ public final class RerouteParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
 		public Builder shard(int value) {
 			this.shard = value;

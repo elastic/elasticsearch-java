@@ -96,7 +96,7 @@ public final class RepositorySettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code location}
+	 * Required - API name: {@code location}
 	 */
 	public String location() {
 		return this.location;
@@ -197,7 +197,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code location}
+		 * Required - API name: {@code location}
 		 */
 		public Builder location(String value) {
 			this.location = value;

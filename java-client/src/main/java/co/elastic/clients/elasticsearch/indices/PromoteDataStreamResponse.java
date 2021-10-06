@@ -54,7 +54,7 @@ public final class PromoteDataStreamResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -79,7 +79,7 @@ public final class PromoteDataStreamResponse implements JsonpSerializable {
 		private JsonData valueBody;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

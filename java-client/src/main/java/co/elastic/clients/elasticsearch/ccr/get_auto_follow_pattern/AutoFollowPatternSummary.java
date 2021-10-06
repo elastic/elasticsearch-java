@@ -80,14 +80,14 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code active}
+	 * Required - API name: {@code active}
 	 */
 	public boolean active() {
 		return this.active;
 	}
 
 	/**
-	 * The remote cluster containing the leader indices to match against.
+	 * Required - The remote cluster containing the leader indices to match against.
 	 * <p>
 	 * API name: {@code remote_cluster}
 	 */
@@ -106,8 +106,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of simple index patterns to match against indices in the remote
-	 * cluster specified by the remote_cluster field.
+	 * Required - An array of simple index patterns to match against indices in the
+	 * remote cluster specified by the remote_cluster field.
 	 * <p>
 	 * API name: {@code leader_index_patterns}
 	 */
@@ -116,8 +116,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of simple index patterns that can be used to exclude indices from
-	 * being auto-followed.
+	 * Required - An array of simple index patterns that can be used to exclude
+	 * indices from being auto-followed.
 	 * <p>
 	 * API name: {@code leader_index_exclusion_patterns}
 	 */
@@ -126,7 +126,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * The maximum number of outstanding reads requests from the remote cluster.
+	 * Required - The maximum number of outstanding reads requests from the remote
+	 * cluster.
 	 * <p>
 	 * API name: {@code max_outstanding_read_requests}
 	 */
@@ -199,7 +200,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		private Integer maxOutstandingReadRequests;
 
 		/**
-		 * API name: {@code active}
+		 * Required - API name: {@code active}
 		 */
 		public Builder active(boolean value) {
 			this.active = value;
@@ -207,7 +208,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * The remote cluster containing the leader indices to match against.
+		 * Required - The remote cluster containing the leader indices to match against.
 		 * <p>
 		 * API name: {@code remote_cluster}
 		 */
@@ -227,8 +228,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of simple index patterns to match against indices in the remote
-		 * cluster specified by the remote_cluster field.
+		 * Required - An array of simple index patterns to match against indices in the
+		 * remote cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
@@ -238,8 +239,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of simple index patterns to match against indices in the remote
-		 * cluster specified by the remote_cluster field.
+		 * Required - An array of simple index patterns to match against indices in the
+		 * remote cluster specified by the remote_cluster field.
 		 * <p>
 		 * API name: {@code leader_index_patterns}
 		 */
@@ -250,7 +251,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #leaderIndexPatterns(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addLeaderIndexPatterns(String value) {
 			if (this.leaderIndexPatterns == null) {
@@ -261,8 +262,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of simple index patterns that can be used to exclude indices from
-		 * being auto-followed.
+		 * Required - An array of simple index patterns that can be used to exclude
+		 * indices from being auto-followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
 		 */
@@ -272,8 +273,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of simple index patterns that can be used to exclude indices from
-		 * being auto-followed.
+		 * Required - An array of simple index patterns that can be used to exclude
+		 * indices from being auto-followed.
 		 * <p>
 		 * API name: {@code leader_index_exclusion_patterns}
 		 */
@@ -284,7 +285,7 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #leaderIndexExclusionPatterns(List)}, creating the list
-		 * if needed. 4
+		 * if needed.
 		 */
 		public Builder addLeaderIndexExclusionPatterns(String value) {
 			if (this.leaderIndexExclusionPatterns == null) {
@@ -295,7 +296,8 @@ public final class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * The maximum number of outstanding reads requests from the remote cluster.
+		 * Required - The maximum number of outstanding reads requests from the remote
+		 * cluster.
 		 * <p>
 		 * API name: {@code max_outstanding_read_requests}
 		 */

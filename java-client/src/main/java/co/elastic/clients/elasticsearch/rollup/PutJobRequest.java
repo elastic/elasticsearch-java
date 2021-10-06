@@ -89,7 +89,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The ID of the job to create
+	 * Required - The ID of the job to create
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -227,7 +227,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		private String rollupIndex;
 
 		/**
-		 * The ID of the job to create
+		 * Required - The ID of the job to create
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -284,7 +284,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(FieldMetric value) {
 			if (this.metrics == null) {
@@ -302,7 +302,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 5
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
 			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());

@@ -87,8 +87,8 @@ public final class GetResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The total number of snapshots that match the request when ignoring size limit
-	 * or after query parameter.
+	 * Required - The total number of snapshots that match the request when ignoring
+	 * size limit or after query parameter.
 	 * <p>
 	 * API name: {@code total}
 	 */
@@ -97,8 +97,9 @@ public final class GetResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of remaining snapshots that were not returned due to size limits
-	 * and that can be fetched by additional requests using the next field value.
+	 * Required - The number of remaining snapshots that were not returned due to
+	 * size limits and that can be fetched by additional requests using the next
+	 * field value.
 	 * <p>
 	 * API name: {@code remaining}
 	 */
@@ -181,7 +182,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
+		 * Add a value to {@link #responses(List)}, creating the list if needed.
 		 */
 		public Builder addResponses(SnapshotResponseItem value) {
 			if (this.responses == null) {
@@ -199,7 +200,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed. 5
+		 * Add a value to {@link #responses(List)}, creating the list if needed.
 		 */
 		public Builder addResponses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
 			return this.addResponses(fn.apply(new SnapshotResponseItem.Builder()).build());
@@ -222,7 +223,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshots(SnapshotInfo value) {
 			if (this.snapshots == null) {
@@ -240,15 +241,15 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
 		/**
-		 * The total number of snapshots that match the request when ignoring size limit
-		 * or after query parameter.
+		 * Required - The total number of snapshots that match the request when ignoring
+		 * size limit or after query parameter.
 		 * <p>
 		 * API name: {@code total}
 		 */
@@ -258,8 +259,9 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of remaining snapshots that were not returned due to size limits
-		 * and that can be fetched by additional requests using the next field value.
+		 * Required - The number of remaining snapshots that were not returned due to
+		 * size limits and that can be fetched by additional requests using the next
+		 * field value.
 		 * <p>
 		 * API name: {@code remaining}
 		 */

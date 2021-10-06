@@ -117,7 +117,7 @@ public final class PercolateQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -291,7 +291,7 @@ public final class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #documents(List)}, creating the list if needed. 4
+		 * Add a value to {@link #documents(List)}, creating the list if needed.
 		 */
 		public Builder addDocuments(JsonData value) {
 			if (this.documents == null) {
@@ -302,7 +302,7 @@ public final class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

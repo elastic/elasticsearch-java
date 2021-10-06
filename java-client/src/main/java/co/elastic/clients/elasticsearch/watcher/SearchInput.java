@@ -83,7 +83,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code request}
+	 * Required - API name: {@code request}
 	 */
 	public SearchInputRequestDefinition request() {
 		return this.request;
@@ -163,7 +163,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #extract(List)}, creating the list if needed. 4
+		 * Add a value to {@link #extract(List)}, creating the list if needed.
 		 */
 		public Builder addExtract(String value) {
 			if (this.extract == null) {
@@ -174,7 +174,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(SearchInputRequestDefinition value) {
 			this.request = value;
@@ -182,7 +182,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(
 				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {

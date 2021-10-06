@@ -58,7 +58,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stores}
+	 * Required - API name: {@code stores}
 	 */
 	public List<ShardStore> stores() {
 		return this.stores;
@@ -94,7 +94,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		private List<ShardStore> stores;
 
 		/**
-		 * API name: {@code stores}
+		 * Required - API name: {@code stores}
 		 */
 		public Builder stores(List<ShardStore> value) {
 			this.stores = value;
@@ -102,7 +102,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stores}
+		 * Required - API name: {@code stores}
 		 */
 		public Builder stores(ShardStore... value) {
 			this.stores = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stores(List)}, creating the list if needed.
 		 */
 		public Builder addStores(ShardStore value) {
 			if (this.stores == null) {
@@ -128,7 +128,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed. 5
+		 * Add a value to {@link #stores(List)}, creating the list if needed.
 		 */
 		public Builder addStores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
 			return this.addStores(fn.apply(new ShardStore.Builder()).build());

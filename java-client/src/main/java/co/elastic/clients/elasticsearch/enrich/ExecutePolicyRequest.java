@@ -63,7 +63,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the enrich policy
+	 * Required - The name of the enrich policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -93,7 +93,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * The name of the enrich policy
+		 * Required - The name of the enrich policy
 		 * <p>
 		 * API name: {@code name}
 		 */

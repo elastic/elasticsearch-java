@@ -90,21 +90,21 @@ public final class IndexTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index_patterns}
+	 * Required - API name: {@code index_patterns}
 	 */
 	public List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
 	/**
-	 * API name: {@code composed_of}
+	 * Required - API name: {@code composed_of}
 	 */
 	public List<String> composedOf() {
 		return this.composedOf;
 	}
 
 	/**
-	 * API name: {@code template}
+	 * Required - API name: {@code template}
 	 */
 	public IndexTemplateSummary template() {
 		return this.template;
@@ -253,7 +253,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		private Map<String, JsonData> dataStream;
 
 		/**
-		 * API name: {@code index_patterns}
+		 * Required - API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(List<String> value) {
 			this.indexPatterns = value;
@@ -261,7 +261,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_patterns}
+		 * Required - API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(String... value) {
 			this.indexPatterns = Arrays.asList(value);
@@ -269,7 +269,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -280,7 +280,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code composed_of}
+		 * Required - API name: {@code composed_of}
 		 */
 		public Builder composedOf(List<String> value) {
 			this.composedOf = value;
@@ -288,7 +288,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code composed_of}
+		 * Required - API name: {@code composed_of}
 		 */
 		public Builder composedOf(String... value) {
 			this.composedOf = Arrays.asList(value);
@@ -296,7 +296,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed. 4
+		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
 		 */
 		public Builder addComposedOf(String value) {
 			if (this.composedOf == null) {
@@ -307,7 +307,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(IndexTemplateSummary value) {
 			this.template = value;
@@ -315,7 +315,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(Function<IndexTemplateSummary.Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
 			return this.template(fn.apply(new IndexTemplateSummary.Builder()).build());

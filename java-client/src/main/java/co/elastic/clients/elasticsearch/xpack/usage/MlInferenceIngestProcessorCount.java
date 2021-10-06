@@ -60,21 +60,21 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public long max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code sum}
+	 * Required - API name: {@code sum}
 	 */
 	public long sum() {
 		return this.sum;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public long min() {
 		return this.min;
@@ -115,7 +115,7 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 		private Long min;
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(long value) {
 			this.max = value;
@@ -123,7 +123,7 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code sum}
+		 * Required - API name: {@code sum}
 		 */
 		public Builder sum(long value) {
 			this.sum = value;
@@ -131,7 +131,7 @@ public final class MlInferenceIngestProcessorCount implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder min(long value) {
 			this.min = value;

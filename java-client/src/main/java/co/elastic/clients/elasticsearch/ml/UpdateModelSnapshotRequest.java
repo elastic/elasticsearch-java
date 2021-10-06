@@ -72,7 +72,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * The ID of the job to fetch
+	 * Required - The ID of the job to fetch
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -81,7 +81,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * The ID of the snapshot to update
+	 * Required - The ID of the snapshot to update
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -148,7 +148,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 		private Boolean retain;
 
 		/**
-		 * The ID of the job to fetch
+		 * Required - The ID of the job to fetch
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -158,7 +158,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 		}
 
 		/**
-		 * The ID of the snapshot to update
+		 * Required - The ID of the snapshot to update
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */

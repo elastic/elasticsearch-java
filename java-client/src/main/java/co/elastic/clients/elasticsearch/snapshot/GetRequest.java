@@ -91,8 +91,8 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of snapshot repository names used to limit the request.
-	 * Wildcard (*) expressions are supported.
+	 * Required - Comma-separated list of snapshot repository names used to limit
+	 * the request. Wildcard (*) expressions are supported.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -101,8 +101,8 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
-	 * (*).
+	 * Required - Comma-separated list of snapshot names to retrieve. Also accepts
+	 * wildcards (*).
 	 * <ul>
 	 * <li>To get information about all snapshots in a registered repository, use a
 	 * wildcard (*) or _all.</li>
@@ -211,8 +211,8 @@ public final class GetRequest extends RequestBase {
 		private Boolean includeRepository;
 
 		/**
-		 * Comma-separated list of snapshot repository names used to limit the request.
-		 * Wildcard (*) expressions are supported.
+		 * Required - Comma-separated list of snapshot repository names used to limit
+		 * the request. Wildcard (*) expressions are supported.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -222,8 +222,8 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
-		 * (*).
+		 * Required - Comma-separated list of snapshot names to retrieve. Also accepts
+		 * wildcards (*).
 		 * <ul>
 		 * <li>To get information about all snapshots in a registered repository, use a
 		 * wildcard (*) or _all.</li>
@@ -239,8 +239,8 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of snapshot names to retrieve. Also accepts wildcards
-		 * (*).
+		 * Required - Comma-separated list of snapshot names to retrieve. Also accepts
+		 * wildcards (*).
 		 * <ul>
 		 * <li>To get information about all snapshots in a registered repository, use a
 		 * wildcard (*) or _all.</li>
@@ -256,7 +256,7 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #snapshot(List)}, creating the list if needed. 4
+		 * Add a value to {@link #snapshot(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshot(String value) {
 			if (this.snapshot == null) {

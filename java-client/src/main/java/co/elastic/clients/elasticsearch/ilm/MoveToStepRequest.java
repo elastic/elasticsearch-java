@@ -69,7 +69,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * The name of the index whose lifecycle step is to change
+	 * Required - The name of the index whose lifecycle step is to change
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -134,7 +134,7 @@ public final class MoveToStepRequest extends RequestBase implements JsonpSeriali
 		private StepKey nextStep;
 
 		/**
-		 * The name of the index whose lifecycle step is to change
+		 * Required - The name of the index whose lifecycle step is to change
 		 * <p>
 		 * API name: {@code index}
 		 */

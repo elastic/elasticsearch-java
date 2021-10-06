@@ -71,7 +71,7 @@ public final class Checkpointing implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code changes_last_detected_at}
+	 * Required - API name: {@code changes_last_detected_at}
 	 */
 	public long changesLastDetectedAt() {
 		return this.changesLastDetectedAt;
@@ -86,7 +86,7 @@ public final class Checkpointing implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code last}
+	 * Required - API name: {@code last}
 	 */
 	public CheckpointStats last() {
 		return this.last;
@@ -167,7 +167,7 @@ public final class Checkpointing implements JsonpSerializable {
 		private Long operationsBehind;
 
 		/**
-		 * API name: {@code changes_last_detected_at}
+		 * Required - API name: {@code changes_last_detected_at}
 		 */
 		public Builder changesLastDetectedAt(long value) {
 			this.changesLastDetectedAt = value;
@@ -183,7 +183,7 @@ public final class Checkpointing implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code last}
+		 * Required - API name: {@code last}
 		 */
 		public Builder last(CheckpointStats value) {
 			this.last = value;
@@ -191,7 +191,7 @@ public final class Checkpointing implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code last}
+		 * Required - API name: {@code last}
 		 */
 		public Builder last(Function<CheckpointStats.Builder, ObjectBuilder<CheckpointStats>> fn) {
 			return this.last(fn.apply(new CheckpointStats.Builder()).build());

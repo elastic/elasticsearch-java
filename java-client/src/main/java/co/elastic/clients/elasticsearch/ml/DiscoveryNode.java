@@ -70,35 +70,35 @@ public final class DiscoveryNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code ephemeral_id}
+	 * Required - API name: {@code ephemeral_id}
 	 */
 	public String ephemeralId() {
 		return this.ephemeralId;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code transport_address}
+	 * Required - API name: {@code transport_address}
 	 */
 	public String transportAddress() {
 		return this.transportAddress;
@@ -155,7 +155,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		private String transportAddress;
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -174,7 +174,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ephemeral_id}
+		 * Required - API name: {@code ephemeral_id}
 		 */
 		public Builder ephemeralId(String value) {
 			this.ephemeralId = value;
@@ -182,7 +182,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -190,7 +190,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -198,7 +198,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport_address}
+		 * Required - API name: {@code transport_address}
 		 */
 		public Builder transportAddress(String value) {
 			this.transportAddress = value;

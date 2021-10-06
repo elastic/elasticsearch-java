@@ -67,35 +67,35 @@ public final class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code assignment_explanation}
+	 * Required - API name: {@code assignment_explanation}
 	 */
 	public String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
 	/**
-	 * API name: {@code datafeed_id}
+	 * Required - API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public DiscoveryNode node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public DatafeedState state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code timing_stats}
+	 * Required - API name: {@code timing_stats}
 	 */
 	public DatafeedTimingStats timingStats() {
 		return this.timingStats;
@@ -146,7 +146,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		private DatafeedTimingStats timingStats;
 
 		/**
-		 * API name: {@code assignment_explanation}
+		 * Required - API name: {@code assignment_explanation}
 		 */
 		public Builder assignmentExplanation(String value) {
 			this.assignmentExplanation = value;
@@ -154,7 +154,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeed_id}
+		 * Required - API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
 			this.datafeedId = value;
@@ -162,7 +162,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(DiscoveryNode value) {
 			this.node = value;
@@ -170,14 +170,14 @@ public final class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(DatafeedState value) {
 			this.state = value;
@@ -185,7 +185,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(DatafeedTimingStats value) {
 			this.timingStats = value;
@@ -193,7 +193,7 @@ public final class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
 			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());

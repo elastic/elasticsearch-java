@@ -59,7 +59,7 @@ public final class SimulateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code docs}
+	 * Required - API name: {@code docs}
 	 */
 	public List<PipelineSimulation> docs() {
 		return this.docs;
@@ -95,7 +95,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		private List<PipelineSimulation> docs;
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code docs}
 		 */
 		public Builder docs(List<PipelineSimulation> value) {
 			this.docs = value;
@@ -103,7 +103,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code docs}
 		 */
 		public Builder docs(PipelineSimulation... value) {
 			this.docs = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(PipelineSimulation value) {
 			if (this.docs == null) {
@@ -129,7 +129,7 @@ public final class SimulateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
 			return this.addDocs(fn.apply(new PipelineSimulation.Builder()).build());

@@ -63,14 +63,14 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public List<String> node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code started}
+	 * Required - API name: {@code started}
 	 */
 	public boolean started() {
 		return this.started;
@@ -111,7 +111,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 		private Boolean started;
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(List<String> value) {
 			this.node = value;
@@ -119,7 +119,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String... value) {
 			this.node = Arrays.asList(value);
@@ -127,7 +127,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #node(List)}, creating the list if needed. 4
+		 * Add a value to {@link #node(List)}, creating the list if needed.
 		 */
 		public Builder addNode(String value) {
 			if (this.node == null) {
@@ -138,7 +138,7 @@ public final class StartDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code started}
+		 * Required - API name: {@code started}
 		 */
 		public Builder started(boolean value) {
 			this.started = value;

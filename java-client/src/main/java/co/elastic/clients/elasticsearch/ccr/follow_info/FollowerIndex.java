@@ -68,14 +68,14 @@ public final class FollowerIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code follower_index}
+	 * Required - API name: {@code follower_index}
 	 */
 	public String followerIndex() {
 		return this.followerIndex;
 	}
 
 	/**
-	 * API name: {@code leader_index}
+	 * Required - API name: {@code leader_index}
 	 */
 	public String leaderIndex() {
 		return this.leaderIndex;
@@ -90,14 +90,14 @@ public final class FollowerIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code remote_cluster}
+	 * Required - API name: {@code remote_cluster}
 	 */
 	public String remoteCluster() {
 		return this.remoteCluster;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public FollowerIndexStatus status() {
 		return this.status;
@@ -153,7 +153,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		private FollowerIndexStatus status;
 
 		/**
-		 * API name: {@code follower_index}
+		 * Required - API name: {@code follower_index}
 		 */
 		public Builder followerIndex(String value) {
 			this.followerIndex = value;
@@ -161,7 +161,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code leader_index}
+		 * Required - API name: {@code leader_index}
 		 */
 		public Builder leaderIndex(String value) {
 			this.leaderIndex = value;
@@ -185,7 +185,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code remote_cluster}
+		 * Required - API name: {@code remote_cluster}
 		 */
 		public Builder remoteCluster(String value) {
 			this.remoteCluster = value;
@@ -193,7 +193,7 @@ public final class FollowerIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(FollowerIndexStatus value) {
 			this.status = value;

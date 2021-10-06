@@ -75,7 +75,7 @@ public final class BulkResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * True if there is was an error
+	 * Required - True if there is was an error
 	 * <p>
 	 * API name: {@code errors}
 	 */
@@ -84,7 +84,7 @@ public final class BulkResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Was collection disabled?
+	 * Required - Was collection disabled?
 	 * <p>
 	 * API name: {@code ignored}
 	 */
@@ -93,7 +93,7 @@ public final class BulkResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
@@ -159,7 +159,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * True if there is was an error
+		 * Required - True if there is was an error
 		 * <p>
 		 * API name: {@code errors}
 		 */
@@ -169,7 +169,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Was collection disabled?
+		 * Required - Was collection disabled?
 		 * <p>
 		 * API name: {@code ignored}
 		 */
@@ -179,7 +179,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder took(long value) {
 			this.took = value;

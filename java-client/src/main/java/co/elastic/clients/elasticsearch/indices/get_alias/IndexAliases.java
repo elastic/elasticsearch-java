@@ -59,7 +59,7 @@ public final class IndexAliases implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aliases}
+	 * Required - API name: {@code aliases}
 	 */
 	public Map<String, AliasDefinition> aliases() {
 		return this.aliases;
@@ -96,7 +96,7 @@ public final class IndexAliases implements JsonpSerializable {
 		private Map<String, AliasDefinition> aliases;
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(Map<String, AliasDefinition> value) {
 			this.aliases = value;

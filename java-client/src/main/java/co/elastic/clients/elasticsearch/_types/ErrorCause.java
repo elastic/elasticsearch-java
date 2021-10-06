@@ -168,14 +168,14 @@ public class ErrorCause implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
@@ -707,7 +707,7 @@ public class ErrorCause implements JsonpSerializable {
 		private PainlessExecutionPosition position;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public BuilderT type(String value) {
 			this.type = value;
@@ -715,7 +715,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public BuilderT reason(String value) {
 			this.reason = value;
@@ -770,7 +770,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed. 4
+		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
 		public BuilderT addRootCause(ErrorCause value) {
 			if (this.rootCause == null) {
@@ -788,7 +788,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rootCause(List)}, creating the list if needed. 5
+		 * Add a value to {@link #rootCause(List)}, creating the list if needed.
 		 */
 		public BuilderT addRootCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addRootCause(fn.apply(new ErrorCause.Builder()).build());
@@ -843,7 +843,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failedShards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failedShards(List)}, creating the list if needed.
 		 */
 		public BuilderT addFailedShards(ShardFailure value) {
 			if (this.failedShards == null) {
@@ -861,7 +861,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failedShards(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failedShards(List)}, creating the list if needed.
 		 */
 		public BuilderT addFailedShards(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return this.addFailedShards(fn.apply(new ShardFailure.Builder()).build());
@@ -968,7 +968,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #resourceId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #resourceId(List)}, creating the list if needed.
 		 */
 		public BuilderT addResourceId(String value) {
 			if (this.resourceId == null) {
@@ -1013,7 +1013,7 @@ public class ErrorCause implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #scriptStack(List)}, creating the list if needed. 4
+		 * Add a value to {@link #scriptStack(List)}, creating the list if needed.
 		 */
 		public BuilderT addScriptStack(String value) {
 			if (this.scriptStack == null) {

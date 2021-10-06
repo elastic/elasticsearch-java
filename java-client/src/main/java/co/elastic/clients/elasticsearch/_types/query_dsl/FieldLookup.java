@@ -67,7 +67,7 @@ public final class FieldLookup implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
@@ -150,7 +150,7 @@ public final class FieldLookup implements JsonpSerializable {
 		private String routing;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;

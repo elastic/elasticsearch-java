@@ -87,14 +87,14 @@ public final class NodeShard implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public ShardRoutingState state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
 	public boolean primary() {
 		return this.primary;
@@ -109,14 +109,14 @@ public final class NodeShard implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
 	public int shard() {
 		return this.shard;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -236,7 +236,7 @@ public final class NodeShard implements JsonpSerializable {
 		private UnassignedInformation unassignedInfo;
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(ShardRoutingState value) {
 			this.state = value;
@@ -244,7 +244,7 @@ public final class NodeShard implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
 		public Builder primary(boolean value) {
 			this.primary = value;
@@ -260,7 +260,7 @@ public final class NodeShard implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
 		public Builder shard(int value) {
 			this.shard = value;
@@ -268,7 +268,7 @@ public final class NodeShard implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;

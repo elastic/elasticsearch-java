@@ -54,7 +54,7 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code self_generated}
+	 * Required - API name: {@code self_generated}
 	 */
 	public NodeInfoXpackLicenseType selfGenerated() {
 		return this.selfGenerated;
@@ -85,7 +85,7 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 		private NodeInfoXpackLicenseType selfGenerated;
 
 		/**
-		 * API name: {@code self_generated}
+		 * Required - API name: {@code self_generated}
 		 */
 		public Builder selfGenerated(NodeInfoXpackLicenseType value) {
 			this.selfGenerated = value;
@@ -93,7 +93,7 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code self_generated}
+		 * Required - API name: {@code self_generated}
 		 */
 		public Builder selfGenerated(
 				Function<NodeInfoXpackLicenseType.Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {

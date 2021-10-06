@@ -54,7 +54,7 @@ public final class FieldNamesField implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
@@ -85,7 +85,7 @@ public final class FieldNamesField implements JsonpSerializable {
 		private Boolean enabled;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(boolean value) {
 			this.enabled = value;

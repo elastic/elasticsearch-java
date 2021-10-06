@@ -72,12 +72,14 @@ public final class GeoShapeQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Required -
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
+	 * Required -
 	 */
 	public GeoShapeFieldQuery shape() {
 		return this.shape;
@@ -120,6 +122,7 @@ public final class GeoShapeQuery extends QueryBase implements QueryVariant {
 		private GeoShapeFieldQuery shape;
 
 		/**
+		 * Required -
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -127,6 +130,7 @@ public final class GeoShapeQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder shape(GeoShapeFieldQuery value) {
 			this.shape = value;
@@ -134,6 +138,7 @@ public final class GeoShapeQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder shape(Function<GeoShapeFieldQuery.Builder, ObjectBuilder<GeoShapeFieldQuery>> fn) {
 			return this.shape(fn.apply(new GeoShapeFieldQuery.Builder()).build());

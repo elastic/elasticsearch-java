@@ -57,14 +57,14 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_size}
+	 * Required - API name: {@code max_size}
 	 */
 	public long maxSize() {
 		return this.maxSize;
 	}
 
 	/**
-	 * API name: {@code queue_size}
+	 * Required - API name: {@code queue_size}
 	 */
 	public long queueSize() {
 		return this.queueSize;
@@ -100,7 +100,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		private Long queueSize;
 
 		/**
-		 * API name: {@code max_size}
+		 * Required - API name: {@code max_size}
 		 */
 		public Builder maxSize(long value) {
 			this.maxSize = value;
@@ -108,7 +108,7 @@ public final class ExecutionThreadPool implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue_size}
+		 * Required - API name: {@code queue_size}
 		 */
 		public Builder queueSize(long value) {
 			this.queueSize = value;

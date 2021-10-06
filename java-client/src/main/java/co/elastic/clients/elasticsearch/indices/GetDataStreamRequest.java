@@ -125,7 +125,7 @@ public final class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed. 4
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -158,7 +158,7 @@ public final class GetDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

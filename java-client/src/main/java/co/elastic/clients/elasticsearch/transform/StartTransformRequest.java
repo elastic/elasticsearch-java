@@ -62,7 +62,7 @@ public final class StartTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * The id of the transform to start
+	 * Required - The id of the transform to start
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -92,7 +92,7 @@ public final class StartTransformRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * The id of the transform to start
+		 * Required - The id of the transform to start
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

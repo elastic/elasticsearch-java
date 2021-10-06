@@ -71,8 +71,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Name of the snapshot repository to unregister. Wildcard (<code>*</code>)
-	 * patterns are supported.
+	 * Required - Name of the snapshot repository to unregister. Wildcard
+	 * (<code>*</code>) patterns are supported.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -115,8 +115,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Name of the snapshot repository to unregister. Wildcard (<code>*</code>)
-		 * patterns are supported.
+		 * Required - Name of the snapshot repository to unregister. Wildcard
+		 * (<code>*</code>) patterns are supported.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -126,8 +126,8 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Name of the snapshot repository to unregister. Wildcard (<code>*</code>)
-		 * patterns are supported.
+		 * Required - Name of the snapshot repository to unregister. Wildcard
+		 * (<code>*</code>) patterns are supported.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -137,7 +137,7 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed. 4
+		 * Add a value to {@link #repository(List)}, creating the list if needed.
 		 */
 		public Builder addRepository(String value) {
 			if (this.repository == null) {

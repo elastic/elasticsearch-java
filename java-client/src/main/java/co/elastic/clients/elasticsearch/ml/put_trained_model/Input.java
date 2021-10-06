@@ -59,7 +59,7 @@ public final class Input implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field_names}
+	 * Required - API name: {@code field_names}
 	 */
 	public List<String> fieldNames() {
 		return this.fieldNames;
@@ -95,7 +95,7 @@ public final class Input implements JsonpSerializable {
 		private List<String> fieldNames;
 
 		/**
-		 * API name: {@code field_names}
+		 * Required - API name: {@code field_names}
 		 */
 		public Builder fieldNames(List<String> value) {
 			this.fieldNames = value;
@@ -103,7 +103,7 @@ public final class Input implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code field_names}
+		 * Required - API name: {@code field_names}
 		 */
 		public Builder fieldNames(String... value) {
 			this.fieldNames = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class Input implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
 		 */
 		public Builder addFieldNames(String value) {
 			if (this.fieldNames == null) {

@@ -70,21 +70,21 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code add_to_root}
+	 * Required - API name: {@code add_to_root}
 	 */
 	public boolean addToRoot() {
 		return this.addToRoot;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -118,7 +118,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		private String targetField;
 
 		/**
-		 * API name: {@code add_to_root}
+		 * Required - API name: {@code add_to_root}
 		 */
 		public Builder addToRoot(boolean value) {
 			this.addToRoot = value;
@@ -126,7 +126,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -134,7 +134,7 @@ public final class JsonProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

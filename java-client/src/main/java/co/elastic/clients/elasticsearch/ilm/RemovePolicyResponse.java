@@ -63,14 +63,14 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code failed_indexes}
+	 * Required - API name: {@code failed_indexes}
 	 */
 	public List<String> failedIndexes() {
 		return this.failedIndexes;
 	}
 
 	/**
-	 * API name: {@code has_failures}
+	 * Required - API name: {@code has_failures}
 	 */
 	public boolean hasFailures() {
 		return this.hasFailures;
@@ -111,7 +111,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		private Boolean hasFailures;
 
 		/**
-		 * API name: {@code failed_indexes}
+		 * Required - API name: {@code failed_indexes}
 		 */
 		public Builder failedIndexes(List<String> value) {
 			this.failedIndexes = value;
@@ -119,7 +119,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failed_indexes}
+		 * Required - API name: {@code failed_indexes}
 		 */
 		public Builder failedIndexes(String... value) {
 			this.failedIndexes = Arrays.asList(value);
@@ -127,7 +127,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failedIndexes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failedIndexes(List)}, creating the list if needed.
 		 */
 		public Builder addFailedIndexes(String value) {
 			if (this.failedIndexes == null) {
@@ -138,7 +138,7 @@ public final class RemovePolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code has_failures}
+		 * Required - API name: {@code has_failures}
 		 */
 		public Builder hasFailures(boolean value) {
 			this.hasFailures = value;

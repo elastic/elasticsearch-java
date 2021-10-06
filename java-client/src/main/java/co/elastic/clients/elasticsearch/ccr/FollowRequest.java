@@ -116,7 +116,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The name of the follower index
+	 * Required - The name of the follower index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -367,7 +367,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		private String remoteCluster;
 
 		/**
-		 * The name of the follower index
+		 * Required - The name of the follower index
 		 * <p>
 		 * API name: {@code index}
 		 */

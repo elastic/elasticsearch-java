@@ -55,7 +55,7 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code template}
+	 * Required - API name: {@code template}
 	 */
 	public Template template() {
 		return this.template;
@@ -86,7 +86,7 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 		private Template template;
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(Template value) {
 			this.template = value;
@@ -94,7 +94,7 @@ public final class SimulateTemplateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(Function<Template.Builder, ObjectBuilder<Template>> fn) {
 			return this.template(fn.apply(new Template.Builder()).build());

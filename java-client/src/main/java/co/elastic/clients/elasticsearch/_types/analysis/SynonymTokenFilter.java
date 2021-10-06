@@ -86,49 +86,49 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * API name: {@code expand}
+	 * Required - API name: {@code expand}
 	 */
 	public boolean expand() {
 		return this.expand;
 	}
 
 	/**
-	 * API name: {@code format}
+	 * Required - API name: {@code format}
 	 */
 	public SynonymFormat format() {
 		return this.format;
 	}
 
 	/**
-	 * API name: {@code lenient}
+	 * Required - API name: {@code lenient}
 	 */
 	public boolean lenient() {
 		return this.lenient;
 	}
 
 	/**
-	 * API name: {@code synonyms}
+	 * Required - API name: {@code synonyms}
 	 */
 	public List<String> synonyms() {
 		return this.synonyms;
 	}
 
 	/**
-	 * API name: {@code synonyms_path}
+	 * Required - API name: {@code synonyms_path}
 	 */
 	public String synonymsPath() {
 		return this.synonymsPath;
 	}
 
 	/**
-	 * API name: {@code tokenizer}
+	 * Required - API name: {@code tokenizer}
 	 */
 	public String tokenizer() {
 		return this.tokenizer;
 	}
 
 	/**
-	 * API name: {@code updateable}
+	 * Required - API name: {@code updateable}
 	 */
 	public boolean updateable() {
 		return this.updateable;
@@ -190,7 +190,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		private Boolean updateable;
 
 		/**
-		 * API name: {@code expand}
+		 * Required - API name: {@code expand}
 		 */
 		public Builder expand(boolean value) {
 			this.expand = value;
@@ -198,7 +198,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code format}
+		 * Required - API name: {@code format}
 		 */
 		public Builder format(SynonymFormat value) {
 			this.format = value;
@@ -206,7 +206,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code lenient}
+		 * Required - API name: {@code lenient}
 		 */
 		public Builder lenient(boolean value) {
 			this.lenient = value;
@@ -214,7 +214,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code synonyms}
+		 * Required - API name: {@code synonyms}
 		 */
 		public Builder synonyms(List<String> value) {
 			this.synonyms = value;
@@ -222,7 +222,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code synonyms}
+		 * Required - API name: {@code synonyms}
 		 */
 		public Builder synonyms(String... value) {
 			this.synonyms = Arrays.asList(value);
@@ -230,7 +230,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * Add a value to {@link #synonyms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #synonyms(List)}, creating the list if needed.
 		 */
 		public Builder addSynonyms(String value) {
 			if (this.synonyms == null) {
@@ -241,7 +241,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code synonyms_path}
+		 * Required - API name: {@code synonyms_path}
 		 */
 		public Builder synonymsPath(String value) {
 			this.synonymsPath = value;
@@ -249,7 +249,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code tokenizer}
+		 * Required - API name: {@code tokenizer}
 		 */
 		public Builder tokenizer(String value) {
 			this.tokenizer = value;
@@ -257,7 +257,7 @@ public final class SynonymTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code updateable}
+		 * Required - API name: {@code updateable}
 		 */
 		public Builder updateable(boolean value) {
 			this.updateable = value;

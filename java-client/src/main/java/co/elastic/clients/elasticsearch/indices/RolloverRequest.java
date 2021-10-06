@@ -111,7 +111,7 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The name of the alias to rollover
+	 * Required - The name of the alias to rollover
 	 * <p>
 	 * API name: {@code alias}
 	 */
@@ -308,7 +308,7 @@ public final class RolloverRequest extends RequestBase implements JsonpSerializa
 		private Map<String, JsonData> settings;
 
 		/**
-		 * The name of the alias to rollover
+		 * Required - The name of the alias to rollover
 		 * <p>
 		 * API name: {@code alias}
 		 */

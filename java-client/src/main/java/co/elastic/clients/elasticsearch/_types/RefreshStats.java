@@ -73,28 +73,28 @@ public final class RefreshStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code external_total}
+	 * Required - API name: {@code external_total}
 	 */
 	public long externalTotal() {
 		return this.externalTotal;
 	}
 
 	/**
-	 * API name: {@code external_total_time_in_millis}
+	 * Required - API name: {@code external_total_time_in_millis}
 	 */
 	public long externalTotalTimeInMillis() {
 		return this.externalTotalTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code listeners}
+	 * Required - API name: {@code listeners}
 	 */
 	public long listeners() {
 		return this.listeners;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -109,7 +109,7 @@ public final class RefreshStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -170,7 +170,7 @@ public final class RefreshStats implements JsonpSerializable {
 		private Long totalTimeInMillis;
 
 		/**
-		 * API name: {@code external_total}
+		 * Required - API name: {@code external_total}
 		 */
 		public Builder externalTotal(long value) {
 			this.externalTotal = value;
@@ -178,7 +178,7 @@ public final class RefreshStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code external_total_time_in_millis}
+		 * Required - API name: {@code external_total_time_in_millis}
 		 */
 		public Builder externalTotalTimeInMillis(long value) {
 			this.externalTotalTimeInMillis = value;
@@ -186,7 +186,7 @@ public final class RefreshStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code listeners}
+		 * Required - API name: {@code listeners}
 		 */
 		public Builder listeners(long value) {
 			this.listeners = value;
@@ -194,7 +194,7 @@ public final class RefreshStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -210,7 +210,7 @@ public final class RefreshStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;

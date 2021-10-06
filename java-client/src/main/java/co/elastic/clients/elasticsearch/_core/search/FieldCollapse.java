@@ -68,7 +68,7 @@ public final class FieldCollapse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -139,7 +139,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		private Integer maxConcurrentGroupSearches;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -163,7 +163,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #innerHits(List)}, creating the list if needed. 4
+		 * Add a value to {@link #innerHits(List)}, creating the list if needed.
 		 */
 		public Builder addInnerHits(InnerHits value) {
 			if (this.innerHits == null) {
@@ -181,7 +181,7 @@ public final class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #innerHits(List)}, creating the list if needed. 5
+		 * Add a value to {@link #innerHits(List)}, creating the list if needed.
 		 */
 		public Builder addInnerHits(Function<InnerHits.Builder, ObjectBuilder<InnerHits>> fn) {
 			return this.addInnerHits(fn.apply(new InnerHits.Builder()).build());

@@ -63,7 +63,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code closed}
+	 * Required - API name: {@code closed}
 	 */
 	public boolean closed() {
 		return this.closed;
@@ -118,7 +118,7 @@ public final class CloseIndexResult implements JsonpSerializable {
 		private Map<String, CloseShardResult> shards;
 
 		/**
-		 * API name: {@code closed}
+		 * Required - API name: {@code closed}
 		 */
 		public Builder closed(boolean value) {
 			this.closed = value;

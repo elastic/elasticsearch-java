@@ -73,7 +73,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -179,7 +179,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -240,7 +240,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -287,7 +287,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -368,7 +368,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder<TSource> source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
+		public Builder<TSource> source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -396,7 +396,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -429,7 +429,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -474,7 +474,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -484,7 +484,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -494,7 +494,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed. 1
+		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addOperation(Operation value) {
 			if (this.operations == null) {
@@ -505,7 +505,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add a document to {@link #operations(List)}, creating the list if needed. 2
+		 * Add a document to {@link #operations(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addDocument(TSource value) {
 			if (this.operations == null) {
@@ -516,7 +516,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed. 3
+		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addOperation(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
 			return this.addOperation(fn.apply(new Operation.Builder()).build());

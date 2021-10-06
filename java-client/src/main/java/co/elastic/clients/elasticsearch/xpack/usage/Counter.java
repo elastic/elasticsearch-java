@@ -53,14 +53,14 @@ public class Counter implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code active}
+	 * Required - API name: {@code active}
 	 */
 	public long active() {
 		return this.active;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -114,7 +114,7 @@ public class Counter implements JsonpSerializable {
 		private Long total;
 
 		/**
-		 * API name: {@code active}
+		 * Required - API name: {@code active}
 		 */
 		public BuilderT active(long value) {
 			this.active = value;
@@ -122,7 +122,7 @@ public class Counter implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public BuilderT total(long value) {
 			this.total = value;

@@ -60,7 +60,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The name of the index lifecycle policy
+	 * Required - The name of the index lifecycle policy
 	 * <p>
 	 * API name: {@code policy}
 	 */
@@ -90,7 +90,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		private String policy;
 
 		/**
-		 * The name of the index lifecycle policy
+		 * Required - The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */

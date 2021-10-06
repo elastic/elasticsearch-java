@@ -96,7 +96,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	}
 
 	/**
-	 * API name: {@code stopwords}
+	 * Required - API name: {@code stopwords}
 	 */
 	public List<String> stopwords() {
 		return this.stopwords;
@@ -180,7 +180,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(List<String> value) {
 			this.stopwords = value;
@@ -188,7 +188,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
@@ -196,7 +196,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {

@@ -69,28 +69,28 @@ public final class ReservedSize implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<String> shards() {
 		return this.shards;
@@ -141,7 +141,7 @@ public final class ReservedSize implements JsonpSerializable {
 		private List<String> shards;
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -149,7 +149,7 @@ public final class ReservedSize implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -157,7 +157,7 @@ public final class ReservedSize implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -165,7 +165,7 @@ public final class ReservedSize implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<String> value) {
 			this.shards = value;
@@ -173,7 +173,7 @@ public final class ReservedSize implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(String... value) {
 			this.shards = Arrays.asList(value);
@@ -181,7 +181,7 @@ public final class ReservedSize implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(String value) {
 			if (this.shards == null) {

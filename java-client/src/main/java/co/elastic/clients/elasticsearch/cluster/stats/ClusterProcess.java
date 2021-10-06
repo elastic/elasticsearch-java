@@ -57,14 +57,14 @@ public final class ClusterProcess implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cpu}
+	 * Required - API name: {@code cpu}
 	 */
 	public ClusterProcessCpu cpu() {
 		return this.cpu;
 	}
 
 	/**
-	 * API name: {@code open_file_descriptors}
+	 * Required - API name: {@code open_file_descriptors}
 	 */
 	public ClusterProcessOpenFileDescriptors openFileDescriptors() {
 		return this.openFileDescriptors;
@@ -100,7 +100,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		private ClusterProcessOpenFileDescriptors openFileDescriptors;
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(ClusterProcessCpu value) {
 			this.cpu = value;
@@ -108,14 +108,14 @@ public final class ClusterProcess implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
 			return this.cpu(fn.apply(new ClusterProcessCpu.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code open_file_descriptors}
+		 * Required - API name: {@code open_file_descriptors}
 		 */
 		public Builder openFileDescriptors(ClusterProcessOpenFileDescriptors value) {
 			this.openFileDescriptors = value;
@@ -123,7 +123,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code open_file_descriptors}
+		 * Required - API name: {@code open_file_descriptors}
 		 */
 		public Builder openFileDescriptors(
 				Function<ClusterProcessOpenFileDescriptors.Builder, ObjectBuilder<ClusterProcessOpenFileDescriptors>> fn) {

@@ -55,7 +55,7 @@ public final class FindFileStructureResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stub}
+	 * Required - API name: {@code stub}
 	 */
 	public String stub() {
 		return this.stub;
@@ -86,7 +86,7 @@ public final class FindFileStructureResponse implements JsonpSerializable {
 		private String stub;
 
 		/**
-		 * API name: {@code stub}
+		 * Required - API name: {@code stub}
 		 */
 		public Builder stub(String value) {
 			this.stub = value;

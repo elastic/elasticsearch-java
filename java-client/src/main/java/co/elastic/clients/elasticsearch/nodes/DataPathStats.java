@@ -101,112 +101,112 @@ public final class DataPathStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code available}
+	 * Required - API name: {@code available}
 	 */
 	public String available() {
 		return this.available;
 	}
 
 	/**
-	 * API name: {@code available_in_bytes}
+	 * Required - API name: {@code available_in_bytes}
 	 */
 	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
-	 * API name: {@code disk_queue}
+	 * Required - API name: {@code disk_queue}
 	 */
 	public String diskQueue() {
 		return this.diskQueue;
 	}
 
 	/**
-	 * API name: {@code disk_reads}
+	 * Required - API name: {@code disk_reads}
 	 */
 	public long diskReads() {
 		return this.diskReads;
 	}
 
 	/**
-	 * API name: {@code disk_read_size}
+	 * Required - API name: {@code disk_read_size}
 	 */
 	public String diskReadSize() {
 		return this.diskReadSize;
 	}
 
 	/**
-	 * API name: {@code disk_read_size_in_bytes}
+	 * Required - API name: {@code disk_read_size_in_bytes}
 	 */
 	public long diskReadSizeInBytes() {
 		return this.diskReadSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code disk_writes}
+	 * Required - API name: {@code disk_writes}
 	 */
 	public long diskWrites() {
 		return this.diskWrites;
 	}
 
 	/**
-	 * API name: {@code disk_write_size}
+	 * Required - API name: {@code disk_write_size}
 	 */
 	public String diskWriteSize() {
 		return this.diskWriteSize;
 	}
 
 	/**
-	 * API name: {@code disk_write_size_in_bytes}
+	 * Required - API name: {@code disk_write_size_in_bytes}
 	 */
 	public long diskWriteSizeInBytes() {
 		return this.diskWriteSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code free}
+	 * Required - API name: {@code free}
 	 */
 	public String free() {
 		return this.free;
 	}
 
 	/**
-	 * API name: {@code free_in_bytes}
+	 * Required - API name: {@code free_in_bytes}
 	 */
 	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * API name: {@code mount}
+	 * Required - API name: {@code mount}
 	 */
 	public String mount() {
 		return this.mount;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public String total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
 	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -312,7 +312,7 @@ public final class DataPathStats implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code available}
+		 * Required - API name: {@code available}
 		 */
 		public Builder available(String value) {
 			this.available = value;
@@ -320,7 +320,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code available_in_bytes}
+		 * Required - API name: {@code available_in_bytes}
 		 */
 		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
@@ -328,7 +328,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_queue}
+		 * Required - API name: {@code disk_queue}
 		 */
 		public Builder diskQueue(String value) {
 			this.diskQueue = value;
@@ -336,7 +336,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_reads}
+		 * Required - API name: {@code disk_reads}
 		 */
 		public Builder diskReads(long value) {
 			this.diskReads = value;
@@ -344,7 +344,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_read_size}
+		 * Required - API name: {@code disk_read_size}
 		 */
 		public Builder diskReadSize(String value) {
 			this.diskReadSize = value;
@@ -352,7 +352,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_read_size_in_bytes}
+		 * Required - API name: {@code disk_read_size_in_bytes}
 		 */
 		public Builder diskReadSizeInBytes(long value) {
 			this.diskReadSizeInBytes = value;
@@ -360,7 +360,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_writes}
+		 * Required - API name: {@code disk_writes}
 		 */
 		public Builder diskWrites(long value) {
 			this.diskWrites = value;
@@ -368,7 +368,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_write_size}
+		 * Required - API name: {@code disk_write_size}
 		 */
 		public Builder diskWriteSize(String value) {
 			this.diskWriteSize = value;
@@ -376,7 +376,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code disk_write_size_in_bytes}
+		 * Required - API name: {@code disk_write_size_in_bytes}
 		 */
 		public Builder diskWriteSizeInBytes(long value) {
 			this.diskWriteSizeInBytes = value;
@@ -384,7 +384,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free}
+		 * Required - API name: {@code free}
 		 */
 		public Builder free(String value) {
 			this.free = value;
@@ -392,7 +392,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free_in_bytes}
+		 * Required - API name: {@code free_in_bytes}
 		 */
 		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
@@ -400,7 +400,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mount}
+		 * Required - API name: {@code mount}
 		 */
 		public Builder mount(String value) {
 			this.mount = value;
@@ -408,7 +408,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -416,7 +416,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(String value) {
 			this.total = value;
@@ -424,7 +424,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
 		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
@@ -432,7 +432,7 @@ public final class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

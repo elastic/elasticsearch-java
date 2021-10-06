@@ -64,7 +64,7 @@ public final class DeleteUserRequest extends RequestBase {
 	}
 
 	/**
-	 * username
+	 * Required - username
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -97,7 +97,7 @@ public final class DeleteUserRequest extends RequestBase {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * username
+		 * Required - username
 		 * <p>
 		 * API name: {@code username}
 		 */

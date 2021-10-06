@@ -55,7 +55,7 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allowed_urls}
+	 * Required - API name: {@code allowed_urls}
 	 */
 	public String allowedUrls() {
 		return this.allowedUrls;
@@ -86,7 +86,7 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 		private String allowedUrls;
 
 		/**
-		 * API name: {@code allowed_urls}
+		 * Required - API name: {@code allowed_urls}
 		 */
 		public Builder allowedUrls(String value) {
 			this.allowedUrls = value;

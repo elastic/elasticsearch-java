@@ -71,42 +71,42 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code sequence_queries_three}
+	 * Required - API name: {@code sequence_queries_three}
 	 */
 	public Number sequenceQueriesThree() {
 		return this.sequenceQueriesThree;
 	}
 
 	/**
-	 * API name: {@code sequence_queries_four}
+	 * Required - API name: {@code sequence_queries_four}
 	 */
 	public Number sequenceQueriesFour() {
 		return this.sequenceQueriesFour;
 	}
 
 	/**
-	 * API name: {@code sequence_queries_two}
+	 * Required - API name: {@code sequence_queries_two}
 	 */
 	public Number sequenceQueriesTwo() {
 		return this.sequenceQueriesTwo;
 	}
 
 	/**
-	 * API name: {@code sequence_until}
+	 * Required - API name: {@code sequence_until}
 	 */
 	public Number sequenceUntil() {
 		return this.sequenceUntil;
 	}
 
 	/**
-	 * API name: {@code sequence_queries_five_or_more}
+	 * Required - API name: {@code sequence_queries_five_or_more}
 	 */
 	public Number sequenceQueriesFiveOrMore() {
 		return this.sequenceQueriesFiveOrMore;
 	}
 
 	/**
-	 * API name: {@code sequence_maxspan}
+	 * Required - API name: {@code sequence_maxspan}
 	 */
 	public Number sequenceMaxspan() {
 		return this.sequenceMaxspan;
@@ -162,7 +162,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		private Number sequenceMaxspan;
 
 		/**
-		 * API name: {@code sequence_queries_three}
+		 * Required - API name: {@code sequence_queries_three}
 		 */
 		public Builder sequenceQueriesThree(Number value) {
 			this.sequenceQueriesThree = value;
@@ -170,7 +170,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequence_queries_four}
+		 * Required - API name: {@code sequence_queries_four}
 		 */
 		public Builder sequenceQueriesFour(Number value) {
 			this.sequenceQueriesFour = value;
@@ -178,7 +178,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequence_queries_two}
+		 * Required - API name: {@code sequence_queries_two}
 		 */
 		public Builder sequenceQueriesTwo(Number value) {
 			this.sequenceQueriesTwo = value;
@@ -186,7 +186,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequence_until}
+		 * Required - API name: {@code sequence_until}
 		 */
 		public Builder sequenceUntil(Number value) {
 			this.sequenceUntil = value;
@@ -194,7 +194,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequence_queries_five_or_more}
+		 * Required - API name: {@code sequence_queries_five_or_more}
 		 */
 		public Builder sequenceQueriesFiveOrMore(Number value) {
 			this.sequenceQueriesFiveOrMore = value;
@@ -202,7 +202,7 @@ public final class EqlFeaturesSequences implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequence_maxspan}
+		 * Required - API name: {@code sequence_maxspan}
 		 */
 		public Builder sequenceMaxspan(Number value) {
 			this.sequenceMaxspan = value;

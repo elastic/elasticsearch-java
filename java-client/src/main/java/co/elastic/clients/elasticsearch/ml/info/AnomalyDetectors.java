@@ -72,35 +72,35 @@ public final class AnomalyDetectors implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code categorization_analyzer}
+	 * Required - API name: {@code categorization_analyzer}
 	 */
 	public CategorizationAnalyzer categorizationAnalyzer() {
 		return this.categorizationAnalyzer;
 	}
 
 	/**
-	 * API name: {@code categorization_examples_limit}
+	 * Required - API name: {@code categorization_examples_limit}
 	 */
 	public int categorizationExamplesLimit() {
 		return this.categorizationExamplesLimit;
 	}
 
 	/**
-	 * API name: {@code model_memory_limit}
+	 * Required - API name: {@code model_memory_limit}
 	 */
 	public String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
 	/**
-	 * API name: {@code model_snapshot_retention_days}
+	 * Required - API name: {@code model_snapshot_retention_days}
 	 */
 	public int modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
 	/**
-	 * API name: {@code daily_model_snapshot_retention_after_days}
+	 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	public int dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
@@ -151,7 +151,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		private Integer dailyModelSnapshotRetentionAfterDays;
 
 		/**
-		 * API name: {@code categorization_analyzer}
+		 * Required - API name: {@code categorization_analyzer}
 		 */
 		public Builder categorizationAnalyzer(CategorizationAnalyzer value) {
 			this.categorizationAnalyzer = value;
@@ -159,7 +159,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code categorization_analyzer}
+		 * Required - API name: {@code categorization_analyzer}
 		 */
 		public Builder categorizationAnalyzer(
 				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
@@ -167,7 +167,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code categorization_examples_limit}
+		 * Required - API name: {@code categorization_examples_limit}
 		 */
 		public Builder categorizationExamplesLimit(int value) {
 			this.categorizationExamplesLimit = value;
@@ -175,7 +175,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model_memory_limit}
+		 * Required - API name: {@code model_memory_limit}
 		 */
 		public Builder modelMemoryLimit(String value) {
 			this.modelMemoryLimit = value;
@@ -183,7 +183,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model_snapshot_retention_days}
+		 * Required - API name: {@code model_snapshot_retention_days}
 		 */
 		public Builder modelSnapshotRetentionDays(int value) {
 			this.modelSnapshotRetentionDays = value;
@@ -191,7 +191,7 @@ public final class AnomalyDetectors implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code daily_model_snapshot_retention_after_days}
+		 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 		 */
 		public Builder dailyModelSnapshotRetentionAfterDays(int value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;

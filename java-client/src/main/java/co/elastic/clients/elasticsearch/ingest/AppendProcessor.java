@@ -76,14 +76,14 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public List<JsonData> value() {
 		return this.value;
@@ -137,7 +137,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		private Boolean allowDuplicates;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -145,7 +145,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(List<JsonData> value) {
 			this.value = value;
@@ -153,7 +153,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(JsonData... value) {
 			this.value = Arrays.asList(value);
@@ -161,7 +161,7 @@ public final class AppendProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * Add a value to {@link #value(List)}, creating the list if needed. 4
+		 * Add a value to {@link #value(List)}, creating the list if needed.
 		 */
 		public Builder addValue(JsonData value) {
 			if (this.value == null) {

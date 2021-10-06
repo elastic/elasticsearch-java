@@ -69,7 +69,7 @@ public final class ApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -146,7 +146,7 @@ public final class ApiKey implements JsonpSerializable {
 		private List<Map<String, JsonData>> roleDescriptors;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -178,7 +178,7 @@ public final class ApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roleDescriptors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roleDescriptors(List)}, creating the list if needed.
 		 */
 		public Builder addRoleDescriptors(Map<String, JsonData> value) {
 			if (this.roleDescriptors == null) {

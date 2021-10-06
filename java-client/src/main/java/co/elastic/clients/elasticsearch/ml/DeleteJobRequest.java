@@ -67,7 +67,7 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job to delete
+	 * Required - The ID of the job to delete
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -110,7 +110,7 @@ public final class DeleteJobRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * The ID of the job to delete
+		 * Required - The ID of the job to delete
 		 * <p>
 		 * API name: {@code job_id}
 		 */

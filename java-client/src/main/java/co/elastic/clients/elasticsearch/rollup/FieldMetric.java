@@ -62,14 +62,14 @@ public final class FieldMetric implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code metrics}
+	 * Required - API name: {@code metrics}
 	 */
 	public List<Metric> metrics() {
 		return this.metrics;
@@ -109,7 +109,7 @@ public final class FieldMetric implements JsonpSerializable {
 		private List<Metric> metrics;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -117,7 +117,7 @@ public final class FieldMetric implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code metrics}
+		 * Required - API name: {@code metrics}
 		 */
 		public Builder metrics(List<Metric> value) {
 			this.metrics = value;
@@ -125,7 +125,7 @@ public final class FieldMetric implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code metrics}
+		 * Required - API name: {@code metrics}
 		 */
 		public Builder metrics(Metric... value) {
 			this.metrics = Arrays.asList(value);
@@ -133,7 +133,7 @@ public final class FieldMetric implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(Metric value) {
 			if (this.metrics == null) {

@@ -68,7 +68,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public NodeInfoSettingsHttpType type() {
 		return this.type;
@@ -151,7 +151,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		private String port;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(NodeInfoSettingsHttpType value) {
 			this.type = value;
@@ -159,7 +159,7 @@ public final class NodeInfoSettingsHttp implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(Function<NodeInfoSettingsHttpType.Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
 			return this.type(fn.apply(new NodeInfoSettingsHttpType.Builder()).build());

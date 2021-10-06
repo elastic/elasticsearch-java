@@ -58,7 +58,7 @@ public final class Profile implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<ShardProfile> shards() {
 		return this.shards;
@@ -94,7 +94,7 @@ public final class Profile implements JsonpSerializable {
 		private List<ShardProfile> shards;
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<ShardProfile> value) {
 			this.shards = value;
@@ -102,7 +102,7 @@ public final class Profile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardProfile... value) {
 			this.shards = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class Profile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(ShardProfile value) {
 			if (this.shards == null) {
@@ -128,7 +128,7 @@ public final class Profile implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 5
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
 			return this.addShards(fn.apply(new ShardProfile.Builder()).build());

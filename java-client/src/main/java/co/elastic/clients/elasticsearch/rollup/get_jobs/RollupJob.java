@@ -60,21 +60,21 @@ public final class RollupJob implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code config}
+	 * Required - API name: {@code config}
 	 */
 	public RollupJobConfiguration config() {
 		return this.config;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public RollupJobStats stats() {
 		return this.stats;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public RollupJobStatus status() {
 		return this.status;
@@ -115,7 +115,7 @@ public final class RollupJob implements JsonpSerializable {
 		private RollupJobStatus status;
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(RollupJobConfiguration value) {
 			this.config = value;
@@ -123,14 +123,14 @@ public final class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Function<RollupJobConfiguration.Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
 			return this.config(fn.apply(new RollupJobConfiguration.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(RollupJobStats value) {
 			this.stats = value;
@@ -138,14 +138,14 @@ public final class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<RollupJobStats.Builder, ObjectBuilder<RollupJobStats>> fn) {
 			return this.stats(fn.apply(new RollupJobStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(RollupJobStatus value) {
 			this.status = value;
@@ -153,7 +153,7 @@ public final class RollupJob implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(Function<RollupJobStatus.Builder, ObjectBuilder<RollupJobStatus>> fn) {
 			return this.status(fn.apply(new RollupJobStatus.Builder()).build());

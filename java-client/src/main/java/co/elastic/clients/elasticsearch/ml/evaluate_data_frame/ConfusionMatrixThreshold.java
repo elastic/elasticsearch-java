@@ -63,7 +63,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	}
 
 	/**
-	 * True Positive
+	 * Required - True Positive
 	 * <p>
 	 * API name: {@code tp}
 	 */
@@ -72,7 +72,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	}
 
 	/**
-	 * False Positive
+	 * Required - False Positive
 	 * <p>
 	 * API name: {@code fp}
 	 */
@@ -81,7 +81,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	}
 
 	/**
-	 * True Negative
+	 * Required - True Negative
 	 * <p>
 	 * API name: {@code tn}
 	 */
@@ -90,7 +90,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 	}
 
 	/**
-	 * False Negative
+	 * Required - False Negative
 	 * <p>
 	 * API name: {@code fn}
 	 */
@@ -138,7 +138,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		private Integer falseNegative;
 
 		/**
-		 * True Positive
+		 * Required - True Positive
 		 * <p>
 		 * API name: {@code tp}
 		 */
@@ -148,7 +148,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		}
 
 		/**
-		 * False Positive
+		 * Required - False Positive
 		 * <p>
 		 * API name: {@code fp}
 		 */
@@ -158,7 +158,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		}
 
 		/**
-		 * True Negative
+		 * Required - True Negative
 		 * <p>
 		 * API name: {@code tn}
 		 */
@@ -168,7 +168,7 @@ public final class ConfusionMatrixThreshold implements JsonpSerializable {
 		}
 
 		/**
-		 * False Negative
+		 * Required - False Negative
 		 * <p>
 		 * API name: {@code fn}
 		 */

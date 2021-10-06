@@ -62,7 +62,7 @@ public final class StandardTokenizer extends TokenizerBase implements TokenizerV
 	}
 
 	/**
-	 * API name: {@code max_token_length}
+	 * Required - API name: {@code max_token_length}
 	 */
 	public int maxTokenLength() {
 		return this.maxTokenLength;
@@ -89,7 +89,7 @@ public final class StandardTokenizer extends TokenizerBase implements TokenizerV
 		private Integer maxTokenLength;
 
 		/**
-		 * API name: {@code max_token_length}
+		 * Required - API name: {@code max_token_length}
 		 */
 		public Builder maxTokenLength(int value) {
 			this.maxTokenLength = value;

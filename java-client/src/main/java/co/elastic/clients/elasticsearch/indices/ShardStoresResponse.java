@@ -59,7 +59,7 @@ public final class ShardStoresResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public Map<String, IndicesShardStores> indices() {
 		return this.indices;
@@ -96,7 +96,7 @@ public final class ShardStoresResponse implements JsonpSerializable {
 		private Map<String, IndicesShardStores> indices;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Map<String, IndicesShardStores> value) {
 			this.indices = value;

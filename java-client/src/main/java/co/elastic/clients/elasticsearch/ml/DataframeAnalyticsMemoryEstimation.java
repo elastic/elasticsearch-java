@@ -60,10 +60,10 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	}
 
 	/**
-	 * Estimated memory usage under the assumption that overflowing to disk is
-	 * allowed during data frame analytics. expected_memory_with_disk is usually
-	 * smaller than expected_memory_without_disk as using disk allows to limit the
-	 * main memory needed to perform data frame analytics.
+	 * Required - Estimated memory usage under the assumption that overflowing to
+	 * disk is allowed during data frame analytics. expected_memory_with_disk is
+	 * usually smaller than expected_memory_without_disk as using disk allows to
+	 * limit the main memory needed to perform data frame analytics.
 	 * <p>
 	 * API name: {@code expected_memory_with_disk}
 	 */
@@ -72,8 +72,8 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	}
 
 	/**
-	 * Estimated memory usage under the assumption that the whole data frame
-	 * analytics should happen in memory (i.e. without overflowing to disk).
+	 * Required - Estimated memory usage under the assumption that the whole data
+	 * frame analytics should happen in memory (i.e. without overflowing to disk).
 	 * <p>
 	 * API name: {@code expected_memory_without_disk}
 	 */
@@ -111,10 +111,10 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 		private String expectedMemoryWithoutDisk;
 
 		/**
-		 * Estimated memory usage under the assumption that overflowing to disk is
-		 * allowed during data frame analytics. expected_memory_with_disk is usually
-		 * smaller than expected_memory_without_disk as using disk allows to limit the
-		 * main memory needed to perform data frame analytics.
+		 * Required - Estimated memory usage under the assumption that overflowing to
+		 * disk is allowed during data frame analytics. expected_memory_with_disk is
+		 * usually smaller than expected_memory_without_disk as using disk allows to
+		 * limit the main memory needed to perform data frame analytics.
 		 * <p>
 		 * API name: {@code expected_memory_with_disk}
 		 */
@@ -124,8 +124,8 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 		}
 
 		/**
-		 * Estimated memory usage under the assumption that the whole data frame
-		 * analytics should happen in memory (i.e. without overflowing to disk).
+		 * Required - Estimated memory usage under the assumption that the whole data
+		 * frame analytics should happen in memory (i.e. without overflowing to disk).
 		 * <p>
 		 * API name: {@code expected_memory_without_disk}
 		 */

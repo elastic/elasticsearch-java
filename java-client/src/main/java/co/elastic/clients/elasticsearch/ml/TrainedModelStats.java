@@ -71,7 +71,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The unique identifier of the trained model.
+	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -80,7 +80,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of ingest pipelines that currently refer to the model.
+	 * Required - The number of ingest pipelines that currently refer to the model.
 	 * <p>
 	 * API name: {@code pipeline_count}
 	 */
@@ -165,7 +165,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		private Map<String, JsonData> ingest;
 
 		/**
-		 * The unique identifier of the trained model.
+		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -175,7 +175,7 @@ public final class TrainedModelStats implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of ingest pipelines that currently refer to the model.
+		 * Required - The number of ingest pipelines that currently refer to the model.
 		 * <p>
 		 * API name: {@code pipeline_count}
 		 */

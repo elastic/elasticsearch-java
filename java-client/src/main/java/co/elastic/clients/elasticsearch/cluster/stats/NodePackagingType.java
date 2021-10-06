@@ -62,21 +62,21 @@ public final class NodePackagingType implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code flavor}
+	 * Required - API name: {@code flavor}
 	 */
 	public String flavor() {
 		return this.flavor;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -117,7 +117,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -125,7 +125,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code flavor}
+		 * Required - API name: {@code flavor}
 		 */
 		public Builder flavor(String value) {
 			this.flavor = value;
@@ -133,7 +133,7 @@ public final class NodePackagingType implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

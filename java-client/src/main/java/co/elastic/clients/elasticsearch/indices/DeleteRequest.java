@@ -85,8 +85,8 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of indices to delete; use <code>_all</code> or
-	 * <code>*</code> string to delete all indices
+	 * Required - A comma-separated list of indices to delete; use <code>_all</code>
+	 * or <code>*</code> string to delete all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -170,8 +170,8 @@ public final class DeleteRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * A comma-separated list of indices to delete; use <code>_all</code> or
-		 * <code>*</code> string to delete all indices
+		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
+		 * or <code>*</code> string to delete all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -181,8 +181,8 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of indices to delete; use <code>_all</code> or
-		 * <code>*</code> string to delete all indices
+		 * Required - A comma-separated list of indices to delete; use <code>_all</code>
+		 * or <code>*</code> string to delete all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -192,7 +192,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -236,7 +236,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

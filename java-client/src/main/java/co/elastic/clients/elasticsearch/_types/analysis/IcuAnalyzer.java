@@ -65,14 +65,14 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code method}
+	 * Required - API name: {@code method}
 	 */
 	public IcuNormalizationType method() {
 		return this.method;
 	}
 
 	/**
-	 * API name: {@code mode}
+	 * Required - API name: {@code mode}
 	 */
 	public IcuNormalizationMode mode() {
 		return this.mode;
@@ -110,7 +110,7 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		private IcuNormalizationMode mode;
 
 		/**
-		 * API name: {@code method}
+		 * Required - API name: {@code method}
 		 */
 		public Builder method(IcuNormalizationType value) {
 			this.method = value;
@@ -118,7 +118,7 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mode}
+		 * Required - API name: {@code mode}
 		 */
 		public Builder mode(IcuNormalizationMode value) {
 			this.mode = value;

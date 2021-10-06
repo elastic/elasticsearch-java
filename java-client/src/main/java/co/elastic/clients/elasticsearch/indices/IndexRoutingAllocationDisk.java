@@ -54,7 +54,7 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code threshold_enabled}
+	 * Required - API name: {@code threshold_enabled}
 	 */
 	public boolean thresholdEnabled() {
 		return this.thresholdEnabled;
@@ -85,7 +85,7 @@ public final class IndexRoutingAllocationDisk implements JsonpSerializable {
 		private Boolean thresholdEnabled;
 
 		/**
-		 * API name: {@code threshold_enabled}
+		 * Required - API name: {@code threshold_enabled}
 		 */
 		public Builder thresholdEnabled(boolean value) {
 			this.thresholdEnabled = value;

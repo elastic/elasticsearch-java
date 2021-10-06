@@ -85,42 +85,42 @@ public final class IndexHealthStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code active_primary_shards}
+	 * Required - API name: {@code active_primary_shards}
 	 */
 	public int activePrimaryShards() {
 		return this.activePrimaryShards;
 	}
 
 	/**
-	 * API name: {@code active_shards}
+	 * Required - API name: {@code active_shards}
 	 */
 	public int activeShards() {
 		return this.activeShards;
 	}
 
 	/**
-	 * API name: {@code initializing_shards}
+	 * Required - API name: {@code initializing_shards}
 	 */
 	public int initializingShards() {
 		return this.initializingShards;
 	}
 
 	/**
-	 * API name: {@code number_of_replicas}
+	 * Required - API name: {@code number_of_replicas}
 	 */
 	public int numberOfReplicas() {
 		return this.numberOfReplicas;
 	}
 
 	/**
-	 * API name: {@code number_of_shards}
+	 * Required - API name: {@code number_of_shards}
 	 */
 	public int numberOfShards() {
 		return this.numberOfShards;
 	}
 
 	/**
-	 * API name: {@code relocating_shards}
+	 * Required - API name: {@code relocating_shards}
 	 */
 	public int relocatingShards() {
 		return this.relocatingShards;
@@ -135,14 +135,14 @@ public final class IndexHealthStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public Health status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code unassigned_shards}
+	 * Required - API name: {@code unassigned_shards}
 	 */
 	public int unassignedShards() {
 		return this.unassignedShards;
@@ -224,7 +224,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		private Integer unassignedShards;
 
 		/**
-		 * API name: {@code active_primary_shards}
+		 * Required - API name: {@code active_primary_shards}
 		 */
 		public Builder activePrimaryShards(int value) {
 			this.activePrimaryShards = value;
@@ -232,7 +232,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code active_shards}
+		 * Required - API name: {@code active_shards}
 		 */
 		public Builder activeShards(int value) {
 			this.activeShards = value;
@@ -240,7 +240,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code initializing_shards}
+		 * Required - API name: {@code initializing_shards}
 		 */
 		public Builder initializingShards(int value) {
 			this.initializingShards = value;
@@ -248,7 +248,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number_of_replicas}
+		 * Required - API name: {@code number_of_replicas}
 		 */
 		public Builder numberOfReplicas(int value) {
 			this.numberOfReplicas = value;
@@ -256,7 +256,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number_of_shards}
+		 * Required - API name: {@code number_of_shards}
 		 */
 		public Builder numberOfShards(int value) {
 			this.numberOfShards = value;
@@ -264,7 +264,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code relocating_shards}
+		 * Required - API name: {@code relocating_shards}
 		 */
 		public Builder relocatingShards(int value) {
 			this.relocatingShards = value;
@@ -305,7 +305,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(Health value) {
 			this.status = value;
@@ -313,7 +313,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code unassigned_shards}
+		 * Required - API name: {@code unassigned_shards}
 		 */
 		public Builder unassignedShards(int value) {
 			this.unassignedShards = value;

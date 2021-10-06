@@ -58,14 +58,14 @@ public final class GeoBounds implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bottom_right}
+	 * Required - API name: {@code bottom_right}
 	 */
 	public LatLon bottomRight() {
 		return this.bottomRight;
 	}
 
 	/**
-	 * API name: {@code top_left}
+	 * Required - API name: {@code top_left}
 	 */
 	public LatLon topLeft() {
 		return this.topLeft;
@@ -101,7 +101,7 @@ public final class GeoBounds implements JsonpSerializable {
 		private LatLon topLeft;
 
 		/**
-		 * API name: {@code bottom_right}
+		 * Required - API name: {@code bottom_right}
 		 */
 		public Builder bottomRight(LatLon value) {
 			this.bottomRight = value;
@@ -109,14 +109,14 @@ public final class GeoBounds implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bottom_right}
+		 * Required - API name: {@code bottom_right}
 		 */
 		public Builder bottomRight(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
 			return this.bottomRight(fn.apply(new LatLon.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code top_left}
+		 * Required - API name: {@code top_left}
 		 */
 		public Builder topLeft(LatLon value) {
 			this.topLeft = value;
@@ -124,7 +124,7 @@ public final class GeoBounds implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code top_left}
+		 * Required - API name: {@code top_left}
 		 */
 		public Builder topLeft(Function<LatLon.Builder, ObjectBuilder<LatLon>> fn) {
 			return this.topLeft(fn.apply(new LatLon.Builder()).build());

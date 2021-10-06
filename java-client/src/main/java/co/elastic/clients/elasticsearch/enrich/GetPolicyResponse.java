@@ -58,7 +58,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code policies}
+	 * Required - API name: {@code policies}
 	 */
 	public List<Summary> policies() {
 		return this.policies;
@@ -94,7 +94,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		private List<Summary> policies;
 
 		/**
-		 * API name: {@code policies}
+		 * Required - API name: {@code policies}
 		 */
 		public Builder policies(List<Summary> value) {
 			this.policies = value;
@@ -102,7 +102,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code policies}
+		 * Required - API name: {@code policies}
 		 */
 		public Builder policies(Summary... value) {
 			this.policies = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed. 4
+		 * Add a value to {@link #policies(List)}, creating the list if needed.
 		 */
 		public Builder addPolicies(Summary value) {
 			if (this.policies == null) {
@@ -128,7 +128,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed. 5
+		 * Add a value to {@link #policies(List)}, creating the list if needed.
 		 */
 		public Builder addPolicies(Function<Summary.Builder, ObjectBuilder<Summary>> fn) {
 			return this.addPolicies(fn.apply(new Summary.Builder()).build());

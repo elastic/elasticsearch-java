@@ -73,49 +73,49 @@ public final class EqlFeatures implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code join}
+	 * Required - API name: {@code join}
 	 */
 	public Number join() {
 		return this.join;
 	}
 
 	/**
-	 * API name: {@code joins}
+	 * Required - API name: {@code joins}
 	 */
 	public EqlFeaturesJoin joins() {
 		return this.joins;
 	}
 
 	/**
-	 * API name: {@code keys}
+	 * Required - API name: {@code keys}
 	 */
 	public EqlFeaturesKeys keys() {
 		return this.keys;
 	}
 
 	/**
-	 * API name: {@code event}
+	 * Required - API name: {@code event}
 	 */
 	public Number event() {
 		return this.event;
 	}
 
 	/**
-	 * API name: {@code pipes}
+	 * Required - API name: {@code pipes}
 	 */
 	public EqlFeaturesPipes pipes() {
 		return this.pipes;
 	}
 
 	/**
-	 * API name: {@code sequence}
+	 * Required - API name: {@code sequence}
 	 */
 	public Number sequence() {
 		return this.sequence;
 	}
 
 	/**
-	 * API name: {@code sequences}
+	 * Required - API name: {@code sequences}
 	 */
 	public EqlFeaturesSequences sequences() {
 		return this.sequences;
@@ -176,7 +176,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		private EqlFeaturesSequences sequences;
 
 		/**
-		 * API name: {@code join}
+		 * Required - API name: {@code join}
 		 */
 		public Builder join(Number value) {
 			this.join = value;
@@ -184,7 +184,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code joins}
+		 * Required - API name: {@code joins}
 		 */
 		public Builder joins(EqlFeaturesJoin value) {
 			this.joins = value;
@@ -192,14 +192,14 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code joins}
+		 * Required - API name: {@code joins}
 		 */
 		public Builder joins(Function<EqlFeaturesJoin.Builder, ObjectBuilder<EqlFeaturesJoin>> fn) {
 			return this.joins(fn.apply(new EqlFeaturesJoin.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code keys}
+		 * Required - API name: {@code keys}
 		 */
 		public Builder keys(EqlFeaturesKeys value) {
 			this.keys = value;
@@ -207,14 +207,14 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code keys}
+		 * Required - API name: {@code keys}
 		 */
 		public Builder keys(Function<EqlFeaturesKeys.Builder, ObjectBuilder<EqlFeaturesKeys>> fn) {
 			return this.keys(fn.apply(new EqlFeaturesKeys.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code event}
+		 * Required - API name: {@code event}
 		 */
 		public Builder event(Number value) {
 			this.event = value;
@@ -222,7 +222,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipes}
+		 * Required - API name: {@code pipes}
 		 */
 		public Builder pipes(EqlFeaturesPipes value) {
 			this.pipes = value;
@@ -230,14 +230,14 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipes}
+		 * Required - API name: {@code pipes}
 		 */
 		public Builder pipes(Function<EqlFeaturesPipes.Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
 			return this.pipes(fn.apply(new EqlFeaturesPipes.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code sequence}
+		 * Required - API name: {@code sequence}
 		 */
 		public Builder sequence(Number value) {
 			this.sequence = value;
@@ -245,7 +245,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequences}
+		 * Required - API name: {@code sequences}
 		 */
 		public Builder sequences(EqlFeaturesSequences value) {
 			this.sequences = value;
@@ -253,7 +253,7 @@ public final class EqlFeatures implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sequences}
+		 * Required - API name: {@code sequences}
 		 */
 		public Builder sequences(Function<EqlFeaturesSequences.Builder, ObjectBuilder<EqlFeaturesSequences>> fn) {
 			return this.sequences(fn.apply(new EqlFeaturesSequences.Builder()).build());

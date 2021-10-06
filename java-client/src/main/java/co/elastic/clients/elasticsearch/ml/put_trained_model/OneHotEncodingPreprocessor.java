@@ -69,14 +69,14 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code hot_map}
+	 * Required - API name: {@code hot_map}
 	 */
 	public Map<String, String> hotMap() {
 		return this.hotMap;
@@ -118,7 +118,7 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		private Map<String, String> hotMap;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -126,7 +126,7 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		}
 
 		/**
-		 * API name: {@code hot_map}
+		 * Required - API name: {@code hot_map}
 		 */
 		public Builder hotMap(Map<String, String> value) {
 			this.hotMap = value;

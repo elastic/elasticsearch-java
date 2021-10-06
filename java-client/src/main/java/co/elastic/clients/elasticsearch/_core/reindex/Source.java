@@ -94,7 +94,7 @@ public final class Source implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public List<String> index() {
 		return this.index;
@@ -270,7 +270,7 @@ public final class Source implements JsonpSerializable {
 		private Map<String, SourceRuntimeMapping> runtimeMappings;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(List<String> value) {
 			this.index = value;
@@ -278,7 +278,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String... value) {
 			this.index = Arrays.asList(value);
@@ -286,7 +286,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -366,7 +366,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -393,7 +393,7 @@ public final class Source implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sourceFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceFields(List)}, creating the list if needed.
 		 */
 		public Builder addSourceFields(String value) {
 			if (this.sourceFields == null) {

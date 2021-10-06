@@ -59,7 +59,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code docs}
+	 * Required - API name: {@code docs}
 	 */
 	public List<TermVectorsResult> docs() {
 		return this.docs;
@@ -95,7 +95,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		private List<TermVectorsResult> docs;
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code docs}
 		 */
 		public Builder docs(List<TermVectorsResult> value) {
 			this.docs = value;
@@ -103,7 +103,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code docs}
 		 */
 		public Builder docs(TermVectorsResult... value) {
 			this.docs = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(TermVectorsResult value) {
 			if (this.docs == null) {
@@ -129,7 +129,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>> fn) {
 			return this.addDocs(fn.apply(new TermVectorsResult.Builder()).build());

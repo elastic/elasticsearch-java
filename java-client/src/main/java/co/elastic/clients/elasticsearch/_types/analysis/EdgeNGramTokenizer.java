@@ -77,28 +77,28 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 	}
 
 	/**
-	 * API name: {@code custom_token_chars}
+	 * Required - API name: {@code custom_token_chars}
 	 */
 	public String customTokenChars() {
 		return this.customTokenChars;
 	}
 
 	/**
-	 * API name: {@code max_gram}
+	 * Required - API name: {@code max_gram}
 	 */
 	public int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
-	 * API name: {@code min_gram}
+	 * Required - API name: {@code min_gram}
 	 */
 	public int minGram() {
 		return this.minGram;
 	}
 
 	/**
-	 * API name: {@code token_chars}
+	 * Required - API name: {@code token_chars}
 	 */
 	public List<TokenChar> tokenChars() {
 		return this.tokenChars;
@@ -144,7 +144,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		private List<TokenChar> tokenChars;
 
 		/**
-		 * API name: {@code custom_token_chars}
+		 * Required - API name: {@code custom_token_chars}
 		 */
 		public Builder customTokenChars(String value) {
 			this.customTokenChars = value;
@@ -152,7 +152,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * API name: {@code max_gram}
+		 * Required - API name: {@code max_gram}
 		 */
 		public Builder maxGram(int value) {
 			this.maxGram = value;
@@ -160,7 +160,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * API name: {@code min_gram}
+		 * Required - API name: {@code min_gram}
 		 */
 		public Builder minGram(int value) {
 			this.minGram = value;
@@ -168,7 +168,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * API name: {@code token_chars}
+		 * Required - API name: {@code token_chars}
 		 */
 		public Builder tokenChars(List<TokenChar> value) {
 			this.tokenChars = value;
@@ -176,7 +176,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * API name: {@code token_chars}
+		 * Required - API name: {@code token_chars}
 		 */
 		public Builder tokenChars(TokenChar... value) {
 			this.tokenChars = Arrays.asList(value);
@@ -184,7 +184,7 @@ public final class EdgeNGramTokenizer extends TokenizerBase implements Tokenizer
 		}
 
 		/**
-		 * Add a value to {@link #tokenChars(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokenChars(List)}, creating the list if needed.
 		 */
 		public Builder addTokenChars(TokenChar value) {
 			if (this.tokenChars == null) {

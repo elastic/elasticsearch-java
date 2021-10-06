@@ -93,7 +93,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -227,7 +227,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		private String resourceName;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -275,7 +275,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		}
 
 		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed. 4
+		 * Add a value to {@link #properties(List)}, creating the list if needed.
 		 */
 		public Builder addProperties(String value) {
 			if (this.properties == null) {

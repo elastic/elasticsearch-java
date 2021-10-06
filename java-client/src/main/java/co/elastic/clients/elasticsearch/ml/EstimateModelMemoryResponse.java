@@ -55,7 +55,7 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code model_memory_estimate}
+	 * Required - API name: {@code model_memory_estimate}
 	 */
 	public String modelMemoryEstimate() {
 		return this.modelMemoryEstimate;
@@ -86,7 +86,7 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 		private String modelMemoryEstimate;
 
 		/**
-		 * API name: {@code model_memory_estimate}
+		 * Required - API name: {@code model_memory_estimate}
 		 */
 		public Builder modelMemoryEstimate(String value) {
 			this.modelMemoryEstimate = value;

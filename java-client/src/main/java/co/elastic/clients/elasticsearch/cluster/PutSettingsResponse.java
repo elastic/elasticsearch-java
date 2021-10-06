@@ -65,21 +65,21 @@ public final class PutSettingsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code acknowledged}
+	 * Required - API name: {@code acknowledged}
 	 */
 	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
-	 * API name: {@code persistent}
+	 * Required - API name: {@code persistent}
 	 */
 	public Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
-	 * API name: {@code transient}
+	 * Required - API name: {@code transient}
 	 */
 	public Map<String, JsonData> transient_() {
 		return this.transient_;
@@ -132,7 +132,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		private Map<String, JsonData> transient_;
 
 		/**
-		 * API name: {@code acknowledged}
+		 * Required - API name: {@code acknowledged}
 		 */
 		public Builder acknowledged(boolean value) {
 			this.acknowledged = value;
@@ -140,7 +140,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code persistent}
+		 * Required - API name: {@code persistent}
 		 */
 		public Builder persistent(Map<String, JsonData> value) {
 			this.persistent = value;
@@ -159,7 +159,7 @@ public final class PutSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transient}
+		 * Required - API name: {@code transient}
 		 */
 		public Builder transient_(Map<String, JsonData> value) {
 			this.transient_ = value;

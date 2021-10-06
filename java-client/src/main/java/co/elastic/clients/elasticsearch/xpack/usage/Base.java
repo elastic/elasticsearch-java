@@ -53,14 +53,14 @@ public class Base implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code available}
+	 * Required - API name: {@code available}
 	 */
 	public boolean available() {
 		return this.available;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
@@ -114,7 +114,7 @@ public class Base implements JsonpSerializable {
 		private Boolean enabled;
 
 		/**
-		 * API name: {@code available}
+		 * Required - API name: {@code available}
 		 */
 		public BuilderT available(boolean value) {
 			this.available = value;
@@ -122,7 +122,7 @@ public class Base implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public BuilderT enabled(boolean value) {
 			this.enabled = value;

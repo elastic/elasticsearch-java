@@ -128,7 +128,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	}
 
 	/**
-	 * Contains matching events and sequences. Also contains related metadata.
+	 * Required - Contains matching events and sequences. Also contains related
+	 * metadata.
 	 * <p>
 	 * API name: {@code hits}
 	 */
@@ -255,7 +256,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		}
 
 		/**
-		 * Contains matching events and sequences. Also contains related metadata.
+		 * Required - Contains matching events and sequences. Also contains related
+		 * metadata.
 		 * <p>
 		 * API name: {@code hits}
 		 */
@@ -265,7 +267,8 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		}
 
 		/**
-		 * Contains matching events and sequences. Also contains related metadata.
+		 * Required - Contains matching events and sequences. Also contains related
+		 * metadata.
 		 * <p>
 		 * API name: {@code hits}
 		 */

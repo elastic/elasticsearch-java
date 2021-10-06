@@ -57,14 +57,14 @@ public final class RoleMapping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public int enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * API name: {@code size}
+	 * Required - API name: {@code size}
 	 */
 	public int size() {
 		return this.size;
@@ -100,7 +100,7 @@ public final class RoleMapping implements JsonpSerializable {
 		private Integer size;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(int value) {
 			this.enabled = value;
@@ -108,7 +108,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
 		public Builder size(int value) {
 			this.size = value;

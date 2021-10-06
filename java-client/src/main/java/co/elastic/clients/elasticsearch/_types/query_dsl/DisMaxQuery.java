@@ -71,7 +71,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code queries}
+	 * Required - API name: {@code queries}
 	 */
 	public List<Query> queries() {
 		return this.queries;
@@ -118,7 +118,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		private Double tieBreaker;
 
 		/**
-		 * API name: {@code queries}
+		 * Required - API name: {@code queries}
 		 */
 		public Builder queries(List<Query> value) {
 			this.queries = value;
@@ -126,7 +126,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code queries}
+		 * Required - API name: {@code queries}
 		 */
 		public Builder queries(Query... value) {
 			this.queries = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed. 4
+		 * Add a value to {@link #queries(List)}, creating the list if needed.
 		 */
 		public Builder addQueries(Query value) {
 			if (this.queries == null) {
@@ -152,7 +152,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed. 5
+		 * Add a value to {@link #queries(List)}, creating the list if needed.
 		 */
 		public Builder addQueries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addQueries(fn.apply(new Query.Builder()).build());

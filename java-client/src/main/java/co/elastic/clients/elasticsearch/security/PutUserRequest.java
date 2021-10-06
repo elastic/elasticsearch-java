@@ -101,7 +101,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The username of the User
+	 * Required - The username of the User
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -278,7 +278,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		private Boolean enabled;
 
 		/**
-		 * The username of the User
+		 * Required - The username of the User
 		 * <p>
 		 * API name: {@code username}
 		 */
@@ -368,7 +368,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {

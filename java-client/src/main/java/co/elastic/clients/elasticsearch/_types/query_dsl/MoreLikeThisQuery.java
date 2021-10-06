@@ -186,7 +186,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code like}
+	 * Required - API name: {@code like}
 	 */
 	public List<LikeDocument> like() {
 		return this.like;
@@ -542,7 +542,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -561,7 +561,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code like}
+		 * Required - API name: {@code like}
 		 */
 		public Builder like(List<LikeDocument> value) {
 			this.like = value;
@@ -569,7 +569,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code like}
+		 * Required - API name: {@code like}
 		 */
 		public Builder like(LikeDocument... value) {
 			this.like = Arrays.asList(value);
@@ -577,7 +577,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #like(List)}, creating the list if needed. 4
+		 * Add a value to {@link #like(List)}, creating the list if needed.
 		 */
 		public Builder addLike(LikeDocument value) {
 			if (this.like == null) {
@@ -595,7 +595,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #like(List)}, creating the list if needed. 5
+		 * Add a value to {@link #like(List)}, creating the list if needed.
 		 */
 		public Builder addLike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
 			return this.addLike(fn.apply(new LikeDocument.Builder()).build());
@@ -702,7 +702,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #stopWords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopWords(List)}, creating the list if needed.
 		 */
 		public Builder addStopWords(String value) {
 			if (this.stopWords == null) {
@@ -729,7 +729,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #unlike(List)}, creating the list if needed. 4
+		 * Add a value to {@link #unlike(List)}, creating the list if needed.
 		 */
 		public Builder addUnlike(LikeDocument value) {
 			if (this.unlike == null) {
@@ -747,7 +747,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #unlike(List)}, creating the list if needed. 5
+		 * Add a value to {@link #unlike(List)}, creating the list if needed.
 		 */
 		public Builder addUnlike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
 			return this.addUnlike(fn.apply(new LikeDocument.Builder()).build());

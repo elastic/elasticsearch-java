@@ -129,21 +129,21 @@ public final class PutJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allow_lazy_open}
+	 * Required - API name: {@code allow_lazy_open}
 	 */
 	public boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
 	/**
-	 * API name: {@code analysis_config}
+	 * Required - API name: {@code analysis_config}
 	 */
 	public AnalysisConfigRead analysisConfig() {
 		return this.analysisConfig;
 	}
 
 	/**
-	 * API name: {@code analysis_limits}
+	 * Required - API name: {@code analysis_limits}
 	 */
 	public AnalysisLimits analysisLimits() {
 		return this.analysisLimits;
@@ -158,7 +158,7 @@ public final class PutJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code create_time}
+	 * Required - API name: {@code create_time}
 	 */
 	public String createTime() {
 		return this.createTime;
@@ -173,14 +173,14 @@ public final class PutJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code daily_model_snapshot_retention_after_days}
+	 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	public long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
 	/**
-	 * API name: {@code data_description}
+	 * Required - API name: {@code data_description}
 	 */
 	public DataDescription dataDescription() {
 		return this.dataDescription;
@@ -211,21 +211,21 @@ public final class PutJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code job_type}
+	 * Required - API name: {@code job_type}
 	 */
 	public String jobType() {
 		return this.jobType;
 	}
 
 	/**
-	 * API name: {@code job_version}
+	 * Required - API name: {@code job_version}
 	 */
 	public String jobVersion() {
 		return this.jobVersion;
@@ -248,7 +248,7 @@ public final class PutJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code model_snapshot_retention_days}
+	 * Required - API name: {@code model_snapshot_retention_days}
 	 */
 	public long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
@@ -263,7 +263,7 @@ public final class PutJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code results_index_name}
+	 * Required - API name: {@code results_index_name}
 	 */
 	public String resultsIndexName() {
 		return this.resultsIndexName;
@@ -444,7 +444,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		private Long resultsRetentionDays;
 
 		/**
-		 * API name: {@code allow_lazy_open}
+		 * Required - API name: {@code allow_lazy_open}
 		 */
 		public Builder allowLazyOpen(boolean value) {
 			this.allowLazyOpen = value;
@@ -452,7 +452,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_config}
+		 * Required - API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(AnalysisConfigRead value) {
 			this.analysisConfig = value;
@@ -460,14 +460,14 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_config}
+		 * Required - API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(Function<AnalysisConfigRead.Builder, ObjectBuilder<AnalysisConfigRead>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfigRead.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code analysis_limits}
+		 * Required - API name: {@code analysis_limits}
 		 */
 		public Builder analysisLimits(AnalysisLimits value) {
 			this.analysisLimits = value;
@@ -475,7 +475,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_limits}
+		 * Required - API name: {@code analysis_limits}
 		 */
 		public Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
 			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
@@ -490,7 +490,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code create_time}
+		 * Required - API name: {@code create_time}
 		 */
 		public Builder createTime(String value) {
 			this.createTime = value;
@@ -513,7 +513,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code daily_model_snapshot_retention_after_days}
+		 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 		 */
 		public Builder dailyModelSnapshotRetentionAfterDays(long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
@@ -521,7 +521,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_description}
+		 * Required - API name: {@code data_description}
 		 */
 		public Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
@@ -529,7 +529,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_description}
+		 * Required - API name: {@code data_description}
 		 */
 		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
@@ -575,7 +575,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -586,7 +586,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -594,7 +594,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_type}
+		 * Required - API name: {@code job_type}
 		 */
 		public Builder jobType(String value) {
 			this.jobType = value;
@@ -602,7 +602,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_version}
+		 * Required - API name: {@code job_version}
 		 */
 		public Builder jobVersion(String value) {
 			this.jobVersion = value;
@@ -633,7 +633,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model_snapshot_retention_days}
+		 * Required - API name: {@code model_snapshot_retention_days}
 		 */
 		public Builder modelSnapshotRetentionDays(long value) {
 			this.modelSnapshotRetentionDays = value;
@@ -649,7 +649,7 @@ public final class PutJobResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code results_index_name}
+		 * Required - API name: {@code results_index_name}
 		 */
 		public Builder resultsIndexName(String value) {
 			this.resultsIndexName = value;

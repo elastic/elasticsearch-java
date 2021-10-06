@@ -63,14 +63,14 @@ public final class TimeOfMonth implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code at}
+	 * Required - API name: {@code at}
 	 */
 	public List<String> at() {
 		return this.at;
 	}
 
 	/**
-	 * API name: {@code on}
+	 * Required - API name: {@code on}
 	 */
 	public List<Integer> on() {
 		return this.on;
@@ -116,7 +116,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		private List<Integer> on;
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(List<String> value) {
 			this.at = value;
@@ -124,7 +124,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(String... value) {
 			this.at = Arrays.asList(value);
@@ -132,7 +132,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #at(List)}, creating the list if needed. 4
+		 * Add a value to {@link #at(List)}, creating the list if needed.
 		 */
 		public Builder addAt(String value) {
 			if (this.at == null) {
@@ -143,7 +143,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code on}
+		 * Required - API name: {@code on}
 		 */
 		public Builder on(List<Integer> value) {
 			this.on = value;
@@ -151,7 +151,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code on}
+		 * Required - API name: {@code on}
 		 */
 		public Builder on(Integer... value) {
 			this.on = Arrays.asList(value);
@@ -159,7 +159,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #on(List)}, creating the list if needed. 4
+		 * Add a value to {@link #on(List)}, creating the list if needed.
 		 */
 		public Builder addOn(Integer value) {
 			if (this.on == null) {

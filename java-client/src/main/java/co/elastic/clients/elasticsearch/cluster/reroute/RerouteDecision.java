@@ -61,21 +61,21 @@ public final class RerouteDecision implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code decider}
+	 * Required - API name: {@code decider}
 	 */
 	public String decider() {
 		return this.decider;
 	}
 
 	/**
-	 * API name: {@code decision}
+	 * Required - API name: {@code decision}
 	 */
 	public String decision() {
 		return this.decision;
 	}
 
 	/**
-	 * API name: {@code explanation}
+	 * Required - API name: {@code explanation}
 	 */
 	public String explanation() {
 		return this.explanation;
@@ -116,7 +116,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		private String explanation;
 
 		/**
-		 * API name: {@code decider}
+		 * Required - API name: {@code decider}
 		 */
 		public Builder decider(String value) {
 			this.decider = value;
@@ -124,7 +124,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code decision}
+		 * Required - API name: {@code decision}
 		 */
 		public Builder decision(String value) {
 			this.decision = value;
@@ -132,7 +132,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code explanation}
+		 * Required - API name: {@code explanation}
 		 */
 		public Builder explanation(String value) {
 			this.explanation = value;

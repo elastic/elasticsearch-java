@@ -71,7 +71,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -120,7 +120,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		private List<String> properties;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -144,7 +144,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		}
 
 		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed. 4
+		 * Add a value to {@link #properties(List)}, creating the list if needed.
 		 */
 		public Builder addProperties(String value) {
 			if (this.properties == null) {

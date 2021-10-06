@@ -67,7 +67,7 @@ public final class IndexDetails implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shard_count}
+	 * Required - API name: {@code shard_count}
 	 */
 	public int shardCount() {
 		return this.shardCount;
@@ -82,14 +82,14 @@ public final class IndexDetails implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
 	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
-	 * API name: {@code max_segments_per_shard}
+	 * Required - API name: {@code max_segments_per_shard}
 	 */
 	public long maxSegmentsPerShard() {
 		return this.maxSegmentsPerShard;
@@ -140,7 +140,7 @@ public final class IndexDetails implements JsonpSerializable {
 		private Long maxSegmentsPerShard;
 
 		/**
-		 * API name: {@code shard_count}
+		 * Required - API name: {@code shard_count}
 		 */
 		public Builder shardCount(int value) {
 			this.shardCount = value;
@@ -156,7 +156,7 @@ public final class IndexDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
 		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
@@ -164,7 +164,7 @@ public final class IndexDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_segments_per_shard}
+		 * Required - API name: {@code max_segments_per_shard}
 		 */
 		public Builder maxSegmentsPerShard(long value) {
 			this.maxSegmentsPerShard = value;

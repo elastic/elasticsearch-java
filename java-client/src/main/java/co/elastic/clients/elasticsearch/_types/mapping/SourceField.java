@@ -232,7 +232,7 @@ public final class SourceField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #excludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #excludes(List)}, creating the list if needed.
 		 */
 		public Builder addExcludes(String value) {
 			if (this.excludes == null) {
@@ -259,7 +259,7 @@ public final class SourceField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #includes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #includes(List)}, creating the list if needed.
 		 */
 		public Builder addIncludes(String value) {
 			if (this.includes == null) {

@@ -60,21 +60,21 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code available_in_bytes}
+	 * Required - API name: {@code available_in_bytes}
 	 */
 	public long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
-	 * API name: {@code free_in_bytes}
+	 * Required - API name: {@code free_in_bytes}
 	 */
 	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
 	public long totalInBytes() {
 		return this.totalInBytes;
@@ -115,7 +115,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		private Long totalInBytes;
 
 		/**
-		 * API name: {@code available_in_bytes}
+		 * Required - API name: {@code available_in_bytes}
 		 */
 		public Builder availableInBytes(long value) {
 			this.availableInBytes = value;
@@ -123,7 +123,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free_in_bytes}
+		 * Required - API name: {@code free_in_bytes}
 		 */
 		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
@@ -131,7 +131,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
 		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;

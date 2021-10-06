@@ -54,7 +54,7 @@ public final class FrozenIndices extends Base {
 	}
 
 	/**
-	 * API name: {@code indices_count}
+	 * Required - API name: {@code indices_count}
 	 */
 	public long indicesCount() {
 		return this.indicesCount;
@@ -78,7 +78,7 @@ public final class FrozenIndices extends Base {
 		private Long indicesCount;
 
 		/**
-		 * API name: {@code indices_count}
+		 * Required - API name: {@code indices_count}
 		 */
 		public Builder indicesCount(long value) {
 			this.indicesCount = value;

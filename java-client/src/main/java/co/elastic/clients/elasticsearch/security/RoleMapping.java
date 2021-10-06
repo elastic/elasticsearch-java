@@ -77,28 +77,28 @@ public final class RoleMapping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * API name: {@code metadata}
+	 * Required - API name: {@code metadata}
 	 */
 	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public List<String> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code rules}
+	 * Required - API name: {@code rules}
 	 */
 	public RoleMappingRule rules() {
 		return this.rules;
@@ -178,7 +178,7 @@ public final class RoleMapping implements JsonpSerializable {
 		private List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(boolean value) {
 			this.enabled = value;
@@ -186,7 +186,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code metadata}
+		 * Required - API name: {@code metadata}
 		 */
 		public Builder metadata(Map<String, JsonData> value) {
 			this.metadata = value;
@@ -205,7 +205,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(List<String> value) {
 			this.roles = value;
@@ -213,7 +213,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(String... value) {
 			this.roles = Arrays.asList(value);
@@ -221,7 +221,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -232,7 +232,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rules}
+		 * Required - API name: {@code rules}
 		 */
 		public Builder rules(RoleMappingRule value) {
 			this.rules = value;
@@ -240,7 +240,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rules}
+		 * Required - API name: {@code rules}
 		 */
 		public Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
 			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
@@ -263,7 +263,7 @@ public final class RoleMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
 		 */
 		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
 			if (this.roleTemplates == null) {

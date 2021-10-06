@@ -93,14 +93,14 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code files}
+	 * Required - API name: {@code files}
 	 */
 	public RecoveryFiles files() {
 		return this.files;
 	}
 
 	/**
-	 * API name: {@code size}
+	 * Required - API name: {@code size}
 	 */
 	public RecoveryBytes size() {
 		return this.size;
@@ -115,7 +115,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code source_throttle_time_in_millis}
+	 * Required - API name: {@code source_throttle_time_in_millis}
 	 */
 	public String sourceThrottleTimeInMillis() {
 		return this.sourceThrottleTimeInMillis;
@@ -130,14 +130,14 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code target_throttle_time_in_millis}
+	 * Required - API name: {@code target_throttle_time_in_millis}
 	 */
 	public String targetThrottleTimeInMillis() {
 		return this.targetThrottleTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -251,7 +251,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code files}
+		 * Required - API name: {@code files}
 		 */
 		public Builder files(RecoveryFiles value) {
 			this.files = value;
@@ -259,14 +259,14 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code files}
+		 * Required - API name: {@code files}
 		 */
 		public Builder files(Function<RecoveryFiles.Builder, ObjectBuilder<RecoveryFiles>> fn) {
 			return this.files(fn.apply(new RecoveryFiles.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
 		public Builder size(RecoveryBytes value) {
 			this.size = value;
@@ -274,7 +274,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
 		public Builder size(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
 			return this.size(fn.apply(new RecoveryBytes.Builder()).build());
@@ -289,7 +289,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source_throttle_time_in_millis}
+		 * Required - API name: {@code source_throttle_time_in_millis}
 		 */
 		public Builder sourceThrottleTimeInMillis(String value) {
 			this.sourceThrottleTimeInMillis = value;
@@ -305,7 +305,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code target_throttle_time_in_millis}
+		 * Required - API name: {@code target_throttle_time_in_millis}
 		 */
 		public Builder targetThrottleTimeInMillis(String value) {
 			this.targetThrottleTimeInMillis = value;
@@ -313,7 +313,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;

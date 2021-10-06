@@ -62,7 +62,7 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * API name: {@code only_on_same_position}
+	 * Required - API name: {@code only_on_same_position}
 	 */
 	public boolean onlyOnSamePosition() {
 		return this.onlyOnSamePosition;
@@ -89,7 +89,7 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 		private Boolean onlyOnSamePosition;
 
 		/**
-		 * API name: {@code only_on_same_position}
+		 * Required - API name: {@code only_on_same_position}
 		 */
 		public Builder onlyOnSamePosition(boolean value) {
 			this.onlyOnSamePosition = value;

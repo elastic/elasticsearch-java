@@ -58,14 +58,14 @@ public final class KeyedProcessor implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code statistics}
+	 * Required - API name: {@code statistics}
 	 */
 	public Process statistics() {
 		return this.statistics;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -101,7 +101,7 @@ public final class KeyedProcessor implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code statistics}
+		 * Required - API name: {@code statistics}
 		 */
 		public Builder statistics(Process value) {
 			this.statistics = value;
@@ -109,14 +109,14 @@ public final class KeyedProcessor implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code statistics}
+		 * Required - API name: {@code statistics}
 		 */
 		public Builder statistics(Function<Process.Builder, ObjectBuilder<Process>> fn) {
 			return this.statistics(fn.apply(new Process.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

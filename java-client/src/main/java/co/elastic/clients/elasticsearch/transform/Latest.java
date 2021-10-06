@@ -62,7 +62,8 @@ public final class Latest implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the date field that is used to identify the latest documents.
+	 * Required - Specifies the date field that is used to identify the latest
+	 * documents.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -71,7 +72,8 @@ public final class Latest implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies an array of one or more fields that are used to group the data.
+	 * Required - Specifies an array of one or more fields that are used to group
+	 * the data.
 	 * <p>
 	 * API name: {@code unique_key}
 	 */
@@ -114,7 +116,8 @@ public final class Latest implements JsonpSerializable {
 		private List<String> uniqueKey;
 
 		/**
-		 * Specifies the date field that is used to identify the latest documents.
+		 * Required - Specifies the date field that is used to identify the latest
+		 * documents.
 		 * <p>
 		 * API name: {@code sort}
 		 */
@@ -124,7 +127,8 @@ public final class Latest implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies an array of one or more fields that are used to group the data.
+		 * Required - Specifies an array of one or more fields that are used to group
+		 * the data.
 		 * <p>
 		 * API name: {@code unique_key}
 		 */
@@ -134,7 +138,8 @@ public final class Latest implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies an array of one or more fields that are used to group the data.
+		 * Required - Specifies an array of one or more fields that are used to group
+		 * the data.
 		 * <p>
 		 * API name: {@code unique_key}
 		 */
@@ -144,7 +149,7 @@ public final class Latest implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed. 4
+		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed.
 		 */
 		public Builder addUniqueKey(String value) {
 			if (this.uniqueKey == null) {

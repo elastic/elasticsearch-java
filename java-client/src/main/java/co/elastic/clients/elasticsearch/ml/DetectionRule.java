@@ -191,7 +191,7 @@ public final class DetectionRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(RuleAction value) {
 			if (this.actions == null) {
@@ -226,7 +226,7 @@ public final class DetectionRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #conditions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #conditions(List)}, creating the list if needed.
 		 */
 		public Builder addConditions(RuleCondition value) {
 			if (this.conditions == null) {
@@ -244,7 +244,7 @@ public final class DetectionRule implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #conditions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #conditions(List)}, creating the list if needed.
 		 */
 		public Builder addConditions(Function<RuleCondition.Builder, ObjectBuilder<RuleCondition>> fn) {
 			return this.addConditions(fn.apply(new RuleCondition.Builder()).build());

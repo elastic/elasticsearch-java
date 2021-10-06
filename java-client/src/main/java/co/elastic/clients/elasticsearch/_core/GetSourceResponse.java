@@ -59,7 +59,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -87,7 +87,7 @@ public final class GetSourceResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

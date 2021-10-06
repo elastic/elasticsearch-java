@@ -68,7 +68,7 @@ public final class RescoreQuery implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code rescore_query}
+	 * Required - API name: {@code rescore_query}
 	 */
 	public Query query() {
 		return this.query;
@@ -150,7 +150,7 @@ public final class RescoreQuery implements JsonpSerializable {
 		private ScoreMode scoreMode;
 
 		/**
-		 * API name: {@code rescore_query}
+		 * Required - API name: {@code rescore_query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -158,7 +158,7 @@ public final class RescoreQuery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rescore_query}
+		 * Required - API name: {@code rescore_query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());

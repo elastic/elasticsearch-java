@@ -43,7 +43,9 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 	public static final String CUSTOM = "custom";
 	public static final String FINGERPRINT = "fingerprint";
+	public static final String ICU_ANALYZER = "icu_analyzer";
 	public static final String KEYWORD = "keyword";
+	public static final String KUROMOJI = "kuromoji";
 	public static final String LANGUAGE = "language";
 	public static final String NORI = "nori";
 	public static final String PATTERN = "pattern";
@@ -51,8 +53,6 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	public static final String STANDARD = "standard";
 	public static final String STOP = "stop";
 	public static final String WHITESPACE = "whitespace";
-	public static final String ICU_ANALYZER = "icu_analyzer";
-	public static final String KUROMOJI = "kuromoji";
 
 	// Tagged union implementation
 
@@ -74,6 +74,10 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		this._type = Objects.requireNonNull(value._variantType(), "variant type");
 		this._value = Objects.requireNonNull(value, "variant value");
 
+	}
+
+	public <T extends AnalyzerVariant> Analyzer(ObjectBuilder<T> builder) {
+		this(builder.build());
 	}
 
 	private Analyzer(Builder builder) {
@@ -108,6 +112,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	}
 
 	/**
+	 * Get the {@code icu_analyzer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code icu_analyzer} kind.
+	 */
+	public IcuAnalyzer icuAnalyzer() {
+		return TaggedUnionUtils.get(this, ICU_ANALYZER);
+	}
+
+	/**
 	 * Get the {@code keyword} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -115,6 +129,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 	 */
 	public KeywordAnalyzer keyword() {
 		return TaggedUnionUtils.get(this, KEYWORD);
+	}
+
+	/**
+	 * Get the {@code kuromoji} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kuromoji} kind.
+	 */
+	public KuromojiAnalyzer kuromoji() {
+		return TaggedUnionUtils.get(this, KUROMOJI);
 	}
 
 	/**
@@ -187,26 +211,6 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		return TaggedUnionUtils.get(this, WHITESPACE);
 	}
 
-	/**
-	 * Get the {@code icu_analyzer} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code icu_analyzer} kind.
-	 */
-	public IcuAnalyzer icuAnalyzer() {
-		return TaggedUnionUtils.get(this, ICU_ANALYZER);
-	}
-
-	/**
-	 * Get the {@code kuromoji} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code kuromoji} kind.
-	 */
-	public KuromojiAnalyzer kuromoji() {
-		return TaggedUnionUtils.get(this, KUROMOJI);
-	}
-
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -238,6 +242,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 			return this.fingerprint(f.apply(new FingerprintAnalyzer.Builder()).build());
 		}
 
+		public Builder icuAnalyzer(IcuAnalyzer v) {
+			this._type = ICU_ANALYZER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder icuAnalyzer(Function<IcuAnalyzer.Builder, ObjectBuilder<IcuAnalyzer>> f) {
+			return this.icuAnalyzer(f.apply(new IcuAnalyzer.Builder()).build());
+		}
+
 		public Builder keyword(KeywordAnalyzer v) {
 			this._type = KEYWORD;
 			this._value = v;
@@ -246,6 +260,16 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 		public Builder keyword(Function<KeywordAnalyzer.Builder, ObjectBuilder<KeywordAnalyzer>> f) {
 			return this.keyword(f.apply(new KeywordAnalyzer.Builder()).build());
+		}
+
+		public Builder kuromoji(KuromojiAnalyzer v) {
+			this._type = KUROMOJI;
+			this._value = v;
+			return this;
+		}
+
+		public Builder kuromoji(Function<KuromojiAnalyzer.Builder, ObjectBuilder<KuromojiAnalyzer>> f) {
+			return this.kuromoji(f.apply(new KuromojiAnalyzer.Builder()).build());
 		}
 
 		public Builder language(LanguageAnalyzer v) {
@@ -318,26 +342,6 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 			return this.whitespace(f.apply(new WhitespaceAnalyzer.Builder()).build());
 		}
 
-		public Builder icuAnalyzer(IcuAnalyzer v) {
-			this._type = ICU_ANALYZER;
-			this._value = v;
-			return this;
-		}
-
-		public Builder icuAnalyzer(Function<IcuAnalyzer.Builder, ObjectBuilder<IcuAnalyzer>> f) {
-			return this.icuAnalyzer(f.apply(new IcuAnalyzer.Builder()).build());
-		}
-
-		public Builder kuromoji(KuromojiAnalyzer v) {
-			this._type = KUROMOJI;
-			this._value = v;
-			return this;
-		}
-
-		public Builder kuromoji(Function<KuromojiAnalyzer.Builder, ObjectBuilder<KuromojiAnalyzer>> f) {
-			return this.kuromoji(f.apply(new KuromojiAnalyzer.Builder()).build());
-		}
-
 		public Analyzer build() {
 			return new Analyzer(this);
 		}
@@ -348,7 +352,9 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 
 		op.add(Builder::custom, CustomAnalyzer._DESERIALIZER, "custom");
 		op.add(Builder::fingerprint, FingerprintAnalyzer._DESERIALIZER, "fingerprint");
+		op.add(Builder::icuAnalyzer, IcuAnalyzer._DESERIALIZER, "icu_analyzer");
 		op.add(Builder::keyword, KeywordAnalyzer._DESERIALIZER, "keyword");
+		op.add(Builder::kuromoji, KuromojiAnalyzer._DESERIALIZER, "kuromoji");
 		op.add(Builder::language, LanguageAnalyzer._DESERIALIZER, "language");
 		op.add(Builder::nori, NoriAnalyzer._DESERIALIZER, "nori");
 		op.add(Builder::pattern, PatternAnalyzer._DESERIALIZER, "pattern");
@@ -356,8 +362,6 @@ public class Analyzer implements TaggedUnion<JsonpSerializable>, JsonpSerializab
 		op.add(Builder::standard, StandardAnalyzer._DESERIALIZER, "standard");
 		op.add(Builder::stop, StopAnalyzer._DESERIALIZER, "stop");
 		op.add(Builder::whitespace, WhitespaceAnalyzer._DESERIALIZER, "whitespace");
-		op.add(Builder::icuAnalyzer, IcuAnalyzer._DESERIALIZER, "icu_analyzer");
-		op.add(Builder::kuromoji, KuromojiAnalyzer._DESERIALIZER, "kuromoji");
 
 		op.setTypeProperty("type");
 

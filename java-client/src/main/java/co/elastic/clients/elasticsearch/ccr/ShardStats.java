@@ -160,21 +160,21 @@ public final class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bytes_read}
+	 * Required - API name: {@code bytes_read}
 	 */
 	public long bytesRead() {
 		return this.bytesRead;
 	}
 
 	/**
-	 * API name: {@code failed_read_requests}
+	 * Required - API name: {@code failed_read_requests}
 	 */
 	public long failedReadRequests() {
 		return this.failedReadRequests;
 	}
 
 	/**
-	 * API name: {@code failed_write_requests}
+	 * Required - API name: {@code failed_write_requests}
 	 */
 	public long failedWriteRequests() {
 		return this.failedWriteRequests;
@@ -189,175 +189,175 @@ public final class ShardStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code follower_aliases_version}
+	 * Required - API name: {@code follower_aliases_version}
 	 */
 	public long followerAliasesVersion() {
 		return this.followerAliasesVersion;
 	}
 
 	/**
-	 * API name: {@code follower_global_checkpoint}
+	 * Required - API name: {@code follower_global_checkpoint}
 	 */
 	public long followerGlobalCheckpoint() {
 		return this.followerGlobalCheckpoint;
 	}
 
 	/**
-	 * API name: {@code follower_index}
+	 * Required - API name: {@code follower_index}
 	 */
 	public String followerIndex() {
 		return this.followerIndex;
 	}
 
 	/**
-	 * API name: {@code follower_mapping_version}
+	 * Required - API name: {@code follower_mapping_version}
 	 */
 	public long followerMappingVersion() {
 		return this.followerMappingVersion;
 	}
 
 	/**
-	 * API name: {@code follower_max_seq_no}
+	 * Required - API name: {@code follower_max_seq_no}
 	 */
 	public int followerMaxSeqNo() {
 		return this.followerMaxSeqNo;
 	}
 
 	/**
-	 * API name: {@code follower_settings_version}
+	 * Required - API name: {@code follower_settings_version}
 	 */
 	public long followerSettingsVersion() {
 		return this.followerSettingsVersion;
 	}
 
 	/**
-	 * API name: {@code last_requested_seq_no}
+	 * Required - API name: {@code last_requested_seq_no}
 	 */
 	public int lastRequestedSeqNo() {
 		return this.lastRequestedSeqNo;
 	}
 
 	/**
-	 * API name: {@code leader_global_checkpoint}
+	 * Required - API name: {@code leader_global_checkpoint}
 	 */
 	public long leaderGlobalCheckpoint() {
 		return this.leaderGlobalCheckpoint;
 	}
 
 	/**
-	 * API name: {@code leader_index}
+	 * Required - API name: {@code leader_index}
 	 */
 	public String leaderIndex() {
 		return this.leaderIndex;
 	}
 
 	/**
-	 * API name: {@code leader_max_seq_no}
+	 * Required - API name: {@code leader_max_seq_no}
 	 */
 	public int leaderMaxSeqNo() {
 		return this.leaderMaxSeqNo;
 	}
 
 	/**
-	 * API name: {@code operations_read}
+	 * Required - API name: {@code operations_read}
 	 */
 	public long operationsRead() {
 		return this.operationsRead;
 	}
 
 	/**
-	 * API name: {@code operations_written}
+	 * Required - API name: {@code operations_written}
 	 */
 	public long operationsWritten() {
 		return this.operationsWritten;
 	}
 
 	/**
-	 * API name: {@code outstanding_read_requests}
+	 * Required - API name: {@code outstanding_read_requests}
 	 */
 	public int outstandingReadRequests() {
 		return this.outstandingReadRequests;
 	}
 
 	/**
-	 * API name: {@code outstanding_write_requests}
+	 * Required - API name: {@code outstanding_write_requests}
 	 */
 	public int outstandingWriteRequests() {
 		return this.outstandingWriteRequests;
 	}
 
 	/**
-	 * API name: {@code read_exceptions}
+	 * Required - API name: {@code read_exceptions}
 	 */
 	public List<ReadException> readExceptions() {
 		return this.readExceptions;
 	}
 
 	/**
-	 * API name: {@code remote_cluster}
+	 * Required - API name: {@code remote_cluster}
 	 */
 	public String remoteCluster() {
 		return this.remoteCluster;
 	}
 
 	/**
-	 * API name: {@code shard_id}
+	 * Required - API name: {@code shard_id}
 	 */
 	public int shardId() {
 		return this.shardId;
 	}
 
 	/**
-	 * API name: {@code successful_read_requests}
+	 * Required - API name: {@code successful_read_requests}
 	 */
 	public long successfulReadRequests() {
 		return this.successfulReadRequests;
 	}
 
 	/**
-	 * API name: {@code successful_write_requests}
+	 * Required - API name: {@code successful_write_requests}
 	 */
 	public long successfulWriteRequests() {
 		return this.successfulWriteRequests;
 	}
 
 	/**
-	 * API name: {@code time_since_last_read_millis}
+	 * Required - API name: {@code time_since_last_read_millis}
 	 */
 	public String timeSinceLastReadMillis() {
 		return this.timeSinceLastReadMillis;
 	}
 
 	/**
-	 * API name: {@code total_read_remote_exec_time_millis}
+	 * Required - API name: {@code total_read_remote_exec_time_millis}
 	 */
 	public String totalReadRemoteExecTimeMillis() {
 		return this.totalReadRemoteExecTimeMillis;
 	}
 
 	/**
-	 * API name: {@code total_read_time_millis}
+	 * Required - API name: {@code total_read_time_millis}
 	 */
 	public String totalReadTimeMillis() {
 		return this.totalReadTimeMillis;
 	}
 
 	/**
-	 * API name: {@code total_write_time_millis}
+	 * Required - API name: {@code total_write_time_millis}
 	 */
 	public String totalWriteTimeMillis() {
 		return this.totalWriteTimeMillis;
 	}
 
 	/**
-	 * API name: {@code write_buffer_operation_count}
+	 * Required - API name: {@code write_buffer_operation_count}
 	 */
 	public long writeBufferOperationCount() {
 		return this.writeBufferOperationCount;
 	}
 
 	/**
-	 * API name: {@code write_buffer_size_in_bytes}
+	 * Required - API name: {@code write_buffer_size_in_bytes}
 	 */
 	public String writeBufferSizeInBytes() {
 		return this.writeBufferSizeInBytes;
@@ -538,7 +538,7 @@ public final class ShardStats implements JsonpSerializable {
 		private String writeBufferSizeInBytes;
 
 		/**
-		 * API name: {@code bytes_read}
+		 * Required - API name: {@code bytes_read}
 		 */
 		public Builder bytesRead(long value) {
 			this.bytesRead = value;
@@ -546,7 +546,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failed_read_requests}
+		 * Required - API name: {@code failed_read_requests}
 		 */
 		public Builder failedReadRequests(long value) {
 			this.failedReadRequests = value;
@@ -554,7 +554,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failed_write_requests}
+		 * Required - API name: {@code failed_write_requests}
 		 */
 		public Builder failedWriteRequests(long value) {
 			this.failedWriteRequests = value;
@@ -577,7 +577,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follower_aliases_version}
+		 * Required - API name: {@code follower_aliases_version}
 		 */
 		public Builder followerAliasesVersion(long value) {
 			this.followerAliasesVersion = value;
@@ -585,7 +585,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follower_global_checkpoint}
+		 * Required - API name: {@code follower_global_checkpoint}
 		 */
 		public Builder followerGlobalCheckpoint(long value) {
 			this.followerGlobalCheckpoint = value;
@@ -593,7 +593,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follower_index}
+		 * Required - API name: {@code follower_index}
 		 */
 		public Builder followerIndex(String value) {
 			this.followerIndex = value;
@@ -601,7 +601,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follower_mapping_version}
+		 * Required - API name: {@code follower_mapping_version}
 		 */
 		public Builder followerMappingVersion(long value) {
 			this.followerMappingVersion = value;
@@ -609,7 +609,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follower_max_seq_no}
+		 * Required - API name: {@code follower_max_seq_no}
 		 */
 		public Builder followerMaxSeqNo(int value) {
 			this.followerMaxSeqNo = value;
@@ -617,7 +617,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code follower_settings_version}
+		 * Required - API name: {@code follower_settings_version}
 		 */
 		public Builder followerSettingsVersion(long value) {
 			this.followerSettingsVersion = value;
@@ -625,7 +625,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code last_requested_seq_no}
+		 * Required - API name: {@code last_requested_seq_no}
 		 */
 		public Builder lastRequestedSeqNo(int value) {
 			this.lastRequestedSeqNo = value;
@@ -633,7 +633,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code leader_global_checkpoint}
+		 * Required - API name: {@code leader_global_checkpoint}
 		 */
 		public Builder leaderGlobalCheckpoint(long value) {
 			this.leaderGlobalCheckpoint = value;
@@ -641,7 +641,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code leader_index}
+		 * Required - API name: {@code leader_index}
 		 */
 		public Builder leaderIndex(String value) {
 			this.leaderIndex = value;
@@ -649,7 +649,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code leader_max_seq_no}
+		 * Required - API name: {@code leader_max_seq_no}
 		 */
 		public Builder leaderMaxSeqNo(int value) {
 			this.leaderMaxSeqNo = value;
@@ -657,7 +657,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code operations_read}
+		 * Required - API name: {@code operations_read}
 		 */
 		public Builder operationsRead(long value) {
 			this.operationsRead = value;
@@ -665,7 +665,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code operations_written}
+		 * Required - API name: {@code operations_written}
 		 */
 		public Builder operationsWritten(long value) {
 			this.operationsWritten = value;
@@ -673,7 +673,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code outstanding_read_requests}
+		 * Required - API name: {@code outstanding_read_requests}
 		 */
 		public Builder outstandingReadRequests(int value) {
 			this.outstandingReadRequests = value;
@@ -681,7 +681,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code outstanding_write_requests}
+		 * Required - API name: {@code outstanding_write_requests}
 		 */
 		public Builder outstandingWriteRequests(int value) {
 			this.outstandingWriteRequests = value;
@@ -689,7 +689,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code read_exceptions}
+		 * Required - API name: {@code read_exceptions}
 		 */
 		public Builder readExceptions(List<ReadException> value) {
 			this.readExceptions = value;
@@ -697,7 +697,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code read_exceptions}
+		 * Required - API name: {@code read_exceptions}
 		 */
 		public Builder readExceptions(ReadException... value) {
 			this.readExceptions = Arrays.asList(value);
@@ -705,7 +705,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #readExceptions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #readExceptions(List)}, creating the list if needed.
 		 */
 		public Builder addReadExceptions(ReadException value) {
 			if (this.readExceptions == null) {
@@ -723,14 +723,14 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #readExceptions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #readExceptions(List)}, creating the list if needed.
 		 */
 		public Builder addReadExceptions(Function<ReadException.Builder, ObjectBuilder<ReadException>> fn) {
 			return this.addReadExceptions(fn.apply(new ReadException.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code remote_cluster}
+		 * Required - API name: {@code remote_cluster}
 		 */
 		public Builder remoteCluster(String value) {
 			this.remoteCluster = value;
@@ -738,7 +738,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard_id}
+		 * Required - API name: {@code shard_id}
 		 */
 		public Builder shardId(int value) {
 			this.shardId = value;
@@ -746,7 +746,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code successful_read_requests}
+		 * Required - API name: {@code successful_read_requests}
 		 */
 		public Builder successfulReadRequests(long value) {
 			this.successfulReadRequests = value;
@@ -754,7 +754,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code successful_write_requests}
+		 * Required - API name: {@code successful_write_requests}
 		 */
 		public Builder successfulWriteRequests(long value) {
 			this.successfulWriteRequests = value;
@@ -762,7 +762,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_since_last_read_millis}
+		 * Required - API name: {@code time_since_last_read_millis}
 		 */
 		public Builder timeSinceLastReadMillis(String value) {
 			this.timeSinceLastReadMillis = value;
@@ -770,7 +770,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_read_remote_exec_time_millis}
+		 * Required - API name: {@code total_read_remote_exec_time_millis}
 		 */
 		public Builder totalReadRemoteExecTimeMillis(String value) {
 			this.totalReadRemoteExecTimeMillis = value;
@@ -778,7 +778,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_read_time_millis}
+		 * Required - API name: {@code total_read_time_millis}
 		 */
 		public Builder totalReadTimeMillis(String value) {
 			this.totalReadTimeMillis = value;
@@ -786,7 +786,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_write_time_millis}
+		 * Required - API name: {@code total_write_time_millis}
 		 */
 		public Builder totalWriteTimeMillis(String value) {
 			this.totalWriteTimeMillis = value;
@@ -794,7 +794,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code write_buffer_operation_count}
+		 * Required - API name: {@code write_buffer_operation_count}
 		 */
 		public Builder writeBufferOperationCount(long value) {
 			this.writeBufferOperationCount = value;
@@ -802,7 +802,7 @@ public final class ShardStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code write_buffer_size_in_bytes}
+		 * Required - API name: {@code write_buffer_size_in_bytes}
 		 */
 		public Builder writeBufferSizeInBytes(String value) {
 			this.writeBufferSizeInBytes = value;

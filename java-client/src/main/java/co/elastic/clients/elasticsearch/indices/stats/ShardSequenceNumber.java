@@ -61,21 +61,21 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code global_checkpoint}
+	 * Required - API name: {@code global_checkpoint}
 	 */
 	public long globalCheckpoint() {
 		return this.globalCheckpoint;
 	}
 
 	/**
-	 * API name: {@code local_checkpoint}
+	 * Required - API name: {@code local_checkpoint}
 	 */
 	public long localCheckpoint() {
 		return this.localCheckpoint;
 	}
 
 	/**
-	 * API name: {@code max_seq_no}
+	 * Required - API name: {@code max_seq_no}
 	 */
 	public int maxSeqNo() {
 		return this.maxSeqNo;
@@ -116,7 +116,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		private Integer maxSeqNo;
 
 		/**
-		 * API name: {@code global_checkpoint}
+		 * Required - API name: {@code global_checkpoint}
 		 */
 		public Builder globalCheckpoint(long value) {
 			this.globalCheckpoint = value;
@@ -124,7 +124,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code local_checkpoint}
+		 * Required - API name: {@code local_checkpoint}
 		 */
 		public Builder localCheckpoint(long value) {
 			this.localCheckpoint = value;
@@ -132,7 +132,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_seq_no}
+		 * Required - API name: {@code max_seq_no}
 		 */
 		public Builder maxSeqNo(int value) {
 			this.maxSeqNo = value;

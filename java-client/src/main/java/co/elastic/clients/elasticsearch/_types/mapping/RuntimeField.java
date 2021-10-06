@@ -80,7 +80,7 @@ public final class RuntimeField implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public RuntimeFieldType type() {
 		return this.type;
@@ -146,7 +146,7 @@ public final class RuntimeField implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(RuntimeFieldType value) {
 			this.type = value;

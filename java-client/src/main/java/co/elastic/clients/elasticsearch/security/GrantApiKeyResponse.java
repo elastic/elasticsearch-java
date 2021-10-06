@@ -65,21 +65,21 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code api_key}
+	 * Required - API name: {@code api_key}
 	 */
 	public String apiKey() {
 		return this.apiKey;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -138,7 +138,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		private String expiration;
 
 		/**
-		 * API name: {@code api_key}
+		 * Required - API name: {@code api_key}
 		 */
 		public Builder apiKey(String value) {
 			this.apiKey = value;
@@ -146,7 +146,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -154,7 +154,7 @@ public final class GrantApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

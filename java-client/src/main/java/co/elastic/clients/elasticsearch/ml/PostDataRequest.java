@@ -81,7 +81,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * The name of the job receiving the data
+	 * Required - The name of the job receiving the data
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -110,7 +110,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -151,7 +151,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		private JsonpSerializer<TData> tDataSerializer;
 
 		/**
-		 * The name of the job receiving the data
+		 * Required - The name of the job receiving the data
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -181,7 +181,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -191,7 +191,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -201,7 +201,7 @@ public final class PostDataRequest<TData> extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed. 4
+		 * Add a value to {@link #data(List)}, creating the list if needed.
 		 */
 		public Builder<TData> addData(TData value) {
 			if (this.data == null) {

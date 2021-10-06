@@ -67,7 +67,7 @@ public final class DotExpanderProcessor extends ProcessorBase implements Process
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -111,7 +111,7 @@ public final class DotExpanderProcessor extends ProcessorBase implements Process
 		private String path;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

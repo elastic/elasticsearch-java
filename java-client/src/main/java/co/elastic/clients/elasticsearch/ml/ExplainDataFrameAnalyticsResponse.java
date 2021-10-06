@@ -61,8 +61,8 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 	}
 
 	/**
-	 * An array of objects that explain selection for each field, sorted by the
-	 * field names.
+	 * Required - An array of objects that explain selection for each field, sorted
+	 * by the field names.
 	 * <p>
 	 * API name: {@code field_selection}
 	 */
@@ -71,8 +71,8 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 	}
 
 	/**
-	 * An array of objects that explain selection for each field, sorted by the
-	 * field names.
+	 * Required - An array of objects that explain selection for each field, sorted
+	 * by the field names.
 	 * <p>
 	 * API name: {@code memory_estimation}
 	 */
@@ -115,8 +115,8 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		private DataframeAnalyticsMemoryEstimation memoryEstimation;
 
 		/**
-		 * An array of objects that explain selection for each field, sorted by the
-		 * field names.
+		 * Required - An array of objects that explain selection for each field, sorted
+		 * by the field names.
 		 * <p>
 		 * API name: {@code field_selection}
 		 */
@@ -126,8 +126,8 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * An array of objects that explain selection for each field, sorted by the
-		 * field names.
+		 * Required - An array of objects that explain selection for each field, sorted
+		 * by the field names.
 		 * <p>
 		 * API name: {@code field_selection}
 		 */
@@ -137,7 +137,7 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed.
 		 */
 		public Builder addFieldSelection(DataframeAnalyticsFieldSelection value) {
 			if (this.fieldSelection == null) {
@@ -156,7 +156,7 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed. 5
+		 * Add a value to {@link #fieldSelection(List)}, creating the list if needed.
 		 */
 		public Builder addFieldSelection(
 				Function<DataframeAnalyticsFieldSelection.Builder, ObjectBuilder<DataframeAnalyticsFieldSelection>> fn) {
@@ -164,8 +164,8 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * An array of objects that explain selection for each field, sorted by the
-		 * field names.
+		 * Required - An array of objects that explain selection for each field, sorted
+		 * by the field names.
 		 * <p>
 		 * API name: {@code memory_estimation}
 		 */
@@ -175,8 +175,8 @@ public final class ExplainDataFrameAnalyticsResponse implements JsonpSerializabl
 		}
 
 		/**
-		 * An array of objects that explain selection for each field, sorted by the
-		 * field names.
+		 * Required - An array of objects that explain selection for each field, sorted
+		 * by the field names.
 		 * <p>
 		 * API name: {@code memory_estimation}
 		 */

@@ -139,7 +139,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed. 4
+		 * Add a value to {@link #repository(List)}, creating the list if needed.
 		 */
 		public Builder addRepository(String value) {
 			if (this.repository == null) {

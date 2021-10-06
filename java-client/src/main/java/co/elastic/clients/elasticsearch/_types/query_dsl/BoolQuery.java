@@ -217,7 +217,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(Query value) {
 			if (this.filter == null) {
@@ -235,7 +235,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 5
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addFilter(fn.apply(new Query.Builder()).build());
@@ -266,7 +266,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed. 4
+		 * Add a value to {@link #must(List)}, creating the list if needed.
 		 */
 		public Builder addMust(Query value) {
 			if (this.must == null) {
@@ -284,7 +284,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed. 5
+		 * Add a value to {@link #must(List)}, creating the list if needed.
 		 */
 		public Builder addMust(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addMust(fn.apply(new Query.Builder()).build());
@@ -307,7 +307,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed. 4
+		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
 		 */
 		public Builder addMustNot(Query value) {
 			if (this.mustNot == null) {
@@ -325,7 +325,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed. 5
+		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
 		 */
 		public Builder addMustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addMustNot(fn.apply(new Query.Builder()).build());
@@ -348,7 +348,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed. 4
+		 * Add a value to {@link #should(List)}, creating the list if needed.
 		 */
 		public Builder addShould(Query value) {
 			if (this.should == null) {
@@ -366,7 +366,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed. 5
+		 * Add a value to {@link #should(List)}, creating the list if needed.
 		 */
 		public Builder addShould(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.addShould(fn.apply(new Query.Builder()).build());

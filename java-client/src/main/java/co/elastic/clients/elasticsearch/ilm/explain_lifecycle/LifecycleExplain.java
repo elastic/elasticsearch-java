@@ -66,6 +66,10 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 
 	}
 
+	public <T extends LifecycleExplainVariant> LifecycleExplain(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private LifecycleExplain(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

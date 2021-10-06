@@ -69,7 +69,7 @@ public final class WatcherWatch implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code input}
+	 * Required - API name: {@code input}
 	 */
 	public Map<String, Counter> input() {
 		return this.input;
@@ -92,7 +92,7 @@ public final class WatcherWatch implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code trigger}
+	 * Required - API name: {@code trigger}
 	 */
 	public WatcherWatchTrigger trigger() {
 		return this.trigger;
@@ -165,7 +165,7 @@ public final class WatcherWatch implements JsonpSerializable {
 		private WatcherWatchTrigger trigger;
 
 		/**
-		 * API name: {@code input}
+		 * Required - API name: {@code input}
 		 */
 		public Builder input(Map<String, Counter> value) {
 			this.input = value;
@@ -264,7 +264,7 @@ public final class WatcherWatch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trigger}
+		 * Required - API name: {@code trigger}
 		 */
 		public Builder trigger(WatcherWatchTrigger value) {
 			this.trigger = value;
@@ -272,7 +272,7 @@ public final class WatcherWatch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trigger}
+		 * Required - API name: {@code trigger}
 		 */
 		public Builder trigger(Function<WatcherWatchTrigger.Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
 			return this.trigger(fn.apply(new WatcherWatchTrigger.Builder()).build());

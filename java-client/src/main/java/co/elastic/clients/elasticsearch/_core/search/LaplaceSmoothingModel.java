@@ -62,7 +62,7 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 	}
 
 	/**
-	 * API name: {@code alpha}
+	 * Required - API name: {@code alpha}
 	 */
 	public double alpha() {
 		return this.alpha;
@@ -93,7 +93,7 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 		private Double alpha;
 
 		/**
-		 * API name: {@code alpha}
+		 * Required - API name: {@code alpha}
 		 */
 		public Builder alpha(double value) {
 			this.alpha = value;

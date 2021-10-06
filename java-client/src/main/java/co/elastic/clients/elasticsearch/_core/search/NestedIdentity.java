@@ -63,14 +63,14 @@ public final class NestedIdentity implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code offset}
+	 * Required - API name: {@code offset}
 	 */
 	public int offset() {
 		return this.offset;
@@ -124,7 +124,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		private NestedIdentity nested;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -132,7 +132,7 @@ public final class NestedIdentity implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code offset}
+		 * Required - API name: {@code offset}
 		 */
 		public Builder offset(int value) {
 			this.offset = value;

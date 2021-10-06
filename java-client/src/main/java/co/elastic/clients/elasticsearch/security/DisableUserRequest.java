@@ -64,7 +64,7 @@ public final class DisableUserRequest extends RequestBase {
 	}
 
 	/**
-	 * The username of the user to disable
+	 * Required - The username of the user to disable
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -97,7 +97,7 @@ public final class DisableUserRequest extends RequestBase {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * The username of the user to disable
+		 * Required - The username of the user to disable
 		 * <p>
 		 * API name: {@code username}
 		 */

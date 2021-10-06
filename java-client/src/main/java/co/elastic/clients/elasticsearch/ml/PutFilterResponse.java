@@ -65,21 +65,21 @@ public final class PutFilterResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code filter_id}
+	 * Required - API name: {@code filter_id}
 	 */
 	public String filterId() {
 		return this.filterId;
 	}
 
 	/**
-	 * API name: {@code items}
+	 * Required - API name: {@code items}
 	 */
 	public List<String> items() {
 		return this.items;
@@ -125,7 +125,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		private List<String> items;
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -133,7 +133,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filter_id}
+		 * Required - API name: {@code filter_id}
 		 */
 		public Builder filterId(String value) {
 			this.filterId = value;
@@ -141,7 +141,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(List<String> value) {
 			this.items = value;
@@ -149,7 +149,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(String... value) {
 			this.items = Arrays.asList(value);
@@ -157,7 +157,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed. 4
+		 * Add a value to {@link #items(List)}, creating the list if needed.
 		 */
 		public Builder addItems(String value) {
 			if (this.items == null) {

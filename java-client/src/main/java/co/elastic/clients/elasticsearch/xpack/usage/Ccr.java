@@ -58,14 +58,14 @@ public final class Ccr extends Base {
 	}
 
 	/**
-	 * API name: {@code auto_follow_patterns_count}
+	 * Required - API name: {@code auto_follow_patterns_count}
 	 */
 	public int autoFollowPatternsCount() {
 		return this.autoFollowPatternsCount;
 	}
 
 	/**
-	 * API name: {@code follower_indices_count}
+	 * Required - API name: {@code follower_indices_count}
 	 */
 	public int followerIndicesCount() {
 		return this.followerIndicesCount;
@@ -94,7 +94,7 @@ public final class Ccr extends Base {
 		private Integer followerIndicesCount;
 
 		/**
-		 * API name: {@code auto_follow_patterns_count}
+		 * Required - API name: {@code auto_follow_patterns_count}
 		 */
 		public Builder autoFollowPatternsCount(int value) {
 			this.autoFollowPatternsCount = value;
@@ -102,7 +102,7 @@ public final class Ccr extends Base {
 		}
 
 		/**
-		 * API name: {@code follower_indices_count}
+		 * Required - API name: {@code follower_indices_count}
 		 */
 		public Builder followerIndicesCount(int value) {
 			this.followerIndicesCount = value;

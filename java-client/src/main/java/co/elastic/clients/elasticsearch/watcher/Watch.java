@@ -91,21 +91,21 @@ public final class Watch implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public Map<String, Action> actions() {
 		return this.actions;
 	}
 
 	/**
-	 * API name: {@code condition}
+	 * Required - API name: {@code condition}
 	 */
 	public Condition condition() {
 		return this.condition;
 	}
 
 	/**
-	 * API name: {@code input}
+	 * Required - API name: {@code input}
 	 */
 	public Input input() {
 		return this.input;
@@ -144,7 +144,7 @@ public final class Watch implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code trigger}
+	 * Required - API name: {@code trigger}
 	 */
 	public Trigger trigger() {
 		return this.trigger;
@@ -257,7 +257,7 @@ public final class Watch implements JsonpSerializable {
 		private Long throttlePeriodInMillis;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(Map<String, Action> value) {
 			this.actions = value;
@@ -290,7 +290,7 @@ public final class Watch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code condition}
+		 * Required - API name: {@code condition}
 		 */
 		public Builder condition(Condition value) {
 			this.condition = value;
@@ -298,14 +298,14 @@ public final class Watch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code condition}
+		 * Required - API name: {@code condition}
 		 */
 		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code input}
+		 * Required - API name: {@code input}
 		 */
 		public Builder input(Input value) {
 			this.input = value;
@@ -313,7 +313,7 @@ public final class Watch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input}
+		 * Required - API name: {@code input}
 		 */
 		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
@@ -377,7 +377,7 @@ public final class Watch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trigger}
+		 * Required - API name: {@code trigger}
 		 */
 		public Builder trigger(Trigger value) {
 			this.trigger = value;
@@ -385,7 +385,7 @@ public final class Watch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trigger}
+		 * Required - API name: {@code trigger}
 		 */
 		public Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());

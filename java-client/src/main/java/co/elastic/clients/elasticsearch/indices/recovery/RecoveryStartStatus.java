@@ -59,14 +59,14 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code check_index_time}
+	 * Required - API name: {@code check_index_time}
 	 */
 	public long checkIndexTime() {
 		return this.checkIndexTime;
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -102,7 +102,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		private String totalTimeInMillis;
 
 		/**
-		 * API name: {@code check_index_time}
+		 * Required - API name: {@code check_index_time}
 		 */
 		public Builder checkIndexTime(long value) {
 			this.checkIndexTime = value;
@@ -110,7 +110,7 @@ public final class RecoveryStartStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;

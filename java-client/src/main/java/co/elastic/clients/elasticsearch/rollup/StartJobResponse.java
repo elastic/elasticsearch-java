@@ -54,7 +54,7 @@ public final class StartJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code started}
+	 * Required - API name: {@code started}
 	 */
 	public boolean started() {
 		return this.started;
@@ -85,7 +85,7 @@ public final class StartJobResponse implements JsonpSerializable {
 		private Boolean started;
 
 		/**
-		 * API name: {@code started}
+		 * Required - API name: {@code started}
 		 */
 		public Builder started(boolean value) {
 			this.started = value;

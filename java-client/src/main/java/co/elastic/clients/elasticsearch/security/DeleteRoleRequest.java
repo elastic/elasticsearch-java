@@ -64,7 +64,7 @@ public final class DeleteRoleRequest extends RequestBase {
 	}
 
 	/**
-	 * Role name
+	 * Required - Role name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -97,7 +97,7 @@ public final class DeleteRoleRequest extends RequestBase {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * Role name
+		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
 		 */

@@ -62,7 +62,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * API name: {@code length}
+	 * Required - API name: {@code length}
 	 */
 	public int length() {
 		return this.length;
@@ -89,7 +89,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 		private Integer length;
 
 		/**
-		 * API name: {@code length}
+		 * Required - API name: {@code length}
 		 */
 		public Builder length(int value) {
 			this.length = value;

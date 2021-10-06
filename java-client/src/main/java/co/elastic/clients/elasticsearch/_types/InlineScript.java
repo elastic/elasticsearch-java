@@ -55,7 +55,7 @@ public final class InlineScript extends ScriptBase {
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public String source() {
 		return this.source;
@@ -79,7 +79,7 @@ public final class InlineScript extends ScriptBase {
 		private String source;
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(String value) {
 			this.source = value;

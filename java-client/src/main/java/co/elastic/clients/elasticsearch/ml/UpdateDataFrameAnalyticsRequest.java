@@ -78,9 +78,9 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 	}
 
 	/**
-	 * Identifier for the data frame analytics job. This identifier can contain
-	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -197,9 +197,9 @@ public final class UpdateDataFrameAnalyticsRequest extends RequestBase implement
 		private Boolean allowLazyStart;
 
 		/**
-		 * Identifier for the data frame analytics job. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code id}
 		 */

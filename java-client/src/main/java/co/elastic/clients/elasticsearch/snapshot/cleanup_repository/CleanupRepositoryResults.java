@@ -57,14 +57,14 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code deleted_blobs}
+	 * Required - API name: {@code deleted_blobs}
 	 */
 	public long deletedBlobs() {
 		return this.deletedBlobs;
 	}
 
 	/**
-	 * API name: {@code deleted_bytes}
+	 * Required - API name: {@code deleted_bytes}
 	 */
 	public long deletedBytes() {
 		return this.deletedBytes;
@@ -100,7 +100,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		private Long deletedBytes;
 
 		/**
-		 * API name: {@code deleted_blobs}
+		 * Required - API name: {@code deleted_blobs}
 		 */
 		public Builder deletedBlobs(long value) {
 			this.deletedBlobs = value;
@@ -108,7 +108,7 @@ public final class CleanupRepositoryResults implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code deleted_bytes}
+		 * Required - API name: {@code deleted_bytes}
 		 */
 		public Builder deletedBytes(long value) {
 			this.deletedBytes = value;

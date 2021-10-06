@@ -141,7 +141,7 @@ public final class Highlight implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public Map<String, HighlightField> fields() {
 		return this.fields;
@@ -506,7 +506,7 @@ public final class Highlight implements JsonpSerializable {
 		private String maxAnalyzedOffset;
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(Map<String, HighlightField> value) {
 			this.fields = value;
@@ -659,7 +659,7 @@ public final class Highlight implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #postTags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #postTags(List)}, creating the list if needed.
 		 */
 		public Builder addPostTags(String value) {
 			if (this.postTags == null) {
@@ -686,7 +686,7 @@ public final class Highlight implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preTags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #preTags(List)}, creating the list if needed.
 		 */
 		public Builder addPreTags(String value) {
 			if (this.preTags == null) {

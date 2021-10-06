@@ -70,28 +70,28 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actual_class}
+	 * Required - API name: {@code actual_class}
 	 */
 	public String actualClass() {
 		return this.actualClass;
 	}
 
 	/**
-	 * API name: {@code actual_class_doc_count}
+	 * Required - API name: {@code actual_class_doc_count}
 	 */
 	public int actualClassDocCount() {
 		return this.actualClassDocCount;
 	}
 
 	/**
-	 * API name: {@code predicted_classes}
+	 * Required - API name: {@code predicted_classes}
 	 */
 	public List<ConfusionMatrixPrediction> predictedClasses() {
 		return this.predictedClasses;
 	}
 
 	/**
-	 * API name: {@code other_predicted_class_doc_count}
+	 * Required - API name: {@code other_predicted_class_doc_count}
 	 */
 	public int otherPredictedClassDocCount() {
 		return this.otherPredictedClassDocCount;
@@ -142,7 +142,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		private Integer otherPredictedClassDocCount;
 
 		/**
-		 * API name: {@code actual_class}
+		 * Required - API name: {@code actual_class}
 		 */
 		public Builder actualClass(String value) {
 			this.actualClass = value;
@@ -150,7 +150,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code actual_class_doc_count}
+		 * Required - API name: {@code actual_class_doc_count}
 		 */
 		public Builder actualClassDocCount(int value) {
 			this.actualClassDocCount = value;
@@ -158,7 +158,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code predicted_classes}
+		 * Required - API name: {@code predicted_classes}
 		 */
 		public Builder predictedClasses(List<ConfusionMatrixPrediction> value) {
 			this.predictedClasses = value;
@@ -166,7 +166,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code predicted_classes}
+		 * Required - API name: {@code predicted_classes}
 		 */
 		public Builder predictedClasses(ConfusionMatrixPrediction... value) {
 			this.predictedClasses = Arrays.asList(value);
@@ -175,7 +175,6 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #predictedClasses(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addPredictedClasses(ConfusionMatrixPrediction value) {
 			if (this.predictedClasses == null) {
@@ -195,7 +194,6 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #predictedClasses(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addPredictedClasses(
 				Function<ConfusionMatrixPrediction.Builder, ObjectBuilder<ConfusionMatrixPrediction>> fn) {
@@ -203,7 +201,7 @@ public final class ConfusionMatrixItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code other_predicted_class_doc_count}
+		 * Required - API name: {@code other_predicted_class_doc_count}
 		 */
 		public Builder otherPredictedClassDocCount(int value) {
 			this.otherPredictedClassDocCount = value;

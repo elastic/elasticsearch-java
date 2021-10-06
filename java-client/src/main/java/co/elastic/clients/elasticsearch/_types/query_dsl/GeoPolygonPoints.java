@@ -59,7 +59,7 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code points}
+	 * Required - API name: {@code points}
 	 */
 	public List<JsonValue /* _types.query_dsl.GeoLocation */> points() {
 		return this.points;
@@ -95,7 +95,7 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 		private List<JsonValue /* _types.query_dsl.GeoLocation */> points;
 
 		/**
-		 * API name: {@code points}
+		 * Required - API name: {@code points}
 		 */
 		public Builder points(List<JsonValue /* _types.query_dsl.GeoLocation */> value) {
 			this.points = value;
@@ -103,7 +103,7 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code points}
+		 * Required - API name: {@code points}
 		 */
 		public Builder points(JsonValue /* _types.query_dsl.GeoLocation */... value) {
 			this.points = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #points(List)}, creating the list if needed. 4
+		 * Add a value to {@link #points(List)}, creating the list if needed.
 		 */
 		public Builder addPoints(JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			if (this.points == null) {

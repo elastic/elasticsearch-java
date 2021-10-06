@@ -70,8 +70,8 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 	}
 
 	/**
-	 * The field of the index which contains the ground truth. The data type of this
-	 * field must be numerical.
+	 * Required - The field of the index which contains the ground truth. The data
+	 * type of this field must be numerical.
 	 * <p>
 	 * API name: {@code actual_field}
 	 */
@@ -80,8 +80,8 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 	}
 
 	/**
-	 * The field in the index that contains the predicted value, in other words the
-	 * results of the regression analysis.
+	 * Required - The field in the index that contains the predicted value, in other
+	 * words the results of the regression analysis.
 	 * <p>
 	 * API name: {@code predicted_field}
 	 */
@@ -141,8 +141,8 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		private DataframeEvaluationRegressionMetrics metrics;
 
 		/**
-		 * The field of the index which contains the ground truth. The data type of this
-		 * field must be numerical.
+		 * Required - The field of the index which contains the ground truth. The data
+		 * type of this field must be numerical.
 		 * <p>
 		 * API name: {@code actual_field}
 		 */
@@ -152,8 +152,8 @@ public final class DataframeEvaluationRegression implements DataframeEvaluationV
 		}
 
 		/**
-		 * The field in the index that contains the predicted value, in other words the
-		 * results of the regression analysis.
+		 * Required - The field in the index that contains the predicted value, in other
+		 * words the results of the regression analysis.
 		 * <p>
 		 * API name: {@code predicted_field}
 		 */

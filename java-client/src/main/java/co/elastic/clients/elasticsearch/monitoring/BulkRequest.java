@@ -95,7 +95,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	}
 
 	/**
-	 * Identifier of the monitored system
+	 * Required - Identifier of the monitored system
 	 * <p>
 	 * API name: {@code system_id}
 	 */
@@ -104,6 +104,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	}
 
 	/**
+	 * Required -
+	 * <p>
 	 * API name: {@code system_api_version}
 	 */
 	public String systemApiVersion() {
@@ -111,7 +113,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	}
 
 	/**
-	 * Collection interval (e.g., '10s' or '10000ms') of the payload
+	 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 	 * <p>
 	 * API name: {@code interval}
 	 */
@@ -120,7 +122,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -176,7 +178,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Identifier of the monitored system
+		 * Required - Identifier of the monitored system
 		 * <p>
 		 * API name: {@code system_id}
 		 */
@@ -186,6 +188,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
+		 * Required -
+		 * <p>
 		 * API name: {@code system_api_version}
 		 */
 		public Builder<TSource> systemApiVersion(String value) {
@@ -194,7 +198,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Collection interval (e.g., '10s' or '10000ms') of the payload
+		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 		 * <p>
 		 * API name: {@code interval}
 		 */
@@ -204,7 +208,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -214,7 +218,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -224,7 +228,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed. 1
+		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addOperation(Operation value) {
 			if (this.operations == null) {
@@ -235,7 +239,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add a document to {@link #operations(List)}, creating the list if needed. 2
+		 * Add a document to {@link #operations(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addDocument(TSource value) {
 			if (this.operations == null) {
@@ -246,7 +250,7 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed. 3
+		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
 		 */
 		public Builder<TSource> addOperation(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
 			return this.addOperation(fn.apply(new Operation.Builder()).build());

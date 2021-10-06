@@ -57,14 +57,14 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code background_is_superset}
+	 * Required - API name: {@code background_is_superset}
 	 */
 	public boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
-	 * API name: {@code include_negatives}
+	 * Required - API name: {@code include_negatives}
 	 */
 	public boolean includeNegatives() {
 		return this.includeNegatives;
@@ -100,7 +100,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		private Boolean includeNegatives;
 
 		/**
-		 * API name: {@code background_is_superset}
+		 * Required - API name: {@code background_is_superset}
 		 */
 		public Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
@@ -108,7 +108,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code include_negatives}
+		 * Required - API name: {@code include_negatives}
 		 */
 		public Builder includeNegatives(boolean value) {
 			this.includeNegatives = value;

@@ -122,7 +122,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node_index}
+	 * Required - API name: {@code node_index}
 	 */
 	public int nodeIndex() {
 		return this.nodeIndex;
@@ -291,7 +291,7 @@ public final class TrainedModelTreeNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_index}
+		 * Required - API name: {@code node_index}
 		 */
 		public Builder nodeIndex(int value) {
 			this.nodeIndex = value;

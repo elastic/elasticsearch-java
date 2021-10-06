@@ -57,14 +57,14 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 	}
 
 	/**
-	 * API name: {@code cron}
+	 * Required - API name: {@code cron}
 	 */
 	public Counter cron() {
 		return this.cron;
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public Counter all() {
 		return this.all;
@@ -95,7 +95,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		private Counter all;
 
 		/**
-		 * API name: {@code cron}
+		 * Required - API name: {@code cron}
 		 */
 		public Builder cron(Counter value) {
 			this.cron = value;
@@ -103,14 +103,14 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		}
 
 		/**
-		 * API name: {@code cron}
+		 * Required - API name: {@code cron}
 		 */
 		public Builder cron(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.cron(fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Counter value) {
 			this.all = value;
@@ -118,7 +118,7 @@ public final class WatcherWatchTriggerSchedule extends Counter {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.all(fn.apply(new Counter.Builder()).build());

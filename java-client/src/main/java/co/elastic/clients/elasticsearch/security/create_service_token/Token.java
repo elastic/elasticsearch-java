@@ -58,14 +58,14 @@ public final class Token implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public String value() {
 		return this.value;
@@ -101,7 +101,7 @@ public final class Token implements JsonpSerializable {
 		private String value;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -109,7 +109,7 @@ public final class Token implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(String value) {
 			this.value = value;

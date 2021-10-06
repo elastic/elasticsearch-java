@@ -64,7 +64,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code required_capacity}
+	 * Required - API name: {@code required_capacity}
 	 */
 	public AutoscalingCapacity requiredCapacity() {
 		return this.requiredCapacity;
@@ -130,7 +130,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		private JsonData reasonDetails;
 
 		/**
-		 * API name: {@code required_capacity}
+		 * Required - API name: {@code required_capacity}
 		 */
 		public Builder requiredCapacity(AutoscalingCapacity value) {
 			this.requiredCapacity = value;
@@ -138,7 +138,7 @@ public final class AutoscalingDecider implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code required_capacity}
+		 * Required - API name: {@code required_capacity}
 		 */
 		public Builder requiredCapacity(Function<AutoscalingCapacity.Builder, ObjectBuilder<AutoscalingCapacity>> fn) {
 			return this.requiredCapacity(fn.apply(new AutoscalingCapacity.Builder()).build());

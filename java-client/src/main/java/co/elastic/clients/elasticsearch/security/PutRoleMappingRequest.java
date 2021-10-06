@@ -93,7 +93,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Role-mapping name
+	 * Required - Role-mapping name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -241,7 +241,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		private List<String> runAs;
 
 		/**
-		 * Role-mapping name
+		 * Required - Role-mapping name
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -307,7 +307,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -349,7 +349,7 @@ public final class PutRoleMappingRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #runAs(List)}, creating the list if needed.
 		 */
 		public Builder addRunAs(String value) {
 			if (this.runAs == null) {

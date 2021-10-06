@@ -66,21 +66,21 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code body}
+	 * Required - API name: {@code body}
 	 */
 	public String body() {
 		return this.body;
 	}
 
 	/**
-	 * API name: {@code headers}
+	 * Required - API name: {@code headers}
 	 */
 	public Map<String, List<String>> headers() {
 		return this.headers;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public int status() {
 		return this.status;
@@ -132,7 +132,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		private Integer status;
 
 		/**
-		 * API name: {@code body}
+		 * Required - API name: {@code body}
 		 */
 		public Builder body(String value) {
 			this.body = value;
@@ -140,7 +140,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code headers}
+		 * Required - API name: {@code headers}
 		 */
 		public Builder headers(Map<String, List<String>> value) {
 			this.headers = value;
@@ -159,7 +159,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(int value) {
 			this.status = value;

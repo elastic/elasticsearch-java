@@ -417,7 +417,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -558,7 +558,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Operation value) {
 			if (this.docs == null) {
@@ -576,7 +576,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
 			return this.addDocs(fn.apply(new Operation.Builder()).build());
@@ -599,7 +599,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ids(List)}, creating the list if needed.
 		 */
 		public Builder addIds(String value) {
 			if (this.ids == null) {

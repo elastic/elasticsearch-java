@@ -43,7 +43,7 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	private final JsonValue /*
-							 * Union(Array<internal.string> | Array<_types.long> |
+							 * Union(Array<_types.long> | Array<internal.string> |
 							 * _types.query_dsl.TermsLookup)
 							 */ value;
 
@@ -70,15 +70,17 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Required -
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
+	 * Required -
 	 */
 	public JsonValue /*
-						 * Union(Array<internal.string> | Array<_types.long> |
+						 * Union(Array<_types.long> | Array<internal.string> |
 						 * _types.query_dsl.TermsLookup)
 						 */ value() {
 		return this.value;
@@ -105,11 +107,12 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		private String field;
 
 		private JsonValue /*
-							 * Union(Array<internal.string> | Array<_types.long> |
+							 * Union(Array<_types.long> | Array<internal.string> |
 							 * _types.query_dsl.TermsLookup)
 							 */ value;
 
 		/**
+		 * Required -
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -117,9 +120,10 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder value(JsonValue /*
-										 * Union(Array<internal.string> | Array<_types.long> |
+										 * Union(Array<_types.long> | Array<internal.string> |
 										 * _types.query_dsl.TermsLookup)
 										 */ value) {
 			this.value = value;

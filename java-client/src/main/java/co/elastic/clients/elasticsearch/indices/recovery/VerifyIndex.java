@@ -75,7 +75,7 @@ public final class VerifyIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code check_index_time_in_millis}
+	 * Required - API name: {@code check_index_time_in_millis}
 	 */
 	public String checkIndexTimeInMillis() {
 		return this.checkIndexTimeInMillis;
@@ -90,7 +90,7 @@ public final class VerifyIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -154,7 +154,7 @@ public final class VerifyIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code check_index_time_in_millis}
+		 * Required - API name: {@code check_index_time_in_millis}
 		 */
 		public Builder checkIndexTimeInMillis(String value) {
 			this.checkIndexTimeInMillis = value;
@@ -170,7 +170,7 @@ public final class VerifyIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;

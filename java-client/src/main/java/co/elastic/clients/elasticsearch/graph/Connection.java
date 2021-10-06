@@ -64,28 +64,28 @@ public final class Connection implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code doc_count}
+	 * Required - API name: {@code doc_count}
 	 */
 	public long docCount() {
 		return this.docCount;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public long source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code target}
+	 * Required - API name: {@code target}
 	 */
 	public long target() {
 		return this.target;
 	}
 
 	/**
-	 * API name: {@code weight}
+	 * Required - API name: {@code weight}
 	 */
 	public double weight() {
 		return this.weight;
@@ -131,7 +131,7 @@ public final class Connection implements JsonpSerializable {
 		private Double weight;
 
 		/**
-		 * API name: {@code doc_count}
+		 * Required - API name: {@code doc_count}
 		 */
 		public Builder docCount(long value) {
 			this.docCount = value;
@@ -139,7 +139,7 @@ public final class Connection implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(long value) {
 			this.source = value;
@@ -147,7 +147,7 @@ public final class Connection implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code target}
+		 * Required - API name: {@code target}
 		 */
 		public Builder target(long value) {
 			this.target = value;
@@ -155,7 +155,7 @@ public final class Connection implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code weight}
+		 * Required - API name: {@code weight}
 		 */
 		public Builder weight(double value) {
 			this.weight = value;

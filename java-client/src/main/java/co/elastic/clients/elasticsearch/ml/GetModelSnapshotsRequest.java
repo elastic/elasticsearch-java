@@ -91,7 +91,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -222,7 +222,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		private String end;
 
 		/**
-		 * Identifier for the anomaly detection job.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

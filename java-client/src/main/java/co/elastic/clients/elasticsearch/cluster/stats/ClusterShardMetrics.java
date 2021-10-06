@@ -60,21 +60,21 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code avg}
+	 * Required - API name: {@code avg}
 	 */
 	public double avg() {
 		return this.avg;
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public double max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public double min() {
 		return this.min;
@@ -115,7 +115,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		private Double min;
 
 		/**
-		 * API name: {@code avg}
+		 * Required - API name: {@code avg}
 		 */
 		public Builder avg(double value) {
 			this.avg = value;
@@ -123,7 +123,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(double value) {
 			this.max = value;
@@ -131,7 +131,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder min(double value) {
 			this.min = value;

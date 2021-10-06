@@ -78,7 +78,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code feature_names}
+	 * Required - API name: {@code feature_names}
 	 */
 	public List<String> featureNames() {
 		return this.featureNames;
@@ -93,7 +93,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code tree_structure}
+	 * Required - API name: {@code tree_structure}
 	 */
 	public List<TrainedModelTreeNode> treeStructure() {
 		return this.treeStructure;
@@ -181,7 +181,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #classificationLabels(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addClassificationLabels(String value) {
 			if (this.classificationLabels == null) {
@@ -192,7 +192,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code feature_names}
+		 * Required - API name: {@code feature_names}
 		 */
 		public Builder featureNames(List<String> value) {
 			this.featureNames = value;
@@ -200,7 +200,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code feature_names}
+		 * Required - API name: {@code feature_names}
 		 */
 		public Builder featureNames(String... value) {
 			this.featureNames = Arrays.asList(value);
@@ -208,7 +208,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureNames(List)}, creating the list if needed. 4
+		 * Add a value to {@link #featureNames(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureNames(String value) {
 			if (this.featureNames == null) {
@@ -227,7 +227,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tree_structure}
+		 * Required - API name: {@code tree_structure}
 		 */
 		public Builder treeStructure(List<TrainedModelTreeNode> value) {
 			this.treeStructure = value;
@@ -235,7 +235,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tree_structure}
+		 * Required - API name: {@code tree_structure}
 		 */
 		public Builder treeStructure(TrainedModelTreeNode... value) {
 			this.treeStructure = Arrays.asList(value);
@@ -243,7 +243,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #treeStructure(List)}, creating the list if needed. 4
+		 * Add a value to {@link #treeStructure(List)}, creating the list if needed.
 		 */
 		public Builder addTreeStructure(TrainedModelTreeNode value) {
 			if (this.treeStructure == null) {
@@ -261,7 +261,7 @@ public final class TrainedModelTree implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #treeStructure(List)}, creating the list if needed. 5
+		 * Add a value to {@link #treeStructure(List)}, creating the list if needed.
 		 */
 		public Builder addTreeStructure(
 				Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {

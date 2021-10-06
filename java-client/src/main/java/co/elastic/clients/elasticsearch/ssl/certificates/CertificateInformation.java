@@ -83,42 +83,42 @@ public final class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code expiry}
+	 * Required - API name: {@code expiry}
 	 */
 	public String expiry() {
 		return this.expiry;
 	}
 
 	/**
-	 * API name: {@code format}
+	 * Required - API name: {@code format}
 	 */
 	public String format() {
 		return this.format;
 	}
 
 	/**
-	 * API name: {@code has_private_key}
+	 * Required - API name: {@code has_private_key}
 	 */
 	public boolean hasPrivateKey() {
 		return this.hasPrivateKey;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code serial_number}
+	 * Required - API name: {@code serial_number}
 	 */
 	public String serialNumber() {
 		return this.serialNumber;
 	}
 
 	/**
-	 * API name: {@code subject_dn}
+	 * Required - API name: {@code subject_dn}
 	 */
 	public String subjectDn() {
 		return this.subjectDn;
@@ -192,7 +192,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code expiry}
+		 * Required - API name: {@code expiry}
 		 */
 		public Builder expiry(String value) {
 			this.expiry = value;
@@ -200,7 +200,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code format}
+		 * Required - API name: {@code format}
 		 */
 		public Builder format(String value) {
 			this.format = value;
@@ -208,7 +208,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code has_private_key}
+		 * Required - API name: {@code has_private_key}
 		 */
 		public Builder hasPrivateKey(boolean value) {
 			this.hasPrivateKey = value;
@@ -216,7 +216,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -224,7 +224,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code serial_number}
+		 * Required - API name: {@code serial_number}
 		 */
 		public Builder serialNumber(String value) {
 			this.serialNumber = value;
@@ -232,7 +232,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code subject_dn}
+		 * Required - API name: {@code subject_dn}
 		 */
 		public Builder subjectDn(String value) {
 			this.subjectDn = value;

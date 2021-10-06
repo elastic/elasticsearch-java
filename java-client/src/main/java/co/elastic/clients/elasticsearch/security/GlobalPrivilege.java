@@ -54,7 +54,7 @@ public final class GlobalPrivilege implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code application}
+	 * Required - API name: {@code application}
 	 */
 	public ApplicationGlobalUserPrivileges application() {
 		return this.application;
@@ -85,7 +85,7 @@ public final class GlobalPrivilege implements JsonpSerializable {
 		private ApplicationGlobalUserPrivileges application;
 
 		/**
-		 * API name: {@code application}
+		 * Required - API name: {@code application}
 		 */
 		public Builder application(ApplicationGlobalUserPrivileges value) {
 			this.application = value;
@@ -93,7 +93,7 @@ public final class GlobalPrivilege implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code application}
+		 * Required - API name: {@code application}
 		 */
 		public Builder application(
 				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {

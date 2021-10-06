@@ -118,7 +118,7 @@ public final class IdsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Add a value to {@link #values(List)}, creating the list if needed. 4
+		 * Add a value to {@link #values(List)}, creating the list if needed.
 		 */
 		public Builder addValues(String value) {
 			if (this.values == null) {

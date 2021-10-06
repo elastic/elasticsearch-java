@@ -67,7 +67,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code template}
+	 * Required - API name: {@code template}
 	 */
 	public ComponentTemplateSummary template() {
 		return this.template;
@@ -139,7 +139,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		private Map<String, JsonData> meta;
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(ComponentTemplateSummary value) {
 			this.template = value;
@@ -147,7 +147,7 @@ public final class ComponentTemplateNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(
 				Function<ComponentTemplateSummary.Builder, ObjectBuilder<ComponentTemplateSummary>> fn) {

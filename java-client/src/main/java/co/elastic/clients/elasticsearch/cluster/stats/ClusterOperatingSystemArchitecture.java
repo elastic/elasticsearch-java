@@ -59,14 +59,14 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code arch}
+	 * Required - API name: {@code arch}
 	 */
 	public String arch() {
 		return this.arch;
@@ -102,7 +102,7 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 		private String arch;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -110,7 +110,7 @@ public final class ClusterOperatingSystemArchitecture implements JsonpSerializab
 		}
 
 		/**
-		 * API name: {@code arch}
+		 * Required - API name: {@code arch}
 		 */
 		public Builder arch(String value) {
 			this.arch = value;

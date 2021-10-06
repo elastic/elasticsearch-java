@@ -70,14 +70,14 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	}
 
 	/**
-	 * API name: {@code mappings}
+	 * Required - API name: {@code mappings}
 	 */
 	public List<String> mappings() {
 		return this.mappings;
 	}
 
 	/**
-	 * API name: {@code mappings_path}
+	 * Required - API name: {@code mappings_path}
 	 */
 	public String mappingsPath() {
 		return this.mappingsPath;
@@ -114,7 +114,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		private String mappingsPath;
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(List<String> value) {
 			this.mappings = value;
@@ -122,7 +122,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(String... value) {
 			this.mappings = Arrays.asList(value);
@@ -130,7 +130,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		}
 
 		/**
-		 * Add a value to {@link #mappings(List)}, creating the list if needed. 4
+		 * Add a value to {@link #mappings(List)}, creating the list if needed.
 		 */
 		public Builder addMappings(String value) {
 			if (this.mappings == null) {
@@ -141,7 +141,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		}
 
 		/**
-		 * API name: {@code mappings_path}
+		 * Required - API name: {@code mappings_path}
 		 */
 		public Builder mappingsPath(String value) {
 			this.mappingsPath = value;

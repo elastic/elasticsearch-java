@@ -67,14 +67,14 @@ public final class SearchTransform implements TransformVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code request}
+	 * Required - API name: {@code request}
 	 */
 	public SearchInputRequestDefinition request() {
 		return this.request;
 	}
 
 	/**
-	 * API name: {@code timeout}
+	 * Required - API name: {@code timeout}
 	 */
 	public String timeout() {
 		return this.timeout;
@@ -110,7 +110,7 @@ public final class SearchTransform implements TransformVariant, JsonpSerializabl
 		private String timeout;
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(SearchInputRequestDefinition value) {
 			this.request = value;
@@ -118,7 +118,7 @@ public final class SearchTransform implements TransformVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(
 				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
@@ -126,7 +126,7 @@ public final class SearchTransform implements TransformVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code timeout}
+		 * Required - API name: {@code timeout}
 		 */
 		public Builder timeout(String value) {
 			this.timeout = value;

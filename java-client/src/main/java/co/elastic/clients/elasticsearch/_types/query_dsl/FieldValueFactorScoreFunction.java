@@ -76,7 +76,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -153,7 +153,7 @@ public final class FieldValueFactorScoreFunction extends ScoreFunctionBase imple
 		private FieldValueFactorModifier modifier;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

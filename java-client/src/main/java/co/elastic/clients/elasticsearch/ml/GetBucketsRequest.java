@@ -108,7 +108,7 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * ID of the job to get bucket results from
+	 * Required - ID of the job to get bucket results from
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -314,7 +314,7 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		private String end;
 
 		/**
-		 * ID of the job to get bucket results from
+		 * Required - ID of the job to get bucket results from
 		 * <p>
 		 * API name: {@code job_id}
 		 */

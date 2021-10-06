@@ -55,7 +55,7 @@ public final class NodeInfoSettingsTransportFeatures implements JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code x-pack}
+	 * Required - API name: {@code x-pack}
 	 */
 	public String xPack() {
 		return this.xPack;
@@ -86,7 +86,7 @@ public final class NodeInfoSettingsTransportFeatures implements JsonpSerializabl
 		private String xPack;
 
 		/**
-		 * API name: {@code x-pack}
+		 * Required - API name: {@code x-pack}
 		 */
 		public Builder xPack(String value) {
 			this.xPack = value;

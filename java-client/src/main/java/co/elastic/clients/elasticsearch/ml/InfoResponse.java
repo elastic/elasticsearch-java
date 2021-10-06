@@ -67,28 +67,28 @@ public final class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code defaults}
+	 * Required - API name: {@code defaults}
 	 */
 	public Defaults defaults() {
 		return this.defaults;
 	}
 
 	/**
-	 * API name: {@code limits}
+	 * Required - API name: {@code limits}
 	 */
 	public Limits limits() {
 		return this.limits;
 	}
 
 	/**
-	 * API name: {@code upgrade_mode}
+	 * Required - API name: {@code upgrade_mode}
 	 */
 	public boolean upgradeMode() {
 		return this.upgradeMode;
 	}
 
 	/**
-	 * API name: {@code native_code}
+	 * Required - API name: {@code native_code}
 	 */
 	public NativeCode nativeCode() {
 		return this.nativeCode;
@@ -134,7 +134,7 @@ public final class InfoResponse implements JsonpSerializable {
 		private NativeCode nativeCode;
 
 		/**
-		 * API name: {@code defaults}
+		 * Required - API name: {@code defaults}
 		 */
 		public Builder defaults(Defaults value) {
 			this.defaults = value;
@@ -142,14 +142,14 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code defaults}
+		 * Required - API name: {@code defaults}
 		 */
 		public Builder defaults(Function<Defaults.Builder, ObjectBuilder<Defaults>> fn) {
 			return this.defaults(fn.apply(new Defaults.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code limits}
+		 * Required - API name: {@code limits}
 		 */
 		public Builder limits(Limits value) {
 			this.limits = value;
@@ -157,14 +157,14 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code limits}
+		 * Required - API name: {@code limits}
 		 */
 		public Builder limits(Function<Limits.Builder, ObjectBuilder<Limits>> fn) {
 			return this.limits(fn.apply(new Limits.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code upgrade_mode}
+		 * Required - API name: {@code upgrade_mode}
 		 */
 		public Builder upgradeMode(boolean value) {
 			this.upgradeMode = value;
@@ -172,7 +172,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code native_code}
+		 * Required - API name: {@code native_code}
 		 */
 		public Builder nativeCode(NativeCode value) {
 			this.nativeCode = value;
@@ -180,7 +180,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code native_code}
+		 * Required - API name: {@code native_code}
 		 */
 		public Builder nativeCode(Function<NativeCode.Builder, ObjectBuilder<NativeCode>> fn) {
 			return this.nativeCode(fn.apply(new NativeCode.Builder()).build());

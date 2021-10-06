@@ -58,14 +58,14 @@ public final class Invocation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot_name}
+	 * Required - API name: {@code snapshot_name}
 	 */
 	public String snapshotName() {
 		return this.snapshotName;
 	}
 
 	/**
-	 * API name: {@code time}
+	 * Required - API name: {@code time}
 	 */
 	public String time() {
 		return this.time;
@@ -101,7 +101,7 @@ public final class Invocation implements JsonpSerializable {
 		private String time;
 
 		/**
-		 * API name: {@code snapshot_name}
+		 * Required - API name: {@code snapshot_name}
 		 */
 		public Builder snapshotName(String value) {
 			this.snapshotName = value;
@@ -109,7 +109,7 @@ public final class Invocation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time}
+		 * Required - API name: {@code time}
 		 */
 		public Builder time(String value) {
 			this.time = value;

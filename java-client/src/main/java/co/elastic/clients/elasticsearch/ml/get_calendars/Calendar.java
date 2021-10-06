@@ -66,7 +66,7 @@ public final class Calendar implements JsonpSerializable {
 	}
 
 	/**
-	 * A string that uniquely identifies a calendar.
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -83,7 +83,7 @@ public final class Calendar implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of anomaly detection job identifiers.
+	 * Required - An array of anomaly detection job identifiers.
 	 * <p>
 	 * API name: {@code job_ids}
 	 */
@@ -136,7 +136,7 @@ public final class Calendar implements JsonpSerializable {
 		private List<String> jobIds;
 
 		/**
-		 * A string that uniquely identifies a calendar.
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -154,7 +154,7 @@ public final class Calendar implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of anomaly detection job identifiers.
+		 * Required - An array of anomaly detection job identifiers.
 		 * <p>
 		 * API name: {@code job_ids}
 		 */
@@ -164,7 +164,7 @@ public final class Calendar implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of anomaly detection job identifiers.
+		 * Required - An array of anomaly detection job identifiers.
 		 * <p>
 		 * API name: {@code job_ids}
 		 */
@@ -174,7 +174,7 @@ public final class Calendar implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobIds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #jobIds(List)}, creating the list if needed.
 		 */
 		public Builder addJobIds(String value) {
 			if (this.jobIds == null) {

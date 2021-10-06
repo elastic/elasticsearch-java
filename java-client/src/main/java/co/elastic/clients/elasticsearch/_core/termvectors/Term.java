@@ -91,14 +91,14 @@ public final class Term implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code term_freq}
+	 * Required - API name: {@code term_freq}
 	 */
 	public int termFreq() {
 		return this.termFreq;
 	}
 
 	/**
-	 * API name: {@code tokens}
+	 * Required - API name: {@code tokens}
 	 */
 	public List<Token> tokens() {
 		return this.tokens;
@@ -192,7 +192,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code term_freq}
+		 * Required - API name: {@code term_freq}
 		 */
 		public Builder termFreq(int value) {
 			this.termFreq = value;
@@ -200,7 +200,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokens}
+		 * Required - API name: {@code tokens}
 		 */
 		public Builder tokens(List<Token> value) {
 			this.tokens = value;
@@ -208,7 +208,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokens}
+		 * Required - API name: {@code tokens}
 		 */
 		public Builder tokens(Token... value) {
 			this.tokens = Arrays.asList(value);
@@ -216,7 +216,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokens(List)}, creating the list if needed.
 		 */
 		public Builder addTokens(Token value) {
 			if (this.tokens == null) {
@@ -234,7 +234,7 @@ public final class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed. 5
+		 * Add a value to {@link #tokens(List)}, creating the list if needed.
 		 */
 		public Builder addTokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
 			return this.addTokens(fn.apply(new Token.Builder()).build());

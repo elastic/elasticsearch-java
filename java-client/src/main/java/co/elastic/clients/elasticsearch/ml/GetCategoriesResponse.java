@@ -62,14 +62,14 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code categories}
+	 * Required - API name: {@code categories}
 	 */
 	public List<Category> categories() {
 		return this.categories;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
@@ -110,7 +110,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		private Long count;
 
 		/**
-		 * API name: {@code categories}
+		 * Required - API name: {@code categories}
 		 */
 		public Builder categories(List<Category> value) {
 			this.categories = value;
@@ -118,7 +118,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code categories}
+		 * Required - API name: {@code categories}
 		 */
 		public Builder categories(Category... value) {
 			this.categories = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed. 4
+		 * Add a value to {@link #categories(List)}, creating the list if needed.
 		 */
 		public Builder addCategories(Category value) {
 			if (this.categories == null) {
@@ -144,14 +144,14 @@ public final class GetCategoriesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed. 5
+		 * Add a value to {@link #categories(List)}, creating the list if needed.
 		 */
 		public Builder addCategories(Function<Category.Builder, ObjectBuilder<Category>> fn) {
 			return this.addCategories(fn.apply(new Category.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;

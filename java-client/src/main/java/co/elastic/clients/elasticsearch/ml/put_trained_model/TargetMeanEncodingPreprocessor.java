@@ -76,28 +76,28 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code feature_name}
+	 * Required - API name: {@code feature_name}
 	 */
 	public String featureName() {
 		return this.featureName;
 	}
 
 	/**
-	 * API name: {@code target_map}
+	 * Required - API name: {@code target_map}
 	 */
 	public Map<String, Double> targetMap() {
 		return this.targetMap;
 	}
 
 	/**
-	 * API name: {@code default_value}
+	 * Required - API name: {@code default_value}
 	 */
 	public double defaultValue() {
 		return this.defaultValue;
@@ -149,7 +149,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		private Double defaultValue;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -157,7 +157,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		}
 
 		/**
-		 * API name: {@code feature_name}
+		 * Required - API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
 			this.featureName = value;
@@ -165,7 +165,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		}
 
 		/**
-		 * API name: {@code target_map}
+		 * Required - API name: {@code target_map}
 		 */
 		public Builder targetMap(Map<String, Double> value) {
 			this.targetMap = value;
@@ -184,7 +184,7 @@ public final class TargetMeanEncodingPreprocessor implements PreprocessorVariant
 		}
 
 		/**
-		 * API name: {@code default_value}
+		 * Required - API name: {@code default_value}
 		 */
 		public Builder defaultValue(double value) {
 			this.defaultValue = value;

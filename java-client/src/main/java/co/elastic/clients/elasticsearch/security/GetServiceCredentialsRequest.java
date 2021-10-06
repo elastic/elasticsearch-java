@@ -60,7 +60,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the namespace
+	 * Required - An identifier for the namespace
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -69,7 +69,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the service name
+	 * Required - An identifier for the service name
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -88,7 +88,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		private String service;
 
 		/**
-		 * An identifier for the namespace
+		 * Required - An identifier for the namespace
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -98,7 +98,7 @@ public final class GetServiceCredentialsRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the service name
+		 * Required - An identifier for the service name
 		 * <p>
 		 * API name: {@code service}
 		 */

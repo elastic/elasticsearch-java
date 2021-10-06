@@ -86,7 +86,7 @@ public final class GetStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current}
+	 * Required - API name: {@code current}
 	 */
 	public long current() {
 		return this.current;
@@ -101,14 +101,14 @@ public final class GetStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code exists_time_in_millis}
+	 * Required - API name: {@code exists_time_in_millis}
 	 */
 	public long existsTimeInMillis() {
 		return this.existsTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code exists_total}
+	 * Required - API name: {@code exists_total}
 	 */
 	public long existsTotal() {
 		return this.existsTotal;
@@ -123,14 +123,14 @@ public final class GetStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code missing_time_in_millis}
+	 * Required - API name: {@code missing_time_in_millis}
 	 */
 	public long missingTimeInMillis() {
 		return this.missingTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code missing_total}
+	 * Required - API name: {@code missing_total}
 	 */
 	public long missingTotal() {
 		return this.missingTotal;
@@ -145,14 +145,14 @@ public final class GetStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code time_in_millis}
+	 * Required - API name: {@code time_in_millis}
 	 */
 	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -243,7 +243,7 @@ public final class GetStats implements JsonpSerializable {
 		private Long total;
 
 		/**
-		 * API name: {@code current}
+		 * Required - API name: {@code current}
 		 */
 		public Builder current(long value) {
 			this.current = value;
@@ -259,7 +259,7 @@ public final class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code exists_time_in_millis}
+		 * Required - API name: {@code exists_time_in_millis}
 		 */
 		public Builder existsTimeInMillis(long value) {
 			this.existsTimeInMillis = value;
@@ -267,7 +267,7 @@ public final class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code exists_total}
+		 * Required - API name: {@code exists_total}
 		 */
 		public Builder existsTotal(long value) {
 			this.existsTotal = value;
@@ -283,7 +283,7 @@ public final class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code missing_time_in_millis}
+		 * Required - API name: {@code missing_time_in_millis}
 		 */
 		public Builder missingTimeInMillis(long value) {
 			this.missingTimeInMillis = value;
@@ -291,7 +291,7 @@ public final class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code missing_total}
+		 * Required - API name: {@code missing_total}
 		 */
 		public Builder missingTotal(long value) {
 			this.missingTotal = value;
@@ -307,7 +307,7 @@ public final class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_millis}
+		 * Required - API name: {@code time_in_millis}
 		 */
 		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
@@ -315,7 +315,7 @@ public final class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;

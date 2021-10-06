@@ -58,7 +58,7 @@ public final class RuntimeFieldTypes extends Base {
 	}
 
 	/**
-	 * API name: {@code field_types}
+	 * Required - API name: {@code field_types}
 	 */
 	public List<RuntimeFieldsType> fieldTypes() {
 		return this.fieldTypes;
@@ -87,7 +87,7 @@ public final class RuntimeFieldTypes extends Base {
 		private List<RuntimeFieldsType> fieldTypes;
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(List<RuntimeFieldsType> value) {
 			this.fieldTypes = value;
@@ -95,7 +95,7 @@ public final class RuntimeFieldTypes extends Base {
 		}
 
 		/**
-		 * API name: {@code field_types}
+		 * Required - API name: {@code field_types}
 		 */
 		public Builder fieldTypes(RuntimeFieldsType... value) {
 			this.fieldTypes = Arrays.asList(value);
@@ -103,7 +103,7 @@ public final class RuntimeFieldTypes extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
 		 */
 		public Builder addFieldTypes(RuntimeFieldsType value) {
 			if (this.fieldTypes == null) {
@@ -121,7 +121,7 @@ public final class RuntimeFieldTypes extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #fieldTypes(List)}, creating the list if needed.
 		 */
 		public Builder addFieldTypes(Function<RuntimeFieldsType.Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
 			return this.addFieldTypes(fn.apply(new RuntimeFieldsType.Builder()).build());

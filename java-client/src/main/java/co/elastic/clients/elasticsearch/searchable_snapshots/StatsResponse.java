@@ -58,14 +58,14 @@ public final class StatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public JsonData stats() {
 		return this.stats;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public JsonData total() {
 		return this.total;
@@ -101,7 +101,7 @@ public final class StatsResponse implements JsonpSerializable {
 		private JsonData total;
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(JsonData value) {
 			this.stats = value;
@@ -109,7 +109,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(JsonData value) {
 			this.total = value;

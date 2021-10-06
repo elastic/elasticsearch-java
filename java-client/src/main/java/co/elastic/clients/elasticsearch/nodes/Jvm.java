@@ -81,56 +81,56 @@ public final class Jvm implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code buffer_pools}
+	 * Required - API name: {@code buffer_pools}
 	 */
 	public Map<String, NodeBufferPool> bufferPools() {
 		return this.bufferPools;
 	}
 
 	/**
-	 * API name: {@code classes}
+	 * Required - API name: {@code classes}
 	 */
 	public JvmClasses classes() {
 		return this.classes;
 	}
 
 	/**
-	 * API name: {@code gc}
+	 * Required - API name: {@code gc}
 	 */
 	public GarbageCollector gc() {
 		return this.gc;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public MemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code threads}
+	 * Required - API name: {@code threads}
 	 */
 	public JvmThreads threads() {
 		return this.threads;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code uptime}
+	 * Required - API name: {@code uptime}
 	 */
 	public String uptime() {
 		return this.uptime;
 	}
 
 	/**
-	 * API name: {@code uptime_in_millis}
+	 * Required - API name: {@code uptime_in_millis}
 	 */
 	public long uptimeInMillis() {
 		return this.uptimeInMillis;
@@ -202,7 +202,7 @@ public final class Jvm implements JsonpSerializable {
 		private Long uptimeInMillis;
 
 		/**
-		 * API name: {@code buffer_pools}
+		 * Required - API name: {@code buffer_pools}
 		 */
 		public Builder bufferPools(Map<String, NodeBufferPool> value) {
 			this.bufferPools = value;
@@ -235,7 +235,7 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(JvmClasses value) {
 			this.classes = value;
@@ -243,14 +243,14 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(Function<JvmClasses.Builder, ObjectBuilder<JvmClasses>> fn) {
 			return this.classes(fn.apply(new JvmClasses.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code gc}
+		 * Required - API name: {@code gc}
 		 */
 		public Builder gc(GarbageCollector value) {
 			this.gc = value;
@@ -258,14 +258,14 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code gc}
+		 * Required - API name: {@code gc}
 		 */
 		public Builder gc(Function<GarbageCollector.Builder, ObjectBuilder<GarbageCollector>> fn) {
 			return this.gc(fn.apply(new GarbageCollector.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(MemoryStats value) {
 			this.mem = value;
@@ -273,14 +273,14 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(JvmThreads value) {
 			this.threads = value;
@@ -288,14 +288,14 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(Function<JvmThreads.Builder, ObjectBuilder<JvmThreads>> fn) {
 			return this.threads(fn.apply(new JvmThreads.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(long value) {
 			this.timestamp = value;
@@ -303,7 +303,7 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uptime}
+		 * Required - API name: {@code uptime}
 		 */
 		public Builder uptime(String value) {
 			this.uptime = value;
@@ -311,7 +311,7 @@ public final class Jvm implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uptime_in_millis}
+		 * Required - API name: {@code uptime_in_millis}
 		 */
 		public Builder uptimeInMillis(long value) {
 			this.uptimeInMillis = value;

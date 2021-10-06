@@ -57,7 +57,8 @@ public final class UnfollowRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the follower index that should be turned into a regular index.
+	 * Required - The name of the follower index that should be turned into a
+	 * regular index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -74,7 +75,8 @@ public final class UnfollowRequest extends RequestBase {
 		private String index;
 
 		/**
-		 * The name of the follower index that should be turned into a regular index.
+		 * Required - The name of the follower index that should be turned into a
+		 * regular index.
 		 * <p>
 		 * API name: {@code index}
 		 */

@@ -90,8 +90,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * The length of the bucket in seconds. This value matches the bucket_span that
-	 * is specified in the job.
+	 * Required - The length of the bucket in seconds. This value matches the
+	 * bucket_span that is specified in the job.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -100,10 +100,10 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * A normalized score between 0-100, which is based on the probability of the
-	 * influencer in this bucket aggregated across detectors. Unlike
-	 * initial_influencer_score, this value will be updated by a re-normalization
-	 * process as new data is analyzed.
+	 * Required - A normalized score between 0-100, which is based on the
+	 * probability of the influencer in this bucket aggregated across detectors.
+	 * Unlike initial_influencer_score, this value will be updated by a
+	 * re-normalization process as new data is analyzed.
 	 * <p>
 	 * API name: {@code influencer_score}
 	 */
@@ -112,7 +112,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * The field name of the influencer.
+	 * Required - The field name of the influencer.
 	 * <p>
 	 * API name: {@code influencer_field_name}
 	 */
@@ -121,7 +121,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * The entity that influenced, contributed to, or was to blame for the anomaly.
+	 * Required - The entity that influenced, contributed to, or was to blame for
+	 * the anomaly.
 	 * <p>
 	 * API name: {@code influencer_field_value}
 	 */
@@ -130,9 +131,9 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * A normalized score between 0-100, which is based on the probability of the
-	 * influencer aggregated across detectors. This is the initial value that was
-	 * calculated at the time the bucket was processed.
+	 * Required - A normalized score between 0-100, which is based on the
+	 * probability of the influencer aggregated across detectors. This is the
+	 * initial value that was calculated at the time the bucket was processed.
 	 * <p>
 	 * API name: {@code initial_influencer_score}
 	 */
@@ -141,8 +142,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, this is an interim result. In other words, the results are
-	 * calculated based on partial input data.
+	 * Required - If true, this is an interim result. In other words, the results
+	 * are calculated based on partial input data.
 	 * <p>
 	 * API name: {@code is_interim}
 	 */
@@ -151,7 +152,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -160,10 +161,10 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * The probability that the influencer has this behavior, in the range 0 to 1.
-	 * This value can be held to a high precision of over 300 decimal places, so the
-	 * influencer_score is provided as a human-readable and friendly interpretation
-	 * of this.
+	 * Required - The probability that the influencer has this behavior, in the
+	 * range 0 to 1. This value can be held to a high precision of over 300 decimal
+	 * places, so the influencer_score is provided as a human-readable and friendly
+	 * interpretation of this.
 	 * <p>
 	 * API name: {@code probability}
 	 */
@@ -172,7 +173,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * Internal. This value is always set to influencer.
+	 * Required - Internal. This value is always set to influencer.
 	 * <p>
 	 * API name: {@code result_type}
 	 */
@@ -181,7 +182,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 	}
 
 	/**
-	 * The start time of the bucket for which these results were calculated.
+	 * Required - The start time of the bucket for which these results were
+	 * calculated.
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
@@ -277,8 +279,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 		private String foo;
 
 		/**
-		 * The length of the bucket in seconds. This value matches the bucket_span that
-		 * is specified in the job.
+		 * Required - The length of the bucket in seconds. This value matches the
+		 * bucket_span that is specified in the job.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -288,10 +290,10 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * A normalized score between 0-100, which is based on the probability of the
-		 * influencer in this bucket aggregated across detectors. Unlike
-		 * initial_influencer_score, this value will be updated by a re-normalization
-		 * process as new data is analyzed.
+		 * Required - A normalized score between 0-100, which is based on the
+		 * probability of the influencer in this bucket aggregated across detectors.
+		 * Unlike initial_influencer_score, this value will be updated by a
+		 * re-normalization process as new data is analyzed.
 		 * <p>
 		 * API name: {@code influencer_score}
 		 */
@@ -301,7 +303,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * The field name of the influencer.
+		 * Required - The field name of the influencer.
 		 * <p>
 		 * API name: {@code influencer_field_name}
 		 */
@@ -311,7 +313,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * The entity that influenced, contributed to, or was to blame for the anomaly.
+		 * Required - The entity that influenced, contributed to, or was to blame for
+		 * the anomaly.
 		 * <p>
 		 * API name: {@code influencer_field_value}
 		 */
@@ -321,9 +324,9 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * A normalized score between 0-100, which is based on the probability of the
-		 * influencer aggregated across detectors. This is the initial value that was
-		 * calculated at the time the bucket was processed.
+		 * Required - A normalized score between 0-100, which is based on the
+		 * probability of the influencer aggregated across detectors. This is the
+		 * initial value that was calculated at the time the bucket was processed.
 		 * <p>
 		 * API name: {@code initial_influencer_score}
 		 */
@@ -333,8 +336,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, this is an interim result. In other words, the results are
-		 * calculated based on partial input data.
+		 * Required - If true, this is an interim result. In other words, the results
+		 * are calculated based on partial input data.
 		 * <p>
 		 * API name: {@code is_interim}
 		 */
@@ -344,7 +347,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * Identifier for the anomaly detection job.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -354,10 +357,10 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * The probability that the influencer has this behavior, in the range 0 to 1.
-		 * This value can be held to a high precision of over 300 decimal places, so the
-		 * influencer_score is provided as a human-readable and friendly interpretation
-		 * of this.
+		 * Required - The probability that the influencer has this behavior, in the
+		 * range 0 to 1. This value can be held to a high precision of over 300 decimal
+		 * places, so the influencer_score is provided as a human-readable and friendly
+		 * interpretation of this.
 		 * <p>
 		 * API name: {@code probability}
 		 */
@@ -367,7 +370,7 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * Internal. This value is always set to influencer.
+		 * Required - Internal. This value is always set to influencer.
 		 * <p>
 		 * API name: {@code result_type}
 		 */
@@ -377,7 +380,8 @@ public final class BucketInfluencer implements JsonpSerializable {
 		}
 
 		/**
-		 * The start time of the bucket for which these results were calculated.
+		 * Required - The start time of the bucket for which these results were
+		 * calculated.
 		 * <p>
 		 * API name: {@code timestamp}
 		 */

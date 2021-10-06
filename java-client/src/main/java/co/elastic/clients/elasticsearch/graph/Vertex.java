@@ -66,28 +66,28 @@ public final class Vertex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code depth}
+	 * Required - API name: {@code depth}
 	 */
 	public long depth() {
 		return this.depth;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code term}
+	 * Required - API name: {@code term}
 	 */
 	public String term() {
 		return this.term;
 	}
 
 	/**
-	 * API name: {@code weight}
+	 * Required - API name: {@code weight}
 	 */
 	public double weight() {
 		return this.weight;
@@ -133,7 +133,7 @@ public final class Vertex implements JsonpSerializable {
 		private Double weight;
 
 		/**
-		 * API name: {@code depth}
+		 * Required - API name: {@code depth}
 		 */
 		public Builder depth(long value) {
 			this.depth = value;
@@ -141,7 +141,7 @@ public final class Vertex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -149,7 +149,7 @@ public final class Vertex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code term}
+		 * Required - API name: {@code term}
 		 */
 		public Builder term(String value) {
 			this.term = value;
@@ -157,7 +157,7 @@ public final class Vertex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code weight}
+		 * Required - API name: {@code weight}
 		 */
 		public Builder weight(double value) {
 			this.weight = value;

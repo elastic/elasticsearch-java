@@ -74,14 +74,14 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public DataframeAnalyticsSource source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code analysis}
+	 * Required - API name: {@code analysis}
 	 */
 	public DataframeAnalysis analysis() {
 		return this.analysis;
@@ -169,7 +169,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(DataframeAnalyticsSource value) {
 			this.source = value;
@@ -177,14 +177,14 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code analysis}
+		 * Required - API name: {@code analysis}
 		 */
 		public Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
@@ -192,7 +192,7 @@ public final class DataframePreviewConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis}
+		 * Required - API name: {@code analysis}
 		 */
 		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
 			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());

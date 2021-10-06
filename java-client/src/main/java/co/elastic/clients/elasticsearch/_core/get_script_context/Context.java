@@ -62,14 +62,14 @@ public final class Context implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code methods}
+	 * Required - API name: {@code methods}
 	 */
 	public List<ContextMethod> methods() {
 		return this.methods;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -110,7 +110,7 @@ public final class Context implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code methods}
+		 * Required - API name: {@code methods}
 		 */
 		public Builder methods(List<ContextMethod> value) {
 			this.methods = value;
@@ -118,7 +118,7 @@ public final class Context implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code methods}
+		 * Required - API name: {@code methods}
 		 */
 		public Builder methods(ContextMethod... value) {
 			this.methods = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class Context implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #methods(List)}, creating the list if needed. 4
+		 * Add a value to {@link #methods(List)}, creating the list if needed.
 		 */
 		public Builder addMethods(ContextMethod value) {
 			if (this.methods == null) {
@@ -144,14 +144,14 @@ public final class Context implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #methods(List)}, creating the list if needed. 5
+		 * Add a value to {@link #methods(List)}, creating the list if needed.
 		 */
 		public Builder addMethods(Function<ContextMethod.Builder, ObjectBuilder<ContextMethod>> fn) {
 			return this.addMethods(fn.apply(new ContextMethod.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

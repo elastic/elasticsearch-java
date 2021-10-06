@@ -157,7 +157,7 @@ public final class GetJobsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #jobId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #jobId(List)}, creating the list if needed.
 		 */
 		public Builder addJobId(String value) {
 			if (this.jobId == null) {

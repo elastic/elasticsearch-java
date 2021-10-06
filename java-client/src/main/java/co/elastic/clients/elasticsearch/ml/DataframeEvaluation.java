@@ -68,6 +68,10 @@ public class DataframeEvaluation implements TaggedUnion<Object>, JsonpSerializab
 
 	}
 
+	public <T extends DataframeEvaluationVariant> DataframeEvaluation(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private DataframeEvaluation(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

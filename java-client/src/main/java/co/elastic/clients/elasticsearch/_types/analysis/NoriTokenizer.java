@@ -78,28 +78,28 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 	}
 
 	/**
-	 * API name: {@code decompound_mode}
+	 * Required - API name: {@code decompound_mode}
 	 */
 	public NoriDecompoundMode decompoundMode() {
 		return this.decompoundMode;
 	}
 
 	/**
-	 * API name: {@code discard_punctuation}
+	 * Required - API name: {@code discard_punctuation}
 	 */
 	public boolean discardPunctuation() {
 		return this.discardPunctuation;
 	}
 
 	/**
-	 * API name: {@code user_dictionary}
+	 * Required - API name: {@code user_dictionary}
 	 */
 	public String userDictionary() {
 		return this.userDictionary;
 	}
 
 	/**
-	 * API name: {@code user_dictionary_rules}
+	 * Required - API name: {@code user_dictionary_rules}
 	 */
 	public List<String> userDictionaryRules() {
 		return this.userDictionaryRules;
@@ -144,7 +144,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		private List<String> userDictionaryRules;
 
 		/**
-		 * API name: {@code decompound_mode}
+		 * Required - API name: {@code decompound_mode}
 		 */
 		public Builder decompoundMode(NoriDecompoundMode value) {
 			this.decompoundMode = value;
@@ -152,7 +152,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		}
 
 		/**
-		 * API name: {@code discard_punctuation}
+		 * Required - API name: {@code discard_punctuation}
 		 */
 		public Builder discardPunctuation(boolean value) {
 			this.discardPunctuation = value;
@@ -160,7 +160,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		}
 
 		/**
-		 * API name: {@code user_dictionary}
+		 * Required - API name: {@code user_dictionary}
 		 */
 		public Builder userDictionary(String value) {
 			this.userDictionary = value;
@@ -168,7 +168,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		}
 
 		/**
-		 * API name: {@code user_dictionary_rules}
+		 * Required - API name: {@code user_dictionary_rules}
 		 */
 		public Builder userDictionaryRules(List<String> value) {
 			this.userDictionaryRules = value;
@@ -176,7 +176,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		}
 
 		/**
-		 * API name: {@code user_dictionary_rules}
+		 * Required - API name: {@code user_dictionary_rules}
 		 */
 		public Builder userDictionaryRules(String... value) {
 			this.userDictionaryRules = Arrays.asList(value);
@@ -185,7 +185,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 
 		/**
 		 * Add a value to {@link #userDictionaryRules(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addUserDictionaryRules(String value) {
 			if (this.userDictionaryRules == null) {

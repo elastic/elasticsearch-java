@@ -69,6 +69,10 @@ public class ResponseItem implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends ResponseItemVariant> ResponseItem(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private ResponseItem(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

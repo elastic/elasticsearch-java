@@ -83,14 +83,14 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code valid}
+	 * Required - API name: {@code valid}
 	 */
 	public boolean valid() {
 		return this.valid;
@@ -161,7 +161,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -169,7 +169,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code valid}
+		 * Required - API name: {@code valid}
 		 */
 		public Builder valid(boolean value) {
 			this.valid = value;

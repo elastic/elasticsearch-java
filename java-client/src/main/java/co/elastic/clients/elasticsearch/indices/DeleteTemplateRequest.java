@@ -66,7 +66,7 @@ public final class DeleteTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the template
+	 * Required - The name of the template
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -109,7 +109,7 @@ public final class DeleteTemplateRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * The name of the template
+		 * Required - The name of the template
 		 * <p>
 		 * API name: {@code name}
 		 */

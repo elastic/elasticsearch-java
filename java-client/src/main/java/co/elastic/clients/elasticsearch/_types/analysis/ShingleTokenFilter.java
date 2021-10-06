@@ -81,42 +81,42 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * API name: {@code filler_token}
+	 * Required - API name: {@code filler_token}
 	 */
 	public String fillerToken() {
 		return this.fillerToken;
 	}
 
 	/**
-	 * API name: {@code max_shingle_size}
+	 * Required - API name: {@code max_shingle_size}
 	 */
 	public int maxShingleSize() {
 		return this.maxShingleSize;
 	}
 
 	/**
-	 * API name: {@code min_shingle_size}
+	 * Required - API name: {@code min_shingle_size}
 	 */
 	public int minShingleSize() {
 		return this.minShingleSize;
 	}
 
 	/**
-	 * API name: {@code output_unigrams}
+	 * Required - API name: {@code output_unigrams}
 	 */
 	public boolean outputUnigrams() {
 		return this.outputUnigrams;
 	}
 
 	/**
-	 * API name: {@code output_unigrams_if_no_shingles}
+	 * Required - API name: {@code output_unigrams_if_no_shingles}
 	 */
 	public boolean outputUnigramsIfNoShingles() {
 		return this.outputUnigramsIfNoShingles;
 	}
 
 	/**
-	 * API name: {@code token_separator}
+	 * Required - API name: {@code token_separator}
 	 */
 	public String tokenSeparator() {
 		return this.tokenSeparator;
@@ -168,7 +168,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		private String tokenSeparator;
 
 		/**
-		 * API name: {@code filler_token}
+		 * Required - API name: {@code filler_token}
 		 */
 		public Builder fillerToken(String value) {
 			this.fillerToken = value;
@@ -176,7 +176,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code max_shingle_size}
+		 * Required - API name: {@code max_shingle_size}
 		 */
 		public Builder maxShingleSize(int value) {
 			this.maxShingleSize = value;
@@ -184,7 +184,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code min_shingle_size}
+		 * Required - API name: {@code min_shingle_size}
 		 */
 		public Builder minShingleSize(int value) {
 			this.minShingleSize = value;
@@ -192,7 +192,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code output_unigrams}
+		 * Required - API name: {@code output_unigrams}
 		 */
 		public Builder outputUnigrams(boolean value) {
 			this.outputUnigrams = value;
@@ -200,7 +200,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code output_unigrams_if_no_shingles}
+		 * Required - API name: {@code output_unigrams_if_no_shingles}
 		 */
 		public Builder outputUnigramsIfNoShingles(boolean value) {
 			this.outputUnigramsIfNoShingles = value;
@@ -208,7 +208,7 @@ public final class ShingleTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code token_separator}
+		 * Required - API name: {@code token_separator}
 		 */
 		public Builder tokenSeparator(String value) {
 			this.tokenSeparator = value;

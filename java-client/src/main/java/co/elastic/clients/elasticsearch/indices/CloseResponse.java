@@ -64,14 +64,14 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public Map<String, CloseIndexResult> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
 	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
@@ -108,7 +108,7 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 		private Boolean shardsAcknowledged;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Map<String, CloseIndexResult> value) {
 			this.indices = value;
@@ -141,7 +141,7 @@ public final class CloseResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
 		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;

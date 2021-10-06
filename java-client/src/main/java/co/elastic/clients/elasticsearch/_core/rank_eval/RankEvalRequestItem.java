@@ -77,7 +77,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	}
 
 	/**
-	 * The search request’s ID, used to group result details later.
+	 * Required - The search request’s ID, used to group result details later.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -96,7 +96,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	}
 
 	/**
-	 * List of document ratings
+	 * Required - List of document ratings
 	 * <p>
 	 * API name: {@code ratings}
 	 */
@@ -194,7 +194,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		private Map<String, JsonData> params;
 
 		/**
-		 * The search request’s ID, used to group result details later.
+		 * Required - The search request’s ID, used to group result details later.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -223,7 +223,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		}
 
 		/**
-		 * List of document ratings
+		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
 		 */
@@ -233,7 +233,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		}
 
 		/**
-		 * List of document ratings
+		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
 		 */
@@ -243,7 +243,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #ratings(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ratings(List)}, creating the list if needed.
 		 */
 		public Builder addRatings(DocumentRating value) {
 			if (this.ratings == null) {
@@ -261,7 +261,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #ratings(List)}, creating the list if needed. 5
+		 * Add a value to {@link #ratings(List)}, creating the list if needed.
 		 */
 		public Builder addRatings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
 			return this.addRatings(fn.apply(new DocumentRating.Builder()).build());

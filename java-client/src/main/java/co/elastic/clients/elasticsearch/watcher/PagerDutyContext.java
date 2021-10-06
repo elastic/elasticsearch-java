@@ -61,21 +61,21 @@ public final class PagerDutyContext implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code href}
+	 * Required - API name: {@code href}
 	 */
 	public String href() {
 		return this.href;
 	}
 
 	/**
-	 * API name: {@code src}
+	 * Required - API name: {@code src}
 	 */
 	public String src() {
 		return this.src;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public PagerDutyContextType type() {
 		return this.type;
@@ -116,7 +116,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		private PagerDutyContextType type;
 
 		/**
-		 * API name: {@code href}
+		 * Required - API name: {@code href}
 		 */
 		public Builder href(String value) {
 			this.href = value;
@@ -124,7 +124,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code src}
+		 * Required - API name: {@code src}
 		 */
 		public Builder src(String value) {
 			this.src = value;
@@ -132,7 +132,7 @@ public final class PagerDutyContext implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(PagerDutyContextType value) {
 			this.type = value;

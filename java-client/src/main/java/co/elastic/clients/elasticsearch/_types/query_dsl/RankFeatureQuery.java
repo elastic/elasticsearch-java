@@ -79,7 +79,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -172,7 +172,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		private RankFeatureFunctionSigmoid sigmoid;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

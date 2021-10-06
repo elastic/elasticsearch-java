@@ -74,7 +74,7 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names (supports wildcards); use
+	 * Required - A comma-separated list of index names (supports wildcards); use
 	 * <code>_all</code> for all indices
 	 * <p>
 	 * API name: {@code index}
@@ -84,8 +84,8 @@ public final class DeleteAliasRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of aliases to delete (supports wildcards); use
-	 * <code>_all</code> to delete all aliases for the specified indices.
+	 * Required - A comma-separated list of aliases to delete (supports wildcards);
+	 * use <code>_all</code> to delete all aliases for the specified indices.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -130,7 +130,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * A comma-separated list of index names (supports wildcards); use
+		 * Required - A comma-separated list of index names (supports wildcards); use
 		 * <code>_all</code> for all indices
 		 * <p>
 		 * API name: {@code index}
@@ -141,7 +141,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names (supports wildcards); use
+		 * Required - A comma-separated list of index names (supports wildcards); use
 		 * <code>_all</code> for all indices
 		 * <p>
 		 * API name: {@code index}
@@ -152,7 +152,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -163,8 +163,8 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of aliases to delete (supports wildcards); use
-		 * <code>_all</code> to delete all aliases for the specified indices.
+		 * Required - A comma-separated list of aliases to delete (supports wildcards);
+		 * use <code>_all</code> to delete all aliases for the specified indices.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -174,8 +174,8 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of aliases to delete (supports wildcards); use
-		 * <code>_all</code> to delete all aliases for the specified indices.
+		 * Required - A comma-separated list of aliases to delete (supports wildcards);
+		 * use <code>_all</code> to delete all aliases for the specified indices.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -185,7 +185,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed. 4
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {

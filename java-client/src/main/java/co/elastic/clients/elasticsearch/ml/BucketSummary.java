@@ -93,49 +93,49 @@ public final class BucketSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code anomaly_score}
+	 * Required - API name: {@code anomaly_score}
 	 */
 	public double anomalyScore() {
 		return this.anomalyScore;
 	}
 
 	/**
-	 * API name: {@code bucket_influencers}
+	 * Required - API name: {@code bucket_influencers}
 	 */
 	public List<BucketInfluencer> bucketInfluencers() {
 		return this.bucketInfluencers;
 	}
 
 	/**
-	 * API name: {@code bucket_span}
+	 * Required - API name: {@code bucket_span}
 	 */
 	public String bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
-	 * API name: {@code event_count}
+	 * Required - API name: {@code event_count}
 	 */
 	public long eventCount() {
 		return this.eventCount;
 	}
 
 	/**
-	 * API name: {@code initial_anomaly_score}
+	 * Required - API name: {@code initial_anomaly_score}
 	 */
 	public double initialAnomalyScore() {
 		return this.initialAnomalyScore;
 	}
 
 	/**
-	 * API name: {@code is_interim}
+	 * Required - API name: {@code is_interim}
 	 */
 	public boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
@@ -150,21 +150,21 @@ public final class BucketSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code processing_time_ms}
+	 * Required - API name: {@code processing_time_ms}
 	 */
 	public double processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
 	/**
-	 * API name: {@code result_type}
+	 * Required - API name: {@code result_type}
 	 */
 	public String resultType() {
 		return this.resultType;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -260,7 +260,7 @@ public final class BucketSummary implements JsonpSerializable {
 		private String timestamp;
 
 		/**
-		 * API name: {@code anomaly_score}
+		 * Required - API name: {@code anomaly_score}
 		 */
 		public Builder anomalyScore(double value) {
 			this.anomalyScore = value;
@@ -268,7 +268,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bucket_influencers}
+		 * Required - API name: {@code bucket_influencers}
 		 */
 		public Builder bucketInfluencers(List<BucketInfluencer> value) {
 			this.bucketInfluencers = value;
@@ -276,7 +276,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bucket_influencers}
+		 * Required - API name: {@code bucket_influencers}
 		 */
 		public Builder bucketInfluencers(BucketInfluencer... value) {
 			this.bucketInfluencers = Arrays.asList(value);
@@ -285,7 +285,6 @@ public final class BucketSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addBucketInfluencers(BucketInfluencer value) {
 			if (this.bucketInfluencers == null) {
@@ -304,14 +303,13 @@ public final class BucketSummary implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addBucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
 			return this.addBucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code bucket_span}
+		 * Required - API name: {@code bucket_span}
 		 */
 		public Builder bucketSpan(String value) {
 			this.bucketSpan = value;
@@ -319,7 +317,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code event_count}
+		 * Required - API name: {@code event_count}
 		 */
 		public Builder eventCount(long value) {
 			this.eventCount = value;
@@ -327,7 +325,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code initial_anomaly_score}
+		 * Required - API name: {@code initial_anomaly_score}
 		 */
 		public Builder initialAnomalyScore(double value) {
 			this.initialAnomalyScore = value;
@@ -335,7 +333,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code is_interim}
+		 * Required - API name: {@code is_interim}
 		 */
 		public Builder isInterim(boolean value) {
 			this.isInterim = value;
@@ -343,7 +341,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -367,7 +365,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed. 4
+		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
 		 */
 		public Builder addPartitionScores(PartitionScore value) {
 			if (this.partitionScores == null) {
@@ -385,14 +383,14 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed. 5
+		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
 		 */
 		public Builder addPartitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
 			return this.addPartitionScores(fn.apply(new PartitionScore.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code processing_time_ms}
+		 * Required - API name: {@code processing_time_ms}
 		 */
 		public Builder processingTimeMs(double value) {
 			this.processingTimeMs = value;
@@ -400,7 +398,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code result_type}
+		 * Required - API name: {@code result_type}
 		 */
 		public Builder resultType(String value) {
 			this.resultType = value;
@@ -408,7 +406,7 @@ public final class BucketSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;

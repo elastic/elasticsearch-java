@@ -59,7 +59,7 @@ public final class ReindexNode extends BaseNode {
 	}
 
 	/**
-	 * API name: {@code tasks}
+	 * Required - API name: {@code tasks}
 	 */
 	public Map<String, ReindexTask> tasks() {
 		return this.tasks;
@@ -89,7 +89,7 @@ public final class ReindexNode extends BaseNode {
 		private Map<String, ReindexTask> tasks;
 
 		/**
-		 * API name: {@code tasks}
+		 * Required - API name: {@code tasks}
 		 */
 		public Builder tasks(Map<String, ReindexTask> value) {
 			this.tasks = value;

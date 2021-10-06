@@ -57,7 +57,7 @@ public final class DeleteJobRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the job to delete
+	 * Required - The ID of the job to delete
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteJobRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * The ID of the job to delete
+		 * Required - The ID of the job to delete
 		 * <p>
 		 * API name: {@code id}
 		 */

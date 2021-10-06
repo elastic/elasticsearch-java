@@ -68,7 +68,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Defines the type of evaluation you want to perform.
+	 * Required - Defines the type of evaluation you want to perform.
 	 * <p>
 	 * API name: {@code evaluation}
 	 */
@@ -77,7 +77,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Defines the index in which the evaluation will be performed.
+	 * Required - Defines the index in which the evaluation will be performed.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -135,7 +135,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		private Query query;
 
 		/**
-		 * Defines the type of evaluation you want to perform.
+		 * Required - Defines the type of evaluation you want to perform.
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
@@ -145,7 +145,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		}
 
 		/**
-		 * Defines the type of evaluation you want to perform.
+		 * Required - Defines the type of evaluation you want to perform.
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
@@ -154,7 +154,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		}
 
 		/**
-		 * Defines the index in which the evaluation will be performed.
+		 * Required - Defines the index in which the evaluation will be performed.
 		 * <p>
 		 * API name: {@code index}
 		 */

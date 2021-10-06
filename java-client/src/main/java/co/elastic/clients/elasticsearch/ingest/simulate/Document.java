@@ -80,7 +80,7 @@ public final class Document implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _source}
+	 * Required - API name: {@code _source}
 	 */
 	public JsonData source() {
 		return this.source;
@@ -146,7 +146,7 @@ public final class Document implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _source}
+		 * Required - API name: {@code _source}
 		 */
 		public Builder source(JsonData value) {
 			this.source = value;

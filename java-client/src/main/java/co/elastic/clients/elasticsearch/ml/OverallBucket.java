@@ -77,8 +77,8 @@ public final class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * The length of the bucket in seconds. Matches the job with the longest
-	 * bucket_span value.
+	 * Required - The length of the bucket in seconds. Matches the job with the
+	 * longest bucket_span value.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -87,8 +87,8 @@ public final class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, this is an interim result. In other words, the results are
-	 * calculated based on partial input data.
+	 * Required - If true, this is an interim result. In other words, the results
+	 * are calculated based on partial input data.
 	 * <p>
 	 * API name: {@code is_interim}
 	 */
@@ -97,7 +97,7 @@ public final class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of objects that contain the max_anomaly_score per job_id.
+	 * Required - An array of objects that contain the max_anomaly_score per job_id.
 	 * <p>
 	 * API name: {@code jobs}
 	 */
@@ -106,7 +106,7 @@ public final class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * The top_n average of the maximum bucket anomaly_score per job.
+	 * Required - The top_n average of the maximum bucket anomaly_score per job.
 	 * <p>
 	 * API name: {@code overall_score}
 	 */
@@ -115,7 +115,7 @@ public final class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * Internal. This is always set to overall_bucket.
+	 * Required - Internal. This is always set to overall_bucket.
 	 * <p>
 	 * API name: {@code result_type}
 	 */
@@ -124,7 +124,8 @@ public final class OverallBucket implements JsonpSerializable {
 	}
 
 	/**
-	 * The start time of the bucket for which these results were calculated.
+	 * Required - The start time of the bucket for which these results were
+	 * calculated.
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
@@ -187,8 +188,8 @@ public final class OverallBucket implements JsonpSerializable {
 		private String timestamp;
 
 		/**
-		 * The length of the bucket in seconds. Matches the job with the longest
-		 * bucket_span value.
+		 * Required - The length of the bucket in seconds. Matches the job with the
+		 * longest bucket_span value.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -198,8 +199,8 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, this is an interim result. In other words, the results are
-		 * calculated based on partial input data.
+		 * Required - If true, this is an interim result. In other words, the results
+		 * are calculated based on partial input data.
 		 * <p>
 		 * API name: {@code is_interim}
 		 */
@@ -209,7 +210,7 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of objects that contain the max_anomaly_score per job_id.
+		 * Required - An array of objects that contain the max_anomaly_score per job_id.
 		 * <p>
 		 * API name: {@code jobs}
 		 */
@@ -219,7 +220,7 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of objects that contain the max_anomaly_score per job_id.
+		 * Required - An array of objects that contain the max_anomaly_score per job_id.
 		 * <p>
 		 * API name: {@code jobs}
 		 */
@@ -229,7 +230,7 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #jobs(List)}, creating the list if needed.
 		 */
 		public Builder addJobs(OverallBucketJob value) {
 			if (this.jobs == null) {
@@ -247,14 +248,14 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #jobs(List)}, creating the list if needed.
 		 */
 		public Builder addJobs(Function<OverallBucketJob.Builder, ObjectBuilder<OverallBucketJob>> fn) {
 			return this.addJobs(fn.apply(new OverallBucketJob.Builder()).build());
 		}
 
 		/**
-		 * The top_n average of the maximum bucket anomaly_score per job.
+		 * Required - The top_n average of the maximum bucket anomaly_score per job.
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
@@ -264,7 +265,7 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * Internal. This is always set to overall_bucket.
+		 * Required - Internal. This is always set to overall_bucket.
 		 * <p>
 		 * API name: {@code result_type}
 		 */
@@ -274,7 +275,8 @@ public final class OverallBucket implements JsonpSerializable {
 		}
 
 		/**
-		 * The start time of the bucket for which these results were calculated.
+		 * Required - The start time of the bucket for which these results were
+		 * calculated.
 		 * <p>
 		 * API name: {@code timestamp}
 		 */

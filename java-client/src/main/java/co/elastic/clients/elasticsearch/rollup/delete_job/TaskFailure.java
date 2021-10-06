@@ -64,28 +64,28 @@ public final class TaskFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code task_id}
+	 * Required - API name: {@code task_id}
 	 */
 	public String taskId() {
 		return this.taskId;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public String status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public TaskFailureReason reason() {
 		return this.reason;
@@ -131,7 +131,7 @@ public final class TaskFailure implements JsonpSerializable {
 		private TaskFailureReason reason;
 
 		/**
-		 * API name: {@code task_id}
+		 * Required - API name: {@code task_id}
 		 */
 		public Builder taskId(String value) {
 			this.taskId = value;
@@ -139,7 +139,7 @@ public final class TaskFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -147,7 +147,7 @@ public final class TaskFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(String value) {
 			this.status = value;
@@ -155,7 +155,7 @@ public final class TaskFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(TaskFailureReason value) {
 			this.reason = value;
@@ -163,7 +163,7 @@ public final class TaskFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(Function<TaskFailureReason.Builder, ObjectBuilder<TaskFailureReason>> fn) {
 			return this.reason(fn.apply(new TaskFailureReason.Builder()).build());

@@ -82,7 +82,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
@@ -97,14 +97,14 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code matched}
+	 * Required - API name: {@code matched}
 	 */
 	public boolean matched() {
 		return this.matched;
@@ -193,7 +193,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder<TDocument> index(String value) {
 			this.index = value;
@@ -209,7 +209,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder<TDocument> id(String value) {
 			this.id = value;
@@ -217,7 +217,7 @@ public final class ExplainResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code matched}
+		 * Required - API name: {@code matched}
 		 */
 		public Builder<TDocument> matched(boolean value) {
 			this.matched = value;

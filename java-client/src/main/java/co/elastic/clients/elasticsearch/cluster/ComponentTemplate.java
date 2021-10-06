@@ -58,14 +58,14 @@ public final class ComponentTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code component_template}
+	 * Required - API name: {@code component_template}
 	 */
 	public ComponentTemplateNode componentTemplate() {
 		return this.componentTemplate;
@@ -101,7 +101,7 @@ public final class ComponentTemplate implements JsonpSerializable {
 		private ComponentTemplateNode componentTemplate;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -109,7 +109,7 @@ public final class ComponentTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code component_template}
+		 * Required - API name: {@code component_template}
 		 */
 		public Builder componentTemplate(ComponentTemplateNode value) {
 			this.componentTemplate = value;
@@ -117,7 +117,7 @@ public final class ComponentTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code component_template}
+		 * Required - API name: {@code component_template}
 		 */
 		public Builder componentTemplate(
 				Function<ComponentTemplateNode.Builder, ObjectBuilder<ComponentTemplateNode>> fn) {

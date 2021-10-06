@@ -64,7 +64,7 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
@@ -79,7 +79,7 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code memory_in_bytes}
+	 * Required - API name: {@code memory_in_bytes}
 	 */
 	public Number memoryInBytes() {
 		return this.memoryInBytes;
@@ -125,7 +125,7 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		private Number memoryInBytes;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -141,7 +141,7 @@ public final class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory_in_bytes}
+		 * Required - API name: {@code memory_in_bytes}
 		 */
 		public Builder memoryInBytes(Number value) {
 			this.memoryInBytes = value;

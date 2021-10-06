@@ -66,7 +66,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 	}
 
 	/**
-	 * API name: {@code clauses}
+	 * Required - API name: {@code clauses}
 	 */
 	public List<SpanQuery> clauses() {
 		return this.clauses;
@@ -95,7 +95,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 		private List<SpanQuery> clauses;
 
 		/**
-		 * API name: {@code clauses}
+		 * Required - API name: {@code clauses}
 		 */
 		public Builder clauses(List<SpanQuery> value) {
 			this.clauses = value;
@@ -103,7 +103,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 		}
 
 		/**
-		 * API name: {@code clauses}
+		 * Required - API name: {@code clauses}
 		 */
 		public Builder clauses(SpanQuery... value) {
 			this.clauses = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 		}
 
 		/**
-		 * Add a value to {@link #clauses(List)}, creating the list if needed. 4
+		 * Add a value to {@link #clauses(List)}, creating the list if needed.
 		 */
 		public Builder addClauses(SpanQuery value) {
 			if (this.clauses == null) {
@@ -129,7 +129,7 @@ public final class SpanOrQuery extends QueryBase implements SpanQueryVariant, Qu
 		}
 
 		/**
-		 * Add a value to {@link #clauses(List)}, creating the list if needed. 5
+		 * Add a value to {@link #clauses(List)}, creating the list if needed.
 		 */
 		public Builder addClauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.addClauses(fn.apply(new SpanQuery.Builder()).build());

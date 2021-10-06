@@ -53,7 +53,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -78,7 +78,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 		private TrainedModelConfig valueBody;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -88,7 +88,7 @@ public final class PutTrainedModelResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

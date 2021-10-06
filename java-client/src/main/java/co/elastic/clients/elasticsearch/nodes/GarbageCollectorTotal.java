@@ -63,21 +63,21 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code collection_count}
+	 * Required - API name: {@code collection_count}
 	 */
 	public long collectionCount() {
 		return this.collectionCount;
 	}
 
 	/**
-	 * API name: {@code collection_time}
+	 * Required - API name: {@code collection_time}
 	 */
 	public String collectionTime() {
 		return this.collectionTime;
 	}
 
 	/**
-	 * API name: {@code collection_time_in_millis}
+	 * Required - API name: {@code collection_time_in_millis}
 	 */
 	public long collectionTimeInMillis() {
 		return this.collectionTimeInMillis;
@@ -118,7 +118,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		private Long collectionTimeInMillis;
 
 		/**
-		 * API name: {@code collection_count}
+		 * Required - API name: {@code collection_count}
 		 */
 		public Builder collectionCount(long value) {
 			this.collectionCount = value;
@@ -126,7 +126,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code collection_time}
+		 * Required - API name: {@code collection_time}
 		 */
 		public Builder collectionTime(String value) {
 			this.collectionTime = value;
@@ -134,7 +134,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code collection_time_in_millis}
+		 * Required - API name: {@code collection_time_in_millis}
 		 */
 		public Builder collectionTimeInMillis(long value) {
 			this.collectionTimeInMillis = value;

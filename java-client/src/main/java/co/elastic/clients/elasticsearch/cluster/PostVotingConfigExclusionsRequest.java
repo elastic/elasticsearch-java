@@ -146,7 +146,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeNames(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeNames(List)}, creating the list if needed.
 		 */
 		public Builder addNodeNames(String value) {
 			if (this.nodeNames == null) {
@@ -179,7 +179,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeIds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeIds(List)}, creating the list if needed.
 		 */
 		public Builder addNodeIds(String value) {
 			if (this.nodeIds == null) {

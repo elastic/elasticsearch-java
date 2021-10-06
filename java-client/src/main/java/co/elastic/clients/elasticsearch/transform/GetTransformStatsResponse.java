@@ -63,14 +63,14 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code transforms}
+	 * Required - API name: {@code transforms}
 	 */
 	public List<TransformStats> transforms() {
 		return this.transforms;
@@ -111,7 +111,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		private List<TransformStats> transforms;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -119,7 +119,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transforms}
+		 * Required - API name: {@code transforms}
 		 */
 		public Builder transforms(List<TransformStats> value) {
 			this.transforms = value;
@@ -127,7 +127,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transforms}
+		 * Required - API name: {@code transforms}
 		 */
 		public Builder transforms(TransformStats... value) {
 			this.transforms = Arrays.asList(value);
@@ -135,7 +135,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #transforms(List)}, creating the list if needed.
 		 */
 		public Builder addTransforms(TransformStats value) {
 			if (this.transforms == null) {
@@ -153,7 +153,7 @@ public final class GetTransformStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed. 5
+		 * Add a value to {@link #transforms(List)}, creating the list if needed.
 		 */
 		public Builder addTransforms(Function<TransformStats.Builder, ObjectBuilder<TransformStats>> fn) {
 			return this.addTransforms(fn.apply(new TransformStats.Builder()).build());

@@ -75,35 +75,35 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code allocated_processors}
+	 * Required - API name: {@code allocated_processors}
 	 */
 	public int allocatedProcessors() {
 		return this.allocatedProcessors;
 	}
 
 	/**
-	 * API name: {@code available_processors}
+	 * Required - API name: {@code available_processors}
 	 */
 	public int availableProcessors() {
 		return this.availableProcessors;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public OperatingSystemMemoryInfo mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code names}
+	 * Required - API name: {@code names}
 	 */
 	public List<ClusterOperatingSystemName> names() {
 		return this.names;
 	}
 
 	/**
-	 * API name: {@code pretty_names}
+	 * Required - API name: {@code pretty_names}
 	 */
 	public List<ClusterOperatingSystemPrettyName> prettyNames() {
 		return this.prettyNames;
@@ -187,7 +187,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		private List<ClusterOperatingSystemArchitecture> architectures;
 
 		/**
-		 * API name: {@code allocated_processors}
+		 * Required - API name: {@code allocated_processors}
 		 */
 		public Builder allocatedProcessors(int value) {
 			this.allocatedProcessors = value;
@@ -195,7 +195,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code available_processors}
+		 * Required - API name: {@code available_processors}
 		 */
 		public Builder availableProcessors(int value) {
 			this.availableProcessors = value;
@@ -203,7 +203,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(OperatingSystemMemoryInfo value) {
 			this.mem = value;
@@ -211,14 +211,14 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<OperatingSystemMemoryInfo.Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {
 			return this.mem(fn.apply(new OperatingSystemMemoryInfo.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code names}
+		 * Required - API name: {@code names}
 		 */
 		public Builder names(List<ClusterOperatingSystemName> value) {
 			this.names = value;
@@ -226,7 +226,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code names}
+		 * Required - API name: {@code names}
 		 */
 		public Builder names(ClusterOperatingSystemName... value) {
 			this.names = Arrays.asList(value);
@@ -234,7 +234,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #names(List)}, creating the list if needed. 4
+		 * Add a value to {@link #names(List)}, creating the list if needed.
 		 */
 		public Builder addNames(ClusterOperatingSystemName value) {
 			if (this.names == null) {
@@ -253,7 +253,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #names(List)}, creating the list if needed. 5
+		 * Add a value to {@link #names(List)}, creating the list if needed.
 		 */
 		public Builder addNames(
 				Function<ClusterOperatingSystemName.Builder, ObjectBuilder<ClusterOperatingSystemName>> fn) {
@@ -261,7 +261,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pretty_names}
+		 * Required - API name: {@code pretty_names}
 		 */
 		public Builder prettyNames(List<ClusterOperatingSystemPrettyName> value) {
 			this.prettyNames = value;
@@ -269,7 +269,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pretty_names}
+		 * Required - API name: {@code pretty_names}
 		 */
 		public Builder prettyNames(ClusterOperatingSystemPrettyName... value) {
 			this.prettyNames = Arrays.asList(value);
@@ -277,7 +277,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #prettyNames(List)}, creating the list if needed. 4
+		 * Add a value to {@link #prettyNames(List)}, creating the list if needed.
 		 */
 		public Builder addPrettyNames(ClusterOperatingSystemPrettyName value) {
 			if (this.prettyNames == null) {
@@ -296,7 +296,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #prettyNames(List)}, creating the list if needed. 5
+		 * Add a value to {@link #prettyNames(List)}, creating the list if needed.
 		 */
 		public Builder addPrettyNames(
 				Function<ClusterOperatingSystemPrettyName.Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
@@ -320,7 +320,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #architectures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #architectures(List)}, creating the list if needed.
 		 */
 		public Builder addArchitectures(ClusterOperatingSystemArchitecture value) {
 			if (this.architectures == null) {
@@ -339,7 +339,7 @@ public final class ClusterOperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #architectures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #architectures(List)}, creating the list if needed.
 		 */
 		public Builder addArchitectures(
 				Function<ClusterOperatingSystemArchitecture.Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {

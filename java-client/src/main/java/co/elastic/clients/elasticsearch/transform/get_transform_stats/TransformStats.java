@@ -73,14 +73,14 @@ public final class TransformStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code checkpointing}
+	 * Required - API name: {@code checkpointing}
 	 */
 	public Checkpointing checkpointing() {
 		return this.checkpointing;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
@@ -103,14 +103,14 @@ public final class TransformStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public String state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public TransformIndexerStats stats() {
 		return this.stats;
@@ -175,7 +175,7 @@ public final class TransformStats implements JsonpSerializable {
 		private TransformIndexerStats stats;
 
 		/**
-		 * API name: {@code checkpointing}
+		 * Required - API name: {@code checkpointing}
 		 */
 		public Builder checkpointing(Checkpointing value) {
 			this.checkpointing = value;
@@ -183,14 +183,14 @@ public final class TransformStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code checkpointing}
+		 * Required - API name: {@code checkpointing}
 		 */
 		public Builder checkpointing(Function<Checkpointing.Builder, ObjectBuilder<Checkpointing>> fn) {
 			return this.checkpointing(fn.apply(new Checkpointing.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -221,7 +221,7 @@ public final class TransformStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(String value) {
 			this.state = value;
@@ -229,7 +229,7 @@ public final class TransformStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(TransformIndexerStats value) {
 			this.stats = value;
@@ -237,7 +237,7 @@ public final class TransformStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<TransformIndexerStats.Builder, ObjectBuilder<TransformIndexerStats>> fn) {
 			return this.stats(fn.apply(new TransformIndexerStats.Builder()).build());

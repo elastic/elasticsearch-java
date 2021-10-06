@@ -66,14 +66,14 @@ public final class WarmerStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current}
+	 * Required - API name: {@code current}
 	 */
 	public long current() {
 		return this.current;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -88,7 +88,7 @@ public final class WarmerStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public long totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -139,7 +139,7 @@ public final class WarmerStats implements JsonpSerializable {
 		private Long totalTimeInMillis;
 
 		/**
-		 * API name: {@code current}
+		 * Required - API name: {@code current}
 		 */
 		public Builder current(long value) {
 			this.current = value;
@@ -147,7 +147,7 @@ public final class WarmerStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -163,7 +163,7 @@ public final class WarmerStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;

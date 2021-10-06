@@ -58,14 +58,14 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code password}
+	 * Required - API name: {@code password}
 	 */
 	public String password() {
 		return this.password;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
@@ -101,7 +101,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		private String username;
 
 		/**
-		 * API name: {@code password}
+		 * Required - API name: {@code password}
 		 */
 		public Builder password(String value) {
 			this.password = value;
@@ -109,7 +109,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;

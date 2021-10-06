@@ -59,7 +59,7 @@ public final class CloseShardResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code failures}
+	 * Required - API name: {@code failures}
 	 */
 	public List<ShardFailure> failures() {
 		return this.failures;
@@ -95,7 +95,7 @@ public final class CloseShardResult implements JsonpSerializable {
 		private List<ShardFailure> failures;
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(List<ShardFailure> value) {
 			this.failures = value;
@@ -103,7 +103,7 @@ public final class CloseShardResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failures}
+		 * Required - API name: {@code failures}
 		 */
 		public Builder failures(ShardFailure... value) {
 			this.failures = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class CloseShardResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(ShardFailure value) {
 			if (this.failures == null) {
@@ -129,7 +129,7 @@ public final class CloseShardResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return this.addFailures(fn.apply(new ShardFailure.Builder()).build());

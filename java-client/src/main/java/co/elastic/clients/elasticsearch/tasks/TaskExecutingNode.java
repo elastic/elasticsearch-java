@@ -59,7 +59,7 @@ public final class TaskExecutingNode extends BaseNode {
 	}
 
 	/**
-	 * API name: {@code tasks}
+	 * Required - API name: {@code tasks}
 	 */
 	public Map<String, State> tasks() {
 		return this.tasks;
@@ -89,7 +89,7 @@ public final class TaskExecutingNode extends BaseNode {
 		private Map<String, State> tasks;
 
 		/**
-		 * API name: {@code tasks}
+		 * Required - API name: {@code tasks}
 		 */
 		public Builder tasks(Map<String, State> value) {
 			this.tasks = value;

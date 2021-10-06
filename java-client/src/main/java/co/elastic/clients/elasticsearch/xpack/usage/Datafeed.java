@@ -54,7 +54,7 @@ public final class Datafeed implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
@@ -85,7 +85,7 @@ public final class Datafeed implements JsonpSerializable {
 		private Long count;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;

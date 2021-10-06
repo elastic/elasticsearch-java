@@ -146,7 +146,7 @@ public abstract class CorePropertyBase extends PropertyBase {
 		}
 
 		/**
-		 * Add a value to {@link #copyTo(List)}, creating the list if needed. 4
+		 * Add a value to {@link #copyTo(List)}, creating the list if needed.
 		 */
 		public BuilderT addCopyTo(String value) {
 			if (this.copyTo == null) {

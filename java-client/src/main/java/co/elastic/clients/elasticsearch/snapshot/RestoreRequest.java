@@ -114,7 +114,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A repository name
+	 * Required - A repository name
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -123,7 +123,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A snapshot name
+	 * Required - A snapshot name
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -345,7 +345,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		private String renameReplacement;
 
 		/**
-		 * A repository name
+		 * Required - A repository name
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -355,7 +355,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A snapshot name
+		 * Required - A snapshot name
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -402,7 +402,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * Add a value to {@link #ignoreIndexSettings(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addIgnoreIndexSettings(String value) {
 			if (this.ignoreIndexSettings == null) {
@@ -468,7 +468,7 @@ public final class RestoreRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

@@ -70,7 +70,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -79,7 +79,8 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the model snapshot.
+	 * Required - A numerical character string that uniquely identifies the model
+	 * snapshot.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -125,7 +126,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Identifier for the anomaly detection job.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -135,7 +136,8 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * A numerical character string that uniquely identifies the model snapshot.
+		 * Required - A numerical character string that uniquely identifies the model
+		 * snapshot.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */

@@ -59,7 +59,7 @@ public final class Policy implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code phases}
+	 * Required - API name: {@code phases}
 	 */
 	public Phases phases() {
 		return this.phases;
@@ -108,7 +108,7 @@ public final class Policy implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code phases}
+		 * Required - API name: {@code phases}
 		 */
 		public Builder phases(Phases value) {
 			this.phases = value;
@@ -116,7 +116,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code phases}
+		 * Required - API name: {@code phases}
 		 */
 		public Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
 			return this.phases(fn.apply(new Phases.Builder()).build());

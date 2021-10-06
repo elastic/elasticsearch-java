@@ -89,7 +89,7 @@ public final class VertexDefinition implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -225,7 +225,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #exclude(List)}, creating the list if needed. 4
+		 * Add a value to {@link #exclude(List)}, creating the list if needed.
 		 */
 		public Builder addExclude(String value) {
 			if (this.exclude == null) {
@@ -236,7 +236,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -260,7 +260,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed. 4
+		 * Add a value to {@link #include(List)}, creating the list if needed.
 		 */
 		public Builder addInclude(VertexInclude value) {
 			if (this.include == null) {
@@ -278,7 +278,7 @@ public final class VertexDefinition implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #include(List)}, creating the list if needed. 5
+		 * Add a value to {@link #include(List)}, creating the list if needed.
 		 */
 		public Builder addInclude(Function<VertexInclude.Builder, ObjectBuilder<VertexInclude>> fn) {
 			return this.addInclude(fn.apply(new VertexInclude.Builder()).build());

@@ -59,14 +59,14 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
 	public boolean created() {
 		return this.created;
 	}
 
 	/**
-	 * API name: {@code token}
+	 * Required - API name: {@code token}
 	 */
 	public Token token() {
 		return this.token;
@@ -102,7 +102,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		private Token token;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
 		public Builder created(boolean value) {
 			this.created = value;
@@ -110,7 +110,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code token}
+		 * Required - API name: {@code token}
 		 */
 		public Builder token(Token value) {
 			this.token = value;
@@ -118,7 +118,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code token}
+		 * Required - API name: {@code token}
 		 */
 		public Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
 			return this.token(fn.apply(new Token.Builder()).build());

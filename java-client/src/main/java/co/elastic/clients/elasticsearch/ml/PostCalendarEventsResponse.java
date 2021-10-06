@@ -58,7 +58,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code events}
+	 * Required - API name: {@code events}
 	 */
 	public List<CalendarEvent> events() {
 		return this.events;
@@ -94,7 +94,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		private List<CalendarEvent> events;
 
 		/**
-		 * API name: {@code events}
+		 * Required - API name: {@code events}
 		 */
 		public Builder events(List<CalendarEvent> value) {
 			this.events = value;
@@ -102,7 +102,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code events}
+		 * Required - API name: {@code events}
 		 */
 		public Builder events(CalendarEvent... value) {
 			this.events = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 4
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder addEvents(CalendarEvent value) {
 			if (this.events == null) {
@@ -128,7 +128,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 5
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
 			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());

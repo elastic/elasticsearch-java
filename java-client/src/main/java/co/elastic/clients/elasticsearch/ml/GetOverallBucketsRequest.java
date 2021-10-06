@@ -95,8 +95,9 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Identifier for the anomaly detection job. It can be a job identifier, a group
-	 * name, a comma-separated list of jobs or groups, or a wildcard expression.
+	 * Required - Identifier for the anomaly detection job. It can be a job
+	 * identifier, a group name, a comma-separated list of jobs or groups, or a
+	 * wildcard expression.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -241,8 +242,9 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		private Boolean allowNoJobs;
 
 		/**
-		 * Identifier for the anomaly detection job. It can be a job identifier, a group
-		 * name, a comma-separated list of jobs or groups, or a wildcard expression.
+		 * Required - Identifier for the anomaly detection job. It can be a job
+		 * identifier, a group name, a comma-separated list of jobs or groups, or a
+		 * wildcard expression.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

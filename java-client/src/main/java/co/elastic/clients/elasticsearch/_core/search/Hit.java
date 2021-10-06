@@ -145,14 +145,14 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
@@ -519,7 +519,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder<TDocument> index(String value) {
 			this.index = value;
@@ -527,7 +527,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder<TDocument> id(String value) {
 			this.id = value;
@@ -655,7 +655,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #matchedQueries(List)}, creating the list if needed. 4
+		 * Add a value to {@link #matchedQueries(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addMatchedQueries(String value) {
 			if (this.matchedQueries == null) {
@@ -697,7 +697,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #ignored(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ignored(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addIgnored(String value) {
 			if (this.ignored == null) {
@@ -780,7 +780,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addSort(String value) {
 			if (this.sort == null) {

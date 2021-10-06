@@ -75,6 +75,10 @@ public class IntervalsFilter implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends IntervalsFilterVariant> IntervalsFilter(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private IntervalsFilter(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

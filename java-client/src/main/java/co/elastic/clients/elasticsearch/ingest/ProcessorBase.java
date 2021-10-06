@@ -189,7 +189,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 4
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
 		public BuilderT addOnFailure(Processor value) {
 			if (this.onFailure == null) {
@@ -207,7 +207,7 @@ public abstract class ProcessorBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 5
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
 		public BuilderT addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addOnFailure(fn.apply(new Processor.Builder()).build());

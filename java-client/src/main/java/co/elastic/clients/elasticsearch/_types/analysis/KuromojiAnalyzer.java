@@ -66,14 +66,14 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code mode}
+	 * Required - API name: {@code mode}
 	 */
 	public KuromojiTokenizationMode mode() {
 		return this.mode;
 	}
 
 	/**
-	 * API name: {@code user_dictionary}
+	 * Required - API name: {@code user_dictionary}
 	 */
 	public String userDictionary() {
 		return this.userDictionary;
@@ -111,7 +111,7 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		private String userDictionary;
 
 		/**
-		 * API name: {@code mode}
+		 * Required - API name: {@code mode}
 		 */
 		public Builder mode(KuromojiTokenizationMode value) {
 			this.mode = value;
@@ -119,7 +119,7 @@ public final class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code user_dictionary}
+		 * Required - API name: {@code user_dictionary}
 		 */
 		public Builder userDictionary(String value) {
 			this.userDictionary = value;

@@ -67,6 +67,10 @@ public class CharFilter implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 
 	}
 
+	public <T extends CharFilterVariant> CharFilter(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private CharFilter(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

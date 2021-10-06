@@ -55,7 +55,7 @@ public final class NodeInfoSearchRemote implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code connect}
+	 * Required - API name: {@code connect}
 	 */
 	public String connect() {
 		return this.connect;
@@ -86,7 +86,7 @@ public final class NodeInfoSearchRemote implements JsonpSerializable {
 		private String connect;
 
 		/**
-		 * API name: {@code connect}
+		 * Required - API name: {@code connect}
 		 */
 		public Builder connect(String value) {
 			this.connect = value;

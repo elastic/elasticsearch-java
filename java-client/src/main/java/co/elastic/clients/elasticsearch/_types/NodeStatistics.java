@@ -77,7 +77,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Total number of nodes selected by the request.
+	 * Required - Total number of nodes selected by the request.
 	 * <p>
 	 * API name: {@code total}
 	 */
@@ -86,7 +86,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Number of nodes that responded successfully to the request.
+	 * Required - Number of nodes that responded successfully to the request.
 	 * <p>
 	 * API name: {@code successful}
 	 */
@@ -95,8 +95,9 @@ public final class NodeStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Number of nodes that rejected the request or failed to respond. If this value
-	 * is not 0, a reason for the rejection or failure is included in the response.
+	 * Required - Number of nodes that rejected the request or failed to respond. If
+	 * this value is not 0, a reason for the rejection or failure is included in the
+	 * response.
 	 * <p>
 	 * API name: {@code failed}
 	 */
@@ -170,7 +171,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(ErrorCause value) {
 			if (this.failures == null) {
@@ -188,14 +189,14 @@ public final class NodeStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addFailures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * Total number of nodes selected by the request.
+		 * Required - Total number of nodes selected by the request.
 		 * <p>
 		 * API name: {@code total}
 		 */
@@ -205,7 +206,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Number of nodes that responded successfully to the request.
+		 * Required - Number of nodes that responded successfully to the request.
 		 * <p>
 		 * API name: {@code successful}
 		 */
@@ -215,8 +216,9 @@ public final class NodeStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Number of nodes that rejected the request or failed to respond. If this value
-		 * is not 0, a reason for the rejection or failure is included in the response.
+		 * Required - Number of nodes that rejected the request or failed to respond. If
+		 * this value is not 0, a reason for the rejection or failure is included in the
+		 * response.
 		 * <p>
 		 * API name: {@code failed}
 		 */

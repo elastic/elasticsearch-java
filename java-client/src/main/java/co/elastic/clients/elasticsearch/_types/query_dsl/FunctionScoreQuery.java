@@ -231,7 +231,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		}
 
 		/**
-		 * Add a value to {@link #functions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #functions(List)}, creating the list if needed.
 		 */
 		public Builder addFunctions(FunctionScore value) {
 			if (this.functions == null) {
@@ -249,7 +249,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		}
 
 		/**
-		 * Add a value to {@link #functions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #functions(List)}, creating the list if needed.
 		 */
 		public Builder addFunctions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
 			return this.addFunctions(fn.apply(new FunctionScore.Builder()).build());

@@ -65,14 +65,14 @@ public final class SpanWithinQuery extends QueryBase implements SpanQueryVariant
 	}
 
 	/**
-	 * API name: {@code big}
+	 * Required - API name: {@code big}
 	 */
 	public SpanQuery big() {
 		return this.big;
 	}
 
 	/**
-	 * API name: {@code little}
+	 * Required - API name: {@code little}
 	 */
 	public SpanQuery little() {
 		return this.little;
@@ -101,7 +101,7 @@ public final class SpanWithinQuery extends QueryBase implements SpanQueryVariant
 		private SpanQuery little;
 
 		/**
-		 * API name: {@code big}
+		 * Required - API name: {@code big}
 		 */
 		public Builder big(SpanQuery value) {
 			this.big = value;
@@ -109,14 +109,14 @@ public final class SpanWithinQuery extends QueryBase implements SpanQueryVariant
 		}
 
 		/**
-		 * API name: {@code big}
+		 * Required - API name: {@code big}
 		 */
 		public Builder big(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.big(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code little}
+		 * Required - API name: {@code little}
 		 */
 		public Builder little(SpanQuery value) {
 			this.little = value;
@@ -124,7 +124,7 @@ public final class SpanWithinQuery extends QueryBase implements SpanQueryVariant
 		}
 
 		/**
-		 * API name: {@code little}
+		 * Required - API name: {@code little}
 		 */
 		public Builder little(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.little(fn.apply(new SpanQuery.Builder()).build());

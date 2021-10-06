@@ -77,42 +77,42 @@ public final class TermVectorsResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
 	public boolean found() {
 		return this.found;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code term_vectors}
+	 * Required - API name: {@code term_vectors}
 	 */
 	public Map<String, TermVector> termVectors() {
 		return this.termVectors;
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
@@ -174,7 +174,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
 		public Builder found(boolean value) {
 			this.found = value;
@@ -182,7 +182,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -190,7 +190,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -198,7 +198,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code term_vectors}
+		 * Required - API name: {@code term_vectors}
 		 */
 		public Builder termVectors(Map<String, TermVector> value) {
 			this.termVectors = value;
@@ -231,7 +231,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder took(long value) {
 			this.took = value;
@@ -239,7 +239,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

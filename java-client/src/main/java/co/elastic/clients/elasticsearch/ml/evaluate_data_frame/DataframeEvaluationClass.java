@@ -55,7 +55,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 	}
 
 	/**
-	 * API name: {@code class_name}
+	 * Required - API name: {@code class_name}
 	 */
 	public String className() {
 		return this.className;
@@ -81,7 +81,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		private String className;
 
 		/**
-		 * API name: {@code class_name}
+		 * Required - API name: {@code class_name}
 		 */
 		public Builder className(String value) {
 			this.className = value;

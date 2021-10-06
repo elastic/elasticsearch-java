@@ -59,7 +59,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code api_keys}
+	 * Required - API name: {@code api_keys}
 	 */
 	public List<ApiKey> apiKeys() {
 		return this.apiKeys;
@@ -95,7 +95,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		private List<ApiKey> apiKeys;
 
 		/**
-		 * API name: {@code api_keys}
+		 * Required - API name: {@code api_keys}
 		 */
 		public Builder apiKeys(List<ApiKey> value) {
 			this.apiKeys = value;
@@ -103,7 +103,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code api_keys}
+		 * Required - API name: {@code api_keys}
 		 */
 		public Builder apiKeys(ApiKey... value) {
 			this.apiKeys = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed. 4
+		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
 		 */
 		public Builder addApiKeys(ApiKey value) {
 			if (this.apiKeys == null) {
@@ -129,7 +129,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed. 5
+		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
 		 */
 		public Builder addApiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
 			return this.addApiKeys(fn.apply(new ApiKey.Builder()).build());

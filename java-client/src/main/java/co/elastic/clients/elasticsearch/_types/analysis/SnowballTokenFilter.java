@@ -62,7 +62,7 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * API name: {@code language}
+	 * Required - API name: {@code language}
 	 */
 	public SnowballLanguage language() {
 		return this.language;
@@ -89,7 +89,7 @@ public final class SnowballTokenFilter extends TokenFilterBase implements TokenF
 		private SnowballLanguage language;
 
 		/**
-		 * API name: {@code language}
+		 * Required - API name: {@code language}
 		 */
 		public Builder language(SnowballLanguage value) {
 			this.language = value;

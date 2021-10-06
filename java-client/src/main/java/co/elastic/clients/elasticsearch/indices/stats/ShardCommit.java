@@ -69,28 +69,28 @@ public final class ShardCommit implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code generation}
+	 * Required - API name: {@code generation}
 	 */
 	public int generation() {
 		return this.generation;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code num_docs}
+	 * Required - API name: {@code num_docs}
 	 */
 	public long numDocs() {
 		return this.numDocs;
 	}
 
 	/**
-	 * API name: {@code user_data}
+	 * Required - API name: {@code user_data}
 	 */
 	public Map<String, String> userData() {
 		return this.userData;
@@ -142,7 +142,7 @@ public final class ShardCommit implements JsonpSerializable {
 		private Map<String, String> userData;
 
 		/**
-		 * API name: {@code generation}
+		 * Required - API name: {@code generation}
 		 */
 		public Builder generation(int value) {
 			this.generation = value;
@@ -150,7 +150,7 @@ public final class ShardCommit implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -158,7 +158,7 @@ public final class ShardCommit implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code num_docs}
+		 * Required - API name: {@code num_docs}
 		 */
 		public Builder numDocs(long value) {
 			this.numDocs = value;
@@ -166,7 +166,7 @@ public final class ShardCommit implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code user_data}
+		 * Required - API name: {@code user_data}
 		 */
 		public Builder userData(Map<String, String> value) {
 			this.userData = value;

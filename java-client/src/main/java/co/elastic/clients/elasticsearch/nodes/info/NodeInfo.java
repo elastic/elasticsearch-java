@@ -148,21 +148,21 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code build_flavor}
+	 * Required - API name: {@code build_flavor}
 	 */
 	public String buildFlavor() {
 		return this.buildFlavor;
 	}
 
 	/**
-	 * Short hash of the last git commit in this release.
+	 * Required - Short hash of the last git commit in this release.
 	 * <p>
 	 * API name: {@code build_hash}
 	 */
@@ -171,14 +171,14 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code build_type}
+	 * Required - API name: {@code build_type}
 	 */
 	public String buildType() {
 		return this.buildType;
 	}
 
 	/**
-	 * The node’s host name.
+	 * Required - The node’s host name.
 	 * <p>
 	 * API name: {@code host}
 	 */
@@ -195,7 +195,7 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * The node’s IP address.
+	 * Required - The node’s IP address.
 	 * <p>
 	 * API name: {@code ip}
 	 */
@@ -212,7 +212,7 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * The node's name
+	 * Required - The node's name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -253,7 +253,7 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public List<NodeRole> roles() {
 		return this.roles;
@@ -306,7 +306,7 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Host and port where transport HTTP connections are accepted.
+	 * Required - Host and port where transport HTTP connections are accepted.
 	 * <p>
 	 * API name: {@code transport_address}
 	 */
@@ -315,7 +315,7 @@ public final class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Elasticsearch version running on this node.
+	 * Required - Elasticsearch version running on this node.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -580,7 +580,7 @@ public final class NodeInfo implements JsonpSerializable {
 		private Map<String, NodeInfoAggregation> aggregations;
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -599,7 +599,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_flavor}
+		 * Required - API name: {@code build_flavor}
 		 */
 		public Builder buildFlavor(String value) {
 			this.buildFlavor = value;
@@ -607,7 +607,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Short hash of the last git commit in this release.
+		 * Required - Short hash of the last git commit in this release.
 		 * <p>
 		 * API name: {@code build_hash}
 		 */
@@ -617,7 +617,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build_type}
+		 * Required - API name: {@code build_type}
 		 */
 		public Builder buildType(String value) {
 			this.buildType = value;
@@ -625,7 +625,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * The node’s host name.
+		 * Required - The node’s host name.
 		 * <p>
 		 * API name: {@code host}
 		 */
@@ -650,7 +650,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * The node’s IP address.
+		 * Required - The node’s IP address.
 		 * <p>
 		 * API name: {@code ip}
 		 */
@@ -675,7 +675,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * The node's name
+		 * Required - The node's name
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -731,7 +731,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed. 4
+		 * Add a value to {@link #plugins(List)}, creating the list if needed.
 		 */
 		public Builder addPlugins(PluginStats value) {
 			if (this.plugins == null) {
@@ -749,7 +749,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed. 5
+		 * Add a value to {@link #plugins(List)}, creating the list if needed.
 		 */
 		public Builder addPlugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
 			return this.addPlugins(fn.apply(new PluginStats.Builder()).build());
@@ -771,7 +771,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(List<NodeRole> value) {
 			this.roles = value;
@@ -779,7 +779,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(NodeRole... value) {
 			this.roles = Arrays.asList(value);
@@ -787,7 +787,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(NodeRole value) {
 			if (this.roles == null) {
@@ -885,7 +885,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Host and port where transport HTTP connections are accepted.
+		 * Required - Host and port where transport HTTP connections are accepted.
 		 * <p>
 		 * API name: {@code transport_address}
 		 */
@@ -895,7 +895,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Elasticsearch version running on this node.
+		 * Required - Elasticsearch version running on this node.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -921,7 +921,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modules(List)}, creating the list if needed. 4
+		 * Add a value to {@link #modules(List)}, creating the list if needed.
 		 */
 		public Builder addModules(PluginStats value) {
 			if (this.modules == null) {
@@ -939,7 +939,7 @@ public final class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modules(List)}, creating the list if needed. 5
+		 * Add a value to {@link #modules(List)}, creating the list if needed.
 		 */
 		public Builder addModules(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
 			return this.addModules(fn.apply(new PluginStats.Builder()).build());

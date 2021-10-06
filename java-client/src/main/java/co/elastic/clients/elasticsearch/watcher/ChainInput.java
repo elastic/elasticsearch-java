@@ -66,7 +66,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code inputs}
+	 * Required - API name: {@code inputs}
 	 */
 	public List<Input> inputs() {
 		return this.inputs;
@@ -102,7 +102,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		private List<Input> inputs;
 
 		/**
-		 * API name: {@code inputs}
+		 * Required - API name: {@code inputs}
 		 */
 		public Builder inputs(List<Input> value) {
 			this.inputs = value;
@@ -110,7 +110,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code inputs}
+		 * Required - API name: {@code inputs}
 		 */
 		public Builder inputs(Input... value) {
 			this.inputs = Arrays.asList(value);
@@ -118,7 +118,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #inputs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #inputs(List)}, creating the list if needed.
 		 */
 		public Builder addInputs(Input value) {
 			if (this.inputs == null) {
@@ -136,7 +136,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #inputs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #inputs(List)}, creating the list if needed.
 		 */
 		public Builder addInputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.addInputs(fn.apply(new Input.Builder()).build());

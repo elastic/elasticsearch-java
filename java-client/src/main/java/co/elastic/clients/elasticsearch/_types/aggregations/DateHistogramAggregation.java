@@ -53,7 +53,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 			PivotGroupByVariant,
 			CompositeAggregationSourceVariant {
 	@Nullable
-	private final JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ calendarInterval;
+	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval;
 
 	@Nullable
 	private final ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> extendedBounds;
@@ -65,13 +65,13 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 	private final String field;
 
 	@Nullable
-	private final JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ fixedInterval;
+	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ fixedInterval;
 
 	@Nullable
 	private final String format;
 
 	@Nullable
-	private final JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ interval;
+	private final JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ interval;
 
 	@Nullable
 	private final Integer minDocCount;
@@ -137,7 +137,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ calendarInterval() {
+	public JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -169,7 +169,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 	 * API name: {@code fixed_interval}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ fixedInterval() {
+	public JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ fixedInterval() {
 		return this.fixedInterval;
 	}
 
@@ -185,7 +185,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ interval() {
+	public JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ interval() {
 		return this.interval;
 	}
 
@@ -364,7 +364,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 			implements
 				ObjectBuilder<DateHistogramAggregation> {
 		@Nullable
-		private JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ calendarInterval;
+		private JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ calendarInterval;
 
 		@Nullable
 		private ExtendedBounds<JsonValue /* Union(_types.DateMath | _types.long) */> extendedBounds;
@@ -376,13 +376,13 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 		private String field;
 
 		@Nullable
-		private JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ fixedInterval;
+		private JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ fixedInterval;
 
 		@Nullable
 		private String format;
 
 		@Nullable
-		private JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ interval;
+		private JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ interval;
 
 		@Nullable
 		private Integer minDocCount;
@@ -412,7 +412,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 		 * API name: {@code calendar_interval}
 		 */
 		public Builder calendarInterval(
-				@Nullable JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ value) {
+				@Nullable JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ value) {
 			this.calendarInterval = value;
 			return this;
 		}
@@ -485,7 +485,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 		 * API name: {@code fixed_interval}
 		 */
 		public Builder fixedInterval(
-				@Nullable JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ value) {
+				@Nullable JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ value) {
 			this.fixedInterval = value;
 			return this;
 		}
@@ -501,7 +501,7 @@ public final class DateHistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code interval}
 		 */
-		public Builder interval(@Nullable JsonValue /* Union(_types.aggregations.DateInterval | _types.Time) */ value) {
+		public Builder interval(@Nullable JsonValue /* Union(_types.Time | _types.aggregations.DateInterval) */ value) {
 			this.interval = value;
 			return this;
 		}

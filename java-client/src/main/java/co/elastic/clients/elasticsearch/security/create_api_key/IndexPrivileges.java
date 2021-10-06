@@ -63,14 +63,14 @@ public final class IndexPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code names}
+	 * Required - API name: {@code names}
 	 */
 	public List<String> names() {
 		return this.names;
 	}
 
 	/**
-	 * API name: {@code privileges}
+	 * Required - API name: {@code privileges}
 	 */
 	public List<IndexPrivilege> privileges() {
 		return this.privileges;
@@ -115,7 +115,7 @@ public final class IndexPrivileges implements JsonpSerializable {
 		private List<IndexPrivilege> privileges;
 
 		/**
-		 * API name: {@code names}
+		 * Required - API name: {@code names}
 		 */
 		public Builder names(List<String> value) {
 			this.names = value;
@@ -123,7 +123,7 @@ public final class IndexPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code names}
+		 * Required - API name: {@code names}
 		 */
 		public Builder names(String... value) {
 			this.names = Arrays.asList(value);
@@ -131,7 +131,7 @@ public final class IndexPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #names(List)}, creating the list if needed. 4
+		 * Add a value to {@link #names(List)}, creating the list if needed.
 		 */
 		public Builder addNames(String value) {
 			if (this.names == null) {
@@ -142,7 +142,7 @@ public final class IndexPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
 		public Builder privileges(List<IndexPrivilege> value) {
 			this.privileges = value;
@@ -150,7 +150,7 @@ public final class IndexPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
 		public Builder privileges(IndexPrivilege... value) {
 			this.privileges = Arrays.asList(value);
@@ -158,7 +158,7 @@ public final class IndexPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #privileges(List)}, creating the list if needed.
 		 */
 		public Builder addPrivileges(IndexPrivilege value) {
 			if (this.privileges == null) {

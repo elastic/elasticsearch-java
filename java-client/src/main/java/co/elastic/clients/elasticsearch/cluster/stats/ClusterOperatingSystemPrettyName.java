@@ -59,14 +59,14 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code pretty_name}
+	 * Required - API name: {@code pretty_name}
 	 */
 	public String prettyName() {
 		return this.prettyName;
@@ -102,7 +102,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		private String prettyName;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -110,7 +110,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code pretty_name}
+		 * Required - API name: {@code pretty_name}
 		 */
 		public Builder prettyName(String value) {
 			this.prettyName = value;

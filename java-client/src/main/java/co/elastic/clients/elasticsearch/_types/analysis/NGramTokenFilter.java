@@ -65,14 +65,14 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * API name: {@code max_gram}
+	 * Required - API name: {@code max_gram}
 	 */
 	public int maxGram() {
 		return this.maxGram;
 	}
 
 	/**
-	 * API name: {@code min_gram}
+	 * Required - API name: {@code min_gram}
 	 */
 	public int minGram() {
 		return this.minGram;
@@ -104,7 +104,7 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 		private Integer minGram;
 
 		/**
-		 * API name: {@code max_gram}
+		 * Required - API name: {@code max_gram}
 		 */
 		public Builder maxGram(int value) {
 			this.maxGram = value;
@@ -112,7 +112,7 @@ public final class NGramTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
-		 * API name: {@code min_gram}
+		 * Required - API name: {@code min_gram}
 		 */
 		public Builder minGram(int value) {
 			this.minGram = value;

@@ -64,14 +64,14 @@ public final class ExtendedBounds<T> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public T max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public T min() {
 		return this.min;
@@ -110,7 +110,7 @@ public final class ExtendedBounds<T> implements JsonpSerializable {
 		private JsonpSerializer<T> tSerializer;
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder<T> max(T value) {
 			this.max = value;
@@ -118,7 +118,7 @@ public final class ExtendedBounds<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder<T> min(T value) {
 			this.min = value;

@@ -61,9 +61,9 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	}
 
 	/**
-	 * The average magnitude of this feature across all the training data. This
-	 * value is the average of the absolute values of the importance for this
-	 * feature.
+	 * Required - The average magnitude of this feature across all the training
+	 * data. This value is the average of the absolute values of the importance for
+	 * this feature.
 	 * <p>
 	 * API name: {@code mean_magnitude}
 	 */
@@ -72,7 +72,8 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	}
 
 	/**
-	 * The maximum importance value across all the training data for this feature.
+	 * Required - The maximum importance value across all the training data for this
+	 * feature.
 	 * <p>
 	 * API name: {@code max}
 	 */
@@ -81,7 +82,8 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 	}
 
 	/**
-	 * The minimum importance value across all the training data for this feature.
+	 * Required - The minimum importance value across all the training data for this
+	 * feature.
 	 * <p>
 	 * API name: {@code min}
 	 */
@@ -124,9 +126,9 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		private Integer min;
 
 		/**
-		 * The average magnitude of this feature across all the training data. This
-		 * value is the average of the absolute values of the importance for this
-		 * feature.
+		 * Required - The average magnitude of this feature across all the training
+		 * data. This value is the average of the absolute values of the importance for
+		 * this feature.
 		 * <p>
 		 * API name: {@code mean_magnitude}
 		 */
@@ -136,7 +138,8 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		}
 
 		/**
-		 * The maximum importance value across all the training data for this feature.
+		 * Required - The maximum importance value across all the training data for this
+		 * feature.
 		 * <p>
 		 * API name: {@code max}
 		 */
@@ -146,7 +149,8 @@ public final class TotalFeatureImportanceStatistics implements JsonpSerializable
 		}
 
 		/**
-		 * The minimum importance value across all the training data for this feature.
+		 * Required - The minimum importance value across all the training data for this
+		 * feature.
 		 * <p>
 		 * API name: {@code min}
 		 */

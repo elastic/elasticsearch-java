@@ -204,7 +204,7 @@ public final class CompositeAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #sources(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sources(List)}, creating the list if needed.
 		 */
 		public Builder addSources(Map<String, CompositeAggregationSource> value) {
 			if (this.sources == null) {

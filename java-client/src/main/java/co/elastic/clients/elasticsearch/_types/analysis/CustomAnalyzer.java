@@ -116,7 +116,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code tokenizer}
+	 * Required - API name: {@code tokenizer}
 	 */
 	public String tokenizer() {
 		return this.tokenizer;
@@ -212,7 +212,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilter(String value) {
 			if (this.charFilter == null) {
@@ -239,7 +239,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(String value) {
 			if (this.filter == null) {
@@ -266,7 +266,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code tokenizer}
+		 * Required - API name: {@code tokenizer}
 		 */
 		public Builder tokenizer(String value) {
 			this.tokenizer = value;

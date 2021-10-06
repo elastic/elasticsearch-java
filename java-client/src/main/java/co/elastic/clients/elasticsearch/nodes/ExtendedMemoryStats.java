@@ -57,14 +57,14 @@ public final class ExtendedMemoryStats extends MemoryStats {
 	}
 
 	/**
-	 * API name: {@code free_percent}
+	 * Required - API name: {@code free_percent}
 	 */
 	public int freePercent() {
 		return this.freePercent;
 	}
 
 	/**
-	 * API name: {@code used_percent}
+	 * Required - API name: {@code used_percent}
 	 */
 	public int usedPercent() {
 		return this.usedPercent;
@@ -95,7 +95,7 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		private Integer usedPercent;
 
 		/**
-		 * API name: {@code free_percent}
+		 * Required - API name: {@code free_percent}
 		 */
 		public Builder freePercent(int value) {
 			this.freePercent = value;
@@ -103,7 +103,7 @@ public final class ExtendedMemoryStats extends MemoryStats {
 		}
 
 		/**
-		 * API name: {@code used_percent}
+		 * Required - API name: {@code used_percent}
 		 */
 		public Builder usedPercent(int value) {
 			this.usedPercent = value;

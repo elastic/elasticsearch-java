@@ -67,7 +67,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code role_mapping}
+	 * Required - API name: {@code role_mapping}
 	 */
 	public CreatedStatus roleMapping() {
 		return this.roleMapping;
@@ -116,7 +116,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code role_mapping}
+		 * Required - API name: {@code role_mapping}
 		 */
 		public Builder roleMapping(CreatedStatus value) {
 			this.roleMapping = value;
@@ -124,7 +124,7 @@ public final class PutRoleMappingResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code role_mapping}
+		 * Required - API name: {@code role_mapping}
 		 */
 		public Builder roleMapping(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
 			return this.roleMapping(fn.apply(new CreatedStatus.Builder()).build());

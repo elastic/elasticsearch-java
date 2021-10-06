@@ -69,21 +69,21 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code negative_boost}
+	 * Required - API name: {@code negative_boost}
 	 */
 	public double negativeBoost() {
 		return this.negativeBoost;
 	}
 
 	/**
-	 * API name: {@code negative}
+	 * Required - API name: {@code negative}
 	 */
 	public Query negative() {
 		return this.negative;
 	}
 
 	/**
-	 * API name: {@code positive}
+	 * Required - API name: {@code positive}
 	 */
 	public Query positive() {
 		return this.positive;
@@ -117,7 +117,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		private Query positive;
 
 		/**
-		 * API name: {@code negative_boost}
+		 * Required - API name: {@code negative_boost}
 		 */
 		public Builder negativeBoost(double value) {
 			this.negativeBoost = value;
@@ -125,7 +125,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code negative}
+		 * Required - API name: {@code negative}
 		 */
 		public Builder negative(Query value) {
 			this.negative = value;
@@ -133,14 +133,14 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code negative}
+		 * Required - API name: {@code negative}
 		 */
 		public Builder negative(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.negative(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code positive}
+		 * Required - API name: {@code positive}
 		 */
 		public Builder positive(Query value) {
 			this.positive = value;
@@ -148,7 +148,7 @@ public final class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code positive}
+		 * Required - API name: {@code positive}
 		 */
 		public Builder positive(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.positive(fn.apply(new Query.Builder()).build());

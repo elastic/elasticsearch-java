@@ -67,35 +67,35 @@ public final class Policy implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code config}
+	 * Required - API name: {@code config}
 	 */
 	public Configuration config() {
 		return this.config;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code repository}
+	 * Required - API name: {@code repository}
 	 */
 	public String repository() {
 		return this.repository;
 	}
 
 	/**
-	 * API name: {@code retention}
+	 * Required - API name: {@code retention}
 	 */
 	public Retention retention() {
 		return this.retention;
 	}
 
 	/**
-	 * API name: {@code schedule}
+	 * Required - API name: {@code schedule}
 	 */
 	public String schedule() {
 		return this.schedule;
@@ -146,7 +146,7 @@ public final class Policy implements JsonpSerializable {
 		private String schedule;
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Configuration value) {
 			this.config = value;
@@ -154,14 +154,14 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code config}
+		 * Required - API name: {@code config}
 		 */
 		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
 			return this.config(fn.apply(new Configuration.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -169,7 +169,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code repository}
+		 * Required - API name: {@code repository}
 		 */
 		public Builder repository(String value) {
 			this.repository = value;
@@ -177,7 +177,7 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retention}
+		 * Required - API name: {@code retention}
 		 */
 		public Builder retention(Retention value) {
 			this.retention = value;
@@ -185,14 +185,14 @@ public final class Policy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retention}
+		 * Required - API name: {@code retention}
 		 */
 		public Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
 			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code schedule}
+		 * Required - API name: {@code schedule}
 		 */
 		public Builder schedule(String value) {
 			this.schedule = value;

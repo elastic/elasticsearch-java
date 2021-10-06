@@ -83,7 +83,7 @@ public final class Hyperparameter implements JsonpSerializable {
 	}
 
 	/**
-	 * Name of the hyperparameter.
+	 * Required - Name of the hyperparameter.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -105,8 +105,8 @@ public final class Hyperparameter implements JsonpSerializable {
 	}
 
 	/**
-	 * Indicates if the hyperparameter is specified by the user (true) or optimized
-	 * (false).
+	 * Required - Indicates if the hyperparameter is specified by the user (true) or
+	 * optimized (false).
 	 * <p>
 	 * API name: {@code supplied}
 	 */
@@ -115,7 +115,8 @@ public final class Hyperparameter implements JsonpSerializable {
 	}
 
 	/**
-	 * The value of the hyperparameter, either optimized or specified by the user.
+	 * Required - The value of the hyperparameter, either optimized or specified by
+	 * the user.
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -190,7 +191,7 @@ public final class Hyperparameter implements JsonpSerializable {
 		}
 
 		/**
-		 * Name of the hyperparameter.
+		 * Required - Name of the hyperparameter.
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -213,8 +214,8 @@ public final class Hyperparameter implements JsonpSerializable {
 		}
 
 		/**
-		 * Indicates if the hyperparameter is specified by the user (true) or optimized
-		 * (false).
+		 * Required - Indicates if the hyperparameter is specified by the user (true) or
+		 * optimized (false).
 		 * <p>
 		 * API name: {@code supplied}
 		 */
@@ -224,7 +225,8 @@ public final class Hyperparameter implements JsonpSerializable {
 		}
 
 		/**
-		 * The value of the hyperparameter, either optimized or specified by the user.
+		 * Required - The value of the hyperparameter, either optimized or specified by
+		 * the user.
 		 * <p>
 		 * API name: {@code value}
 		 */

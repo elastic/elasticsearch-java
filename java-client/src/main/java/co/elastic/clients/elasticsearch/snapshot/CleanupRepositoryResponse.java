@@ -55,7 +55,7 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code results}
+	 * Required - API name: {@code results}
 	 */
 	public CleanupRepositoryResults results() {
 		return this.results;
@@ -86,7 +86,7 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 		private CleanupRepositoryResults results;
 
 		/**
-		 * API name: {@code results}
+		 * Required - API name: {@code results}
 		 */
 		public Builder results(CleanupRepositoryResults value) {
 			this.results = value;
@@ -94,7 +94,7 @@ public final class CleanupRepositoryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code results}
+		 * Required - API name: {@code results}
 		 */
 		public Builder results(Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
 			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());

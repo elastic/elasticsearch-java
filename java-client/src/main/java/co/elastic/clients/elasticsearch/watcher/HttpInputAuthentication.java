@@ -54,7 +54,7 @@ public final class HttpInputAuthentication implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code basic}
+	 * Required - API name: {@code basic}
 	 */
 	public HttpInputBasicAuthentication basic() {
 		return this.basic;
@@ -85,7 +85,7 @@ public final class HttpInputAuthentication implements JsonpSerializable {
 		private HttpInputBasicAuthentication basic;
 
 		/**
-		 * API name: {@code basic}
+		 * Required - API name: {@code basic}
 		 */
 		public Builder basic(HttpInputBasicAuthentication value) {
 			this.basic = value;
@@ -93,7 +93,7 @@ public final class HttpInputAuthentication implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code basic}
+		 * Required - API name: {@code basic}
 		 */
 		public Builder basic(
 				Function<HttpInputBasicAuthentication.Builder, ObjectBuilder<HttpInputBasicAuthentication>> fn) {

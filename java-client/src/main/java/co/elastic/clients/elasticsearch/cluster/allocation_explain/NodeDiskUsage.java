@@ -61,21 +61,21 @@ public final class NodeDiskUsage implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node_name}
+	 * Required - API name: {@code node_name}
 	 */
 	public String nodeName() {
 		return this.nodeName;
 	}
 
 	/**
-	 * API name: {@code least_available}
+	 * Required - API name: {@code least_available}
 	 */
 	public DiskUsage leastAvailable() {
 		return this.leastAvailable;
 	}
 
 	/**
-	 * API name: {@code most_available}
+	 * Required - API name: {@code most_available}
 	 */
 	public DiskUsage mostAvailable() {
 		return this.mostAvailable;
@@ -116,7 +116,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		private DiskUsage mostAvailable;
 
 		/**
-		 * API name: {@code node_name}
+		 * Required - API name: {@code node_name}
 		 */
 		public Builder nodeName(String value) {
 			this.nodeName = value;
@@ -124,7 +124,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code least_available}
+		 * Required - API name: {@code least_available}
 		 */
 		public Builder leastAvailable(DiskUsage value) {
 			this.leastAvailable = value;
@@ -132,14 +132,14 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code least_available}
+		 * Required - API name: {@code least_available}
 		 */
 		public Builder leastAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
 			return this.leastAvailable(fn.apply(new DiskUsage.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code most_available}
+		 * Required - API name: {@code most_available}
 		 */
 		public Builder mostAvailable(DiskUsage value) {
 			this.mostAvailable = value;
@@ -147,7 +147,7 @@ public final class NodeDiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code most_available}
+		 * Required - API name: {@code most_available}
 		 */
 		public Builder mostAvailable(Function<DiskUsage.Builder, ObjectBuilder<DiskUsage>> fn) {
 			return this.mostAvailable(fn.apply(new DiskUsage.Builder()).build());

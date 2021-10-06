@@ -82,14 +82,14 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code formats}
+	 * Required - API name: {@code formats}
 	 */
 	public List<String> formats() {
 		return this.formats;
@@ -175,7 +175,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		private String timezone;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -183,7 +183,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code formats}
+		 * Required - API name: {@code formats}
 		 */
 		public Builder formats(List<String> value) {
 			this.formats = value;
@@ -191,7 +191,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code formats}
+		 * Required - API name: {@code formats}
 		 */
 		public Builder formats(String... value) {
 			this.formats = Arrays.asList(value);
@@ -199,7 +199,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * Add a value to {@link #formats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #formats(List)}, creating the list if needed.
 		 */
 		public Builder addFormats(String value) {
 			if (this.formats == null) {

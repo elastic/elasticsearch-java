@@ -59,14 +59,14 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public String total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
 	public long totalInBytes() {
 		return this.totalInBytes;
@@ -102,7 +102,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		private Long totalInBytes;
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(String value) {
 			this.total = value;
@@ -110,7 +110,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
 		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;

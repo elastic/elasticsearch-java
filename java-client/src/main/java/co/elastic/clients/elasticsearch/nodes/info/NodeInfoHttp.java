@@ -71,7 +71,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bound_address}
+	 * Required - API name: {@code bound_address}
 	 */
 	public List<String> boundAddress() {
 		return this.boundAddress;
@@ -86,14 +86,14 @@ public final class NodeInfoHttp implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_content_length_in_bytes}
+	 * Required - API name: {@code max_content_length_in_bytes}
 	 */
 	public long maxContentLengthInBytes() {
 		return this.maxContentLengthInBytes;
 	}
 
 	/**
-	 * API name: {@code publish_address}
+	 * Required - API name: {@code publish_address}
 	 */
 	public String publishAddress() {
 		return this.publishAddress;
@@ -149,7 +149,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 		private String publishAddress;
 
 		/**
-		 * API name: {@code bound_address}
+		 * Required - API name: {@code bound_address}
 		 */
 		public Builder boundAddress(List<String> value) {
 			this.boundAddress = value;
@@ -157,7 +157,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bound_address}
+		 * Required - API name: {@code bound_address}
 		 */
 		public Builder boundAddress(String... value) {
 			this.boundAddress = Arrays.asList(value);
@@ -165,7 +165,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #boundAddress(List)}, creating the list if needed. 4
+		 * Add a value to {@link #boundAddress(List)}, creating the list if needed.
 		 */
 		public Builder addBoundAddress(String value) {
 			if (this.boundAddress == null) {
@@ -184,7 +184,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_content_length_in_bytes}
+		 * Required - API name: {@code max_content_length_in_bytes}
 		 */
 		public Builder maxContentLengthInBytes(long value) {
 			this.maxContentLengthInBytes = value;
@@ -192,7 +192,7 @@ public final class NodeInfoHttp implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code publish_address}
+		 * Required - API name: {@code publish_address}
 		 */
 		public Builder publishAddress(String value) {
 			this.publishAddress = value;

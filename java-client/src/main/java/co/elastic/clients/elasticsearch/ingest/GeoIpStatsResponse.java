@@ -63,7 +63,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Download statistics for all GeoIP2 databases.
+	 * Required - Download statistics for all GeoIP2 databases.
 	 * <p>
 	 * API name: {@code stats}
 	 */
@@ -72,7 +72,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Downloaded GeoIP2 databases for each node.
+	 * Required - Downloaded GeoIP2 databases for each node.
 	 * <p>
 	 * API name: {@code nodes}
 	 */
@@ -116,7 +116,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		private Map<String, GeoIpNodeDatabases> nodes;
 
 		/**
-		 * Download statistics for all GeoIP2 databases.
+		 * Required - Download statistics for all GeoIP2 databases.
 		 * <p>
 		 * API name: {@code stats}
 		 */
@@ -126,7 +126,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Download statistics for all GeoIP2 databases.
+		 * Required - Download statistics for all GeoIP2 databases.
 		 * <p>
 		 * API name: {@code stats}
 		 */
@@ -135,7 +135,7 @@ public final class GeoIpStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Downloaded GeoIP2 databases for each node.
+		 * Required - Downloaded GeoIP2 databases for each node.
 		 * <p>
 		 * API name: {@code nodes}
 		 */

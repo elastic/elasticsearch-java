@@ -57,14 +57,14 @@ public final class DocStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code deleted}
+	 * Required - API name: {@code deleted}
 	 */
 	public long deleted() {
 		return this.deleted;
@@ -100,7 +100,7 @@ public final class DocStats implements JsonpSerializable {
 		private Long deleted;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -108,7 +108,7 @@ public final class DocStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code deleted}
+		 * Required - API name: {@code deleted}
 		 */
 		public Builder deleted(long value) {
 			this.deleted = value;

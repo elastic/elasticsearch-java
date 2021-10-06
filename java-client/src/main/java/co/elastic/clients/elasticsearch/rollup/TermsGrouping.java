@@ -59,7 +59,7 @@ public final class TermsGrouping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public List<String> fields() {
 		return this.fields;
@@ -95,7 +95,7 @@ public final class TermsGrouping implements JsonpSerializable {
 		private List<String> fields;
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(List<String> value) {
 			this.fields = value;
@@ -103,7 +103,7 @@ public final class TermsGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(String... value) {
 			this.fields = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class TermsGrouping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

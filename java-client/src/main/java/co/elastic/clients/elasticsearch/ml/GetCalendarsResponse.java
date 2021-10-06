@@ -63,14 +63,14 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code calendars}
+	 * Required - API name: {@code calendars}
 	 */
 	public List<Calendar> calendars() {
 		return this.calendars;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
@@ -111,7 +111,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		private Long count;
 
 		/**
-		 * API name: {@code calendars}
+		 * Required - API name: {@code calendars}
 		 */
 		public Builder calendars(List<Calendar> value) {
 			this.calendars = value;
@@ -119,7 +119,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code calendars}
+		 * Required - API name: {@code calendars}
 		 */
 		public Builder calendars(Calendar... value) {
 			this.calendars = Arrays.asList(value);
@@ -127,7 +127,7 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #calendars(List)}, creating the list if needed. 4
+		 * Add a value to {@link #calendars(List)}, creating the list if needed.
 		 */
 		public Builder addCalendars(Calendar value) {
 			if (this.calendars == null) {
@@ -145,14 +145,14 @@ public final class GetCalendarsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #calendars(List)}, creating the list if needed. 5
+		 * Add a value to {@link #calendars(List)}, creating the list if needed.
 		 */
 		public Builder addCalendars(Function<Calendar.Builder, ObjectBuilder<Calendar>> fn) {
 			return this.addCalendars(fn.apply(new Calendar.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;

@@ -77,35 +77,35 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 	}
 
 	/**
-	 * API name: {@code buffer_size}
+	 * Required - API name: {@code buffer_size}
 	 */
 	public int bufferSize() {
 		return this.bufferSize;
 	}
 
 	/**
-	 * API name: {@code delimiter}
+	 * Required - API name: {@code delimiter}
 	 */
 	public String delimiter() {
 		return this.delimiter;
 	}
 
 	/**
-	 * API name: {@code replacement}
+	 * Required - API name: {@code replacement}
 	 */
 	public String replacement() {
 		return this.replacement;
 	}
 
 	/**
-	 * API name: {@code reverse}
+	 * Required - API name: {@code reverse}
 	 */
 	public boolean reverse() {
 		return this.reverse;
 	}
 
 	/**
-	 * API name: {@code skip}
+	 * Required - API name: {@code skip}
 	 */
 	public int skip() {
 		return this.skip;
@@ -152,7 +152,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		private Integer skip;
 
 		/**
-		 * API name: {@code buffer_size}
+		 * Required - API name: {@code buffer_size}
 		 */
 		public Builder bufferSize(int value) {
 			this.bufferSize = value;
@@ -160,7 +160,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		}
 
 		/**
-		 * API name: {@code delimiter}
+		 * Required - API name: {@code delimiter}
 		 */
 		public Builder delimiter(String value) {
 			this.delimiter = value;
@@ -168,7 +168,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		}
 
 		/**
-		 * API name: {@code replacement}
+		 * Required - API name: {@code replacement}
 		 */
 		public Builder replacement(String value) {
 			this.replacement = value;
@@ -176,7 +176,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		}
 
 		/**
-		 * API name: {@code reverse}
+		 * Required - API name: {@code reverse}
 		 */
 		public Builder reverse(boolean value) {
 			this.reverse = value;
@@ -184,7 +184,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		}
 
 		/**
-		 * API name: {@code skip}
+		 * Required - API name: {@code skip}
 		 */
 		public Builder skip(int value) {
 			this.skip = value;

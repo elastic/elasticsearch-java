@@ -86,8 +86,8 @@ public final class ExistsTypeRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names; use <code>_all</code> to check the
-	 * types across all indices
+	 * Required - A comma-separated list of index names; use <code>_all</code> to
+	 * check the types across all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -96,7 +96,7 @@ public final class ExistsTypeRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of document types to check
+	 * Required - A comma-separated list of document types to check
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -172,8 +172,8 @@ public final class ExistsTypeRequest extends RequestBase {
 		private Boolean local;
 
 		/**
-		 * A comma-separated list of index names; use <code>_all</code> to check the
-		 * types across all indices
+		 * Required - A comma-separated list of index names; use <code>_all</code> to
+		 * check the types across all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -183,8 +183,8 @@ public final class ExistsTypeRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names; use <code>_all</code> to check the
-		 * types across all indices
+		 * Required - A comma-separated list of index names; use <code>_all</code> to
+		 * check the types across all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -194,7 +194,7 @@ public final class ExistsTypeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -205,7 +205,7 @@ public final class ExistsTypeRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of document types to check
+		 * Required - A comma-separated list of document types to check
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -215,7 +215,7 @@ public final class ExistsTypeRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of document types to check
+		 * Required - A comma-separated list of document types to check
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -225,7 +225,7 @@ public final class ExistsTypeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed. 4
+		 * Add a value to {@link #type(List)}, creating the list if needed.
 		 */
 		public Builder addType(String value) {
 			if (this.type == null) {
@@ -270,7 +270,7 @@ public final class ExistsTypeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

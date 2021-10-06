@@ -66,7 +66,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public Counter all() {
 		return this.all;
@@ -123,7 +123,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Counter value) {
 			this.all = value;
@@ -131,7 +131,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.all(fn.apply(new Counter.Builder()).build());

@@ -68,7 +68,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of failures when using the model for inference.
+	 * Required - The number of failures when using the model for inference.
 	 * <p>
 	 * API name: {@code failure_count}
 	 */
@@ -77,8 +77,8 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The total number of times the model has been called for inference. This is
-	 * across all inference contexts, including all pipelines.
+	 * Required - The total number of times the model has been called for inference.
+	 * This is across all inference contexts, including all pipelines.
 	 * <p>
 	 * API name: {@code inference_count}
 	 */
@@ -87,11 +87,11 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of times the model was loaded for inference and was not retrieved
-	 * from the cache. If this number is close to the inference_count, then the
-	 * cache is not being appropriately used. This can be solved by increasing the
-	 * cache size or its time-to-live (TTL). See General machine learning settings
-	 * for the appropriate settings.
+	 * Required - The number of times the model was loaded for inference and was not
+	 * retrieved from the cache. If this number is close to the inference_count,
+	 * then the cache is not being appropriately used. This can be solved by
+	 * increasing the cache size or its time-to-live (TTL). See General machine
+	 * learning settings for the appropriate settings.
 	 * <p>
 	 * API name: {@code cache_miss_count}
 	 */
@@ -100,8 +100,8 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of inference calls where all the training features for the model
-	 * were missing.
+	 * Required - The number of inference calls where all the training features for
+	 * the model were missing.
 	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
@@ -110,7 +110,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	}
 
 	/**
-	 * The time when the statistics were last updated.
+	 * Required - The time when the statistics were last updated.
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
@@ -163,7 +163,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		private String timestamp;
 
 		/**
-		 * The number of failures when using the model for inference.
+		 * Required - The number of failures when using the model for inference.
 		 * <p>
 		 * API name: {@code failure_count}
 		 */
@@ -173,8 +173,8 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		}
 
 		/**
-		 * The total number of times the model has been called for inference. This is
-		 * across all inference contexts, including all pipelines.
+		 * Required - The total number of times the model has been called for inference.
+		 * This is across all inference contexts, including all pipelines.
 		 * <p>
 		 * API name: {@code inference_count}
 		 */
@@ -184,11 +184,11 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of times the model was loaded for inference and was not retrieved
-		 * from the cache. If this number is close to the inference_count, then the
-		 * cache is not being appropriately used. This can be solved by increasing the
-		 * cache size or its time-to-live (TTL). See General machine learning settings
-		 * for the appropriate settings.
+		 * Required - The number of times the model was loaded for inference and was not
+		 * retrieved from the cache. If this number is close to the inference_count,
+		 * then the cache is not being appropriately used. This can be solved by
+		 * increasing the cache size or its time-to-live (TTL). See General machine
+		 * learning settings for the appropriate settings.
 		 * <p>
 		 * API name: {@code cache_miss_count}
 		 */
@@ -198,8 +198,8 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of inference calls where all the training features for the model
-		 * were missing.
+		 * Required - The number of inference calls where all the training features for
+		 * the model were missing.
 		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
@@ -209,7 +209,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		}
 
 		/**
-		 * The time when the statistics were last updated.
+		 * Required - The time when the statistics were last updated.
 		 * <p>
 		 * API name: {@code timestamp}
 		 */

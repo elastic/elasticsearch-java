@@ -63,7 +63,7 @@ public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code at}
+	 * Required - API name: {@code at}
 	 */
 	public JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at() {
 		return this.at;
@@ -94,7 +94,7 @@ public final class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		private JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ at;
 
 		/**
-		 * API name: {@code at}
+		 * Required - API name: {@code at}
 		 */
 		public Builder at(JsonValue /* Union(Array<internal.string> | watcher._types.TimeOfDay) */ value) {
 			this.at = value;

@@ -66,14 +66,14 @@ public final class RecoveryStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current_as_source}
+	 * Required - API name: {@code current_as_source}
 	 */
 	public long currentAsSource() {
 		return this.currentAsSource;
 	}
 
 	/**
-	 * API name: {@code current_as_target}
+	 * Required - API name: {@code current_as_target}
 	 */
 	public long currentAsTarget() {
 		return this.currentAsTarget;
@@ -88,7 +88,7 @@ public final class RecoveryStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code throttle_time_in_millis}
+	 * Required - API name: {@code throttle_time_in_millis}
 	 */
 	public long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
@@ -139,7 +139,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		private Long throttleTimeInMillis;
 
 		/**
-		 * API name: {@code current_as_source}
+		 * Required - API name: {@code current_as_source}
 		 */
 		public Builder currentAsSource(long value) {
 			this.currentAsSource = value;
@@ -147,7 +147,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current_as_target}
+		 * Required - API name: {@code current_as_target}
 		 */
 		public Builder currentAsTarget(long value) {
 			this.currentAsTarget = value;
@@ -163,7 +163,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code throttle_time_in_millis}
+		 * Required - API name: {@code throttle_time_in_millis}
 		 */
 		public Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;

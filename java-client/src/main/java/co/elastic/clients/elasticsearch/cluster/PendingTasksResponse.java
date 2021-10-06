@@ -59,7 +59,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code tasks}
+	 * Required - API name: {@code tasks}
 	 */
 	public List<PendingTask> tasks() {
 		return this.tasks;
@@ -95,7 +95,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		private List<PendingTask> tasks;
 
 		/**
-		 * API name: {@code tasks}
+		 * Required - API name: {@code tasks}
 		 */
 		public Builder tasks(List<PendingTask> value) {
 			this.tasks = value;
@@ -103,7 +103,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tasks}
+		 * Required - API name: {@code tasks}
 		 */
 		public Builder tasks(PendingTask... value) {
 			this.tasks = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tasks(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tasks(List)}, creating the list if needed.
 		 */
 		public Builder addTasks(PendingTask value) {
 			if (this.tasks == null) {
@@ -129,7 +129,7 @@ public final class PendingTasksResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tasks(List)}, creating the list if needed. 5
+		 * Add a value to {@link #tasks(List)}, creating the list if needed.
 		 */
 		public Builder addTasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
 			return this.addTasks(fn.apply(new PendingTask.Builder()).build());

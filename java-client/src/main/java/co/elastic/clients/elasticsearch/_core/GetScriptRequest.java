@@ -62,7 +62,7 @@ public final class GetScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Script ID
+	 * Required - Script ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -92,7 +92,7 @@ public final class GetScriptRequest extends RequestBase {
 		private String masterTimeout;
 
 		/**
-		 * Script ID
+		 * Required - Script ID
 		 * <p>
 		 * API name: {@code id}
 		 */

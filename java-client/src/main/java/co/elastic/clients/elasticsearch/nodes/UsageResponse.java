@@ -63,14 +63,14 @@ public final class UsageResponse extends NodesResponseBase {
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, NodeUsage> nodes() {
 		return this.nodes;
@@ -107,7 +107,7 @@ public final class UsageResponse extends NodesResponseBase {
 		private Map<String, NodeUsage> nodes;
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -115,7 +115,7 @@ public final class UsageResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, NodeUsage> value) {
 			this.nodes = value;

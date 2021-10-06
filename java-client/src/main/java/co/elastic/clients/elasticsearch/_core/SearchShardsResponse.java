@@ -70,21 +70,21 @@ public final class SearchShardsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, NodeAttributes> nodes() {
 		return this.nodes;
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<List<NodeShard>> shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public Map<String, ShardStoreIndex> indices() {
 		return this.indices;
@@ -147,7 +147,7 @@ public final class SearchShardsResponse implements JsonpSerializable {
 		private Map<String, ShardStoreIndex> indices;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, NodeAttributes> value) {
 			this.nodes = value;
@@ -180,7 +180,7 @@ public final class SearchShardsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<List<NodeShard>> value) {
 			this.shards = value;
@@ -188,7 +188,7 @@ public final class SearchShardsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<NodeShard>... value) {
 			this.shards = Arrays.asList(value);
@@ -196,7 +196,7 @@ public final class SearchShardsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(List<NodeShard> value) {
 			if (this.shards == null) {
@@ -207,7 +207,7 @@ public final class SearchShardsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Map<String, ShardStoreIndex> value) {
 			this.indices = value;

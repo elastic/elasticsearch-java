@@ -58,14 +58,14 @@ public final class PhraseSuggestHighlight implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code post_tag}
+	 * Required - API name: {@code post_tag}
 	 */
 	public String postTag() {
 		return this.postTag;
 	}
 
 	/**
-	 * API name: {@code pre_tag}
+	 * Required - API name: {@code pre_tag}
 	 */
 	public String preTag() {
 		return this.preTag;
@@ -101,7 +101,7 @@ public final class PhraseSuggestHighlight implements JsonpSerializable {
 		private String preTag;
 
 		/**
-		 * API name: {@code post_tag}
+		 * Required - API name: {@code post_tag}
 		 */
 		public Builder postTag(String value) {
 			this.postTag = value;
@@ -109,7 +109,7 @@ public final class PhraseSuggestHighlight implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pre_tag}
+		 * Required - API name: {@code pre_tag}
 		 */
 		public Builder preTag(String value) {
 			this.preTag = value;

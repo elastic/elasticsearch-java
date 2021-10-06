@@ -68,8 +68,8 @@ public final class DeleteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of data streams to delete; use <code>*</code> to
-	 * delete all data streams
+	 * Required - A comma-separated list of data streams to delete; use
+	 * <code>*</code> to delete all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -100,8 +100,8 @@ public final class DeleteDataStreamRequest extends RequestBase {
 		private List<ExpandWildcardOptions> expandWildcards;
 
 		/**
-		 * A comma-separated list of data streams to delete; use <code>*</code> to
-		 * delete all data streams
+		 * Required - A comma-separated list of data streams to delete; use
+		 * <code>*</code> to delete all data streams
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -111,8 +111,8 @@ public final class DeleteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of data streams to delete; use <code>*</code> to
-		 * delete all data streams
+		 * Required - A comma-separated list of data streams to delete; use
+		 * <code>*</code> to delete all data streams
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -122,7 +122,7 @@ public final class DeleteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed. 4
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -155,7 +155,7 @@ public final class DeleteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

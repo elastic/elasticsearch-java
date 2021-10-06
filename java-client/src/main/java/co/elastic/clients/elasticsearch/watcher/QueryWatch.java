@@ -72,7 +72,7 @@ public final class QueryWatch implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
@@ -172,7 +172,7 @@ public final class QueryWatch implements JsonpSerializable {
 		private Integer seqNo;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;

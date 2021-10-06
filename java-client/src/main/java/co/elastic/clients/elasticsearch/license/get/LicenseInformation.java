@@ -93,49 +93,49 @@ public final class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code expiry_date}
+	 * Required - API name: {@code expiry_date}
 	 */
 	public String expiryDate() {
 		return this.expiryDate;
 	}
 
 	/**
-	 * API name: {@code expiry_date_in_millis}
+	 * Required - API name: {@code expiry_date_in_millis}
 	 */
 	public String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
 	/**
-	 * API name: {@code issue_date}
+	 * Required - API name: {@code issue_date}
 	 */
 	public String issueDate() {
 		return this.issueDate;
 	}
 
 	/**
-	 * API name: {@code issue_date_in_millis}
+	 * Required - API name: {@code issue_date_in_millis}
 	 */
 	public String issueDateInMillis() {
 		return this.issueDateInMillis;
 	}
 
 	/**
-	 * API name: {@code issued_to}
+	 * Required - API name: {@code issued_to}
 	 */
 	public String issuedTo() {
 		return this.issuedTo;
 	}
 
 	/**
-	 * API name: {@code issuer}
+	 * Required - API name: {@code issuer}
 	 */
 	public String issuer() {
 		return this.issuer;
 	}
 
 	/**
-	 * API name: {@code max_nodes}
+	 * Required - API name: {@code max_nodes}
 	 */
 	public long maxNodes() {
 		return this.maxNodes;
@@ -150,28 +150,28 @@ public final class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public LicenseStatus status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public LicenseType type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code uid}
+	 * Required - API name: {@code uid}
 	 */
 	public String uid() {
 		return this.uid;
 	}
 
 	/**
-	 * API name: {@code start_date_in_millis}
+	 * Required - API name: {@code start_date_in_millis}
 	 */
 	public String startDateInMillis() {
 		return this.startDateInMillis;
@@ -262,7 +262,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		private String startDateInMillis;
 
 		/**
-		 * API name: {@code expiry_date}
+		 * Required - API name: {@code expiry_date}
 		 */
 		public Builder expiryDate(String value) {
 			this.expiryDate = value;
@@ -270,7 +270,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code expiry_date_in_millis}
+		 * Required - API name: {@code expiry_date_in_millis}
 		 */
 		public Builder expiryDateInMillis(String value) {
 			this.expiryDateInMillis = value;
@@ -278,7 +278,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code issue_date}
+		 * Required - API name: {@code issue_date}
 		 */
 		public Builder issueDate(String value) {
 			this.issueDate = value;
@@ -286,7 +286,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code issue_date_in_millis}
+		 * Required - API name: {@code issue_date_in_millis}
 		 */
 		public Builder issueDateInMillis(String value) {
 			this.issueDateInMillis = value;
@@ -294,7 +294,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code issued_to}
+		 * Required - API name: {@code issued_to}
 		 */
 		public Builder issuedTo(String value) {
 			this.issuedTo = value;
@@ -302,7 +302,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code issuer}
+		 * Required - API name: {@code issuer}
 		 */
 		public Builder issuer(String value) {
 			this.issuer = value;
@@ -310,7 +310,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_nodes}
+		 * Required - API name: {@code max_nodes}
 		 */
 		public Builder maxNodes(long value) {
 			this.maxNodes = value;
@@ -326,7 +326,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(LicenseStatus value) {
 			this.status = value;
@@ -334,7 +334,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(LicenseType value) {
 			this.type = value;
@@ -342,7 +342,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uid}
+		 * Required - API name: {@code uid}
 		 */
 		public Builder uid(String value) {
 			this.uid = value;
@@ -350,7 +350,7 @@ public final class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_date_in_millis}
+		 * Required - API name: {@code start_date_in_millis}
 		 */
 		public Builder startDateInMillis(String value) {
 			this.startDateInMillis = value;

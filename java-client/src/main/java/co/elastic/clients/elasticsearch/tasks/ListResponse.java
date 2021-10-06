@@ -56,8 +56,8 @@ public class ListResponse implements JsonpSerializable {
 
 	@Nullable
 	private final JsonValue /*
-							 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey = false) |
-							 * Array<tasks._types.Info>)
+							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
+							 * tasks._types.Info> (singleKey = false))
 							 */ tasks;
 
 	// ---------------------------------------------------------------------------------------------
@@ -91,8 +91,8 @@ public class ListResponse implements JsonpSerializable {
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey = false) |
-						 * Array<tasks._types.Info>)
+						 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
+						 * tasks._types.Info> (singleKey = false))
 						 */ tasks() {
 		return this.tasks;
 	}
@@ -172,8 +172,8 @@ public class ListResponse implements JsonpSerializable {
 
 		@Nullable
 		private JsonValue /*
-							 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey = false) |
-							 * Array<tasks._types.Info>)
+							 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
+							 * tasks._types.Info> (singleKey = false))
 							 */ tasks;
 
 		/**
@@ -193,7 +193,7 @@ public class ListResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
 		 */
 		public BuilderT addNodeFailures(ErrorCause value) {
 			if (this.nodeFailures == null) {
@@ -211,7 +211,7 @@ public class ListResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #nodeFailures(List)}, creating the list if needed.
 		 */
 		public BuilderT addNodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addNodeFailures(fn.apply(new ErrorCause.Builder()).build());
@@ -254,8 +254,8 @@ public class ListResponse implements JsonpSerializable {
 		 * API name: {@code tasks}
 		 */
 		public BuilderT tasks(@Nullable JsonValue /*
-													 * Union(Dictionary<internal.string, tasks._types.Info> (singleKey =
-													 * false) | Array<tasks._types.Info>)
+													 * Union(Array<tasks._types.Info> | Dictionary<internal.string,
+													 * tasks._types.Info> (singleKey = false))
 													 */ value) {
 			this.tasks = value;
 			return self();

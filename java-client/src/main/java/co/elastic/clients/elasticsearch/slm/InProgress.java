@@ -64,28 +64,28 @@ public final class InProgress implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code start_time_millis}
+	 * Required - API name: {@code start_time_millis}
 	 */
 	public String startTimeMillis() {
 		return this.startTimeMillis;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public String state() {
 		return this.state;
 	}
 
 	/**
-	 * API name: {@code uuid}
+	 * Required - API name: {@code uuid}
 	 */
 	public String uuid() {
 		return this.uuid;
@@ -131,7 +131,7 @@ public final class InProgress implements JsonpSerializable {
 		private String uuid;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -139,7 +139,7 @@ public final class InProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_time_millis}
+		 * Required - API name: {@code start_time_millis}
 		 */
 		public Builder startTimeMillis(String value) {
 			this.startTimeMillis = value;
@@ -147,7 +147,7 @@ public final class InProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(String value) {
 			this.state = value;
@@ -155,7 +155,7 @@ public final class InProgress implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uuid}
+		 * Required - API name: {@code uuid}
 		 */
 		public Builder uuid(String value) {
 			this.uuid = value;

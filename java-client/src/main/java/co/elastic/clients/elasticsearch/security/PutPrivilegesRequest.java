@@ -80,7 +80,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -133,7 +133,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

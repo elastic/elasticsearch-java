@@ -83,56 +83,56 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cron}
+	 * Required - API name: {@code cron}
 	 */
 	public String cron() {
 		return this.cron;
 	}
 
 	/**
-	 * API name: {@code groups}
+	 * Required - API name: {@code groups}
 	 */
 	public Groupings groups() {
 		return this.groups;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code index_pattern}
+	 * Required - API name: {@code index_pattern}
 	 */
 	public String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
-	 * API name: {@code metrics}
+	 * Required - API name: {@code metrics}
 	 */
 	public List<FieldMetric> metrics() {
 		return this.metrics;
 	}
 
 	/**
-	 * API name: {@code page_size}
+	 * Required - API name: {@code page_size}
 	 */
 	public long pageSize() {
 		return this.pageSize;
 	}
 
 	/**
-	 * API name: {@code rollup_index}
+	 * Required - API name: {@code rollup_index}
 	 */
 	public String rollupIndex() {
 		return this.rollupIndex;
 	}
 
 	/**
-	 * API name: {@code timeout}
+	 * Required - API name: {@code timeout}
 	 */
 	public String timeout() {
 		return this.timeout;
@@ -203,7 +203,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		private String timeout;
 
 		/**
-		 * API name: {@code cron}
+		 * Required - API name: {@code cron}
 		 */
 		public Builder cron(String value) {
 			this.cron = value;
@@ -211,7 +211,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code groups}
+		 * Required - API name: {@code groups}
 		 */
 		public Builder groups(Groupings value) {
 			this.groups = value;
@@ -219,14 +219,14 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code groups}
+		 * Required - API name: {@code groups}
 		 */
 		public Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
 			return this.groups(fn.apply(new Groupings.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -234,7 +234,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_pattern}
+		 * Required - API name: {@code index_pattern}
 		 */
 		public Builder indexPattern(String value) {
 			this.indexPattern = value;
@@ -242,7 +242,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code metrics}
+		 * Required - API name: {@code metrics}
 		 */
 		public Builder metrics(List<FieldMetric> value) {
 			this.metrics = value;
@@ -250,7 +250,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code metrics}
+		 * Required - API name: {@code metrics}
 		 */
 		public Builder metrics(FieldMetric... value) {
 			this.metrics = Arrays.asList(value);
@@ -258,7 +258,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(FieldMetric value) {
 			if (this.metrics == null) {
@@ -276,14 +276,14 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 5
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
 			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code page_size}
+		 * Required - API name: {@code page_size}
 		 */
 		public Builder pageSize(long value) {
 			this.pageSize = value;
@@ -291,7 +291,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rollup_index}
+		 * Required - API name: {@code rollup_index}
 		 */
 		public Builder rollupIndex(String value) {
 			this.rollupIndex = value;
@@ -299,7 +299,7 @@ public final class RollupJobConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timeout}
+		 * Required - API name: {@code timeout}
 		 */
 		public Builder timeout(String value) {
 			this.timeout = value;

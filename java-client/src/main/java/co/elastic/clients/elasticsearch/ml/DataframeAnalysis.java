@@ -68,6 +68,10 @@ public class DataframeAnalysis implements TaggedUnion<Object>, JsonpSerializable
 
 	}
 
+	public <T extends DataframeAnalysisVariant> DataframeAnalysis(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private DataframeAnalysis(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

@@ -63,28 +63,28 @@ public final class ClusterProcessor implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code current}
+	 * Required - API name: {@code current}
 	 */
 	public long current() {
 		return this.current;
 	}
 
 	/**
-	 * API name: {@code failed}
+	 * Required - API name: {@code failed}
 	 */
 	public long failed() {
 		return this.failed;
 	}
 
 	/**
-	 * API name: {@code time_in_millis}
+	 * Required - API name: {@code time_in_millis}
 	 */
 	public long timeInMillis() {
 		return this.timeInMillis;
@@ -130,7 +130,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		private Long timeInMillis;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -138,7 +138,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current}
+		 * Required - API name: {@code current}
 		 */
 		public Builder current(long value) {
 			this.current = value;
@@ -146,7 +146,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failed}
+		 * Required - API name: {@code failed}
 		 */
 		public Builder failed(long value) {
 			this.failed = value;
@@ -154,7 +154,7 @@ public final class ClusterProcessor implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_millis}
+		 * Required - API name: {@code time_in_millis}
 		 */
 		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;

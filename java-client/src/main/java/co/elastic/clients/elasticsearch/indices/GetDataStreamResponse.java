@@ -59,7 +59,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public List<IndicesGetDataStreamItem> dataStreams() {
 		return this.dataStreams;
@@ -95,7 +95,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		private List<IndicesGetDataStreamItem> dataStreams;
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(List<IndicesGetDataStreamItem> value) {
 			this.dataStreams = value;
@@ -103,7 +103,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(IndicesGetDataStreamItem... value) {
 			this.dataStreams = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(IndicesGetDataStreamItem value) {
 			if (this.dataStreams == null) {
@@ -130,7 +130,7 @@ public final class GetDataStreamResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 5
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(
 				Function<IndicesGetDataStreamItem.Builder, ObjectBuilder<IndicesGetDataStreamItem>> fn) {

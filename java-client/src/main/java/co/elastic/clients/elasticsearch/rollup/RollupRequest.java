@@ -66,7 +66,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The index to roll up
+	 * Required - The index to roll up
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -75,7 +75,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The name of the rollup index to create
+	 * Required - The name of the rollup index to create
 	 * <p>
 	 * API name: {@code rollup_index}
 	 */
@@ -84,7 +84,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -113,7 +113,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		private JsonData config;
 
 		/**
-		 * The index to roll up
+		 * Required - The index to roll up
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -123,7 +123,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The name of the rollup index to create
+		 * Required - The name of the rollup index to create
 		 * <p>
 		 * API name: {@code rollup_index}
 		 */
@@ -133,7 +133,7 @@ public final class RollupRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

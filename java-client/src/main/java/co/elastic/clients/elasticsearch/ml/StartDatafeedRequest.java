@@ -73,7 +73,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * The ID of the datafeed to start
+	 * Required - The ID of the datafeed to start
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
@@ -155,7 +155,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		private String timeout;
 
 		/**
-		 * The ID of the datafeed to start
+		 * Required - The ID of the datafeed to start
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */

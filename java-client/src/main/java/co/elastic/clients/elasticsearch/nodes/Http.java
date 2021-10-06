@@ -58,14 +58,14 @@ public final class Http implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current_open}
+	 * Required - API name: {@code current_open}
 	 */
 	public int currentOpen() {
 		return this.currentOpen;
 	}
 
 	/**
-	 * API name: {@code total_opened}
+	 * Required - API name: {@code total_opened}
 	 */
 	public long totalOpened() {
 		return this.totalOpened;
@@ -101,7 +101,7 @@ public final class Http implements JsonpSerializable {
 		private Long totalOpened;
 
 		/**
-		 * API name: {@code current_open}
+		 * Required - API name: {@code current_open}
 		 */
 		public Builder currentOpen(int value) {
 			this.currentOpen = value;
@@ -109,7 +109,7 @@ public final class Http implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_opened}
+		 * Required - API name: {@code total_opened}
 		 */
 		public Builder totalOpened(long value) {
 			this.totalOpened = value;

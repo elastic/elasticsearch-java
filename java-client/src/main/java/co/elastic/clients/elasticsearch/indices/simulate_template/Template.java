@@ -73,28 +73,28 @@ public final class Template implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aliases}
+	 * Required - API name: {@code aliases}
 	 */
 	public Map<String, Alias> aliases() {
 		return this.aliases;
 	}
 
 	/**
-	 * API name: {@code mappings}
+	 * Required - API name: {@code mappings}
 	 */
 	public TypeMapping mappings() {
 		return this.mappings;
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
 	/**
-	 * API name: {@code overlapping}
+	 * Required - API name: {@code overlapping}
 	 */
 	public List<Overlapping> overlapping() {
 		return this.overlapping;
@@ -157,7 +157,7 @@ public final class Template implements JsonpSerializable {
 		private List<Overlapping> overlapping;
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(Map<String, Alias> value) {
 			this.aliases = value;
@@ -190,7 +190,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(TypeMapping value) {
 			this.mappings = value;
@@ -198,14 +198,14 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Map<String, JsonData> value) {
 			this.settings = value;
@@ -224,7 +224,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code overlapping}
+		 * Required - API name: {@code overlapping}
 		 */
 		public Builder overlapping(List<Overlapping> value) {
 			this.overlapping = value;
@@ -232,7 +232,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code overlapping}
+		 * Required - API name: {@code overlapping}
 		 */
 		public Builder overlapping(Overlapping... value) {
 			this.overlapping = Arrays.asList(value);
@@ -240,7 +240,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 4
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
 		 */
 		public Builder addOverlapping(Overlapping value) {
 			if (this.overlapping == null) {
@@ -258,7 +258,7 @@ public final class Template implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 5
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
 		 */
 		public Builder addOverlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
 			return this.addOverlapping(fn.apply(new Overlapping.Builder()).build());

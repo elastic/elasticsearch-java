@@ -89,7 +89,7 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma separated list of indices to add a block to
+	 * Required - A comma separated list of indices to add a block to
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -98,7 +98,7 @@ public final class AddBlockRequest extends RequestBase {
 	}
 
 	/**
-	 * The block to add (one of read, write, read_only or metadata)
+	 * Required - The block to add (one of read, write, read_only or metadata)
 	 * <p>
 	 * API name: {@code block}
 	 */
@@ -186,7 +186,7 @@ public final class AddBlockRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * A comma separated list of indices to add a block to
+		 * Required - A comma separated list of indices to add a block to
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -196,7 +196,7 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
-		 * The block to add (one of read, write, read_only or metadata)
+		 * Required - The block to add (one of read, write, read_only or metadata)
 		 * <p>
 		 * API name: {@code block}
 		 */
@@ -240,7 +240,7 @@ public final class AddBlockRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

@@ -57,14 +57,14 @@ public final class Ssl implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public FeatureToggle http() {
 		return this.http;
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public FeatureToggle transport() {
 		return this.transport;
@@ -100,7 +100,7 @@ public final class Ssl implements JsonpSerializable {
 		private FeatureToggle transport;
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(FeatureToggle value) {
 			this.http = value;
@@ -108,14 +108,14 @@ public final class Ssl implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.http(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(FeatureToggle value) {
 			this.transport = value;
@@ -123,7 +123,7 @@ public final class Ssl implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.transport(fn.apply(new FeatureToggle.Builder()).build());

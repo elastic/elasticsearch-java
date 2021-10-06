@@ -72,7 +72,7 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code responses}
+	 * Required - API name: {@code responses}
 	 */
 	public List<JsonValue /*
 							 * Union(_global.search.Response<_global.msearch_template.TDocument> |
@@ -82,7 +82,7 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
@@ -132,7 +132,7 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code responses}
+		 * Required - API name: {@code responses}
 		 */
 		public Builder<TDocument> responses(List<JsonValue /*
 															 * Union(_global.search.Response<_global.msearch_template.
@@ -143,7 +143,7 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 		}
 
 		/**
-		 * API name: {@code responses}
+		 * Required - API name: {@code responses}
 		 */
 		public Builder<TDocument> responses(JsonValue /*
 														 * Union(_global.search.Response<_global.msearch_template.
@@ -154,7 +154,7 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
+		 * Add a value to {@link #responses(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addResponses(JsonValue /*
 															 * Union(_global.search.Response<_global.msearch_template.
@@ -168,7 +168,7 @@ public final class MsearchTemplateResponse<TDocument> implements JsonpSerializab
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder<TDocument> took(long value) {
 			this.took = value;

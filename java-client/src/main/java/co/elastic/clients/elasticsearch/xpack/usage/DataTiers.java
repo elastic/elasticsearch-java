@@ -67,7 +67,7 @@ public final class DataTiers extends Base {
 	}
 
 	/**
-	 * API name: {@code data_warm}
+	 * Required - API name: {@code data_warm}
 	 */
 	public DataTierPhaseStatistics dataWarm() {
 		return this.dataWarm;
@@ -82,21 +82,21 @@ public final class DataTiers extends Base {
 	}
 
 	/**
-	 * API name: {@code data_cold}
+	 * Required - API name: {@code data_cold}
 	 */
 	public DataTierPhaseStatistics dataCold() {
 		return this.dataCold;
 	}
 
 	/**
-	 * API name: {@code data_content}
+	 * Required - API name: {@code data_content}
 	 */
 	public DataTierPhaseStatistics dataContent() {
 		return this.dataContent;
 	}
 
 	/**
-	 * API name: {@code data_hot}
+	 * Required - API name: {@code data_hot}
 	 */
 	public DataTierPhaseStatistics dataHot() {
 		return this.dataHot;
@@ -145,7 +145,7 @@ public final class DataTiers extends Base {
 		private DataTierPhaseStatistics dataHot;
 
 		/**
-		 * API name: {@code data_warm}
+		 * Required - API name: {@code data_warm}
 		 */
 		public Builder dataWarm(DataTierPhaseStatistics value) {
 			this.dataWarm = value;
@@ -153,7 +153,7 @@ public final class DataTiers extends Base {
 		}
 
 		/**
-		 * API name: {@code data_warm}
+		 * Required - API name: {@code data_warm}
 		 */
 		public Builder dataWarm(Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataWarm(fn.apply(new DataTierPhaseStatistics.Builder()).build());
@@ -176,7 +176,7 @@ public final class DataTiers extends Base {
 		}
 
 		/**
-		 * API name: {@code data_cold}
+		 * Required - API name: {@code data_cold}
 		 */
 		public Builder dataCold(DataTierPhaseStatistics value) {
 			this.dataCold = value;
@@ -184,14 +184,14 @@ public final class DataTiers extends Base {
 		}
 
 		/**
-		 * API name: {@code data_cold}
+		 * Required - API name: {@code data_cold}
 		 */
 		public Builder dataCold(Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataCold(fn.apply(new DataTierPhaseStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code data_content}
+		 * Required - API name: {@code data_content}
 		 */
 		public Builder dataContent(DataTierPhaseStatistics value) {
 			this.dataContent = value;
@@ -199,7 +199,7 @@ public final class DataTiers extends Base {
 		}
 
 		/**
-		 * API name: {@code data_content}
+		 * Required - API name: {@code data_content}
 		 */
 		public Builder dataContent(
 				Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
@@ -207,7 +207,7 @@ public final class DataTiers extends Base {
 		}
 
 		/**
-		 * API name: {@code data_hot}
+		 * Required - API name: {@code data_hot}
 		 */
 		public Builder dataHot(DataTierPhaseStatistics value) {
 			this.dataHot = value;
@@ -215,7 +215,7 @@ public final class DataTiers extends Base {
 		}
 
 		/**
-		 * API name: {@code data_hot}
+		 * Required - API name: {@code data_hot}
 		 */
 		public Builder dataHot(Function<DataTierPhaseStatistics.Builder, ObjectBuilder<DataTierPhaseStatistics>> fn) {
 			return this.dataHot(fn.apply(new DataTierPhaseStatistics.Builder()).build());

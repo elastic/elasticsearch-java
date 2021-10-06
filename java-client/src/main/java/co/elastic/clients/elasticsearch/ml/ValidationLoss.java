@@ -62,8 +62,8 @@ public final class ValidationLoss implements JsonpSerializable {
 	}
 
 	/**
-	 * Validation loss values for every added decision tree during the forest
-	 * growing procedure.
+	 * Required - Validation loss values for every added decision tree during the
+	 * forest growing procedure.
 	 * <p>
 	 * API name: {@code fold_values}
 	 */
@@ -72,7 +72,7 @@ public final class ValidationLoss implements JsonpSerializable {
 	}
 
 	/**
-	 * The type of the loss metric. For example, binomial_logistic.
+	 * Required - The type of the loss metric. For example, binomial_logistic.
 	 * <p>
 	 * API name: {@code loss_type}
 	 */
@@ -115,8 +115,8 @@ public final class ValidationLoss implements JsonpSerializable {
 		private String lossType;
 
 		/**
-		 * Validation loss values for every added decision tree during the forest
-		 * growing procedure.
+		 * Required - Validation loss values for every added decision tree during the
+		 * forest growing procedure.
 		 * <p>
 		 * API name: {@code fold_values}
 		 */
@@ -126,8 +126,8 @@ public final class ValidationLoss implements JsonpSerializable {
 		}
 
 		/**
-		 * Validation loss values for every added decision tree during the forest
-		 * growing procedure.
+		 * Required - Validation loss values for every added decision tree during the
+		 * forest growing procedure.
 		 * <p>
 		 * API name: {@code fold_values}
 		 */
@@ -137,7 +137,7 @@ public final class ValidationLoss implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #foldValues(List)}, creating the list if needed. 4
+		 * Add a value to {@link #foldValues(List)}, creating the list if needed.
 		 */
 		public Builder addFoldValues(String value) {
 			if (this.foldValues == null) {
@@ -148,7 +148,7 @@ public final class ValidationLoss implements JsonpSerializable {
 		}
 
 		/**
-		 * The type of the loss metric. For example, binomial_logistic.
+		 * Required - The type of the loss metric. For example, binomial_logistic.
 		 * <p>
 		 * API name: {@code loss_type}
 		 */

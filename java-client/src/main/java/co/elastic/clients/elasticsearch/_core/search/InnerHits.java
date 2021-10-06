@@ -88,7 +88,7 @@ public final class InnerHits implements JsonpSerializable {
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
+	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> storedField;
@@ -226,7 +226,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source() {
+	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -433,7 +433,7 @@ public final class InnerHits implements JsonpSerializable {
 		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
+		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> storedField;
@@ -500,7 +500,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
 		 */
 		public Builder addDocvalueFields(FieldAndFormat value) {
 			if (this.docvalueFields == null) {
@@ -518,7 +518,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
 		 */
 		public Builder addDocvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
 			return this.addDocvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
@@ -613,7 +613,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -640,7 +640,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -654,7 +654,7 @@ public final class InnerHits implements JsonpSerializable {
 		 * API name: {@code _source}
 		 */
 		public Builder source(
-				@Nullable JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ value) {
+				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -676,7 +676,7 @@ public final class InnerHits implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #storedField(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedField(List)}, creating the list if needed.
 		 */
 		public Builder addStoredField(String value) {
 			if (this.storedField == null) {

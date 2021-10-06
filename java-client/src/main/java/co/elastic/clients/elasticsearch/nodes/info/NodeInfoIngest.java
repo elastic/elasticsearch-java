@@ -58,7 +58,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code processors}
+	 * Required - API name: {@code processors}
 	 */
 	public List<NodeInfoIngestProcessor> processors() {
 		return this.processors;
@@ -94,7 +94,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		private List<NodeInfoIngestProcessor> processors;
 
 		/**
-		 * API name: {@code processors}
+		 * Required - API name: {@code processors}
 		 */
 		public Builder processors(List<NodeInfoIngestProcessor> value) {
 			this.processors = value;
@@ -102,7 +102,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processors}
+		 * Required - API name: {@code processors}
 		 */
 		public Builder processors(NodeInfoIngestProcessor... value) {
 			this.processors = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(NodeInfoIngestProcessor value) {
 			if (this.processors == null) {
@@ -129,7 +129,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(
 				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {

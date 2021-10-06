@@ -62,14 +62,14 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 	}
 
 	/**
-	 * API name: {@code classes}
+	 * Required - API name: {@code classes}
 	 */
 	public List<DataframeEvaluationClass> classes() {
 		return this.classes;
 	}
 
 	/**
-	 * API name: {@code avg_precision}
+	 * Required - API name: {@code avg_precision}
 	 */
 	public double avgPrecision() {
 		return this.avgPrecision;
@@ -110,7 +110,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		private Double avgPrecision;
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(List<DataframeEvaluationClass> value) {
 			this.classes = value;
@@ -118,7 +118,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		}
 
 		/**
-		 * API name: {@code classes}
+		 * Required - API name: {@code classes}
 		 */
 		public Builder classes(DataframeEvaluationClass... value) {
 			this.classes = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #classes(List)}, creating the list if needed.
 		 */
 		public Builder addClasses(DataframeEvaluationClass value) {
 			if (this.classes == null) {
@@ -144,7 +144,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #classes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #classes(List)}, creating the list if needed.
 		 */
 		public Builder addClasses(
 				Function<DataframeEvaluationClass.Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
@@ -152,7 +152,7 @@ public final class DataframeClassificationSummaryPrecision implements JsonpSeria
 		}
 
 		/**
-		 * API name: {@code avg_precision}
+		 * Required - API name: {@code avg_precision}
 		 */
 		public Builder avgPrecision(double value) {
 			this.avgPrecision = value;

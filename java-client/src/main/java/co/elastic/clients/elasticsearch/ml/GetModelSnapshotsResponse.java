@@ -62,14 +62,14 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code model_snapshots}
+	 * Required - API name: {@code model_snapshots}
 	 */
 	public List<ModelSnapshot> modelSnapshots() {
 		return this.modelSnapshots;
@@ -110,7 +110,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		private List<ModelSnapshot> modelSnapshots;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model_snapshots}
+		 * Required - API name: {@code model_snapshots}
 		 */
 		public Builder modelSnapshots(List<ModelSnapshot> value) {
 			this.modelSnapshots = value;
@@ -126,7 +126,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model_snapshots}
+		 * Required - API name: {@code model_snapshots}
 		 */
 		public Builder modelSnapshots(ModelSnapshot... value) {
 			this.modelSnapshots = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed. 4
+		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
 		 */
 		public Builder addModelSnapshots(ModelSnapshot value) {
 			if (this.modelSnapshots == null) {
@@ -152,7 +152,7 @@ public final class GetModelSnapshotsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed. 5
+		 * Add a value to {@link #modelSnapshots(List)}, creating the list if needed.
 		 */
 		public Builder addModelSnapshots(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.addModelSnapshots(fn.apply(new ModelSnapshot.Builder()).build());

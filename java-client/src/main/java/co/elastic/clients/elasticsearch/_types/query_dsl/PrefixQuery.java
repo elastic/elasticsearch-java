@@ -75,7 +75,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * The target field
+	 * Required - The target field
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -92,7 +92,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public String value() {
 		return this.value;
@@ -139,7 +139,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		private String field;
 
 		/**
-		 * The target field
+		 * Required - The target field
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -165,7 +165,7 @@ public final class PrefixQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(String value) {
 			this.value = value;

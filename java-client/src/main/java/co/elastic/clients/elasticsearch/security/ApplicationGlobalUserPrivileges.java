@@ -54,7 +54,7 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code manage}
+	 * Required - API name: {@code manage}
 	 */
 	public ManageUserPrivileges manage() {
 		return this.manage;
@@ -85,7 +85,7 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 		private ManageUserPrivileges manage;
 
 		/**
-		 * API name: {@code manage}
+		 * Required - API name: {@code manage}
 		 */
 		public Builder manage(ManageUserPrivileges value) {
 			this.manage = value;
@@ -93,7 +93,7 @@ public final class ApplicationGlobalUserPrivileges implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code manage}
+		 * Required - API name: {@code manage}
 		 */
 		public Builder manage(Function<ManageUserPrivileges.Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
 			return this.manage(fn.apply(new ManageUserPrivileges.Builder()).build());

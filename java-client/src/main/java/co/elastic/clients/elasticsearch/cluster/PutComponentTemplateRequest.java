@@ -101,7 +101,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * The name of the template
+	 * Required - The name of the template
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -131,7 +131,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 	}
 
 	/**
-	 * API name: {@code template}
+	 * Required - API name: {@code template}
 	 */
 	public IndexState template() {
 		return this.template;
@@ -268,7 +268,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		private Map<String, JsonData> meta;
 
 		/**
-		 * The name of the template
+		 * Required - The name of the template
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -299,7 +299,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(IndexState value) {
 			this.template = value;
@@ -307,7 +307,7 @@ public final class PutComponentTemplateRequest extends RequestBase implements Js
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
 			return this.template(fn.apply(new IndexState.Builder()).build());

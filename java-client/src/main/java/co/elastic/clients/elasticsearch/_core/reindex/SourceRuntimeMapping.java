@@ -59,7 +59,7 @@ public final class SourceRuntimeMapping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -108,7 +108,7 @@ public final class SourceRuntimeMapping implements JsonpSerializable {
 		private String script;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

@@ -58,7 +58,7 @@ public final class WatcherActions implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public Map<String, WatcherActionTotals> actions() {
 		return this.actions;
@@ -95,7 +95,7 @@ public final class WatcherActions implements JsonpSerializable {
 		private Map<String, WatcherActionTotals> actions;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(Map<String, WatcherActionTotals> value) {
 			this.actions = value;

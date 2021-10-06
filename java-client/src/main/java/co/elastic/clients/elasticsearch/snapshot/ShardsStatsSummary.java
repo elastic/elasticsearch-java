@@ -64,28 +64,28 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code incremental}
+	 * Required - API name: {@code incremental}
 	 */
 	public ShardsStatsSummaryItem incremental() {
 		return this.incremental;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public ShardsStatsSummaryItem total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
 	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code time_in_millis}
+	 * Required - API name: {@code time_in_millis}
 	 */
 	public long timeInMillis() {
 		return this.timeInMillis;
@@ -131,7 +131,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		private Long timeInMillis;
 
 		/**
-		 * API name: {@code incremental}
+		 * Required - API name: {@code incremental}
 		 */
 		public Builder incremental(ShardsStatsSummaryItem value) {
 			this.incremental = value;
@@ -139,14 +139,14 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code incremental}
+		 * Required - API name: {@code incremental}
 		 */
 		public Builder incremental(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
 			return this.incremental(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(ShardsStatsSummaryItem value) {
 			this.total = value;
@@ -154,14 +154,14 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<ShardsStatsSummaryItem.Builder, ObjectBuilder<ShardsStatsSummaryItem>> fn) {
 			return this.total(fn.apply(new ShardsStatsSummaryItem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
 		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
@@ -169,7 +169,7 @@ public final class ShardsStatsSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_millis}
+		 * Required - API name: {@code time_in_millis}
 		 */
 		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;

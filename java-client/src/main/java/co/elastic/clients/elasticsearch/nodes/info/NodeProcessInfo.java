@@ -62,7 +62,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Process identifier (PID)
+	 * Required - Process identifier (PID)
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -71,7 +71,8 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Indicates if the process address space has been successfully locked in memory
+	 * Required - Indicates if the process address space has been successfully
+	 * locked in memory
 	 * <p>
 	 * API name: {@code mlockall}
 	 */
@@ -80,7 +81,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Refresh interval for the process statistics
+	 * Required - Refresh interval for the process statistics
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
@@ -123,7 +124,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		private Long refreshIntervalInMillis;
 
 		/**
-		 * Process identifier (PID)
+		 * Required - Process identifier (PID)
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -133,7 +134,8 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Indicates if the process address space has been successfully locked in memory
+		 * Required - Indicates if the process address space has been successfully
+		 * locked in memory
 		 * <p>
 		 * API name: {@code mlockall}
 		 */
@@ -143,7 +145,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Refresh interval for the process statistics
+		 * Required - Refresh interval for the process statistics
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */

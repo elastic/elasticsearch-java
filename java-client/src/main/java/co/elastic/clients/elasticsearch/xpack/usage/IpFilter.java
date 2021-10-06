@@ -57,14 +57,14 @@ public final class IpFilter implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code http}
+	 * Required - API name: {@code http}
 	 */
 	public boolean http() {
 		return this.http;
 	}
 
 	/**
-	 * API name: {@code transport}
+	 * Required - API name: {@code transport}
 	 */
 	public boolean transport() {
 		return this.transport;
@@ -100,7 +100,7 @@ public final class IpFilter implements JsonpSerializable {
 		private Boolean transport;
 
 		/**
-		 * API name: {@code http}
+		 * Required - API name: {@code http}
 		 */
 		public Builder http(boolean value) {
 			this.http = value;
@@ -108,7 +108,7 @@ public final class IpFilter implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transport}
+		 * Required - API name: {@code transport}
 		 */
 		public Builder transport(boolean value) {
 			this.transport = value;

@@ -54,7 +54,7 @@ public final class ShardsTotalStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_count}
+	 * Required - API name: {@code total_count}
 	 */
 	public long totalCount() {
 		return this.totalCount;
@@ -85,7 +85,7 @@ public final class ShardsTotalStats implements JsonpSerializable {
 		private Long totalCount;
 
 		/**
-		 * API name: {@code total_count}
+		 * Required - API name: {@code total_count}
 		 */
 		public Builder totalCount(long value) {
 			this.totalCount = value;

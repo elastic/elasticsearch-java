@@ -166,7 +166,7 @@ public final class StatusRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #snapshot(List)}, creating the list if needed. 4
+		 * Add a value to {@link #snapshot(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshot(String value) {
 			if (this.snapshot == null) {

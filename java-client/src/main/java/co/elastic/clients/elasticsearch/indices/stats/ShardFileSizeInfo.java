@@ -75,14 +75,14 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
 	public long sizeInBytes() {
 		return this.sizeInBytes;
@@ -187,7 +187,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		private Long count;
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -195,7 +195,7 @@ public final class ShardFileSizeInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
 		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;

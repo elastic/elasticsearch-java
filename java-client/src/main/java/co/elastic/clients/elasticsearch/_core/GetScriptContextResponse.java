@@ -59,7 +59,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code contexts}
+	 * Required - API name: {@code contexts}
 	 */
 	public List<Context> contexts() {
 		return this.contexts;
@@ -95,7 +95,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		private List<Context> contexts;
 
 		/**
-		 * API name: {@code contexts}
+		 * Required - API name: {@code contexts}
 		 */
 		public Builder contexts(List<Context> value) {
 			this.contexts = value;
@@ -103,7 +103,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code contexts}
+		 * Required - API name: {@code contexts}
 		 */
 		public Builder contexts(Context... value) {
 			this.contexts = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed. 4
+		 * Add a value to {@link #contexts(List)}, creating the list if needed.
 		 */
 		public Builder addContexts(Context value) {
 			if (this.contexts == null) {
@@ -129,7 +129,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed. 5
+		 * Add a value to {@link #contexts(List)}, creating the list if needed.
 		 */
 		public Builder addContexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
 			return this.addContexts(fn.apply(new Context.Builder()).build());

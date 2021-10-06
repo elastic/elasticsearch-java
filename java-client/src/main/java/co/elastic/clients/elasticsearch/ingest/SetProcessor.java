@@ -72,7 +72,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -87,7 +87,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public JsonData value() {
 		return this.value;
@@ -126,7 +126,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 		private JsonData value;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -142,7 +142,7 @@ public final class SetProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(JsonData value) {
 			this.value = value;

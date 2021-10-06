@@ -66,7 +66,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 	}
 
 	/**
-	 * API name: {@code terms}
+	 * Required - API name: {@code terms}
 	 */
 	public List<MultiTermLookup> terms() {
 		return this.terms;
@@ -97,7 +97,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		private List<MultiTermLookup> terms;
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(List<MultiTermLookup> value) {
 			this.terms = value;
@@ -105,7 +105,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(MultiTermLookup... value) {
 			this.terms = Arrays.asList(value);
@@ -113,7 +113,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #terms(List)}, creating the list if needed.
 		 */
 		public Builder addTerms(MultiTermLookup value) {
 			if (this.terms == null) {
@@ -131,7 +131,7 @@ public final class MultiTermsAggregation extends BucketAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed. 5
+		 * Add a value to {@link #terms(List)}, creating the list if needed.
 		 */
 		public Builder addTerms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {
 			return this.addTerms(fn.apply(new MultiTermLookup.Builder()).build());

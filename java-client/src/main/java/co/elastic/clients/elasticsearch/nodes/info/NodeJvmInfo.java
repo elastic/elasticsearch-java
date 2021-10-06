@@ -99,77 +99,77 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code gc_collectors}
+	 * Required - API name: {@code gc_collectors}
 	 */
 	public List<String> gcCollectors() {
 		return this.gcCollectors;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public NodeInfoJvmMemory mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code memory_pools}
+	 * Required - API name: {@code memory_pools}
 	 */
 	public List<String> memoryPools() {
 		return this.memoryPools;
 	}
 
 	/**
-	 * API name: {@code pid}
+	 * Required - API name: {@code pid}
 	 */
 	public int pid() {
 		return this.pid;
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
 	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code vm_name}
+	 * Required - API name: {@code vm_name}
 	 */
 	public String vmName() {
 		return this.vmName;
 	}
 
 	/**
-	 * API name: {@code vm_vendor}
+	 * Required - API name: {@code vm_vendor}
 	 */
 	public String vmVendor() {
 		return this.vmVendor;
 	}
 
 	/**
-	 * API name: {@code vm_version}
+	 * Required - API name: {@code vm_version}
 	 */
 	public String vmVersion() {
 		return this.vmVersion;
 	}
 
 	/**
-	 * API name: {@code bundled_jdk}
+	 * Required - API name: {@code bundled_jdk}
 	 */
 	public boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
-	 * API name: {@code using_bundled_jdk}
+	 * Required - API name: {@code using_bundled_jdk}
 	 */
 	public boolean usingBundledJdk() {
 		return this.usingBundledJdk;
@@ -184,7 +184,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code input_arguments}
+	 * Required - API name: {@code input_arguments}
 	 */
 	public List<String> inputArguments() {
 		return this.inputArguments;
@@ -295,7 +295,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		private List<String> inputArguments;
 
 		/**
-		 * API name: {@code gc_collectors}
+		 * Required - API name: {@code gc_collectors}
 		 */
 		public Builder gcCollectors(List<String> value) {
 			this.gcCollectors = value;
@@ -303,7 +303,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code gc_collectors}
+		 * Required - API name: {@code gc_collectors}
 		 */
 		public Builder gcCollectors(String... value) {
 			this.gcCollectors = Arrays.asList(value);
@@ -311,7 +311,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #gcCollectors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #gcCollectors(List)}, creating the list if needed.
 		 */
 		public Builder addGcCollectors(String value) {
 			if (this.gcCollectors == null) {
@@ -322,7 +322,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(NodeInfoJvmMemory value) {
 			this.mem = value;
@@ -330,14 +330,14 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<NodeInfoJvmMemory.Builder, ObjectBuilder<NodeInfoJvmMemory>> fn) {
 			return this.mem(fn.apply(new NodeInfoJvmMemory.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code memory_pools}
+		 * Required - API name: {@code memory_pools}
 		 */
 		public Builder memoryPools(List<String> value) {
 			this.memoryPools = value;
@@ -345,7 +345,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory_pools}
+		 * Required - API name: {@code memory_pools}
 		 */
 		public Builder memoryPools(String... value) {
 			this.memoryPools = Arrays.asList(value);
@@ -353,7 +353,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #memoryPools(List)}, creating the list if needed. 4
+		 * Add a value to {@link #memoryPools(List)}, creating the list if needed.
 		 */
 		public Builder addMemoryPools(String value) {
 			if (this.memoryPools == null) {
@@ -364,7 +364,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pid}
+		 * Required - API name: {@code pid}
 		 */
 		public Builder pid(int value) {
 			this.pid = value;
@@ -372,7 +372,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
 		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
@@ -380,7 +380,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -388,7 +388,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vm_name}
+		 * Required - API name: {@code vm_name}
 		 */
 		public Builder vmName(String value) {
 			this.vmName = value;
@@ -396,7 +396,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vm_vendor}
+		 * Required - API name: {@code vm_vendor}
 		 */
 		public Builder vmVendor(String value) {
 			this.vmVendor = value;
@@ -404,7 +404,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vm_version}
+		 * Required - API name: {@code vm_version}
 		 */
 		public Builder vmVersion(String value) {
 			this.vmVersion = value;
@@ -412,7 +412,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bundled_jdk}
+		 * Required - API name: {@code bundled_jdk}
 		 */
 		public Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
@@ -420,7 +420,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code using_bundled_jdk}
+		 * Required - API name: {@code using_bundled_jdk}
 		 */
 		public Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
@@ -436,7 +436,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input_arguments}
+		 * Required - API name: {@code input_arguments}
 		 */
 		public Builder inputArguments(List<String> value) {
 			this.inputArguments = value;
@@ -444,7 +444,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input_arguments}
+		 * Required - API name: {@code input_arguments}
 		 */
 		public Builder inputArguments(String... value) {
 			this.inputArguments = Arrays.asList(value);
@@ -452,7 +452,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #inputArguments(List)}, creating the list if needed. 4
+		 * Add a value to {@link #inputArguments(List)}, creating the list if needed.
 		 */
 		public Builder addInputArguments(String value) {
 			if (this.inputArguments == null) {

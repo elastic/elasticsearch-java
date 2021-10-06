@@ -54,7 +54,7 @@ public final class NodeInfoSearch implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code remote}
+	 * Required - API name: {@code remote}
 	 */
 	public NodeInfoSearchRemote remote() {
 		return this.remote;
@@ -85,7 +85,7 @@ public final class NodeInfoSearch implements JsonpSerializable {
 		private NodeInfoSearchRemote remote;
 
 		/**
-		 * API name: {@code remote}
+		 * Required - API name: {@code remote}
 		 */
 		public Builder remote(NodeInfoSearchRemote value) {
 			this.remote = value;
@@ -93,7 +93,7 @@ public final class NodeInfoSearch implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code remote}
+		 * Required - API name: {@code remote}
 		 */
 		public Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
 			return this.remote(fn.apply(new NodeInfoSearchRemote.Builder()).build());

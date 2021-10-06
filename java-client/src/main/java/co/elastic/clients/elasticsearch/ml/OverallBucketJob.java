@@ -59,14 +59,14 @@ public final class OverallBucketJob implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code max_anomaly_score}
+	 * Required - API name: {@code max_anomaly_score}
 	 */
 	public double maxAnomalyScore() {
 		return this.maxAnomalyScore;
@@ -102,7 +102,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		private Double maxAnomalyScore;
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -110,7 +110,7 @@ public final class OverallBucketJob implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_anomaly_score}
+		 * Required - API name: {@code max_anomaly_score}
 		 */
 		public Builder maxAnomalyScore(double value) {
 			this.maxAnomalyScore = value;

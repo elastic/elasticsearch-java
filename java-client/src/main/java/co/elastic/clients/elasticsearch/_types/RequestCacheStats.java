@@ -69,14 +69,14 @@ public final class RequestCacheStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code evictions}
+	 * Required - API name: {@code evictions}
 	 */
 	public long evictions() {
 		return this.evictions;
 	}
 
 	/**
-	 * API name: {@code hit_count}
+	 * Required - API name: {@code hit_count}
 	 */
 	public long hitCount() {
 		return this.hitCount;
@@ -91,14 +91,14 @@ public final class RequestCacheStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code memory_size_in_bytes}
+	 * Required - API name: {@code memory_size_in_bytes}
 	 */
 	public long memorySizeInBytes() {
 		return this.memorySizeInBytes;
 	}
 
 	/**
-	 * API name: {@code miss_count}
+	 * Required - API name: {@code miss_count}
 	 */
 	public long missCount() {
 		return this.missCount;
@@ -154,7 +154,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		private Long missCount;
 
 		/**
-		 * API name: {@code evictions}
+		 * Required - API name: {@code evictions}
 		 */
 		public Builder evictions(long value) {
 			this.evictions = value;
@@ -162,7 +162,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hit_count}
+		 * Required - API name: {@code hit_count}
 		 */
 		public Builder hitCount(long value) {
 			this.hitCount = value;
@@ -178,7 +178,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory_size_in_bytes}
+		 * Required - API name: {@code memory_size_in_bytes}
 		 */
 		public Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
@@ -186,7 +186,7 @@ public final class RequestCacheStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code miss_count}
+		 * Required - API name: {@code miss_count}
 		 */
 		public Builder missCount(long value) {
 			this.missCount = value;

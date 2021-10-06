@@ -67,7 +67,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code mappings}
+	 * Required - API name: {@code mappings}
 	 */
 	public TypeMapping mappings() {
 		return this.mappings;
@@ -123,7 +123,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(TypeMapping value) {
 			this.mappings = value;
@@ -131,7 +131,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());

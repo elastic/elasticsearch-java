@@ -84,7 +84,7 @@ public final class PipelineConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code processors}
+	 * Required - API name: {@code processors}
 	 */
 	public List<Processor> processors() {
 		return this.processors;
@@ -155,7 +155,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processors}
+		 * Required - API name: {@code processors}
 		 */
 		public Builder processors(List<Processor> value) {
 			this.processors = value;
@@ -163,7 +163,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processors}
+		 * Required - API name: {@code processors}
 		 */
 		public Builder processors(Processor... value) {
 			this.processors = Arrays.asList(value);
@@ -171,7 +171,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
@@ -189,7 +189,7 @@ public final class PipelineConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addProcessors(fn.apply(new Processor.Builder()).build());

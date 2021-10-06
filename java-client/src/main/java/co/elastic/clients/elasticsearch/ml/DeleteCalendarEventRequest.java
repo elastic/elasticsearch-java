@@ -60,7 +60,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the calendar to modify
+	 * Required - The ID of the calendar to modify
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -69,7 +69,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the event to remove from the calendar
+	 * Required - The ID of the event to remove from the calendar
 	 * <p>
 	 * API name: {@code event_id}
 	 */
@@ -88,7 +88,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 		private String eventId;
 
 		/**
-		 * The ID of the calendar to modify
+		 * Required - The ID of the calendar to modify
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -98,7 +98,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 		}
 
 		/**
-		 * The ID of the event to remove from the calendar
+		 * Required - The ID of the event to remove from the calendar
 		 * <p>
 		 * API name: {@code event_id}
 		 */

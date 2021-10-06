@@ -71,7 +71,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -86,7 +86,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * API name: {@code processor}
+	 * Required - API name: {@code processor}
 	 */
 	public Processor processor() {
 		return this.processor;
@@ -127,7 +127,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		private Processor processor;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -143,7 +143,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code processor}
+		 * Required - API name: {@code processor}
 		 */
 		public Builder processor(Processor value) {
 			this.processor = value;
@@ -151,7 +151,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code processor}
+		 * Required - API name: {@code processor}
 		 */
 		public Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.processor(fn.apply(new Processor.Builder()).build());

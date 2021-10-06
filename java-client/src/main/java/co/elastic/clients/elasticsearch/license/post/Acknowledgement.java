@@ -62,14 +62,14 @@ public final class Acknowledgement implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code license}
+	 * Required - API name: {@code license}
 	 */
 	public List<String> license() {
 		return this.license;
 	}
 
 	/**
-	 * API name: {@code message}
+	 * Required - API name: {@code message}
 	 */
 	public String message() {
 		return this.message;
@@ -110,7 +110,7 @@ public final class Acknowledgement implements JsonpSerializable {
 		private String message;
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(List<String> value) {
 			this.license = value;
@@ -118,7 +118,7 @@ public final class Acknowledgement implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(String... value) {
 			this.license = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class Acknowledgement implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #license(List)}, creating the list if needed. 4
+		 * Add a value to {@link #license(List)}, creating the list if needed.
 		 */
 		public Builder addLicense(String value) {
 			if (this.license == null) {
@@ -137,7 +137,7 @@ public final class Acknowledgement implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code message}
+		 * Required - API name: {@code message}
 		 */
 		public Builder message(String value) {
 			this.message = value;

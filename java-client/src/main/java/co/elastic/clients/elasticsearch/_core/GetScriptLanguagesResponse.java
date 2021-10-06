@@ -63,14 +63,14 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code language_contexts}
+	 * Required - API name: {@code language_contexts}
 	 */
 	public List<LanguageContext> languageContexts() {
 		return this.languageContexts;
 	}
 
 	/**
-	 * API name: {@code types_allowed}
+	 * Required - API name: {@code types_allowed}
 	 */
 	public List<String> typesAllowed() {
 		return this.typesAllowed;
@@ -116,7 +116,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		private List<String> typesAllowed;
 
 		/**
-		 * API name: {@code language_contexts}
+		 * Required - API name: {@code language_contexts}
 		 */
 		public Builder languageContexts(List<LanguageContext> value) {
 			this.languageContexts = value;
@@ -124,7 +124,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code language_contexts}
+		 * Required - API name: {@code language_contexts}
 		 */
 		public Builder languageContexts(LanguageContext... value) {
 			this.languageContexts = Arrays.asList(value);
@@ -133,7 +133,6 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #languageContexts(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addLanguageContexts(LanguageContext value) {
 			if (this.languageContexts == null) {
@@ -152,14 +151,13 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #languageContexts(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addLanguageContexts(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
 			return this.addLanguageContexts(fn.apply(new LanguageContext.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code types_allowed}
+		 * Required - API name: {@code types_allowed}
 		 */
 		public Builder typesAllowed(List<String> value) {
 			this.typesAllowed = value;
@@ -167,7 +165,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code types_allowed}
+		 * Required - API name: {@code types_allowed}
 		 */
 		public Builder typesAllowed(String... value) {
 			this.typesAllowed = Arrays.asList(value);
@@ -175,7 +173,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #typesAllowed(List)}, creating the list if needed. 4
+		 * Add a value to {@link #typesAllowed(List)}, creating the list if needed.
 		 */
 		public Builder addTypesAllowed(String value) {
 			if (this.typesAllowed == null) {

@@ -76,7 +76,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The ID of the filter to update
+	 * Required - The ID of the filter to update
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
@@ -168,7 +168,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		private List<String> removeItems;
 
 		/**
-		 * The ID of the filter to update
+		 * Required - The ID of the filter to update
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
@@ -194,7 +194,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #addItems(List)}, creating the list if needed. 4
+		 * Add a value to {@link #addItems(List)}, creating the list if needed.
 		 */
 		public Builder addAddItems(String value) {
 			if (this.addItems == null) {
@@ -229,7 +229,7 @@ public final class UpdateFilterRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Add a value to {@link #removeItems(List)}, creating the list if needed. 4
+		 * Add a value to {@link #removeItems(List)}, creating the list if needed.
 		 */
 		public Builder addRemoveItems(String value) {
 			if (this.removeItems == null) {

@@ -60,14 +60,14 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
 	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -98,7 +98,7 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 		private String index;
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
 		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
@@ -106,7 +106,7 @@ public final class ShrinkResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;

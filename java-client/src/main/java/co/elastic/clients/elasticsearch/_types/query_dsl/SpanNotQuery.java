@@ -86,14 +86,14 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 	}
 
 	/**
-	 * API name: {@code exclude}
+	 * Required - API name: {@code exclude}
 	 */
 	public SpanQuery exclude() {
 		return this.exclude;
 	}
 
 	/**
-	 * API name: {@code include}
+	 * Required - API name: {@code include}
 	 */
 	public SpanQuery include() {
 		return this.include;
@@ -174,7 +174,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		}
 
 		/**
-		 * API name: {@code exclude}
+		 * Required - API name: {@code exclude}
 		 */
 		public Builder exclude(SpanQuery value) {
 			this.exclude = value;
@@ -182,14 +182,14 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		}
 
 		/**
-		 * API name: {@code exclude}
+		 * Required - API name: {@code exclude}
 		 */
 		public Builder exclude(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.exclude(fn.apply(new SpanQuery.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code include}
+		 * Required - API name: {@code include}
 		 */
 		public Builder include(SpanQuery value) {
 			this.include = value;
@@ -197,7 +197,7 @@ public final class SpanNotQuery extends QueryBase implements SpanQueryVariant, Q
 		}
 
 		/**
-		 * API name: {@code include}
+		 * Required - API name: {@code include}
 		 */
 		public Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.include(fn.apply(new SpanQuery.Builder()).build());

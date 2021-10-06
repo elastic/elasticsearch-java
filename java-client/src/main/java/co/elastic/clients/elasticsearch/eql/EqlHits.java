@@ -205,7 +205,7 @@ public final class EqlHits<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 4
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addEvents(HitsEvent<TEvent> value) {
 			if (this.events == null) {
@@ -223,7 +223,7 @@ public final class EqlHits<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 5
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addEvents(Function<HitsEvent.Builder<TEvent>, ObjectBuilder<HitsEvent<TEvent>>> fn) {
 			return this.addEvents(fn.apply(new HitsEvent.Builder<TEvent>()).build());
@@ -254,7 +254,7 @@ public final class EqlHits<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sequences(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sequences(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addSequences(HitsSequence<TEvent> value) {
 			if (this.sequences == null) {
@@ -273,7 +273,7 @@ public final class EqlHits<TEvent> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sequences(List)}, creating the list if needed. 5
+		 * Add a value to {@link #sequences(List)}, creating the list if needed.
 		 */
 		public Builder<TEvent> addSequences(
 				Function<HitsSequence.Builder<TEvent>, ObjectBuilder<HitsSequence<TEvent>>> fn) {

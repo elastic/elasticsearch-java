@@ -95,10 +95,10 @@ public final class Configuration implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of data streams and indices to include in the
-	 * snapshot. Multi-index syntax is supported. By default, a snapshot includes
-	 * all data streams and indices in the cluster. If this argument is provided,
-	 * the snapshot only includes the specified data streams and clusters.
+	 * Required - A comma-separated list of data streams and indices to include in
+	 * the snapshot. Multi-index syntax is supported. By default, a snapshot
+	 * includes all data streams and indices in the cluster. If this argument is
+	 * provided, the snapshot only includes the specified data streams and clusters.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -256,10 +256,10 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of data streams and indices to include in the
-		 * snapshot. Multi-index syntax is supported. By default, a snapshot includes
-		 * all data streams and indices in the cluster. If this argument is provided,
-		 * the snapshot only includes the specified data streams and clusters.
+		 * Required - A comma-separated list of data streams and indices to include in
+		 * the snapshot. Multi-index syntax is supported. By default, a snapshot
+		 * includes all data streams and indices in the cluster. If this argument is
+		 * provided, the snapshot only includes the specified data streams and clusters.
 		 * <p>
 		 * API name: {@code indices}
 		 */
@@ -269,10 +269,10 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of data streams and indices to include in the
-		 * snapshot. Multi-index syntax is supported. By default, a snapshot includes
-		 * all data streams and indices in the cluster. If this argument is provided,
-		 * the snapshot only includes the specified data streams and clusters.
+		 * Required - A comma-separated list of data streams and indices to include in
+		 * the snapshot. Multi-index syntax is supported. By default, a snapshot
+		 * includes all data streams and indices in the cluster. If this argument is
+		 * provided, the snapshot only includes the specified data streams and clusters.
 		 * <p>
 		 * API name: {@code indices}
 		 */
@@ -282,7 +282,7 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -337,7 +337,7 @@ public final class Configuration implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureStates(String value) {
 			if (this.featureStates == null) {

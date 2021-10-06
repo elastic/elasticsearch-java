@@ -50,7 +50,7 @@ public final class TranslateResponse implements JsonpSerializable {
 	private final long size;
 
 	private final JsonValue /*
-							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 	private final List<Map<String, String>> fields;
@@ -73,30 +73,30 @@ public final class TranslateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code size}
+	 * Required - API name: {@code size}
 	 */
 	public long size() {
 		return this.size;
 	}
 
 	/**
-	 * API name: {@code _source}
+	 * Required - API name: {@code _source}
 	 */
 	public JsonValue /*
-						 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 						 */ source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public List<Map<String, String>> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * API name: {@code sort}
+	 * Required - API name: {@code sort}
 	 */
 	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
 		return this.sort;
@@ -152,7 +152,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		private Long size;
 
 		private JsonValue /*
-							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 		private List<Map<String, String>> fields;
@@ -160,7 +160,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
 		public Builder size(long value) {
 			this.size = value;
@@ -168,17 +168,17 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _source}
+		 * Required - API name: {@code _source}
 		 */
 		public Builder source(JsonValue /*
-										 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+										 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 										 */ value) {
 			this.source = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(List<Map<String, String>> value) {
 			this.fields = value;
@@ -186,7 +186,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(Map<String, String>... value) {
 			this.fields = Arrays.asList(value);
@@ -194,7 +194,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(Map<String, String> value) {
 			if (this.fields == null) {
@@ -205,7 +205,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sort}
+		 * Required - API name: {@code sort}
 		 */
 		public Builder sort(List<JsonValue /* _global.search._types.SortCombinations */> value) {
 			this.sort = value;
@@ -213,7 +213,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sort}
+		 * Required - API name: {@code sort}
 		 */
 		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
 			this.sort = Arrays.asList(value);
@@ -221,7 +221,7 @@ public final class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {

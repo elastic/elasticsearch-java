@@ -146,7 +146,7 @@ public final class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bucket_span}
+	 * Required - API name: {@code bucket_span}
 	 */
 	public String bucketSpan() {
 		return this.bucketSpan;
@@ -177,7 +177,7 @@ public final class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code detector_index}
+	 * Required - API name: {@code detector_index}
 	 */
 	public int detectorIndex() {
 		return this.detectorIndex;
@@ -216,21 +216,21 @@ public final class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code initial_record_score}
+	 * Required - API name: {@code initial_record_score}
 	 */
 	public double initialRecordScore() {
 		return this.initialRecordScore;
 	}
 
 	/**
-	 * API name: {@code is_interim}
+	 * Required - API name: {@code is_interim}
 	 */
 	public boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
@@ -269,28 +269,28 @@ public final class Anomaly implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code probability}
+	 * Required - API name: {@code probability}
 	 */
 	public double probability() {
 		return this.probability;
 	}
 
 	/**
-	 * API name: {@code record_score}
+	 * Required - API name: {@code record_score}
 	 */
 	public double recordScore() {
 		return this.recordScore;
 	}
 
 	/**
-	 * API name: {@code result_type}
+	 * Required - API name: {@code result_type}
 	 */
 	public String resultType() {
 		return this.resultType;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -527,7 +527,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #actual(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actual(List)}, creating the list if needed.
 		 */
 		public Builder addActual(Double value) {
 			if (this.actual == null) {
@@ -538,7 +538,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code bucket_span}
+		 * Required - API name: {@code bucket_span}
 		 */
 		public Builder bucketSpan(String value) {
 			this.bucketSpan = value;
@@ -578,7 +578,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #causes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #causes(List)}, creating the list if needed.
 		 */
 		public Builder addCauses(AnomalyCause value) {
 			if (this.causes == null) {
@@ -596,14 +596,14 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #causes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #causes(List)}, creating the list if needed.
 		 */
 		public Builder addCauses(Function<AnomalyCause.Builder, ObjectBuilder<AnomalyCause>> fn) {
 			return this.addCauses(fn.apply(new AnomalyCause.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code detector_index}
+		 * Required - API name: {@code detector_index}
 		 */
 		public Builder detectorIndex(int value) {
 			this.detectorIndex = value;
@@ -651,7 +651,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
+		 * Add a value to {@link #influencers(List)}, creating the list if needed.
 		 */
 		public Builder addInfluencers(Influence value) {
 			if (this.influencers == null) {
@@ -669,14 +669,14 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed. 5
+		 * Add a value to {@link #influencers(List)}, creating the list if needed.
 		 */
 		public Builder addInfluencers(Function<Influence.Builder, ObjectBuilder<Influence>> fn) {
 			return this.addInfluencers(fn.apply(new Influence.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code initial_record_score}
+		 * Required - API name: {@code initial_record_score}
 		 */
 		public Builder initialRecordScore(double value) {
 			this.initialRecordScore = value;
@@ -684,7 +684,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code is_interim}
+		 * Required - API name: {@code is_interim}
 		 */
 		public Builder isInterim(boolean value) {
 			this.isInterim = value;
@@ -692,7 +692,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -732,7 +732,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code probability}
+		 * Required - API name: {@code probability}
 		 */
 		public Builder probability(double value) {
 			this.probability = value;
@@ -740,7 +740,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code record_score}
+		 * Required - API name: {@code record_score}
 		 */
 		public Builder recordScore(double value) {
 			this.recordScore = value;
@@ -748,7 +748,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code result_type}
+		 * Required - API name: {@code result_type}
 		 */
 		public Builder resultType(String value) {
 			this.resultType = value;
@@ -756,7 +756,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;
@@ -780,7 +780,7 @@ public final class Anomaly implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #typical(List)}, creating the list if needed. 4
+		 * Add a value to {@link #typical(List)}, creating the list if needed.
 		 */
 		public Builder addTypical(Double value) {
 			if (this.typical == null) {

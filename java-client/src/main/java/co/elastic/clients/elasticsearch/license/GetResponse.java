@@ -55,7 +55,7 @@ public final class GetResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code license}
+	 * Required - API name: {@code license}
 	 */
 	public LicenseInformation license() {
 		return this.license;
@@ -86,7 +86,7 @@ public final class GetResponse implements JsonpSerializable {
 		private LicenseInformation license;
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(LicenseInformation value) {
 			this.license = value;
@@ -94,7 +94,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(Function<LicenseInformation.Builder, ObjectBuilder<LicenseInformation>> fn) {
 			return this.license(fn.apply(new LicenseInformation.Builder()).build());

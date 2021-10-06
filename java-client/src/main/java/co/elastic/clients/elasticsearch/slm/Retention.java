@@ -62,8 +62,9 @@ public final class Retention implements JsonpSerializable {
 	}
 
 	/**
-	 * Time period after which a snapshot is considered expired and eligible for
-	 * deletion. SLM deletes expired snapshots based on the slm.retention_schedule.
+	 * Required - Time period after which a snapshot is considered expired and
+	 * eligible for deletion. SLM deletes expired snapshots based on the
+	 * slm.retention_schedule.
 	 * <p>
 	 * API name: {@code expire_after}
 	 */
@@ -72,9 +73,10 @@ public final class Retention implements JsonpSerializable {
 	}
 
 	/**
-	 * Maximum number of snapshots to retain, even if the snapshots have not yet
-	 * expired. If the number of snapshots in the repository exceeds this limit, the
-	 * policy retains the most recent snapshots and deletes older snapshots.
+	 * Required - Maximum number of snapshots to retain, even if the snapshots have
+	 * not yet expired. If the number of snapshots in the repository exceeds this
+	 * limit, the policy retains the most recent snapshots and deletes older
+	 * snapshots.
 	 * <p>
 	 * API name: {@code max_count}
 	 */
@@ -83,7 +85,8 @@ public final class Retention implements JsonpSerializable {
 	}
 
 	/**
-	 * Minimum number of snapshots to retain, even if the snapshots have expired.
+	 * Required - Minimum number of snapshots to retain, even if the snapshots have
+	 * expired.
 	 * <p>
 	 * API name: {@code min_count}
 	 */
@@ -126,8 +129,9 @@ public final class Retention implements JsonpSerializable {
 		private Integer minCount;
 
 		/**
-		 * Time period after which a snapshot is considered expired and eligible for
-		 * deletion. SLM deletes expired snapshots based on the slm.retention_schedule.
+		 * Required - Time period after which a snapshot is considered expired and
+		 * eligible for deletion. SLM deletes expired snapshots based on the
+		 * slm.retention_schedule.
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
@@ -137,9 +141,10 @@ public final class Retention implements JsonpSerializable {
 		}
 
 		/**
-		 * Maximum number of snapshots to retain, even if the snapshots have not yet
-		 * expired. If the number of snapshots in the repository exceeds this limit, the
-		 * policy retains the most recent snapshots and deletes older snapshots.
+		 * Required - Maximum number of snapshots to retain, even if the snapshots have
+		 * not yet expired. If the number of snapshots in the repository exceeds this
+		 * limit, the policy retains the most recent snapshots and deletes older
+		 * snapshots.
 		 * <p>
 		 * API name: {@code max_count}
 		 */
@@ -149,7 +154,8 @@ public final class Retention implements JsonpSerializable {
 		}
 
 		/**
-		 * Minimum number of snapshots to retain, even if the snapshots have expired.
+		 * Required - Minimum number of snapshots to retain, even if the snapshots have
+		 * expired.
 		 * <p>
 		 * API name: {@code min_count}
 		 */

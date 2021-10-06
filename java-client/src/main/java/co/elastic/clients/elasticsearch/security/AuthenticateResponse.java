@@ -94,7 +94,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code authentication_realm}
+	 * Required - API name: {@code authentication_realm}
 	 */
 	public RealmInfo authenticationRealm() {
 		return this.authenticationRealm;
@@ -117,42 +117,42 @@ public final class AuthenticateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code lookup_realm}
+	 * Required - API name: {@code lookup_realm}
 	 */
 	public RealmInfo lookupRealm() {
 		return this.lookupRealm;
 	}
 
 	/**
-	 * API name: {@code metadata}
+	 * Required - API name: {@code metadata}
 	 */
 	public Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public List<String> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * API name: {@code authentication_type}
+	 * Required - API name: {@code authentication_type}
 	 */
 	public String authenticationType() {
 		return this.authenticationType;
@@ -261,7 +261,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		private Token token;
 
 		/**
-		 * API name: {@code authentication_realm}
+		 * Required - API name: {@code authentication_realm}
 		 */
 		public Builder authenticationRealm(RealmInfo value) {
 			this.authenticationRealm = value;
@@ -269,7 +269,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code authentication_realm}
+		 * Required - API name: {@code authentication_realm}
 		 */
 		public Builder authenticationRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
 			return this.authenticationRealm(fn.apply(new RealmInfo.Builder()).build());
@@ -292,7 +292,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lookup_realm}
+		 * Required - API name: {@code lookup_realm}
 		 */
 		public Builder lookupRealm(RealmInfo value) {
 			this.lookupRealm = value;
@@ -300,14 +300,14 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lookup_realm}
+		 * Required - API name: {@code lookup_realm}
 		 */
 		public Builder lookupRealm(Function<RealmInfo.Builder, ObjectBuilder<RealmInfo>> fn) {
 			return this.lookupRealm(fn.apply(new RealmInfo.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code metadata}
+		 * Required - API name: {@code metadata}
 		 */
 		public Builder metadata(Map<String, JsonData> value) {
 			this.metadata = value;
@@ -326,7 +326,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(List<String> value) {
 			this.roles = value;
@@ -334,7 +334,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(String... value) {
 			this.roles = Arrays.asList(value);
@@ -342,7 +342,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #roles(List)}, creating the list if needed.
 		 */
 		public Builder addRoles(String value) {
 			if (this.roles == null) {
@@ -353,7 +353,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;
@@ -361,7 +361,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(boolean value) {
 			this.enabled = value;
@@ -369,7 +369,7 @@ public final class AuthenticateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code authentication_type}
+		 * Required - API name: {@code authentication_type}
 		 */
 		public Builder authenticationType(String value) {
 			this.authenticationType = value;

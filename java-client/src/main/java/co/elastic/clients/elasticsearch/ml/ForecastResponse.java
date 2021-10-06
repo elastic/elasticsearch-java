@@ -56,7 +56,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code forecast_id}
+	 * Required - API name: {@code forecast_id}
 	 */
 	public String forecastId() {
 		return this.forecastId;
@@ -82,7 +82,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 		private String forecastId;
 
 		/**
-		 * API name: {@code forecast_id}
+		 * Required - API name: {@code forecast_id}
 		 */
 		public Builder forecastId(String value) {
 			this.forecastId = value;

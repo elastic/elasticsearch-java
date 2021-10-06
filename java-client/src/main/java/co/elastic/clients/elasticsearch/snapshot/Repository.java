@@ -62,7 +62,7 @@ public final class Repository implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -77,7 +77,7 @@ public final class Repository implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public RepositorySettings settings() {
 		return this.settings;
@@ -123,7 +123,7 @@ public final class Repository implements JsonpSerializable {
 		private RepositorySettings settings;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -139,7 +139,7 @@ public final class Repository implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(RepositorySettings value) {
 			this.settings = value;
@@ -147,7 +147,7 @@ public final class Repository implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
 			return this.settings(fn.apply(new RepositorySettings.Builder()).build());

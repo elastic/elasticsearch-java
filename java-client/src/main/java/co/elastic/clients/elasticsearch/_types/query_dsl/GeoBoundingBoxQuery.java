@@ -80,12 +80,14 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 	}
 
 	/**
+	 * Required -
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
+	 * Required -
 	 */
 	public BoundingBox boundingBox() {
 		return this.boundingBox;
@@ -156,6 +158,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		private BoundingBox boundingBox;
 
 		/**
+		 * Required -
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -163,6 +166,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder boundingBox(BoundingBox value) {
 			this.boundingBox = value;
@@ -170,6 +174,7 @@ public final class GeoBoundingBoxQuery extends QueryBase implements QueryVariant
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder boundingBox(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
 			return this.boundingBox(fn.apply(new BoundingBox.Builder()).build());
