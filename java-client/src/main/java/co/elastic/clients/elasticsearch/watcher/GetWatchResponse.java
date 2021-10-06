@@ -81,14 +81,14 @@ public final class GetWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
 	public boolean found() {
 		return this.found;
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
@@ -210,7 +210,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
 		public Builder found(boolean value) {
 			this.found = value;
@@ -218,7 +218,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;

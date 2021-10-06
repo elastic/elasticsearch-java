@@ -154,7 +154,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
 		 */
 		public Builder addCharFilter(String value) {
 			if (this.charFilter == null) {
@@ -181,7 +181,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(String value) {
 			if (this.filter == null) {

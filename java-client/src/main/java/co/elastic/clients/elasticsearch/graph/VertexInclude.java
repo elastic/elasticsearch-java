@@ -59,14 +59,14 @@ public final class VertexInclude implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code boost}
+	 * Required - API name: {@code boost}
 	 */
 	public double boost() {
 		return this.boost;
 	}
 
 	/**
-	 * API name: {@code term}
+	 * Required - API name: {@code term}
 	 */
 	public String term() {
 		return this.term;
@@ -102,7 +102,7 @@ public final class VertexInclude implements JsonpSerializable {
 		private String term;
 
 		/**
-		 * API name: {@code boost}
+		 * Required - API name: {@code boost}
 		 */
 		public Builder boost(double value) {
 			this.boost = value;
@@ -110,7 +110,7 @@ public final class VertexInclude implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code term}
+		 * Required - API name: {@code term}
 		 */
 		public Builder term(String value) {
 			this.term = value;

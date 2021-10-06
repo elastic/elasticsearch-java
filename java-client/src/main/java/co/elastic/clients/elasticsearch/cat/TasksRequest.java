@@ -154,7 +154,7 @@ public final class TasksRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {
@@ -191,7 +191,7 @@ public final class TasksRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {

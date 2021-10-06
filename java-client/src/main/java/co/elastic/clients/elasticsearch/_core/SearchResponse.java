@@ -127,28 +127,28 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
 	}
 
 	/**
-	 * API name: {@code timed_out}
+	 * Required - API name: {@code timed_out}
 	 */
 	public boolean timedOut() {
 		return this.timedOut;
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code hits}
+	 * Required - API name: {@code hits}
 	 */
 	public HitsMetadata<TDocument> hits() {
 		return this.hits;
@@ -434,7 +434,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public BuilderT took(long value) {
 			this.took = value;
@@ -442,7 +442,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timed_out}
+		 * Required - API name: {@code timed_out}
 		 */
 		public BuilderT timedOut(boolean value) {
 			this.timedOut = value;
@@ -450,7 +450,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public BuilderT shards(ShardStatistics value) {
 			this.shards = value;
@@ -458,14 +458,14 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public BuilderT hits(HitsMetadata<TDocument> value) {
 			this.hits = value;
@@ -473,7 +473,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public BuilderT hits(Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {
 			return this.hits(fn.apply(new HitsMetadata.Builder<TDocument>()).build());
@@ -530,7 +530,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #documents(List)}, creating the list if needed. 4
+		 * Add a value to {@link #documents(List)}, creating the list if needed.
 		 */
 		public BuilderT addDocuments(TDocument value) {
 			if (this.documents == null) {

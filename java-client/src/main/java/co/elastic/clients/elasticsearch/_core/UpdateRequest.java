@@ -114,7 +114,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	private final Boolean scriptedUpsert;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
+	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 	@Nullable
 	private final TDocument upsert;
@@ -160,7 +160,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
-	 * Document ID
+	 * Required - Document ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -169,7 +169,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	}
 
 	/**
-	 * The name of the index
+	 * Required - The name of the index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -363,7 +363,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source() {
+	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -498,7 +498,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private Boolean scriptedUpsert;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
+		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 		@Nullable
 		private TDocument upsert;
@@ -510,7 +510,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
 		/**
-		 * Document ID
+		 * Required - Document ID
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -520,7 +520,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * The name of the index
+		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -659,7 +659,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument, TPartialDocument> addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -690,7 +690,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument, TPartialDocument> addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -758,7 +758,7 @@ public final class UpdateRequest<TDocument, TPartialDocument> extends RequestBas
 		 * API name: {@code _source}
 		 */
 		public Builder<TDocument, TPartialDocument> source(
-				@Nullable JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ value) {
+				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}

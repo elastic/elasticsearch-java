@@ -117,7 +117,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * The target field
+	 * Required - The target field
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -214,7 +214,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public String query() {
 		return this.query;
@@ -319,7 +319,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		private String field;
 
 		/**
-		 * The target field
+		 * Required - The target field
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -455,7 +455,7 @@ public final class MatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(String value) {
 			this.query = value;

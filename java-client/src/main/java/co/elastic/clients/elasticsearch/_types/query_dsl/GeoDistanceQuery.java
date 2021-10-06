@@ -81,12 +81,14 @@ public final class GeoDistanceQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Required -
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
+	 * Required -
 	 */
 	public JsonValue /* _types.query_dsl.GeoLocation */ location() {
 		return this.location;
@@ -155,6 +157,7 @@ public final class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		private JsonValue /* _types.query_dsl.GeoLocation */ location;
 
 		/**
+		 * Required -
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -162,6 +165,7 @@ public final class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder location(JsonValue /* _types.query_dsl.GeoLocation */ value) {
 			this.location = value;

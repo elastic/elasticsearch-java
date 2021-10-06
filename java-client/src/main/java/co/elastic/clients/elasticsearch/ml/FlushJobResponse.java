@@ -60,7 +60,7 @@ public final class FlushJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code flushed}
+	 * Required - API name: {@code flushed}
 	 */
 	public boolean flushed() {
 		return this.flushed;
@@ -109,7 +109,7 @@ public final class FlushJobResponse implements JsonpSerializable {
 		private Integer lastFinalizedBucketEnd;
 
 		/**
-		 * API name: {@code flushed}
+		 * Required - API name: {@code flushed}
 		 */
 		public Builder flushed(boolean value) {
 			this.flushed = value;

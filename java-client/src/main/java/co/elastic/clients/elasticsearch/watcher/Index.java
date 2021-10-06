@@ -64,7 +64,7 @@ public final class Index implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -130,7 +130,7 @@ public final class Index implements JsonpSerializable {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;

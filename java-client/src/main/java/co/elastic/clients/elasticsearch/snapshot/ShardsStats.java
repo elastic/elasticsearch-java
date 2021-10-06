@@ -69,42 +69,42 @@ public final class ShardsStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code done}
+	 * Required - API name: {@code done}
 	 */
 	public long done() {
 		return this.done;
 	}
 
 	/**
-	 * API name: {@code failed}
+	 * Required - API name: {@code failed}
 	 */
 	public long failed() {
 		return this.failed;
 	}
 
 	/**
-	 * API name: {@code finalizing}
+	 * Required - API name: {@code finalizing}
 	 */
 	public long finalizing() {
 		return this.finalizing;
 	}
 
 	/**
-	 * API name: {@code initializing}
+	 * Required - API name: {@code initializing}
 	 */
 	public long initializing() {
 		return this.initializing;
 	}
 
 	/**
-	 * API name: {@code started}
+	 * Required - API name: {@code started}
 	 */
 	public long started() {
 		return this.started;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
@@ -160,7 +160,7 @@ public final class ShardsStats implements JsonpSerializable {
 		private Long total;
 
 		/**
-		 * API name: {@code done}
+		 * Required - API name: {@code done}
 		 */
 		public Builder done(long value) {
 			this.done = value;
@@ -168,7 +168,7 @@ public final class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code failed}
+		 * Required - API name: {@code failed}
 		 */
 		public Builder failed(long value) {
 			this.failed = value;
@@ -176,7 +176,7 @@ public final class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code finalizing}
+		 * Required - API name: {@code finalizing}
 		 */
 		public Builder finalizing(long value) {
 			this.finalizing = value;
@@ -184,7 +184,7 @@ public final class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code initializing}
+		 * Required - API name: {@code initializing}
 		 */
 		public Builder initializing(long value) {
 			this.initializing = value;
@@ -192,7 +192,7 @@ public final class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code started}
+		 * Required - API name: {@code started}
 		 */
 		public Builder started(long value) {
 			this.started = value;
@@ -200,7 +200,7 @@ public final class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;

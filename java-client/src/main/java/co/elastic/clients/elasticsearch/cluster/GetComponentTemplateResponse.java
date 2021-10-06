@@ -59,7 +59,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code component_templates}
+	 * Required - API name: {@code component_templates}
 	 */
 	public List<ComponentTemplate> componentTemplates() {
 		return this.componentTemplates;
@@ -95,7 +95,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 		private List<ComponentTemplate> componentTemplates;
 
 		/**
-		 * API name: {@code component_templates}
+		 * Required - API name: {@code component_templates}
 		 */
 		public Builder componentTemplates(List<ComponentTemplate> value) {
 			this.componentTemplates = value;
@@ -103,7 +103,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code component_templates}
+		 * Required - API name: {@code component_templates}
 		 */
 		public Builder componentTemplates(ComponentTemplate... value) {
 			this.componentTemplates = Arrays.asList(value);
@@ -112,7 +112,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #componentTemplates(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addComponentTemplates(ComponentTemplate value) {
 			if (this.componentTemplates == null) {
@@ -131,7 +131,7 @@ public final class GetComponentTemplateResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #componentTemplates(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addComponentTemplates(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
 			return this.addComponentTemplates(fn.apply(new ComponentTemplate.Builder()).build());

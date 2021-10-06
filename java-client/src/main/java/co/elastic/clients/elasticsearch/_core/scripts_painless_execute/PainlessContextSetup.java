@@ -63,21 +63,21 @@ public final class PainlessContextSetup implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code document}
+	 * Required - API name: {@code document}
 	 */
 	public JsonData document() {
 		return this.document;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
@@ -118,7 +118,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		private Query query;
 
 		/**
-		 * API name: {@code document}
+		 * Required - API name: {@code document}
 		 */
 		public Builder document(JsonData value) {
 			this.document = value;
@@ -126,7 +126,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -134,7 +134,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -142,7 +142,7 @@ public final class PainlessContextSetup implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());

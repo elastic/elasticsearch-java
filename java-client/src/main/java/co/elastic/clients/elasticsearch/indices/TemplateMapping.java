@@ -82,35 +82,35 @@ public final class TemplateMapping implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aliases}
+	 * Required - API name: {@code aliases}
 	 */
 	public Map<String, Alias> aliases() {
 		return this.aliases;
 	}
 
 	/**
-	 * API name: {@code index_patterns}
+	 * Required - API name: {@code index_patterns}
 	 */
 	public List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
 	/**
-	 * API name: {@code mappings}
+	 * Required - API name: {@code mappings}
 	 */
 	public TypeMapping mappings() {
 		return this.mappings;
 	}
 
 	/**
-	 * API name: {@code order}
+	 * Required - API name: {@code order}
 	 */
 	public int order() {
 		return this.order;
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public Map<String, JsonData> settings() {
 		return this.settings;
@@ -196,7 +196,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code aliases}
+		 * Required - API name: {@code aliases}
 		 */
 		public Builder aliases(Map<String, Alias> value) {
 			this.aliases = value;
@@ -229,7 +229,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_patterns}
+		 * Required - API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(List<String> value) {
 			this.indexPatterns = value;
@@ -237,7 +237,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_patterns}
+		 * Required - API name: {@code index_patterns}
 		 */
 		public Builder indexPatterns(String... value) {
 			this.indexPatterns = Arrays.asList(value);
@@ -245,7 +245,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -256,7 +256,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(TypeMapping value) {
 			this.mappings = value;
@@ -264,14 +264,14 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code order}
+		 * Required - API name: {@code order}
 		 */
 		public Builder order(int value) {
 			this.order = value;
@@ -279,7 +279,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Map<String, JsonData> value) {
 			this.settings = value;

@@ -69,35 +69,35 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code expiry_date_in_millis}
+	 * Required - API name: {@code expiry_date_in_millis}
 	 */
 	public String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
 	/**
-	 * API name: {@code mode}
+	 * Required - API name: {@code mode}
 	 */
 	public LicenseType mode() {
 		return this.mode;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public LicenseStatus status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public LicenseType type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code uid}
+	 * Required - API name: {@code uid}
 	 */
 	public String uid() {
 		return this.uid;
@@ -148,7 +148,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		private String uid;
 
 		/**
-		 * API name: {@code expiry_date_in_millis}
+		 * Required - API name: {@code expiry_date_in_millis}
 		 */
 		public Builder expiryDateInMillis(String value) {
 			this.expiryDateInMillis = value;
@@ -156,7 +156,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mode}
+		 * Required - API name: {@code mode}
 		 */
 		public Builder mode(LicenseType value) {
 			this.mode = value;
@@ -164,7 +164,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(LicenseStatus value) {
 			this.status = value;
@@ -172,7 +172,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(LicenseType value) {
 			this.type = value;
@@ -180,7 +180,7 @@ public final class MinimalLicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uid}
+		 * Required - API name: {@code uid}
 		 */
 		public Builder uid(String value) {
 			this.uid = value;

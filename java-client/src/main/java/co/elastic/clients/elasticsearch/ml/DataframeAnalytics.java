@@ -105,8 +105,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 	}
 
 	/**
-	 * An object that provides counts for the quantity of documents skipped, used in
-	 * training, or available for testing.
+	 * Required - An object that provides counts for the quantity of documents
+	 * skipped, used in training, or available for testing.
 	 * <p>
 	 * API name: {@code data_counts}
 	 */
@@ -115,7 +115,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 	}
 
 	/**
-	 * The unique identifier of the data frame analytics job.
+	 * Required - The unique identifier of the data frame analytics job.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -124,8 +124,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 	}
 
 	/**
-	 * An object describing memory usage of the analytics. It is present only after
-	 * the job is started and memory usage is reported.
+	 * Required - An object describing memory usage of the analytics. It is present
+	 * only after the job is started and memory usage is reported.
 	 * <p>
 	 * API name: {@code memory_usage}
 	 */
@@ -145,7 +145,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 	}
 
 	/**
-	 * The progress report of the data frame analytics job by phase.
+	 * Required - The progress report of the data frame analytics job by phase.
 	 * <p>
 	 * API name: {@code progress}
 	 */
@@ -154,8 +154,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 	}
 
 	/**
-	 * The status of the data frame analytics job, which can be one of the following
-	 * values: failed, started, starting, stopping, stopped.
+	 * Required - The status of the data frame analytics job, which can be one of
+	 * the following values: failed, started, starting, stopping, stopped.
 	 * <p>
 	 * API name: {@code state}
 	 */
@@ -273,8 +273,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * An object that provides counts for the quantity of documents skipped, used in
-		 * training, or available for testing.
+		 * Required - An object that provides counts for the quantity of documents
+		 * skipped, used in training, or available for testing.
 		 * <p>
 		 * API name: {@code data_counts}
 		 */
@@ -284,8 +284,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * An object that provides counts for the quantity of documents skipped, used in
-		 * training, or available for testing.
+		 * Required - An object that provides counts for the quantity of documents
+		 * skipped, used in training, or available for testing.
 		 * <p>
 		 * API name: {@code data_counts}
 		 */
@@ -295,7 +295,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * The unique identifier of the data frame analytics job.
+		 * Required - The unique identifier of the data frame analytics job.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -305,8 +305,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * An object describing memory usage of the analytics. It is present only after
-		 * the job is started and memory usage is reported.
+		 * Required - An object describing memory usage of the analytics. It is present
+		 * only after the job is started and memory usage is reported.
 		 * <p>
 		 * API name: {@code memory_usage}
 		 */
@@ -316,8 +316,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * An object describing memory usage of the analytics. It is present only after
-		 * the job is started and memory usage is reported.
+		 * Required - An object describing memory usage of the analytics. It is present
+		 * only after the job is started and memory usage is reported.
 		 * <p>
 		 * API name: {@code memory_usage}
 		 */
@@ -348,7 +348,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * The progress report of the data frame analytics job by phase.
+		 * Required - The progress report of the data frame analytics job by phase.
 		 * <p>
 		 * API name: {@code progress}
 		 */
@@ -358,7 +358,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * The progress report of the data frame analytics job by phase.
+		 * Required - The progress report of the data frame analytics job by phase.
 		 * <p>
 		 * API name: {@code progress}
 		 */
@@ -368,7 +368,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #progress(List)}, creating the list if needed. 4
+		 * Add a value to {@link #progress(List)}, creating the list if needed.
 		 */
 		public Builder addProgress(DataframeAnalyticsStatsProgress value) {
 			if (this.progress == null) {
@@ -387,7 +387,7 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #progress(List)}, creating the list if needed. 5
+		 * Add a value to {@link #progress(List)}, creating the list if needed.
 		 */
 		public Builder addProgress(
 				Function<DataframeAnalyticsStatsProgress.Builder, ObjectBuilder<DataframeAnalyticsStatsProgress>> fn) {
@@ -395,8 +395,8 @@ public final class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
-		 * The status of the data frame analytics job, which can be one of the following
-		 * values: failed, started, starting, stopping, stopped.
+		 * Required - The status of the data frame analytics job, which can be one of
+		 * the following values: failed, started, starting, stopping, stopped.
 		 * <p>
 		 * API name: {@code state}
 		 */

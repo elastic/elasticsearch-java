@@ -57,14 +57,14 @@ public final class LatLon implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code lat}
+	 * Required - API name: {@code lat}
 	 */
 	public double lat() {
 		return this.lat;
 	}
 
 	/**
-	 * API name: {@code lon}
+	 * Required - API name: {@code lon}
 	 */
 	public double lon() {
 		return this.lon;
@@ -100,7 +100,7 @@ public final class LatLon implements JsonpSerializable {
 		private Double lon;
 
 		/**
-		 * API name: {@code lat}
+		 * Required - API name: {@code lat}
 		 */
 		public Builder lat(double value) {
 			this.lat = value;
@@ -108,7 +108,7 @@ public final class LatLon implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lon}
+		 * Required - API name: {@code lon}
 		 */
 		public Builder lon(double value) {
 			this.lon = value;

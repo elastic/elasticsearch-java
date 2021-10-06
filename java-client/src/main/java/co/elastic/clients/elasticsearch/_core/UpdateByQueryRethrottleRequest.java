@@ -63,7 +63,7 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * The task id to rethrottle
+	 * Required - The task id to rethrottle
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -94,7 +94,7 @@ public final class UpdateByQueryRethrottleRequest extends RequestBase {
 		private Long requestsPerSecond;
 
 		/**
-		 * The task id to rethrottle
+		 * Required - The task id to rethrottle
 		 * <p>
 		 * API name: {@code task_id}
 		 */

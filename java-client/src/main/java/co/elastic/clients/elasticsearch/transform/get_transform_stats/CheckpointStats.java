@@ -75,7 +75,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code checkpoint}
+	 * Required - API name: {@code checkpoint}
 	 */
 	public long checkpoint() {
 		return this.checkpoint;
@@ -98,7 +98,7 @@ public final class CheckpointStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code timestamp_millis}
+	 * Required - API name: {@code timestamp_millis}
 	 */
 	public String timestampMillis() {
 		return this.timestampMillis;
@@ -188,7 +188,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		private String timeUpperBoundMillis;
 
 		/**
-		 * API name: {@code checkpoint}
+		 * Required - API name: {@code checkpoint}
 		 */
 		public Builder checkpoint(long value) {
 			this.checkpoint = value;
@@ -219,7 +219,7 @@ public final class CheckpointStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp_millis}
+		 * Required - API name: {@code timestamp_millis}
 		 */
 		public Builder timestampMillis(String value) {
 			this.timestampMillis = value;

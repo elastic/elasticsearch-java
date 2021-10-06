@@ -265,7 +265,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -310,7 +310,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -341,7 +341,7 @@ public final class FieldCapsRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

@@ -73,28 +73,28 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * API name: {@code dedup}
+	 * Required - API name: {@code dedup}
 	 */
 	public boolean dedup() {
 		return this.dedup;
 	}
 
 	/**
-	 * API name: {@code dictionary}
+	 * Required - API name: {@code dictionary}
 	 */
 	public String dictionary() {
 		return this.dictionary;
 	}
 
 	/**
-	 * API name: {@code locale}
+	 * Required - API name: {@code locale}
 	 */
 	public String locale() {
 		return this.locale;
 	}
 
 	/**
-	 * API name: {@code longest_only}
+	 * Required - API name: {@code longest_only}
 	 */
 	public boolean longestOnly() {
 		return this.longestOnly;
@@ -136,7 +136,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		private Boolean longestOnly;
 
 		/**
-		 * API name: {@code dedup}
+		 * Required - API name: {@code dedup}
 		 */
 		public Builder dedup(boolean value) {
 			this.dedup = value;
@@ -144,7 +144,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
-		 * API name: {@code dictionary}
+		 * Required - API name: {@code dictionary}
 		 */
 		public Builder dictionary(String value) {
 			this.dictionary = value;
@@ -152,7 +152,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
-		 * API name: {@code locale}
+		 * Required - API name: {@code locale}
 		 */
 		public Builder locale(String value) {
 			this.locale = value;
@@ -160,7 +160,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
-		 * API name: {@code longest_only}
+		 * Required - API name: {@code longest_only}
 		 */
 		public Builder longestOnly(boolean value) {
 			this.longestOnly = value;

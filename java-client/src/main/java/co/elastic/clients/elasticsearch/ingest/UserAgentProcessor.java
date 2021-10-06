@@ -80,35 +80,35 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code ignore_missing}
+	 * Required - API name: {@code ignore_missing}
 	 */
 	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * API name: {@code options}
+	 * Required - API name: {@code options}
 	 */
 	public List<UserAgentProperty> options() {
 		return this.options;
 	}
 
 	/**
-	 * API name: {@code regex_file}
+	 * Required - API name: {@code regex_file}
 	 */
 	public String regexFile() {
 		return this.regexFile;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -158,7 +158,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -166,7 +166,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * API name: {@code ignore_missing}
+		 * Required - API name: {@code ignore_missing}
 		 */
 		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
@@ -174,7 +174,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * API name: {@code options}
+		 * Required - API name: {@code options}
 		 */
 		public Builder options(List<UserAgentProperty> value) {
 			this.options = value;
@@ -182,7 +182,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * API name: {@code options}
+		 * Required - API name: {@code options}
 		 */
 		public Builder options(UserAgentProperty... value) {
 			this.options = Arrays.asList(value);
@@ -190,7 +190,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * Add a value to {@link #options(List)}, creating the list if needed. 4
+		 * Add a value to {@link #options(List)}, creating the list if needed.
 		 */
 		public Builder addOptions(UserAgentProperty value) {
 			if (this.options == null) {
@@ -201,7 +201,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * API name: {@code regex_file}
+		 * Required - API name: {@code regex_file}
 		 */
 		public Builder regexFile(String value) {
 			this.regexFile = value;
@@ -209,7 +209,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

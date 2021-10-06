@@ -60,7 +60,7 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * API name: {@code cursor}
+	 * Required - API name: {@code cursor}
 	 */
 	public String cursor() {
 		return this.cursor;
@@ -91,7 +91,7 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 		private String cursor;
 
 		/**
-		 * API name: {@code cursor}
+		 * Required - API name: {@code cursor}
 		 */
 		public Builder cursor(String value) {
 			this.cursor = value;

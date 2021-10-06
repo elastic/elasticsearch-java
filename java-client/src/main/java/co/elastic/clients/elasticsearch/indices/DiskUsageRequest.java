@@ -98,9 +98,9 @@ public final class DiskUsageRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and aliases used to limit the
-	 * request. It’s recommended to execute this API with a single index (or the
-	 * latest backing index of a data stream) as the API consumes resources
+	 * Required - Comma-separated list of data streams, indices, and aliases used to
+	 * limit the request. It’s recommended to execute this API with a single index
+	 * (or the latest backing index of a data stream) as the API consumes resources
 	 * significantly.
 	 * <p>
 	 * API name: {@code index}
@@ -234,9 +234,9 @@ public final class DiskUsageRequest extends RequestBase {
 		private String waitForActiveShards;
 
 		/**
-		 * Comma-separated list of data streams, indices, and aliases used to limit the
-		 * request. It’s recommended to execute this API with a single index (or the
-		 * latest backing index of a data stream) as the API consumes resources
+		 * Required - Comma-separated list of data streams, indices, and aliases used to
+		 * limit the request. It’s recommended to execute this API with a single index
+		 * (or the latest backing index of a data stream) as the API consumes resources
 		 * significantly.
 		 * <p>
 		 * API name: {@code index}
@@ -285,7 +285,7 @@ public final class DiskUsageRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

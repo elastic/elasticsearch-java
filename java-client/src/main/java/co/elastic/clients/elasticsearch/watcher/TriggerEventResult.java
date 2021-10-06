@@ -61,21 +61,21 @@ public final class TriggerEventResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code manual}
+	 * Required - API name: {@code manual}
 	 */
 	public TriggerEvent manual() {
 		return this.manual;
 	}
 
 	/**
-	 * API name: {@code triggered_time}
+	 * Required - API name: {@code triggered_time}
 	 */
 	public String triggeredTime() {
 		return this.triggeredTime;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -116,7 +116,7 @@ public final class TriggerEventResult implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code manual}
+		 * Required - API name: {@code manual}
 		 */
 		public Builder manual(TriggerEvent value) {
 			this.manual = value;
@@ -124,14 +124,14 @@ public final class TriggerEventResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code manual}
+		 * Required - API name: {@code manual}
 		 */
 		public Builder manual(Function<TriggerEvent.Builder, ObjectBuilder<TriggerEvent>> fn) {
 			return this.manual(fn.apply(new TriggerEvent.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code triggered_time}
+		 * Required - API name: {@code triggered_time}
 		 */
 		public Builder triggeredTime(String value) {
 			this.triggeredTime = value;
@@ -139,7 +139,7 @@ public final class TriggerEventResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

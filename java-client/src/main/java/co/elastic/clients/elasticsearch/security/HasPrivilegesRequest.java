@@ -203,7 +203,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #application(List)}, creating the list if needed. 4
+		 * Add a value to {@link #application(List)}, creating the list if needed.
 		 */
 		public Builder addApplication(ApplicationPrivilegesCheck value) {
 			if (this.application == null) {
@@ -222,7 +222,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #application(List)}, creating the list if needed. 5
+		 * Add a value to {@link #application(List)}, creating the list if needed.
 		 */
 		public Builder addApplication(
 				Function<ApplicationPrivilegesCheck.Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
@@ -246,7 +246,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed. 4
+		 * Add a value to {@link #cluster(List)}, creating the list if needed.
 		 */
 		public Builder addCluster(ClusterPrivilege value) {
 			if (this.cluster == null) {
@@ -273,7 +273,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(IndexPrivilegesCheck value) {
 			if (this.index == null) {
@@ -291,7 +291,7 @@ public final class HasPrivilegesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 5
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(Function<IndexPrivilegesCheck.Builder, ObjectBuilder<IndexPrivilegesCheck>> fn) {
 			return this.addIndex(fn.apply(new IndexPrivilegesCheck.Builder()).build());

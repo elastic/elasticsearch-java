@@ -62,21 +62,21 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node}
+	 * Required - API name: {@code node}
 	 */
 	public String node() {
 		return this.node;
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
 	public boolean primary() {
 		return this.primary;
 	}
 
 	/**
-	 * API name: {@code state}
+	 * Required - API name: {@code state}
 	 */
 	public String state() {
 		return this.state;
@@ -117,7 +117,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		private String state;
 
 		/**
-		 * API name: {@code node}
+		 * Required - API name: {@code node}
 		 */
 		public Builder node(String value) {
 			this.node = value;
@@ -125,7 +125,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
 		public Builder primary(boolean value) {
 			this.primary = value;
@@ -133,7 +133,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state}
+		 * Required - API name: {@code state}
 		 */
 		public Builder state(String value) {
 			this.state = value;

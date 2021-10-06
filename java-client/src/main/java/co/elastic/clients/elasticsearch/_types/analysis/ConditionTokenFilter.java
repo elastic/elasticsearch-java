@@ -71,14 +71,14 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * API name: {@code filter}
+	 * Required - API name: {@code filter}
 	 */
 	public List<String> filter() {
 		return this.filter;
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public JsonValue /* _types.Script */ script() {
 		return this.script;
@@ -115,7 +115,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		private JsonValue /* _types.Script */ script;
 
 		/**
-		 * API name: {@code filter}
+		 * Required - API name: {@code filter}
 		 */
 		public Builder filter(List<String> value) {
 			this.filter = value;
@@ -123,7 +123,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code filter}
+		 * Required - API name: {@code filter}
 		 */
 		public Builder filter(String... value) {
 			this.filter = Arrays.asList(value);
@@ -131,7 +131,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filter(List)}, creating the list if needed.
 		 */
 		public Builder addFilter(String value) {
 			if (this.filter == null) {
@@ -142,7 +142,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;

@@ -74,7 +74,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The ID of the datafeed to stop
+	 * Required - The ID of the datafeed to stop
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
@@ -153,7 +153,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 		private String timeout;
 
 		/**
-		 * The ID of the datafeed to stop
+		 * Required - The ID of the datafeed to stop
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */

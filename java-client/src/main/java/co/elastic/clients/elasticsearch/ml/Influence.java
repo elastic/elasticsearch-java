@@ -63,14 +63,14 @@ public final class Influence implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code influencer_field_name}
+	 * Required - API name: {@code influencer_field_name}
 	 */
 	public String influencerFieldName() {
 		return this.influencerFieldName;
 	}
 
 	/**
-	 * API name: {@code influencer_field_values}
+	 * Required - API name: {@code influencer_field_values}
 	 */
 	public List<String> influencerFieldValues() {
 		return this.influencerFieldValues;
@@ -111,7 +111,7 @@ public final class Influence implements JsonpSerializable {
 		private List<String> influencerFieldValues;
 
 		/**
-		 * API name: {@code influencer_field_name}
+		 * Required - API name: {@code influencer_field_name}
 		 */
 		public Builder influencerFieldName(String value) {
 			this.influencerFieldName = value;
@@ -119,7 +119,7 @@ public final class Influence implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code influencer_field_values}
+		 * Required - API name: {@code influencer_field_values}
 		 */
 		public Builder influencerFieldValues(List<String> value) {
 			this.influencerFieldValues = value;
@@ -127,7 +127,7 @@ public final class Influence implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code influencer_field_values}
+		 * Required - API name: {@code influencer_field_values}
 		 */
 		public Builder influencerFieldValues(String... value) {
 			this.influencerFieldValues = Arrays.asList(value);
@@ -136,7 +136,7 @@ public final class Influence implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #influencerFieldValues(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addInfluencerFieldValues(String value) {
 			if (this.influencerFieldValues == null) {

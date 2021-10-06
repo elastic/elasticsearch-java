@@ -115,7 +115,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The name of the template
+	 * Required - The name of the template
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -343,7 +343,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		private Long version;
 
 		/**
-		 * The name of the template
+		 * Required - The name of the template
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -455,7 +455,7 @@ public final class PutTemplateRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {

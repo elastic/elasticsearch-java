@@ -75,21 +75,21 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code acknowledged}
+	 * Required - API name: {@code acknowledged}
 	 */
 	public boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
-	 * API name: {@code trial_was_started}
+	 * Required - API name: {@code trial_was_started}
 	 */
 	public boolean trialWasStarted() {
 		return this.trialWasStarted;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public LicenseType type() {
 		return this.type;
@@ -142,7 +142,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code acknowledged}
+		 * Required - API name: {@code acknowledged}
 		 */
 		public Builder acknowledged(boolean value) {
 			this.acknowledged = value;
@@ -150,7 +150,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code trial_was_started}
+		 * Required - API name: {@code trial_was_started}
 		 */
 		public Builder trialWasStarted(boolean value) {
 			this.trialWasStarted = value;
@@ -158,7 +158,7 @@ public final class PostStartTrialResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(LicenseType value) {
 			this.type = value;

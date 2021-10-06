@@ -55,7 +55,7 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot_name}
+	 * Required - API name: {@code snapshot_name}
 	 */
 	public String snapshotName() {
 		return this.snapshotName;
@@ -86,7 +86,7 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 		private String snapshotName;
 
 		/**
-		 * API name: {@code snapshot_name}
+		 * Required - API name: {@code snapshot_name}
 		 */
 		public Builder snapshotName(String value) {
 			this.snapshotName = value;

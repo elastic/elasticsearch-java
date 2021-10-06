@@ -67,7 +67,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 	}
 
 	/**
-	 * A string that uniquely identifies a calendar.
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -76,9 +76,9 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 	}
 
 	/**
-	 * A list of one of more scheduled events. The event’s start and end times may
-	 * be specified as integer milliseconds since the epoch or as a string in ISO
-	 * 8601 format.
+	 * Required - A list of one of more scheduled events. The event’s start and end
+	 * times may be specified as integer milliseconds since the epoch or as a string
+	 * in ISO 8601 format.
 	 * <p>
 	 * API name: {@code events}
 	 */
@@ -118,7 +118,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		private List<CalendarEvent> events;
 
 		/**
-		 * A string that uniquely identifies a calendar.
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
@@ -128,9 +128,9 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * A list of one of more scheduled events. The event’s start and end times may
-		 * be specified as integer milliseconds since the epoch or as a string in ISO
-		 * 8601 format.
+		 * Required - A list of one of more scheduled events. The event’s start and end
+		 * times may be specified as integer milliseconds since the epoch or as a string
+		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}
 		 */
@@ -140,9 +140,9 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * A list of one of more scheduled events. The event’s start and end times may
-		 * be specified as integer milliseconds since the epoch or as a string in ISO
-		 * 8601 format.
+		 * Required - A list of one of more scheduled events. The event’s start and end
+		 * times may be specified as integer milliseconds since the epoch or as a string
+		 * in ISO 8601 format.
 		 * <p>
 		 * API name: {@code events}
 		 */
@@ -152,7 +152,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 4
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder addEvents(CalendarEvent value) {
 			if (this.events == null) {
@@ -170,7 +170,7 @@ public final class PostCalendarEventsRequest extends RequestBase implements Json
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed. 5
+		 * Add a value to {@link #events(List)}, creating the list if needed.
 		 */
 		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
 			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());

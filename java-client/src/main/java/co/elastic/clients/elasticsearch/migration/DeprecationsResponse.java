@@ -70,28 +70,28 @@ public final class DeprecationsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cluster_settings}
+	 * Required - API name: {@code cluster_settings}
 	 */
 	public List<Deprecation> clusterSettings() {
 		return this.clusterSettings;
 	}
 
 	/**
-	 * API name: {@code index_settings}
+	 * Required - API name: {@code index_settings}
 	 */
 	public Map<String, List<Deprecation>> indexSettings() {
 		return this.indexSettings;
 	}
 
 	/**
-	 * API name: {@code node_settings}
+	 * Required - API name: {@code node_settings}
 	 */
 	public List<Deprecation> nodeSettings() {
 		return this.nodeSettings;
 	}
 
 	/**
-	 * API name: {@code ml_settings}
+	 * Required - API name: {@code ml_settings}
 	 */
 	public List<Deprecation> mlSettings() {
 		return this.mlSettings;
@@ -163,7 +163,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		private List<Deprecation> mlSettings;
 
 		/**
-		 * API name: {@code cluster_settings}
+		 * Required - API name: {@code cluster_settings}
 		 */
 		public Builder clusterSettings(List<Deprecation> value) {
 			this.clusterSettings = value;
@@ -171,7 +171,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cluster_settings}
+		 * Required - API name: {@code cluster_settings}
 		 */
 		public Builder clusterSettings(Deprecation... value) {
 			this.clusterSettings = Arrays.asList(value);
@@ -179,7 +179,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed. 4
+		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed.
 		 */
 		public Builder addClusterSettings(Deprecation value) {
 			if (this.clusterSettings == null) {
@@ -197,14 +197,14 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed. 5
+		 * Add a value to {@link #clusterSettings(List)}, creating the list if needed.
 		 */
 		public Builder addClusterSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
 			return this.addClusterSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code index_settings}
+		 * Required - API name: {@code index_settings}
 		 */
 		public Builder indexSettings(Map<String, List<Deprecation>> value) {
 			this.indexSettings = value;
@@ -223,7 +223,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_settings}
+		 * Required - API name: {@code node_settings}
 		 */
 		public Builder nodeSettings(List<Deprecation> value) {
 			this.nodeSettings = value;
@@ -231,7 +231,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_settings}
+		 * Required - API name: {@code node_settings}
 		 */
 		public Builder nodeSettings(Deprecation... value) {
 			this.nodeSettings = Arrays.asList(value);
@@ -239,7 +239,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed.
 		 */
 		public Builder addNodeSettings(Deprecation value) {
 			if (this.nodeSettings == null) {
@@ -257,14 +257,14 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed. 5
+		 * Add a value to {@link #nodeSettings(List)}, creating the list if needed.
 		 */
 		public Builder addNodeSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
 			return this.addNodeSettings(fn.apply(new Deprecation.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ml_settings}
+		 * Required - API name: {@code ml_settings}
 		 */
 		public Builder mlSettings(List<Deprecation> value) {
 			this.mlSettings = value;
@@ -272,7 +272,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ml_settings}
+		 * Required - API name: {@code ml_settings}
 		 */
 		public Builder mlSettings(Deprecation... value) {
 			this.mlSettings = Arrays.asList(value);
@@ -280,7 +280,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #mlSettings(List)}, creating the list if needed. 4
+		 * Add a value to {@link #mlSettings(List)}, creating the list if needed.
 		 */
 		public Builder addMlSettings(Deprecation value) {
 			if (this.mlSettings == null) {
@@ -298,7 +298,7 @@ public final class DeprecationsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #mlSettings(List)}, creating the list if needed. 5
+		 * Add a value to {@link #mlSettings(List)}, creating the list if needed.
 		 */
 		public Builder addMlSettings(Function<Deprecation.Builder, ObjectBuilder<Deprecation>> fn) {
 			return this.addMlSettings(fn.apply(new Deprecation.Builder()).build());

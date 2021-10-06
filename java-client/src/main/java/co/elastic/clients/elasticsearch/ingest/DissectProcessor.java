@@ -73,28 +73,28 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 	}
 
 	/**
-	 * API name: {@code append_separator}
+	 * Required - API name: {@code append_separator}
 	 */
 	public String appendSeparator() {
 		return this.appendSeparator;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code ignore_missing}
+	 * Required - API name: {@code ignore_missing}
 	 */
 	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public String pattern() {
 		return this.pattern;
@@ -135,7 +135,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		private String pattern;
 
 		/**
-		 * API name: {@code append_separator}
+		 * Required - API name: {@code append_separator}
 		 */
 		public Builder appendSeparator(String value) {
 			this.appendSeparator = value;
@@ -143,7 +143,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -151,7 +151,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code ignore_missing}
+		 * Required - API name: {@code ignore_missing}
 		 */
 		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
@@ -159,7 +159,7 @@ public final class DissectProcessor extends ProcessorBase implements ProcessorVa
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(String value) {
 			this.pattern = value;

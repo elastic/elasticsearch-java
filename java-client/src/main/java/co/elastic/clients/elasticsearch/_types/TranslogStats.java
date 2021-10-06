@@ -79,14 +79,14 @@ public final class TranslogStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code earliest_last_modified_age}
+	 * Required - API name: {@code earliest_last_modified_age}
 	 */
 	public long earliestLastModifiedAge() {
 		return this.earliestLastModifiedAge;
 	}
 
 	/**
-	 * API name: {@code operations}
+	 * Required - API name: {@code operations}
 	 */
 	public long operations() {
 		return this.operations;
@@ -101,14 +101,14 @@ public final class TranslogStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
 	public long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
-	 * API name: {@code uncommitted_operations}
+	 * Required - API name: {@code uncommitted_operations}
 	 */
 	public int uncommittedOperations() {
 		return this.uncommittedOperations;
@@ -123,7 +123,7 @@ public final class TranslogStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code uncommitted_size_in_bytes}
+	 * Required - API name: {@code uncommitted_size_in_bytes}
 	 */
 	public long uncommittedSizeInBytes() {
 		return this.uncommittedSizeInBytes;
@@ -194,7 +194,7 @@ public final class TranslogStats implements JsonpSerializable {
 		private Long uncommittedSizeInBytes;
 
 		/**
-		 * API name: {@code earliest_last_modified_age}
+		 * Required - API name: {@code earliest_last_modified_age}
 		 */
 		public Builder earliestLastModifiedAge(long value) {
 			this.earliestLastModifiedAge = value;
@@ -202,7 +202,7 @@ public final class TranslogStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code operations}
+		 * Required - API name: {@code operations}
 		 */
 		public Builder operations(long value) {
 			this.operations = value;
@@ -218,7 +218,7 @@ public final class TranslogStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
 		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
@@ -226,7 +226,7 @@ public final class TranslogStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uncommitted_operations}
+		 * Required - API name: {@code uncommitted_operations}
 		 */
 		public Builder uncommittedOperations(int value) {
 			this.uncommittedOperations = value;
@@ -242,7 +242,7 @@ public final class TranslogStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code uncommitted_size_in_bytes}
+		 * Required - API name: {@code uncommitted_size_in_bytes}
 		 */
 		public Builder uncommittedSizeInBytes(long value) {
 			this.uncommittedSizeInBytes = value;

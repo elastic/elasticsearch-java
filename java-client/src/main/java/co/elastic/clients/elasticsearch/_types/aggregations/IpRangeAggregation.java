@@ -149,7 +149,7 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ranges(List)}, creating the list if needed.
 		 */
 		public Builder addRanges(IpRangeAggregationRange value) {
 			if (this.ranges == null) {
@@ -167,7 +167,7 @@ public final class IpRangeAggregation extends BucketAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
+		 * Add a value to {@link #ranges(List)}, creating the list if needed.
 		 */
 		public Builder addRanges(Function<IpRangeAggregationRange.Builder, ObjectBuilder<IpRangeAggregationRange>> fn) {
 			return this.addRanges(fn.apply(new IpRangeAggregationRange.Builder()).build());

@@ -111,7 +111,7 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 		}
 
 		/**
-		 * Add a value to {@link #curve(List)}, creating the list if needed. 4
+		 * Add a value to {@link #curve(List)}, creating the list if needed.
 		 */
 		public Builder addCurve(DataframeEvaluationSummaryAucRocCurveItem value) {
 			if (this.curve == null) {
@@ -130,7 +130,7 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 		}
 
 		/**
-		 * Add a value to {@link #curve(List)}, creating the list if needed. 5
+		 * Add a value to {@link #curve(List)}, creating the list if needed.
 		 */
 		public Builder addCurve(
 				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {

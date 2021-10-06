@@ -59,7 +59,8 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The ID of the assigned node for the upgrade task if it is still running.
+	 * Required - The ID of the assigned node for the upgrade task if it is still
+	 * running.
 	 * <p>
 	 * API name: {@code node}
 	 */
@@ -68,7 +69,8 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * When true, this means the task is complete. When false, it is still running.
+	 * Required - When true, this means the task is complete. When false, it is
+	 * still running.
 	 * <p>
 	 * API name: {@code completed}
 	 */
@@ -106,7 +108,8 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		private Boolean completed;
 
 		/**
-		 * The ID of the assigned node for the upgrade task if it is still running.
+		 * Required - The ID of the assigned node for the upgrade task if it is still
+		 * running.
 		 * <p>
 		 * API name: {@code node}
 		 */
@@ -116,7 +119,8 @@ public final class UpgradeJobSnapshotResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * When true, this means the task is complete. When false, it is still running.
+		 * Required - When true, this means the task is complete. When false, it is
+		 * still running.
 		 * <p>
 		 * API name: {@code completed}
 		 */

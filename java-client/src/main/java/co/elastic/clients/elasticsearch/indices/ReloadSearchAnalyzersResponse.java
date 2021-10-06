@@ -63,14 +63,14 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code reload_details}
+	 * Required - API name: {@code reload_details}
 	 */
 	public List<ReloadDetails> reloadDetails() {
 		return this.reloadDetails;
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
@@ -111,7 +111,7 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		/**
-		 * API name: {@code reload_details}
+		 * Required - API name: {@code reload_details}
 		 */
 		public Builder reloadDetails(List<ReloadDetails> value) {
 			this.reloadDetails = value;
@@ -119,7 +119,7 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reload_details}
+		 * Required - API name: {@code reload_details}
 		 */
 		public Builder reloadDetails(ReloadDetails... value) {
 			this.reloadDetails = Arrays.asList(value);
@@ -127,7 +127,7 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed. 4
+		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed.
 		 */
 		public Builder addReloadDetails(ReloadDetails value) {
 			if (this.reloadDetails == null) {
@@ -145,14 +145,14 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed. 5
+		 * Add a value to {@link #reloadDetails(List)}, creating the list if needed.
 		 */
 		public Builder addReloadDetails(Function<ReloadDetails.Builder, ObjectBuilder<ReloadDetails>> fn) {
 			return this.addReloadDetails(fn.apply(new ReloadDetails.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -160,7 +160,7 @@ public final class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());

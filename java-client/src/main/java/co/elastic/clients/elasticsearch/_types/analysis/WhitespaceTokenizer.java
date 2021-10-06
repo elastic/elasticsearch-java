@@ -62,7 +62,7 @@ public final class WhitespaceTokenizer extends TokenizerBase implements Tokenize
 	}
 
 	/**
-	 * API name: {@code max_token_length}
+	 * Required - API name: {@code max_token_length}
 	 */
 	public int maxTokenLength() {
 		return this.maxTokenLength;
@@ -89,7 +89,7 @@ public final class WhitespaceTokenizer extends TokenizerBase implements Tokenize
 		private Integer maxTokenLength;
 
 		/**
-		 * API name: {@code max_token_length}
+		 * Required - API name: {@code max_token_length}
 		 */
 		public Builder maxTokenLength(int value) {
 			this.maxTokenLength = value;

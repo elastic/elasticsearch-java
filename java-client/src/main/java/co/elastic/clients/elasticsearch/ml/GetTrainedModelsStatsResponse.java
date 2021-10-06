@@ -62,9 +62,10 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The total number of trained model statistics that matched the requested ID
-	 * patterns. Could be higher than the number of items in the trained_model_stats
-	 * array as the size of the array is restricted by the supplied size parameter.
+	 * Required - The total number of trained model statistics that matched the
+	 * requested ID patterns. Could be higher than the number of items in the
+	 * trained_model_stats array as the size of the array is restricted by the
+	 * supplied size parameter.
 	 * <p>
 	 * API name: {@code count}
 	 */
@@ -73,8 +74,8 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of trained model statistics, which are sorted by the model_id value
-	 * in ascending order.
+	 * Required - An array of trained model statistics, which are sorted by the
+	 * model_id value in ascending order.
 	 * <p>
 	 * API name: {@code trained_model_stats}
 	 */
@@ -117,9 +118,10 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		private List<TrainedModelStats> trainedModelStats;
 
 		/**
-		 * The total number of trained model statistics that matched the requested ID
-		 * patterns. Could be higher than the number of items in the trained_model_stats
-		 * array as the size of the array is restricted by the supplied size parameter.
+		 * Required - The total number of trained model statistics that matched the
+		 * requested ID patterns. Could be higher than the number of items in the
+		 * trained_model_stats array as the size of the array is restricted by the
+		 * supplied size parameter.
 		 * <p>
 		 * API name: {@code count}
 		 */
@@ -129,8 +131,8 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of trained model statistics, which are sorted by the model_id value
-		 * in ascending order.
+		 * Required - An array of trained model statistics, which are sorted by the
+		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_stats}
 		 */
@@ -140,8 +142,8 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of trained model statistics, which are sorted by the model_id value
-		 * in ascending order.
+		 * Required - An array of trained model statistics, which are sorted by the
+		 * model_id value in ascending order.
 		 * <p>
 		 * API name: {@code trained_model_stats}
 		 */
@@ -152,7 +154,6 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #trainedModelStats(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addTrainedModelStats(TrainedModelStats value) {
 			if (this.trainedModelStats == null) {
@@ -171,7 +172,6 @@ public final class GetTrainedModelsStatsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #trainedModelStats(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addTrainedModelStats(Function<TrainedModelStats.Builder, ObjectBuilder<TrainedModelStats>> fn) {
 			return this.addTrainedModelStats(fn.apply(new TrainedModelStats.Builder()).build());

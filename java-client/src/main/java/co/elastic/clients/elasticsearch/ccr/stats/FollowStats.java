@@ -59,7 +59,7 @@ public final class FollowStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<FollowIndexStats> indices() {
 		return this.indices;
@@ -95,7 +95,7 @@ public final class FollowStats implements JsonpSerializable {
 		private List<FollowIndexStats> indices;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<FollowIndexStats> value) {
 			this.indices = value;
@@ -103,7 +103,7 @@ public final class FollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(FollowIndexStats... value) {
 			this.indices = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class FollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(FollowIndexStats value) {
 			if (this.indices == null) {
@@ -129,7 +129,7 @@ public final class FollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn) {
 			return this.addIndices(fn.apply(new FollowIndexStats.Builder()).build());

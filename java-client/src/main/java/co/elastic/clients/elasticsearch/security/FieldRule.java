@@ -81,6 +81,10 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 
 	}
 
+	public <T extends FieldRuleVariant> FieldRule(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private FieldRule(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

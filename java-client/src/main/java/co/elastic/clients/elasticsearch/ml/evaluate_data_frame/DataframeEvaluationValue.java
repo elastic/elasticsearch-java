@@ -50,7 +50,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public double value() {
 		return this.value;
@@ -101,7 +101,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 		private Double value;
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public BuilderT value(double value) {
 			this.value = value;

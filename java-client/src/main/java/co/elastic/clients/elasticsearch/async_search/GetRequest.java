@@ -71,7 +71,7 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * The async search ID
+	 * Required - The async search ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -129,7 +129,7 @@ public final class GetRequest extends RequestBase {
 		private String waitForCompletionTimeout;
 
 		/**
-		 * The async search ID
+		 * Required - The async search ID
 		 * <p>
 		 * API name: {@code id}
 		 */

@@ -64,7 +64,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The ID of the Pipeline
+	 * Required - The ID of the Pipeline
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -73,7 +73,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -100,7 +100,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		private Pipeline pipeline;
 
 		/**
-		 * The ID of the Pipeline
+		 * Required - The ID of the Pipeline
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -110,7 +110,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -120,7 +120,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

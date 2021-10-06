@@ -78,21 +78,21 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code backing_indices}
+	 * Required - API name: {@code backing_indices}
 	 */
 	public int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
-	 * API name: {@code data_stream_count}
+	 * Required - API name: {@code data_stream_count}
 	 */
 	public int dataStreamCount() {
 		return this.dataStreamCount;
@@ -107,14 +107,14 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_store_size_bytes}
+	 * Required - API name: {@code total_store_size_bytes}
 	 */
 	public int totalStoreSizeBytes() {
 		return this.totalStoreSizeBytes;
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public List<DataStreamsStatsItem> dataStreams() {
 		return this.dataStreams;
@@ -180,7 +180,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		private List<DataStreamsStatsItem> dataStreams;
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -188,14 +188,14 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code backing_indices}
+		 * Required - API name: {@code backing_indices}
 		 */
 		public Builder backingIndices(int value) {
 			this.backingIndices = value;
@@ -203,7 +203,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_stream_count}
+		 * Required - API name: {@code data_stream_count}
 		 */
 		public Builder dataStreamCount(int value) {
 			this.dataStreamCount = value;
@@ -219,7 +219,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_store_size_bytes}
+		 * Required - API name: {@code total_store_size_bytes}
 		 */
 		public Builder totalStoreSizeBytes(int value) {
 			this.totalStoreSizeBytes = value;
@@ -227,7 +227,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(List<DataStreamsStatsItem> value) {
 			this.dataStreams = value;
@@ -235,7 +235,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(DataStreamsStatsItem... value) {
 			this.dataStreams = Arrays.asList(value);
@@ -243,7 +243,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 4
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(DataStreamsStatsItem value) {
 			if (this.dataStreams == null) {
@@ -261,7 +261,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed. 5
+		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
 		 */
 		public Builder addDataStreams(Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
 			return this.addDataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());

@@ -133,7 +133,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final List<String> sort;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> sourceExcludes;
@@ -216,8 +216,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * A comma-separated list of index names to search; use <code>_all</code> or
-	 * empty string to perform the operation on all indices
+	 * Required - A comma-separated list of index names to search; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -472,7 +472,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.Fields) */ source() {
+	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -696,7 +696,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private List<String> sort;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.Fields) */ source;
+		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> sourceExcludes;
@@ -732,8 +732,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private SlicedScroll slice;
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Required - A comma-separated list of index names to search; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -743,8 +743,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Required - A comma-separated list of index names to search; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -754,7 +754,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -851,7 +851,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -1037,7 +1037,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(String value) {
 			if (this.sort == null) {
@@ -1053,7 +1053,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(internal.boolean | _types.Fields) */ value) {
+		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -1079,7 +1079,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -1110,7 +1110,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -1141,7 +1141,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stats(List)}, creating the list if needed.
 		 */
 		public Builder addStats(String value) {
 			if (this.stats == null) {

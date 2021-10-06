@@ -54,7 +54,7 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code background_is_superset}
+	 * Required - API name: {@code background_is_superset}
 	 */
 	public boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
@@ -85,7 +85,7 @@ public final class GoogleNormalizedDistanceHeuristic implements JsonpSerializabl
 		private Boolean backgroundIsSuperset;
 
 		/**
-		 * API name: {@code background_is_superset}
+		 * Required - API name: {@code background_is_superset}
 		 */
 		public Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;

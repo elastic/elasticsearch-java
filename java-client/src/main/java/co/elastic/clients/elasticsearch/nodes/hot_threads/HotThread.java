@@ -68,28 +68,28 @@ public final class HotThread implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code hosts}
+	 * Required - API name: {@code hosts}
 	 */
 	public List<String> hosts() {
 		return this.hosts;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code node_name}
+	 * Required - API name: {@code node_name}
 	 */
 	public String nodeName() {
 		return this.nodeName;
 	}
 
 	/**
-	 * API name: {@code threads}
+	 * Required - API name: {@code threads}
 	 */
 	public List<String> threads() {
 		return this.threads;
@@ -145,7 +145,7 @@ public final class HotThread implements JsonpSerializable {
 		private List<String> threads;
 
 		/**
-		 * API name: {@code hosts}
+		 * Required - API name: {@code hosts}
 		 */
 		public Builder hosts(List<String> value) {
 			this.hosts = value;
@@ -153,7 +153,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hosts}
+		 * Required - API name: {@code hosts}
 		 */
 		public Builder hosts(String... value) {
 			this.hosts = Arrays.asList(value);
@@ -161,7 +161,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hosts(List)}, creating the list if needed. 4
+		 * Add a value to {@link #hosts(List)}, creating the list if needed.
 		 */
 		public Builder addHosts(String value) {
 			if (this.hosts == null) {
@@ -172,7 +172,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -180,7 +180,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_name}
+		 * Required - API name: {@code node_name}
 		 */
 		public Builder nodeName(String value) {
 			this.nodeName = value;
@@ -188,7 +188,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(List<String> value) {
 			this.threads = value;
@@ -196,7 +196,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code threads}
+		 * Required - API name: {@code threads}
 		 */
 		public Builder threads(String... value) {
 			this.threads = Arrays.asList(value);
@@ -204,7 +204,7 @@ public final class HotThread implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #threads(List)}, creating the list if needed. 4
+		 * Add a value to {@link #threads(List)}, creating the list if needed.
 		 */
 		public Builder addThreads(String value) {
 			if (this.threads == null) {

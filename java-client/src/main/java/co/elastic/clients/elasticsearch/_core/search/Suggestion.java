@@ -76,28 +76,28 @@ public final class Suggestion<T> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code length}
+	 * Required - API name: {@code length}
 	 */
 	public int length() {
 		return this.length;
 	}
 
 	/**
-	 * API name: {@code offset}
+	 * Required - API name: {@code offset}
 	 */
 	public int offset() {
 		return this.offset;
 	}
 
 	/**
-	 * API name: {@code options}
+	 * Required - API name: {@code options}
 	 */
 	public List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options() {
 		return this.options;
 	}
 
 	/**
-	 * API name: {@code text}
+	 * Required - API name: {@code text}
 	 */
 	public String text() {
 		return this.text;
@@ -151,7 +151,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		private JsonpSerializer<T> tSerializer;
 
 		/**
-		 * API name: {@code length}
+		 * Required - API name: {@code length}
 		 */
 		public Builder<T> length(int value) {
 			this.length = value;
@@ -159,7 +159,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code offset}
+		 * Required - API name: {@code offset}
 		 */
 		public Builder<T> offset(int value) {
 			this.offset = value;
@@ -167,7 +167,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code options}
+		 * Required - API name: {@code options}
 		 */
 		public Builder<T> options(
 				List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> value) {
@@ -176,7 +176,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code options}
+		 * Required - API name: {@code options}
 		 */
 		public Builder<T> options(
 				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */... value) {
@@ -185,7 +185,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #options(List)}, creating the list if needed. 4
+		 * Add a value to {@link #options(List)}, creating the list if needed.
 		 */
 		public Builder<T> addOptions(
 				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ value) {
@@ -197,7 +197,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code text}
+		 * Required - API name: {@code text}
 		 */
 		public Builder<T> text(String value) {
 			this.text = value;

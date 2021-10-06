@@ -86,7 +86,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code execution_thread_pool}
+	 * Required - API name: {@code execution_thread_pool}
 	 */
 	public ExecutionThreadPool executionThreadPool() {
 		return this.executionThreadPool;
@@ -101,21 +101,21 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code watch_count}
+	 * Required - API name: {@code watch_count}
 	 */
 	public long watchCount() {
 		return this.watchCount;
 	}
 
 	/**
-	 * API name: {@code watcher_state}
+	 * Required - API name: {@code watcher_state}
 	 */
 	public WatcherState watcherState() {
 		return this.watcherState;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
@@ -207,7 +207,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed. 4
+		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
 		 */
 		public Builder addCurrentWatches(WatchRecordStats value) {
 			if (this.currentWatches == null) {
@@ -225,14 +225,14 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed. 5
+		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
 		 */
 		public Builder addCurrentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
 			return this.addCurrentWatches(fn.apply(new WatchRecordStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code execution_thread_pool}
+		 * Required - API name: {@code execution_thread_pool}
 		 */
 		public Builder executionThreadPool(ExecutionThreadPool value) {
 			this.executionThreadPool = value;
@@ -240,7 +240,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code execution_thread_pool}
+		 * Required - API name: {@code execution_thread_pool}
 		 */
 		public Builder executionThreadPool(
 				Function<ExecutionThreadPool.Builder, ObjectBuilder<ExecutionThreadPool>> fn) {
@@ -264,7 +264,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed. 4
+		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
 		 */
 		public Builder addQueuedWatches(WatchRecordQueuedStats value) {
 			if (this.queuedWatches == null) {
@@ -283,7 +283,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed. 5
+		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
 		 */
 		public Builder addQueuedWatches(
 				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
@@ -291,7 +291,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watch_count}
+		 * Required - API name: {@code watch_count}
 		 */
 		public Builder watchCount(long value) {
 			this.watchCount = value;
@@ -299,7 +299,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watcher_state}
+		 * Required - API name: {@code watcher_state}
 		 */
 		public Builder watcherState(WatcherState value) {
 			this.watcherState = value;
@@ -307,7 +307,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;

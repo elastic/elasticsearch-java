@@ -78,7 +78,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * A repository name
+	 * Required - A repository name
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -87,7 +87,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the snapshot to clone from
+	 * Required - The name of the snapshot to clone from
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -96,7 +96,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The name of the cloned snapshot to create
+	 * Required - The name of the cloned snapshot to create
 	 * <p>
 	 * API name: {@code target_snapshot}
 	 */
@@ -123,7 +123,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public String indices() {
 		return this.indices;
@@ -166,7 +166,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 		private String indices;
 
 		/**
-		 * A repository name
+		 * Required - A repository name
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -176,7 +176,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The name of the snapshot to clone from
+		 * Required - The name of the snapshot to clone from
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -186,7 +186,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The name of the cloned snapshot to create
+		 * Required - The name of the cloned snapshot to create
 		 * <p>
 		 * API name: {@code target_snapshot}
 		 */
@@ -214,7 +214,7 @@ public final class CloneRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String value) {
 			this.indices = value;

@@ -66,7 +66,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 	}
 
 	/**
-	 * API name: {@code transforms}
+	 * Required - API name: {@code transforms}
 	 */
 	public List<Transform> transforms() {
 		return this.transforms;
@@ -102,7 +102,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		private List<Transform> transforms;
 
 		/**
-		 * API name: {@code transforms}
+		 * Required - API name: {@code transforms}
 		 */
 		public Builder transforms(List<Transform> value) {
 			this.transforms = value;
@@ -110,7 +110,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code transforms}
+		 * Required - API name: {@code transforms}
 		 */
 		public Builder transforms(Transform... value) {
 			this.transforms = Arrays.asList(value);
@@ -118,7 +118,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #transforms(List)}, creating the list if needed.
 		 */
 		public Builder addTransforms(Transform value) {
 			if (this.transforms == null) {
@@ -136,7 +136,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed. 5
+		 * Add a value to {@link #transforms(List)}, creating the list if needed.
 		 */
 		public Builder addTransforms(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
 			return this.addTransforms(fn.apply(new Transform.Builder()).build());

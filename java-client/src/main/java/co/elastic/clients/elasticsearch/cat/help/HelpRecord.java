@@ -55,7 +55,7 @@ public final class HelpRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code endpoint}
+	 * Required - API name: {@code endpoint}
 	 */
 	public String endpoint() {
 		return this.endpoint;
@@ -86,7 +86,7 @@ public final class HelpRecord implements JsonpSerializable {
 		private String endpoint;
 
 		/**
-		 * API name: {@code endpoint}
+		 * Required - API name: {@code endpoint}
 		 */
 		public Builder endpoint(String value) {
 			this.endpoint = value;

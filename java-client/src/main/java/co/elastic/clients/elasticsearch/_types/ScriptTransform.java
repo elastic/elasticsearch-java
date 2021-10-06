@@ -70,14 +70,14 @@ public final class ScriptTransform implements TransformVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code lang}
+	 * Required - API name: {@code lang}
 	 */
 	public String lang() {
 		return this.lang;
 	}
 
 	/**
-	 * API name: {@code params}
+	 * Required - API name: {@code params}
 	 */
 	public Map<String, JsonData> params() {
 		return this.params;
@@ -119,7 +119,7 @@ public final class ScriptTransform implements TransformVariant, JsonpSerializabl
 		private Map<String, JsonData> params;
 
 		/**
-		 * API name: {@code lang}
+		 * Required - API name: {@code lang}
 		 */
 		public Builder lang(String value) {
 			this.lang = value;
@@ -127,7 +127,7 @@ public final class ScriptTransform implements TransformVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code params}
+		 * Required - API name: {@code params}
 		 */
 		public Builder params(Map<String, JsonData> value) {
 			this.params = value;

@@ -59,7 +59,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code patterns}
+	 * Required - API name: {@code patterns}
 	 */
 	public List<AutoFollowPattern> patterns() {
 		return this.patterns;
@@ -95,7 +95,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		private List<AutoFollowPattern> patterns;
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(List<AutoFollowPattern> value) {
 			this.patterns = value;
@@ -103,7 +103,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code patterns}
+		 * Required - API name: {@code patterns}
 		 */
 		public Builder patterns(AutoFollowPattern... value) {
 			this.patterns = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #patterns(List)}, creating the list if needed.
 		 */
 		public Builder addPatterns(AutoFollowPattern value) {
 			if (this.patterns == null) {
@@ -129,7 +129,7 @@ public final class GetAutoFollowPatternResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #patterns(List)}, creating the list if needed. 5
+		 * Add a value to {@link #patterns(List)}, creating the list if needed.
 		 */
 		public Builder addPatterns(Function<AutoFollowPattern.Builder, ObjectBuilder<AutoFollowPattern>> fn) {
 			return this.addPatterns(fn.apply(new AutoFollowPattern.Builder()).build());

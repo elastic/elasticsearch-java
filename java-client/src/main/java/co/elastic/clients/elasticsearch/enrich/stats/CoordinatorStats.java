@@ -69,35 +69,35 @@ public final class CoordinatorStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code executed_searches_total}
+	 * Required - API name: {@code executed_searches_total}
 	 */
 	public long executedSearchesTotal() {
 		return this.executedSearchesTotal;
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code queue_size}
+	 * Required - API name: {@code queue_size}
 	 */
 	public int queueSize() {
 		return this.queueSize;
 	}
 
 	/**
-	 * API name: {@code remote_requests_current}
+	 * Required - API name: {@code remote_requests_current}
 	 */
 	public int remoteRequestsCurrent() {
 		return this.remoteRequestsCurrent;
 	}
 
 	/**
-	 * API name: {@code remote_requests_total}
+	 * Required - API name: {@code remote_requests_total}
 	 */
 	public long remoteRequestsTotal() {
 		return this.remoteRequestsTotal;
@@ -148,7 +148,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		private Long remoteRequestsTotal;
 
 		/**
-		 * API name: {@code executed_searches_total}
+		 * Required - API name: {@code executed_searches_total}
 		 */
 		public Builder executedSearchesTotal(long value) {
 			this.executedSearchesTotal = value;
@@ -156,7 +156,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -164,7 +164,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue_size}
+		 * Required - API name: {@code queue_size}
 		 */
 		public Builder queueSize(int value) {
 			this.queueSize = value;
@@ -172,7 +172,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code remote_requests_current}
+		 * Required - API name: {@code remote_requests_current}
 		 */
 		public Builder remoteRequestsCurrent(int value) {
 			this.remoteRequestsCurrent = value;
@@ -180,7 +180,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code remote_requests_total}
+		 * Required - API name: {@code remote_requests_total}
 		 */
 		public Builder remoteRequestsTotal(long value) {
 			this.remoteRequestsTotal = value;

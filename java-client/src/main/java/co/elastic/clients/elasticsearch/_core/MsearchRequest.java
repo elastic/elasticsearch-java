@@ -88,7 +88,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Boolean typedKeys;
 
-	private final List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> searches;
+	private final List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -239,11 +239,11 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> searches() {
+	public List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches() {
 		return this.searches;
 	}
 
@@ -252,7 +252,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ item0 : this.searches) {
+		for (JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */ item0 : this.searches) {
 			generator.write(item0);
 
 		}
@@ -299,7 +299,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean typedKeys;
 
-		private List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> searches;
+		private List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
 
 		/**
 		 * Comma-separated list of data streams, indices, and index aliases to search.
@@ -322,7 +322,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -382,7 +382,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -471,29 +471,29 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder searches(List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */> value) {
+		public Builder searches(List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> value) {
 			this.searches = value;
 			return this;
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder searches(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */... value) {
+		public Builder searches(JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */... value) {
 			this.searches = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed. 4
+		 * Add a value to {@link #searches(List)}, creating the list if needed.
 		 */
-		public Builder addSearches(JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */ value) {
+		public Builder addSearches(JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */ value) {
 			if (this.searches == null) {
 				this.searches = new ArrayList<>();
 			}
@@ -516,7 +516,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	public static final JsonpDeserializer<MsearchRequest> _DESERIALIZER = createMsearchRequestDeserializer();
 	protected static JsonpDeserializer<MsearchRequest> createMsearchRequestDeserializer() {
 
-		JsonpDeserializer<List<JsonValue /* Union(_global.msearch.Header | _global.msearch.Body) */>> valueDeserializer = JsonpDeserializer
+		JsonpDeserializer<List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer());
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()

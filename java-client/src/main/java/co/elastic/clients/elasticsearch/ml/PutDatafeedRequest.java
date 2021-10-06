@@ -142,7 +142,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The ID of the datafeed to create
+	 * Required - The ID of the datafeed to create
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
@@ -471,7 +471,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Integer scrollSize;
 
 		/**
-		 * The ID of the datafeed to create
+		 * Required - The ID of the datafeed to create
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
@@ -514,7 +514,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -633,7 +633,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {

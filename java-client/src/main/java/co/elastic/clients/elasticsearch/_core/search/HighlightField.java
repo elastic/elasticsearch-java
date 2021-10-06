@@ -633,7 +633,7 @@ public final class HighlightField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #matchedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #matchedFields(List)}, creating the list if needed.
 		 */
 		public Builder addMatchedFields(String value) {
 			if (this.matchedFields == null) {
@@ -700,7 +700,7 @@ public final class HighlightField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #postTags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #postTags(List)}, creating the list if needed.
 		 */
 		public Builder addPostTags(String value) {
 			if (this.postTags == null) {
@@ -727,7 +727,7 @@ public final class HighlightField implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #preTags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #preTags(List)}, creating the list if needed.
 		 */
 		public Builder addPreTags(String value) {
 			if (this.preTags == null) {

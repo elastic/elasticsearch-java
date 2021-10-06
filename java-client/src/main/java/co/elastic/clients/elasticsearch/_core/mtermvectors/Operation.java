@@ -112,7 +112,7 @@ public final class Operation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
@@ -352,7 +352,7 @@ public final class Operation implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -392,7 +392,7 @@ public final class Operation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

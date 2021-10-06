@@ -72,7 +72,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * The ID of the filter to create
+	 * Required - The ID of the filter to create
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
@@ -142,7 +142,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 		private List<String> items;
 
 		/**
-		 * The ID of the filter to create
+		 * Required - The ID of the filter to create
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
@@ -176,7 +176,7 @@ public final class PutFilterRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed. 4
+		 * Add a value to {@link #items(List)}, creating the list if needed.
 		 */
 		public Builder addItems(String value) {
 			if (this.items == null) {

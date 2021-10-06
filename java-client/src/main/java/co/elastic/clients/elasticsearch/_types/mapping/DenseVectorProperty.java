@@ -62,7 +62,7 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 	}
 
 	/**
-	 * API name: {@code dims}
+	 * Required - API name: {@code dims}
 	 */
 	public int dims() {
 		return this.dims;
@@ -89,7 +89,7 @@ public final class DenseVectorProperty extends PropertyBase implements PropertyV
 		private Integer dims;
 
 		/**
-		 * API name: {@code dims}
+		 * Required - API name: {@code dims}
 		 */
 		public Builder dims(int value) {
 			this.dims = value;

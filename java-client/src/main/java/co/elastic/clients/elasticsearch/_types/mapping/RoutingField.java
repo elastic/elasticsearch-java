@@ -54,7 +54,7 @@ public final class RoutingField implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code required}
+	 * Required - API name: {@code required}
 	 */
 	public boolean required() {
 		return this.required;
@@ -85,7 +85,7 @@ public final class RoutingField implements JsonpSerializable {
 		private Boolean required;
 
 		/**
-		 * API name: {@code required}
+		 * Required - API name: {@code required}
 		 */
 		public Builder required(boolean value) {
 			this.required = value;

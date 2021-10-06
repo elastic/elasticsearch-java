@@ -110,7 +110,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -180,7 +180,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -190,7 +190,7 @@ public final class SimulateTemplateRequest extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

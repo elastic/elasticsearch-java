@@ -59,7 +59,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the Pipeline
+	 * Required - The ID of the Pipeline
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -76,7 +76,7 @@ public final class DeletePipelineRequest extends RequestBase {
 		private String id;
 
 		/**
-		 * The ID of the Pipeline
+		 * Required - The ID of the Pipeline
 		 * <p>
 		 * API name: {@code id}
 		 */

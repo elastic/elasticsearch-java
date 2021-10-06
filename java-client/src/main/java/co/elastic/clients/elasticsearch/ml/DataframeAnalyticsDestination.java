@@ -59,8 +59,8 @@ public final class DataframeAnalyticsDestination implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines the destination index to store the results of the data frame
-	 * analytics job.
+	 * Required - Defines the destination index to store the results of the data
+	 * frame analytics job.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -114,8 +114,8 @@ public final class DataframeAnalyticsDestination implements JsonpSerializable {
 		private String resultsField;
 
 		/**
-		 * Defines the destination index to store the results of the data frame
-		 * analytics job.
+		 * Required - Defines the destination index to store the results of the data
+		 * frame analytics job.
 		 * <p>
 		 * API name: {@code index}
 		 */

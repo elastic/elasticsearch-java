@@ -78,14 +78,14 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 	}
 
 	/**
-	 * API name: {@code model_id}
+	 * Required - API name: {@code model_id}
 	 */
 	public String modelId() {
 		return this.modelId;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -157,7 +157,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		private InferenceConfig inferenceConfig;
 
 		/**
-		 * API name: {@code model_id}
+		 * Required - API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
 			this.modelId = value;
@@ -165,7 +165,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

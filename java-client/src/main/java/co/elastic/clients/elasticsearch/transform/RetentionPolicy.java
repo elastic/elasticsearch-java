@@ -66,6 +66,10 @@ public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends RetentionPolicyVariant> RetentionPolicy(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private RetentionPolicy(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

@@ -141,12 +141,12 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines which field of the document is to be predicted. It must match one of
-	 * the fields in the index being used to train. If this field is missing from a
-	 * document, then that document will not be used for training, but a prediction
-	 * with the trained model will be generated for it. It is also known as
-	 * continuous target variable. For classification analysis, the data type of the
-	 * field must be numeric (<code>integer</code>, <code>short</code>,
+	 * Required - Defines which field of the document is to be predicted. It must
+	 * match one of the fields in the index being used to train. If this field is
+	 * missing from a document, then that document will not be used for training,
+	 * but a prediction with the trained model will be generated for it. It is also
+	 * known as continuous target variable. For classification analysis, the data
+	 * type of the field must be numeric (<code>integer</code>, <code>short</code>,
 	 * <code>long</code>, <code>byte</code>), categorical (<code>ip</code> or
 	 * <code>keyword</code>), or <code>boolean</code>. There must be no more than 30
 	 * different values in this field. For regression analysis, the data type of the
@@ -579,12 +579,12 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines which field of the document is to be predicted. It must match one of
-		 * the fields in the index being used to train. If this field is missing from a
-		 * document, then that document will not be used for training, but a prediction
-		 * with the trained model will be generated for it. It is also known as
-		 * continuous target variable. For classification analysis, the data type of the
-		 * field must be numeric (<code>integer</code>, <code>short</code>,
+		 * Required - Defines which field of the document is to be predicted. It must
+		 * match one of the fields in the index being used to train. If this field is
+		 * missing from a document, then that document will not be used for training,
+		 * but a prediction with the trained model will be generated for it. It is also
+		 * known as continuous target variable. For classification analysis, the data
+		 * type of the field must be numeric (<code>integer</code>, <code>short</code>,
 		 * <code>long</code>, <code>byte</code>), categorical (<code>ip</code> or
 		 * <code>keyword</code>), or <code>boolean</code>. There must be no more than 30
 		 * different values in this field. For regression analysis, the data type of the
@@ -704,7 +704,6 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #featureProcessors(List)}, creating the list if needed.
-		 * 4
 		 */
 		public BuilderT addFeatureProcessors(DataframeAnalysisFeatureProcessor value) {
 			if (this.featureProcessors == null) {
@@ -724,7 +723,6 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #featureProcessors(List)}, creating the list if needed.
-		 * 5
 		 */
 		public BuilderT addFeatureProcessors(
 				Function<DataframeAnalysisFeatureProcessor.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessor>> fn) {

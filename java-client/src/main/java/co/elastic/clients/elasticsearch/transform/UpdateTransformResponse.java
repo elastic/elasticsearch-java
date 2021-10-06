@@ -86,56 +86,56 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code create_time}
+	 * Required - API name: {@code create_time}
 	 */
 	public long createTime() {
 		return this.createTime;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code dest}
+	 * Required - API name: {@code dest}
 	 */
 	public Destination dest() {
 		return this.dest;
 	}
 
 	/**
-	 * API name: {@code frequency}
+	 * Required - API name: {@code frequency}
 	 */
 	public String frequency() {
 		return this.frequency;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code pivot}
+	 * Required - API name: {@code pivot}
 	 */
 	public Pivot pivot() {
 		return this.pivot;
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public Settings settings() {
 		return this.settings;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public Source source() {
 		return this.source;
@@ -150,7 +150,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -231,7 +231,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		private String version;
 
 		/**
-		 * API name: {@code create_time}
+		 * Required - API name: {@code create_time}
 		 */
 		public Builder createTime(long value) {
 			this.createTime = value;
@@ -239,7 +239,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -247,7 +247,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public Builder dest(Destination value) {
 			this.dest = value;
@@ -255,14 +255,14 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code frequency}
+		 * Required - API name: {@code frequency}
 		 */
 		public Builder frequency(String value) {
 			this.frequency = value;
@@ -270,7 +270,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -278,7 +278,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pivot}
+		 * Required - API name: {@code pivot}
 		 */
 		public Builder pivot(Pivot value) {
 			this.pivot = value;
@@ -286,14 +286,14 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pivot}
+		 * Required - API name: {@code pivot}
 		 */
 		public Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
 			return this.pivot(fn.apply(new Pivot.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Settings value) {
 			this.settings = value;
@@ -301,14 +301,14 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Function<Settings.Builder, ObjectBuilder<Settings>> fn) {
 			return this.settings(fn.apply(new Settings.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Source value) {
 			this.source = value;
@@ -316,7 +316,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
 			return this.source(fn.apply(new Source.Builder()).build());
@@ -338,7 +338,7 @@ public final class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;

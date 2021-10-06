@@ -63,14 +63,14 @@ public final class LanguageContext implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code contexts}
+	 * Required - API name: {@code contexts}
 	 */
 	public List<String> contexts() {
 		return this.contexts;
 	}
 
 	/**
-	 * API name: {@code language}
+	 * Required - API name: {@code language}
 	 */
 	public ScriptLanguage language() {
 		return this.language;
@@ -111,7 +111,7 @@ public final class LanguageContext implements JsonpSerializable {
 		private ScriptLanguage language;
 
 		/**
-		 * API name: {@code contexts}
+		 * Required - API name: {@code contexts}
 		 */
 		public Builder contexts(List<String> value) {
 			this.contexts = value;
@@ -119,7 +119,7 @@ public final class LanguageContext implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code contexts}
+		 * Required - API name: {@code contexts}
 		 */
 		public Builder contexts(String... value) {
 			this.contexts = Arrays.asList(value);
@@ -127,7 +127,7 @@ public final class LanguageContext implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed. 4
+		 * Add a value to {@link #contexts(List)}, creating the list if needed.
 		 */
 		public Builder addContexts(String value) {
 			if (this.contexts == null) {
@@ -138,7 +138,7 @@ public final class LanguageContext implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code language}
+		 * Required - API name: {@code language}
 		 */
 		public Builder language(ScriptLanguage value) {
 			this.language = value;

@@ -75,42 +75,42 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bucket_count}
+	 * Required - API name: {@code bucket_count}
 	 */
 	public long bucketCount() {
 		return this.bucketCount;
 	}
 
 	/**
-	 * API name: {@code exponential_average_search_time_per_hour_ms}
+	 * Required - API name: {@code exponential_average_search_time_per_hour_ms}
 	 */
 	public double exponentialAverageSearchTimePerHourMs() {
 		return this.exponentialAverageSearchTimePerHourMs;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code search_count}
+	 * Required - API name: {@code search_count}
 	 */
 	public long searchCount() {
 		return this.searchCount;
 	}
 
 	/**
-	 * API name: {@code total_search_time_ms}
+	 * Required - API name: {@code total_search_time_ms}
 	 */
 	public double totalSearchTimeMs() {
 		return this.totalSearchTimeMs;
 	}
 
 	/**
-	 * API name: {@code average_search_time_per_bucket_ms}
+	 * Required - API name: {@code average_search_time_per_bucket_ms}
 	 */
 	public Number averageSearchTimePerBucketMs() {
 		return this.averageSearchTimePerBucketMs;
@@ -166,7 +166,7 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		private Number averageSearchTimePerBucketMs;
 
 		/**
-		 * API name: {@code bucket_count}
+		 * Required - API name: {@code bucket_count}
 		 */
 		public Builder bucketCount(long value) {
 			this.bucketCount = value;
@@ -174,7 +174,7 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code exponential_average_search_time_per_hour_ms}
+		 * Required - API name: {@code exponential_average_search_time_per_hour_ms}
 		 */
 		public Builder exponentialAverageSearchTimePerHourMs(double value) {
 			this.exponentialAverageSearchTimePerHourMs = value;
@@ -182,7 +182,7 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -190,7 +190,7 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code search_count}
+		 * Required - API name: {@code search_count}
 		 */
 		public Builder searchCount(long value) {
 			this.searchCount = value;
@@ -198,7 +198,7 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_search_time_ms}
+		 * Required - API name: {@code total_search_time_ms}
 		 */
 		public Builder totalSearchTimeMs(double value) {
 			this.totalSearchTimeMs = value;
@@ -206,7 +206,7 @@ public final class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code average_search_time_per_bucket_ms}
+		 * Required - API name: {@code average_search_time_per_bucket_ms}
 		 */
 		public Builder averageSearchTimePerBucketMs(Number value) {
 			this.averageSearchTimePerBucketMs = value;

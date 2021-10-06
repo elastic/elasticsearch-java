@@ -94,7 +94,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * The unique identifier of the trained model.
+	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -136,8 +136,8 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * The default configuration for inference. This can be either a regression or
-	 * classification configuration. It must match the underlying
+	 * Required - The default configuration for inference. This can be either a
+	 * regression or classification configuration. It must match the underlying
 	 * definition.trained_model's target_type.
 	 * <p>
 	 * API name: {@code inference_config}
@@ -147,7 +147,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * The input field names for the model definition.
+	 * Required - The input field names for the model definition.
 	 * <p>
 	 * API name: {@code input}
 	 */
@@ -259,7 +259,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		private List<String> tags;
 
 		/**
-		 * The unique identifier of the trained model.
+		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -312,8 +312,8 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * The default configuration for inference. This can be either a regression or
-		 * classification configuration. It must match the underlying
+		 * Required - The default configuration for inference. This can be either a
+		 * regression or classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
 		 * <p>
 		 * API name: {@code inference_config}
@@ -324,8 +324,8 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * The default configuration for inference. This can be either a regression or
-		 * classification configuration. It must match the underlying
+		 * Required - The default configuration for inference. This can be either a
+		 * regression or classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
 		 * <p>
 		 * API name: {@code inference_config}
@@ -335,7 +335,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * The input field names for the model definition.
+		 * Required - The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}
 		 */
@@ -345,7 +345,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * The input field names for the model definition.
+		 * Required - The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}
 		 */
@@ -384,7 +384,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #tags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tags(List)}, creating the list if needed.
 		 */
 		public Builder addTags(String value) {
 			if (this.tags == null) {

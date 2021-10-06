@@ -62,14 +62,14 @@ public final class FollowIndexStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<ShardStats> shards() {
 		return this.shards;
@@ -110,7 +110,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		private List<ShardStats> shards;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -118,7 +118,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<ShardStats> value) {
 			this.shards = value;
@@ -126,7 +126,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardStats... value) {
 			this.shards = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(ShardStats value) {
 			if (this.shards == null) {
@@ -152,7 +152,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 5
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
 			return this.addShards(fn.apply(new ShardStats.Builder()).build());

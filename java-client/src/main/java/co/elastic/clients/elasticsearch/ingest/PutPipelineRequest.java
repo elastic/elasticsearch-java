@@ -95,7 +95,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * ID of the ingest pipeline to create or update.
+	 * Required - ID of the ingest pipeline to create or update.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -274,7 +274,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		private Long version;
 
 		/**
-		 * ID of the ingest pipeline to create or update.
+		 * Required - ID of the ingest pipeline to create or update.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -368,7 +368,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 4
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
 		public Builder addOnFailure(Processor value) {
 			if (this.onFailure == null) {
@@ -386,7 +386,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #onFailure(List)}, creating the list if needed. 5
+		 * Add a value to {@link #onFailure(List)}, creating the list if needed.
 		 */
 		public Builder addOnFailure(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addOnFailure(fn.apply(new Processor.Builder()).build());
@@ -415,7 +415,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(Processor value) {
 			if (this.processors == null) {
@@ -433,7 +433,7 @@ public final class PutPipelineRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 5
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.addProcessors(fn.apply(new Processor.Builder()).build());

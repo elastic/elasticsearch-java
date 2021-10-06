@@ -79,7 +79,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 	}
 
 	/**
-	 * API name: {@code prefix}
+	 * Required - API name: {@code prefix}
 	 */
 	public String prefix() {
 		return this.prefix;
@@ -146,7 +146,7 @@ public final class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVa
 		}
 
 		/**
-		 * API name: {@code prefix}
+		 * Required - API name: {@code prefix}
 		 */
 		public Builder prefix(String value) {
 			this.prefix = value;

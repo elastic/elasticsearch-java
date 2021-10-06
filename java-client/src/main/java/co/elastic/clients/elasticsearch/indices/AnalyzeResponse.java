@@ -155,7 +155,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokens(List)}, creating the list if needed.
 		 */
 		public Builder addTokens(AnalyzeToken value) {
 			if (this.tokens == null) {
@@ -173,7 +173,7 @@ public final class AnalyzeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed. 5
+		 * Add a value to {@link #tokens(List)}, creating the list if needed.
 		 */
 		public Builder addTokens(Function<AnalyzeToken.Builder, ObjectBuilder<AnalyzeToken>> fn) {
 			return this.addTokens(fn.apply(new AnalyzeToken.Builder()).build());

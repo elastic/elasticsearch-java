@@ -106,35 +106,35 @@ public final class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public long id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public RecoveryIndexStatus index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
 	public boolean primary() {
 		return this.primary;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public RecoveryOrigin source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code stage}
+	 * Required - API name: {@code stage}
 	 */
 	public String stage() {
 		return this.stage;
@@ -157,7 +157,7 @@ public final class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
 	public String startTimeInMillis() {
 		return this.startTimeInMillis;
@@ -172,14 +172,14 @@ public final class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stop_time_in_millis}
+	 * Required - API name: {@code stop_time_in_millis}
 	 */
 	public String stopTimeInMillis() {
 		return this.stopTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code target}
+	 * Required - API name: {@code target}
 	 */
 	public RecoveryOrigin target() {
 		return this.target;
@@ -194,28 +194,28 @@ public final class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total_time_in_millis}
+	 * Required - API name: {@code total_time_in_millis}
 	 */
 	public String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code translog}
+	 * Required - API name: {@code translog}
 	 */
 	public TranslogStatus translog() {
 		return this.translog;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code verify_index}
+	 * Required - API name: {@code verify_index}
 	 */
 	public VerifyIndex verifyIndex() {
 		return this.verifyIndex;
@@ -340,7 +340,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		private VerifyIndex verifyIndex;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(long value) {
 			this.id = value;
@@ -348,7 +348,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(RecoveryIndexStatus value) {
 			this.index = value;
@@ -356,14 +356,14 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(Function<RecoveryIndexStatus.Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {
 			return this.index(fn.apply(new RecoveryIndexStatus.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
 		public Builder primary(boolean value) {
 			this.primary = value;
@@ -371,7 +371,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(RecoveryOrigin value) {
 			this.source = value;
@@ -379,14 +379,14 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(Function<RecoveryOrigin.Builder, ObjectBuilder<RecoveryOrigin>> fn) {
 			return this.source(fn.apply(new RecoveryOrigin.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code stage}
+		 * Required - API name: {@code stage}
 		 */
 		public Builder stage(String value) {
 			this.stage = value;
@@ -417,7 +417,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
 		public Builder startTimeInMillis(String value) {
 			this.startTimeInMillis = value;
@@ -433,7 +433,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stop_time_in_millis}
+		 * Required - API name: {@code stop_time_in_millis}
 		 */
 		public Builder stopTimeInMillis(String value) {
 			this.stopTimeInMillis = value;
@@ -441,7 +441,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code target}
+		 * Required - API name: {@code target}
 		 */
 		public Builder target(RecoveryOrigin value) {
 			this.target = value;
@@ -449,7 +449,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code target}
+		 * Required - API name: {@code target}
 		 */
 		public Builder target(Function<RecoveryOrigin.Builder, ObjectBuilder<RecoveryOrigin>> fn) {
 			return this.target(fn.apply(new RecoveryOrigin.Builder()).build());
@@ -464,7 +464,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_millis}
+		 * Required - API name: {@code total_time_in_millis}
 		 */
 		public Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
@@ -472,7 +472,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code translog}
+		 * Required - API name: {@code translog}
 		 */
 		public Builder translog(TranslogStatus value) {
 			this.translog = value;
@@ -480,14 +480,14 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code translog}
+		 * Required - API name: {@code translog}
 		 */
 		public Builder translog(Function<TranslogStatus.Builder, ObjectBuilder<TranslogStatus>> fn) {
 			return this.translog(fn.apply(new TranslogStatus.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -495,7 +495,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code verify_index}
+		 * Required - API name: {@code verify_index}
 		 */
 		public Builder verifyIndex(VerifyIndex value) {
 			this.verifyIndex = value;
@@ -503,7 +503,7 @@ public final class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code verify_index}
+		 * Required - API name: {@code verify_index}
 		 */
 		public Builder verifyIndex(Function<VerifyIndex.Builder, ObjectBuilder<VerifyIndex>> fn) {
 			return this.verifyIndex(fn.apply(new VerifyIndex.Builder()).build());

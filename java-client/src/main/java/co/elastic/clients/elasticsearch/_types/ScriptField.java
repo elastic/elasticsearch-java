@@ -60,7 +60,7 @@ public final class ScriptField implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public JsonValue /* _types.Script */ script() {
 		return this.script;
@@ -109,7 +109,7 @@ public final class ScriptField implements JsonpSerializable {
 		private Boolean ignoreFailure;
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;

@@ -77,10 +77,10 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 	}
 
 	/**
-	 * Index or indices on which to perform the analysis. It can be a single index
-	 * or index pattern as well as an array of indices or patterns. NOTE: If your
-	 * source indices contain documents with the same IDs, only the document that is
-	 * indexed last appears in the destination index.
+	 * Required - Index or indices on which to perform the analysis. It can be a
+	 * single index or index pattern as well as an array of indices or patterns.
+	 * NOTE: If your source indices contain documents with the same IDs, only the
+	 * document that is indexed last appears in the destination index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -189,10 +189,10 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ source;
 
 		/**
-		 * Index or indices on which to perform the analysis. It can be a single index
-		 * or index pattern as well as an array of indices or patterns. NOTE: If your
-		 * source indices contain documents with the same IDs, only the document that is
-		 * indexed last appears in the destination index.
+		 * Required - Index or indices on which to perform the analysis. It can be a
+		 * single index or index pattern as well as an array of indices or patterns.
+		 * NOTE: If your source indices contain documents with the same IDs, only the
+		 * document that is indexed last appears in the destination index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -202,10 +202,10 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Index or indices on which to perform the analysis. It can be a single index
-		 * or index pattern as well as an array of indices or patterns. NOTE: If your
-		 * source indices contain documents with the same IDs, only the document that is
-		 * indexed last appears in the destination index.
+		 * Required - Index or indices on which to perform the analysis. It can be a
+		 * single index or index pattern as well as an array of indices or patterns.
+		 * NOTE: If your source indices contain documents with the same IDs, only the
+		 * document that is indexed last appears in the destination index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -215,7 +215,7 @@ public final class DataframeAnalyticsSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {

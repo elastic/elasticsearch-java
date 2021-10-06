@@ -77,14 +77,14 @@ public final class GetTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code access_token}
+	 * Required - API name: {@code access_token}
 	 */
 	public String accessToken() {
 		return this.accessToken;
 	}
 
 	/**
-	 * API name: {@code expires_in}
+	 * Required - API name: {@code expires_in}
 	 */
 	public long expiresIn() {
 		return this.expiresIn;
@@ -99,14 +99,14 @@ public final class GetTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code refresh_token}
+	 * Required - API name: {@code refresh_token}
 	 */
 	public String refreshToken() {
 		return this.refreshToken;
@@ -121,7 +121,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code authentication}
+	 * Required - API name: {@code authentication}
 	 */
 	public AuthenticatedUser authentication() {
 		return this.authentication;
@@ -192,7 +192,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		private AuthenticatedUser authentication;
 
 		/**
-		 * API name: {@code access_token}
+		 * Required - API name: {@code access_token}
 		 */
 		public Builder accessToken(String value) {
 			this.accessToken = value;
@@ -200,7 +200,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code expires_in}
+		 * Required - API name: {@code expires_in}
 		 */
 		public Builder expiresIn(long value) {
 			this.expiresIn = value;
@@ -216,7 +216,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -224,7 +224,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code refresh_token}
+		 * Required - API name: {@code refresh_token}
 		 */
 		public Builder refreshToken(String value) {
 			this.refreshToken = value;
@@ -240,7 +240,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code authentication}
+		 * Required - API name: {@code authentication}
 		 */
 		public Builder authentication(AuthenticatedUser value) {
 			this.authentication = value;
@@ -248,7 +248,7 @@ public final class GetTokenResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code authentication}
+		 * Required - API name: {@code authentication}
 		 */
 		public Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
 			return this.authentication(fn.apply(new AuthenticatedUser.Builder()).build());

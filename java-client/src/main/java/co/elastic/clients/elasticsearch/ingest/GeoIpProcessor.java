@@ -83,42 +83,42 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 	}
 
 	/**
-	 * API name: {@code database_file}
+	 * Required - API name: {@code database_file}
 	 */
 	public String databaseFile() {
 		return this.databaseFile;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code first_only}
+	 * Required - API name: {@code first_only}
 	 */
 	public boolean firstOnly() {
 		return this.firstOnly;
 	}
 
 	/**
-	 * API name: {@code ignore_missing}
+	 * Required - API name: {@code ignore_missing}
 	 */
 	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * API name: {@code properties}
+	 * Required - API name: {@code properties}
 	 */
 	public List<String> properties() {
 		return this.properties;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -174,7 +174,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		private String targetField;
 
 		/**
-		 * API name: {@code database_file}
+		 * Required - API name: {@code database_file}
 		 */
 		public Builder databaseFile(String value) {
 			this.databaseFile = value;
@@ -182,7 +182,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -190,7 +190,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code first_only}
+		 * Required - API name: {@code first_only}
 		 */
 		public Builder firstOnly(boolean value) {
 			this.firstOnly = value;
@@ -198,7 +198,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code ignore_missing}
+		 * Required - API name: {@code ignore_missing}
 		 */
 		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
@@ -206,7 +206,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code properties}
+		 * Required - API name: {@code properties}
 		 */
 		public Builder properties(List<String> value) {
 			this.properties = value;
@@ -214,7 +214,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code properties}
+		 * Required - API name: {@code properties}
 		 */
 		public Builder properties(String... value) {
 			this.properties = Arrays.asList(value);
@@ -222,7 +222,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed. 4
+		 * Add a value to {@link #properties(List)}, creating the list if needed.
 		 */
 		public Builder addProperties(String value) {
 			if (this.properties == null) {
@@ -233,7 +233,7 @@ public final class GeoIpProcessor extends ProcessorBase implements ProcessorVari
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

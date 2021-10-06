@@ -80,7 +80,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	}
 
 	/**
-	 * The default value if field value is not found in the target_map.
+	 * Required - The default value if field value is not found in the target_map.
 	 * <p>
 	 * API name: {@code default_value}
 	 */
@@ -89,7 +89,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	}
 
 	/**
-	 * The resulting feature name.
+	 * Required - The resulting feature name.
 	 * <p>
 	 * API name: {@code feature_name}
 	 */
@@ -98,7 +98,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	}
 
 	/**
-	 * The name of the field to encode.
+	 * Required - The name of the field to encode.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -107,7 +107,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	}
 
 	/**
-	 * The field value to target mean transition map.
+	 * Required - The field value to target mean transition map.
 	 * <p>
 	 * API name: {@code target_map}
 	 */
@@ -161,7 +161,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		private Map<String, JsonData> targetMap;
 
 		/**
-		 * The default value if field value is not found in the target_map.
+		 * Required - The default value if field value is not found in the target_map.
 		 * <p>
 		 * API name: {@code default_value}
 		 */
@@ -171,7 +171,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		}
 
 		/**
-		 * The resulting feature name.
+		 * Required - The resulting feature name.
 		 * <p>
 		 * API name: {@code feature_name}
 		 */
@@ -181,7 +181,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		}
 
 		/**
-		 * The name of the field to encode.
+		 * Required - The name of the field to encode.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -191,7 +191,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		}
 
 		/**
-		 * The field value to target mean transition map.
+		 * Required - The field value to target mean transition map.
 		 * <p>
 		 * API name: {@code target_map}
 		 */

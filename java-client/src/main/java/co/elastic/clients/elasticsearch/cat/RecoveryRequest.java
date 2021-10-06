@@ -159,7 +159,7 @@ public final class RecoveryRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {

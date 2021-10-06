@@ -462,7 +462,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(BulkIndexByScrollFailure value) {
 			if (this.failures == null) {
@@ -481,7 +481,7 @@ public final class ReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(
 				Function<BulkIndexByScrollFailure.Builder, ObjectBuilder<BulkIndexByScrollFailure>> fn) {

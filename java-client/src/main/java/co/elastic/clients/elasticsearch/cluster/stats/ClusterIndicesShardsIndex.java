@@ -60,8 +60,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the number of primary shards assigned to selected
-	 * nodes.
+	 * Required - Contains statistics about the number of primary shards assigned to
+	 * selected nodes.
 	 * <p>
 	 * API name: {@code primaries}
 	 */
@@ -70,8 +70,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the number of replication shards assigned to
-	 * selected nodes.
+	 * Required - Contains statistics about the number of replication shards
+	 * assigned to selected nodes.
 	 * <p>
 	 * API name: {@code replication}
 	 */
@@ -80,7 +80,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the number of shards assigned to selected nodes.
+	 * Required - Contains statistics about the number of shards assigned to
+	 * selected nodes.
 	 * <p>
 	 * API name: {@code shards}
 	 */
@@ -123,8 +124,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		private ClusterShardMetrics shards;
 
 		/**
-		 * Contains statistics about the number of primary shards assigned to selected
-		 * nodes.
+		 * Required - Contains statistics about the number of primary shards assigned to
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code primaries}
 		 */
@@ -134,8 +135,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the number of primary shards assigned to selected
-		 * nodes.
+		 * Required - Contains statistics about the number of primary shards assigned to
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code primaries}
 		 */
@@ -144,8 +145,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the number of replication shards assigned to
-		 * selected nodes.
+		 * Required - Contains statistics about the number of replication shards
+		 * assigned to selected nodes.
 		 * <p>
 		 * API name: {@code replication}
 		 */
@@ -155,8 +156,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the number of replication shards assigned to
-		 * selected nodes.
+		 * Required - Contains statistics about the number of replication shards
+		 * assigned to selected nodes.
 		 * <p>
 		 * API name: {@code replication}
 		 */
@@ -165,7 +166,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the number of shards assigned to selected nodes.
+		 * Required - Contains statistics about the number of shards assigned to
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code shards}
 		 */
@@ -175,7 +177,8 @@ public final class ClusterIndicesShardsIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the number of shards assigned to selected nodes.
+		 * Required - Contains statistics about the number of shards assigned to
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code shards}
 		 */

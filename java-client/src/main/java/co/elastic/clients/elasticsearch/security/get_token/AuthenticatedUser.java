@@ -66,14 +66,14 @@ public final class AuthenticatedUser extends User {
 	}
 
 	/**
-	 * API name: {@code authentication_realm}
+	 * Required - API name: {@code authentication_realm}
 	 */
 	public UserRealm authenticationRealm() {
 		return this.authenticationRealm;
 	}
 
 	/**
-	 * API name: {@code lookup_realm}
+	 * Required - API name: {@code lookup_realm}
 	 */
 	public UserRealm lookupRealm() {
 		return this.lookupRealm;
@@ -88,7 +88,7 @@ public final class AuthenticatedUser extends User {
 	}
 
 	/**
-	 * API name: {@code authentication_type}
+	 * Required - API name: {@code authentication_type}
 	 */
 	public String authenticationType() {
 		return this.authenticationType;
@@ -132,7 +132,7 @@ public final class AuthenticatedUser extends User {
 		private String authenticationType;
 
 		/**
-		 * API name: {@code authentication_realm}
+		 * Required - API name: {@code authentication_realm}
 		 */
 		public Builder authenticationRealm(UserRealm value) {
 			this.authenticationRealm = value;
@@ -140,14 +140,14 @@ public final class AuthenticatedUser extends User {
 		}
 
 		/**
-		 * API name: {@code authentication_realm}
+		 * Required - API name: {@code authentication_realm}
 		 */
 		public Builder authenticationRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
 			return this.authenticationRealm(fn.apply(new UserRealm.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code lookup_realm}
+		 * Required - API name: {@code lookup_realm}
 		 */
 		public Builder lookupRealm(UserRealm value) {
 			this.lookupRealm = value;
@@ -155,7 +155,7 @@ public final class AuthenticatedUser extends User {
 		}
 
 		/**
-		 * API name: {@code lookup_realm}
+		 * Required - API name: {@code lookup_realm}
 		 */
 		public Builder lookupRealm(Function<UserRealm.Builder, ObjectBuilder<UserRealm>> fn) {
 			return this.lookupRealm(fn.apply(new UserRealm.Builder()).build());
@@ -178,7 +178,7 @@ public final class AuthenticatedUser extends User {
 		}
 
 		/**
-		 * API name: {@code authentication_type}
+		 * Required - API name: {@code authentication_type}
 		 */
 		public Builder authenticationType(String value) {
 			this.authenticationType = value;

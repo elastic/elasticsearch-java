@@ -66,21 +66,21 @@ public final class FieldTypes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code index_count}
+	 * Required - API name: {@code index_count}
 	 */
 	public int indexCount() {
 		return this.indexCount;
@@ -139,7 +139,7 @@ public final class FieldTypes implements JsonpSerializable {
 		private Integer scriptCount;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -147,7 +147,7 @@ public final class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -155,7 +155,7 @@ public final class FieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_count}
+		 * Required - API name: {@code index_count}
 		 */
 		public Builder indexCount(int value) {
 			this.indexCount = value;

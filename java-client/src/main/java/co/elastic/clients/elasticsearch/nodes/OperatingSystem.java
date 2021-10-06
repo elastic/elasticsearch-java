@@ -64,28 +64,28 @@ public final class OperatingSystem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cpu}
+	 * Required - API name: {@code cpu}
 	 */
 	public Cpu cpu() {
 		return this.cpu;
 	}
 
 	/**
-	 * API name: {@code mem}
+	 * Required - API name: {@code mem}
 	 */
 	public ExtendedMemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
-	 * API name: {@code swap}
+	 * Required - API name: {@code swap}
 	 */
 	public MemoryStats swap() {
 		return this.swap;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public long timestamp() {
 		return this.timestamp;
@@ -131,7 +131,7 @@ public final class OperatingSystem implements JsonpSerializable {
 		private Long timestamp;
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Cpu value) {
 			this.cpu = value;
@@ -139,14 +139,14 @@ public final class OperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cpu}
+		 * Required - API name: {@code cpu}
 		 */
 		public Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
 			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(ExtendedMemoryStats value) {
 			this.mem = value;
@@ -154,14 +154,14 @@ public final class OperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mem}
+		 * Required - API name: {@code mem}
 		 */
 		public Builder mem(Function<ExtendedMemoryStats.Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
 			return this.mem(fn.apply(new ExtendedMemoryStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code swap}
+		 * Required - API name: {@code swap}
 		 */
 		public Builder swap(MemoryStats value) {
 			this.swap = value;
@@ -169,14 +169,14 @@ public final class OperatingSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code swap}
+		 * Required - API name: {@code swap}
 		 */
 		public Builder swap(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.swap(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(long value) {
 			this.timestamp = value;

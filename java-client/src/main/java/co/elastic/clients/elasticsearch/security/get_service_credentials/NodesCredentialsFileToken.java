@@ -59,7 +59,7 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public List<String> nodes() {
 		return this.nodes;
@@ -95,7 +95,7 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 		private List<String> nodes;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(List<String> value) {
 			this.nodes = value;
@@ -103,7 +103,7 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(String... value) {
 			this.nodes = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodes(List)}, creating the list if needed.
 		 */
 		public Builder addNodes(String value) {
 			if (this.nodes == null) {

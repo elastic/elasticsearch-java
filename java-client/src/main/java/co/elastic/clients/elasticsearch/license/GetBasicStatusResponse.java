@@ -54,7 +54,7 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code eligible_to_start_basic}
+	 * Required - API name: {@code eligible_to_start_basic}
 	 */
 	public boolean eligibleToStartBasic() {
 		return this.eligibleToStartBasic;
@@ -85,7 +85,7 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 		private Boolean eligibleToStartBasic;
 
 		/**
-		 * API name: {@code eligible_to_start_basic}
+		 * Required - API name: {@code eligible_to_start_basic}
 		 */
 		public Builder eligibleToStartBasic(boolean value) {
 			this.eligibleToStartBasic = value;

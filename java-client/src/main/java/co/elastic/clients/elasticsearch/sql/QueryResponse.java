@@ -85,7 +85,7 @@ public final class QueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code rows}
+	 * Required - API name: {@code rows}
 	 */
 	public List<List<JsonData>> rows() {
 		return this.rows;
@@ -166,7 +166,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #columns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #columns(List)}, creating the list if needed.
 		 */
 		public Builder addColumns(Column value) {
 			if (this.columns == null) {
@@ -184,7 +184,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #columns(List)}, creating the list if needed. 5
+		 * Add a value to {@link #columns(List)}, creating the list if needed.
 		 */
 		public Builder addColumns(Function<Column.Builder, ObjectBuilder<Column>> fn) {
 			return this.addColumns(fn.apply(new Column.Builder()).build());
@@ -199,7 +199,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rows}
+		 * Required - API name: {@code rows}
 		 */
 		public Builder rows(List<List<JsonData>> value) {
 			this.rows = value;
@@ -207,7 +207,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rows}
+		 * Required - API name: {@code rows}
 		 */
 		public Builder rows(List<JsonData>... value) {
 			this.rows = Arrays.asList(value);
@@ -215,7 +215,7 @@ public final class QueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #rows(List)}, creating the list if needed. 4
+		 * Add a value to {@link #rows(List)}, creating the list if needed.
 		 */
 		public Builder addRows(List<JsonData> value) {
 			if (this.rows == null) {

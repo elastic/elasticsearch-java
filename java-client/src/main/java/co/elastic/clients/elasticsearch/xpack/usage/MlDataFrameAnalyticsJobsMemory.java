@@ -55,7 +55,7 @@ public final class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code peak_usage_bytes}
+	 * Required - API name: {@code peak_usage_bytes}
 	 */
 	public JobStatistics peakUsageBytes() {
 		return this.peakUsageBytes;
@@ -86,7 +86,7 @@ public final class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 		private JobStatistics peakUsageBytes;
 
 		/**
-		 * API name: {@code peak_usage_bytes}
+		 * Required - API name: {@code peak_usage_bytes}
 		 */
 		public Builder peakUsageBytes(JobStatistics value) {
 			this.peakUsageBytes = value;
@@ -94,7 +94,7 @@ public final class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code peak_usage_bytes}
+		 * Required - API name: {@code peak_usage_bytes}
 		 */
 		public Builder peakUsageBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
 			return this.peakUsageBytes(fn.apply(new JobStatistics.Builder()).build());

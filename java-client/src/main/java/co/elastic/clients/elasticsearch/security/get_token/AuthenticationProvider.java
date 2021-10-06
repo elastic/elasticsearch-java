@@ -58,14 +58,14 @@ public final class AuthenticationProvider implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -101,7 +101,7 @@ public final class AuthenticationProvider implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;
@@ -109,7 +109,7 @@ public final class AuthenticationProvider implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

@@ -63,7 +63,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 	private final Integer ignoreAbove;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
+	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
 	@Nullable
 	private final Map<String, Property> fields;
@@ -126,7 +126,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 * API name: {@code dynamic}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic() {
+	public JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
 		return this.dynamic;
 	}
 
@@ -235,7 +235,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		private Integer ignoreAbove;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ dynamic;
+		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
 
 		@Nullable
 		private Map<String, Property> fields;
@@ -331,7 +331,7 @@ public abstract class PropertyBase implements JsonpSerializable {
 		 * API name: {@code dynamic}
 		 */
 		public BuilderT dynamic(
-				@Nullable JsonValue /* Union(internal.boolean | _types.mapping.DynamicMapping) */ value) {
+				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
 			this.dynamic = value;
 			return self();
 		}

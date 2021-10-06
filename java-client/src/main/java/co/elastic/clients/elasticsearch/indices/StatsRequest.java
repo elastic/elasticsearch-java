@@ -302,7 +302,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {
@@ -335,7 +335,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -369,7 +369,6 @@ public final class StatsRequest extends RequestBase {
 
 		/**
 		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addCompletionFields(String value) {
 			if (this.completionFields == null) {
@@ -402,7 +401,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -435,7 +434,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
 		 */
 		public Builder addFielddataFields(String value) {
 			if (this.fielddataFields == null) {
@@ -468,7 +467,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -510,7 +509,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -575,7 +574,7 @@ public final class StatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed. 4
+		 * Add a value to {@link #types(List)}, creating the list if needed.
 		 */
 		public Builder addTypes(String value) {
 			if (this.types == null) {

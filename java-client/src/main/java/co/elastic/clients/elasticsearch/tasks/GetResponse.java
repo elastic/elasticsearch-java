@@ -67,14 +67,14 @@ public final class GetResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code completed}
+	 * Required - API name: {@code completed}
 	 */
 	public boolean completed() {
 		return this.completed;
 	}
 
 	/**
-	 * API name: {@code task}
+	 * Required - API name: {@code task}
 	 */
 	public Info task() {
 		return this.task;
@@ -145,7 +145,7 @@ public final class GetResponse implements JsonpSerializable {
 		private ErrorCause error;
 
 		/**
-		 * API name: {@code completed}
+		 * Required - API name: {@code completed}
 		 */
 		public Builder completed(boolean value) {
 			this.completed = value;
@@ -153,7 +153,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code task}
+		 * Required - API name: {@code task}
 		 */
 		public Builder task(Info value) {
 			this.task = value;
@@ -161,7 +161,7 @@ public final class GetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code task}
+		 * Required - API name: {@code task}
 		 */
 		public Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
 			return this.task(fn.apply(new Info.Builder()).build());

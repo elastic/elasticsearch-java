@@ -70,21 +70,21 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code order}
+	 * Required - API name: {@code order}
 	 */
 	public SortOrder order() {
 		return this.order;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -118,7 +118,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -126,7 +126,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code order}
+		 * Required - API name: {@code order}
 		 */
 		public Builder order(SortOrder value) {
 			this.order = value;
@@ -134,7 +134,7 @@ public final class SortProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

@@ -66,14 +66,14 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code attr}
+	 * Required - API name: {@code attr}
 	 */
 	public Map<String, JsonData> attr() {
 		return this.attr;
@@ -133,7 +133,7 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 		private String maxLocalStorageNodes;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -141,7 +141,7 @@ public final class NodeInfoSettingsNode implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attr}
+		 * Required - API name: {@code attr}
 		 */
 		public Builder attr(Map<String, JsonData> value) {
 			this.attr = value;

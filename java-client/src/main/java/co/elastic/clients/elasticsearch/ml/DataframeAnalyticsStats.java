@@ -68,6 +68,10 @@ public class DataframeAnalyticsStats implements TaggedUnion<Object>, JsonpSerial
 
 	}
 
+	public <T extends DataframeAnalyticsStatsVariant> DataframeAnalyticsStats(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private DataframeAnalyticsStats(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

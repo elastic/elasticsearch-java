@@ -66,7 +66,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Pipeline ID
+	 * Required - Pipeline ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -109,7 +109,7 @@ public final class DeletePipelineRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Pipeline ID
+		 * Required - Pipeline ID
 		 * <p>
 		 * API name: {@code id}
 		 */

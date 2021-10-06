@@ -62,21 +62,21 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code policy}
+	 * Required - API name: {@code policy}
 	 */
 	public String policy() {
 		return this.policy;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code modified_date_in_millis}
+	 * Required - API name: {@code modified_date_in_millis}
 	 */
 	public String modifiedDateInMillis() {
 		return this.modifiedDateInMillis;
@@ -117,7 +117,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		private String modifiedDateInMillis;
 
 		/**
-		 * API name: {@code policy}
+		 * Required - API name: {@code policy}
 		 */
 		public Builder policy(String value) {
 			this.policy = value;
@@ -125,7 +125,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;
@@ -133,7 +133,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code modified_date_in_millis}
+		 * Required - API name: {@code modified_date_in_millis}
 		 */
 		public Builder modifiedDateInMillis(String value) {
 			this.modifiedDateInMillis = value;

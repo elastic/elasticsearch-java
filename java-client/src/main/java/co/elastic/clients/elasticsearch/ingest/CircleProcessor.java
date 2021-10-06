@@ -77,35 +77,35 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 	}
 
 	/**
-	 * API name: {@code error_distance}
+	 * Required - API name: {@code error_distance}
 	 */
 	public double errorDistance() {
 		return this.errorDistance;
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code ignore_missing}
+	 * Required - API name: {@code ignore_missing}
 	 */
 	public boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
-	 * API name: {@code shape_type}
+	 * Required - API name: {@code shape_type}
 	 */
 	public ShapeType shapeType() {
 		return this.shapeType;
 	}
 
 	/**
-	 * API name: {@code target_field}
+	 * Required - API name: {@code target_field}
 	 */
 	public String targetField() {
 		return this.targetField;
@@ -151,7 +151,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		private String targetField;
 
 		/**
-		 * API name: {@code error_distance}
+		 * Required - API name: {@code error_distance}
 		 */
 		public Builder errorDistance(double value) {
 			this.errorDistance = value;
@@ -159,7 +159,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -167,7 +167,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code ignore_missing}
+		 * Required - API name: {@code ignore_missing}
 		 */
 		public Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
@@ -175,7 +175,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code shape_type}
+		 * Required - API name: {@code shape_type}
 		 */
 		public Builder shapeType(ShapeType value) {
 			this.shapeType = value;
@@ -183,7 +183,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code target_field}
+		 * Required - API name: {@code target_field}
 		 */
 		public Builder targetField(String value) {
 			this.targetField = value;

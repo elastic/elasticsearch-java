@@ -73,21 +73,21 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code feature_name}
+	 * Required - API name: {@code feature_name}
 	 */
 	public String featureName() {
 		return this.featureName;
 	}
 
 	/**
-	 * API name: {@code frequency_map}
+	 * Required - API name: {@code frequency_map}
 	 */
 	public Map<String, Double> frequencyMap() {
 		return this.frequencyMap;
@@ -134,7 +134,7 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		private Map<String, Double> frequencyMap;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -142,7 +142,7 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		}
 
 		/**
-		 * API name: {@code feature_name}
+		 * Required - API name: {@code feature_name}
 		 */
 		public Builder featureName(String value) {
 			this.featureName = value;
@@ -150,7 +150,7 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		}
 
 		/**
-		 * API name: {@code frequency_map}
+		 * Required - API name: {@code frequency_map}
 		 */
 		public Builder frequencyMap(Map<String, Double> value) {
 			this.frequencyMap = value;

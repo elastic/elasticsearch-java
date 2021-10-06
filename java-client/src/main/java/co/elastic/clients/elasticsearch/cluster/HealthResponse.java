@@ -112,7 +112,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of active primary shards.
+	 * Required - The number of active primary shards.
 	 * <p>
 	 * API name: {@code active_primary_shards}
 	 */
@@ -121,7 +121,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The total number of active primary and replica shards.
+	 * Required - The total number of active primary and replica shards.
 	 * <p>
 	 * API name: {@code active_shards}
 	 */
@@ -130,7 +130,8 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The ratio of active shards in the cluster expressed as a percentage.
+	 * Required - The ratio of active shards in the cluster expressed as a
+	 * percentage.
 	 * <p>
 	 * API name: {@code active_shards_percent_as_number}
 	 */
@@ -139,7 +140,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the cluster.
+	 * Required - The name of the cluster.
 	 * <p>
 	 * API name: {@code cluster_name}
 	 */
@@ -148,8 +149,8 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of shards whose allocation has been delayed by the timeout
-	 * settings.
+	 * Required - The number of shards whose allocation has been delayed by the
+	 * timeout settings.
 	 * <p>
 	 * API name: {@code delayed_unassigned_shards}
 	 */
@@ -166,7 +167,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of shards that are under initialization.
+	 * Required - The number of shards that are under initialization.
 	 * <p>
 	 * API name: {@code initializing_shards}
 	 */
@@ -175,7 +176,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of nodes that are dedicated data nodes.
+	 * Required - The number of nodes that are dedicated data nodes.
 	 * <p>
 	 * API name: {@code number_of_data_nodes}
 	 */
@@ -184,14 +185,14 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code number_of_in_flight_fetch}
+	 * Required - API name: {@code number_of_in_flight_fetch}
 	 */
 	public int numberOfInFlightFetch() {
 		return this.numberOfInFlightFetch;
 	}
 
 	/**
-	 * The number of nodes within the cluster.
+	 * Required - The number of nodes within the cluster.
 	 * <p>
 	 * API name: {@code number_of_nodes}
 	 */
@@ -200,7 +201,8 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of cluster-level changes that have not yet been executed.
+	 * Required - The number of cluster-level changes that have not yet been
+	 * executed.
 	 * <p>
 	 * API name: {@code number_of_pending_tasks}
 	 */
@@ -209,7 +211,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of shards that are under relocation.
+	 * Required - The number of shards that are under relocation.
 	 * <p>
 	 * API name: {@code relocating_shards}
 	 */
@@ -218,15 +220,15 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public Health status() {
 		return this.status;
 	}
 
 	/**
-	 * The time expressed in milliseconds since the earliest initiated task is
-	 * waiting for being performed.
+	 * Required - The time expressed in milliseconds since the earliest initiated
+	 * task is waiting for being performed.
 	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
@@ -235,8 +237,8 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * If false the response returned within the period of time that is specified by
-	 * the timeout parameter (30s by default)
+	 * Required - If false the response returned within the period of time that is
+	 * specified by the timeout parameter (30s by default)
 	 * <p>
 	 * API name: {@code timed_out}
 	 */
@@ -245,7 +247,7 @@ public final class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The number of shards that are not allocated.
+	 * Required - The number of shards that are not allocated.
 	 * <p>
 	 * API name: {@code unassigned_shards}
 	 */
@@ -364,7 +366,7 @@ public final class HealthResponse implements JsonpSerializable {
 		private Integer unassignedShards;
 
 		/**
-		 * The number of active primary shards.
+		 * Required - The number of active primary shards.
 		 * <p>
 		 * API name: {@code active_primary_shards}
 		 */
@@ -374,7 +376,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The total number of active primary and replica shards.
+		 * Required - The total number of active primary and replica shards.
 		 * <p>
 		 * API name: {@code active_shards}
 		 */
@@ -384,7 +386,8 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The ratio of active shards in the cluster expressed as a percentage.
+		 * Required - The ratio of active shards in the cluster expressed as a
+		 * percentage.
 		 * <p>
 		 * API name: {@code active_shards_percent_as_number}
 		 */
@@ -394,7 +397,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The name of the cluster.
+		 * Required - The name of the cluster.
 		 * <p>
 		 * API name: {@code cluster_name}
 		 */
@@ -404,8 +407,8 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of shards whose allocation has been delayed by the timeout
-		 * settings.
+		 * Required - The number of shards whose allocation has been delayed by the
+		 * timeout settings.
 		 * <p>
 		 * API name: {@code delayed_unassigned_shards}
 		 */
@@ -448,7 +451,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of shards that are under initialization.
+		 * Required - The number of shards that are under initialization.
 		 * <p>
 		 * API name: {@code initializing_shards}
 		 */
@@ -458,7 +461,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of nodes that are dedicated data nodes.
+		 * Required - The number of nodes that are dedicated data nodes.
 		 * <p>
 		 * API name: {@code number_of_data_nodes}
 		 */
@@ -468,7 +471,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number_of_in_flight_fetch}
+		 * Required - API name: {@code number_of_in_flight_fetch}
 		 */
 		public Builder numberOfInFlightFetch(int value) {
 			this.numberOfInFlightFetch = value;
@@ -476,7 +479,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of nodes within the cluster.
+		 * Required - The number of nodes within the cluster.
 		 * <p>
 		 * API name: {@code number_of_nodes}
 		 */
@@ -486,7 +489,8 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of cluster-level changes that have not yet been executed.
+		 * Required - The number of cluster-level changes that have not yet been
+		 * executed.
 		 * <p>
 		 * API name: {@code number_of_pending_tasks}
 		 */
@@ -496,7 +500,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of shards that are under relocation.
+		 * Required - The number of shards that are under relocation.
 		 * <p>
 		 * API name: {@code relocating_shards}
 		 */
@@ -506,7 +510,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(Health value) {
 			this.status = value;
@@ -514,8 +518,8 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The time expressed in milliseconds since the earliest initiated task is
-		 * waiting for being performed.
+		 * Required - The time expressed in milliseconds since the earliest initiated
+		 * task is waiting for being performed.
 		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
@@ -525,8 +529,8 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * If false the response returned within the period of time that is specified by
-		 * the timeout parameter (30s by default)
+		 * Required - If false the response returned within the period of time that is
+		 * specified by the timeout parameter (30s by default)
 		 * <p>
 		 * API name: {@code timed_out}
 		 */
@@ -536,7 +540,7 @@ public final class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The number of shards that are not allocated.
+		 * Required - The number of shards that are not allocated.
 		 * <p>
 		 * API name: {@code unassigned_shards}
 		 */

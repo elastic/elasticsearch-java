@@ -78,7 +78,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Script ID
+	 * Required - Script ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -165,7 +165,7 @@ public final class PutScriptRequest extends RequestBase implements JsonpSerializ
 		private StoredScript script;
 
 		/**
-		 * Script ID
+		 * Required - Script ID
 		 * <p>
 		 * API name: {@code id}
 		 */

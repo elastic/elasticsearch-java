@@ -102,7 +102,7 @@ public final class GetNodeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {

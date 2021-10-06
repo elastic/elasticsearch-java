@@ -67,35 +67,35 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code free_in_bytes}
+	 * Required - API name: {@code free_in_bytes}
 	 */
 	public long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * API name: {@code free_percent}
+	 * Required - API name: {@code free_percent}
 	 */
 	public int freePercent() {
 		return this.freePercent;
 	}
 
 	/**
-	 * API name: {@code total_in_bytes}
+	 * Required - API name: {@code total_in_bytes}
 	 */
 	public long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
-	 * API name: {@code used_in_bytes}
+	 * Required - API name: {@code used_in_bytes}
 	 */
 	public long usedInBytes() {
 		return this.usedInBytes;
 	}
 
 	/**
-	 * API name: {@code used_percent}
+	 * Required - API name: {@code used_percent}
 	 */
 	public int usedPercent() {
 		return this.usedPercent;
@@ -146,7 +146,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		private Integer usedPercent;
 
 		/**
-		 * API name: {@code free_in_bytes}
+		 * Required - API name: {@code free_in_bytes}
 		 */
 		public Builder freeInBytes(long value) {
 			this.freeInBytes = value;
@@ -154,7 +154,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free_percent}
+		 * Required - API name: {@code free_percent}
 		 */
 		public Builder freePercent(int value) {
 			this.freePercent = value;
@@ -162,7 +162,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_in_bytes}
+		 * Required - API name: {@code total_in_bytes}
 		 */
 		public Builder totalInBytes(long value) {
 			this.totalInBytes = value;
@@ -170,7 +170,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code used_in_bytes}
+		 * Required - API name: {@code used_in_bytes}
 		 */
 		public Builder usedInBytes(long value) {
 			this.usedInBytes = value;
@@ -178,7 +178,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code used_percent}
+		 * Required - API name: {@code used_percent}
 		 */
 		public Builder usedPercent(int value) {
 			this.usedPercent = value;

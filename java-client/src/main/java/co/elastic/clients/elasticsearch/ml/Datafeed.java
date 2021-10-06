@@ -148,7 +148,7 @@ public final class Datafeed implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code datafeed_id}
+	 * Required - API name: {@code datafeed_id}
 	 */
 	public String datafeedId() {
 		return this.datafeedId;
@@ -163,7 +163,7 @@ public final class Datafeed implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
@@ -178,7 +178,7 @@ public final class Datafeed implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
@@ -193,7 +193,7 @@ public final class Datafeed implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
@@ -224,7 +224,7 @@ public final class Datafeed implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code delayed_data_check_config}
+	 * Required - API name: {@code delayed_data_check_config}
 	 */
 	public DelayedDataCheckConfig delayedDataCheckConfig() {
 		return this.delayedDataCheckConfig;
@@ -511,7 +511,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeed_id}
+		 * Required - API name: {@code datafeed_id}
 		 */
 		public Builder datafeedId(String value) {
 			this.datafeedId = value;
@@ -527,7 +527,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -535,7 +535,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -543,7 +543,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -570,7 +570,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indexes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexes(List)}, creating the list if needed.
 		 */
 		public Builder addIndexes(String value) {
 			if (this.indexes == null) {
@@ -581,7 +581,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -597,7 +597,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -605,7 +605,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
@@ -661,7 +661,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code delayed_data_check_config}
+		 * Required - API name: {@code delayed_data_check_config}
 		 */
 		public Builder delayedDataCheckConfig(DelayedDataCheckConfig value) {
 			this.delayedDataCheckConfig = value;
@@ -669,7 +669,7 @@ public final class Datafeed implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code delayed_data_check_config}
+		 * Required - API name: {@code delayed_data_check_config}
 		 */
 		public Builder delayedDataCheckConfig(
 				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {

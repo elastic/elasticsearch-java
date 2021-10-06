@@ -76,35 +76,35 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 	}
 
 	/**
-	 * API name: {@code array_path}
+	 * Required - API name: {@code array_path}
 	 */
 	public String arrayPath() {
 		return this.arrayPath;
 	}
 
 	/**
-	 * API name: {@code comparison}
+	 * Required - API name: {@code comparison}
 	 */
 	public String comparison() {
 		return this.comparison;
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code quantifier}
+	 * Required - API name: {@code quantifier}
 	 */
 	public Quantifier quantifier() {
 		return this.quantifier;
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public JsonData value() {
 		return this.value;
@@ -155,7 +155,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		private JsonData value;
 
 		/**
-		 * API name: {@code array_path}
+		 * Required - API name: {@code array_path}
 		 */
 		public Builder arrayPath(String value) {
 			this.arrayPath = value;
@@ -163,7 +163,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		}
 
 		/**
-		 * API name: {@code comparison}
+		 * Required - API name: {@code comparison}
 		 */
 		public Builder comparison(String value) {
 			this.comparison = value;
@@ -171,7 +171,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		}
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -179,7 +179,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		}
 
 		/**
-		 * API name: {@code quantifier}
+		 * Required - API name: {@code quantifier}
 		 */
 		public Builder quantifier(Quantifier value) {
 			this.quantifier = value;
@@ -187,7 +187,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(JsonData value) {
 			this.value = value;

@@ -58,7 +58,7 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code ssl}
+	 * Required - API name: {@code ssl}
 	 */
 	public Map<String, String> ssl() {
 		return this.ssl;
@@ -95,7 +95,7 @@ public final class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 		private Map<String, String> ssl;
 
 		/**
-		 * API name: {@code ssl}
+		 * Required - API name: {@code ssl}
 		 */
 		public Builder ssl(Map<String, String> value) {
 			this.ssl = value;

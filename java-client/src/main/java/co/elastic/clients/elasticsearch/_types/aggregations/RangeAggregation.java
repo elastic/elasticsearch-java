@@ -193,7 +193,7 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ranges(List)}, creating the list if needed.
 		 */
 		public Builder addRanges(AggregationRange value) {
 			if (this.ranges == null) {
@@ -211,7 +211,7 @@ public final class RangeAggregation extends BucketAggregationBase implements Agg
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
+		 * Add a value to {@link #ranges(List)}, creating the list if needed.
 		 */
 		public Builder addRanges(Function<AggregationRange.Builder, ObjectBuilder<AggregationRange>> fn) {
 			return this.addRanges(fn.apply(new AggregationRange.Builder()).build());

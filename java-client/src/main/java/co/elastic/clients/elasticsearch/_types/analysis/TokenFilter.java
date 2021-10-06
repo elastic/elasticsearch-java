@@ -50,10 +50,13 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	public static final String FINGERPRINT = "fingerprint";
 	public static final String HUNSPELL = "hunspell";
 	public static final String HYPHENATION_DECOMPOUNDER = "hyphenation_decompounder";
+	public static final String KSTEM = "kstem";
 	public static final String KEEP_TYPES = "keep_types";
 	public static final String KEEP = "keep";
 	public static final String KEYWORD_MARKER = "keyword_marker";
-	public static final String KSTEM = "kstem";
+	public static final String KUROMOJI_PART_OF_SPEECH = "kuromoji_part_of_speech";
+	public static final String KUROMOJI_READINGFORM = "kuromoji_readingform";
+	public static final String KUROMOJI_STEMMER = "kuromoji_stemmer";
 	public static final String LENGTH = "length";
 	public static final String LIMIT = "limit";
 	public static final String LOWERCASE = "lowercase";
@@ -79,9 +82,6 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	public static final String UPPERCASE = "uppercase";
 	public static final String WORD_DELIMITER_GRAPH = "word_delimiter_graph";
 	public static final String WORD_DELIMITER = "word_delimiter";
-	public static final String KUROMOJI_STEMMER = "kuromoji_stemmer";
-	public static final String KUROMOJI_READINGFORM = "kuromoji_readingform";
-	public static final String KUROMOJI_PART_OF_SPEECH = "kuromoji_part_of_speech";
 
 	// Tagged union implementation
 
@@ -103,6 +103,10 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		this._type = Objects.requireNonNull(value._variantType(), "variant type");
 		this._value = Objects.requireNonNull(value, "variant value");
 
+	}
+
+	public <T extends TokenFilterVariant> TokenFilter(ObjectBuilder<T> builder) {
+		this(builder.build());
 	}
 
 	private TokenFilter(Builder builder) {
@@ -209,6 +213,16 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	}
 
 	/**
+	 * Get the {@code kstem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kstem} kind.
+	 */
+	public KStemTokenFilter kstem() {
+		return TaggedUnionUtils.get(this, KSTEM);
+	}
+
+	/**
 	 * Get the {@code keep_types} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -239,13 +253,36 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 	}
 
 	/**
-	 * Get the {@code kstem} variant value.
+	 * Get the {@code kuromoji_part_of_speech} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code kstem} kind.
+	 *             if the current variant is not of the
+	 *             {@code kuromoji_part_of_speech} kind.
 	 */
-	public KStemTokenFilter kstem() {
-		return TaggedUnionUtils.get(this, KSTEM);
+	public KuromojiPartOfSpeechTokenFilter kuromojiPartOfSpeech() {
+		return TaggedUnionUtils.get(this, KUROMOJI_PART_OF_SPEECH);
+	}
+
+	/**
+	 * Get the {@code kuromoji_readingform} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kuromoji_readingform}
+	 *             kind.
+	 */
+	public KuromojiReadingFormTokenFilter kuromojiReadingform() {
+		return TaggedUnionUtils.get(this, KUROMOJI_READINGFORM);
+	}
+
+	/**
+	 * Get the {@code kuromoji_stemmer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kuromoji_stemmer}
+	 *             kind.
+	 */
+	public KuromojiStemmerTokenFilter kuromojiStemmer() {
+		return TaggedUnionUtils.get(this, KUROMOJI_STEMMER);
 	}
 
 	/**
@@ -505,39 +542,6 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		return TaggedUnionUtils.get(this, WORD_DELIMITER);
 	}
 
-	/**
-	 * Get the {@code kuromoji_stemmer} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code kuromoji_stemmer}
-	 *             kind.
-	 */
-	public KuromojiStemmerTokenFilter kuromojiStemmer() {
-		return TaggedUnionUtils.get(this, KUROMOJI_STEMMER);
-	}
-
-	/**
-	 * Get the {@code kuromoji_readingform} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code kuromoji_readingform}
-	 *             kind.
-	 */
-	public KuromojiReadingFormTokenFilter kuromojiReadingform() {
-		return TaggedUnionUtils.get(this, KUROMOJI_READINGFORM);
-	}
-
-	/**
-	 * Get the {@code kuromoji_part_of_speech} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the
-	 *             {@code kuromoji_part_of_speech} kind.
-	 */
-	public KuromojiPartOfSpeechTokenFilter kuromojiPartOfSpeech() {
-		return TaggedUnionUtils.get(this, KUROMOJI_PART_OF_SPEECH);
-	}
-
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -642,6 +646,16 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 			return this.hyphenationDecompounder(f.apply(new HyphenationDecompounderTokenFilter.Builder()).build());
 		}
 
+		public Builder kstem(KStemTokenFilter v) {
+			this._type = KSTEM;
+			this._value = v;
+			return this;
+		}
+
+		public Builder kstem(Function<KStemTokenFilter.Builder, ObjectBuilder<KStemTokenFilter>> f) {
+			return this.kstem(f.apply(new KStemTokenFilter.Builder()).build());
+		}
+
 		public Builder keepTypes(KeepTypesTokenFilter v) {
 			this._type = KEEP_TYPES;
 			this._value = v;
@@ -673,14 +687,37 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 			return this.keywordMarker(f.apply(new KeywordMarkerTokenFilter.Builder()).build());
 		}
 
-		public Builder kstem(KStemTokenFilter v) {
-			this._type = KSTEM;
+		public Builder kuromojiPartOfSpeech(KuromojiPartOfSpeechTokenFilter v) {
+			this._type = KUROMOJI_PART_OF_SPEECH;
 			this._value = v;
 			return this;
 		}
 
-		public Builder kstem(Function<KStemTokenFilter.Builder, ObjectBuilder<KStemTokenFilter>> f) {
-			return this.kstem(f.apply(new KStemTokenFilter.Builder()).build());
+		public Builder kuromojiPartOfSpeech(
+				Function<KuromojiPartOfSpeechTokenFilter.Builder, ObjectBuilder<KuromojiPartOfSpeechTokenFilter>> f) {
+			return this.kuromojiPartOfSpeech(f.apply(new KuromojiPartOfSpeechTokenFilter.Builder()).build());
+		}
+
+		public Builder kuromojiReadingform(KuromojiReadingFormTokenFilter v) {
+			this._type = KUROMOJI_READINGFORM;
+			this._value = v;
+			return this;
+		}
+
+		public Builder kuromojiReadingform(
+				Function<KuromojiReadingFormTokenFilter.Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> f) {
+			return this.kuromojiReadingform(f.apply(new KuromojiReadingFormTokenFilter.Builder()).build());
+		}
+
+		public Builder kuromojiStemmer(KuromojiStemmerTokenFilter v) {
+			this._type = KUROMOJI_STEMMER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder kuromojiStemmer(
+				Function<KuromojiStemmerTokenFilter.Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> f) {
+			return this.kuromojiStemmer(f.apply(new KuromojiStemmerTokenFilter.Builder()).build());
 		}
 
 		public Builder length(LengthTokenFilter v) {
@@ -943,39 +980,6 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 			return this.wordDelimiter(f.apply(new WordDelimiterTokenFilter.Builder()).build());
 		}
 
-		public Builder kuromojiStemmer(KuromojiStemmerTokenFilter v) {
-			this._type = KUROMOJI_STEMMER;
-			this._value = v;
-			return this;
-		}
-
-		public Builder kuromojiStemmer(
-				Function<KuromojiStemmerTokenFilter.Builder, ObjectBuilder<KuromojiStemmerTokenFilter>> f) {
-			return this.kuromojiStemmer(f.apply(new KuromojiStemmerTokenFilter.Builder()).build());
-		}
-
-		public Builder kuromojiReadingform(KuromojiReadingFormTokenFilter v) {
-			this._type = KUROMOJI_READINGFORM;
-			this._value = v;
-			return this;
-		}
-
-		public Builder kuromojiReadingform(
-				Function<KuromojiReadingFormTokenFilter.Builder, ObjectBuilder<KuromojiReadingFormTokenFilter>> f) {
-			return this.kuromojiReadingform(f.apply(new KuromojiReadingFormTokenFilter.Builder()).build());
-		}
-
-		public Builder kuromojiPartOfSpeech(KuromojiPartOfSpeechTokenFilter v) {
-			this._type = KUROMOJI_PART_OF_SPEECH;
-			this._value = v;
-			return this;
-		}
-
-		public Builder kuromojiPartOfSpeech(
-				Function<KuromojiPartOfSpeechTokenFilter.Builder, ObjectBuilder<KuromojiPartOfSpeechTokenFilter>> f) {
-			return this.kuromojiPartOfSpeech(f.apply(new KuromojiPartOfSpeechTokenFilter.Builder()).build());
-		}
-
 		public TokenFilter build() {
 			return new TokenFilter(this);
 		}
@@ -994,10 +998,13 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		op.add(Builder::hunspell, HunspellTokenFilter._DESERIALIZER, "hunspell");
 		op.add(Builder::hyphenationDecompounder, HyphenationDecompounderTokenFilter._DESERIALIZER,
 				"hyphenation_decompounder");
+		op.add(Builder::kstem, KStemTokenFilter._DESERIALIZER, "kstem");
 		op.add(Builder::keepTypes, KeepTypesTokenFilter._DESERIALIZER, "keep_types");
 		op.add(Builder::keep, KeepWordsTokenFilter._DESERIALIZER, "keep");
 		op.add(Builder::keywordMarker, KeywordMarkerTokenFilter._DESERIALIZER, "keyword_marker");
-		op.add(Builder::kstem, KStemTokenFilter._DESERIALIZER, "kstem");
+		op.add(Builder::kuromojiPartOfSpeech, KuromojiPartOfSpeechTokenFilter._DESERIALIZER, "kuromoji_part_of_speech");
+		op.add(Builder::kuromojiReadingform, KuromojiReadingFormTokenFilter._DESERIALIZER, "kuromoji_readingform");
+		op.add(Builder::kuromojiStemmer, KuromojiStemmerTokenFilter._DESERIALIZER, "kuromoji_stemmer");
 		op.add(Builder::length, LengthTokenFilter._DESERIALIZER, "length");
 		op.add(Builder::limit, LimitTokenCountTokenFilter._DESERIALIZER, "limit");
 		op.add(Builder::lowercase, LowercaseTokenFilter._DESERIALIZER, "lowercase");
@@ -1023,9 +1030,6 @@ public class TokenFilter implements TaggedUnion<JsonpSerializable>, JsonpSeriali
 		op.add(Builder::uppercase, UppercaseTokenFilter._DESERIALIZER, "uppercase");
 		op.add(Builder::wordDelimiterGraph, WordDelimiterGraphTokenFilter._DESERIALIZER, "word_delimiter_graph");
 		op.add(Builder::wordDelimiter, WordDelimiterTokenFilter._DESERIALIZER, "word_delimiter");
-		op.add(Builder::kuromojiStemmer, KuromojiStemmerTokenFilter._DESERIALIZER, "kuromoji_stemmer");
-		op.add(Builder::kuromojiReadingform, KuromojiReadingFormTokenFilter._DESERIALIZER, "kuromoji_readingform");
-		op.add(Builder::kuromojiPartOfSpeech, KuromojiPartOfSpeechTokenFilter._DESERIALIZER, "kuromoji_part_of_speech");
 
 		op.setTypeProperty("type");
 

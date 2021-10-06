@@ -59,7 +59,7 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, CompactNodeInfo> nodes() {
 		return this.nodes;
@@ -96,7 +96,7 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 		private Map<String, CompactNodeInfo> nodes;
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, CompactNodeInfo> value) {
 			this.nodes = value;

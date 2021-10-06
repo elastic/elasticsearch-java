@@ -64,21 +64,21 @@ public final class SnapshotIndexStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public Map<String, SnapshotShardsStatus> shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code shards_stats}
+	 * Required - API name: {@code shards_stats}
 	 */
 	public ShardsStats shardsStats() {
 		return this.shardsStats;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public SnapshotStats stats() {
 		return this.stats;
@@ -125,7 +125,7 @@ public final class SnapshotIndexStats implements JsonpSerializable {
 		private SnapshotStats stats;
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(Map<String, SnapshotShardsStatus> value) {
 			this.shards = value;
@@ -160,7 +160,7 @@ public final class SnapshotIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards_stats}
+		 * Required - API name: {@code shards_stats}
 		 */
 		public Builder shardsStats(ShardsStats value) {
 			this.shardsStats = value;
@@ -168,14 +168,14 @@ public final class SnapshotIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards_stats}
+		 * Required - API name: {@code shards_stats}
 		 */
 		public Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
 			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(SnapshotStats value) {
 			this.stats = value;
@@ -183,7 +183,7 @@ public final class SnapshotIndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
 			return this.stats(fn.apply(new SnapshotStats.Builder()).build());

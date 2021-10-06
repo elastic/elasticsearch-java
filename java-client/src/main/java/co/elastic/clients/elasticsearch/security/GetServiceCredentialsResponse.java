@@ -70,28 +70,29 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code service_account}
+	 * Required - API name: {@code service_account}
 	 */
 	public String serviceAccount() {
 		return this.serviceAccount;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code tokens}
+	 * Required - API name: {@code tokens}
 	 */
 	public Map<String, Map<String, JsonData>> tokens() {
 		return this.tokens;
 	}
 
 	/**
-	 * Contains service account credentials collected from all nodes of the cluster
+	 * Required - Contains service account credentials collected from all nodes of
+	 * the cluster
 	 * <p>
 	 * API name: {@code nodes_credentials}
 	 */
@@ -151,7 +152,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		private NodesCredentials nodesCredentials;
 
 		/**
-		 * API name: {@code service_account}
+		 * Required - API name: {@code service_account}
 		 */
 		public Builder serviceAccount(String value) {
 			this.serviceAccount = value;
@@ -159,7 +160,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -167,7 +168,7 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokens}
+		 * Required - API name: {@code tokens}
 		 */
 		public Builder tokens(Map<String, Map<String, JsonData>> value) {
 			this.tokens = value;
@@ -186,7 +187,8 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains service account credentials collected from all nodes of the cluster
+		 * Required - Contains service account credentials collected from all nodes of
+		 * the cluster
 		 * <p>
 		 * API name: {@code nodes_credentials}
 		 */
@@ -196,7 +198,8 @@ public final class GetServiceCredentialsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains service account credentials collected from all nodes of the cluster
+		 * Required - Contains service account credentials collected from all nodes of
+		 * the cluster
 		 * <p>
 		 * API name: {@code nodes_credentials}
 		 */

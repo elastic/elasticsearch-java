@@ -67,28 +67,28 @@ public final class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code build}
+	 * Required - API name: {@code build}
 	 */
 	public BuildInformation build() {
 		return this.build;
 	}
 
 	/**
-	 * API name: {@code features}
+	 * Required - API name: {@code features}
 	 */
 	public Features features() {
 		return this.features;
 	}
 
 	/**
-	 * API name: {@code license}
+	 * Required - API name: {@code license}
 	 */
 	public MinimalLicenseInformation license() {
 		return this.license;
 	}
 
 	/**
-	 * API name: {@code tagline}
+	 * Required - API name: {@code tagline}
 	 */
 	public String tagline() {
 		return this.tagline;
@@ -134,7 +134,7 @@ public final class InfoResponse implements JsonpSerializable {
 		private String tagline;
 
 		/**
-		 * API name: {@code build}
+		 * Required - API name: {@code build}
 		 */
 		public Builder build(BuildInformation value) {
 			this.build = value;
@@ -142,14 +142,14 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code build}
+		 * Required - API name: {@code build}
 		 */
 		public Builder build(Function<BuildInformation.Builder, ObjectBuilder<BuildInformation>> fn) {
 			return this.build(fn.apply(new BuildInformation.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code features}
+		 * Required - API name: {@code features}
 		 */
 		public Builder features(Features value) {
 			this.features = value;
@@ -157,14 +157,14 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code features}
+		 * Required - API name: {@code features}
 		 */
 		public Builder features(Function<Features.Builder, ObjectBuilder<Features>> fn) {
 			return this.features(fn.apply(new Features.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(MinimalLicenseInformation value) {
 			this.license = value;
@@ -172,7 +172,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code license}
+		 * Required - API name: {@code license}
 		 */
 		public Builder license(
 				Function<MinimalLicenseInformation.Builder, ObjectBuilder<MinimalLicenseInformation>> fn) {
@@ -180,7 +180,7 @@ public final class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tagline}
+		 * Required - API name: {@code tagline}
 		 */
 		public Builder tagline(String value) {
 			this.tagline = value;

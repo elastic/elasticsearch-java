@@ -68,35 +68,35 @@ public final class PendingTask implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code insert_order}
+	 * Required - API name: {@code insert_order}
 	 */
 	public int insertOrder() {
 		return this.insertOrder;
 	}
 
 	/**
-	 * API name: {@code priority}
+	 * Required - API name: {@code priority}
 	 */
 	public String priority() {
 		return this.priority;
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public String source() {
 		return this.source;
 	}
 
 	/**
-	 * API name: {@code time_in_queue}
+	 * Required - API name: {@code time_in_queue}
 	 */
 	public String timeInQueue() {
 		return this.timeInQueue;
 	}
 
 	/**
-	 * API name: {@code time_in_queue_millis}
+	 * Required - API name: {@code time_in_queue_millis}
 	 */
 	public int timeInQueueMillis() {
 		return this.timeInQueueMillis;
@@ -147,7 +147,7 @@ public final class PendingTask implements JsonpSerializable {
 		private Integer timeInQueueMillis;
 
 		/**
-		 * API name: {@code insert_order}
+		 * Required - API name: {@code insert_order}
 		 */
 		public Builder insertOrder(int value) {
 			this.insertOrder = value;
@@ -155,7 +155,7 @@ public final class PendingTask implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code priority}
+		 * Required - API name: {@code priority}
 		 */
 		public Builder priority(String value) {
 			this.priority = value;
@@ -163,7 +163,7 @@ public final class PendingTask implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(String value) {
 			this.source = value;
@@ -171,7 +171,7 @@ public final class PendingTask implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_queue}
+		 * Required - API name: {@code time_in_queue}
 		 */
 		public Builder timeInQueue(String value) {
 			this.timeInQueue = value;
@@ -179,7 +179,7 @@ public final class PendingTask implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_queue_millis}
+		 * Required - API name: {@code time_in_queue_millis}
 		 */
 		public Builder timeInQueueMillis(int value) {
 			this.timeInQueueMillis = value;

@@ -60,21 +60,21 @@ public final class JvmClasses implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current_loaded_count}
+	 * Required - API name: {@code current_loaded_count}
 	 */
 	public long currentLoadedCount() {
 		return this.currentLoadedCount;
 	}
 
 	/**
-	 * API name: {@code total_loaded_count}
+	 * Required - API name: {@code total_loaded_count}
 	 */
 	public long totalLoadedCount() {
 		return this.totalLoadedCount;
 	}
 
 	/**
-	 * API name: {@code total_unloaded_count}
+	 * Required - API name: {@code total_unloaded_count}
 	 */
 	public long totalUnloadedCount() {
 		return this.totalUnloadedCount;
@@ -115,7 +115,7 @@ public final class JvmClasses implements JsonpSerializable {
 		private Long totalUnloadedCount;
 
 		/**
-		 * API name: {@code current_loaded_count}
+		 * Required - API name: {@code current_loaded_count}
 		 */
 		public Builder currentLoadedCount(long value) {
 			this.currentLoadedCount = value;
@@ -123,7 +123,7 @@ public final class JvmClasses implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_loaded_count}
+		 * Required - API name: {@code total_loaded_count}
 		 */
 		public Builder totalLoadedCount(long value) {
 			this.totalLoadedCount = value;
@@ -131,7 +131,7 @@ public final class JvmClasses implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_unloaded_count}
+		 * Required - API name: {@code total_unloaded_count}
 		 */
 		public Builder totalUnloadedCount(long value) {
 			this.totalUnloadedCount = value;

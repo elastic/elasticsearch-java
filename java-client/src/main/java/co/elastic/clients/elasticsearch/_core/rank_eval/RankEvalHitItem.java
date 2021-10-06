@@ -59,7 +59,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code hit}
+	 * Required - API name: {@code hit}
 	 */
 	public RankEvalHit hit() {
 		return this.hit;
@@ -108,7 +108,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		private Double rating;
 
 		/**
-		 * API name: {@code hit}
+		 * Required - API name: {@code hit}
 		 */
 		public Builder hit(RankEvalHit value) {
 			this.hit = value;
@@ -116,7 +116,7 @@ public final class RankEvalHitItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hit}
+		 * Required - API name: {@code hit}
 		 */
 		public Builder hit(Function<RankEvalHit.Builder, ObjectBuilder<RankEvalHit>> fn) {
 			return this.hit(fn.apply(new RankEvalHit.Builder()).build());

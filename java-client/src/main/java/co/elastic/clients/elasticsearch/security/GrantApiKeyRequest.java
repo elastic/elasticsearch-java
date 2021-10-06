@@ -77,14 +77,14 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * API name: {@code api_key}
+	 * Required - API name: {@code api_key}
 	 */
 	public ApiKey apiKey() {
 		return this.apiKey;
 	}
 
 	/**
-	 * API name: {@code grant_type}
+	 * Required - API name: {@code grant_type}
 	 */
 	public ApiKeyGrantType grantType() {
 		return this.grantType;
@@ -171,7 +171,7 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		private String password;
 
 		/**
-		 * API name: {@code api_key}
+		 * Required - API name: {@code api_key}
 		 */
 		public Builder apiKey(ApiKey value) {
 			this.apiKey = value;
@@ -179,14 +179,14 @@ public final class GrantApiKeyRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code api_key}
+		 * Required - API name: {@code api_key}
 		 */
 		public Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
 			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code grant_type}
+		 * Required - API name: {@code grant_type}
 		 */
 		public Builder grantType(ApiKeyGrantType value) {
 			this.grantType = value;

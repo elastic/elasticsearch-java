@@ -74,14 +74,14 @@ public final class Hop implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
 	}
 
 	/**
-	 * API name: {@code vertices}
+	 * Required - API name: {@code vertices}
 	 */
 	public List<VertexDefinition> vertices() {
 		return this.vertices;
@@ -147,7 +147,7 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -155,14 +155,14 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(List<VertexDefinition> value) {
 			this.vertices = value;
@@ -170,7 +170,7 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vertices}
+		 * Required - API name: {@code vertices}
 		 */
 		public Builder vertices(VertexDefinition... value) {
 			this.vertices = Arrays.asList(value);
@@ -178,7 +178,7 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
 		 */
 		public Builder addVertices(VertexDefinition value) {
 			if (this.vertices == null) {
@@ -196,7 +196,7 @@ public final class Hop implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #vertices(List)}, creating the list if needed.
 		 */
 		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
 			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());

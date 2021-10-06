@@ -102,7 +102,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Repository for the snapshot.
+	 * Required - Repository for the snapshot.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -111,7 +111,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Name of the snapshot. Must be unique in the repository.
+	 * Required - Name of the snapshot. Must be unique in the repository.
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -321,7 +321,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		private Boolean partial;
 
 		/**
-		 * Repository for the snapshot.
+		 * Required - Repository for the snapshot.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -331,7 +331,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Name of the snapshot. Must be unique in the repository.
+		 * Required - Name of the snapshot. Must be unique in the repository.
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
@@ -413,7 +413,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -454,7 +454,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed. 4
+		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureStates(String value) {
 			if (this.featureStates == null) {

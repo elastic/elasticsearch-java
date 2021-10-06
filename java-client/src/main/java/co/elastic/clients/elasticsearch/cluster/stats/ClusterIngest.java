@@ -62,14 +62,14 @@ public final class ClusterIngest implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code number_of_pipelines}
+	 * Required - API name: {@code number_of_pipelines}
 	 */
 	public int numberOfPipelines() {
 		return this.numberOfPipelines;
 	}
 
 	/**
-	 * API name: {@code processor_stats}
+	 * Required - API name: {@code processor_stats}
 	 */
 	public Map<String, ClusterProcessor> processorStats() {
 		return this.processorStats;
@@ -111,7 +111,7 @@ public final class ClusterIngest implements JsonpSerializable {
 		private Map<String, ClusterProcessor> processorStats;
 
 		/**
-		 * API name: {@code number_of_pipelines}
+		 * Required - API name: {@code number_of_pipelines}
 		 */
 		public Builder numberOfPipelines(int value) {
 			this.numberOfPipelines = value;
@@ -119,7 +119,7 @@ public final class ClusterIngest implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processor_stats}
+		 * Required - API name: {@code processor_stats}
 		 */
 		public Builder processorStats(Map<String, ClusterProcessor> value) {
 			this.processorStats = value;

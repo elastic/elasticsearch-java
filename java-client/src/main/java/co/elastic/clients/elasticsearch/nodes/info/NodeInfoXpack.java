@@ -74,7 +74,7 @@ public final class NodeInfoXpack implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code security}
+	 * Required - API name: {@code security}
 	 */
 	public NodeInfoXpackSecurity security() {
 		return this.security;
@@ -154,7 +154,7 @@ public final class NodeInfoXpack implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code security}
+		 * Required - API name: {@code security}
 		 */
 		public Builder security(NodeInfoXpackSecurity value) {
 			this.security = value;
@@ -162,7 +162,7 @@ public final class NodeInfoXpack implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code security}
+		 * Required - API name: {@code security}
 		 */
 		public Builder security(Function<NodeInfoXpackSecurity.Builder, ObjectBuilder<NodeInfoXpackSecurity>> fn) {
 			return this.security(fn.apply(new NodeInfoXpackSecurity.Builder()).build());

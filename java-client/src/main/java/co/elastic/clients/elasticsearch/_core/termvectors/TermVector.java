@@ -61,14 +61,14 @@ public final class TermVector implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code field_statistics}
+	 * Required - API name: {@code field_statistics}
 	 */
 	public FieldStatistics fieldStatistics() {
 		return this.fieldStatistics;
 	}
 
 	/**
-	 * API name: {@code terms}
+	 * Required - API name: {@code terms}
 	 */
 	public Map<String, Term> terms() {
 		return this.terms;
@@ -110,7 +110,7 @@ public final class TermVector implements JsonpSerializable {
 		private Map<String, Term> terms;
 
 		/**
-		 * API name: {@code field_statistics}
+		 * Required - API name: {@code field_statistics}
 		 */
 		public Builder fieldStatistics(FieldStatistics value) {
 			this.fieldStatistics = value;
@@ -118,14 +118,14 @@ public final class TermVector implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code field_statistics}
+		 * Required - API name: {@code field_statistics}
 		 */
 		public Builder fieldStatistics(Function<FieldStatistics.Builder, ObjectBuilder<FieldStatistics>> fn) {
 			return this.fieldStatistics(fn.apply(new FieldStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(Map<String, Term> value) {
 			this.terms = value;

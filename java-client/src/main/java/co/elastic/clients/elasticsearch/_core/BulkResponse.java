@@ -71,21 +71,21 @@ public final class BulkResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code errors}
+	 * Required - API name: {@code errors}
 	 */
 	public boolean errors() {
 		return this.errors;
 	}
 
 	/**
-	 * API name: {@code items}
+	 * Required - API name: {@code items}
 	 */
 	public List<ResponseItem> items() {
 		return this.items;
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
@@ -149,7 +149,7 @@ public final class BulkResponse implements JsonpSerializable {
 		private Long ingestTook;
 
 		/**
-		 * API name: {@code errors}
+		 * Required - API name: {@code errors}
 		 */
 		public Builder errors(boolean value) {
 			this.errors = value;
@@ -157,7 +157,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(List<ResponseItem> value) {
 			this.items = value;
@@ -165,7 +165,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code items}
+		 * Required - API name: {@code items}
 		 */
 		public Builder items(ResponseItem... value) {
 			this.items = Arrays.asList(value);
@@ -173,7 +173,7 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed. 4
+		 * Add a value to {@link #items(List)}, creating the list if needed.
 		 */
 		public Builder addItems(ResponseItem value) {
 			if (this.items == null) {
@@ -191,14 +191,14 @@ public final class BulkResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed. 5
+		 * Add a value to {@link #items(List)}, creating the list if needed.
 		 */
 		public Builder addItems(Function<ResponseItem.Builder, ObjectBuilder<ResponseItem>> fn) {
 			return this.addItems(fn.apply(new ResponseItem.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder took(long value) {
 			this.took = value;

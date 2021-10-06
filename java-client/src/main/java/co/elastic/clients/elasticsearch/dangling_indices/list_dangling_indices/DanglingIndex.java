@@ -68,28 +68,28 @@ public final class DanglingIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index_name}
+	 * Required - API name: {@code index_name}
 	 */
 	public String indexName() {
 		return this.indexName;
 	}
 
 	/**
-	 * API name: {@code index_uuid}
+	 * Required - API name: {@code index_uuid}
 	 */
 	public String indexUuid() {
 		return this.indexUuid;
 	}
 
 	/**
-	 * API name: {@code creation_date_millis}
+	 * Required - API name: {@code creation_date_millis}
 	 */
 	public String creationDateMillis() {
 		return this.creationDateMillis;
 	}
 
 	/**
-	 * API name: {@code node_ids}
+	 * Required - API name: {@code node_ids}
 	 */
 	public List<String> nodeIds() {
 		return this.nodeIds;
@@ -140,7 +140,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		private List<String> nodeIds;
 
 		/**
-		 * API name: {@code index_name}
+		 * Required - API name: {@code index_name}
 		 */
 		public Builder indexName(String value) {
 			this.indexName = value;
@@ -148,7 +148,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_uuid}
+		 * Required - API name: {@code index_uuid}
 		 */
 		public Builder indexUuid(String value) {
 			this.indexUuid = value;
@@ -156,7 +156,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code creation_date_millis}
+		 * Required - API name: {@code creation_date_millis}
 		 */
 		public Builder creationDateMillis(String value) {
 			this.creationDateMillis = value;
@@ -164,7 +164,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_ids}
+		 * Required - API name: {@code node_ids}
 		 */
 		public Builder nodeIds(List<String> value) {
 			this.nodeIds = value;
@@ -172,7 +172,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code node_ids}
+		 * Required - API name: {@code node_ids}
 		 */
 		public Builder nodeIds(String... value) {
 			this.nodeIds = Arrays.asList(value);
@@ -180,7 +180,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #nodeIds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeIds(List)}, creating the list if needed.
 		 */
 		public Builder addNodeIds(String value) {
 			if (this.nodeIds == null) {

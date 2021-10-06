@@ -112,7 +112,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Idetifier for the trained model.
+	 * Required - Idetifier for the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -121,8 +121,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma delimited string of tags. A trained model can have many tags, or
-	 * none.
+	 * Required - A comma delimited string of tags. A trained model can have many
+	 * tags, or none.
 	 * <p>
 	 * API name: {@code tags}
 	 */
@@ -209,8 +209,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * The default configuration for inference. This can be either a regression or
-	 * classification configuration. It must match the underlying
+	 * Required - The default configuration for inference. This can be either a
+	 * regression or classification configuration. It must match the underlying
 	 * definition.trained_model's target_type.
 	 * <p>
 	 * API name: {@code inference_config}
@@ -220,7 +220,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * The input field names for the model definition.
+	 * Required - The input field names for the model definition.
 	 * <p>
 	 * API name: {@code input}
 	 */
@@ -392,7 +392,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		private TrainedModelConfigMetadata metadata;
 
 		/**
-		 * Idetifier for the trained model.
+		 * Required - Idetifier for the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -402,8 +402,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma delimited string of tags. A trained model can have many tags, or
-		 * none.
+		 * Required - A comma delimited string of tags. A trained model can have many
+		 * tags, or none.
 		 * <p>
 		 * API name: {@code tags}
 		 */
@@ -413,8 +413,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma delimited string of tags. A trained model can have many tags, or
-		 * none.
+		 * Required - A comma delimited string of tags. A trained model can have many
+		 * tags, or none.
 		 * <p>
 		 * API name: {@code tags}
 		 */
@@ -424,7 +424,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tags(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tags(List)}, creating the list if needed.
 		 */
 		public Builder addTags(String value) {
 			if (this.tags == null) {
@@ -524,8 +524,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * The default configuration for inference. This can be either a regression or
-		 * classification configuration. It must match the underlying
+		 * Required - The default configuration for inference. This can be either a
+		 * regression or classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
 		 * <p>
 		 * API name: {@code inference_config}
@@ -536,8 +536,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * The default configuration for inference. This can be either a regression or
-		 * classification configuration. It must match the underlying
+		 * Required - The default configuration for inference. This can be either a
+		 * regression or classification configuration. It must match the underlying
 		 * definition.trained_model's target_type.
 		 * <p>
 		 * API name: {@code inference_config}
@@ -547,7 +547,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * The input field names for the model definition.
+		 * Required - The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}
 		 */
@@ -557,7 +557,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * The input field names for the model definition.
+		 * Required - The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}
 		 */

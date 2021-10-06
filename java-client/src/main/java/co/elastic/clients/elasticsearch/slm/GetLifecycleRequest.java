@@ -102,7 +102,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #policyId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #policyId(List)}, creating the list if needed.
 		 */
 		public Builder addPolicyId(String value) {
 			if (this.policyId == null) {

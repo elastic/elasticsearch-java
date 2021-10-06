@@ -93,7 +93,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains counts for nodes selected by the request’s node filters.
+	 * Required - Contains counts for nodes selected by the request’s node filters.
 	 * <p>
 	 * API name: {@code count}
 	 */
@@ -102,7 +102,8 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the discovery types used by selected nodes.
+	 * Required - Contains statistics about the discovery types used by selected
+	 * nodes.
 	 * <p>
 	 * API name: {@code discovery_types}
 	 */
@@ -111,7 +112,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about file stores by selected nodes.
+	 * Required - Contains statistics about file stores by selected nodes.
 	 * <p>
 	 * API name: {@code fs}
 	 */
@@ -120,15 +121,15 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code ingest}
+	 * Required - API name: {@code ingest}
 	 */
 	public ClusterIngest ingest() {
 		return this.ingest;
 	}
 
 	/**
-	 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
-	 * nodes.
+	 * Required - Contains statistics about the Java Virtual Machines (JVMs) used by
+	 * selected nodes.
 	 * <p>
 	 * API name: {@code jvm}
 	 */
@@ -137,8 +138,8 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the transport and HTTP networks used by selected
-	 * nodes.
+	 * Required - Contains statistics about the transport and HTTP networks used by
+	 * selected nodes.
 	 * <p>
 	 * API name: {@code network_types}
 	 */
@@ -147,7 +148,8 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the operating systems used by selected nodes.
+	 * Required - Contains statistics about the operating systems used by selected
+	 * nodes.
 	 * <p>
 	 * API name: {@code os}
 	 */
@@ -156,8 +158,8 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about Elasticsearch distributions installed on selected
-	 * nodes.
+	 * Required - Contains statistics about Elasticsearch distributions installed on
+	 * selected nodes.
 	 * <p>
 	 * API name: {@code packaging_types}
 	 */
@@ -166,7 +168,8 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about installed plugins and modules by selected nodes.
+	 * Required - Contains statistics about installed plugins and modules by
+	 * selected nodes.
 	 * <p>
 	 * API name: {@code plugins}
 	 */
@@ -175,7 +178,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about processes used by selected nodes.
+	 * Required - Contains statistics about processes used by selected nodes.
 	 * <p>
 	 * API name: {@code process}
 	 */
@@ -184,7 +187,7 @@ public final class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
-	 * Array of Elasticsearch versions used on selected nodes.
+	 * Required - Array of Elasticsearch versions used on selected nodes.
 	 * <p>
 	 * API name: {@code versions}
 	 */
@@ -288,7 +291,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		private List<String> versions;
 
 		/**
-		 * Contains counts for nodes selected by the request’s node filters.
+		 * Required - Contains counts for nodes selected by the request’s node filters.
 		 * <p>
 		 * API name: {@code count}
 		 */
@@ -298,7 +301,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains counts for nodes selected by the request’s node filters.
+		 * Required - Contains counts for nodes selected by the request’s node filters.
 		 * <p>
 		 * API name: {@code count}
 		 */
@@ -307,7 +310,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the discovery types used by selected nodes.
+		 * Required - Contains statistics about the discovery types used by selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code discovery_types}
 		 */
@@ -328,7 +332,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about file stores by selected nodes.
+		 * Required - Contains statistics about file stores by selected nodes.
 		 * <p>
 		 * API name: {@code fs}
 		 */
@@ -338,7 +342,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about file stores by selected nodes.
+		 * Required - Contains statistics about file stores by selected nodes.
 		 * <p>
 		 * API name: {@code fs}
 		 */
@@ -347,7 +351,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(ClusterIngest value) {
 			this.ingest = value;
@@ -355,15 +359,15 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ingest}
+		 * Required - API name: {@code ingest}
 		 */
 		public Builder ingest(Function<ClusterIngest.Builder, ObjectBuilder<ClusterIngest>> fn) {
 			return this.ingest(fn.apply(new ClusterIngest.Builder()).build());
 		}
 
 		/**
-		 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
-		 * nodes.
+		 * Required - Contains statistics about the Java Virtual Machines (JVMs) used by
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code jvm}
 		 */
@@ -373,8 +377,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the Java Virtual Machines (JVMs) used by selected
-		 * nodes.
+		 * Required - Contains statistics about the Java Virtual Machines (JVMs) used by
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code jvm}
 		 */
@@ -383,8 +387,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the transport and HTTP networks used by selected
-		 * nodes.
+		 * Required - Contains statistics about the transport and HTTP networks used by
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code network_types}
 		 */
@@ -394,8 +398,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the transport and HTTP networks used by selected
-		 * nodes.
+		 * Required - Contains statistics about the transport and HTTP networks used by
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code network_types}
 		 */
@@ -404,7 +408,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the operating systems used by selected nodes.
+		 * Required - Contains statistics about the operating systems used by selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code os}
 		 */
@@ -414,7 +419,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the operating systems used by selected nodes.
+		 * Required - Contains statistics about the operating systems used by selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code os}
 		 */
@@ -423,8 +429,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about Elasticsearch distributions installed on selected
-		 * nodes.
+		 * Required - Contains statistics about Elasticsearch distributions installed on
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code packaging_types}
 		 */
@@ -434,8 +440,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about Elasticsearch distributions installed on selected
-		 * nodes.
+		 * Required - Contains statistics about Elasticsearch distributions installed on
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code packaging_types}
 		 */
@@ -445,7 +451,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed.
 		 */
 		public Builder addPackagingTypes(NodePackagingType value) {
 			if (this.packagingTypes == null) {
@@ -463,14 +469,15 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed. 5
+		 * Add a value to {@link #packagingTypes(List)}, creating the list if needed.
 		 */
 		public Builder addPackagingTypes(Function<NodePackagingType.Builder, ObjectBuilder<NodePackagingType>> fn) {
 			return this.addPackagingTypes(fn.apply(new NodePackagingType.Builder()).build());
 		}
 
 		/**
-		 * Contains statistics about installed plugins and modules by selected nodes.
+		 * Required - Contains statistics about installed plugins and modules by
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code plugins}
 		 */
@@ -480,7 +487,8 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about installed plugins and modules by selected nodes.
+		 * Required - Contains statistics about installed plugins and modules by
+		 * selected nodes.
 		 * <p>
 		 * API name: {@code plugins}
 		 */
@@ -490,7 +498,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed. 4
+		 * Add a value to {@link #plugins(List)}, creating the list if needed.
 		 */
 		public Builder addPlugins(PluginStats value) {
 			if (this.plugins == null) {
@@ -508,14 +516,14 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #plugins(List)}, creating the list if needed. 5
+		 * Add a value to {@link #plugins(List)}, creating the list if needed.
 		 */
 		public Builder addPlugins(Function<PluginStats.Builder, ObjectBuilder<PluginStats>> fn) {
 			return this.addPlugins(fn.apply(new PluginStats.Builder()).build());
 		}
 
 		/**
-		 * Contains statistics about processes used by selected nodes.
+		 * Required - Contains statistics about processes used by selected nodes.
 		 * <p>
 		 * API name: {@code process}
 		 */
@@ -525,7 +533,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about processes used by selected nodes.
+		 * Required - Contains statistics about processes used by selected nodes.
 		 * <p>
 		 * API name: {@code process}
 		 */
@@ -534,7 +542,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of Elasticsearch versions used on selected nodes.
+		 * Required - Array of Elasticsearch versions used on selected nodes.
 		 * <p>
 		 * API name: {@code versions}
 		 */
@@ -544,7 +552,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Array of Elasticsearch versions used on selected nodes.
+		 * Required - Array of Elasticsearch versions used on selected nodes.
 		 * <p>
 		 * API name: {@code versions}
 		 */
@@ -554,7 +562,7 @@ public final class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #versions(List)}, creating the list if needed.
 		 */
 		public Builder addVersions(String value) {
 			if (this.versions == null) {

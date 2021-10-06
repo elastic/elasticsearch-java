@@ -96,7 +96,8 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about memory used for completion in selected nodes.
+	 * Required - Contains statistics about memory used for completion in selected
+	 * nodes.
 	 * <p>
 	 * API name: {@code completion}
 	 */
@@ -105,7 +106,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Total number of indices with shards assigned to selected nodes.
+	 * Required - Total number of indices with shards assigned to selected nodes.
 	 * <p>
 	 * API name: {@code count}
 	 */
@@ -114,7 +115,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains counts for documents in selected nodes.
+	 * Required - Contains counts for documents in selected nodes.
 	 * <p>
 	 * API name: {@code docs}
 	 */
@@ -123,7 +124,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the field data cache of selected nodes.
+	 * Required - Contains statistics about the field data cache of selected nodes.
 	 * <p>
 	 * API name: {@code fielddata}
 	 */
@@ -132,7 +133,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the query cache of selected nodes.
+	 * Required - Contains statistics about the query cache of selected nodes.
 	 * <p>
 	 * API name: {@code query_cache}
 	 */
@@ -141,7 +142,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about segments in selected nodes.
+	 * Required - Contains statistics about segments in selected nodes.
 	 * <p>
 	 * API name: {@code segments}
 	 */
@@ -150,7 +151,8 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about indices with shards assigned to selected nodes.
+	 * Required - Contains statistics about indices with shards assigned to selected
+	 * nodes.
 	 * <p>
 	 * API name: {@code shards}
 	 */
@@ -159,7 +161,8 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about the size of shards assigned to selected nodes.
+	 * Required - Contains statistics about the size of shards assigned to selected
+	 * nodes.
 	 * <p>
 	 * API name: {@code store}
 	 */
@@ -168,7 +171,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about field mappings in selected nodes.
+	 * Required - Contains statistics about field mappings in selected nodes.
 	 * <p>
 	 * API name: {@code mappings}
 	 */
@@ -177,8 +180,8 @@ public final class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains statistics about analyzers and analyzer components used in selected
-	 * nodes.
+	 * Required - Contains statistics about analyzers and analyzer components used
+	 * in selected nodes.
 	 * <p>
 	 * API name: {@code analysis}
 	 */
@@ -279,7 +282,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		private List<IndicesVersions> versions;
 
 		/**
-		 * Contains statistics about memory used for completion in selected nodes.
+		 * Required - Contains statistics about memory used for completion in selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code completion}
 		 */
@@ -289,7 +293,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about memory used for completion in selected nodes.
+		 * Required - Contains statistics about memory used for completion in selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code completion}
 		 */
@@ -298,7 +303,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Total number of indices with shards assigned to selected nodes.
+		 * Required - Total number of indices with shards assigned to selected nodes.
 		 * <p>
 		 * API name: {@code count}
 		 */
@@ -308,7 +313,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains counts for documents in selected nodes.
+		 * Required - Contains counts for documents in selected nodes.
 		 * <p>
 		 * API name: {@code docs}
 		 */
@@ -318,7 +323,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains counts for documents in selected nodes.
+		 * Required - Contains counts for documents in selected nodes.
 		 * <p>
 		 * API name: {@code docs}
 		 */
@@ -327,7 +332,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the field data cache of selected nodes.
+		 * Required - Contains statistics about the field data cache of selected nodes.
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
@@ -337,7 +342,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the field data cache of selected nodes.
+		 * Required - Contains statistics about the field data cache of selected nodes.
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
@@ -346,7 +351,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the query cache of selected nodes.
+		 * Required - Contains statistics about the query cache of selected nodes.
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
@@ -356,7 +361,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the query cache of selected nodes.
+		 * Required - Contains statistics about the query cache of selected nodes.
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
@@ -365,7 +370,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about segments in selected nodes.
+		 * Required - Contains statistics about segments in selected nodes.
 		 * <p>
 		 * API name: {@code segments}
 		 */
@@ -375,7 +380,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about segments in selected nodes.
+		 * Required - Contains statistics about segments in selected nodes.
 		 * <p>
 		 * API name: {@code segments}
 		 */
@@ -384,7 +389,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about indices with shards assigned to selected nodes.
+		 * Required - Contains statistics about indices with shards assigned to selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code shards}
 		 */
@@ -394,7 +400,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about indices with shards assigned to selected nodes.
+		 * Required - Contains statistics about indices with shards assigned to selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code shards}
 		 */
@@ -403,7 +410,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the size of shards assigned to selected nodes.
+		 * Required - Contains statistics about the size of shards assigned to selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code store}
 		 */
@@ -413,7 +421,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about the size of shards assigned to selected nodes.
+		 * Required - Contains statistics about the size of shards assigned to selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code store}
 		 */
@@ -422,7 +431,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about field mappings in selected nodes.
+		 * Required - Contains statistics about field mappings in selected nodes.
 		 * <p>
 		 * API name: {@code mappings}
 		 */
@@ -432,7 +441,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about field mappings in selected nodes.
+		 * Required - Contains statistics about field mappings in selected nodes.
 		 * <p>
 		 * API name: {@code mappings}
 		 */
@@ -441,8 +450,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about analyzers and analyzer components used in selected
-		 * nodes.
+		 * Required - Contains statistics about analyzers and analyzer components used
+		 * in selected nodes.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
@@ -452,8 +461,8 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains statistics about analyzers and analyzer components used in selected
-		 * nodes.
+		 * Required - Contains statistics about analyzers and analyzer components used
+		 * in selected nodes.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
@@ -478,7 +487,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #versions(List)}, creating the list if needed.
 		 */
 		public Builder addVersions(IndicesVersions value) {
 			if (this.versions == null) {
@@ -496,7 +505,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #versions(List)}, creating the list if needed.
 		 */
 		public Builder addVersions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
 			return this.addVersions(fn.apply(new IndicesVersions.Builder()).build());

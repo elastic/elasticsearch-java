@@ -54,7 +54,7 @@ public final class ClearCursorResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code succeeded}
+	 * Required - API name: {@code succeeded}
 	 */
 	public boolean succeeded() {
 		return this.succeeded;
@@ -85,7 +85,7 @@ public final class ClearCursorResponse implements JsonpSerializable {
 		private Boolean succeeded;
 
 		/**
-		 * API name: {@code succeeded}
+		 * Required - API name: {@code succeeded}
 		 */
 		public Builder succeeded(boolean value) {
 			this.succeeded = value;

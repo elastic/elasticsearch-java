@@ -89,70 +89,70 @@ public final class Segment implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code attributes}
+	 * Required - API name: {@code attributes}
 	 */
 	public Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * API name: {@code committed}
+	 * Required - API name: {@code committed}
 	 */
 	public boolean committed() {
 		return this.committed;
 	}
 
 	/**
-	 * API name: {@code compound}
+	 * Required - API name: {@code compound}
 	 */
 	public boolean compound() {
 		return this.compound;
 	}
 
 	/**
-	 * API name: {@code deleted_docs}
+	 * Required - API name: {@code deleted_docs}
 	 */
 	public long deletedDocs() {
 		return this.deletedDocs;
 	}
 
 	/**
-	 * API name: {@code generation}
+	 * Required - API name: {@code generation}
 	 */
 	public int generation() {
 		return this.generation;
 	}
 
 	/**
-	 * API name: {@code memory_in_bytes}
+	 * Required - API name: {@code memory_in_bytes}
 	 */
 	public double memoryInBytes() {
 		return this.memoryInBytes;
 	}
 
 	/**
-	 * API name: {@code search}
+	 * Required - API name: {@code search}
 	 */
 	public boolean search() {
 		return this.search;
 	}
 
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
 	public double sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
-	 * API name: {@code num_docs}
+	 * Required - API name: {@code num_docs}
 	 */
 	public long numDocs() {
 		return this.numDocs;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -234,7 +234,7 @@ public final class Segment implements JsonpSerializable {
 		private String version;
 
 		/**
-		 * API name: {@code attributes}
+		 * Required - API name: {@code attributes}
 		 */
 		public Builder attributes(Map<String, String> value) {
 			this.attributes = value;
@@ -253,7 +253,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code committed}
+		 * Required - API name: {@code committed}
 		 */
 		public Builder committed(boolean value) {
 			this.committed = value;
@@ -261,7 +261,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code compound}
+		 * Required - API name: {@code compound}
 		 */
 		public Builder compound(boolean value) {
 			this.compound = value;
@@ -269,7 +269,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code deleted_docs}
+		 * Required - API name: {@code deleted_docs}
 		 */
 		public Builder deletedDocs(long value) {
 			this.deletedDocs = value;
@@ -277,7 +277,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code generation}
+		 * Required - API name: {@code generation}
 		 */
 		public Builder generation(int value) {
 			this.generation = value;
@@ -285,7 +285,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory_in_bytes}
+		 * Required - API name: {@code memory_in_bytes}
 		 */
 		public Builder memoryInBytes(double value) {
 			this.memoryInBytes = value;
@@ -293,7 +293,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code search}
+		 * Required - API name: {@code search}
 		 */
 		public Builder search(boolean value) {
 			this.search = value;
@@ -301,7 +301,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
 		public Builder sizeInBytes(double value) {
 			this.sizeInBytes = value;
@@ -309,7 +309,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code num_docs}
+		 * Required - API name: {@code num_docs}
 		 */
 		public Builder numDocs(long value) {
 			this.numDocs = value;
@@ -317,7 +317,7 @@ public final class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;

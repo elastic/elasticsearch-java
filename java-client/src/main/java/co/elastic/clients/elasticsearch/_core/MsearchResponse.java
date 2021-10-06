@@ -72,14 +72,14 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
 	}
 
 	/**
-	 * API name: {@code responses}
+	 * Required - API name: {@code responses}
 	 */
 	public List<JsonValue /*
 							 * Union(_global.msearch.SearchResult<_global.msearch.TDocument> |
@@ -132,7 +132,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder<TDocument> took(long value) {
 			this.took = value;
@@ -140,7 +140,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code responses}
+		 * Required - API name: {@code responses}
 		 */
 		public Builder<TDocument> responses(List<JsonValue /*
 															 * Union(_global.msearch.SearchResult<_global.msearch.
@@ -151,7 +151,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code responses}
+		 * Required - API name: {@code responses}
 		 */
 		public Builder<TDocument> responses(JsonValue /*
 														 * Union(_global.msearch.SearchResult<_global.msearch.TDocument>
@@ -162,7 +162,7 @@ public final class MsearchResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed. 4
+		 * Add a value to {@link #responses(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addResponses(JsonValue /*
 															 * Union(_global.msearch.SearchResult<_global.msearch.

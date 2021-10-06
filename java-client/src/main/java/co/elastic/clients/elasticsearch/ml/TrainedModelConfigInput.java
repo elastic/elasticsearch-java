@@ -59,7 +59,7 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of input field names for the model.
+	 * Required - An array of input field names for the model.
 	 * <p>
 	 * API name: {@code field_names}
 	 */
@@ -97,7 +97,7 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 		private List<String> fieldNames;
 
 		/**
-		 * An array of input field names for the model.
+		 * Required - An array of input field names for the model.
 		 * <p>
 		 * API name: {@code field_names}
 		 */
@@ -107,7 +107,7 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of input field names for the model.
+		 * Required - An array of input field names for the model.
 		 * <p>
 		 * API name: {@code field_names}
 		 */
@@ -117,7 +117,7 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
 		 */
 		public Builder addFieldNames(String value) {
 			if (this.fieldNames == null) {

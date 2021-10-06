@@ -59,7 +59,7 @@ public final class Ingest implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
@@ -108,7 +108,7 @@ public final class Ingest implements JsonpSerializable {
 		private String pipeline;
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;

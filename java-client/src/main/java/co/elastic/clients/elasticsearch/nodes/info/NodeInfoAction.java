@@ -56,7 +56,7 @@ public final class NodeInfoAction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code destructive_requires_name}
+	 * Required - API name: {@code destructive_requires_name}
 	 */
 	public String destructiveRequiresName() {
 		return this.destructiveRequiresName;
@@ -87,7 +87,7 @@ public final class NodeInfoAction implements JsonpSerializable {
 		private String destructiveRequiresName;
 
 		/**
-		 * API name: {@code destructive_requires_name}
+		 * Required - API name: {@code destructive_requires_name}
 		 */
 		public Builder destructiveRequiresName(String value) {
 			this.destructiveRequiresName = value;

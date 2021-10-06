@@ -99,98 +99,98 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code index_count}
+	 * Required - API name: {@code index_count}
 	 */
 	public int indexCount() {
 		return this.indexCount;
 	}
 
 	/**
-	 * API name: {@code scriptless_count}
+	 * Required - API name: {@code scriptless_count}
 	 */
 	public int scriptlessCount() {
 		return this.scriptlessCount;
 	}
 
 	/**
-	 * API name: {@code shadowed_count}
+	 * Required - API name: {@code shadowed_count}
 	 */
 	public int shadowedCount() {
 		return this.shadowedCount;
 	}
 
 	/**
-	 * API name: {@code lang}
+	 * Required - API name: {@code lang}
 	 */
 	public List<String> lang() {
 		return this.lang;
 	}
 
 	/**
-	 * API name: {@code lines_max}
+	 * Required - API name: {@code lines_max}
 	 */
 	public int linesMax() {
 		return this.linesMax;
 	}
 
 	/**
-	 * API name: {@code lines_total}
+	 * Required - API name: {@code lines_total}
 	 */
 	public int linesTotal() {
 		return this.linesTotal;
 	}
 
 	/**
-	 * API name: {@code chars_max}
+	 * Required - API name: {@code chars_max}
 	 */
 	public int charsMax() {
 		return this.charsMax;
 	}
 
 	/**
-	 * API name: {@code chars_total}
+	 * Required - API name: {@code chars_total}
 	 */
 	public int charsTotal() {
 		return this.charsTotal;
 	}
 
 	/**
-	 * API name: {@code source_max}
+	 * Required - API name: {@code source_max}
 	 */
 	public int sourceMax() {
 		return this.sourceMax;
 	}
 
 	/**
-	 * API name: {@code source_total}
+	 * Required - API name: {@code source_total}
 	 */
 	public int sourceTotal() {
 		return this.sourceTotal;
 	}
 
 	/**
-	 * API name: {@code doc_max}
+	 * Required - API name: {@code doc_max}
 	 */
 	public int docMax() {
 		return this.docMax;
 	}
 
 	/**
-	 * API name: {@code doc_total}
+	 * Required - API name: {@code doc_total}
 	 */
 	public int docTotal() {
 		return this.docTotal;
@@ -291,7 +291,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		private Integer docTotal;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -299,7 +299,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -307,7 +307,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_count}
+		 * Required - API name: {@code index_count}
 		 */
 		public Builder indexCount(int value) {
 			this.indexCount = value;
@@ -315,7 +315,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code scriptless_count}
+		 * Required - API name: {@code scriptless_count}
 		 */
 		public Builder scriptlessCount(int value) {
 			this.scriptlessCount = value;
@@ -323,7 +323,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shadowed_count}
+		 * Required - API name: {@code shadowed_count}
 		 */
 		public Builder shadowedCount(int value) {
 			this.shadowedCount = value;
@@ -331,7 +331,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lang}
+		 * Required - API name: {@code lang}
 		 */
 		public Builder lang(List<String> value) {
 			this.lang = value;
@@ -339,7 +339,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lang}
+		 * Required - API name: {@code lang}
 		 */
 		public Builder lang(String... value) {
 			this.lang = Arrays.asList(value);
@@ -347,7 +347,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #lang(List)}, creating the list if needed. 4
+		 * Add a value to {@link #lang(List)}, creating the list if needed.
 		 */
 		public Builder addLang(String value) {
 			if (this.lang == null) {
@@ -358,7 +358,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lines_max}
+		 * Required - API name: {@code lines_max}
 		 */
 		public Builder linesMax(int value) {
 			this.linesMax = value;
@@ -366,7 +366,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code lines_total}
+		 * Required - API name: {@code lines_total}
 		 */
 		public Builder linesTotal(int value) {
 			this.linesTotal = value;
@@ -374,7 +374,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code chars_max}
+		 * Required - API name: {@code chars_max}
 		 */
 		public Builder charsMax(int value) {
 			this.charsMax = value;
@@ -382,7 +382,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code chars_total}
+		 * Required - API name: {@code chars_total}
 		 */
 		public Builder charsTotal(int value) {
 			this.charsTotal = value;
@@ -390,7 +390,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source_max}
+		 * Required - API name: {@code source_max}
 		 */
 		public Builder sourceMax(int value) {
 			this.sourceMax = value;
@@ -398,7 +398,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source_total}
+		 * Required - API name: {@code source_total}
 		 */
 		public Builder sourceTotal(int value) {
 			this.sourceTotal = value;
@@ -406,7 +406,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code doc_max}
+		 * Required - API name: {@code doc_max}
 		 */
 		public Builder docMax(int value) {
 			this.docMax = value;
@@ -414,7 +414,7 @@ public final class RuntimeFieldTypes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code doc_total}
+		 * Required - API name: {@code doc_total}
 		 */
 		public Builder docTotal(int value) {
 			this.docTotal = value;

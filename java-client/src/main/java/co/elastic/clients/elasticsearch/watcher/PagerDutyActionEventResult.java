@@ -64,28 +64,28 @@ public final class PagerDutyActionEventResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code event}
+	 * Required - API name: {@code event}
 	 */
 	public PagerDutyEvent event() {
 		return this.event;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code request}
+	 * Required - API name: {@code request}
 	 */
 	public HttpInputRequestResult request() {
 		return this.request;
 	}
 
 	/**
-	 * API name: {@code response}
+	 * Required - API name: {@code response}
 	 */
 	public HttpInputResponseResult response() {
 		return this.response;
@@ -131,7 +131,7 @@ public final class PagerDutyActionEventResult implements JsonpSerializable {
 		private HttpInputResponseResult response;
 
 		/**
-		 * API name: {@code event}
+		 * Required - API name: {@code event}
 		 */
 		public Builder event(PagerDutyEvent value) {
 			this.event = value;
@@ -139,14 +139,14 @@ public final class PagerDutyActionEventResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code event}
+		 * Required - API name: {@code event}
 		 */
 		public Builder event(Function<PagerDutyEvent.Builder, ObjectBuilder<PagerDutyEvent>> fn) {
 			return this.event(fn.apply(new PagerDutyEvent.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;
@@ -154,7 +154,7 @@ public final class PagerDutyActionEventResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(HttpInputRequestResult value) {
 			this.request = value;
@@ -162,14 +162,14 @@ public final class PagerDutyActionEventResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
 			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public Builder response(HttpInputResponseResult value) {
 			this.response = value;
@@ -177,7 +177,7 @@ public final class PagerDutyActionEventResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code response}
+		 * Required - API name: {@code response}
 		 */
 		public Builder response(Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
 			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());

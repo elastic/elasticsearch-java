@@ -62,14 +62,14 @@ public final class TokenDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code tokens}
+	 * Required - API name: {@code tokens}
 	 */
 	public List<ExplainAnalyzeToken> tokens() {
 		return this.tokens;
@@ -110,7 +110,7 @@ public final class TokenDetail implements JsonpSerializable {
 		private List<ExplainAnalyzeToken> tokens;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -118,7 +118,7 @@ public final class TokenDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokens}
+		 * Required - API name: {@code tokens}
 		 */
 		public Builder tokens(List<ExplainAnalyzeToken> value) {
 			this.tokens = value;
@@ -126,7 +126,7 @@ public final class TokenDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tokens}
+		 * Required - API name: {@code tokens}
 		 */
 		public Builder tokens(ExplainAnalyzeToken... value) {
 			this.tokens = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class TokenDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed. 4
+		 * Add a value to {@link #tokens(List)}, creating the list if needed.
 		 */
 		public Builder addTokens(ExplainAnalyzeToken value) {
 			if (this.tokens == null) {
@@ -152,7 +152,7 @@ public final class TokenDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed. 5
+		 * Add a value to {@link #tokens(List)}, creating the list if needed.
 		 */
 		public Builder addTokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
 			return this.addTokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());

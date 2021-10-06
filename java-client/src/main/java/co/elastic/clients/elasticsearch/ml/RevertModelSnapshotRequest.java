@@ -68,7 +68,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * The ID of the job to fetch
+	 * Required - The ID of the job to fetch
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -77,7 +77,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * The ID of the snapshot to revert to
+	 * Required - The ID of the snapshot to revert to
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
@@ -127,7 +127,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 		private Boolean deleteInterveningResults;
 
 		/**
-		 * The ID of the job to fetch
+		 * Required - The ID of the job to fetch
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -137,7 +137,7 @@ public final class RevertModelSnapshotRequest extends RequestBase implements Jso
 		}
 
 		/**
-		 * The ID of the snapshot to revert to
+		 * Required - The ID of the snapshot to revert to
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */

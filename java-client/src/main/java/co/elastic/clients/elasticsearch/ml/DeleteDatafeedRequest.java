@@ -63,7 +63,7 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the datafeed to delete
+	 * Required - The ID of the datafeed to delete
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
@@ -93,7 +93,7 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		private Boolean force;
 
 		/**
-		 * The ID of the datafeed to delete
+		 * Required - The ID of the datafeed to delete
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */

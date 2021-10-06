@@ -133,7 +133,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * The name of the index
+	 * Required - The name of the index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -263,7 +263,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -339,7 +339,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * The name of the index
+		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -470,7 +470,7 @@ public final class IndexRequest<TDocument> extends RequestBase implements JsonpS
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

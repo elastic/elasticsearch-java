@@ -93,10 +93,10 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and index aliases used to
-	 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
-	 * target all data streams and indices in a cluster, omit this parameter or use
-	 * <code>_all</code> or <code>*</code>.
+	 * Required - Comma-separated list of data streams, indices, and index aliases
+	 * used to limit the request. Wildcard (<code>*</code>) expressions are
+	 * supported. To target all data streams and indices in a cluster, omit this
+	 * parameter or use <code>_all</code> or <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -152,7 +152,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * A set of typical search requests, together with their provided ratings.
+	 * Required - A set of typical search requests, together with their provided
+	 * ratings.
 	 * <p>
 	 * API name: {@code requests}
 	 */
@@ -224,10 +225,10 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		private RankEvalMetric metric;
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
-		 * target all data streams and indices in a cluster, omit this parameter or use
-		 * <code>_all</code> or <code>*</code>.
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard (<code>*</code>) expressions are
+		 * supported. To target all data streams and indices in a cluster, omit this
+		 * parameter or use <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -237,10 +238,10 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard (<code>*</code>) expressions are supported. To
-		 * target all data streams and indices in a cluster, omit this parameter or use
-		 * <code>_all</code> or <code>*</code>.
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard (<code>*</code>) expressions are
+		 * supported. To target all data streams and indices in a cluster, omit this
+		 * parameter or use <code>_all</code> or <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -250,7 +251,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -298,7 +299,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -330,7 +331,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A set of typical search requests, together with their provided ratings.
+		 * Required - A set of typical search requests, together with their provided
+		 * ratings.
 		 * <p>
 		 * API name: {@code requests}
 		 */
@@ -340,7 +342,8 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * A set of typical search requests, together with their provided ratings.
+		 * Required - A set of typical search requests, together with their provided
+		 * ratings.
 		 * <p>
 		 * API name: {@code requests}
 		 */
@@ -350,7 +353,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #requests(List)}, creating the list if needed. 4
+		 * Add a value to {@link #requests(List)}, creating the list if needed.
 		 */
 		public Builder addRequests(RankEvalRequestItem value) {
 			if (this.requests == null) {
@@ -368,7 +371,7 @@ public final class RankEvalRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #requests(List)}, creating the list if needed. 5
+		 * Add a value to {@link #requests(List)}, creating the list if needed.
 		 */
 		public Builder addRequests(Function<RankEvalRequestItem.Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
 			return this.addRequests(fn.apply(new RankEvalRequestItem.Builder()).build());

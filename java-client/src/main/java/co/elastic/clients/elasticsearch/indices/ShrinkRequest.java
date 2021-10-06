@@ -89,7 +89,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The name of the source index to shrink
+	 * Required - The name of the source index to shrink
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -98,7 +98,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The name of the target index to shrink into
+	 * Required - The name of the target index to shrink into
 	 * <p>
 	 * API name: {@code target}
 	 */
@@ -217,7 +217,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		private Map<String, JsonData> settings;
 
 		/**
-		 * The name of the source index to shrink
+		 * Required - The name of the source index to shrink
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -227,7 +227,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The name of the target index to shrink into
+		 * Required - The name of the target index to shrink into
 		 * <p>
 		 * API name: {@code target}
 		 */

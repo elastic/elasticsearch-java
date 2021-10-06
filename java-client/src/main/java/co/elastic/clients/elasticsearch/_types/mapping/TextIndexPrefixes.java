@@ -57,14 +57,14 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_chars}
+	 * Required - API name: {@code max_chars}
 	 */
 	public int maxChars() {
 		return this.maxChars;
 	}
 
 	/**
-	 * API name: {@code min_chars}
+	 * Required - API name: {@code min_chars}
 	 */
 	public int minChars() {
 		return this.minChars;
@@ -100,7 +100,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		private Integer minChars;
 
 		/**
-		 * API name: {@code max_chars}
+		 * Required - API name: {@code max_chars}
 		 */
 		public Builder maxChars(int value) {
 			this.maxChars = value;
@@ -108,7 +108,7 @@ public final class TextIndexPrefixes implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code min_chars}
+		 * Required - API name: {@code min_chars}
 		 */
 		public Builder minChars(int value) {
 			this.minChars = value;

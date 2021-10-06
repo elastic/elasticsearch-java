@@ -109,7 +109,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	}
 
 	/**
-	 * API name: {@code term}
+	 * Required - API name: {@code term}
 	 */
 	public String term() {
 		return this.term;
@@ -227,7 +227,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		}
 
 		/**
-		 * API name: {@code term}
+		 * Required - API name: {@code term}
 		 */
 		public Builder term(String value) {
 			this.term = value;

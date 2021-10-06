@@ -60,21 +60,21 @@ public final class SecurityRoles implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code native}
+	 * Required - API name: {@code native}
 	 */
 	public SecurityRolesNative native_() {
 		return this.native_;
 	}
 
 	/**
-	 * API name: {@code dls}
+	 * Required - API name: {@code dls}
 	 */
 	public SecurityRolesDls dls() {
 		return this.dls;
 	}
 
 	/**
-	 * API name: {@code file}
+	 * Required - API name: {@code file}
 	 */
 	public SecurityRolesFile file() {
 		return this.file;
@@ -115,7 +115,7 @@ public final class SecurityRoles implements JsonpSerializable {
 		private SecurityRolesFile file;
 
 		/**
-		 * API name: {@code native}
+		 * Required - API name: {@code native}
 		 */
 		public Builder native_(SecurityRolesNative value) {
 			this.native_ = value;
@@ -123,14 +123,14 @@ public final class SecurityRoles implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code native}
+		 * Required - API name: {@code native}
 		 */
 		public Builder native_(Function<SecurityRolesNative.Builder, ObjectBuilder<SecurityRolesNative>> fn) {
 			return this.native_(fn.apply(new SecurityRolesNative.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code dls}
+		 * Required - API name: {@code dls}
 		 */
 		public Builder dls(SecurityRolesDls value) {
 			this.dls = value;
@@ -138,14 +138,14 @@ public final class SecurityRoles implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code dls}
+		 * Required - API name: {@code dls}
 		 */
 		public Builder dls(Function<SecurityRolesDls.Builder, ObjectBuilder<SecurityRolesDls>> fn) {
 			return this.dls(fn.apply(new SecurityRolesDls.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code file}
+		 * Required - API name: {@code file}
 		 */
 		public Builder file(SecurityRolesFile value) {
 			this.file = value;
@@ -153,7 +153,7 @@ public final class SecurityRoles implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code file}
+		 * Required - API name: {@code file}
 		 */
 		public Builder file(Function<SecurityRolesFile.Builder, ObjectBuilder<SecurityRolesFile>> fn) {
 			return this.file(fn.apply(new SecurityRolesFile.Builder()).build());

@@ -118,7 +118,7 @@ public final class ClearScrollRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Add a value to {@link #scrollId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #scrollId(List)}, creating the list if needed.
 		 */
 		public Builder addScrollId(String value) {
 			if (this.scrollId == null) {

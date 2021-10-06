@@ -74,21 +74,21 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * API name: {@code keep_words}
+	 * Required - API name: {@code keep_words}
 	 */
 	public List<String> keepWords() {
 		return this.keepWords;
 	}
 
 	/**
-	 * API name: {@code keep_words_case}
+	 * Required - API name: {@code keep_words_case}
 	 */
 	public boolean keepWordsCase() {
 		return this.keepWordsCase;
 	}
 
 	/**
-	 * API name: {@code keep_words_path}
+	 * Required - API name: {@code keep_words_path}
 	 */
 	public String keepWordsPath() {
 		return this.keepWordsPath;
@@ -130,7 +130,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		private String keepWordsPath;
 
 		/**
-		 * API name: {@code keep_words}
+		 * Required - API name: {@code keep_words}
 		 */
 		public Builder keepWords(List<String> value) {
 			this.keepWords = value;
@@ -138,7 +138,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code keep_words}
+		 * Required - API name: {@code keep_words}
 		 */
 		public Builder keepWords(String... value) {
 			this.keepWords = Arrays.asList(value);
@@ -146,7 +146,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * Add a value to {@link #keepWords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #keepWords(List)}, creating the list if needed.
 		 */
 		public Builder addKeepWords(String value) {
 			if (this.keepWords == null) {
@@ -157,7 +157,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code keep_words_case}
+		 * Required - API name: {@code keep_words_case}
 		 */
 		public Builder keepWordsCase(boolean value) {
 			this.keepWordsCase = value;
@@ -165,7 +165,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code keep_words_path}
+		 * Required - API name: {@code keep_words_path}
 		 */
 		public Builder keepWordsPath(String value) {
 			this.keepWordsPath = value;

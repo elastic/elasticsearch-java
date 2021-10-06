@@ -79,7 +79,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public String pattern() {
 		return this.pattern;
@@ -146,7 +146,7 @@ public final class IntervalsWildcard implements IntervalsQueryVariant, Intervals
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(String value) {
 			this.pattern = value;

@@ -80,7 +80,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 	}
 
 	/**
-	 * Index or template name to simulate
+	 * Required - Index or template name to simulate
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -196,7 +196,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 		private TemplateMapping template;
 
 		/**
-		 * Index or template name to simulate
+		 * Required - Index or template name to simulate
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -222,7 +222,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 		}
 
 		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
 		 */
 		public Builder addIndexPatterns(String value) {
 			if (this.indexPatterns == null) {
@@ -249,7 +249,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed. 4
+		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
 		 */
 		public Builder addComposedOf(String value) {
 			if (this.composedOf == null) {
@@ -280,7 +280,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 4
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
 		 */
 		public Builder addOverlapping(OverlappingIndexTemplate value) {
 			if (this.overlapping == null) {
@@ -299,7 +299,7 @@ public final class SimulateIndexTemplateRequest extends RequestBase implements J
 		}
 
 		/**
-		 * Add a value to {@link #overlapping(List)}, creating the list if needed. 5
+		 * Add a value to {@link #overlapping(List)}, creating the list if needed.
 		 */
 		public Builder addOverlapping(
 				Function<OverlappingIndexTemplate.Builder, ObjectBuilder<OverlappingIndexTemplate>> fn) {

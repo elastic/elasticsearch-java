@@ -66,14 +66,14 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 	}
 
 	/**
-	 * API name: {@code consume_all_tokens}
+	 * Required - API name: {@code consume_all_tokens}
 	 */
 	public boolean consumeAllTokens() {
 		return this.consumeAllTokens;
 	}
 
 	/**
-	 * API name: {@code max_token_count}
+	 * Required - API name: {@code max_token_count}
 	 */
 	public int maxTokenCount() {
 		return this.maxTokenCount;
@@ -105,7 +105,7 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 		private Integer maxTokenCount;
 
 		/**
-		 * API name: {@code consume_all_tokens}
+		 * Required - API name: {@code consume_all_tokens}
 		 */
 		public Builder consumeAllTokens(boolean value) {
 			this.consumeAllTokens = value;
@@ -113,7 +113,7 @@ public final class LimitTokenCountTokenFilter extends TokenFilterBase implements
 		}
 
 		/**
-		 * API name: {@code max_token_count}
+		 * Required - API name: {@code max_token_count}
 		 */
 		public Builder maxTokenCount(int value) {
 			this.maxTokenCount = value;

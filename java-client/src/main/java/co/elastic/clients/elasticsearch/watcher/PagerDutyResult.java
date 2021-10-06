@@ -54,7 +54,7 @@ public final class PagerDutyResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code sent_event}
+	 * Required - API name: {@code sent_event}
 	 */
 	public PagerDutyActionEventResult sentEvent() {
 		return this.sentEvent;
@@ -85,7 +85,7 @@ public final class PagerDutyResult implements JsonpSerializable {
 		private PagerDutyActionEventResult sentEvent;
 
 		/**
-		 * API name: {@code sent_event}
+		 * Required - API name: {@code sent_event}
 		 */
 		public Builder sentEvent(PagerDutyActionEventResult value) {
 			this.sentEvent = value;
@@ -93,7 +93,7 @@ public final class PagerDutyResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sent_event}
+		 * Required - API name: {@code sent_event}
 		 */
 		public Builder sentEvent(
 				Function<PagerDutyActionEventResult.Builder, ObjectBuilder<PagerDutyActionEventResult>> fn) {

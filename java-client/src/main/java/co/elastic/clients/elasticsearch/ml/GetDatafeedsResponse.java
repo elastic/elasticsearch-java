@@ -62,14 +62,14 @@ public final class GetDatafeedsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public List<Datafeed> datafeeds() {
 		return this.datafeeds;
@@ -110,7 +110,7 @@ public final class GetDatafeedsResponse implements JsonpSerializable {
 		private List<Datafeed> datafeeds;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class GetDatafeedsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(List<Datafeed> value) {
 			this.datafeeds = value;
@@ -126,7 +126,7 @@ public final class GetDatafeedsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Datafeed... value) {
 			this.datafeeds = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class GetDatafeedsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
 		 */
 		public Builder addDatafeeds(Datafeed value) {
 			if (this.datafeeds == null) {
@@ -152,7 +152,7 @@ public final class GetDatafeedsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed. 5
+		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
 		 */
 		public Builder addDatafeeds(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
 			return this.addDatafeeds(fn.apply(new Datafeed.Builder()).build());

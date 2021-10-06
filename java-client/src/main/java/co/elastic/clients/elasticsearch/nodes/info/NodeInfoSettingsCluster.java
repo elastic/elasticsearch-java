@@ -67,7 +67,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -82,7 +82,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code election}
+	 * Required - API name: {@code election}
 	 */
 	public NodeInfoSettingsClusterElection election() {
 		return this.election;
@@ -146,7 +146,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		private String initialMasterNodes;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -169,7 +169,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code election}
+		 * Required - API name: {@code election}
 		 */
 		public Builder election(NodeInfoSettingsClusterElection value) {
 			this.election = value;
@@ -177,7 +177,7 @@ public final class NodeInfoSettingsCluster implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code election}
+		 * Required - API name: {@code election}
 		 */
 		public Builder election(
 				Function<NodeInfoSettingsClusterElection.Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {

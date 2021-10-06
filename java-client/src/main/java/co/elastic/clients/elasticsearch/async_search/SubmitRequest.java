@@ -188,7 +188,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
+	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 	@Nullable
 	private final List<String> stats;
@@ -227,7 +227,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean version;
 
 	@Nullable
-	private final List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
+	private final List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
 
 	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -628,7 +628,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source() {
+	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
 		return this.source;
 	}
 
@@ -732,7 +732,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public List<JsonValue /* Union(_types.Field | _types.DateField) */> fields() {
+	public List<JsonValue /* Union(_types.DateField | _types.Field) */> fields() {
 		return this.fields;
 	}
 
@@ -1101,7 +1101,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (JsonValue /* Union(_types.Field | _types.DateField) */ item0 : this.fields) {
+			for (JsonValue /* Union(_types.DateField | _types.Field) */ item0 : this.fields) {
 				generator.write(item0);
 
 			}
@@ -1247,7 +1247,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ source;
+		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
 
 		@Nullable
 		private List<String> stats;
@@ -1286,7 +1286,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		private Boolean version;
 
 		@Nullable
-		private List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
+		private List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -1314,7 +1314,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -1481,7 +1481,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
 		 */
 		public Builder addDocvalueFields(String value) {
 			if (this.docvalueFields == null) {
@@ -1508,7 +1508,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -1582,7 +1582,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed.
 		 */
 		public Builder addIndicesBoost(Map<String, Double> value) {
 			if (this.indicesBoost == null) {
@@ -1710,7 +1710,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed. 4
+		 * Add a value to {@link #rescore(List)}, creating the list if needed.
 		 */
 		public Builder addRescore(Rescore value) {
 			if (this.rescore == null) {
@@ -1728,7 +1728,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed. 5
+		 * Add a value to {@link #rescore(List)}, creating the list if needed.
 		 */
 		public Builder addRescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
 			return this.addRescore(fn.apply(new Rescore.Builder()).build());
@@ -1792,7 +1792,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
 		 */
 		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {
@@ -1843,7 +1843,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -1857,7 +1857,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		 * API name: {@code _source}
 		 */
 		public Builder source(
-				@Nullable JsonValue /* Union(internal.boolean | _global.search._types.SourceFilter) */ value) {
+				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
 			this.source = value;
 			return this;
 		}
@@ -1879,7 +1879,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stats(List)}, creating the list if needed.
 		 */
 		public Builder addStats(String value) {
 			if (this.stats == null) {
@@ -1906,7 +1906,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -2024,7 +2024,7 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<JsonValue /* Union(_types.Field | _types.DateField) */> value) {
+		public Builder fields(@Nullable List<JsonValue /* Union(_types.DateField | _types.Field) */> value) {
 			this.fields = value;
 			return this;
 		}
@@ -2032,15 +2032,15 @@ public final class SubmitRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code fields}
 		 */
-		public Builder fields(JsonValue /* Union(_types.Field | _types.DateField) */... value) {
+		public Builder fields(JsonValue /* Union(_types.DateField | _types.Field) */... value) {
 			this.fields = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
-		public Builder addFields(JsonValue /* Union(_types.Field | _types.DateField) */ value) {
+		public Builder addFields(JsonValue /* Union(_types.DateField | _types.Field) */ value) {
 			if (this.fields == null) {
 				this.fields = new ArrayList<>();
 			}

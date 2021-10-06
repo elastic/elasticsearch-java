@@ -66,7 +66,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Total number of successful database downloads.
+	 * Required - Total number of successful database downloads.
 	 * <p>
 	 * API name: {@code successful_downloads}
 	 */
@@ -75,7 +75,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Total number of failed database downloads.
+	 * Required - Total number of failed database downloads.
 	 * <p>
 	 * API name: {@code failed_downloads}
 	 */
@@ -84,7 +84,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Total milliseconds spent downloading databases.
+	 * Required - Total milliseconds spent downloading databases.
 	 * <p>
 	 * API name: {@code total_download_time}
 	 */
@@ -93,7 +93,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Current number of databases available for use.
+	 * Required - Current number of databases available for use.
 	 * <p>
 	 * API name: {@code database_count}
 	 */
@@ -102,7 +102,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * Total number of database updates skipped.
+	 * Required - Total number of database updates skipped.
 	 * <p>
 	 * API name: {@code skipped_updates}
 	 */
@@ -155,7 +155,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		private Integer skippedUpdates;
 
 		/**
-		 * Total number of successful database downloads.
+		 * Required - Total number of successful database downloads.
 		 * <p>
 		 * API name: {@code successful_downloads}
 		 */
@@ -165,7 +165,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Total number of failed database downloads.
+		 * Required - Total number of failed database downloads.
 		 * <p>
 		 * API name: {@code failed_downloads}
 		 */
@@ -175,7 +175,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Total milliseconds spent downloading databases.
+		 * Required - Total milliseconds spent downloading databases.
 		 * <p>
 		 * API name: {@code total_download_time}
 		 */
@@ -185,7 +185,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Current number of databases available for use.
+		 * Required - Current number of databases available for use.
 		 * <p>
 		 * API name: {@code database_count}
 		 */
@@ -195,7 +195,7 @@ public final class GeoIpDownloadStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Total number of database updates skipped.
+		 * Required - Total number of database updates skipped.
 		 * <p>
 		 * API name: {@code skipped_updates}
 		 */

@@ -66,14 +66,14 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 	}
 
 	/**
-	 * API name: {@code end}
+	 * Required - API name: {@code end}
 	 */
 	public int end() {
 		return this.end;
 	}
 
 	/**
-	 * API name: {@code match}
+	 * Required - API name: {@code match}
 	 */
 	public SpanQuery match() {
 		return this.match;
@@ -102,7 +102,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		private SpanQuery match;
 
 		/**
-		 * API name: {@code end}
+		 * Required - API name: {@code end}
 		 */
 		public Builder end(int value) {
 			this.end = value;
@@ -110,7 +110,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(SpanQuery value) {
 			this.match = value;
@@ -118,7 +118,7 @@ public final class SpanFirstQuery extends QueryBase implements SpanQueryVariant,
 		}
 
 		/**
-		 * API name: {@code match}
+		 * Required - API name: {@code match}
 		 */
 		public Builder match(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.match(fn.apply(new SpanQuery.Builder()).build());

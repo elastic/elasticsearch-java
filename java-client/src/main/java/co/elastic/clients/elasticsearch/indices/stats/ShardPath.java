@@ -62,21 +62,21 @@ public final class ShardPath implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_path}
+	 * Required - API name: {@code data_path}
 	 */
 	public String dataPath() {
 		return this.dataPath;
 	}
 
 	/**
-	 * API name: {@code is_custom_data_path}
+	 * Required - API name: {@code is_custom_data_path}
 	 */
 	public boolean isCustomDataPath() {
 		return this.isCustomDataPath;
 	}
 
 	/**
-	 * API name: {@code state_path}
+	 * Required - API name: {@code state_path}
 	 */
 	public String statePath() {
 		return this.statePath;
@@ -117,7 +117,7 @@ public final class ShardPath implements JsonpSerializable {
 		private String statePath;
 
 		/**
-		 * API name: {@code data_path}
+		 * Required - API name: {@code data_path}
 		 */
 		public Builder dataPath(String value) {
 			this.dataPath = value;
@@ -125,7 +125,7 @@ public final class ShardPath implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code is_custom_data_path}
+		 * Required - API name: {@code is_custom_data_path}
 		 */
 		public Builder isCustomDataPath(boolean value) {
 			this.isCustomDataPath = value;
@@ -133,7 +133,7 @@ public final class ShardPath implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code state_path}
+		 * Required - API name: {@code state_path}
 		 */
 		public Builder statePath(String value) {
 			this.statePath = value;

@@ -65,21 +65,21 @@ public final class FileSystem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data}
+	 * Required - API name: {@code data}
 	 */
 	public List<DataPathStats> data() {
 		return this.data;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public FileSystemTotal total() {
 		return this.total;
@@ -125,7 +125,7 @@ public final class FileSystem implements JsonpSerializable {
 		private FileSystemTotal total;
 
 		/**
-		 * API name: {@code data}
+		 * Required - API name: {@code data}
 		 */
 		public Builder data(List<DataPathStats> value) {
 			this.data = value;
@@ -133,7 +133,7 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data}
+		 * Required - API name: {@code data}
 		 */
 		public Builder data(DataPathStats... value) {
 			this.data = Arrays.asList(value);
@@ -141,7 +141,7 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed. 4
+		 * Add a value to {@link #data(List)}, creating the list if needed.
 		 */
 		public Builder addData(DataPathStats value) {
 			if (this.data == null) {
@@ -159,14 +159,14 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed. 5
+		 * Add a value to {@link #data(List)}, creating the list if needed.
 		 */
 		public Builder addData(Function<DataPathStats.Builder, ObjectBuilder<DataPathStats>> fn) {
 			return this.addData(fn.apply(new DataPathStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(long value) {
 			this.timestamp = value;
@@ -174,7 +174,7 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(FileSystemTotal value) {
 			this.total = value;
@@ -182,7 +182,7 @@ public final class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<FileSystemTotal.Builder, ObjectBuilder<FileSystemTotal>> fn) {
 			return this.total(fn.apply(new FileSystemTotal.Builder()).build());

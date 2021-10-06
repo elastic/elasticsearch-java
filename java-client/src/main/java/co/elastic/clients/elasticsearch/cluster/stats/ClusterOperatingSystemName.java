@@ -59,14 +59,14 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -102,7 +102,7 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -110,7 +110,7 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

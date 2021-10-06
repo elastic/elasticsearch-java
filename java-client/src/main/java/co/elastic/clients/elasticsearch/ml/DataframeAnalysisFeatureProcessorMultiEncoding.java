@@ -70,7 +70,8 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 	}
 
 	/**
-	 * The ordered array of custom processors to execute. Must be more than 1.
+	 * Required - The ordered array of custom processors to execute. Must be more
+	 * than 1.
 	 * <p>
 	 * API name: {@code processors}
 	 */
@@ -108,7 +109,8 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		private List<Integer> processors;
 
 		/**
-		 * The ordered array of custom processors to execute. Must be more than 1.
+		 * Required - The ordered array of custom processors to execute. Must be more
+		 * than 1.
 		 * <p>
 		 * API name: {@code processors}
 		 */
@@ -118,7 +120,8 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		}
 
 		/**
-		 * The ordered array of custom processors to execute. Must be more than 1.
+		 * Required - The ordered array of custom processors to execute. Must be more
+		 * than 1.
 		 * <p>
 		 * API name: {@code processors}
 		 */
@@ -128,7 +131,7 @@ public final class DataframeAnalysisFeatureProcessorMultiEncoding
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #processors(List)}, creating the list if needed.
 		 */
 		public Builder addProcessors(Integer value) {
 			if (this.processors == null) {

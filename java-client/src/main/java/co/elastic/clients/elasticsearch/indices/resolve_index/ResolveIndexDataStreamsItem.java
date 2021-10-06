@@ -65,21 +65,21 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code timestamp_field}
+	 * Required - API name: {@code timestamp_field}
 	 */
 	public String timestampField() {
 		return this.timestampField;
 	}
 
 	/**
-	 * API name: {@code backing_indices}
+	 * Required - API name: {@code backing_indices}
 	 */
 	public List<String> backingIndices() {
 		return this.backingIndices;
@@ -125,7 +125,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		private List<String> backingIndices;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -133,7 +133,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp_field}
+		 * Required - API name: {@code timestamp_field}
 		 */
 		public Builder timestampField(String value) {
 			this.timestampField = value;
@@ -141,7 +141,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code backing_indices}
+		 * Required - API name: {@code backing_indices}
 		 */
 		public Builder backingIndices(List<String> value) {
 			this.backingIndices = value;
@@ -149,7 +149,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code backing_indices}
+		 * Required - API name: {@code backing_indices}
 		 */
 		public Builder backingIndices(String... value) {
 			this.backingIndices = Arrays.asList(value);
@@ -157,7 +157,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #backingIndices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #backingIndices(List)}, creating the list if needed.
 		 */
 		public Builder addBackingIndices(String value) {
 			if (this.backingIndices == null) {

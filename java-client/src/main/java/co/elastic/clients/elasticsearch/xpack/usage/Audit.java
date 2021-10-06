@@ -110,7 +110,7 @@ public final class Audit extends FeatureToggle {
 		}
 
 		/**
-		 * Add a value to {@link #outputs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #outputs(List)}, creating the list if needed.
 		 */
 		public Builder addOutputs(String value) {
 			if (this.outputs == null) {

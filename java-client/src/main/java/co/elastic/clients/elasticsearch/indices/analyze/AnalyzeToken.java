@@ -72,14 +72,14 @@ public final class AnalyzeToken implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code end_offset}
+	 * Required - API name: {@code end_offset}
 	 */
 	public long endOffset() {
 		return this.endOffset;
 	}
 
 	/**
-	 * API name: {@code position}
+	 * Required - API name: {@code position}
 	 */
 	public long position() {
 		return this.position;
@@ -94,21 +94,21 @@ public final class AnalyzeToken implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code start_offset}
+	 * Required - API name: {@code start_offset}
 	 */
 	public long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
-	 * API name: {@code token}
+	 * Required - API name: {@code token}
 	 */
 	public String token() {
 		return this.token;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -169,7 +169,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code end_offset}
+		 * Required - API name: {@code end_offset}
 		 */
 		public Builder endOffset(long value) {
 			this.endOffset = value;
@@ -177,7 +177,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code position}
+		 * Required - API name: {@code position}
 		 */
 		public Builder position(long value) {
 			this.position = value;
@@ -193,7 +193,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start_offset}
+		 * Required - API name: {@code start_offset}
 		 */
 		public Builder startOffset(long value) {
 			this.startOffset = value;
@@ -201,7 +201,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code token}
+		 * Required - API name: {@code token}
 		 */
 		public Builder token(String value) {
 			this.token = value;
@@ -209,7 +209,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

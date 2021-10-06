@@ -58,7 +58,7 @@ public final class NodeattrsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -88,7 +88,7 @@ public final class NodeattrsResponse implements JsonpSerializable {
 		private List<NodeAttributesRecord> valueBody;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -98,7 +98,7 @@ public final class NodeattrsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -108,7 +108,7 @@ public final class NodeattrsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
 		 */
 		public Builder addValueBody(NodeAttributesRecord value) {
 			if (this.valueBody == null) {
@@ -126,7 +126,7 @@ public final class NodeattrsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
 		 */
 		public Builder addValueBody(Function<NodeAttributesRecord.Builder, ObjectBuilder<NodeAttributesRecord>> fn) {
 			return this.addValueBody(fn.apply(new NodeAttributesRecord.Builder()).build());

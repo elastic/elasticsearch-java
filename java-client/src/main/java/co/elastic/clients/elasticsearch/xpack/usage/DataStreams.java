@@ -57,14 +57,14 @@ public final class DataStreams extends Base {
 	}
 
 	/**
-	 * API name: {@code data_streams}
+	 * Required - API name: {@code data_streams}
 	 */
 	public long dataStreams() {
 		return this.dataStreams;
 	}
 
 	/**
-	 * API name: {@code indices_count}
+	 * Required - API name: {@code indices_count}
 	 */
 	public long indicesCount() {
 		return this.indicesCount;
@@ -93,7 +93,7 @@ public final class DataStreams extends Base {
 		private Long indicesCount;
 
 		/**
-		 * API name: {@code data_streams}
+		 * Required - API name: {@code data_streams}
 		 */
 		public Builder dataStreams(long value) {
 			this.dataStreams = value;
@@ -101,7 +101,7 @@ public final class DataStreams extends Base {
 		}
 
 		/**
-		 * API name: {@code indices_count}
+		 * Required - API name: {@code indices_count}
 		 */
 		public Builder indicesCount(long value) {
 			this.indicesCount = value;

@@ -250,7 +250,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #ranges(List)}, creating the list if needed.
 		 */
 		public Builder addRanges(DateRangeExpression value) {
 			if (this.ranges == null) {
@@ -268,7 +268,7 @@ public final class DateRangeAggregation extends BucketAggregationBase implements
 		}
 
 		/**
-		 * Add a value to {@link #ranges(List)}, creating the list if needed. 5
+		 * Add a value to {@link #ranges(List)}, creating the list if needed.
 		 */
 		public Builder addRanges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn) {
 			return this.addRanges(fn.apply(new DateRangeExpression.Builder()).build());

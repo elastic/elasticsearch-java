@@ -71,28 +71,28 @@ public final class StatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _nodes}
+	 * Required - API name: {@code _nodes}
 	 */
 	public NodeStatistics nodeStats() {
 		return this.nodeStats;
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code manually_stopped}
+	 * Required - API name: {@code manually_stopped}
 	 */
 	public boolean manuallyStopped() {
 		return this.manuallyStopped;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public List<WatcherNodeStats> stats() {
 		return this.stats;
@@ -143,7 +143,7 @@ public final class StatsResponse implements JsonpSerializable {
 		private List<WatcherNodeStats> stats;
 
 		/**
-		 * API name: {@code _nodes}
+		 * Required - API name: {@code _nodes}
 		 */
 		public Builder nodeStats(NodeStatistics value) {
 			this.nodeStats = value;
@@ -151,14 +151,14 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _nodes}
+		 * Required - API name: {@code _nodes}
 		 */
 		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
 			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -166,7 +166,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code manually_stopped}
+		 * Required - API name: {@code manually_stopped}
 		 */
 		public Builder manuallyStopped(boolean value) {
 			this.manuallyStopped = value;
@@ -174,7 +174,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(List<WatcherNodeStats> value) {
 			this.stats = value;
@@ -182,7 +182,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(WatcherNodeStats... value) {
 			this.stats = Arrays.asList(value);
@@ -190,7 +190,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stats(List)}, creating the list if needed.
 		 */
 		public Builder addStats(WatcherNodeStats value) {
 			if (this.stats == null) {
@@ -208,7 +208,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed. 5
+		 * Add a value to {@link #stats(List)}, creating the list if needed.
 		 */
 		public Builder addStats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
 			return this.addStats(fn.apply(new WatcherNodeStats.Builder()).build());

@@ -59,7 +59,7 @@ public final class TypeFieldMappings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code mappings}
+	 * Required - API name: {@code mappings}
 	 */
 	public Map<String, FieldMapping> mappings() {
 		return this.mappings;
@@ -96,7 +96,7 @@ public final class TypeFieldMappings implements JsonpSerializable {
 		private Map<String, FieldMapping> mappings;
 
 		/**
-		 * API name: {@code mappings}
+		 * Required - API name: {@code mappings}
 		 */
 		public Builder mappings(Map<String, FieldMapping> value) {
 			this.mappings = value;

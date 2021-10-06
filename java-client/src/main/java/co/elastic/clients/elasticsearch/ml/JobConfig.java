@@ -132,7 +132,7 @@ public final class JobConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code analysis_config}
+	 * Required - API name: {@code analysis_config}
 	 */
 	public AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
@@ -171,7 +171,7 @@ public final class JobConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_description}
+	 * Required - API name: {@code data_description}
 	 */
 	public DataDescription dataDescription() {
 		return this.dataDescription;
@@ -438,7 +438,7 @@ public final class JobConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_config}
+		 * Required - API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(AnalysisConfig value) {
 			this.analysisConfig = value;
@@ -446,7 +446,7 @@ public final class JobConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analysis_config}
+		 * Required - API name: {@code analysis_config}
 		 */
 		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
@@ -499,7 +499,7 @@ public final class JobConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_description}
+		 * Required - API name: {@code data_description}
 		 */
 		public Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
@@ -507,7 +507,7 @@ public final class JobConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_description}
+		 * Required - API name: {@code data_description}
 		 */
 		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
@@ -553,7 +553,7 @@ public final class JobConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {

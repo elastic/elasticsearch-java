@@ -55,7 +55,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 	}
 
 	/**
-	 * API name: {@code model}
+	 * Required - API name: {@code model}
 	 */
 	public ModelSnapshot model() {
 		return this.model;
@@ -81,7 +81,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		private ModelSnapshot model;
 
 		/**
-		 * API name: {@code model}
+		 * Required - API name: {@code model}
 		 */
 		public Builder model(ModelSnapshot value) {
 			this.model = value;
@@ -89,7 +89,7 @@ public final class UpdateModelSnapshotResponse extends AcknowledgedResponseBase 
 		}
 
 		/**
-		 * API name: {@code model}
+		 * Required - API name: {@code model}
 		 */
 		public Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.model(fn.apply(new ModelSnapshot.Builder()).build());

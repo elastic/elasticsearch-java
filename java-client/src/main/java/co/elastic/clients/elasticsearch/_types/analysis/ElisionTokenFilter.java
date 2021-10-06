@@ -71,14 +71,14 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
-	 * API name: {@code articles}
+	 * Required - API name: {@code articles}
 	 */
 	public List<String> articles() {
 		return this.articles;
 	}
 
 	/**
-	 * API name: {@code articles_case}
+	 * Required - API name: {@code articles_case}
 	 */
 	public boolean articlesCase() {
 		return this.articlesCase;
@@ -115,7 +115,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		private Boolean articlesCase;
 
 		/**
-		 * API name: {@code articles}
+		 * Required - API name: {@code articles}
 		 */
 		public Builder articles(List<String> value) {
 			this.articles = value;
@@ -123,7 +123,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code articles}
+		 * Required - API name: {@code articles}
 		 */
 		public Builder articles(String... value) {
 			this.articles = Arrays.asList(value);
@@ -131,7 +131,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * Add a value to {@link #articles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #articles(List)}, creating the list if needed.
 		 */
 		public Builder addArticles(String value) {
 			if (this.articles == null) {
@@ -142,7 +142,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
-		 * API name: {@code articles_case}
+		 * Required - API name: {@code articles_case}
 		 */
 		public Builder articlesCase(boolean value) {
 			this.articlesCase = value;

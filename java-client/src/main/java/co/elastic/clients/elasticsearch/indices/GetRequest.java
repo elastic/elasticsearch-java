@@ -97,8 +97,8 @@ public final class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and index aliases used to
-	 * limit the request. Wildcard expressions (*) are supported.
+	 * Required - Comma-separated list of data streams, indices, and index aliases
+	 * used to limit the request. Wildcard expressions (*) are supported.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -224,8 +224,8 @@ public final class GetRequest extends RequestBase {
 		private String masterTimeout;
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard expressions (*) are supported.
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard expressions (*) are supported.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -235,8 +235,8 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard expressions (*) are supported.
+		 * Required - Comma-separated list of data streams, indices, and index aliases
+		 * used to limit the request. Wildcard expressions (*) are supported.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -246,7 +246,7 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -292,7 +292,7 @@ public final class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

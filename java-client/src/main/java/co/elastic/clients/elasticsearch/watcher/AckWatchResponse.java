@@ -54,7 +54,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public WatchStatus status() {
 		return this.status;
@@ -85,7 +85,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 		private WatchStatus status;
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(WatchStatus value) {
 			this.status = value;
@@ -93,7 +93,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());

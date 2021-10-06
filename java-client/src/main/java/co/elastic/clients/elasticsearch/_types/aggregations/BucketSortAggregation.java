@@ -207,7 +207,7 @@ public final class BucketSortAggregation extends AggregationBase implements Aggr
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {

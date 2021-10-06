@@ -67,7 +67,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 	}
 
 	/**
-	 * API name: {@code scheduled_time}
+	 * Required - API name: {@code scheduled_time}
 	 */
 	public String scheduledTime() {
 		return this.scheduledTime;
@@ -116,7 +116,7 @@ public final class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSer
 		private String triggeredTime;
 
 		/**
-		 * API name: {@code scheduled_time}
+		 * Required - API name: {@code scheduled_time}
 		 */
 		public Builder scheduledTime(String value) {
 			this.scheduledTime = value;

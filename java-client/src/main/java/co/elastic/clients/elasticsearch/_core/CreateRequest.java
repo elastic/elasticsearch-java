@@ -107,7 +107,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Document ID
+	 * Required - Document ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -116,7 +116,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * The name of the index
+	 * Required - The name of the index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -212,7 +212,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -268,7 +268,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * Document ID
+		 * Required - Document ID
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -278,7 +278,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		}
 
 		/**
-		 * The name of the index
+		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -375,7 +375,7 @@ public final class CreateRequest<TDocument> extends RequestBase implements Jsonp
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */

@@ -57,7 +57,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 	}
 
 	/**
-	 * The ID of the calendar to delete
+	 * Required - The ID of the calendar to delete
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 		private String calendarId;
 
 		/**
-		 * The ID of the calendar to delete
+		 * Required - The ID of the calendar to delete
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */

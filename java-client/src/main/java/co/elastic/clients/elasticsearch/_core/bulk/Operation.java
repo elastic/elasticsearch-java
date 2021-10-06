@@ -69,6 +69,10 @@ public class Operation implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends OperationVariant> Operation(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Operation(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

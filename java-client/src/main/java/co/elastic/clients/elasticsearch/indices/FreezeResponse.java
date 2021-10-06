@@ -55,7 +55,7 @@ public final class FreezeResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
 	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
@@ -81,7 +81,7 @@ public final class FreezeResponse extends AcknowledgedResponseBase {
 		private Boolean shardsAcknowledged;
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
 		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;

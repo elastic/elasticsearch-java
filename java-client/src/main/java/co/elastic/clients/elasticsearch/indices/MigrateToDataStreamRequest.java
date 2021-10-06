@@ -57,7 +57,7 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the alias to migrate
+	 * Required - The name of the alias to migrate
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -74,7 +74,7 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * The name of the alias to migrate
+		 * Required - The name of the alias to migrate
 		 * <p>
 		 * API name: {@code name}
 		 */

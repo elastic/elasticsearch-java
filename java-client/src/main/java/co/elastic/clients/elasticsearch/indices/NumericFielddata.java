@@ -54,7 +54,7 @@ public final class NumericFielddata implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code format}
+	 * Required - API name: {@code format}
 	 */
 	public NumericFielddataFormat format() {
 		return this.format;
@@ -85,7 +85,7 @@ public final class NumericFielddata implements JsonpSerializable {
 		private NumericFielddataFormat format;
 
 		/**
-		 * API name: {@code format}
+		 * Required - API name: {@code format}
 		 */
 		public Builder format(NumericFielddataFormat value) {
 			this.format = value;

@@ -79,14 +79,14 @@ public final class ScriptScoreQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public JsonValue /* _types.Script */ script() {
 		return this.script;
@@ -132,7 +132,7 @@ public final class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -140,14 +140,14 @@ public final class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;

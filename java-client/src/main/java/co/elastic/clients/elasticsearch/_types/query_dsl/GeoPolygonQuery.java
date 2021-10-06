@@ -76,12 +76,14 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
+	 * Required -
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
+	 * Required -
 	 */
 	public GeoPolygonPoints polygon() {
 		return this.polygon;
@@ -137,6 +139,7 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		private GeoPolygonPoints polygon;
 
 		/**
+		 * Required -
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -144,6 +147,7 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder polygon(GeoPolygonPoints value) {
 			this.polygon = value;
@@ -151,6 +155,7 @@ public final class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required -
 		 */
 		public Builder polygon(Function<GeoPolygonPoints.Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
 			return this.polygon(fn.apply(new GeoPolygonPoints.Builder()).build());

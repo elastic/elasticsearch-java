@@ -67,7 +67,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 	}
 
 	/**
-	 * API name: {@code model_id}
+	 * Required - API name: {@code model_id}
 	 */
 	public String modelId() {
 		return this.modelId;
@@ -111,7 +111,7 @@ public final class InferenceAggregation extends PipelineAggregationBase implemen
 		private InferenceConfig inferenceConfig;
 
 		/**
-		 * API name: {@code model_id}
+		 * Required - API name: {@code model_id}
 		 */
 		public Builder modelId(String value) {
 			this.modelId = value;

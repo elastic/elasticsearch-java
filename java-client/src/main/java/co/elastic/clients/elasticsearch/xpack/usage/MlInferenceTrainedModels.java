@@ -91,7 +91,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public MlCounter all() {
 		return this.all;
@@ -196,7 +196,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(MlCounter value) {
 			this.all = value;
@@ -204,7 +204,7 @@ public final class MlInferenceTrainedModels implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Function<MlCounter.Builder, ObjectBuilder<MlCounter>> fn) {
 			return this.all(fn.apply(new MlCounter.Builder()).build());

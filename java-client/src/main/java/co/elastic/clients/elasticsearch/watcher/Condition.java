@@ -70,6 +70,10 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends ConditionVariant> Condition(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Condition(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

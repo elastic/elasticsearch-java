@@ -57,7 +57,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * The id of the snapshot lifecycle policy to remove
+	 * Required - The id of the snapshot lifecycle policy to remove
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 		private String policyId;
 
 		/**
-		 * The id of the snapshot lifecycle policy to remove
+		 * Required - The id of the snapshot lifecycle policy to remove
 		 * <p>
 		 * API name: {@code policy_id}
 		 */

@@ -62,21 +62,21 @@ public final class ReadException implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code exception}
+	 * Required - API name: {@code exception}
 	 */
 	public ErrorCause exception() {
 		return this.exception;
 	}
 
 	/**
-	 * API name: {@code from_seq_no}
+	 * Required - API name: {@code from_seq_no}
 	 */
 	public int fromSeqNo() {
 		return this.fromSeqNo;
 	}
 
 	/**
-	 * API name: {@code retries}
+	 * Required - API name: {@code retries}
 	 */
 	public int retries() {
 		return this.retries;
@@ -117,7 +117,7 @@ public final class ReadException implements JsonpSerializable {
 		private Integer retries;
 
 		/**
-		 * API name: {@code exception}
+		 * Required - API name: {@code exception}
 		 */
 		public Builder exception(ErrorCause value) {
 			this.exception = value;
@@ -125,14 +125,14 @@ public final class ReadException implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code exception}
+		 * Required - API name: {@code exception}
 		 */
 		public Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.exception(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code from_seq_no}
+		 * Required - API name: {@code from_seq_no}
 		 */
 		public Builder fromSeqNo(int value) {
 			this.fromSeqNo = value;
@@ -140,7 +140,7 @@ public final class ReadException implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code retries}
+		 * Required - API name: {@code retries}
 		 */
 		public Builder retries(int value) {
 			this.retries = value;

@@ -87,84 +87,84 @@ public final class RollupJobStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code documents_processed}
+	 * Required - API name: {@code documents_processed}
 	 */
 	public long documentsProcessed() {
 		return this.documentsProcessed;
 	}
 
 	/**
-	 * API name: {@code index_failures}
+	 * Required - API name: {@code index_failures}
 	 */
 	public long indexFailures() {
 		return this.indexFailures;
 	}
 
 	/**
-	 * API name: {@code index_time_in_ms}
+	 * Required - API name: {@code index_time_in_ms}
 	 */
 	public long indexTimeInMs() {
 		return this.indexTimeInMs;
 	}
 
 	/**
-	 * API name: {@code index_total}
+	 * Required - API name: {@code index_total}
 	 */
 	public long indexTotal() {
 		return this.indexTotal;
 	}
 
 	/**
-	 * API name: {@code pages_processed}
+	 * Required - API name: {@code pages_processed}
 	 */
 	public long pagesProcessed() {
 		return this.pagesProcessed;
 	}
 
 	/**
-	 * API name: {@code rollups_indexed}
+	 * Required - API name: {@code rollups_indexed}
 	 */
 	public long rollupsIndexed() {
 		return this.rollupsIndexed;
 	}
 
 	/**
-	 * API name: {@code search_failures}
+	 * Required - API name: {@code search_failures}
 	 */
 	public long searchFailures() {
 		return this.searchFailures;
 	}
 
 	/**
-	 * API name: {@code search_time_in_ms}
+	 * Required - API name: {@code search_time_in_ms}
 	 */
 	public long searchTimeInMs() {
 		return this.searchTimeInMs;
 	}
 
 	/**
-	 * API name: {@code search_total}
+	 * Required - API name: {@code search_total}
 	 */
 	public long searchTotal() {
 		return this.searchTotal;
 	}
 
 	/**
-	 * API name: {@code trigger_count}
+	 * Required - API name: {@code trigger_count}
 	 */
 	public long triggerCount() {
 		return this.triggerCount;
 	}
 
 	/**
-	 * API name: {@code processing_time_in_ms}
+	 * Required - API name: {@code processing_time_in_ms}
 	 */
 	public long processingTimeInMs() {
 		return this.processingTimeInMs;
 	}
 
 	/**
-	 * API name: {@code processing_total}
+	 * Required - API name: {@code processing_total}
 	 */
 	public long processingTotal() {
 		return this.processingTotal;
@@ -250,7 +250,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		private Long processingTotal;
 
 		/**
-		 * API name: {@code documents_processed}
+		 * Required - API name: {@code documents_processed}
 		 */
 		public Builder documentsProcessed(long value) {
 			this.documentsProcessed = value;
@@ -258,7 +258,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_failures}
+		 * Required - API name: {@code index_failures}
 		 */
 		public Builder indexFailures(long value) {
 			this.indexFailures = value;
@@ -266,7 +266,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_time_in_ms}
+		 * Required - API name: {@code index_time_in_ms}
 		 */
 		public Builder indexTimeInMs(long value) {
 			this.indexTimeInMs = value;
@@ -274,7 +274,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index_total}
+		 * Required - API name: {@code index_total}
 		 */
 		public Builder indexTotal(long value) {
 			this.indexTotal = value;
@@ -282,7 +282,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pages_processed}
+		 * Required - API name: {@code pages_processed}
 		 */
 		public Builder pagesProcessed(long value) {
 			this.pagesProcessed = value;
@@ -290,7 +290,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rollups_indexed}
+		 * Required - API name: {@code rollups_indexed}
 		 */
 		public Builder rollupsIndexed(long value) {
 			this.rollupsIndexed = value;
@@ -298,7 +298,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code search_failures}
+		 * Required - API name: {@code search_failures}
 		 */
 		public Builder searchFailures(long value) {
 			this.searchFailures = value;
@@ -306,7 +306,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code search_time_in_ms}
+		 * Required - API name: {@code search_time_in_ms}
 		 */
 		public Builder searchTimeInMs(long value) {
 			this.searchTimeInMs = value;
@@ -314,7 +314,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code search_total}
+		 * Required - API name: {@code search_total}
 		 */
 		public Builder searchTotal(long value) {
 			this.searchTotal = value;
@@ -322,7 +322,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trigger_count}
+		 * Required - API name: {@code trigger_count}
 		 */
 		public Builder triggerCount(long value) {
 			this.triggerCount = value;
@@ -330,7 +330,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processing_time_in_ms}
+		 * Required - API name: {@code processing_time_in_ms}
 		 */
 		public Builder processingTimeInMs(long value) {
 			this.processingTimeInMs = value;
@@ -338,7 +338,7 @@ public final class RollupJobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processing_total}
+		 * Required - API name: {@code processing_total}
 		 */
 		public Builder processingTotal(long value) {
 			this.processingTotal = value;

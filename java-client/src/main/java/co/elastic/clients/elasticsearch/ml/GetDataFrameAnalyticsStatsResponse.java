@@ -63,15 +63,15 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * An array of objects that contain usage information for data frame analytics
-	 * jobs, which are sorted by the id value in ascending order.
+	 * Required - An array of objects that contain usage information for data frame
+	 * analytics jobs, which are sorted by the id value in ascending order.
 	 * <p>
 	 * API name: {@code data_frame_analytics}
 	 */
@@ -114,7 +114,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		private List<DataframeAnalytics> dataFrameAnalytics;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -122,8 +122,8 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		}
 
 		/**
-		 * An array of objects that contain usage information for data frame analytics
-		 * jobs, which are sorted by the id value in ascending order.
+		 * Required - An array of objects that contain usage information for data frame
+		 * analytics jobs, which are sorted by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
@@ -133,8 +133,8 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		}
 
 		/**
-		 * An array of objects that contain usage information for data frame analytics
-		 * jobs, which are sorted by the id value in ascending order.
+		 * Required - An array of objects that contain usage information for data frame
+		 * analytics jobs, which are sorted by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
 		 */
@@ -145,7 +145,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 
 		/**
 		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addDataFrameAnalytics(DataframeAnalytics value) {
 			if (this.dataFrameAnalytics == null) {
@@ -164,7 +164,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 
 		/**
 		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addDataFrameAnalytics(
 				Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn) {

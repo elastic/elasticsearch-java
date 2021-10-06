@@ -57,7 +57,7 @@ public final class RemovePolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the index to remove policy on
+	 * Required - The name of the index to remove policy on
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -74,7 +74,7 @@ public final class RemovePolicyRequest extends RequestBase {
 		private String index;
 
 		/**
-		 * The name of the index to remove policy on
+		 * Required - The name of the index to remove policy on
 		 * <p>
 		 * API name: {@code index}
 		 */

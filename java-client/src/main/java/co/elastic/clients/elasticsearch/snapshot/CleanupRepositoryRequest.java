@@ -66,7 +66,7 @@ public final class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * A repository name
+	 * Required - A repository name
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -109,7 +109,7 @@ public final class CleanupRepositoryRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * A repository name
+		 * Required - A repository name
 		 * <p>
 		 * API name: {@code repository}
 		 */

@@ -140,7 +140,7 @@ public final class ShardStoreIndex implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed. 4
+		 * Add a value to {@link #aliases(List)}, creating the list if needed.
 		 */
 		public Builder addAliases(String value) {
 			if (this.aliases == null) {

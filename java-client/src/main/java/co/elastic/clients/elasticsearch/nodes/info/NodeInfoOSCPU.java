@@ -77,56 +77,56 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cache_size}
+	 * Required - API name: {@code cache_size}
 	 */
 	public String cacheSize() {
 		return this.cacheSize;
 	}
 
 	/**
-	 * API name: {@code cache_size_in_bytes}
+	 * Required - API name: {@code cache_size_in_bytes}
 	 */
 	public int cacheSizeInBytes() {
 		return this.cacheSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code cores_per_socket}
+	 * Required - API name: {@code cores_per_socket}
 	 */
 	public int coresPerSocket() {
 		return this.coresPerSocket;
 	}
 
 	/**
-	 * API name: {@code mhz}
+	 * Required - API name: {@code mhz}
 	 */
 	public int mhz() {
 		return this.mhz;
 	}
 
 	/**
-	 * API name: {@code model}
+	 * Required - API name: {@code model}
 	 */
 	public String model() {
 		return this.model;
 	}
 
 	/**
-	 * API name: {@code total_cores}
+	 * Required - API name: {@code total_cores}
 	 */
 	public int totalCores() {
 		return this.totalCores;
 	}
 
 	/**
-	 * API name: {@code total_sockets}
+	 * Required - API name: {@code total_sockets}
 	 */
 	public int totalSockets() {
 		return this.totalSockets;
 	}
 
 	/**
-	 * API name: {@code vendor}
+	 * Required - API name: {@code vendor}
 	 */
 	public String vendor() {
 		return this.vendor;
@@ -192,7 +192,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		private String vendor;
 
 		/**
-		 * API name: {@code cache_size}
+		 * Required - API name: {@code cache_size}
 		 */
 		public Builder cacheSize(String value) {
 			this.cacheSize = value;
@@ -200,7 +200,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cache_size_in_bytes}
+		 * Required - API name: {@code cache_size_in_bytes}
 		 */
 		public Builder cacheSizeInBytes(int value) {
 			this.cacheSizeInBytes = value;
@@ -208,7 +208,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code cores_per_socket}
+		 * Required - API name: {@code cores_per_socket}
 		 */
 		public Builder coresPerSocket(int value) {
 			this.coresPerSocket = value;
@@ -216,7 +216,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mhz}
+		 * Required - API name: {@code mhz}
 		 */
 		public Builder mhz(int value) {
 			this.mhz = value;
@@ -224,7 +224,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code model}
+		 * Required - API name: {@code model}
 		 */
 		public Builder model(String value) {
 			this.model = value;
@@ -232,7 +232,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_cores}
+		 * Required - API name: {@code total_cores}
 		 */
 		public Builder totalCores(int value) {
 			this.totalCores = value;
@@ -240,7 +240,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_sockets}
+		 * Required - API name: {@code total_sockets}
 		 */
 		public Builder totalSockets(int value) {
 			this.totalSockets = value;
@@ -248,7 +248,7 @@ public final class NodeInfoOSCPU implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vendor}
+		 * Required - API name: {@code vendor}
 		 */
 		public Builder vendor(String value) {
 			this.vendor = value;

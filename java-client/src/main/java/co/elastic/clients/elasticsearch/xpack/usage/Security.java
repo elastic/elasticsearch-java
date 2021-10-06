@@ -92,63 +92,63 @@ public final class Security extends Base {
 	}
 
 	/**
-	 * API name: {@code api_key_service}
+	 * Required - API name: {@code api_key_service}
 	 */
 	public FeatureToggle apiKeyService() {
 		return this.apiKeyService;
 	}
 
 	/**
-	 * API name: {@code anonymous}
+	 * Required - API name: {@code anonymous}
 	 */
 	public FeatureToggle anonymous() {
 		return this.anonymous;
 	}
 
 	/**
-	 * API name: {@code audit}
+	 * Required - API name: {@code audit}
 	 */
 	public Audit audit() {
 		return this.audit;
 	}
 
 	/**
-	 * API name: {@code fips_140}
+	 * Required - API name: {@code fips_140}
 	 */
 	public FeatureToggle fips140() {
 		return this.fips140;
 	}
 
 	/**
-	 * API name: {@code ipfilter}
+	 * Required - API name: {@code ipfilter}
 	 */
 	public IpFilter ipfilter() {
 		return this.ipfilter;
 	}
 
 	/**
-	 * API name: {@code realms}
+	 * Required - API name: {@code realms}
 	 */
 	public Map<String, Realm> realms() {
 		return this.realms;
 	}
 
 	/**
-	 * API name: {@code role_mapping}
+	 * Required - API name: {@code role_mapping}
 	 */
 	public Map<String, RoleMapping> roleMapping() {
 		return this.roleMapping;
 	}
 
 	/**
-	 * API name: {@code roles}
+	 * Required - API name: {@code roles}
 	 */
 	public SecurityRoles roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code ssl}
+	 * Required - API name: {@code ssl}
 	 */
 	public Ssl ssl() {
 		return this.ssl;
@@ -163,14 +163,14 @@ public final class Security extends Base {
 	}
 
 	/**
-	 * API name: {@code token_service}
+	 * Required - API name: {@code token_service}
 	 */
 	public FeatureToggle tokenService() {
 		return this.tokenService;
 	}
 
 	/**
-	 * API name: {@code operator_privileges}
+	 * Required - API name: {@code operator_privileges}
 	 */
 	public Base operatorPrivileges() {
 		return this.operatorPrivileges;
@@ -266,7 +266,7 @@ public final class Security extends Base {
 		private Base operatorPrivileges;
 
 		/**
-		 * API name: {@code api_key_service}
+		 * Required - API name: {@code api_key_service}
 		 */
 		public Builder apiKeyService(FeatureToggle value) {
 			this.apiKeyService = value;
@@ -274,14 +274,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code api_key_service}
+		 * Required - API name: {@code api_key_service}
 		 */
 		public Builder apiKeyService(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.apiKeyService(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code anonymous}
+		 * Required - API name: {@code anonymous}
 		 */
 		public Builder anonymous(FeatureToggle value) {
 			this.anonymous = value;
@@ -289,14 +289,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code anonymous}
+		 * Required - API name: {@code anonymous}
 		 */
 		public Builder anonymous(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.anonymous(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code audit}
+		 * Required - API name: {@code audit}
 		 */
 		public Builder audit(Audit value) {
 			this.audit = value;
@@ -304,14 +304,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code audit}
+		 * Required - API name: {@code audit}
 		 */
 		public Builder audit(Function<Audit.Builder, ObjectBuilder<Audit>> fn) {
 			return this.audit(fn.apply(new Audit.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code fips_140}
+		 * Required - API name: {@code fips_140}
 		 */
 		public Builder fips140(FeatureToggle value) {
 			this.fips140 = value;
@@ -319,14 +319,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code fips_140}
+		 * Required - API name: {@code fips_140}
 		 */
 		public Builder fips140(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.fips140(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ipfilter}
+		 * Required - API name: {@code ipfilter}
 		 */
 		public Builder ipfilter(IpFilter value) {
 			this.ipfilter = value;
@@ -334,14 +334,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code ipfilter}
+		 * Required - API name: {@code ipfilter}
 		 */
 		public Builder ipfilter(Function<IpFilter.Builder, ObjectBuilder<IpFilter>> fn) {
 			return this.ipfilter(fn.apply(new IpFilter.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code realms}
+		 * Required - API name: {@code realms}
 		 */
 		public Builder realms(Map<String, Realm> value) {
 			this.realms = value;
@@ -374,7 +374,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code role_mapping}
+		 * Required - API name: {@code role_mapping}
 		 */
 		public Builder roleMapping(Map<String, RoleMapping> value) {
 			this.roleMapping = value;
@@ -407,7 +407,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(SecurityRoles value) {
 			this.roles = value;
@@ -415,14 +415,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - API name: {@code roles}
 		 */
 		public Builder roles(Function<SecurityRoles.Builder, ObjectBuilder<SecurityRoles>> fn) {
 			return this.roles(fn.apply(new SecurityRoles.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ssl}
+		 * Required - API name: {@code ssl}
 		 */
 		public Builder ssl(Ssl value) {
 			this.ssl = value;
@@ -430,7 +430,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code ssl}
+		 * Required - API name: {@code ssl}
 		 */
 		public Builder ssl(Function<Ssl.Builder, ObjectBuilder<Ssl>> fn) {
 			return this.ssl(fn.apply(new Ssl.Builder()).build());
@@ -452,7 +452,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code token_service}
+		 * Required - API name: {@code token_service}
 		 */
 		public Builder tokenService(FeatureToggle value) {
 			this.tokenService = value;
@@ -460,14 +460,14 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code token_service}
+		 * Required - API name: {@code token_service}
 		 */
 		public Builder tokenService(Function<FeatureToggle.Builder, ObjectBuilder<FeatureToggle>> fn) {
 			return this.tokenService(fn.apply(new FeatureToggle.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code operator_privileges}
+		 * Required - API name: {@code operator_privileges}
 		 */
 		public Builder operatorPrivileges(Base value) {
 			this.operatorPrivileges = value;
@@ -475,7 +475,7 @@ public final class Security extends Base {
 		}
 
 		/**
-		 * API name: {@code operator_privileges}
+		 * Required - API name: {@code operator_privileges}
 		 */
 		public Builder operatorPrivileges(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.operatorPrivileges(fn.apply(new Base.Builder()).build());

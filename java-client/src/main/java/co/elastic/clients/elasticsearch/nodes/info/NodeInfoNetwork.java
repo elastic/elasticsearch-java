@@ -58,14 +58,14 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code primary_interface}
+	 * Required - API name: {@code primary_interface}
 	 */
 	public NodeInfoNetworkInterface primaryInterface() {
 		return this.primaryInterface;
 	}
 
 	/**
-	 * API name: {@code refresh_interval}
+	 * Required - API name: {@code refresh_interval}
 	 */
 	public int refreshInterval() {
 		return this.refreshInterval;
@@ -101,7 +101,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		private Integer refreshInterval;
 
 		/**
-		 * API name: {@code primary_interface}
+		 * Required - API name: {@code primary_interface}
 		 */
 		public Builder primaryInterface(NodeInfoNetworkInterface value) {
 			this.primaryInterface = value;
@@ -109,7 +109,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primary_interface}
+		 * Required - API name: {@code primary_interface}
 		 */
 		public Builder primaryInterface(
 				Function<NodeInfoNetworkInterface.Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
@@ -117,7 +117,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code refresh_interval}
+		 * Required - API name: {@code refresh_interval}
 		 */
 		public Builder refreshInterval(int value) {
 			this.refreshInterval = value;

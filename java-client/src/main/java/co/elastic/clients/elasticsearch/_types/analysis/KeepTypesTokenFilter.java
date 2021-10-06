@@ -70,14 +70,14 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * API name: {@code mode}
+	 * Required - API name: {@code mode}
 	 */
 	public KeepTypesMode mode() {
 		return this.mode;
 	}
 
 	/**
-	 * API name: {@code types}
+	 * Required - API name: {@code types}
 	 */
 	public List<String> types() {
 		return this.types;
@@ -114,7 +114,7 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 		private List<String> types;
 
 		/**
-		 * API name: {@code mode}
+		 * Required - API name: {@code mode}
 		 */
 		public Builder mode(KeepTypesMode value) {
 			this.mode = value;
@@ -122,7 +122,7 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code types}
+		 * Required - API name: {@code types}
 		 */
 		public Builder types(List<String> value) {
 			this.types = value;
@@ -130,7 +130,7 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * API name: {@code types}
+		 * Required - API name: {@code types}
 		 */
 		public Builder types(String... value) {
 			this.types = Arrays.asList(value);
@@ -138,7 +138,7 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed. 4
+		 * Add a value to {@link #types(List)}, creating the list if needed.
 		 */
 		public Builder addTypes(String value) {
 			if (this.types == null) {

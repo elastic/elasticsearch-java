@@ -64,7 +64,7 @@ public final class EnableUserRequest extends RequestBase {
 	}
 
 	/**
-	 * The username of the user to enable
+	 * Required - The username of the user to enable
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -97,7 +97,7 @@ public final class EnableUserRequest extends RequestBase {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * The username of the user to enable
+		 * Required - The username of the user to enable
 		 * <p>
 		 * API name: {@code username}
 		 */

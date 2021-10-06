@@ -62,7 +62,7 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 	}
 
 	/**
-	 * API name: {@code discount}
+	 * Required - API name: {@code discount}
 	 */
 	public double discount() {
 		return this.discount;
@@ -93,7 +93,7 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 		private Double discount;
 
 		/**
-		 * API name: {@code discount}
+		 * Required - API name: {@code discount}
 		 */
 		public Builder discount(double value) {
 			this.discount = value;

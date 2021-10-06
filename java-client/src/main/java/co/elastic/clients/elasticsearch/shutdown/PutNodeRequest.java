@@ -57,7 +57,7 @@ public final class PutNodeRequest extends RequestBase {
 	}
 
 	/**
-	 * The node id of node to be shut down
+	 * Required - The node id of node to be shut down
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -74,7 +74,7 @@ public final class PutNodeRequest extends RequestBase {
 		private String nodeId;
 
 		/**
-		 * The node id of node to be shut down
+		 * Required - The node id of node to be shut down
 		 * <p>
 		 * API name: {@code node_id}
 		 */

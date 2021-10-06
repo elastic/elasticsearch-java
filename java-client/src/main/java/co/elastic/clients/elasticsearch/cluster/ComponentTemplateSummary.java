@@ -95,7 +95,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code settings}
+	 * Required - API name: {@code settings}
 	 */
 	public Map<String, IndexSettings> settings() {
 		return this.settings;
@@ -225,7 +225,7 @@ public final class ComponentTemplateSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code settings}
+		 * Required - API name: {@code settings}
 		 */
 		public Builder settings(Map<String, IndexSettings> value) {
 			this.settings = value;

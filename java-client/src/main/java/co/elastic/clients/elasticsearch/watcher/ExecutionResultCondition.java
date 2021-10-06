@@ -61,21 +61,21 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code met}
+	 * Required - API name: {@code met}
 	 */
 	public boolean met() {
 		return this.met;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public ConditionType type() {
 		return this.type;
@@ -116,7 +116,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		private ConditionType type;
 
 		/**
-		 * API name: {@code met}
+		 * Required - API name: {@code met}
 		 */
 		public Builder met(boolean value) {
 			this.met = value;
@@ -124,7 +124,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ActionStatusOptions value) {
 			this.status = value;
@@ -132,7 +132,7 @@ public final class ExecutionResultCondition implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(ConditionType value) {
 			this.type = value;

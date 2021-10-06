@@ -123,7 +123,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 
 		/**
 		 * Add a value to {@link #threadPoolPatterns(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addThreadPoolPatterns(String value) {
 			if (this.threadPoolPatterns == null) {

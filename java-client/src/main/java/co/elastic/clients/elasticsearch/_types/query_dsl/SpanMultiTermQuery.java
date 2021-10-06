@@ -62,8 +62,8 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 	}
 
 	/**
-	 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
-	 * query)
+	 * Required - Should be a multi term query (one of wildcard, fuzzy, prefix,
+	 * range or regexp query)
 	 * <p>
 	 * API name: {@code match}
 	 */
@@ -91,8 +91,8 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		private Query match;
 
 		/**
-		 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
-		 * query)
+		 * Required - Should be a multi term query (one of wildcard, fuzzy, prefix,
+		 * range or regexp query)
 		 * <p>
 		 * API name: {@code match}
 		 */
@@ -102,8 +102,8 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		}
 
 		/**
-		 * Should be a multi term query (one of wildcard, fuzzy, prefix, range or regexp
-		 * query)
+		 * Required - Should be a multi term query (one of wildcard, fuzzy, prefix,
+		 * range or regexp query)
 		 * <p>
 		 * API name: {@code match}
 		 */

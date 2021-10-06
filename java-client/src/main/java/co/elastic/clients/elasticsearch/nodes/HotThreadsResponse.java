@@ -59,7 +59,7 @@ public final class HotThreadsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code hot_threads}
+	 * Required - API name: {@code hot_threads}
 	 */
 	public List<HotThread> hotThreads() {
 		return this.hotThreads;
@@ -95,7 +95,7 @@ public final class HotThreadsResponse implements JsonpSerializable {
 		private List<HotThread> hotThreads;
 
 		/**
-		 * API name: {@code hot_threads}
+		 * Required - API name: {@code hot_threads}
 		 */
 		public Builder hotThreads(List<HotThread> value) {
 			this.hotThreads = value;
@@ -103,7 +103,7 @@ public final class HotThreadsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hot_threads}
+		 * Required - API name: {@code hot_threads}
 		 */
 		public Builder hotThreads(HotThread... value) {
 			this.hotThreads = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class HotThreadsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hotThreads(List)}, creating the list if needed. 4
+		 * Add a value to {@link #hotThreads(List)}, creating the list if needed.
 		 */
 		public Builder addHotThreads(HotThread value) {
 			if (this.hotThreads == null) {
@@ -129,7 +129,7 @@ public final class HotThreadsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hotThreads(List)}, creating the list if needed. 5
+		 * Add a value to {@link #hotThreads(List)}, creating the list if needed.
 		 */
 		public Builder addHotThreads(Function<HotThread.Builder, ObjectBuilder<HotThread>> fn) {
 			return this.addHotThreads(fn.apply(new HotThread.Builder()).build());

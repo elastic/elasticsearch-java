@@ -70,14 +70,14 @@ public final class JoinProcessor extends ProcessorBase implements ProcessorVaria
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * API name: {@code separator}
+	 * Required - API name: {@code separator}
 	 */
 	public String separator() {
 		return this.separator;
@@ -124,7 +124,7 @@ public final class JoinProcessor extends ProcessorBase implements ProcessorVaria
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -132,7 +132,7 @@ public final class JoinProcessor extends ProcessorBase implements ProcessorVaria
 		}
 
 		/**
-		 * API name: {@code separator}
+		 * Required - API name: {@code separator}
 		 */
 		public Builder separator(String value) {
 			this.separator = value;

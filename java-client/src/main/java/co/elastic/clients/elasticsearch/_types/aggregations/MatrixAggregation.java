@@ -133,7 +133,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public BuilderT addFields(String value) {
 			if (this.fields == null) {

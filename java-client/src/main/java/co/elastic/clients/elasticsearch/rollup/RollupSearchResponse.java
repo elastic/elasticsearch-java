@@ -85,14 +85,14 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code took}
+	 * Required - API name: {@code took}
 	 */
 	public long took() {
 		return this.took;
 	}
 
 	/**
-	 * API name: {@code timed_out}
+	 * Required - API name: {@code timed_out}
 	 */
 	public boolean timedOut() {
 		return this.timedOut;
@@ -107,14 +107,14 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code hits}
+	 * Required - API name: {@code hits}
 	 */
 	public HitsMetadata<TDocument> hits() {
 		return this.hits;
@@ -198,7 +198,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code took}
+		 * Required - API name: {@code took}
 		 */
 		public Builder<TDocument> took(long value) {
 			this.took = value;
@@ -206,7 +206,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code timed_out}
+		 * Required - API name: {@code timed_out}
 		 */
 		public Builder<TDocument> timedOut(boolean value) {
 			this.timedOut = value;
@@ -222,7 +222,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder<TDocument> shards(ShardStatistics value) {
 			this.shards = value;
@@ -230,14 +230,14 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder<TDocument> hits(HitsMetadata<TDocument> value) {
 			this.hits = value;
@@ -245,7 +245,7 @@ public final class RollupSearchResponse<TDocument> implements JsonpSerializable 
 		}
 
 		/**
-		 * API name: {@code hits}
+		 * Required - API name: {@code hits}
 		 */
 		public Builder<TDocument> hits(
 				Function<HitsMetadata.Builder<TDocument>, ObjectBuilder<HitsMetadata<TDocument>>> fn) {

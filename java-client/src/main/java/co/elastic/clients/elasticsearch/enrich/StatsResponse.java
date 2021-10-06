@@ -68,14 +68,14 @@ public final class StatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code coordinator_stats}
+	 * Required - API name: {@code coordinator_stats}
 	 */
 	public List<CoordinatorStats> coordinatorStats() {
 		return this.coordinatorStats;
 	}
 
 	/**
-	 * API name: {@code executing_policies}
+	 * Required - API name: {@code executing_policies}
 	 */
 	public List<ExecutingPolicy> executingPolicies() {
 		return this.executingPolicies;
@@ -144,7 +144,7 @@ public final class StatsResponse implements JsonpSerializable {
 		private List<CacheStats> cacheStats;
 
 		/**
-		 * API name: {@code coordinator_stats}
+		 * Required - API name: {@code coordinator_stats}
 		 */
 		public Builder coordinatorStats(List<CoordinatorStats> value) {
 			this.coordinatorStats = value;
@@ -152,7 +152,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code coordinator_stats}
+		 * Required - API name: {@code coordinator_stats}
 		 */
 		public Builder coordinatorStats(CoordinatorStats... value) {
 			this.coordinatorStats = Arrays.asList(value);
@@ -161,7 +161,6 @@ public final class StatsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #coordinatorStats(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addCoordinatorStats(CoordinatorStats value) {
 			if (this.coordinatorStats == null) {
@@ -180,14 +179,13 @@ public final class StatsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #coordinatorStats(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addCoordinatorStats(Function<CoordinatorStats.Builder, ObjectBuilder<CoordinatorStats>> fn) {
 			return this.addCoordinatorStats(fn.apply(new CoordinatorStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code executing_policies}
+		 * Required - API name: {@code executing_policies}
 		 */
 		public Builder executingPolicies(List<ExecutingPolicy> value) {
 			this.executingPolicies = value;
@@ -195,7 +193,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code executing_policies}
+		 * Required - API name: {@code executing_policies}
 		 */
 		public Builder executingPolicies(ExecutingPolicy... value) {
 			this.executingPolicies = Arrays.asList(value);
@@ -204,7 +202,6 @@ public final class StatsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #executingPolicies(List)}, creating the list if needed.
-		 * 4
 		 */
 		public Builder addExecutingPolicies(ExecutingPolicy value) {
 			if (this.executingPolicies == null) {
@@ -223,7 +220,6 @@ public final class StatsResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #executingPolicies(List)}, creating the list if needed.
-		 * 5
 		 */
 		public Builder addExecutingPolicies(Function<ExecutingPolicy.Builder, ObjectBuilder<ExecutingPolicy>> fn) {
 			return this.addExecutingPolicies(fn.apply(new ExecutingPolicy.Builder()).build());
@@ -246,7 +242,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #cacheStats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #cacheStats(List)}, creating the list if needed.
 		 */
 		public Builder addCacheStats(CacheStats value) {
 			if (this.cacheStats == null) {
@@ -264,7 +260,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #cacheStats(List)}, creating the list if needed. 5
+		 * Add a value to {@link #cacheStats(List)}, creating the list if needed.
 		 */
 		public Builder addCacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
 			return this.addCacheStats(fn.apply(new CacheStats.Builder()).build());

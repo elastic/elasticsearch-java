@@ -59,11 +59,12 @@ public final class ChunkingConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
-	 * this is the recommended value when the datafeed does not use aggregations. If
-	 * the mode is <code>manual</code>, chunking is applied according to the
-	 * specified <code>time_span</code>; use this mode when the datafeed uses
-	 * aggregations. If the mode is <code>off</code>, no chunking is applied.
+	 * Required - If the mode is <code>auto</code>, the chunk size is dynamically
+	 * calculated; this is the recommended value when the datafeed does not use
+	 * aggregations. If the mode is <code>manual</code>, chunking is applied
+	 * according to the specified <code>time_span</code>; use this mode when the
+	 * datafeed uses aggregations. If the mode is <code>off</code>, no chunking is
+	 * applied.
 	 * <p>
 	 * API name: {@code mode}
 	 */
@@ -116,11 +117,12 @@ public final class ChunkingConfig implements JsonpSerializable {
 		private String timeSpan;
 
 		/**
-		 * If the mode is <code>auto</code>, the chunk size is dynamically calculated;
-		 * this is the recommended value when the datafeed does not use aggregations. If
-		 * the mode is <code>manual</code>, chunking is applied according to the
-		 * specified <code>time_span</code>; use this mode when the datafeed uses
-		 * aggregations. If the mode is <code>off</code>, no chunking is applied.
+		 * Required - If the mode is <code>auto</code>, the chunk size is dynamically
+		 * calculated; this is the recommended value when the datafeed does not use
+		 * aggregations. If the mode is <code>manual</code>, chunking is applied
+		 * according to the specified <code>time_span</code>; use this mode when the
+		 * datafeed uses aggregations. If the mode is <code>off</code>, no chunking is
+		 * applied.
 		 * <p>
 		 * API name: {@code mode}
 		 */

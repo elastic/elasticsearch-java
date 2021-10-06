@@ -59,14 +59,14 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code predicted_class}
+	 * Required - API name: {@code predicted_class}
 	 */
 	public String predictedClass() {
 		return this.predictedClass;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
@@ -102,7 +102,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		private Integer count;
 
 		/**
-		 * API name: {@code predicted_class}
+		 * Required - API name: {@code predicted_class}
 		 */
 		public Builder predictedClass(String value) {
 			this.predictedClass = value;
@@ -110,7 +110,7 @@ public final class ConfusionMatrixPrediction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;

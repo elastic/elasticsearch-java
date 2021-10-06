@@ -65,14 +65,14 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public int max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public int min() {
 		return this.min;
@@ -104,7 +104,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		private Integer min;
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(int value) {
 			this.max = value;
@@ -112,7 +112,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder min(int value) {
 			this.min = value;

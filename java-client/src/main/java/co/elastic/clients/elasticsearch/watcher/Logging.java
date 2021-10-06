@@ -71,7 +71,7 @@ public final class Logging implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code text}
+	 * Required - API name: {@code text}
 	 */
 	public String text() {
 		return this.text;
@@ -138,7 +138,7 @@ public final class Logging implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code text}
+		 * Required - API name: {@code text}
 		 */
 		public Builder text(String value) {
 			this.text = value;

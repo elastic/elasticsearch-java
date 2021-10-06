@@ -57,14 +57,14 @@ public final class WatcherActionTotals implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public long total() {
 		return this.total;
 	}
 
 	/**
-	 * API name: {@code total_time_in_ms}
+	 * Required - API name: {@code total_time_in_ms}
 	 */
 	public long totalTimeInMs() {
 		return this.totalTimeInMs;
@@ -100,7 +100,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		private Long totalTimeInMs;
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(long value) {
 			this.total = value;
@@ -108,7 +108,7 @@ public final class WatcherActionTotals implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_time_in_ms}
+		 * Required - API name: {@code total_time_in_ms}
 		 */
 		public Builder totalTimeInMs(long value) {
 			this.totalTimeInMs = value;

@@ -91,7 +91,7 @@ public final class ExistsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names
+	 * Required - A comma-separated list of index names
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -189,7 +189,7 @@ public final class ExistsRequest extends RequestBase {
 		private Boolean local;
 
 		/**
-		 * A comma-separated list of index names
+		 * Required - A comma-separated list of index names
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -199,7 +199,7 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names
+		 * Required - A comma-separated list of index names
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -209,7 +209,7 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -253,7 +253,7 @@ public final class ExistsRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

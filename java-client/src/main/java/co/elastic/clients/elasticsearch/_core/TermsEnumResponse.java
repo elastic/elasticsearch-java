@@ -67,21 +67,21 @@ public final class TermsEnumResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code terms}
+	 * Required - API name: {@code terms}
 	 */
 	public List<String> terms() {
 		return this.terms;
 	}
 
 	/**
-	 * API name: {@code complete}
+	 * Required - API name: {@code complete}
 	 */
 	public boolean complete() {
 		return this.complete;
@@ -127,7 +127,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		private Boolean complete;
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -135,14 +135,14 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(List<String> value) {
 			this.terms = value;
@@ -150,7 +150,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code terms}
+		 * Required - API name: {@code terms}
 		 */
 		public Builder terms(String... value) {
 			this.terms = Arrays.asList(value);
@@ -158,7 +158,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed. 4
+		 * Add a value to {@link #terms(List)}, creating the list if needed.
 		 */
 		public Builder addTerms(String value) {
 			if (this.terms == null) {
@@ -169,7 +169,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code complete}
+		 * Required - API name: {@code complete}
 		 */
 		public Builder complete(boolean value) {
 			this.complete = value;

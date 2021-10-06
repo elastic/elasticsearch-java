@@ -95,42 +95,42 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code timestamp_field}
+	 * Required - API name: {@code timestamp_field}
 	 */
 	public IndicesGetDataStreamItemTimestampField timestampField() {
 		return this.timestampField;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<IndicesGetDataStreamItemIndex> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code generation}
+	 * Required - API name: {@code generation}
 	 */
 	public int generation() {
 		return this.generation;
 	}
 
 	/**
-	 * API name: {@code template}
+	 * Required - API name: {@code template}
 	 */
 	public String template() {
 		return this.template;
 	}
 
 	/**
-	 * API name: {@code hidden}
+	 * Required - API name: {@code hidden}
 	 */
 	public boolean hidden() {
 		return this.hidden;
@@ -145,7 +145,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public DataStreamHealthStatus status() {
 		return this.status;
@@ -261,7 +261,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		private Map<String, JsonData> meta;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -269,7 +269,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp_field}
+		 * Required - API name: {@code timestamp_field}
 		 */
 		public Builder timestampField(IndicesGetDataStreamItemTimestampField value) {
 			this.timestampField = value;
@@ -277,7 +277,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp_field}
+		 * Required - API name: {@code timestamp_field}
 		 */
 		public Builder timestampField(
 				Function<IndicesGetDataStreamItemTimestampField.Builder, ObjectBuilder<IndicesGetDataStreamItemTimestampField>> fn) {
@@ -285,7 +285,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<IndicesGetDataStreamItemIndex> value) {
 			this.indices = value;
@@ -293,7 +293,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(IndicesGetDataStreamItemIndex... value) {
 			this.indices = Arrays.asList(value);
@@ -301,7 +301,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(IndicesGetDataStreamItemIndex value) {
 			if (this.indices == null) {
@@ -320,7 +320,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(
 				Function<IndicesGetDataStreamItemIndex.Builder, ObjectBuilder<IndicesGetDataStreamItemIndex>> fn) {
@@ -328,7 +328,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code generation}
+		 * Required - API name: {@code generation}
 		 */
 		public Builder generation(int value) {
 			this.generation = value;
@@ -336,7 +336,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code template}
+		 * Required - API name: {@code template}
 		 */
 		public Builder template(String value) {
 			this.template = value;
@@ -344,7 +344,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code hidden}
+		 * Required - API name: {@code hidden}
 		 */
 		public Builder hidden(boolean value) {
 			this.hidden = value;
@@ -360,7 +360,7 @@ public final class IndicesGetDataStreamItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(DataStreamHealthStatus value) {
 			this.status = value;

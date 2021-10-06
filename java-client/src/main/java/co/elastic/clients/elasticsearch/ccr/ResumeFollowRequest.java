@@ -101,7 +101,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The name of the follow index to resume following.
+	 * Required - The name of the follow index to resume following.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -302,7 +302,7 @@ public final class ResumeFollowRequest extends RequestBase implements JsonpSeria
 		private String readPollTimeout;
 
 		/**
-		 * The name of the follow index to resume following.
+		 * Required - The name of the follow index to resume following.
 		 * <p>
 		 * API name: {@code index}
 		 */

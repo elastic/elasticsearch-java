@@ -80,35 +80,35 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code flags}
+	 * Required - API name: {@code flags}
 	 */
 	public String flags() {
 		return this.flags;
 	}
 
 	/**
-	 * API name: {@code lowercase}
+	 * Required - API name: {@code lowercase}
 	 */
 	public boolean lowercase() {
 		return this.lowercase;
 	}
 
 	/**
-	 * API name: {@code pattern}
+	 * Required - API name: {@code pattern}
 	 */
 	public String pattern() {
 		return this.pattern;
 	}
 
 	/**
-	 * API name: {@code stopwords}
+	 * Required - API name: {@code stopwords}
 	 */
 	public List<String> stopwords() {
 		return this.stopwords;
@@ -166,7 +166,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		private List<String> stopwords;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -174,7 +174,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code flags}
+		 * Required - API name: {@code flags}
 		 */
 		public Builder flags(String value) {
 			this.flags = value;
@@ -182,7 +182,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code lowercase}
+		 * Required - API name: {@code lowercase}
 		 */
 		public Builder lowercase(boolean value) {
 			this.lowercase = value;
@@ -190,7 +190,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code pattern}
+		 * Required - API name: {@code pattern}
 		 */
 		public Builder pattern(String value) {
 			this.pattern = value;
@@ -198,7 +198,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(List<String> value) {
 			this.stopwords = value;
@@ -206,7 +206,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
@@ -214,7 +214,7 @@ public final class PatternAnalyzer implements AnalyzerVariant, JsonpSerializable
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {

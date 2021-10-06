@@ -73,21 +73,21 @@ public final class ShardStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code failed}
+	 * Required - API name: {@code failed}
 	 */
 	public Number failed() {
 		return this.failed;
 	}
 
 	/**
-	 * API name: {@code successful}
+	 * Required - API name: {@code successful}
 	 */
 	public Number successful() {
 		return this.successful;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public Number total() {
 		return this.total;
@@ -168,7 +168,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		private Number skipped;
 
 		/**
-		 * API name: {@code failed}
+		 * Required - API name: {@code failed}
 		 */
 		public Builder failed(Number value) {
 			this.failed = value;
@@ -176,7 +176,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code successful}
+		 * Required - API name: {@code successful}
 		 */
 		public Builder successful(Number value) {
 			this.successful = value;
@@ -184,7 +184,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Number value) {
 			this.total = value;
@@ -208,7 +208,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(ShardFailure value) {
 			if (this.failures == null) {
@@ -226,7 +226,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #failures(List)}, creating the list if needed.
 		 */
 		public Builder addFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return this.addFailures(fn.apply(new ShardFailure.Builder()).build());

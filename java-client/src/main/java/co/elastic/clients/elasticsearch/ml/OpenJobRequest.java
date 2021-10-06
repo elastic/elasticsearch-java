@@ -64,7 +64,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The ID of the job to open
+	 * Required - The ID of the job to open
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -112,7 +112,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 		private String timeout;
 
 		/**
-		 * The ID of the job to open
+		 * Required - The ID of the job to open
 		 * <p>
 		 * API name: {@code job_id}
 		 */

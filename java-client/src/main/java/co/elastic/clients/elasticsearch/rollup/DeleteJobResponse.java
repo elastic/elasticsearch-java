@@ -113,7 +113,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #taskFailures(List)}, creating the list if needed. 4
+		 * Add a value to {@link #taskFailures(List)}, creating the list if needed.
 		 */
 		public Builder addTaskFailures(TaskFailure value) {
 			if (this.taskFailures == null) {
@@ -131,7 +131,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #taskFailures(List)}, creating the list if needed. 5
+		 * Add a value to {@link #taskFailures(List)}, creating the list if needed.
 		 */
 		public Builder addTaskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
 			return this.addTaskFailures(fn.apply(new TaskFailure.Builder()).build());

@@ -65,21 +65,21 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code application}
+	 * Required - API name: {@code application}
 	 */
 	public String application() {
 		return this.application;
 	}
 
 	/**
-	 * API name: {@code privileges}
+	 * Required - API name: {@code privileges}
 	 */
 	public List<String> privileges() {
 		return this.privileges;
 	}
 
 	/**
-	 * API name: {@code resources}
+	 * Required - API name: {@code resources}
 	 */
 	public List<String> resources() {
 		return this.resources;
@@ -130,7 +130,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		private List<String> resources;
 
 		/**
-		 * API name: {@code application}
+		 * Required - API name: {@code application}
 		 */
 		public Builder application(String value) {
 			this.application = value;
@@ -138,7 +138,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
 		public Builder privileges(List<String> value) {
 			this.privileges = value;
@@ -146,7 +146,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code privileges}
+		 * Required - API name: {@code privileges}
 		 */
 		public Builder privileges(String... value) {
 			this.privileges = Arrays.asList(value);
@@ -154,7 +154,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed. 4
+		 * Add a value to {@link #privileges(List)}, creating the list if needed.
 		 */
 		public Builder addPrivileges(String value) {
 			if (this.privileges == null) {
@@ -165,7 +165,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code resources}
+		 * Required - API name: {@code resources}
 		 */
 		public Builder resources(List<String> value) {
 			this.resources = value;
@@ -173,7 +173,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code resources}
+		 * Required - API name: {@code resources}
 		 */
 		public Builder resources(String... value) {
 			this.resources = Arrays.asList(value);
@@ -181,7 +181,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #resources(List)}, creating the list if needed. 4
+		 * Add a value to {@link #resources(List)}, creating the list if needed.
 		 */
 		public Builder addResources(String value) {
 			if (this.resources == null) {

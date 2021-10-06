@@ -60,21 +60,21 @@ public final class Watcher extends Base {
 	}
 
 	/**
-	 * API name: {@code execution}
+	 * Required - API name: {@code execution}
 	 */
 	public WatcherActions execution() {
 		return this.execution;
 	}
 
 	/**
-	 * API name: {@code watch}
+	 * Required - API name: {@code watch}
 	 */
 	public WatcherWatch watch() {
 		return this.watch;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public Counter count() {
 		return this.count;
@@ -108,7 +108,7 @@ public final class Watcher extends Base {
 		private Counter count;
 
 		/**
-		 * API name: {@code execution}
+		 * Required - API name: {@code execution}
 		 */
 		public Builder execution(WatcherActions value) {
 			this.execution = value;
@@ -116,14 +116,14 @@ public final class Watcher extends Base {
 		}
 
 		/**
-		 * API name: {@code execution}
+		 * Required - API name: {@code execution}
 		 */
 		public Builder execution(Function<WatcherActions.Builder, ObjectBuilder<WatcherActions>> fn) {
 			return this.execution(fn.apply(new WatcherActions.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code watch}
+		 * Required - API name: {@code watch}
 		 */
 		public Builder watch(WatcherWatch value) {
 			this.watch = value;
@@ -131,14 +131,14 @@ public final class Watcher extends Base {
 		}
 
 		/**
-		 * API name: {@code watch}
+		 * Required - API name: {@code watch}
 		 */
 		public Builder watch(Function<WatcherWatch.Builder, ObjectBuilder<WatcherWatch>> fn) {
 			return this.watch(fn.apply(new WatcherWatch.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(Counter value) {
 			this.count = value;
@@ -146,7 +146,7 @@ public final class Watcher extends Base {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.count(fn.apply(new Counter.Builder()).build());

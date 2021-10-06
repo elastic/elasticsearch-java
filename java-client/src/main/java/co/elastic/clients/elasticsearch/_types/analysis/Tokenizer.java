@@ -44,6 +44,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	public static final String CHAR_GROUP = "char_group";
 	public static final String EDGE_NGRAM = "edge_ngram";
 	public static final String KEYWORD = "keyword";
+	public static final String KUROMOJI_TOKENIZER = "kuromoji_tokenizer";
 	public static final String LETTER = "letter";
 	public static final String LOWERCASE = "lowercase";
 	public static final String NGRAM = "ngram";
@@ -52,7 +53,6 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	public static final String STANDARD = "standard";
 	public static final String UAX_URL_EMAIL = "uax_url_email";
 	public static final String WHITESPACE = "whitespace";
-	public static final String KUROMOJI_TOKENIZER = "kuromoji_tokenizer";
 
 	// Tagged union implementation
 
@@ -74,6 +74,10 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		this._type = Objects.requireNonNull(value._variantType(), "variant type");
 		this._value = Objects.requireNonNull(value, "variant value");
 
+	}
+
+	public <T extends TokenizerVariant> Tokenizer(ObjectBuilder<T> builder) {
+		this(builder.build());
 	}
 
 	private Tokenizer(Builder builder) {
@@ -115,6 +119,17 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 	 */
 	public KeywordTokenizer keyword() {
 		return TaggedUnionUtils.get(this, KEYWORD);
+	}
+
+	/**
+	 * Get the {@code kuromoji_tokenizer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code kuromoji_tokenizer}
+	 *             kind.
+	 */
+	public KuromojiTokenizer kuromojiTokenizer() {
+		return TaggedUnionUtils.get(this, KUROMOJI_TOKENIZER);
 	}
 
 	/**
@@ -197,17 +212,6 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		return TaggedUnionUtils.get(this, WHITESPACE);
 	}
 
-	/**
-	 * Get the {@code kuromoji_tokenizer} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code kuromoji_tokenizer}
-	 *             kind.
-	 */
-	public KuromojiTokenizer kuromojiTokenizer() {
-		return TaggedUnionUtils.get(this, KUROMOJI_TOKENIZER);
-	}
-
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -247,6 +251,16 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 
 		public Builder keyword(Function<KeywordTokenizer.Builder, ObjectBuilder<KeywordTokenizer>> f) {
 			return this.keyword(f.apply(new KeywordTokenizer.Builder()).build());
+		}
+
+		public Builder kuromojiTokenizer(KuromojiTokenizer v) {
+			this._type = KUROMOJI_TOKENIZER;
+			this._value = v;
+			return this;
+		}
+
+		public Builder kuromojiTokenizer(Function<KuromojiTokenizer.Builder, ObjectBuilder<KuromojiTokenizer>> f) {
+			return this.kuromojiTokenizer(f.apply(new KuromojiTokenizer.Builder()).build());
 		}
 
 		public Builder letter(LetterTokenizer v) {
@@ -330,16 +344,6 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 			return this.whitespace(f.apply(new WhitespaceTokenizer.Builder()).build());
 		}
 
-		public Builder kuromojiTokenizer(KuromojiTokenizer v) {
-			this._type = KUROMOJI_TOKENIZER;
-			this._value = v;
-			return this;
-		}
-
-		public Builder kuromojiTokenizer(Function<KuromojiTokenizer.Builder, ObjectBuilder<KuromojiTokenizer>> f) {
-			return this.kuromojiTokenizer(f.apply(new KuromojiTokenizer.Builder()).build());
-		}
-
 		public Tokenizer build() {
 			return new Tokenizer(this);
 		}
@@ -351,6 +355,7 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		op.add(Builder::charGroup, CharGroupTokenizer._DESERIALIZER, "char_group");
 		op.add(Builder::edgeNgram, EdgeNGramTokenizer._DESERIALIZER, "edge_ngram");
 		op.add(Builder::keyword, KeywordTokenizer._DESERIALIZER, "keyword");
+		op.add(Builder::kuromojiTokenizer, KuromojiTokenizer._DESERIALIZER, "kuromoji_tokenizer");
 		op.add(Builder::letter, LetterTokenizer._DESERIALIZER, "letter");
 		op.add(Builder::lowercase, LowercaseTokenizer._DESERIALIZER, "lowercase");
 		op.add(Builder::ngram, NGramTokenizer._DESERIALIZER, "ngram");
@@ -359,7 +364,6 @@ public class Tokenizer implements TaggedUnion<JsonpSerializable>, JsonpSerializa
 		op.add(Builder::standard, StandardTokenizer._DESERIALIZER, "standard");
 		op.add(Builder::uaxUrlEmail, UaxEmailUrlTokenizer._DESERIALIZER, "uax_url_email");
 		op.add(Builder::whitespace, WhitespaceTokenizer._DESERIALIZER, "whitespace");
-		op.add(Builder::kuromojiTokenizer, KuromojiTokenizer._DESERIALIZER, "kuromoji_tokenizer");
 
 		op.setTypeProperty("type");
 

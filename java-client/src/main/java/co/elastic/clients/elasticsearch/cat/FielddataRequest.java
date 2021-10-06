@@ -120,7 +120,7 @@ public final class FielddataRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {

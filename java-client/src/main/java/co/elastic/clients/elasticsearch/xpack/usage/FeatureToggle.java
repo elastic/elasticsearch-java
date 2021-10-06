@@ -50,7 +50,7 @@ public class FeatureToggle implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public boolean enabled() {
 		return this.enabled;
@@ -99,7 +99,7 @@ public class FeatureToggle implements JsonpSerializable {
 		private Boolean enabled;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public BuilderT enabled(boolean value) {
 			this.enabled = value;

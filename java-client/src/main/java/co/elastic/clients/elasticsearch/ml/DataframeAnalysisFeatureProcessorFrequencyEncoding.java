@@ -76,7 +76,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	}
 
 	/**
-	 * The resulting feature name.
+	 * Required - The resulting feature name.
 	 * <p>
 	 * API name: {@code feature_name}
 	 */
@@ -85,15 +85,15 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
 	}
 
 	/**
-	 * The resulting frequency map for the field value. If the field value is
-	 * missing from the frequency_map, the resulting value is 0.
+	 * Required - The resulting frequency map for the field value. If the field
+	 * value is missing from the frequency_map, the resulting value is 0.
 	 * <p>
 	 * API name: {@code frequency_map}
 	 */
@@ -142,7 +142,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		private Map<String, Double> frequencyMap;
 
 		/**
-		 * The resulting feature name.
+		 * Required - The resulting feature name.
 		 * <p>
 		 * API name: {@code feature_name}
 		 */
@@ -152,7 +152,7 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -160,8 +160,8 @@ public final class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		}
 
 		/**
-		 * The resulting frequency map for the field value. If the field value is
-		 * missing from the frequency_map, the resulting value is 0.
+		 * Required - The resulting frequency map for the field value. If the field
+		 * value is missing from the frequency_map, the resulting value is 0.
 		 * <p>
 		 * API name: {@code frequency_map}
 		 */

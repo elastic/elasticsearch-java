@@ -189,7 +189,7 @@ public final class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(String value) {
 			if (this.actions == null) {
@@ -224,7 +224,7 @@ public final class CancelRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodes(List)}, creating the list if needed.
 		 */
 		public Builder addNodes(String value) {
 			if (this.nodes == null) {

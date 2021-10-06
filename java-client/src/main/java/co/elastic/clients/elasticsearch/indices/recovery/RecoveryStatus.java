@@ -58,7 +58,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public List<ShardRecovery> shards() {
 		return this.shards;
@@ -94,7 +94,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		private List<ShardRecovery> shards;
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(List<ShardRecovery> value) {
 			this.shards = value;
@@ -102,7 +102,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardRecovery... value) {
 			this.shards = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(ShardRecovery value) {
 			if (this.shards == null) {
@@ -128,7 +128,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed. 5
+		 * Add a value to {@link #shards(List)}, creating the list if needed.
 		 */
 		public Builder addShards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
 			return this.addShards(fn.apply(new ShardRecovery.Builder()).build());

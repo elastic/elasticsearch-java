@@ -59,14 +59,14 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices_managed}
+	 * Required - API name: {@code indices_managed}
 	 */
 	public int indicesManaged() {
 		return this.indicesManaged;
 	}
 
 	/**
-	 * API name: {@code phases}
+	 * Required - API name: {@code phases}
 	 */
 	public Phases phases() {
 		return this.phases;
@@ -102,7 +102,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		private Phases phases;
 
 		/**
-		 * API name: {@code indices_managed}
+		 * Required - API name: {@code indices_managed}
 		 */
 		public Builder indicesManaged(int value) {
 			this.indicesManaged = value;
@@ -110,7 +110,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code phases}
+		 * Required - API name: {@code phases}
 		 */
 		public Builder phases(Phases value) {
 			this.phases = value;
@@ -118,7 +118,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code phases}
+		 * Required - API name: {@code phases}
 		 */
 		public Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
 			return this.phases(fn.apply(new Phases.Builder()).build());

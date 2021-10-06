@@ -62,14 +62,14 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public List<DatafeedStats> datafeeds() {
 		return this.datafeeds;
@@ -110,7 +110,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		private List<DatafeedStats> datafeeds;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(List<DatafeedStats> value) {
 			this.datafeeds = value;
@@ -126,7 +126,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(DatafeedStats... value) {
 			this.datafeeds = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
 		 */
 		public Builder addDatafeeds(DatafeedStats value) {
 			if (this.datafeeds == null) {
@@ -152,7 +152,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed. 5
+		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
 		 */
 		public Builder addDatafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
 			return this.addDatafeeds(fn.apply(new DatafeedStats.Builder()).build());

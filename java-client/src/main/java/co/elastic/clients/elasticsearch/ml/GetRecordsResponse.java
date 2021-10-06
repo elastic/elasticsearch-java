@@ -62,14 +62,14 @@ public final class GetRecordsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code records}
+	 * Required - API name: {@code records}
 	 */
 	public List<Anomaly> records() {
 		return this.records;
@@ -110,7 +110,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		private List<Anomaly> records;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code records}
+		 * Required - API name: {@code records}
 		 */
 		public Builder records(List<Anomaly> value) {
 			this.records = value;
@@ -126,7 +126,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code records}
+		 * Required - API name: {@code records}
 		 */
 		public Builder records(Anomaly... value) {
 			this.records = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed. 4
+		 * Add a value to {@link #records(List)}, creating the list if needed.
 		 */
 		public Builder addRecords(Anomaly value) {
 			if (this.records == null) {
@@ -152,7 +152,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed. 5
+		 * Add a value to {@link #records(List)}, creating the list if needed.
 		 */
 		public Builder addRecords(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
 			return this.addRecords(fn.apply(new Anomaly.Builder()).build());

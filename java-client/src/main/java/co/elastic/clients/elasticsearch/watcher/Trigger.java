@@ -66,6 +66,10 @@ public class Trigger implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends TriggerVariant> Trigger(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Trigger(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

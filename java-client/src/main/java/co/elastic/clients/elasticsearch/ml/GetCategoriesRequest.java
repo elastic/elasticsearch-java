@@ -82,7 +82,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 	}
 
 	/**
-	 * Identifier for the anomaly detection job.
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -186,7 +186,7 @@ public final class GetCategoriesRequest extends RequestBase implements JsonpSeri
 		private Page page;
 
 		/**
-		 * Identifier for the anomaly detection job.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */

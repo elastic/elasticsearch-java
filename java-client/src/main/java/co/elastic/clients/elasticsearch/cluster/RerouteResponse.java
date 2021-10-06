@@ -72,9 +72,9 @@ public final class RerouteResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * There aren't any guarantees on the output/structure of the raw cluster state.
-	 * Here you will find the internal representation of the cluster, which can
-	 * differ from the external representation.
+	 * Required - There aren't any guarantees on the output/structure of the raw
+	 * cluster state. Here you will find the internal representation of the cluster,
+	 * which can differ from the external representation.
 	 * <p>
 	 * API name: {@code state}
 	 */
@@ -138,7 +138,7 @@ public final class RerouteResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed. 4
+		 * Add a value to {@link #explanations(List)}, creating the list if needed.
 		 */
 		public Builder addExplanations(RerouteExplanation value) {
 			if (this.explanations == null) {
@@ -156,16 +156,16 @@ public final class RerouteResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed. 5
+		 * Add a value to {@link #explanations(List)}, creating the list if needed.
 		 */
 		public Builder addExplanations(Function<RerouteExplanation.Builder, ObjectBuilder<RerouteExplanation>> fn) {
 			return this.addExplanations(fn.apply(new RerouteExplanation.Builder()).build());
 		}
 
 		/**
-		 * There aren't any guarantees on the output/structure of the raw cluster state.
-		 * Here you will find the internal representation of the cluster, which can
-		 * differ from the external representation.
+		 * Required - There aren't any guarantees on the output/structure of the raw
+		 * cluster state. Here you will find the internal representation of the cluster,
+		 * which can differ from the external representation.
 		 * <p>
 		 * API name: {@code state}
 		 */

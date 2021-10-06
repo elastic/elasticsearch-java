@@ -57,7 +57,7 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of application names
+	 * Required - A comma-separated list of application names
 	 * <p>
 	 * API name: {@code application}
 	 */
@@ -74,7 +74,7 @@ public final class ClearCachedPrivilegesRequest extends RequestBase {
 		private String application;
 
 		/**
-		 * A comma-separated list of application names
+		 * Required - A comma-separated list of application names
 		 * <p>
 		 * API name: {@code application}
 		 */

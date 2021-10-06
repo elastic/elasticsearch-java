@@ -99,9 +99,9 @@ public final class AnalysisConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * The size of the interval that the analysis is aggregated into, typically
-	 * between 5m and 1h. If the anomaly detection job uses a datafeed with
-	 * aggregations, this value must be divisible by the interval of the date
+	 * Required - The size of the interval that the analysis is aggregated into,
+	 * typically between 5m and 1h. If the anomaly detection job uses a datafeed
+	 * with aggregations, this value must be divisible by the interval of the date
 	 * histogram aggregation.
 	 * <ul>
 	 * <li>@server_default 5m</li>
@@ -166,10 +166,10 @@ public final class AnalysisConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Detector configuration objects specify which data fields a job analyzes. They
-	 * also specify which analytical functions are used. You can specify multiple
-	 * detectors for a job. If the detectors array does not contain at least one
-	 * detector, no analysis can occur and an error is returned.
+	 * Required - Detector configuration objects specify which data fields a job
+	 * analyzes. They also specify which analytical functions are used. You can
+	 * specify multiple detectors for a job. If the detectors array does not contain
+	 * at least one detector, no analysis can occur and an error is returned.
 	 * <p>
 	 * API name: {@code detectors}
 	 */
@@ -394,9 +394,9 @@ public final class AnalysisConfig implements JsonpSerializable {
 		private String summaryCountFieldName;
 
 		/**
-		 * The size of the interval that the analysis is aggregated into, typically
-		 * between 5m and 1h. If the anomaly detection job uses a datafeed with
-		 * aggregations, this value must be divisible by the interval of the date
+		 * Required - The size of the interval that the analysis is aggregated into,
+		 * typically between 5m and 1h. If the anomaly detection job uses a datafeed
+		 * with aggregations, this value must be divisible by the interval of the date
 		 * histogram aggregation.
 		 * <ul>
 		 * <li>@server_default 5m</li>
@@ -502,7 +502,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #categorizationFilters(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addCategorizationFilters(String value) {
 			if (this.categorizationFilters == null) {
@@ -513,10 +513,10 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Detector configuration objects specify which data fields a job analyzes. They
-		 * also specify which analytical functions are used. You can specify multiple
-		 * detectors for a job. If the detectors array does not contain at least one
-		 * detector, no analysis can occur and an error is returned.
+		 * Required - Detector configuration objects specify which data fields a job
+		 * analyzes. They also specify which analytical functions are used. You can
+		 * specify multiple detectors for a job. If the detectors array does not contain
+		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
 		 */
@@ -526,10 +526,10 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Detector configuration objects specify which data fields a job analyzes. They
-		 * also specify which analytical functions are used. You can specify multiple
-		 * detectors for a job. If the detectors array does not contain at least one
-		 * detector, no analysis can occur and an error is returned.
+		 * Required - Detector configuration objects specify which data fields a job
+		 * analyzes. They also specify which analytical functions are used. You can
+		 * specify multiple detectors for a job. If the detectors array does not contain
+		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
 		 */
@@ -539,7 +539,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #detectors(List)}, creating the list if needed.
 		 */
 		public Builder addDetectors(Detector value) {
 			if (this.detectors == null) {
@@ -557,7 +557,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed. 5
+		 * Add a value to {@link #detectors(List)}, creating the list if needed.
 		 */
 		public Builder addDetectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.addDetectors(fn.apply(new Detector.Builder()).build());
@@ -594,7 +594,7 @@ public final class AnalysisConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #influencers(List)}, creating the list if needed. 4
+		 * Add a value to {@link #influencers(List)}, creating the list if needed.
 		 */
 		public Builder addInfluencers(String value) {
 			if (this.influencers == null) {

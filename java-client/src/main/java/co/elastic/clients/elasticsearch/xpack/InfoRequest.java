@@ -106,7 +106,7 @@ public final class InfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed. 4
+		 * Add a value to {@link #categories(List)}, creating the list if needed.
 		 */
 		public Builder addCategories(String value) {
 			if (this.categories == null) {

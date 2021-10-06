@@ -74,7 +74,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 
 	@Nullable
 	private final JsonValue /*
-							 * Union(internal.boolean | _global.search._types.SourceFilter | _types.Fields)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 	@Nullable
@@ -182,7 +182,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(internal.boolean | _global.search._types.SourceFilter | _types.Fields)
+						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 						 */ source() {
 		return this.source;
 	}
@@ -349,7 +349,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 
 		@Nullable
 		private JsonValue /*
-							 * Union(internal.boolean | _global.search._types.SourceFilter | _types.Fields)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 		@Nullable
@@ -381,7 +381,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
 		 */
 		public Builder addDocvalueFields(String value) {
 			if (this.docvalueFields == null) {
@@ -480,7 +480,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -495,7 +495,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		 */
 		public Builder source(
 				@Nullable JsonValue /*
-									 * Union(internal.boolean | _global.search._types.SourceFilter | _types.Fields)
+									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 									 */ value) {
 			this.source = value;
 			return this;
@@ -518,7 +518,7 @@ public final class TopHitsAggregation extends MetricAggregationBase implements A
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {

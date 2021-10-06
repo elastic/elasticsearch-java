@@ -70,35 +70,35 @@ public final class PutWatchResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
 	public boolean created() {
 		return this.created;
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _primary_term}
+	 * Required - API name: {@code _primary_term}
 	 */
 	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
-	 * API name: {@code _seq_no}
+	 * Required - API name: {@code _seq_no}
 	 */
 	public int seqNo() {
 		return this.seqNo;
 	}
 
 	/**
-	 * API name: {@code _version}
+	 * Required - API name: {@code _version}
 	 */
 	public long version() {
 		return this.version;
@@ -149,7 +149,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		private Long version;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
 		public Builder created(boolean value) {
 			this.created = value;
@@ -157,7 +157,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -165,7 +165,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _primary_term}
+		 * Required - API name: {@code _primary_term}
 		 */
 		public Builder primaryTerm(long value) {
 			this.primaryTerm = value;
@@ -173,7 +173,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _seq_no}
+		 * Required - API name: {@code _seq_no}
 		 */
 		public Builder seqNo(int value) {
 			this.seqNo = value;
@@ -181,7 +181,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _version}
+		 * Required - API name: {@code _version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

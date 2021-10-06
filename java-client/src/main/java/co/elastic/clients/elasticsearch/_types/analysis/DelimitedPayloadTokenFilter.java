@@ -66,14 +66,14 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 	}
 
 	/**
-	 * API name: {@code delimiter}
+	 * Required - API name: {@code delimiter}
 	 */
 	public String delimiter() {
 		return this.delimiter;
 	}
 
 	/**
-	 * API name: {@code encoding}
+	 * Required - API name: {@code encoding}
 	 */
 	public DelimitedPayloadEncoding encoding() {
 		return this.encoding;
@@ -105,7 +105,7 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 		private DelimitedPayloadEncoding encoding;
 
 		/**
-		 * API name: {@code delimiter}
+		 * Required - API name: {@code delimiter}
 		 */
 		public Builder delimiter(String value) {
 			this.delimiter = value;
@@ -113,7 +113,7 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 		}
 
 		/**
-		 * API name: {@code encoding}
+		 * Required - API name: {@code encoding}
 		 */
 		public Builder encoding(DelimitedPayloadEncoding value) {
 			this.encoding = value;

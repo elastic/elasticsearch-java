@@ -179,7 +179,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(IndicesUpdateAliasBulk value) {
 			if (this.actions == null) {
@@ -197,7 +197,7 @@ public final class UpdateAliasesRequest extends RequestBase implements JsonpSeri
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #actions(List)}, creating the list if needed.
 		 */
 		public Builder addActions(Function<IndicesUpdateAliasBulk.Builder, ObjectBuilder<IndicesUpdateAliasBulk>> fn) {
 			return this.addActions(fn.apply(new IndicesUpdateAliasBulk.Builder()).build());

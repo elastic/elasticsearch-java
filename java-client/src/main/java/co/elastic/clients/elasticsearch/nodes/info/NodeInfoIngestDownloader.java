@@ -55,7 +55,7 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - API name: {@code enabled}
 	 */
 	public String enabled() {
 		return this.enabled;
@@ -86,7 +86,7 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 		private String enabled;
 
 		/**
-		 * API name: {@code enabled}
+		 * Required - API name: {@code enabled}
 		 */
 		public Builder enabled(String value) {
 			this.enabled = value;

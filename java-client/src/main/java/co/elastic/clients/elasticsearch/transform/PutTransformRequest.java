@@ -60,9 +60,9 @@ public class PutTransformRequest extends PreviewTransformRequest {
 	}
 
 	/**
-	 * Identifier for the transform. This identifier can contain lowercase
-	 * alphanumeric characters (a-z and 0-9), hyphens, and underscores. It must
-	 * start and end with alphanumeric characters.
+	 * Required - Identifier for the transform. This identifier can contain
+	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
+	 * must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -115,9 +115,9 @@ public class PutTransformRequest extends PreviewTransformRequest {
 		private Boolean deferValidation;
 
 		/**
-		 * Identifier for the transform. This identifier can contain lowercase
-		 * alphanumeric characters (a-z and 0-9), hyphens, and underscores. It must
-		 * start and end with alphanumeric characters.
+		 * Required - Identifier for the transform. This identifier can contain
+		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
+		 * must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

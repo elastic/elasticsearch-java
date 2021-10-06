@@ -72,42 +72,42 @@ public final class DiskUsage implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code path}
+	 * Required - API name: {@code path}
 	 */
 	public String path() {
 		return this.path;
 	}
 
 	/**
-	 * API name: {@code total_bytes}
+	 * Required - API name: {@code total_bytes}
 	 */
 	public long totalBytes() {
 		return this.totalBytes;
 	}
 
 	/**
-	 * API name: {@code used_bytes}
+	 * Required - API name: {@code used_bytes}
 	 */
 	public long usedBytes() {
 		return this.usedBytes;
 	}
 
 	/**
-	 * API name: {@code free_bytes}
+	 * Required - API name: {@code free_bytes}
 	 */
 	public long freeBytes() {
 		return this.freeBytes;
 	}
 
 	/**
-	 * API name: {@code free_disk_percent}
+	 * Required - API name: {@code free_disk_percent}
 	 */
 	public double freeDiskPercent() {
 		return this.freeDiskPercent;
 	}
 
 	/**
-	 * API name: {@code used_disk_percent}
+	 * Required - API name: {@code used_disk_percent}
 	 */
 	public double usedDiskPercent() {
 		return this.usedDiskPercent;
@@ -163,7 +163,7 @@ public final class DiskUsage implements JsonpSerializable {
 		private Double usedDiskPercent;
 
 		/**
-		 * API name: {@code path}
+		 * Required - API name: {@code path}
 		 */
 		public Builder path(String value) {
 			this.path = value;
@@ -171,7 +171,7 @@ public final class DiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total_bytes}
+		 * Required - API name: {@code total_bytes}
 		 */
 		public Builder totalBytes(long value) {
 			this.totalBytes = value;
@@ -179,7 +179,7 @@ public final class DiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code used_bytes}
+		 * Required - API name: {@code used_bytes}
 		 */
 		public Builder usedBytes(long value) {
 			this.usedBytes = value;
@@ -187,7 +187,7 @@ public final class DiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free_bytes}
+		 * Required - API name: {@code free_bytes}
 		 */
 		public Builder freeBytes(long value) {
 			this.freeBytes = value;
@@ -195,7 +195,7 @@ public final class DiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code free_disk_percent}
+		 * Required - API name: {@code free_disk_percent}
 		 */
 		public Builder freeDiskPercent(double value) {
 			this.freeDiskPercent = value;
@@ -203,7 +203,7 @@ public final class DiskUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code used_disk_percent}
+		 * Required - API name: {@code used_disk_percent}
 		 */
 		public Builder usedDiskPercent(double value) {
 			this.usedDiskPercent = value;

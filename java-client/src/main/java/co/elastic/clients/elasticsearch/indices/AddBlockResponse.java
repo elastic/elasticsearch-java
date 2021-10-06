@@ -64,14 +64,14 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * API name: {@code shards_acknowledged}
+	 * Required - API name: {@code shards_acknowledged}
 	 */
 	public boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<IndicesBlockStatus> indices() {
 		return this.indices;
@@ -107,7 +107,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		private List<IndicesBlockStatus> indices;
 
 		/**
-		 * API name: {@code shards_acknowledged}
+		 * Required - API name: {@code shards_acknowledged}
 		 */
 		public Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
@@ -115,7 +115,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<IndicesBlockStatus> value) {
 			this.indices = value;
@@ -123,7 +123,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(IndicesBlockStatus... value) {
 			this.indices = Arrays.asList(value);
@@ -131,7 +131,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(IndicesBlockStatus value) {
 			if (this.indices == null) {
@@ -149,7 +149,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 5
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
 			return this.addIndices(fn.apply(new IndicesBlockStatus.Builder()).build());

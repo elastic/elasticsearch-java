@@ -82,6 +82,10 @@ public class Schedule implements TaggedUnion<Object>, TriggerVariant, JsonpSeria
 
 	}
 
+	public <T extends ScheduleVariant> Schedule(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Schedule(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

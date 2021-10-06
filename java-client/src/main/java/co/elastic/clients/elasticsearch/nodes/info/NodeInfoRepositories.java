@@ -54,7 +54,7 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code url}
+	 * Required - API name: {@code url}
 	 */
 	public NodeInfoRepositoriesUrl url() {
 		return this.url;
@@ -85,7 +85,7 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 		private NodeInfoRepositoriesUrl url;
 
 		/**
-		 * API name: {@code url}
+		 * Required - API name: {@code url}
 		 */
 		public Builder url(NodeInfoRepositoriesUrl value) {
 			this.url = value;
@@ -93,7 +93,7 @@ public final class NodeInfoRepositories implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code url}
+		 * Required - API name: {@code url}
 		 */
 		public Builder url(Function<NodeInfoRepositoriesUrl.Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
 			return this.url(fn.apply(new NodeInfoRepositoriesUrl.Builder()).build());

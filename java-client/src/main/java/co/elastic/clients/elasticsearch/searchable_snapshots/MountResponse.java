@@ -55,7 +55,7 @@ public final class MountResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public MountedSnapshot snapshot() {
 		return this.snapshot;
@@ -86,7 +86,7 @@ public final class MountResponse implements JsonpSerializable {
 		private MountedSnapshot snapshot;
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(MountedSnapshot value) {
 			this.snapshot = value;
@@ -94,7 +94,7 @@ public final class MountResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(Function<MountedSnapshot.Builder, ObjectBuilder<MountedSnapshot>> fn) {
 			return this.snapshot(fn.apply(new MountedSnapshot.Builder()).build());

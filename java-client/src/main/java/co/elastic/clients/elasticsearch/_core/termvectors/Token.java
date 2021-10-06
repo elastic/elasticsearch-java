@@ -84,7 +84,7 @@ public final class Token implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code position}
+	 * Required - API name: {@code position}
 	 */
 	public int position() {
 		return this.position;
@@ -168,7 +168,7 @@ public final class Token implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code position}
+		 * Required - API name: {@code position}
 		 */
 		public Builder position(int value) {
 			this.position = value;

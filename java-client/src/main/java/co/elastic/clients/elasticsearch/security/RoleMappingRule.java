@@ -78,6 +78,10 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 
 	}
 
+	public <T extends RoleMappingRuleVariant> RoleMappingRule(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private RoleMappingRule(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

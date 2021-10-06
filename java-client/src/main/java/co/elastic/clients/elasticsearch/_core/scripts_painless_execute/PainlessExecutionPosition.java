@@ -60,21 +60,21 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code offset}
+	 * Required - API name: {@code offset}
 	 */
 	public int offset() {
 		return this.offset;
 	}
 
 	/**
-	 * API name: {@code start}
+	 * Required - API name: {@code start}
 	 */
 	public int start() {
 		return this.start;
 	}
 
 	/**
-	 * API name: {@code end}
+	 * Required - API name: {@code end}
 	 */
 	public int end() {
 		return this.end;
@@ -115,7 +115,7 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 		private Integer end;
 
 		/**
-		 * API name: {@code offset}
+		 * Required - API name: {@code offset}
 		 */
 		public Builder offset(int value) {
 			this.offset = value;
@@ -123,7 +123,7 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code start}
+		 * Required - API name: {@code start}
 		 */
 		public Builder start(int value) {
 			this.start = value;
@@ -131,7 +131,7 @@ public final class PainlessExecutionPosition implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code end}
+		 * Required - API name: {@code end}
 		 */
 		public Builder end(int value) {
 			this.end = value;

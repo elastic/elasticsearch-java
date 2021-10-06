@@ -70,21 +70,21 @@ public final class Collector implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code time_in_nanos}
+	 * Required - API name: {@code time_in_nanos}
 	 */
 	public long timeInNanos() {
 		return this.timeInNanos;
@@ -148,7 +148,7 @@ public final class Collector implements JsonpSerializable {
 		private List<Collector> children;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -156,7 +156,7 @@ public final class Collector implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;
@@ -164,7 +164,7 @@ public final class Collector implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_nanos}
+		 * Required - API name: {@code time_in_nanos}
 		 */
 		public Builder timeInNanos(long value) {
 			this.timeInNanos = value;
@@ -188,7 +188,7 @@ public final class Collector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed. 4
+		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
 		public Builder addChildren(Collector value) {
 			if (this.children == null) {
@@ -206,7 +206,7 @@ public final class Collector implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #children(List)}, creating the list if needed. 5
+		 * Add a value to {@link #children(List)}, creating the list if needed.
 		 */
 		public Builder addChildren(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
 			return this.addChildren(fn.apply(new Collector.Builder()).build());

@@ -77,35 +77,35 @@ public final class AutoFollowStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code auto_followed_clusters}
+	 * Required - API name: {@code auto_followed_clusters}
 	 */
 	public List<AutoFollowedCluster> autoFollowedClusters() {
 		return this.autoFollowedClusters;
 	}
 
 	/**
-	 * API name: {@code number_of_failed_follow_indices}
+	 * Required - API name: {@code number_of_failed_follow_indices}
 	 */
 	public long numberOfFailedFollowIndices() {
 		return this.numberOfFailedFollowIndices;
 	}
 
 	/**
-	 * API name: {@code number_of_failed_remote_cluster_state_requests}
+	 * Required - API name: {@code number_of_failed_remote_cluster_state_requests}
 	 */
 	public long numberOfFailedRemoteClusterStateRequests() {
 		return this.numberOfFailedRemoteClusterStateRequests;
 	}
 
 	/**
-	 * API name: {@code number_of_successful_follow_indices}
+	 * Required - API name: {@code number_of_successful_follow_indices}
 	 */
 	public long numberOfSuccessfulFollowIndices() {
 		return this.numberOfSuccessfulFollowIndices;
 	}
 
 	/**
-	 * API name: {@code recent_auto_follow_errors}
+	 * Required - API name: {@code recent_auto_follow_errors}
 	 */
 	public List<ErrorCause> recentAutoFollowErrors() {
 		return this.recentAutoFollowErrors;
@@ -166,7 +166,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		private List<ErrorCause> recentAutoFollowErrors;
 
 		/**
-		 * API name: {@code auto_followed_clusters}
+		 * Required - API name: {@code auto_followed_clusters}
 		 */
 		public Builder autoFollowedClusters(List<AutoFollowedCluster> value) {
 			this.autoFollowedClusters = value;
@@ -174,7 +174,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code auto_followed_clusters}
+		 * Required - API name: {@code auto_followed_clusters}
 		 */
 		public Builder autoFollowedClusters(AutoFollowedCluster... value) {
 			this.autoFollowedClusters = Arrays.asList(value);
@@ -183,7 +183,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #autoFollowedClusters(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addAutoFollowedClusters(AutoFollowedCluster value) {
 			if (this.autoFollowedClusters == null) {
@@ -203,7 +203,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #autoFollowedClusters(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addAutoFollowedClusters(
 				Function<AutoFollowedCluster.Builder, ObjectBuilder<AutoFollowedCluster>> fn) {
@@ -211,7 +211,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number_of_failed_follow_indices}
+		 * Required - API name: {@code number_of_failed_follow_indices}
 		 */
 		public Builder numberOfFailedFollowIndices(long value) {
 			this.numberOfFailedFollowIndices = value;
@@ -219,7 +219,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number_of_failed_remote_cluster_state_requests}
+		 * Required - API name: {@code number_of_failed_remote_cluster_state_requests}
 		 */
 		public Builder numberOfFailedRemoteClusterStateRequests(long value) {
 			this.numberOfFailedRemoteClusterStateRequests = value;
@@ -227,7 +227,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code number_of_successful_follow_indices}
+		 * Required - API name: {@code number_of_successful_follow_indices}
 		 */
 		public Builder numberOfSuccessfulFollowIndices(long value) {
 			this.numberOfSuccessfulFollowIndices = value;
@@ -235,7 +235,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code recent_auto_follow_errors}
+		 * Required - API name: {@code recent_auto_follow_errors}
 		 */
 		public Builder recentAutoFollowErrors(List<ErrorCause> value) {
 			this.recentAutoFollowErrors = value;
@@ -243,7 +243,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code recent_auto_follow_errors}
+		 * Required - API name: {@code recent_auto_follow_errors}
 		 */
 		public Builder recentAutoFollowErrors(ErrorCause... value) {
 			this.recentAutoFollowErrors = Arrays.asList(value);
@@ -252,7 +252,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #recentAutoFollowErrors(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addRecentAutoFollowErrors(ErrorCause value) {
 			if (this.recentAutoFollowErrors == null) {
@@ -271,7 +271,7 @@ public final class AutoFollowStats implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #recentAutoFollowErrors(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addRecentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.addRecentAutoFollowErrors(fn.apply(new ErrorCause.Builder()).build());

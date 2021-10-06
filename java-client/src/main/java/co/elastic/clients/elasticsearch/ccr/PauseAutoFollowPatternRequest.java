@@ -57,8 +57,8 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the auto follow pattern that should pause discovering new indices
-	 * to follow.
+	 * Required - The name of the auto follow pattern that should pause discovering
+	 * new indices to follow.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -75,8 +75,8 @@ public final class PauseAutoFollowPatternRequest extends RequestBase {
 		private String name;
 
 		/**
-		 * The name of the auto follow pattern that should pause discovering new indices
-		 * to follow.
+		 * Required - The name of the auto follow pattern that should pause discovering
+		 * new indices to follow.
 		 * <p>
 		 * API name: {@code name}
 		 */

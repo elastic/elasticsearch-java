@@ -57,14 +57,14 @@ public final class Defaults implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code anomaly_detectors}
+	 * Required - API name: {@code anomaly_detectors}
 	 */
 	public AnomalyDetectors anomalyDetectors() {
 		return this.anomalyDetectors;
 	}
 
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public Datafeeds datafeeds() {
 		return this.datafeeds;
@@ -100,7 +100,7 @@ public final class Defaults implements JsonpSerializable {
 		private Datafeeds datafeeds;
 
 		/**
-		 * API name: {@code anomaly_detectors}
+		 * Required - API name: {@code anomaly_detectors}
 		 */
 		public Builder anomalyDetectors(AnomalyDetectors value) {
 			this.anomalyDetectors = value;
@@ -108,14 +108,14 @@ public final class Defaults implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code anomaly_detectors}
+		 * Required - API name: {@code anomaly_detectors}
 		 */
 		public Builder anomalyDetectors(Function<AnomalyDetectors.Builder, ObjectBuilder<AnomalyDetectors>> fn) {
 			return this.anomalyDetectors(fn.apply(new AnomalyDetectors.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Datafeeds value) {
 			this.datafeeds = value;
@@ -123,7 +123,7 @@ public final class Defaults implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
 			return this.datafeeds(fn.apply(new Datafeeds.Builder()).build());

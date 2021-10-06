@@ -54,7 +54,7 @@ public final class CloseJobResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code closed}
+	 * Required - API name: {@code closed}
 	 */
 	public boolean closed() {
 		return this.closed;
@@ -85,7 +85,7 @@ public final class CloseJobResponse implements JsonpSerializable {
 		private Boolean closed;
 
 		/**
-		 * API name: {@code closed}
+		 * Required - API name: {@code closed}
 		 */
 		public Builder closed(boolean value) {
 			this.closed = value;

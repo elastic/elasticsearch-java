@@ -63,14 +63,14 @@ public final class InfoResponse extends NodesResponseBase {
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code nodes}
+	 * Required - API name: {@code nodes}
 	 */
 	public Map<String, NodeInfo> nodes() {
 		return this.nodes;
@@ -107,7 +107,7 @@ public final class InfoResponse extends NodesResponseBase {
 		private Map<String, NodeInfo> nodes;
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -115,7 +115,7 @@ public final class InfoResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * API name: {@code nodes}
+		 * Required - API name: {@code nodes}
 		 */
 		public Builder nodes(Map<String, NodeInfo> value) {
 			this.nodes = value;

@@ -89,7 +89,7 @@ public final class UnfreezeRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the index to unfreeze
+	 * Required - The name of the index to unfreeze
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -188,7 +188,7 @@ public final class UnfreezeRequest extends RequestBase {
 		private String waitForActiveShards;
 
 		/**
-		 * The name of the index to unfreeze
+		 * Required - The name of the index to unfreeze
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -232,7 +232,7 @@ public final class UnfreezeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {

@@ -55,7 +55,7 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public Query query() {
 		return this.query;
@@ -86,7 +86,7 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 		private Query query;
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Query value) {
 			this.query = value;
@@ -94,7 +94,7 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());

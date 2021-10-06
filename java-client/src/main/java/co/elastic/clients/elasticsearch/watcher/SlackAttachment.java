@@ -130,7 +130,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code author_name}
+	 * Required - API name: {@code author_name}
 	 */
 	public String authorName() {
 		return this.authorName;
@@ -209,7 +209,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code title}
+	 * Required - API name: {@code title}
 	 */
 	public String title() {
 		return this.title;
@@ -402,7 +402,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code author_name}
+		 * Required - API name: {@code author_name}
 		 */
 		public Builder authorName(String value) {
 			this.authorName = value;
@@ -442,7 +442,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(SlackAttachmentField value) {
 			if (this.fields == null) {
@@ -460,7 +460,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 5
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
 			return this.addFields(fn.apply(new SlackAttachmentField.Builder()).build());
@@ -515,7 +515,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code title}
+		 * Required - API name: {@code title}
 		 */
 		public Builder title(String value) {
 			this.title = value;

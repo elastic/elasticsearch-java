@@ -73,35 +73,35 @@ public final class MachineLearning extends Base {
 	}
 
 	/**
-	 * API name: {@code datafeeds}
+	 * Required - API name: {@code datafeeds}
 	 */
 	public Map<String, Datafeed> datafeeds() {
 		return this.datafeeds;
 	}
 
 	/**
-	 * API name: {@code jobs}
+	 * Required - API name: {@code jobs}
 	 */
 	public Map<String, Job> jobs() {
 		return this.jobs;
 	}
 
 	/**
-	 * API name: {@code node_count}
+	 * Required - API name: {@code node_count}
 	 */
 	public int nodeCount() {
 		return this.nodeCount;
 	}
 
 	/**
-	 * API name: {@code data_frame_analytics_jobs}
+	 * Required - API name: {@code data_frame_analytics_jobs}
 	 */
 	public MlDataFrameAnalyticsJobs dataFrameAnalyticsJobs() {
 		return this.dataFrameAnalyticsJobs;
 	}
 
 	/**
-	 * API name: {@code inference}
+	 * Required - API name: {@code inference}
 	 */
 	public MlInference inference() {
 		return this.inference;
@@ -157,7 +157,7 @@ public final class MachineLearning extends Base {
 		private MlInference inference;
 
 		/**
-		 * API name: {@code datafeeds}
+		 * Required - API name: {@code datafeeds}
 		 */
 		public Builder datafeeds(Map<String, Datafeed> value) {
 			this.datafeeds = value;
@@ -190,7 +190,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code jobs}
+		 * Required - API name: {@code jobs}
 		 */
 		public Builder jobs(Map<String, Job> value) {
 			this.jobs = value;
@@ -223,7 +223,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code node_count}
+		 * Required - API name: {@code node_count}
 		 */
 		public Builder nodeCount(int value) {
 			this.nodeCount = value;
@@ -231,7 +231,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code data_frame_analytics_jobs}
+		 * Required - API name: {@code data_frame_analytics_jobs}
 		 */
 		public Builder dataFrameAnalyticsJobs(MlDataFrameAnalyticsJobs value) {
 			this.dataFrameAnalyticsJobs = value;
@@ -239,7 +239,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code data_frame_analytics_jobs}
+		 * Required - API name: {@code data_frame_analytics_jobs}
 		 */
 		public Builder dataFrameAnalyticsJobs(
 				Function<MlDataFrameAnalyticsJobs.Builder, ObjectBuilder<MlDataFrameAnalyticsJobs>> fn) {
@@ -247,7 +247,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code inference}
+		 * Required - API name: {@code inference}
 		 */
 		public Builder inference(MlInference value) {
 			this.inference = value;
@@ -255,7 +255,7 @@ public final class MachineLearning extends Base {
 		}
 
 		/**
-		 * API name: {@code inference}
+		 * Required - API name: {@code inference}
 		 */
 		public Builder inference(Function<MlInference.Builder, ObjectBuilder<MlInference>> fn) {
 			return this.inference(fn.apply(new MlInference.Builder()).build());

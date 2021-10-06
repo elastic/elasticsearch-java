@@ -68,14 +68,14 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	}
 
 	/**
-	 * API name: {@code hyperparameters}
+	 * Required - API name: {@code hyperparameters}
 	 */
 	public Hyperparameters hyperparameters() {
 		return this.hyperparameters;
 	}
 
 	/**
-	 * The number of iterations on the analysis.
+	 * Required - The number of iterations on the analysis.
 	 * <p>
 	 * API name: {@code iteration}
 	 */
@@ -84,21 +84,21 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code timing_stats}
+	 * Required - API name: {@code timing_stats}
 	 */
 	public TimingStats timingStats() {
 		return this.timingStats;
 	}
 
 	/**
-	 * API name: {@code validation_loss}
+	 * Required - API name: {@code validation_loss}
 	 */
 	public ValidationLoss validationLoss() {
 		return this.validationLoss;
@@ -149,7 +149,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		private ValidationLoss validationLoss;
 
 		/**
-		 * API name: {@code hyperparameters}
+		 * Required - API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(Hyperparameters value) {
 			this.hyperparameters = value;
@@ -157,14 +157,14 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code hyperparameters}
+		 * Required - API name: {@code hyperparameters}
 		 */
 		public Builder hyperparameters(Function<Hyperparameters.Builder, ObjectBuilder<Hyperparameters>> fn) {
 			return this.hyperparameters(fn.apply(new Hyperparameters.Builder()).build());
 		}
 
 		/**
-		 * The number of iterations on the analysis.
+		 * Required - The number of iterations on the analysis.
 		 * <p>
 		 * API name: {@code iteration}
 		 */
@@ -174,7 +174,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;
@@ -182,7 +182,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(TimingStats value) {
 			this.timingStats = value;
@@ -190,14 +190,14 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
 			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code validation_loss}
+		 * Required - API name: {@code validation_loss}
 		 */
 		public Builder validationLoss(ValidationLoss value) {
 			this.validationLoss = value;
@@ -205,7 +205,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		}
 
 		/**
-		 * API name: {@code validation_loss}
+		 * Required - API name: {@code validation_loss}
 		 */
 		public Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
 			return this.validationLoss(fn.apply(new ValidationLoss.Builder()).build());

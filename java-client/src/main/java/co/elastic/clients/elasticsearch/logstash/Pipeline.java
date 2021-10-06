@@ -70,42 +70,42 @@ public final class Pipeline implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code last_modified}
+	 * Required - API name: {@code last_modified}
 	 */
 	public String lastModified() {
 		return this.lastModified;
 	}
 
 	/**
-	 * API name: {@code pipeline_metadata}
+	 * Required - API name: {@code pipeline_metadata}
 	 */
 	public PipelineMetadata pipelineMetadata() {
 		return this.pipelineMetadata;
 	}
 
 	/**
-	 * API name: {@code username}
+	 * Required - API name: {@code username}
 	 */
 	public String username() {
 		return this.username;
 	}
 
 	/**
-	 * API name: {@code pipeline}
+	 * Required - API name: {@code pipeline}
 	 */
 	public String pipeline() {
 		return this.pipeline;
 	}
 
 	/**
-	 * API name: {@code pipeline_settings}
+	 * Required - API name: {@code pipeline_settings}
 	 */
 	public PipelineSettings pipelineSettings() {
 		return this.pipelineSettings;
@@ -161,7 +161,7 @@ public final class Pipeline implements JsonpSerializable {
 		private PipelineSettings pipelineSettings;
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -169,7 +169,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code last_modified}
+		 * Required - API name: {@code last_modified}
 		 */
 		public Builder lastModified(String value) {
 			this.lastModified = value;
@@ -177,7 +177,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline_metadata}
+		 * Required - API name: {@code pipeline_metadata}
 		 */
 		public Builder pipelineMetadata(PipelineMetadata value) {
 			this.pipelineMetadata = value;
@@ -185,14 +185,14 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline_metadata}
+		 * Required - API name: {@code pipeline_metadata}
 		 */
 		public Builder pipelineMetadata(Function<PipelineMetadata.Builder, ObjectBuilder<PipelineMetadata>> fn) {
 			return this.pipelineMetadata(fn.apply(new PipelineMetadata.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code username}
+		 * Required - API name: {@code username}
 		 */
 		public Builder username(String value) {
 			this.username = value;
@@ -200,7 +200,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline}
+		 * Required - API name: {@code pipeline}
 		 */
 		public Builder pipeline(String value) {
 			this.pipeline = value;
@@ -208,7 +208,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline_settings}
+		 * Required - API name: {@code pipeline_settings}
 		 */
 		public Builder pipelineSettings(PipelineSettings value) {
 			this.pipelineSettings = value;
@@ -216,7 +216,7 @@ public final class Pipeline implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code pipeline_settings}
+		 * Required - API name: {@code pipeline_settings}
 		 */
 		public Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
 			return this.pipelineSettings(fn.apply(new PipelineSettings.Builder()).build());

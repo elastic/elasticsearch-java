@@ -67,7 +67,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
@@ -82,7 +82,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code value}
+	 * Required - API name: {@code value}
 	 */
 	public float value() {
 		return this.value;
@@ -133,7 +133,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		private Float value;
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -157,7 +157,7 @@ public final class ExplanationDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed. 4
+		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
 		public Builder addDetails(ExplanationDetail value) {
 			if (this.details == null) {
@@ -175,14 +175,14 @@ public final class ExplanationDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed. 5
+		 * Add a value to {@link #details(List)}, creating the list if needed.
 		 */
 		public Builder addDetails(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
 			return this.addDetails(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code value}
+		 * Required - API name: {@code value}
 		 */
 		public Builder value(float value) {
 			this.value = value;

@@ -63,7 +63,7 @@ public final class DeleteTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * The id of the transform to delete
+	 * Required - The id of the transform to delete
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -95,7 +95,7 @@ public final class DeleteTransformRequest extends RequestBase {
 		private Boolean force;
 
 		/**
-		 * The id of the transform to delete
+		 * Required - The id of the transform to delete
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

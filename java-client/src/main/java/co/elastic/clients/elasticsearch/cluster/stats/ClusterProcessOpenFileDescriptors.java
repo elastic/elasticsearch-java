@@ -60,21 +60,21 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code avg}
+	 * Required - API name: {@code avg}
 	 */
 	public long avg() {
 		return this.avg;
 	}
 
 	/**
-	 * API name: {@code max}
+	 * Required - API name: {@code max}
 	 */
 	public long max() {
 		return this.max;
 	}
 
 	/**
-	 * API name: {@code min}
+	 * Required - API name: {@code min}
 	 */
 	public long min() {
 		return this.min;
@@ -115,7 +115,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		private Long min;
 
 		/**
-		 * API name: {@code avg}
+		 * Required - API name: {@code avg}
 		 */
 		public Builder avg(long value) {
 			this.avg = value;
@@ -123,7 +123,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code max}
+		 * Required - API name: {@code max}
 		 */
 		public Builder max(long value) {
 			this.max = value;
@@ -131,7 +131,7 @@ public final class ClusterProcessOpenFileDescriptors implements JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code min}
+		 * Required - API name: {@code min}
 		 */
 		public Builder min(long value) {
 			this.min = value;

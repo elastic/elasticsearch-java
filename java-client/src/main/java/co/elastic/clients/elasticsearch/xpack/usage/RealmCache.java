@@ -54,7 +54,7 @@ public final class RealmCache implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code size}
+	 * Required - API name: {@code size}
 	 */
 	public long size() {
 		return this.size;
@@ -85,7 +85,7 @@ public final class RealmCache implements JsonpSerializable {
 		private Long size;
 
 		/**
-		 * API name: {@code size}
+		 * Required - API name: {@code size}
 		 */
 		public Builder size(long value) {
 			this.size = value;

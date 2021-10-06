@@ -58,7 +58,7 @@ public final class GarbageCollector implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code collectors}
+	 * Required - API name: {@code collectors}
 	 */
 	public Map<String, GarbageCollectorTotal> collectors() {
 		return this.collectors;
@@ -95,7 +95,7 @@ public final class GarbageCollector implements JsonpSerializable {
 		private Map<String, GarbageCollectorTotal> collectors;
 
 		/**
-		 * API name: {@code collectors}
+		 * Required - API name: {@code collectors}
 		 */
 		public Builder collectors(Map<String, GarbageCollectorTotal> value) {
 			this.collectors = value;

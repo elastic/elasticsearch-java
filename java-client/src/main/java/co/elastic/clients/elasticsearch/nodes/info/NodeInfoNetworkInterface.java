@@ -61,21 +61,21 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code address}
+	 * Required - API name: {@code address}
 	 */
 	public String address() {
 		return this.address;
 	}
 
 	/**
-	 * API name: {@code mac_address}
+	 * Required - API name: {@code mac_address}
 	 */
 	public String macAddress() {
 		return this.macAddress;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -116,7 +116,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code address}
+		 * Required - API name: {@code address}
 		 */
 		public Builder address(String value) {
 			this.address = value;
@@ -124,7 +124,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code mac_address}
+		 * Required - API name: {@code mac_address}
 		 */
 		public Builder macAddress(String value) {
 			this.macAddress = value;
@@ -132,7 +132,7 @@ public final class NodeInfoNetworkInterface implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

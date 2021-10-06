@@ -65,21 +65,21 @@ public final class RerouteExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code command}
+	 * Required - API name: {@code command}
 	 */
 	public String command() {
 		return this.command;
 	}
 
 	/**
-	 * API name: {@code decisions}
+	 * Required - API name: {@code decisions}
 	 */
 	public List<RerouteDecision> decisions() {
 		return this.decisions;
 	}
 
 	/**
-	 * API name: {@code parameters}
+	 * Required - API name: {@code parameters}
 	 */
 	public RerouteParameters parameters() {
 		return this.parameters;
@@ -125,7 +125,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		private RerouteParameters parameters;
 
 		/**
-		 * API name: {@code command}
+		 * Required - API name: {@code command}
 		 */
 		public Builder command(String value) {
 			this.command = value;
@@ -133,7 +133,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code decisions}
+		 * Required - API name: {@code decisions}
 		 */
 		public Builder decisions(List<RerouteDecision> value) {
 			this.decisions = value;
@@ -141,7 +141,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code decisions}
+		 * Required - API name: {@code decisions}
 		 */
 		public Builder decisions(RerouteDecision... value) {
 			this.decisions = Arrays.asList(value);
@@ -149,7 +149,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #decisions(List)}, creating the list if needed. 4
+		 * Add a value to {@link #decisions(List)}, creating the list if needed.
 		 */
 		public Builder addDecisions(RerouteDecision value) {
 			if (this.decisions == null) {
@@ -167,14 +167,14 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #decisions(List)}, creating the list if needed. 5
+		 * Add a value to {@link #decisions(List)}, creating the list if needed.
 		 */
 		public Builder addDecisions(Function<RerouteDecision.Builder, ObjectBuilder<RerouteDecision>> fn) {
 			return this.addDecisions(fn.apply(new RerouteDecision.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code parameters}
+		 * Required - API name: {@code parameters}
 		 */
 		public Builder parameters(RerouteParameters value) {
 			this.parameters = value;
@@ -182,7 +182,7 @@ public final class RerouteExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code parameters}
+		 * Required - API name: {@code parameters}
 		 */
 		public Builder parameters(Function<RerouteParameters.Builder, ObjectBuilder<RerouteParameters>> fn) {
 			return this.parameters(fn.apply(new RerouteParameters.Builder()).build());

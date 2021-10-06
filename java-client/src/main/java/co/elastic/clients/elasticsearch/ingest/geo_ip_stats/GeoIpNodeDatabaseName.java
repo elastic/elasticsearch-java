@@ -55,7 +55,7 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 	}
 
 	/**
-	 * Name of the database.
+	 * Required - Name of the database.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -88,7 +88,7 @@ public final class GeoIpNodeDatabaseName implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * Name of the database.
+		 * Required - Name of the database.
 		 * <p>
 		 * API name: {@code name}
 		 */

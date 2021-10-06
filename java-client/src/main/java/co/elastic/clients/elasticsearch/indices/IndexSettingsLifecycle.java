@@ -55,7 +55,7 @@ public final class IndexSettingsLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -86,7 +86,7 @@ public final class IndexSettingsLifecycle implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

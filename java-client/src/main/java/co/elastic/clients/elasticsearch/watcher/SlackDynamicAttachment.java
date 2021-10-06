@@ -58,14 +58,14 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code attachment_template}
+	 * Required - API name: {@code attachment_template}
 	 */
 	public SlackAttachment attachmentTemplate() {
 		return this.attachmentTemplate;
 	}
 
 	/**
-	 * API name: {@code list_path}
+	 * Required - API name: {@code list_path}
 	 */
 	public String listPath() {
 		return this.listPath;
@@ -101,7 +101,7 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 		private String listPath;
 
 		/**
-		 * API name: {@code attachment_template}
+		 * Required - API name: {@code attachment_template}
 		 */
 		public Builder attachmentTemplate(SlackAttachment value) {
 			this.attachmentTemplate = value;
@@ -109,14 +109,14 @@ public final class SlackDynamicAttachment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code attachment_template}
+		 * Required - API name: {@code attachment_template}
 		 */
 		public Builder attachmentTemplate(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
 			return this.attachmentTemplate(fn.apply(new SlackAttachment.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code list_path}
+		 * Required - API name: {@code list_path}
 		 */
 		public Builder listPath(String value) {
 			this.listPath = value;

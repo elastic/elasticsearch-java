@@ -41,8 +41,8 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
 
-	public static final String SNIFF = "sniff";
 	public static final String PROXY = "proxy";
+	public static final String SNIFF = "sniff";
 
 	// Tagged union implementation
 
@@ -66,6 +66,10 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 
 	}
 
+	public <T extends ClusterRemoteInfoVariant> ClusterRemoteInfo(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private ClusterRemoteInfo(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");
@@ -78,16 +82,6 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 	}
 
 	/**
-	 * Get the {@code sniff} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code sniff} kind.
-	 */
-	public ClusterRemoteSniffInfo sniff() {
-		return TaggedUnionUtils.get(this, SNIFF);
-	}
-
-	/**
 	 * Get the {@code proxy} variant value.
 	 *
 	 * @throws IllegalStateException
@@ -95,6 +89,16 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 	 */
 	public ClusterRemoteProxyInfo proxy() {
 		return TaggedUnionUtils.get(this, PROXY);
+	}
+
+	/**
+	 * Get the {@code sniff} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code sniff} kind.
+	 */
+	public ClusterRemoteSniffInfo sniff() {
+		return TaggedUnionUtils.get(this, SNIFF);
 	}
 
 	@Override
@@ -108,16 +112,6 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 		private String _type;
 		private JsonpSerializable _value;
 
-		public Builder sniff(ClusterRemoteSniffInfo v) {
-			this._type = SNIFF;
-			this._value = v;
-			return this;
-		}
-
-		public Builder sniff(Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> f) {
-			return this.sniff(f.apply(new ClusterRemoteSniffInfo.Builder()).build());
-		}
-
 		public Builder proxy(ClusterRemoteProxyInfo v) {
 			this._type = PROXY;
 			this._value = v;
@@ -128,6 +122,16 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 			return this.proxy(f.apply(new ClusterRemoteProxyInfo.Builder()).build());
 		}
 
+		public Builder sniff(ClusterRemoteSniffInfo v) {
+			this._type = SNIFF;
+			this._value = v;
+			return this;
+		}
+
+		public Builder sniff(Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> f) {
+			return this.sniff(f.apply(new ClusterRemoteSniffInfo.Builder()).build());
+		}
+
 		public ClusterRemoteInfo build() {
 			return new ClusterRemoteInfo(this);
 		}
@@ -136,8 +140,8 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 
 	protected static void setupClusterRemoteInfoDeserializer(DelegatingDeserializer<Builder> op) {
 
-		op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");
 		op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
+		op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");
 
 		op.setTypeProperty("mode");
 

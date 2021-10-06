@@ -65,14 +65,14 @@ public final class FieldCapsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code fields}
+	 * Required - API name: {@code fields}
 	 */
 	public Map<String, Map<String, FieldCapability>> fields() {
 		return this.fields;
@@ -125,7 +125,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		private Map<String, Map<String, FieldCapability>> fields;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -133,7 +133,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -141,7 +141,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -152,7 +152,7 @@ public final class FieldCapsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code fields}
+		 * Required - API name: {@code fields}
 		 */
 		public Builder fields(Map<String, Map<String, FieldCapability>> value) {
 			this.fields = value;

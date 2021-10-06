@@ -88,7 +88,7 @@ public final class FielddataStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code memory_size_in_bytes}
+	 * Required - API name: {@code memory_size_in_bytes}
 	 */
 	public long memorySizeInBytes() {
 		return this.memorySizeInBytes;
@@ -178,7 +178,7 @@ public final class FielddataStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code memory_size_in_bytes}
+		 * Required - API name: {@code memory_size_in_bytes}
 		 */
 		public Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;

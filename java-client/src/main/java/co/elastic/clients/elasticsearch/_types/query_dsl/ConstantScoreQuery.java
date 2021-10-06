@@ -62,7 +62,7 @@ public final class ConstantScoreQuery extends QueryBase implements QueryVariant 
 	}
 
 	/**
-	 * API name: {@code filter}
+	 * Required - API name: {@code filter}
 	 */
 	public Query filter() {
 		return this.filter;
@@ -88,7 +88,7 @@ public final class ConstantScoreQuery extends QueryBase implements QueryVariant 
 		private Query filter;
 
 		/**
-		 * API name: {@code filter}
+		 * Required - API name: {@code filter}
 		 */
 		public Builder filter(Query value) {
 			this.filter = value;
@@ -96,7 +96,7 @@ public final class ConstantScoreQuery extends QueryBase implements QueryVariant 
 		}
 
 		/**
-		 * API name: {@code filter}
+		 * Required - API name: {@code filter}
 		 */
 		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());

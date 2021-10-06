@@ -62,21 +62,21 @@ public final class FileDetails implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code length}
+	 * Required - API name: {@code length}
 	 */
 	public long length() {
 		return this.length;
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code recovered}
+	 * Required - API name: {@code recovered}
 	 */
 	public long recovered() {
 		return this.recovered;
@@ -117,7 +117,7 @@ public final class FileDetails implements JsonpSerializable {
 		private Long recovered;
 
 		/**
-		 * API name: {@code length}
+		 * Required - API name: {@code length}
 		 */
 		public Builder length(long value) {
 			this.length = value;
@@ -125,7 +125,7 @@ public final class FileDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -133,7 +133,7 @@ public final class FileDetails implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code recovered}
+		 * Required - API name: {@code recovered}
 		 */
 		public Builder recovered(long value) {
 			this.recovered = value;

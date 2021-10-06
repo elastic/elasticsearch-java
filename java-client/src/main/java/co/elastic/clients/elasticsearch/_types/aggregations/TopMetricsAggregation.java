@@ -168,7 +168,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(TopMetricsValue value) {
 			if (this.metrics == null) {
@@ -186,7 +186,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed. 5
+		 * Add a value to {@link #metrics(List)}, creating the list if needed.
 		 */
 		public Builder addMetrics(Function<TopMetricsValue.Builder, ObjectBuilder<TopMetricsValue>> fn) {
 			return this.addMetrics(fn.apply(new TopMetricsValue.Builder()).build());
@@ -217,7 +217,7 @@ public final class TopMetricsAggregation extends MetricAggregationBase implement
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {

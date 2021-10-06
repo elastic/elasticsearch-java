@@ -99,7 +99,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code queue_size}
+	 * Required - API name: {@code queue_size}
 	 */
 	public int queueSize() {
 		return this.queueSize;
@@ -114,7 +114,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -212,7 +212,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code queue_size}
+		 * Required - API name: {@code queue_size}
 		 */
 		public Builder queueSize(int value) {
 			this.queueSize = value;
@@ -228,7 +228,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

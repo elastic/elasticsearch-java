@@ -65,21 +65,21 @@ public final class ContextMethod implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code return_type}
+	 * Required - API name: {@code return_type}
 	 */
 	public String returnType() {
 		return this.returnType;
 	}
 
 	/**
-	 * API name: {@code params}
+	 * Required - API name: {@code params}
 	 */
 	public List<ContextMethodParam> params() {
 		return this.params;
@@ -125,7 +125,7 @@ public final class ContextMethod implements JsonpSerializable {
 		private List<ContextMethodParam> params;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -133,7 +133,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code return_type}
+		 * Required - API name: {@code return_type}
 		 */
 		public Builder returnType(String value) {
 			this.returnType = value;
@@ -141,7 +141,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code params}
+		 * Required - API name: {@code params}
 		 */
 		public Builder params(List<ContextMethodParam> value) {
 			this.params = value;
@@ -149,7 +149,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code params}
+		 * Required - API name: {@code params}
 		 */
 		public Builder params(ContextMethodParam... value) {
 			this.params = Arrays.asList(value);
@@ -157,7 +157,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #params(List)}, creating the list if needed. 4
+		 * Add a value to {@link #params(List)}, creating the list if needed.
 		 */
 		public Builder addParams(ContextMethodParam value) {
 			if (this.params == null) {
@@ -175,7 +175,7 @@ public final class ContextMethod implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #params(List)}, creating the list if needed. 5
+		 * Add a value to {@link #params(List)}, creating the list if needed.
 		 */
 		public Builder addParams(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
 			return this.addParams(fn.apply(new ContextMethodParam.Builder()).build());

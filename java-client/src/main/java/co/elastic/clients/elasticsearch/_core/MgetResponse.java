@@ -65,7 +65,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code docs}
+	 * Required - API name: {@code docs}
 	 */
 	public List<Hit<TDocument>> docs() {
 		return this.docs;
@@ -104,7 +104,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code docs}
 		 */
 		public Builder<TDocument> docs(List<Hit<TDocument>> value) {
 			this.docs = value;
@@ -112,7 +112,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code docs}
+		 * Required - API name: {@code docs}
 		 */
 		public Builder<TDocument> docs(Hit<TDocument>... value) {
 			this.docs = Arrays.asList(value);
@@ -120,7 +120,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addDocs(Hit<TDocument> value) {
 			if (this.docs == null) {
@@ -138,7 +138,7 @@ public final class MgetResponse<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #docs(List)}, creating the list if needed.
 		 */
 		public Builder<TDocument> addDocs(Function<Hit.Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
 			return this.addDocs(fn.apply(new Hit.Builder<TDocument>()).build());

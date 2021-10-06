@@ -62,14 +62,14 @@ public final class GetBucketsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code buckets}
+	 * Required - API name: {@code buckets}
 	 */
 	public List<BucketSummary> buckets() {
 		return this.buckets;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
@@ -110,7 +110,7 @@ public final class GetBucketsResponse implements JsonpSerializable {
 		private Long count;
 
 		/**
-		 * API name: {@code buckets}
+		 * Required - API name: {@code buckets}
 		 */
 		public Builder buckets(List<BucketSummary> value) {
 			this.buckets = value;
@@ -118,7 +118,7 @@ public final class GetBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code buckets}
+		 * Required - API name: {@code buckets}
 		 */
 		public Builder buckets(BucketSummary... value) {
 			this.buckets = Arrays.asList(value);
@@ -126,7 +126,7 @@ public final class GetBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #buckets(List)}, creating the list if needed. 4
+		 * Add a value to {@link #buckets(List)}, creating the list if needed.
 		 */
 		public Builder addBuckets(BucketSummary value) {
 			if (this.buckets == null) {
@@ -144,14 +144,14 @@ public final class GetBucketsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #buckets(List)}, creating the list if needed. 5
+		 * Add a value to {@link #buckets(List)}, creating the list if needed.
 		 */
 		public Builder addBuckets(Function<BucketSummary.Builder, ObjectBuilder<BucketSummary>> fn) {
 			return this.addBuckets(fn.apply(new BucketSummary.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;

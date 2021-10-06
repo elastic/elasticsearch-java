@@ -156,28 +156,28 @@ public final class UsageResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aggregate_metric}
+	 * Required - API name: {@code aggregate_metric}
 	 */
 	public Base aggregateMetric() {
 		return this.aggregateMetric;
 	}
 
 	/**
-	 * API name: {@code analytics}
+	 * Required - API name: {@code analytics}
 	 */
 	public Analytics analytics() {
 		return this.analytics;
 	}
 
 	/**
-	 * API name: {@code watcher}
+	 * Required - API name: {@code watcher}
 	 */
 	public Watcher watcher() {
 		return this.watcher;
 	}
 
 	/**
-	 * API name: {@code ccr}
+	 * Required - API name: {@code ccr}
 	 */
 	public Ccr ccr() {
 		return this.ccr;
@@ -208,7 +208,7 @@ public final class UsageResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data_tiers}
+	 * Required - API name: {@code data_tiers}
 	 */
 	public DataTiers dataTiers() {
 		return this.dataTiers;
@@ -223,7 +223,7 @@ public final class UsageResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code eql}
+	 * Required - API name: {@code eql}
 	 */
 	public Eql eql() {
 		return this.eql;
@@ -238,49 +238,49 @@ public final class UsageResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code frozen_indices}
+	 * Required - API name: {@code frozen_indices}
 	 */
 	public FrozenIndices frozenIndices() {
 		return this.frozenIndices;
 	}
 
 	/**
-	 * API name: {@code graph}
+	 * Required - API name: {@code graph}
 	 */
 	public Base graph() {
 		return this.graph;
 	}
 
 	/**
-	 * API name: {@code ilm}
+	 * Required - API name: {@code ilm}
 	 */
 	public Ilm ilm() {
 		return this.ilm;
 	}
 
 	/**
-	 * API name: {@code logstash}
+	 * Required - API name: {@code logstash}
 	 */
 	public Base logstash() {
 		return this.logstash;
 	}
 
 	/**
-	 * API name: {@code ml}
+	 * Required - API name: {@code ml}
 	 */
 	public MachineLearning ml() {
 		return this.ml;
 	}
 
 	/**
-	 * API name: {@code monitoring}
+	 * Required - API name: {@code monitoring}
 	 */
 	public Monitoring monitoring() {
 		return this.monitoring;
 	}
 
 	/**
-	 * API name: {@code rollup}
+	 * Required - API name: {@code rollup}
 	 */
 	public Base rollup() {
 		return this.rollup;
@@ -295,56 +295,56 @@ public final class UsageResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code spatial}
+	 * Required - API name: {@code spatial}
 	 */
 	public Base spatial() {
 		return this.spatial;
 	}
 
 	/**
-	 * API name: {@code searchable_snapshots}
+	 * Required - API name: {@code searchable_snapshots}
 	 */
 	public SearchableSnapshots searchableSnapshots() {
 		return this.searchableSnapshots;
 	}
 
 	/**
-	 * API name: {@code security}
+	 * Required - API name: {@code security}
 	 */
 	public Security security() {
 		return this.security;
 	}
 
 	/**
-	 * API name: {@code slm}
+	 * Required - API name: {@code slm}
 	 */
 	public Slm slm() {
 		return this.slm;
 	}
 
 	/**
-	 * API name: {@code sql}
+	 * Required - API name: {@code sql}
 	 */
 	public Sql sql() {
 		return this.sql;
 	}
 
 	/**
-	 * API name: {@code transform}
+	 * Required - API name: {@code transform}
 	 */
 	public Base transform() {
 		return this.transform;
 	}
 
 	/**
-	 * API name: {@code vectors}
+	 * Required - API name: {@code vectors}
 	 */
 	public Vector vectors() {
 		return this.vectors;
 	}
 
 	/**
-	 * API name: {@code voting_only}
+	 * Required - API name: {@code voting_only}
 	 */
 	public Base votingOnly() {
 		return this.votingOnly;
@@ -533,7 +533,7 @@ public final class UsageResponse implements JsonpSerializable {
 		private Base votingOnly;
 
 		/**
-		 * API name: {@code aggregate_metric}
+		 * Required - API name: {@code aggregate_metric}
 		 */
 		public Builder aggregateMetric(Base value) {
 			this.aggregateMetric = value;
@@ -541,14 +541,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code aggregate_metric}
+		 * Required - API name: {@code aggregate_metric}
 		 */
 		public Builder aggregateMetric(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.aggregateMetric(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code analytics}
+		 * Required - API name: {@code analytics}
 		 */
 		public Builder analytics(Analytics value) {
 			this.analytics = value;
@@ -556,14 +556,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code analytics}
+		 * Required - API name: {@code analytics}
 		 */
 		public Builder analytics(Function<Analytics.Builder, ObjectBuilder<Analytics>> fn) {
 			return this.analytics(fn.apply(new Analytics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code watcher}
+		 * Required - API name: {@code watcher}
 		 */
 		public Builder watcher(Watcher value) {
 			this.watcher = value;
@@ -571,14 +571,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code watcher}
+		 * Required - API name: {@code watcher}
 		 */
 		public Builder watcher(Function<Watcher.Builder, ObjectBuilder<Watcher>> fn) {
 			return this.watcher(fn.apply(new Watcher.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ccr}
+		 * Required - API name: {@code ccr}
 		 */
 		public Builder ccr(Ccr value) {
 			this.ccr = value;
@@ -586,7 +586,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ccr}
+		 * Required - API name: {@code ccr}
 		 */
 		public Builder ccr(Function<Ccr.Builder, ObjectBuilder<Ccr>> fn) {
 			return this.ccr(fn.apply(new Ccr.Builder()).build());
@@ -638,7 +638,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_tiers}
+		 * Required - API name: {@code data_tiers}
 		 */
 		public Builder dataTiers(DataTiers value) {
 			this.dataTiers = value;
@@ -646,7 +646,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_tiers}
+		 * Required - API name: {@code data_tiers}
 		 */
 		public Builder dataTiers(Function<DataTiers.Builder, ObjectBuilder<DataTiers>> fn) {
 			return this.dataTiers(fn.apply(new DataTiers.Builder()).build());
@@ -668,7 +668,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code eql}
+		 * Required - API name: {@code eql}
 		 */
 		public Builder eql(Eql value) {
 			this.eql = value;
@@ -676,7 +676,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code eql}
+		 * Required - API name: {@code eql}
 		 */
 		public Builder eql(Function<Eql.Builder, ObjectBuilder<Eql>> fn) {
 			return this.eql(fn.apply(new Eql.Builder()).build());
@@ -698,7 +698,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code frozen_indices}
+		 * Required - API name: {@code frozen_indices}
 		 */
 		public Builder frozenIndices(FrozenIndices value) {
 			this.frozenIndices = value;
@@ -706,14 +706,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code frozen_indices}
+		 * Required - API name: {@code frozen_indices}
 		 */
 		public Builder frozenIndices(Function<FrozenIndices.Builder, ObjectBuilder<FrozenIndices>> fn) {
 			return this.frozenIndices(fn.apply(new FrozenIndices.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code graph}
+		 * Required - API name: {@code graph}
 		 */
 		public Builder graph(Base value) {
 			this.graph = value;
@@ -721,14 +721,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code graph}
+		 * Required - API name: {@code graph}
 		 */
 		public Builder graph(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.graph(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ilm}
+		 * Required - API name: {@code ilm}
 		 */
 		public Builder ilm(Ilm value) {
 			this.ilm = value;
@@ -736,14 +736,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ilm}
+		 * Required - API name: {@code ilm}
 		 */
 		public Builder ilm(Function<Ilm.Builder, ObjectBuilder<Ilm>> fn) {
 			return this.ilm(fn.apply(new Ilm.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code logstash}
+		 * Required - API name: {@code logstash}
 		 */
 		public Builder logstash(Base value) {
 			this.logstash = value;
@@ -751,14 +751,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code logstash}
+		 * Required - API name: {@code logstash}
 		 */
 		public Builder logstash(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.logstash(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code ml}
+		 * Required - API name: {@code ml}
 		 */
 		public Builder ml(MachineLearning value) {
 			this.ml = value;
@@ -766,14 +766,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code ml}
+		 * Required - API name: {@code ml}
 		 */
 		public Builder ml(Function<MachineLearning.Builder, ObjectBuilder<MachineLearning>> fn) {
 			return this.ml(fn.apply(new MachineLearning.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code monitoring}
+		 * Required - API name: {@code monitoring}
 		 */
 		public Builder monitoring(Monitoring value) {
 			this.monitoring = value;
@@ -781,14 +781,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code monitoring}
+		 * Required - API name: {@code monitoring}
 		 */
 		public Builder monitoring(Function<Monitoring.Builder, ObjectBuilder<Monitoring>> fn) {
 			return this.monitoring(fn.apply(new Monitoring.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code rollup}
+		 * Required - API name: {@code rollup}
 		 */
 		public Builder rollup(Base value) {
 			this.rollup = value;
@@ -796,7 +796,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code rollup}
+		 * Required - API name: {@code rollup}
 		 */
 		public Builder rollup(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.rollup(fn.apply(new Base.Builder()).build());
@@ -818,7 +818,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code spatial}
+		 * Required - API name: {@code spatial}
 		 */
 		public Builder spatial(Base value) {
 			this.spatial = value;
@@ -826,14 +826,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code spatial}
+		 * Required - API name: {@code spatial}
 		 */
 		public Builder spatial(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.spatial(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code searchable_snapshots}
+		 * Required - API name: {@code searchable_snapshots}
 		 */
 		public Builder searchableSnapshots(SearchableSnapshots value) {
 			this.searchableSnapshots = value;
@@ -841,7 +841,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code searchable_snapshots}
+		 * Required - API name: {@code searchable_snapshots}
 		 */
 		public Builder searchableSnapshots(
 				Function<SearchableSnapshots.Builder, ObjectBuilder<SearchableSnapshots>> fn) {
@@ -849,7 +849,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code security}
+		 * Required - API name: {@code security}
 		 */
 		public Builder security(Security value) {
 			this.security = value;
@@ -857,14 +857,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code security}
+		 * Required - API name: {@code security}
 		 */
 		public Builder security(Function<Security.Builder, ObjectBuilder<Security>> fn) {
 			return this.security(fn.apply(new Security.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code slm}
+		 * Required - API name: {@code slm}
 		 */
 		public Builder slm(Slm value) {
 			this.slm = value;
@@ -872,14 +872,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code slm}
+		 * Required - API name: {@code slm}
 		 */
 		public Builder slm(Function<Slm.Builder, ObjectBuilder<Slm>> fn) {
 			return this.slm(fn.apply(new Slm.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code sql}
+		 * Required - API name: {@code sql}
 		 */
 		public Builder sql(Sql value) {
 			this.sql = value;
@@ -887,14 +887,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sql}
+		 * Required - API name: {@code sql}
 		 */
 		public Builder sql(Function<Sql.Builder, ObjectBuilder<Sql>> fn) {
 			return this.sql(fn.apply(new Sql.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code transform}
+		 * Required - API name: {@code transform}
 		 */
 		public Builder transform(Base value) {
 			this.transform = value;
@@ -902,14 +902,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code transform}
+		 * Required - API name: {@code transform}
 		 */
 		public Builder transform(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.transform(fn.apply(new Base.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code vectors}
+		 * Required - API name: {@code vectors}
 		 */
 		public Builder vectors(Vector value) {
 			this.vectors = value;
@@ -917,14 +917,14 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vectors}
+		 * Required - API name: {@code vectors}
 		 */
 		public Builder vectors(Function<Vector.Builder, ObjectBuilder<Vector>> fn) {
 			return this.vectors(fn.apply(new Vector.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code voting_only}
+		 * Required - API name: {@code voting_only}
 		 */
 		public Builder votingOnly(Base value) {
 			this.votingOnly = value;
@@ -932,7 +932,7 @@ public final class UsageResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code voting_only}
+		 * Required - API name: {@code voting_only}
 		 */
 		public Builder votingOnly(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.votingOnly(fn.apply(new Base.Builder()).build());

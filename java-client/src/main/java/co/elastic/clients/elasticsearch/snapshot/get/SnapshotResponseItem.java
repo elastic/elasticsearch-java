@@ -69,7 +69,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code repository}
+	 * Required - API name: {@code repository}
 	 */
 	public String repository() {
 		return this.repository;
@@ -140,7 +140,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		private ErrorCause error;
 
 		/**
-		 * API name: {@code repository}
+		 * Required - API name: {@code repository}
 		 */
 		public Builder repository(String value) {
 			this.repository = value;
@@ -164,7 +164,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 4
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshots(SnapshotInfo value) {
 			if (this.snapshots == null) {
@@ -182,7 +182,7 @@ public final class SnapshotResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed. 5
+		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
 		 */
 		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());

@@ -72,21 +72,21 @@ public final class DataframeAnalyticsStatsOutlierDetection
 	}
 
 	/**
-	 * API name: {@code parameters}
+	 * Required - API name: {@code parameters}
 	 */
 	public OutlierDetectionParameters parameters() {
 		return this.parameters;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code timing_stats}
+	 * Required - API name: {@code timing_stats}
 	 */
 	public TimingStats timingStats() {
 		return this.timingStats;
@@ -127,7 +127,7 @@ public final class DataframeAnalyticsStatsOutlierDetection
 		private TimingStats timingStats;
 
 		/**
-		 * API name: {@code parameters}
+		 * Required - API name: {@code parameters}
 		 */
 		public Builder parameters(OutlierDetectionParameters value) {
 			this.parameters = value;
@@ -135,7 +135,7 @@ public final class DataframeAnalyticsStatsOutlierDetection
 		}
 
 		/**
-		 * API name: {@code parameters}
+		 * Required - API name: {@code parameters}
 		 */
 		public Builder parameters(
 				Function<OutlierDetectionParameters.Builder, ObjectBuilder<OutlierDetectionParameters>> fn) {
@@ -143,7 +143,7 @@ public final class DataframeAnalyticsStatsOutlierDetection
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;
@@ -151,7 +151,7 @@ public final class DataframeAnalyticsStatsOutlierDetection
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(TimingStats value) {
 			this.timingStats = value;
@@ -159,7 +159,7 @@ public final class DataframeAnalyticsStatsOutlierDetection
 		}
 
 		/**
-		 * API name: {@code timing_stats}
+		 * Required - API name: {@code timing_stats}
 		 */
 		public Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
 			return this.timingStats(fn.apply(new TimingStats.Builder()).build());

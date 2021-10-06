@@ -61,14 +61,14 @@ public final class MlInference implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code ingest_processors}
+	 * Required - API name: {@code ingest_processors}
 	 */
 	public Map<String, MlInferenceIngestProcessor> ingestProcessors() {
 		return this.ingestProcessors;
 	}
 
 	/**
-	 * API name: {@code trained_models}
+	 * Required - API name: {@code trained_models}
 	 */
 	public MlInferenceTrainedModels trainedModels() {
 		return this.trainedModels;
@@ -110,7 +110,7 @@ public final class MlInference implements JsonpSerializable {
 		private MlInferenceTrainedModels trainedModels;
 
 		/**
-		 * API name: {@code ingest_processors}
+		 * Required - API name: {@code ingest_processors}
 		 */
 		public Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> value) {
 			this.ingestProcessors = value;
@@ -148,7 +148,7 @@ public final class MlInference implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trained_models}
+		 * Required - API name: {@code trained_models}
 		 */
 		public Builder trainedModels(MlInferenceTrainedModels value) {
 			this.trainedModels = value;
@@ -156,7 +156,7 @@ public final class MlInference implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trained_models}
+		 * Required - API name: {@code trained_models}
 		 */
 		public Builder trainedModels(
 				Function<MlInferenceTrainedModels.Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {

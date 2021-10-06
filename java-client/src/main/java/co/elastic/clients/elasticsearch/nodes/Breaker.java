@@ -72,42 +72,42 @@ public final class Breaker implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code estimated_size}
+	 * Required - API name: {@code estimated_size}
 	 */
 	public String estimatedSize() {
 		return this.estimatedSize;
 	}
 
 	/**
-	 * API name: {@code estimated_size_in_bytes}
+	 * Required - API name: {@code estimated_size_in_bytes}
 	 */
 	public long estimatedSizeInBytes() {
 		return this.estimatedSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code limit_size}
+	 * Required - API name: {@code limit_size}
 	 */
 	public String limitSize() {
 		return this.limitSize;
 	}
 
 	/**
-	 * API name: {@code limit_size_in_bytes}
+	 * Required - API name: {@code limit_size_in_bytes}
 	 */
 	public long limitSizeInBytes() {
 		return this.limitSizeInBytes;
 	}
 
 	/**
-	 * API name: {@code overhead}
+	 * Required - API name: {@code overhead}
 	 */
 	public float overhead() {
 		return this.overhead;
 	}
 
 	/**
-	 * API name: {@code tripped}
+	 * Required - API name: {@code tripped}
 	 */
 	public float tripped() {
 		return this.tripped;
@@ -163,7 +163,7 @@ public final class Breaker implements JsonpSerializable {
 		private Float tripped;
 
 		/**
-		 * API name: {@code estimated_size}
+		 * Required - API name: {@code estimated_size}
 		 */
 		public Builder estimatedSize(String value) {
 			this.estimatedSize = value;
@@ -171,7 +171,7 @@ public final class Breaker implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code estimated_size_in_bytes}
+		 * Required - API name: {@code estimated_size_in_bytes}
 		 */
 		public Builder estimatedSizeInBytes(long value) {
 			this.estimatedSizeInBytes = value;
@@ -179,7 +179,7 @@ public final class Breaker implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code limit_size}
+		 * Required - API name: {@code limit_size}
 		 */
 		public Builder limitSize(String value) {
 			this.limitSize = value;
@@ -187,7 +187,7 @@ public final class Breaker implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code limit_size_in_bytes}
+		 * Required - API name: {@code limit_size_in_bytes}
 		 */
 		public Builder limitSizeInBytes(long value) {
 			this.limitSizeInBytes = value;
@@ -195,7 +195,7 @@ public final class Breaker implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code overhead}
+		 * Required - API name: {@code overhead}
 		 */
 		public Builder overhead(float value) {
 			this.overhead = value;
@@ -203,7 +203,7 @@ public final class Breaker implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code tripped}
+		 * Required - API name: {@code tripped}
 		 */
 		public Builder tripped(float value) {
 			this.tripped = value;

@@ -74,7 +74,7 @@ public final class ScriptCondition implements ConditionVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code lang}
+	 * Required - API name: {@code lang}
 	 */
 	public String lang() {
 		return this.lang;
@@ -89,7 +89,7 @@ public final class ScriptCondition implements ConditionVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
 	public String source() {
 		return this.source;
@@ -141,7 +141,7 @@ public final class ScriptCondition implements ConditionVariant, JsonpSerializabl
 		private String source;
 
 		/**
-		 * API name: {@code lang}
+		 * Required - API name: {@code lang}
 		 */
 		public Builder lang(String value) {
 			this.lang = value;
@@ -168,7 +168,7 @@ public final class ScriptCondition implements ConditionVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public Builder source(String value) {
 			this.source = value;

@@ -58,7 +58,7 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code features}
+	 * Required - API name: {@code features}
 	 */
 	public List<Feature> features() {
 		return this.features;
@@ -94,7 +94,7 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 		private List<Feature> features;
 
 		/**
-		 * API name: {@code features}
+		 * Required - API name: {@code features}
 		 */
 		public Builder features(List<Feature> value) {
 			this.features = value;
@@ -102,7 +102,7 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code features}
+		 * Required - API name: {@code features}
 		 */
 		public Builder features(Feature... value) {
 			this.features = Arrays.asList(value);
@@ -110,7 +110,7 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed. 4
+		 * Add a value to {@link #features(List)}, creating the list if needed.
 		 */
 		public Builder addFeatures(Feature value) {
 			if (this.features == null) {
@@ -128,7 +128,7 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed. 5
+		 * Add a value to {@link #features(List)}, creating the list if needed.
 		 */
 		public Builder addFeatures(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.addFeatures(fn.apply(new Feature.Builder()).build());

@@ -67,7 +67,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of index names to open point in time; use
+	 * Required - A comma-separated list of index names to open point in time; use
 	 * <code>_all</code> or empty string to perform the operation on all indices
 	 * <p>
 	 * API name: {@code index}
@@ -98,7 +98,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		private String keepAlive;
 
 		/**
-		 * A comma-separated list of index names to open point in time; use
+		 * Required - A comma-separated list of index names to open point in time; use
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
@@ -109,7 +109,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of index names to open point in time; use
+		 * Required - A comma-separated list of index names to open point in time; use
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
@@ -120,7 +120,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {

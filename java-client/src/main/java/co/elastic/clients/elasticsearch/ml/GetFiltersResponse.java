@@ -62,14 +62,14 @@ public final class GetFiltersResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code filters}
+	 * Required - API name: {@code filters}
 	 */
 	public List<Filter> filters() {
 		return this.filters;
@@ -110,7 +110,7 @@ public final class GetFiltersResponse implements JsonpSerializable {
 		private List<Filter> filters;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -118,7 +118,7 @@ public final class GetFiltersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filters}
+		 * Required - API name: {@code filters}
 		 */
 		public Builder filters(List<Filter> value) {
 			this.filters = value;
@@ -126,7 +126,7 @@ public final class GetFiltersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code filters}
+		 * Required - API name: {@code filters}
 		 */
 		public Builder filters(Filter... value) {
 			this.filters = Arrays.asList(value);
@@ -134,7 +134,7 @@ public final class GetFiltersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filters(List)}, creating the list if needed.
 		 */
 		public Builder addFilters(Filter value) {
 			if (this.filters == null) {
@@ -152,7 +152,7 @@ public final class GetFiltersResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed. 5
+		 * Add a value to {@link #filters(List)}, creating the list if needed.
 		 */
 		public Builder addFilters(Function<Filter.Builder, ObjectBuilder<Filter>> fn) {
 			return this.addFilters(fn.apply(new Filter.Builder()).build());

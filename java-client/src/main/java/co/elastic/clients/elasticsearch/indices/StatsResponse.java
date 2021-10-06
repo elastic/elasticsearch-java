@@ -75,14 +75,14 @@ public final class StatsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
-	 * API name: {@code _all}
+	 * Required - API name: {@code _all}
 	 */
 	public IndicesStats all() {
 		return this.all;
@@ -167,7 +167,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -175,14 +175,14 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(IndicesStats value) {
 			this.all = value;
@@ -190,7 +190,7 @@ public final class StatsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _all}
+		 * Required - API name: {@code _all}
 		 */
 		public Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
 			return this.all(fn.apply(new IndicesStats.Builder()).build());

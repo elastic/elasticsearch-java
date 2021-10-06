@@ -76,56 +76,56 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code node_id}
+	 * Required - API name: {@code node_id}
 	 */
 	public String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public ShutdownType type() {
 		return this.type;
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public String reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code shutdown_startedmillis}
+	 * Required - API name: {@code shutdown_startedmillis}
 	 */
 	public String shutdownStartedmillis() {
 		return this.shutdownStartedmillis;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ShutdownStatus status() {
 		return this.status;
 	}
 
 	/**
-	 * API name: {@code shard_migration}
+	 * Required - API name: {@code shard_migration}
 	 */
 	public ShardMigrationStatus shardMigration() {
 		return this.shardMigration;
 	}
 
 	/**
-	 * API name: {@code persistent_tasks}
+	 * Required - API name: {@code persistent_tasks}
 	 */
 	public PersistentTaskStatus persistentTasks() {
 		return this.persistentTasks;
 	}
 
 	/**
-	 * API name: {@code plugins}
+	 * Required - API name: {@code plugins}
 	 */
 	public PluginsStatus plugins() {
 		return this.plugins;
@@ -191,7 +191,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		private PluginsStatus plugins;
 
 		/**
-		 * API name: {@code node_id}
+		 * Required - API name: {@code node_id}
 		 */
 		public Builder nodeId(String value) {
 			this.nodeId = value;
@@ -199,7 +199,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(ShutdownType value) {
 			this.type = value;
@@ -207,7 +207,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(String value) {
 			this.reason = value;
@@ -215,7 +215,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shutdown_startedmillis}
+		 * Required - API name: {@code shutdown_startedmillis}
 		 */
 		public Builder shutdownStartedmillis(String value) {
 			this.shutdownStartedmillis = value;
@@ -223,7 +223,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ShutdownStatus value) {
 			this.status = value;
@@ -231,7 +231,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard_migration}
+		 * Required - API name: {@code shard_migration}
 		 */
 		public Builder shardMigration(ShardMigrationStatus value) {
 			this.shardMigration = value;
@@ -239,14 +239,14 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard_migration}
+		 * Required - API name: {@code shard_migration}
 		 */
 		public Builder shardMigration(Function<ShardMigrationStatus.Builder, ObjectBuilder<ShardMigrationStatus>> fn) {
 			return this.shardMigration(fn.apply(new ShardMigrationStatus.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code persistent_tasks}
+		 * Required - API name: {@code persistent_tasks}
 		 */
 		public Builder persistentTasks(PersistentTaskStatus value) {
 			this.persistentTasks = value;
@@ -254,14 +254,14 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code persistent_tasks}
+		 * Required - API name: {@code persistent_tasks}
 		 */
 		public Builder persistentTasks(Function<PersistentTaskStatus.Builder, ObjectBuilder<PersistentTaskStatus>> fn) {
 			return this.persistentTasks(fn.apply(new PersistentTaskStatus.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code plugins}
+		 * Required - API name: {@code plugins}
 		 */
 		public Builder plugins(PluginsStatus value) {
 			this.plugins = value;
@@ -269,7 +269,7 @@ public final class NodeShutdownStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code plugins}
+		 * Required - API name: {@code plugins}
 		 */
 		public Builder plugins(Function<PluginsStatus.Builder, ObjectBuilder<PluginsStatus>> fn) {
 			return this.plugins(fn.apply(new PluginsStatus.Builder()).build());

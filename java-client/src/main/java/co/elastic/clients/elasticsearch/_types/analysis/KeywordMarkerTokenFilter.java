@@ -77,28 +77,28 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 	}
 
 	/**
-	 * API name: {@code ignore_case}
+	 * Required - API name: {@code ignore_case}
 	 */
 	public boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
 	/**
-	 * API name: {@code keywords}
+	 * Required - API name: {@code keywords}
 	 */
 	public List<String> keywords() {
 		return this.keywords;
 	}
 
 	/**
-	 * API name: {@code keywords_path}
+	 * Required - API name: {@code keywords_path}
 	 */
 	public String keywordsPath() {
 		return this.keywordsPath;
 	}
 
 	/**
-	 * API name: {@code keywords_pattern}
+	 * Required - API name: {@code keywords_pattern}
 	 */
 	public String keywordsPattern() {
 		return this.keywordsPattern;
@@ -145,7 +145,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		private String keywordsPattern;
 
 		/**
-		 * API name: {@code ignore_case}
+		 * Required - API name: {@code ignore_case}
 		 */
 		public Builder ignoreCase(boolean value) {
 			this.ignoreCase = value;
@@ -153,7 +153,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		}
 
 		/**
-		 * API name: {@code keywords}
+		 * Required - API name: {@code keywords}
 		 */
 		public Builder keywords(List<String> value) {
 			this.keywords = value;
@@ -161,7 +161,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		}
 
 		/**
-		 * API name: {@code keywords}
+		 * Required - API name: {@code keywords}
 		 */
 		public Builder keywords(String... value) {
 			this.keywords = Arrays.asList(value);
@@ -169,7 +169,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		}
 
 		/**
-		 * Add a value to {@link #keywords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #keywords(List)}, creating the list if needed.
 		 */
 		public Builder addKeywords(String value) {
 			if (this.keywords == null) {
@@ -180,7 +180,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		}
 
 		/**
-		 * API name: {@code keywords_path}
+		 * Required - API name: {@code keywords_path}
 		 */
 		public Builder keywordsPath(String value) {
 			this.keywordsPath = value;
@@ -188,7 +188,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		}
 
 		/**
-		 * API name: {@code keywords_pattern}
+		 * Required - API name: {@code keywords_pattern}
 		 */
 		public Builder keywordsPattern(String value) {
 			this.keywordsPattern = value;

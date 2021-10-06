@@ -64,14 +64,14 @@ public final class GetScriptResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code found}
+	 * Required - API name: {@code found}
 	 */
 	public boolean found() {
 		return this.found;
@@ -125,7 +125,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		private StoredScript script;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -133,7 +133,7 @@ public final class GetScriptResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code found}
+		 * Required - API name: {@code found}
 		 */
 		public Builder found(boolean value) {
 			this.found = value;

@@ -63,14 +63,14 @@ public final class SegmentsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public Map<String, IndexSegment> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code _shards}
+	 * Required - API name: {@code _shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
@@ -112,7 +112,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(Map<String, IndexSegment> value) {
 			this.indices = value;
@@ -145,7 +145,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -153,7 +153,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _shards}
+		 * Required - API name: {@code _shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());

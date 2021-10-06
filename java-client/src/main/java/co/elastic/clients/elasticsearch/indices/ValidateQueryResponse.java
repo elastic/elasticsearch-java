@@ -90,7 +90,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code valid}
+	 * Required - API name: {@code valid}
 	 */
 	public boolean valid() {
 		return this.valid;
@@ -179,7 +179,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed. 4
+		 * Add a value to {@link #explanations(List)}, creating the list if needed.
 		 */
 		public Builder addExplanations(IndicesValidationExplanation value) {
 			if (this.explanations == null) {
@@ -198,7 +198,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #explanations(List)}, creating the list if needed. 5
+		 * Add a value to {@link #explanations(List)}, creating the list if needed.
 		 */
 		public Builder addExplanations(
 				Function<IndicesValidationExplanation.Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
@@ -221,7 +221,7 @@ public final class ValidateQueryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code valid}
+		 * Required - API name: {@code valid}
 		 */
 		public Builder valid(boolean value) {
 			this.valid = value;

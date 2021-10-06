@@ -273,14 +273,14 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code current_state}
+	 * Required - API name: {@code current_state}
 	 */
 	public String currentState() {
 		return this.currentState;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -303,7 +303,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code primary}
+	 * Required - API name: {@code primary}
 	 */
 	public boolean primary() {
 		return this.primary;
@@ -334,7 +334,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
 	public int shard() {
 		return this.shard;
@@ -664,7 +664,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRebalanceClusterDecisions(List)}, creating the list
-		 * if needed. 4
+		 * if needed.
 		 */
 		public Builder addCanRebalanceClusterDecisions(AllocationDecision value) {
 			if (this.canRebalanceClusterDecisions == null) {
@@ -684,7 +684,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRebalanceClusterDecisions(List)}, creating the list
-		 * if needed. 5
+		 * if needed.
 		 */
 		public Builder addCanRebalanceClusterDecisions(
 				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
@@ -717,7 +717,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRemainDecisions(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addCanRemainDecisions(AllocationDecision value) {
 			if (this.canRemainDecisions == null) {
@@ -736,7 +736,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #canRemainDecisions(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addCanRemainDecisions(
 				Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
@@ -798,7 +798,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code current_state}
+		 * Required - API name: {@code current_state}
 		 */
 		public Builder currentState(String value) {
 			this.currentState = value;
@@ -806,7 +806,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -839,7 +839,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nodeAllocationDecisions(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addNodeAllocationDecisions(NodeAllocationExplanation value) {
 			if (this.nodeAllocationDecisions == null) {
@@ -859,7 +859,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nodeAllocationDecisions(List)}, creating the list if
-		 * needed. 5
+		 * needed.
 		 */
 		public Builder addNodeAllocationDecisions(
 				Function<NodeAllocationExplanation.Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {
@@ -867,7 +867,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code primary}
+		 * Required - API name: {@code primary}
 		 */
 		public Builder primary(boolean value) {
 			this.primary = value;
@@ -899,7 +899,7 @@ public final class AllocationExplainResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
 		public Builder shard(int value) {
 			this.shard = value;

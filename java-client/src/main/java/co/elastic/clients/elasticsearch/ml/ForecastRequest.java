@@ -68,7 +68,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The ID of the job to forecast for
+	 * Required - The ID of the job to forecast for
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -133,7 +133,7 @@ public final class ForecastRequest extends RequestBase implements JsonpSerializa
 		private String expiresIn;
 
 		/**
-		 * The ID of the job to forecast for
+		 * Required - The ID of the job to forecast for
 		 * <p>
 		 * API name: {@code job_id}
 		 */

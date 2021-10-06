@@ -78,7 +78,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	}
 
 	/**
-	 * The number of bytes used at the highest peak of memory usage.
+	 * Required - The number of bytes used at the highest peak of memory usage.
 	 * <p>
 	 * API name: {@code peak_usage_bytes}
 	 */
@@ -87,7 +87,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 	}
 
 	/**
-	 * The memory usage status.
+	 * Required - The memory usage status.
 	 * <p>
 	 * API name: {@code status}
 	 */
@@ -166,7 +166,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		}
 
 		/**
-		 * The number of bytes used at the highest peak of memory usage.
+		 * Required - The number of bytes used at the highest peak of memory usage.
 		 * <p>
 		 * API name: {@code peak_usage_bytes}
 		 */
@@ -176,7 +176,7 @@ public final class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializab
 		}
 
 		/**
-		 * The memory usage status.
+		 * Required - The memory usage status.
 		 * <p>
 		 * API name: {@code status}
 		 */

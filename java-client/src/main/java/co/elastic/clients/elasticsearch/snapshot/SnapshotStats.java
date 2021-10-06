@@ -64,28 +64,28 @@ public final class SnapshotStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code incremental}
+	 * Required - API name: {@code incremental}
 	 */
 	public FileCountSnapshotStats incremental() {
 		return this.incremental;
 	}
 
 	/**
-	 * API name: {@code start_time_in_millis}
+	 * Required - API name: {@code start_time_in_millis}
 	 */
 	public long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
-	 * API name: {@code time_in_millis}
+	 * Required - API name: {@code time_in_millis}
 	 */
 	public long timeInMillis() {
 		return this.timeInMillis;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public FileCountSnapshotStats total() {
 		return this.total;
@@ -131,7 +131,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		private FileCountSnapshotStats total;
 
 		/**
-		 * API name: {@code incremental}
+		 * Required - API name: {@code incremental}
 		 */
 		public Builder incremental(FileCountSnapshotStats value) {
 			this.incremental = value;
@@ -139,14 +139,14 @@ public final class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code incremental}
+		 * Required - API name: {@code incremental}
 		 */
 		public Builder incremental(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
 			return this.incremental(fn.apply(new FileCountSnapshotStats.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code start_time_in_millis}
+		 * Required - API name: {@code start_time_in_millis}
 		 */
 		public Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
@@ -154,7 +154,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_in_millis}
+		 * Required - API name: {@code time_in_millis}
 		 */
 		public Builder timeInMillis(long value) {
 			this.timeInMillis = value;
@@ -162,7 +162,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(FileCountSnapshotStats value) {
 			this.total = value;
@@ -170,7 +170,7 @@ public final class SnapshotStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(Function<FileCountSnapshotStats.Builder, ObjectBuilder<FileCountSnapshotStats>> fn) {
 			return this.total(fn.apply(new FileCountSnapshotStats.Builder()).build());

@@ -129,9 +129,9 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 	}
 
 	/**
-	 * The analysis configuration, which contains the information necessary to
-	 * perform one of the following types of analysis: classification, outlier
-	 * detection, or regression.
+	 * Required - The analysis configuration, which contains the information
+	 * necessary to perform one of the following types of analysis: classification,
+	 * outlier detection, or regression.
 	 * <p>
 	 * API name: {@code analysis}
 	 */
@@ -351,9 +351,9 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		}
 
 		/**
-		 * The analysis configuration, which contains the information necessary to
-		 * perform one of the following types of analysis: classification, outlier
-		 * detection, or regression.
+		 * Required - The analysis configuration, which contains the information
+		 * necessary to perform one of the following types of analysis: classification,
+		 * outlier detection, or regression.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
@@ -363,9 +363,9 @@ public final class ExplainDataFrameAnalyticsRequest extends RequestBase implemen
 		}
 
 		/**
-		 * The analysis configuration, which contains the information necessary to
-		 * perform one of the following types of analysis: classification, outlier
-		 * detection, or regression.
+		 * Required - The analysis configuration, which contains the information
+		 * necessary to perform one of the following types of analysis: classification,
+		 * outlier detection, or regression.
 		 * <p>
 		 * API name: {@code analysis}
 		 */

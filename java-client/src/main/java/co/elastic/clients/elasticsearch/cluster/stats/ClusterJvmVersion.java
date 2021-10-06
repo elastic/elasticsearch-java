@@ -75,49 +75,49 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bundled_jdk}
+	 * Required - API name: {@code bundled_jdk}
 	 */
 	public boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public int count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code using_bundled_jdk}
+	 * Required - API name: {@code using_bundled_jdk}
 	 */
 	public boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code vm_name}
+	 * Required - API name: {@code vm_name}
 	 */
 	public String vmName() {
 		return this.vmName;
 	}
 
 	/**
-	 * API name: {@code vm_vendor}
+	 * Required - API name: {@code vm_vendor}
 	 */
 	public String vmVendor() {
 		return this.vmVendor;
 	}
 
 	/**
-	 * API name: {@code vm_version}
+	 * Required - API name: {@code vm_version}
 	 */
 	public String vmVersion() {
 		return this.vmVersion;
@@ -178,7 +178,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		private String vmVersion;
 
 		/**
-		 * API name: {@code bundled_jdk}
+		 * Required - API name: {@code bundled_jdk}
 		 */
 		public Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
@@ -186,7 +186,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(int value) {
 			this.count = value;
@@ -194,7 +194,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code using_bundled_jdk}
+		 * Required - API name: {@code using_bundled_jdk}
 		 */
 		public Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
@@ -202,7 +202,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -210,7 +210,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vm_name}
+		 * Required - API name: {@code vm_name}
 		 */
 		public Builder vmName(String value) {
 			this.vmName = value;
@@ -218,7 +218,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vm_vendor}
+		 * Required - API name: {@code vm_vendor}
 		 */
 		public Builder vmVendor(String value) {
 			this.vmVendor = value;
@@ -226,7 +226,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code vm_version}
+		 * Required - API name: {@code vm_version}
 		 */
 		public Builder vmVersion(String value) {
 			this.vmVersion = value;

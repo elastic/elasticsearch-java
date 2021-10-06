@@ -66,21 +66,21 @@ public final class MountedSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code snapshot}
+	 * Required - API name: {@code snapshot}
 	 */
 	public String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * Required - API name: {@code indices}
 	 */
 	public List<String> indices() {
 		return this.indices;
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * Required - API name: {@code shards}
 	 */
 	public ShardStatistics shards() {
 		return this.shards;
@@ -126,7 +126,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		/**
-		 * API name: {@code snapshot}
+		 * Required - API name: {@code snapshot}
 		 */
 		public Builder snapshot(String value) {
 			this.snapshot = value;
@@ -134,7 +134,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(List<String> value) {
 			this.indices = value;
@@ -142,7 +142,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code indices}
+		 * Required - API name: {@code indices}
 		 */
 		public Builder indices(String... value) {
 			this.indices = Arrays.asList(value);
@@ -150,7 +150,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -161,7 +161,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(ShardStatistics value) {
 			this.shards = value;
@@ -169,7 +169,7 @@ public final class MountedSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * Required - API name: {@code shards}
 		 */
 		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());

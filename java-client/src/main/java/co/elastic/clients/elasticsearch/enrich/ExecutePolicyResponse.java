@@ -60,7 +60,7 @@ public final class ExecutePolicyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public ExecuteEnrichPolicyStatus status() {
 		return this.status;
@@ -109,7 +109,7 @@ public final class ExecutePolicyResponse implements JsonpSerializable {
 		private String taskId;
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(ExecuteEnrichPolicyStatus value) {
 			this.status = value;
@@ -117,7 +117,7 @@ public final class ExecutePolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public Builder status(
 				Function<ExecuteEnrichPolicyStatus.Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {

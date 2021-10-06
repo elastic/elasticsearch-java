@@ -57,7 +57,8 @@ public final class PauseFollowRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the follower index that should pause following its leader index.
+	 * Required - The name of the follower index that should pause following its
+	 * leader index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -74,7 +75,8 @@ public final class PauseFollowRequest extends RequestBase {
 		private String index;
 
 		/**
-		 * The name of the follower index that should pause following its leader index.
+		 * Required - The name of the follower index that should pause following its
+		 * leader index.
 		 * <p>
 		 * API name: {@code index}
 		 */

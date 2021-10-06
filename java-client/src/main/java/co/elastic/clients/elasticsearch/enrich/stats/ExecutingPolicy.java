@@ -59,14 +59,14 @@ public final class ExecutingPolicy implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
 	}
 
 	/**
-	 * API name: {@code task}
+	 * Required - API name: {@code task}
 	 */
 	public Info task() {
 		return this.task;
@@ -102,7 +102,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		private Info task;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;
@@ -110,7 +110,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code task}
+		 * Required - API name: {@code task}
 		 */
 		public Builder task(Info value) {
 			this.task = value;
@@ -118,7 +118,7 @@ public final class ExecutingPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code task}
+		 * Required - API name: {@code task}
 		 */
 		public Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
 			return this.task(fn.apply(new Info.Builder()).build());

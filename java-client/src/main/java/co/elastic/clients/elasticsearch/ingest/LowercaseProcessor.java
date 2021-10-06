@@ -72,7 +72,7 @@ public final class LowercaseProcessor extends ProcessorBase implements Processor
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -133,7 +133,7 @@ public final class LowercaseProcessor extends ProcessorBase implements Processor
 		private String targetField;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;

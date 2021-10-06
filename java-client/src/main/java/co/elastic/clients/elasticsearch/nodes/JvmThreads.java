@@ -57,14 +57,14 @@ public final class JvmThreads implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
 	public long count() {
 		return this.count;
 	}
 
 	/**
-	 * API name: {@code peak_count}
+	 * Required - API name: {@code peak_count}
 	 */
 	public long peakCount() {
 		return this.peakCount;
@@ -100,7 +100,7 @@ public final class JvmThreads implements JsonpSerializable {
 		private Long peakCount;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
 		public Builder count(long value) {
 			this.count = value;
@@ -108,7 +108,7 @@ public final class JvmThreads implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code peak_count}
+		 * Required - API name: {@code peak_count}
 		 */
 		public Builder peakCount(long value) {
 			this.peakCount = value;

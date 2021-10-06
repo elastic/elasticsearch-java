@@ -73,7 +73,7 @@ public final class Destination implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
@@ -171,7 +171,7 @@ public final class Destination implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;

@@ -69,14 +69,14 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code backing_indices}
+	 * Required - API name: {@code backing_indices}
 	 */
 	public int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
-	 * API name: {@code data_stream}
+	 * Required - API name: {@code data_stream}
 	 */
 	public String dataStream() {
 		return this.dataStream;
@@ -91,14 +91,14 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code store_size_bytes}
+	 * Required - API name: {@code store_size_bytes}
 	 */
 	public int storeSizeBytes() {
 		return this.storeSizeBytes;
 	}
 
 	/**
-	 * API name: {@code maximum_timestamp}
+	 * Required - API name: {@code maximum_timestamp}
 	 */
 	public int maximumTimestamp() {
 		return this.maximumTimestamp;
@@ -154,7 +154,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		private Integer maximumTimestamp;
 
 		/**
-		 * API name: {@code backing_indices}
+		 * Required - API name: {@code backing_indices}
 		 */
 		public Builder backingIndices(int value) {
 			this.backingIndices = value;
@@ -162,7 +162,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data_stream}
+		 * Required - API name: {@code data_stream}
 		 */
 		public Builder dataStream(String value) {
 			this.dataStream = value;
@@ -178,7 +178,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code store_size_bytes}
+		 * Required - API name: {@code store_size_bytes}
 		 */
 		public Builder storeSizeBytes(int value) {
 			this.storeSizeBytes = value;
@@ -186,7 +186,7 @@ public final class DataStreamsStatsItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code maximum_timestamp}
+		 * Required - API name: {@code maximum_timestamp}
 		 */
 		public Builder maximumTimestamp(int value) {
 			this.maximumTimestamp = value;

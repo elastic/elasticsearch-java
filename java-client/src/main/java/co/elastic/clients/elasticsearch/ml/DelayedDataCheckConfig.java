@@ -74,7 +74,8 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies whether the datafeed periodically checks for delayed data.
+	 * Required - Specifies whether the datafeed periodically checks for delayed
+	 * data.
 	 * <p>
 	 * API name: {@code enabled}
 	 */
@@ -131,7 +132,8 @@ public final class DelayedDataCheckConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies whether the datafeed periodically checks for delayed data.
+		 * Required - Specifies whether the datafeed periodically checks for delayed
+		 * data.
 		 * <p>
 		 * API name: {@code enabled}
 		 */

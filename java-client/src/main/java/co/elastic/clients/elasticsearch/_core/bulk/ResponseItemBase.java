@@ -110,14 +110,14 @@ public abstract class ResponseItemBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code status}
+	 * Required - API name: {@code status}
 	 */
 	public int status() {
 		return this.status;
@@ -320,7 +320,7 @@ public abstract class ResponseItemBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public BuilderT index(String value) {
 			this.index = value;
@@ -328,7 +328,7 @@ public abstract class ResponseItemBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code status}
+		 * Required - API name: {@code status}
 		 */
 		public BuilderT status(int value) {
 			this.status = value;

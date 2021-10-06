@@ -70,7 +70,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the namespace
+	 * Required - An identifier for the namespace
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -79,7 +79,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the service name
+	 * Required - An identifier for the service name
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -88,7 +88,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the token name
+	 * Required - An identifier for the token name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -125,7 +125,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		private JsonValue /* _types.Refresh */ refresh;
 
 		/**
-		 * An identifier for the namespace
+		 * Required - An identifier for the namespace
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -135,7 +135,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the service name
+		 * Required - An identifier for the service name
 		 * <p>
 		 * API name: {@code service}
 		 */
@@ -145,7 +145,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the token name
+		 * Required - An identifier for the token name
 		 * <p>
 		 * API name: {@code name}
 		 */

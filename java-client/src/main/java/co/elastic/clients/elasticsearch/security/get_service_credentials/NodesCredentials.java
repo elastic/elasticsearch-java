@@ -62,7 +62,8 @@ public final class NodesCredentials implements JsonpSerializable {
 	}
 
 	/**
-	 * General status showing how nodes respond to the above collection request
+	 * Required - General status showing how nodes respond to the above collection
+	 * request
 	 * <p>
 	 * API name: {@code _nodes}
 	 */
@@ -71,7 +72,7 @@ public final class NodesCredentials implements JsonpSerializable {
 	}
 
 	/**
-	 * File-backed tokens collected from all nodes
+	 * Required - File-backed tokens collected from all nodes
 	 * <p>
 	 * API name: {@code file_tokens}
 	 */
@@ -115,7 +116,8 @@ public final class NodesCredentials implements JsonpSerializable {
 		private Map<String, NodesCredentialsFileToken> fileTokens;
 
 		/**
-		 * General status showing how nodes respond to the above collection request
+		 * Required - General status showing how nodes respond to the above collection
+		 * request
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
@@ -125,7 +127,8 @@ public final class NodesCredentials implements JsonpSerializable {
 		}
 
 		/**
-		 * General status showing how nodes respond to the above collection request
+		 * Required - General status showing how nodes respond to the above collection
+		 * request
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
@@ -134,7 +137,7 @@ public final class NodesCredentials implements JsonpSerializable {
 		}
 
 		/**
-		 * File-backed tokens collected from all nodes
+		 * Required - File-backed tokens collected from all nodes
 		 * <p>
 		 * API name: {@code file_tokens}
 		 */

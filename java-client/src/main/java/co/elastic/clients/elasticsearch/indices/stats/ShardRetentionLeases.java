@@ -65,21 +65,21 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code primary_term}
+	 * Required - API name: {@code primary_term}
 	 */
 	public long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code leases}
+	 * Required - API name: {@code leases}
 	 */
 	public List<ShardLease> leases() {
 		return this.leases;
@@ -125,7 +125,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		private List<ShardLease> leases;
 
 		/**
-		 * API name: {@code primary_term}
+		 * Required - API name: {@code primary_term}
 		 */
 		public Builder primaryTerm(long value) {
 			this.primaryTerm = value;
@@ -133,7 +133,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;
@@ -141,7 +141,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code leases}
+		 * Required - API name: {@code leases}
 		 */
 		public Builder leases(List<ShardLease> value) {
 			this.leases = value;
@@ -149,7 +149,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code leases}
+		 * Required - API name: {@code leases}
 		 */
 		public Builder leases(ShardLease... value) {
 			this.leases = Arrays.asList(value);
@@ -157,7 +157,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #leases(List)}, creating the list if needed. 4
+		 * Add a value to {@link #leases(List)}, creating the list if needed.
 		 */
 		public Builder addLeases(ShardLease value) {
 			if (this.leases == null) {
@@ -175,7 +175,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #leases(List)}, creating the list if needed. 5
+		 * Add a value to {@link #leases(List)}, creating the list if needed.
 		 */
 		public Builder addLeases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
 			return this.addLeases(fn.apply(new ShardLease.Builder()).build());

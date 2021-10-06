@@ -87,70 +87,70 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_outstanding_read_requests}
+	 * Required - API name: {@code max_outstanding_read_requests}
 	 */
 	public int maxOutstandingReadRequests() {
 		return this.maxOutstandingReadRequests;
 	}
 
 	/**
-	 * API name: {@code max_outstanding_write_requests}
+	 * Required - API name: {@code max_outstanding_write_requests}
 	 */
 	public int maxOutstandingWriteRequests() {
 		return this.maxOutstandingWriteRequests;
 	}
 
 	/**
-	 * API name: {@code max_read_request_operation_count}
+	 * Required - API name: {@code max_read_request_operation_count}
 	 */
 	public int maxReadRequestOperationCount() {
 		return this.maxReadRequestOperationCount;
 	}
 
 	/**
-	 * API name: {@code max_read_request_size}
+	 * Required - API name: {@code max_read_request_size}
 	 */
 	public String maxReadRequestSize() {
 		return this.maxReadRequestSize;
 	}
 
 	/**
-	 * API name: {@code max_retry_delay}
+	 * Required - API name: {@code max_retry_delay}
 	 */
 	public String maxRetryDelay() {
 		return this.maxRetryDelay;
 	}
 
 	/**
-	 * API name: {@code max_write_buffer_count}
+	 * Required - API name: {@code max_write_buffer_count}
 	 */
 	public int maxWriteBufferCount() {
 		return this.maxWriteBufferCount;
 	}
 
 	/**
-	 * API name: {@code max_write_buffer_size}
+	 * Required - API name: {@code max_write_buffer_size}
 	 */
 	public String maxWriteBufferSize() {
 		return this.maxWriteBufferSize;
 	}
 
 	/**
-	 * API name: {@code max_write_request_operation_count}
+	 * Required - API name: {@code max_write_request_operation_count}
 	 */
 	public int maxWriteRequestOperationCount() {
 		return this.maxWriteRequestOperationCount;
 	}
 
 	/**
-	 * API name: {@code max_write_request_size}
+	 * Required - API name: {@code max_write_request_size}
 	 */
 	public String maxWriteRequestSize() {
 		return this.maxWriteRequestSize;
 	}
 
 	/**
-	 * API name: {@code read_poll_timeout}
+	 * Required - API name: {@code read_poll_timeout}
 	 */
 	public String readPollTimeout() {
 		return this.readPollTimeout;
@@ -226,7 +226,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		private String readPollTimeout;
 
 		/**
-		 * API name: {@code max_outstanding_read_requests}
+		 * Required - API name: {@code max_outstanding_read_requests}
 		 */
 		public Builder maxOutstandingReadRequests(int value) {
 			this.maxOutstandingReadRequests = value;
@@ -234,7 +234,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_outstanding_write_requests}
+		 * Required - API name: {@code max_outstanding_write_requests}
 		 */
 		public Builder maxOutstandingWriteRequests(int value) {
 			this.maxOutstandingWriteRequests = value;
@@ -242,7 +242,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_read_request_operation_count}
+		 * Required - API name: {@code max_read_request_operation_count}
 		 */
 		public Builder maxReadRequestOperationCount(int value) {
 			this.maxReadRequestOperationCount = value;
@@ -250,7 +250,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_read_request_size}
+		 * Required - API name: {@code max_read_request_size}
 		 */
 		public Builder maxReadRequestSize(String value) {
 			this.maxReadRequestSize = value;
@@ -258,7 +258,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_retry_delay}
+		 * Required - API name: {@code max_retry_delay}
 		 */
 		public Builder maxRetryDelay(String value) {
 			this.maxRetryDelay = value;
@@ -266,7 +266,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_write_buffer_count}
+		 * Required - API name: {@code max_write_buffer_count}
 		 */
 		public Builder maxWriteBufferCount(int value) {
 			this.maxWriteBufferCount = value;
@@ -274,7 +274,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_write_buffer_size}
+		 * Required - API name: {@code max_write_buffer_size}
 		 */
 		public Builder maxWriteBufferSize(String value) {
 			this.maxWriteBufferSize = value;
@@ -282,7 +282,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_write_request_operation_count}
+		 * Required - API name: {@code max_write_request_operation_count}
 		 */
 		public Builder maxWriteRequestOperationCount(int value) {
 			this.maxWriteRequestOperationCount = value;
@@ -290,7 +290,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code max_write_request_size}
+		 * Required - API name: {@code max_write_request_size}
 		 */
 		public Builder maxWriteRequestSize(String value) {
 			this.maxWriteRequestSize = value;
@@ -298,7 +298,7 @@ public final class FollowerIndexParameters implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code read_poll_timeout}
+		 * Required - API name: {@code read_poll_timeout}
 		 */
 		public Builder readPollTimeout(String value) {
 			this.readPollTimeout = value;

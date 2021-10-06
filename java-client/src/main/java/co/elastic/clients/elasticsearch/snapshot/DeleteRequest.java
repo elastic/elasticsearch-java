@@ -65,7 +65,7 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * A repository name
+	 * Required - A repository name
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of snapshot names
+	 * Required - A comma-separated list of snapshot names
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -106,7 +106,7 @@ public final class DeleteRequest extends RequestBase {
 		private String masterTimeout;
 
 		/**
-		 * A repository name
+		 * Required - A repository name
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -116,7 +116,7 @@ public final class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of snapshot names
+		 * Required - A comma-separated list of snapshot names
 		 * <p>
 		 * API name: {@code snapshot}
 		 */

@@ -54,7 +54,7 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code phase}
+	 * Required - API name: {@code phase}
 	 */
 	public EnrichPolicyPhase phase() {
 		return this.phase;
@@ -85,7 +85,7 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 		private EnrichPolicyPhase phase;
 
 		/**
-		 * API name: {@code phase}
+		 * Required - API name: {@code phase}
 		 */
 		public Builder phase(EnrichPolicyPhase value) {
 			this.phase = value;

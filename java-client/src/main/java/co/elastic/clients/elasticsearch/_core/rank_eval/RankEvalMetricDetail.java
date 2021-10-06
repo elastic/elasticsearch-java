@@ -71,8 +71,8 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * The metric_score in the details section shows the contribution of this query
-	 * to the global quality metric score
+	 * Required - The metric_score in the details section shows the contribution of
+	 * this query to the global quality metric score
 	 * <p>
 	 * API name: {@code metric_score}
 	 */
@@ -81,9 +81,9 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * The unrated_docs section contains an _index and _id entry for each document
-	 * in the search result for this query that didn’t have a ratings value. This
-	 * can be used to ask the user to supply ratings for these documents
+	 * Required - The unrated_docs section contains an _index and _id entry for each
+	 * document in the search result for this query that didn’t have a ratings
+	 * value. This can be used to ask the user to supply ratings for these documents
 	 * <p>
 	 * API name: {@code unrated_docs}
 	 */
@@ -92,8 +92,8 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * The hits section shows a grouping of the search results with their supplied
-	 * ratings
+	 * Required - The hits section shows a grouping of the search results with their
+	 * supplied ratings
 	 * <p>
 	 * API name: {@code hits}
 	 */
@@ -102,9 +102,10 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 	}
 
 	/**
-	 * The metric_details give additional information about the calculated quality
-	 * metric (e.g. how many of the retrieved documents were relevant). The content
-	 * varies for each metric but allows for better interpretation of the results
+	 * Required - The metric_details give additional information about the
+	 * calculated quality metric (e.g. how many of the retrieved documents were
+	 * relevant). The content varies for each metric but allows for better
+	 * interpretation of the results
 	 * <p>
 	 * API name: {@code metric_details}
 	 */
@@ -174,8 +175,8 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		private Map<String, Map<String, JsonData>> metricDetails;
 
 		/**
-		 * The metric_score in the details section shows the contribution of this query
-		 * to the global quality metric score
+		 * Required - The metric_score in the details section shows the contribution of
+		 * this query to the global quality metric score
 		 * <p>
 		 * API name: {@code metric_score}
 		 */
@@ -185,9 +186,9 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * The unrated_docs section contains an _index and _id entry for each document
-		 * in the search result for this query that didn’t have a ratings value. This
-		 * can be used to ask the user to supply ratings for these documents
+		 * Required - The unrated_docs section contains an _index and _id entry for each
+		 * document in the search result for this query that didn’t have a ratings
+		 * value. This can be used to ask the user to supply ratings for these documents
 		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
@@ -197,9 +198,9 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * The unrated_docs section contains an _index and _id entry for each document
-		 * in the search result for this query that didn’t have a ratings value. This
-		 * can be used to ask the user to supply ratings for these documents
+		 * Required - The unrated_docs section contains an _index and _id entry for each
+		 * document in the search result for this query that didn’t have a ratings
+		 * value. This can be used to ask the user to supply ratings for these documents
 		 * <p>
 		 * API name: {@code unrated_docs}
 		 */
@@ -209,7 +210,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed. 4
+		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed.
 		 */
 		public Builder addUnratedDocs(UnratedDocument value) {
 			if (this.unratedDocs == null) {
@@ -227,15 +228,15 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed. 5
+		 * Add a value to {@link #unratedDocs(List)}, creating the list if needed.
 		 */
 		public Builder addUnratedDocs(Function<UnratedDocument.Builder, ObjectBuilder<UnratedDocument>> fn) {
 			return this.addUnratedDocs(fn.apply(new UnratedDocument.Builder()).build());
 		}
 
 		/**
-		 * The hits section shows a grouping of the search results with their supplied
-		 * ratings
+		 * Required - The hits section shows a grouping of the search results with their
+		 * supplied ratings
 		 * <p>
 		 * API name: {@code hits}
 		 */
@@ -245,8 +246,8 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * The hits section shows a grouping of the search results with their supplied
-		 * ratings
+		 * Required - The hits section shows a grouping of the search results with their
+		 * supplied ratings
 		 * <p>
 		 * API name: {@code hits}
 		 */
@@ -256,7 +257,7 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed. 4
+		 * Add a value to {@link #hits(List)}, creating the list if needed.
 		 */
 		public Builder addHits(RankEvalHitItem value) {
 			if (this.hits == null) {
@@ -274,16 +275,17 @@ public final class RankEvalMetricDetail implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #hits(List)}, creating the list if needed. 5
+		 * Add a value to {@link #hits(List)}, creating the list if needed.
 		 */
 		public Builder addHits(Function<RankEvalHitItem.Builder, ObjectBuilder<RankEvalHitItem>> fn) {
 			return this.addHits(fn.apply(new RankEvalHitItem.Builder()).build());
 		}
 
 		/**
-		 * The metric_details give additional information about the calculated quality
-		 * metric (e.g. how many of the retrieved documents were relevant). The content
-		 * varies for each metric but allows for better interpretation of the results
+		 * Required - The metric_details give additional information about the
+		 * calculated quality metric (e.g. how many of the retrieved documents were
+		 * relevant). The content varies for each metric but allows for better
+		 * interpretation of the results
 		 * <p>
 		 * API name: {@code metric_details}
 		 */

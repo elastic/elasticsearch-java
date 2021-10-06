@@ -54,7 +54,7 @@ public final class Weights implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code weights}
+	 * Required - API name: {@code weights}
 	 */
 	public double weights() {
 		return this.weights;
@@ -85,7 +85,7 @@ public final class Weights implements JsonpSerializable {
 		private Double weights;
 
 		/**
-		 * API name: {@code weights}
+		 * Required - API name: {@code weights}
 		 */
 		public Builder weights(double value) {
 			this.weights = value;

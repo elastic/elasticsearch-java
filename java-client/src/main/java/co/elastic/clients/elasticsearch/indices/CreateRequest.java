@@ -98,7 +98,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The name of the index
+	 * Required - The name of the index
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -255,7 +255,7 @@ public final class CreateRequest extends RequestBase implements JsonpSerializabl
 		private Map<String, JsonData> settings;
 
 		/**
-		 * The name of the index
+		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */

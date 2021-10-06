@@ -125,7 +125,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Identifier for the job
+	 * Required - Identifier for the job
 	 * <p>
 	 * API name: {@code job_id}
 	 */
@@ -450,7 +450,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		private PerPartitionCategorization perPartitionCategorization;
 
 		/**
-		 * Identifier for the job
+		 * Required - Identifier for the job
 		 * <p>
 		 * API name: {@code job_id}
 		 */
@@ -539,7 +539,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 
 		/**
 		 * Add a value to {@link #categorizationFilters(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addCategorizationFilters(String value) {
 			if (this.categorizationFilters == null) {
@@ -642,7 +642,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed. 4
+		 * Add a value to {@link #groups(List)}, creating the list if needed.
 		 */
 		public Builder addGroups(String value) {
 			if (this.groups == null) {
@@ -673,7 +673,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed. 4
+		 * Add a value to {@link #detectors(List)}, creating the list if needed.
 		 */
 		public Builder addDetectors(Detector value) {
 			if (this.detectors == null) {
@@ -691,7 +691,7 @@ public final class UpdateJobRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #detectors(List)}, creating the list if needed. 5
+		 * Add a value to {@link #detectors(List)}, creating the list if needed.
 		 */
 		public Builder addDetectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.addDetectors(fn.apply(new Detector.Builder()).build());

@@ -71,6 +71,10 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
+	public <T extends InputVariant> Input(ObjectBuilder<T> builder) {
+		this(builder.build());
+	}
+
 	private Input(Builder builder) {
 
 		this._type = Objects.requireNonNull(builder._type, "variant type");

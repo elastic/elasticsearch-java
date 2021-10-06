@@ -60,21 +60,21 @@ public final class ClusterStatistics implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code skipped}
+	 * Required - API name: {@code skipped}
 	 */
 	public int skipped() {
 		return this.skipped;
 	}
 
 	/**
-	 * API name: {@code successful}
+	 * Required - API name: {@code successful}
 	 */
 	public int successful() {
 		return this.successful;
 	}
 
 	/**
-	 * API name: {@code total}
+	 * Required - API name: {@code total}
 	 */
 	public int total() {
 		return this.total;
@@ -115,7 +115,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		private Integer total;
 
 		/**
-		 * API name: {@code skipped}
+		 * Required - API name: {@code skipped}
 		 */
 		public Builder skipped(int value) {
 			this.skipped = value;
@@ -123,7 +123,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code successful}
+		 * Required - API name: {@code successful}
 		 */
 		public Builder successful(int value) {
 			this.successful = value;
@@ -131,7 +131,7 @@ public final class ClusterStatistics implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code total}
+		 * Required - API name: {@code total}
 		 */
 		public Builder total(int value) {
 			this.total = value;

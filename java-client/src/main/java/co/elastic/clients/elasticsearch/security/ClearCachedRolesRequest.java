@@ -62,7 +62,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	}
 
 	/**
-	 * Role name
+	 * Required - Role name
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -79,7 +79,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		private List<String> name;
 
 		/**
-		 * Role name
+		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -89,7 +89,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		}
 
 		/**
-		 * Role name
+		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -99,7 +99,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed. 4
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {

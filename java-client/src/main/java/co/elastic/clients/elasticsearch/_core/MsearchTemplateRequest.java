@@ -142,7 +142,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -207,7 +207,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -261,7 +261,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -271,7 +271,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -281,7 +281,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed. 4
+		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed.
 		 */
 		public Builder addSearchTemplates(TemplateItem value) {
 			if (this.searchTemplates == null) {
@@ -299,7 +299,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed. 5
+		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed.
 		 */
 		public Builder addSearchTemplates(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
 			return this.addSearchTemplates(fn.apply(new TemplateItem.Builder()).build());

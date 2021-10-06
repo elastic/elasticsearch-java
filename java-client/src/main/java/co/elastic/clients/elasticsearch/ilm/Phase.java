@@ -42,8 +42,8 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public final class Phase implements JsonpSerializable {
 	private final JsonValue /*
-							 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false) |
-							 * Array<internal.string>)
+							 * Union(Array<internal.string> | Dictionary<internal.string, ilm._types.Action>
+							 * (singleKey = false))
 							 */ actions;
 
 	@Nullable
@@ -63,11 +63,11 @@ public final class Phase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code actions}
+	 * Required - API name: {@code actions}
 	 */
 	public JsonValue /*
-						 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false) |
-						 * Array<internal.string>)
+						 * Union(Array<internal.string> | Dictionary<internal.string, ilm._types.Action>
+						 * (singleKey = false))
 						 */ actions() {
 		return this.actions;
 	}
@@ -110,19 +110,19 @@ public final class Phase implements JsonpSerializable {
 	 */
 	public static class Builder implements ObjectBuilder<Phase> {
 		private JsonValue /*
-							 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false) |
-							 * Array<internal.string>)
+							 * Union(Array<internal.string> | Dictionary<internal.string, ilm._types.Action>
+							 * (singleKey = false))
 							 */ actions;
 
 		@Nullable
 		private String minAge;
 
 		/**
-		 * API name: {@code actions}
+		 * Required - API name: {@code actions}
 		 */
 		public Builder actions(JsonValue /*
-											 * Union(Dictionary<internal.string, ilm._types.Action> (singleKey = false)
-											 * | Array<internal.string>)
+											 * Union(Array<internal.string> | Dictionary<internal.string,
+											 * ilm._types.Action> (singleKey = false))
 											 */ value) {
 			this.actions = value;
 			return this;

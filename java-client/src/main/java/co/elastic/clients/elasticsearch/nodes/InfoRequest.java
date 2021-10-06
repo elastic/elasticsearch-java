@@ -175,7 +175,7 @@ public final class InfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
 		 */
 		public Builder addNodeId(String value) {
 			if (this.nodeId == null) {
@@ -208,7 +208,7 @@ public final class InfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed. 4
+		 * Add a value to {@link #metric(List)}, creating the list if needed.
 		 */
 		public Builder addMetric(String value) {
 			if (this.metric == null) {

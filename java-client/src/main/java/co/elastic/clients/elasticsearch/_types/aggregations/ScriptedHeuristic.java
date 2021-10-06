@@ -55,7 +55,7 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code script}
+	 * Required - API name: {@code script}
 	 */
 	public JsonValue /* _types.Script */ script() {
 		return this.script;
@@ -86,7 +86,7 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 		private JsonValue /* _types.Script */ script;
 
 		/**
-		 * API name: {@code script}
+		 * Required - API name: {@code script}
 		 */
 		public Builder script(JsonValue /* _types.Script */ value) {
 			this.script = value;

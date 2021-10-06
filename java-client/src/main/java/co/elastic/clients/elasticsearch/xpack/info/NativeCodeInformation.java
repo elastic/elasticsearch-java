@@ -58,14 +58,14 @@ public final class NativeCodeInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code build_hash}
+	 * Required - API name: {@code build_hash}
 	 */
 	public String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
@@ -101,7 +101,7 @@ public final class NativeCodeInformation implements JsonpSerializable {
 		private String version;
 
 		/**
-		 * API name: {@code build_hash}
+		 * Required - API name: {@code build_hash}
 		 */
 		public Builder buildHash(String value) {
 			this.buildHash = value;
@@ -109,7 +109,7 @@ public final class NativeCodeInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;

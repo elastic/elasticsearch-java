@@ -205,7 +205,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 	}
 
 	/**
-	 * API name: {@code query}
+	 * Required - API name: {@code query}
 	 */
 	public String query() {
 		return this.query;
@@ -399,7 +399,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
 		public Builder addFields(String value) {
 			if (this.fields == null) {
@@ -458,7 +458,7 @@ public final class SimpleQueryStringQuery extends QueryBase implements QueryVari
 		}
 
 		/**
-		 * API name: {@code query}
+		 * Required - API name: {@code query}
 		 */
 		public Builder query(String value) {
 			this.query = value;

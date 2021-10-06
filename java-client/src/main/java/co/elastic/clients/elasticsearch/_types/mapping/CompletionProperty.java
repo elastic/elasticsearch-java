@@ -236,7 +236,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed. 4
+		 * Add a value to {@link #contexts(List)}, creating the list if needed.
 		 */
 		public Builder addContexts(SuggestContext value) {
 			if (this.contexts == null) {
@@ -254,7 +254,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed. 5
+		 * Add a value to {@link #contexts(List)}, creating the list if needed.
 		 */
 		public Builder addContexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
 			return this.addContexts(fn.apply(new SuggestContext.Builder()).build());

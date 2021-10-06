@@ -69,28 +69,28 @@ public final class NodeUsage implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code rest_actions}
+	 * Required - API name: {@code rest_actions}
 	 */
 	public Map<String, Integer> restActions() {
 		return this.restActions;
 	}
 
 	/**
-	 * API name: {@code since}
+	 * Required - API name: {@code since}
 	 */
 	public String since() {
 		return this.since;
 	}
 
 	/**
-	 * API name: {@code timestamp}
+	 * Required - API name: {@code timestamp}
 	 */
 	public String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * API name: {@code aggregations}
+	 * Required - API name: {@code aggregations}
 	 */
 	public Map<String, JsonData> aggregations() {
 		return this.aggregations;
@@ -148,7 +148,7 @@ public final class NodeUsage implements JsonpSerializable {
 		private Map<String, JsonData> aggregations;
 
 		/**
-		 * API name: {@code rest_actions}
+		 * Required - API name: {@code rest_actions}
 		 */
 		public Builder restActions(Map<String, Integer> value) {
 			this.restActions = value;
@@ -167,7 +167,7 @@ public final class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code since}
+		 * Required - API name: {@code since}
 		 */
 		public Builder since(String value) {
 			this.since = value;
@@ -175,7 +175,7 @@ public final class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code timestamp}
+		 * Required - API name: {@code timestamp}
 		 */
 		public Builder timestamp(String value) {
 			this.timestamp = value;
@@ -183,7 +183,7 @@ public final class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code aggregations}
+		 * Required - API name: {@code aggregations}
 		 */
 		public Builder aggregations(Map<String, JsonData> value) {
 			this.aggregations = value;

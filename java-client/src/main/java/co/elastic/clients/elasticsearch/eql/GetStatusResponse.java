@@ -75,7 +75,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Identifier for the search.
+	 * Required - Identifier for the search.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -84,8 +84,8 @@ public final class GetStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, the search request is still executing. If false, the search is
-	 * completed.
+	 * Required - If true, the search request is still executing. If false, the
+	 * search is completed.
 	 * <p>
 	 * API name: {@code is_partial}
 	 */
@@ -94,10 +94,10 @@ public final class GetStatusResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * If true, the response does not contain complete search results. This could be
-	 * because either the search is still running (is_running status is false), or
-	 * because it is already completed (is_running status is true) and results are
-	 * partial due to failures or timeouts.
+	 * Required - If true, the response does not contain complete search results.
+	 * This could be because either the search is still running (is_running status
+	 * is false), or because it is already completed (is_running status is true) and
+	 * results are partial due to failures or timeouts.
 	 * <p>
 	 * API name: {@code is_running}
 	 */
@@ -201,7 +201,7 @@ public final class GetStatusResponse implements JsonpSerializable {
 		private Integer completionStatus;
 
 		/**
-		 * Identifier for the search.
+		 * Required - Identifier for the search.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -211,8 +211,8 @@ public final class GetStatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, the search request is still executing. If false, the search is
-		 * completed.
+		 * Required - If true, the search request is still executing. If false, the
+		 * search is completed.
 		 * <p>
 		 * API name: {@code is_partial}
 		 */
@@ -222,10 +222,10 @@ public final class GetStatusResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * If true, the response does not contain complete search results. This could be
-		 * because either the search is still running (is_running status is false), or
-		 * because it is already completed (is_running status is true) and results are
-		 * partial due to failures or timeouts.
+		 * Required - If true, the response does not contain complete search results.
+		 * This could be because either the search is still running (is_running status
+		 * is false), or because it is already completed (is_running status is true) and
+		 * results are partial due to failures or timeouts.
 		 * <p>
 		 * API name: {@code is_running}
 		 */

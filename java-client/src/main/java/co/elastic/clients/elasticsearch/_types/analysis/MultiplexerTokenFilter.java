@@ -71,14 +71,14 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 	}
 
 	/**
-	 * API name: {@code filters}
+	 * Required - API name: {@code filters}
 	 */
 	public List<String> filters() {
 		return this.filters;
 	}
 
 	/**
-	 * API name: {@code preserve_original}
+	 * Required - API name: {@code preserve_original}
 	 */
 	public boolean preserveOriginal() {
 		return this.preserveOriginal;
@@ -115,7 +115,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		private Boolean preserveOriginal;
 
 		/**
-		 * API name: {@code filters}
+		 * Required - API name: {@code filters}
 		 */
 		public Builder filters(List<String> value) {
 			this.filters = value;
@@ -123,7 +123,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code filters}
+		 * Required - API name: {@code filters}
 		 */
 		public Builder filters(String... value) {
 			this.filters = Arrays.asList(value);
@@ -131,7 +131,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed. 4
+		 * Add a value to {@link #filters(List)}, creating the list if needed.
 		 */
 		public Builder addFilters(String value) {
 			if (this.filters == null) {
@@ -142,7 +142,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		}
 
 		/**
-		 * API name: {@code preserve_original}
+		 * Required - API name: {@code preserve_original}
 		 */
 		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;

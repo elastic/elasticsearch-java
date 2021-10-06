@@ -59,7 +59,7 @@ public final class NodeInfoAggregation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code types}
+	 * Required - API name: {@code types}
 	 */
 	public List<String> types() {
 		return this.types;
@@ -95,7 +95,7 @@ public final class NodeInfoAggregation implements JsonpSerializable {
 		private List<String> types;
 
 		/**
-		 * API name: {@code types}
+		 * Required - API name: {@code types}
 		 */
 		public Builder types(List<String> value) {
 			this.types = value;
@@ -103,7 +103,7 @@ public final class NodeInfoAggregation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code types}
+		 * Required - API name: {@code types}
 		 */
 		public Builder types(String... value) {
 			this.types = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class NodeInfoAggregation implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed. 4
+		 * Add a value to {@link #types(List)}, creating the list if needed.
 		 */
 		public Builder addTypes(String value) {
 			if (this.types == null) {

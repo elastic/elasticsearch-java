@@ -87,14 +87,14 @@ public final class ShardFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code reason}
+	 * Required - API name: {@code reason}
 	 */
 	public ErrorCause reason() {
 		return this.reason;
 	}
 
 	/**
-	 * API name: {@code shard}
+	 * Required - API name: {@code shard}
 	 */
 	public int shard() {
 		return this.shard;
@@ -183,7 +183,7 @@ public final class ShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(ErrorCause value) {
 			this.reason = value;
@@ -191,14 +191,14 @@ public final class ShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code reason}
+		 * Required - API name: {@code reason}
 		 */
 		public Builder reason(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.reason(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code shard}
+		 * Required - API name: {@code shard}
 		 */
 		public Builder shard(int value) {
 			this.shard = value;

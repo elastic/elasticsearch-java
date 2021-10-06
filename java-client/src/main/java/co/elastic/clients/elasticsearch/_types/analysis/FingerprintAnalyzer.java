@@ -84,42 +84,42 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code max_output_size}
+	 * Required - API name: {@code max_output_size}
 	 */
 	public int maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
-	 * API name: {@code preserve_original}
+	 * Required - API name: {@code preserve_original}
 	 */
 	public boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
 	/**
-	 * API name: {@code separator}
+	 * Required - API name: {@code separator}
 	 */
 	public String separator() {
 		return this.separator;
 	}
 
 	/**
-	 * API name: {@code stopwords}
+	 * Required - API name: {@code stopwords}
 	 */
 	public List<String> stopwords() {
 		return this.stopwords;
 	}
 
 	/**
-	 * API name: {@code stopwords_path}
+	 * Required - API name: {@code stopwords_path}
 	 */
 	public String stopwordsPath() {
 		return this.stopwordsPath;
@@ -182,7 +182,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		private String stopwordsPath;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -190,7 +190,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code max_output_size}
+		 * Required - API name: {@code max_output_size}
 		 */
 		public Builder maxOutputSize(int value) {
 			this.maxOutputSize = value;
@@ -198,7 +198,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code preserve_original}
+		 * Required - API name: {@code preserve_original}
 		 */
 		public Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
@@ -206,7 +206,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code separator}
+		 * Required - API name: {@code separator}
 		 */
 		public Builder separator(String value) {
 			this.separator = value;
@@ -214,7 +214,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(List<String> value) {
 			this.stopwords = value;
@@ -222,7 +222,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
@@ -230,7 +230,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {
@@ -241,7 +241,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		}
 
 		/**
-		 * API name: {@code stopwords_path}
+		 * Required - API name: {@code stopwords_path}
 		 */
 		public Builder stopwordsPath(String value) {
 			this.stopwordsPath = value;

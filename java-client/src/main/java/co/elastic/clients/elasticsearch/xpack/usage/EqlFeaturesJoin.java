@@ -67,35 +67,35 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code join_queries_two}
+	 * Required - API name: {@code join_queries_two}
 	 */
 	public Number joinQueriesTwo() {
 		return this.joinQueriesTwo;
 	}
 
 	/**
-	 * API name: {@code join_queries_three}
+	 * Required - API name: {@code join_queries_three}
 	 */
 	public Number joinQueriesThree() {
 		return this.joinQueriesThree;
 	}
 
 	/**
-	 * API name: {@code join_until}
+	 * Required - API name: {@code join_until}
 	 */
 	public Number joinUntil() {
 		return this.joinUntil;
 	}
 
 	/**
-	 * API name: {@code join_queries_five_or_more}
+	 * Required - API name: {@code join_queries_five_or_more}
 	 */
 	public Number joinQueriesFiveOrMore() {
 		return this.joinQueriesFiveOrMore;
 	}
 
 	/**
-	 * API name: {@code join_queries_four}
+	 * Required - API name: {@code join_queries_four}
 	 */
 	public Number joinQueriesFour() {
 		return this.joinQueriesFour;
@@ -146,7 +146,7 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 		private Number joinQueriesFour;
 
 		/**
-		 * API name: {@code join_queries_two}
+		 * Required - API name: {@code join_queries_two}
 		 */
 		public Builder joinQueriesTwo(Number value) {
 			this.joinQueriesTwo = value;
@@ -154,7 +154,7 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_queries_three}
+		 * Required - API name: {@code join_queries_three}
 		 */
 		public Builder joinQueriesThree(Number value) {
 			this.joinQueriesThree = value;
@@ -162,7 +162,7 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_until}
+		 * Required - API name: {@code join_until}
 		 */
 		public Builder joinUntil(Number value) {
 			this.joinUntil = value;
@@ -170,7 +170,7 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_queries_five_or_more}
+		 * Required - API name: {@code join_queries_five_or_more}
 		 */
 		public Builder joinQueriesFiveOrMore(Number value) {
 			this.joinQueriesFiveOrMore = value;
@@ -178,7 +178,7 @@ public final class EqlFeaturesJoin implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_queries_four}
+		 * Required - API name: {@code join_queries_four}
 		 */
 		public Builder joinQueriesFour(Number value) {
 			this.joinQueriesFour = value;

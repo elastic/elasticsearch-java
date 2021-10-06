@@ -76,49 +76,49 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
-	 * API name: {@code hyphenation_patterns_path}
+	 * Required - API name: {@code hyphenation_patterns_path}
 	 */
 	public String hyphenationPatternsPath() {
 		return this.hyphenationPatternsPath;
 	}
 
 	/**
-	 * API name: {@code max_subword_size}
+	 * Required - API name: {@code max_subword_size}
 	 */
 	public int maxSubwordSize() {
 		return this.maxSubwordSize;
 	}
 
 	/**
-	 * API name: {@code min_subword_size}
+	 * Required - API name: {@code min_subword_size}
 	 */
 	public int minSubwordSize() {
 		return this.minSubwordSize;
 	}
 
 	/**
-	 * API name: {@code min_word_size}
+	 * Required - API name: {@code min_word_size}
 	 */
 	public int minWordSize() {
 		return this.minWordSize;
 	}
 
 	/**
-	 * API name: {@code only_longest_match}
+	 * Required - API name: {@code only_longest_match}
 	 */
 	public boolean onlyLongestMatch() {
 		return this.onlyLongestMatch;
 	}
 
 	/**
-	 * API name: {@code word_list}
+	 * Required - API name: {@code word_list}
 	 */
 	public List<String> wordList() {
 		return this.wordList;
 	}
 
 	/**
-	 * API name: {@code word_list_path}
+	 * Required - API name: {@code word_list_path}
 	 */
 	public String wordListPath() {
 		return this.wordListPath;
@@ -174,7 +174,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		private String wordListPath;
 
 		/**
-		 * API name: {@code hyphenation_patterns_path}
+		 * Required - API name: {@code hyphenation_patterns_path}
 		 */
 		public BuilderT hyphenationPatternsPath(String value) {
 			this.hyphenationPatternsPath = value;
@@ -182,7 +182,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code max_subword_size}
+		 * Required - API name: {@code max_subword_size}
 		 */
 		public BuilderT maxSubwordSize(int value) {
 			this.maxSubwordSize = value;
@@ -190,7 +190,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code min_subword_size}
+		 * Required - API name: {@code min_subword_size}
 		 */
 		public BuilderT minSubwordSize(int value) {
 			this.minSubwordSize = value;
@@ -198,7 +198,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code min_word_size}
+		 * Required - API name: {@code min_word_size}
 		 */
 		public BuilderT minWordSize(int value) {
 			this.minWordSize = value;
@@ -206,7 +206,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code only_longest_match}
+		 * Required - API name: {@code only_longest_match}
 		 */
 		public BuilderT onlyLongestMatch(boolean value) {
 			this.onlyLongestMatch = value;
@@ -214,7 +214,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code word_list}
+		 * Required - API name: {@code word_list}
 		 */
 		public BuilderT wordList(List<String> value) {
 			this.wordList = value;
@@ -222,7 +222,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code word_list}
+		 * Required - API name: {@code word_list}
 		 */
 		public BuilderT wordList(String... value) {
 			this.wordList = Arrays.asList(value);
@@ -230,7 +230,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * Add a value to {@link #wordList(List)}, creating the list if needed. 4
+		 * Add a value to {@link #wordList(List)}, creating the list if needed.
 		 */
 		public BuilderT addWordList(String value) {
 			if (this.wordList == null) {
@@ -241,7 +241,7 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * API name: {@code word_list_path}
+		 * Required - API name: {@code word_list_path}
 		 */
 		public BuilderT wordListPath(String value) {
 			this.wordListPath = value;

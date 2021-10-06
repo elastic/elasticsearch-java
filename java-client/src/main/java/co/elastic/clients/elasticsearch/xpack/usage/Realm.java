@@ -294,7 +294,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed. 4
+		 * Add a value to {@link #name(List)}, creating the list if needed.
 		 */
 		public Builder addName(String value) {
 			if (this.name == null) {
@@ -321,7 +321,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #order(List)}, creating the list if needed. 4
+		 * Add a value to {@link #order(List)}, creating the list if needed.
 		 */
 		public Builder addOrder(Long value) {
 			if (this.order == null) {
@@ -348,7 +348,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #size(List)}, creating the list if needed. 4
+		 * Add a value to {@link #size(List)}, creating the list if needed.
 		 */
 		public Builder addSize(Long value) {
 			if (this.size == null) {
@@ -375,7 +375,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #cache(List)}, creating the list if needed. 4
+		 * Add a value to {@link #cache(List)}, creating the list if needed.
 		 */
 		public Builder addCache(RealmCache value) {
 			if (this.cache == null) {
@@ -393,7 +393,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #cache(List)}, creating the list if needed. 5
+		 * Add a value to {@link #cache(List)}, creating the list if needed.
 		 */
 		public Builder addCache(Function<RealmCache.Builder, ObjectBuilder<RealmCache>> fn) {
 			return this.addCache(fn.apply(new RealmCache.Builder()).build());
@@ -417,7 +417,7 @@ public final class Realm extends Base {
 
 		/**
 		 * Add a value to {@link #hasAuthorizationRealms(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addHasAuthorizationRealms(Boolean value) {
 			if (this.hasAuthorizationRealms == null) {
@@ -445,7 +445,7 @@ public final class Realm extends Base {
 
 		/**
 		 * Add a value to {@link #hasDefaultUsernamePattern(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addHasDefaultUsernamePattern(Boolean value) {
 			if (this.hasDefaultUsernamePattern == null) {
@@ -472,7 +472,7 @@ public final class Realm extends Base {
 		}
 
 		/**
-		 * Add a value to {@link #hasTruststore(List)}, creating the list if needed. 4
+		 * Add a value to {@link #hasTruststore(List)}, creating the list if needed.
 		 */
 		public Builder addHasTruststore(Boolean value) {
 			if (this.hasTruststore == null) {
@@ -500,7 +500,7 @@ public final class Realm extends Base {
 
 		/**
 		 * Add a value to {@link #isAuthenticationDelegated(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addIsAuthenticationDelegated(Boolean value) {
 			if (this.isAuthenticationDelegated == null) {

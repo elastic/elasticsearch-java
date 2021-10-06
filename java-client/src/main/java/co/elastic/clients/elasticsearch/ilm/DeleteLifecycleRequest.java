@@ -57,7 +57,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the index lifecycle policy
+	 * Required - The name of the index lifecycle policy
 	 * <p>
 	 * API name: {@code policy}
 	 */
@@ -74,7 +74,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 		private String policy;
 
 		/**
-		 * The name of the index lifecycle policy
+		 * Required - The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */

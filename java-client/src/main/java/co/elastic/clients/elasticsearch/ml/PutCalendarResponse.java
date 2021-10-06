@@ -65,21 +65,21 @@ public final class PutCalendarResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code calendar_id}
+	 * Required - API name: {@code calendar_id}
 	 */
 	public String calendarId() {
 		return this.calendarId;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
 	public String description() {
 		return this.description;
 	}
 
 	/**
-	 * API name: {@code job_ids}
+	 * Required - API name: {@code job_ids}
 	 */
 	public List<String> jobIds() {
 		return this.jobIds;
@@ -125,7 +125,7 @@ public final class PutCalendarResponse implements JsonpSerializable {
 		private List<String> jobIds;
 
 		/**
-		 * API name: {@code calendar_id}
+		 * Required - API name: {@code calendar_id}
 		 */
 		public Builder calendarId(String value) {
 			this.calendarId = value;
@@ -133,7 +133,7 @@ public final class PutCalendarResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code description}
+		 * Required - API name: {@code description}
 		 */
 		public Builder description(String value) {
 			this.description = value;
@@ -141,7 +141,7 @@ public final class PutCalendarResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_ids}
+		 * Required - API name: {@code job_ids}
 		 */
 		public Builder jobIds(List<String> value) {
 			this.jobIds = value;
@@ -149,7 +149,7 @@ public final class PutCalendarResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_ids}
+		 * Required - API name: {@code job_ids}
 		 */
 		public Builder jobIds(String... value) {
 			this.jobIds = Arrays.asList(value);
@@ -157,7 +157,7 @@ public final class PutCalendarResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #jobIds(List)}, creating the list if needed. 4
+		 * Add a value to {@link #jobIds(List)}, creating the list if needed.
 		 */
 		public Builder addJobIds(String value) {
 			if (this.jobIds == null) {

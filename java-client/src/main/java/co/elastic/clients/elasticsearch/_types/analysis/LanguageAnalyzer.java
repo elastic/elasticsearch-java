@@ -79,35 +79,35 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public String version() {
 		return this.version;
 	}
 
 	/**
-	 * API name: {@code language}
+	 * Required - API name: {@code language}
 	 */
 	public Language language() {
 		return this.language;
 	}
 
 	/**
-	 * API name: {@code stem_exclusion}
+	 * Required - API name: {@code stem_exclusion}
 	 */
 	public List<String> stemExclusion() {
 		return this.stemExclusion;
 	}
 
 	/**
-	 * API name: {@code stopwords}
+	 * Required - API name: {@code stopwords}
 	 */
 	public List<String> stopwords() {
 		return this.stopwords;
 	}
 
 	/**
-	 * API name: {@code stopwords_path}
+	 * Required - API name: {@code stopwords_path}
 	 */
 	public String stopwordsPath() {
 		return this.stopwordsPath;
@@ -170,7 +170,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		private String stopwordsPath;
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(String value) {
 			this.version = value;
@@ -178,7 +178,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code language}
+		 * Required - API name: {@code language}
 		 */
 		public Builder language(Language value) {
 			this.language = value;
@@ -186,7 +186,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stem_exclusion}
+		 * Required - API name: {@code stem_exclusion}
 		 */
 		public Builder stemExclusion(List<String> value) {
 			this.stemExclusion = value;
@@ -194,7 +194,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stem_exclusion}
+		 * Required - API name: {@code stem_exclusion}
 		 */
 		public Builder stemExclusion(String... value) {
 			this.stemExclusion = Arrays.asList(value);
@@ -202,7 +202,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stemExclusion(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stemExclusion(List)}, creating the list if needed.
 		 */
 		public Builder addStemExclusion(String value) {
 			if (this.stemExclusion == null) {
@@ -213,7 +213,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(List<String> value) {
 			this.stopwords = value;
@@ -221,7 +221,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stopwords}
+		 * Required - API name: {@code stopwords}
 		 */
 		public Builder stopwords(String... value) {
 			this.stopwords = Arrays.asList(value);
@@ -229,7 +229,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
 		 */
 		public Builder addStopwords(String value) {
 			if (this.stopwords == null) {
@@ -240,7 +240,7 @@ public final class LanguageAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		}
 
 		/**
-		 * API name: {@code stopwords_path}
+		 * Required - API name: {@code stopwords_path}
 		 */
 		public Builder stopwordsPath(String value) {
 			this.stopwordsPath = value;

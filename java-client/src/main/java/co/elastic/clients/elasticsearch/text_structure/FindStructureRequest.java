@@ -312,7 +312,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 	}
 
 	/**
-	 * Request body.
+	 * Required - Request body.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -572,7 +572,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -582,7 +582,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Request body.
+		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -592,7 +592,7 @@ public final class FindStructureRequest<TJsonDocument> implements JsonpSerializa
 		}
 
 		/**
-		 * Add a value to {@link #textFiles(List)}, creating the list if needed. 4
+		 * Add a value to {@link #textFiles(List)}, creating the list if needed.
 		 */
 		public Builder<TJsonDocument> addTextFiles(TJsonDocument value) {
 			if (this.textFiles == null) {

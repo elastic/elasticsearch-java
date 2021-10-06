@@ -68,28 +68,28 @@ public final class ShardsSegment implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code num_committed_segments}
+	 * Required - API name: {@code num_committed_segments}
 	 */
 	public int numCommittedSegments() {
 		return this.numCommittedSegments;
 	}
 
 	/**
-	 * API name: {@code routing}
+	 * Required - API name: {@code routing}
 	 */
 	public ShardSegmentRouting routing() {
 		return this.routing;
 	}
 
 	/**
-	 * API name: {@code num_search_segments}
+	 * Required - API name: {@code num_search_segments}
 	 */
 	public int numSearchSegments() {
 		return this.numSearchSegments;
 	}
 
 	/**
-	 * API name: {@code segments}
+	 * Required - API name: {@code segments}
 	 */
 	public Map<String, Segment> segments() {
 		return this.segments;
@@ -141,7 +141,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		private Map<String, Segment> segments;
 
 		/**
-		 * API name: {@code num_committed_segments}
+		 * Required - API name: {@code num_committed_segments}
 		 */
 		public Builder numCommittedSegments(int value) {
 			this.numCommittedSegments = value;
@@ -149,7 +149,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code routing}
+		 * Required - API name: {@code routing}
 		 */
 		public Builder routing(ShardSegmentRouting value) {
 			this.routing = value;
@@ -157,14 +157,14 @@ public final class ShardsSegment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code routing}
+		 * Required - API name: {@code routing}
 		 */
 		public Builder routing(Function<ShardSegmentRouting.Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
 			return this.routing(fn.apply(new ShardSegmentRouting.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code num_search_segments}
+		 * Required - API name: {@code num_search_segments}
 		 */
 		public Builder numSearchSegments(int value) {
 			this.numSearchSegments = value;
@@ -172,7 +172,7 @@ public final class ShardsSegment implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code segments}
+		 * Required - API name: {@code segments}
 		 */
 		public Builder segments(Map<String, Segment> value) {
 			this.segments = value;

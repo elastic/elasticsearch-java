@@ -107,7 +107,7 @@ public final class Ensemble implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code trained_models}
+	 * Required - API name: {@code trained_models}
 	 */
 	public List<TrainedModel> trainedModels() {
 		return this.trainedModels;
@@ -222,7 +222,7 @@ public final class Ensemble implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #classificationLabels(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addClassificationLabels(String value) {
 			if (this.classificationLabels == null) {
@@ -249,7 +249,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #featureNames(List)}, creating the list if needed. 4
+		 * Add a value to {@link #featureNames(List)}, creating the list if needed.
 		 */
 		public Builder addFeatureNames(String value) {
 			if (this.featureNames == null) {
@@ -268,7 +268,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trained_models}
+		 * Required - API name: {@code trained_models}
 		 */
 		public Builder trainedModels(List<TrainedModel> value) {
 			this.trainedModels = value;
@@ -276,7 +276,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code trained_models}
+		 * Required - API name: {@code trained_models}
 		 */
 		public Builder trainedModels(TrainedModel... value) {
 			this.trainedModels = Arrays.asList(value);
@@ -284,7 +284,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #trainedModels(List)}, creating the list if needed. 4
+		 * Add a value to {@link #trainedModels(List)}, creating the list if needed.
 		 */
 		public Builder addTrainedModels(TrainedModel value) {
 			if (this.trainedModels == null) {
@@ -302,7 +302,7 @@ public final class Ensemble implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #trainedModels(List)}, creating the list if needed. 5
+		 * Add a value to {@link #trainedModels(List)}, creating the list if needed.
 		 */
 		public Builder addTrainedModels(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
 			return this.addTrainedModels(fn.apply(new TrainedModel.Builder()).build());

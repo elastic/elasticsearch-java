@@ -86,14 +86,14 @@ public final class TermVectorsResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
@@ -221,7 +221,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		private ErrorCause error;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -229,7 +229,7 @@ public final class TermVectorsResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder index(String value) {
 			this.index = value;

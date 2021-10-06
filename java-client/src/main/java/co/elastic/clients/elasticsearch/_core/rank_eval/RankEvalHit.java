@@ -66,14 +66,14 @@ public final class RankEvalHit implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _id}
+	 * Required - API name: {@code _id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code _index}
+	 * Required - API name: {@code _index}
 	 */
 	public String index() {
 		return this.index;
@@ -88,7 +88,7 @@ public final class RankEvalHit implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _score}
+	 * Required - API name: {@code _score}
 	 */
 	public double score() {
 		return this.score;
@@ -139,7 +139,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		private Double score;
 
 		/**
-		 * API name: {@code _id}
+		 * Required - API name: {@code _id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -147,7 +147,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _index}
+		 * Required - API name: {@code _index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -163,7 +163,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _score}
+		 * Required - API name: {@code _score}
 		 */
 		public Builder score(double value) {
 			this.score = value;

@@ -94,7 +94,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * API name: {@code empty_value}
+	 * Required - API name: {@code empty_value}
 	 */
 	public JsonData emptyValue() {
 		return this.emptyValue;
@@ -109,7 +109,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public String field() {
 		return this.field;
@@ -140,14 +140,14 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 	}
 
 	/**
-	 * API name: {@code target_fields}
+	 * Required - API name: {@code target_fields}
 	 */
 	public List<String> targetFields() {
 		return this.targetFields;
 	}
 
 	/**
-	 * API name: {@code trim}
+	 * Required - API name: {@code trim}
 	 */
 	public boolean trim() {
 		return this.trim;
@@ -229,7 +229,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		private Boolean trim;
 
 		/**
-		 * API name: {@code empty_value}
+		 * Required - API name: {@code empty_value}
 		 */
 		public Builder emptyValue(JsonData value) {
 			this.emptyValue = value;
@@ -245,7 +245,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String value) {
 			this.field = value;
@@ -277,7 +277,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * API name: {@code target_fields}
+		 * Required - API name: {@code target_fields}
 		 */
 		public Builder targetFields(List<String> value) {
 			this.targetFields = value;
@@ -285,7 +285,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * API name: {@code target_fields}
+		 * Required - API name: {@code target_fields}
 		 */
 		public Builder targetFields(String... value) {
 			this.targetFields = Arrays.asList(value);
@@ -293,7 +293,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * Add a value to {@link #targetFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #targetFields(List)}, creating the list if needed.
 		 */
 		public Builder addTargetFields(String value) {
 			if (this.targetFields == null) {
@@ -304,7 +304,7 @@ public final class CsvProcessor extends ProcessorBase implements ProcessorVarian
 		}
 
 		/**
-		 * API name: {@code trim}
+		 * Required - API name: {@code trim}
 		 */
 		public Builder trim(boolean value) {
 			this.trim = value;

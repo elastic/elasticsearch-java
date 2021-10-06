@@ -57,14 +57,14 @@ public final class ShardsStatsSummaryItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code file_count}
+	 * Required - API name: {@code file_count}
 	 */
 	public long fileCount() {
 		return this.fileCount;
 	}
 
 	/**
-	 * API name: {@code size_in_bytes}
+	 * Required - API name: {@code size_in_bytes}
 	 */
 	public long sizeInBytes() {
 		return this.sizeInBytes;
@@ -100,7 +100,7 @@ public final class ShardsStatsSummaryItem implements JsonpSerializable {
 		private Long sizeInBytes;
 
 		/**
-		 * API name: {@code file_count}
+		 * Required - API name: {@code file_count}
 		 */
 		public Builder fileCount(long value) {
 			this.fileCount = value;
@@ -108,7 +108,7 @@ public final class ShardsStatsSummaryItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code size_in_bytes}
+		 * Required - API name: {@code size_in_bytes}
 		 */
 		public Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;

@@ -64,21 +64,21 @@ public final class AutoFollowedCluster implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code cluster_name}
+	 * Required - API name: {@code cluster_name}
 	 */
 	public String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * API name: {@code last_seen_metadata_version}
+	 * Required - API name: {@code last_seen_metadata_version}
 	 */
 	public long lastSeenMetadataVersion() {
 		return this.lastSeenMetadataVersion;
 	}
 
 	/**
-	 * API name: {@code time_since_last_check_millis}
+	 * Required - API name: {@code time_since_last_check_millis}
 	 */
 	public String timeSinceLastCheckMillis() {
 		return this.timeSinceLastCheckMillis;
@@ -119,7 +119,7 @@ public final class AutoFollowedCluster implements JsonpSerializable {
 		private String timeSinceLastCheckMillis;
 
 		/**
-		 * API name: {@code cluster_name}
+		 * Required - API name: {@code cluster_name}
 		 */
 		public Builder clusterName(String value) {
 			this.clusterName = value;
@@ -127,7 +127,7 @@ public final class AutoFollowedCluster implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code last_seen_metadata_version}
+		 * Required - API name: {@code last_seen_metadata_version}
 		 */
 		public Builder lastSeenMetadataVersion(long value) {
 			this.lastSeenMetadataVersion = value;
@@ -135,7 +135,7 @@ public final class AutoFollowedCluster implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time_since_last_check_millis}
+		 * Required - API name: {@code time_since_last_check_millis}
 		 */
 		public Builder timeSinceLastCheckMillis(String value) {
 			this.timeSinceLastCheckMillis = value;

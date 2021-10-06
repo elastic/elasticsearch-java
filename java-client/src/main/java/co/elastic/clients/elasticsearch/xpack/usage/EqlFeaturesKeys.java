@@ -67,35 +67,35 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code join_keys_two}
+	 * Required - API name: {@code join_keys_two}
 	 */
 	public Number joinKeysTwo() {
 		return this.joinKeysTwo;
 	}
 
 	/**
-	 * API name: {@code join_keys_one}
+	 * Required - API name: {@code join_keys_one}
 	 */
 	public Number joinKeysOne() {
 		return this.joinKeysOne;
 	}
 
 	/**
-	 * API name: {@code join_keys_three}
+	 * Required - API name: {@code join_keys_three}
 	 */
 	public Number joinKeysThree() {
 		return this.joinKeysThree;
 	}
 
 	/**
-	 * API name: {@code join_keys_five_or_more}
+	 * Required - API name: {@code join_keys_five_or_more}
 	 */
 	public Number joinKeysFiveOrMore() {
 		return this.joinKeysFiveOrMore;
 	}
 
 	/**
-	 * API name: {@code join_keys_four}
+	 * Required - API name: {@code join_keys_four}
 	 */
 	public Number joinKeysFour() {
 		return this.joinKeysFour;
@@ -146,7 +146,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		private Number joinKeysFour;
 
 		/**
-		 * API name: {@code join_keys_two}
+		 * Required - API name: {@code join_keys_two}
 		 */
 		public Builder joinKeysTwo(Number value) {
 			this.joinKeysTwo = value;
@@ -154,7 +154,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_keys_one}
+		 * Required - API name: {@code join_keys_one}
 		 */
 		public Builder joinKeysOne(Number value) {
 			this.joinKeysOne = value;
@@ -162,7 +162,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_keys_three}
+		 * Required - API name: {@code join_keys_three}
 		 */
 		public Builder joinKeysThree(Number value) {
 			this.joinKeysThree = value;
@@ -170,7 +170,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_keys_five_or_more}
+		 * Required - API name: {@code join_keys_five_or_more}
 		 */
 		public Builder joinKeysFiveOrMore(Number value) {
 			this.joinKeysFiveOrMore = value;
@@ -178,7 +178,7 @@ public final class EqlFeaturesKeys implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code join_keys_four}
+		 * Required - API name: {@code join_keys_four}
 		 */
 		public Builder joinKeysFour(Number value) {
 			this.joinKeysFour = value;

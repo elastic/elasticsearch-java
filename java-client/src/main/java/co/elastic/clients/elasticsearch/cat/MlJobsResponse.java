@@ -58,7 +58,7 @@ public final class MlJobsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Response value.
+	 * Required - Response value.
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
@@ -88,7 +88,7 @@ public final class MlJobsResponse implements JsonpSerializable {
 		private List<JobsRecord> valueBody;
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -98,7 +98,7 @@ public final class MlJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Response value.
+		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
@@ -108,7 +108,7 @@ public final class MlJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 4
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
 		 */
 		public Builder addValueBody(JobsRecord value) {
 			if (this.valueBody == null) {
@@ -126,7 +126,7 @@ public final class MlJobsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed. 5
+		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
 		 */
 		public Builder addValueBody(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
 			return this.addValueBody(fn.apply(new JobsRecord.Builder()).build());

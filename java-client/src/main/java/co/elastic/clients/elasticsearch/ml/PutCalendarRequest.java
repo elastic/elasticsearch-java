@@ -64,7 +64,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The ID of the calendar to create
+	 * Required - The ID of the calendar to create
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
@@ -112,7 +112,7 @@ public final class PutCalendarRequest extends RequestBase implements JsonpSerial
 		private String description;
 
 		/**
-		 * The ID of the calendar to create
+		 * Required - The ID of the calendar to create
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */

@@ -55,7 +55,7 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
@@ -86,7 +86,7 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 		private String id;
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;

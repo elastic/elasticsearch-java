@@ -54,7 +54,7 @@ public final class IndexRoutingRebalance implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code enable}
+	 * Required - API name: {@code enable}
 	 */
 	public IndexRoutingRebalanceOptions enable() {
 		return this.enable;
@@ -85,7 +85,7 @@ public final class IndexRoutingRebalance implements JsonpSerializable {
 		private IndexRoutingRebalanceOptions enable;
 
 		/**
-		 * API name: {@code enable}
+		 * Required - API name: {@code enable}
 		 */
 		public Builder enable(IndexRoutingRebalanceOptions value) {
 			this.enable = value;

@@ -63,7 +63,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 	}
 
 	/**
-	 * API name: {@code name}
+	 * Required - API name: {@code name}
 	 */
 	public String name() {
 		return this.name;
@@ -89,7 +89,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 		private String name;
 
 		/**
-		 * API name: {@code name}
+		 * Required - API name: {@code name}
 		 */
 		public Builder name(String value) {
 			this.name = value;

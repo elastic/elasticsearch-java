@@ -89,7 +89,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	}
 
 	/**
-	 * The target field
+	 * Required - The target field
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -181,7 +181,7 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		private String field;
 
 		/**
-		 * The target field
+		 * Required - The target field
 		 * <p>
 		 * API name: {@code field}
 		 */

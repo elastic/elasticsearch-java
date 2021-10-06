@@ -111,126 +111,126 @@ public final class DataCounts implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code bucket_count}
+	 * Required - API name: {@code bucket_count}
 	 */
 	public long bucketCount() {
 		return this.bucketCount;
 	}
 
 	/**
-	 * API name: {@code earliest_record_timestamp}
+	 * Required - API name: {@code earliest_record_timestamp}
 	 */
 	public long earliestRecordTimestamp() {
 		return this.earliestRecordTimestamp;
 	}
 
 	/**
-	 * API name: {@code empty_bucket_count}
+	 * Required - API name: {@code empty_bucket_count}
 	 */
 	public long emptyBucketCount() {
 		return this.emptyBucketCount;
 	}
 
 	/**
-	 * API name: {@code input_bytes}
+	 * Required - API name: {@code input_bytes}
 	 */
 	public long inputBytes() {
 		return this.inputBytes;
 	}
 
 	/**
-	 * API name: {@code input_field_count}
+	 * Required - API name: {@code input_field_count}
 	 */
 	public long inputFieldCount() {
 		return this.inputFieldCount;
 	}
 
 	/**
-	 * API name: {@code input_record_count}
+	 * Required - API name: {@code input_record_count}
 	 */
 	public long inputRecordCount() {
 		return this.inputRecordCount;
 	}
 
 	/**
-	 * API name: {@code invalid_date_count}
+	 * Required - API name: {@code invalid_date_count}
 	 */
 	public long invalidDateCount() {
 		return this.invalidDateCount;
 	}
 
 	/**
-	 * API name: {@code job_id}
+	 * Required - API name: {@code job_id}
 	 */
 	public String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code last_data_time}
+	 * Required - API name: {@code last_data_time}
 	 */
 	public long lastDataTime() {
 		return this.lastDataTime;
 	}
 
 	/**
-	 * API name: {@code latest_empty_bucket_timestamp}
+	 * Required - API name: {@code latest_empty_bucket_timestamp}
 	 */
 	public long latestEmptyBucketTimestamp() {
 		return this.latestEmptyBucketTimestamp;
 	}
 
 	/**
-	 * API name: {@code latest_record_timestamp}
+	 * Required - API name: {@code latest_record_timestamp}
 	 */
 	public long latestRecordTimestamp() {
 		return this.latestRecordTimestamp;
 	}
 
 	/**
-	 * API name: {@code latest_sparse_bucket_timestamp}
+	 * Required - API name: {@code latest_sparse_bucket_timestamp}
 	 */
 	public long latestSparseBucketTimestamp() {
 		return this.latestSparseBucketTimestamp;
 	}
 
 	/**
-	 * API name: {@code latest_bucket_timestamp}
+	 * Required - API name: {@code latest_bucket_timestamp}
 	 */
 	public long latestBucketTimestamp() {
 		return this.latestBucketTimestamp;
 	}
 
 	/**
-	 * API name: {@code missing_field_count}
+	 * Required - API name: {@code missing_field_count}
 	 */
 	public long missingFieldCount() {
 		return this.missingFieldCount;
 	}
 
 	/**
-	 * API name: {@code out_of_order_timestamp_count}
+	 * Required - API name: {@code out_of_order_timestamp_count}
 	 */
 	public long outOfOrderTimestampCount() {
 		return this.outOfOrderTimestampCount;
 	}
 
 	/**
-	 * API name: {@code processed_field_count}
+	 * Required - API name: {@code processed_field_count}
 	 */
 	public long processedFieldCount() {
 		return this.processedFieldCount;
 	}
 
 	/**
-	 * API name: {@code processed_record_count}
+	 * Required - API name: {@code processed_record_count}
 	 */
 	public long processedRecordCount() {
 		return this.processedRecordCount;
 	}
 
 	/**
-	 * API name: {@code sparse_bucket_count}
+	 * Required - API name: {@code sparse_bucket_count}
 	 */
 	public long sparseBucketCount() {
 		return this.sparseBucketCount;
@@ -346,7 +346,7 @@ public final class DataCounts implements JsonpSerializable {
 		private Long sparseBucketCount;
 
 		/**
-		 * API name: {@code bucket_count}
+		 * Required - API name: {@code bucket_count}
 		 */
 		public Builder bucketCount(long value) {
 			this.bucketCount = value;
@@ -354,7 +354,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code earliest_record_timestamp}
+		 * Required - API name: {@code earliest_record_timestamp}
 		 */
 		public Builder earliestRecordTimestamp(long value) {
 			this.earliestRecordTimestamp = value;
@@ -362,7 +362,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code empty_bucket_count}
+		 * Required - API name: {@code empty_bucket_count}
 		 */
 		public Builder emptyBucketCount(long value) {
 			this.emptyBucketCount = value;
@@ -370,7 +370,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input_bytes}
+		 * Required - API name: {@code input_bytes}
 		 */
 		public Builder inputBytes(long value) {
 			this.inputBytes = value;
@@ -378,7 +378,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input_field_count}
+		 * Required - API name: {@code input_field_count}
 		 */
 		public Builder inputFieldCount(long value) {
 			this.inputFieldCount = value;
@@ -386,7 +386,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code input_record_count}
+		 * Required - API name: {@code input_record_count}
 		 */
 		public Builder inputRecordCount(long value) {
 			this.inputRecordCount = value;
@@ -394,7 +394,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code invalid_date_count}
+		 * Required - API name: {@code invalid_date_count}
 		 */
 		public Builder invalidDateCount(long value) {
 			this.invalidDateCount = value;
@@ -402,7 +402,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code job_id}
+		 * Required - API name: {@code job_id}
 		 */
 		public Builder jobId(String value) {
 			this.jobId = value;
@@ -410,7 +410,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code last_data_time}
+		 * Required - API name: {@code last_data_time}
 		 */
 		public Builder lastDataTime(long value) {
 			this.lastDataTime = value;
@@ -418,7 +418,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code latest_empty_bucket_timestamp}
+		 * Required - API name: {@code latest_empty_bucket_timestamp}
 		 */
 		public Builder latestEmptyBucketTimestamp(long value) {
 			this.latestEmptyBucketTimestamp = value;
@@ -426,7 +426,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code latest_record_timestamp}
+		 * Required - API name: {@code latest_record_timestamp}
 		 */
 		public Builder latestRecordTimestamp(long value) {
 			this.latestRecordTimestamp = value;
@@ -434,7 +434,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code latest_sparse_bucket_timestamp}
+		 * Required - API name: {@code latest_sparse_bucket_timestamp}
 		 */
 		public Builder latestSparseBucketTimestamp(long value) {
 			this.latestSparseBucketTimestamp = value;
@@ -442,7 +442,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code latest_bucket_timestamp}
+		 * Required - API name: {@code latest_bucket_timestamp}
 		 */
 		public Builder latestBucketTimestamp(long value) {
 			this.latestBucketTimestamp = value;
@@ -450,7 +450,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code missing_field_count}
+		 * Required - API name: {@code missing_field_count}
 		 */
 		public Builder missingFieldCount(long value) {
 			this.missingFieldCount = value;
@@ -458,7 +458,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code out_of_order_timestamp_count}
+		 * Required - API name: {@code out_of_order_timestamp_count}
 		 */
 		public Builder outOfOrderTimestampCount(long value) {
 			this.outOfOrderTimestampCount = value;
@@ -466,7 +466,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processed_field_count}
+		 * Required - API name: {@code processed_field_count}
 		 */
 		public Builder processedFieldCount(long value) {
 			this.processedFieldCount = value;
@@ -474,7 +474,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code processed_record_count}
+		 * Required - API name: {@code processed_record_count}
 		 */
 		public Builder processedRecordCount(long value) {
 			this.processedRecordCount = value;
@@ -482,7 +482,7 @@ public final class DataCounts implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code sparse_bucket_count}
+		 * Required - API name: {@code sparse_bucket_count}
 		 */
 		public Builder sparseBucketCount(long value) {
 			this.sparseBucketCount = value;

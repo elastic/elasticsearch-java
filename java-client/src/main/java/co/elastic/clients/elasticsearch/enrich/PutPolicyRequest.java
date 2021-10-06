@@ -68,7 +68,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * The name of the enrich policy
+	 * Required - The name of the enrich policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -133,7 +133,7 @@ public final class PutPolicyRequest extends RequestBase implements JsonpSerializ
 		private Policy match;
 
 		/**
-		 * The name of the enrich policy
+		 * Required - The name of the enrich policy
 		 * <p>
 		 * API name: {@code name}
 		 */

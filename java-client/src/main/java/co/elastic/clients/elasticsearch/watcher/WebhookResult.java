@@ -58,7 +58,7 @@ public final class WebhookResult implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code request}
+	 * Required - API name: {@code request}
 	 */
 	public HttpInputRequestResult request() {
 		return this.request;
@@ -107,7 +107,7 @@ public final class WebhookResult implements JsonpSerializable {
 		private HttpInputResponseResult response;
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(HttpInputRequestResult value) {
 			this.request = value;
@@ -115,7 +115,7 @@ public final class WebhookResult implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code request}
+		 * Required - API name: {@code request}
 		 */
 		public Builder request(Function<HttpInputRequestResult.Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
 			return this.request(fn.apply(new HttpInputRequestResult.Builder()).build());

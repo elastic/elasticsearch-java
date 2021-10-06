@@ -203,7 +203,7 @@ public final class HttpInput implements InputVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #extract(List)}, creating the list if needed. 4
+		 * Add a value to {@link #extract(List)}, creating the list if needed.
 		 */
 		public Builder addExtract(String value) {
 			if (this.extract == null) {

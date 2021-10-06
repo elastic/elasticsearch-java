@@ -72,7 +72,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 	}
 
 	/**
-	 * API name: {@code field}
+	 * Required - API name: {@code field}
 	 */
 	public List<String> field() {
 		return this.field;
@@ -121,7 +121,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 		private Boolean ignoreMissing;
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(List<String> value) {
 			this.field = value;
@@ -129,7 +129,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * API name: {@code field}
+		 * Required - API name: {@code field}
 		 */
 		public Builder field(String... value) {
 			this.field = Arrays.asList(value);
@@ -137,7 +137,7 @@ public final class RemoveProcessor extends ProcessorBase implements ProcessorVar
 		}
 
 		/**
-		 * Add a value to {@link #field(List)}, creating the list if needed. 4
+		 * Add a value to {@link #field(List)}, creating the list if needed.
 		 */
 		public Builder addField(String value) {
 			if (this.field == null) {

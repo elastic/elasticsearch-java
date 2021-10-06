@@ -101,7 +101,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	}
 
 	/**
-	 * The name of the text field to encode.
+	 * Required - The name of the text field to encode.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -121,8 +121,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 	}
 
 	/**
-	 * Specifies which n-grams to gather. It’s an array of integer values where the
-	 * minimum value is 1, and a maximum value is 5.
+	 * Required - Specifies which n-grams to gather. It’s an array of integer values
+	 * where the minimum value is 1, and a maximum value is 5.
 	 * <p>
 	 * API name: {@code n_grams}
 	 */
@@ -233,7 +233,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		}
 
 		/**
-		 * The name of the text field to encode.
+		 * Required - The name of the text field to encode.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -254,8 +254,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		}
 
 		/**
-		 * Specifies which n-grams to gather. It’s an array of integer values where the
-		 * minimum value is 1, and a maximum value is 5.
+		 * Required - Specifies which n-grams to gather. It’s an array of integer values
+		 * where the minimum value is 1, and a maximum value is 5.
 		 * <p>
 		 * API name: {@code n_grams}
 		 */
@@ -265,8 +265,8 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		}
 
 		/**
-		 * Specifies which n-grams to gather. It’s an array of integer values where the
-		 * minimum value is 1, and a maximum value is 5.
+		 * Required - Specifies which n-grams to gather. It’s an array of integer values
+		 * where the minimum value is 1, and a maximum value is 5.
 		 * <p>
 		 * API name: {@code n_grams}
 		 */
@@ -276,7 +276,7 @@ public final class DataframeAnalysisFeatureProcessorNGramEncoding
 		}
 
 		/**
-		 * Add a value to {@link #nGrams(List)}, creating the list if needed. 4
+		 * Add a value to {@link #nGrams(List)}, creating the list if needed.
 		 */
 		public Builder addNGrams(Integer value) {
 			if (this.nGrams == null) {

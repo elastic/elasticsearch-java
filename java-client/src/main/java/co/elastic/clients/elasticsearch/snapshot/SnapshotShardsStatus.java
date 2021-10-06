@@ -57,14 +57,14 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code stage}
+	 * Required - API name: {@code stage}
 	 */
 	public ShardsStatsStage stage() {
 		return this.stage;
 	}
 
 	/**
-	 * API name: {@code stats}
+	 * Required - API name: {@code stats}
 	 */
 	public ShardsStatsSummary stats() {
 		return this.stats;
@@ -100,7 +100,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		private ShardsStatsSummary stats;
 
 		/**
-		 * API name: {@code stage}
+		 * Required - API name: {@code stage}
 		 */
 		public Builder stage(ShardsStatsStage value) {
 			this.stage = value;
@@ -108,7 +108,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(ShardsStatsSummary value) {
 			this.stats = value;
@@ -116,7 +116,7 @@ public final class SnapshotShardsStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code stats}
+		 * Required - API name: {@code stats}
 		 */
 		public Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
 			return this.stats(fn.apply(new ShardsStatsSummary.Builder()).build());

@@ -50,8 +50,8 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * For a successful response, this value is always true. On failure, an
-	 * exception is returned instead.
+	 * Required - For a successful response, this value is always true. On failure,
+	 * an exception is returned instead.
 	 * <p>
 	 * API name: {@code acknowledged}
 	 */
@@ -79,8 +79,8 @@ public abstract class AcknowledgedResponseBase implements JsonpSerializable {
 		private Boolean acknowledged;
 
 		/**
-		 * For a successful response, this value is always true. On failure, an
-		 * exception is returned instead.
+		 * Required - For a successful response, this value is always true. On failure,
+		 * an exception is returned instead.
 		 * <p>
 		 * API name: {@code acknowledged}
 		 */

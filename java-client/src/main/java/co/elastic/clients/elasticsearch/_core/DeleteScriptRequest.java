@@ -66,7 +66,7 @@ public final class DeleteScriptRequest extends RequestBase {
 	}
 
 	/**
-	 * Script ID
+	 * Required - Script ID
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -109,7 +109,7 @@ public final class DeleteScriptRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Script ID
+		 * Required - Script ID
 		 * <p>
 		 * API name: {@code id}
 		 */

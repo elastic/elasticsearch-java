@@ -74,35 +74,35 @@ public final class IndexResultSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code created}
+	 * Required - API name: {@code created}
 	 */
 	public boolean created() {
 		return this.created;
 	}
 
 	/**
-	 * API name: {@code id}
+	 * Required - API name: {@code id}
 	 */
 	public String id() {
 		return this.id;
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code index}
 	 */
 	public String index() {
 		return this.index;
 	}
 
 	/**
-	 * API name: {@code result}
+	 * Required - API name: {@code result}
 	 */
 	public Result result() {
 		return this.result;
 	}
 
 	/**
-	 * API name: {@code version}
+	 * Required - API name: {@code version}
 	 */
 	public long version() {
 		return this.version;
@@ -171,7 +171,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code created}
+		 * Required - API name: {@code created}
 		 */
 		public Builder created(boolean value) {
 			this.created = value;
@@ -179,7 +179,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code id}
+		 * Required - API name: {@code id}
 		 */
 		public Builder id(String value) {
 			this.id = value;
@@ -187,7 +187,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code index}
+		 * Required - API name: {@code index}
 		 */
 		public Builder index(String value) {
 			this.index = value;
@@ -195,7 +195,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code result}
+		 * Required - API name: {@code result}
 		 */
 		public Builder result(Result value) {
 			this.result = value;
@@ -203,7 +203,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code version}
+		 * Required - API name: {@code version}
 		 */
 		public Builder version(long value) {
 			this.version = value;

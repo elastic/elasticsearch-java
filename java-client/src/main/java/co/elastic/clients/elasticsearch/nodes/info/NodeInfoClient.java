@@ -55,7 +55,7 @@ public final class NodeInfoClient implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -86,7 +86,7 @@ public final class NodeInfoClient implements JsonpSerializable {
 		private String type;
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

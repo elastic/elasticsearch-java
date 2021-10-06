@@ -57,7 +57,8 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 	}
 
 	/**
-	 * The rollup index or index pattern to obtain rollup capabilities from.
+	 * Required - The rollup index or index pattern to obtain rollup capabilities
+	 * from.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -74,7 +75,8 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 		private String index;
 
 		/**
-		 * The rollup index or index pattern to obtain rollup capabilities from.
+		 * Required - The rollup index or index pattern to obtain rollup capabilities
+		 * from.
 		 * <p>
 		 * API name: {@code index}
 		 */

@@ -54,7 +54,7 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code role_descriptor}
+	 * Required - API name: {@code role_descriptor}
 	 */
 	public RoleDescriptor roleDescriptor() {
 		return this.roleDescriptor;
@@ -85,7 +85,7 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 		private RoleDescriptor roleDescriptor;
 
 		/**
-		 * API name: {@code role_descriptor}
+		 * Required - API name: {@code role_descriptor}
 		 */
 		public Builder roleDescriptor(RoleDescriptor value) {
 			this.roleDescriptor = value;
@@ -93,7 +93,7 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code role_descriptor}
+		 * Required - API name: {@code role_descriptor}
 		 */
 		public Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
 			return this.roleDescriptor(fn.apply(new RoleDescriptor.Builder()).build());

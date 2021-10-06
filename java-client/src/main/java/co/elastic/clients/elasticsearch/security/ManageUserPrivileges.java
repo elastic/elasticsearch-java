@@ -59,7 +59,7 @@ public final class ManageUserPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code applications}
+	 * Required - API name: {@code applications}
 	 */
 	public List<String> applications() {
 		return this.applications;
@@ -95,7 +95,7 @@ public final class ManageUserPrivileges implements JsonpSerializable {
 		private List<String> applications;
 
 		/**
-		 * API name: {@code applications}
+		 * Required - API name: {@code applications}
 		 */
 		public Builder applications(List<String> value) {
 			this.applications = value;
@@ -103,7 +103,7 @@ public final class ManageUserPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code applications}
+		 * Required - API name: {@code applications}
 		 */
 		public Builder applications(String... value) {
 			this.applications = Arrays.asList(value);
@@ -111,7 +111,7 @@ public final class ManageUserPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed. 4
+		 * Add a value to {@link #applications(List)}, creating the list if needed.
 		 */
 		public Builder addApplications(String value) {
 			if (this.applications == null) {

@@ -176,15 +176,15 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final Highlight highlight;
 
 	@Nullable
-	private final JsonValue /* Union(internal.boolean | _types.integer) */ trackTotalHits;
+	private final JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits;
 
 	@Nullable
 	private final List<Map<String, Double>> indicesBoost;
 
 	@Nullable
 	private final JsonValue /*
-							 * Union(_global.search._types.DocValueField | Array<Union(_types.Field |
-							 * _global.search._types.DocValueField)>)
+							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
+							 * _global.search._types.DocValueField)
 							 */ docvalueFields;
 
 	@Nullable
@@ -219,16 +219,16 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 	@Nullable
 	private final JsonValue /*
-							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 	@Nullable
-	private final List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
+	private final List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
 
 	@Nullable
 	private final JsonValue /*
-							 * Union(_global.search._types.SuggestContainer | Dictionary<internal.string,
-							 * _global.search._types.SuggestContainer> (singleKey = false))
+							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
+							 * (singleKey = false) | _global.search._types.SuggestContainer)
 							 */ suggest;
 
 	@Nullable
@@ -709,7 +709,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code track_total_hits}
 	 */
 	@Nullable
-	public JsonValue /* Union(internal.boolean | _types.integer) */ trackTotalHits() {
+	public JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits() {
 		return this.trackTotalHits;
 	}
 
@@ -731,8 +731,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(_global.search._types.DocValueField | Array<Union(_types.Field |
-						 * _global.search._types.DocValueField)>)
+						 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
+						 * _global.search._types.DocValueField)
 						 */ docvalueFields() {
 		return this.docvalueFields;
 	}
@@ -836,7 +836,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 						 */ source() {
 		return this.source;
 	}
@@ -848,7 +848,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code fields}
 	 */
 	@Nullable
-	public List<JsonValue /* Union(_types.Field | _types.DateField) */> fields() {
+	public List<JsonValue /* Union(_types.DateField | _types.Field) */> fields() {
 		return this.fields;
 	}
 
@@ -857,8 +857,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 */
 	@Nullable
 	public JsonValue /*
-						 * Union(_global.search._types.SuggestContainer | Dictionary<internal.string,
-						 * _global.search._types.SuggestContainer> (singleKey = false))
+						 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
+						 * (singleKey = false) | _global.search._types.SuggestContainer)
 						 */ suggest() {
 		return this.suggest;
 	}
@@ -1146,7 +1146,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (JsonValue /* Union(_types.Field | _types.DateField) */ item0 : this.fields) {
+			for (JsonValue /* Union(_types.DateField | _types.Field) */ item0 : this.fields) {
 				generator.write(item0);
 
 			}
@@ -1344,15 +1344,15 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private Highlight highlight;
 
 		@Nullable
-		private JsonValue /* Union(internal.boolean | _types.integer) */ trackTotalHits;
+		private JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits;
 
 		@Nullable
 		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
 		private JsonValue /*
-							 * Union(_global.search._types.DocValueField | Array<Union(_types.Field |
-							 * _global.search._types.DocValueField)>)
+							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
+							 * _global.search._types.DocValueField)
 							 */ docvalueFields;
 
 		@Nullable
@@ -1387,16 +1387,16 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private JsonValue /*
-							 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 							 */ source;
 
 		@Nullable
-		private List<JsonValue /* Union(_types.Field | _types.DateField) */> fields;
+		private List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
 
 		@Nullable
 		private JsonValue /*
-							 * Union(_global.search._types.SuggestContainer | Dictionary<internal.string,
-							 * _global.search._types.SuggestContainer> (singleKey = false))
+							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
+							 * (singleKey = false) | _global.search._types.SuggestContainer)
 							 */ suggest;
 
 		@Nullable
@@ -1449,7 +1449,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed. 4
+		 * Add a value to {@link #index(List)}, creating the list if needed.
 		 */
 		public Builder addIndex(String value) {
 			if (this.index == null) {
@@ -1571,7 +1571,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed. 4
+		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
 		 */
 		public Builder addExpandWildcards(ExpandWildcardOptions value) {
 			if (this.expandWildcards == null) {
@@ -1777,7 +1777,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceExcludes(String value) {
 			if (this.sourceExcludes == null) {
@@ -1808,7 +1808,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
 		 */
 		public Builder addSourceIncludes(String value) {
 			if (this.sourceIncludes == null) {
@@ -1955,7 +1955,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code track_total_hits}
 		 */
-		public Builder trackTotalHits(@Nullable JsonValue /* Union(internal.boolean | _types.integer) */ value) {
+		public Builder trackTotalHits(@Nullable JsonValue /* Union(_types.integer | internal.boolean) */ value) {
 			this.trackTotalHits = value;
 			return this;
 		}
@@ -1981,7 +1981,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed.
 		 */
 		public Builder addIndicesBoost(Map<String, Double> value) {
 			if (this.indicesBoost == null) {
@@ -1997,11 +1997,10 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code docvalue_fields}
 		 */
-		public Builder docvalueFields(
-				@Nullable JsonValue /*
-									 * Union(_global.search._types.DocValueField | Array<Union(_types.Field |
-									 * _global.search._types.DocValueField)>)
-									 */ value) {
+		public Builder docvalueFields(@Nullable JsonValue /*
+															 * Union(Array<Union(_global.search._types.DocValueField |
+															 * _types.Field)> | _global.search._types.DocValueField)
+															 */ value) {
 			this.docvalueFields = value;
 			return this;
 		}
@@ -2076,7 +2075,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed. 4
+		 * Add a value to {@link #rescore(List)}, creating the list if needed.
 		 */
 		public Builder addRescore(Rescore value) {
 			if (this.rescore == null) {
@@ -2094,7 +2093,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed. 5
+		 * Add a value to {@link #rescore(List)}, creating the list if needed.
 		 */
 		public Builder addRescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
 			return this.addRescore(fn.apply(new Rescore.Builder()).build());
@@ -2152,7 +2151,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed. 4
+		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
 		 */
 		public Builder addSearchAfter(String value) {
 			if (this.searchAfter == null) {
@@ -2206,7 +2205,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed. 4
+		 * Add a value to {@link #sort(List)}, creating the list if needed.
 		 */
 		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
 			if (this.sort == null) {
@@ -2224,7 +2223,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public Builder source(
 				@Nullable JsonValue /*
-									 * Union(internal.boolean | _types.Fields | _global.search._types.SourceFilter)
+									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
 									 */ value) {
 			this.source = value;
 			return this;
@@ -2236,7 +2235,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(@Nullable List<JsonValue /* Union(_types.Field | _types.DateField) */> value) {
+		public Builder fields(@Nullable List<JsonValue /* Union(_types.DateField | _types.Field) */> value) {
 			this.fields = value;
 			return this;
 		}
@@ -2247,15 +2246,15 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code fields}
 		 */
-		public Builder fields(JsonValue /* Union(_types.Field | _types.DateField) */... value) {
+		public Builder fields(JsonValue /* Union(_types.DateField | _types.Field) */... value) {
 			this.fields = Arrays.asList(value);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #fields(List)}, creating the list if needed.
 		 */
-		public Builder addFields(JsonValue /* Union(_types.Field | _types.DateField) */ value) {
+		public Builder addFields(JsonValue /* Union(_types.DateField | _types.Field) */ value) {
 			if (this.fields == null) {
 				this.fields = new ArrayList<>();
 			}
@@ -2268,8 +2267,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public Builder suggest(
 				@Nullable JsonValue /*
-									 * Union(_global.search._types.SuggestContainer | Dictionary<internal.string,
-									 * _global.search._types.SuggestContainer> (singleKey = false))
+									 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
+									 * (singleKey = false) | _global.search._types.SuggestContainer)
 									 */ value) {
 			this.suggest = value;
 			return this;
@@ -2359,7 +2358,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed. 4
+		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
 		 */
 		public Builder addStoredFields(String value) {
 			if (this.storedFields == null) {
@@ -2451,7 +2450,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed. 4
+		 * Add a value to {@link #stats(List)}, creating the list if needed.
 		 */
 		public Builder addStats(String value) {
 			if (this.stats == null) {

@@ -88,7 +88,7 @@ public final class FieldCapability implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code aggregatable}
+	 * Required - API name: {@code aggregatable}
 	 */
 	public boolean aggregatable() {
 		return this.aggregatable;
@@ -127,14 +127,14 @@ public final class FieldCapability implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code searchable}
+	 * Required - API name: {@code searchable}
 	 */
 	public boolean searchable() {
 		return this.searchable;
 	}
 
 	/**
-	 * API name: {@code type}
+	 * Required - API name: {@code type}
 	 */
 	public String type() {
 		return this.type;
@@ -256,7 +256,7 @@ public final class FieldCapability implements JsonpSerializable {
 		private Boolean metadataField;
 
 		/**
-		 * API name: {@code aggregatable}
+		 * Required - API name: {@code aggregatable}
 		 */
 		public Builder aggregatable(boolean value) {
 			this.aggregatable = value;
@@ -280,7 +280,7 @@ public final class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed. 4
+		 * Add a value to {@link #indices(List)}, creating the list if needed.
 		 */
 		public Builder addIndices(String value) {
 			if (this.indices == null) {
@@ -327,7 +327,7 @@ public final class FieldCapability implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nonAggregatableIndices(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addNonAggregatableIndices(String value) {
 			if (this.nonAggregatableIndices == null) {
@@ -355,7 +355,7 @@ public final class FieldCapability implements JsonpSerializable {
 
 		/**
 		 * Add a value to {@link #nonSearchableIndices(List)}, creating the list if
-		 * needed. 4
+		 * needed.
 		 */
 		public Builder addNonSearchableIndices(String value) {
 			if (this.nonSearchableIndices == null) {
@@ -366,7 +366,7 @@ public final class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code searchable}
+		 * Required - API name: {@code searchable}
 		 */
 		public Builder searchable(boolean value) {
 			this.searchable = value;
@@ -374,7 +374,7 @@ public final class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code type}
+		 * Required - API name: {@code type}
 		 */
 		public Builder type(String value) {
 			this.type = value;

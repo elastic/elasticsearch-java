@@ -67,7 +67,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	}
 
 	/**
-	 * Identifier for the data frame analytics job.
+	 * Required - Identifier for the data frame analytics job.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -111,7 +111,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		private String timeout;
 
 		/**
-		 * Identifier for the data frame analytics job.
+		 * Required - Identifier for the data frame analytics job.
 		 * <p>
 		 * API name: {@code id}
 		 */
